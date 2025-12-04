@@ -1,0 +1,118 @@
+*[memchr](../../index.md) / [arch](../index.md) / [all](index.md)*
+
+---
+
+# Module `all`
+
+Contains architecture independent routines.
+
+These routines are often used as a "fallback" implementation when the more
+specialized architecture dependent routines are unavailable.
+
+## Modules
+
+- [`memchr`](memchr/index.md) - Provides architecture independent implementations of `memchr` and friends.
+- [`packedpair`](packedpair/index.md) - Provides an architecture independent implementation of the "packed pair"
+- [`rabinkarp`](rabinkarp/index.md) - An implementation of the [Rabin-Karp substring search algorithm][rabinkarp].
+- [`shiftor`](shiftor/index.md) - An implementation of the [Shift-Or substring search algorithm][shiftor].
+- [`twoway`](twoway/index.md) - An implementation of the [Two-Way substring search algorithm][two-way].
+
+## Functions
+
+### `is_prefix`
+
+```rust
+fn is_prefix(haystack: &[u8], needle: &[u8]) -> bool
+```
+
+Returns true if and only if `needle` is a prefix of `haystack`.
+
+This uses a latency optimized variant of `memcmp` internally which *might*
+make this faster for very short strings.
+
+# Inlining
+
+This routine is marked `inline(always)`. If you want to call this function
+in a way that is not always inlined, you'll need to wrap a call to it in
+another function that is marked as `inline(never)` or just `inline`.
+
+### `is_suffix`
+
+```rust
+fn is_suffix(haystack: &[u8], needle: &[u8]) -> bool
+```
+
+Returns true if and only if `needle` is a suffix of `haystack`.
+
+This uses a latency optimized variant of `memcmp` internally which *might*
+make this faster for very short strings.
+
+# Inlining
+
+This routine is marked `inline(always)`. If you want to call this function
+in a way that is not always inlined, you'll need to wrap a call to it in
+another function that is marked as `inline(never)` or just `inline`.
+
+### `is_equal`
+
+```rust
+fn is_equal(x: &[u8], y: &[u8]) -> bool
+```
+
+Compare corresponding bytes in `x` and `y` for equality.
+
+That is, this returns true if and only if `x.len() == y.len()` and
+`x[i](#i) == y[i](#i)` for all `0 <= i < x.len()`.
+
+# Inlining
+
+This routine is marked `inline(always)`. If you want to call this function
+in a way that is not always inlined, you'll need to wrap a call to it in
+another function that is marked as `inline(never)` or just `inline`.
+
+# Motivation
+
+Why not use slice equality instead? Well, slice equality usually results in
+a call out to the current platform's `libc` which might not be inlineable
+or have other overhead. This routine isn't guaranteed to be a win, but it
+might be in some cases.
+
+### `is_equal_raw`
+
+```rust
+unsafe fn is_equal_raw(x: *const u8, y: *const u8, n: usize) -> bool
+```
+
+Compare `n` bytes at the given pointers for equality.
+
+This returns true if and only if `*x.add(i) == *y.add(i)` for all
+`0 <= i < n`.
+
+# Inlining
+
+This routine is marked `inline(always)`. If you want to call this function
+in a way that is not always inlined, you'll need to wrap a call to it in
+another function that is marked as `inline(never)` or just `inline`.
+
+# Motivation
+
+Why not use slice equality instead? Well, slice equality usually results in
+a call out to the current platform's `libc` which might not be inlineable
+or have other overhead. This routine isn't guaranteed to be a win, but it
+might be in some cases.
+
+# Safety
+
+* Both `x` and `y` must be valid for reads of up to `n` bytes.
+* Both `x` and `y` must point to an initialized value.
+* Both `x` and `y` must each point to an allocated object and
+must either be in bounds or at most one byte past the end of the
+allocated object. `x` and `y` do not need to point to the same allocated
+object, but they may.
+* Both `x` and `y` must be _derived from_ a pointer to their respective
+allocated objects.
+* The distance between `x` and `x+n` must not overflow `isize`. Similarly
+for `y` and `y+n`.
+* The distance being in bounds must not rely on "wrapping around" the
+address space.
+

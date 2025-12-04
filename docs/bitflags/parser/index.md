@@ -1,0 +1,206 @@
+*[bitflags](../index.md) / [parser](index.md)*
+
+---
+
+# Module `parser`
+
+Parsing flags from text.
+
+Format and parse a flags value as text using the following grammar:
+
+- _Flags:_ (_Whitespace_ _Flag_ _Whitespace_)`|`*
+- _Flag:_ _Name_ | _Hex Number_
+- _Name:_ The name of any defined flag
+- _Hex Number_: `0x`([0-9a-fA-F])*
+- _Whitespace_: (\s)*
+
+As an example, this is how `Flags::A | Flags::B | 0x0c` can be represented as text:
+
+```text
+A | B | 0x0c
+```
+
+Alternatively, it could be represented without whitespace:
+
+```text
+A|B|0x0C
+```
+
+Note that identifiers are *case-sensitive*, so the following is *not equivalent*:
+
+```text
+a|b|0x0C
+```
+
+## Structs
+
+### `ParseError`
+
+```rust
+struct ParseError();
+```
+
+An error encountered while parsing flags from text.
+
+#### Implementations
+
+- `fn invalid_hex_flag(flag: impl fmt::Display) -> Self`
+  An invalid hex flag was encountered.
+
+- `fn invalid_named_flag(flag: impl fmt::Display) -> Self`
+  A named flag that doesn't correspond to any on the flags type was encountered.
+
+- `const fn empty_flag() -> Self`
+  A hex or named flag wasn't found between separators.
+
+#### Trait Implementations
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
+##### `impl Into<T, U>`
+
+- `fn into(self: Self) -> U`
+  Calls `U::from(self)`.
+
+##### `impl Any<T>`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl BorrowMut<T>`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Display`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Error`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryInto<T, U>`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Traits
+
+### `WriteHex`
+
+```rust
+trait WriteHex { ... }
+```
+
+Encode a value as a hex string.
+
+Implementors of this trait should not write the `0x` prefix.
+
+#### Required Methods
+
+- `fn write_hex<W: fmt::Write>(self: &Self, writer: W) -> fmt::Result`
+
+  Write the value as hex.
+
+### `ParseHex`
+
+```rust
+trait ParseHex { ... }
+```
+
+Parse a value from a hex string.
+
+#### Required Methods
+
+- `fn parse_hex(input: &str) -> Result<Self, ParseError>`
+
+  Parse the value from hex.
+
+## Functions
+
+### `to_writer`
+
+```rust
+fn to_writer<B: Flags>(flags: &B, writer: impl Write) -> Result<(), fmt::Error>
+where
+    <B as >::Bits: WriteHex
+```
+
+Write a flags value as text.
+
+Any bits that aren't part of a contained flag will be formatted as a hex number.
+
+### `from_str`
+
+```rust
+fn from_str<B: Flags>(input: &str) -> Result<B, ParseError>
+where
+    <B as >::Bits: ParseHex
+```
+
+Parse a flags value from text.
+
+This function will fail on any names that don't correspond to defined flags.
+Unknown bits will be retained.
+
+### `to_writer_truncate`
+
+```rust
+fn to_writer_truncate<B: Flags>(flags: &B, writer: impl Write) -> Result<(), fmt::Error>
+where
+    <B as >::Bits: WriteHex
+```
+
+Write a flags value as text, ignoring any unknown bits.
+
+### `from_str_truncate`
+
+```rust
+fn from_str_truncate<B: Flags>(input: &str) -> Result<B, ParseError>
+where
+    <B as >::Bits: ParseHex
+```
+
+Parse a flags value from text.
+
+This function will fail on any names that don't correspond to defined flags.
+Unknown bits will be ignored.
+
+### `to_writer_strict`
+
+```rust
+fn to_writer_strict<B: Flags>(flags: &B, writer: impl Write) -> Result<(), fmt::Error>
+```
+
+Write only the contained, defined, named flags in a flags value as text.
+
+### `from_str_strict`
+
+```rust
+fn from_str_strict<B: Flags>(input: &str) -> Result<B, ParseError>
+```
+
+Parse a flags value from text.
+
+This function will fail on any names that don't correspond to defined flags.
+This function will fail to parse hex values.
+

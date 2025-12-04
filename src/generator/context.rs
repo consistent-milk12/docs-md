@@ -3,11 +3,73 @@
 //! This module provides the [`GeneratorContext`] struct which holds all shared
 //! state needed during markdown generation, including the crate data, lookup
 //! maps, and configuration options.
+//!
+//! The [`RenderContext`] trait defines the interface that renderers use,
+//! enabling both single-crate and multi-crate contexts to share rendering code.
 
 use crate::Args;
+use crate::generator::doc_links::{DocLinkProcessor, strip_duplicate_title};
 use crate::linker::LinkRegistry;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 use std::collections::HashMap;
+
+/// Trait defining the interface for rendering context.
+///
+/// This trait abstracts over [`GeneratorContext`] (single-crate) and
+/// [`SingleCrateView`](crate::multi_crate::SingleCrateView) (multi-crate),
+/// allowing renderers like [`ModuleRenderer`](super::module::ModuleRenderer)
+/// to work with both contexts.
+pub trait RenderContext {
+    /// Get the crate being documented.
+    fn krate(&self) -> &Crate;
+
+    /// Get the crate name.
+    fn crate_name(&self) -> &str;
+
+    /// Get an item by its ID.
+    fn get_item(&self, id: &Id) -> Option<&Item>;
+
+    /// Get impl blocks for a type.
+    fn get_impls(&self, id: &Id) -> Option<&[&Impl]>;
+
+    /// Check if an item should be included based on visibility.
+    fn should_include_item(&self, item: &Item) -> bool;
+
+    /// Whether private items should be included.
+    fn include_private(&self) -> bool;
+
+    /// Get the crate version for display in headers.
+    fn crate_version(&self) -> Option<&str>;
+
+    /// Get the link registry for single-crate mode.
+    ///
+    /// Returns `None` in multi-crate mode where `UnifiedLinkRegistry` is used instead.
+    fn link_registry(&self) -> Option<&LinkRegistry>;
+
+    /// Process documentation string with intra-doc link resolution.
+    ///
+    /// Transforms `` [`Type`] `` style links in doc comments into proper
+    /// markdown links. Also strips duplicate titles and reference definitions.
+    ///
+    /// # Arguments
+    ///
+    /// * `item` - The item whose docs to process (provides docs and links map)
+    /// * `current_file` - Path of the current file (for relative link calculation)
+    fn process_docs(&self, item: &Item, current_file: &str) -> Option<String>;
+
+    /// Create a markdown link to an item.
+    ///
+    /// # Arguments
+    ///
+    /// * `id` - The item ID to link to
+    /// * `current_file` - Path of the current file (for relative link calculation)
+    ///
+    /// # Returns
+    ///
+    /// A markdown link like `[`Name`](path/to/item.md)`, or `None` if the item
+    /// cannot be linked.
+    fn create_link(&self, id: Id, current_file: &str) -> Option<String>;
+}
 
 /// Shared context containing all data needed for documentation generation.
 ///
@@ -20,6 +82,9 @@ use std::collections::HashMap;
 pub struct GeneratorContext<'a> {
     /// The parsed rustdoc JSON crate.
     pub krate: &'a Crate,
+
+    /// The crate name (extracted from root module).
+    crate_name: String,
 
     /// Maps item IDs to their full module paths.
     ///
@@ -52,6 +117,13 @@ impl<'a> GeneratorContext<'a> {
     pub fn new(krate: &'a Crate, args: &'a Args) -> Self {
         use crate::CliOutputFormat;
 
+        // Extract crate name from root module
+        let crate_name = krate
+            .index
+            .get(&krate.root)
+            .and_then(|item| item.name.clone())
+            .unwrap_or_else(|| "unnamed".to_string());
+
         let path_map = Self::build_path_map(krate);
         let impl_map = Self::build_impl_map(krate);
         let is_flat = matches!(args.format, CliOutputFormat::Flat);
@@ -59,6 +131,7 @@ impl<'a> GeneratorContext<'a> {
 
         Self {
             krate,
+            crate_name,
             path_map,
             impl_map,
             link_registry,
@@ -149,5 +222,57 @@ impl<'a> GeneratorContext<'a> {
         }
 
         count
+    }
+}
+
+impl<'a> RenderContext for GeneratorContext<'a> {
+    fn krate(&self) -> &Crate {
+        self.krate
+    }
+
+    fn crate_name(&self) -> &str {
+        &self.crate_name
+    }
+
+    fn get_item(&self, id: &Id) -> Option<&Item> {
+        self.krate.index.get(id)
+    }
+
+    fn get_impls(&self, id: &Id) -> Option<&[&Impl]> {
+        self.impl_map.get(id).map(Vec::as_slice)
+    }
+
+    fn should_include_item(&self, item: &Item) -> bool {
+        match &item.visibility {
+            Visibility::Public => true,
+            _ => self.args.include_private,
+        }
+    }
+
+    fn include_private(&self) -> bool {
+        self.args.include_private
+    }
+
+    fn crate_version(&self) -> Option<&str> {
+        self.krate.crate_version.as_deref()
+    }
+
+    fn link_registry(&self) -> Option<&LinkRegistry> {
+        Some(&self.link_registry)
+    }
+
+    fn process_docs(&self, item: &Item, current_file: &str) -> Option<String> {
+        let docs = item.docs.as_ref()?;
+        let name = item.name.as_deref().unwrap_or("");
+
+        // Strip duplicate title if docs start with "# name"
+        let docs = strip_duplicate_title(docs, name);
+
+        let processor = DocLinkProcessor::new(self.krate, &self.link_registry, current_file);
+        Some(processor.process(docs, &item.links))
+    }
+
+    fn create_link(&self, id: Id, current_file: &str) -> Option<String> {
+        self.link_registry.create_link(id, current_file)
     }
 }

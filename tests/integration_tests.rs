@@ -93,12 +93,12 @@ fn test_include_private_flag() {
     let public_len: usize = public_only
         .paths()
         .iter()
-        .map(|p| public_only.get(p).map(|s| s.len()).unwrap_or(0))
+        .map(|p| public_only.get(p).map_or(0, |s| s.len()))
         .sum();
     let private_len: usize = with_private
         .paths()
         .iter()
-        .map(|p| with_private.get(p).map(|s| s.len()).unwrap_or(0))
+        .map(|p| with_private.get(p).map_or(0, |s| s.len()))
         .sum();
 
     assert!(
@@ -150,7 +150,9 @@ fn test_flat_naming_convention() {
                 "Flat format file '{path}' should not contain path separators"
             );
             assert!(
-                path.ends_with(".md"),
+                std::path::Path::new(path)
+                    .extension()
+                    .is_some_and(|ext| ext.eq_ignore_ascii_case("md")),
                 "All files should end with .md: {path}"
             );
         }
@@ -192,19 +194,20 @@ fn test_link_registry_flat_paths() {
 
     if let rustdoc_types::ItemEnum::Module(root_module) = &krate.index[&krate.root].inner {
         for item_id in &root_module.items {
-            if let Some(item) = krate.index.get(item_id) {
-                if let rustdoc_types::ItemEnum::Module(_) = &item.inner {
-                    if let Some(path) = registry.get_path(*item_id) {
-                        assert!(
-                            !path.contains('/'),
-                            "Flat registry path '{path}' should not contain '/'"
-                        );
-                        assert!(
-                            path.ends_with(".md"),
-                            "Flat registry path '{path}' should end with '.md'"
-                        );
-                    }
-                }
+            if let Some(item) = krate.index.get(item_id)
+                && let rustdoc_types::ItemEnum::Module(_) = &item.inner
+                && let Some(path) = registry.get_path(*item_id)
+            {
+                assert!(
+                    !path.contains('/'),
+                    "Flat registry path '{path}' should not contain '/'"
+                );
+                assert!(
+                    std::path::Path::new(path)
+                        .extension()
+                        .is_some_and(|ext| ext.eq_ignore_ascii_case("md")),
+                    "Flat registry path '{path}' should end with '.md'"
+                );
             }
         }
     }
@@ -222,15 +225,14 @@ fn test_link_registry_nested_paths() {
 
     if let rustdoc_types::ItemEnum::Module(root_module) = &krate.index[&krate.root].inner {
         for item_id in &root_module.items {
-            if let Some(item) = krate.index.get(item_id) {
-                if let rustdoc_types::ItemEnum::Module(_) = &item.inner {
-                    if let Some(path) = registry.get_path(*item_id) {
-                        assert!(
-                            path.ends_with("/index.md"),
-                            "Nested registry path '{path}' should end with '/index.md'"
-                        );
-                    }
-                }
+            if let Some(item) = krate.index.get(item_id)
+                && let rustdoc_types::ItemEnum::Module(_) = &item.inner
+                && let Some(path) = registry.get_path(*item_id)
+            {
+                assert!(
+                    path.ends_with("/index.md"),
+                    "Nested registry path '{path}' should end with '/index.md'"
+                );
             }
         }
     }

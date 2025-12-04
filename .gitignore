@@ -1,6 +1,9 @@
 /target
 
-# Ignore all markdown files except README.md
+# Ignore all markdown files except README.md and docs/
 *.md
 !README.md
+!docs/
+!docs/**
+
 SourceCode/

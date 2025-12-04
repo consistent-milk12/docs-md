@@ -53,7 +53,11 @@ impl MultiCrateParser {
         let mut collection = CrateCollection::new();
 
         // Walk only the top level (max_depth 1 = directory itself + immediate children)
-        for entry in WalkDir::new(dir).max_depth(1).into_iter().filter_map(Result::ok) {
+        for entry in WalkDir::new(dir)
+            .max_depth(1)
+            .into_iter()
+            .filter_map(Result::ok)
+        {
             let path = entry.path();
 
             // Skip non-JSON files
@@ -67,17 +71,12 @@ impl MultiCrateParser {
             }
 
             // Try to parse as rustdoc JSON
-            let krate = match Parser::parse_json(path) {
-                Ok(k) => k,
-                Err(_) => {
-                    // Not a valid rustdoc JSON file, skip it
-                    // (could be search-index.json or other artifacts)
-                    continue;
-                }
+            let Ok(krate) = Parser::parse_json(path) else {
+                continue;
             };
 
             // Validate it's actually rustdoc JSON by checking for root module
-            if krate.index.get(&krate.root).is_none() {
+            if !krate.index.contains_key(&krate.root) {
                 continue;
             }
 

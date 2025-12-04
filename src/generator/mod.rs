@@ -40,7 +40,7 @@
 pub mod breadcrumbs;
 mod capture;
 mod context;
-mod doc_links;
+pub mod doc_links;
 mod flat;
 mod impls;
 mod items;
@@ -49,9 +49,10 @@ mod nested;
 
 pub use breadcrumbs::BreadcrumbGenerator;
 pub use capture::MarkdownCapture;
-pub use context::GeneratorContext;
+pub use context::{GeneratorContext, RenderContext};
 pub use doc_links::{
-    convert_html_links, convert_path_reference_links, strip_duplicate_title, DocLinkProcessor,
+    DocLinkProcessor, convert_html_links, convert_path_reference_links, strip_duplicate_title,
+    strip_reference_definitions,
 };
 pub use module::ModuleRenderer;
 
@@ -193,8 +194,6 @@ impl<'a> Generator<'a> {
         // Create a mock Args for the context
         let args = Args {
             path: None,
-            crate_name: None,
-            crate_version: None,
             dir: None,
             mdbook: false,
             search_index: false,
@@ -296,7 +295,11 @@ impl<'a> Generator<'a> {
     ) -> Result<(), Error> {
         let name = root.name.as_deref().unwrap_or("unnamed");
         let is_root = path_prefix.is_empty()
-            && name == ctx.krate.index[&ctx.krate.root].name.as_deref().unwrap_or("");
+            && name
+                == ctx.krate.index[&ctx.krate.root]
+                    .name
+                    .as_deref()
+                    .unwrap_or("");
 
         let current_file = if path_prefix.is_empty() {
             if is_root {
@@ -334,7 +337,6 @@ impl<'a> Generator<'a> {
 
         Ok(())
     }
-
 
     /// Convenience method to generate documentation in one call.
     ///

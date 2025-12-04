@@ -31,7 +31,7 @@
 //! ```
 
 use crate::multi_crate::CrateCollection;
-use rustdoc_types::{Crate, Id, ItemEnum};
+use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
 use serde::Serialize;
 use std::collections::HashMap;
 use std::path::Path;
@@ -78,18 +78,24 @@ pub struct SearchIndex {
 /// Generator for multi-crate search indices.
 ///
 /// Traverses all crates in a [`CrateCollection`] and builds a comprehensive
-/// search index of all public items.
+/// search index of all public items (or all items if `include_private` is set).
 ///
 /// # Example
 ///
 /// ```ignore
 /// let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
-/// let generator = SearchIndexGenerator::new(&crates);
+/// let generator = SearchIndexGenerator::new(&crates, false);
 /// generator.write(Path::new("docs/"))?;
 /// ```
 pub struct SearchIndexGenerator<'a> {
     /// Collection of crates to index.
     crates: &'a CrateCollection,
+
+    /// Whether to include private items in the search index.
+    ///
+    /// When false (default), only public items are indexed.
+    /// When true, all items regardless of visibility are indexed.
+    include_private: bool,
 }
 
 impl<'a> SearchIndexGenerator<'a> {
@@ -98,9 +104,13 @@ impl<'a> SearchIndexGenerator<'a> {
     /// # Arguments
     ///
     /// * `crates` - Collection of parsed crates to index
+    /// * `include_private` - Whether to include non-public items
     #[must_use]
-    pub fn new(crates: &'a CrateCollection) -> Self {
-        Self { crates }
+    pub fn new(crates: &'a CrateCollection, include_private: bool) -> Self {
+        Self {
+            crates,
+            include_private,
+        }
     }
 
     /// Generate the complete search index.
@@ -154,6 +164,11 @@ impl<'a> SearchIndexGenerator<'a> {
 
         for (id, item) in &krate.index {
             let Some(name) = &item.name else { continue };
+
+            // Filter by visibility unless include_private is set
+            if !self.include_private && !matches!(item.visibility, Visibility::Public) {
+                continue;
+            }
 
             // Determine item kind and whether to include
             let kind = match &item.inner {

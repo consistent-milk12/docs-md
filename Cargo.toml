@@ -11,9 +11,6 @@ clap = { version = "4.5.53", features = ["derive"] }
 miette = { version = "7.6.0", features = ["fancy"] }
 thiserror = "2.0.17"
 
-# HTTP client for fetching from docs.rs
-ureq = "3.1.4"
-
 # Progress bars
 indicatif = "0.18.3"
 

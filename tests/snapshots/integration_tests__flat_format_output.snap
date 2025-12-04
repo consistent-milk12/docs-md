@@ -496,6 +496,7 @@ struct Args {
     pub crate_name: Option<String>,
     pub dir: Option<std::path::PathBuf>,
     pub mdbook: bool,
+    pub search_index: bool,
     pub primary_crate: Option<String>,
     pub crate_version: Option<String>,
     pub output: std::path::PathBuf,
@@ -551,6 +552,15 @@ The tool accepts input from two mutually exclusive sources:
   Only valid with `--dir` for multi-crate documentation.
   Creates a `SUMMARY.md` file in the output directory that can be
   used as the entry point for an mdBook documentation site.
+
+- **`search_index`**: `bool`
+
+  Generate search_index.json for client-side search.
+  
+  Only valid with `--dir` for multi-crate documentation.
+  Creates a `search_index.json` file containing all documented items,
+  which can be used with client-side search libraries like Fuse.js,
+  Lunr.js, or FlexSearch.
 
 - **`primary_crate`**: `Option<String>`
 

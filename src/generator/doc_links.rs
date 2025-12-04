@@ -111,6 +111,26 @@ pub fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str {
     }
 }
 
+/// Strip markdown reference definition lines.
+///
+/// Rustdoc uses reference-style links like `[`Name`]: path::to::item` which
+/// should be removed after intra-doc links are processed. This function removes
+/// these definition lines to prevent malformed markdown output.
+///
+/// # Example
+///
+/// ```ignore
+/// let docs = "See [`Foo`] for details.\n\n[`Foo`]: crate::Foo";
+/// let stripped = strip_reference_definitions(docs);
+/// assert_eq!(stripped, "See [`Foo`] for details.\n\n");
+/// ```
+pub fn strip_reference_definitions(docs: &str) -> String {
+    static REFERENCE_DEF_RE: LazyLock<Regex> =
+        LazyLock::new(|| Regex::new(r"(?m)^\s*\[`[^`]+`\]:\s*\S+\s*$").unwrap());
+
+    REFERENCE_DEF_RE.replace_all(docs, "").to_string()
+}
+
 /// Convert path-style reference links to markdown anchors.
 ///
 /// This is a standalone function that converts rustdoc-style reference links like:
@@ -200,11 +220,7 @@ pub struct DocLinkProcessor<'a> {
 
 impl<'a> DocLinkProcessor<'a> {
     /// Create a new processor for the given context.
-    pub fn new(
-        krate: &'a Crate,
-        link_registry: &'a LinkRegistry,
-        current_file: &'a str,
-    ) -> Self {
+    pub fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self {
         Self {
             krate,
             link_registry,
@@ -618,7 +634,8 @@ impl<'a> DocLinkProcessor<'a> {
                 let method_part = &full_path[last_colon_idx + 2..];
 
                 // Try to resolve the type
-                if let Some(md_link) = self.resolve_method_link(type_part, method_part, item_links) {
+                if let Some(md_link) = self.resolve_method_link(type_part, method_part, item_links)
+                {
                     result.push_str(&md_link);
                 } else {
                     // Keep original if we can't resolve
@@ -653,10 +670,11 @@ impl<'a> DocLinkProcessor<'a> {
 
             // Extract components
             let _item_type = &caps[1]; // struct, enum, trait, etc.
-            let item_name = &caps[2];  // Name
+            let item_name = &caps[2]; // Name
 
             // Check if there's an anchor (group 3 and 4)
-            let anchor = if let (Some(_anchor_type), Some(anchor_name)) = (caps.get(3), caps.get(4)) {
+            let anchor = if let (Some(_anchor_type), Some(anchor_name)) = (caps.get(3), caps.get(4))
+            {
                 // For method.foo, variant.Bar, etc. -> just use the name part
                 anchor_name.as_str().to_lowercase()
             } else {
@@ -683,7 +701,8 @@ impl<'a> DocLinkProcessor<'a> {
         let type_id = item_links.get(type_name).or_else(|| {
             // Try short name match
             let short_type = type_name.split("::").last().unwrap_or(type_name);
-            item_links.iter()
+            item_links
+                .iter()
                 .find(|(k, _)| k.split("::").last() == Some(short_type))
                 .map(|(_, id)| id)
         })?;

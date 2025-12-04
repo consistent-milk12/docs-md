@@ -3,15 +3,15 @@
 //! This module provides [`MultiCrateGenerator`] which orchestrates
 //! documentation generation across multiple crates with cross-crate linking.
 
+use crate::Args;
 use crate::error::Error;
+use crate::generator::RenderContext;
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
-use crate::generator::{convert_html_links, convert_path_reference_links, strip_duplicate_title};
 use crate::multi_crate::context::SingleCrateView;
 use crate::multi_crate::search::SearchIndexGenerator;
 use crate::multi_crate::summary::SummaryGenerator;
 use crate::multi_crate::{CrateCollection, MultiCrateContext};
 use crate::types::TypeRenderer;
-use crate::Args;
 use fs_err as fs;
 use indicatif::{ProgressBar, ProgressStyle};
 use rustdoc_types::{Id, Item, ItemEnum, StructKind, Visibility};
@@ -103,7 +103,8 @@ impl<'a> MultiCrateGenerator<'a> {
         // Generate search index if requested
         if self.args.search_index {
             progress.set_message("Generating search_index.json...");
-            let search_gen = SearchIndexGenerator::new(self.ctx.crates());
+            let search_gen =
+                SearchIndexGenerator::new(self.ctx.crates(), self.args.include_private);
             search_gen
                 .write(&self.args.output)
                 .map_err(Error::FileWrite)?;
@@ -144,7 +145,7 @@ impl<'a> MultiCrateGenerator<'a> {
                     && let ItemEnum::Module(_) = &item.inner
                     && view.should_include_item(item)
                 {
-                    self.generate_module(view, item, &crate_dir, vec![], progress)?;
+                    Self::generate_module(view, item, &crate_dir, vec![], progress)?;
                 }
             }
         }
@@ -154,7 +155,6 @@ impl<'a> MultiCrateGenerator<'a> {
 
     /// Generate a module directory with index.md and child modules.
     fn generate_module(
-        &self,
         view: &SingleCrateView,
         item: &Item,
         parent_dir: &Path,
@@ -197,7 +197,13 @@ impl<'a> MultiCrateGenerator<'a> {
                     && let ItemEnum::Module(_) = &sub_item.inner
                     && view.should_include_item(sub_item)
                 {
-                    self.generate_module(view, sub_item, &module_dir, current_path.clone(), progress)?;
+                    Self::generate_module(
+                        view,
+                        sub_item,
+                        &module_dir,
+                        current_path.clone(),
+                        progress,
+                    )?;
                 }
             }
         }
@@ -209,11 +215,9 @@ impl<'a> MultiCrateGenerator<'a> {
     fn create_progress_bar(total: usize) -> ProgressBar {
         let progress = ProgressBar::new(total as u64);
         progress.set_style(
-            ProgressStyle::with_template(
-                "{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}",
-            )
-            .unwrap()
-            .progress_chars("=>-"),
+            ProgressStyle::with_template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}")
+                .unwrap()
+                .progress_chars("=>-"),
         );
         progress
     }
@@ -222,13 +226,15 @@ impl<'a> MultiCrateGenerator<'a> {
 /// Module renderer for multi-crate context.
 ///
 /// Wraps the standard module rendering with multi-crate link resolution.
+///
+/// This renderer handles special cases that aren't covered by the standard
+/// `ModuleRenderer`, particularly re-exports (`pub use`) which need to
+/// resolve items across crate boundaries.
 struct MultiCrateModuleRenderer<'a> {
-    /// Single-crate view for this crate.
+    /// Single-crate view for this crate (implements `RenderContext`).
     view: &'a SingleCrateView<'a>,
 
     /// Current file path for link resolution.
-    /// Used by DocLinkProcessor for relative link calculation.
-    #[allow(dead_code)]
     file_path: &'a str,
 
     /// Whether this is the crate root.
@@ -257,14 +263,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             _ = writeln!(md, "# Module `{name}`\n");
         }
 
-        // Module documentation
-        if let Some(docs) = &item.docs {
-            // Strip duplicate title if docs start with "# name"
-            let docs = strip_duplicate_title(docs, name);
-            // Convert rustdoc-style links to markdown anchors
-            let html_processed = convert_html_links(docs);
-            let processed = convert_path_reference_links(&html_processed);
-            _ = writeln!(md, "{processed}\n");
+        // Module documentation - use RenderContext trait method
+        if let Some(docs) = self.view.process_docs(item, self.file_path) {
+            _ = writeln!(md, "{docs}\n");
         }
 
         // Module contents
@@ -312,29 +313,32 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     // Handle re-exports: pub use other::Item;
                     // Skip glob re-exports (pub use foo::*) as they create duplicates
                     ItemEnum::Use(use_item) if !use_item.is_glob => {
-                        if let Some(ref target_id) = use_item.id {
-                            // Try local crate first, then search all crates
-                            let target_item = krate
-                                .index
-                                .get(target_id)
-                                .or_else(|| {
-                                    self.view
-                                        .lookup_item_across_crates(target_id)
-                                        .map(|(_, item)| item)
-                                });
+                        // Try to resolve target item: first by ID, then by path
+                        let target_item = if let Some(ref target_id) = use_item.id {
+                            // Has ID - try local crate first, then search all crates
+                            krate.index.get(target_id).or_else(|| {
+                                self.view
+                                    .lookup_item_across_crates(target_id)
+                                    .map(|(_, item)| item)
+                            })
+                        } else {
+                            // No ID (external re-export) - resolve by path
+                            self.view
+                                .resolve_external_path(&use_item.source)
+                                .map(|(_, item, _)| item)
+                        };
 
-                            if let Some(target_item) = target_item {
-                                match &target_item.inner {
-                                    ItemEnum::Module(_) => modules.push(item),
-                                    ItemEnum::Struct(_) => structs.push((item_id, item)),
-                                    ItemEnum::Enum(_) => enums.push((item_id, item)),
-                                    ItemEnum::Trait(_) => traits.push(item),
-                                    ItemEnum::Function(_) => functions.push(item),
-                                    ItemEnum::TypeAlias(_) => types.push(item),
-                                    ItemEnum::Constant { .. } => constants.push(item),
-                                    ItemEnum::Macro(_) => macros.push(item),
-                                    _ => {}
-                                }
+                        if let Some(target_item) = target_item {
+                            match &target_item.inner {
+                                ItemEnum::Module(_) => modules.push(item),
+                                ItemEnum::Struct(_) => structs.push((item_id, item)),
+                                ItemEnum::Enum(_) => enums.push((item_id, item)),
+                                ItemEnum::Trait(_) => traits.push(item),
+                                ItemEnum::Function(_) => functions.push(item),
+                                ItemEnum::TypeAlias(_) => types.push(item),
+                                ItemEnum::Constant { .. } => constants.push(item),
+                                ItemEnum::Macro(_) => macros.push(item),
+                                _ => {}
                             }
                         }
                     }
@@ -344,7 +348,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
 
         // Render sections with full detail
-        self.render_modules_section(md, &modules);
+        Self::render_modules_section(md, &modules);
         self.render_structs_section(md, &structs);
         self.render_enums_section(md, &enums);
         self.render_traits_section(md, &traits);
@@ -355,7 +359,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Render modules section (links to subdirectories).
-    fn render_modules_section(&self, md: &mut String, modules: &[&Item]) {
+    fn render_modules_section(md: &mut String, modules: &[&Item]) {
         if modules.is_empty() {
             return;
         }
@@ -363,7 +367,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         _ = writeln!(md, "## Modules\n");
 
         for item in modules {
-            let (name, summary) = self.get_item_name_and_summary(item);
+            let (name, summary) = Self::get_item_name_and_summary(item);
             _ = writeln!(md, "- [`{name}`]({name}/index.md) - {summary}");
         }
 
@@ -462,7 +466,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     }
 
     /// Get name and summary for an item, handling re-exports.
-    fn get_item_name_and_summary(&self, item: &Item) -> (String, String) {
+    fn get_item_name_and_summary(item: &Item) -> (String, String) {
         if let ItemEnum::Use(use_item) = &item.inner {
             // For re-exports, the name is always from the Use item
             let name = use_item.name.clone();
@@ -477,47 +481,57 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
     }
 
-    /// Process documentation string (simplified - just converts links).
-    fn process_docs(&self, item: &Item) -> Option<String> {
-        let docs = item.docs.as_ref()?;
-        let name = item.name.as_deref().unwrap_or("");
-        let docs = strip_duplicate_title(docs, name);
-        let html_processed = convert_html_links(docs);
-        let processed = convert_path_reference_links(&html_processed);
-        Some(processed)
-    }
-
     /// Render a struct definition to markdown.
     fn render_struct(&self, md: &mut String, item_id: Id, item: &Item) {
         let krate = self.view.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         // Handle re-exports: use the target item for rendering
-        let (name, actual_item, actual_id) = if let ItemEnum::Use(use_item) = &item.inner {
-            let name = use_item.name.as_str();
-            if let Some(ref target_id) = use_item.id {
-                let target = krate.index.get(target_id).or_else(|| {
-                    self.view
-                        .lookup_item_across_crates(target_id)
-                        .map(|(_, item)| item)
-                });
-                if let Some(target) = target {
-                    (name, target, *target_id)
+        // source_crate is set when this is an external re-export
+        let (name, actual_item, actual_id, source_crate): (&str, &Item, Id, Option<&str>) =
+            if let ItemEnum::Use(use_item) = &item.inner {
+                let name = use_item.name.as_str();
+                if let Some(ref target_id) = use_item.id {
+                    // Has ID - try local crate first, then search all crates
+                    let target = krate.index.get(target_id).or_else(|| {
+                        self.view
+                            .lookup_item_across_crates(target_id)
+                            .map(|(_, item)| item)
+                    });
+                    if let Some(target) = target {
+                        (name, target, *target_id, None)
+                    } else {
+                        return;
+                    }
                 } else {
-                    return;
+                    // No ID - try to resolve by path (external re-export)
+                    if let Some((src_crate, target, target_id)) =
+                        self.view.resolve_external_path(&use_item.source)
+                    {
+                        (name, target, target_id, Some(src_crate))
+                    } else {
+                        return;
+                    }
                 }
             } else {
-                return;
-            }
-        } else {
-            (item.name.as_deref().unwrap_or("unnamed"), item, item_id)
-        };
+                (
+                    item.name.as_deref().unwrap_or("unnamed"),
+                    item,
+                    item_id,
+                    None,
+                )
+            };
 
         if let ItemEnum::Struct(s) = &actual_item.inner {
             let generics = type_renderer.render_generics(&s.generics.params);
             let where_clause = type_renderer.render_where_clause(&s.generics.where_predicates);
 
             _ = write!(md, "### `{name}{generics}`\n\n");
+
+            // Add re-export annotation for external re-exports
+            if let Some(src_crate) = source_crate {
+                _ = writeln!(md, "*Re-exported from `{src_crate}`*\n");
+            }
 
             // Definition code block
             md.push_str("```rust\n");
@@ -573,7 +587,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             md.push_str("```\n\n");
 
             // Documentation
-            if let Some(docs) = self.process_docs(actual_item) {
+            if let Some(docs) = self.view.process_docs(actual_item, self.file_path) {
                 md.push_str(&docs);
                 md.push_str("\n\n");
             }
@@ -610,7 +624,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         field_name,
                         type_renderer.render_type(ty)
                     );
-                    if let Some(docs) = self.process_docs(field) {
+                    if let Some(docs) = self.view.process_docs(field, self.file_path) {
                         _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
                     }
                     md.push_str("\n\n");
@@ -624,26 +638,41 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         let krate = self.view.krate();
         let type_renderer = TypeRenderer::new(krate);
 
-        // Handle re-exports
-        let (name, actual_item, actual_id) = if let ItemEnum::Use(use_item) = &item.inner {
-            let name = use_item.name.as_str();
-            if let Some(ref target_id) = use_item.id {
-                let target = krate.index.get(target_id).or_else(|| {
-                    self.view
-                        .lookup_item_across_crates(target_id)
-                        .map(|(_, item)| item)
-                });
-                if let Some(target) = target {
-                    (name, target, *target_id)
+        // Handle re-exports: use the target item for rendering
+        // source_crate is set when this is an external re-export
+        let (name, actual_item, actual_id, source_crate): (&str, &Item, Id, Option<&str>) =
+            if let ItemEnum::Use(use_item) = &item.inner {
+                let name = use_item.name.as_str();
+                if let Some(ref target_id) = use_item.id {
+                    // Has ID - try local crate first, then search all crates
+                    let target = krate.index.get(target_id).or_else(|| {
+                        self.view
+                            .lookup_item_across_crates(target_id)
+                            .map(|(_, item)| item)
+                    });
+                    if let Some(target) = target {
+                        (name, target, *target_id, None)
+                    } else {
+                        return;
+                    }
                 } else {
-                    return;
+                    // No ID - try to resolve by path (external re-export)
+                    if let Some((src_crate, target, target_id)) =
+                        self.view.resolve_external_path(&use_item.source)
+                    {
+                        (name, target, target_id, Some(src_crate))
+                    } else {
+                        return;
+                    }
                 }
             } else {
-                return;
-            }
-        } else {
-            (item.name.as_deref().unwrap_or("unnamed"), item, item_id)
-        };
+                (
+                    item.name.as_deref().unwrap_or("unnamed"),
+                    item,
+                    item_id,
+                    None,
+                )
+            };
 
         if let ItemEnum::Enum(e) = &actual_item.inner {
             let generics = type_renderer.render_generics(&e.generics.params);
@@ -651,20 +680,25 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
             _ = write!(md, "### `{name}{generics}`\n\n");
 
+            // Add re-export annotation for external re-exports
+            if let Some(src_crate) = source_crate {
+                _ = writeln!(md, "*Re-exported from `{src_crate}`*\n");
+            }
+
             // Definition code block
             md.push_str("```rust\n");
             _ = writeln!(md, "enum {name}{generics}{where_clause} {{");
 
             for variant_id in &e.variants {
                 if let Some(variant) = krate.index.get(variant_id) {
-                    self.render_enum_variant(md, variant, krate, &type_renderer);
+                    Self::render_enum_variant(md, variant, krate, type_renderer);
                 }
             }
             md.push_str("}\n");
             md.push_str("```\n\n");
 
             // Documentation
-            if let Some(docs) = self.process_docs(actual_item) {
+            if let Some(docs) = self.view.process_docs(actual_item, self.file_path) {
                 md.push_str(&docs);
                 md.push_str("\n\n");
             }
@@ -679,11 +713,10 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
     /// Render a single enum variant in the definition code block.
     fn render_enum_variant(
-        &self,
         md: &mut String,
         variant: &Item,
         krate: &rustdoc_types::Crate,
-        type_renderer: &TypeRenderer,
+        type_renderer: TypeRenderer,
     ) {
         let variant_name = variant.name.as_deref().unwrap_or("_");
 
@@ -743,7 +776,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             for variant in documented_variants {
                 let variant_name = variant.name.as_deref().unwrap_or("_");
                 _ = write!(md, "- **`{variant_name}`**");
-                if let Some(docs) = self.process_docs(variant) {
+                if let Some(docs) = self.view.process_docs(variant, self.file_path) {
                     _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
                 }
                 md.push_str("\n\n");
@@ -777,7 +810,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             _ = writeln!(md, "trait {name}{generics}{bounds}{where_clause} {{ ... }}");
             md.push_str("```\n\n");
 
-            if let Some(docs) = self.process_docs(item) {
+            if let Some(docs) = self.view.process_docs(item, self.file_path) {
                 md.push_str(&docs);
                 md.push_str("\n\n");
             }
@@ -818,26 +851,38 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
                     .unwrap_or_default();
 
-                _ = write!(md, "- `fn {}{}({}){}`", name, generics, params.join(", "), ret);
-                if let Some(docs) = self.process_docs(item) {
-                    if let Some(first_line) = docs.lines().next() {
-                        _ = write!(md, "\n\n  {first_line}");
-                    }
+                _ = write!(
+                    md,
+                    "- `fn {}{}({}){}`",
+                    name,
+                    generics,
+                    params.join(", "),
+                    ret
+                );
+                if let Some(docs) = self.view.process_docs(item, self.file_path)
+                    && let Some(first_line) = docs.lines().next()
+                {
+                    _ = write!(md, "\n\n  {first_line}");
                 }
+
                 md.push_str("\n\n");
             }
+
             ItemEnum::AssocType { bounds, type_, .. } => {
                 let bounds_str = if bounds.is_empty() {
                     String::new()
                 } else {
                     format!(": {}", bounds.len())
                 };
+
                 let default_str = type_
                     .as_ref()
                     .map(|ty| format!(" = {}", type_renderer.render_type(ty)))
                     .unwrap_or_default();
+
                 _ = write!(md, "- `type {name}{bounds_str}{default_str}`\n\n");
             }
+
             ItemEnum::AssocConst { type_, .. } => {
                 _ = write!(
                     md,
@@ -845,6 +890,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     type_renderer.render_type(type_)
                 );
             }
+
             _ => {
                 _ = write!(md, "- `{name}`\n\n");
             }
@@ -865,9 +911,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 .sig
                 .inputs
                 .iter()
-                .map(|(param_name, ty)| {
-                    format!("{param_name}: {}", type_renderer.render_type(ty))
-                })
+                .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
                 .collect();
 
             let ret = f
@@ -882,6 +926,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             let is_unsafe = if f.header.is_unsafe { "unsafe " } else { "" };
 
             _ = write!(md, "### `{name}`\n\n");
+
             md.push_str("```rust\n");
             _ = writeln!(
                 md,
@@ -895,9 +940,10 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 ret,
                 where_clause
             );
+
             md.push_str("```\n\n");
 
-            if let Some(docs) = self.process_docs(item) {
+            if let Some(docs) = self.view.process_docs(item, self.file_path) {
                 md.push_str(&docs);
                 md.push_str("\n\n");
             }
@@ -925,7 +971,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             );
             md.push_str("```\n\n");
 
-            if let Some(docs) = self.process_docs(item) {
+            if let Some(docs) = self.view.process_docs(item, self.file_path) {
                 md.push_str(&docs);
                 md.push_str("\n\n");
             }
@@ -951,7 +997,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             );
             md.push_str("```\n\n");
 
-            if let Some(docs) = self.process_docs(item) {
+            if let Some(docs) = self.view.process_docs(item, self.file_path) {
                 md.push_str(&docs);
                 md.push_str("\n\n");
             }
@@ -963,30 +1009,29 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         let name = item.name.as_deref().unwrap_or("unnamed");
         _ = write!(md, "### `{name}!`\n\n");
 
-        if let Some(docs) = self.process_docs(item) {
+        if let Some(docs) = self.view.process_docs(item, self.file_path) {
             md.push_str(&docs);
             md.push_str("\n\n");
         }
     }
 
-    /// Render impl blocks for a type.
+    /// Render impl blocks for a type, including cross-crate impls.
     fn render_impl_blocks(&self, md: &mut String, item_id: Id) {
-        let Some(impls) = self.view.get_impls(item_id) else {
+        // Get all impls including cross-crate ones
+        let impls = self.view.get_all_impls(item_id);
+        if impls.is_empty() {
             return;
-        };
+        }
 
         let krate = self.view.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         // Partition into inherent vs trait impls
-        let (inherent, trait_impls): (Vec<&&rustdoc_types::Impl>, Vec<&&rustdoc_types::Impl>) =
-            impls.iter().partition(|i| i.trait_.is_none());
+        let (inherent, trait_impls): (Vec<&rustdoc_types::Impl>, Vec<&rustdoc_types::Impl>) =
+            impls.into_iter().partition(|i| i.trait_.is_none());
 
         // Filter out synthetic impls
-        let inherent: Vec<_> = inherent
-            .into_iter()
-            .filter(|i| !i.is_synthetic)
-            .collect();
+        let inherent: Vec<_> = inherent.into_iter().filter(|i| !i.is_synthetic).collect();
         let trait_impls: Vec<_> = trait_impls
             .into_iter()
             .filter(|i| !i.is_synthetic)
@@ -996,7 +1041,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         if !inherent.is_empty() {
             md.push_str("#### Implementations\n\n");
             for impl_block in inherent {
-                self.render_impl_items(md, impl_block, krate, &type_renderer);
+                Self::render_impl_items(md, impl_block, krate, type_renderer);
             }
         }
 
@@ -1005,22 +1050,25 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             md.push_str("#### Trait Implementations\n\n");
             for impl_block in trait_impls {
                 if let Some(trait_path) = &impl_block.trait_ {
-                    let trait_name = trait_path.path.split("::").last().unwrap_or(&trait_path.path);
+                    let trait_name = trait_path
+                        .path
+                        .split("::")
+                        .last()
+                        .unwrap_or(&trait_path.path);
                     let generics = type_renderer.render_generics(&impl_block.generics.params);
                     _ = writeln!(md, "##### `impl {trait_name}{generics}`\n");
                 }
-                self.render_impl_items(md, impl_block, krate, &type_renderer);
+                Self::render_impl_items(md, impl_block, krate, type_renderer);
             }
         }
     }
 
     /// Render items within an impl block.
     fn render_impl_items(
-        &self,
         md: &mut String,
         impl_block: &rustdoc_types::Impl,
         krate: &rustdoc_types::Crate,
-        type_renderer: &TypeRenderer,
+        type_renderer: TypeRenderer,
     ) {
         for item_id in &impl_block.items {
             if let Some(item) = krate.index.get(item_id) {
@@ -1051,15 +1099,20 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         _ = write!(
                             md,
                             "- `{}{}{}fn {}{}({}){}`",
-                            is_const, is_async, is_unsafe, name, generics,
-                            params.join(", "), ret
+                            is_const,
+                            is_async,
+                            is_unsafe,
+                            name,
+                            generics,
+                            params.join(", "),
+                            ret
                         );
 
                         // First line of docs as summary
-                        if let Some(docs) = &item.docs {
-                            if let Some(first_line) = docs.lines().next() {
-                                _ = write!(md, "\n  {first_line}");
-                            }
+                        if let Some(docs) = &item.docs
+                            && let Some(first_line) = docs.lines().next()
+                        {
+                            _ = write!(md, "\n  {first_line}");
                         }
                         md.push_str("\n\n");
                     }

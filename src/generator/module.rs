@@ -4,8 +4,7 @@
 //! a Rust module's documentation to markdown format, including all its items
 //! organized by type.
 
-use crate::generator::context::GeneratorContext;
-use crate::generator::doc_links::{strip_duplicate_title, DocLinkProcessor};
+use crate::generator::context::RenderContext;
 use crate::generator::items::ItemRenderer;
 use rustdoc_types::{Id, Item, ItemEnum};
 use std::fmt::Write;
@@ -17,9 +16,12 @@ use std::fmt::Write;
 /// - Title (Crate or Module heading)
 /// - Module-level documentation
 /// - Sections for each item type (Modules, Structs, Enums, etc.)
+///
+/// The renderer is generic over [`RenderContext`], allowing it to work with
+/// both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 pub struct ModuleRenderer<'a> {
-    /// Reference to the shared generator context.
-    ctx: &'a GeneratorContext<'a>,
+    /// Reference to the render context (either single-crate or multi-crate).
+    ctx: &'a dyn RenderContext,
 
     /// Path of the current file being generated (for relative link calculation).
     current_file: &'a str,
@@ -33,10 +35,10 @@ impl<'a> ModuleRenderer<'a> {
     ///
     /// # Arguments
     ///
-    /// * `ctx` - Shared generator context
+    /// * `ctx` - Render context (implements RenderContext trait)
     /// * `current_file` - Path of this file (for relative link calculation)
     /// * `is_root` - True if this is the crate root module
-    pub fn new(ctx: &'a GeneratorContext<'a>, current_file: &'a str, is_root: bool) -> Self {
+    pub fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self {
         Self {
             ctx,
             current_file,
@@ -46,22 +48,10 @@ impl<'a> ModuleRenderer<'a> {
 
     /// Process documentation string to resolve intra-doc links.
     ///
-    /// Uses [`DocLinkProcessor`] to transform `` [`Type`] `` style links
-    /// in doc comments into proper markdown links using the item's `links` map.
-    /// Also strips duplicate titles that match the item name.
+    /// Delegates to the render context's `process_docs` method, which handles
+    /// both single-crate and multi-crate link resolution.
     fn process_docs(&self, item: &Item) -> Option<String> {
-        let docs = item.docs.as_ref()?;
-        let name = item.name.as_deref().unwrap_or("");
-
-        // Strip duplicate title if docs start with "# name"
-        let docs = strip_duplicate_title(docs, name);
-
-        let processor = DocLinkProcessor::new(
-            self.ctx.krate,
-            &self.ctx.link_registry,
-            self.current_file,
-        );
-        Some(processor.process(docs, &item.links))
+        self.ctx.process_docs(item, self.current_file)
     }
 
     /// Generate the complete markdown content for a module.
@@ -91,7 +81,7 @@ impl<'a> ModuleRenderer<'a> {
         // === Title Section ===
         if self.is_root {
             _ = write!(md, "# Crate `{name}`\n\n");
-            if let Some(version) = &self.ctx.krate.crate_version {
+            if let Some(version) = self.ctx.crate_version() {
                 _ = write!(md, "**Version:** {version}\n\n");
             }
         } else {
@@ -118,7 +108,7 @@ impl<'a> ModuleRenderer<'a> {
         let mut items = CategorizedItems::default();
 
         for item_id in item_ids {
-            if let Some(child) = self.ctx.krate.index.get(item_id) {
+            if let Some(child) = self.ctx.get_item(item_id) {
                 if !self.ctx.should_include_item(child) {
                     continue;
                 }
@@ -162,11 +152,7 @@ impl<'a> ModuleRenderer<'a> {
         for (module_id, module_item) in modules {
             let module_name = module_item.name.as_deref().unwrap_or("unnamed");
 
-            if let Some(link) = self
-                .ctx
-                .link_registry
-                .create_link(**module_id, self.current_file)
-            {
+            if let Some(link) = self.ctx.create_link(**module_id, self.current_file) {
                 _ = write!(md, "- {link}");
             } else {
                 _ = write!(md, "- **`{module_name}`**");

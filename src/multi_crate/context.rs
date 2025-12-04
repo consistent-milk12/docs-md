@@ -4,10 +4,26 @@
 //! during multi-crate documentation generation, and [`SingleCrateView`]
 //! which provides a single-crate interface for existing rendering code.
 
-use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
 use crate::Args;
+use crate::generator::RenderContext;
+use crate::generator::doc_links::{
+    convert_html_links, convert_path_reference_links, strip_duplicate_title,
+    strip_reference_definitions,
+};
+use crate::linker::{LinkRegistry, slugify_anchor};
+use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
+use regex::Regex;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 use std::collections::HashMap;
+use std::fmt::Write;
+use std::sync::LazyLock;
+
+/// Regex for backtick code links: [`Name`] not followed by ( or [
+static BACKTICK_LINK_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\[`([^`]+)`\]").unwrap());
+
+/// Regex for plain links [name] where name is `snake_case`
+static PLAIN_LINK_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"\[([a-z][a-z0-9_]*)\]").unwrap());
 
 /// Shared context for multi-crate documentation generation.
 ///
@@ -71,7 +87,7 @@ impl<'a> MultiCrateContext<'a> {
         let krate = self.crates.get(crate_name)?;
 
         Some(SingleCrateView::new(
-            crate_name.to_string(),
+            crate_name,
             krate,
             &self.registry,
             self.args,
@@ -97,6 +113,64 @@ impl<'a> MultiCrateContext<'a> {
             }
         }
         None
+    }
+
+    /// Find cross-crate impl blocks for types in the target crate.
+    ///
+    /// Scans all other crates for impl blocks that target types from the
+    /// specified crate. Returns a map from type name to impl blocks.
+    ///
+    /// This is used to show trait implementations from dependency crates
+    /// on types from the target crate.
+    #[must_use]
+    pub fn find_cross_crate_impls(&self, target_crate: &str) -> HashMap<String, Vec<&Impl>> {
+        let mut result: HashMap<String, Vec<&Impl>> = HashMap::new();
+
+        for (source_crate, krate) in self.crates.iter() {
+            // Skip the target crate itself
+            if source_crate == target_crate {
+                continue;
+            }
+
+            // Find impls in this crate that target types from target_crate
+            for item in krate.index.values() {
+                if let ItemEnum::Impl(impl_block) = &item.inner {
+                    // Skip synthetic impls
+                    if impl_block.is_synthetic {
+                        continue;
+                    }
+
+                    // Check if this impl targets a type from target_crate
+                    if let Some(type_path) = Self::get_impl_target_path(impl_block) {
+                        // Check if the path starts with the target crate name
+                        if let Some(first_segment) = type_path.split("::").next()
+                            && first_segment == target_crate
+                        {
+                            // Extract the type name (last segment)
+                            let type_name = type_path
+                                .split("::")
+                                .last()
+                                .unwrap_or(&type_path)
+                                .to_string();
+
+                            result.entry(type_name).or_default().push(impl_block);
+                        }
+                    }
+                }
+            }
+        }
+
+        result
+    }
+
+    /// Get the target type path for an impl block.
+    fn get_impl_target_path(impl_block: &Impl) -> Option<String> {
+        use rustdoc_types::Type;
+
+        match &impl_block.for_ {
+            Type::ResolvedPath(path) => Some(path.path.clone()),
+            _ => None,
+        }
     }
 }
 
@@ -126,31 +200,44 @@ pub struct SingleCrateView<'a> {
     /// Map from item ID to module path components.
     path_map: HashMap<Id, Vec<String>>,
 
-    /// Map from type ID to impl blocks.
+    /// Map from type ID to impl blocks (local crate only).
     impl_map: HashMap<Id, Vec<&'a Impl>>,
+
+    /// Map from type name to impl blocks from other crates.
+    /// These are trait implementations from dependency crates.
+    cross_crate_impls: HashMap<String, Vec<&'a Impl>>,
+
+    /// Map from type name to type ID for cross-crate impl lookup.
+    type_name_to_id: HashMap<String, Id>,
 }
 
 impl<'a> SingleCrateView<'a> {
     /// Create a new single-crate view.
     fn new(
-        crate_name: String,
+        crate_name: &str,
         krate: &'a Crate,
         registry: &'a UnifiedLinkRegistry,
         args: &'a Args,
         ctx: &'a MultiCrateContext<'a>,
     ) -> Self {
         let mut view = Self {
-            crate_name,
+            crate_name: crate_name.to_owned(),
             krate,
             registry,
             args,
             ctx,
             path_map: HashMap::new(),
             impl_map: HashMap::new(),
+            cross_crate_impls: HashMap::new(),
+            type_name_to_id: HashMap::new(),
         };
 
         view.build_path_map();
         view.build_impl_map();
+        view.build_type_name_map();
+
+        // Get cross-crate impls from the context
+        view.cross_crate_impls = ctx.find_cross_crate_impls(crate_name);
 
         view
     }
@@ -197,16 +284,35 @@ impl<'a> SingleCrateView<'a> {
         self.impl_map.clear();
 
         for item in self.krate.index.values() {
-            if let ItemEnum::Impl(impl_block) = &item.inner {
-                if let Some(target_id) = Self::get_impl_target_id(impl_block) {
-                    self.impl_map.entry(target_id).or_default().push(impl_block);
-                }
+            if let ItemEnum::Impl(impl_block) = &item.inner
+                && let Some(target_id) = Self::get_impl_target_id(impl_block)
+            {
+                self.impl_map.entry(target_id).or_default().push(impl_block);
             }
         }
 
         // Sort impl blocks for deterministic output
         for impls in self.impl_map.values_mut() {
             impls.sort_by_key(|i| Self::impl_sort_key(i));
+        }
+    }
+
+    /// Build a map from type name to type ID.
+    ///
+    /// This is used to look up cross-crate impls by type name.
+    fn build_type_name_map(&mut self) {
+        self.type_name_to_id.clear();
+
+        for (id, item) in &self.krate.index {
+            if let Some(name) = &item.name {
+                // Only include types that can have impls
+                match &item.inner {
+                    ItemEnum::Struct(_) | ItemEnum::Enum(_) | ItemEnum::Union(_) => {
+                        self.type_name_to_id.insert(name.clone(), *id);
+                    }
+                    _ => {}
+                }
+            }
         }
     }
 
@@ -273,10 +379,34 @@ impl<'a> SingleCrateView<'a> {
         self.path_map.get(&id)
     }
 
-    /// Get impl blocks for a type.
+    /// Get impl blocks for a type (local crate only).
     #[must_use]
     pub fn get_impls(&self, id: Id) -> Option<&Vec<&'a Impl>> {
         self.impl_map.get(&id)
+    }
+
+    /// Get all impl blocks for a type, including cross-crate impls.
+    ///
+    /// This method merges local impls (from this crate) with impls from
+    /// other crates that implement traits for this type.
+    #[must_use]
+    pub fn get_all_impls(&self, id: Id) -> Vec<&'a Impl> {
+        let mut result = Vec::new();
+
+        // Add local impls
+        if let Some(local_impls) = self.impl_map.get(&id) {
+            result.extend(local_impls.iter().copied());
+        }
+
+        // Add cross-crate impls by looking up the type name
+        if let Some(item) = self.krate.index.get(&id)
+            && let Some(type_name) = &item.name
+            && let Some(external_impls) = self.cross_crate_impls.get(type_name)
+        {
+            result.extend(external_impls.iter().copied());
+        }
+
+        result
     }
 
     /// Check if an item should be included based on visibility.
@@ -302,7 +432,8 @@ impl<'a> SingleCrateView<'a> {
     /// Create a markdown link using the unified registry.
     #[must_use]
     pub fn create_link(&self, to_crate: &str, to_id: Id, from_path: &str) -> Option<String> {
-        self.registry.create_link(&self.crate_name, from_path, to_crate, to_id)
+        self.registry
+            .create_link(&self.crate_name, from_path, to_crate, to_id)
     }
 
     /// Resolve a name to a crate and ID.
@@ -330,5 +461,224 @@ impl<'a> SingleCrateView<'a> {
 
         // Fall back to searching all crates
         self.ctx.find_item(id)
+    }
+
+    /// Resolve a path like `regex_automata::Regex` to an item.
+    ///
+    /// This is used for external re-exports where `use_item.id` is `None`
+    /// but the source path is available.
+    ///
+    /// # Returns
+    ///
+    /// A tuple of `(source_crate, item, item_id)` if found.
+    #[must_use]
+    pub fn resolve_external_path(&self, path: &str) -> Option<(&str, &Item, Id)> {
+        let (source_crate, id) = self.registry.resolve_path(path)?;
+        let (crate_name, item) = self.ctx.find_item(&id)?;
+
+        // Verify the crate matches
+        if crate_name == source_crate {
+            Some((crate_name, item, id))
+        } else {
+            None
+        }
+    }
+
+    /// Process backtick links like `[`Span`]` to markdown links.
+    fn process_backtick_links(
+        &self,
+        docs: &str,
+        item_links: &HashMap<String, Id>,
+        current_file: &str,
+    ) -> String {
+        let mut result = String::with_capacity(docs.len());
+        let mut last_end = 0;
+
+        for caps in BACKTICK_LINK_RE.captures_iter(docs) {
+            let full_match = caps.get(0).unwrap();
+            let match_start = full_match.start();
+            let match_end = full_match.end();
+
+            // Check if followed by ( or [ (already a link)
+            let next_char = docs[match_end..].chars().next();
+            if matches!(next_char, Some('(' | '[')) {
+                continue;
+            }
+
+            result.push_str(&docs[last_end..match_start]);
+            last_end = match_end;
+
+            let link_text = &caps[1];
+
+            // Try to resolve the link
+            if let Some(resolved) = self.resolve_link(link_text, item_links, current_file) {
+                result.push_str(&resolved);
+            } else {
+                // Keep original if not resolved
+                result.push_str(full_match.as_str());
+            }
+        }
+
+        result.push_str(&docs[last_end..]);
+        result
+    }
+
+    /// Process plain links like `[enter]` to markdown links.
+    fn process_plain_links(docs: &str) -> String {
+        let mut result = String::with_capacity(docs.len());
+        let mut last_end = 0;
+
+        for caps in PLAIN_LINK_RE.captures_iter(docs) {
+            let full_match = caps.get(0).unwrap();
+            let match_start = full_match.start();
+            let match_end = full_match.end();
+
+            // Check if followed by ( or [ (already a link)
+            let next_char = docs[match_end..].chars().next();
+            if matches!(next_char, Some('(' | '[')) {
+                continue;
+            }
+
+            result.push_str(&docs[last_end..match_start]);
+            last_end = match_end;
+
+            let link_text = &caps[1];
+
+            // Plain links usually refer to items on the same page
+            let anchor = slugify_anchor(link_text);
+            _ = writeln!(result, "[{link_text}](#{anchor})");
+        }
+
+        result.push_str(&docs[last_end..]);
+        result
+    }
+
+    /// Resolve a link text to a markdown link using the registry.
+    fn resolve_link(
+        &self,
+        link_text: &str,
+        item_links: &HashMap<String, Id>,
+        current_file: &str,
+    ) -> Option<String> {
+        // First, try the item's links map (most accurate)
+        if let Some(id) = item_links.get(link_text) {
+            // Look up in registry
+            if let Some(path) = self.registry.get_path(&self.crate_name, *id) {
+                let display_name = self
+                    .registry
+                    .get_name(&self.crate_name, *id)
+                    .map_or(link_text, String::as_str);
+                return Some(format!("[`{display_name}`]({path})"));
+            }
+        }
+
+        // Try resolving by name in the registry
+        if let Some((resolved_crate, id)) = self.registry.resolve_name(link_text, &self.crate_name)
+            && let Some(path) = self.registry.get_path(&resolved_crate, id)
+        {
+            // For cross-crate links, need relative path from current file
+            let full_path = if resolved_crate == self.crate_name {
+                path.clone()
+            } else {
+                // Compute relative path to other crate
+                let from_depth = current_file.matches('/').count();
+                let prefix = "../".repeat(from_depth);
+                format!("{prefix}{resolved_crate}/{path}")
+            };
+
+            return Some(format!("[`{link_text}`]({full_path})"));
+        }
+
+        // Try as an anchor on the current page
+        let short_name = link_text.split("::").last().unwrap_or(link_text);
+        let anchor = slugify_anchor(short_name);
+
+        Some(format!("[`{link_text}`](#{anchor})"))
+    }
+}
+
+impl RenderContext for SingleCrateView<'_> {
+    fn krate(&self) -> &Crate {
+        self.krate
+    }
+
+    fn crate_name(&self) -> &str {
+        &self.crate_name
+    }
+
+    fn get_item(&self, id: &Id) -> Option<&Item> {
+        self.krate.index.get(id)
+    }
+
+    fn get_impls(&self, id: &Id) -> Option<&[&Impl]> {
+        self.impl_map.get(id).map(Vec::as_slice)
+    }
+
+    fn should_include_item(&self, item: &Item) -> bool {
+        match &item.visibility {
+            Visibility::Public => true,
+            _ => self.args.include_private,
+        }
+    }
+
+    fn include_private(&self) -> bool {
+        self.args.include_private
+    }
+
+    fn crate_version(&self) -> Option<&str> {
+        self.krate.crate_version.as_deref()
+    }
+
+    fn link_registry(&self) -> Option<&LinkRegistry> {
+        // Multi-crate mode uses UnifiedLinkRegistry instead
+        None
+    }
+
+    fn process_docs(&self, item: &Item, current_file: &str) -> Option<String> {
+        let docs = item.docs.as_ref()?;
+        let name = item.name.as_deref().unwrap_or("");
+
+        // Strip duplicate title if docs start with "# name"
+        let docs = strip_duplicate_title(docs, name);
+
+        // Strip reference definitions first to prevent mangled output
+        let stripped = strip_reference_definitions(docs);
+
+        // Convert HTML and path reference links
+        let html_processed = convert_html_links(&stripped);
+        let path_processed = convert_path_reference_links(&html_processed);
+
+        // Process backtick links [`Name`]
+        let backtick_processed =
+            self.process_backtick_links(&path_processed, &item.links, current_file);
+
+        // Process plain links [name]
+        let plain_processed = Self::process_plain_links(&backtick_processed);
+
+        Some(plain_processed)
+    }
+
+    fn create_link(&self, id: Id, current_file: &str) -> Option<String> {
+        // Look up path in the unified registry
+        let path = self.registry.get_path(&self.crate_name, id)?;
+
+        // Get the item name for display
+        let display_name = self
+            .registry
+            .get_name(&self.crate_name, id)
+            .cloned()
+            .unwrap_or_else(|| "item".to_string());
+
+        // Compute relative path from current file
+        let from_depth = current_file.matches('/').count();
+        let relative_path = if from_depth == 0 {
+            path.clone()
+        } else {
+            // Go up to crate root, then down to target
+            let prefix = "../".repeat(from_depth);
+            format!("{prefix}{path}")
+        };
+
+        Some(format!("[`{display_name}`]({relative_path})"))
     }
 }

@@ -3,8 +3,7 @@
 //! This module provides the [`ImplRenderer`] struct which handles rendering
 //! impl blocks (both inherent and trait implementations) to markdown format.
 
-use crate::generator::context::GeneratorContext;
-use crate::generator::doc_links::DocLinkProcessor;
+use crate::generator::context::RenderContext;
 use crate::types::TypeRenderer;
 use rustdoc_types::{Id, Impl, Item, ItemEnum};
 use std::fmt::Write;
@@ -16,9 +15,12 @@ use std::fmt::Write;
 /// - Trait implementations (`impl Trait for MyType { ... }`)
 /// - Method signatures within impl blocks
 /// - Associated types and constants
+///
+/// The renderer is generic over [`RenderContext`], allowing it to work with
+/// both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 pub struct ImplRenderer<'a> {
-    /// Reference to the shared generator context.
-    ctx: &'a GeneratorContext<'a>,
+    /// Reference to the render context (either single-crate or multi-crate).
+    ctx: &'a dyn RenderContext,
 
     /// Path of the current file being generated (for relative link calculation).
     current_file: &'a str,
@@ -29,24 +31,18 @@ impl<'a> ImplRenderer<'a> {
     ///
     /// # Arguments
     ///
-    /// * `ctx` - Shared generator context
+    /// * `ctx` - Render context (implements RenderContext trait)
     /// * `current_file` - Path of the current file (for relative link calculation)
-    pub fn new(ctx: &'a GeneratorContext<'a>, current_file: &'a str) -> Self {
+    pub fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self {
         Self { ctx, current_file }
     }
 
     /// Process documentation string to resolve intra-doc links.
     ///
-    /// Uses [`DocLinkProcessor`] to transform `` [`Type`] `` style links
-    /// in doc comments into proper markdown links using the item's `links` map.
+    /// Delegates to the render context's `process_docs` method, which handles
+    /// both single-crate and multi-crate link resolution.
     fn process_docs(&self, item: &Item) -> Option<String> {
-        let docs = item.docs.as_ref()?;
-        let processor = DocLinkProcessor::new(
-            self.ctx.krate,
-            &self.ctx.link_registry,
-            self.current_file,
-        );
-        Some(processor.process(docs, &item.links))
+        self.ctx.process_docs(item, self.current_file)
     }
 
     /// Render impl blocks for a given type.
@@ -63,7 +59,7 @@ impl<'a> ImplRenderer<'a> {
     /// - **Trait**: `impl Clone for MyType { ... }`
     /// - **Synthetic**: Auto-derived by compiler (Send, Sync) - skipped
     pub fn render_impl_blocks(&self, md: &mut String, item_id: Id) {
-        let Some(impls) = self.ctx.impl_map.get(&item_id) else {
+        let Some(impls) = self.ctx.get_impls(&item_id) else {
             return;
         };
 
@@ -72,7 +68,7 @@ impl<'a> ImplRenderer<'a> {
             impls.iter().partition(|i| i.trait_.is_some());
 
         // Sort trait impls by trait name + generics for deterministic output
-        let type_renderer = TypeRenderer::new(self.ctx.krate);
+        let type_renderer = TypeRenderer::new(self.ctx.krate());
         trait_impls.sort_by(|a: &&&Impl, b: &&&Impl| {
             let key_a = Self::impl_sort_key(a, &type_renderer);
             let key_b = Self::impl_sort_key(b, &type_renderer);
@@ -112,7 +108,7 @@ impl<'a> ImplRenderer<'a> {
 
     /// Render a single trait implementation block.
     fn render_trait_impl(&self, md: &mut String, impl_block: &Impl) {
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         // Skip synthetic impls (auto-traits like Send, Sync, Unpin)
@@ -156,7 +152,7 @@ impl<'a> ImplRenderer<'a> {
     ///
     /// For methods, the first line of documentation is included as a brief summary.
     fn render_impl_methods(&self, md: &mut String, impl_block: &Impl) {
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         for item_id in &impl_block.items {
@@ -202,7 +198,7 @@ impl<'a> ImplRenderer<'a> {
         item: &rustdoc_types::Item,
         f: &rustdoc_types::Function,
     ) {
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
         let name = item.name.as_deref().unwrap_or("_");
         let generics = type_renderer.render_generics(&f.generics.params);
@@ -211,9 +207,7 @@ impl<'a> ImplRenderer<'a> {
             .sig
             .inputs
             .iter()
-            .map(|(param_name, ty)| {
-                format!("{param_name}: {}", type_renderer.render_type(ty))
-            })
+            .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
             .collect();
 
         let ret = f
@@ -255,7 +249,7 @@ impl<'a> ImplRenderer<'a> {
     /// - **Parenthesized**: `(A, B) -> C` (for Fn traits)
     /// - **Return type notation**: `(..)` (experimental)
     fn render_generic_args_for_impl(&self, args: &rustdoc_types::GenericArgs) -> String {
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         match args {

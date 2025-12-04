@@ -1,0 +1,16 @@
+*[memchr](../index.md) / [arch](index.md)*
+
+---
+
+# Module `arch`
+
+A module with low-level architecture dependent routines.
+
+These routines are useful as primitives for tasks not covered by the higher
+level crate API.
+
+## Modules
+
+- [`all`](all/index.md) - Contains architecture independent routines.
+- [`x86_64`](x86_64/index.md) - Vector algorithms for the `x86_64` target.
+

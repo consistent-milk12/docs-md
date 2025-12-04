@@ -4,7 +4,7 @@
 //! multiple crates to their documentation file paths, enabling cross-crate
 //! linking in the generated markdown.
 
-use crate::linker::LinkRegistry;
+use crate::linker::{LinkRegistry, slugify_anchor};
 use crate::multi_crate::CrateCollection;
 use rustdoc_types::{Crate, Id, ItemEnum};
 use std::collections::HashMap;
@@ -114,7 +114,13 @@ impl UnifiedLinkRegistry {
                 // Recurse into child items
                 for child_id in &module.items {
                     if let Some(child) = krate.index.get(child_id) {
-                        self.register_item_recursive(krate, crate_name, *child_id, child, &module_path);
+                        self.register_item_recursive(
+                            krate,
+                            crate_name,
+                            *child_id,
+                            child,
+                            &module_path,
+                        );
                     }
                 }
             }
@@ -195,6 +201,44 @@ impl UnifiedLinkRegistry {
         candidates.first().map(|(c, id)| (c.clone(), *id))
     }
 
+    /// Resolve a full path like `regex_automata::Regex` to its crate and ID.
+    ///
+    /// This is used for resolving external re-exports where `use_item.id` is `None`
+    /// but the source path is available.
+    ///
+    /// # Arguments
+    ///
+    /// * `path` - Full path like `regex_automata::Regex` or `tracing_core::span::Span`
+    ///
+    /// # Returns
+    ///
+    /// The (crate_name, item_id) if found in the registry.
+    #[must_use]
+    pub fn resolve_path(&self, path: &str) -> Option<(String, Id)> {
+        let segments: Vec<&str> = path.split("::").collect();
+
+        if segments.is_empty() {
+            return None;
+        }
+
+        // First segment is the crate name
+        let target_crate = segments[0];
+
+        // Last segment is the item name
+        let item_name = segments.last()?;
+
+        // Look up in name_index and filter by crate
+        let candidates = self.name_index.get(*item_name)?;
+
+        for (crate_name, id) in candidates {
+            if crate_name == target_crate {
+                return Some((crate_name.clone(), *id));
+            }
+        }
+
+        None
+    }
+
     /// Create a markdown link from one file to another across crates.
     ///
     /// # Arguments
@@ -228,7 +272,7 @@ impl UnifiedLinkRegistry {
 
         // Check if same file - use anchor instead
         if from_full == to_full {
-            let anchor = name.to_lowercase().replace(' ', "-");
+            let anchor = slugify_anchor(name);
             return Some(format!("[`{name}`](#{anchor})"));
         }
 
@@ -263,7 +307,7 @@ impl UnifiedLinkRegistry {
     #[must_use]
     pub fn get_anchor(&self, crate_name: &str, id: Id) -> Option<String> {
         let name = self.get_name(crate_name, id)?;
-        Some(format!("#{}", name.to_lowercase().replace(' ', "-")))
+        Some(format!("#{}", slugify_anchor(name)))
     }
 
     /// Check if an item exists in the registry.

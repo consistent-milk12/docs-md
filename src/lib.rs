@@ -19,7 +19,7 @@ pub mod parser;
 pub mod types;
 
 pub use crate::generator::{Generator, MarkdownCapture};
-pub use crate::linker::LinkRegistry;
+pub use crate::linker::{LinkRegistry, slugify_anchor};
 pub use crate::multi_crate::{
     CrateCollection, MultiCrateContext, MultiCrateGenerator, MultiCrateParser, SearchIndex,
     SearchIndexGenerator, UnifiedLinkRegistry,
@@ -63,28 +63,14 @@ pub struct Args {
     /// Generate this file with: `cargo doc --output-format json`
     /// The JSON file will be in `target/doc/{crate_name}.json`
     ///
-    /// Mutually exclusive with `--crate-name` and `--dir`.
+    /// Mutually exclusive with `--dir`.
     #[arg(
         short,
         long,
-        required_unless_present_any = ["crate_name", "dir"],
-        conflicts_with_all = ["crate_name", "dir"]
+        required_unless_present_any = ["dir"],
+        conflicts_with = "dir"
     )]
     pub path: Option<PathBuf>,
-
-    /// Crate name to fetch from docs.rs (experimental).
-    ///
-    /// **Note**: This feature is currently non-functional because docs.rs
-    /// doesn't expose rustdoc JSON files publicly. Use `--path` instead.
-    ///
-    /// Mutually exclusive with `--path` and `--dir`.
-    #[arg(
-        short,
-        long,
-        required_unless_present_any = ["path", "dir"],
-        conflicts_with_all = ["path", "dir"]
-    )]
-    pub crate_name: Option<String>,
 
     /// Directory containing multiple rustdoc JSON files.
     ///
@@ -95,11 +81,11 @@ pub struct Args {
     /// Generate JSON files with:
     /// `RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc`
     ///
-    /// Mutually exclusive with `--path` and `--crate-name`.
+    /// Mutually exclusive with `--path`.
     #[arg(
         long,
-        required_unless_present_any = ["path", "crate_name"],
-        conflicts_with_all = ["path", "crate_name"]
+        required_unless_present_any = ["path"],
+        conflicts_with = "path"
     )]
     pub dir: Option<PathBuf>,
 
@@ -111,12 +97,12 @@ pub struct Args {
     #[arg(long, requires = "dir", default_value_t = false)]
     pub mdbook: bool,
 
-    /// Generate search_index.json for client-side search.
+    /// Generate `search_index.json` for client-side search.
     ///
     /// Only valid with `--dir` for multi-crate documentation.
     /// Creates a `search_index.json` file containing all documented items,
     /// which can be used with client-side search libraries like Fuse.js,
-    /// Lunr.js, or FlexSearch.
+    /// Lunr.js, or `FlexSearch`.
     #[arg(long, requires = "dir", default_value_t = false)]
     pub search_index: bool,
 
@@ -128,12 +114,6 @@ pub struct Args {
     /// crate rather than `std::process::exit`.
     #[arg(long, requires = "dir")]
     pub primary_crate: Option<String>,
-
-    /// Specific version to fetch from docs.rs.
-    ///
-    /// Only used with `--crate-name`. Defaults to "latest" if not specified.
-    #[arg(long, requires = "crate_name")]
-    pub crate_version: Option<String>,
 
     /// Output directory for generated markdown files.
     ///

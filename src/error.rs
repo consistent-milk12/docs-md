@@ -87,7 +87,6 @@ pub enum Error {
     ItemNotFound(String),
 
     // ========== Multi-crate errors ==========
-
     /// The specified directory path is invalid or inaccessible.
     ///
     /// This typically occurs when:
@@ -108,7 +107,9 @@ pub enum Error {
     #[error("No rustdoc JSON files found in directory: {0}")]
     #[diagnostic(
         code(docs_md::parse::no_json),
-        help("Run `RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc` to generate JSON files")
+        help(
+            "Run `RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc` to generate JSON files"
+        )
     )]
     NoJsonFiles(PathBuf),
 

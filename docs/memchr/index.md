@@ -1,0 +1,485 @@
+# Crate `memchr`
+
+This library provides heavily optimized routines for string search primitives.
+
+# Overview
+
+This section gives a brief high level overview of what this crate offers.
+
+* The top-level module provides routines for searching for 1, 2 or 3 bytes
+  in the forward or reverse direction. When searching for more than one byte,
+  positions are considered a match if the byte at that position matches any
+  of the bytes.
+* The [`memmem`](memchr/memmem/index.md) sub-module provides forward and reverse substring search
+  routines.
+
+In all such cases, routines operate on `&[u8](#u8)` without regard to encoding. This
+is exactly what you want when searching either UTF-8 or arbitrary bytes.
+
+# Example: using `memchr`
+
+This example shows how to use `memchr` to find the first occurrence of `z` in
+a haystack:
+
+```
+use memchr::memchr;
+
+let haystack = b"foo bar baz quuz";
+assert_eq!(Some(10), memchr(b'z', haystack));
+```
+
+# Example: matching one of three possible bytes
+
+This examples shows how to use `memrchr3` to find occurrences of `a`, `b` or
+`c`, starting at the end of the haystack.
+
+```
+use memchr::memchr3_iter;
+
+let haystack = b"xyzaxyzbxyzc";
+
+let mut it = memchr3_iter(b'a', b'b', b'c', haystack).rev();
+assert_eq!(Some(11), it.next());
+assert_eq!(Some(7), it.next());
+assert_eq!(Some(3), it.next());
+assert_eq!(None, it.next());
+```
+
+# Example: iterating over substring matches
+
+This example shows how to use the [`memmem`](memchr/memmem/index.md) sub-module to find occurrences of
+a substring in a haystack.
+
+```
+use memchr::memmem;
+
+let haystack = b"foo bar foo baz foo";
+
+let mut it = memmem::find_iter(haystack, "foo");
+assert_eq!(Some(0), it.next());
+assert_eq!(Some(8), it.next());
+assert_eq!(Some(16), it.next());
+assert_eq!(None, it.next());
+```
+
+# Example: repeating a search for the same needle
+
+It may be possible for the overhead of constructing a substring searcher to be
+measurable in some workloads. In cases where the same needle is used to search
+many haystacks, it is possible to do construction once and thus to avoid it for
+subsequent searches. This can be done with a [`memmem::Finder`](#finder):
+
+```
+use memchr::memmem;
+
+let finder = memmem::Finder::new("foo");
+
+assert_eq!(Some(4), finder.find(b"baz foo quux"));
+assert_eq!(None, finder.find(b"quux baz bar"));
+```
+
+# Why use this crate?
+
+At first glance, the APIs provided by this crate might seem weird. Why provide
+a dedicated routine like `memchr` for something that could be implemented
+clearly and trivially in one line:
+
+```
+fn memchr(needle: u8, haystack: &[u8](#u8)) -> Option<usize> {
+    haystack.iter().position(|&b| b == needle)
+}
+```
+
+Or similarly, why does this crate provide substring search routines when Rust's
+core library already provides them?
+
+```
+fn search(haystack: &str, needle: &str) -> Option<usize> {
+    haystack.find(needle)
+}
+```
+
+The primary reason for both of them to exist is performance. When it comes to
+performance, at a high level at least, there are two primary ways to look at
+it:
+
+* **Throughput**: For this, think about it as, "given some very large haystack
+  and a byte that never occurs in that haystack, how long does it take to
+  search through it and determine that it, in fact, does not occur?"
+* **Latency**: For this, think about it as, "given a tiny haystack---just a
+  few bytes---how long does it take to determine if a byte is in it?"
+
+The `memchr` routine in this crate has _slightly_ worse latency than the
+solution presented above, however, its throughput can easily be over an
+order of magnitude faster. This is a good general purpose trade off to make.
+You rarely lose, but often gain big.
+
+**NOTE:** The name `memchr` comes from the corresponding routine in `libc`. A
+key advantage of using this library is that its performance is not tied to its
+quality of implementation in the `libc` you happen to be using, which can vary
+greatly from platform to platform.
+
+But what about substring search? This one is a bit more complicated. The
+primary reason for its existence is still indeed performance, but it's also
+useful because Rust's core library doesn't actually expose any substring
+search routine on arbitrary bytes. The only substring search routine that
+exists works exclusively on valid UTF-8.
+
+So if you have valid UTF-8, is there a reason to use this over the standard
+library substring search routine? Yes. This routine is faster on almost every
+metric, including latency. The natural question then, is why isn't this
+implementation in the standard library, even if only for searching on UTF-8?
+The reason is that the implementation details for using SIMD in the standard
+library haven't quite been worked out yet.
+
+**NOTE:** Currently, only `x86_64`, `wasm32` and `aarch64` targets have vector
+accelerated implementations of `memchr` (and friends) and `memmem`.
+
+# Crate features
+
+* **std** - When enabled (the default), this will permit features specific to
+the standard library. Currently, the only thing used from the standard library
+is runtime SIMD CPU feature detection. This means that this feature must be
+enabled to get AVX2 accelerated routines on `x86_64` targets without enabling
+the `avx2` feature at compile time, for example. When `std` is not enabled,
+this crate will still attempt to use SSE2 accelerated routines on `x86_64`. It
+will also use AVX2 accelerated routines when the `avx2` feature is enabled at
+compile time. In general, enable this feature if you can.
+* **alloc** - When enabled (the default), APIs in this crate requiring some
+kind of allocation will become available. For example, the
+[`memmem::Finder::into_owned`](crate::memmem::Finder::into_owned) API and the
+[`arch::all::shiftor`](crate::arch::all::shiftor) substring search
+implementation. Otherwise, this crate is designed from the ground up to be
+usable in core-only contexts, so the `alloc` feature doesn't add much
+currently. Notably, disabling `std` but enabling `alloc` will **not** result
+in the use of AVX2 on `x86_64` targets unless the `avx2` feature is enabled
+at compile time. (With `std` enabled, AVX2 can be used even without the `avx2`
+feature enabled at compile time by way of runtime CPU feature detection.)
+* **logging** - When enabled (disabled by default), the `log` crate is used
+to emit log messages about what kinds of `memchr` and `memmem` algorithms
+are used. Namely, both `memchr` and `memmem` have a number of different
+implementation choices depending on the target and CPU, and the log messages
+can help show what specific implementations are being used. Generally, this is
+useful for debugging performance issues.
+* **libc** - **DEPRECATED**. Previously, this enabled the use of the target's
+`memchr` function from whatever `libc` was linked into the program. This
+feature is now a no-op because this crate's implementation of `memchr` should
+now be sufficiently fast on a number of platforms that `libc` should no longer
+be needed. (This feature is somewhat of a holdover from this crate's origins.
+Originally, this crate was literally just a safe wrapper function around the
+`memchr` function from `libc`.)
+
+## Modules
+
+- [`arch`](arch/index.md) - A module with low-level architecture dependent routines.
+- [`memmem`](memmem/index.md) - This module provides forward and reverse substring search routines.
+
+## Structs
+
+### `Memchr<'h>`
+
+```rust
+struct Memchr<'h> {
+}
+```
+
+An iterator over all occurrences of a single byte in a haystack.
+
+This iterator implements `DoubleEndedIterator`, which means it can also be
+used to find occurrences in reverse order.
+
+This iterator is created by the [`memchr_iter`](#memchr-iter) or `[memrchr_iter`]
+functions. It can also be created with the [`Memchr::new`](#new) method.
+
+The lifetime parameter `'h` refers to the lifetime of the haystack being
+searched.
+
+#### Implementations
+
+- `fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>`
+  Returns an iterator over all occurrences of the needle byte in the
+
+#### Trait Implementations
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
+##### `impl Into<T, U>`
+
+- `fn into(self: Self) -> U`
+  Calls `U::from(self)`.
+
+##### `impl IntoIterator<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Any<T>`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl BorrowMut<T>`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Clone<'h>`
+
+- `fn clone(self: &Self) -> Memchr<'h>`
+
+##### `impl CloneToUninit<T>`
+
+- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+
+##### `impl DoubleEndedIterator<'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'h>`
+
+##### `impl Iterator<'h>`
+
+- `type Item = usize`
+
+- `fn next(self: &mut Self) -> Option<usize>`
+
+- `fn count(self: Self) -> usize`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned<T>`
+
+- `type Owned = T`
+
+- `fn to_owned(self: &Self) -> T`
+
+- `fn clone_into(self: &Self, target: &mut T)`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryInto<T, U>`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+##### `impl Debug<'h>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `Memchr2<'h>`
+
+```rust
+struct Memchr2<'h> {
+}
+```
+
+An iterator over all occurrences of two possible bytes in a haystack.
+
+This iterator implements `DoubleEndedIterator`, which means it can also be
+used to find occurrences in reverse order.
+
+This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
+functions. It can also be created with the [`Memchr2::new`](#new) method.
+
+The lifetime parameter `'h` refers to the lifetime of the haystack being
+searched.
+
+#### Implementations
+
+- `fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>`
+  Returns an iterator over all occurrences of the needle bytes in the
+
+#### Trait Implementations
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
+##### `impl Into<T, U>`
+
+- `fn into(self: Self) -> U`
+  Calls `U::from(self)`.
+
+##### `impl IntoIterator<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Any<T>`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl BorrowMut<T>`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Clone<'h>`
+
+- `fn clone(self: &Self) -> Memchr2<'h>`
+
+##### `impl CloneToUninit<T>`
+
+- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+
+##### `impl DoubleEndedIterator<'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'h>`
+
+##### `impl Iterator<'h>`
+
+- `type Item = usize`
+
+- `fn next(self: &mut Self) -> Option<usize>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned<T>`
+
+- `type Owned = T`
+
+- `fn to_owned(self: &Self) -> T`
+
+- `fn clone_into(self: &Self, target: &mut T)`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryInto<T, U>`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+##### `impl Debug<'h>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `Memchr3<'h>`
+
+```rust
+struct Memchr3<'h> {
+}
+```
+
+An iterator over all occurrences of three possible bytes in a haystack.
+
+This iterator implements `DoubleEndedIterator`, which means it can also be
+used to find occurrences in reverse order.
+
+This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
+functions. It can also be created with the [`Memchr3::new`](#new) method.
+
+The lifetime parameter `'h` refers to the lifetime of the haystack being
+searched.
+
+#### Implementations
+
+- `fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>`
+  Returns an iterator over all occurrences of the needle bytes in the
+
+#### Trait Implementations
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
+##### `impl Into<T, U>`
+
+- `fn into(self: Self) -> U`
+  Calls `U::from(self)`.
+
+##### `impl IntoIterator<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Any<T>`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl BorrowMut<T>`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Clone<'h>`
+
+- `fn clone(self: &Self) -> Memchr3<'h>`
+
+##### `impl CloneToUninit<T>`
+
+- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+
+##### `impl DoubleEndedIterator<'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'h>`
+
+##### `impl Iterator<'h>`
+
+- `type Item = usize`
+
+- `fn next(self: &mut Self) -> Option<usize>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+##### `impl ToOwned<T>`
+
+- `type Owned = T`
+
+- `fn to_owned(self: &Self) -> T`
+
+- `fn clone_into(self: &Self, target: &mut T)`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryInto<T, U>`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+##### `impl Debug<'h>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Functions
+

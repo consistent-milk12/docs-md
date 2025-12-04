@@ -4,8 +4,7 @@
 //! individual Rust items (structs, enums, traits, functions, macros, constants,
 //! and type aliases) to markdown format.
 
-use crate::generator::context::GeneratorContext;
-use crate::generator::doc_links::DocLinkProcessor;
+use crate::generator::context::RenderContext;
 use crate::generator::impls::ImplRenderer;
 use crate::types::TypeRenderer;
 use rustdoc_types::{Id, Item, ItemEnum, StructKind, Visibility};
@@ -21,9 +20,12 @@ use std::fmt::Write;
 /// - Macros
 /// - Constants
 /// - Type aliases
+///
+/// The renderer is generic over [`RenderContext`], allowing it to work with
+/// both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 pub struct ItemRenderer<'a> {
-    /// Reference to the shared generator context.
-    ctx: &'a GeneratorContext<'a>,
+    /// Reference to the render context (either single-crate or multi-crate).
+    ctx: &'a dyn RenderContext,
 
     /// Path of the current file being generated (for relative link calculation).
     current_file: &'a str,
@@ -34,24 +36,18 @@ impl<'a> ItemRenderer<'a> {
     ///
     /// # Arguments
     ///
-    /// * `ctx` - Shared generator context
+    /// * `ctx` - Render context (implements RenderContext trait)
     /// * `current_file` - Path of the current file (for relative link calculation)
-    pub fn new(ctx: &'a GeneratorContext<'a>, current_file: &'a str) -> Self {
+    pub fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self {
         Self { ctx, current_file }
     }
 
     /// Process documentation string to resolve intra-doc links.
     ///
-    /// Uses [`DocLinkProcessor`] to transform `` [`Type`] `` style links
-    /// in doc comments into proper markdown links using the item's `links` map.
+    /// Delegates to the render context's `process_docs` method, which handles
+    /// both single-crate and multi-crate link resolution.
     fn process_docs(&self, item: &Item) -> Option<String> {
-        let docs = item.docs.as_ref()?;
-        let processor = DocLinkProcessor::new(
-            self.ctx.krate,
-            &self.ctx.link_registry,
-            self.current_file,
-        );
-        Some(processor.process(docs, &item.links))
+        self.ctx.process_docs(item, self.current_file)
     }
 
     /// Render a struct definition to markdown.
@@ -71,7 +67,7 @@ impl<'a> ItemRenderer<'a> {
     /// - **Plain** (named fields): `struct Foo { field: T }`
     pub fn render_struct(&self, md: &mut String, item_id: Id, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Struct(s) = &item.inner {
@@ -158,7 +154,7 @@ impl<'a> ItemRenderer<'a> {
 
     /// Render documented fields for a plain struct.
     fn render_struct_fields(&self, md: &mut String, fields: &[Id]) {
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         let documented_fields: Vec<_> = fields
@@ -206,7 +202,7 @@ impl<'a> ItemRenderer<'a> {
     /// - **Struct**: `Variant { field: T }` (named fields)
     pub fn render_enum(&self, md: &mut String, item_id: Id, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Enum(e) = &item.inner {
@@ -247,7 +243,7 @@ impl<'a> ItemRenderer<'a> {
 
     /// Render a single enum variant in the definition code block.
     fn render_enum_variant(&self, md: &mut String, variant: &Item) {
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
         let variant_name = variant.name.as_deref().unwrap_or("_");
 
@@ -298,7 +294,7 @@ impl<'a> ItemRenderer<'a> {
 
     /// Render documented variants section for an enum.
     fn render_enum_variants_docs(&self, md: &mut String, variants: &[Id]) {
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
 
         let documented_variants: Vec<_> = variants
             .iter()
@@ -337,7 +333,7 @@ impl<'a> ItemRenderer<'a> {
     /// - **Associated Constants**: `const VALUE: T;`
     pub fn render_trait(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Trait(t) = &item.inner {
@@ -377,7 +373,7 @@ impl<'a> ItemRenderer<'a> {
         {
             md.push_str("#### Required Methods\n\n");
             for method_id in &t.items {
-                if let Some(method) = self.ctx.krate.index.get(method_id) {
+                if let Some(method) = self.ctx.krate().index.get(method_id) {
                     self.render_trait_item(md, method);
                 }
             }
@@ -390,7 +386,7 @@ impl<'a> ItemRenderer<'a> {
     /// The first line of documentation is included for methods.
     fn render_trait_item(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("_");
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         match &item.inner {
@@ -474,7 +470,7 @@ impl<'a> ItemRenderer<'a> {
     /// - `unsafe fn` - Requires unsafe block to call
     pub fn render_function(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Function(f) = &item.inner {
@@ -485,9 +481,7 @@ impl<'a> ItemRenderer<'a> {
                 .sig
                 .inputs
                 .iter()
-                .map(|(param_name, ty)| {
-                    format!("{param_name}: {}", type_renderer.render_type(ty))
-                })
+                .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
                 .collect();
 
             let ret = f
@@ -557,7 +551,7 @@ impl<'a> ItemRenderer<'a> {
     /// (e.g., for complex const expressions).
     pub fn render_constant(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Constant { type_, const_ } = &item.inner {
@@ -594,7 +588,7 @@ impl<'a> ItemRenderer<'a> {
     /// - Documentation from doc comments
     pub fn render_type_alias(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
-        let krate = self.ctx.krate;
+        let krate = self.ctx.krate();
         let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::TypeAlias(ta) = &item.inner {
