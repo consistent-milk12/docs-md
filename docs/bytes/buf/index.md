@@ -27,6 +27,7 @@ See [`Buf`](#buf) and [`BufMut`](#bufmut) for more details.
 
 ```rust
 struct Chain<T, U> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -141,6 +142,7 @@ assert_eq!(full[..], b"hello world"[..]);
 
 ```rust
 struct IntoIter<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -238,6 +240,7 @@ assert_eq!(iter.next(), None);
 
 ```rust
 struct Limit<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -313,6 +316,7 @@ to an underlying buffer.
 
 ```rust
 struct Take<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -455,13 +459,7 @@ that it is possible in safe code to write uninitialized bytes to an
 
 - `type Output = UninitSlice`
 
-- `fn index(self: &Self, index: RangeInclusive<usize>) -> &UninitSlice`
-
-##### `impl Index`
-
-- `type Output = UninitSlice`
-
-- `fn index(self: &Self, index: Range<usize>) -> &UninitSlice`
+- `fn index(self: &Self, index: RangeFull) -> &UninitSlice`
 
 ##### `impl Index`
 
@@ -479,21 +477,19 @@ that it is possible in safe code to write uninitialized bytes to an
 
 - `type Output = UninitSlice`
 
-- `fn index(self: &Self, index: RangeFull) -> &UninitSlice`
+- `fn index(self: &Self, index: RangeTo<usize>) -> &UninitSlice`
 
 ##### `impl Index`
 
 - `type Output = UninitSlice`
 
-- `fn index(self: &Self, index: RangeTo<usize>) -> &UninitSlice`
+- `fn index(self: &Self, index: RangeInclusive<usize>) -> &UninitSlice`
 
-##### `impl IndexMut`
+##### `impl Index`
 
-- `fn index_mut(self: &mut Self, index: Range<usize>) -> &mut UninitSlice`
+- `type Output = UninitSlice`
 
-##### `impl IndexMut`
-
-- `fn index_mut(self: &mut Self, index: RangeTo<usize>) -> &mut UninitSlice`
+- `fn index(self: &Self, index: Range<usize>) -> &UninitSlice`
 
 ##### `impl IndexMut`
 
@@ -501,11 +497,19 @@ that it is possible in safe code to write uninitialized bytes to an
 
 ##### `impl IndexMut`
 
-- `fn index_mut(self: &mut Self, index: RangeInclusive<usize>) -> &mut UninitSlice`
+- `fn index_mut(self: &mut Self, index: Range<usize>) -> &mut UninitSlice`
 
 ##### `impl IndexMut`
 
 - `fn index_mut(self: &mut Self, index: RangeFull) -> &mut UninitSlice`
+
+##### `impl IndexMut`
+
+- `fn index_mut(self: &mut Self, index: RangeInclusive<usize>) -> &mut UninitSlice`
+
+##### `impl IndexMut`
+
+- `fn index_mut(self: &mut Self, index: RangeTo<usize>) -> &mut UninitSlice`
 
 ##### `impl IndexMut`
 
@@ -519,6 +523,7 @@ that it is possible in safe code to write uninitialized bytes to an
 
 ```rust
 struct Reader<B> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -593,6 +598,7 @@ details.
 
 ```rust
 struct Writer<B> {
+    // [REDACTED: Private Fields]
 }
 ```
 

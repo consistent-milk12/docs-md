@@ -318,6 +318,7 @@ The index used to identify a symbol in a symbol table.
 
 ```rust
 struct SymbolMap<T: SymbolMapEntry> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -402,6 +403,7 @@ Returned by [`Object::symbol_map`](#symbol-map).
 
 ```rust
 struct SymbolMapName<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -496,6 +498,7 @@ The type used for entries in a [`SymbolMap`](object/read/index.md) that maps fro
 
 ```rust
 struct ObjectMap<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -580,6 +583,7 @@ Returned by [`Object::object_map`](#object-map).
 
 ```rust
 struct ObjectMapEntry<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -684,6 +688,7 @@ A symbol in an [`ObjectMap`](object/read/index.md).
 
 ```rust
 struct ObjectMapFile<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -771,6 +776,7 @@ An object file name in an [`ObjectMap`](object/read/index.md).
 
 ```rust
 struct Import<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -856,6 +862,7 @@ Returned by [`Object::imports`](#imports).
 
 ```rust
 struct Export<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -941,6 +948,7 @@ Returned by [`Object::exports`](#exports).
 
 ```rust
 struct CodeView<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1027,6 +1035,7 @@ PDB information from the debug directory in a PE file.
 
 ```rust
 struct Relocation {
+    // [REDACTED: Private Fields]
 }
 ```
 

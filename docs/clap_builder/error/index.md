@@ -169,6 +169,7 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 ```rust
 struct Error<F: ErrorFormatter> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -230,14 +231,14 @@ See [`Command::error`](#error) to create an error.
 
 - `fn from(e: fmt::Error) -> Self`
 
+##### `impl From<F: ErrorFormatter>`
+
+- `fn from(e: io::Error) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<F: ErrorFormatter>`
-
-- `fn from(e: io::Error) -> Self`
 
 ##### `impl Into<T, U>`
 

@@ -12,6 +12,7 @@ When serializing or deserializing JSON goes wrong.
 
 ```rust
 struct Error {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -76,13 +77,13 @@ deserializing JSON data.
 
 - `fn custom<T: Display>(msg: T) -> Error`
 
-##### `impl Error`
-
-- `fn custom<T: Display>(msg: T) -> Error`
-
 - `fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
 
 - `fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+
+##### `impl Error`
+
+- `fn custom<T: Display>(msg: T) -> Error`
 
 ##### `impl Error`
 

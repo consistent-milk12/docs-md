@@ -16,6 +16,7 @@ Define [`Command`](#command) line [arguments][`Arg`](#arg)
 
 ```rust
 struct Str {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -39,6 +40,14 @@ feature
 
 - `fn from(name: &'static str) -> Self`
 
+##### `impl From`
+
+- `fn from(id: &Str) -> Self`
+
+##### `impl From`
+
+- `fn from(name: &&'static str) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -46,24 +55,12 @@ feature
 
 ##### `impl From`
 
-- `fn from(id: &Str) -> Self`
-
-##### `impl From`
-
 - `fn from(name: Id) -> Self`
-
-##### `impl From`
-
-- `fn from(name: &&'static str) -> Self`
 
 ##### `impl Into<T, U>`
 
 - `fn into(self: Self) -> U`
   Calls `U::from(self)`.
-
-##### `impl IntoResettable<I>`
-
-- `fn into_resettable(self: Self) -> Resettable<OsStr>`
 
 ##### `impl IntoResettable<I>`
 
@@ -77,9 +74,17 @@ feature
 
 - `fn into_resettable(self: Self) -> Resettable<Str>`
 
+##### `impl IntoResettable<I>`
+
+- `fn into_resettable(self: Self) -> Resettable<OsStr>`
+
 ##### `impl Any<T>`
 
 - `fn type_id(self: &Self) -> TypeId`
+
+##### `impl AsRef`
+
+- `fn as_ref(self: &Self) -> &[u8]`
 
 ##### `impl AsRef`
 
@@ -87,23 +92,19 @@ feature
 
 ##### `impl AsRef`
 
-- `fn as_ref(self: &Self) -> &std::ffi::OsStr`
-
-##### `impl AsRef`
-
 - `fn as_ref(self: &Self) -> &std::path::Path`
 
 ##### `impl AsRef`
 
-- `fn as_ref(self: &Self) -> &[u8]`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
+- `fn as_ref(self: &Self) -> &std::ffi::OsStr`
 
 ##### `impl Borrow`
 
 - `fn borrow(self: &Self) -> &str`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
 
 ##### `impl BorrowMut<T>`
 
@@ -137,11 +138,15 @@ feature
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Id) -> bool`
+- `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &str) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &&std::ffi::OsStr) -> bool`
 
 ##### `impl PartialEq`
 
@@ -153,11 +158,7 @@ feature
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &&std::ffi::OsStr) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &String) -> bool`
+- `fn eq(self: &Self, other: &Id) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -211,6 +212,7 @@ feature
 
 ```rust
 struct Arg {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -244,6 +246,147 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 ```
 
 #### Implementations
+
+- `fn help(self: Self, h: impl IntoResettable<StyledStr>) -> Self`
+  Sets the description of the argument for short help (`-h`).
+
+- `fn long_help(self: Self, h: impl IntoResettable<StyledStr>) -> Self`
+  Sets the description of the argument for long help (`--help`).
+
+- `fn display_order(self: Self, ord: impl IntoResettable<usize>) -> Self`
+  Allows custom ordering of args within the help message.
+
+- `fn help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
+  Override the `--help` section this appears in.
+
+- `fn next_line_help(self: Self, yes: bool) -> Self`
+  Render the [help][Arg::help] on the line after the argument.
+
+- `fn hide(self: Self, yes: bool) -> Self`
+  Do not display the argument in help message.
+
+- `fn hide_possible_values(self: Self, yes: bool) -> Self`
+  Do not display the [possible values][crate::builder::ValueParser::possible_values] in the help message.
+
+- `fn hide_default_value(self: Self, yes: bool) -> Self`
+  Do not display the default value of the argument in the help message.
+
+- `fn hide_short_help(self: Self, yes: bool) -> Self`
+  Hides an argument from short help (`-h`).
+
+- `fn hide_long_help(self: Self, yes: bool) -> Self`
+  Hides an argument from long help (`--help`).
+
+- `fn new(id: impl Into<Id>) -> Self`
+  Create a new [`Arg`] with a unique name.
+
+- `fn id(self: Self, id: impl Into<Id>) -> Self`
+  Set the identifier used for referencing this argument in the clap API.
+
+- `fn short(self: Self, s: impl IntoResettable<char>) -> Self`
+  Sets the short version of the argument without the preceding `-`.
+
+- `fn long(self: Self, l: impl IntoResettable<Str>) -> Self`
+  Sets the long version of the argument without the preceding `--`.
+
+- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Add an alias, which functions as a hidden long flag.
+
+- `fn short_alias(self: Self, name: impl IntoResettable<char>) -> Self`
+  Add an alias, which functions as a hidden short flag.
+
+- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Add aliases, which function as hidden long flags.
+
+- `fn short_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
+  Add aliases, which functions as a hidden short flag.
+
+- `fn visible_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Add an alias, which functions as a visible long flag.
+
+- `fn visible_short_alias(self: Self, name: impl IntoResettable<char>) -> Self`
+  Add an alias, which functions as a visible short flag.
+
+- `fn visible_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Add aliases, which function as visible long flags.
+
+- `fn visible_short_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
+  Add aliases, which function as visible short flags.
+
+- `fn index(self: Self, idx: impl IntoResettable<usize>) -> Self`
+  Specifies the index of a positional argument **starting at** 1.
+
+- `fn trailing_var_arg(self: Self, yes: bool) -> Self`
+  This is a "var arg" and everything that follows should be captured by it, as if the user had
+
+- `fn last(self: Self, yes: bool) -> Self`
+  This arg is the last, or final, positional argument (i.e. has the highest
+
+- `fn required(self: Self, yes: bool) -> Self`
+  Specifies that the argument must be present.
+
+- `fn requires(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
+  Sets an argument that is required when this one is present
+
+- `fn exclusive(self: Self, yes: bool) -> Self`
+  This argument must be passed alone; it conflicts with all other arguments.
+
+- `fn global(self: Self, yes: bool) -> Self`
+  Specifies that an argument can be matched to all child [`Subcommand`]s.
+
+- `fn group(self: Self, group_id: impl IntoResettable<Id>) -> Self`
+  The name of the [`ArgGroup`] the argument belongs to.
+
+- `fn groups(self: Self, group_ids: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  The names of [`ArgGroup`]'s the argument belongs to.
+
+- `fn default_value_if(self: Self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, default: impl IntoResettable<OsStr>) -> Self`
+  Specifies the value of the argument if `arg` has been used at runtime.
+
+- `fn default_values_if(self: Self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, defaults: impl IntoIterator<Item = impl Into<OsStr>>) -> Self`
+  Specifies the values of the argument if `arg` has been used at runtime.
+
+- `fn default_value_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoResettable<OsStr>)>) -> Self`
+  Specifies multiple values and conditions in the same manner as [`Arg::default_value_if`].
+
+- `fn default_values_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoIterator<Item = impl Into<OsStr>>)>) -> Self`
+  Specifies multiple values and conditions in the same manner as [`Arg::default_values_if`].
+
+- `fn required_unless_present(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
+  Set this arg as [required] as long as the specified argument is not present at runtime.
+
+- `fn required_unless_present_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  Sets this arg as [required] unless *all* of the specified arguments are present at runtime.
+
+- `fn required_unless_present_any(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  Sets this arg as [required] unless *any* of the specified arguments are present at runtime.
+
+- `fn required_if_eq(self: Self, arg_id: impl Into<Id>, val: impl Into<OsStr>) -> Self`
+  This argument is [required] only if the specified `arg` is present at runtime and its value
+
+- `fn required_if_eq_any(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self`
+  Specify this argument is [required] based on multiple conditions.
+
+- `fn required_if_eq_all(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self`
+  Specify this argument is [required] based on multiple conditions.
+
+- `fn requires_if(self: Self, val: impl Into<ArgPredicate>, arg_id: impl Into<Id>) -> Self`
+  Require another argument if this arg matches the [`ArgPredicate`]
+
+- `fn requires_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<ArgPredicate>, impl Into<Id>)>) -> Self`
+  Allows multiple conditional requirements.
+
+- `fn conflicts_with(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
+  This argument is mutually exclusive with the specified argument.
+
+- `fn conflicts_with_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  This argument is mutually exclusive with the specified arguments.
+
+- `fn overrides_with(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
+  Sets an overridable argument.
+
+- `fn overrides_with_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  Sets multiple mutually overridable arguments by name.
 
 - `fn action(self: Self, action: impl IntoResettable<ArgAction>) -> Self`
   Specify how to react to an argument when parsing it.
@@ -301,36 +444,6 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 - `fn default_missing_values_os(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self`
   Value for the argument when the flag is present but no value is specified.
-
-- `fn help(self: Self, h: impl IntoResettable<StyledStr>) -> Self`
-  Sets the description of the argument for short help (`-h`).
-
-- `fn long_help(self: Self, h: impl IntoResettable<StyledStr>) -> Self`
-  Sets the description of the argument for long help (`--help`).
-
-- `fn display_order(self: Self, ord: impl IntoResettable<usize>) -> Self`
-  Allows custom ordering of args within the help message.
-
-- `fn help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
-  Override the `--help` section this appears in.
-
-- `fn next_line_help(self: Self, yes: bool) -> Self`
-  Render the [help][Arg::help] on the line after the argument.
-
-- `fn hide(self: Self, yes: bool) -> Self`
-  Do not display the argument in help message.
-
-- `fn hide_possible_values(self: Self, yes: bool) -> Self`
-  Do not display the [possible values][crate::builder::ValueParser::possible_values] in the help message.
-
-- `fn hide_default_value(self: Self, yes: bool) -> Self`
-  Do not display the default value of the argument in the help message.
-
-- `fn hide_short_help(self: Self, yes: bool) -> Self`
-  Hides an argument from short help (`-h`).
-
-- `fn hide_long_help(self: Self, yes: bool) -> Self`
-  Hides an argument from long help (`--help`).
 
 - `fn get_id(self: &Self) -> &Id`
   Get the name of the argument
@@ -452,127 +565,16 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 - `fn is_ignore_case_set(self: &Self) -> bool`
   Reports whether [`Arg::ignore_case`] is set
 
-- `fn group(self: Self, group_id: impl IntoResettable<Id>) -> Self`
-  The name of the [`ArgGroup`] the argument belongs to.
-
-- `fn groups(self: Self, group_ids: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  The names of [`ArgGroup`]'s the argument belongs to.
-
-- `fn default_value_if(self: Self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, default: impl IntoResettable<OsStr>) -> Self`
-  Specifies the value of the argument if `arg` has been used at runtime.
-
-- `fn default_values_if(self: Self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, defaults: impl IntoIterator<Item = impl Into<OsStr>>) -> Self`
-  Specifies the values of the argument if `arg` has been used at runtime.
-
-- `fn default_value_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoResettable<OsStr>)>) -> Self`
-  Specifies multiple values and conditions in the same manner as [`Arg::default_value_if`].
-
-- `fn default_values_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoIterator<Item = impl Into<OsStr>>)>) -> Self`
-  Specifies multiple values and conditions in the same manner as [`Arg::default_values_if`].
-
-- `fn required_unless_present(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
-  Set this arg as [required] as long as the specified argument is not present at runtime.
-
-- `fn required_unless_present_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  Sets this arg as [required] unless *all* of the specified arguments are present at runtime.
-
-- `fn required_unless_present_any(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  Sets this arg as [required] unless *any* of the specified arguments are present at runtime.
-
-- `fn required_if_eq(self: Self, arg_id: impl Into<Id>, val: impl Into<OsStr>) -> Self`
-  This argument is [required] only if the specified `arg` is present at runtime and its value
-
-- `fn required_if_eq_any(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self`
-  Specify this argument is [required] based on multiple conditions.
-
-- `fn required_if_eq_all(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self`
-  Specify this argument is [required] based on multiple conditions.
-
-- `fn requires_if(self: Self, val: impl Into<ArgPredicate>, arg_id: impl Into<Id>) -> Self`
-  Require another argument if this arg matches the [`ArgPredicate`]
-
-- `fn requires_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<ArgPredicate>, impl Into<Id>)>) -> Self`
-  Allows multiple conditional requirements.
-
-- `fn conflicts_with(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
-  This argument is mutually exclusive with the specified argument.
-
-- `fn conflicts_with_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  This argument is mutually exclusive with the specified arguments.
-
-- `fn overrides_with(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
-  Sets an overridable argument.
-
-- `fn overrides_with_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  Sets multiple mutually overridable arguments by name.
-
-- `fn new(id: impl Into<Id>) -> Self`
-  Create a new [`Arg`] with a unique name.
-
-- `fn id(self: Self, id: impl Into<Id>) -> Self`
-  Set the identifier used for referencing this argument in the clap API.
-
-- `fn short(self: Self, s: impl IntoResettable<char>) -> Self`
-  Sets the short version of the argument without the preceding `-`.
-
-- `fn long(self: Self, l: impl IntoResettable<Str>) -> Self`
-  Sets the long version of the argument without the preceding `--`.
-
-- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Add an alias, which functions as a hidden long flag.
-
-- `fn short_alias(self: Self, name: impl IntoResettable<char>) -> Self`
-  Add an alias, which functions as a hidden short flag.
-
-- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Add aliases, which function as hidden long flags.
-
-- `fn short_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
-  Add aliases, which functions as a hidden short flag.
-
-- `fn visible_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Add an alias, which functions as a visible long flag.
-
-- `fn visible_short_alias(self: Self, name: impl IntoResettable<char>) -> Self`
-  Add an alias, which functions as a visible short flag.
-
-- `fn visible_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Add aliases, which function as visible long flags.
-
-- `fn visible_short_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
-  Add aliases, which function as visible short flags.
-
-- `fn index(self: Self, idx: impl IntoResettable<usize>) -> Self`
-  Specifies the index of a positional argument **starting at** 1.
-
-- `fn trailing_var_arg(self: Self, yes: bool) -> Self`
-  This is a "var arg" and everything that follows should be captured by it, as if the user had
-
-- `fn last(self: Self, yes: bool) -> Self`
-  This arg is the last, or final, positional argument (i.e. has the highest
-
-- `fn required(self: Self, yes: bool) -> Self`
-  Specifies that the argument must be present.
-
-- `fn requires(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
-  Sets an argument that is required when this one is present
-
-- `fn exclusive(self: Self, yes: bool) -> Self`
-  This argument must be passed alone; it conflicts with all other arguments.
-
-- `fn global(self: Self, yes: bool) -> Self`
-  Specifies that an argument can be matched to all child [`Subcommand`]s.
-
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(a: &Arg) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(a: &Arg) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -653,6 +655,7 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 ```rust
 struct ArgGroup {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -727,6 +730,12 @@ assert_eq!(matches
 
 #### Implementations
 
+- `fn get_id(self: &Self) -> &Id`
+  Get the name of the group
+
+- `fn is_required_set(self: &Self) -> bool`
+  Reports whether [`ArgGroup::required`] is set
+
 - `fn new(id: impl Into<Id>) -> Self`
   Create a `ArgGroup` using a unique name.
 
@@ -763,22 +772,16 @@ assert_eq!(matches
 - `fn conflicts_with_all(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self`
   Specify arguments or groups that must **not** be present when this group is.
 
-- `fn get_id(self: &Self) -> &Id`
-  Get the name of the group
-
-- `fn is_required_set(self: &Self) -> bool`
-  Reports whether [`ArgGroup::required`] is set
-
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(g: &ArgGroup) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(g: &ArgGroup) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -845,6 +848,7 @@ assert_eq!(matches
 
 ```rust
 struct Command {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -887,135 +891,6 @@ let m = Command::new("My Program")
 
 
 #### Implementations
-
-- `fn short_flag(self: Self, short: impl IntoResettable<char>) -> Self`
-  Sets the short version of the subcommand flag without the preceding `-`.
-
-- `fn long_flag(self: Self, long: impl Into<Str>) -> Self`
-  Sets the long version of the subcommand flag without the preceding `--`.
-
-- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Sets a hidden alias to this subcommand.
-
-- `fn short_flag_alias(self: Self, name: impl IntoResettable<char>) -> Self`
-  Add an alias, which functions as  "hidden" short flag subcommand
-
-- `fn long_flag_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Add an alias, which functions as a "hidden" long flag subcommand.
-
-- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Sets multiple hidden aliases to this subcommand.
-
-- `fn short_flag_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
-  Add aliases, which function as "hidden" short flag subcommands.
-
-- `fn long_flag_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Add aliases, which function as "hidden" long flag subcommands.
-
-- `fn visible_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Sets a visible alias to this subcommand.
-
-- `fn visible_short_flag_alias(self: Self, name: impl IntoResettable<char>) -> Self`
-  Add an alias, which functions as  "visible" short flag subcommand
-
-- `fn visible_long_flag_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Add an alias, which functions as a "visible" long flag subcommand.
-
-- `fn visible_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Sets multiple visible aliases to this subcommand.
-
-- `fn visible_short_flag_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
-  Add aliases, which function as *visible* short flag subcommands.
-
-- `fn visible_long_flag_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Add aliases, which function as *visible* long flag subcommands.
-
-- `fn display_order(self: Self, ord: impl IntoResettable<usize>) -> Self`
-  Set the placement of this subcommand within the help.
-
-- `fn hide(self: Self, yes: bool) -> Self`
-  Specifies that this [`subcommand`] should be hidden from help messages
-
-- `fn subcommand_required(self: Self, yes: bool) -> Self`
-  If no [`subcommand`] is present at runtime, error and exit gracefully.
-
-- `fn allow_external_subcommands(self: Self, yes: bool) -> Self`
-  Assume unexpected positional arguments are a [`subcommand`].
-
-- `fn external_subcommand_value_parser(self: Self, parser: impl IntoResettable<super::ValueParser>) -> Self`
-  Specifies how to parse external subcommand arguments.
-
-- `fn args_conflicts_with_subcommands(self: Self, yes: bool) -> Self`
-  Specifies that use of an argument prevents the use of [`subcommands`].
-
-- `fn subcommand_precedence_over_arg(self: Self, yes: bool) -> Self`
-  Prevent subcommands from being consumed as an arguments value.
-
-- `fn subcommand_negates_reqs(self: Self, yes: bool) -> Self`
-  Allows [`subcommands`] to override all requirements of the parent command.
-
-- `fn multicall(self: Self, yes: bool) -> Self`
-  Multiple-personality program dispatched on the binary name (`argv[0]`)
-
-- `fn subcommand_value_name(self: Self, value_name: impl IntoResettable<Str>) -> Self`
-  Sets the value name used for subcommands when printing usage and help.
-
-- `fn subcommand_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
-  Sets the help heading used for subcommands when printing usage and help.
-
-- `fn no_binary_name(self: Self, yes: bool) -> Self`
-  Specifies that the parser should not assume the first argument passed is the binary name.
-
-- `fn ignore_errors(self: Self, yes: bool) -> Self`
-  Try not to fail on parse errors, like missing option values.
-
-- `fn args_override_self(self: Self, yes: bool) -> Self`
-  Replace prior occurrences of arguments rather than error
-
-- `fn dont_delimit_trailing_values(self: Self, yes: bool) -> Self`
-  Disables the automatic [delimiting of values][Arg::value_delimiter] after `--` or when [`Arg::trailing_var_arg`]
-
-- `fn color(self: Self, color: ColorChoice) -> Self`
-  Sets when to color output.
-
-- `fn styles(self: Self, styles: Styles) -> Self`
-  Sets the [`Styles`] for terminal output
-
-- `fn term_width(self: Self, width: usize) -> Self`
-  Sets the terminal width at which to wrap help messages.
-
-- `fn max_term_width(self: Self, width: usize) -> Self`
-  Limit the line length for wrapping help when using the current terminal's width.
-
-- `fn disable_version_flag(self: Self, yes: bool) -> Self`
-  Disables `-V` and `--version` flag.
-
-- `fn propagate_version(self: Self, yes: bool) -> Self`
-  Specifies to use the version of the current command for all [`subcommands`].
-
-- `fn next_line_help(self: Self, yes: bool) -> Self`
-  Places the help string for all arguments and subcommands on the line after them.
-
-- `fn disable_help_flag(self: Self, yes: bool) -> Self`
-  Disables `-h` and `--help` flag.
-
-- `fn disable_help_subcommand(self: Self, yes: bool) -> Self`
-  Disables the `help` [`subcommand`].
-
-- `fn disable_colored_help(self: Self, yes: bool) -> Self`
-  Disables colorized help messages.
-
-- `fn help_expected(self: Self, yes: bool) -> Self`
-   Panic if help descriptions are omitted.
-
-- `fn hide_possible_values(self: Self, yes: bool) -> Self`
-  Tells `clap` *not* to print possible values when displaying help information.
-
-- `fn infer_long_args(self: Self, yes: bool) -> Self`
-  Allow partial matches of long arguments or their [aliases].
-
-- `fn infer_subcommands(self: Self, yes: bool) -> Self`
-  Allow partial matches of [subcommand] names and their [aliases].
 
 - `fn build(self: &mut Self)`
   Prepare for introspecting on all included [`Command`]s
@@ -1103,6 +978,195 @@ let m = Command::new("My Program")
 
 - `fn render_usage(self: &mut Self) -> StyledStr`
   Usage statement
+
+- `fn no_binary_name(self: Self, yes: bool) -> Self`
+  Specifies that the parser should not assume the first argument passed is the binary name.
+
+- `fn ignore_errors(self: Self, yes: bool) -> Self`
+  Try not to fail on parse errors, like missing option values.
+
+- `fn args_override_self(self: Self, yes: bool) -> Self`
+  Replace prior occurrences of arguments rather than error
+
+- `fn dont_delimit_trailing_values(self: Self, yes: bool) -> Self`
+  Disables the automatic [delimiting of values][Arg::value_delimiter] after `--` or when [`Arg::trailing_var_arg`]
+
+- `fn color(self: Self, color: ColorChoice) -> Self`
+  Sets when to color output.
+
+- `fn styles(self: Self, styles: Styles) -> Self`
+  Sets the [`Styles`] for terminal output
+
+- `fn term_width(self: Self, width: usize) -> Self`
+  Sets the terminal width at which to wrap help messages.
+
+- `fn max_term_width(self: Self, width: usize) -> Self`
+  Limit the line length for wrapping help when using the current terminal's width.
+
+- `fn disable_version_flag(self: Self, yes: bool) -> Self`
+  Disables `-V` and `--version` flag.
+
+- `fn propagate_version(self: Self, yes: bool) -> Self`
+  Specifies to use the version of the current command for all [`subcommands`].
+
+- `fn next_line_help(self: Self, yes: bool) -> Self`
+  Places the help string for all arguments and subcommands on the line after them.
+
+- `fn disable_help_flag(self: Self, yes: bool) -> Self`
+  Disables `-h` and `--help` flag.
+
+- `fn disable_help_subcommand(self: Self, yes: bool) -> Self`
+  Disables the `help` [`subcommand`].
+
+- `fn disable_colored_help(self: Self, yes: bool) -> Self`
+  Disables colorized help messages.
+
+- `fn help_expected(self: Self, yes: bool) -> Self`
+   Panic if help descriptions are omitted.
+
+- `fn hide_possible_values(self: Self, yes: bool) -> Self`
+  Tells `clap` *not* to print possible values when displaying help information.
+
+- `fn infer_long_args(self: Self, yes: bool) -> Self`
+  Allow partial matches of long arguments or their [aliases].
+
+- `fn infer_subcommands(self: Self, yes: bool) -> Self`
+  Allow partial matches of [subcommand] names and their [aliases].
+
+- `fn short_flag(self: Self, short: impl IntoResettable<char>) -> Self`
+  Sets the short version of the subcommand flag without the preceding `-`.
+
+- `fn long_flag(self: Self, long: impl Into<Str>) -> Self`
+  Sets the long version of the subcommand flag without the preceding `--`.
+
+- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Sets a hidden alias to this subcommand.
+
+- `fn short_flag_alias(self: Self, name: impl IntoResettable<char>) -> Self`
+  Add an alias, which functions as  "hidden" short flag subcommand
+
+- `fn long_flag_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Add an alias, which functions as a "hidden" long flag subcommand.
+
+- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Sets multiple hidden aliases to this subcommand.
+
+- `fn short_flag_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
+  Add aliases, which function as "hidden" short flag subcommands.
+
+- `fn long_flag_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Add aliases, which function as "hidden" long flag subcommands.
+
+- `fn visible_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Sets a visible alias to this subcommand.
+
+- `fn visible_short_flag_alias(self: Self, name: impl IntoResettable<char>) -> Self`
+  Add an alias, which functions as  "visible" short flag subcommand
+
+- `fn visible_long_flag_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Add an alias, which functions as a "visible" long flag subcommand.
+
+- `fn visible_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Sets multiple visible aliases to this subcommand.
+
+- `fn visible_short_flag_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
+  Add aliases, which function as *visible* short flag subcommands.
+
+- `fn visible_long_flag_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Add aliases, which function as *visible* long flag subcommands.
+
+- `fn display_order(self: Self, ord: impl IntoResettable<usize>) -> Self`
+  Set the placement of this subcommand within the help.
+
+- `fn hide(self: Self, yes: bool) -> Self`
+  Specifies that this [`subcommand`] should be hidden from help messages
+
+- `fn subcommand_required(self: Self, yes: bool) -> Self`
+  If no [`subcommand`] is present at runtime, error and exit gracefully.
+
+- `fn allow_external_subcommands(self: Self, yes: bool) -> Self`
+  Assume unexpected positional arguments are a [`subcommand`].
+
+- `fn external_subcommand_value_parser(self: Self, parser: impl IntoResettable<super::ValueParser>) -> Self`
+  Specifies how to parse external subcommand arguments.
+
+- `fn args_conflicts_with_subcommands(self: Self, yes: bool) -> Self`
+  Specifies that use of an argument prevents the use of [`subcommands`].
+
+- `fn subcommand_precedence_over_arg(self: Self, yes: bool) -> Self`
+  Prevent subcommands from being consumed as an arguments value.
+
+- `fn subcommand_negates_reqs(self: Self, yes: bool) -> Self`
+  Allows [`subcommands`] to override all requirements of the parent command.
+
+- `fn multicall(self: Self, yes: bool) -> Self`
+  Multiple-personality program dispatched on the binary name (`argv[0]`)
+
+- `fn subcommand_value_name(self: Self, value_name: impl IntoResettable<Str>) -> Self`
+  Sets the value name used for subcommands when printing usage and help.
+
+- `fn subcommand_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
+  Sets the help heading used for subcommands when printing usage and help.
+
+- `fn name(self: Self, name: impl Into<Str>) -> Self`
+  (Re)Sets the program's name.
+
+- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self`
+  Overrides the runtime-determined name of the binary for help and error messages.
+
+- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self`
+  Overrides the runtime-determined display name of the program for help and error messages.
+
+- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self`
+  Sets the author(s) for the help message.
+
+- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self`
+  Sets the program's description for the short help (`-h`).
+
+- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self`
+  Sets the program's description for the long help (`--help`).
+
+- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Free-form help text for after auto-generated short help (`-h`).
+
+- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Free-form help text for after auto-generated long help (`--help`).
+
+- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Free-form help text for before auto-generated short help (`-h`).
+
+- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Free-form help text for before auto-generated long help (`--help`).
+
+- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self`
+  Sets the version for the short version (`-V`) and help messages.
+
+- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self`
+  Sets the version for the long version (`--version`) and help messages.
+
+- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self`
+  Overrides the `clap` generated usage string for help and error messages.
+
+- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Overrides the `clap` generated help message (both `-h` and `--help`).
+
+- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self`
+  Sets the help template to be used, overriding the default format.
+
+- `fn flatten_help(self: Self, yes: bool) -> Self`
+  Flatten subcommand help into the current command's help
+
+- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
+  Set the default section heading for future args.
+
+- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self`
+  Change the starting value for assigning future display orders for args.
+
+- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
+  Exit gracefully if no arguments are present (e.g. `$ myprog`).
+
+- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
+  Allows one to implement two styles of CLIs where positionals can be used out of order.
 
 - `fn get_display_name(self: &Self) -> Option<&str>`
   Get the name of the binary.
@@ -1278,66 +1342,6 @@ let m = Command::new("My Program")
 - `fn is_multicall_set(self: &Self) -> bool`
   Report whether [`Command::multicall`] is set
 
-- `fn name(self: Self, name: impl Into<Str>) -> Self`
-  (Re)Sets the program's name.
-
-- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self`
-  Overrides the runtime-determined name of the binary for help and error messages.
-
-- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self`
-  Overrides the runtime-determined display name of the program for help and error messages.
-
-- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self`
-  Sets the author(s) for the help message.
-
-- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self`
-  Sets the program's description for the short help (`-h`).
-
-- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self`
-  Sets the program's description for the long help (`--help`).
-
-- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Free-form help text for after auto-generated short help (`-h`).
-
-- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Free-form help text for after auto-generated long help (`--help`).
-
-- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Free-form help text for before auto-generated short help (`-h`).
-
-- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Free-form help text for before auto-generated long help (`--help`).
-
-- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self`
-  Sets the version for the short version (`-V`) and help messages.
-
-- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self`
-  Sets the version for the long version (`--version`) and help messages.
-
-- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self`
-  Overrides the `clap` generated usage string for help and error messages.
-
-- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Overrides the `clap` generated help message (both `-h` and `--help`).
-
-- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self`
-  Sets the help template to be used, overriding the default format.
-
-- `fn flatten_help(self: Self, yes: bool) -> Self`
-  Flatten subcommand help into the current command's help
-
-- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
-  Set the default section heading for future args.
-
-- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self`
-  Change the starting value for assigning future display orders for args.
-
-- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
-  Exit gracefully if no arguments are present (e.g. `$ myprog`).
-
-- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
-  Allows one to implement two styles of CLIs where positionals can be used out of order.
-
 #### Trait Implementations
 
 ##### `impl From`
@@ -1420,6 +1424,7 @@ let m = Command::new("My Program")
 
 ```rust
 struct OsStr {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1442,15 +1447,6 @@ feature
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(id: &OsStr) -> Self`
-
 ##### `impl From`
 
 - `fn from(name: &&'static std::ffi::OsStr) -> Self`
@@ -1461,11 +1457,20 @@ feature
 
 ##### `impl From`
 
-- `fn from(name: &'static std::ffi::OsStr) -> Self`
+- `fn from(id: &OsStr) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
 - `fn from(id: Str) -> Self`
+
+##### `impl From`
+
+- `fn from(name: &'static std::ffi::OsStr) -> Self`
 
 ##### `impl From`
 
@@ -1496,13 +1501,13 @@ feature
 
 - `fn as_ref(self: &Self) -> &std::ffi::OsStr`
 
-##### `impl Borrow`
-
-- `fn borrow(self: &Self) -> &std::ffi::OsStr`
-
 ##### `impl Borrow<T>`
 
 - `fn borrow(self: &Self) -> &T`
+
+##### `impl Borrow`
+
+- `fn borrow(self: &Self) -> &std::ffi::OsStr`
 
 ##### `impl BorrowMut<T>`
 
@@ -1528,19 +1533,7 @@ feature
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &&str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &OsStr) -> bool`
-
-##### `impl PartialEq`
-
 - `fn eq(self: &Self, other: &&std::ffi::OsStr) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &std::ffi::OsString) -> bool`
 
 ##### `impl PartialEq`
 
@@ -1548,7 +1541,19 @@ feature
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &std::ffi::OsString) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &String) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &&str) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &OsStr) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -1598,6 +1603,7 @@ feature
 
 ```rust
 struct PossibleValue {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1673,14 +1679,14 @@ let cfg = Arg::new("config")
 
 #### Trait Implementations
 
+##### `impl From<S: Into<crate::builder::Str>>`
+
+- `fn from(s: S) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<S: Into<crate::builder::Str>>`
-
-- `fn from(s: S) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1747,6 +1753,7 @@ let cfg = Arg::new("config")
 
 ```rust
 struct ValueRange {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1778,6 +1785,14 @@ Values per occurrence for an argument
 
 ##### `impl From`
 
+- `fn from(range: std::ops::RangeFrom<usize>) -> Self`
+
+##### `impl From`
+
+- `fn from(fixed: usize) -> Self`
+
+##### `impl From`
+
 - `fn from(_: std::ops::RangeFull) -> Self`
 
 ##### `impl From<T>`
@@ -1787,23 +1802,15 @@ Values per occurrence for an argument
 
 ##### `impl From`
 
-- `fn from(range: std::ops::Range<usize>) -> Self`
-
-##### `impl From`
-
-- `fn from(range: std::ops::RangeFrom<usize>) -> Self`
-
-##### `impl From`
-
 - `fn from(range: std::ops::RangeToInclusive<usize>) -> Self`
 
 ##### `impl From`
 
-- `fn from(range: std::ops::RangeInclusive<usize>) -> Self`
+- `fn from(range: std::ops::Range<usize>) -> Self`
 
 ##### `impl From`
 
-- `fn from(fixed: usize) -> Self`
+- `fn from(range: std::ops::RangeInclusive<usize>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1930,13 +1937,14 @@ let cmd = clap::Command::new("mybin")
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
-- `fn from(name: &&'static str) -> Self`
-
-##### `impl From`
-
-- `fn from(name: String) -> Self`
+- `fn from(name: &String) -> Self`
 
 ##### `impl From`
 
@@ -1946,14 +1954,13 @@ let cmd = clap::Command::new("mybin")
 
 - `fn from(cow: Cow<'static, str>) -> Self`
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(name: &&'static str) -> Self`
 
 ##### `impl From`
 
-- `fn from(name: &String) -> Self`
+- `fn from(name: String) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2046,6 +2053,7 @@ let cmd = clap::Command::new("mybin")
 
 ```rust
 struct Styles {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2662,6 +2670,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("0")).unwrap(), false);
 
 ```rust
 struct MapValueParser<P, F> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3091,14 +3100,14 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), "nev
 
 #### Trait Implementations
 
+##### `impl From<I, T>`
+
+- `fn from(values: I) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<I, T>`
-
-- `fn from(values: I) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -3167,6 +3176,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("never")).unwrap(), "nev
 
 ```rust
 struct RangedI64ValueParser<T: TryFrom<i64> + Clone + Send + Sync> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3227,14 +3237,14 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 #### Trait Implementations
 
+##### `impl From<T: TryFrom<i64> + Clone + Send + Sync, B: RangeBounds<i64>>`
+
+- `fn from(range: B) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<T: TryFrom<i64> + Clone + Send + Sync, B: RangeBounds<i64>>`
-
-- `fn from(range: B) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -3305,6 +3315,7 @@ assert_eq!(value_parser.parse_ref(&cmd, arg, OsStr::new("50")).unwrap(), 50);
 
 ```rust
 struct RangedU64ValueParser<T: TryFrom<u64>> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3525,6 +3536,7 @@ Useful for composing new [`TypedValueParser`](#typedvalueparser)s
 
 ```rust
 struct TryMapValueParser<P, F> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3604,6 +3616,7 @@ See [`TypedValueParser::try_map`](#try-map)
 
 ```rust
 struct UnknownArgumentValueParser {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3807,7 +3820,15 @@ assert_eq!(port, 3001);
 
 ##### `impl From`
 
-- `fn from(value: std::ops::Range<i64>) -> Self`
+- `fn from(value: std::ops::RangeToInclusive<i64>) -> Self`
+
+##### `impl From`
+
+- `fn from(value: std::ops::RangeFull) -> Self`
+
+##### `impl From`
+
+- `fn from(value: std::ops::RangeInclusive<i64>) -> Self`
 
 ##### `impl From`
 
@@ -3817,34 +3838,26 @@ assert_eq!(port, 3001);
 
 - `fn from(p: P) -> Self`
 
+##### `impl From<P, const C: usize>`
+
+- `fn from(values: [P; C]) -> Self`
+
 ##### `impl From`
 
-- `fn from(value: std::ops::RangeToInclusive<i64>) -> Self`
+- `fn from(value: std::ops::RangeFrom<i64>) -> Self`
+
+##### `impl From`
+
+- `fn from(value: std::ops::Range<i64>) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
 
-##### `impl From`
-
-- `fn from(value: std::ops::RangeInclusive<i64>) -> Self`
-
-##### `impl From`
-
-- `fn from(value: std::ops::RangeFull) -> Self`
-
-##### `impl From<P, const C: usize>`
-
-- `fn from(values: [P; C]) -> Self`
-
 ##### `impl From<P>`
 
 - `fn from(values: Vec<P>) -> Self`
-
-##### `impl From`
-
-- `fn from(value: std::ops::RangeFrom<i64>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4481,7 +4494,8 @@ command.mut_arg("input", |arg| arg.short(None));
 
 ##### `impl From<T>`
 
-- `fn from(other: T) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From<T>`
 
@@ -4489,8 +4503,7 @@ command.mut_arg("input", |arg| arg.short(None));
 
 ##### `impl From<T>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(other: T) -> Self`
 
 ##### `impl From<T>`
 

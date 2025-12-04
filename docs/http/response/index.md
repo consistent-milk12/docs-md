@@ -73,6 +73,7 @@ let body = response.body();
 
 ```rust
 struct Response<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -287,9 +288,9 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
 
 - `fn default() -> Response<T>`
 
-##### `impl AsSendBody`
-
 ##### `impl ResponseExt`
+
+##### `impl AsSendBody`
 
 ### `Parts`
 
@@ -299,6 +300,7 @@ struct Parts {
     pub version: crate::version::Version,
     pub headers: crate::header::HeaderMap<crate::header::HeaderValue>,
     pub extensions: crate::Extensions,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -385,6 +387,7 @@ header fields.
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -17,6 +17,7 @@ feature of serde_json to use [`IndexMap`](#indexmap) instead.
 
 ```rust
 struct Map<K, V> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -280,6 +281,7 @@ Represents a JSON key/value type.
 
 ```rust
 struct VacantEntry<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -333,6 +335,7 @@ A vacant Entry. It is part of the [`Entry`](serde_json/map/index.md) enum.
 
 ```rust
 struct OccupiedEntry<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -401,6 +404,7 @@ An occupied Entry. It is part of the [`Entry`](serde_json/map/index.md) enum.
 
 ```rust
 struct Iter<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -492,6 +496,7 @@ An iterator over a serde_json::Map's entries.
 
 ```rust
 struct IterMut<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -567,6 +572,7 @@ A mutable iterator over a serde_json::Map's entries.
 
 ```rust
 struct IntoIter {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -642,6 +648,7 @@ An owning iterator over a serde_json::Map's entries.
 
 ```rust
 struct Keys<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -733,6 +740,7 @@ An iterator over a serde_json::Map's keys.
 
 ```rust
 struct Values<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -824,6 +832,7 @@ An iterator over a serde_json::Map's values.
 
 ```rust
 struct ValuesMut<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -899,6 +908,7 @@ A mutable iterator over a serde_json::Map's values.
 
 ```rust
 struct IntoValues {
+    // [REDACTED: Private Fields]
 }
 ```
 

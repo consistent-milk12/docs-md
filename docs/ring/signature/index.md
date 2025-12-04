@@ -255,6 +255,7 @@ fn read_file(path: &std::path::Path) -> Result<Vec<u8>, MyError> {
 
 ```rust
 struct Ed25519KeyPair {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -382,6 +383,7 @@ Parameters for EdDSA signing and verification.
 
 ```rust
 struct EcdsaKeyPair {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -451,6 +453,7 @@ An ECDSA key pair, used for signing.
 
 ```rust
 struct EcdsaSigningAlgorithm {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -506,6 +509,7 @@ An ECDSA signing algorithm.
 
 ```rust
 struct EcdsaVerificationAlgorithm {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -651,6 +655,7 @@ RSA public key components.
 
 ```rust
 struct RsaParameters {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -704,6 +709,7 @@ Parameters for RSA verification.
 
 ```rust
 struct Signature {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -771,6 +777,7 @@ A public key signature returned from a signing operation.
 
 ```rust
 struct UnparsedPublicKey<B> {
+    // [REDACTED: Private Fields]
 }
 ```
 

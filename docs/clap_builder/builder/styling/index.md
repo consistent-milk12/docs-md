@@ -12,6 +12,7 @@ Terminal [`Styles`](clap_builder/builder/styling/index.md) for help and error ou
 
 ```rust
 struct Styles {
+    // [REDACTED: Private Fields]
 }
 ```
 

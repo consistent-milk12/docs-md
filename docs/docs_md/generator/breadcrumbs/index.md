@@ -15,6 +15,7 @@ links showing the path from crate root to the current module.
 
 ```rust
 struct BreadcrumbGenerator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

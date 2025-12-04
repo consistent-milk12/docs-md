@@ -13,6 +13,7 @@ but are necessary to include in proc-macro2.
 
 ```rust
 struct DelimSpan {
+    // [REDACTED: Private Fields]
 }
 ```
 

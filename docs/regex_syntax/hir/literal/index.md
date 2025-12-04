@@ -61,6 +61,7 @@ implemented on [`Seq`](regex_syntax/hir/literal/index.md).
 
 ```rust
 struct Extractor {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -238,6 +239,7 @@ assert_eq!(expected, got);
 
 ```rust
 struct Seq {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -473,6 +475,7 @@ assert_eq!(expected, seq);
 
 ```rust
 struct Literal {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -535,14 +538,14 @@ literal extraction ignores look-around assertions.)
 
 - `fn from(byte: u8) -> Literal`
 
-##### `impl From`
-
-- `fn from(ch: char) -> Literal`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(ch: char) -> Literal`
 
 ##### `impl Into<T, U>`
 

@@ -17,11 +17,13 @@
 //!
 //! Links inside code blocks are protected from transformation.
 
-use crate::linker::LinkRegistry;
-use regex::Regex;
-use rustdoc_types::{Crate, Id, ItemKind};
 use std::collections::HashMap;
 use std::sync::LazyLock;
+
+use regex::Regex;
+use rustdoc_types::{Crate, Id, ItemKind};
+
+use crate::linker::LinkRegistry;
 
 // =============================================================================
 // Static Regex Patterns (compiled once, reused everywhere)
@@ -224,7 +226,7 @@ pub fn convert_html_links(docs: &str) -> String {
 /// Strip duplicate title from documentation.
 ///
 /// Some crate/module docs start with `# title` which duplicates the generated
-/// `# Crate \`name\`` or `# Module \`name\`` heading.
+/// `# Crate 'name'` or `# Module 'name'` heading.
 ///
 /// # Arguments
 ///
@@ -310,7 +312,7 @@ pub fn convert_path_reference_links(docs: &str) -> String {
 ///
 /// # Code Block Protection
 ///
-/// Links inside fenced code blocks (```) are not processed.
+/// Links inside fenced code blocks are not processed.
 pub struct DocLinkProcessor<'a> {
     /// The crate being documented (for looking up items).
     krate: &'a Crate,
@@ -475,21 +477,18 @@ impl<'a> DocLinkProcessor<'a> {
                 let leading_ws = &line[..line.len() - trimmed.len()];
 
                 if trimmed == "#" {
-                    // Just "#" becomes empty line
-                    result.push('\n');
+                    // Just "#" becomes empty line (newline added below)
                 } else if let Some(rest) = trimmed.strip_prefix("# ") {
                     // "# code" becomes "code"
                     result.push_str(leading_ws);
                     result.push_str(rest);
-                    result.push('\n');
                 } else {
                     result.push_str(line);
-                    result.push('\n');
                 }
             } else {
                 result.push_str(line);
-                result.push('\n');
             }
+            result.push('\n');
         }
 
         // Remove trailing newline if original didn't have one
@@ -506,11 +505,10 @@ impl<'a> DocLinkProcessor<'a> {
             let display_text = &caps[1];
             let ref_key = &caps[2];
 
-            if let Some(url) = self.resolve_to_url(ref_key, item_links) {
-                format!("[{display_text}]({url})")
-            } else {
-                caps[0].to_string()
-            }
+            self.resolve_to_url(ref_key, item_links).map_or_else(
+                || caps[0].to_string(),
+                |url| format!("[{display_text}]({url})"),
+            )
         })
     }
 
@@ -520,17 +518,18 @@ impl<'a> DocLinkProcessor<'a> {
             let display_text = &caps[1];
             let rust_path = &caps[2];
 
-            if let Some(url) = self.resolve_to_url(rust_path, item_links) {
-                format!("[{display_text}]({url})")
-            } else {
-                // Fallback: anchor from last segment
-                let anchor = rust_path
-                    .split("::")
-                    .last()
-                    .unwrap_or(rust_path)
-                    .to_lowercase();
-                format!("[{display_text}](#{anchor})")
-            }
+            self.resolve_to_url(rust_path, item_links).map_or_else(
+                || {
+                    // Fallback: anchor from last segment
+                    let anchor = rust_path
+                        .split("::")
+                        .last()
+                        .unwrap_or(rust_path)
+                        .to_lowercase();
+                    format!("[{display_text}](#{anchor})")
+                },
+                |url| format!("[{display_text}]({url})"),
+            )
         })
     }
 

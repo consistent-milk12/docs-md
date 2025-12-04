@@ -176,6 +176,7 @@ The following features are available:
 
 ```rust
 struct Parser {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -261,6 +262,7 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](regex_syntax
 
 ```rust
 struct ParserBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -469,14 +471,14 @@ new variant is not considered a breaking change.
 
 - `fn from(err: hir::Error) -> Error`
 
-##### `impl From`
-
-- `fn from(err: ast::Error) -> Error`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(err: ast::Error) -> Error`
 
 ##### `impl Into<T, U>`
 

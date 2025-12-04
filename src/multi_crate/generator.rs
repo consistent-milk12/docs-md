@@ -3,6 +3,13 @@
 //! This module provides [`MultiCrateGenerator`] which orchestrates
 //! documentation generation across multiple crates with cross-crate linking.
 
+use std::fmt::Write;
+use std::path::Path;
+
+use fs_err as fs;
+use indicatif::{ProgressBar, ProgressStyle};
+use rustdoc_types::{Id, Item, ItemEnum, StructKind, VariantKind, Visibility};
+
 use crate::Args;
 use crate::error::Error;
 use crate::generator::RenderContext;
@@ -12,11 +19,6 @@ use crate::multi_crate::search::SearchIndexGenerator;
 use crate::multi_crate::summary::SummaryGenerator;
 use crate::multi_crate::{CrateCollection, MultiCrateContext};
 use crate::types::TypeRenderer;
-use fs_err as fs;
-use indicatif::{ProgressBar, ProgressStyle};
-use rustdoc_types::{Id, Item, ItemEnum, StructKind, VariantKind, Visibility};
-use std::fmt::Write;
-use std::path::Path;
 
 /// Generator for multi-crate documentation.
 ///
@@ -245,7 +247,7 @@ struct MultiCrateModuleRenderer<'a> {
 
 impl<'a> MultiCrateModuleRenderer<'a> {
     /// Create a new multi-crate module renderer.
-    fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self {
+    const fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self {
         Self {
             view,
             file_path,
@@ -324,19 +326,22 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     // Skip glob re-exports (pub use foo::*) as they create duplicates
                     ItemEnum::Use(use_item) if !use_item.is_glob => {
                         // Try to resolve target item: first by ID, then by path
-                        let target_item = if let Some(ref target_id) = use_item.id {
-                            // Has ID - try local crate first, then search all crates
-                            krate.index.get(target_id).or_else(|| {
+                        let target_item = use_item.id.as_ref().map_or_else(
+                            || {
+                                // No ID (external re-export) - resolve by path
                                 self.view
-                                    .lookup_item_across_crates(target_id)
-                                    .map(|(_, item)| item)
-                            })
-                        } else {
-                            // No ID (external re-export) - resolve by path
-                            self.view
-                                .resolve_external_path(&use_item.source)
-                                .map(|(_, item, _)| item)
-                        };
+                                    .resolve_external_path(&use_item.source)
+                                    .map(|(_, item, _)| item)
+                            },
+                            |target_id| {
+                                // Has ID - try local crate first, then search all crates
+                                krate.index.get(target_id).or_else(|| {
+                                    self.view
+                                        .lookup_item_across_crates(target_id)
+                                        .map(|(_, item)| item)
+                                })
+                            },
+                        );
 
                         if let Some(target_item) = target_item {
                             match &target_item.inner {
@@ -356,11 +361,11 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
                                 ItemEnum::Macro(_) => macros.push(item),
 
-                                _ => {}
+                                _ => {},
                             }
                         }
-                    }
-                    _ => {}
+                    },
+                    _ => {},
                 }
             }
         }
@@ -559,7 +564,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             match &s.kind {
                 StructKind::Unit => {
                     _ = writeln!(md, "struct {name}{generics}{where_clause};");
-                }
+                },
 
                 StructKind::Tuple(fields) => {
                     let field_types: Vec<String> = fields
@@ -583,9 +588,12 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         field_types.join(", "),
                         where_clause
                     );
-                }
+                },
 
-                StructKind::Plain { fields, .. } => {
+                StructKind::Plain {
+                    fields,
+                    has_stripped_fields,
+                } => {
                     _ = writeln!(md, "struct {name}{generics}{where_clause} {{");
 
                     for field_id in fields {
@@ -609,8 +617,12 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         }
                     }
 
+                    if *has_stripped_fields {
+                        _ = writeln!(md, "    // [REDACTED: Private Fields]");
+                    }
+
                     _ = writeln!(md, "}}");
-                }
+                },
             }
 
             _ = write!(md, "```\n\n");
@@ -760,7 +772,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             match &v.kind {
                 VariantKind::Plain => {
                     _ = writeln!(md, "    {variant_name},");
-                }
+                },
 
                 VariantKind::Tuple(fields) => {
                     let field_types: Vec<String> = fields
@@ -777,7 +789,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         .collect();
 
                     _ = writeln!(md, "    {}({}),", variant_name, field_types.join(", "));
-                }
+                },
 
                 VariantKind::Struct { fields, .. } => {
                     _ = writeln!(md, "    {variant_name} {{");
@@ -798,7 +810,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     }
 
                     _ = writeln!(md, "    }},");
-                }
+                },
             }
         }
     }
@@ -916,7 +928,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 }
 
                 md.push_str("\n\n");
-            }
+            },
 
             ItemEnum::AssocType { bounds, type_, .. } => {
                 let bounds_str = if bounds.is_empty() {
@@ -931,7 +943,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     .unwrap_or_default();
 
                 _ = write!(md, "- `type {name}{bounds_str}{default_str}`\n\n");
-            }
+            },
 
             ItemEnum::AssocConst { type_, .. } => {
                 _ = write!(
@@ -939,11 +951,11 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     "- `const {name}: {}`\n\n",
                     type_renderer.render_type(type_)
                 );
-            }
+            },
 
             _ => {
                 _ = write!(md, "- `{name}`\n\n");
-            }
+            },
         }
     }
 
@@ -1175,7 +1187,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                             _ = write!(md, "\n  {first_line}");
                         }
                         _ = write!(md, "\n\n");
-                    }
+                    },
 
                     ItemEnum::AssocConst { type_, .. } => {
                         _ = writeln!(
@@ -1183,7 +1195,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                             "- `const {name}: {}`\n",
                             type_renderer.render_type(type_)
                         );
-                    }
+                    },
 
                     ItemEnum::AssocType { type_, .. } => {
                         if let Some(ty) = type_ {
@@ -1195,9 +1207,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         } else {
                             _ = writeln!(md, "- `type {name}`\n");
                         }
-                    }
+                    },
 
-                    _ => {}
+                    _ => {},
                 }
             }
         }

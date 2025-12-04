@@ -12,6 +12,7 @@
 
 ```rust
 struct IdsRef<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -119,6 +120,7 @@ assert_eq!(
 
 ```rust
 struct RawValues<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -235,6 +237,7 @@ assert_eq!(
 
 ```rust
 struct Values<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -345,6 +348,7 @@ assert_eq!(values.next(), None);
 
 ```rust
 struct ValuesRef<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -456,6 +460,7 @@ assert_eq!(values.next(), None);
 
 ```rust
 struct ArgMatches {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -507,6 +512,18 @@ if matches.contains_id("out") {
 
 
 #### Implementations
+
+- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
+  The name and `ArgMatches` of the current [subcommand].
+
+- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>`
+  Return the name and `ArgMatches` of the current [subcommand].
+
+- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>`
+  The `ArgMatches` for the current [subcommand].
+
+- `fn subcommand_name(self: &Self) -> Option<&str>`
+  The name of the current [subcommand].
 
 - `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
   Non-panicking version of [`ArgMatches::get_one`]
@@ -586,18 +603,6 @@ if matches.contains_id("out") {
 - `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>`
   All indices an argument appeared at when parsing.
 
-- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
-  The name and `ArgMatches` of the current [subcommand].
-
-- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>`
-  Return the name and `ArgMatches` of the current [subcommand].
-
-- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>`
-  The `ArgMatches` for the current [subcommand].
-
-- `fn subcommand_name(self: &Self) -> Option<&str>`
-  The name of the current [subcommand].
-
 #### Trait Implementations
 
 ##### `impl From<T>`
@@ -670,6 +675,7 @@ if matches.contains_id("out") {
 
 ```rust
 struct Indices<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

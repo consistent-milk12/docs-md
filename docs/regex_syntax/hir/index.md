@@ -95,6 +95,7 @@ aware case folding are unavailable. This only occurs when the
 
 ```rust
 struct Error {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -189,6 +190,7 @@ An error that can occur while translating an `Ast` to a `Hir`.
 
 ```rust
 struct Hir {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -457,6 +459,7 @@ is, not a sequence of decimal numbers.)
 
 ```rust
 struct ClassUnicode {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -647,6 +650,7 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 ```rust
 struct ClassUnicodeRange {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -751,6 +755,7 @@ in the range.
 
 ```rust
 struct ClassBytes {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -940,6 +945,7 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 ```rust
 struct ClassBytesRange {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1565,6 +1571,7 @@ example, an [`Hir`](regex_syntax/hir/index.md) provides properties that return `
 
 ```rust
 struct LookSetIter {
+    // [REDACTED: Private Fields]
 }
 ```
 

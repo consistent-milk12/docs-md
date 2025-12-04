@@ -27,6 +27,7 @@ in the [chacha20-poly1305@openssh.com] specification. `packet_length`,
 
 ```rust
 struct SealingKey {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -80,6 +81,7 @@ A key for sealing packets.
 
 ```rust
 struct OpeningKey {
+    // [REDACTED: Private Fields]
 }
 ```
 

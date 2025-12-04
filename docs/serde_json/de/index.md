@@ -12,6 +12,7 @@ Deserialize JSON data to a Rust data structure.
 
 ```rust
 struct SliceRead<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -64,6 +65,7 @@ JSON input source that reads from a slice of bytes.
 
 ```rust
 struct StrRead<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -118,6 +120,7 @@ JSON input source that reads from a UTF-8 string.
 struct IoRead<R>
 where
     R: io::Read {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -170,6 +173,7 @@ JSON input source that reads from a std::io input stream.
 
 ```rust
 struct Deserializer<R> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -177,11 +181,8 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn from_reader(reader: R) -> Self`
-  Creates a JSON deserializer from an `io::Read`.
-
-- `fn from_str(s: &'a str) -> Self`
-  Creates a JSON deserializer from a `&str`.
+- `fn from_slice(bytes: &'a [u8]) -> Self`
+  Creates a JSON deserializer from a `&[u8]`.
 
 - `fn new(read: R) -> Self`
   Create a JSON deserializer from one of the possible serde_json input
@@ -192,8 +193,11 @@ A structure that deserializes JSON into Rust values.
 - `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>`
   Turn a JSON deserializer into an iterator over values of type T.
 
-- `fn from_slice(bytes: &'a [u8]) -> Self`
-  Creates a JSON deserializer from a `&[u8]`.
+- `fn from_reader(reader: R) -> Self`
+  Creates a JSON deserializer from an `io::Read`.
+
+- `fn from_str(s: &'a str) -> Self`
+  Creates a JSON deserializer from a `&str`.
 
 #### Trait Implementations
 
@@ -235,6 +239,7 @@ A structure that deserializes JSON into Rust values.
 
 ```rust
 struct StreamDeserializer<'de, R, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 

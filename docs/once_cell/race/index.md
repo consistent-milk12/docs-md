@@ -31,6 +31,7 @@ architectures versus `Relaxed`.
 
 ```rust
 struct OnceNonZeroUsize {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -104,6 +105,7 @@ A thread-safe cell which can be written to only once.
 
 ```rust
 struct OnceBool {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -174,6 +176,7 @@ A thread-safe cell which can be written to only once.
 
 ```rust
 struct OnceRef<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -246,6 +249,7 @@ A thread-safe cell which can be written to only once.
 
 ```rust
 struct OnceBox<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -33,6 +33,7 @@ impl FromStr for Setting {
 
 ```rust
 struct Error {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -125,6 +126,7 @@ A minimal representation of all possible errors that can occur using the
 
 ```rust
 struct UnitDeserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -268,6 +270,7 @@ A deserializer holding a `()`.
 
 ```rust
 struct BoolDeserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -412,6 +415,7 @@ a `bool`.
 
 ```rust
 struct I8Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -556,6 +560,7 @@ an `i8`.
 
 ```rust
 struct I16Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -700,6 +705,7 @@ an `i16`.
 
 ```rust
 struct I32Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -844,6 +850,7 @@ an `i32`.
 
 ```rust
 struct I64Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -988,6 +995,7 @@ an `i64`.
 
 ```rust
 struct I128Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1132,6 +1140,7 @@ an `i128`.
 
 ```rust
 struct IsizeDeserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1276,6 +1285,7 @@ an `isize`.
 
 ```rust
 struct U8Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1420,6 +1430,7 @@ a `u8`.
 
 ```rust
 struct U16Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1564,6 +1575,7 @@ a `u16`.
 
 ```rust
 struct U64Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1708,6 +1720,7 @@ a `u64`.
 
 ```rust
 struct U128Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1852,6 +1865,7 @@ a `u128`.
 
 ```rust
 struct UsizeDeserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1996,6 +2010,7 @@ a `usize`.
 
 ```rust
 struct F32Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2140,6 +2155,7 @@ an `f32`.
 
 ```rust
 struct F64Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2284,6 +2300,7 @@ an `f64`.
 
 ```rust
 struct CharDeserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2428,6 +2445,7 @@ a `char`.
 
 ```rust
 struct U32Deserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2579,6 +2597,7 @@ A deserializer holding a `u32`.
 
 ```rust
 struct StrDeserializer<'a, E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2730,6 +2749,7 @@ A deserializer holding a `&str`.
 
 ```rust
 struct BorrowedStrDeserializer<'de, E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2883,6 +2903,7 @@ deserializer.
 
 ```rust
 struct StringDeserializer<E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3032,6 +3053,7 @@ A deserializer holding a `String`.
 
 ```rust
 struct CowStrDeserializer<'a, E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3181,6 +3203,7 @@ A deserializer holding a `Cow<str>`.
 
 ```rust
 struct BytesDeserializer<'a, E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3326,6 +3349,7 @@ A deserializer holding a `&[u8](#u8)
 
 ```rust
 struct BorrowedBytesDeserializer<'de, E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3472,6 +3496,7 @@ deserializer. Always calls [`Visitor::visit_borrowed_bytes`](#visit-borrowed-byt
 
 ```rust
 struct SeqDeserializer<I, E> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3479,11 +3504,11 @@ A deserializer that iterates over a sequence.
 
 #### Implementations
 
-- `fn new(iter: I) -> Self`
-  Construct a new `SeqDeserializer<I, E>`.
-
 - `fn end(self: Self) -> Result<(), E>`
   Check for remaining elements after passing a `SeqDeserializer` to
+
+- `fn new(iter: I) -> Self`
+  Construct a new `SeqDeserializer<I, E>`.
 
 #### Trait Implementations
 
@@ -3625,6 +3650,7 @@ A deserializer that iterates over a sequence.
 
 ```rust
 struct SeqAccessDeserializer<A> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3770,6 +3796,7 @@ struct MapDeserializer<'de, I, E>
 where
     I: Iterator,
     <I as >::Item: private::Pair {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3935,6 +3962,7 @@ A deserializer that iterates over a map.
 
 ```rust
 struct MapAccessDeserializer<A> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -4085,6 +4113,7 @@ A deserializer holding a `MapAccess`.
 
 ```rust
 struct EnumAccessDeserializer<A> {
+    // [REDACTED: Private Fields]
 }
 ```
 

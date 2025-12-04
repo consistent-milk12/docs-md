@@ -313,6 +313,7 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 ```rust
 struct AhoCorasick {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -476,36 +477,6 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
-  Returns true if and only if this automaton matches the haystack at any
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
-  Returns the location of the first match according to the match
-
-- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)`
-  Returns the location of the first overlapping match in the given
-
-- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>`
-  Returns an iterator of non-overlapping matches, using the match
-
-- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>`
-  Returns an iterator of overlapping matches. Stated differently, this
-
-- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
-  Replace all matches with a corresponding value in the `replace_with`
-
-- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
-  Replace all matches using raw bytes with a corresponding value in the
-
-- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
-  Replace all matches using a closure called on each match.
-
-- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
-  Replace all matches using raw bytes with a closure called on each
-
-- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
-  Returns an iterator of non-overlapping matches in the given
-
 - `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Result<Option<Match>, MatchError>`
   Returns the location of the first match according to the match
 
@@ -539,6 +510,42 @@ assert_eq!(result, "The slow grey sloth.");
 - `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> Result<(), std::io::Error>`
   Search the given reader and replace all matches of this automaton
 
+- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
+  Create a new Aho-Corasick automaton using the default configuration.
+
+- `fn builder() -> AhoCorasickBuilder`
+  A convenience method for returning a new Aho-Corasick builder.
+
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
+  Returns true if and only if this automaton matches the haystack at any
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
+  Returns the location of the first match according to the match
+
+- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)`
+  Returns the location of the first overlapping match in the given
+
+- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>`
+  Returns an iterator of non-overlapping matches, using the match
+
+- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>`
+  Returns an iterator of overlapping matches. Stated differently, this
+
+- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
+  Replace all matches with a corresponding value in the `replace_with`
+
+- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
+  Replace all matches using raw bytes with a corresponding value in the
+
+- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
+  Replace all matches using a closure called on each match.
+
+- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
+  Replace all matches using raw bytes with a closure called on each
+
+- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
+  Returns an iterator of non-overlapping matches in the given
+
 - `fn kind(self: &Self) -> AhoCorasickKind`
   Returns the kind of the Aho-Corasick automaton used by this searcher.
 
@@ -559,12 +566,6 @@ assert_eq!(result, "The slow grey sloth.");
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the approximate total amount of heap used by this automaton, in
-
-- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
-  Create a new Aho-Corasick automaton using the default configuration.
-
-- `fn builder() -> AhoCorasickBuilder`
-  A convenience method for returning a new Aho-Corasick builder.
 
 #### Trait Implementations
 
@@ -626,6 +627,7 @@ assert_eq!(result, "The slow grey sloth.");
 
 ```rust
 struct AhoCorasickBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -888,6 +890,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 ```rust
 struct BuildError {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1229,19 +1232,13 @@ panics or silent logical errors.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
@@ -1254,6 +1251,12 @@ panics or silent logical errors.
 - `type Error = PatternIDError`
 
 - `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1366,6 +1369,7 @@ trait.
 
 ```rust
 struct Input<'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1511,14 +1515,14 @@ assert_eq!(
 
 #### Trait Implementations
 
+##### `impl From<'h, H: ?Sized + AsRef<[u8]>>`
+
+- `fn from(haystack: &'h H) -> Input<'h>`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'h, H: ?Sized + AsRef<[u8]>>`
-
-- `fn from(haystack: &'h H) -> Input<'h>`
 
 ##### `impl Into<T, U>`
 
@@ -1573,6 +1577,7 @@ assert_eq!(
 
 ```rust
 struct Match {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1751,14 +1756,14 @@ to create a span where `start > end`.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(range: Range<usize>) -> Span`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(range: Range<usize>) -> Span`
 
 ##### `impl Into<T, U>`
 

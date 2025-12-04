@@ -24,6 +24,7 @@ processing steps necessary for a TLS connection.
 
 ```rust
 struct Cert<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -92,6 +93,7 @@ A parsed X509 certificate.
 
 ```rust
 struct BorrowedCertRevocationList<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -302,6 +304,7 @@ An opaque error indicating the caller must provide at least one CRL when buildin
 
 ```rust
 struct RevocationOptions<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -370,6 +373,7 @@ Describes how revocation checking is performed, if at all. Can be constructed wi
 
 ```rust
 struct RevocationOptionsBuilder<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -454,6 +458,7 @@ Builds a RevocationOptions instance to control how revocation checking is perfor
 
 ```rust
 struct DerIterator<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -517,6 +522,7 @@ Iterator to parse a sequence of DER-encoded values of type `T`.
 
 ```rust
 struct EndEntityCert<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -592,18 +598,18 @@ instances for the same DER-encoded ASN.1 certificate bytes.
 
 - `type Target = T`
 
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
 ##### `impl TryFrom<'a>`
 
 - `type Error = Error`
 
 - `fn try_from(cert: &'a CertificateDer<'a>) -> Result<Self, <Self as >::Error>`
   Parse the ASN.1 DER-encoded X.509 encoding of the certificate
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -885,6 +891,7 @@ The contents of this type depend on whether the `alloc` feature is enabled.
 
 ```rust
 struct RawPublicKeyEntity<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -947,6 +954,7 @@ in [RFC 7250](https://www.rfc-editor.org/rfc/rfc7250).
 
 ```rust
 struct IntermediateIterator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1012,6 +1020,7 @@ Implements [`DoubleEndedIterator`](#doubleendediterator) so it can be traversed 
 
 ```rust
 struct KeyPurposeId<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1093,6 +1102,7 @@ An OID value indicating an Extended Key Usage (EKU) key purpose.
 
 ```rust
 struct KeyPurposeIdIter<'a, 'r> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1156,6 +1166,7 @@ Iterator over [`KeyPurposeId`](#keypurposeid)s, for use in [`ExtendedKeyUsageVal
 
 ```rust
 struct KeyUsage {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1350,6 +1361,7 @@ The contents of this type depend on whether the `alloc` feature is enabled.
 
 ```rust
 struct VerifiedPath<'p> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1408,6 +1420,7 @@ See [`EndEntityCert::verify_for_usage()`](#verify-for-usage) for more details on
 
 ```rust
 struct OwnedCertRevocationList {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1927,17 +1940,17 @@ See [RFC 5280 §5.3.1][1]
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = Error`
 
 - `fn try_from(value: u8) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 

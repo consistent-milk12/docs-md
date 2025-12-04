@@ -16,11 +16,12 @@
 //! cargo insta review
 //! ```
 
+use std::path::PathBuf;
+
 use docs_md::generator::Generator;
 use docs_md::linker::LinkRegistry;
 use docs_md::parser::Parser;
 use docs_md::{CliOutputFormat, MarkdownCapture};
-use std::path::PathBuf;
 
 /// Helper to get the path to the test fixture.
 fn fixture_path() -> PathBuf {

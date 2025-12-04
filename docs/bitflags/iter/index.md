@@ -12,6 +12,7 @@ Yield the bits of a source flags value in a set of contained flags values.
 
 ```rust
 struct Iter<B: 'static> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -74,6 +75,7 @@ as a final flags value.
 
 ```rust
 struct IterNames<B: 'static> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -141,6 +143,7 @@ won't be yielded, but can be found with the [`IterNames::remaining`](#remaining)
 
 ```rust
 struct IterDefinedNames<B: 'static> {
+    // [REDACTED: Private Fields]
 }
 ```
 

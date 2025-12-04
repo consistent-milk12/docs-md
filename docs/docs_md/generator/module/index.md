@@ -16,6 +16,7 @@ organized by type.
 
 ```rust
 struct ModuleRenderer<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

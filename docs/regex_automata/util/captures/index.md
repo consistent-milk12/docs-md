@@ -42,6 +42,7 @@ underlying `GroupInfo`.
 
 ```rust
 struct Captures {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -132,6 +133,18 @@ assert_eq!(Some(Span::from(8..10)), caps.get_group_by_name("d"));
 
 #### Implementations
 
+- `fn clear(self: &mut Self)`
+  Clear this `Captures` value.
+
+- `fn set_pattern(self: &mut Self, pid: Option<PatternID>)`
+  Set the pattern on this `Captures` value.
+
+- `fn slots(self: &Self) -> &[Option<NonMaxUsize>]`
+  Returns the underlying slots, where each slot stores a single offset.
+
+- `fn slots_mut(self: &mut Self) -> &mut [Option<NonMaxUsize>]`
+  Returns the underlying slots as a mutable slice, where each slot stores
+
 - `fn all(group_info: GroupInfo) -> Captures`
   Create new storage for the offsets of all matching capturing groups.
 
@@ -182,18 +195,6 @@ assert_eq!(Some(Span::from(8..10)), caps.get_group_by_name("d"));
 
 - `fn extract_bytes<'h, const N: usize>(self: &Self, haystack: &'h [u8]) -> (&'h [u8], [&'h [u8]; N])`
   This is a convenience routine for extracting the substrings
-
-- `fn clear(self: &mut Self)`
-  Clear this `Captures` value.
-
-- `fn set_pattern(self: &mut Self, pid: Option<PatternID>)`
-  Set the pattern on this `Captures` value.
-
-- `fn slots(self: &Self) -> &[Option<NonMaxUsize>]`
-  Returns the underlying slots, where each slot stores a single offset.
-
-- `fn slots_mut(self: &mut Self) -> &mut [Option<NonMaxUsize>]`
-  Returns the underlying slots as a mutable slice, where each slot stores
 
 #### Trait Implementations
 
@@ -255,6 +256,7 @@ assert_eq!(Some(Span::from(8..10)), caps.get_group_by_name("d"));
 
 ```rust
 struct CapturesPatternIter<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -630,6 +632,7 @@ assert_eq!(None, info.slots(PatternID::must(1), 1));
 
 ```rust
 struct GroupInfoError {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -712,6 +715,7 @@ there are no duplicate capture groups for a specific pattern.
 
 ```rust
 struct GroupInfoPatternNames<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -804,6 +808,7 @@ from which this iterator was created.
 
 ```rust
 struct GroupInfoAllNames<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

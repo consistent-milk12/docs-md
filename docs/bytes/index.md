@@ -78,6 +78,7 @@ and `BufMut` are infallible.
 
 ```rust
 struct Bytes {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -212,19 +213,7 @@ v           v           v               v
 
 ##### `impl From`
 
-- `fn from(slice: &'static [u8]) -> Bytes`
-
-##### `impl From`
-
-- `fn from(slice: Box<[u8]>) -> Bytes`
-
-##### `impl From`
-
 - `fn from(src: BytesMut) -> Bytes`
-
-##### `impl From`
-
-- `fn from(slice: &'static str) -> Bytes`
 
 ##### `impl From<T>`
 
@@ -237,7 +226,19 @@ v           v           v               v
 
 ##### `impl From`
 
+- `fn from(slice: &'static [u8]) -> Bytes`
+
+##### `impl From`
+
 - `fn from(s: String) -> Bytes`
+
+##### `impl From`
+
+- `fn from(slice: &'static str) -> Bytes`
+
+##### `impl From`
+
+- `fn from(slice: Box<[u8]>) -> Bytes`
 
 ##### `impl FromIterator`
 
@@ -314,15 +315,23 @@ v           v           v               v
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &String) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &[u8]) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Vec<u8>) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl PartialEq<'a, T: ?Sized>`
 
 - `fn eq(self: &Self, other: &&'a T) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialEq`
 
@@ -332,26 +341,6 @@ v           v           v               v
 
 - `fn eq(self: &Self, other: &Bytes) -> bool`
 
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Vec<u8>) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &[u8]) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Bytes) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
-
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &Vec<u8>) -> Option<cmp::Ordering>`
@@ -360,9 +349,21 @@ v           v           v               v
 
 - `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
 
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Bytes) -> Option<cmp::Ordering>`
+
 ##### `impl PartialOrd<'a, T: ?Sized>`
 
 - `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
 
 ##### `impl Receiver<P, T>`
 
@@ -414,6 +415,7 @@ v           v           v               v
 
 ```rust
 struct BytesMut {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -518,6 +520,11 @@ assert_eq!(&b[..], b"hello");
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(bytes: Bytes) -> Self`
+  Convert self into `BytesMut`.
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -526,11 +533,6 @@ assert_eq!(&b[..], b"hello");
 ##### `impl From<'a>`
 
 - `fn from(src: &'a str) -> BytesMut`
-
-##### `impl From`
-
-- `fn from(bytes: Bytes) -> Self`
-  Convert self into `BytesMut`.
 
 ##### `impl From<'a>`
 
@@ -577,13 +579,13 @@ assert_eq!(&b[..], b"hello");
 
 - `fn borrow(self: &Self) -> &T`
 
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl BorrowMut`
 
 - `fn borrow_mut(self: &mut Self) -> &mut [u8]`
+
+##### `impl BorrowMut<T>`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Buf`
 
@@ -627,11 +629,11 @@ assert_eq!(&b[..], b"hello");
 
 - `fn extend<T>(self: &mut Self, iter: T)`
 
-##### `impl Extend<'a>`
+##### `impl Extend`
 
 - `fn extend<T>(self: &mut Self, iter: T)`
 
-##### `impl Extend`
+##### `impl Extend<'a>`
 
 - `fn extend<T>(self: &mut Self, iter: T)`
 
@@ -647,21 +649,17 @@ assert_eq!(&b[..], b"hello");
 
 - `fn cmp(self: &Self, other: &BytesMut) -> cmp::Ordering`
 
-##### `impl PartialEq<'a, T: ?Sized>`
-
-- `fn eq(self: &Self, other: &&'a T) -> bool`
-
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &String) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &BytesMut) -> bool`
+- `fn eq(self: &Self, other: &Vec<u8>) -> bool`
 
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &Bytes) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialEq`
 
@@ -673,7 +671,15 @@ assert_eq!(&b[..], b"hello");
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Vec<u8>) -> bool`
+- `fn eq(self: &Self, other: &BytesMut) -> bool`
+
+##### `impl PartialEq<'a, T: ?Sized>`
+
+- `fn eq(self: &Self, other: &&'a T) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
@@ -681,7 +687,7 @@ assert_eq!(&b[..], b"hello");
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &BytesMut) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
@@ -693,11 +699,7 @@ assert_eq!(&b[..], b"hello");
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &BytesMut) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
 
 ##### `impl Receiver<P, T>`
 

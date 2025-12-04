@@ -16,6 +16,7 @@ Utilities related to FFI bindings.
 
 ```rust
 struct c_uint<'a, A, R> {
+    // [REDACTED: Private Fields]
 }
 ```
 

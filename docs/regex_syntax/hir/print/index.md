@@ -12,6 +12,7 @@ This module provides a regular expression printer for `Hir`.
 
 ```rust
 struct Printer {
+    // [REDACTED: Private Fields]
 }
 ```
 

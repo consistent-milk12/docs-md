@@ -14,6 +14,7 @@ PKCS#8 is specified in [RFC 5958].
 
 ```rust
 struct Document {
+    // [REDACTED: Private Fields]
 }
 ```
 

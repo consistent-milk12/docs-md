@@ -346,6 +346,7 @@ and to produce a `gimli::Dwarf<R>` for it.
 
 ```rust
 struct LocationRangeIter<'ctx, R: gimli::Reader> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -405,6 +406,7 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 ```rust
 struct Context<R: gimli::Reader> {
+    // [REDACTED: Private Fields]
 }
 ```
 

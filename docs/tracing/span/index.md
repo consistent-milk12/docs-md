@@ -336,6 +336,7 @@
 
 ```rust
 struct Span {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -481,6 +482,7 @@ manner regardless of whether or not the trace is currently being collected.
 
 ```rust
 struct Entered<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -544,6 +546,7 @@ This is returned by the [`Span::enter`](#enter) function.
 
 ```rust
 struct EnteredSpan {
+    // [REDACTED: Private Fields]
 }
 ```
 

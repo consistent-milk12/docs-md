@@ -12,6 +12,7 @@ TLS for handling `https`.
 
 ```rust
 struct Certificate<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -100,6 +101,7 @@ translates to DER.
 
 ```rust
 struct PrivateKey<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -179,6 +181,7 @@ Deliberately not `Clone` to avoid accidental copies in memory.
 
 ```rust
 struct TlsConfig {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -278,6 +281,7 @@ feature flags **rustls** and **native-tls**).
 
 ```rust
 struct TlsConfigBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -446,18 +450,18 @@ Kinds of PEM data found by [`parse_pem`](#parse-pem)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(value: PrivateKey<'a>) -> Self`
 
 ##### `impl From<'a>`
 
 - `fn from(value: Certificate<'a>) -> Self`
 
-##### `impl From<'a>`
+##### `impl From<T>`
 
-- `fn from(value: PrivateKey<'a>) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 

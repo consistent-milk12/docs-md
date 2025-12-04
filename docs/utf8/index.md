@@ -6,6 +6,7 @@
 
 ```rust
 struct LossyDecoder<F: FnMut(&str)> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -83,6 +84,7 @@ Use `std::mem::forget` to inhibit this behavior.
 
 ```rust
 struct BufReadDecoder<B: BufRead> {
+    // [REDACTED: Private Fields]
 }
 ```
 

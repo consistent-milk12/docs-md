@@ -125,10 +125,6 @@ For use with [`ConfigBuilder::with_cert_resolver()`](#with-cert-resolver).
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(certified_key: CertifiedKey) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -137,6 +133,10 @@ For use with [`ConfigBuilder::with_cert_resolver()`](#with-cert-resolver).
 ##### `impl From`
 
 - `fn from(certified_key: alloc::sync::Arc<CertifiedKey>) -> Self`
+
+##### `impl From`
+
+- `fn from(certified_key: CertifiedKey) -> Self`
 
 ##### `impl Into<T, U>`
 

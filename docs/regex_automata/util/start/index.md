@@ -12,6 +12,7 @@ Provides helpers for dealing with start state configurations in DFAs.
 
 ```rust
 struct Config {
+    // [REDACTED: Private Fields]
 }
 ```
 

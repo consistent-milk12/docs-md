@@ -202,6 +202,7 @@ links showing the path from crate root to the current module.
 
 ```rust
 struct BreadcrumbGenerator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -314,6 +315,7 @@ generator.generate()?;
 
 ```rust
 struct Generator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -404,6 +406,7 @@ organized by type.
 
 ```rust
 struct ModuleRenderer<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -907,6 +910,7 @@ let link = registry.create_link(&some_id, "index.md");
 
 ```rust
 struct LinkRegistry {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1149,6 +1153,7 @@ let generics = renderer.render_generics(&generic_params);
 
 ```rust
 struct TypeRenderer<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

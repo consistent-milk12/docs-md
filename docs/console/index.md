@@ -84,6 +84,7 @@ By default all features are enabled.  The following features exist:
 
 ```rust
 struct Term {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -434,6 +435,7 @@ println!("[4/4] {} Done!", Emoji("✨", ":-)"));
 
 ```rust
 struct Style {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -598,6 +600,7 @@ A stored style that can be applied.
 
 ```rust
 struct StyledObject<D> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -777,6 +780,7 @@ A formatting wrapper that can be styled for a terminal.
 
 ```rust
 struct AnsiCodeIterator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -854,6 +858,7 @@ ansi codes or string values.
 
 ```rust
 struct WithoutAnsi<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -85,7 +85,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 ##### `impl From<T>`
 
-- `fn from(value: T) -> Self`
+- `fn from(t: never) -> T`
 
 ##### `impl From<T>`
 
@@ -94,7 +94,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 ##### `impl From<T>`
 
-- `fn from(t: never) -> T`
+- `fn from(value: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -161,6 +161,7 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 ```rust
 struct Lazy<T, F> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -200,12 +201,6 @@ fn main() {
 
 #### Implementations
 
-- `const fn new(f: F) -> Lazy<T, F>`
-  Creates a new lazy value with the given initializing
-
-- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
-  Consumes this `Lazy` returning the stored value.
-
 - `fn force(this: &Lazy<T, F>) -> &T`
   Forces the evaluation of this lazy value and
 
@@ -217,6 +212,12 @@ fn main() {
 
 - `fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>`
   Gets the reference to the result of this lazy value if
+
+- `const fn new(f: F) -> Lazy<T, F>`
+  Creates a new lazy value with the given initializing
+
+- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
+  Consumes this `Lazy` returning the stored value.
 
 #### Trait Implementations
 

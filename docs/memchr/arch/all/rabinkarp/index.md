@@ -28,6 +28,7 @@ beefier algorithm (like Two-Way) even starts.
 
 ```rust
 struct Finder {
+    // [REDACTED: Private Fields]
 }
 ```
 

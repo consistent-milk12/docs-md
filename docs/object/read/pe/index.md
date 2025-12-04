@@ -51,6 +51,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ```rust
 struct SectionTable<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -60,18 +61,6 @@ Returned by [`CoffHeader::sections`](#sections) and
 [`ImageNtHeaders::sections`](crate::read::pe::ImageNtHeaders::sections).
 
 #### Implementations
-
-- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
-  Return the file offset of the given virtual address, and the size up
-
-- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
-  Return the data starting at the given virtual address, up to the end of the
-
-- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
-  Return the data of the section that contains the given virtual address in a PE file.
-
-- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>`
-  Return the section that contains a given virtual address.
 
 - `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>`
   Parse the section table.
@@ -96,6 +85,18 @@ Returned by [`CoffHeader::sections`](#sections) and
 
 - `fn max_section_file_offset(self: &Self) -> u64`
   Compute the maximum file offset used by sections.
+
+- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
+  Return the file offset of the given virtual address, and the size up
+
+- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
+  Return the data starting at the given virtual address, up to the end of the
+
+- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
+  Return the data of the section that contains the given virtual address in a PE file.
+
+- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>`
+  Return the section that contains a given virtual address.
 
 #### Trait Implementations
 
@@ -166,6 +167,7 @@ struct SymbolTable<'data, R, Coff>
 where
     R: ReadRef<'data>,
     Coff: CoffHeader {
+    // [REDACTED: Private Fields]
 }
 ```
 

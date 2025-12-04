@@ -118,6 +118,7 @@ implementation detail, here are some common reasons:
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -235,6 +236,7 @@ assert_eq!(vec![PatternID::ZERO], matches);
 
 ```rust
 struct Config {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -355,6 +357,7 @@ assert_eq!(vec![PatternID::must(1)], matches);
 
 ```rust
 struct FindIter<'s, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -422,6 +425,7 @@ searched.
 
 ```rust
 struct Searcher {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -3,12 +3,14 @@
 //! This module provides [`MultiCrateParser`] which scans a directory for
 //! rustdoc JSON files and parses them into a [`CrateCollection`].
 
+use std::path::Path;
+
+use rustdoc_types::ItemEnum;
+use walkdir::WalkDir;
+
 use crate::error::Error;
 use crate::multi_crate::CrateCollection;
 use crate::parser::Parser;
-use rustdoc_types::ItemEnum;
-use std::path::Path;
-use walkdir::WalkDir;
 
 /// Parser for multiple rustdoc JSON files in a directory.
 ///

@@ -10,10 +10,13 @@
 
 ```rust
 struct __BindgenBitfieldUnit<Storage> {
+    // [REDACTED: Private Fields]
 }
 ```
 
 #### Implementations
+
+- `const fn new(storage: Storage) -> Self`
 
 - `fn get_bit(self: &Self, index: usize) -> bool`
 
@@ -30,8 +33,6 @@ struct __BindgenBitfieldUnit<Storage> {
 - `fn set(self: &mut Self, bit_offset: usize, bit_width: u8, val: u64)`
 
 - `unsafe fn raw_set(this: *mut Self, bit_offset: usize, bit_width: u8, val: u64)`
-
-- `const fn new(storage: Storage) -> Self`
 
 #### Trait Implementations
 

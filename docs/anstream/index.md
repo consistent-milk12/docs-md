@@ -44,6 +44,7 @@ And this will correctly handle piping to a file, etc
 
 ```rust
 struct AutoStream<S: RawStream> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -59,6 +60,12 @@ You can customize auto-detection by calling into
 to get a [`ColorChoice`](../colorchoice/colorchoice/index.md) and then calling [`AutoStream::new(stream, choice)`](#newstream-choice).
 
 #### Implementations
+
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
+  Get exclusive access to the `AutoStream`
+
+- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
+  Get exclusive access to the `AutoStream`
 
 - `fn new(raw: S, choice: ColorChoice) -> Self`
   Runtime control over styling behavior
@@ -89,12 +96,6 @@ to get a [`ColorChoice`](../colorchoice/colorchoice/index.md) and then calling [
 
 - `fn current_choice(self: &Self) -> ColorChoice`
   Prefer [`AutoStream::choice`]
-
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `AutoStream`
-
-- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
-  Get exclusive access to the `AutoStream`
 
 #### Trait Implementations
 
@@ -154,6 +155,7 @@ to get a [`ColorChoice`](../colorchoice/colorchoice/index.md) and then calling [
 struct StripStream<S>
 where
     S: std::io::Write {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -161,14 +163,14 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
+- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>`
+  Get exclusive access to the `StripStream`
+
 - `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
   Get exclusive access to the `StripStream`
 
 - `fn is_terminal(self: &Self) -> bool`
   Returns `true` if the descriptor/handle refers to a terminal/tty.
-
-- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>`
-  Get exclusive access to the `StripStream`
 
 - `fn new(raw: S) -> Self`
   Only pass printable data to the inner `Write`

@@ -249,6 +249,7 @@ The result of `Flags::A ^ Flags::B` is `0b0000_0010`, which doesn't correspond t
 
 ```rust
 struct Flag<B> {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -147,6 +147,7 @@ compiled DFAs.
 
 ```rust
 struct BuildError {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -77,6 +77,7 @@ certificates (also ASN.1 DER) is done using untrusted.rs.
 
 ```rust
 struct Input<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -107,14 +108,14 @@ non-constant-time comparisons.
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(value: &'a [u8]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(value: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -230,6 +231,7 @@ operation could be completed.
 
 ```rust
 struct Reader<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

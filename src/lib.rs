@@ -6,6 +6,7 @@
 
 #![deny(missing_docs)]
 #![warn(clippy::pedantic)]
+#![warn(clippy::nursery)]
 
 use std::path::PathBuf;
 
@@ -151,9 +152,9 @@ pub enum CliOutputFormat {
 impl From<CliOutputFormat> for OutputFormat {
     fn from(cli: CliOutputFormat) -> Self {
         match cli {
-            CliOutputFormat::Flat => OutputFormat::Flat,
+            CliOutputFormat::Flat => Self::Flat,
 
-            CliOutputFormat::Nested => OutputFormat::Nested,
+            CliOutputFormat::Nested => Self::Nested,
         }
     }
 }

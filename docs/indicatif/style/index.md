@@ -10,6 +10,7 @@
 
 ```rust
 struct ProgressStyle {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -101,6 +102,7 @@ struct ProgressStyle {
 
 ```rust
 struct TemplateError {
+    // [REDACTED: Private Fields]
 }
 ```
 

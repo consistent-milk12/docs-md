@@ -21,6 +21,7 @@ assert_eq!("base64: AAECAw==", format!("base64: {}", wrapper));
 
 ```rust
 struct Base64Display<'a, 'e, E: Engine> {
+    // [REDACTED: Private Fields]
 }
 ```
 

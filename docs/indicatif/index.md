@@ -254,6 +254,7 @@ assert_eq!("33,857,009.1235", HumanFloatCount(33857009.123456).to_string());
 
 ```rust
 struct ProgressDrawTarget {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -764,6 +765,7 @@ Formats counts for human readability using commas for floats
 ```rust
 struct ProgressBarIter<T> {
     pub progress: crate::progress_bar::ProgressBar,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -891,6 +893,7 @@ Wraps an iterator to display its progress.
 
 ```rust
 struct MultiProgress {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1005,6 +1008,7 @@ Manages multiple progress bars from different threads
 
 ```rust
 struct ProgressBar {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1243,6 +1247,7 @@ just increments the refcount (so the original and its clone share the same state
 
 ```rust
 struct WeakProgressBar {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1318,6 +1323,7 @@ Useful for creating custom steady tick implementations
 
 ```rust
 struct ProgressState {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1390,6 +1396,7 @@ The state of a progress bar at a moment in time.
 
 ```rust
 struct ProgressStyle {
+    // [REDACTED: Private Fields]
 }
 ```
 

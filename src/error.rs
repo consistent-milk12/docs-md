@@ -12,10 +12,11 @@
 //! - **Parse Errors** (`JsonParse`): Invalid or malformed rustdoc JSON
 //! - **Lookup Errors** (`ItemNotFound`): Missing items in the documentation index
 
-use miette::Diagnostic;
-use serde_json as SJSON;
 use std::io as StdIO;
 use std::path::PathBuf;
+
+use miette::Diagnostic;
+use serde_json as SJSON;
 use thiserror::Error as ThisError;
 
 /// Errors that can occur during documentation generation.

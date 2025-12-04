@@ -390,6 +390,7 @@ module path and file name information associated with the message will unfortuna
 
 ```rust
 struct Record<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -523,6 +524,7 @@ impl log::Log for SimpleLogger {
 
 ```rust
 struct RecordBuilder<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -649,6 +651,7 @@ let record = Record::builder()
 
 ```rust
 struct Metadata<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -774,6 +777,7 @@ impl log::Log for MyLogger {
 
 ```rust
 struct MetadataBuilder<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1123,11 +1127,11 @@ Typical usage includes: checking if a certain `Level` is enabled with
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &Level) -> $crate::option::Option<$crate::cmp::Ordering>`
 
 ##### `impl StructuralPartialEq`
 
@@ -1278,11 +1282,11 @@ to get and set the maximum log level with [`max_level()`](#max-level) and [`set_
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> $crate::option::Option<$crate::cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
 
 ##### `impl StructuralPartialEq`
 

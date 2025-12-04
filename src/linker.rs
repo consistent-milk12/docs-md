@@ -27,9 +27,10 @@
 //! // Returns: Some("[`ItemName`](module.md)")
 //! ```
 
-use rustdoc_types::{Crate, Id, ItemEnum};
 use std::collections::HashMap;
 use std::path::Path;
+
+use rustdoc_types::{Crate, Id, ItemEnum};
 
 /// Convert a name to a GitHub-style markdown anchor slug.
 ///
@@ -63,7 +64,7 @@ pub fn slugify_anchor(name: &str) -> String {
     for ch in name.chars() {
         match ch {
             // Skip backticks
-            '`' => {}
+            '`' => {},
 
             // Track generic depth
             '<' => in_generics += 1,
@@ -71,7 +72,7 @@ pub fn slugify_anchor(name: &str) -> String {
                 if in_generics > 0 {
                     in_generics -= 1;
                 }
-            }
+            },
 
             // Process characters outside of generics
             _ if in_generics == 0 => {
@@ -86,10 +87,10 @@ pub fn slugify_anchor(name: &str) -> String {
                     }
                 }
                 // Other characters (punctuation) are stripped
-            }
+            },
 
             // Characters inside generics are skipped
-            _ => {}
+            _ => {},
         }
     }
 
@@ -177,7 +178,7 @@ impl LinkRegistry {
                                 module_name,
                                 flat_format,
                             );
-                        }
+                        },
 
                         // Top-level items are in the root index.md
                         ItemEnum::Struct(_)
@@ -190,10 +191,10 @@ impl LinkRegistry {
                             let name = item.name.as_deref().unwrap_or("unnamed");
                             registry.item_paths.insert(*item_id, "index.md".to_string());
                             registry.item_names.insert(*item_id, name.to_string());
-                        }
+                        },
 
                         // Other items (imports, primitives, etc.) don't need registration
-                        _ => {}
+                        _ => {},
                     }
                 }
             }
@@ -247,7 +248,7 @@ impl LinkRegistry {
                         | ItemEnum::Macro(_) => {
                             self.item_paths.insert(*item_id, path.to_string());
                             self.item_names.insert(*item_id, name.to_string());
-                        }
+                        },
 
                         // Nested modules get their own files - recurse into them
                         ItemEnum::Module(_) => {
@@ -276,10 +277,10 @@ impl LinkRegistry {
                                 &sub_prefix,
                                 flat_format,
                             );
-                        }
+                        },
 
                         // Other item types (impl blocks, etc.) don't need registration
-                        _ => {}
+                        _ => {},
                     }
                 }
             }
@@ -398,7 +399,7 @@ impl LinkRegistry {
         }
 
         // Get the directory containing 'from' (not the file itself)
-        let from_dir = Path::new(from).parent().unwrap_or(Path::new(""));
+        let from_dir = Path::new(from).parent().unwrap_or_else(|| Path::new(""));
 
         // Use pathdiff for robust relative path calculation
         pathdiff::diff_paths(to, from_dir)

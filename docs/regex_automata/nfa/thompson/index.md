@@ -68,6 +68,7 @@ seen as a sequence of instructions for how to match a regex.
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -360,6 +361,7 @@ assert_eq!(expected, caps.get_match());
 
 ```rust
 struct BuildError {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -553,6 +555,7 @@ usually requires (much) more heap memory.
 
 ```rust
 struct PatternIter<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1129,6 +1132,7 @@ assert_eq!(Some(Span::from(3..4)), caps.get_group(1));
 
 ```rust
 struct Compiler {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1286,6 +1290,7 @@ assert_eq!(expected, caps.get_match());
 
 ```rust
 struct Config {
+    // [REDACTED: Private Fields]
 }
 ```
 

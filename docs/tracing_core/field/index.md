@@ -122,6 +122,7 @@ be forwarded to the visitor's [`record_debug`](#record-debug) method.
 
 ```rust
 struct Field {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -292,6 +293,7 @@ When a field's value is `Empty`. it will not be recorded.
 
 ```rust
 struct FieldSet {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -387,6 +389,7 @@ callsites. However, the equality of field names is checked in debug builds.
 
 ```rust
 struct ValueSet<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -458,6 +461,7 @@ A set of fields and values for a span.
 
 ```rust
 struct Iter {
+    // [REDACTED: Private Fields]
 }
 ```
 

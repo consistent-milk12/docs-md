@@ -37,6 +37,7 @@ assert_eq!(utf8_percent_encode("foo <bar>", FRAGMENT).to_string(), "foo%20%3Cbar
 
 ```rust
 struct AsciiSet {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -133,6 +134,7 @@ const FRAGMENT: &AsciiSet = &CONTROLS.add(b' ').add(b'"').add(b'<').add(b'>').ad
 
 ```rust
 struct PercentEncode<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -230,6 +232,7 @@ The return type of [`percent_encode`](percent_encoding/index.md) and [`utf8_perc
 
 ```rust
 struct PercentDecode<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

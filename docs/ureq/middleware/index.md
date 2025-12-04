@@ -12,6 +12,7 @@ Chained interception to modify the request or response.
 
 ```rust
 struct MiddlewareNext<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

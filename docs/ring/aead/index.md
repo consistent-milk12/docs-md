@@ -24,6 +24,7 @@ AEADs.
 
 ```rust
 struct Algorithm {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -90,6 +91,7 @@ An AEAD Algorithm.
 
 ```rust
 struct LessSafeKey {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -242,6 +244,7 @@ consumed at most once.
 
 ```rust
 struct OpeningKey<N: NonceSequence> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -309,6 +312,7 @@ of the nonce sequence.
 
 ```rust
 struct SealingKey<N: NonceSequence> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -376,6 +380,7 @@ of the nonce sequence.
 
 ```rust
 struct UnboundKey {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -532,14 +537,14 @@ A possibly valid authentication tag.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: [u8; 16]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: [u8; 16]) -> Self`
 
 ##### `impl Into<T, U>`
 

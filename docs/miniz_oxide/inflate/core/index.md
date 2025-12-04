@@ -16,6 +16,7 @@ Streaming decompression functionality.
 
 ```rust
 struct DecompressorOxide {
+    // [REDACTED: Private Fields]
 }
 ```
 

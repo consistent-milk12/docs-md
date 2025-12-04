@@ -190,6 +190,7 @@ A single inclusive range of UTF-8 bytes.
 
 ```rust
 struct Utf8Sequences {
+    // [REDACTED: Private Fields]
 }
 ```
 

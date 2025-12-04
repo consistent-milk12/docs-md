@@ -16,6 +16,7 @@ Items for use in a server.
 
 ```rust
 struct WantsServerCert {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -84,6 +85,7 @@ For more information, see the [`ConfigBuilder`](../../ureq/ureq/config/index.md)
 
 ```rust
 struct ResolvesServerCertUsingSni {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -146,6 +148,7 @@ on client-supplied server name (via SNI).
 
 ```rust
 struct ServerSessionMemoryCache {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -349,6 +352,7 @@ Something which never stores sessions.
 
 ```rust
 struct Accepted {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -408,6 +412,7 @@ Contains the state required to resume the connection through [`Accepted::into_co
 
 ```rust
 struct ClientHello<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -499,6 +504,7 @@ struct ServerConfig {
     pub cert_compressors: alloc::vec::Vec<&'static dyn compress::CertCompressor>,
     pub cert_compression_cache: alloc::sync::Arc<compress::CompressionCache>,
     pub cert_decompressors: alloc::vec::Vec<&'static dyn compress::CertDecompressor>,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -794,6 +800,7 @@ _Unlike_ `ClientConfig`, rustls does not enforce any policy here.
 
 ```rust
 struct ServerConnectionData {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -849,6 +856,7 @@ State associated with a server connection.
 
 ```rust
 struct UnbufferedServerConnection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -984,6 +992,7 @@ application can communicate failure to the client via [`AcceptedAlert::write()`]
 
 ```rust
 struct Acceptor {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1087,6 +1096,7 @@ for stream in listener.incoming() {
 
 ```rust
 struct ReadEarlyData<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1140,6 +1150,7 @@ This structure implements [`std::io::Read`](#read).
 
 ```rust
 struct ServerConnection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1299,6 +1310,7 @@ requiring it.
 
 ```rust
 struct ClientCertVerifierBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1449,6 +1461,7 @@ This is used in order to avoid parsing twice when specifying custom verification
 
 ```rust
 struct WebPkiClientVerifier {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1607,14 +1620,14 @@ Values in this enum are taken from the various RFCs covering TLS, and are listed
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 

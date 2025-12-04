@@ -162,6 +162,7 @@ Requires to provide new data format.
 
 ```rust
 struct InflateState {
+    // [REDACTED: Private Fields]
 }
 ```
 

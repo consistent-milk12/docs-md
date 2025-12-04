@@ -13,6 +13,7 @@ cheaply copyable cursor.
 
 ```rust
 struct TokenBuffer {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -71,6 +72,7 @@ once.
 
 ```rust
 struct Cursor<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

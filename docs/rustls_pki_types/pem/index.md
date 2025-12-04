@@ -16,6 +16,7 @@ pass.
 
 ```rust
 struct ReadIter<R, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -80,6 +81,7 @@ Extract and return all PEM sections by reading `rd`.
 
 ```rust
 struct SliceIter<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 

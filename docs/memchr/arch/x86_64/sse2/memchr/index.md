@@ -128,6 +128,7 @@ Finds all occurrences of a single byte in a haystack.
 
 ```rust
 struct OneIter<'a, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -323,6 +324,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 ```rust
 struct TwoIter<'a, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -516,6 +518,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
 ```rust
 struct ThreeIter<'a, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 

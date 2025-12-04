@@ -20,6 +20,7 @@ with the [`HalfMatch`](#halfmatch), [`Match`](../../../syn/syn/token/index.md) o
 
 ```rust
 struct Searcher<'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -242,6 +243,7 @@ assert_eq!(matches, vec![
 
 ```rust
 struct TryHalfMatchesIter<'h, F> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -415,6 +417,7 @@ then calling [`TryHalfMatchesIter::infallible`](#infallible).
 
 ```rust
 struct TryMatchesIter<'h, F> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -587,6 +590,7 @@ then calling [`TryMatchesIter::infallible`](#infallible).
 
 ```rust
 struct TryCapturesIter<'h, F> {
+    // [REDACTED: Private Fields]
 }
 ```
 

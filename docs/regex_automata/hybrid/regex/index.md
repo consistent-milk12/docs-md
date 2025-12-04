@@ -24,6 +24,7 @@ See the [parent module](crate::hybrid) for examples.
 
 ```rust
 struct Regex {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -82,6 +83,15 @@ assert_eq!(expected, got);
 
 #### Implementations
 
+- `fn forward(self: &Self) -> &DFA`
+  Return the underlying lazy DFA responsible for forward matching.
+
+- `fn reverse(self: &Self) -> &DFA`
+  Return the underlying lazy DFA responsible for reverse matching.
+
+- `fn pattern_len(self: &Self) -> usize`
+  Returns the total number of patterns matched by this regex.
+
 - `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
   Returns true if and only if this regex matches the given haystack.
 
@@ -91,14 +101,8 @@ assert_eq!(expected, got);
 - `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
   Returns an iterator over all non-overlapping leftmost matches in the
 
-- `fn forward(self: &Self) -> &DFA`
-  Return the underlying lazy DFA responsible for forward matching.
-
-- `fn reverse(self: &Self) -> &DFA`
-  Return the underlying lazy DFA responsible for reverse matching.
-
-- `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns matched by this regex.
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
+  Returns the start and end offset of the leftmost match. If no match
 
 - `fn new(pattern: &str) -> Result<Regex, BuildError>`
   Parse the given regular expression using the default configuration and
@@ -114,9 +118,6 @@ assert_eq!(expected, got);
 
 - `fn reset_cache(self: &Self, cache: &mut Cache)`
   Reset the given cache such that it can be used for searching with the
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
-  Returns the start and end offset of the leftmost match. If no match
 
 #### Trait Implementations
 
@@ -162,6 +163,7 @@ assert_eq!(expected, got);
 
 ```rust
 struct FindMatches<'r, 'c, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -236,6 +238,7 @@ This iterator can be created with the [`Regex::find_iter`](#find-iter) method.
 
 ```rust
 struct Cache {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -344,6 +347,7 @@ panics or incorrect results.
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 

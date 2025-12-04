@@ -86,6 +86,7 @@ struct DyldCacheHeader<E: Endian> {
     pub cache_atlas_size: crate::endian::U64<E>,
     pub dynamic_data_offset: crate::endian::U64<E>,
     pub dynamic_data_max_size: crate::endian::U64<E>,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -770,6 +771,7 @@ struct DyldCacheSlideInfo3<E: Endian> {
     pub page_size: crate::endian::U32<E>,
     pub page_starts_count: crate::endian::U32<E>,
     pub auth_value_add: crate::endian::U64<E>,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -935,6 +937,7 @@ struct DyldCacheSlideInfo5<E: Endian> {
     pub page_size: crate::endian::U32<E>,
     pub page_starts_count: crate::endian::U32<E>,
     pub value_add: crate::endian::U64<E>,
+    // [REDACTED: Private Fields]
 }
 ```
 

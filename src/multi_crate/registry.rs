@@ -4,10 +4,12 @@
 //! multiple crates to their documentation file paths, enabling cross-crate
 //! linking in the generated markdown.
 
+use std::collections::HashMap;
+
+use rustdoc_types::{Crate, Id, ItemEnum};
+
 use crate::linker::{LinkRegistry, slugify_anchor};
 use crate::multi_crate::CrateCollection;
-use rustdoc_types::{Crate, Id, ItemEnum};
-use std::collections::HashMap;
 
 /// Registry mapping item IDs to documentation paths across multiple crates.
 ///
@@ -123,7 +125,7 @@ impl UnifiedLinkRegistry {
                         );
                     }
                 }
-            }
+            },
 
             // Types and functions are documented in their parent's index.md
             ItemEnum::Struct(_)
@@ -135,9 +137,9 @@ impl UnifiedLinkRegistry {
             | ItemEnum::Macro(_) => {
                 let file_path = format!("{parent_path}/index.md");
                 self.register_item(crate_name, item_id, name, &file_path);
-            }
+            },
 
-            _ => {}
+            _ => {},
         }
     }
 
@@ -146,7 +148,7 @@ impl UnifiedLinkRegistry {
         let key = (crate_name.to_string(), id);
 
         self.item_paths.insert(key.clone(), path.to_string());
-        self.item_names.insert(key.clone(), name.to_string());
+        self.item_names.insert(key, name.to_string());
 
         // Add to name index for disambiguation
         self.name_index

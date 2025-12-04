@@ -4,14 +4,16 @@
 //! documentation with a nested directory structure that mirrors the Rust module
 //! hierarchy.
 
+use std::path::Path;
+
+use fs_err as fs;
+use indicatif::ProgressBar;
+use rustdoc_types::{Item, ItemEnum};
+
 use crate::error::Error;
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
 use crate::generator::context::GeneratorContext;
 use crate::generator::module::ModuleRenderer;
-use fs_err as fs;
-use indicatif::ProgressBar;
-use rustdoc_types::{Item, ItemEnum};
-use std::path::Path;
 
 /// Generates documentation with nested directory structure.
 ///
@@ -49,7 +51,7 @@ impl<'a> NestedGenerator<'a> {
     /// * `ctx` - Shared generator context
     /// * `output_dir` - Directory to write markdown files to
     /// * `progress` - Progress bar for user feedback
-    pub fn new(
+    pub const fn new(
         ctx: &'a GeneratorContext<'a>,
         output_dir: &'a Path,
         progress: &'a ProgressBar,

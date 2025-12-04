@@ -40,6 +40,7 @@ fn main() {
 
 ```rust
 struct Buffer {
+    // [REDACTED: Private Fields]
 }
 ```
 

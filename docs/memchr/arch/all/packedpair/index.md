@@ -22,6 +22,7 @@ however can be good enough in many circumstances.
 
 ```rust
 struct Finder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -117,6 +118,7 @@ architecture independent routines are unavailable.
 
 ```rust
 struct Pair {
+    // [REDACTED: Private Fields]
 }
 ```
 

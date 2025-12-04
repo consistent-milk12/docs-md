@@ -42,6 +42,7 @@ optimal implementation for the current CPU feature set.
 
 ```rust
 struct Hasher {
+    // [REDACTED: Private Fields]
 }
 ```
 

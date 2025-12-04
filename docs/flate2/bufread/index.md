@@ -14,6 +14,7 @@ various formats.
 
 ```rust
 struct DeflateDecoder<R> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -56,6 +57,9 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 #### Implementations
 
+- `fn new(r: R) -> DeflateDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this decoder entirely, swapping out the input
 
@@ -76,9 +80,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the decompressor has produced.
-
-- `fn new(r: R) -> DeflateDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
 
 #### Trait Implementations
 
@@ -134,6 +135,7 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 ```rust
 struct DeflateEncoder<R> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -170,9 +172,6 @@ fn open_hello_world() -> io::Result<Vec<u8>> {
 
 #### Implementations
 
-- `fn new(r: R, level: crate::Compression) -> DeflateEncoder<R>`
-  Creates a new encoder which will read uncompressed data from the given
-
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this encoder entirely, swapping out the input
 
@@ -190,6 +189,9 @@ fn open_hello_world() -> io::Result<Vec<u8>> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the compressor has produced.
+
+- `fn new(r: R, level: crate::Compression) -> DeflateEncoder<R>`
+  Creates a new encoder which will read uncompressed data from the given
 
 #### Trait Implementations
 
@@ -245,6 +247,7 @@ fn open_hello_world() -> io::Result<Vec<u8>> {
 
 ```rust
 struct GzDecoder<R> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -364,6 +367,7 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 ```rust
 struct GzEncoder<R> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -574,6 +578,7 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 ```rust
 struct ZlibDecoder<R> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -618,12 +623,6 @@ fn decode_bufreader(bytes: Vec<u8>) -> io::Result<String> {
 
 #### Implementations
 
-- `fn new(r: R) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this decoder entirely, swapping out the input
 
@@ -641,6 +640,12 @@ fn decode_bufreader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the decompressor has produced.
+
+- `fn new(r: R) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
 
 #### Trait Implementations
 
@@ -696,6 +701,7 @@ fn decode_bufreader(bytes: Vec<u8>) -> io::Result<String> {
 
 ```rust
 struct ZlibEncoder<R> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -728,12 +734,6 @@ z.read_to_end(&mut buffer)?;
 
 #### Implementations
 
-- `fn new(r: R, level: crate::Compression) -> ZlibEncoder<R>`
-  Creates a new encoder which will read uncompressed data from the given
-
-- `fn new_with_compress(r: R, compression: Compress) -> ZlibEncoder<R>`
-  Creates a new encoder with the given `compression` settings which will
-
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this encoder entirely, swapping out the input
 
@@ -751,6 +751,12 @@ z.read_to_end(&mut buffer)?;
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the compressor has produced.
+
+- `fn new(r: R, level: crate::Compression) -> ZlibEncoder<R>`
+  Creates a new encoder which will read uncompressed data from the given
+
+- `fn new_with_compress(r: R, compression: Compress) -> ZlibEncoder<R>`
+  Creates a new encoder with the given `compression` settings which will
 
 #### Trait Implementations
 

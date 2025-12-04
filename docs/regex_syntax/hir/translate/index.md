@@ -12,6 +12,7 @@ Defines a translator that converts an `Ast` to an `Hir`.
 
 ```rust
 struct TranslatorBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -113,6 +114,7 @@ A builder for constructing an AST->HIR translator.
 
 ```rust
 struct Translator {
+    // [REDACTED: Private Fields]
 }
 ```
 

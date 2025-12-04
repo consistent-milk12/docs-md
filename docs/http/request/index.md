@@ -64,6 +64,7 @@ fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
 
 ```rust
 struct Request<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -309,6 +310,7 @@ struct Parts {
     pub version: crate::version::Version,
     pub headers: crate::header::HeaderMap<crate::header::HeaderValue>,
     pub extensions: crate::Extensions,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -399,6 +401,7 @@ header fields.
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 

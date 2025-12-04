@@ -252,14 +252,14 @@ in panics or silent logical errors.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(index: u8) -> SmallIndex`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(index: u8) -> SmallIndex`
 
 ##### `impl Into<T, U>`
 
@@ -316,17 +316,11 @@ in panics or silent logical errors.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
+##### `impl TryFrom<T, U>`
 
-- `type Error = SmallIndexError`
+- `type Error = Infallible`
 
-- `fn try_from(index: u16) -> Result<SmallIndex, SmallIndexError>`
-
-##### `impl TryFrom`
-
-- `type Error = SmallIndexError`
-
-- `fn try_from(index: usize) -> Result<SmallIndex, SmallIndexError>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryFrom`
 
@@ -340,11 +334,17 @@ in panics or silent logical errors.
 
 - `fn try_from(index: u64) -> Result<SmallIndex, SmallIndexError>`
 
-##### `impl TryFrom<T, U>`
+##### `impl TryFrom`
 
-- `type Error = Infallible`
+- `type Error = SmallIndexError`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(index: usize) -> Result<SmallIndex, SmallIndexError>`
+
+##### `impl TryFrom`
+
+- `type Error = SmallIndexError`
+
+- `fn try_from(index: u16) -> Result<SmallIndex, SmallIndexError>`
 
 ##### `impl TryInto<T, U>`
 
@@ -364,6 +364,7 @@ in panics or silent logical errors.
 
 ```rust
 struct SmallIndexError {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -583,23 +584,11 @@ re-exported at the crate root due to how common it is.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
@@ -611,7 +600,19 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -754,11 +755,11 @@ a state ID to be a "small index."
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
+##### `impl TryFrom`
 
-- `type Error = Infallible`
+- `type Error = StateIDError`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 
@@ -770,19 +771,19 @@ a state ID to be a "small index."
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
+- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryFrom`
 
 - `type Error = StateIDError`
 
 - `fn try_from(value: usize) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
 
 ##### `impl TryInto<T, U>`
 

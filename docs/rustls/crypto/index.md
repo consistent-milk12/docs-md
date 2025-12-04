@@ -568,6 +568,7 @@ The result from [`SupportedKxGroup::start_and_complete()`](#start-and-complete).
 
 ```rust
 struct SharedSecret {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -580,18 +581,18 @@ The result from [`ActiveKeyExchange::complete`](#complete) or [`ActiveKeyExchang
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(source: &[u8]) -> Self`
 
 ##### `impl From`
 
 - `fn from(buf: Vec<u8>) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(source: &[u8]) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 

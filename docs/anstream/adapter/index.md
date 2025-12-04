@@ -12,6 +12,7 @@ Gracefully degrade styled output
 
 ```rust
 struct StripBytes {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -97,6 +98,7 @@ Incrementally strip non-contiguous data
 
 ```rust
 struct StripBytesIter<'s> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -168,6 +170,7 @@ See [`StripBytes`](#stripbytes)
 
 ```rust
 struct StripStr {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -253,6 +256,7 @@ Incrementally strip non-contiguous data
 
 ```rust
 struct StripStrIter<'s> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -324,6 +328,7 @@ See [`StripStr`](#stripstr)
 
 ```rust
 struct StrippedBytes<'s> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -429,6 +434,7 @@ See [`strip_bytes`](#strip-bytes)
 
 ```rust
 struct StrippedStr<'s> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -534,6 +540,7 @@ See [`strip_str`](#strip-str)
 
 ```rust
 struct WinconBytes {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -619,6 +626,7 @@ Incrementally convert to wincon calls for non-contiguous data
 
 ```rust
 struct WinconBytesIter<'s> {
+    // [REDACTED: Private Fields]
 }
 ```
 

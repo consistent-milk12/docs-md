@@ -20,6 +20,7 @@ because it does less book-keeping.
 
 ```rust
 struct Config {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -109,6 +110,7 @@ typically used with [`Builder::configure`](#configure).
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -249,6 +251,7 @@ assert_eq!(b"foo\xFFarzz", &haystack[got.unwrap()?.range()]);
 
 ```rust
 struct BoundedBacktracker {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -335,27 +338,6 @@ assert_eq!(None, it.next());
 
 #### Implementations
 
-- `fn try_is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Result<bool, MatchError>`
-  Returns true if and only if this regex matches the given haystack.
-
-- `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Result<Option<Match>, MatchError>`
-  Executes a leftmost forward search and returns a `Match` if one exists.
-
-- `fn try_captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn try_find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryFindMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping leftmost matches in the
-
-- `fn try_captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryCapturesMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping `Captures` values. If no
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
 - `fn new(pattern: &str) -> Result<BoundedBacktracker, BuildError>`
   Parse the given regular expression using the default configuration and
 
@@ -397,6 +379,27 @@ assert_eq!(None, it.next());
 
 - `fn max_haystack_len(self: &Self) -> usize`
   Returns the maximum haystack length supported by this backtracker.
+
+- `fn try_is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Result<bool, MatchError>`
+  Returns true if and only if this regex matches the given haystack.
+
+- `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Result<Option<Match>, MatchError>`
+  Executes a leftmost forward search and returns a `Match` if one exists.
+
+- `fn try_captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures) -> Result<(), MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn try_find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryFindMatches<'r, 'c, 'h>`
+  Returns an iterator over all non-overlapping leftmost matches in the
+
+- `fn try_captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryCapturesMatches<'r, 'c, 'h>`
+  Returns an iterator over all non-overlapping `Captures` values. If no
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
 
 #### Trait Implementations
 
@@ -458,6 +461,7 @@ assert_eq!(None, it.next());
 
 ```rust
 struct TryFindMatches<'r, 'c, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -533,6 +537,7 @@ method.
 
 ```rust
 struct TryCapturesMatches<'r, 'c, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -609,6 +614,7 @@ This iterator can be created with the
 
 ```rust
 struct Cache {
+    // [REDACTED: Private Fields]
 }
 ```
 

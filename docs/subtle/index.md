@@ -210,6 +210,7 @@ https://www.chosenplaintext.ca/open-source/rust-timing-shield/security
 
 ```rust
 struct CtOption<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 

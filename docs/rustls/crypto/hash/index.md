@@ -12,6 +12,7 @@ Hashing interfaces.
 
 ```rust
 struct Output {
+    // [REDACTED: Private Fields]
 }
 ```
 

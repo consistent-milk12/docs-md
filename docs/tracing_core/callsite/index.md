@@ -198,6 +198,7 @@ Two `Identifier`s are equal if they both refer to the same callsite.
 
 ```rust
 struct DefaultCallsite {
+    // [REDACTED: Private Fields]
 }
 ```
 

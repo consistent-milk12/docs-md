@@ -258,6 +258,7 @@ For a given tag `t`, use `t.as_ref()` to get the tag value as a byte slice.
 
 ```rust
 struct Key {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -276,14 +277,14 @@ A key to use for HMAC signing.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(okm: hkdf::Okm<'_, Algorithm>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(okm: hkdf::Okm<'_, Algorithm>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -338,6 +339,7 @@ A key to use for HMAC signing.
 
 ```rust
 struct Context {
+    // [REDACTED: Private Fields]
 }
 ```
 

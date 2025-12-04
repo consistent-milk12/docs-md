@@ -48,6 +48,7 @@ and provides specialized APIs for insertion, retrieval, and iteration.
 
 ```rust
 struct Drain<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -123,6 +124,7 @@ A drain iterator for `HeaderMap`.
 
 ```rust
 struct GetAll<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -191,6 +193,7 @@ This struct is returned by `HeaderMap::get_all`.
 
 ```rust
 struct HeaderMap<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -257,6 +260,9 @@ assert!(!headers.contains_key(HOST));
 ```
 
 #### Implementations
+
+- `fn new() -> Self`
+  Create an empty `HeaderMap`.
 
 - `fn with_capacity(capacity: usize) -> HeaderMap<T>`
   Create an empty `HeaderMap` with the specified capacity.
@@ -336,9 +342,6 @@ assert!(!headers.contains_key(HOST));
 - `fn remove<K>(self: &mut Self, key: K) -> Option<T>`
   Removes a key from the map, returning the value associated with the key.
 
-- `fn new() -> Self`
-  Create an empty `HeaderMap`.
-
 #### Trait Implementations
 
 ##### `impl From<T>`
@@ -388,12 +391,12 @@ assert!(!headers.contains_key(HOST));
 
 ##### `impl Extend<T>`
 
-- `fn extend<I: IntoIterator<Item = (HeaderName, T)>>(self: &mut Self, iter: I)`
+- `fn extend<I: IntoIterator<Item = (Option<HeaderName>, T)>>(self: &mut Self, iter: I)`
+  Extend a `HeaderMap` with the contents of another `HeaderMap`.
 
 ##### `impl Extend<T>`
 
-- `fn extend<I: IntoIterator<Item = (Option<HeaderName>, T)>>(self: &mut Self, iter: I)`
-  Extend a `HeaderMap` with the contents of another `HeaderMap`.
+- `fn extend<I: IntoIterator<Item = (HeaderName, T)>>(self: &mut Self, iter: I)`
 
 ##### `impl Index<K, T>`
 
@@ -414,17 +417,17 @@ assert!(!headers.contains_key(HOST));
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom<'a, K, V, S, T>`
 
 - `type Error = Error`
 
 - `fn try_from(c: &'a HashMap<K, V, S>) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -444,6 +447,7 @@ assert!(!headers.contains_key(HOST));
 
 ```rust
 struct IntoIter<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -517,6 +521,7 @@ This struct is created by the `into_iter` method on `HeaderMap`.
 
 ```rust
 struct Iter<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -591,6 +596,7 @@ more than once if it has more than one associated value.
 
 ```rust
 struct IterMut<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -665,6 +671,7 @@ yielded more than once if it has more than one associated value.
 
 ```rust
 struct Keys<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -743,6 +750,7 @@ associated value.
 
 ```rust
 struct MaxSizeReached {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -802,6 +810,7 @@ Error returned when max capacity of `HeaderMap` is exceeded
 
 ```rust
 struct OccupiedEntry<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -899,6 +908,7 @@ This struct is returned as part of the `Entry` enum.
 
 ```rust
 struct VacantEntry<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -970,6 +980,7 @@ This struct is returned as part of the `Entry` enum.
 
 ```rust
 struct ValueDrain<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1045,6 +1056,7 @@ An drain iterator of all values associated with a single header name.
 
 ```rust
 struct ValueIter<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1116,6 +1128,7 @@ An iterator of all values associated with a single header name.
 
 ```rust
 struct ValueIterMut<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1189,6 +1202,7 @@ A mutable iterator of all values associated with a single header name.
 
 ```rust
 struct Values<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1258,6 +1272,7 @@ Each value contained in the `HeaderMap` will be yielded.
 
 ```rust
 struct ValuesMut<'a, T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1325,6 +1340,7 @@ struct ValuesMut<'a, T> {
 
 ```rust
 struct HeaderName {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1400,13 +1416,13 @@ computation and the comparison operation.
 
 - `fn as_ref(self: &Self) -> &str`
 
-##### `impl Borrow`
-
-- `fn borrow(self: &Self) -> &str`
-
 ##### `impl Borrow<T>`
 
 - `fn borrow(self: &Self) -> &T`
+
+##### `impl Borrow`
+
+- `fn borrow(self: &Self) -> &str`
 
 ##### `impl BorrowMut<T>`
 
@@ -1430,14 +1446,14 @@ computation and the comparison operation.
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &str) -> bool`
-  Performs a case-insensitive comparison of the string against the header
-
 ##### `impl PartialEq<'a>`
 
 - `fn eq(self: &Self, other: &&'a str) -> bool`
+  Performs a case-insensitive comparison of the string against the header
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
   Performs a case-insensitive comparison of the string against the header
 
 ##### `impl PartialEq`
@@ -1462,17 +1478,11 @@ computation and the comparison operation.
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
 - `type Error = InvalidHeaderName`
 
-- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderName`
-
-- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -1480,23 +1490,29 @@ computation and the comparison operation.
 
 - `fn try_from(s: String) -> Result<Self, <Self as >::Error>`
 
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderName`
+
+- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
-##### `impl TryFrom`
-
-- `type Error = InvalidHeaderName`
-
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidHeaderName`
 
 - `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderName`
+
+- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1512,6 +1528,7 @@ computation and the comparison operation.
 
 ```rust
 struct InvalidHeaderName {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1571,6 +1588,7 @@ A possible error when converting a `HeaderName` from another type.
 
 ```rust
 struct HeaderValue {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1626,20 +1644,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl From`
 
-- `fn from(num: u16) -> HeaderValue`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(num: i16) -> HeaderValue`
-
-##### `impl From`
-
-- `fn from(num: i64) -> HeaderValue`
+- `fn from(h: HeaderName) -> HeaderValue`
 
 ##### `impl From`
 
@@ -1647,11 +1652,16 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl From`
 
-- `fn from(h: HeaderName) -> HeaderValue`
+- `fn from(num: u32) -> HeaderValue`
 
 ##### `impl From`
 
-- `fn from(num: u32) -> HeaderValue`
+- `fn from(num: usize) -> HeaderValue`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From<'a>`
 
@@ -1659,15 +1669,23 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl From`
 
+- `fn from(num: u16) -> HeaderValue`
+
+##### `impl From`
+
 - `fn from(num: u64) -> HeaderValue`
 
 ##### `impl From`
 
-- `fn from(num: usize) -> HeaderValue`
+- `fn from(num: i16) -> HeaderValue`
 
 ##### `impl From`
 
 - `fn from(num: i32) -> HeaderValue`
+
+##### `impl From`
+
+- `fn from(num: i64) -> HeaderValue`
 
 ##### `impl FromStr`
 
@@ -1716,6 +1734,14 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &[u8]) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialEq<'a, T: ?Sized>`
@@ -1724,23 +1750,15 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &[u8]) -> bool`
-
-##### `impl PartialEq`
-
 - `fn eq(self: &Self, other: &HeaderValue) -> bool`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &HeaderValue) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd<'a, T: ?Sized>`
 
@@ -1752,7 +1770,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &HeaderValue) -> Option<cmp::Ordering>`
 
 ##### `impl ToOwned<T>`
 
@@ -1761,6 +1779,30 @@ an `Err` if the header value contains non visible ascii characters.
 - `fn to_owned(self: &Self) -> T`
 
 - `fn clone_into(self: &Self, target: &mut T)`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -1772,31 +1814,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `type Error = InvalidHeaderValue`
 
-- `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = InvalidHeaderValue`
-
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderValue`
-
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderValue`
-
 - `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1812,6 +1830,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 ```rust
 struct InvalidHeaderValue {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1872,6 +1891,7 @@ slice.
 
 ```rust
 struct ToStrError {
+    // [REDACTED: Private Fields]
 }
 ```
 

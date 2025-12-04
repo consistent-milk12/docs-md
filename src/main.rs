@@ -19,14 +19,13 @@
 //! - **Flat**: All markdown files in a single directory with `module__submodule.md` naming
 //! - **Nested**: Directory hierarchy mirroring module structure with `module/index.md` files
 
-use clap::Parser;
-use docs_md as Internals;
-use miette::Result;
-
 use Internals::Args;
 use Internals::generator::Generator;
 use Internals::multi_crate::{MultiCrateGenerator, MultiCrateParser};
 use Internals::parser::Parser as InternalParser;
+use clap::Parser;
+use docs_md as Internals;
+use miette::Result;
 
 /// Entry point for the docs-md CLI tool.
 ///

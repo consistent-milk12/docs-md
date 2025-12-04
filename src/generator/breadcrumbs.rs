@@ -23,7 +23,7 @@ impl<'a> BreadcrumbGenerator<'a> {
     /// * `module_path` - The module path segments
     /// * `crate_name` - The name of the crate for the root link
     #[must_use]
-    pub fn new(module_path: &'a [String], crate_name: &'a str) -> Self {
+    pub const fn new(module_path: &'a [String], crate_name: &'a str) -> Self {
         Self {
             module_path,
             crate_name,

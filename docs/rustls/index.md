@@ -353,6 +353,7 @@ they mean.
 
 ```rust
 struct ConfigBuilder<Side: ConfigSide, State> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -510,6 +511,15 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 #### Implementations
 
+- `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
+  Enable Encrypted Client Hello (ECH) in the given mode.
+
+- `fn with_client_cert_verifier(self: Self, client_cert_verifier: alloc::sync::Arc<dyn ClientCertVerifier>) -> ConfigBuilder<ServerConfig, WantsServerCert>`
+  Choose how to verify client certificates.
+
+- `fn with_no_client_auth(self: Self) -> ConfigBuilder<ServerConfig, WantsServerCert>`
+  Disable client authentication.
+
 - `fn crypto_provider(self: &Self) -> &alloc::sync::Arc<CryptoProvider>`
   Return the crypto provider used to construct this builder.
 
@@ -522,11 +532,14 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 - `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
   Sets a custom [`ResolvesServerCert`].
 
-- `fn with_client_cert_verifier(self: Self, client_cert_verifier: alloc::sync::Arc<dyn ClientCertVerifier>) -> ConfigBuilder<ServerConfig, WantsServerCert>`
-  Choose how to verify client certificates.
+- `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
+  Choose how to verify server certificates.
 
-- `fn with_no_client_auth(self: Self) -> ConfigBuilder<ServerConfig, WantsServerCert>`
-  Disable client authentication.
+- `fn with_webpki_verifier(self: Self, verifier: alloc::sync::Arc<WebPkiServerVerifier>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
+  Choose how to verify server certificates using a webpki verifier.
+
+- `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
+  Access configuration options whose use is dangerous and requires
 
 - `fn with_client_auth_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ClientConfig, Error>`
   Sets a single certificate chain and matching private key for use
@@ -536,18 +549,6 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 - `fn with_client_cert_resolver(self: Self, client_auth_cert_resolver: alloc::sync::Arc<dyn ResolvesClientCert>) -> ClientConfig`
   Sets a custom [`ResolvesClientCert`].
-
-- `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
-  Enable Encrypted Client Hello (ECH) in the given mode.
-
-- `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
-  Choose how to verify server certificates.
-
-- `fn with_webpki_verifier(self: Self, verifier: alloc::sync::Arc<WebPkiServerVerifier>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
-  Choose how to verify server certificates using a webpki verifier.
-
-- `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
-  Access configuration options whose use is dangerous and requires
 
 - `fn with_safe_default_protocol_versions(self: Self) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
   Accept the default protocol versions: both TLS1.2 and TLS1.3 are enabled.
@@ -615,6 +616,7 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 ```rust
 struct WantsVerifier {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -749,6 +751,7 @@ For more information, see the [`ConfigBuilder`](../ureq/ureq/config/index.md) do
 
 ```rust
 struct CommonState {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -826,6 +829,7 @@ Connection state common to both client and server connections.
 
 ```rust
 struct IoState {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -896,6 +900,7 @@ and tell the caller the current I/O state of the TLS connection.
 
 ```rust
 struct Reader<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -958,6 +963,7 @@ A structure that implements [`std::io::Read`](#read) for reading plaintext.
 
 ```rust
 struct Writer<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1012,6 +1018,7 @@ A structure that implements [`std::io::Write`](#write) for writing plaintext.
 
 ```rust
 struct ConnectionCommon<Data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1740,6 +1747,7 @@ and/or decryption.
 
 ```rust
 struct TicketRotator {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1806,6 +1814,7 @@ often, demoting the current ticketer.
 
 ```rust
 struct TicketSwitcher {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2078,6 +2087,7 @@ A TLS 1.3 cipher suite supported by rustls.
 ```rust
 struct DigitallySignedStruct {
     pub scheme: crate::enums::SignatureScheme,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2342,6 +2352,7 @@ struct ClientConfig {
     pub cert_decompressors: alloc::vec::Vec<&'static dyn compress::CertDecompressor>,
     pub cert_compressors: alloc::vec::Vec<&'static dyn compress::CertCompressor>,
     pub cert_compression_cache: alloc::sync::Arc<compress::CompressionCache>,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2579,6 +2590,7 @@ their DNS zone.
 
 ```rust
 struct ClientConnection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2684,6 +2696,7 @@ struct ServerConfig {
     pub cert_compressors: alloc::vec::Vec<&'static dyn compress::CertCompressor>,
     pub cert_compression_cache: alloc::sync::Arc<compress::CompressionCache>,
     pub cert_decompressors: alloc::vec::Vec<&'static dyn compress::CertDecompressor>,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2979,6 +2992,7 @@ _Unlike_ `ClientConfig`, rustls does not enforce any policy here.
 
 ```rust
 struct ServerConnection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -3310,6 +3324,11 @@ A client or server connection.
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(conn: ServerConnection) -> Self`
@@ -3317,11 +3336,6 @@ A client or server connection.
 ##### `impl From`
 
 - `fn from(conn: ClientConnection) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -3431,16 +3445,16 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 ##### `impl From`
 
+- `fn from(e: CertificateError) -> Self`
+
+##### `impl From`
+
 - `fn from(x: u8) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(e: CertificateError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4001,14 +4015,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4417,14 +4431,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -5247,11 +5261,7 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: InconsistentKeys) -> Self`
-
-##### `impl From`
-
-- `fn from(e: PeerMisbehaved) -> Self`
+- `fn from(e: CertRevocationListError) -> Self`
 
 ##### `impl From`
 
@@ -5259,15 +5269,11 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(_: rand::GetRandomFailed) -> Self`
-
-##### `impl From`
-
 - `fn from(e: EncryptedClientHelloError) -> Self`
 
 ##### `impl From`
 
-- `fn from(e: InvalidMessage) -> Self`
+- `fn from(_: rand::GetRandomFailed) -> Self`
 
 ##### `impl From`
 
@@ -5275,7 +5281,19 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(value: UnsupportedOperationError) -> Self`
+- `fn from(e: PeerMisbehaved) -> Self`
+
+##### `impl From`
+
+- `fn from(e: InvalidMessage) -> Self`
+
+##### `impl From`
+
+- `fn from(e: InconsistentKeys) -> Self`
+
+##### `impl From`
+
+- `fn from(e: PeerIncompatible) -> Self`
 
 ##### `impl From`
 
@@ -5283,16 +5301,12 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: PeerIncompatible) -> Self`
+- `fn from(value: UnsupportedOperationError) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(e: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -6050,12 +6064,12 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Implementations
 
-- `fn key_exchange_algorithm(self: Self) -> KeyExchangeAlgorithm`
-  Return the key exchange algorithm associated with this `NamedGroup`
-
 - `fn to_array(self: Self) -> [u8; 2]`
 
 - `fn as_str(self: &Self) -> Option<&'static str>`
+
+- `fn key_exchange_algorithm(self: Self) -> KeyExchangeAlgorithm`
+  Return the key exchange algorithm associated with this `NamedGroup`
 
 #### Trait Implementations
 
@@ -6253,7 +6267,7 @@ This type carries both configuration and implementation. Compare with
 
 ##### `impl From`
 
-- `fn from(s: &'static Tls13CipherSuite) -> Self`
+- `fn from(s: &'static Tls12CipherSuite) -> Self`
 
 ##### `impl From<T>`
 
@@ -6262,7 +6276,7 @@ This type carries both configuration and implementation. Compare with
 
 ##### `impl From`
 
-- `fn from(s: &'static Tls12CipherSuite) -> Self`
+- `fn from(s: &'static Tls13CipherSuite) -> Self`
 
 ##### `impl Into<T, U>`
 

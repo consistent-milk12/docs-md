@@ -103,6 +103,7 @@ for entry in walker.filter_entry(|e| !is_hidden(e)) {
 
 ```rust
 struct DirEntry {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -220,6 +221,7 @@ operations operate on the symbolic link.
 
 ```rust
 struct Error {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -321,6 +323,7 @@ accessing the underlying error data in a structured form.
 
 ```rust
 struct WalkDir {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -480,6 +483,7 @@ error is reported.
 
 ```rust
 struct IntoIter {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -563,6 +567,7 @@ The order of elements yielded by this iterator is unspecified.
 
 ```rust
 struct FilterEntry<I, P> {
+    // [REDACTED: Private Fields]
 }
 ```
 

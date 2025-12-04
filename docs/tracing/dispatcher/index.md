@@ -135,6 +135,7 @@ instrumentation.
 
 ```rust
 struct set_default<'s> {
+    // [REDACTED: Private Fields]
 }
 ```
 

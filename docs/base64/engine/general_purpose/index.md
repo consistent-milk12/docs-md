@@ -12,6 +12,7 @@ Provides the [GeneralPurpose] engine and associated config types.
 
 ```rust
 struct GeneralPurpose {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -94,6 +95,7 @@ A general-purpose base64 engine.
 
 ```rust
 struct GeneralPurposeConfig {
+    // [REDACTED: Private Fields]
 }
 ```
 

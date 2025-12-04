@@ -12,6 +12,7 @@ RSA.
 
 ```rust
 struct RsaParameters {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -65,6 +66,7 @@ Parameters for RSA verification.
 
 ```rust
 struct KeyPair {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -244,6 +246,7 @@ RSA key pair components.
 
 ```rust
 struct PublicKey {
+    // [REDACTED: Private Fields]
 }
 ```
 

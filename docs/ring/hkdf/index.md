@@ -176,14 +176,14 @@ A HKDF PRK (pseudorandom key).
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(okm: Okm<'_, Algorithm>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(okm: Okm<'_, Algorithm>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -238,6 +238,7 @@ A HKDF PRK (pseudorandom key).
 
 ```rust
 struct Okm<'a, L: KeyType> {
+    // [REDACTED: Private Fields]
 }
 ```
 

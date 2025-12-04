@@ -21,6 +21,7 @@ composed.
 
 ```rust
 struct Config {
+    // [REDACTED: Private Fields]
 }
 ```
 

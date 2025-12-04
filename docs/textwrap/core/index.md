@@ -49,6 +49,7 @@ struct Word<'a> {
     pub word: &'a str,
     pub whitespace: &'a str,
     pub penalty: &'a str,
+    // [REDACTED: Private Fields]
 }
 ```
 

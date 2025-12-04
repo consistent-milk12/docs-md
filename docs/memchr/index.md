@@ -182,6 +182,7 @@ Originally, this crate was literally just a safe wrapper function around the
 
 ```rust
 struct Memchr<'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -285,6 +286,7 @@ searched.
 
 ```rust
 struct Memchr2<'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -386,6 +388,7 @@ searched.
 
 ```rust
 struct Memchr3<'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 

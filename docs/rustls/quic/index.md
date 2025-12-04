@@ -12,6 +12,7 @@ APIs for implementing QUIC TLS
 
 ```rust
 struct ClientConnection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -89,6 +90,7 @@ A QUIC client connection.
 
 ```rust
 struct ConnectionCommon<Data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -165,6 +167,7 @@ A shared interface for QUIC connections.
 
 ```rust
 struct ServerConnection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -239,6 +242,7 @@ A QUIC server connection.
 
 ```rust
 struct Secrets {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -368,14 +372,14 @@ Authentication tag from an AEAD seal operation.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: &[u8]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: &[u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -654,11 +658,6 @@ A QUIC client or server connection.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From`
 
 - `fn from(c: ClientConnection) -> Self`
@@ -666,6 +665,11 @@ A QUIC client or server connection.
 ##### `impl From`
 
 - `fn from(c: ServerConnection) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 

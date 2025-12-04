@@ -12,6 +12,7 @@ Attach a span to a `std::future::Future`.
 
 ```rust
 struct WithDispatch<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -122,6 +123,7 @@ trait's documentation for details.
 
 ```rust
 struct Instrumented<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 

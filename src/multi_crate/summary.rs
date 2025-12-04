@@ -3,12 +3,14 @@
 //! This module provides [`SummaryGenerator`] which creates a SUMMARY.md file
 //! compatible with mdBook for multi-crate documentation.
 
-use crate::error::Error;
-use crate::multi_crate::CrateCollection;
-use fs_err as fs;
-use rustdoc_types::ItemEnum;
 use std::fmt::Write;
 use std::path::Path;
+
+use fs_err as fs;
+use rustdoc_types::ItemEnum;
+
+use crate::error::Error;
+use crate::multi_crate::CrateCollection;
 
 /// Generates mdBook-compatible SUMMARY.md file.
 ///
@@ -42,7 +44,7 @@ impl<'a> SummaryGenerator<'a> {
     /// * `crates` - Collection of parsed crates
     /// * `output_dir` - Directory to write SUMMARY.md
     #[must_use]
-    pub fn new(crates: &'a CrateCollection, output_dir: &'a Path) -> Self {
+    pub const fn new(crates: &'a CrateCollection, output_dir: &'a Path) -> Self {
         Self { crates, output_dir }
     }
 

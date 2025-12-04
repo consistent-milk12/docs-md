@@ -4,6 +4,13 @@
 //! during multi-crate documentation generation, and [`SingleCrateView`]
 //! which provides a single-crate interface for existing rendering code.
 
+use std::collections::HashMap;
+use std::fmt::Write;
+use std::sync::LazyLock;
+
+use regex::Regex;
+use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
+
 use crate::Args;
 use crate::generator::RenderContext;
 use crate::generator::doc_links::{
@@ -12,11 +19,6 @@ use crate::generator::doc_links::{
 };
 use crate::linker::{LinkRegistry, slugify_anchor};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
-use regex::Regex;
-use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
-use std::collections::HashMap;
-use std::fmt::Write;
-use std::sync::LazyLock;
 
 /// Regex for backtick code links: [`Name`] not followed by ( or [
 static BACKTICK_LINK_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\[`([^`]+)`\]").unwrap());
@@ -61,19 +63,19 @@ impl<'a> MultiCrateContext<'a> {
 
     /// Get the crate collection.
     #[must_use]
-    pub fn crates(&self) -> &CrateCollection {
+    pub const fn crates(&self) -> &CrateCollection {
         self.crates
     }
 
     /// Get the unified link registry.
     #[must_use]
-    pub fn registry(&self) -> &UnifiedLinkRegistry {
+    pub const fn registry(&self) -> &UnifiedLinkRegistry {
         &self.registry
     }
 
     /// Get CLI arguments.
     #[must_use]
-    pub fn args(&self) -> &Args {
+    pub const fn args(&self) -> &Args {
         self.args
     }
 
@@ -266,7 +268,7 @@ impl<'a> SingleCrateView<'a> {
         let name = item.name.clone().unwrap_or_default();
 
         if let ItemEnum::Module(module) = &item.inner {
-            let mut path = parent_path.clone();
+            let mut path = parent_path;
             path.push(name);
 
             self.path_map.insert(id, path.clone());
@@ -309,15 +311,15 @@ impl<'a> SingleCrateView<'a> {
                 match &item.inner {
                     ItemEnum::Struct(_) | ItemEnum::Enum(_) | ItemEnum::Union(_) => {
                         self.type_name_to_id.insert(name.clone(), *id);
-                    }
-                    _ => {}
+                    },
+                    _ => {},
                 }
             }
         }
     }
 
     /// Get the target type ID for an impl block.
-    fn get_impl_target_id(impl_block: &Impl) -> Option<Id> {
+    const fn get_impl_target_id(impl_block: &Impl) -> Option<Id> {
         use rustdoc_types::Type;
 
         match &impl_block.for_ {
@@ -357,19 +359,19 @@ impl<'a> SingleCrateView<'a> {
 
     /// Get the crate being rendered.
     #[must_use]
-    pub fn krate(&self) -> &Crate {
+    pub const fn krate(&self) -> &Crate {
         self.krate
     }
 
     /// Get the unified registry.
     #[must_use]
-    pub fn registry(&self) -> &UnifiedLinkRegistry {
+    pub const fn registry(&self) -> &UnifiedLinkRegistry {
         self.registry
     }
 
     /// Get CLI arguments.
     #[must_use]
-    pub fn args(&self) -> &Args {
+    pub const fn args(&self) -> &Args {
         self.args
     }
 
@@ -411,7 +413,7 @@ impl<'a> SingleCrateView<'a> {
 
     /// Check if an item should be included based on visibility.
     #[must_use]
-    pub fn should_include_item(&self, item: &rustdoc_types::Item) -> bool {
+    pub const fn should_include_item(&self, item: &rustdoc_types::Item) -> bool {
         if self.args.include_private {
             return true;
         }

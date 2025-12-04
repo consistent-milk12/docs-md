@@ -15,6 +15,7 @@ resolving all spans of capturing groups that participate in a match.
 
 ```rust
 struct Config {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -107,6 +108,7 @@ perhaps more conveniently, with [`PikeVM::config`](#config).
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -246,6 +248,7 @@ assert_eq!(b"foo\xFFarzz", &haystack[got.unwrap().range()]);
 
 ```rust
 struct PikeVM {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -331,6 +334,15 @@ assert_eq!(None, it.next());
 - `fn captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> CapturesMatches<'r, 'c, 'h>`
   Returns an iterator over all non-overlapping `Captures` values. If no
 
+- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+  Writes the set of patterns that match anywhere in the given search
+
 - `fn new(pattern: &str) -> Result<PikeVM, BuildError>`
   Parse the given regular expression using the default configuration and
 
@@ -369,15 +381,6 @@ assert_eq!(None, it.next());
 
 - `fn get_nfa(self: &Self) -> &NFA`
   Returns a reference to the underlying NFA.
-
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
-  Writes the set of patterns that match anywhere in the given search
 
 #### Trait Implementations
 
@@ -439,6 +442,7 @@ assert_eq!(None, it.next());
 
 ```rust
 struct FindMatches<'r, 'c, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -512,6 +516,7 @@ This iterator can be created with the [`PikeVM::find_iter`](#find-iter) method.
 
 ```rust
 struct CapturesMatches<'r, 'c, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -587,6 +592,7 @@ This iterator can be created with the [`PikeVM::captures_iter`](#captures-iter) 
 
 ```rust
 struct Cache {
+    // [REDACTED: Private Fields]
 }
 ```
 

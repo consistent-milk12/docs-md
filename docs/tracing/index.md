@@ -962,6 +962,7 @@
 
 ```rust
 struct Metadata {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1127,6 +1128,7 @@ assert_eq!(result, "The slow grey sloth.");
 
 ```rust
 struct Span {
+    // [REDACTED: Private Fields]
 }
 ```
 

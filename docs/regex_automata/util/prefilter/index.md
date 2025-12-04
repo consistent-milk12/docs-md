@@ -43,6 +43,7 @@ running the full regex engine.
 
 ```rust
 struct Prefilter {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -30,11 +30,13 @@
 //! generator.write(Path::new("docs/"))?;
 //! ```
 
-use crate::multi_crate::CrateCollection;
-use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
-use serde::Serialize;
 use std::collections::HashMap;
 use std::path::Path;
+
+use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
+use serde::Serialize;
+
+use crate::multi_crate::CrateCollection;
 
 /// A single searchable item in the index.
 ///
@@ -106,7 +108,7 @@ impl<'a> SearchIndexGenerator<'a> {
     /// * `crates` - Collection of parsed crates to index
     /// * `include_private` - Whether to include non-public items
     #[must_use]
-    pub fn new(crates: &'a CrateCollection, include_private: bool) -> Self {
+    pub const fn new(crates: &'a CrateCollection, include_private: bool) -> Self {
         Self {
             crates,
             include_private,

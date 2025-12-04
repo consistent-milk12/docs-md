@@ -30,6 +30,7 @@ expected match frequency.
 
 ```rust
 struct One {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -129,6 +130,7 @@ Finds all occurrences of a single byte in a haystack.
 
 ```rust
 struct OneIter<'a, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -228,6 +230,7 @@ The lifetime parameters are as follows:
 
 ```rust
 struct Two {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -325,6 +328,7 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 ```rust
 struct TwoIter<'a, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -422,6 +426,7 @@ The lifetime parameters are as follows:
 
 ```rust
 struct Three {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -519,6 +524,7 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
 ```rust
 struct ThreeIter<'a, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 

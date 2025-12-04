@@ -17,6 +17,7 @@ only necessary when one needs access to the [`Automaton`](aho_corasick/automaton
 
 ```rust
 struct NFA {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -171,6 +172,7 @@ It is also possible to implement your own version of `try_find`. See the
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 

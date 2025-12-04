@@ -12,6 +12,7 @@ This module provides a regular expression printer for `Ast`.
 
 ```rust
 struct Printer {
+    // [REDACTED: Private Fields]
 }
 ```
 

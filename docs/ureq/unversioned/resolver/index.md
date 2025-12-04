@@ -24,6 +24,7 @@ than DNS for it.
 
 ```rust
 struct DefaultResolver {
+    // [REDACTED: Private Fields]
 }
 ```
 

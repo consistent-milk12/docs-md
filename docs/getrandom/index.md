@@ -266,14 +266,14 @@ certain purposes, see [`Error::INTERNAL_START`](#internal-start) and [`Error::CU
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(code: NonZeroU32) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(code: NonZeroU32) -> Self`
 
 ##### `impl Into<T, U>`
 

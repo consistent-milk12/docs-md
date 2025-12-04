@@ -25,10 +25,12 @@
 //! - `paths`: `HashMap` mapping IDs to their full module paths
 //! - `crate_version`: Optional version string
 
-use crate::error::Error;
+use std::path::Path;
+
 use fs_err as fs;
 use rustdoc_types::Crate;
-use std::path::Path;
+
+use crate::error::Error;
 
 /// Parser for rustdoc JSON files.
 ///

@@ -93,6 +93,7 @@ unwinding-based backtraces!
 
 ```rust
 struct Frame {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -177,6 +178,7 @@ until runtime.
 
 ```rust
 struct Symbol {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -254,6 +256,7 @@ always available in a symbol, however, so all methods return an `Option`.
 
 ```rust
 struct SymbolName<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -323,6 +326,7 @@ demangled name, the raw bytes, the raw string, etc.
 
 ```rust
 struct BacktraceFmt<'a, 'b> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -392,6 +396,7 @@ implementation already uses this printing format.
 
 ```rust
 struct BacktraceFrameFmt<'fmt, 'a, 'b> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -460,6 +465,7 @@ This type is created by the `BacktraceFmt::frame` function.
 
 ```rust
 struct Backtrace {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -492,14 +498,14 @@ enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(frames: Vec<BacktraceFrame>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(frames: Vec<BacktraceFrame>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -562,6 +568,7 @@ enabled, and the `std` feature is enabled by default.
 
 ```rust
 struct BacktraceFrame {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -656,6 +663,7 @@ enabled, and the `std` feature is enabled by default.
 
 ```rust
 struct BacktraceSymbol {
+    // [REDACTED: Private Fields]
 }
 ```
 

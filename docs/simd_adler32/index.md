@@ -84,6 +84,7 @@ Feature detection tries to use the fastest supported feature first.
 
 ```rust
 struct Adler32 {
+    // [REDACTED: Private Fields]
 }
 ```
 

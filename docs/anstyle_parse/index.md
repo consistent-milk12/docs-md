@@ -41,6 +41,7 @@ Just type `:q` to exit.
 
 ```rust
 struct Params {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -127,6 +128,7 @@ struct Params {
 
 ```rust
 struct ParamsIter<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -188,6 +190,7 @@ Immutable subparameter iterator.
 
 ```rust
 struct Parser<C> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -353,6 +356,7 @@ Only allow parsing 7-bit ASCII
 
 ```rust
 struct Utf8Parser {
+    // [REDACTED: Private Fields]
 }
 ```
 

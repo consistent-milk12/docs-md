@@ -299,11 +299,6 @@ Holds configuration options for wrapping and filling text.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From`
 
 - `fn from(width: usize) -> Self`
@@ -311,6 +306,11 @@ Holds configuration options for wrapping and filling text.
 ##### `impl From<'a>`
 
 - `fn from(options: &'a Options<'a>) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 

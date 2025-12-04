@@ -17,6 +17,7 @@ Defines an abstract syntax for regular expressions.
 
 ```rust
 struct Error {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -534,6 +534,7 @@
 
 ```rust
 struct Body {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -678,6 +679,7 @@ assert_eq!(bytes.len(), len);
 
 ```rust
 struct BodyBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -767,6 +769,7 @@ assert_eq!(text, "Hello world!");
 
 ```rust
 struct BodyReader<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -854,6 +857,7 @@ assert_eq!(bytes.len(), len);
 
 ```rust
 struct BodyWithConfig<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -937,6 +941,7 @@ let large_data = ureq::get("http://httpbin.org/bytes/200000000")
 
 ```rust
 struct Proxy {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1100,6 +1105,7 @@ if let Some(proxy) = Proxy::try_from_env() {
 
 ```rust
 struct ProxyBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1170,6 +1176,7 @@ Obtained via [`Proxy::builder()`](#builder).
 
 ```rust
 struct RequestBuilder<B> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1180,12 +1187,6 @@ and additional helpers for query parameters like [`.query()`](#query) functions 
 make an API for sending requests.
 
 #### Implementations
-
-- `fn call(self: Self) -> Result<Response<Body>, Error>`
-  Sends the request and blocks the caller until we receive a response.
-
-- `fn force_send_body(self: Self) -> RequestBuilder<WithBody>`
-  Force sending a body.
 
 - `fn content_type<V>(self: Self, content_type: V) -> Self`
   Set the content-type header.
@@ -1198,6 +1199,12 @@ make an API for sending requests.
 
 - `fn send_form<I, K, V>(self: Self, iter: I) -> Result<Response<Body>, Error>`
   Send form encoded data.
+
+- `fn call(self: Self) -> Result<Response<Body>, Error>`
+  Sends the request and blocks the caller until we receive a response.
+
+- `fn force_send_body(self: Self) -> RequestBuilder<WithBody>`
+  Force sending a body.
 
 - `fn method_ref(self: &Self) -> Option<&Method>`
   Get the HTTP Method for this request.
@@ -1295,6 +1302,7 @@ make an API for sending requests.
 
 ```rust
 struct Agent {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1480,6 +1488,7 @@ incur any heap allocation.
 
 ```rust
 struct SendBody<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1511,14 +1520,14 @@ body directly. See below [`SendBody::from_reader`](#from-reader).
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1850,10 +1859,18 @@ Errors from ureq.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: rustls::Error) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: http::Error) -> Self`
 
 ##### `impl From`
 
@@ -1862,14 +1879,6 @@ Errors from ureq.
 ##### `impl From`
 
 - `fn from(e: io::Error) -> Self`
-
-##### `impl From`
-
-- `fn from(value: http::Error) -> Self`
-
-##### `impl From`
-
-- `fn from(value: rustls::Error) -> Self`
 
 ##### `impl Into<T, U>`
 

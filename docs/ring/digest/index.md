@@ -16,6 +16,7 @@ multiple steps using `Context`.
 
 ```rust
 struct Context {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -107,6 +108,7 @@ assert_eq!(&one_shot.as_ref(), &multi_part.as_ref());
 
 ```rust
 struct Digest {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -186,6 +188,7 @@ Use [`Self::as_ref`](#as-ref) to get the value as a `&[u8](#u8)
 
 ```rust
 struct Algorithm {
+    // [REDACTED: Private Fields]
 }
 ```
 

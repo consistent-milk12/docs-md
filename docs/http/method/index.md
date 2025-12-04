@@ -138,7 +138,7 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 ##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &&'a Method) -> bool`
+- `fn eq(self: &Self, other: &&'a str) -> bool`
 
 ##### `impl PartialEq`
 
@@ -150,7 +150,7 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 ##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &&'a str) -> bool`
+- `fn eq(self: &Self, other: &&'a Method) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -170,13 +170,13 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `type Error = InvalidMethod`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidMethod`
 
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -202,6 +202,7 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 ```rust
 struct InvalidMethod {
+    // [REDACTED: Private Fields]
 }
 ```
 

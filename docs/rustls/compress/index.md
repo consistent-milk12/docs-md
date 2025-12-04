@@ -154,6 +154,7 @@ A content-less error for when `CertCompressor::compress` fails.
 
 ```rust
 struct CompressionCacheInner {
+    // [REDACTED: Private Fields]
 }
 ```
 

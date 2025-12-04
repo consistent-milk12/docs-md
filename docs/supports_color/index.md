@@ -33,6 +33,7 @@ struct ColorLevel {
     pub has_basic: bool,
     pub has_256: bool,
     pub has_16m: bool,
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -12,6 +12,7 @@ Serialize a Rust data structure into JSON data.
 
 ```rust
 struct Serializer<W, F> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -22,14 +23,14 @@ A structure for serializing Rust values into JSON.
 - `fn pretty(writer: W) -> Self`
   Creates a new JSON pretty print serializer.
 
-- `fn new(writer: W) -> Self`
-  Creates a new JSON serializer.
-
 - `fn with_formatter(writer: W, formatter: F) -> Self`
   Creates a new JSON visitor whose output will be written to the writer
 
 - `fn into_inner(self: Self) -> W`
   Unwrap the `Writer` from the `Serializer`.
+
+- `fn new(writer: W) -> Self`
+  Creates a new JSON serializer.
 
 #### Trait Implementations
 
@@ -141,6 +142,7 @@ This structure compacts a JSON value with no extra whitespace.
 
 ```rust
 struct PrettyFormatter<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

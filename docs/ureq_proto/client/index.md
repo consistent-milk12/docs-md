@@ -237,6 +237,7 @@ if call.must_close_connection() {
 
 ```rust
 struct Call<State> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -252,6 +253,27 @@ See the [state graph](#client) in the client module documentation for a
 visual representation of the state transitions.
 
 #### Implementations
+
+- `fn read(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
+  Read the response body from `input` to `output`.
+
+- `fn stop_on_chunk_boundary(self: &mut Self, enabled: bool)`
+  Set if we are stopping on chunk boundaries.
+
+- `fn is_on_chunk_boundary(self: &Self) -> bool`
+  Tell if the reading is on a chunk boundary.
+
+- `fn body_mode(self: &Self) -> BodyMode`
+  Tell which kind of mode the response body is.
+
+- `fn can_proceed(self: &Self) -> bool`
+  Check if the response body has been fully received.
+
+- `fn is_ended_chunked(self: &Self) -> bool`
+  Tell if we got an end chunk when reading chunked.
+
+- `fn proceed(self: Self) -> Option<RecvBodyResult>`
+  Proceed to the next state.
 
 - `fn try_response(self: &mut Self, input: &[u8], allow_partial_redirect: bool) -> Result<(usize, Option<Response<()>>), Error>`
   Try reading a response from the input.
@@ -285,27 +307,6 @@ visual representation of the state transitions.
 
 - `fn proceed(self: Self) -> Result<Option<SendRequestResult>, Error>`
   Attempt to proceed from this state to the next.
-
-- `fn read(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
-  Read the response body from `input` to `output`.
-
-- `fn stop_on_chunk_boundary(self: &mut Self, enabled: bool)`
-  Set if we are stopping on chunk boundaries.
-
-- `fn is_on_chunk_boundary(self: &Self) -> bool`
-  Tell if the reading is on a chunk boundary.
-
-- `fn body_mode(self: &Self) -> BodyMode`
-  Tell which kind of mode the response body is.
-
-- `fn can_proceed(self: &Self) -> bool`
-  Check if the response body has been fully received.
-
-- `fn is_ended_chunked(self: &Self) -> bool`
-  Tell if we got an end chunk when reading chunked.
-
-- `fn proceed(self: Self) -> Option<RecvBodyResult>`
-  Proceed to the next state.
 
 - `fn new(request: Request<()>) -> Result<Self, Error>`
   Create a new Call instance from an HTTP request.

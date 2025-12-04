@@ -83,6 +83,7 @@ An error in parsing a chunk size.
 
 ```rust
 struct ParserConfig {
+    // [REDACTED: Private Fields]
 }
 ```
 

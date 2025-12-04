@@ -38,6 +38,7 @@ let generics = renderer.render_generics(&generic_params);
 
 ```rust
 struct TypeRenderer<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

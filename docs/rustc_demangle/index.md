@@ -31,6 +31,7 @@ assert_eq!(format!("{:#}", demangle("_ZN3foo17h05af221e174051e9E")), "foo");
 
 ```rust
 struct Demangle<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -89,6 +90,7 @@ Representation of a demangled symbol name.
 
 ```rust
 struct TryDemangleError {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -34,6 +34,7 @@ assert_eq!(uri.path(), "/install.html");
 
 ```rust
 struct Authority {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -127,21 +128,21 @@ Represents the authority component of a URI.
 
 - `fn eq(self: &Self, other: &String) -> bool`
 
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Authority) -> Option<cmp::Ordering>`
-
 ##### `impl PartialOrd<'a>`
 
 - `fn partial_cmp(self: &Self, other: &&'a str) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
+- `fn partial_cmp(self: &Self, other: &Authority) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
 - `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
 
 ##### `impl ToOwned<T>`
 
@@ -159,19 +160,7 @@ Represents the authority component of a URI.
 
 - `type Error = InvalidUri`
 
-- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -179,11 +168,23 @@ Represents the authority component of a URI.
 
 - `fn try_from(t: String) -> Result<Self, <Self as >::Error>`
 
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -199,6 +200,7 @@ Represents the authority component of a URI.
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -276,6 +278,7 @@ through a builder pattern.
 
 ```rust
 struct PathAndQuery {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -348,19 +351,27 @@ Represents the path component of a URI
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &String) -> bool`
-
-##### `impl PartialEq`
-
 - `fn eq(self: &Self, other: &str) -> bool`
+
+##### `impl PartialEq<'a>`
+
+- `fn eq(self: &Self, other: &&'a str) -> bool`
 
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &PathAndQuery) -> bool`
 
-##### `impl PartialEq<'a>`
+##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &&'a str) -> bool`
+- `fn eq(self: &Self, other: &String) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd<'a>`
 
@@ -369,14 +380,6 @@ Represents the path component of a URI
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &PathAndQuery) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
 
 ##### `impl ToOwned<T>`
 
@@ -396,11 +399,11 @@ Represents the path component of a URI
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -420,11 +423,11 @@ Represents the path component of a URI
 
 - `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom`
+##### `impl TryFrom<'a>`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
+- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -440,6 +443,7 @@ Represents the path component of a URI
 
 ```rust
 struct Port<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -447,11 +451,11 @@ The port component of a URI.
 
 #### Implementations
 
-- `const fn as_u16(self: &Self) -> u16`
-  Returns the port number as a `u16`.
-
 - `fn as_str(self: &Self) -> &str`
   Returns the port number as a `str`.
+
+- `const fn as_u16(self: &Self) -> u16`
+  Returns the port number as a `u16`.
 
 #### Trait Implementations
 
@@ -485,13 +489,13 @@ The port component of a URI.
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl PartialEq<T, U>`
-
-- `fn eq(self: &Self, other: &Port<U>) -> bool`
-
 ##### `impl PartialEq<T>`
 
 - `fn eq(self: &Self, other: &u16) -> bool`
+
+##### `impl PartialEq<T, U>`
+
+- `fn eq(self: &Self, other: &Port<U>) -> bool`
 
 ##### `impl ToString<T>`
 
@@ -517,6 +521,7 @@ The port component of a URI.
 
 ```rust
 struct Scheme {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -603,17 +608,17 @@ Represents the scheme component of a URI
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
@@ -635,6 +640,7 @@ Represents the scheme component of a URI
 
 ```rust
 struct Uri {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -731,11 +737,11 @@ assert_eq!(uri.path(), "/install.html");
 
 ##### `impl From`
 
-- `fn from(path_and_query: PathAndQuery) -> Self`
+- `fn from(authority: Authority) -> Self`
 
 ##### `impl From`
 
-- `fn from(authority: Authority) -> Self`
+- `fn from(path_and_query: PathAndQuery) -> Self`
 
 ##### `impl From<T>`
 
@@ -783,10 +789,6 @@ assert_eq!(uri.path(), "/install.html");
 
 - `fn hash<H>(self: &Self, state: &mut H)`
 
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a str) -> bool`
-
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &str) -> bool`
@@ -794,6 +796,10 @@ assert_eq!(uri.path(), "/install.html");
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &Uri) -> bool`
+
+##### `impl PartialEq<'a>`
+
+- `fn eq(self: &Self, other: &&'a str) -> bool`
 
 ##### `impl ToOwned<T>`
 
@@ -815,27 +821,15 @@ assert_eq!(uri.path(), "/install.html");
 
 ##### `impl TryFrom`
 
-- `type Error = InvalidUriParts`
-
-- `fn try_from(src: Parts) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(t: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom`
-
 - `type Error = InvalidUri`
 
 - `fn try_from(t: String) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
-- `type Error = Error`
+- `type Error = InvalidUriParts`
 
-- `fn try_from(src: &'a Uri) -> Result<Self, <Self as >::Error>`
+- `fn try_from(src: Parts) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -847,13 +841,25 @@ assert_eq!(uri.path(), "/install.html");
 
 - `type Error = InvalidUri`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidUri`
 
 - `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = Error`
+
+- `fn try_from(src: &'a Uri) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -876,6 +882,7 @@ struct Parts {
     pub scheme: Option<Scheme>,
     pub authority: Option<Authority>,
     pub path_and_query: Option<PathAndQuery>,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -899,14 +906,14 @@ This struct is used to provide to and retrieve from a URI.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(src: Uri) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(src: Uri) -> Self`
 
 ##### `impl Into<T, U>`
 

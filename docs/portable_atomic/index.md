@@ -210,6 +210,7 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 
 ```rust
 struct AtomicBool {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -293,15 +294,15 @@ assembly.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From`
 
 - `fn from(b: bool) -> Self`
   Converts a `bool` into an `AtomicBool`.
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -349,6 +350,7 @@ assembly.
 
 ```rust
 struct AtomicPtr<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -437,12 +439,12 @@ assembly.
 
 ##### `impl From<T>`
 
-- `fn from(p: *mut T) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From<T>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(p: *mut T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -492,6 +494,7 @@ assembly.
 
 ```rust
 struct AtomicIsize {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -608,14 +611,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: isize) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: isize) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -660,6 +663,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicUsize {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -776,14 +780,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: usize) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: usize) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -828,6 +832,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicI8 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -996,6 +1001,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicU8 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1164,6 +1170,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicI16 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1332,6 +1339,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicU16 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1500,6 +1508,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicI32 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1616,14 +1625,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i32) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i32) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1668,6 +1677,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicU32 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1836,6 +1846,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicI64 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2004,6 +2015,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicU64 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2120,14 +2132,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: u64) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: u64) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2172,6 +2184,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicI128 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2340,6 +2353,7 @@ atomic instructions or locks will be used.
 
 ```rust
 struct AtomicU128 {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2456,14 +2470,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: u128) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: u128) -> Self`
 
 ##### `impl Into<T, U>`
 

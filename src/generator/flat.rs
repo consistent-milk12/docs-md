@@ -4,13 +4,15 @@
 //! documentation with a flat file structure where all files are in a single
 //! directory and module hierarchy is encoded in filenames.
 
-use crate::error::Error;
-use crate::generator::context::GeneratorContext;
-use crate::generator::module::ModuleRenderer;
+use std::path::Path;
+
 use fs_err as fs;
 use indicatif::ProgressBar;
 use rustdoc_types::{Item, ItemEnum};
-use std::path::Path;
+
+use crate::error::Error;
+use crate::generator::context::GeneratorContext;
+use crate::generator::module::ModuleRenderer;
 
 /// Generates documentation with flat file structure.
 ///
@@ -46,7 +48,7 @@ impl<'a> FlatGenerator<'a> {
     /// * `ctx` - Shared generator context
     /// * `output_dir` - Directory to write markdown files to
     /// * `progress` - Progress bar for user feedback
-    pub fn new(
+    pub const fn new(
         ctx: &'a GeneratorContext<'a>,
         output_dir: &'a Path,
         progress: &'a ProgressBar,

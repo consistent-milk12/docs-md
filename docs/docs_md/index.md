@@ -21,6 +21,7 @@ generation capabilities programmatically.
 
 ```rust
 struct Generator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -93,6 +94,7 @@ generator.generate()?;
 
 ```rust
 struct MarkdownCapture {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -179,6 +181,7 @@ side effects.
 
 ```rust
 struct LinkRegistry {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -255,6 +258,7 @@ create links between items.
 
 ```rust
 struct CrateCollection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -351,6 +355,7 @@ for (name, krate) in collection.iter() {
 
 ```rust
 struct MultiCrateContext<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -423,6 +428,7 @@ generation across crates.
 
 ```rust
 struct MultiCrateGenerator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -621,6 +627,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 ```rust
 struct SearchIndexGenerator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -690,6 +697,7 @@ generator.write(Path::new("docs/"))?;
 
 ```rust
 struct UnifiedLinkRegistry {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1004,14 +1012,14 @@ Controls how module files are organized in the output directory.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(cli: CliOutputFormat) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(cli: CliOutputFormat) -> Self`
 
 ##### `impl Into<T, U>`
 

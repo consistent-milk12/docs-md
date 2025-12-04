@@ -12,6 +12,7 @@ Implementations of `io::Read` to transparently decode base64.
 
 ```rust
 struct DecoderReader<'e, E: Engine, R: io::Read> {
+    // [REDACTED: Private Fields]
 }
 ```
 

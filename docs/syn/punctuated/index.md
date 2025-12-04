@@ -30,6 +30,7 @@ a_function_call(arg1, arg2, arg3);
 
 ```rust
 struct Punctuated<T, P> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -175,11 +176,11 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl Extend<T, P>`
 
-- `fn extend<I: IntoIterator<Item = Pair<T, P>>>(self: &mut Self, i: I)`
+- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, i: I)`
 
 ##### `impl Extend<T, P>`
 
-- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, i: I)`
+- `fn extend<I: IntoIterator<Item = Pair<T, P>>>(self: &mut Self, i: I)`
 
 ##### `impl Index<T, P>`
 
@@ -227,6 +228,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ```rust
 struct Pairs<'a, T: 'a, P: 'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -316,6 +318,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ```rust
 struct PairsMut<'a, T: 'a, P: 'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -389,6 +392,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ```rust
 struct IntoPairs<T, P> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -478,6 +482,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ```rust
 struct IntoIter<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -567,6 +572,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ```rust
 struct Iter<'a, T: 'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -656,6 +662,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ```rust
 struct IterMut<'a, T: 'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

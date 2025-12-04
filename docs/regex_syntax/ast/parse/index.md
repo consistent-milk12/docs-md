@@ -12,6 +12,7 @@ This module provides a regular expression parser.
 
 ```rust
 struct ParserBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -103,6 +104,7 @@ This builder permits modifying configuration options for the parser.
 
 ```rust
 struct Parser {
+    // [REDACTED: Private Fields]
 }
 ```
 

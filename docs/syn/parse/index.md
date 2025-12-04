@@ -189,6 +189,7 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
 
 ```rust
 struct Error {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -294,14 +295,14 @@ pub fn my_derive(input: TokenStream) -> TokenStream {
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(err: LexError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(err: LexError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -577,6 +578,7 @@ if !input.is_empty() {
 
 ```rust
 struct Lookahead1<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -681,6 +683,7 @@ impl Parse for GenericParam {
 
 ```rust
 struct ParseBuffer<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -813,6 +816,7 @@ you will need to go through one of the public parsing entry points.
 
 ```rust
 struct StepCursor<'c, 'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

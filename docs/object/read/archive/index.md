@@ -32,6 +32,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ```rust
 struct ArchiveFile<'data, R: ReadRef<'data>> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -119,6 +120,7 @@ A partially parsed archive file.
 
 ```rust
 struct ArchiveMemberIterator<'data, R: ReadRef<'data>> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -182,6 +184,7 @@ An iterator over the members of an archive.
 
 ```rust
 struct ArchiveMember<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -412,6 +415,7 @@ An iterator over the symbols in the archive symbol table.
 
 ```rust
 struct ArchiveSymbol<'data> {
+    // [REDACTED: Private Fields]
 }
 ```
 

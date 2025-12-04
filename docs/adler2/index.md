@@ -17,6 +17,7 @@ This implementation features:
 
 ```rust
 struct Adler32 {
+    // [REDACTED: Private Fields]
 }
 ```
 

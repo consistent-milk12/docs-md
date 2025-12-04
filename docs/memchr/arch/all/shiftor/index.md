@@ -16,6 +16,7 @@ An implementation of the [Shift-Or substring search algorithm][shiftor](#shiftor
 
 ```rust
 struct Finder {
+    // [REDACTED: Private Fields]
 }
 ```
 

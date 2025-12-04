@@ -16,6 +16,7 @@ Provides the [Engine] abstraction and out of the box implementations.
 
 ```rust
 struct GeneralPurpose {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -98,6 +99,7 @@ A general-purpose base64 engine.
 
 ```rust
 struct GeneralPurposeConfig {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -199,6 +201,7 @@ To specify the characters used, see [Alphabet].
 
 ```rust
 struct DecodeMetadata {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -4,10 +4,12 @@
 //! a Rust module's documentation to markdown format, including all its items
 //! organized by type.
 
+use std::fmt::Write;
+
+use rustdoc_types::{Id, Item, ItemEnum};
+
 use crate::generator::context::RenderContext;
 use crate::generator::items::ItemRenderer;
-use rustdoc_types::{Id, Item, ItemEnum};
-use std::fmt::Write;
 
 /// Renders a module to markdown.
 ///
@@ -123,7 +125,7 @@ impl<'a> ModuleRenderer<'a> {
                     ItemEnum::Macro(_) => items.macros.push(child),
                     ItemEnum::Constant { .. } => items.constants.push(child),
                     ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
-                    _ => {}
+                    _ => {},
                 }
             }
         }

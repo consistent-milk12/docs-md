@@ -1,0 +1,34 @@
+# Clippy configuration for Rust 2024 edition
+# https://doc.rust-lang.org/clippy/configuration.html
+
+# Cognitive complexity threshold
+cognitive-complexity-threshold = 25
+
+# Maximum lines in a function
+too-many-lines-threshold = 150
+
+# Maximum function arguments
+too-many-arguments-threshold = 7
+
+# Maximum struct fields
+max-struct-bools = 3
+
+# Type complexity threshold
+type-complexity-threshold = 250
+
+# Enum variant name prefix/suffix length
+enum-variant-name-threshold = 3
+
+# Allow certain patterns
+allow-unwrap-in-tests = true
+allow-expect-in-tests = true
+allow-dbg-in-tests = true
+
+# Documentation requirements
+missing-docs-in-crate-items = false
+
+# Single char binding names to allow
+allowed-idents-below-min-chars = ["i", "j", "k", "n", "x", "y", "z", "id", "md"]
+
+# Acceptable wildcard imports
+allowed-wildcard-imports = ["rustdoc_types::*"]

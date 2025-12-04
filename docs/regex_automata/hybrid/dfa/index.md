@@ -17,6 +17,7 @@ This module also contains a [`hybrid::dfa::Builder`](Builder) and a
 
 ```rust
 struct DFA {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -229,6 +230,7 @@ assert_eq!(expected, dfa.try_search_fwd(
 
 ```rust
 struct Cache {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -334,6 +336,7 @@ or incorrect results.
 
 ```rust
 struct Config {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -489,6 +492,7 @@ default) and an [`Anchored::Pattern`](#pattern) mode is requested via [`Input`](
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -641,6 +645,7 @@ assert_eq!(expected, got);
 
 ```rust
 struct OverlappingState {
+    // [REDACTED: Private Fields]
 }
 ```
 

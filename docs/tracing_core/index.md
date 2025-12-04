@@ -136,6 +136,7 @@ long as doing so complies with this policy.
 
 ```rust
 struct Dispatch {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -263,6 +264,7 @@ struct Dispatch {
 
 ```rust
 struct Event<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -363,6 +365,7 @@ _,
 
 ```rust
 struct Field {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -671,23 +674,11 @@ recorded in.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
-
-- `fn lt(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn le(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn gt(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn ge(self: &Self, other: &LevelFilter) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -700,6 +691,18 @@ recorded in.
 - `fn gt(self: &Self, other: &Level) -> bool`
 
 - `fn ge(self: &Self, other: &Level) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
+
+- `fn lt(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn le(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn gt(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn ge(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -780,14 +783,14 @@ and `LevelFilter`s interact.
 
 - `fn from(level: Option<Level>) -> Self`
 
-##### `impl From`
-
-- `fn from(level: Level) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(level: Level) -> Self`
 
 ##### `impl FromStr`
 
@@ -902,6 +905,7 @@ and `LevelFilter`s interact.
 
 ```rust
 struct Metadata<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

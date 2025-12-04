@@ -171,6 +171,7 @@ assert_eq!(uri.query(), None);
 
 ```rust
 struct Error {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -193,11 +194,23 @@ of error for conversions with the `?` operator.
 
 ##### `impl From`
 
-- `fn from(err: uri::InvalidUri) -> Error`
+- `fn from(err: std::convert::Infallible) -> Error`
 
 ##### `impl From`
 
-- `fn from(err: std::convert::Infallible) -> Error`
+- `fn from(err: MaxSizeReached) -> Error`
+
+##### `impl From`
+
+- `fn from(err: status::InvalidStatusCode) -> Error`
+
+##### `impl From`
+
+- `fn from(err: header::InvalidHeaderName) -> Error`
+
+##### `impl From`
+
+- `fn from(err: uri::InvalidUri) -> Error`
 
 ##### `impl From`
 
@@ -205,7 +218,7 @@ of error for conversions with the `?` operator.
 
 ##### `impl From`
 
-- `fn from(err: uri::InvalidUriParts) -> Error`
+- `fn from(err: method::InvalidMethod) -> Error`
 
 ##### `impl From<T>`
 
@@ -214,19 +227,7 @@ of error for conversions with the `?` operator.
 
 ##### `impl From`
 
-- `fn from(err: status::InvalidStatusCode) -> Error`
-
-##### `impl From`
-
-- `fn from(err: method::InvalidMethod) -> Error`
-
-##### `impl From`
-
-- `fn from(err: MaxSizeReached) -> Error`
-
-##### `impl From`
-
-- `fn from(err: header::InvalidHeaderName) -> Error`
+- `fn from(err: uri::InvalidUriParts) -> Error`
 
 ##### `impl Into<T, U>`
 
@@ -277,6 +278,7 @@ of error for conversions with the `?` operator.
 
 ```rust
 struct Extensions {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -387,6 +389,7 @@ extra data derived from the underlying protocol.
 
 ```rust
 struct HeaderMap<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -453,6 +456,9 @@ assert!(!headers.contains_key(HOST));
 ```
 
 #### Implementations
+
+- `fn new() -> Self`
+  Create an empty `HeaderMap`.
 
 - `fn with_capacity(capacity: usize) -> HeaderMap<T>`
   Create an empty `HeaderMap` with the specified capacity.
@@ -532,9 +538,6 @@ assert!(!headers.contains_key(HOST));
 - `fn remove<K>(self: &mut Self, key: K) -> Option<T>`
   Removes a key from the map, returning the value associated with the key.
 
-- `fn new() -> Self`
-  Create an empty `HeaderMap`.
-
 #### Trait Implementations
 
 ##### `impl From<T>`
@@ -584,12 +587,12 @@ assert!(!headers.contains_key(HOST));
 
 ##### `impl Extend<T>`
 
-- `fn extend<I: IntoIterator<Item = (HeaderName, T)>>(self: &mut Self, iter: I)`
+- `fn extend<I: IntoIterator<Item = (Option<HeaderName>, T)>>(self: &mut Self, iter: I)`
+  Extend a `HeaderMap` with the contents of another `HeaderMap`.
 
 ##### `impl Extend<T>`
 
-- `fn extend<I: IntoIterator<Item = (Option<HeaderName>, T)>>(self: &mut Self, iter: I)`
-  Extend a `HeaderMap` with the contents of another `HeaderMap`.
+- `fn extend<I: IntoIterator<Item = (HeaderName, T)>>(self: &mut Self, iter: I)`
 
 ##### `impl Index<K, T>`
 
@@ -610,17 +613,17 @@ assert!(!headers.contains_key(HOST));
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom<'a, K, V, S, T>`
 
 - `type Error = Error`
 
 - `fn try_from(c: &'a HashMap<K, V, S>) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -640,6 +643,7 @@ assert!(!headers.contains_key(HOST));
 
 ```rust
 struct HeaderName {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -715,13 +719,13 @@ computation and the comparison operation.
 
 - `fn as_ref(self: &Self) -> &str`
 
-##### `impl Borrow`
-
-- `fn borrow(self: &Self) -> &str`
-
 ##### `impl Borrow<T>`
 
 - `fn borrow(self: &Self) -> &T`
+
+##### `impl Borrow`
+
+- `fn borrow(self: &Self) -> &str`
 
 ##### `impl BorrowMut<T>`
 
@@ -745,14 +749,14 @@ computation and the comparison operation.
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &str) -> bool`
-  Performs a case-insensitive comparison of the string against the header
-
 ##### `impl PartialEq<'a>`
 
 - `fn eq(self: &Self, other: &&'a str) -> bool`
+  Performs a case-insensitive comparison of the string against the header
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
   Performs a case-insensitive comparison of the string against the header
 
 ##### `impl PartialEq`
@@ -777,17 +781,11 @@ computation and the comparison operation.
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
 - `type Error = InvalidHeaderName`
 
-- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderName`
-
-- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -795,23 +793,29 @@ computation and the comparison operation.
 
 - `fn try_from(s: String) -> Result<Self, <Self as >::Error>`
 
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderName`
+
+- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
-##### `impl TryFrom`
-
-- `type Error = InvalidHeaderName`
-
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidHeaderName`
 
 - `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderName`
+
+- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -827,6 +831,7 @@ computation and the comparison operation.
 
 ```rust
 struct HeaderValue {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -882,20 +887,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl From`
 
-- `fn from(num: u16) -> HeaderValue`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(num: i16) -> HeaderValue`
-
-##### `impl From`
-
-- `fn from(num: i64) -> HeaderValue`
+- `fn from(h: HeaderName) -> HeaderValue`
 
 ##### `impl From`
 
@@ -903,11 +895,16 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl From`
 
-- `fn from(h: HeaderName) -> HeaderValue`
+- `fn from(num: u32) -> HeaderValue`
 
 ##### `impl From`
 
-- `fn from(num: u32) -> HeaderValue`
+- `fn from(num: usize) -> HeaderValue`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From<'a>`
 
@@ -915,15 +912,23 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl From`
 
+- `fn from(num: u16) -> HeaderValue`
+
+##### `impl From`
+
 - `fn from(num: u64) -> HeaderValue`
 
 ##### `impl From`
 
-- `fn from(num: usize) -> HeaderValue`
+- `fn from(num: i16) -> HeaderValue`
 
 ##### `impl From`
 
 - `fn from(num: i32) -> HeaderValue`
+
+##### `impl From`
+
+- `fn from(num: i64) -> HeaderValue`
 
 ##### `impl FromStr`
 
@@ -972,6 +977,14 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &[u8]) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialEq<'a, T: ?Sized>`
@@ -980,23 +993,15 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &[u8]) -> bool`
-
-##### `impl PartialEq`
-
 - `fn eq(self: &Self, other: &HeaderValue) -> bool`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &HeaderValue) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd<'a, T: ?Sized>`
 
@@ -1008,7 +1013,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &HeaderValue) -> Option<cmp::Ordering>`
 
 ##### `impl ToOwned<T>`
 
@@ -1017,6 +1022,30 @@ an `Err` if the header value contains non visible ascii characters.
 - `fn to_owned(self: &Self) -> T`
 
 - `fn clone_into(self: &Self, target: &mut T)`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -1028,31 +1057,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `type Error = InvalidHeaderValue`
 
-- `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = InvalidHeaderValue`
-
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderValue`
-
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderValue`
-
 - `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1179,7 +1184,7 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 ##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &&'a Method) -> bool`
+- `fn eq(self: &Self, other: &&'a str) -> bool`
 
 ##### `impl PartialEq`
 
@@ -1191,7 +1196,7 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 ##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &&'a str) -> bool`
+- `fn eq(self: &Self, other: &&'a Method) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -1211,13 +1216,13 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `type Error = InvalidMethod`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidMethod`
 
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -1243,6 +1248,7 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 ```rust
 struct Request<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1483,6 +1489,7 @@ fn serialize<T>(req: Request<T>) -> serde_json::Result<Request<Vec<u8>>>
 
 ```rust
 struct Response<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1697,9 +1704,9 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
 
 - `fn default() -> Response<T>`
 
-##### `impl AsSendBody`
-
 ##### `impl ResponseExt`
+
+##### `impl AsSendBody`
 
 ### `StatusCode`
 
@@ -1730,6 +1737,36 @@ assert!(StatusCode::OK.is_success());
 ```
 
 #### Implementations
+
+- `const fn from_u16(src: u16) -> Result<StatusCode, InvalidStatusCode>`
+  Converts a u16 to a status code.
+
+- `fn from_bytes(src: &[u8]) -> Result<StatusCode, InvalidStatusCode>`
+  Converts a `&[u8]` to a status code.
+
+- `const fn as_u16(self: &Self) -> u16`
+  Returns the `u16` corresponding to this `StatusCode`.
+
+- `fn as_str(self: &Self) -> &str`
+  Returns a &str representation of the `StatusCode`
+
+- `fn canonical_reason(self: &Self) -> Option<&'static str>`
+  Get the standardised `reason-phrase` for this status code.
+
+- `fn is_informational(self: &Self) -> bool`
+  Check if status is within 100-199.
+
+- `fn is_success(self: &Self) -> bool`
+  Check if status is within 200-299.
+
+- `fn is_redirection(self: &Self) -> bool`
+  Check if status is within 300-399.
+
+- `fn is_client_error(self: &Self) -> bool`
+  Check if status is within 400-499.
+
+- `fn is_server_error(self: &Self) -> bool`
+  Check if status is within 500-599.
 
 - `const CONTINUE: StatusCode`
 
@@ -1855,46 +1892,16 @@ assert!(StatusCode::OK.is_success());
 
 - `const NETWORK_AUTHENTICATION_REQUIRED: StatusCode`
 
-- `const fn from_u16(src: u16) -> Result<StatusCode, InvalidStatusCode>`
-  Converts a u16 to a status code.
-
-- `fn from_bytes(src: &[u8]) -> Result<StatusCode, InvalidStatusCode>`
-  Converts a `&[u8]` to a status code.
-
-- `const fn as_u16(self: &Self) -> u16`
-  Returns the `u16` corresponding to this `StatusCode`.
-
-- `fn as_str(self: &Self) -> &str`
-  Returns a &str representation of the `StatusCode`
-
-- `fn canonical_reason(self: &Self) -> Option<&'static str>`
-  Get the standardised `reason-phrase` for this status code.
-
-- `fn is_informational(self: &Self) -> bool`
-  Check if status is within 100-199.
-
-- `fn is_success(self: &Self) -> bool`
-  Check if status is within 200-299.
-
-- `fn is_redirection(self: &Self) -> bool`
-  Check if status is within 300-399.
-
-- `fn is_client_error(self: &Self) -> bool`
-  Check if status is within 400-499.
-
-- `fn is_server_error(self: &Self) -> bool`
-  Check if status is within 500-599.
-
 #### Trait Implementations
-
-##### `impl From<'a>`
-
-- `fn from(t: &'a StatusCode) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(t: &'a StatusCode) -> Self`
 
 ##### `impl FromStr`
 
@@ -1985,13 +1992,13 @@ assert!(StatusCode::OK.is_success());
 
 - `type Error = InvalidStatusCode`
 
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidStatusCode`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -2011,6 +2018,7 @@ assert!(StatusCode::OK.is_success());
 
 ```rust
 struct Uri {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -2107,11 +2115,11 @@ assert_eq!(uri.path(), "/install.html");
 
 ##### `impl From`
 
-- `fn from(path_and_query: PathAndQuery) -> Self`
+- `fn from(authority: Authority) -> Self`
 
 ##### `impl From`
 
-- `fn from(authority: Authority) -> Self`
+- `fn from(path_and_query: PathAndQuery) -> Self`
 
 ##### `impl From<T>`
 
@@ -2159,10 +2167,6 @@ assert_eq!(uri.path(), "/install.html");
 
 - `fn hash<H>(self: &Self, state: &mut H)`
 
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a str) -> bool`
-
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &str) -> bool`
@@ -2170,6 +2174,10 @@ assert_eq!(uri.path(), "/install.html");
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &Uri) -> bool`
+
+##### `impl PartialEq<'a>`
+
+- `fn eq(self: &Self, other: &&'a str) -> bool`
 
 ##### `impl ToOwned<T>`
 
@@ -2191,27 +2199,15 @@ assert_eq!(uri.path(), "/install.html");
 
 ##### `impl TryFrom`
 
-- `type Error = InvalidUriParts`
-
-- `fn try_from(src: Parts) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(t: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom`
-
 - `type Error = InvalidUri`
 
 - `fn try_from(t: String) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
-- `type Error = Error`
+- `type Error = InvalidUriParts`
 
-- `fn try_from(src: &'a Uri) -> Result<Self, <Self as >::Error>`
+- `fn try_from(src: Parts) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -2223,13 +2219,25 @@ assert_eq!(uri.path(), "/install.html");
 
 - `type Error = InvalidUri`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidUri`
 
 - `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = Error`
+
+- `fn try_from(src: &'a Uri) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

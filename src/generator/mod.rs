@@ -54,16 +54,15 @@ pub use doc_links::{
     DocLinkProcessor, convert_html_links, convert_path_reference_links, strip_duplicate_title,
     strip_reference_definitions,
 };
-pub use module::ModuleRenderer;
-
-use crate::Args;
-use crate::CliOutputFormat;
-use crate::error::Error;
 use flat::FlatGenerator;
 use fs_err as fs;
 use indicatif::{ProgressBar, ProgressStyle};
+pub use module::ModuleRenderer;
 use nested::NestedGenerator;
 use rustdoc_types::{Crate, Item, ItemEnum};
+
+use crate::error::Error;
+use crate::{Args, CliOutputFormat};
 
 /// Main documentation generator.
 ///
@@ -143,11 +142,11 @@ impl<'a> Generator<'a> {
             CliOutputFormat::Flat => {
                 let generator = FlatGenerator::new(&self.ctx, &self.args.output, &progress);
                 generator.generate(self.root_item)?;
-            }
+            },
             CliOutputFormat::Nested => {
                 let generator = NestedGenerator::new(&self.ctx, &self.args.output, &progress);
                 generator.generate(self.root_item)?;
-            }
+            },
         }
 
         progress.finish_with_message("done");
@@ -214,10 +213,10 @@ impl<'a> Generator<'a> {
         match format {
             CliOutputFormat::Flat => {
                 Self::generate_flat_to_capture(&ctx, root_item, &mut capture)?;
-            }
+            },
             CliOutputFormat::Nested => {
                 Self::generate_nested_to_capture(&ctx, root_item, "", &mut capture)?;
-            }
+            },
         }
 
         Ok(capture)

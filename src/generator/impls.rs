@@ -3,10 +3,12 @@
 //! This module provides the [`ImplRenderer`] struct which handles rendering
 //! impl blocks (both inherent and trait implementations) to markdown format.
 
+use std::fmt::Write;
+
+use rustdoc_types::{Id, Impl, Item, ItemEnum};
+
 use crate::generator::context::RenderContext;
 use crate::types::TypeRenderer;
-use rustdoc_types::{Id, Impl, Item, ItemEnum};
-use std::fmt::Write;
 
 /// Renders impl blocks to markdown.
 ///
@@ -160,7 +162,7 @@ impl<'a> ImplRenderer<'a> {
                 match &item.inner {
                     ItemEnum::Function(f) => {
                         self.render_impl_function(md, item, f);
-                    }
+                    },
 
                     ItemEnum::AssocConst { type_, .. } => {
                         let name = item.name.as_deref().unwrap_or("_");
@@ -169,7 +171,7 @@ impl<'a> ImplRenderer<'a> {
                             "- `const {name}: {}`\n\n",
                             type_renderer.render_type(type_)
                         );
-                    }
+                    },
 
                     ItemEnum::AssocType { type_, .. } => {
                         let name = item.name.as_deref().unwrap_or("_");
@@ -183,9 +185,9 @@ impl<'a> ImplRenderer<'a> {
                         } else {
                             _ = write!(md, "- `type {name}`\n\n");
                         }
-                    }
+                    },
 
-                    _ => {}
+                    _ => {},
                 }
             }
         }
@@ -261,7 +263,7 @@ impl<'a> ImplRenderer<'a> {
                         rustdoc_types::GenericArg::Type(ty) => type_renderer.render_type(ty),
                         rustdoc_types::GenericArg::Const(c) => {
                             c.value.clone().unwrap_or_else(|| c.expr.clone())
-                        }
+                        },
                         rustdoc_types::GenericArg::Infer => "_".to_string(),
                     })
                     .collect();
@@ -279,17 +281,17 @@ impl<'a> ImplRenderer<'a> {
                                 rustdoc_types::Term::Type(ty) => type_renderer.render_type(ty),
                                 rustdoc_types::Term::Constant(c) => {
                                     c.value.clone().unwrap_or_else(|| c.expr.clone())
-                                }
+                                },
                             };
                             format!("{}{constraint_args} = {term_str}", c.name)
-                        }
+                        },
                         rustdoc_types::AssocItemConstraintKind::Constraint(bounds) => {
                             let bound_strs: Vec<String> = bounds
                                 .iter()
                                 .map(|b| type_renderer.render_generic_bound(b))
                                 .collect();
                             format!("{}{constraint_args}: {}", c.name, bound_strs.join(" + "))
-                        }
+                        },
                     }
                 }));
 
@@ -298,7 +300,7 @@ impl<'a> ImplRenderer<'a> {
                 } else {
                     format!("<{}>", parts.join(", "))
                 }
-            }
+            },
 
             rustdoc_types::GenericArgs::Parenthesized { inputs, output } => {
                 let input_strs: Vec<String> = inputs
@@ -310,7 +312,7 @@ impl<'a> ImplRenderer<'a> {
                     .map(|t| format!(" -> {}", type_renderer.render_type(t)))
                     .unwrap_or_default();
                 format!("({}){ret}", input_strs.join(", "))
-            }
+            },
 
             rustdoc_types::GenericArgs::ReturnTypeNotation => " (..)".to_string(),
         }

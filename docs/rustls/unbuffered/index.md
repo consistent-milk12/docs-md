@@ -36,6 +36,7 @@ std, non-async context.
 
 ```rust
 struct UnbufferedConnectionCommon<Data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -43,13 +44,13 @@ Interface shared by unbuffered client and server connections.
 
 #### Implementations
 
-- `fn process_tls_records<'c, 'i>(self: &'c mut Self, incoming_tls: &'i mut [u8]) -> UnbufferedStatus<'c, 'i, ServerConnectionData>`
+- `fn process_tls_records<'c, 'i>(self: &'c mut Self, incoming_tls: &'i mut [u8]) -> UnbufferedStatus<'c, 'i, ClientConnectionData>`
   Processes the TLS records in `incoming_tls` buffer until a new [`UnbufferedStatus`] is
 
 - `fn dangerous_extract_secrets(self: Self) -> Result<ExtractedSecrets, Error>`
   Extract secrets, so they can be used when configuring kTLS, for example.
 
-- `fn process_tls_records<'c, 'i>(self: &'c mut Self, incoming_tls: &'i mut [u8]) -> UnbufferedStatus<'c, 'i, ClientConnectionData>`
+- `fn process_tls_records<'c, 'i>(self: &'c mut Self, incoming_tls: &'i mut [u8]) -> UnbufferedStatus<'c, 'i, ServerConnectionData>`
   Processes the TLS records in `incoming_tls` buffer until a new [`UnbufferedStatus`] is
 
 #### Trait Implementations
@@ -162,6 +163,7 @@ A decrypted application-data record
 
 ```rust
 struct EncodeTlsData<'c, Data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -286,6 +288,7 @@ Provided buffer was too small
 
 ```rust
 struct ReadEarlyData<'c, 'i, Data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -339,6 +342,7 @@ Early application-data is available.
 
 ```rust
 struct ReadTraffic<'c, 'i, Data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -392,6 +396,7 @@ Application data is available
 
 ```rust
 struct TransmitTlsData<'c, Data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -399,14 +404,14 @@ Previously encoded TLS data must be transmitted
 
 #### Implementations
 
+- `fn may_encrypt_early_data(self: &mut Self) -> Option<MayEncryptEarlyData<'_>>`
+  returns an adapter that allows encrypting early (RTT-0) data before transmitting the
+
 - `fn done(self: Self)`
   Signals that the previously encoded TLS data has been transmitted
 
 - `fn may_encrypt_app_data(self: &mut Self) -> Option<WriteTraffic<'_, Data>>`
   Returns an adapter that allows encrypting application data
-
-- `fn may_encrypt_early_data(self: &mut Self) -> Option<MayEncryptEarlyData<'_>>`
-  returns an adapter that allows encrypting early (RTT-0) data before transmitting the
 
 #### Trait Implementations
 
@@ -520,6 +525,7 @@ The current status of the `UnbufferedConnection*`
 
 ```rust
 struct WriteTraffic<'c, Data> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -675,14 +681,6 @@ The state of the [`UnbufferedConnectionCommon`](#unbufferedconnectioncommon) obj
 
 #### Trait Implementations
 
-##### `impl From<'c, 'i, Data>`
-
-- `fn from(v: ReadTraffic<'c, 'i, Data>) -> Self`
-
-##### `impl From<'c, 'i, Data>`
-
-- `fn from(v: ReadEarlyData<'c, 'i, Data>) -> Self`
-
 ##### `impl From<'c, Data>`
 
 - `fn from(v: EncodeTlsData<'c, Data>) -> Self`
@@ -690,6 +688,14 @@ The state of the [`UnbufferedConnectionCommon`](#unbufferedconnectioncommon) obj
 ##### `impl From<'c, Data>`
 
 - `fn from(v: TransmitTlsData<'c, Data>) -> Self`
+
+##### `impl From<'c, 'i, Data>`
+
+- `fn from(v: ReadEarlyData<'c, 'i, Data>) -> Self`
+
+##### `impl From<'c, 'i, Data>`
+
+- `fn from(v: ReadTraffic<'c, 'i, Data>) -> Self`
 
 ##### `impl From<T>`
 

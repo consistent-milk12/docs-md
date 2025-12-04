@@ -37,6 +37,7 @@ generator.generate()?;
 
 ```rust
 struct CrateCollection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -133,6 +134,7 @@ for (name, krate) in collection.iter() {
 
 ```rust
 struct MultiCrateContext<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -205,6 +207,7 @@ generation across crates.
 
 ```rust
 struct SingleCrateView<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -292,6 +295,7 @@ allows existing rendering code to work with minimal changes.
 
 ```rust
 struct MultiCrateGenerator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -426,6 +430,7 @@ println!("Found {} crates", crates.len());
 
 ```rust
 struct UnifiedLinkRegistry {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -597,6 +602,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 ```rust
 struct SearchIndexGenerator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -666,6 +672,7 @@ generator.write(Path::new("docs/"))?;
 
 ```rust
 struct SummaryGenerator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

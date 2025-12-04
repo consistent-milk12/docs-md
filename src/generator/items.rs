@@ -4,11 +4,13 @@
 //! individual Rust items (structs, enums, traits, functions, macros, constants,
 //! and type aliases) to markdown format.
 
+use std::fmt::Write;
+
+use rustdoc_types::{Id, Item, ItemEnum, StructKind, Visibility};
+
 use crate::generator::context::RenderContext;
 use crate::generator::impls::ImplRenderer;
 use crate::types::TypeRenderer;
-use rustdoc_types::{Id, Item, ItemEnum, StructKind, Visibility};
-use std::fmt::Write;
 
 /// Renders individual Rust items to markdown.
 ///
@@ -82,7 +84,7 @@ impl<'a> ItemRenderer<'a> {
             match &s.kind {
                 StructKind::Unit => {
                     _ = writeln!(md, "struct {name}{generics}{where_clause};");
-                }
+                },
 
                 StructKind::Tuple(fields) => {
                     let field_types: Vec<String> = fields
@@ -105,9 +107,12 @@ impl<'a> ItemRenderer<'a> {
                         field_types.join(", "),
                         where_clause
                     );
-                }
+                },
 
-                StructKind::Plain { fields, .. } => {
+                StructKind::Plain {
+                    fields,
+                    has_stripped_fields,
+                } => {
                     _ = writeln!(md, "struct {name}{generics}{where_clause} {{");
 
                     for field_id in fields {
@@ -128,8 +133,13 @@ impl<'a> ItemRenderer<'a> {
                             }
                         }
                     }
+
+                    if *has_stripped_fields {
+                        _ = writeln!(md, "    // [REDACTED: Private Fields]");
+                    }
+
                     md.push_str("}\n");
-                }
+                },
             }
             md.push_str("```\n\n");
         }
@@ -251,7 +261,7 @@ impl<'a> ItemRenderer<'a> {
             match &v.kind {
                 rustdoc_types::VariantKind::Plain => {
                     _ = writeln!(md, "    {variant_name},");
-                }
+                },
 
                 rustdoc_types::VariantKind::Tuple(fields) => {
                     let field_types: Vec<String> = fields
@@ -268,7 +278,7 @@ impl<'a> ItemRenderer<'a> {
                         .collect();
 
                     _ = writeln!(md, "    {}({}),", variant_name, field_types.join(", "));
-                }
+                },
 
                 rustdoc_types::VariantKind::Struct { fields, .. } => {
                     _ = writeln!(md, "    {variant_name} {{");
@@ -287,7 +297,7 @@ impl<'a> ItemRenderer<'a> {
                         }
                     }
                     md.push_str("    },\n");
-                }
+                },
             }
         }
     }
@@ -425,7 +435,7 @@ impl<'a> ItemRenderer<'a> {
                 }
 
                 md.push_str("\n\n");
-            }
+            },
 
             ItemEnum::AssocType { bounds, type_, .. } => {
                 let bounds_str = if bounds.is_empty() {
@@ -439,7 +449,7 @@ impl<'a> ItemRenderer<'a> {
                     .unwrap_or_default();
 
                 _ = write!(md, "- `type {name}{bounds_str}{default_str}`\n\n");
-            }
+            },
 
             ItemEnum::AssocConst { type_, .. } => {
                 _ = write!(
@@ -447,11 +457,11 @@ impl<'a> ItemRenderer<'a> {
                     "- `const {name}: {}`\n\n",
                     type_renderer.render_type(type_)
                 );
-            }
+            },
 
             _ => {
                 _ = write!(md, "- `{name}`\n\n");
-            }
+            },
         }
     }
 

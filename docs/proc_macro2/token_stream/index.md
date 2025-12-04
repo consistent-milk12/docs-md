@@ -12,6 +12,7 @@ Public implementation details for the `TokenStream` type, such as iterators.
 
 ```rust
 struct TokenStream {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -51,11 +52,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl FromIterator`
 
-- `fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
+- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
 
 ##### `impl FromIterator`
 
-- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
+- `fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
 
 ##### `impl FromStr`
 
@@ -102,11 +103,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
 ##### `impl ToOwned<T>`
 
@@ -150,6 +151,7 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ```rust
 struct IntoIter {
+    // [REDACTED: Private Fields]
 }
 ```
 

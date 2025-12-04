@@ -91,11 +91,11 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn new(create: F) -> Pool<T, F>`
-  Create a new pool. The given closure is used to create values in
-
 - `fn get(self: &Self) -> PoolGuard<'_, T, F>`
   Get a value from the pool. The caller is guaranteed to have
+
+- `fn new(create: F) -> Pool<T, F>`
+  Create a new pool. The given closure is used to create values in
 
 #### Trait Implementations
 

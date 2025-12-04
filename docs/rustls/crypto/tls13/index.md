@@ -118,6 +118,7 @@ Implementation of `Hkdf` (and thence `HkdfExpander`) via `hmac::Hmac`.
 
 ```rust
 struct OkmBlock {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -12,6 +12,7 @@ HMAC interfaces.
 
 ```rust
 struct Tag {
+    // [REDACTED: Private Fields]
 }
 ```
 

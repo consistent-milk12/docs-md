@@ -16,6 +16,7 @@ permit walking the state transitions of an Aho-Corasick automaton manually.
 
 ```rust
 struct Prefilter {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -167,14 +168,14 @@ panics or silent logical errors.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: u8) -> StateID`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: u8) -> StateID`
 
 ##### `impl Into<T, U>`
 
@@ -235,13 +236,7 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
+- `fn try_from(value: usize) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -253,13 +248,19 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
+- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = StateIDError`
+
 - `fn try_from(value: u64) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: usize) -> Result<StateID, StateIDError>`
+- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
 
 ##### `impl TryInto<T, U>`
 
@@ -372,6 +373,7 @@ trait.
 
 ```rust
 struct OverlappingState {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -502,6 +504,7 @@ assert_eq!(expected, matches);
 
 ```rust
 struct FindIter<'a, 'h, A> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -578,6 +581,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 ```rust
 struct FindOverlappingIter<'a, 'h, A> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -655,6 +659,7 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 ```rust
 struct StreamFindIter<'a, A, R> {
+    // [REDACTED: Private Fields]
 }
 ```
 

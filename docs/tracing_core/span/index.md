@@ -108,6 +108,7 @@ more information on span ID generation.
 
 ```rust
 struct Attributes<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -196,6 +197,7 @@ created.
 
 ```rust
 struct Record<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -262,6 +264,7 @@ A set of fields recorded by a span.
 
 ```rust
 struct Current {
+    // [REDACTED: Private Fields]
 }
 ```
 

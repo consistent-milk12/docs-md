@@ -54,6 +54,7 @@ generator.generate()?;
 
 ```rust
 struct BreadcrumbGenerator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -112,6 +113,7 @@ the current module, with each segment being a clickable link.
 
 ```rust
 struct MarkdownCapture {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -295,6 +297,7 @@ This struct is passed to all rendering components and provides:
 
 ```rust
 struct DocLinkProcessor<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -363,6 +366,7 @@ Items from external crates are linked to docs.rs when possible.
 
 ```rust
 struct ModuleRenderer<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -424,6 +428,7 @@ including:
 
 ```rust
 struct Generator<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

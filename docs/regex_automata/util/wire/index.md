@@ -86,6 +86,7 @@ example of how to use this type.
 
 ```rust
 struct SerializeError {
+    // [REDACTED: Private Fields]
 }
 ```
 

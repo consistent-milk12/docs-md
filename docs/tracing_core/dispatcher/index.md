@@ -135,6 +135,7 @@ instrumentation.
 
 ```rust
 struct Dispatch {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -262,6 +263,7 @@ struct Dispatch {
 
 ```rust
 struct WeakDispatch {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -403,6 +405,7 @@ default dispatcher when dropped.
 
 ```rust
 struct SetGlobalDefaultError {
+    // [REDACTED: Private Fields]
 }
 ```
 

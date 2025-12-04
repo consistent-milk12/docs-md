@@ -51,6 +51,7 @@ level routines such as [`Regex::search_with`](#search-with).
 
 ```rust
 struct BuildError {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -159,6 +160,7 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 ```rust
 struct Builder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -332,6 +334,7 @@ assert_eq!(re.find_iter(hay).collect::<Vec<Match>>(), vec![
 
 ```rust
 struct Cache {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -453,6 +456,7 @@ assert_eq!(
 
 ```rust
 struct CapturesMatches<'r, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -539,6 +543,7 @@ This iterator can be created with the [`Regex::captures_iter`](#captures-iter) m
 
 ```rust
 struct Config {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -732,6 +737,7 @@ assert!(result.is_err());
 
 ```rust
 struct FindMatches<'r, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -816,6 +822,7 @@ This iterator can be created with the [`Regex::find_iter`](#find-iter) method.
 
 ```rust
 struct Regex {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1014,6 +1021,48 @@ assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
 #### Implementations
 
+- `fn create_captures(self: &Self) -> Captures`
+  Creates a new object for recording capture group offsets. This is used
+
+- `fn create_cache(self: &Self) -> Cache`
+  Creates a new cache for use with lower level search APIs like
+
+- `fn pattern_len(self: &Self) -> usize`
+  Returns the total number of patterns in this regex.
+
+- `fn captures_len(self: &Self) -> usize`
+  Returns the total number of capturing groups.
+
+- `fn static_captures_len(self: &Self) -> Option<usize>`
+  Returns the total number of capturing groups that appear in every
+
+- `fn group_info(self: &Self) -> &GroupInfo`
+  Return information about the capture groups in this `Regex`.
+
+- `fn get_config(self: &Self) -> &Config`
+  Returns the configuration object used to build this `Regex`.
+
+- `fn is_accelerated(self: &Self) -> bool`
+  Returns true if this regex has a high chance of being "accelerated."
+
+- `fn memory_usage(self: &Self) -> usize`
+  Return the total approximate heap memory, in bytes, used by this `Regex`.
+
+- `fn search_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
+  This is like [`Regex::search`], but requires the caller to
+
+- `fn search_half_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
+  This is like [`Regex::search_half`], but requires the caller to
+
+- `fn search_captures_with(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
+  This is like [`Regex::search_captures`], but requires the caller to
+
+- `fn search_slots_with(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  This is like [`Regex::search_slots`], but requires the caller to
+
+- `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+  This is like [`Regex::which_overlapping_matches`], but requires the
+
 - `fn new(pattern: &str) -> Result<Regex, BuildError>`
   Builds a `Regex` from a single pattern string using the default
 
@@ -1061,48 +1110,6 @@ assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
 - `fn splitn<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I, limit: usize) -> SplitN<'r, 'h>`
   Returns an iterator of at most `limit` spans of the haystack given,
-
-- `fn search_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
-  This is like [`Regex::search`], but requires the caller to
-
-- `fn search_half_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
-  This is like [`Regex::search_half`], but requires the caller to
-
-- `fn search_captures_with(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
-  This is like [`Regex::search_captures`], but requires the caller to
-
-- `fn search_slots_with(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  This is like [`Regex::search_slots`], but requires the caller to
-
-- `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
-  This is like [`Regex::which_overlapping_matches`], but requires the
-
-- `fn create_captures(self: &Self) -> Captures`
-  Creates a new object for recording capture group offsets. This is used
-
-- `fn create_cache(self: &Self) -> Cache`
-  Creates a new cache for use with lower level search APIs like
-
-- `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns in this regex.
-
-- `fn captures_len(self: &Self) -> usize`
-  Returns the total number of capturing groups.
-
-- `fn static_captures_len(self: &Self) -> Option<usize>`
-  Returns the total number of capturing groups that appear in every
-
-- `fn group_info(self: &Self) -> &GroupInfo`
-  Return information about the capture groups in this `Regex`.
-
-- `fn get_config(self: &Self) -> &Config`
-  Returns the configuration object used to build this `Regex`.
-
-- `fn is_accelerated(self: &Self) -> bool`
-  Returns true if this regex has a high chance of being "accelerated."
-
-- `fn memory_usage(self: &Self) -> usize`
-  Return the total approximate heap memory, in bytes, used by this `Regex`.
 
 #### Trait Implementations
 
@@ -1164,6 +1171,7 @@ assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
 ```rust
 struct Split<'r, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1243,6 +1251,7 @@ This iterator can be created with the [`Regex::split`](#split) method.
 
 ```rust
 struct SplitN<'r, 'h> {
+    // [REDACTED: Private Fields]
 }
 ```
 

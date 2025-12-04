@@ -76,6 +76,7 @@ assert_eq!(None, finder.find(b"quux baz bar"));
 
 ```rust
 struct FindIter<'h, 'n> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -167,6 +168,7 @@ needle.
 
 ```rust
 struct FindRevIter<'h, 'n> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -256,6 +258,7 @@ needle.
 
 ```rust
 struct Finder<'n> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -353,6 +356,7 @@ the lifetime of its needle.
 
 ```rust
 struct FinderRev<'n> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -450,6 +454,7 @@ the lifetime of its needle.
 
 ```rust
 struct FinderBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 

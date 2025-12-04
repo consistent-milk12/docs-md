@@ -16,6 +16,7 @@ Items for use in a client.
 
 ```rust
 struct WantsClientCert {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -93,6 +94,7 @@ struct ClientConfig {
     pub cert_decompressors: alloc::vec::Vec<&'static dyn compress::CertDecompressor>,
     pub cert_compressors: alloc::vec::Vec<&'static dyn compress::CertCompressor>,
     pub cert_compression_cache: alloc::sync::Arc<compress::CompressionCache>,
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -330,6 +332,7 @@ their DNS zone.
 
 ```rust
 struct ClientConnectionData {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -381,6 +384,7 @@ State associated with a client connection.
 
 ```rust
 struct Resumption {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -465,6 +469,7 @@ Configuration for how/when a client is allowed to resume a previous session.
 
 ```rust
 struct UnbufferedClientConnection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -543,6 +548,7 @@ See the [`crate::unbuffered`](#unbuffered) module docs for more details
 
 ```rust
 struct ClientConnection {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -632,6 +638,7 @@ This represents a single TLS client connection.
 
 ```rust
 struct WriteEarlyData<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -688,6 +695,7 @@ Stub that implements io::Write and dispatches to `write_early_data`.
 
 ```rust
 struct EchConfig {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -760,6 +768,7 @@ Note: differs from the protocol-encoded EchConfig (`EchConfigMsg`).
 
 ```rust
 struct EchGreaseConfig {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -911,6 +920,7 @@ An exemplar `ResolvesClientCert` implementation that always resolves to a single
 
 ```rust
 struct ClientSessionMemoryCache {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -984,6 +994,7 @@ It enforces a limit on the number of entries to bound memory usage.
 
 ```rust
 struct Tls12ClientSessionValue {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1057,6 +1068,7 @@ struct Tls12ClientSessionValue {
 
 ```rust
 struct Tls13ClientSessionValue {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1124,6 +1136,7 @@ struct Tls13ClientSessionValue {
 
 ```rust
 struct ServerCertVerifierBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1208,6 +1221,7 @@ For more information, see the [`WebPkiServerVerifier`](#webpkiserververifier) do
 
 ```rust
 struct WebPkiServerVerifier {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1297,14 +1311,14 @@ Errors that may arise when encrypting early (RTT-0) data
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: EncryptError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: EncryptError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1476,14 +1490,14 @@ Controls how Encrypted Client Hello (ECH) is used in a client handshake.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(config: EchConfig) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(config: EchConfig) -> Self`
 
 ##### `impl From`
 

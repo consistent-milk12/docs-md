@@ -55,6 +55,7 @@ agreement::agree_ephemeral(
 
 ```rust
 struct Algorithm {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -110,6 +111,7 @@ A key agreement algorithm.
 
 ```rust
 struct EphemeralPrivateKey {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -172,6 +174,7 @@ used for at most one key agreement.
 
 ```rust
 struct PublicKey {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -246,6 +249,7 @@ A public key for key agreement.
 
 ```rust
 struct UnparsedPublicKey<B> {
+    // [REDACTED: Private Fields]
 }
 ```
 

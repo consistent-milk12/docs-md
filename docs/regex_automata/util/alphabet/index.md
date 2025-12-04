@@ -324,6 +324,7 @@ assert_ne!(classes.get(b'a'), classes.get(b'A'));
 
 ```rust
 struct ByteClassIter<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -394,6 +395,7 @@ iterator was created from.
 
 ```rust
 struct ByteClassRepresentatives<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -462,6 +464,7 @@ iterator was created from.
 
 ```rust
 struct ByteClassElements<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 

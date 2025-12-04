@@ -18,6 +18,7 @@ frequencies to heuristically select the pair of bytes to search for.
 
 ```rust
 struct Finder {
+    // [REDACTED: Private Fields]
 }
 ```
 

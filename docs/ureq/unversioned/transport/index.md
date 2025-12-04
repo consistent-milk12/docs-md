@@ -38,6 +38,7 @@ connector handling other schemes than `http`/`https` without affecting "regular"
 
 ```rust
 struct LazyBuffers {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -170,6 +171,7 @@ Connector for regular TCP sockets.
 
 ```rust
 struct TransportAdapter<T: Transport> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -382,6 +384,7 @@ wrapped in TLS.
 
 ```rust
 struct RustlsConnector {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -641,6 +644,7 @@ The parameters needed to create a [`Transport`](ureq/unversioned/transport/index
 
 ```rust
 struct DefaultConnector {
+    // [REDACTED: Private Fields]
 }
 ```
 

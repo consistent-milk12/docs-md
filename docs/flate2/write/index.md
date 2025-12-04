@@ -14,6 +14,7 @@ various formats.
 
 ```rust
 struct DeflateDecoder<W: Write> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -133,6 +134,7 @@ fn decode_writer(bytes: Vec<u8>) -> io::Result<String> {
 
 ```rust
 struct DeflateEncoder<W: Write> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -240,6 +242,7 @@ println!("{:?}", e.finish().unwrap());
 
 ```rust
 struct GzDecoder<W: Write> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -358,6 +361,7 @@ fn decode_writer(bytes: Vec<u8>) -> io::Result<String> {
 
 ```rust
 struct GzEncoder<W: Write> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -457,6 +461,7 @@ println!("{:?}", e.finish().unwrap());
 
 ```rust
 struct MultiGzDecoder<W: Write> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -544,6 +549,7 @@ To handle members separately, see [GzDecoder] or read more
 
 ```rust
 struct ZlibDecoder<W: Write> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -668,6 +674,7 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 ```rust
 struct ZlibEncoder<W: Write> {
+    // [REDACTED: Private Fields]
 }
 ```
 

@@ -39,6 +39,7 @@ let link = registry.create_link(&some_id, "index.md");
 
 ```rust
 struct LinkRegistry {
+    // [REDACTED: Private Fields]
 }
 ```
 

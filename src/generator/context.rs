@@ -7,11 +7,13 @@
 //! The [`RenderContext`] trait defines the interface that renderers use,
 //! enabling both single-crate and multi-crate contexts to share rendering code.
 
+use std::collections::HashMap;
+
+use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
+
 use crate::Args;
 use crate::generator::doc_links::{DocLinkProcessor, strip_duplicate_title};
 use crate::linker::LinkRegistry;
-use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
-use std::collections::HashMap;
 
 /// Trait defining the interface for rendering context.
 ///
@@ -177,7 +179,7 @@ impl<'a> GeneratorContext<'a> {
     ///
     /// Only `ResolvedPath` types (named types like `Vec`, `String`, `MyStruct`)
     /// have associated IDs. Other types (primitives, references, etc.) return None.
-    fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id> {
+    const fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id> {
         match ty {
             rustdoc_types::Type::ResolvedPath(path) => Some(path.id),
             _ => None,
@@ -194,7 +196,7 @@ impl<'a> GeneratorContext<'a> {
     /// - `Public` - Always included
     /// - `Crate`, `Restricted`, `Default` - Only with `--include-private`
     #[must_use]
-    pub fn should_include_item(&self, item: &Item) -> bool {
+    pub const fn should_include_item(&self, item: &Item) -> bool {
         match &item.visibility {
             Visibility::Public => true,
             _ => self.args.include_private,

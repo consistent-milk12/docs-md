@@ -32,3 +32,33 @@ tracing = "0.1.43"
 
 # Snapshot testing
 insta = "1.44.3"
+
+# =============================================================================
+# Build Profiles
+# =============================================================================
+
+[profile.dev]
+# Faster incremental builds
+incremental = true
+
+[profile.dev.package."*"]
+# Optimize dependencies even in dev mode for faster runtime
+opt-level = 2
+
+[profile.release]
+# Maximum optimization
+opt-level = 3
+
+# Link-time optimization for smaller/faster binary
+lto = "thin"
+
+# Single codegen unit for better optimization (slower compile)
+codegen-units = 1
+
+# Strip symbols for smaller binary
+strip = "symbols"
+
+[profile.bench]
+# Benchmarking profile
+inherits = "release"
+debug = true

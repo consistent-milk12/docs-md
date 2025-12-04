@@ -12,6 +12,7 @@ Single-threaded version of `OnceCell`.
 
 ```rust
 struct OnceCell<T> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -75,11 +76,11 @@ assert!(cell.get().is_some());
 
 ##### `impl From<T>`
 
-- `fn from(value: T) -> Self`
+- `fn from(t: never) -> T`
 
 ##### `impl From<T>`
 
-- `fn from(t: never) -> T`
+- `fn from(value: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -150,6 +151,7 @@ assert!(cell.get().is_some());
 
 ```rust
 struct Lazy<T, F> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -176,6 +178,12 @@ println!("{}", *lazy);
 
 #### Implementations
 
+- `const fn new(init: F) -> Lazy<T, F>`
+  Creates a new lazy value with the given initializing function.
+
+- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
+  Consumes this `Lazy` returning the stored value.
+
 - `fn force(this: &Lazy<T, F>) -> &T`
   Forces the evaluation of this lazy value and returns a reference to
 
@@ -187,12 +195,6 @@ println!("{}", *lazy);
 
 - `fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>`
   Gets the mutable reference to the result of this lazy value if
-
-- `const fn new(init: F) -> Lazy<T, F>`
-  Creates a new lazy value with the given initializing function.
-
-- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
-  Consumes this `Lazy` returning the stored value.
 
 #### Trait Implementations
 

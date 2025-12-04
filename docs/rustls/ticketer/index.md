@@ -12,6 +12,7 @@ APIs for implementing TLS tickets
 
 ```rust
 struct TicketSwitcher {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -78,6 +79,7 @@ often, demoting the current ticketer.
 
 ```rust
 struct TicketRotator {
+    // [REDACTED: Private Fields]
 }
 ```
 

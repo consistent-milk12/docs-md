@@ -12,6 +12,7 @@ on the `Action` returned from unpacking a transition.
 
 ```rust
 struct Parser {
+    // [REDACTED: Private Fields]
 }
 ```
 

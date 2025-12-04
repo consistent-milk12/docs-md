@@ -177,11 +177,11 @@ that they can be addressed individually.
 
 ##### `impl From`
 
-- `fn from(source: KeyRejected) -> Self`
+- `fn from(source: untrusted::EndOfInput) -> Self`
 
 ##### `impl From`
 
-- `fn from(source: untrusted::EndOfInput) -> Self`
+- `fn from(source: KeyRejected) -> Self`
 
 ##### `impl From<T>`
 

@@ -67,7 +67,7 @@ impl<'a> TypeRenderer<'a> {
     ///
     /// * `krate` - The parsed rustdoc crate containing type definitions
     #[must_use]
-    pub fn new(krate: &'a Crate) -> Self {
+    pub const fn new(krate: &'a Crate) -> Self {
         Self { krate }
     }
 
@@ -107,7 +107,7 @@ impl<'a> TypeRenderer<'a> {
                     result.push_str(&self.render_generic_args(args));
                 }
                 result
-            }
+            },
 
             // Trait object: `dyn Trait + OtherTrait`
             Type::DynTrait(dyn_trait) => {
@@ -123,7 +123,7 @@ impl<'a> TypeRenderer<'a> {
                     })
                     .collect();
                 format!("dyn {}", traits.join(" + "))
-            }
+            },
 
             // Generic type parameter: `T`, `U`, etc.
             // Primitive type: `u32`, `bool`, `str`, etc.
@@ -139,19 +139,17 @@ impl<'a> TypeRenderer<'a> {
                     .map(|(_, t)| self.render_type(t))
                     .collect();
                 // Render return type if present
-                let ret = if let Some(output) = &fp.sig.output {
+                let ret = fp.sig.output.as_ref().map_or_else(String::new, |output| {
                     format!(" -> {}", self.render_type(output))
-                } else {
-                    String::new()
-                };
+                });
                 format!("fn({}){}", params.join(", "), ret)
-            }
+            },
 
             // Tuple type: `(A, B, C)` or unit `()`
             Type::Tuple(types) => {
                 let inner: Vec<String> = types.iter().map(|t| self.render_type(t)).collect();
                 format!("({})", inner.join(", "))
-            }
+            },
 
             // Slice type: `[T]`
             Type::Slice(inner) => format!("[{}]", self.render_type(inner)),
@@ -169,7 +167,7 @@ impl<'a> TypeRenderer<'a> {
                     .map(|b| self.render_generic_bound(b))
                     .collect();
                 format!("impl {}", bound_strs.join(" + "))
-            }
+            },
 
             // Inferred type: `_` (placeholder in turbofish)
             Type::Infer => "_".to_string(),
@@ -178,7 +176,7 @@ impl<'a> TypeRenderer<'a> {
             Type::RawPointer { is_mutable, type_ } => {
                 let mutability = if *is_mutable { "mut" } else { "const" };
                 format!("*{mutability} {}", self.render_type(type_))
-            }
+            },
 
             // Reference: `&T`, `&mut T`, `&'a T`, `&'a mut T`
             Type::BorrowedRef {
@@ -194,7 +192,7 @@ impl<'a> TypeRenderer<'a> {
                 // Optional mut keyword
                 let mutability = if *is_mutable { "mut " } else { "" };
                 format!("&{lt}{mutability}{}", self.render_type(type_))
-            }
+            },
 
             // Qualified path: `<T as Trait>::Item` or `T::Item`
             Type::QualifiedPath {
@@ -204,14 +202,11 @@ impl<'a> TypeRenderer<'a> {
                 ..
             } => {
                 let self_ty = self.render_type(self_type);
-                if let Some(trait_path) = trait_ {
-                    // Full qualification: <Self as Trait>::Item
-                    format!("<{self_ty} as {}>::{name}", trait_path.path)
-                } else {
-                    // Simple associated type: Self::Item
-                    format!("{self_ty}::{name}")
-                }
-            }
+                trait_.as_ref().map_or_else(
+                    || format!("{self_ty}::{name}"),
+                    |trait_path| format!("<{self_ty} as {}>::{name}", trait_path.path),
+                )
+            },
         }
     }
 
@@ -241,7 +236,7 @@ impl<'a> TypeRenderer<'a> {
                 } else {
                     format!("<{}>", parts.join(", "))
                 }
-            }
+            },
 
             // Parenthesized syntax for Fn traits: `Fn(A, B) -> C`
             GenericArgs::Parenthesized { inputs, output } => {
@@ -252,7 +247,7 @@ impl<'a> TypeRenderer<'a> {
                     .unwrap_or_default();
 
                 format!("({}){}", input_strs.join(", "), ret)
-            }
+            },
 
             // Return type notation (experimental feature)
             GenericArgs::ReturnTypeNotation => " (..)".to_string(),
@@ -296,7 +291,7 @@ impl<'a> TypeRenderer<'a> {
             // Equality constraint: `Item = SomeType`
             AssocItemConstraintKind::Equality(term) => {
                 format!("{}{args} = {}", constraint.name, self.render_term(term))
-            }
+            },
 
             // Bound constraint: `Item: SomeTrait + OtherTrait`
             AssocItemConstraintKind::Constraint(bounds) => {
@@ -306,7 +301,7 @@ impl<'a> TypeRenderer<'a> {
                     .collect();
 
                 format!("{}{args}: {}", constraint.name, bound_strs.join(" + "))
-            }
+            },
         }
     }
 
@@ -353,7 +348,7 @@ impl<'a> TypeRenderer<'a> {
                 }
 
                 result
-            }
+            },
 
             // Lifetime bound: `'static`, `'a`
             GenericBound::Outlives(lt) => lt.clone(),
@@ -420,7 +415,7 @@ impl<'a> TypeRenderer<'a> {
                 }
 
                 Some(result)
-            }
+            },
 
             // Type parameter: `T` or `T: Clone + Send`
             GenericParamDefKind::Type {
@@ -446,12 +441,12 @@ impl<'a> TypeRenderer<'a> {
                 }
 
                 Some(result)
-            }
+            },
 
             // Const parameter: `const N: usize`
             GenericParamDefKind::Const { type_, .. } => {
                 Some(format!("const {}: {}", param.name, self.render_type(type_)))
-            }
+            },
         }
     }
 
@@ -509,17 +504,17 @@ impl<'a> TypeRenderer<'a> {
                     .collect();
 
                 format!("{}: {}", self.render_type(type_), bound_strs.join(" + "))
-            }
+            },
 
             // Lifetime predicate: `'a: 'b + 'c`
             rustdoc_types::WherePredicate::LifetimePredicate { lifetime, outlives } => {
                 format!("{lifetime}: {}", outlives.join(" + "))
-            }
+            },
 
             // Equality predicate: `<T as Trait>::Item = SomeType`
             rustdoc_types::WherePredicate::EqPredicate { lhs, rhs } => {
                 format!("{} = {}", self.render_type(lhs), self.render_term(rhs))
-            }
+            },
         }
     }
 }

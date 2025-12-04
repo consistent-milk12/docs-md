@@ -203,6 +203,7 @@ that return `LookSet`s.
 
 ```rust
 struct LookSetIter {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -284,6 +285,7 @@ This iterator is created by [`LookSet::iter`](#iter).
 
 ```rust
 struct LookMatcher {
+    // [REDACTED: Private Fields]
 }
 ```
 

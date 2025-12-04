@@ -118,6 +118,7 @@ println!("{args:?}");
 
 ```rust
 struct RawArgs {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -234,6 +235,7 @@ Command-line arguments
 
 ```rust
 struct ArgCursor {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -315,6 +317,7 @@ Position within [`RawArgs`](clap_lex/index.md)
 
 ```rust
 struct ParsedArg<'s> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -435,6 +438,7 @@ Command-line Argument
 
 ```rust
 struct ShortFlags<'s> {
+    // [REDACTED: Private Fields]
 }
 ```
 

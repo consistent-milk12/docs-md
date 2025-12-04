@@ -16,6 +16,7 @@ Streaming compression functionality.
 
 ```rust
 struct CompressorOxide {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -290,14 +291,14 @@ A list of deflate flush types.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(flush: MZFlush) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(flush: MZFlush) -> Self`
 
 ##### `impl Into<T, U>`
 

@@ -3,8 +3,9 @@
 //! This module provides [`CrateCollection`], a container for multiple parsed
 //! rustdoc crates that maintains a consistent processing order.
 
-use rustdoc_types::Crate;
 use std::collections::HashMap;
+
+use rustdoc_types::Crate;
 
 /// Collection of parsed crates ready for documentation generation.
 ///

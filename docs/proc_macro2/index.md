@@ -100,6 +100,7 @@ a different thread.
 
 ```rust
 struct TokenStream {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -139,11 +140,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl FromIterator`
 
-- `fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
+- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
 
 ##### `impl FromIterator`
 
-- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
+- `fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
 
 ##### `impl FromStr`
 
@@ -190,11 +191,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
 ##### `impl ToOwned<T>`
 
@@ -238,6 +239,7 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ```rust
 struct LexError {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -301,6 +303,7 @@ Error returned from `TokenStream::from_str`.
 
 ```rust
 struct Span {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -331,14 +334,14 @@ A region of source code, along with macro expansion information.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(proc_span: proc_macro::Span) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(proc_span: proc_macro::Span) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -395,6 +398,7 @@ A region of source code, along with macro expansion information.
 
 ```rust
 struct Group {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -497,14 +501,15 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 - `fn clone(self: &Self) -> DelimSpan`
 
-##### `impl Parse`
-
 ##### `impl Token`
+
+##### `impl Parse`
 
 ### `Punct`
 
 ```rust
 struct Punct {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -596,14 +601,15 @@ Multicharacter operators like `+=` are represented as two instances of
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
-
 ##### `impl Token`
+
+##### `impl Parse`
 
 ### `Ident`
 
 ```rust
 struct Ident {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -770,13 +776,13 @@ if ident_string.len() > 60 {
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IdentFragment`
-
 ##### `impl ToTokens`
 
-##### `impl Token`
+##### `impl IdentFragment`
 
 ##### `impl Parse`
+
+##### `impl Token`
 
 ##### `impl IdentExt`
 
@@ -784,6 +790,7 @@ if ident_string.len() > 60 {
 
 ```rust
 struct Literal {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -1038,11 +1045,11 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl From`
 
-- `fn from(g: Punct) -> Self`
+- `fn from(g: Literal) -> Self`
 
 ##### `impl From`
 
-- `fn from(g: Literal) -> Self`
+- `fn from(g: Punct) -> Self`
 
 ##### `impl Into<T, U>`
 

@@ -119,6 +119,7 @@ website][data formats].
 
 ```rust
 struct Impossible<Ok, Error> {
+    // [REDACTED: Private Fields]
 }
 ```
 

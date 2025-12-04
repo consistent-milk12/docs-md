@@ -108,6 +108,7 @@ emit an error after decoding the gzip data. This behavior matches the `gzip`,
 
 ```rust
 struct Crc {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -182,6 +183,7 @@ The CRC calculated by a [`CrcReader`](#crcreader).
 
 ```rust
 struct CrcReader<R> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -262,6 +264,7 @@ A wrapper around a [`Read`](#read) that calculates the CRC.
 
 ```rust
 struct CrcWriter<W> {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -269,6 +272,9 @@ A wrapper around a [`Write`](#write) that calculates the CRC.
 
 
 #### Implementations
+
+- `fn new(w: W) -> CrcWriter<W>`
+  Create a new `CrcWriter`.
 
 - `fn crc(self: &Self) -> &Crc`
   Get the Crc for this `CrcWriter`.
@@ -284,9 +290,6 @@ A wrapper around a [`Write`](#write) that calculates the CRC.
 
 - `fn reset(self: &mut Self)`
   Reset the Crc in this `CrcWriter`.
-
-- `fn new(w: W) -> CrcWriter<W>`
-  Create a new `CrcWriter`.
 
 #### Trait Implementations
 
@@ -338,6 +341,7 @@ A wrapper around a [`Write`](#write) that calculates the CRC.
 
 ```rust
 struct GzBuilder {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -445,6 +449,7 @@ gz.finish()?;
 
 ```rust
 struct GzHeader {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -543,6 +548,7 @@ present.
 
 ```rust
 struct Compress {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -625,6 +631,7 @@ easier to use.
 
 ```rust
 struct CompressError {
+    // [REDACTED: Private Fields]
 }
 ```
 
@@ -706,6 +713,7 @@ generates an error.
 
 ```rust
 struct Decompress {
+    // [REDACTED: Private Fields]
 }
 ```
 

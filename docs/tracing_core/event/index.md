@@ -12,6 +12,7 @@ Events represent single points in time during the execution of a program.
 
 ```rust
 struct Event<'a> {
+    // [REDACTED: Private Fields]
 }
 ```
 
