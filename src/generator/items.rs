@@ -36,7 +36,7 @@ impl<'a> ItemRenderer<'a> {
     ///
     /// # Arguments
     ///
-    /// * `ctx` - Render context (implements RenderContext trait)
+    /// * `ctx` - Render context (implements `RenderContext` trait)
     /// * `current_file` - Path of the current file (for relative link calculation)
     pub fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self {
         Self { ctx, current_file }

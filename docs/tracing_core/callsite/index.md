@@ -36,9 +36,12 @@ do so in its [`register_callsite`](#register-callsite) method.
 ## Performing Static Filtering
 
 The [`register_callsite`](#register-callsite) method returns an [`Interest`](tracing_core/subscriber/index.md) value,
-which indicates that the subscriber either [always](#always) wishes to record
-that span or event, [sometimes](#sometimes) wishes to record it based on a
-dynamic filter evaluation, or [never](#never) wishes to record it.
+which indicates that the subscriber either [always](#always)
+ wishes to record
+that span or event, [sometimes](#sometimes)
+ wishes to record it based on a
+dynamic filter evaluation, or [never](#never)
+ wishes to record it.
 
 When registering a new callsite, the [`Interest`](tracing_core/subscriber/index.md)s returned by every
 currently active subscriber are combined, and the result is stored at
@@ -63,7 +66,9 @@ used to manually invalidate all cached interest and re-register those
 callsites. This function is useful in situations where a subscriber's
 interest can change, but it does so relatively infrequently. The subscriber
 may wish for its interest to be cached most of the time, and return
-[`Interest::always`][always](#always) or [`Interest::never`][never](#never) in its
+[`Interest::always`][always](#always)
+ or [`Interest::never`][never](#never)
+ in its
 [`register_callsite`](#register-callsite) method, so that its [`Subscriber::enabled`](#enabled) method
 doesn't need to be evaluated every time a span or event is recorded.
 However, when the configuration changes, the subscriber can call
@@ -76,7 +81,10 @@ configuration changes infrequently, it may be more efficient than calling
 
 In most cases, instrumenting code using `tracing` should *not* require
 implementing the [`Callsite`](tracing_core/callsite/index.md) trait directly. When using the [`tracing`
-crate's macros][macros](#macros) or the [`#[instrument](#instrument)` attribute][instrument](#instrument), a
+crate's macros][macros](#macros)
+ or the [`#[instrument](#instrument)
+` attribute][instrument](#instrument)
+, a
 `Callsite` is automatically generated.
 
 However, code which provides alternative forms of `tracing` instrumentation
@@ -95,12 +103,17 @@ additional performance optimizations.
 
 
 
-[always](#always): crate::subscriber::Interest::always
-[sometimes](#sometimes): crate::subscriber::Interest::sometimes
-[never](#never): crate::subscriber::Interest::never
+[always](#always)
+: crate::subscriber::Interest::always
+[sometimes](#sometimes)
+: crate::subscriber::Interest::sometimes
+[never](#never)
+: crate::subscriber::Interest::never
 
-[macros](#macros): https://docs.rs/tracing/latest/tracing/#macros
-[instrument](#instrument): https://docs.rs/tracing/latest/tracing/attr.instrument.html
+[macros](#macros)
+: https://docs.rs/tracing/latest/tracing/#macros
+[instrument](#instrument)
+: https://docs.rs/tracing/latest/tracing/attr.instrument.html
 
 ## Structs
 
@@ -271,7 +284,7 @@ callsites.
 
 - `fn metadata(self: &Self) -> &Metadata<'_>`
 
-  Returns the [metadata](#metadata) associated with the callsite.
+  Returns the [metadata](#metadata)
 
 ## Functions
 

@@ -9,6 +9,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies](#dependencies)
+
 pin-project-lite = "0.2"
 ```
 
@@ -25,6 +26,7 @@ use pin_project_lite::pin_project;
 pin_project! {
     struct Struct<T, U> {
         #[pin](#pin)
+
         pinned: T,
         unpinned: U,
     }
@@ -50,7 +52,8 @@ use pin_project_lite::pin_project;
 pin_project! {
     #[project = EnumProj]
     enum Enum<T, U> {
-        Variant { #[pin](#pin) pinned: T, unpinned: U },
+        Variant { #[pin](#pin)
+ pinned: T, unpinned: U },
     }
 }
 
@@ -119,7 +122,8 @@ A macro that creates a projection type covering all the fields of struct.
 
 This macro creates a projection type according to the following rules:
 
-- For the field that uses `#[pin](#pin)` attribute, makes the pinned reference to the field.
+- For the field that uses `#[pin](#pin)
+` attribute, makes the pinned reference to the field.
 - For the other fields, makes the unpinned reference to the field.
 
 And the following methods are implemented on the original type:
@@ -144,7 +148,8 @@ to use pattern matching on the projected types.
 pin_project! {
     #[project = EnumProj]
     enum Enum<T> {
-        Variant { #[pin](#pin) field: T },
+        Variant { #[pin](#pin)
+ field: T },
     }
 }
 
@@ -202,6 +207,7 @@ use pin_project_lite::pin_project;
 pin_project! {
     struct Struct<T, U> {
         #[pin](#pin)
+
         pinned: T,
         unpinned: U,
     }
@@ -229,6 +235,7 @@ pin_project! {
     enum Enum<T> {
         Struct {
             #[pin](#pin)
+
             field: T,
         },
         Unit,
@@ -259,6 +266,7 @@ use pin_project_lite::pin_project;
 pin_project! {
     struct Struct<T> {
         #[pin](#pin)
+
         field: T,
     }
 }
@@ -284,12 +292,14 @@ pin_project! {
      #[project(!Unpin)]
      struct Struct<T> {
          #[pin](#pin)
+
          field: T,
      }
 }
 ```
 
-This is equivalent to using `#[pin](#pin)` attribute for a [`PhantomPinned`](#phantompinned) field.
+This is equivalent to using `#[pin](#pin)
+` attribute for a [`PhantomPinned`](#phantompinned) field.
 
 ```
 use std::marker::PhantomPinned;
@@ -300,12 +310,14 @@ pin_project! {
     struct Struct<T> {
         field: T,
         #[pin](#pin)
+
         _pin: PhantomPinned,
     }
 }
 ```
 
-Note that using [`PhantomPinned`](#phantompinned) without `#[pin](#pin)` or `#[project(!Unpin)]`
+Note that using [`PhantomPinned`](#phantompinned) without `#[pin](#pin)
+` or `#[project(!Unpin)]`
 attribute has no effect.
 
 # Pinned Drop
@@ -327,7 +339,8 @@ trait PinnedDrop {
 Note that the argument to `PinnedDrop::drop` cannot be named `self`.
 
 `pin_project!` implements the actual [`Drop`](#drop) trait via PinnedDrop you implemented. To
-explicitly drop a type that implements PinnedDrop, use the [drop](#drop) function just like dropping a
+explicitly drop a type that implements PinnedDrop, use the [drop](#drop)
+ function just like dropping a
 type that directly implements [`Drop`](#drop).
 
 `PinnedDrop::drop` will never be called more than once, just like [`Drop::drop`](#drop).
@@ -339,6 +352,7 @@ pin_project! {
     pub struct Struct<'a> {
         was_dropped: &'a mut bool,
         #[pin](#pin)
+
         field: u8,
     }
 

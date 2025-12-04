@@ -83,10 +83,12 @@ Equality is determined by comparing inode numbers on Unix and a combination
 of identifier, volume serial, and file size on Windows. Note that it's
 possible for comparing two handles to produce a false positive on some
 platforms. Namely, two handles can compare equal even if the two handles
-*don't* point to the same file. Check the [source](#source) for specific
+*don't* point to the same file. Check the [source](#source)
+ for specific
 implementation details.
 
-[source](#source): https://github.com/BurntSushi/same-file/tree/master/src
+[source](#source)
+: https://github.com/BurntSushi/same-file/tree/master/src
 
 #### Implementations
 

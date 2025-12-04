@@ -970,7 +970,8 @@ let all: Vec<Captures> = vm.captures_iter(
 assert_eq!(3, all.len());
 // The year from the second match is '2013'.
 let span = all[1].get_group_by_name("y").unwrap();
-assert_eq!("2013", &haystack[span](#span));
+assert_eq!("2013", &haystack[span](#span)
+);
 
 # Ok::<(), Box<dyn std::error::Error>>(())
 ```

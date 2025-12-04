@@ -124,45 +124,68 @@ here are some of the most popular ones:
 
 * Simple minimal loggers:
     * [env_logger](#env-logger)
+
     * [colog](#colog)
+
     * [simple_logger](#simple-logger)
+
     * [simplelog](#simplelog)
+
     * [pretty_env_logger](#pretty-env-logger)
+
     * [stderrlog](#stderrlog)
+
     * [flexi_logger](#flexi-logger)
+
     * [call_logger](#call-logger)
+
     * [std-logger]
     * [structured-logger]
     * [clang_log](#clang-log)
+
     * [ftail](#ftail)
+
 * Complex configurable frameworks:
     * [log4rs](#log4rs)
+
     * [logforth](#logforth)
+
     * [fern](#fern)
+
     * [spdlog-rs]
 * Adaptors for other facilities:
     * [syslog](#syslog)
+
     * [slog-stdlog]
     * [systemd-journal-logger]
     * [android_log](#android-log)
+
     * [win_dbg_logger](#win-dbg-logger)
+
     * [db_logger](#db-logger)
+
     * [log-to-defmt]
     * [logcontrol-log]
 * For WebAssembly binaries:
     * [console_log](#console-log)
+
 * For dynamic libraries:
     * You may need to construct an FFI-safe wrapper over `log` to initialize in your libraries
 * Utilities:
     * [log_err](#log-err)
+
     * [log-reload]
     * [alterable_logger](#alterable-logger)
+
 
 # Implementing a Logger
 
 Loggers implement the [`Log`](log/index.md) trait. Here's a very basic example that simply
-logs all messages at the [`Error`][level_link](#level-link), [`Warn`][level_link](#level-link) or
-[`Info`][level_link](#level-link) levels to stdout:
+logs all messages at the [`Error`][level_link](#level-link)
+, [`Warn`][level_link](#level-link)
+ or
+[`Info`][level_link](#level-link)
+ levels to stdout:
 
 ```
 use log::{Record, Level, Metadata};
@@ -190,10 +213,14 @@ Loggers are installed by calling the [`set_logger`](log/index.md) function. The 
 log level also needs to be adjusted via the [`set_max_level`](log/index.md) function. The
 logging facade uses this as an optimization to improve performance of log
 messages at levels that are disabled. It's important to set it, as it
-defaults to [`Off`][filter_link](#filter-link), so no log messages will ever be captured!
+defaults to [`Off`][filter_link](#filter-link)
+, so no log messages will ever be captured!
 In the case of our example logger, we'll want to set the maximum log level
-to [`Info`][filter_link](#filter-link), since we ignore any [`Debug`][level_link](#level-link) or
-[`Trace`][level_link](#level-link) level log messages. A logging implementation should
+to [`Info`][filter_link](#filter-link)
+, since we ignore any [`Debug`][level_link](#level-link)
+ or
+[`Trace`][level_link](#level-link)
+ level log messages. A logging implementation should
 provide a function that wraps a call to [`set_logger`](log/index.md) and
 [`set_max_level`](log/index.md), handling initialization of the logger:
 
@@ -275,6 +302,7 @@ level logs in release builds with the following configuration:
 
 ```toml
 [dependencies](#dependencies)
+
 log = { version = "0.4", features = ["max_level_debug", "release_max_level_warn"] }
 ```
 # Crate Feature Flags
@@ -288,6 +316,7 @@ configured in your `Cargo.toml`.
 
 ```toml
 [dependencies](#dependencies)
+
 log = { version = "0.4", features = ["std", "serde"] }
 ```
 
@@ -298,40 +327,62 @@ made using `log` 0.3 will forward transparently to a logger implementation using
 messages made using `log` 0.4 will forward to a logger implementation using `log` 0.3, but the
 module path and file name information associated with the message will unfortunately be lost.
 
-[level_link](#level-link): enum.Level.html
-[filter_link](#filter-link): enum.LevelFilter.html
+[level_link](#level-link)
+: enum.Level.html
+[filter_link](#filter-link)
+: enum.LevelFilter.html
 
 
 
 
-[env_logger](#env-logger): https://docs.rs/env_logger/*/env_logger/
-[colog](#colog): https://docs.rs/colog/*/colog/
-[simple_logger](#simple-logger): https://github.com/borntyping/rust-simple_logger
-[simplelog](#simplelog): https://github.com/drakulix/simplelog.rs
-[pretty_env_logger](#pretty-env-logger): https://docs.rs/pretty_env_logger/*/pretty_env_logger/
-[stderrlog](#stderrlog): https://docs.rs/stderrlog/*/stderrlog/
-[flexi_logger](#flexi-logger): https://docs.rs/flexi_logger/*/flexi_logger/
-[call_logger](#call-logger): https://docs.rs/call_logger/*/call_logger/
+[env_logger](#env-logger)
+: https://docs.rs/env_logger/*/env_logger/
+[colog](#colog)
+: https://docs.rs/colog/*/colog/
+[simple_logger](#simple-logger)
+: https://github.com/borntyping/rust-simple_logger
+[simplelog](#simplelog)
+: https://github.com/drakulix/simplelog.rs
+[pretty_env_logger](#pretty-env-logger)
+: https://docs.rs/pretty_env_logger/*/pretty_env_logger/
+[stderrlog](#stderrlog)
+: https://docs.rs/stderrlog/*/stderrlog/
+[flexi_logger](#flexi-logger)
+: https://docs.rs/flexi_logger/*/flexi_logger/
+[call_logger](#call-logger)
+: https://docs.rs/call_logger/*/call_logger/
 [std-logger]: https://docs.rs/std-logger/*/std_logger/
-[syslog](#syslog): https://docs.rs/syslog/*/syslog/
+[syslog](#syslog)
+: https://docs.rs/syslog/*/syslog/
 [slog-stdlog]: https://docs.rs/slog-stdlog/*/slog_stdlog/
-[log4rs](#log4rs): https://docs.rs/log4rs/*/log4rs/
-[logforth](#logforth): https://docs.rs/logforth/*/logforth/
-[fern](#fern): https://docs.rs/fern/*/fern/
+[log4rs](#log4rs)
+: https://docs.rs/log4rs/*/log4rs/
+[logforth](#logforth)
+: https://docs.rs/logforth/*/logforth/
+[fern](#fern)
+: https://docs.rs/fern/*/fern/
 [spdlog-rs]: https://docs.rs/spdlog-rs/*/spdlog/
 [systemd-journal-logger]: https://docs.rs/systemd-journal-logger/*/systemd_journal_logger/
-[android_log](#android-log): https://docs.rs/android_log/*/android_log/
-[win_dbg_logger](#win-dbg-logger): https://docs.rs/win_dbg_logger/*/win_dbg_logger/
-[db_logger](#db-logger): https://docs.rs/db_logger/*/db_logger/
+[android_log](#android-log)
+: https://docs.rs/android_log/*/android_log/
+[win_dbg_logger](#win-dbg-logger)
+: https://docs.rs/win_dbg_logger/*/win_dbg_logger/
+[db_logger](#db-logger)
+: https://docs.rs/db_logger/*/db_logger/
 [log-to-defmt]: https://docs.rs/log-to-defmt/*/log_to_defmt/
-[console_log](#console-log): https://docs.rs/console_log/*/console_log/
+[console_log](#console-log)
+: https://docs.rs/console_log/*/console_log/
 [structured-logger]: https://docs.rs/structured-logger/latest/structured_logger/
 [logcontrol-log]: https://docs.rs/logcontrol-log/*/logcontrol_log/
-[log_err](#log-err): https://docs.rs/log_err/*/log_err/
+[log_err](#log-err)
+: https://docs.rs/log_err/*/log_err/
 [log-reload]: https://docs.rs/log-reload/*/log_reload/
-[alterable_logger](#alterable-logger): https://docs.rs/alterable_logger/*/alterable_logger
-[clang_log](#clang-log): https://docs.rs/clang_log/latest/clang_log
-[ftail](#ftail): https://docs.rs/ftail/latest/ftail
+[alterable_logger](#alterable-logger)
+: https://docs.rs/alterable_logger/*/alterable_logger
+[clang_log](#clang-log)
+: https://docs.rs/clang_log/latest/clang_log
+[ftail](#ftail)
+: https://docs.rs/ftail/latest/ftail
 
 ## Structs
 
@@ -1072,11 +1123,11 @@ Typical usage includes: checking if a certain `Level` is enabled with
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &Level) -> $crate::option::Option<$crate::cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
 
 ##### `impl StructuralPartialEq`
 
@@ -1219,11 +1270,11 @@ to get and set the maximum log level with [`max_level()`](#max-level) and [`set_
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialOrd`
 

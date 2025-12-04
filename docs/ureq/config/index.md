@@ -230,19 +230,10 @@ Builder of [`Config`](ureq/config/index.md)
 
 #### Implementations
 
-- `fn build(self: Self) -> WithAgent<'a, S>`
-  Finalize the config
-
-- `fn run(self: Self) -> Result<Response<Body>, Error>`
-  Run the request with the agent in the ConfigBuilder
-
 - `fn build(self: Self) -> RequestBuilder<Any>`
   Finalize the config
 
 - `fn build(self: Self) -> Config`
-  Finalize the config
-
-- `fn build(self: Self) -> http::Request<S>`
   Finalize the config
 
 - `fn http_status_as_error(self: Self, v: bool) -> Self`
@@ -334,6 +325,15 @@ Builder of [`Config`](ureq/config/index.md)
 
 - `fn timeout_recv_body(self: Self, v: Option<Duration>) -> Self`
   Max duration for receving the response body.
+
+- `fn build(self: Self) -> WithAgent<'a, S>`
+  Finalize the config
+
+- `fn run(self: Self) -> Result<Response<Body>, Error>`
+  Run the request with the agent in the ConfigBuilder
+
+- `fn build(self: Self) -> http::Request<S>`
+  Finalize the config
 
 #### Trait Implementations
 

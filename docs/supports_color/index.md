@@ -38,7 +38,8 @@ struct ColorLevel {
 
 Color level support details.
 
-This type is returned from [on](#on). See documentation for its fields for more details.
+This type is returned from [on](#on)
+. See documentation for its fields for more details.
 
 #### Fields
 

@@ -62,7 +62,9 @@ fn is_equal(x: &[u8], y: &[u8]) -> bool
 Compare corresponding bytes in `x` and `y` for equality.
 
 That is, this returns true if and only if `x.len() == y.len()` and
-`x[i](#i) == y[i](#i)` for all `0 <= i < x.len()`.
+`x[i](#i)
+ == y[i](#i)
+` for all `0 <= i < x.len()`.
 
 # Inlining
 

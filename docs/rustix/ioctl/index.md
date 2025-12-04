@@ -237,6 +237,7 @@ are compatible with Rust language invariants.
  - [Solaris]
  - [illumos](#illumos)
 
+
 [Linux]: https://man7.org/linux/man-pages/man2/ioctl.2.html
 [Winsock]: https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-ioctlsocket
 [FreeBSD]: https://man.freebsd.org/cgi/man.cgi?query=ioctl&sektion=2
@@ -244,7 +245,8 @@ are compatible with Rust language invariants.
 [OpenBSD]: https://man.openbsd.org/ioctl.2
 [Apple]: https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/ioctl.2.html
 [Solaris]: https://docs.oracle.com/cd/E23824_01/html/821-1463/ioctl-2.html
-[illumos](#illumos): https://illumos.org/man/2/ioctl
+[illumos](#illumos)
+: https://illumos.org/man/2/ioctl
 
 ## Type Aliases
 

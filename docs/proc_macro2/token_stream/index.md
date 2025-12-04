@@ -20,8 +20,11 @@ An abstract stream of tokens, or more concretely a sequence of token trees.
 This type provides interfaces for iterating over token trees and for
 collecting token trees into one stream.
 
-Token stream is both the input and output of `#[proc_macro](#proc-macro)`,
-`#[proc_macro_attribute](#proc-macro-attribute)` and `#[proc_macro_derive](#proc-macro-derive)` definitions.
+Token stream is both the input and output of `#[proc_macro](#proc-macro)
+`,
+`#[proc_macro_attribute](#proc-macro-attribute)
+` and `#[proc_macro_derive](#proc-macro-derive)
+` definitions.
 
 #### Implementations
 

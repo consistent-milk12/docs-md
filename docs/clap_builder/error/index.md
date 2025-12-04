@@ -228,7 +228,7 @@ See [`Command::error`](#error) to create an error.
 
 ##### `impl From<F: ErrorFormatter>`
 
-- `fn from(e: io::Error) -> Self`
+- `fn from(e: fmt::Error) -> Self`
 
 ##### `impl From<T>`
 
@@ -237,7 +237,7 @@ See [`Command::error`](#error) to create an error.
 
 ##### `impl From<F: ErrorFormatter>`
 
-- `fn from(e: fmt::Error) -> Self`
+- `fn from(e: io::Error) -> Self`
 
 ##### `impl Into<T, U>`
 

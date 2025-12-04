@@ -401,7 +401,8 @@ use regex_automata::{
 fn find_leftmost_first(
     dfa: &DFA,
     cache: &mut Cache,
-    haystack: &[u8](#u8),
+    haystack: &[u8](#u8)
+,
 ) -> Result<Option<HalfMatch>, MatchError> {
     // The start state is determined by inspecting the position and the
     // initial bytes of the haystack. Note that start states can never

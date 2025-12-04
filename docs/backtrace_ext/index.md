@@ -77,7 +77,8 @@ fn backtrace() -> String {
                     continue;
                 }
      
-                for (idx, symbol) in symbols[subframes](#subframes).iter().enumerate() {
+                for (idx, symbol) in symbols[subframes](#subframes)
+.iter().enumerate() {
                     // Print symbols from this address,
                     // if there are several addresses
                     // we need to put it on next line

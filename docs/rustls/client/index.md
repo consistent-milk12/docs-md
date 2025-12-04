@@ -1476,14 +1476,14 @@ Controls how Encrypted Client Hello (ECH) is used in a client handshake.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(config: EchConfig) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(config: EchConfig) -> Self`
 
 ##### `impl From`
 
@@ -1663,14 +1663,14 @@ An error that can occur when building a certificate verifier.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: CertRevocationListError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 

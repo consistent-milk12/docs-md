@@ -1685,14 +1685,14 @@ Relocation table entry with explicit addend.
 
 #### Trait Implementations
 
-##### `impl From<E: Endian>`
-
-- `fn from(rel: Rel32<E>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<E: Endian>`
+
+- `fn from(rel: Rel32<E>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1918,14 +1918,14 @@ Relocation table entry with explicit addend.
 
 #### Trait Implementations
 
-##### `impl From<E: Endian>`
-
-- `fn from(rel: Rel64<E>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<E: Endian>`
+
+- `fn from(rel: Rel64<E>) -> Self`
 
 ##### `impl Into<T, U>`
 

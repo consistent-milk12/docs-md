@@ -376,7 +376,8 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](#input). This includes `&[u8](#u8)`, `&str` and `Input` itself.
+to an [`Input`](#input). This includes `&[u8](#u8)
+`, `&str` and `Input` itself.
 
 # Construction failure
 
@@ -475,6 +476,36 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
+  Returns true if and only if this automaton matches the haystack at any
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
+  Returns the location of the first match according to the match
+
+- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)`
+  Returns the location of the first overlapping match in the given
+
+- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>`
+  Returns an iterator of non-overlapping matches, using the match
+
+- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>`
+  Returns an iterator of overlapping matches. Stated differently, this
+
+- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
+  Replace all matches with a corresponding value in the `replace_with`
+
+- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
+  Replace all matches using raw bytes with a corresponding value in the
+
+- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
+  Replace all matches using a closure called on each match.
+
+- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
+  Replace all matches using raw bytes with a closure called on each
+
+- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
+  Returns an iterator of non-overlapping matches in the given
+
 - `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Result<Option<Match>, MatchError>`
   Returns the location of the first match according to the match
 
@@ -508,42 +539,6 @@ assert_eq!(result, "The slow grey sloth.");
 - `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> Result<(), std::io::Error>`
   Search the given reader and replace all matches of this automaton
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
-  Returns true if and only if this automaton matches the haystack at any
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
-  Returns the location of the first match according to the match
-
-- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)`
-  Returns the location of the first overlapping match in the given
-
-- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>`
-  Returns an iterator of non-overlapping matches, using the match
-
-- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>`
-  Returns an iterator of overlapping matches. Stated differently, this
-
-- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
-  Replace all matches with a corresponding value in the `replace_with`
-
-- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
-  Replace all matches using raw bytes with a corresponding value in the
-
-- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
-  Replace all matches using a closure called on each match.
-
-- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
-  Replace all matches using raw bytes with a closure called on each
-
-- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
-  Returns an iterator of non-overlapping matches in the given
-
-- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
-  Create a new Aho-Corasick automaton using the default configuration.
-
-- `fn builder() -> AhoCorasickBuilder`
-  A convenience method for returning a new Aho-Corasick builder.
-
 - `fn kind(self: &Self) -> AhoCorasickKind`
   Returns the kind of the Aho-Corasick automaton used by this searcher.
 
@@ -564,6 +559,12 @@ assert_eq!(result, "The slow grey sloth.");
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the approximate total amount of heap used by this automaton, in
+
+- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
+  Create a new Aho-Corasick automaton using the default configuration.
+
+- `fn builder() -> AhoCorasickBuilder`
+  A convenience method for returning a new Aho-Corasick builder.
 
 #### Trait Implementations
 
@@ -1160,14 +1161,14 @@ panics or silent logical errors.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: u8) -> PatternID`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: u8) -> PatternID`
 
 ##### `impl Into<T, U>`
 
@@ -1228,7 +1229,13 @@ panics or silent logical errors.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -1240,19 +1247,13 @@ panics or silent logical errors.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
 - `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1413,12 +1414,15 @@ haystack. If you instead use `&haystack[start..end]`, then you'll need to
 add `start` to any match position returned in order for it to be a correct
 index into `haystack`.
 
-# Example: `&str` and `&[u8](#u8)` automatically convert to an `Input`
+# Example: `&str` and `&[u8](#u8)
+` automatically convert to an `Input`
 
-There is a `From<&T> for Input` implementation for all `T: AsRef<[u8](#u8)>`.
+There is a `From<&T> for Input` implementation for all `T: AsRef<[u8](#u8)
+>`.
 Additionally, the [`AhoCorasick`](crate::AhoCorasick) search APIs accept
 a `Into<Input>`. These two things combined together mean you can provide
-things like `&str` and `&[u8](#u8)` to search APIs when the defaults are
+things like `&str` and `&[u8](#u8)
+` to search APIs when the defaults are
 suitable, but also an `Input` when they're not. For example:
 
 ```
@@ -1709,8 +1713,10 @@ convey which region of a haystack should be searched via routines like
 This is basically equivalent to a `std::ops::Range<usize>`, except this
 type implements `Copy` which makes it more ergonomic to use in the context
 of this crate. Indeed, `Span` exists only because `Range<usize>` does
-not implement `Copy`. Like a range, this implements `Index` for `[u8](#u8)`
-and `str`, and `IndexMut` for `[u8](#u8)`. For convenience, this also impls
+not implement `Copy`. Like a range, this implements `Index` for `[u8](#u8)
+`
+and `str`, and `IndexMut` for `[u8](#u8)
+`. For convenience, this also impls
 `From<Range>`, which means things like `Span::from(5..10)` work.
 
 There are no constraints on the values of a span. It is, for example, legal
@@ -1745,14 +1751,14 @@ to create a span where `start > end`.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(range: Range<usize>) -> Span`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(range: Range<usize>) -> Span`
 
 ##### `impl Into<T, U>`
 
@@ -1789,11 +1795,11 @@ to create a span where `start > end`.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Span) -> bool`
+- `fn eq(self: &Self, range: &Range<usize>) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, range: &Range<usize>) -> bool`
+- `fn eq(self: &Self, other: &Span) -> bool`
 
 ##### `impl StructuralPartialEq`
 

@@ -19,7 +19,8 @@ fn cached() -> bool
 
 Returns true if the current environment is found to probably be a CI
 environment or service, and caches the result for future calls. If you
-expect the environment to change, use [uncached](#uncached).
+expect the environment to change, use [uncached](#uncached)
+.
 
 ### `uncached`
 
@@ -29,5 +30,6 @@ fn uncached() -> bool
 
 Returns true if the current environment is found to probably be a CI
 environment or service. If you expect to call this multiple times without
-the environment changing, use [cached](#cached).
+the environment changing, use [cached](#cached)
+.
 

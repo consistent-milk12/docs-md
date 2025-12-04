@@ -1,8 +1,10 @@
 # Crate `syn`
 
-[![github](#github)](https://github.com/dtolnay/syn)&ensp;[![crates-io]](https://crates.io/crates/syn)&ensp;[![docs-rs]](crate)
+[![github](#github)
+](https://github.com/dtolnay/syn)&ensp;[![crates-io]](https://crates.io/crates/syn)&ensp;[![docs-rs]](crate)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+[github](#github)
+: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
@@ -61,10 +63,12 @@ user's crate.
 
 ```toml
 [dependencies](#dependencies)
+
 syn = "2.0"
 quote = "1.0"
 
 [lib](#lib)
+
 proc-macro = true
 ```
 
@@ -208,9 +212,11 @@ your own test cases, run `cargo expand --test the_test_case` where the last
 argument is the name of the test file without the `.rs` extension.
 
 This write-up by Brandon W Maister discusses debugging in more detail:
-[Debugging Rust's new Custom Derive system][debugging](#debugging).
+[Debugging Rust's new Custom Derive system][debugging](#debugging)
+.
 
-[debugging](#debugging): https://quodlibetor.github.io/posts/debugging-rusts-new-custom-derive-system/
+[debugging](#debugging)
+: https://quodlibetor.github.io/posts/debugging-rusts-new-custom-derive-system/
 
 <br>
 
@@ -293,7 +299,8 @@ additional contents are represented together in the `meta` field of the
 attribute in three possible varieties:
 
 - Meta::Path &mdash; attributes whose information content conveys just a
-  path, for example the `#[test](#test)` attribute.
+  path, for example the `#[test](#test)
+` attribute.
 
 - Meta::List &mdash; attributes that carry arbitrary tokens after the
   path, surrounded by a delimiter (parenthesis, bracket, or brace). For
@@ -317,6 +324,7 @@ All doc comments are represented in the NameValue style with a path of
   ^^^^^^^^^^^^^^^^^^^^^^^Meta::NameValue
 
 #[test](#test)
+
   ^^^^Meta::Path
 ```
 
@@ -342,7 +350,8 @@ use syn::parse::{Parse, ParseStream};
 //     struct S;
 struct UnitStruct {
     attrs: Vec<Attribute>,
-    struct_token: Token![struct](#struct),
+    struct_token: Token![struct](#struct)
+,
     name: Ident,
     semi_token: Token![;],
 }
@@ -1196,7 +1205,11 @@ Data structure sent to a `proc_macro_derive` macro.
 
 ##### `impl From`
 
-- `fn from(input: ItemUnion) -> DeriveInput`
+- `fn from(input: ItemStruct) -> DeriveInput`
+
+##### `impl From`
+
+- `fn from(input: ItemEnum) -> DeriveInput`
 
 ##### `impl From<T>`
 
@@ -1205,11 +1218,7 @@ Data structure sent to a `proc_macro_derive` macro.
 
 ##### `impl From`
 
-- `fn from(input: ItemStruct) -> DeriveInput`
-
-##### `impl From`
-
-- `fn from(input: ItemEnum) -> DeriveInput`
+- `fn from(input: ItemUnion) -> DeriveInput`
 
 ##### `impl Into<T, U>`
 
@@ -1296,6 +1305,7 @@ use syn::{parse_macro_input, ItemFn};
 
 # const IGNORE: &str = stringify! {
 #[proc_macro_attribute](#proc-macro-attribute)
+
 # };
 pub fn my_attr(args: TokenStream, input: TokenStream) -> TokenStream {
     let args = parse_macro_input!(args as MyAttrArgs);
@@ -1376,14 +1386,14 @@ pub fn my_derive(input: TokenStream) -> TokenStream {
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(err: LexError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(err: LexError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -5588,14 +5598,14 @@ A generic type parameter: `T: Into<String>`.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(ident: Ident) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(ident: Ident) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -11427,9 +11437,6 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 #### Implementations
 
-- `fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>`
-  Parse a `Path` containing no path arguments on any of its segments.
-
 - `fn is_ident<I>(self: &Self, ident: &I) -> bool`
   Determines whether this is a path of length 1 equal to the given
 
@@ -11439,16 +11446,19 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 - `fn require_ident(self: &Self) -> Result<&Ident>`
   An error if this path is not a single ident, as defined in `get_ident`.
 
+- `fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>`
+  Parse a `Path` containing no path arguments on any of its segments.
+
 #### Trait Implementations
+
+##### `impl From<T>`
+
+- `fn from(segment: T) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<T>`
-
-- `fn from(segment: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -13437,7 +13447,8 @@ Content of a compile-time structured attribute.
 
 ## Path
 
-A meta path is like the `test` in `#[test](#test)`.
+A meta path is like the `test` in `#[test](#test)
+`.
 
 ## List
 
@@ -13480,10 +13491,6 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(meta: MetaNameValue) -> Meta`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -13491,11 +13498,15 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(meta: Path) -> Meta`
+- `fn from(meta: MetaNameValue) -> Meta`
 
 ##### `impl From`
 
 - `fn from(meta: MetaList) -> Meta`
+
+##### `impl From`
+
+- `fn from(meta: Path) -> Meta`
 
 ##### `impl Into<T, U>`
 
@@ -13606,6 +13617,10 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(e: FieldsNamed) -> Fields`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -13614,10 +13629,6 @@ This type is a [syntax tree enum].
 ##### `impl From`
 
 - `fn from(e: FieldsUnnamed) -> Fields`
-
-##### `impl From`
-
-- `fn from(e: FieldsNamed) -> Fields`
 
 ##### `impl Into<T, U>`
 
@@ -14230,43 +14241,7 @@ see names getting repeated in your code, like accessing
 
 ##### `impl From`
 
-- `fn from(e: ExprMacro) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprInfer) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprReturn) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprRawAddr) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprCall) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprAwait) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprPath) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprContinue) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprIndex) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprStruct) -> Expr`
+- `fn from(e: ExprTry) -> Expr`
 
 ##### `impl From`
 
@@ -14274,47 +14249,7 @@ see names getting repeated in your code, like accessing
 
 ##### `impl From`
 
-- `fn from(e: ExprTry) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprBreak) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprTryBlock) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprRange) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprForLoop) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprAssign) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprLoop) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprParen) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprLet) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprUnsafe) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprConst) -> Expr`
+- `fn from(e: ExprMatch) -> Expr`
 
 ##### `impl From`
 
@@ -14322,7 +14257,19 @@ see names getting repeated in your code, like accessing
 
 ##### `impl From`
 
-- `fn from(e: ExprYield) -> Expr`
+- `fn from(e: ExprAwait) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprParen) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprRawAddr) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprTryBlock) -> Expr`
 
 ##### `impl From`
 
@@ -14330,19 +14277,71 @@ see names getting repeated in your code, like accessing
 
 ##### `impl From`
 
-- `fn from(e: ExprMethodCall) -> Expr`
+- `fn from(e: ExprReturn) -> Expr`
 
 ##### `impl From`
 
-- `fn from(e: ExprArray) -> Expr`
+- `fn from(e: ExprLoop) -> Expr`
 
 ##### `impl From`
 
-- `fn from(e: ExprTuple) -> Expr`
+- `fn from(e: ExprBreak) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprForLoop) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprLet) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprIndex) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprBinary) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprMacro) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprAssign) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprGroup) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprYield) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprConst) -> Expr`
 
 ##### `impl From`
 
 - `fn from(e: ExprIf) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprAsync) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprPath) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprMethodCall) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprTuple) -> Expr`
 
 ##### `impl From<T>`
 
@@ -14355,31 +14354,15 @@ see names getting repeated in your code, like accessing
 
 ##### `impl From`
 
-- `fn from(e: ExprBinary) -> Expr`
-
-##### `impl From`
-
 - `fn from(e: ExprLit) -> Expr`
 
 ##### `impl From`
 
-- `fn from(e: ExprGroup) -> Expr`
+- `fn from(e: ExprCall) -> Expr`
 
 ##### `impl From`
 
-- `fn from(e: ExprUnary) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprReference) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprAsync) -> Expr`
-
-##### `impl From`
-
-- `fn from(e: ExprMatch) -> Expr`
+- `fn from(e: ExprClosure) -> Expr`
 
 ##### `impl From`
 
@@ -14387,7 +14370,35 @@ see names getting repeated in your code, like accessing
 
 ##### `impl From`
 
-- `fn from(e: ExprClosure) -> Expr`
+- `fn from(e: ExprRange) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprStruct) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprContinue) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprReference) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprArray) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprInfer) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprUnsafe) -> Expr`
+
+##### `impl From`
+
+- `fn from(e: ExprUnary) -> Expr`
 
 ##### `impl Into<T, U>`
 
@@ -14470,9 +14481,10 @@ expression.
 
 #### Trait Implementations
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(index: usize) -> Member`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
@@ -14480,12 +14492,11 @@ expression.
 
 ##### `impl From`
 
+- `fn from(index: usize) -> Member`
+
+##### `impl From`
+
 - `fn from(ident: Ident) -> Member`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -14597,20 +14608,20 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: TypeParam) -> GenericParam`
-
-##### `impl From`
-
-- `fn from(e: ConstParam) -> GenericParam`
-
-##### `impl From`
-
 - `fn from(e: LifetimeParam) -> GenericParam`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(e: TypeParam) -> GenericParam`
+
+##### `impl From`
+
+- `fn from(e: ConstParam) -> GenericParam`
 
 ##### `impl Into<T, U>`
 
@@ -14764,20 +14775,20 @@ A trait or lifetime used as a bound on a type parameter.
 
 ##### `impl From`
 
-- `fn from(e: PreciseCapture) -> TypeParamBound`
+- `fn from(e: Lifetime) -> TypeParamBound`
 
 ##### `impl From`
 
 - `fn from(e: TraitBound) -> TypeParamBound`
 
-##### `impl From`
-
-- `fn from(e: Lifetime) -> TypeParamBound`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(e: PreciseCapture) -> TypeParamBound`
 
 ##### `impl Into<T, U>`
 
@@ -14865,6 +14876,11 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(e: PredicateType) -> WherePredicate`
@@ -14872,11 +14888,6 @@ This type is a [syntax tree enum].
 ##### `impl From`
 
 - `fn from(e: PredicateLifetime) -> WherePredicate`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -15048,16 +15059,16 @@ An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
 ##### `impl From`
 
+- `fn from(e: Receiver) -> FnArg`
+
+##### `impl From`
+
 - `fn from(e: PatType) -> FnArg`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(e: Receiver) -> FnArg`
 
 ##### `impl Into<T, U>`
 
@@ -15162,7 +15173,15 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
+- `fn from(e: ForeignItemStatic) -> ForeignItem`
+
+##### `impl From`
+
 - `fn from(e: ForeignItemMacro) -> ForeignItem`
+
+##### `impl From`
+
+- `fn from(e: ForeignItemType) -> ForeignItem`
 
 ##### `impl From`
 
@@ -15172,14 +15191,6 @@ This type is a [syntax tree enum].
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(e: ForeignItemStatic) -> ForeignItem`
-
-##### `impl From`
-
-- `fn from(e: ForeignItemType) -> ForeignItem`
 
 ##### `impl Into<T, U>`
 
@@ -15284,7 +15295,7 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: ImplItemFn) -> ImplItem`
+- `fn from(e: ImplItemType) -> ImplItem`
 
 ##### `impl From<T>`
 
@@ -15293,11 +15304,11 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: ImplItemType) -> ImplItem`
+- `fn from(e: ImplItemMacro) -> ImplItem`
 
 ##### `impl From`
 
-- `fn from(e: ImplItemMacro) -> ImplItem`
+- `fn from(e: ImplItemFn) -> ImplItem`
 
 ##### `impl From`
 
@@ -15524,39 +15535,7 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: ItemStatic) -> Item`
-
-##### `impl From`
-
-- `fn from(e: ItemFn) -> Item`
-
-##### `impl From`
-
-- `fn from(e: ItemExternCrate) -> Item`
-
-##### `impl From`
-
-- `fn from(e: ItemMacro) -> Item`
-
-##### `impl From`
-
 - `fn from(input: DeriveInput) -> Item`
-
-##### `impl From`
-
-- `fn from(e: ItemType) -> Item`
-
-##### `impl From`
-
-- `fn from(e: ItemTrait) -> Item`
-
-##### `impl From`
-
-- `fn from(e: ItemStruct) -> Item`
-
-##### `impl From`
-
-- `fn from(e: ItemImpl) -> Item`
 
 ##### `impl From<T>`
 
@@ -15565,15 +15544,23 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
+- `fn from(e: ItemMacro) -> Item`
+
+##### `impl From`
+
+- `fn from(e: ItemStruct) -> Item`
+
+##### `impl From`
+
 - `fn from(e: ItemTraitAlias) -> Item`
 
 ##### `impl From`
 
-- `fn from(e: ItemMod) -> Item`
+- `fn from(e: ItemFn) -> Item`
 
 ##### `impl From`
 
-- `fn from(e: ItemEnum) -> Item`
+- `fn from(e: ItemTrait) -> Item`
 
 ##### `impl From`
 
@@ -15581,7 +15568,11 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: ItemUnion) -> Item`
+- `fn from(e: ItemEnum) -> Item`
+
+##### `impl From`
+
+- `fn from(e: ItemImpl) -> Item`
 
 ##### `impl From`
 
@@ -15589,7 +15580,27 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
+- `fn from(e: ItemType) -> Item`
+
+##### `impl From`
+
 - `fn from(e: ItemForeignMod) -> Item`
+
+##### `impl From`
+
+- `fn from(e: ItemExternCrate) -> Item`
+
+##### `impl From`
+
+- `fn from(e: ItemUnion) -> Item`
+
+##### `impl From`
+
+- `fn from(e: ItemStatic) -> Item`
+
+##### `impl From`
+
+- `fn from(e: ItemMod) -> Item`
 
 ##### `impl Into<T, U>`
 
@@ -15771,14 +15782,14 @@ This type is a [syntax tree enum].
 
 - `fn from(e: TraitItemMacro) -> TraitItem`
 
-##### `impl From`
-
-- `fn from(e: TraitItemFn) -> TraitItem`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(e: TraitItemFn) -> TraitItem`
 
 ##### `impl From`
 
@@ -15889,18 +15900,9 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From`
 
-- `fn from(e: UseGlob) -> UseTree`
-
-##### `impl From`
-
-- `fn from(e: UseRename) -> UseTree`
+- `fn from(e: UseName) -> UseTree`
 
 ##### `impl From`
 
@@ -15908,11 +15910,20 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: UsePath) -> UseTree`
+- `fn from(e: UseGlob) -> UseTree`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
-- `fn from(e: UseName) -> UseTree`
+- `fn from(e: UseRename) -> UseTree`
+
+##### `impl From`
+
+- `fn from(e: UsePath) -> UseTree`
 
 ##### `impl Into<T, U>`
 
@@ -16050,23 +16061,19 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
+- `fn from(e: LitChar) -> Lit`
+
+##### `impl From`
+
 - `fn from(e: LitFloat) -> Lit`
 
 ##### `impl From`
 
-- `fn from(e: LitCStr) -> Lit`
-
-##### `impl From`
-
-- `fn from(e: LitBool) -> Lit`
-
-##### `impl From`
-
-- `fn from(e: LitByte) -> Lit`
-
-##### `impl From`
-
 - `fn from(e: LitStr) -> Lit`
+
+##### `impl From`
+
+- `fn from(e: LitByteStr) -> Lit`
 
 ##### `impl From`
 
@@ -16079,11 +16086,15 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: LitByteStr) -> Lit`
+- `fn from(e: LitByte) -> Lit`
 
 ##### `impl From`
 
-- `fn from(e: LitChar) -> Lit`
+- `fn from(e: LitCStr) -> Lit`
+
+##### `impl From`
+
+- `fn from(e: LitBool) -> Lit`
 
 ##### `impl Into<T, U>`
 
@@ -16643,21 +16654,10 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(e: PatType) -> Pat`
-
-##### `impl From`
-
-- `fn from(e: PatIdent) -> Pat`
-
-##### `impl From`
-
-- `fn from(e: PatSlice) -> Pat`
-
-##### `impl From`
-
-- `fn from(e: PatParen) -> Pat`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
@@ -16669,24 +16669,11 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: PatStruct) -> Pat`
+- `fn from(e: PatRange) -> Pat`
 
 ##### `impl From`
 
-- `fn from(e: PatTuple) -> Pat`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(e: PatRest) -> Pat`
-
-##### `impl From`
-
-- `fn from(e: PatWild) -> Pat`
+- `fn from(e: PatParen) -> Pat`
 
 ##### `impl From`
 
@@ -16694,15 +16681,27 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: PatRange) -> Pat`
+- `fn from(e: PatStruct) -> Pat`
 
 ##### `impl From`
 
-- `fn from(e: PatOr) -> Pat`
+- `fn from(e: PatType) -> Pat`
 
 ##### `impl From`
 
-- `fn from(e: PatLit) -> Pat`
+- `fn from(e: PatWild) -> Pat`
+
+##### `impl From`
+
+- `fn from(e: PatSlice) -> Pat`
+
+##### `impl From`
+
+- `fn from(e: PatTuple) -> Pat`
+
+##### `impl From`
+
+- `fn from(e: PatTupleStruct) -> Pat`
 
 ##### `impl From`
 
@@ -16710,7 +16709,19 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: PatTupleStruct) -> Pat`
+- `fn from(e: PatRest) -> Pat`
+
+##### `impl From`
+
+- `fn from(e: PatLit) -> Pat`
+
+##### `impl From`
+
+- `fn from(e: PatOr) -> Pat`
+
+##### `impl From`
+
+- `fn from(e: PatIdent) -> Pat`
 
 ##### `impl Into<T, U>`
 
@@ -17429,15 +17440,15 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: TypeInfer) -> Type`
+- `fn from(e: TypeGroup) -> Type`
+
+##### `impl From`
+
+- `fn from(e: TypePtr) -> Type`
 
 ##### `impl From`
 
 - `fn from(e: TypeImplTrait) -> Type`
-
-##### `impl From`
-
-- `fn from(e: TypeSlice) -> Type`
 
 ##### `impl From<T>`
 
@@ -17446,7 +17457,15 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: TypeTraitObject) -> Type`
+- `fn from(e: TypePath) -> Type`
+
+##### `impl From`
+
+- `fn from(e: TypeSlice) -> Type`
+
+##### `impl From`
+
+- `fn from(e: TypeInfer) -> Type`
 
 ##### `impl From`
 
@@ -17454,31 +17473,15 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
-- `fn from(e: TypeNever) -> Type`
-
-##### `impl From`
-
 - `fn from(e: TypeReference) -> Type`
 
 ##### `impl From`
 
-- `fn from(e: TypePtr) -> Type`
+- `fn from(e: TypeTraitObject) -> Type`
 
 ##### `impl From`
 
-- `fn from(e: TypeParen) -> Type`
-
-##### `impl From`
-
-- `fn from(e: TypeBareFn) -> Type`
-
-##### `impl From`
-
-- `fn from(e: TypePath) -> Type`
-
-##### `impl From`
-
-- `fn from(e: TypeGroup) -> Type`
+- `fn from(e: TypeNever) -> Type`
 
 ##### `impl From`
 
@@ -17486,7 +17489,15 @@ This type is a [syntax tree enum].
 
 ##### `impl From`
 
+- `fn from(e: TypeParen) -> Type`
+
+##### `impl From`
+
 - `fn from(e: TypeTuple) -> Type`
+
+##### `impl From`
+
+- `fn from(e: TypeBareFn) -> Type`
 
 ##### `impl Into<T, U>`
 
@@ -17672,7 +17683,8 @@ use syn::punctuated::Punctuated;
 //
 //     struct S(A, B);
 struct TupleStruct {
-    struct_token: Token![struct](#struct),
+    struct_token: Token![struct](#struct)
+,
     ident: Ident,
     paren_token: token::Paren,
     fields: Punctuated<Type, Token![,]>,
@@ -17720,7 +17732,8 @@ use syn::punctuated::Punctuated;
 //         b: B,
 //     }
 struct Struct {
-    struct_token: Token![struct](#struct),
+    struct_token: Token![struct](#struct)
+,
     ident: Ident,
     brace_token: token::Brace,
     fields: Punctuated<Field, Token![,]>,
@@ -17821,14 +17834,16 @@ use syn::parse::{Parse, ParseStream, Result};
 
 // `struct Foo;`
 pub struct UnitStruct {
-    struct_token: Token![struct](#struct),
+    struct_token: Token![struct](#struct)
+,
     ident: Ident,
     semi_token: Token![;],
 }
 
 impl Parse for UnitStruct {
     fn parse(input: ParseStream) -> Result<Self> {
-        let struct_token: Token![struct](#struct) = input.parse()?;
+        let struct_token: Token![struct](#struct)
+ = input.parse()?;
         let ident: Ident = input.parse()?;
         let semi_token = input.parse::<Token![;]>()?;
         Ok(UnitStruct { struct_token, ident, semi_token })
@@ -17844,7 +17859,8 @@ tokens from a span.
 # use syn::parse::{Parse, ParseStream, Result};
 #
 # struct UnitStruct {
-#     struct_token: Token![struct](#struct),
+#     struct_token: Token![struct](#struct)
+,
 #     ident: Ident,
 #     semi_token: Token![;],
 # }
@@ -17865,7 +17881,8 @@ fn make_unit_struct(name: Ident) -> UnitStruct {
 }
 
 # fn parse(input: ParseStream) -> Result<()> {
-if input.peek(Token![struct](#struct)) {
+if input.peek(Token![struct](#struct)
+) {
     let unit_struct: UnitStruct = input.parse()?;
     /* ... */
 }
@@ -18085,6 +18102,7 @@ impl Parse for MyMacroInput {
 
 # const IGNORE: &str = stringify! {
 #[proc_macro](#proc-macro)
+
 # };
 pub fn my_macro(tokens: TokenStream) -> TokenStream {
     let input = parse_macro_input!(tokens as MyMacroInput);
@@ -18121,6 +18139,7 @@ impl MyMacroInput {
 
 # const IGNORE: &str = stringify! {
 #[proc_macro](#proc-macro)
+
 # };
 pub fn my_macro(tokens: TokenStream) -> TokenStream {
     let input = parse_macro_input!(tokens with MyMacroInput::parse_alternate);

@@ -350,6 +350,12 @@ assert_eq!(None, it.next());
 - `fn try_captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryCapturesMatches<'r, 'c, 'h>`
   Returns an iterator over all non-overlapping `Captures` values. If no
 
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
+
 - `fn new(pattern: &str) -> Result<BoundedBacktracker, BuildError>`
   Parse the given regular expression using the default configuration and
 
@@ -391,12 +397,6 @@ assert_eq!(None, it.next());
 
 - `fn max_haystack_len(self: &Self) -> usize`
   Returns the maximum haystack length supported by this backtracker.
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
 
 #### Trait Implementations
 

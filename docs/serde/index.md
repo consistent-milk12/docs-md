@@ -59,7 +59,8 @@ for Serde by the community.
 - [Bencode], a simple binary format used in the BitTorrent protocol.
 - [Token streams], for processing Rust procedural macro input.
   *(deserialization only)*
-- [DynamoDB Items], the format used by [rusoto_dynamodb](#rusoto-dynamodb) to transfer data to
+- [DynamoDB Items], the format used by [rusoto_dynamodb](#rusoto-dynamodb)
+ to transfer data to
   and from DynamoDB.
 - [Hjson], a syntax extension to JSON designed around human reading and
   editing. *(deserialization only)*
@@ -88,7 +89,8 @@ for Serde by the community.
 [Bencode]: https://github.com/P3KI/bendy
 [Token streams]: https://github.com/oxidecomputer/serde_tokenstream
 [DynamoDB Items]: https://docs.rs/serde_dynamo
-[rusoto_dynamodb](#rusoto-dynamodb): https://docs.rs/rusoto_dynamodb
+[rusoto_dynamodb](#rusoto-dynamodb)
+: https://docs.rs/rusoto_dynamodb
 [Hjson]: https://github.com/Canop/deser-hjson
 [CSV]: https://docs.rs/csv
 

@@ -6,7 +6,8 @@
 
 Name resolvers.
 
-**NOTE resolver does not (yet) [follow semver][super](#super).**
+**NOTE resolver does not (yet) [follow semver][super](#super)
+.**
 
 _NOTE: Resolver is deep configuration of ureq and is not required for regular use._
 

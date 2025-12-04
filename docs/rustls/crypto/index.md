@@ -580,14 +580,14 @@ The result from [`ActiveKeyExchange::complete`](#complete) or [`ActiveKeyExchang
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(buf: Vec<u8>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(buf: Vec<u8>) -> Self`
 
 ##### `impl From`
 

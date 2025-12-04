@@ -179,6 +179,9 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
 
 #### Implementations
 
+- `fn builder() -> Builder`
+  Creates a new builder-style object to manufacture a `Response`
+
 - `fn new(body: T) -> Response<T>`
   Creates a new blank `Response` with the body
 
@@ -223,9 +226,6 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
 
 - `fn map<F, U>(self: Self, f: F) -> Response<U>`
   Consumes the response returning a new response with body mapped to the
-
-- `fn builder() -> Builder`
-  Creates a new builder-style object to manufacture a `Response`
 
 #### Trait Implementations
 
@@ -287,9 +287,9 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
 
 - `fn default() -> Response<T>`
 
-##### `impl ResponseExt`
-
 ##### `impl AsSendBody`
+
+##### `impl ResponseExt`
 
 ### `Parts`
 

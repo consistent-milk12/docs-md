@@ -213,7 +213,8 @@ scalar values.
 ```rust
 use regex_syntax::utf8::{Utf8Sequences, Utf8Sequence};
 
-fn matches(seqs: &[Utf8Sequence], bytes: &[u8](#u8)) -> bool {
+fn matches(seqs: &[Utf8Sequence], bytes: &[u8](#u8)
+) -> bool {
     for range in seqs {
         if range.matches(bytes) {
             return true;

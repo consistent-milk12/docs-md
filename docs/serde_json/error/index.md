@@ -78,15 +78,15 @@ deserializing JSON data.
 
 ##### `impl Error`
 
-- `fn source(self: &Self) -> Option<&dyn error::Error>`
-
-##### `impl Error`
-
 - `fn custom<T: Display>(msg: T) -> Error`
 
 - `fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
 
 - `fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+
+##### `impl Error`
+
+- `fn source(self: &Self) -> Option<&dyn error::Error>`
 
 ##### `impl ToString<T>`
 

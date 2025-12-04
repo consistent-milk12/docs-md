@@ -40,7 +40,8 @@ enum Item {
 }
 
 struct ItemStruct {
-    struct_token: Token![struct](#struct),
+    struct_token: Token![struct](#struct)
+,
     ident: Ident,
     brace_token: token::Brace,
     fields: Punctuated<Field, Token![,]>,
@@ -51,9 +52,11 @@ struct ItemStruct {
 impl Parse for Item {
     fn parse(input: ParseStream) -> Result<Self> {
         let lookahead = input.lookahead1();
-        if lookahead.peek(Token![struct](#struct)) {
+        if lookahead.peek(Token![struct](#struct)
+) {
             input.parse().map(Item::Struct)
-        } else if lookahead.peek(Token![enum](#enum)) {
+        } else if lookahead.peek(Token![enum](#enum)
+) {
             input.parse().map(Item::Enum)
         } else {
             Err(lookahead.error())
@@ -81,6 +84,7 @@ impl Parse for ItemStruct {
 
 # const IGNORE: &str = stringify! {
 #[proc_macro](#proc-macro)
+
 # };
 pub fn my_macro(tokens: TokenStream) -> TokenStream {
     let input = parse_macro_input!(tokens as Item);
@@ -209,6 +213,7 @@ use syn::{parse_macro_input, ItemFn};
 
 # const IGNORE: &str = stringify! {
 #[proc_macro_attribute](#proc-macro-attribute)
+
 # };
 pub fn my_attr(args: TokenStream, input: TokenStream) -> TokenStream {
     let args = parse_macro_input!(args as MyAttrArgs);
@@ -289,14 +294,14 @@ pub fn my_derive(input: TokenStream) -> TokenStream {
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(err: LexError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(err: LexError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -618,7 +623,8 @@ impl Parse for GenericParam {
             input.parse().map(GenericParam::Type)
         } else if lookahead.peek(Lifetime) {
             input.parse().map(GenericParam::Lifetime)
-        } else if lookahead.peek(Token![const](#const)) {
+        } else if lookahead.peek(Token![const](#const)
+) {
             input.parse().map(GenericParam::Const)
         } else {
             Err(lookahead.error())
@@ -942,6 +948,7 @@ use syn::parse::Nothing;
 
 # const IGNORE: &str = stringify! {
 #[proc_macro_attribute](#proc-macro-attribute)
+
 # };
 pub fn my_attr(args: TokenStream, input: TokenStream) -> TokenStream {
     parse_macro_input!(args as Nothing);

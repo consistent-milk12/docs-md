@@ -51,7 +51,8 @@ use flate2::read::DeflateDecoder;
 #    println!("{}", decode_reader(bytes).unwrap());
 # }
 // Uncompresses a Deflate Encoded vector of bytes and returns a string or error
-// Here &[u8](#u8) implements Read
+// Here &[u8](#u8)
+ implements Read
 fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
    let mut deflater = DeflateDecoder::new(&bytes[..]);
    let mut s = String::new();
@@ -61,12 +62,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 ```
 
 #### Implementations
-
-- `fn new(r: R) -> DeflateDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_buf(r: R, buf: Vec<u8>) -> DeflateDecoder<R>`
-  Same as `new`, but the intermediate buffer for data is specified.
 
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this decoder entirely, swapping out the input
@@ -85,6 +80,12 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the decompressor has produced.
+
+- `fn new(r: R) -> DeflateDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_buf(r: R, buf: Vec<u8>) -> DeflateDecoder<R>`
+  Same as `new`, but the intermediate buffer for data is specified.
 
 #### Trait Implementations
 
@@ -284,7 +285,8 @@ use flate2::read::GzDecoder;
 # }
 #
 // Uncompresses a Gz Encoded vector of bytes and returns a string or error
-// Here &[u8](#u8) implements Read
+// Here &[u8](#u8)
+ implements Read
 
 fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
    let mut gz = GzDecoder::new(&bytes[..]);
@@ -295,6 +297,9 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 ```
 
 #### Implementations
+
+- `fn new(r: R) -> GzDecoder<R>`
+  Creates a new decoder from the given reader, immediately parsing the
 
 - `fn header(self: &Self) -> Option<&GzHeader>`
   Returns the header associated with this stream, if it was valid.
@@ -307,9 +312,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn into_inner(self: Self) -> R`
   Consumes this decoder, returning the underlying reader.
-
-- `fn new(r: R) -> GzDecoder<R>`
-  Creates a new decoder from the given reader, immediately parsing the
 
 #### Trait Implementations
 
@@ -394,9 +396,6 @@ fn gzencode_hello_world() -> io::Result<Vec<u8>> {
 
 #### Implementations
 
-- `fn new(r: R, level: Compression) -> GzEncoder<R>`
-  Creates a new encoder which will use the given compression level.
-
 - `fn get_ref(self: &Self) -> &R`
   Acquires a reference to the underlying reader.
 
@@ -405,6 +404,9 @@ fn gzencode_hello_world() -> io::Result<Vec<u8>> {
 
 - `fn into_inner(self: Self) -> R`
   Returns the underlying stream, consuming this encoder
+
+- `fn new(r: R, level: Compression) -> GzEncoder<R>`
+  Creates a new encoder which will use the given compression level.
 
 #### Trait Implementations
 
@@ -495,7 +497,8 @@ use flate2::read::MultiGzDecoder;
 # }
 #
 // Uncompresses a Gz Encoded vector of bytes and returns a string or error
-// Here &[u8](#u8) implements Read
+// Here &[u8](#u8)
+ implements Read
 
 fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
    let mut gz = MultiGzDecoder::new(&bytes[..]);
@@ -506,6 +509,9 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 ```
 
 #### Implementations
+
+- `fn new(r: R) -> MultiGzDecoder<R>`
+  Creates a new decoder from the given reader, immediately parsing the
 
 - `fn header(self: &Self) -> Option<&GzHeader>`
   Returns the current header associated with this stream, if it's valid.
@@ -518,9 +524,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn into_inner(self: Self) -> R`
   Consumes this decoder, returning the underlying reader.
-
-- `fn new(r: R) -> MultiGzDecoder<R>`
-  Creates a new decoder from the given reader, immediately parsing the
 
 #### Trait Implementations
 
@@ -607,7 +610,8 @@ use flate2::read::ZlibDecoder;
 # }
 #
 // Uncompresses a Zlib Encoded vector of bytes and returns a string or error
-// Here &[u8](#u8) implements Read
+// Here &[u8](#u8)
+ implements Read
 
 fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
     let mut z = ZlibDecoder::new(&bytes[..]);
@@ -618,6 +622,18 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 ```
 
 #### Implementations
+
+- `fn new(r: R) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_buf(r: R, buf: Vec<u8>) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_decompress_and_buf(r: R, buf: Vec<u8>, decompression: Decompress) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
 
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this decoder entirely, swapping out the input
@@ -636,18 +652,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the decompressor has produced.
-
-- `fn new(r: R) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_buf(r: R, buf: Vec<u8>) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_decompress_and_buf(r: R, buf: Vec<u8>, decompression: Decompress) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
 
 #### Trait Implementations
 

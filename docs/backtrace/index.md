@@ -14,6 +14,7 @@ First, add this to your Cargo.toml
 
 ```toml
 [dependencies](#dependencies)
+
 backtrace = "0.3"
 ```
 

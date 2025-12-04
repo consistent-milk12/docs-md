@@ -1,8 +1,10 @@
 # Crate `proc_macro2`
 
-[![github](#github)](https://github.com/dtolnay/proc-macro2)&ensp;[![crates-io]](https://crates.io/crates/proc-macro2)&ensp;[![docs-rs]](crate)
+[![github](#github)
+](https://github.com/dtolnay/proc-macro2)&ensp;[![crates-io]](https://crates.io/crates/proc-macro2)&ensp;[![docs-rs]](crate)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+[github](#github)
+: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
@@ -15,7 +17,9 @@ crate. This library serves two purposes:
   main.rs.** Types from `proc_macro` are entirely specific to procedural
   macros and cannot ever exist in code outside of a procedural macro.
   Meanwhile `proc_macro2` types may exist anywhere including non-macro code.
-  By developing foundational libraries like [syn](#syn) and [quote](#quote) against
+  By developing foundational libraries like [syn](#syn)
+ and [quote](#quote)
+ against
   `proc_macro2` rather than `proc_macro`, the procedural macro ecosystem
   becomes easily applicable to many other use cases and we avoid
   reimplementing non-macro equivalents of those libraries.
@@ -26,8 +30,10 @@ crate. This library serves two purposes:
   a macro to be testable in isolation, they must be implemented using
   `proc_macro2`.
 
-[syn](#syn): https://github.com/dtolnay/syn
-[quote](#quote): https://github.com/dtolnay/quote
+[syn](#syn)
+: https://github.com/dtolnay/syn
+[quote](#quote)
+: https://github.com/dtolnay/quote
 
 # Usage
 
@@ -102,8 +108,11 @@ An abstract stream of tokens, or more concretely a sequence of token trees.
 This type provides interfaces for iterating over token trees and for
 collecting token trees into one stream.
 
-Token stream is both the input and output of `#[proc_macro](#proc-macro)`,
-`#[proc_macro_attribute](#proc-macro-attribute)` and `#[proc_macro_derive](#proc-macro-derive)` definitions.
+Token stream is both the input and output of `#[proc_macro](#proc-macro)
+`,
+`#[proc_macro_attribute](#proc-macro-attribute)
+` and `#[proc_macro_derive](#proc-macro-derive)
+` definitions.
 
 #### Implementations
 
@@ -761,15 +770,15 @@ if ident_string.len() > 60 {
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToTokens`
-
 ##### `impl IdentFragment`
+
+##### `impl ToTokens`
 
 ##### `impl Token`
 
-##### `impl IdentExt`
-
 ##### `impl Parse`
+
+##### `impl IdentExt`
 
 ### `Literal`
 
@@ -967,9 +976,9 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
-
 ##### `impl Token`
+
+##### `impl Parse`
 
 ## Enums
 
@@ -1014,18 +1023,6 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(g: Punct) -> Self`
-
-##### `impl From`
-
-- `fn from(g: Literal) -> Self`
-
-##### `impl From`
-
-- `fn from(g: Group) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -1034,6 +1031,18 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 ##### `impl From`
 
 - `fn from(g: Ident) -> Self`
+
+##### `impl From`
+
+- `fn from(g: Group) -> Self`
+
+##### `impl From`
+
+- `fn from(g: Punct) -> Self`
+
+##### `impl From`
+
+- `fn from(g: Literal) -> Self`
 
 ##### `impl Into<T, U>`
 

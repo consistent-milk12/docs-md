@@ -31,7 +31,7 @@ impl<'a> ImplRenderer<'a> {
     ///
     /// # Arguments
     ///
-    /// * `ctx` - Render context (implements RenderContext trait)
+    /// * `ctx` - Render context (implements `RenderContext` trait)
     /// * `current_file` - Path of the current file (for relative link calculation)
     pub fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self {
         Self { ctx, current_file }
@@ -70,8 +70,8 @@ impl<'a> ImplRenderer<'a> {
         // Sort trait impls by trait name + generics for deterministic output
         let type_renderer = TypeRenderer::new(self.ctx.krate());
         trait_impls.sort_by(|a: &&&Impl, b: &&&Impl| {
-            let key_a = Self::impl_sort_key(a, &type_renderer);
-            let key_b = Self::impl_sort_key(b, &type_renderer);
+            let key_a = Self::impl_sort_key(a, type_renderer);
+            let key_b = Self::impl_sort_key(b, type_renderer);
             key_a.cmp(&key_b)
         });
 
@@ -95,7 +95,7 @@ impl<'a> ImplRenderer<'a> {
     /// Generate a sort key for an impl block for deterministic ordering.
     ///
     /// Combines trait name, generic params, and for-type to create a unique key.
-    fn impl_sort_key(impl_block: &Impl, type_renderer: &TypeRenderer) -> String {
+    fn impl_sort_key(impl_block: &Impl, type_renderer: TypeRenderer) -> String {
         let trait_name = impl_block
             .trait_
             .as_ref()

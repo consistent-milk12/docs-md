@@ -8,7 +8,8 @@ This implementation features:
 - Zero dependencies.
 - Zero `unsafe`.
 - Decent performance (3-4 GB/s).
-- `#![no_std](#no-std)` support (with `default-features = false`).
+- `#![no_std](#no-std)
+` support (with `default-features = false`).
 
 ## Structs
 

@@ -592,18 +592,18 @@ instances for the same DER-encoded ASN.1 certificate bytes.
 
 - `type Target = T`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = Error`
 
 - `fn try_from(cert: &'a CertificateDer<'a>) -> Result<Self, <Self as >::Error>`
   Parse the ASN.1 DER-encoded X.509 encoding of the certificate
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -920,18 +920,18 @@ in [RFC 7250](https://www.rfc-editor.org/rfc/rfc7250).
 
 - `fn borrow_mut(self: &mut Self) -> &mut T`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = Error`
 
 - `fn try_from(spki: &'a SubjectPublicKeyInfoDer<'a>) -> Result<Self, <Self as >::Error>`
   Parse the ASN.1 DER-encoded SPKI encoding of the raw public key `spki`.
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1618,14 +1618,14 @@ May be either an owned, or a borrowed representation.
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(crl: BorrowedCertRevocationList<'a>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(crl: BorrowedCertRevocationList<'a>) -> Self`
 
 ##### `impl From`
 
@@ -1927,17 +1927,17 @@ See [RFC 5280 §5.3.1][1]
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = Error`
-
-- `fn try_from(value: u8) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = Error`
+
+- `fn try_from(value: u8) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

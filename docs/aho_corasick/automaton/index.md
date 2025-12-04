@@ -237,6 +237,12 @@ panics or silent logical errors.
 
 - `fn try_from(value: u32) -> Result<StateID, StateIDError>`
 
+##### `impl TryFrom`
+
+- `type Error = StateIDError`
+
+- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
+
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
@@ -248,12 +254,6 @@ panics or silent logical errors.
 - `type Error = StateIDError`
 
 - `fn try_from(value: u64) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 
@@ -951,7 +951,8 @@ use aho_corasick::{
 // if the given automaton does not support unanchored searches.
 fn find<A: Automaton>(
     aut: A,
-    haystack: &[u8](#u8),
+    haystack: &[u8](#u8)
+,
 ) -> Result<Option<Match>, MatchError> {
     let mut sid = aut.start_state(Anchored::No)?;
     let mut at = 0;
@@ -972,7 +973,8 @@ fn find<A: Automaton>(
         }
     }
     while at < haystack.len() {
-        sid = aut.next_state(Anchored::No, sid, haystack[at](#at));
+        sid = aut.next_state(Anchored::No, sid, haystack[at](#at)
+);
         if aut.is_special(sid) {
             if aut.is_dead(sid) {
                 return Ok(mat);

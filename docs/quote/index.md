@@ -1,8 +1,10 @@
 # Crate `quote`
 
-[![github](#github)](https://github.com/dtolnay/quote)&ensp;[![crates-io]](https://crates.io/crates/quote)&ensp;[![docs-rs]](https://docs.rs/quote)
+[![github](#github)
+](https://github.com/dtolnay/quote)&ensp;[![crates-io]](https://crates.io/crates/quote)&ensp;[![docs-rs]](https://docs.rs/quote)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+[github](#github)
+: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
@@ -31,6 +33,7 @@ macros.
 
 ```toml
 [dependencies](#dependencies)
+
 quote = "1.0"
 ```
 
@@ -39,13 +42,15 @@ quote = "1.0"
 # Example
 
 The following quasi-quoted block of code is something you might find in [a](#a)
+
 procedural macro having to do with data structure serialization. The `#var`
 syntax performs interpolation of runtime variables into the quoted tokens.
 Check out the documentation of the [`quote!`](#quote) macro for more detail about
 the syntax. See also the [`quote_spanned!`](#quote-spanned) macro which is important for
 implementing hygienic procedural macros.
 
-[a](#a): https://serde.rs/
+[a](#a)
+: https://serde.rs/
 
 ```
 # use quote::quote;
@@ -85,10 +90,12 @@ let tokens = quote! {
 
 When using `quote` in a build.rs or main.rs and writing the output out to a
 file, consider having the code generator pass the tokens through
-[prettyplease](#prettyplease) before writing. This way if an error occurs in the generated
+[prettyplease](#prettyplease)
+ before writing. This way if an error occurs in the generated
 code it is convenient for a human to read and debug.
 
-[prettyplease](#prettyplease): https://github.com/dtolnay/prettyplease
+[prettyplease](#prettyplease)
+: https://github.com/dtolnay/prettyplease
 
 ## Traits
 

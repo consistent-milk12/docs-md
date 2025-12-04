@@ -469,14 +469,14 @@ new variant is not considered a breaking change.
 
 - `fn from(err: hir::Error) -> Error`
 
+##### `impl From`
+
+- `fn from(err: ast::Error) -> Error`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(err: ast::Error) -> Error`
 
 ##### `impl Into<T, U>`
 

@@ -22,7 +22,8 @@ struct AlignAs<B: ?Sized, T> {
 
 A hack to align a smaller type `B` with a bigger type `T`.
 
-The usual use of this is with `B = [u8](#u8)` and `T = u32`. That is,
+The usual use of this is with `B = [u8](#u8)
+` and `T = u32`. That is,
 it permits aligning a sequence of bytes on a 4-byte boundary. This
 is useful in contexts where one wants to embed a serialized [dense
 DFA](crate::dfa::dense::DFA) into a Rust a program while guaranteeing the
@@ -92,7 +93,8 @@ An error that occurs when serializing an object from this crate.
 
 Serialization, as used in this crate, universally refers to the process
 of transforming a structure (like a DFA) into a custom binary format
-represented by `&[u8](#u8)`. To this end, serialization is generally infallible.
+represented by `&[u8](#u8)
+`. To this end, serialization is generally infallible.
 However, it can fail when caller provided buffer sizes are too small. When
 that occurs, a serialization error is reported.
 
@@ -163,7 +165,8 @@ An error that occurs when deserializing an object defined in this crate.
 
 Serialization, as used in this crate, universally refers to the process
 of transforming a structure (like a DFA) into a custom binary format
-represented by `&[u8](#u8)`. Deserialization, then, refers to the process of
+represented by `&[u8](#u8)
+`. Deserialization, then, refers to the process of
 cheaply converting this binary format back to the object's in-memory
 representation as defined in this crate. To the extent possible,
 deserialization will report this error whenever this process fails.

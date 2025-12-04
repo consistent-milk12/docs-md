@@ -37,12 +37,14 @@ following configuration:
 
 ```toml
 [dependencies](#dependencies)
+
 tracing = { version = "0.1", features = ["max_level_debug", "release_max_level_warn"] }
 ```
 ## Notes
 
 Please note that `tracing`'s static max level features do *not* control the
-[`log`](../../log/index.md) records that may be emitted when [`tracing`'s "log" feature flag][f](#f) is
+[`log`](../../log/index.md) records that may be emitted when [`tracing`'s "log" feature flag][f](#f)
+ is
 enabled. This is to allow `tracing` to be disabled entirely at compile time
 while still emitting `log` records --- such as when a library using
 `tracing` is used by an application using `log` that doesn't want to
@@ -54,7 +56,8 @@ desirable, `log` records may be disabled separately using [`log`'s static
 max level features][`log` crate].
 
 [`log` crate]: https://docs.rs/log/latest/log/#compile-time-filters
-[f](#f): https://docs.rs/tracing/latest/tracing/#emitting-log-records
+[f](#f)
+: https://docs.rs/tracing/latest/tracing/#emitting-log-records
 
 ## Functions
 

@@ -94,7 +94,8 @@ fn parser(logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) ->
 ```
 
 Make a parser that is usable with `parse_macro_input!` in a
-`#[proc_macro_attribute](#proc-macro-attribute)` macro.
+`#[proc_macro_attribute](#proc-macro-attribute)
+` macro.
 
 *Warning:* When parsing attribute args **other than** the
 `proc_macro::TokenStream` input of a `proc_macro_attribute`, you do **not**
@@ -128,6 +129,7 @@ use syn::{parse_macro_input, LitStr, Path};
 
 # const IGNORE: &str = stringify! {
 #[proc_macro_attribute](#proc-macro-attribute)
+
 # };
 pub fn tea(args: TokenStream, input: TokenStream) -> TokenStream {
     let mut kind: Option<LitStr> = None;
@@ -183,6 +185,7 @@ use syn::{parse_macro_input, LitStr, Path};
 
 # const IGNORE: &str = stringify! {
 #[proc_macro_attribute](#proc-macro-attribute)
+
 # };
 pub fn tea(args: TokenStream, input: TokenStream) -> TokenStream {
     let mut attrs = TeaAttributes::default();

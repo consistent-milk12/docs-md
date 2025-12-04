@@ -69,6 +69,7 @@ trait methods.
 #     }
 #
 #[inline](#inline)
+
 fn deserialize_bool<V>(self, visitor: V) -> Result<V::Value, Self::Error>
 where
     V: Visitor<'de>,

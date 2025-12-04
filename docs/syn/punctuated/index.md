@@ -175,11 +175,11 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl Extend<T, P>`
 
-- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, i: I)`
+- `fn extend<I: IntoIterator<Item = Pair<T, P>>>(self: &mut Self, i: I)`
 
 ##### `impl Extend<T, P>`
 
-- `fn extend<I: IntoIterator<Item = Pair<T, P>>>(self: &mut Self, i: I)`
+- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, i: I)`
 
 ##### `impl Index<T, P>`
 
@@ -745,6 +745,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Implementations
 
+- `fn cloned(self: Self) -> Pair<T, P>`
+
 - `fn into_value(self: Self) -> T`
   Extracts the syntax tree node from this punctuated pair, discarding the
 
@@ -765,8 +767,6 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_tuple(self: Self) -> (T, Option<P>)`
   Produces this punctuated pair as a tuple of syntax tree node and
-
-- `fn cloned(self: Self) -> Pair<T, P>`
 
 #### Trait Implementations
 

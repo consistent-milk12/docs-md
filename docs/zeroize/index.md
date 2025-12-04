@@ -18,7 +18,8 @@ thereof, implemented in pure Rust with no usage of FFI or assembly.
 - No insecure fallbacks!
 - No dependencies!
 - No FFI or inline assembly! **WASM friendly** (and tested)!
-- `#![no_std](#no-std)` i.e. **embedded-friendly**!
+- `#![no_std](#no-std)
+` i.e. **embedded-friendly**!
 - No functionality besides securely zeroing memory!
 - (Optional) Custom derive support for zeroing complex structures
 
@@ -246,14 +247,14 @@ struct Zeroizing<Z: Zeroize>();
 
 #### Trait Implementations
 
-##### `impl From<Z>`
-
-- `fn from(value: Z) -> Zeroizing<Z>`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<Z>`
+
+- `fn from(value: Z) -> Zeroizing<Z>`
 
 ##### `impl Into<T, U>`
 

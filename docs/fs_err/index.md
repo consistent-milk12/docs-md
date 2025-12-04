@@ -44,7 +44,8 @@ println!("Read foo.txt: {}", contents);
 fs-err uses [`std::io::Error`](#error) for all errors. This helps fs-err
 compose well with traits from the standard library like
 [`std::io::Read`](#read) and crates that use them like
-[`serde_json`][serde_json](#serde-json):
+[`serde_json`][serde_json](#serde-json)
+:
 
 ```no_run
 use fs_err::File;
@@ -89,6 +90,7 @@ To use with the `tokio` feature, use `debug_tokio`:
 
 ```toml
 [dependencies](#dependencies)
+
 fs-err = { features = ["debug_tokio", "tokio"] }
 ```
 
@@ -103,7 +105,8 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 [std::fs]: https://doc.rust-lang.org/stable/std/fs/
 [std::io::Error]: https://doc.rust-lang.org/stable/std/io/struct.Error.html
 [std::io::Read]: https://doc.rust-lang.org/stable/std/io/trait.Read.html
-[serde_json](#serde-json): https://crates.io/crates/serde_json
+[serde_json](#serde-json)
+: https://crates.io/crates/serde_json
 
 ## Modules
 

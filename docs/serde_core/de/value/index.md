@@ -3184,7 +3184,8 @@ struct BytesDeserializer<'a, E> {
 }
 ```
 
-A deserializer holding a `&[u8](#u8)`. Always calls [`Visitor::visit_bytes`](#visit-bytes).
+A deserializer holding a `&[u8](#u8)
+`. Always calls [`Visitor::visit_bytes`](#visit-bytes).
 
 #### Implementations
 
@@ -3328,7 +3329,8 @@ struct BorrowedBytesDeserializer<'de, E> {
 }
 ```
 
-A deserializer holding a `&[u8](#u8)` with a lifetime tied to another
+A deserializer holding a `&[u8](#u8)
+` with a lifetime tied to another
 deserializer. Always calls [`Visitor::visit_borrowed_bytes`](#visit-borrowed-bytes).
 
 #### Implementations

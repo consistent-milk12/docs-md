@@ -67,7 +67,8 @@ an entire paragraph at a time in order to find optimal line breaks
   use textwrap::core::Word;
   use textwrap::{wrap, Options, WrapAlgorithm};
   
-  fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize](#usize)) -> Vec<&'b [Word<'a>]> {
+  fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize](#usize)
+  ) -> Vec<&'b [Word<'a>]> {
       let mut lines = Vec::new();
       let mut step = 1;
       let mut start_idx = 0;
@@ -281,7 +282,8 @@ fn assign_days<'a>(tasks: &[Task<'a>], day_length: f64) -> Vec<(f64, Vec<&'a str
     let mut days = Vec::new();
     // Assign tasks to days. The assignment is a vector of slices,
     // with a slice per day.
-    let assigned_days: Vec<&[Task<'a>]> = wrap_first_fit(&tasks, &[day_length](#day-length));
+    let assigned_days: Vec<&[Task<'a>]> = wrap_first_fit(&tasks, &[day_length](#day-length)
+);
     for day in assigned_days.iter() {
         let last = day.last().unwrap();
         let work_hours: f64 = day.iter().map(|t| t.hours + t.sweep).sum();

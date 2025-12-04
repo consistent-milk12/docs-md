@@ -16,6 +16,7 @@ A SIMD-accelerated Adler-32 hash algorithm implementation.
 
 ```toml
 [dependencies](#dependencies)
+
 simd-adler32 = "*"
 ```
 

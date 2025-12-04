@@ -8,7 +8,8 @@ With rustix, you can write code like this:
 
 ```
 # #[cfg(feature = "net")]
-# fn read(sock: std::net::TcpStream, buf: &mut [u8](#u8)) -> std::io::Result<()> {
+# fn read(sock: std::net::TcpStream, buf: &mut [u8](#u8)
+) -> std::io::Result<()> {
 # use rustix::net::RecvFlags;
 let (nread, _received) = rustix::net::recv(&sock, buf, RecvFlags::PEEK)?;
 # let _ = nread;
@@ -20,7 +21,8 @@ instead of like this:
 
 ```
 # #[cfg(feature = "net")]
-# fn read(sock: std::net::TcpStream, buf: &mut [u8](#u8)) -> std::io::Result<()> {
+# fn read(sock: std::net::TcpStream, buf: &mut [u8](#u8)
+) -> std::io::Result<()> {
 # #[cfg(unix)]
 # use std::os::unix::io::AsRawFd;
 # #[cfg(target_os = "wasi")]

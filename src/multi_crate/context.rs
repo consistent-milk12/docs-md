@@ -584,6 +584,7 @@ impl<'a> SingleCrateView<'a> {
                 // Compute relative path to other crate
                 let from_depth = current_file.matches('/').count();
                 let prefix = "../".repeat(from_depth);
+
                 format!("{prefix}{resolved_crate}/{path}")
             };
 
@@ -672,11 +673,13 @@ impl RenderContext for SingleCrateView<'_> {
 
         // Compute relative path from current file
         let from_depth = current_file.matches('/').count();
+
         let relative_path = if from_depth == 0 {
             path.clone()
         } else {
             // Go up to crate root, then down to target
             let prefix = "../".repeat(from_depth);
+
             format!("{prefix}{path}")
         };
 

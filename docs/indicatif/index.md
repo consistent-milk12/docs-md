@@ -106,6 +106,7 @@ iterators with [Rayon](https://github.com/rayon-rs/rayon). In your
 
 ```toml
 [dependencies](#dependencies)
+
 indicatif = {version = "*", features = ["rayon"]}
 ```
 

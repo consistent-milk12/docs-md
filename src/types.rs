@@ -250,6 +250,7 @@ impl<'a> TypeRenderer<'a> {
                     .as_ref()
                     .map(|t| format!(" -> {}", self.render_type(t)))
                     .unwrap_or_default();
+
                 format!("({}){}", input_strs.join(", "), ret)
             }
 
@@ -268,9 +269,12 @@ impl<'a> TypeRenderer<'a> {
     fn render_generic_arg(self, arg: &GenericArg) -> String {
         match arg {
             GenericArg::Lifetime(lt) => lt.clone(),
+
             GenericArg::Type(ty) => self.render_type(ty),
+
             // For consts, prefer the computed value; fall back to the expression
             GenericArg::Const(c) => c.value.clone().unwrap_or_else(|| c.expr.clone()),
+
             GenericArg::Infer => "_".to_string(),
         }
     }
@@ -293,12 +297,14 @@ impl<'a> TypeRenderer<'a> {
             AssocItemConstraintKind::Equality(term) => {
                 format!("{}{args} = {}", constraint.name, self.render_term(term))
             }
+
             // Bound constraint: `Item: SomeTrait + OtherTrait`
             AssocItemConstraintKind::Constraint(bounds) => {
                 let bound_strs: Vec<String> = bounds
                     .iter()
                     .map(|b| self.render_generic_bound(b))
                     .collect();
+
                 format!("{}{args}: {}", constraint.name, bound_strs.join(" + "))
             }
         }
@@ -310,6 +316,7 @@ impl<'a> TypeRenderer<'a> {
     fn render_term(self, term: &Term) -> String {
         match term {
             Term::Type(ty) => self.render_type(ty),
+
             // For consts, prefer the computed value; fall back to the expression
             Term::Constant(c) => c.value.clone().unwrap_or_else(|| c.expr.clone()),
         }
@@ -332,15 +339,19 @@ impl<'a> TypeRenderer<'a> {
                 // Handle bound modifiers
                 let modifier_str = match modifier {
                     TraitBoundModifier::None => "",
+
                     TraitBoundModifier::Maybe => "?", // ?Sized
+
                     TraitBoundModifier::MaybeConst => "~const ", // ~const Trait
                 };
 
                 // Build the trait path with any generic args
                 let mut result = format!("{modifier_str}{}", trait_.path);
+
                 if let Some(args) = &trait_.args {
                     result.push_str(&self.render_generic_args(args));
                 }
+
                 result
             }
 
@@ -401,11 +412,13 @@ impl<'a> TypeRenderer<'a> {
             // Lifetime parameter: `'a` or `'a: 'b + 'c`
             GenericParamDefKind::Lifetime { outlives } => {
                 let mut result = param.name.clone();
+
                 // Add outlives bounds if present
                 if !outlives.is_empty() {
                     result.push_str(": ");
                     result.push_str(&outlives.join(" + "));
                 }
+
                 Some(result)
             }
 
@@ -421,6 +434,7 @@ impl<'a> TypeRenderer<'a> {
                 }
 
                 let mut result = param.name.clone();
+
                 // Add trait bounds if present
                 if !bounds.is_empty() {
                     let bound_strs: Vec<String> = bounds
@@ -430,6 +444,7 @@ impl<'a> TypeRenderer<'a> {
                     result.push_str(": ");
                     result.push_str(&bound_strs.join(" + "));
                 }
+
                 Some(result)
             }
 
@@ -492,6 +507,7 @@ impl<'a> TypeRenderer<'a> {
                     .iter()
                     .map(|b| self.render_generic_bound(b))
                     .collect();
+
                 format!("{}: {}", self.render_type(type_), bound_strs.join(" + "))
             }
 

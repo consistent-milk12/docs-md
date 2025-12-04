@@ -112,7 +112,8 @@ struct Digest {
 
 A calculated digest value.
 
-Use [`Self::as_ref`](#as-ref) to get the value as a `&[u8](#u8)`.
+Use [`Self::as_ref`](#as-ref) to get the value as a `&[u8](#u8)
+`.
 
 #### Implementations
 

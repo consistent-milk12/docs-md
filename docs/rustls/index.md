@@ -95,20 +95,26 @@ on this topic.
 ## Design overview
 
 Rustls is a low-level library. If your goal is to make HTTPS connections you may prefer
-to use a library built on top of Rustls like [hyper](#hyper) or [ureq](#ureq).
+to use a library built on top of Rustls like [hyper](#hyper)
+ or [ureq](#ureq)
+.
 
-[hyper](#hyper): https://crates.io/crates/hyper
-[ureq](#ureq): https://crates.io/crates/ureq
+[hyper](#hyper)
+: https://crates.io/crates/hyper
+[ureq](#ureq)
+: https://crates.io/crates/ureq
 
 ### Rustls does not take care of network IO
 It doesn't make or accept TCP connections, or do DNS, or read or write files.
 
-Our [examples](#examples) directory contains demos that show how to handle I/O using the
+Our [examples](#examples)
+ directory contains demos that show how to handle I/O using the
 [`stream::Stream`](#stream) helper, as well as more complex asynchronous I/O using [`mio`](#mio).
 If you're already using Tokio for an async runtime you may prefer to use [`tokio-rustls`](#tokio-rustls) instead
 of interacting with rustls directly.
 
-[examples](#examples): https://github.com/rustls/rustls/tree/main/examples
+[examples](#examples)
+: https://github.com/rustls/rustls/tree/main/examples
 
 ### Rustls provides encrypted pipes
 These are the [`ServerConnection`](#serverconnection) and [`ClientConnection`](#clientconnection) types.  You supply raw TLS traffic
@@ -219,10 +225,12 @@ errors.
 #
 # use std::io::{Read, Write, Result};
 # impl Read for Socket {
-#   fn read(&mut self, buf: &mut [u8](#u8)) -> Result<usize> { panic!() }
+#   fn read(&mut self, buf: &mut [u8](#u8)
+) -> Result<usize> { panic!() }
 # }
 # impl Write for Socket {
-#   fn write(&mut self, buf: &[u8](#u8)) -> Result<usize> { panic!() }
+#   fn write(&mut self, buf: &[u8](#u8)
+) -> Result<usize> { panic!() }
 #   fn flush(&mut self) -> Result<()> { panic!() }
 # }
 #
@@ -256,6 +264,7 @@ loop {
 # Examples
 
 You can find several client and server examples of varying complexity in the [examples](#examples)
+
 directory, including [`tlsserver-mio`](https://github.com/rustls/rustls/blob/main/examples/src/bin/tlsserver-mio.rs)
 and [`tlsclient-mio`](https://github.com/rustls/rustls/blob/main/examples/src/bin/tlsclient-mio.rs)
 \- full worked examples using [`mio`](#mio).
@@ -347,7 +356,8 @@ struct ConfigBuilder<Side: ConfigSide, State> {
 }
 ```
 
-A [builder](#builder) for [`ServerConfig`](#serverconfig) or [`ClientConfig`](#clientconfig) values.
+A [builder](#builder)
+ for [`ServerConfig`](#serverconfig) or [`ClientConfig`](#clientconfig) values.
 
 To get one of these, call [`ServerConfig::builder()`](#builder) or [`ClientConfig::builder()`](#builder).
 
@@ -456,7 +466,8 @@ ServerConfig::builder()
 
 # Types
 
-ConfigBuilder uses the [typestate](#typestate) pattern to ensure at compile time that each required
+ConfigBuilder uses the [typestate](#typestate)
+ pattern to ensure at compile time that each required
 configuration item is provided exactly once. This is tracked in the `State` type parameter,
 which can have these values:
 
@@ -479,8 +490,10 @@ Additionally, ServerConfig and ClientConfig carry a private field containing a
 [`ServerConfig::builder_with_provider()`](#builder-with-provider). This determines which cryptographic backend
 is used. The default is [the process-default provider](`CryptoProvider::get_default`).
 
-[builder](#builder): https://rust-unofficial.github.io/patterns/patterns/creational/builder.html
-[typestate](#typestate): http://cliffle.com/blog/rust-typestate/
+[builder](#builder)
+: https://rust-unofficial.github.io/patterns/patterns/creational/builder.html
+[typestate](#typestate)
+: http://cliffle.com/blog/rust-typestate/
 
 
 
@@ -497,17 +510,17 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 #### Implementations
 
-- `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
-  Enable Encrypted Client Hello (ECH) in the given mode.
+- `fn crypto_provider(self: &Self) -> &alloc::sync::Arc<CryptoProvider>`
+  Return the crypto provider used to construct this builder.
 
-- `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
-  Choose how to verify server certificates.
+- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain and matching private key.  This
 
-- `fn with_webpki_verifier(self: Self, verifier: alloc::sync::Arc<WebPkiServerVerifier>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
-  Choose how to verify server certificates using a webpki verifier.
+- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain, matching private key and optional OCSP
 
-- `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
-  Access configuration options whose use is dangerous and requires
+- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
+  Sets a custom [`ResolvesServerCert`].
 
 - `fn with_client_cert_verifier(self: Self, client_cert_verifier: alloc::sync::Arc<dyn ClientCertVerifier>) -> ConfigBuilder<ServerConfig, WantsServerCert>`
   Choose how to verify client certificates.
@@ -524,23 +537,23 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 - `fn with_client_cert_resolver(self: Self, client_auth_cert_resolver: alloc::sync::Arc<dyn ResolvesClientCert>) -> ClientConfig`
   Sets a custom [`ResolvesClientCert`].
 
-- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain and matching private key.  This
+- `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
+  Enable Encrypted Client Hello (ECH) in the given mode.
 
-- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain, matching private key and optional OCSP
+- `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
+  Choose how to verify server certificates.
 
-- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
-  Sets a custom [`ResolvesServerCert`].
+- `fn with_webpki_verifier(self: Self, verifier: alloc::sync::Arc<WebPkiServerVerifier>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
+  Choose how to verify server certificates using a webpki verifier.
+
+- `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
+  Access configuration options whose use is dangerous and requires
 
 - `fn with_safe_default_protocol_versions(self: Self) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
   Accept the default protocol versions: both TLS1.2 and TLS1.3 are enabled.
 
 - `fn with_protocol_versions(self: Self, versions: &[&'static versions::SupportedProtocolVersion]) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
   Use a specific set of protocol versions.
-
-- `fn crypto_provider(self: &Self) -> &alloc::sync::Arc<CryptoProvider>`
-  Return the crypto provider used to construct this builder.
 
 #### Trait Implementations
 
@@ -1006,21 +1019,6 @@ Interface shared by client and server connections.
 
 #### Implementations
 
-- `fn process_new_packets(self: &mut Self) -> Result<IoState, Error>`
-  Processes any new packets read by a previous call to
-
-- `fn export_keying_material<T: AsMut<[u8]>>(self: &Self, output: T, label: &[u8], context: Option<&[u8]>) -> Result<T, Error>`
-  Derives key material from the agreed connection secrets.
-
-- `fn dangerous_extract_secrets(self: Self) -> Result<ExtractedSecrets, Error>`
-  Extract secrets, so they can be used when configuring kTLS, for example.
-
-- `fn set_buffer_limit(self: &mut Self, limit: Option<usize>)`
-  Sets a limit on the internal buffers used to buffer
-
-- `fn refresh_traffic_keys(self: &mut Self) -> Result<(), Error>`
-  Sends a TLS1.3 `key_update` message to refresh a connection's keys.
-
 - `fn reader(self: &mut Self) -> Reader<'_>`
   Returns an object that allows reading plaintext.
 
@@ -1035,6 +1033,21 @@ Interface shared by client and server connections.
 
 - `fn write_tls(self: &mut Self, wr: &mut dyn io::Write) -> Result<usize, io::Error>`
   Writes TLS messages to `wr`.
+
+- `fn process_new_packets(self: &mut Self) -> Result<IoState, Error>`
+  Processes any new packets read by a previous call to
+
+- `fn export_keying_material<T: AsMut<[u8]>>(self: &Self, output: T, label: &[u8], context: Option<&[u8]>) -> Result<T, Error>`
+  Derives key material from the agreed connection secrets.
+
+- `fn dangerous_extract_secrets(self: Self) -> Result<ExtractedSecrets, Error>`
+  Extract secrets, so they can be used when configuring kTLS, for example.
+
+- `fn set_buffer_limit(self: &mut Self, limit: Option<usize>)`
+  Sets a limit on the internal buffers used to buffer
+
+- `fn refresh_traffic_keys(self: &mut Self) -> Result<(), Error>`
+  Sends a TLS1.3 `key_update` message to refresh a connection's keys.
 
 #### Trait Implementations
 
@@ -1092,7 +1105,7 @@ Interface shared by client and server connections.
 struct OtherError(alloc::sync::Arc<dyn StdError + Send + Sync>);
 ```
 
-Any other error that cannot be expressed by a more specific [`Error`](../clap_builder/clap_builder/error/index.md) variant.
+Any other error that cannot be expressed by a more specific [`Error`](../docs_md/docs_md/error/index.md) variant.
 
 For example, an `OtherError` could be produced by a custom crypto provider
 exposing a provider specific error.
@@ -1317,14 +1330,14 @@ The TLS encoding is defined in RFC5246: `opaque DistinguishedName<1..2^16-1>;`
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: Vec<u8>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -3414,11 +3427,11 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 ##### `impl From`
 
-- `fn from(x: u8) -> Self`
+- `fn from(e: InvalidMessage) -> Self`
 
 ##### `impl From`
 
-- `fn from(e: CertificateError) -> Self`
+- `fn from(x: u8) -> Self`
 
 ##### `impl From<T>`
 
@@ -3427,7 +3440,7 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 ##### `impl From`
 
-- `fn from(e: InvalidMessage) -> Self`
+- `fn from(e: CertificateError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -3518,14 +3531,14 @@ Values in this enum are taken from [RFC8879].
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4201,14 +4214,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4304,14 +4317,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -5234,7 +5247,11 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: EncryptedClientHelloError) -> Self`
+- `fn from(e: InconsistentKeys) -> Self`
+
+##### `impl From`
+
+- `fn from(e: PeerMisbehaved) -> Self`
 
 ##### `impl From`
 
@@ -5242,11 +5259,27 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(_: SystemTimeError) -> Self`
+- `fn from(_: rand::GetRandomFailed) -> Self`
+
+##### `impl From`
+
+- `fn from(e: EncryptedClientHelloError) -> Self`
 
 ##### `impl From`
 
 - `fn from(e: InvalidMessage) -> Self`
+
+##### `impl From`
+
+- `fn from(_: SystemTimeError) -> Self`
+
+##### `impl From`
+
+- `fn from(value: UnsupportedOperationError) -> Self`
+
+##### `impl From`
+
+- `fn from(value: OtherError) -> Self`
 
 ##### `impl From`
 
@@ -5259,27 +5292,7 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: PeerMisbehaved) -> Self`
-
-##### `impl From`
-
-- `fn from(value: UnsupportedOperationError) -> Self`
-
-##### `impl From`
-
-- `fn from(_: rand::GetRandomFailed) -> Self`
-
-##### `impl From`
-
-- `fn from(e: InconsistentKeys) -> Self`
-
-##### `impl From`
-
 - `fn from(e: CertRevocationListError) -> Self`
-
-##### `impl From`
-
-- `fn from(value: OtherError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -6037,12 +6050,12 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Implementations
 
+- `fn key_exchange_algorithm(self: Self) -> KeyExchangeAlgorithm`
+  Return the key exchange algorithm associated with this `NamedGroup`
+
 - `fn to_array(self: Self) -> [u8; 2]`
 
 - `fn as_str(self: &Self) -> Option<&'static str>`
-
-- `fn key_exchange_algorithm(self: Self) -> KeyExchangeAlgorithm`
-  Return the key exchange algorithm associated with this `NamedGroup`
 
 #### Trait Implementations
 

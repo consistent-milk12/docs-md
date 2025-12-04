@@ -59,10 +59,12 @@ of taste and depends on your code architecture.
 
 When this crate is compiled _without_ the `std` feature, then this type
 may used a spin lock internally. This can have subtle effects that may
-be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm) for a more
+be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm)
+ for a more
 thorough treatment of this topic.
 
-[spinharm](#spinharm): https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
+[spinharm](#spinharm)
+: https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
 
 # Example
 
@@ -89,11 +91,11 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn get(self: &Self) -> PoolGuard<'_, T, F>`
-  Get a value from the pool. The caller is guaranteed to have
-
 - `fn new(create: F) -> Pool<T, F>`
   Create a new pool. The given closure is used to create values in
+
+- `fn get(self: &Self) -> PoolGuard<'_, T, F>`
+  Get a value from the pool. The caller is guaranteed to have
 
 #### Trait Implementations
 

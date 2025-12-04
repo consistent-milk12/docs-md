@@ -654,14 +654,14 @@ A QUIC client or server connection.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(c: ClientConnection) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(c: ClientConnection) -> Self`
 
 ##### `impl From`
 

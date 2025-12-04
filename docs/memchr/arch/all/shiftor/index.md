@@ -4,9 +4,11 @@
 
 # Module `shiftor`
 
-An implementation of the [Shift-Or substring search algorithm][shiftor](#shiftor).
+An implementation of the [Shift-Or substring search algorithm][shiftor](#shiftor)
+.
 
-[shiftor](#shiftor): https://en.wikipedia.org/wiki/Bitap_algorithm
+[shiftor](#shiftor)
+: https://en.wikipedia.org/wiki/Bitap_algorithm
 
 ## Structs
 

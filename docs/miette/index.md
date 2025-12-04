@@ -114,6 +114,7 @@ struct MyBad {
     // The Source that we're gonna be printing snippets out of.
     // This can be a String if you don't have or care about file names.
     #[source_code](#source-code)
+
     src: NamedSource<String>,
     // Snippets and highlights can be included in the diagnostic!
     #[label("This bit here")]
@@ -200,7 +201,8 @@ use thiserror::Error;
 pub enum MyLibError {
     #[error(transparent)]
     #[diagnostic(code(my_lib::io_error))]
-    IoError(#[from](#from) std::io::Error),
+    IoError(#[from](#from)
+ std::io::Error),
 
     #[error("Oops it blew up")]
     #[diagnostic(code(my_lib::bad_code))]
@@ -209,7 +211,8 @@ pub enum MyLibError {
     #[error(transparent)]
     // Use `#[diagnostic(transparent)]` to wrap another [`Diagnostic`](#diagnostic). You won't see labels otherwise
     #[diagnostic(transparent)]
-    AnotherError(#[from](#from) AnotherError),
+    AnotherError(#[from](#from)
+ AnotherError),
 }
 
 #[derive(Error, Diagnostic, Debug)]
@@ -344,7 +347,8 @@ This feature is also available in the narratable printer. It will add a line
 after printing the error code showing a plain URL that you can visit.
 ">
 
-To use this, you can add a `url()` sub-param to your `#[diagnostic](#diagnostic)`
+To use this, you can add a `url()` sub-param to your `#[diagnostic](#diagnostic)
+`
 attribute:
 
 ```rust
@@ -407,6 +411,7 @@ use thiserror::Error;
 pub struct MyErrorType {
     // The `Source` that miette will use.
     #[source_code](#source-code)
+
     src: String,
 
     // This will underline/mark the specific code inside the larger
@@ -425,6 +430,7 @@ pub struct MyErrorType {
 
     // with or without label text
     #[label](#label)
+
     snip4: Option<SourceSpan>,
 }
 ```
@@ -457,6 +463,7 @@ use thiserror::Error;
 #[diagnostic()]
 struct Foo {
     #[help](#help)
+
     advice: Option<String>, // Can also just be `String`
 }
 
@@ -483,7 +490,8 @@ struct Foo;
 `miette` supports collecting multiple errors into a single diagnostic, and
 printing them all together nicely.
 
-To do so, use the `#[related](#related)` tag on any `IntoIter` field in your
+To do so, use the `#[related](#related)
+` tag on any `IntoIter` field in your
 `Diagnostic` type:
 
 ```rust
@@ -494,6 +502,7 @@ use thiserror::Error;
 #[error("oops")]
 struct MyError {
     #[related](#related)
+
     others: Vec<MyError>,
 }
 ```
@@ -514,6 +523,7 @@ use thiserror::Error;
 pub struct MyErrorType {
     // Note: label but no source code
     #[label](#label)
+
     err_span: SourceSpan,
 }
 
@@ -546,6 +556,7 @@ use thiserror::Error;
 pub struct InnerError {
     // Note: label but no source code
     #[label](#label)
+
     err_span: SourceSpan,
 }
 
@@ -555,9 +566,11 @@ pub struct InnerError {
 pub struct MultiError {
     // Note source code by no labels
     #[source_code](#source-code)
+
     source_code: String,
     // The source code above is used for these errors
     #[related](#related)
+
     related: Vec<InnerError>,
 }
 
@@ -583,7 +596,8 @@ fn main() -> miette::Result<()> {
 
 ### ... Diagnostic-based error sources.
 
-When one uses the `#[source](#source)` attribute on a field, that usually comes
+When one uses the `#[source](#source)
+` attribute on a field, that usually comes
 from `thiserror`, and implements a method for
 [`std::error::Error::source`](#source). This works in many cases, but it's lossy:
 if the source of the diagnostic is a diagnostic itself, the source will
@@ -594,7 +608,9 @@ that information right now, APIs who might want this information will have
 no access to it.
 
 If it's important for you for this information to be available to users,
-you can use `#[diagnostic_source](#diagnostic-source)` alongside `#[source](#source)`. Not that you
+you can use `#[diagnostic_source](#diagnostic-source)
+` alongside `#[source](#source)
+`. Not that you
 will likely want to use _both_:
 
 ```rust
@@ -605,7 +621,9 @@ use thiserror::Error;
 #[error("MyError")]
 struct MyError {
     #[source](#source)
+
     #[diagnostic_source](#diagnostic-source)
+
     the_cause: OtherError,
 }
 
@@ -670,7 +688,8 @@ println!("{:?}", report)
 
 To use the built-in highlighting functionality, you must enable the
 `syntect-highlighter` crate feature. When this feature is enabled, `miette` will
-automatically use the [`syntect`](#syntect) crate to highlight the `#[source_code](#source-code)`
+automatically use the [`syntect`](#syntect) crate to highlight the `#[source_code](#source-code)
+`
 field of your [`Diagnostic`](#diagnostic).
 
 Syntax detection with [`syntect`](#syntect) is handled by checking 2 methods on the [`SpanContents`](#spancontents) trait, in order:

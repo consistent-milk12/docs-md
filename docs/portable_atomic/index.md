@@ -29,6 +29,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies](#dependencies)
+
 portable-atomic = "1"
 ```
 
@@ -37,6 +38,7 @@ If you don't need them, disabling the default features may reduce code size and 
 
 ```toml
 [dependencies](#dependencies)
+
 portable-atomic = { version = "1", default-features = false }
 ```
 
@@ -44,6 +46,7 @@ If your crate supports no-std environment and requires atomic CAS, enabling the 
 
 ```toml
 [dependencies](#dependencies)
+
 portable-atomic = { version = "1.3", default-features = false, features = ["require-cas"] }
 ```
 
@@ -84,7 +87,8 @@ See the [`atomic128` module's readme](https://github.com/taiki-e/portable-atomic
   Implement `serde::{Serialize,Deserialize}` for atomic types.
 
   Note:
-  - The MSRV when this feature is enabled depends on the MSRV of [serde](#serde).
+  - The MSRV when this feature is enabled depends on the MSRV of [serde](#serde)
+.
 
 - <a name="optional-features-critical-section"></a>**`critical-section`**<br>
   When this feature is enabled, this crate uses [critical-section] to provide atomic CAS for targets where
@@ -113,6 +117,7 @@ See the [`atomic128` module's readme](https://github.com/taiki-e/portable-atomic
 
     ```toml
     [dependencies](#dependencies)
+
     portable-atomic = { version = "1", default-features = false, features = ["critical-section"] }
     crate-provides-critical-section-impl = "..."
     crate-uses-portable-atomic-as-feature = { version = "...", features = ["portable-atomic"] }
@@ -190,7 +195,8 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 [atomic-memcpy]: https://github.com/taiki-e/atomic-memcpy
 [critical-section]: https://github.com/rust-embedded/critical-section
 [rust-lang/rust#100650]: https://github.com/rust-lang/rust/issues/100650
-[serde](#serde): https://github.com/serde-rs/serde
+[serde](#serde)
+: https://github.com/serde-rs/serde
 
 <!-- tidy:sync-markdown-to-rustdoc:end -->
 
@@ -287,15 +293,15 @@ assembly.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(b: bool) -> Self`
-  Converts a `bool` into an `AtomicBool`.
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(b: bool) -> Self`
+  Converts a `bool` into an `AtomicBool`.
 
 ##### `impl Into<T, U>`
 
@@ -602,14 +608,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: isize) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: isize) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -938,14 +944,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: i8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1274,14 +1280,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1442,14 +1448,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1610,14 +1616,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: i32) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i32) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1778,14 +1784,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: u32) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: u32) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1946,14 +1952,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i64) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i64) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2282,14 +2288,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: i128) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i128) -> Self`
 
 ##### `impl Into<T, U>`
 

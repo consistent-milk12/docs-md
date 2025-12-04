@@ -442,16 +442,17 @@ struct Aad<A>();
 The additionally authenticated data (AAD) for an opening or sealing
 operation. This data is authenticated but is **not** encrypted.
 
-The type `A` could be a byte slice `&[u8](#u8)`, a byte array `[u8; N]`
+The type `A` could be a byte slice `&[u8](#u8)
+`, a byte array `[u8; N]`
 for some constant `N`, `Vec<u8>`, etc.
 
 #### Implementations
 
-- `fn from(aad: A) -> Self`
-  Construct the `Aad` from the given bytes.
-
 - `fn empty() -> Self`
   Construct an empty `Aad`.
+
+- `fn from(aad: A) -> Self`
+  Construct the `Aad` from the given bytes.
 
 #### Trait Implementations
 

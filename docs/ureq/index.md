@@ -30,9 +30,11 @@
  the API simple and keeps dependencies to a minimum. For TLS, ureq uses
  rustls or native-tls.
 
- See the [changelog](#changelog) for details of recent releases.
+ See the [changelog](#changelog)
+ for details of recent releases.
 
- [changelog](#changelog): https://github.com/algesten/ureq/blob/main/CHANGELOG.md
+ [changelog](#changelog)
+: https://github.com/algesten/ureq/blob/main/CHANGELOG.md
 
  # Usage
 
@@ -112,7 +114,7 @@
 
  ureq returns errors via `Result<T, ureq::Error>`. That includes I/O errors,
  protocol errors. By default, also HTTP status code errors (when the
- server responded 4xx or 5xx) results in [`Error`](../clap_builder/clap_builder/error/index.md).
+ server responded 4xx or 5xx) results in [`Error`](../docs_md/docs_md/error/index.md).
 
  This behavior can be turned off via [`http_status_as_error()`](#http-status-as-error)
 
@@ -298,7 +300,8 @@
  The library will send a `Content-Length` header on requests with bodies of
  known size, in other words, if the body to send is one of:
 
- * `&[u8](#u8)`
+ * `&[u8](#u8)
+`
  * `&[u8; N]`
  * `&str`
  * `String`
@@ -1178,6 +1181,12 @@ make an API for sending requests.
 
 #### Implementations
 
+- `fn call(self: Self) -> Result<Response<Body>, Error>`
+  Sends the request and blocks the caller until we receive a response.
+
+- `fn force_send_body(self: Self) -> RequestBuilder<WithBody>`
+  Force sending a body.
+
 - `fn content_type<V>(self: Self, content_type: V) -> Self`
   Set the content-type header.
 
@@ -1189,12 +1198,6 @@ make an API for sending requests.
 
 - `fn send_form<I, K, V>(self: Self, iter: I) -> Result<Response<Body>, Error>`
   Send form encoded data.
-
-- `fn call(self: Self) -> Result<Response<Body>, Error>`
-  Sends the request and blocks the caller until we receive a response.
-
-- `fn force_send_body(self: Self) -> RequestBuilder<WithBody>`
-  Force sending a body.
 
 - `fn method_ref(self: &Self) -> Option<&Method>`
   Get the HTTP Method for this request.
@@ -1484,7 +1487,8 @@ Request body for sending data via POST, PUT and PATCH.
 
 Typically not interacted with directly since the trait [`AsSendBody`](#assendbody) is implemented
 for the majority of the types of data a user might want to send to a remote server.
-That means if you want to send things like `String`, `&str` or `[u8](#u8)`, they can be
+That means if you want to send things like `String`, `&str` or `[u8](#u8)
+`, they can be
 used directly. See documentation for [`AsSendBody`](#assendbody).
 
 The exception is when using [`Read`](#read) trait bodies, in which case we wrap the request
@@ -1507,14 +1511,14 @@ body directly. See below [`SendBody::from_reader`](#from-reader).
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1647,17 +1651,17 @@ Proxy protocol
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = Error`
 
 - `fn try_from(scheme: &str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1757,7 +1761,7 @@ Errors from ureq.
   
   This is a fallback error when there is no other explanation as to
   why a connector chain didn't produce a connection. The idea is that the connector
-  chain would return some other [`Error`](../clap_builder/clap_builder/error/index.md) rather than rely om this value.
+  chain would return some other [`Error`](../docs_md/docs_md/error/index.md) rather than rely om this value.
   
   Typically bespoke connector chains should, as far as possible, map their underlying
   errors to [`Error::Io`](#io) and use the [`io::ErrorKind`](#errorkind) to provide a reason.
@@ -1833,7 +1837,7 @@ Errors from ureq.
   map to any other error. For connector chains we recommend:
   
   1. Map to [`Error::Io`](#io) as far as possible.
-  2. Map to other [`Error`](../clap_builder/clap_builder/error/index.md) where reasonable.
+  2. Map to other [`Error`](../docs_md/docs_md/error/index.md) where reasonable.
   3. Fall back on [`Error::Other`](#other).
   4. As a last resort [`Error::ConnectionFailed`](#connectionfailed).
   
@@ -1846,14 +1850,6 @@ Errors from ureq.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: ureq_proto::Error) -> Self`
-
-##### `impl From`
-
-- `fn from(value: http::Error) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -1861,7 +1857,15 @@ Errors from ureq.
 
 ##### `impl From`
 
+- `fn from(value: ureq_proto::Error) -> Self`
+
+##### `impl From`
+
 - `fn from(e: io::Error) -> Self`
+
+##### `impl From`
+
+- `fn from(value: http::Error) -> Self`
 
 ##### `impl From`
 

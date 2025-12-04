@@ -97,6 +97,7 @@ impl Parser {
         // Deserialize the JSON into the Crate type from rustdoc-types.
         // This validates the structure against the expected schema.
         let krate: Crate = serde_json::from_str(content).map_err(Error::JsonParse)?;
+
         Ok(krate)
     }
 }

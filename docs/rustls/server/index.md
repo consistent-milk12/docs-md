@@ -938,14 +938,14 @@ application can communicate failure to the client via [`AcceptedAlert::write()`]
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(conn: ConnectionCommon<ServerConnectionData>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(conn: ConnectionCommon<ServerConnectionData>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1607,14 +1607,14 @@ Values in this enum are taken from the various RFCs covering TLS, and are listed
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1708,14 +1708,14 @@ An error that can occur when building a certificate verifier.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: CertRevocationListError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 

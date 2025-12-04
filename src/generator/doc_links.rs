@@ -2,6 +2,20 @@
 //!
 //! This module provides [`DocLinkProcessor`] which transforms rustdoc
 //! intra-doc link syntax into proper markdown links.
+//!
+//! # Processing Pipeline
+//! The processor applies transformations in this order:
+//! 1. Strip markdown reference definitions
+//! 2. Unhide rustdoc hidden lines in code blocks
+//! 3. Process reference-style links `[text][`ref`]`
+//! 4. Process path reference links `[text][crate::path]`
+//! 5. Process method links `[Type::method]`
+//! 6. Process backtick links `[`Name`]`
+//! 7. Process plain links `[name]`
+//! 8. Convert HTML-style rustdoc links
+//! 9. Clean up blank lines
+//!
+//! Links inside code blocks are protected from transformation.
 
 use crate::linker::LinkRegistry;
 use regex::Regex;
@@ -9,65 +23,208 @@ use rustdoc_types::{Crate, Id, ItemKind};
 use std::collections::HashMap;
 use std::sync::LazyLock;
 
-/// Regex for HTML-style rustdoc links, used by standalone processing.
+// =============================================================================
+// Static Regex Patterns (compiled once, reused everywhere)
+// =============================================================================
+
+/// Regex for HTML-style rustdoc links.
+/// Matches: `(struct.Name.html)` or `(enum.Name.html#method.foo)`
 static HTML_LINK_RE: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(
-        r"\((struct|enum|trait|fn|type|macro|constant)\.([A-Za-z_][A-Za-z0-9_]*)\.html(?:#([a-z]+)\.([A-Za-z_][A-Za-z0-9_]*))?\)"
-    ).unwrap()
+    Regex::new(concat!(
+        r"\((struct|enum|trait|fn|type|macro|constant|mod)\.",
+        r"([A-Za-z_][A-Za-z0-9_]*)\.html",
+        r"(?:#([a-z]+)\.([A-Za-z_][A-Za-z0-9_]*))?\)",
+    ))
+    .unwrap()
 });
 
-/// Regex for path-style reference links, used by standalone processing.
+/// Regex for path-style reference links.
+///
+/// Matches: `[display][crate::path::Item]`
+///
+/// Used for rustdoc's reference-style intra-doc links where the display text
+/// differs from the path reference.
+///
+/// # Capture Groups
+/// - Group 1: Display text (anything except `]`)
+/// - Group 2: Rust path with `::` separators (e.g., `crate::module::Item`)
+///
+/// # Pattern Breakdown
+/// ```text
+/// \[([^\]]+)\]              # [display text] - capture non-] chars
+/// \[                        # Opening bracket for reference
+/// ([a-zA-Z_][a-zA-Z0-9_]*   # First path segment (valid Rust identifier)
+/// (?:::[a-zA-Z_][a-zA-Z0-9_]*)+  # One or more ::segment pairs (requires at least one ::)
+/// )\]                       # Close capture and bracket
+/// ```
+///
+/// # Note
+/// The pattern requires at least one `::` separator, so it won't match
+/// single identifiers like `[text][Name]`.
 static PATH_REF_LINK_RE: LazyLock<Regex> = LazyLock::new(|| {
     Regex::new(r"\[([^\]]+)\]\[([a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z_][a-zA-Z0-9_]*)+)\]").unwrap()
 });
 
+/// Regex for backtick code links.
+///
+/// Matches: `` [`Name`] `` (the most common intra-doc link format)
+///
+/// This is the primary pattern for rustdoc intra-doc links. The backticks
+/// indicate the link should be rendered as inline code.
+///
+/// # Capture Groups
+/// - Group 1: The link text inside backticks (e.g., `Name`, `path::Item`)
+///
+/// # Pattern Breakdown
+/// ```text
+/// \[`        # Literal "[`" - opening bracket and backtick
+/// ([^`]+)    # Capture: one or more non-backtick characters
+/// `\]        # Literal "`]" - closing backtick and bracket
+/// ```
+///
+/// # Processing Note
+/// The code checks if the match is followed by `(` to avoid double-processing
+/// already-converted markdown links like `` [`Name`](url) ``.
+static BACKTICK_LINK_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\[`([^`]+)`\]").unwrap());
+
+/// Regex for reference-style links with backticks.
+///
+/// Matches: `` [display text][`ref`] ``
+///
+/// This pattern handles rustdoc reference-style links where custom display
+/// text links to a backtick-wrapped reference.
+///
+/// # Capture Groups
+/// - Group 1: Display text (what the user sees)
+/// - Group 2: Reference text inside backticks (the actual link target)
+///
+/// # Pattern Breakdown
+/// ```text
+/// \[([^\]]+)\]   # [display text] - capture anything except ]
+/// \[`            # Opening "[`" for the reference
+/// ([^`]+)        # Capture: reference name (non-backtick chars)
+/// `\]            # Closing "`]"
+/// ```
+///
+/// # Example
+/// `` [custom text][`HashMap`] `` renders as "custom text" linking to `HashMap`.
+static REFERENCE_LINK_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"\[([^\]]+)\]\[`([^`]+)`\]").unwrap());
+
+/// Regex for markdown reference definitions.
+///
+/// Matches: `` [`Name`]: path::to::item `` at line start
+///
+/// These are markdown reference definition lines that rustdoc uses internally.
+/// We strip these from output since intra-doc links are resolved directly.
+///
+/// # Pattern Breakdown
+/// ```text
+/// (?m)       # Multi-line mode: ^ and $ match line boundaries
+/// ^          # Start of line
+/// \s*        # Optional leading whitespace
+/// \[`[^`]+`\]  # Backtick link syntax (not captured)
+/// :          # Literal colon separator
+/// \s*        # Optional whitespace after colon
+/// \S+        # The target path (non-whitespace chars)
+/// \s*        # Optional trailing whitespace
+/// $          # End of line
+/// ```
+///
+/// # Note
+/// This pattern doesn't capture groups because it's used with `replace_all`
+/// to remove entire lines.
+static REFERENCE_DEF_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"(?m)^\s*\[`[^`]+`\]:\s*\S+\s*$").unwrap());
+
+/// Regex for plain identifier links.
+///
+/// Matches: `[name]` where name is a valid Rust identifier
+///
+/// This handles the simplest intra-doc link format without backticks.
+/// Used less frequently than backtick links but still valid rustdoc syntax.
+///
+/// # Capture Groups
+/// - Group 1: The identifier name
+///
+/// # Pattern Breakdown
+/// ```text
+/// \[                      # Opening bracket
+/// ([a-zA-Z_]              # Capture start: letter or underscore (Rust identifier rules)
+/// [a-zA-Z0-9_]*)          # Followed by alphanumeric or underscore
+/// \]                      # Closing bracket
+/// ```
+///
+/// # Processing Note
+/// The code checks if the match is followed by `(` or `[` to avoid
+/// false positives on existing markdown links or reference-style links.
+/// Also only processes if the identifier exists in `item_links`.
+static PLAIN_LINK_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"\[([a-zA-Z_][a-zA-Z0-9_]*)\]").unwrap());
+
+/// Regex for method/associated item links.
+///
+/// Matches: `` [`Type::method`] `` or `` [`mod::Type::CONST`] ``
+///
+/// Handles links to methods, associated functions, constants, and other
+/// items accessed via `::` path notation. This includes both type-level
+/// paths (`Type::method`) and module-level paths (`mod::Type::CONST`).
+///
+/// # Capture Groups
+/// - Group 1: The full path including `::` separators
+///
+/// # Pattern Breakdown
+/// ```text
+/// \[`                              # Opening "[`"
+/// (                                # Start capture group
+///   [A-Za-z_][A-Za-z0-9_]*         # First segment (Rust identifier)
+///   (?:::[A-Za-z_][A-Za-z0-9_]*)+  # One or more ::segment pairs
+/// )                                # End capture group
+/// `\]                              # Closing "`]"
+/// ```
+///
+/// # Examples Matched
+/// - `` [`HashMap::new`] `` - associated function
+/// - `` [`Option::Some`] `` - enum variant
+/// - `` [`Iterator::next`] `` - trait method
+/// - `` [`std::vec::Vec`] `` - fully qualified path
+///
+/// # Processing Note
+/// The last segment after `::` is used as the anchor (lowercased).
+/// The type path before the last `::` is used to find the target file.
+static METHOD_LINK_RE: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"\[`([A-Za-z_][A-Za-z0-9_]*(?:::[A-Za-z_][A-Za-z0-9_]*)+)`\]").unwrap()
+});
+
+// =============================================================================
+// Standalone Functions
+// =============================================================================
+
 /// Convert HTML-style rustdoc links to markdown anchors.
 ///
-/// This is a standalone function that can be used without creating a full
-/// [`DocLinkProcessor`]. It transforms links like:
-/// - `(enum.NumberPrefix.html)` → `(#numberprefix)`
-/// - `(struct.Foo.html#method.bar)` → `(#bar)`
+/// Transforms links like:
+/// - `(enum.NumberPrefix.html)` -> `(#numberprefix)`
+/// - `(struct.Foo.html#method.bar)` -> `(#bar)`
 ///
 /// This is useful for multi-crate documentation where the full processor
 /// context may not be available.
+#[must_use]
 pub fn convert_html_links(docs: &str) -> String {
-    let mut result = String::with_capacity(docs.len());
-    let mut last_end = 0;
+    replace_with_regex(docs, &HTML_LINK_RE, |caps| {
+        let item_name = &caps[2];
 
-    for caps in HTML_LINK_RE.captures_iter(docs) {
-        let full_match = caps.get(0).unwrap();
-        let match_start = full_match.start();
-        let match_end = full_match.end();
+        let anchor = caps
+            .get(4)
+            .map_or_else(|| item_name.to_lowercase(), |m| m.as_str().to_lowercase());
 
-        // Append everything before this match
-        result.push_str(&docs[last_end..match_start]);
-        last_end = match_end;
-
-        // Extract components
-        let item_name = &caps[2]; // Name
-
-        // Check if there's an anchor (group 3 and 4)
-        let anchor = if let (Some(_anchor_type), Some(anchor_name)) = (caps.get(3), caps.get(4)) {
-            // For method.foo, variant.Bar, etc. -> just use the name part
-            anchor_name.as_str().to_lowercase()
-        } else {
-            // No anchor, link to the item itself
-            item_name.to_lowercase()
-        };
-
-        // Convert to markdown anchor on current page
-        result.push_str(&format!("(#{anchor})"));
-    }
-
-    result.push_str(&docs[last_end..]);
-    result
+        format!("(#{anchor})")
+    })
 }
 
 /// Strip duplicate title from documentation.
 ///
 /// Some crate/module docs start with `# title` which duplicates the generated
-/// `# Crate \`name\`` or `# Module \`name\`` heading. This function detects
-/// and removes such duplicate titles.
+/// `# Crate \`name\`` or `# Module \`name\`` heading.
 ///
 /// # Arguments
 ///
@@ -78,34 +235,23 @@ pub fn convert_html_links(docs: &str) -> String {
 ///
 /// The docs with the leading title removed if it matches the item name,
 /// otherwise the original docs unchanged.
-///
-/// # Example
-///
-/// ```ignore
-/// let docs = "# my_crate\n\nThis is the crate docs.";
-/// let stripped = strip_duplicate_title(docs, "my_crate");
-/// assert_eq!(stripped, "This is the crate docs.");
-/// ```
+#[must_use]
 pub fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str {
     let Some(first_line) = docs.lines().next() else {
         return docs;
     };
 
-    // Check if line starts with "# "
     let Some(title) = first_line.strip_prefix("# ") else {
         return docs;
     };
 
-    let title = title.trim();
-
     // Normalize names for comparison (handle crate-name vs crate_name)
-    let normalized_title = title.replace('-', "_").to_lowercase();
+    let normalized_title = title.trim().replace('-', "_").to_lowercase();
     let normalized_name = item_name.replace('-', "_").to_lowercase();
 
     if normalized_title == normalized_name {
         // Skip the first line and any following blank lines
-        let rest = &docs[first_line.len()..];
-        rest.trim_start_matches('\n')
+        docs[first_line.len()..].trim_start_matches('\n')
     } else {
         docs
     }
@@ -113,59 +259,35 @@ pub fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str {
 
 /// Strip markdown reference definition lines.
 ///
-/// Rustdoc uses reference-style links like `[`Name`]: path::to::item` which
-/// should be removed after intra-doc links are processed. This function removes
-/// these definition lines to prevent malformed markdown output.
-///
-/// # Example
-///
-/// ```ignore
-/// let docs = "See [`Foo`] for details.\n\n[`Foo`]: crate::Foo";
-/// let stripped = strip_reference_definitions(docs);
-/// assert_eq!(stripped, "See [`Foo`] for details.\n\n");
-/// ```
+/// Removes lines like `[`Name`]: path::to::item` which are no longer needed
+/// after intra-doc links are processed.
 pub fn strip_reference_definitions(docs: &str) -> String {
-    static REFERENCE_DEF_RE: LazyLock<Regex> =
-        LazyLock::new(|| Regex::new(r"(?m)^\s*\[`[^`]+`\]:\s*\S+\s*$").unwrap());
-
     REFERENCE_DEF_RE.replace_all(docs, "").to_string()
 }
 
 /// Convert path-style reference links to markdown anchors.
 ///
-/// This is a standalone function that converts rustdoc-style reference links like:
-/// - `[`ProgressTracker`][crate::style::ProgressTracker]` → `[`ProgressTracker`](#progresstracker)`
+/// Transforms: `[``ProgressTracker``][crate::style::ProgressTracker]`
+/// Into: `[``ProgressTracker``](#progresstracker)`
 ///
-/// Without access to item_links, it falls back to using the last segment of the
-/// path as an anchor on the current page.
+/// Uses the last segment of the path as an anchor on the current page.
+#[must_use]
 pub fn convert_path_reference_links(docs: &str) -> String {
-    let mut result = String::with_capacity(docs.len());
-    let mut last_end = 0;
-
-    for caps in PATH_REF_LINK_RE.captures_iter(docs) {
-        let full_match = caps.get(0).unwrap();
-        let match_start = full_match.start();
-        let match_end = full_match.end();
-
-        // Append everything before this match
-        result.push_str(&docs[last_end..match_start]);
-        last_end = match_end;
-
+    replace_with_regex(docs, &PATH_REF_LINK_RE, |caps| {
         let display_text = &caps[1];
-        let rust_path = &caps[2]; // e.g., "crate::style::ProgressTracker"
-
-        // Create an anchor from the last segment of the path
+        let rust_path = &caps[2];
         let anchor = rust_path
             .split("::")
             .last()
             .unwrap_or(rust_path)
             .to_lowercase();
-        result.push_str(&format!("[{display_text}](#{anchor})"));
-    }
-
-    result.push_str(&docs[last_end..]);
-    result
+        format!("[{display_text}](#{anchor})")
+    })
 }
+
+// =============================================================================
+// DocLinkProcessor
+// =============================================================================
 
 /// Processes doc comments to resolve intra-doc links to markdown links.
 ///
@@ -177,10 +299,18 @@ pub fn convert_path_reference_links(docs: &str) -> String {
 ///
 /// - `` [`Name`] `` - Backtick code links (most common)
 /// - `` [`path::to::Item`] `` - Qualified path links
+/// - `` [`Type::method`] `` - Method/associated item links
+/// - `[name]` - Plain identifier links
+/// - `[text][`ref`]` - Reference-style links
+/// - `[text][crate::path]` - Path reference links
 ///
 /// # External Crate Links
 ///
 /// Items from external crates are linked to docs.rs when possible.
+///
+/// # Code Block Protection
+///
+/// Links inside fenced code blocks (```) are not processed.
 pub struct DocLinkProcessor<'a> {
     /// The crate being documented (for looking up items).
     krate: &'a Crate,
@@ -191,66 +321,28 @@ pub struct DocLinkProcessor<'a> {
     /// The current file path (for relative link calculation).
     current_file: &'a str,
 
-    /// Regex for backtick code links: [`Name`] not followed by ( or [
-    backtick_link_re: Regex,
-
-    /// Regex for reference-style links: [display text][`ref`]
-    reference_link_re: Regex,
-
-    /// Regex for markdown reference definitions: [`Name`]: path
-    reference_def_re: Regex,
-
-    /// Regex for plain links without backticks: [name] not followed by ( or [
-    /// Matches snake_case identifiers like [fields], [enter], etc.
-    plain_link_re: Regex,
-
-    /// Regex for method links: [`Type::method`] or [Type::method]
-    /// Captures the type and method separately for anchor generation.
-    method_link_re: Regex,
-
-    /// Regex for HTML-style rustdoc links in existing markdown links.
-    /// Matches patterns like `(enum.Name.html)` or `(struct.Foo.html#method.bar)`.
-    /// These come from raw doc comments that already contain rustdoc HTML links.
-    html_link_re: Regex,
-
-    /// Regex for reference-style links without backticks: [text][crate::path::Item]
-    /// These are rustdoc-style references that use Rust paths as the reference ID.
-    path_reference_link_re: Regex,
+    /// Index mapping item names to their IDs for fast lookup.
+    /// Built from `krate.paths` at construction time.
+    path_name_index: HashMap<&'a str, Vec<Id>>,
 }
 
 impl<'a> DocLinkProcessor<'a> {
     /// Create a new processor for the given context.
+    #[must_use]
     pub fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self {
+        // Build path name index for O(1) lookups
+        let mut path_name_index: HashMap<&'a str, Vec<Id>> = HashMap::new();
+        for (id, path_info) in &krate.paths {
+            if let Some(name) = path_info.path.last() {
+                path_name_index.entry(name.as_str()).or_default().push(*id);
+            }
+        }
+
         Self {
             krate,
             link_registry,
             current_file,
-            // Match [`text`] - we'll filter out existing markdown links in processing
-            backtick_link_re: Regex::new(r"\[`([^`]+)`\]").unwrap(),
-            // Match reference-style links: [display text][`ref`]
-            // Group 1: display text, Group 2: reference key (inside backticks)
-            reference_link_re: Regex::new(r"\[([^\]]+)\]\[`([^`]+)`\]").unwrap(),
-            // Match reference definitions like: [`Name`]: path::to::item
-            // These appear at the end of doc blocks and should be stripped after processing
-            reference_def_re: Regex::new(r"(?m)^\s*\[`[^`]+`\]:\s*\S+\s*$").unwrap(),
-            // Match plain links [name] where name is a snake_case identifier
-            // We'll check in code if it's followed by ( or [ to avoid matching existing links
-            plain_link_re: Regex::new(r"\[([a-z][a-z0-9_]*)\]").unwrap(),
-            // Match method links like [`Type::method`] or [`mod::Type::method`]
-            // Group 1: full path (Type::method), which we split on last ::
-            method_link_re: Regex::new(r"\[`([A-Z][A-Za-z0-9_]*(?:::[a-z][a-z0-9_]*)+)`\]").unwrap(),
-            // Match HTML-style rustdoc links in markdown: (type.Name.html) or (type.Name.html#anchor)
-            // Group 1: type prefix (struct, enum, trait, fn, type, macro, constant)
-            // Group 2: item name
-            // Group 3: optional anchor (method.foo, variant.Bar, etc.)
-            html_link_re: Regex::new(
-                r"\((struct|enum|trait|fn|type|macro|constant)\.([A-Za-z_][A-Za-z0-9_]*)\.html(?:#([a-z]+)\.([A-Za-z_][A-Za-z0-9_]*))?\)"
-            ).unwrap(),
-            // Match reference-style links with Rust paths: [text][crate::path::Item]
-            // Group 1: display text, Group 2: full Rust path (crate::module::Item)
-            path_reference_link_re: Regex::new(
-                r"\[([^\]]+)\]\[([a-zA-Z_][a-zA-Z0-9_]*(?:::[a-zA-Z_][a-zA-Z0-9_]*)+)\]"
-            ).unwrap(),
+            path_name_index,
         }
     }
 
@@ -258,77 +350,146 @@ impl<'a> DocLinkProcessor<'a> {
     ///
     /// Uses the item's `links` map to resolve link text to IDs,
     /// then uses `LinkRegistry` to convert IDs to relative paths.
-    /// Finally strips any markdown reference definitions.
+    #[must_use]
     pub fn process(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
-        // Step 1: Strip reference definitions FIRST (before link processing mangles them)
-        let stripped = self.strip_reference_definitions(docs);
+        // Step 1: Strip reference definitions first
+        let stripped = strip_reference_definitions(docs);
 
-        // Step 2: Strip rustdoc hidden lines (# prefix) from code blocks
-        let no_hidden = self.strip_hidden_code_lines(&stripped);
+        // Step 2: Unhide rustdoc hidden lines in code blocks
+        let unhidden = Self::unhide_code_lines(&stripped);
 
-        // Step 3: Process reference-style links [text][`ref`] BEFORE simple links
-        // This prevents [text][`ref`] from becoming [text][`ref`](url)
-        let ref_resolved = self.process_reference_links(&no_hidden, item_links);
+        // Step 3: Process all link types (with code block protection)
+        let processed = self.process_links_protected(&unhidden, item_links);
 
-        // Step 3b: Process path reference links [text][crate::path::Item]
-        let path_ref_resolved = self.process_path_reference_links(&ref_resolved, item_links);
+        // Step 4: Clean up blank lines
+        Self::clean_blank_lines(&processed)
+    }
 
-        // Step 4: Process method links [`Type::method`] with anchor generation
-        let method_resolved = self.process_method_links(&path_ref_resolved, item_links);
+    /// Process links while protecting code block contents.
+    fn process_links_protected(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
+        let mut result = String::with_capacity(docs.len());
+        let mut current_pos = 0;
+        let _bytes = docs.as_bytes();
 
-        // Step 5: Resolve simple backtick links [`Name`] to markdown links
-        let backtick_resolved = self.process_backtick_links(&method_resolved, item_links);
+        // Track code block state
+        let mut in_code_block = false;
+        let mut fence: Option<&str> = None;
 
-        // Step 6: Process plain links [name] (snake_case identifiers)
-        let plain_resolved = self.process_plain_links(&backtick_resolved, item_links);
+        for line in docs.lines() {
+            let line_end = current_pos + line.len();
 
-        // Step 7: Convert HTML-style rustdoc links to markdown anchors
-        let html_resolved = self.process_html_links(&plain_resolved);
+            // Check for code fence
+            let trimmed = line.trim_start();
+            if let Some(f) = Self::detect_fence(trimmed) {
+                if in_code_block {
+                    // Check if this closes the current block
+                    if let Some(open_fence) = fence
+                        && trimmed.starts_with(open_fence)
+                    {
+                        in_code_block = false;
+                        fence = None;
+                    }
+                } else {
+                    in_code_block = true;
+                    fence = Some(f);
+                }
 
-        // Step 8: Clean up extra blank lines that may result from stripping
-        self.clean_blank_lines(&html_resolved)
+                result.push_str(line);
+            } else if in_code_block {
+                // Inside code block - don't process
+                result.push_str(line);
+            } else {
+                // Outside code block - process links
+                let processed = self.process_line(line, item_links);
+                result.push_str(&processed);
+            }
+
+            // Add newline if not at end
+            current_pos = line_end;
+            if current_pos < docs.len() {
+                result.push('\n');
+                current_pos += 1; // Skip the newline character
+            }
+        }
+
+        result
+    }
+
+    /// Detect a code fence and return the fence string.
+    fn detect_fence(trimmed: &str) -> Option<&'static str> {
+        if trimmed.starts_with("```") {
+            Some("```")
+        } else if trimmed.starts_with("~~~") {
+            Some("~~~")
+        } else {
+            None
+        }
+    }
+
+    /// Process a single line for all link types.
+    fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String {
+        // Skip lines that look like reference definitions (backup check)
+        if line.trim_start().starts_with("[`") && line.contains("]:") {
+            return String::new();
+        }
+
+        // Process in order of specificity (most specific patterns first)
+        let s = self.process_reference_links(line, item_links);
+        let s = self.process_path_reference_links(&s, item_links);
+        let s = self.process_method_links(&s, item_links);
+        let s = self.process_backtick_links(&s, item_links);
+        let s = self.process_plain_links(&s, item_links);
+
+        Self::process_html_links(&s)
     }
 
     /// Unhide rustdoc hidden lines in code blocks.
     ///
-    /// In rustdoc, lines starting with `# ` inside code blocks are hidden
-    /// in the rendered output but still compiled. We remove the `# ` prefix
-    /// to show the full working example as normal code.
-    fn strip_hidden_code_lines(&self, docs: &str) -> String {
+    /// Lines starting with `# ` inside code blocks are hidden in rustdoc
+    /// but compiled. We remove the prefix to show the full example.
+    fn unhide_code_lines(docs: &str) -> String {
         let mut result = String::with_capacity(docs.len());
         let mut in_code_block = false;
+        let mut fence: Option<&str> = None;
 
         for line in docs.lines() {
             let trimmed = line.trim_start();
 
             // Track code block boundaries
-            if trimmed.starts_with("```") {
-                in_code_block = !in_code_block;
+            if let Some(f) = Self::detect_fence(trimmed) {
+                if in_code_block && fence.map_or_else(|| false, |open| trimmed.starts_with(open)) {
+                    in_code_block = false;
+                    fence = None;
+                } else if !in_code_block {
+                    in_code_block = true;
+                    fence = Some(f);
+                }
+
                 result.push_str(line);
                 result.push('\n');
+
                 continue;
             }
 
-            // Inside code blocks, remove the # prefix from hidden lines
             if in_code_block {
-                // Get the leading whitespace
                 let leading_ws = &line[..line.len() - trimmed.len()];
 
                 if trimmed == "#" {
-                    // Line is just "#" - convert to empty line
+                    // Just "#" becomes empty line
                     result.push('\n');
-                    continue;
                 } else if let Some(rest) = trimmed.strip_prefix("# ") {
-                    // Line starts with "# " - remove prefix, keep content
+                    // "# code" becomes "code"
                     result.push_str(leading_ws);
                     result.push_str(rest);
                     result.push('\n');
-                    continue;
+                } else {
+                    result.push_str(line);
+                    result.push('\n');
                 }
+            } else {
+                result.push_str(line);
+                result.push('\n');
             }
-
-            result.push_str(line);
-            result.push('\n');
         }
 
         // Remove trailing newline if original didn't have one
@@ -339,107 +500,152 @@ impl<'a> DocLinkProcessor<'a> {
         result
     }
 
-    /// Process reference-style links like `[display text][`Span`]`.
-    ///
-    /// Converts them to inline links: `[display text](url)`
-    fn process_reference_links(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
-        let mut result = String::with_capacity(docs.len());
-        let mut last_end = 0;
-
-        for caps in self.reference_link_re.captures_iter(docs) {
-            let full_match = caps.get(0).unwrap();
-            let match_start = full_match.start();
-            let match_end = full_match.end();
-
-            // Append everything before this match
-            result.push_str(&docs[last_end..match_start]);
-            last_end = match_end;
-
+    /// Process reference-style links `[display text][`Span`]`.
+    fn process_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
+        replace_with_regex(text, &REFERENCE_LINK_RE, |caps| {
             let display_text = &caps[1];
             let ref_key = &caps[2];
 
-            // Try to resolve the reference key to a URL
             if let Some(url) = self.resolve_to_url(ref_key, item_links) {
-                // Convert to inline link: [display text](url)
-                result.push_str(&format!("[{display_text}]({url})"));
+                format!("[{display_text}]({url})")
             } else {
-                // Keep original if we can't resolve
-                result.push_str(full_match.as_str());
+                caps[0].to_string()
             }
-        }
-
-        // Append any remaining text
-        result.push_str(&docs[last_end..]);
-        result
+        })
     }
 
-    /// Process path-style reference links like `[`ProgressTracker`][crate::style::ProgressTracker]`.
-    ///
-    /// These are rustdoc-style references without backticks around the reference part.
-    /// Converts them to inline links: `[`ProgressTracker`](url)` or anchors.
-    fn process_path_reference_links(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
-        let mut result = String::with_capacity(docs.len());
-        let mut last_end = 0;
-
-        for caps in self.path_reference_link_re.captures_iter(docs) {
-            let full_match = caps.get(0).unwrap();
-            let match_start = full_match.start();
-            let match_end = full_match.end();
-
-            // Append everything before this match
-            result.push_str(&docs[last_end..match_start]);
-            last_end = match_end;
-
+    /// Process path reference links `[text][crate::path::Item]`.
+    fn process_path_reference_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
+        replace_with_regex(text, &PATH_REF_LINK_RE, |caps| {
             let display_text = &caps[1];
-            let rust_path = &caps[2]; // e.g., "crate::style::ProgressTracker"
+            let rust_path = &caps[2];
 
-            // Try to resolve the Rust path to a URL
             if let Some(url) = self.resolve_to_url(rust_path, item_links) {
-                // Convert to inline link: [display text](url)
-                result.push_str(&format!("[{display_text}]({url})"));
+                format!("[{display_text}]({url})")
             } else {
-                // Fallback: create an anchor from the last segment of the path
-                // e.g., crate::style::ProgressTracker -> #progresstracker
+                // Fallback: anchor from last segment
                 let anchor = rust_path
                     .split("::")
                     .last()
                     .unwrap_or(rust_path)
                     .to_lowercase();
-                result.push_str(&format!("[{display_text}](#{anchor})"));
+                format!("[{display_text}](#{anchor})")
             }
-        }
-
-        // Append any remaining text
-        result.push_str(&docs[last_end..]);
-        result
+        })
     }
 
-    /// Resolve a link reference to just the URL (without markdown formatting).
+    /// Process method links `[``Type::method``]`.
+    fn process_method_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
+        replace_with_regex_checked(text, &METHOD_LINK_RE, |caps, rest| {
+            // Skip if already a markdown link
+            if rest.starts_with('(') {
+                return caps[0].to_string();
+            }
+
+            let full_path = &caps[1];
+            if let Some(last_sep) = full_path.rfind("::") {
+                let type_part = &full_path[..last_sep];
+                let method_part = &full_path[last_sep + 2..];
+
+                if let Some(link) = self.resolve_method_link(type_part, method_part, item_links) {
+                    return link;
+                }
+            }
+            caps[0].to_string()
+        })
+    }
+
+    /// Process backtick links `[`Name`]`.
+    fn process_backtick_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
+        replace_with_regex_checked(text, &BACKTICK_LINK_RE, |caps, rest| {
+            // Skip if already a markdown link
+            if rest.starts_with('(') {
+                return caps[0].to_string();
+            }
+
+            let link_text = &caps[1];
+            self.resolve_link(link_text, item_links)
+        })
+    }
+
+    /// Process plain links `[name]`.
+    fn process_plain_links(&self, text: &str, item_links: &HashMap<String, Id>) -> String {
+        replace_with_regex_checked(text, &PLAIN_LINK_RE, |caps, rest| {
+            // Skip if already a markdown link
+            if matches!(rest.chars().next(), Some('(' | '[')) {
+                return caps[0].to_string();
+            }
+
+            let link_text = &caps[1];
+
+            // Only process if it's in item_links (avoid false positives)
+            if let Some(id) = item_links.get(link_text)
+                && let Some(md_link) = self.create_link_for_id(*id, link_text)
+            {
+                return md_link;
+            }
+            caps[0].to_string()
+        })
+    }
+
+    /// Process HTML-style rustdoc links.
+    fn process_html_links(text: &str) -> String {
+        replace_with_regex(text, &HTML_LINK_RE, |caps| {
+            let item_name = &caps[2];
+            let anchor = caps
+                .get(4)
+                .map_or_else(|| item_name.to_lowercase(), |m| m.as_str().to_lowercase());
+            format!("(#{anchor})")
+        })
+    }
+
+    /// Clean up multiple consecutive blank lines.
+    fn clean_blank_lines(docs: &str) -> String {
+        let mut result = String::with_capacity(docs.len());
+        let mut prev_blank = false;
+
+        for line in docs.lines() {
+            let is_blank = line.trim().is_empty();
+            if is_blank && prev_blank {
+                continue;
+            }
+            if !result.is_empty() {
+                result.push('\n');
+            }
+            result.push_str(line);
+            prev_blank = is_blank;
+        }
+
+        result.trim_end().to_string()
+    }
+
+    // =========================================================================
+    // Resolution Methods
+    // =========================================================================
+
+    /// Resolve a link reference to a URL.
     fn resolve_to_url(&self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String> {
         // Strategy 1: Exact match in item_links
-        if let Some(id) = item_links.get(link_text) {
-            if let Some(url) = self.get_url_for_id(*id) {
+        if let Some(id) = item_links.get(link_text)
+            && let Some(url) = self.get_url_for_id(*id)
+        {
+            return Some(url);
+        }
+
+        // Strategy 2: Short name match in item_links
+        let short_name = link_text.split("::").last().unwrap_or(link_text);
+
+        for (key, id) in item_links {
+            if key.split("::").last() == Some(short_name)
+                && let Some(url) = self.get_url_for_id(*id)
+            {
                 return Some(url);
             }
         }
 
-        // Strategy 2: Try the short name (last segment of path)
-        let short_name = link_text.split("::").last().unwrap_or(link_text);
-
-        for (key, id) in item_links {
-            let key_short = key.split("::").last().unwrap_or(key);
-            if key_short == short_name {
-                if let Some(url) = self.get_url_for_id(*id) {
-                    return Some(url);
-                }
-            }
-        }
-
-        // Strategy 3: Try to find in krate.paths
-        for (id, path_info) in &self.krate.paths {
-            if let Some(last_segment) = path_info.path.last()
-                && last_segment == short_name
-            {
+        // Strategy 3: Use path name index
+        if let Some(ids) = self.path_name_index.get(short_name) {
+            for id in ids {
                 if let Some(url) = self.get_url_for_id(*id) {
                     return Some(url);
                 }
@@ -449,7 +655,7 @@ impl<'a> DocLinkProcessor<'a> {
         None
     }
 
-    /// Get just the URL for an ID (local path or docs.rs).
+    /// Get the URL for an ID (local or docs.rs).
     fn get_url_for_id(&self, id: Id) -> Option<String> {
         // Try local first
         if let Some(path) = self.link_registry.get_path(id) {
@@ -461,233 +667,68 @@ impl<'a> DocLinkProcessor<'a> {
         if let Some(path_info) = self.krate.paths.get(&id)
             && path_info.crate_id != 0
         {
-            return self.get_docs_rs_url(path_info);
+            return Self::get_docs_rs_url(path_info);
         }
 
         None
     }
 
     /// Get docs.rs URL for an external crate item.
-    fn get_docs_rs_url(&self, path_info: &rustdoc_types::ItemSummary) -> Option<String> {
+    fn get_docs_rs_url(path_info: &rustdoc_types::ItemSummary) -> Option<String> {
         let path = &path_info.path;
         if path.is_empty() {
             return None;
         }
 
         let crate_name = &path[0];
-        let item_path = path[1..].join("/");
 
-        let type_suffix = match path_info.kind {
+        // Handle module URLs specially
+        if path_info.kind == ItemKind::Module {
+            if path.len() == 1 {
+                return Some(format!("https://docs.rs/{crate_name}/latest/{crate_name}/"));
+            }
+
+            let module_path = path[1..].join("/");
+
+            return Some(format!(
+                "https://docs.rs/{crate_name}/latest/{crate_name}/{module_path}/index.html"
+            ));
+        }
+
+        let item_path = path[1..].join("/");
+        let type_prefix = match path_info.kind {
             ItemKind::Struct => "struct",
             ItemKind::Enum => "enum",
             ItemKind::Trait => "trait",
             ItemKind::Function => "fn",
-            ItemKind::Module => "index",
             ItemKind::Constant => "constant",
             ItemKind::TypeAlias => "type",
             ItemKind::Macro => "macro",
             _ => "index",
         };
 
+        let item_name = path.last().unwrap_or(crate_name);
+
         if item_path.is_empty() {
             Some(format!("https://docs.rs/{crate_name}/latest/{crate_name}/"))
         } else {
-            Some(format!(
-                "https://docs.rs/{crate_name}/latest/{crate_name}/{item_path}/{type_suffix}.{}.html",
-                path.last().unwrap_or(crate_name)
-            ))
-        }
-    }
-
-    /// Strip markdown reference definition lines.
-    ///
-    /// After converting `[`Name`]` to `[`Name`](url)`, the reference
-    /// definitions like `[`Name`]: path` are no longer needed.
-    fn strip_reference_definitions(&self, docs: &str) -> String {
-        self.reference_def_re.replace_all(docs, "").to_string()
-    }
-
-    /// Clean up multiple consecutive blank lines.
-    fn clean_blank_lines(&self, docs: &str) -> String {
-        let mut result = String::with_capacity(docs.len());
-        let mut prev_blank = false;
-
-        for line in docs.lines() {
-            let is_blank = line.trim().is_empty();
-            if is_blank && prev_blank {
-                continue; // Skip consecutive blank lines
-            }
-            if !result.is_empty() {
-                result.push('\n');
-            }
-            result.push_str(line);
-            prev_blank = is_blank;
-        }
-
-        // Trim trailing whitespace
-        result.trim_end().to_string()
-    }
-
-    /// Process `` [`Type`] `` style links.
-    fn process_backtick_links(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
-        let mut result = String::with_capacity(docs.len());
-        let mut last_end = 0;
-
-        for caps in self.backtick_link_re.captures_iter(docs) {
-            let full_match = caps.get(0).unwrap();
-            let match_start = full_match.start();
-            let match_end = full_match.end();
-
-            // Append everything before this match
-            result.push_str(&docs[last_end..match_start]);
-            last_end = match_end;
-
-            // Check if this is already a markdown link (followed by '(')
-            if docs[match_end..].starts_with('(') {
-                // Keep original text, it's already a link
-                result.push_str(full_match.as_str());
-                continue;
-            }
-
-            let link_text = &caps[1];
-
-            // Try to resolve the link
-            let resolved = self.resolve_link(link_text, item_links);
-            result.push_str(&resolved);
-        }
-
-        // Append any remaining text after the last match
-        result.push_str(&docs[last_end..]);
-        result
-    }
-
-    /// Process plain links `[name]` (snake_case identifiers without backticks).
-    ///
-    /// This handles links like `[fields]` or `[enter]` that appear in rustdoc
-    /// documentation without backticks.
-    fn process_plain_links(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
-        let mut result = String::with_capacity(docs.len());
-        let mut last_end = 0;
-
-        for caps in self.plain_link_re.captures_iter(docs) {
-            let full_match = caps.get(0).unwrap();
-            let match_start = full_match.start();
-            let match_end = full_match.end();
-
-            // Append everything before this match
-            result.push_str(&docs[last_end..match_start]);
-            last_end = match_end;
-
-            // Check if this is already a markdown link (followed by '(' or '[')
-            let next_char = docs[match_end..].chars().next();
-            if matches!(next_char, Some('(') | Some('[')) {
-                // Keep original text, it's already a link
-                result.push_str(full_match.as_str());
-                continue;
-            }
-
-            let link_text = &caps[1];
-
-            // Try to resolve the link
-            if let Some(id) = item_links.get(link_text)
-                && let Some(md_link) = self.create_link_for_id(*id, link_text)
-            {
-                result.push_str(&md_link);
+            // Remove last segment from path for the directory
+            let dir_path = if path.len() > 2 {
+                path[1..path.len() - 1].join("/")
             } else {
-                // Keep original if we can't resolve
-                result.push_str(full_match.as_str());
-            }
-        }
-
-        result.push_str(&docs[last_end..]);
-        result
-    }
-
-    /// Process method links like `[`Type::method`]` with anchor generation.
-    ///
-    /// Links like `[`Span::enter`]` should resolve to `span/index.md#enter`
-    /// where `#enter` is an anchor to the method on the type's page.
-    fn process_method_links(&self, docs: &str, item_links: &HashMap<String, Id>) -> String {
-        let mut result = String::with_capacity(docs.len());
-        let mut last_end = 0;
-
-        for caps in self.method_link_re.captures_iter(docs) {
-            let full_match = caps.get(0).unwrap();
-            let match_start = full_match.start();
-            let match_end = full_match.end();
-
-            // Append everything before this match
-            result.push_str(&docs[last_end..match_start]);
-            last_end = match_end;
-
-            // Check if already a markdown link
-            if docs[match_end..].starts_with('(') {
-                result.push_str(full_match.as_str());
-                continue;
-            }
-
-            let full_path = &caps[1]; // e.g., "Span::enter"
-
-            // Split into type and method
-            if let Some(last_colon_idx) = full_path.rfind("::") {
-                let type_part = &full_path[..last_colon_idx];
-                let method_part = &full_path[last_colon_idx + 2..];
-
-                // Try to resolve the type
-                if let Some(md_link) = self.resolve_method_link(type_part, method_part, item_links)
-                {
-                    result.push_str(&md_link);
-                } else {
-                    // Keep original if we can't resolve
-                    result.push_str(full_match.as_str());
-                }
-            } else {
-                // No :: found, keep original
-                result.push_str(full_match.as_str());
-            }
-        }
-
-        result.push_str(&docs[last_end..]);
-        result
-    }
-
-    /// Convert HTML-style rustdoc links to markdown anchors.
-    ///
-    /// Transforms links like `(enum.NumberPrefix.html#method.binary)` to `(#binary)`.
-    /// These links appear in documentation that was written for rustdoc HTML output.
-    fn process_html_links(&self, docs: &str) -> String {
-        let mut result = String::with_capacity(docs.len());
-        let mut last_end = 0;
-
-        for caps in self.html_link_re.captures_iter(docs) {
-            let full_match = caps.get(0).unwrap();
-            let match_start = full_match.start();
-            let match_end = full_match.end();
-
-            // Append everything before this match
-            result.push_str(&docs[last_end..match_start]);
-            last_end = match_end;
-
-            // Extract components
-            let _item_type = &caps[1]; // struct, enum, trait, etc.
-            let item_name = &caps[2]; // Name
-
-            // Check if there's an anchor (group 3 and 4)
-            let anchor = if let (Some(_anchor_type), Some(anchor_name)) = (caps.get(3), caps.get(4))
-            {
-                // For method.foo, variant.Bar, etc. -> just use the name part
-                anchor_name.as_str().to_lowercase()
-            } else {
-                // No anchor, link to the item itself
-                item_name.to_lowercase()
+                String::new()
             };
 
-            // Convert to markdown anchor on current page
-            result.push_str(&format!("(#{anchor})"));
+            if dir_path.is_empty() {
+                Some(format!(
+                    "https://docs.rs/{crate_name}/latest/{crate_name}/{type_prefix}.{item_name}.html"
+                ))
+            } else {
+                Some(format!(
+                    "https://docs.rs/{crate_name}/latest/{crate_name}/{dir_path}/{type_prefix}.{item_name}.html"
+                ))
+            }
         }
-
-        result.push_str(&docs[last_end..]);
-        result
     }
 
     /// Resolve a method link to a markdown link with anchor.
@@ -697,9 +738,8 @@ impl<'a> DocLinkProcessor<'a> {
         method_name: &str,
         item_links: &HashMap<String, Id>,
     ) -> Option<String> {
-        // Try to find the type in item_links
+        // Try to find the type
         let type_id = item_links.get(type_name).or_else(|| {
-            // Try short name match
             let short_type = type_name.split("::").last().unwrap_or(type_name);
             item_links
                 .iter()
@@ -707,59 +747,50 @@ impl<'a> DocLinkProcessor<'a> {
                 .map(|(_, id)| id)
         })?;
 
-        // Get the path to the type's page
         let type_path = self.link_registry.get_path(*type_id)?;
         let relative = LinkRegistry::compute_relative_path(self.current_file, type_path);
-
-        // Build anchor from method name
         let anchor = method_name.to_lowercase();
         let display = format!("{type_name}::{method_name}");
 
         Some(format!("[`{display}`]({relative}#{anchor})"))
     }
 
-    /// Try to resolve a link text to a markdown link.
+    /// Try to resolve link text to a markdown link.
     fn resolve_link(&self, link_text: &str, item_links: &HashMap<String, Id>) -> String {
-        // Strategy 1: Exact match in item_links
+        // Strategy 1: Exact match
         if let Some(id) = item_links.get(link_text)
             && let Some(md_link) = self.create_link_for_id(*id, link_text)
         {
             return md_link;
         }
 
-        // Strategy 2: Try the short name (last segment of path)
+        // Strategy 2: Short name match in item_links
         let short_name = link_text.split("::").last().unwrap_or(link_text);
 
         for (key, id) in item_links {
-            let key_short = key.split("::").last().unwrap_or(key);
-            if key_short == short_name {
-                if let Some(md_link) = self.create_link_for_id(*id, short_name) {
-                    return md_link;
-                }
-            }
-        }
-
-        // Strategy 3: Try to find in krate.paths
-        for (id, path_info) in &self.krate.paths {
-            if let Some(last_segment) = path_info.path.last()
-                && last_segment == short_name
+            if key.split("::").last() == Some(short_name)
+                && let Some(md_link) = self.create_link_for_id(*id, short_name)
             {
+                return md_link;
+            }
+        }
+
+        // Strategy 3: Use path name index
+        if let Some(ids) = self.path_name_index.get(short_name) {
+            for id in ids {
                 if let Some(md_link) = self.create_link_for_id(*id, short_name) {
                     return md_link;
                 }
             }
         }
 
-        // Fallback: Return original text
+        // Fallback: return original
         format!("[`{link_text}`]")
     }
 
-    /// Create a markdown link for a given ID.
-    ///
-    /// First tries to link to local documentation, then falls back to
-    /// docs.rs for external crate items.
+    /// Create a markdown link for an ID.
     fn create_link_for_id(&self, id: Id, display_name: &str) -> Option<String> {
-        // Strategy 1: Local link via LinkRegistry
+        // Try local link
         if let Some(link) = self.link_registry.create_link(id, self.current_file) {
             return Some(link);
         }
@@ -770,12 +801,11 @@ impl<'a> DocLinkProcessor<'a> {
             return Some(format!("[`{clean_name}`]({relative})"));
         }
 
-        // Strategy 2: External crate link via docs.rs
-        if let Some(path_info) = self.krate.paths.get(&id) {
-            // External crates have crate_id != 0
-            if path_info.crate_id != 0 {
-                return self.create_docs_rs_link(path_info, display_name);
-            }
+        // Try docs.rs for external crates
+        if let Some(path_info) = self.krate.paths.get(&id)
+            && path_info.crate_id != 0
+        {
+            return Self::create_docs_rs_link(path_info, display_name);
         }
 
         None
@@ -783,43 +813,103 @@ impl<'a> DocLinkProcessor<'a> {
 
     /// Create a docs.rs link for an external crate item.
     fn create_docs_rs_link(
-        &self,
         path_info: &rustdoc_types::ItemSummary,
         display_name: &str,
     ) -> Option<String> {
-        let path = &path_info.path;
-        if path.is_empty() {
-            return None;
-        }
-
-        let crate_name = &path[0];
-        let item_path = path[1..].join("/");
+        let url = Self::get_docs_rs_url(path_info)?;
         let clean_name = display_name.split("::").last().unwrap_or(display_name);
-
-        // Determine the item type suffix for docs.rs URLs
-        let type_suffix = match path_info.kind {
-            ItemKind::Struct => "struct",
-            ItemKind::Enum => "enum",
-            ItemKind::Trait => "trait",
-            ItemKind::Function => "fn",
-            ItemKind::Module => "index",
-            ItemKind::Constant => "constant",
-            ItemKind::TypeAlias => "type",
-            ItemKind::Macro => "macro",
-            _ => "index",
-        };
-
-        // Build docs.rs URL
-        // Format: https://docs.rs/crate_name/latest/crate_name/path/type.Name.html
-        let url = if item_path.is_empty() {
-            format!("https://docs.rs/{crate_name}/latest/{crate_name}/")
-        } else {
-            format!(
-                "https://docs.rs/{crate_name}/latest/{crate_name}/{item_path}/{type_suffix}.{}.html",
-                path.last().unwrap_or(crate_name)
-            )
-        };
-
         Some(format!("[`{clean_name}`]({url})"))
+    }
+}
+
+// =============================================================================
+// Helper Functions
+// =============================================================================
+
+/// Replace regex matches using a closure.
+fn replace_with_regex<F>(text: &str, re: &Regex, replacer: F) -> String
+where
+    F: Fn(&regex::Captures<'_>) -> String,
+{
+    let mut result = String::with_capacity(text.len());
+    let mut last_end = 0;
+
+    for caps in re.captures_iter(text) {
+        let m = caps.get(0).unwrap();
+        result.push_str(&text[last_end..m.start()]);
+        result.push_str(&replacer(&caps));
+        last_end = m.end();
+    }
+
+    result.push_str(&text[last_end..]);
+    result
+}
+
+/// Replace regex matches with access to the text after the match.
+fn replace_with_regex_checked<F>(text: &str, re: &Regex, replacer: F) -> String
+where
+    F: Fn(&regex::Captures<'_>, &str) -> String,
+{
+    let mut result = String::with_capacity(text.len());
+    let mut last_end = 0;
+
+    for caps in re.captures_iter(text) {
+        let m = caps.get(0).unwrap();
+        result.push_str(&text[last_end..m.start()]);
+        let rest = &text[m.end()..];
+        result.push_str(&replacer(&caps, rest));
+        last_end = m.end();
+    }
+
+    result.push_str(&text[last_end..]);
+    result
+}
+
+// =============================================================================
+// Tests
+// =============================================================================
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_convert_html_links() {
+        assert_eq!(
+            convert_html_links("See (enum.Foo.html) for details"),
+            "See (#foo) for details"
+        );
+        assert_eq!(
+            convert_html_links("Call (struct.Bar.html#method.new)"),
+            "Call (#new)"
+        );
+    }
+
+    #[test]
+    fn test_strip_duplicate_title() {
+        let docs = "# my_crate\n\nThis is the description.";
+        assert_eq!(
+            strip_duplicate_title(docs, "my_crate"),
+            "This is the description."
+        );
+
+        // Different title - keep it
+        let docs2 = "# Introduction\n\nThis is the description.";
+        assert_eq!(strip_duplicate_title(docs2, "my_crate"), docs2);
+    }
+
+    #[test]
+    fn test_strip_reference_definitions() {
+        let docs = "See [`Foo`] for details.\n\n[`Foo`]: crate::Foo";
+        let result = strip_reference_definitions(docs);
+        assert!(result.contains("See [`Foo`]"));
+        assert!(!result.contains("[`Foo`]: crate::Foo"));
+    }
+
+    #[test]
+    fn test_convert_path_reference_links() {
+        let docs = "[`Tracker`][crate::style::Tracker] is useful";
+        let result = convert_path_reference_links(docs);
+        assert_eq!(result, "[`Tracker`](#tracker) is useful");
     }
 }

@@ -90,10 +90,10 @@ to get a [`ColorChoice`](../colorchoice/colorchoice/index.md) and then calling [
 - `fn current_choice(self: &Self) -> ColorChoice`
   Prefer [`AutoStream::choice`]
 
-- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
   Get exclusive access to the `AutoStream`
 
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
+- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
   Get exclusive access to the `AutoStream`
 
 #### Trait Implementations
@@ -161,6 +161,9 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
+- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
+  Get exclusive access to the `StripStream`
+
 - `fn is_terminal(self: &Self) -> bool`
   Returns `true` if the descriptor/handle refers to a terminal/tty.
 
@@ -175,9 +178,6 @@ Only pass printable data to the inner `Write`
 
 - `fn as_inner(self: &Self) -> &S`
   Get the wrapped [`std::io::Write`]
-
-- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `StripStream`
 
 #### Trait Implementations
 
@@ -459,7 +459,9 @@ to the caller of the program.
 
 This macro is the perfect way to assert conditions in example code and in
 tests. `panic!` is closely tied with the `unwrap` method of both
-[`Option`][ounwrap](#ounwrap) and [`Result`][runwrap](#runwrap) enums. Both implementations call
+[`Option`][ounwrap](#ounwrap)
+ and [`Result`][runwrap](#runwrap)
+ enums. Both implementations call
 `panic!` when they are set to [`None`](#none) or [`Err`](#err) variants.
 
 When using `panic!()` you can specify a string payload, that is built using
@@ -500,16 +502,20 @@ encounter. `Result` must be propagated manually, often with the help of the
 `?` operator and `Try` trait, and they must be reported manually, often with
 the help of the `Error` trait.
 
-For more detailed information about error handling check out the [book](#book) or the
+For more detailed information about error handling check out the [book](#book)
+ or the
 [`std::result`](#result) module docs.
 
-[ounwrap](#ounwrap): Option::unwrap
-[runwrap](#runwrap): Result::unwrap
+[ounwrap](#ounwrap)
+: Option::unwrap
+[runwrap](#runwrap)
+: Result::unwrap
 
 
 
 
-[book](#book): ../book/ch09-00-error-handling.html
+[book](#book)
+: ../book/ch09-00-error-handling.html
 
 # Current implementation
 

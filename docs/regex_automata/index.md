@@ -265,7 +265,8 @@ some general themes followed by all of them.
 ### The `Input` abstraction
 
 Most search routines in this crate accept anything that implements
-`Into<Input>`. Both `&str` and `&[u8](#u8)` haystacks satisfy this constraint, which
+`Into<Input>`. Both `&str` and `&[u8](#u8)
+` haystacks satisfy this constraint, which
 means that things like `engine.search("foo")` will work as you would expect.
 
 By virtue of accepting an `Into<Input>` though, callers can provide more than
@@ -617,14 +618,14 @@ re-exported at the crate root due to how common it is.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: u8) -> PatternID`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: u8) -> PatternID`
 
 ##### `impl Into<T, U>`
 
@@ -681,6 +682,18 @@ re-exported at the crate root due to how common it is.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
+
 ##### `impl TryFrom`
 
 - `type Error = PatternIDError`
@@ -697,19 +710,7 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
 - `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 

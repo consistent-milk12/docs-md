@@ -276,12 +276,14 @@ at the `Subscriber` have been dropped, [`WeakDispatch::upgrade`](#upgrade) will 
 A `WeakDispatch` may be created from a [`Dispatch`](tracing_core/dispatcher/index.md) by calling the
 [`Dispatch::downgrade`](#downgrade) method. The primary use for creating a
 [`WeakDispatch`](tracing_core/dispatcher/index.md) is to allow a Subscriber` to hold a cyclical reference to
-itself without creating a memory leak. See [here](#here) for details.
+itself without creating a memory leak. See [here](#here)
+ for details.
 
 This type is analogous to the [`std::sync::Weak`](#weak) type, but for a
 [`Dispatch`](tracing_core/dispatcher/index.md) rather than an [`Arc`](#arc).
 
-[here](#here): Subscriber#avoiding-memory-leaks
+[here](#here)
+: Subscriber#avoiding-memory-leaks
 
 #### Implementations
 
@@ -466,7 +468,8 @@ fn with_default<T>(dispatcher: &Dispatch, f: impl FnOnce() -> T) -> T
 
 Sets this dispatch as the default for the duration of a closure.
 
-The default dispatcher is used when creating a new [span](#span) or
+The default dispatcher is used when creating a new [span](#span)
+ or
 [`Event`](tracing_core/event/index.md).
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
@@ -475,7 +478,8 @@ The default dispatcher is used when creating a new [span](#span) or
     <code>set_global_default</code></a> instead.
 </pre>
 
-[span](#span): super::span
+[span](#span)
+: super::span
 
 
 
@@ -514,7 +518,8 @@ Returns `Err` if the global default has already been set.
     executables that depend on the library try to set the default later.
 </pre></div>
 
-[span](#span): super::span
+[span](#span)
+: super::span
 
 
 
@@ -526,11 +531,13 @@ where
     F: FnMut(&Dispatch) -> T
 ```
 
-Executes a closure with a reference to this thread's current [dispatcher](#dispatcher).
+Executes a closure with a reference to this thread's current [dispatcher](#dispatcher)
+.
 
 Note that calls to `get_default` should not be nested; if this function is
 called while inside of another `get_default`, that closure will be provided
 with `Dispatch::none` rather than the previously set dispatcher.
 
-[dispatcher](#dispatcher): super::dispatcher::Dispatch
+[dispatcher](#dispatcher)
+: super::dispatcher::Dispatch
 

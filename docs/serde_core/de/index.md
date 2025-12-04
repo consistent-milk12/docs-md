@@ -435,7 +435,8 @@ where
 
 - **`Bytes`**
 
-  The input contained a `&[u8](#u8)` or `Vec<u8>` that was not expected.
+  The input contained a `&[u8](#u8)
+  ` or `Vec<u8>` that was not expected.
 
 - **`Unit`**
 
@@ -699,7 +700,8 @@ can be deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
 automatically generate `Deserialize` implementations for structs and enums
-in your program. See the [derive section of the manual][derive](#derive) for how to
+in your program. See the [derive section of the manual][derive](#derive)
+ for how to
 use this.
 
 In rare cases it may be necessary to implement `Deserialize` manually for
@@ -711,7 +713,8 @@ they expose. For example the `linked-hash-map` crate provides a
 `LinkedHashMap<K, V>` type that is deserializable by Serde because the crate
 provides an implementation of `Deserialize` for it.
 
-[derive](#derive): https://serde.rs/derive.html
+[derive](#derive)
+: https://serde.rs/derive.html
 [impl-deserialize]: https://serde.rs/impl-deserialize.html
 
 # Lifetime

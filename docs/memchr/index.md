@@ -13,7 +13,8 @@ This section gives a brief high level overview of what this crate offers.
 * The [`memmem`](memchr/memmem/index.md) sub-module provides forward and reverse substring search
   routines.
 
-In all such cases, routines operate on `&[u8](#u8)` without regard to encoding. This
+In all such cases, routines operate on `&[u8](#u8)
+` without regard to encoding. This
 is exactly what you want when searching either UTF-8 or arbitrary bytes.
 
 # Example: using `memchr`
@@ -85,7 +86,8 @@ a dedicated routine like `memchr` for something that could be implemented
 clearly and trivially in one line:
 
 ```
-fn memchr(needle: u8, haystack: &[u8](#u8)) -> Option<usize> {
+fn memchr(needle: u8, haystack: &[u8](#u8)
+) -> Option<usize> {
     haystack.iter().position(|&b| b == needle)
 }
 ```

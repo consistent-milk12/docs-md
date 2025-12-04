@@ -75,13 +75,16 @@ use determines the return type of the functions that use it:
 
 | If you pass a…           | You get back a… |
 | ------------------------ | --------------- |
-| `&mut [u8](#u8)`              | `usize`, indicating the number of elements initialized. |
-| `&mut [MaybeUninit<u8>]` | `(&mut [u8](#u8), &mut [MaybeUninit<u8>])`, holding the initialized and uninitialized subslices. |
+| `&mut [u8](#u8)
+`              | `usize`, indicating the number of elements initialized. |
+| `&mut [MaybeUninit<u8>]` | `(&mut [u8](#u8)
+, &mut [MaybeUninit<u8>])`, holding the initialized and uninitialized subslices. |
 | [`SpareCapacity`](rustix/buffer/index.md)        | `usize`, indicating the number of elements initialized. And the `Vec` is extended. |
 
 # Examples
 
-Passing a `&mut [u8](#u8)`:
+Passing a `&mut [u8](#u8)
+`:
 
 ```
 # use rustix::io::read;
@@ -101,7 +104,8 @@ Passing a `&mut [MaybeUninit<u8>]`:
 # fn example(fd: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
 let mut buf = [MaybeUninit::<u8>::uninit(); 64];
 let (init, uninit) = read(fd, &mut buf)?;
-// `init` is a `&mut [u8](#u8)` with the initialized bytes.
+// `init` is a `&mut [u8](#u8)
+` with the initialized bytes.
 // `uninit` is a `&mut [MaybeUninit<u8>]` with the remaining bytes.
 # Ok(())
 # }
@@ -129,7 +133,8 @@ Here are some we've encountered, along with ways to fix them.
 If you see errors like
 "cannot move out of `self` which is behind a mutable reference"
 and
-"move occurs because `x` has type `&mut [u8](#u8)`, which does not implement the `Copy` trait",
+"move occurs because `x` has type `&mut [u8](#u8)
+`, which does not implement the `Copy` trait",
 replace `x` with `&mut *x`. See `error_buffer_wrapper` in
 examples/buffer_errors.rs.
 

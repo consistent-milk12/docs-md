@@ -6,7 +6,8 @@
 
 HTTP/1.1 data transport.
 
-**NOTE: transport does not (yet) [follow semver][super](#super).**
+**NOTE: transport does not (yet) [follow semver][super](#super)
+.**
 
 _NOTE: Transport is deep configuration of ureq and is not required for regular use._
 
@@ -815,7 +816,7 @@ The built-in [`DefaultConnector`](ureq/unversioned/transport/index.md) provides 
 When writing a bespoke connector chain we recommend handling errors like this:
 
 1. Map to [`Error::Io`](#io) as far as possible.
-2. Map to any other [`Error`](../../../clap_builder/clap_builder/error/index.md) where reasonable.
+2. Map to any other [`Error`](../../../docs_md/docs_md/error/index.md) where reasonable.
 3. Fall back on [`Error::Other`](#other) preserving the original error.
 4. As a last resort [`Error::ConnectionFailed`](#connectionfailed) + logging.
 

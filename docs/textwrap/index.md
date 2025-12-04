@@ -142,7 +142,8 @@ These features are enabled by default:
   other ways.
 
 * `smawk`: enables linear-time wrapping of the whole paragraph via
-  the [smawk](#smawk) crate. See [`wrap_algorithms::wrap_optimal_fit()`](#wrap-optimal-fit)
+  the [smawk](#smawk)
+ crate. See [`wrap_algorithms::wrap_optimal_fit()`](#wrap-optimal-fit)
   for details on the optimal-fit algorithm.
 
   This feature can be disabled if you only ever intend to use
@@ -180,20 +181,25 @@ results.
 These Cargo features enable new functionality:
 
 * `terminal_size`: enables automatic detection of the terminal
-  width via the [terminal_size](#terminal-size) crate. See
+  width via the [terminal_size](#terminal-size)
+ crate. See
   [`Options::with_termwidth()`](#with-termwidth) for details.
 
 * `hyphenation`: enables language-sensitive hyphenation via the
-  [hyphenation](#hyphenation) crate. See the [`word_splitters::WordSplitter`](#wordsplitter)
+  [hyphenation](#hyphenation)
+ crate. See the [`word_splitters::WordSplitter`](#wordsplitter)
   trait for details.
 
 [unicode-linebreak]: https://docs.rs/unicode-linebreak/
 [unicode-width]: https://docs.rs/unicode-width/
-[smawk](#smawk): https://docs.rs/smawk/
+[smawk](#smawk)
+: https://docs.rs/smawk/
 [binary-sizes demo]: https://github.com/mgeisler/textwrap/tree/master/examples/binary-sizes
 [textwrap-macros]: https://docs.rs/textwrap-macros/
-[terminal_size](#terminal-size): https://docs.rs/terminal_size/
-[hyphenation](#hyphenation): https://docs.rs/hyphenation/
+[terminal_size](#terminal-size)
+: https://docs.rs/terminal_size/
+[hyphenation](#hyphenation)
+: https://docs.rs/hyphenation/
 
 ## Modules
 
@@ -673,10 +679,12 @@ language-aware hyphenation:
 }
 ```
 
-Please see the documentation for the [hyphenation](#hyphenation) crate for more
+Please see the documentation for the [hyphenation](#hyphenation)
+ crate for more
 details.
 
-[hyphenation](#hyphenation): https://docs.rs/hyphenation/
+[hyphenation](#hyphenation)
+: https://docs.rs/hyphenation/
 
 #### Variants
 
@@ -841,7 +849,8 @@ an entire paragraph at a time in order to find optimal line breaks
   use textwrap::core::Word;
   use textwrap::{wrap, Options, WrapAlgorithm};
   
-  fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize](#usize)) -> Vec<&'b [Word<'a>]> {
+  fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize](#usize)
+  ) -> Vec<&'b [Word<'a>]> {
       let mut lines = Vec::new();
       let mut step = 1;
       let mut start_idx = 0;

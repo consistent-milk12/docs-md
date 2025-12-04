@@ -36,8 +36,10 @@ capture reference. For example, `${1}a` corresponds to the capture group
 reference `1` followed by the letter `a`, where as `$1a` (as mentioned above)
 corresponds to the capture group reference `1a`. The braced format is also
 useful for expressing capture group names that use characters not supported by
-the unbraced format. For example, `${foo[bar](#bar).baz}` refers to the capture group
-named `foo[bar](#bar).baz`.
+the unbraced format. For example, `${foo[bar](#bar)
+.baz}` refers to the capture group
+named `foo[bar](#bar)
+.baz`.
 
 If a capture group reference is found and it does not refer to a valid capture
 group, then it will be replaced with the empty string.

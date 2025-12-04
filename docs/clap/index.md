@@ -3,7 +3,6 @@
 > **Command Line Argument Parser for Rust**
 
 Quick Links:
-
 - Derive [tutorial](#_tutorial) and [reference][_derive]
 - Builder [tutorial][_tutorial] and [reference][Command]
 - [Cookbook][_cookbook]
@@ -29,22 +28,19 @@ Quick Links:
 
 While these aspirations can be at odds with fast build times and low binary
 size, we will still strive to keep these reasonable for the flexibility you
-get. Check out the
+get.  Check out the
 [argparse-benchmarks](https://github.com/rust-cli/argparse-benchmarks-rs) for
 CLI parsers optimized for other use cases.
 
 ## Example
 
 Run
-
 ```console
 $ cargo add clap --features derive
 ```
-
-_(See also [feature flag reference][_features])_
+*(See also [feature flag reference][_features])*
 
 Then define your CLI in `main.rs`:
-
 ```rust
 # #[cfg(feature = "derive")] {
 use clap::Parser;
@@ -73,7 +69,6 @@ fn main() {
 ```
 
 And try it out:
-
 ```console
 $ demo --help
 A simple to use, efficient, and full-featured Command Line Argument Parser
@@ -90,15 +85,13 @@ $ demo --name Me
 Hello Me!
 
 ```
-
-_(version number and `.exe` extension on windows replaced by placeholders)_
+*(version number and `.exe` extension on windows replaced by placeholders)*
 
 See also the derive [tutorial](#_tutorial) and [reference][_derive]
 
 ### Related Projects
 
 Augment clap:
-
 - [wild](https://crates.io/crates/wild) for supporting wildcards (`*`) on Windows like you do Linux
 - [argfile](https://crates.io/crates/argfile) for loading additional arguments from a file (aka response files)
 - [shadow-rs](https://crates.io/crates/shadow-rs) for generating `Command::long_version`
@@ -107,18 +100,17 @@ Augment clap:
 - [clap-i18n-richformatter](https://crates.io/crates/clap-i18n-richformatter) for i18n support with `clap::error::RichFormatter`
 
 CLI Helpers
-
 - [clio](https://crates.io/crates/clio) for reading/writing to files specified as arguments
 - [clap-verbosity-flag](https://crates.io/crates/clap-verbosity-flag)
 - [clap-cargo](https://crates.io/crates/clap-cargo)
 - [colorchoice-clap](https://crates.io/crates/colorchoice-clap)
 
 Testing
-
-- [`trycmd`](https://crates.io/crates/trycmd): Bulk snapshot testing
-- [`snapbox`](https://crates.io/crates/snapbox): Specialized snapshot testing
+- [`trycmd`](https://crates.io/crates/trycmd):  Bulk snapshot testing
+- [`snapbox`](https://crates.io/crates/snapbox):  Specialized snapshot testing
 - [`assert_cmd`](https://crates.io/crates/assert_cmd) and [`assert_fs`](https://crates.io/crates/assert_fs): Customized testing
 
 Documentation:
-
 - [Command-line Apps for Rust](https://rust-cli.github.io/book/index.html) book
+
+

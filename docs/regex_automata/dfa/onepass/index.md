@@ -416,6 +416,21 @@ assert_eq!(Some(Span::from(1..2)), caps0.get_group(1));
 
 #### Implementations
 
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
+  Executes an anchored leftmost forward search, and returns true if and
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
+  Executes an anchored leftmost forward search, and returns a `Match` if
+
+- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
+  Executes an anchored leftmost forward search and writes the spans
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
+  Executes an anchored leftmost forward search and writes the spans
+
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
+  Executes an anchored leftmost forward search and writes the spans
+
 - `fn new(pattern: &str) -> Result<DFA, BuildError>`
   Parse the given regular expression using the default configuration and
 
@@ -469,21 +484,6 @@ assert_eq!(Some(Span::from(1..2)), caps0.get_group(1));
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the memory usage, in bytes, of this DFA.
-
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Executes an anchored leftmost forward search, and returns true if and
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Executes an anchored leftmost forward search, and returns a `Match` if
-
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
-  Executes an anchored leftmost forward search and writes the spans
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes an anchored leftmost forward search and writes the spans
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes an anchored leftmost forward search and writes the spans
 
 #### Trait Implementations
 

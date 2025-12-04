@@ -36,3 +36,4 @@ assert_eq!(
     Some("baz".into())
 );
 ```
+

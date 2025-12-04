@@ -21,9 +21,11 @@
  The `tracing` crate provides the APIs necessary for instrumenting libraries
  and applications to emit trace data.
 
- *Compiler support: [requires `rustc` 1.65+][msrv](#msrv)*
+ *Compiler support: [requires `rustc` 1.65+][msrv](#msrv)
+*
 
- [msrv](#msrv): #supported-rust-versions
+ [msrv](#msrv)
+: #supported-rust-versions
  # Core Concepts
 
  The core of `tracing`'s API is composed of _spans_, _events_ and
@@ -32,7 +34,8 @@
  ## Spans
 
  To record the flow of execution through a program, `tracing` introduces the
- concept of [spans](#spans). Unlike a log line that represents a _moment in
+ concept of [spans](#spans)
+. Unlike a log line that represents a _moment in
  time_, a span represents a _period of time_ with a beginning and an end. When a
  program begins executing in a context or performing a unit of work, it
  _enters_ that context's span, and when it stops executing in that context,
@@ -51,7 +54,8 @@
  # }
 ```
 
- The [`span` module][span](#span)'s documentation provides further details on how to
+ The [`span` module][span](#span)
+'s documentation provides further details on how to
  use spans.
 
  <div class="example-wrap" style="display:inline-block"><pre class="compile_fail" style="white-space:normal;font:inherit;">
@@ -105,7 +109,8 @@
  + [`exit`](../rustix/rustix/not_implemented/libc_internals/index.md), called when execution exits a `Span`
 
  In addition, subscribers may implement the [`enabled`](tracing/index.md) function to _filter_
- the notifications they receive based on [metadata](#metadata) describing each `Span`
+ the notifications they receive based on [metadata](#metadata)
+ describing each `Span`
  or `Event`. If a call to `Subscriber::enabled` returns `false` for a given
  set of metadata, that `Subscriber` will *not* be notified about the
  corresponding `Span` or `Event`. For performance reasons, if no currently
@@ -118,6 +123,7 @@
 
  ```toml
  [dependencies](#dependencies)
+
  tracing = "0.1"
  ```
 
@@ -150,8 +156,11 @@
  # }
  ```
 
- The [`#[instrument](#instrument)`][instrument](#instrument) attribute provides an easy way to
- add `tracing` spans to functions. A function annotated with `#[instrument](#instrument)`
+ The [`#[instrument](#instrument)
+`][instrument](#instrument)
+ attribute provides an easy way to
+ add `tracing` spans to functions. A function annotated with `#[instrument](#instrument)
+`
  will create and enter a span with that function's name every time the
  function is called, with arguments to that function will be recorded as
  fields using `fmt::Debug`.
@@ -163,6 +172,7 @@
  use tracing::{Level, event, instrument};
 
  #[instrument](#instrument)
+
  pub fn my_function(my_arg: usize) {
      // This event will be recorded inside a span named `my_function` with the
      // field `my_arg`.
@@ -173,7 +183,8 @@
  ```
 
  For functions which don't have built-in tracing support and can't have
- the `#[instrument](#instrument)` attribute applied (such as from an external crate),
+ the `#[instrument](#instrument)
+` attribute applied (such as from an external crate),
  the [`Span` struct][`Span`](tracing/span/index.md) has a [`in_scope()` method][`in_scope`](#in-scope)
  which can be used to easily wrap synchronous code in a span.
 
@@ -183,7 +194,8 @@
 
  # fn doc() -> Result<(), ()> {
  # mod serde_json {
- #    pub(crate) fn from_slice(buf: &[u8](#u8)) -> Result<(), ()> { Ok(()) }
+ #    pub(crate) fn from_slice(buf: &[u8](#u8)
+) -> Result<(), ()> { Ok(()) }
  # }
  # let buf: [u8; 0] = [];
  let json = info_span!("json.parse").in_scope(|| serde_json::from_slice(&buf))?;
@@ -192,10 +204,12 @@
  # }
  ```
 
- You can find more examples showing how to use this crate [here][examples](#examples).
+ You can find more examples showing how to use this crate [here][examples](#examples)
+.
 
  [RAII]: https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/RAII.md
- [examples](#examples): https://github.com/tokio-rs/tracing/tree/main/examples
+ [examples](#examples)
+: https://github.com/tokio-rs/tracing/tree/main/examples
 
  ### Events
 
@@ -210,13 +224,15 @@
 
  ## Using the Macros
 
- The [`span`](tracing/index.md) and [`event`](tracing/index.md) macros as well as the `#[instrument](#instrument)` attribute
+ The [`span`](tracing/index.md) and [`event`](tracing/index.md) macros as well as the `#[instrument](#instrument)
+` attribute
  use fairly similar syntax, with some exceptions.
 
  ### Configuring Attributes
 
  Both macros require a [`Level`](../log/log/index.md) specifying the verbosity of the span or
- event. Optionally, the, [target](#target) and [parent span] may be overridden. If the
+ event. Optionally, the, [target](#target)
+ and [parent span] may be overridden. If the
  target and parent span are not overridden, they will default to the
  module path where the macro was invoked and the current span (as determined
  by the subscriber), respectively.
@@ -411,7 +427,8 @@
  ```
 
  Finally, events may also include human-readable messages, in the form of a
- [format string][fmt](#fmt) and (optional) arguments, **after** the event's
+ [format string][fmt](#fmt)
+ and (optional) arguments, **after** the event's
  key-value fields. If a format string and arguments are provided,
  they will implicitly create a new field named `message` whose value is the
  provided set of format arguments.
@@ -440,12 +457,14 @@
  Specifying a formatted message in this manner does not allocate by default.
 
  [struct initializers]: https://doc.rust-lang.org/book/ch05-01-defining-structs.html#using-the-field-init-shorthand-when-variables-and-fields-have-the-same-name
- [target](#target): Metadata::target
+ [target](#target)
+: Metadata::target
  [parent span]: span::Attributes::parent
  [determined contextually]: span::Attributes::is_contextual
 
 
- [fmt](#fmt): std::fmt#usage
+ [fmt](#fmt)
+: std::fmt#usage
 
  ### Shorthand Macros
 
@@ -644,7 +663,9 @@
  ### Emitting `log` Records
 
  This crate provides two feature flags, "log" and "log-always", which will
- cause [spans](#spans) and [events](#events) to emit `log` records. When the "log" feature is
+ cause [spans](#spans)
+ and [events](#events)
+ to emit `log` records. When the "log" feature is
  enabled, if no `tracing` `Subscriber` is active, invoking an event macro or
  creating a span with fields will emit a `log` record. This is intended
  primarily for use in libraries which wish to emit diagnostics that can be
@@ -660,7 +681,8 @@
  libraries generally should **not** enable the "log-always" feature, as doing
  so will prevent applications from being able to opt out of the `log` records.
 
- See [here][flags](#flags) for more details on this crate's feature flags.
+ See [here][flags](#flags)
+ for more details on this crate's feature flags.
 
  The generated `log` records' messages will be a string representation of the
  span or event's fields, and all additional information recorded by `log`
@@ -679,7 +701,8 @@
 
  The [`tracing-log`](#tracing-log) crate provides a compatibility layer which
  allows a `tracing` [`Subscriber`](../tracing_core/tracing_core/subscriber/index.md) to consume `log` records as though they
- were `tracing` [events](#events). This allows applications using `tracing` to record
+ were `tracing` [events](#events)
+. This allows applications using `tracing` to record
  the logs emitted by dependencies using `log` as events within the context of
  the application's trace tree. See [that crate's documentation][log-tracer]
  for details.
@@ -727,15 +750,18 @@
   - [`axum-insights`](#axum-insights) provides `tracing` integration and Application insights export for the `axum` web framework.
   - [`tracing-gelf`](#tracing-gelf) implements a subscriber for exporting traces in Greylog
     GELF format.
-  - [`tracing-coz`](#tracing-coz) provides integration with the [coz](#coz) causal profiler
+  - [`tracing-coz`](#tracing-coz) provides integration with the [coz](#coz)
+ causal profiler
     (Linux-only).
   - [`tracing-bunyan-formatter`](#tracing-bunyan-formatter) provides a layer implementation that reports events and spans
-    in [bunyan](#bunyan) format, enriched with timing information.
+    in [bunyan](#bunyan)
+ format, enriched with timing information.
   - [`tracing-wasm`](#tracing-wasm) provides a `Subscriber`/`Layer` implementation that reports
     events and spans via browser `console.log` and [User Timing API (`window.performance`)].
   - [`tracing-web`](#tracing-web) provides a layer implementation of level-aware logging of events
     to web browsers' `console.*` and span events to the [User Timing API (`window.performance`)].
-  - [`tide-tracing`](#tide-tracing) provides a [tide](#tide) middleware to trace all incoming requests and responses.
+  - [`tide-tracing`](#tide-tracing) provides a [tide](#tide)
+ middleware to trace all incoming requests and responses.
   - [`test-log`](#test-log) takes care of initializing `tracing` for tests, based on
     environment variables with an `env_logger` compatible syntax.
   - [`tracing-unwrap`](#tracing-unwrap) provides convenience methods to report failed unwraps
@@ -769,14 +795,17 @@
 
 
 
- [coz](#coz): https://github.com/plasma-umass/coz
+ [coz](#coz)
+: https://github.com/plasma-umass/coz
 
- [bunyan](#bunyan): https://github.com/trentm/node-bunyan
+ [bunyan](#bunyan)
+: https://github.com/trentm/node-bunyan
 
 
  [User Timing API (`window.performance`)]: https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
- [tide](#tide): https://crates.io/crates/tide
+ [tide](#tide)
+: https://crates.io/crates/tide
 
 
 
@@ -819,7 +848,8 @@
    applications which intend to collect traces and logs separately; if an
    adapter is used to convert `log` records into `tracing` events, this will
    cause duplicate events to occur.
- * `attributes`: Includes support for the `#[instrument](#instrument)` attribute.
+ * `attributes`: Includes support for the `#[instrument](#instrument)
+` attribute.
    This is on by default, but does bring in the `syn` crate as a dependency,
    which may add to the compile time of crates that do not already use it.
  * `std`: Depend on the Rust standard library (enabled by default).
@@ -828,6 +858,7 @@
 
    ```toml
    [dependencies](#dependencies)
+
    tracing = { version = "0.1.38", default-features = false }
    ```
 
@@ -860,6 +891,7 @@
 
  ```toml
  [build](#build)
+
  rustflags = ["--cfg", "tracing_unstable"]
  ```
 
@@ -880,18 +912,23 @@
  supported compiler version is not considered a semver breaking change as
  long as doing so complies with this policy.
 
- [span](#span): mod@span
- [spans](#spans): mod@span
+ [span](#span)
+: mod@span
+ [spans](#spans)
+: mod@span
 
 
- [event](#event): Event
- [events](#events): Event
+ [event](#event)
+: Event
+ [events](#events)
+: Event
 
  [Subscriber::event]: subscriber::Subscriber::event
 
 
 
- [metadata](#metadata): Metadata
+ [metadata](#metadata)
+: Metadata
 
 
 
@@ -905,8 +942,10 @@
 
 
  [static verbosity level]: level_filters#compile-time-filters
- [instrument](#instrument): https://docs.rs/tracing-attributes/latest/tracing_attributes/attr.instrument.html
- [flags](#flags): #crate-feature-flags
+ [instrument](#instrument)
+: https://docs.rs/tracing-attributes/latest/tracing_attributes/attr.instrument.html
+ [flags](#flags)
+: #crate-feature-flags
 
 ## Modules
 
@@ -986,7 +1025,8 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](#input). This includes `&[u8](#u8)`, `&str` and `Input` itself.
+to an [`Input`](#input). This includes `&[u8](#u8)
+`, `&str` and `Input` itself.
 
 # Construction failure
 
@@ -1242,10 +1282,12 @@ The event macro is invoked with a `Level` and up to 32 key-value fields.
 Optionally, a format string and arguments may follow the fields; this will
 be used to construct an implicit field named "message".
 
-See [the top-level documentation][lib](#lib) for details on the syntax accepted by
+See [the top-level documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
+[lib](#lib)
+: crate#using-the-macros
 
 # Examples
 
@@ -1276,10 +1318,12 @@ event!(Level::INFO, the_answer = data.0);
 
 Constructs a new span.
 
-See [the top-level documentation][lib](#lib) for details on the syntax accepted by
+See [the top-level documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
+[lib](#lib)
+: crate#using-the-macros
 
 # Examples
 
@@ -1302,9 +1346,11 @@ This macro supports two optional sigils:
 - `%` uses the Display implementation.
 - `?` uses the Debug implementation.
 
-For more details, see the [top-level documentation][lib](#lib).
+For more details, see the [top-level documentation][lib](#lib)
+.
 
-[lib](#lib): tracing/#recording-fields
+[lib](#lib)
+: tracing/#recording-fields
 
 # Examples
 
@@ -1318,14 +1364,18 @@ record_all!(span, field1 = ?"1", field2 = %"2", field3 = 3);
 
 Constructs a span at the trace level.
 
-[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes)
+ are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib) for details on the syntax accepted by
+See [the top-level documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
-[attributes](#attributes): crate#configuring-attributes
+[lib](#lib)
+: crate#using-the-macros
+[attributes](#attributes)
+: crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
@@ -1353,14 +1403,18 @@ span.in_scope(|| {
 
 Constructs a span at the debug level.
 
-[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes)
+ are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib) for details on the syntax accepted by
+See [the top-level documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
-[attributes](#attributes): crate#configuring-attributes
+[lib](#lib)
+: crate#using-the-macros
+[attributes](#attributes)
+: crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
@@ -1388,14 +1442,18 @@ span.in_scope(|| {
 
 Constructs a span at the info level.
 
-[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes)
+ are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib) for details on the syntax accepted by
+See [the top-level documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
-[attributes](#attributes): crate#configuring-attributes
+[lib](#lib)
+: crate#using-the-macros
+[attributes](#attributes)
+: crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
@@ -1423,14 +1481,18 @@ span.in_scope(|| {
 
 Constructs a span at the warn level.
 
-[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes)
+ are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib) for details on the syntax accepted by
+See [the top-level documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
-[attributes](#attributes): crate#configuring-attributes
+[lib](#lib)
+: crate#using-the-macros
+[attributes](#attributes)
+: crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
@@ -1458,14 +1520,18 @@ span.in_scope(|| {
 
 Constructs a span at the error level.
 
-[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes)
+ are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib) for details on the syntax accepted by
+See [the top-level documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
-[attributes](#attributes): crate#configuring-attributes
+[lib](#lib)
+: crate#using-the-macros
+[attributes](#attributes)
+: crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
@@ -1549,10 +1615,14 @@ if span_enabled!(Level::DEBUG, foo_field) {
 
 ### `enabled!`
 
-Checks whether a span or event is [enabled](#enabled) based on the provided [metadata](#metadata).
+Checks whether a span or event is [enabled](#enabled)
+ based on the provided [metadata](#metadata)
+.
 
-[enabled](#enabled): crate::Subscriber::enabled
-[metadata](#metadata): crate::Metadata
+[enabled](#enabled)
+: crate::Subscriber::enabled
+[metadata](#metadata)
+: crate::Metadata
 
 This macro is a specialized tool: it is intended to be used prior
 to an expensive computation required *just* for that event, but
@@ -1642,10 +1712,12 @@ returns true.
 Constructs an event at the trace level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib) for details on the syntax accepted by
+documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
+[lib](#lib)
+: crate#using-the-macros
 
 # Examples
 
@@ -1680,10 +1752,12 @@ trace!(name: "completed", position = ?pos);
 Constructs an event at the debug level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib) for details on the syntax accepted by
+documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
+[lib](#lib)
+: crate#using-the-macros
 
 # Examples
 
@@ -1705,10 +1779,12 @@ debug!(name: "completed", position = ?pos);
 Constructs an event at the info level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib) for details on the syntax accepted by
+documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
+[lib](#lib)
+: crate#using-the-macros
 
 # Examples
 
@@ -1741,10 +1817,12 @@ info!(name: "completed", "completed connection to {:?}", addr);
 Constructs an event at the warn level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib) for details on the syntax accepted by
+documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
+[lib](#lib)
+: crate#using-the-macros
 
 # Examples
 
@@ -1770,10 +1848,12 @@ warn!(name: "invalid", ?input);
 Constructs an event at the error level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib) for details on the syntax accepted by
+documentation][lib](#lib)
+ for details on the syntax accepted by
 this macro.
 
-[lib](#lib): crate#using-the-macros
+[lib](#lib)
+: crate#using-the-macros
 
 # Examples
 

@@ -35,7 +35,7 @@ impl<'a> ModuleRenderer<'a> {
     ///
     /// # Arguments
     ///
-    /// * `ctx` - Render context (implements RenderContext trait)
+    /// * `ctx` - Render context (implements `RenderContext` trait)
     /// * `current_file` - Path of this file (for relative link calculation)
     /// * `is_root` - True if this is the crate root module
     pub fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self {
@@ -73,6 +73,7 @@ impl<'a> ModuleRenderer<'a> {
     /// ## Enums
     /// ...
     /// ```
+    #[must_use]
     pub fn render(&self, item: &Item) -> String {
         let mut md = String::new();
 

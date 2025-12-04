@@ -85,7 +85,8 @@ Instead, we suggest that potential users of that API consider:
 - whether their use can fit in standard extensions such as ALPN,
   or [ALPS][alps][^3].
 - if not, whether they can fit in a more general extension, and define
-  and standardize that in the [IETF TLSWG][tlswg](#tlswg).
+  and standardize that in the [IETF TLSWG][tlswg](#tlswg)
+.
 
 Note the above is not a guarantee or offer that rustls will implement
 any specific extensions that are standardized by the IETF TLSWG.
@@ -94,11 +95,15 @@ It is a non-goal of this project to implement absolutely everything.
 For experimentation and pre-standardization testing, we suggest
 forking rustls.
 
-See also: [Go's position on such an API][golang](#golang).
+See also: [Go's position on such an API][golang](#golang)
+.
 
-[alps](#alps): https://datatracker.ietf.org/doc/html/draft-vvv-tls-alps
-[golang](#golang): https://github.com/golang/go/issues/51497
-[tlswg](#tlswg): https://datatracker.ietf.org/wg/tls/charter/
+[alps](#alps)
+: https://datatracker.ietf.org/doc/html/draft-vvv-tls-alps
+[golang](#golang)
+: https://github.com/golang/go/issues/51497
+[tlswg](#tlswg)
+: https://datatracker.ietf.org/wg/tls/charter/
 [^3]: rustls does not currently implement ALPS, but it is something we
   would consider once standardised and deployed.
 

@@ -135,7 +135,8 @@ let pkcs8_bytes = signature::Ed25519KeyPair::generate_pkcs8(&rng)?;
 let key_pair = signature::Ed25519KeyPair::from_pkcs8(pkcs8_bytes.as_ref())?;
 
 // Sign the message "hello, world".
-const MESSAGE: &[u8](#u8) = b"hello, world";
+const MESSAGE: &[u8](#u8)
+ = b"hello, world";
 let sig = key_pair.sign(MESSAGE);
 
 // Normally an application would extract the bytes of the signature and
@@ -198,7 +199,8 @@ let key_pair = rsa::KeyPair::from_der(&private_key_der)
 
 // Sign the message "hello, world", using PKCS#1 v1.5 padding and the
 // SHA256 digest algorithm.
-const MESSAGE: &'static [u8](#u8) = b"hello, world";
+const MESSAGE: &'static [u8](#u8)
+ = b"hello, world";
 let rng = rand::SystemRandom::new();
 let mut signature = vec![0; key_pair.public().modulus_len()];
 key_pair.sign(&signature::RSA_PKCS1_SHA256, &rng, MESSAGE, &mut signature)
@@ -564,7 +566,9 @@ struct RsaPublicKeyComponents<B> {
 
 RSA public key components.
 
-`B` must implement `AsRef<[u8](#u8)>` like `&[u8](#u8)` or `Vec<u8>`.
+`B` must implement `AsRef<[u8](#u8)
+>` like `&[u8](#u8)
+` or `Vec<u8>`.
 
 #### Fields
 
@@ -583,14 +587,14 @@ RSA public key components.
 
 #### Trait Implementations
 
+##### `impl From<B>`
+
+- `fn from(public_key: &PublicKey) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<B>`
-
-- `fn from(public_key: &PublicKey) -> Self`
 
 ##### `impl Into<T, U>`
 

@@ -1118,14 +1118,14 @@ assert!(styled_length < normal_length);
 
 #### Trait Implementations
 
-##### `impl From<T, U>`
-
-- `fn from(list: T) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<T, U>`
+
+- `fn from(list: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1193,14 +1193,14 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(color: &'a str) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(color: &'a str) -> Self`
 
 ##### `impl Into<T, U>`
 

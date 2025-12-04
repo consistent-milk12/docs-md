@@ -88,6 +88,7 @@ To enable the `js` Cargo feature, add the following to the `dependencies`
 section in your `Cargo.toml` file:
 ```toml
 [dependencies](#dependencies)
+
 getrandom = { version = "0.2", features = ["js"] }
 ```
 
@@ -265,14 +266,14 @@ certain purposes, see [`Error::INTERNAL_START`](#internal-start) and [`Error::CU
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(code: NonZeroU32) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(code: NonZeroU32) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -375,7 +376,8 @@ of what is returned.
 #![feature(maybe_uninit_uninit_array)]
 # fn main() -> Result<(), getrandom::Error> {
 let mut buf = core::mem::MaybeUninit::uninit_array::<1024>();
-let buf: &mut [u8](#u8) = getrandom::getrandom_uninit(&mut buf)?;
+let buf: &mut [u8](#u8)
+ = getrandom::getrandom_uninit(&mut buf)?;
 # Ok(()) }
 ```
 

@@ -177,11 +177,11 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn from_slice(bytes: &'a [u8]) -> Self`
-  Creates a JSON deserializer from a `&[u8]`.
-
 - `fn from_reader(reader: R) -> Self`
   Creates a JSON deserializer from an `io::Read`.
+
+- `fn from_str(s: &'a str) -> Self`
+  Creates a JSON deserializer from a `&str`.
 
 - `fn new(read: R) -> Self`
   Create a JSON deserializer from one of the possible serde_json input
@@ -192,8 +192,8 @@ A structure that deserializes JSON into Rust values.
 - `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>`
   Turn a JSON deserializer into an iterator over values of type T.
 
-- `fn from_str(s: &'a str) -> Self`
-  Creates a JSON deserializer from a `&str`.
+- `fn from_slice(bytes: &'a [u8]) -> Self`
+  Creates a JSON deserializer from a `&[u8]`.
 
 #### Trait Implementations
 
@@ -457,7 +457,8 @@ struct User {
 }
 
 fn main() {
-    // The type of `j` is `&[u8](#u8)`
+    // The type of `j` is `&[u8](#u8)
+`
     let j = b"
         {
             \"fingerprint\": \"0xF9BA143B95FF6D82\",

@@ -45,10 +45,12 @@ language-aware hyphenation:
 }
 ```
 
-Please see the documentation for the [hyphenation](#hyphenation) crate for more
+Please see the documentation for the [hyphenation](#hyphenation)
+ crate for more
 details.
 
-[hyphenation](#hyphenation): https://docs.rs/hyphenation/
+[hyphenation](#hyphenation)
+: https://docs.rs/hyphenation/
 
 #### Variants
 

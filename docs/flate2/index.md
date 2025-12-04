@@ -38,10 +38,14 @@ This crate consists mainly of three modules, [`read`](flate2/read/index.md), [`w
 [`bufread`](flate2/bufread/index.md). Each module contains a number of types used to encode and
 decode various streams of data.
 
-All types in the [`write`](flate2/write/index.md) module work on instances of [`Write`][write](#write),
+All types in the [`write`](flate2/write/index.md) module work on instances of [`Write`][write](#write)
+,
 whereas all types in the [`read`](flate2/read/index.md) module work on instances of
-[`Read`][read](#read) and [`bufread`](flate2/bufread/index.md) works with [`BufRead`][bufread](#bufread). If you
-are decoding directly from a `&[u8](#u8)`, use the [`bufread`](flate2/bufread/index.md) types.
+[`Read`][read](#read)
+ and [`bufread`](flate2/bufread/index.md) works with [`BufRead`][bufread](#bufread)
+. If you
+are decoding directly from a `&[u8](#u8)
+`, use the [`bufread`](flate2/bufread/index.md) types.
 
 ```
 use flate2::write::GzEncoder;
@@ -83,9 +87,12 @@ emit an error after decoding the gzip data. This behavior matches the `gzip`,
 
 
 
-[read](#read): https://doc.rust-lang.org/std/io/trait.Read.html
-[write](#write): https://doc.rust-lang.org/std/io/trait.Write.html
-[bufread](#bufread): https://doc.rust-lang.org/std/io/trait.BufRead.html
+[read](#read)
+: https://doc.rust-lang.org/std/io/trait.Read.html
+[write](#write)
+: https://doc.rust-lang.org/std/io/trait.Write.html
+[bufread](#bufread)
+: https://doc.rust-lang.org/std/io/trait.BufRead.html
 
 
 
@@ -183,9 +190,6 @@ A wrapper around a [`Read`](#read) that calculates the CRC.
 
 #### Implementations
 
-- `fn new(r: R) -> CrcReader<R>`
-  Create a new `CrcReader`.
-
 - `fn crc(self: &Self) -> &Crc`
   Get the Crc for this `CrcReader`.
 
@@ -200,6 +204,9 @@ A wrapper around a [`Read`](#read) that calculates the CRC.
 
 - `fn reset(self: &mut Self)`
   Reset the Crc in this `CrcReader`.
+
+- `fn new(r: R) -> CrcReader<R>`
+  Create a new `CrcReader`.
 
 #### Trait Implementations
 
@@ -788,11 +795,11 @@ bytes was not a valid input stream of bytes.
 
 #### Implementations
 
-- `fn needs_dictionary(self: &Self) -> Option<u32>`
-  Indicates whether decompression failed due to requiring a dictionary.
-
 - `fn message(self: &Self) -> Option<&str>`
   Retrieve the implementation's message about why the operation failed, if one exists.
+
+- `fn needs_dictionary(self: &Self) -> Option<u32>`
+  Indicates whether decompression failed due to requiring a dictionary.
 
 #### Trait Implementations
 

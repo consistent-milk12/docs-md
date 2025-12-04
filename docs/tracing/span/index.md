@@ -7,14 +7,16 @@
  Spans represent periods of time in which a program was executing in a
  particular context.
 
- A span consists of [fields](#fields), user-defined key-value pairs of arbitrary data
+ A span consists of [fields](#fields)
+, user-defined key-value pairs of arbitrary data
  that describe the context the span represents, and a set of fixed attributes
  that describe all `tracing` spans and events. Attributes describing spans
  include:
 
  - An [`Id`](../../rustdoc_types/rustdoc_types/index.md) assigned by the subscriber that uniquely identifies it in relation
    to other spans.
- - The span's [parent](#parent) in the trace tree.
+ - The span's [parent](#parent)
+ in the trace tree.
  - [Metadata] that describes static characteristics of all spans
    originating from that callsite, such as its name, source code location,
    [verbosity level], and the names of its fields.
@@ -24,7 +26,8 @@
  Spans are created using the [`span!`](#span) macro. This macro is invoked with the
  following arguments, in order:
 
- - The [`target`](#target) and/or [`parent`][parent](#parent) attributes, if the user wishes to
+ - The [`target`](#target) and/or [`parent`][parent](#parent)
+ attributes, if the user wishes to
    override their default values.
  - The span's [verbosity level]
  - A string literal providing the span's name.
@@ -50,7 +53,8 @@
 
  The [`Attributes`](../../tracing_core/tracing_core/span/index.md) type contains data associated with a span, and is
  provided to the [`Subscriber`](../../tracing_core/tracing_core/subscriber/index.md) when a new span is created. It contains
- the span's metadata, the ID of [the span's parent][parent](#parent) if one was
+ the span's metadata, the ID of [the span's parent][parent](#parent)
+ if one was
  explicitly set, and any fields whose values were recorded when the span was
  constructed. The subscriber, which is responsible for recording `tracing`
  data, can then store or record these values.
@@ -63,7 +67,8 @@
  and _exit_ the span when it switches to another context. Spans may be
  entered through the [`enter`](#enter), [`entered`](#entered), and [`in_scope`](#in-scope) methods.
 
- The [`enter`](#enter) method enters a span, returning a [guard](#guard) that exits the span
+ The [`enter`](#enter) method enters a span, returning a [guard](#guard)
+ that exits the span
  when dropped
  ```
  # use tracing::{span, Level};
@@ -301,7 +306,8 @@
  much time was spent in each individual iteration, we would enter a new span
  on every iteration.
 
- [fields](#fields): super::field
+ [fields](#fields)
+: super::field
  [Metadata]: super::Metadata
  [verbosity level]: super::Level
 
@@ -319,8 +325,10 @@
 
 
 
- [guard](#guard): Entered
- [parent](#parent): #span-relationships
+ [guard](#guard)
+: Entered
+ [parent](#parent)
+: #span-relationships
 
 ## Structs
 

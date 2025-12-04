@@ -34,33 +34,6 @@ let styles = Styles::styled()
 
 #### Implementations
 
-- `const fn get_header(self: &Self) -> &Style`
-  General Heading style, e.g. [`help_heading`][crate::Arg::help_heading]
-
-- `const fn get_error(self: &Self) -> &Style`
-  Error heading
-
-- `const fn get_usage(self: &Self) -> &Style`
-  Usage heading
-
-- `const fn get_literal(self: &Self) -> &Style`
-  Literal command-line syntax, e.g. `--help`
-
-- `const fn get_placeholder(self: &Self) -> &Style`
-  Descriptions within command-line syntax, e.g. [`value_name`][crate::Arg::value_name]
-
-- `const fn get_valid(self: &Self) -> &Style`
-  Highlight suggested usage
-
-- `const fn get_invalid(self: &Self) -> &Style`
-  Highlight invalid usage
-
-- `const fn get_context(self: &Self) -> &Style`
-  Highlight all specified contexts, e.g. `[default: false]`
-
-- `const fn get_context_value(self: &Self) -> &Style`
-  Highlight values within all of the context, e.g. the `false` in `[default: false]`
-
 - `const fn plain() -> Self`
   No terminal styling
 
@@ -92,6 +65,33 @@ let styles = Styles::styled()
   Highlight all specified contexts, e.g. `[default: false]`
 
 - `const fn context_value(self: Self, style: Style) -> Self`
+  Highlight values within all of the context, e.g. the `false` in `[default: false]`
+
+- `const fn get_header(self: &Self) -> &Style`
+  General Heading style, e.g. [`help_heading`][crate::Arg::help_heading]
+
+- `const fn get_error(self: &Self) -> &Style`
+  Error heading
+
+- `const fn get_usage(self: &Self) -> &Style`
+  Usage heading
+
+- `const fn get_literal(self: &Self) -> &Style`
+  Literal command-line syntax, e.g. `--help`
+
+- `const fn get_placeholder(self: &Self) -> &Style`
+  Descriptions within command-line syntax, e.g. [`value_name`][crate::Arg::value_name]
+
+- `const fn get_valid(self: &Self) -> &Style`
+  Highlight suggested usage
+
+- `const fn get_invalid(self: &Self) -> &Style`
+  Highlight invalid usage
+
+- `const fn get_context(self: &Self) -> &Style`
+  Highlight all specified contexts, e.g. `[default: false]`
+
+- `const fn get_context_value(self: &Self) -> &Style`
   Highlight values within all of the context, e.g. the `false` in `[default: false]`
 
 #### Trait Implementations

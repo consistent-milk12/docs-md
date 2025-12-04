@@ -606,7 +606,8 @@ assert_eq!(subs, vec!["ΔδΔ𐅌ΔδΔ"]);
 
 ### Opt out of Unicode support
 
-The [`bytes::Regex`](#regex) type that can be used to search `&[u8](#u8)` haystacks. By
+The [`bytes::Regex`](#regex) type that can be used to search `&[u8](#u8)
+` haystacks. By
 default, haystacks are conventionally treated as UTF-8 just like it is with the
 main `Regex` type. However, this behavior can be disabled by turning off the
 `u` flag, even if doing so could result in matching invalid UTF-8. For example,
@@ -651,7 +652,8 @@ a separate crate, [`regex-syntax`](https://docs.rs/regex-syntax).
 ### Character classes
 
 <pre class="rust">
-[xyz](#xyz)         A character class matching either x, y or z (union).
+[xyz](#xyz)
+         A character class matching either x, y or z (union).
 [^xyz]        A character class matching any character except x, y and z.
 [a-z]         A character class matching any character in range a-z.
 [[:alpha:]]   ASCII character class ([A-Za-z])
@@ -672,7 +674,9 @@ codepoint in the `Greek` script. `[\p{Greek}&&\pL]` matches Greek letters.
 Precedence in character classes, from most binding to least:
 
 1. Ranges: `[a-cd]` == `[[a-c]d]`
-2. Union: `[ab&&bc]` == `[[ab](#ab)&&[bc](#bc)]`
+2. Union: `[ab&&bc]` == `[[ab](#ab)
+&&[bc](#bc)
+]`
 3. Intersection, difference, symmetric difference. All three have equivalent
 precedence, and are evaluated in left-to-right order. For example,
 `[\pL--\p{Greek}&&\p{Uppercase}]` == `[[\pL--\p{Greek}]&&\p{Uppercase}]`.

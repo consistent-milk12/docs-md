@@ -41,10 +41,12 @@ guarantees or a more flexible API, then it is recommended to use either
 
 When this crate is compiled _without_ the `alloc` feature, then this type
 may used a spin lock internally. This can have subtle effects that may
-be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm) for a more
+be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm)
+ for a more
 thorough treatment of this topic.
 
-[spinharm](#spinharm): https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
+[spinharm](#spinharm)
+: https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
 
 # Example
 

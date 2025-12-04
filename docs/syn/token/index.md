@@ -20,8 +20,10 @@ The [`ItemStatic`](#itemstatic) syntax tree node is defined like this.
 pub struct ItemStatic {
     pub attrs: Vec<Attribute>,
     pub vis: Visibility,
-    pub static_token: Token![static](#static),
-    pub mutability: Option<Token![mut](#mut)>,
+    pub static_token: Token![static](#static)
+,
+    pub mutability: Option<Token![mut](#mut)
+>,
     pub ident: Ident,
     pub colon_token: Token![:],
     pub ty: Box<Type>,

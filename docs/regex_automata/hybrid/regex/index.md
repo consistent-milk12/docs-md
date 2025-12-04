@@ -91,6 +91,15 @@ assert_eq!(expected, got);
 - `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
   Returns an iterator over all non-overlapping leftmost matches in the
 
+- `fn forward(self: &Self) -> &DFA`
+  Return the underlying lazy DFA responsible for forward matching.
+
+- `fn reverse(self: &Self) -> &DFA`
+  Return the underlying lazy DFA responsible for reverse matching.
+
+- `fn pattern_len(self: &Self) -> usize`
+  Returns the total number of patterns matched by this regex.
+
 - `fn new(pattern: &str) -> Result<Regex, BuildError>`
   Parse the given regular expression using the default configuration and
 
@@ -105,15 +114,6 @@ assert_eq!(expected, got);
 
 - `fn reset_cache(self: &Self, cache: &mut Cache)`
   Reset the given cache such that it can be used for searching with the
-
-- `fn forward(self: &Self) -> &DFA`
-  Return the underlying lazy DFA responsible for forward matching.
-
-- `fn reverse(self: &Self) -> &DFA`
-  Return the underlying lazy DFA responsible for reverse matching.
-
-- `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns matched by this regex.
 
 - `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
   Returns the start and end offset of the leftmost match. If no match

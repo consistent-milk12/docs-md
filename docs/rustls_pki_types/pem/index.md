@@ -83,7 +83,8 @@ struct SliceIter<'a, T> {
 }
 ```
 
-Iterator over all PEM sections in a `&[u8](#u8)` slice.
+Iterator over all PEM sections in a `&[u8](#u8)
+` slice.
 
 #### Implementations
 
@@ -258,17 +259,17 @@ A single recognised section in a PEM file.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = ()`
 
 - `fn try_from(value: &[u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 

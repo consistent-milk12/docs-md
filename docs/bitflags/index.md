@@ -77,7 +77,8 @@ libraries are currently supported:
   underlying bits values.
 
 You can also define your own flags type outside of the [`bitflags`](index.md) macro and then use it to generate methods.
-This can be useful if you need a custom `#[derive](#derive)` attribute for a library that `bitflags` doesn't
+This can be useful if you need a custom `#[derive](#derive)
+` attribute for a library that `bitflags` doesn't
 natively support:
 
 ```rust

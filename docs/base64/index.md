@@ -4,7 +4,8 @@ Correct, fast, and configurable [base64][] decoding and encoding. Base64
 transports binary data efficiently in contexts where only plain text is
 allowed.
 
-[base64](#base64): https://developer.mozilla.org/en-US/docs/Glossary/Base64
+[base64](#base64)
+: https://developer.mozilla.org/en-US/docs/Glossary/Base64
 
 # Usage
 
@@ -76,7 +77,8 @@ When the input is not an even multiple of 3 bytes in length, [canonical][]
 base64 encoders insert padding characters at the end, so that the output
 length is always a multiple of 4:
 
-[canonical](#canonical): https://datatracker.ietf.org/doc/html/rfc4648#section-3.5
+[canonical](#canonical)
+: https://datatracker.ietf.org/doc/html/rfc4648#section-3.5
 
 ```
 use base64::{engine::general_purpose::STANDARD, Engine as _};
@@ -150,7 +152,8 @@ you allocated, use one of the alternative methods:
 | -------------------------- | ----------------------------- | ----------------------------- |
 | [`Engine::decode`](#decode)         | returns a new `Vec<u8>`       | always                        |
 | [`Engine::decode_vec`](#decode-vec)     | appends to provided `Vec<u8>` | if `Vec` lacks capacity       |
-| [`Engine::decode_slice`](#decode-slice)   | writes to provided `&[u8](#u8)`    | never
+| [`Engine::decode_slice`](#decode-slice)   | writes to provided `&[u8](#u8)
+`    | never
 
 #### Encoding
 
@@ -158,7 +161,8 @@ you allocated, use one of the alternative methods:
 | -------------------------- | ---------------------------- | ------------------------------ |
 | [`Engine::encode`](#encode)         | returns a new `String`       | always                         |
 | [`Engine::encode_string`](#encode-string)  | appends to provided `String` | if `String` lacks capacity     |
-| [`Engine::encode_slice`](#encode-slice)   | writes to provided `&[u8](#u8)`   | never                          |
+| [`Engine::encode_slice`](#encode-slice)   | writes to provided `&[u8](#u8)
+`   | never                          |
 
 ## Input and output
 
@@ -454,14 +458,14 @@ Errors that can occur while decoding into a slice.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(e: DecodeError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(e: DecodeError) -> Self`
 
 ##### `impl Into<T, U>`
 

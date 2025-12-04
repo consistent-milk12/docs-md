@@ -252,7 +252,8 @@ of it depends on how the `Seq` was extracted from the `Hir`.)
 It is also unlike a set in that multiple identical literals may appear,
 and that the order of the literals in the `Seq` matters. For example, if
 the sequence is `[sam, samwise]` and leftmost-first matching is used, then
-`samwise` can never match and the sequence is equivalent to `[sam](#sam)`.
+`samwise` can never match and the sequence is equivalent to `[sam](#sam)
+`.
 
 # States of a sequence
 

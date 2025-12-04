@@ -11,13 +11,14 @@ To use this crate, add `walkdir` as a dependency to your project's
 
 ```toml
 [dependencies](#dependencies)
+
 walkdir = "2"
 ```
 
 # From the top
 
 The [`WalkDir`](walkdir/index.md) type builds iterators. The [`DirEntry`](#direntry) type describes values
-yielded by the iterator. Finally, the [`Error`](../clap_builder/clap_builder/error/index.md) type is a small wrapper around
+yielded by the iterator. Finally, the [`Error`](../docs_md/docs_md/error/index.md) type is a small wrapper around
 [`std::io::Error`](#error) with additional information, such as if a loop was detected
 while following symbolic links (not enabled by default).
 
@@ -234,12 +235,14 @@ root.
 case, there is no underlying IO error.
 
 To maintain good ergonomics, this type has a
-[`impl From<Error> for std::io::Error`][impl](#impl) defined which preserves the original context.
+[`impl From<Error> for std::io::Error`][impl](#impl)
+ defined which preserves the original context.
 This allows you to use an [`io::Result`](#result) with methods in this crate if you don't care about
 accessing the underlying error data in a structured form.
 
 
-[impl](#impl): struct.Error.html#impl-From%3CError%3E
+[impl](#impl)
+: struct.Error.html#impl-From%3CError%3E
 
 #### Implementations
 
