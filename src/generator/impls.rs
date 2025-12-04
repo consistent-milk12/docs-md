@@ -4,7 +4,7 @@
 //! impl blocks (both inherent and trait implementations) to markdown format.
 
 use crate::generator::context::GeneratorContext;
-use crate::types::{render_generic_bound, render_generics, render_type};
+use crate::types::TypeRenderer;
 use rustdoc_types::{Id, Impl, ItemEnum};
 use std::fmt::Write;
 
@@ -68,6 +68,7 @@ impl<'a> ImplRenderer<'a> {
     /// Render a single trait implementation block.
     fn render_trait_impl(&self, md: &mut String, impl_block: &Impl) {
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         // Skip synthetic impls (auto-traits like Send, Sync, Unpin)
         if impl_block.is_synthetic {
@@ -87,8 +88,8 @@ impl<'a> ImplRenderer<'a> {
             })
             .unwrap_or_default();
 
-        let generics = render_generics(&impl_block.generics.params, krate);
-        let for_type = render_type(&impl_block.for_, krate);
+        let generics = type_renderer.render_generics(&impl_block.generics.params);
+        let for_type = type_renderer.render_type(&impl_block.for_);
 
         let unsafe_str = if impl_block.is_unsafe { "unsafe " } else { "" };
         let negative_str = if impl_block.is_negative { "!" } else { "" };
@@ -111,6 +112,7 @@ impl<'a> ImplRenderer<'a> {
     /// For methods, the first line of documentation is included as a brief summary.
     fn render_impl_methods(&self, md: &mut String, impl_block: &Impl) {
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         for item_id in &impl_block.items {
             if let Some(item) = krate.index.get(item_id) {
@@ -121,14 +123,22 @@ impl<'a> ImplRenderer<'a> {
 
                     ItemEnum::AssocConst { type_, .. } => {
                         let name = item.name.as_deref().unwrap_or("_");
-                        _ = write!(md, "- `const {}: {}`\n\n", name, render_type(type_, krate));
+                        _ = write!(
+                            md,
+                            "- `const {name}: {}`\n\n",
+                            type_renderer.render_type(type_)
+                        );
                     }
 
                     ItemEnum::AssocType { type_, .. } => {
                         let name = item.name.as_deref().unwrap_or("_");
 
                         if let Some(ty) = type_ {
-                            _ = write!(md, "- `type {} = {}`\n\n", name, render_type(ty, krate));
+                            _ = write!(
+                                md,
+                                "- `type {name} = {}`\n\n",
+                                type_renderer.render_type(ty)
+                            );
                         } else {
                             _ = write!(md, "- `type {name}`\n\n");
                         }
@@ -148,21 +158,24 @@ impl<'a> ImplRenderer<'a> {
         f: &rustdoc_types::Function,
     ) {
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
         let name = item.name.as_deref().unwrap_or("_");
-        let generics = render_generics(&f.generics.params, krate);
+        let generics = type_renderer.render_generics(&f.generics.params);
 
         let params: Vec<String> = f
             .sig
             .inputs
             .iter()
-            .map(|(param_name, ty)| format!("{}: {}", param_name, render_type(ty, krate)))
+            .map(|(param_name, ty)| {
+                format!("{param_name}: {}", type_renderer.render_type(ty))
+            })
             .collect();
 
         let ret = f
             .sig
             .output
             .as_ref()
-            .map(|ty| format!(" -> {}", render_type(ty, krate)))
+            .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
             .unwrap_or_default();
 
         let is_async = if f.header.is_async { "async " } else { "" };
@@ -198,6 +211,7 @@ impl<'a> ImplRenderer<'a> {
     /// - **Return type notation**: `(..)` (experimental)
     fn render_generic_args_for_impl(&self, args: &rustdoc_types::GenericArgs) -> String {
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         match args {
             rustdoc_types::GenericArgs::AngleBracketed { args, constraints } => {
@@ -205,7 +219,7 @@ impl<'a> ImplRenderer<'a> {
                     .iter()
                     .map(|a| match a {
                         rustdoc_types::GenericArg::Lifetime(lt) => lt.clone(),
-                        rustdoc_types::GenericArg::Type(ty) => render_type(ty, krate),
+                        rustdoc_types::GenericArg::Type(ty) => type_renderer.render_type(ty),
                         rustdoc_types::GenericArg::Const(c) => {
                             c.value.clone().unwrap_or_else(|| c.expr.clone())
                         }
@@ -223,19 +237,19 @@ impl<'a> ImplRenderer<'a> {
                     match &c.binding {
                         rustdoc_types::AssocItemConstraintKind::Equality(term) => {
                             let term_str = match term {
-                                rustdoc_types::Term::Type(ty) => render_type(ty, krate),
+                                rustdoc_types::Term::Type(ty) => type_renderer.render_type(ty),
                                 rustdoc_types::Term::Constant(c) => {
                                     c.value.clone().unwrap_or_else(|| c.expr.clone())
                                 }
                             };
-                            format!("{}{} = {}", c.name, constraint_args, term_str)
+                            format!("{}{constraint_args} = {term_str}", c.name)
                         }
                         rustdoc_types::AssocItemConstraintKind::Constraint(bounds) => {
                             let bound_strs: Vec<String> = bounds
                                 .iter()
-                                .map(|b| render_generic_bound(b, krate))
+                                .map(|b| type_renderer.render_generic_bound(b))
                                 .collect();
-                            format!("{}{}: {}", c.name, constraint_args, bound_strs.join(" + "))
+                            format!("{}{constraint_args}: {}", c.name, bound_strs.join(" + "))
                         }
                     }
                 }));
@@ -248,13 +262,15 @@ impl<'a> ImplRenderer<'a> {
             }
 
             rustdoc_types::GenericArgs::Parenthesized { inputs, output } => {
-                let input_strs: Vec<String> =
-                    inputs.iter().map(|t| render_type(t, krate)).collect();
+                let input_strs: Vec<String> = inputs
+                    .iter()
+                    .map(|t| type_renderer.render_type(t))
+                    .collect();
                 let ret = output
                     .as_ref()
-                    .map(|t| format!(" -> {}", render_type(t, krate)))
+                    .map(|t| format!(" -> {}", type_renderer.render_type(t)))
                     .unwrap_or_default();
-                format!("({}){}", input_strs.join(", "), ret)
+                format!("({}){ret}", input_strs.join(", "))
             }
 
             rustdoc_types::GenericArgs::ReturnTypeNotation => " (..)".to_string(),

@@ -30,6 +30,10 @@ use fs_err as fs;
 use rustdoc_types::Crate;
 use std::path::Path;
 
+/// Parser for rustdoc JSON files.
+///
+/// Provides methods to load and parse rustdoc JSON from files or strings
+/// into the `rustdoc_types::Crate` structure.
 pub struct Parser;
 
 impl Parser {

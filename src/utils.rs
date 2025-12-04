@@ -1,3 +1,5 @@
+//! Utility data structures to test the crate.
+
 use std::collections::HashMap;
 use std::fmt::Write;
 

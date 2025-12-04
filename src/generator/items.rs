@@ -6,7 +6,7 @@
 
 use crate::generator::context::GeneratorContext;
 use crate::generator::impls::ImplRenderer;
-use crate::types::{render_generic_bound, render_generics, render_type, render_where_clause};
+use crate::types::TypeRenderer;
 use rustdoc_types::{Id, Item, ItemEnum, StructKind, Visibility};
 use std::fmt::Write;
 
@@ -49,11 +49,12 @@ impl<'a> ItemRenderer<'a> {
     pub fn render_struct(&self, md: &mut String, item_id: Id, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Struct(s) = &item.inner {
             // === Signature Section ===
-            let generics = render_generics(&s.generics.params, krate);
-            let where_clause = render_where_clause(&s.generics.where_predicates, krate);
+            let generics = type_renderer.render_generics(&s.generics.params);
+            let where_clause = type_renderer.render_where_clause(&s.generics.where_predicates);
 
             _ = write!(md, "### `{name}{generics}`\n\n");
 
@@ -71,7 +72,7 @@ impl<'a> ItemRenderer<'a> {
                         .filter_map(|id| krate.index.get(id))
                         .filter_map(|item| {
                             if let ItemEnum::StructField(ty) = &item.inner {
-                                Some(render_type(ty, krate))
+                                Some(type_renderer.render_type(ty))
                             } else {
                                 None
                             }
@@ -103,7 +104,7 @@ impl<'a> ItemRenderer<'a> {
                                     "    {}{}: {},",
                                     vis,
                                     field_name,
-                                    render_type(ty, krate)
+                                    type_renderer.render_type(ty)
                                 );
                             }
                         }
@@ -135,6 +136,7 @@ impl<'a> ItemRenderer<'a> {
     /// Render documented fields for a plain struct.
     fn render_struct_fields(&self, md: &mut String, fields: &[Id]) {
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         let documented_fields: Vec<_> = fields
             .iter()
@@ -147,7 +149,12 @@ impl<'a> ItemRenderer<'a> {
             for field in documented_fields {
                 let field_name = field.name.as_deref().unwrap_or("_");
                 if let ItemEnum::StructField(ty) = &field.inner {
-                    _ = write!(md, "- **`{}`**: `{}`", field_name, render_type(ty, krate));
+                    _ = write!(
+                        md,
+                        "- **`{}`**: `{}`",
+                        field_name,
+                        type_renderer.render_type(ty)
+                    );
 
                     if let Some(docs) = &field.docs {
                         _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
@@ -177,11 +184,12 @@ impl<'a> ItemRenderer<'a> {
     pub fn render_enum(&self, md: &mut String, item_id: Id, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Enum(e) = &item.inner {
             // === Signature Section ===
-            let generics = render_generics(&e.generics.params, krate);
-            let where_clause = render_where_clause(&e.generics.where_predicates, krate);
+            let generics = type_renderer.render_generics(&e.generics.params);
+            let where_clause = type_renderer.render_where_clause(&e.generics.where_predicates);
 
             _ = write!(md, "### `{name}{generics}`\n\n");
 
@@ -217,6 +225,7 @@ impl<'a> ItemRenderer<'a> {
     /// Render a single enum variant in the definition code block.
     fn render_enum_variant(&self, md: &mut String, variant: &Item) {
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
         let variant_name = variant.name.as_deref().unwrap_or("_");
 
         if let ItemEnum::Variant(v) = &variant.inner {
@@ -232,7 +241,7 @@ impl<'a> ItemRenderer<'a> {
                         .filter_map(|id| krate.index.get(id))
                         .filter_map(|item| {
                             if let ItemEnum::StructField(ty) = &item.inner {
-                                Some(render_type(ty, krate))
+                                Some(type_renderer.render_type(ty))
                             } else {
                                 None
                             }
@@ -253,7 +262,7 @@ impl<'a> ItemRenderer<'a> {
                                     md,
                                     "        {}: {},",
                                     field_name,
-                                    render_type(ty, krate)
+                                    type_renderer.render_type(ty)
                                 );
                             }
                         }
@@ -306,11 +315,12 @@ impl<'a> ItemRenderer<'a> {
     pub fn render_trait(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Trait(t) = &item.inner {
             // === Signature Section ===
-            let generics = render_generics(&t.generics.params, krate);
-            let where_clause = render_where_clause(&t.generics.where_predicates, krate);
+            let generics = type_renderer.render_generics(&t.generics.params);
+            let where_clause = type_renderer.render_where_clause(&t.generics.where_predicates);
 
             _ = write!(md, "### `{name}{generics}`\n\n");
 
@@ -323,7 +333,7 @@ impl<'a> ItemRenderer<'a> {
                 let bound_strs: Vec<String> = t
                     .bounds
                     .iter()
-                    .map(|b| render_generic_bound(b, krate))
+                    .map(|b| type_renderer.render_generic_bound(b))
                     .collect();
                 format!(": {}", bound_strs.join(" + "))
             };
@@ -358,23 +368,26 @@ impl<'a> ItemRenderer<'a> {
     fn render_trait_item(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("_");
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         match &item.inner {
             ItemEnum::Function(f) => {
-                let generics = render_generics(&f.generics.params, krate);
+                let generics = type_renderer.render_generics(&f.generics.params);
 
                 let params: Vec<String> = f
                     .sig
                     .inputs
                     .iter()
-                    .map(|(param_name, ty)| format!("{}: {}", param_name, render_type(ty, krate)))
+                    .map(|(param_name, ty)| {
+                        format!("{param_name}: {}", type_renderer.render_type(ty))
+                    })
                     .collect();
 
                 let ret = f
                     .sig
                     .output
                     .as_ref()
-                    .map(|ty| format!(" -> {}", render_type(ty, krate)))
+                    .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
                     .unwrap_or_default();
 
                 _ = write!(
@@ -403,14 +416,18 @@ impl<'a> ItemRenderer<'a> {
                 };
                 let default_str = type_
                     .as_ref()
-                    .map(|ty| format!(" = {}", render_type(ty, krate)))
+                    .map(|ty| format!(" = {}", type_renderer.render_type(ty)))
                     .unwrap_or_default();
 
                 _ = write!(md, "- `type {name}{bounds_str}{default_str}`\n\n");
             }
 
             ItemEnum::AssocConst { type_, .. } => {
-                _ = write!(md, "- `const {}: {}`\n\n", name, render_type(type_, krate));
+                _ = write!(
+                    md,
+                    "- `const {name}: {}`\n\n",
+                    type_renderer.render_type(type_)
+                );
             }
 
             _ => {
@@ -435,23 +452,26 @@ impl<'a> ItemRenderer<'a> {
     pub fn render_function(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Function(f) = &item.inner {
-            let generics = render_generics(&f.generics.params, krate);
-            let where_clause = render_where_clause(&f.generics.where_predicates, krate);
+            let generics = type_renderer.render_generics(&f.generics.params);
+            let where_clause = type_renderer.render_where_clause(&f.generics.where_predicates);
 
             let params: Vec<String> = f
                 .sig
                 .inputs
                 .iter()
-                .map(|(param_name, ty)| format!("{}: {}", param_name, render_type(ty, krate)))
+                .map(|(param_name, ty)| {
+                    format!("{param_name}: {}", type_renderer.render_type(ty))
+                })
                 .collect();
 
             let ret = f
                 .sig
                 .output
                 .as_ref()
-                .map(|ty| format!(" -> {}", render_type(ty, krate)))
+                .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
                 .unwrap_or_default();
 
             let is_async = if f.header.is_async { "async " } else { "" };
@@ -515,6 +535,7 @@ impl<'a> ItemRenderer<'a> {
     pub fn render_constant(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::Constant { type_, const_ } = &item.inner {
             _ = write!(md, "### `{name}`\n\n");
@@ -529,10 +550,8 @@ impl<'a> ItemRenderer<'a> {
 
             _ = writeln!(
                 md,
-                "const {}: {}{};",
-                name,
-                render_type(type_, krate),
-                value
+                "const {name}: {}{value};",
+                type_renderer.render_type(type_)
             );
 
             md.push_str("```\n\n");
@@ -553,21 +572,19 @@ impl<'a> ItemRenderer<'a> {
     pub fn render_type_alias(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
         let krate = self.ctx.krate;
+        let type_renderer = TypeRenderer::new(krate);
 
         if let ItemEnum::TypeAlias(ta) = &item.inner {
-            let generics = render_generics(&ta.generics.params, krate);
-            let where_clause = render_where_clause(&ta.generics.where_predicates, krate);
+            let generics = type_renderer.render_generics(&ta.generics.params);
+            let where_clause = type_renderer.render_where_clause(&ta.generics.where_predicates);
 
             _ = write!(md, "### `{name}{generics}`\n\n");
             md.push_str("```rust\n");
 
             _ = writeln!(
                 md,
-                "type {}{}{} = {};",
-                name,
-                generics,
-                where_clause,
-                render_type(&ta.type_, krate)
+                "type {name}{generics}{where_clause} = {};",
+                type_renderer.render_type(&ta.type_)
             );
             md.push_str("```\n\n");
         }

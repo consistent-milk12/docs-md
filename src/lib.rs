@@ -4,7 +4,8 @@
 //! allowing integration tests and external tools to use the markdown
 //! generation capabilities programmatically.
 
-#![warn(missing_docs)]
+#![deny(missing_docs)]
+#![warn(clippy::pedantic)]
 
 use std::path::PathBuf;
 
@@ -109,9 +110,11 @@ pub struct Args {
 /// CLI-compatible output format enum (for clap `ValueEnum` derive).
 #[derive(Clone, Copy, Debug, Default, ValueEnum)]
 pub enum CliOutputFormat {
+    /// Flat structure with double-underscore separators in filenames.
     #[default]
     Flat,
 
+    /// Nested directory structure mirroring the module hierarchy.
     Nested,
 }
 

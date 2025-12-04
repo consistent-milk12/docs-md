@@ -143,6 +143,7 @@ impl<'a> FlatGenerator<'a> {
                 {
                     let sub_name = sub_item.name.as_deref().unwrap_or("unnamed");
                     let new_prefix = format!("{prefix}__{sub_name}");
+
                     self.generate_module_recursive(sub_item, &new_prefix)?;
                 }
             }

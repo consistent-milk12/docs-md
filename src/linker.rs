@@ -272,7 +272,7 @@ impl LinkRegistry {
         let name = self.item_names.get(&id)?;
 
         // Calculate relative path from source to target file
-        let relative_path = compute_relative_path(from_path, target_path);
+        let relative_path = Self::compute_relative_path(from_path, target_path);
 
         // Determine the link destination:
         // - Same file: use an anchor (#name)
@@ -287,82 +287,82 @@ impl LinkRegistry {
         // Format as markdown link with backticks around the name
         Some(format!("[`{name}`]({link})"))
     }
-}
 
-/// Compute the relative path from one file to another.
-///
-/// This function calculates the relative path needed to navigate from
-/// one markdown file to another within the generated documentation.
-///
-/// # Arguments
-///
-/// * `from` - The source file path (e.g., `"span/index.md"`)
-/// * `to` - The target file path (e.g., `"field/index.md"`)
-///
-/// # Returns
-///
-/// A relative path string (e.g., `"../field/index.md"`)
-///
-/// # Algorithm
-///
-/// 1. Split both paths into components
-/// 2. Find the common prefix (shared directories)
-/// 3. Count how many `../` are needed to go up from source
-/// 4. Append the remaining target path components
-///
-/// # Examples
-///
-/// - Same directory: `"index.md"` → `"span.md"` = `"span.md"`
-/// - Into subdirectory: `"index.md"` → `"span/index.md"` = `"span/index.md"`
-/// - Up to parent: `"span/index.md"` → `"index.md"` = `"../index.md"`
-/// - Sibling directory: `"span/index.md"` → `"field/index.md"` = `"../field/index.md"`
-fn compute_relative_path(from: &str, to: &str) -> String {
-    // Same file - no path needed
-    if from == to {
-        return String::new();
-    }
-
-    // Split paths into directory components
-    let from_parts: Vec<&str> = from.split('/').collect();
-    let to_parts: Vec<&str> = to.split('/').collect();
-
-    // Find how many leading components are the same
-    // e.g., "a/b/c.md" and "a/b/d.md" share ["a", "b"]
-    let common_len = from_parts
-        .iter()
-        .zip(to_parts.iter())
-        .take_while(|(a, b)| a == b)
-        .count();
-
-    // Calculate how many directories to go up from the source.
-    // We subtract 1 because the last component is the filename, not a directory.
-    // e.g., from "a/b/c.md" we need to go up 2 directories to reach root.
-    let ups = from_parts
-        .len()
-        .saturating_sub(1) // Don't count the filename
-        .saturating_sub(common_len); // Don't count shared directories
-
-    // Build the relative path
-    let mut result = String::new();
-
-    // Add "../" for each directory we need to go up
-    for _ in 0..ups {
-        result.push_str("../");
-    }
-
-    // Add the remaining path components from the target
-    for (i, part) in to_parts.iter().enumerate().skip(common_len) {
-        if i > common_len {
-            result.push('/');
+    /// Compute the relative path from one file to another.
+    ///
+    /// This function calculates the relative path needed to navigate from
+    /// one markdown file to another within the generated documentation.
+    ///
+    /// # Arguments
+    ///
+    /// * `from` - The source file path (e.g., `"span/index.md"`)
+    /// * `to` - The target file path (e.g., `"field/index.md"`)
+    ///
+    /// # Returns
+    ///
+    /// A relative path string (e.g., `"../field/index.md"`)
+    ///
+    /// # Algorithm
+    ///
+    /// 1. Split both paths into components
+    /// 2. Find the common prefix (shared directories)
+    /// 3. Count how many `../` are needed to go up from source
+    /// 4. Append the remaining target path components
+    ///
+    /// # Examples
+    ///
+    /// - Same directory: `"index.md"` → `"span.md"` = `"span.md"`
+    /// - Into subdirectory: `"index.md"` → `"span/index.md"` = `"span/index.md"`
+    /// - Up to parent: `"span/index.md"` → `"index.md"` = `"../index.md"`
+    /// - Sibling directory: `"span/index.md"` → `"field/index.md"` = `"../field/index.md"`
+    fn compute_relative_path(from: &str, to: &str) -> String {
+        // Same file - no path needed
+        if from == to {
+            return String::new();
         }
-        result.push_str(part);
-    }
 
-    // If result is empty (same directory), just use the target path
-    if result.is_empty() {
-        to.to_string()
-    } else {
-        result
+        // Split paths into directory components
+        let from_parts: Vec<&str> = from.split('/').collect();
+        let to_parts: Vec<&str> = to.split('/').collect();
+
+        // Find how many leading components are the same
+        // e.g., "a/b/c.md" and "a/b/d.md" share ["a", "b"]
+        let common_len = from_parts
+            .iter()
+            .zip(to_parts.iter())
+            .take_while(|(a, b)| a == b)
+            .count();
+
+        // Calculate how many directories to go up from the source.
+        // We subtract 1 because the last component is the filename, not a directory.
+        // e.g., from "a/b/c.md" we need to go up 2 directories to reach root.
+        let ups = from_parts
+            .len()
+            .saturating_sub(1) // Don't count the filename
+            .saturating_sub(common_len); // Don't count shared directories
+
+        // Build the relative path
+        let mut result = String::new();
+
+        // Add "../" for each directory we need to go up
+        for _ in 0..ups {
+            result.push_str("../");
+        }
+
+        // Add the remaining path components from the target
+        for (i, part) in to_parts.iter().enumerate().skip(common_len) {
+            if i > common_len {
+                result.push('/');
+            }
+            result.push_str(part);
+        }
+
+        // If result is empty (same directory), just use the target path
+        if result.is_empty() {
+            to.to_string()
+        } else {
+            result
+        }
     }
 }
 
@@ -373,14 +373,17 @@ mod tests {
     /// Test: Files in the same directory need no path prefix.
     #[test]
     fn test_relative_path_same_dir() {
-        assert_eq!(compute_relative_path("index.md", "span.md"), "span.md");
+        assert_eq!(
+            LinkRegistry::compute_relative_path("index.md", "span.md"),
+            "span.md"
+        );
     }
 
     /// Test: Linking from root into a subdirectory.
     #[test]
     fn test_relative_path_child_dir() {
         assert_eq!(
-            compute_relative_path("index.md", "span/index.md"),
+            LinkRegistry::compute_relative_path("index.md", "span/index.md"),
             "span/index.md"
         );
     }
@@ -389,7 +392,7 @@ mod tests {
     #[test]
     fn test_relative_path_parent_dir() {
         assert_eq!(
-            compute_relative_path("span/index.md", "index.md"),
+            LinkRegistry::compute_relative_path("span/index.md", "index.md"),
             "../index.md"
         );
     }
@@ -398,7 +401,7 @@ mod tests {
     #[test]
     fn test_relative_path_sibling_dir() {
         assert_eq!(
-            compute_relative_path("span/index.md", "field/index.md"),
+            LinkRegistry::compute_relative_path("span/index.md", "field/index.md"),
             "../field/index.md"
         );
     }
