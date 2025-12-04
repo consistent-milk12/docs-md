@@ -2,7 +2,7 @@
 //!
 //! This module provides [`SearchIndexGenerator`] which creates a JSON search index
 //! containing all documented items across multiple crates. The index can be used
-//! with client-side search libraries like Fuse.js, Lunr.js, or FlexSearch.
+//! with client-side search libraries like Fuse.js, Lunr.js, or `FlexSearch`.
 //!
 //! # Output Format
 //!
@@ -44,7 +44,7 @@ pub struct SearchEntry {
     /// Item name (e.g., "Span", "spawn", "Error").
     pub name: String,
 
-    /// Full path including crate (e.g., "tracing::span::Span").
+    /// Full path including crate (e.g., "`tracing::span::Span`").
     pub path: String,
 
     /// Item kind for filtering and display.
@@ -160,7 +160,7 @@ impl<'a> SearchIndexGenerator<'a> {
     /// Index all items in a single crate.
     fn index_crate(&self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate) {
         // Build a map of item ID to module path for accurate path construction
-        let path_map = self.build_path_map(krate);
+        let path_map = Self::build_path_map(krate);
 
         for (id, item) in &krate.index {
             let Some(name) = &item.name else { continue };
@@ -193,7 +193,7 @@ impl<'a> SearchIndexGenerator<'a> {
             };
 
             // Build file path based on module location
-            let file = self.compute_file_path(crate_name, &module_path, kind);
+            let file = Self::compute_file_path(crate_name, &module_path, kind);
 
             // Extract first line of documentation as summary
             let summary = item
@@ -216,7 +216,7 @@ impl<'a> SearchIndexGenerator<'a> {
     /// Build a map from item ID to its module path.
     ///
     /// This allows us to reconstruct the full path for each item.
-    fn build_path_map(&self, krate: &Crate) -> HashMap<Id, String> {
+    fn build_path_map(krate: &Crate) -> HashMap<Id, String> {
         let mut path_map = HashMap::new();
 
         // Use the crate's paths table which maps IDs to their paths
@@ -241,7 +241,7 @@ impl<'a> SearchIndexGenerator<'a> {
     }
 
     /// Compute the file path for an item based on its module location.
-    fn compute_file_path(&self, crate_name: &str, module_path: &str, kind: &str) -> String {
+    fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String {
         if module_path.is_empty() {
             // Root-level item
             format!("{crate_name}/index.md")

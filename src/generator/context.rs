@@ -225,7 +225,7 @@ impl<'a> GeneratorContext<'a> {
     }
 }
 
-impl<'a> RenderContext for GeneratorContext<'a> {
+impl RenderContext for GeneratorContext<'_> {
     fn krate(&self) -> &Crate {
         self.krate
     }

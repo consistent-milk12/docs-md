@@ -303,13 +303,21 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
                 match &item.inner {
                     ItemEnum::Module(_) => modules.push(item),
+
                     ItemEnum::Struct(_) => structs.push((item_id, item)),
+
                     ItemEnum::Enum(_) => enums.push((item_id, item)),
+
                     ItemEnum::Trait(_) => traits.push(item),
+
                     ItemEnum::Function(_) => functions.push(item),
+
                     ItemEnum::TypeAlias(_) => types.push(item),
+
                     ItemEnum::Constant { .. } => constants.push(item),
+
                     ItemEnum::Macro(_) => macros.push(item),
+
                     // Handle re-exports: pub use other::Item;
                     // Skip glob re-exports (pub use foo::*) as they create duplicates
                     ItemEnum::Use(use_item) if !use_item.is_glob => {
@@ -331,13 +339,21 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         if let Some(target_item) = target_item {
                             match &target_item.inner {
                                 ItemEnum::Module(_) => modules.push(item),
+
                                 ItemEnum::Struct(_) => structs.push((item_id, item)),
+
                                 ItemEnum::Enum(_) => enums.push((item_id, item)),
+
                                 ItemEnum::Trait(_) => traits.push(item),
+
                                 ItemEnum::Function(_) => functions.push(item),
+
                                 ItemEnum::TypeAlias(_) => types.push(item),
+
                                 ItemEnum::Constant { .. } => constants.push(item),
+
                                 ItemEnum::Macro(_) => macros.push(item),
+
                                 _ => {}
                             }
                         }
@@ -773,12 +789,15 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
         if !documented_variants.is_empty() {
             md.push_str("#### Variants\n\n");
+
             for variant in documented_variants {
                 let variant_name = variant.name.as_deref().unwrap_or("_");
                 _ = write!(md, "- **`{variant_name}`**");
+
                 if let Some(docs) = self.view.process_docs(variant, self.file_path) {
                     _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
                 }
+
                 md.push_str("\n\n");
             }
         }
@@ -797,6 +816,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             _ = write!(md, "### `{name}{generics}`\n\n");
 
             md.push_str("```rust\n");
+
             let bounds = if t.bounds.is_empty() {
                 String::new()
             } else {
@@ -805,8 +825,10 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     .iter()
                     .map(|b| type_renderer.render_generic_bound(b))
                     .collect();
+
                 format!(": {}", bound_strs.join(" + "))
             };
+
             _ = writeln!(md, "trait {name}{generics}{bounds}{where_clause} {{ ... }}");
             md.push_str("```\n\n");
 
@@ -818,6 +840,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             // Required methods
             if !t.items.is_empty() {
                 md.push_str("#### Required Methods\n\n");
+
                 for method_id in &t.items {
                     if let Some(method) = krate.index.get(method_id) {
                         self.render_trait_item(md, method);
@@ -859,6 +882,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     params.join(", "),
                     ret
                 );
+
                 if let Some(docs) = self.view.process_docs(item, self.file_path)
                     && let Some(first_line) = docs.lines().next()
                 {
@@ -959,16 +983,19 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         if let ItemEnum::Constant { type_, const_ } = &item.inner {
             _ = write!(md, "### `{name}`\n\n");
             md.push_str("```rust\n");
+
             let value = const_
                 .value
                 .as_ref()
                 .map(|v| format!(" = {v}"))
                 .unwrap_or_default();
+
             _ = writeln!(
                 md,
                 "const {name}: {}{value};",
                 type_renderer.render_type(type_)
             );
+
             md.push_str("```\n\n");
 
             if let Some(docs) = self.view.process_docs(item, self.file_path) {

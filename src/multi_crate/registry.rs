@@ -212,7 +212,7 @@ impl UnifiedLinkRegistry {
     ///
     /// # Returns
     ///
-    /// The (crate_name, item_id) if found in the registry.
+    /// The (`crate_name`, `item_id`) if found in the registry.
     #[must_use]
     pub fn resolve_path(&self, path: &str) -> Option<(String, Id)> {
         let segments: Vec<&str> = path.split("::").collect();

@@ -62,7 +62,7 @@ impl<'a> SummaryGenerator<'a> {
             if let Some(root) = krate.index.get(&krate.root)
                 && let ItemEnum::Module(module) = &root.inner
             {
-                self.add_modules(&mut content, krate, &module.items, crate_name, 1);
+                Self::add_modules(&mut content, krate, &module.items, crate_name, 1);
             }
         }
 
@@ -74,7 +74,6 @@ impl<'a> SummaryGenerator<'a> {
 
     /// Add module entries recursively.
     fn add_modules(
-        &self,
         content: &mut String,
         krate: &rustdoc_types::Crate,
         items: &[rustdoc_types::Id],
@@ -100,7 +99,8 @@ impl<'a> SummaryGenerator<'a> {
             // Recurse into child modules
             if let ItemEnum::Module(module) = &item.inner {
                 let child_prefix = format!("{path_prefix}/{name}");
-                self.add_modules(content, krate, &module.items, &child_prefix, indent + 1);
+
+                Self::add_modules(content, krate, &module.items, &child_prefix, indent + 1);
             }
         }
     }

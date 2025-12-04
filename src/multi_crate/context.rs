@@ -554,6 +554,7 @@ impl<'a> SingleCrateView<'a> {
     }
 
     /// Resolve a link text to a markdown link using the registry.
+    #[expect(clippy::unnecessary_wraps, reason = "wrong clippy?")]
     fn resolve_link(
         &self,
         link_text: &str,

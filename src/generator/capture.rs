@@ -8,7 +8,7 @@ use std::collections::HashMap;
 /// Captures generated markdown in memory for testing.
 ///
 /// Instead of writing files to disk, this struct stores all generated
-/// markdown content in a HashMap, keyed by relative file path. This
+/// markdown content in a `HashMap`, keyed by relative file path. This
 /// enables snapshot testing and verification of output without filesystem
 /// side effects.
 #[derive(Debug, Default)]
@@ -19,6 +19,7 @@ pub struct MarkdownCapture {
 
 impl MarkdownCapture {
     /// Create a new empty capture.
+    #[must_use]
     pub fn new() -> Self {
         Self {
             files: HashMap::new(),
@@ -35,11 +36,13 @@ impl MarkdownCapture {
     }
 
     /// Get the content of a specific file.
+    #[must_use]
     pub fn get(&self, path: &str) -> Option<&String> {
         self.files.get(path)
     }
 
     /// Get all file paths in sorted order.
+    #[must_use]
     pub fn paths(&self) -> Vec<&String> {
         let mut paths: Vec<_> = self.files.keys().collect();
         paths.sort();
@@ -47,11 +50,13 @@ impl MarkdownCapture {
     }
 
     /// Get the number of captured files.
+    #[must_use]
     pub fn len(&self) -> usize {
         self.files.len()
     }
 
     /// Check if the capture is empty.
+    #[must_use]
     pub fn is_empty(&self) -> bool {
         self.files.is_empty()
     }
@@ -59,6 +64,7 @@ impl MarkdownCapture {
     /// Convert all captured files to a single string for snapshot testing.
     ///
     /// Files are sorted by path and separated with clear headers.
+    #[must_use]
     pub fn to_snapshot_string(&self) -> String {
         use std::fmt::Write;
 
@@ -78,7 +84,8 @@ impl MarkdownCapture {
         result
     }
 
-    /// Consume self and return the underlying HashMap.
+    /// Consume self and return the underlying `HashMap`.
+    #[must_use]
     pub fn into_inner(self) -> HashMap<String, String> {
         self.files
     }
