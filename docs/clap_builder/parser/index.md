@@ -16,7 +16,7 @@ struct IdsRef<'a> {
 }
 ```
 
-Iterate over `Arg` and `ArgGroup` [`Id`](index.md)s via `ArgMatches::ids`.
+Iterate over `Arg` and `ArgGroup` [`Id`](../index.md)s via `ArgMatches::ids`.
 
 # Examples
 
@@ -513,48 +513,6 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_one`]
-
-- `fn try_get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_many`]
-
-- `fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_occurrences`]
-
-- `fn try_get_raw(self: &Self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_raw`]
-
-- `fn try_get_raw_occurrences(self: &Self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_raw_occurrences`]
-
-- `fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<T>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_one`]
-
-- `fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Values<T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_many`]
-
-- `fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_occurrences`]
-
-- `fn try_contains_id(self: &Self, id: &str) -> Result<bool, MatchesError>`
-  Non-panicking version of [`ArgMatches::contains_id`]
-
-- `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>`
-  Clears the values for the given `id`
-
-- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
-  The name and `ArgMatches` of the current [subcommand].
-
-- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>`
-  Return the name and `ArgMatches` of the current [subcommand].
-
-- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>`
-  The `ArgMatches` for the current [subcommand].
-
-- `fn subcommand_name(self: &Self) -> Option<&str>`
-  The name of the current [subcommand].
-
 - `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
   Gets the value of a specific option or positional argument.
 
@@ -602,6 +560,48 @@ if matches.contains_id("out") {
 
 - `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>`
   All indices an argument appeared at when parsing.
+
+- `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_one`]
+
+- `fn try_get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_many`]
+
+- `fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_occurrences`]
+
+- `fn try_get_raw(self: &Self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_raw`]
+
+- `fn try_get_raw_occurrences(self: &Self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_raw_occurrences`]
+
+- `fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<T>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_one`]
+
+- `fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Values<T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_many`]
+
+- `fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_occurrences`]
+
+- `fn try_contains_id(self: &Self, id: &str) -> Result<bool, MatchesError>`
+  Non-panicking version of [`ArgMatches::contains_id`]
+
+- `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>`
+  Clears the values for the given `id`
+
+- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
+  The name and `ArgMatches` of the current [subcommand].
+
+- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>`
+  Return the name and `ArgMatches` of the current [subcommand].
+
+- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>`
+  The `ArgMatches` for the current [subcommand].
+
+- `fn subcommand_name(self: &Self) -> Option<&str>`
+  The name of the current [subcommand].
 
 #### Trait Implementations
 

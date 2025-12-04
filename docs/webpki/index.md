@@ -556,7 +556,7 @@ which order the steps are done in, but **all of these steps must completed
 before application data is sent and before received application data is
 processed**. The [`TryFrom`](#tryfrom) conversion from `&CertificateDer<'_>` is an
 inexpensive operation and is deterministic, so if these tasks are done in
-multiple threads, it is probably best to just create multiple [`EndEntityCert`](index.md)
+multiple threads, it is probably best to just create multiple [`EndEntityCert`](#endentitycert)
 instances for the same DER-encoded ASN.1 certificate bytes.
 
 #### Implementations
@@ -598,18 +598,18 @@ instances for the same DER-encoded ASN.1 certificate bytes.
 
 - `type Target = T`
 
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
 ##### `impl TryFrom<'a>`
 
 - `type Error = Error`
 
 - `fn try_from(cert: &'a CertificateDer<'a>) -> Result<Self, <Self as >::Error>`
   Parse the ASN.1 DER-encoded X.509 encoding of the certificate
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1106,7 +1106,7 @@ struct KeyPurposeIdIter<'a, 'r> {
 }
 ```
 
-Iterator over [`KeyPurposeId`](index.md)s, for use in [`ExtendedKeyUsageValidator`](index.md).
+Iterator over [`KeyPurposeId`](#keypurposeid)s, for use in [`ExtendedKeyUsageValidator`](#extendedkeyusagevalidator).
 
 #### Trait Implementations
 
@@ -1631,14 +1631,14 @@ May be either an owned, or a borrowed representation.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(crl: OwnedCertRevocationList) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(crl: OwnedCertRevocationList) -> Self`
 
 ##### `impl From<'a>`
 

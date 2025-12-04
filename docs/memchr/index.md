@@ -191,7 +191,7 @@ An iterator over all occurrences of a single byte in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr_iter`](index.md) or `[memrchr_iter`]
+This iterator is created by the [`memchr_iter`](#memchr-iter) or `[memrchr_iter`]
 functions. It can also be created with the `Memchr::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -295,7 +295,7 @@ An iterator over all occurrences of two possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](index.md) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr2::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -397,7 +397,7 @@ An iterator over all occurrences of three possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](index.md) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr3::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being

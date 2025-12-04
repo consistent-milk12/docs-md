@@ -1,6 +1,6 @@
 # Crate `zeroize`
 
-Securely zero memory with a simple trait ([`Zeroize`](index.md)) built on stable Rust
+Securely zero memory with a simple trait ([`Zeroize`](#zeroize)) built on stable Rust
 primitives which guarantee the operation will not be "optimized away".
 
 ## About
@@ -45,7 +45,7 @@ let mut secret = b"Air shield password: 1,2,3,4,5".to_vec();
 secret.zeroize();
 ```
 
-The [`Zeroize`](index.md) trait is impl'd on all of Rust's core scalar types including
+The [`Zeroize`](#zeroize) trait is impl'd on all of Rust's core scalar types including
 integers, floats, `bool`, and `char`.
 
 Additionally, it's implemented on slices and `IterMut`s of the above types.
@@ -55,14 +55,14 @@ impl'd for `Vec<T>` for the above types as well as `String`, where it provides
 `Vec::clear` / `String::clear`-like behavior (truncating to zero-length)
 but ensures the backing memory is securely zeroed with some caveats.
 
-With the `std` feature enabled (which it is **not** by default), [`Zeroize`](index.md)
-is also implemented for [`CString`](../rustix/ffi/index.md). After calling `zeroize()` on a `CString`,
+With the `std` feature enabled (which it is **not** by default), [`Zeroize`](#zeroize)
+is also implemented for [`CString`](#cstring). After calling `zeroize()` on a `CString`,
 its internal buffer will contain exactly one nul byte. The backing
 memory is zeroed by converting it to a `Vec<u8>` and back into a `CString`.
 (NOTE: see "Stack/Heap Zeroing Notes" for important `Vec`/`String`/`CString` details)
 
-The [`DefaultIsZeroes`](index.md) marker trait can be impl'd on types which also
-impl [`Default`](../gimli/index.md), which implements [`Zeroize`](index.md) by overwriting a value with
+The [`DefaultIsZeroes`](#defaultiszeroes) marker trait can be impl'd on types which also
+impl [`Default`](#default), which implements [`Zeroize`](#zeroize) by overwriting a value with
 the default value.
 
 ## Custom Derive Support
@@ -184,8 +184,8 @@ This crate can be used to zero values from either the stack or the heap.
 However, be aware several operations in Rust can unintentionally leave
 copies of data in memory. This includes but is not limited to:
 
-- Moves and [`Copy`](../gimli/index.md)
-- Heap reallocation when using [`Vec`](#vec) and [`String`](../clap_builder/index.md)
+- Moves and [`Copy`](#copy)
+- Heap reallocation when using [`Vec`](#vec) and [`String`](#string)
 - Borrowers of a reference making copies of the data
 
 [`Pin`]`core::pin::Pin` can be leveraged in conjunction with this crate
@@ -373,7 +373,7 @@ Trait for securely erasing values from memory.
 trait ZeroizeOnDrop { ... }
 ```
 
-Marker trait signifying that this type will `Zeroize::zeroize` itself on [`Drop`](../gimli/index.md).
+Marker trait signifying that this type will `Zeroize::zeroize` itself on [`Drop`](#drop).
 
 ### `DefaultIsZeroes`
 
@@ -381,7 +381,7 @@ Marker trait signifying that this type will `Zeroize::zeroize` itself on [`Drop`
 trait DefaultIsZeroes: Copy + Default + Sized { ... }
 ```
 
-Marker trait for types whose [`Default`](../gimli/index.md) is the desired zeroization result
+Marker trait for types whose [`Default`](#default) is the desired zeroization result
 
 ### `TryZeroize`
 

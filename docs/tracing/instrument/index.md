@@ -16,9 +16,9 @@ struct WithDispatch<T> {
 }
 ```
 
-A [`Future`](#future) that has been instrumented with a `tracing` [`Subscriber`](index.md).
+A [`Future`](#future) that has been instrumented with a `tracing` [`Subscriber`](../index.md).
 
-This type is returned by the [`WithSubscriber`](instrument/index.md) extension trait. See that
+This type is returned by the [`WithSubscriber`](#withsubscriber) extension trait. See that
 trait's documentation for details.
 
 
@@ -127,9 +127,9 @@ struct Instrumented<T> {
 }
 ```
 
-A [`Future`](#future) that has been instrumented with a `tracing` [`Span`](span/index.md).
+A [`Future`](#future) that has been instrumented with a `tracing` [`Span`](../span/index.md).
 
-This type is returned by the [`Instrument`](instrument/index.md) extension trait. See that
+This type is returned by the [`Instrument`](#instrument) extension trait. See that
 trait's documentation for details.
 
 
@@ -258,7 +258,7 @@ instrumented with a `tracing` [span](#span)
 
 - `fn instrument(self: Self, span: Span) -> Instrumented<Self>`
 
-  Instruments this type with the provided [`Span`](span/index.md), returning an
+  Instruments this type with the provided [`Span`](../span/index.md), returning an
 
 - `fn in_current_span(self: Self) -> Instrumented<Self>`
 
@@ -277,7 +277,7 @@ a `tracing` [`Subscriber`](crate::Subscriber).
 
 - `fn with_subscriber<S>(self: Self, subscriber: S) -> WithDispatch<Self>`
 
-  Attaches the provided [`Subscriber`](index.md) to this type, returning a
+  Attaches the provided [`Subscriber`](../index.md) to this type, returning a
 
 - `fn with_current_subscriber(self: Self) -> WithDispatch<Self>`
 

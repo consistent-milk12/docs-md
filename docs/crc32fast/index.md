@@ -16,7 +16,7 @@ let checksum = crc32fast::hash(b"foo bar baz");
 ### Advanced usage
 
 For use-cases that require more flexibility or performance, for example when
-processing large amounts of data, you can create and manipulate a [`Hasher`](index.md):
+processing large amounts of data, you can create and manipulate a [`Hasher`](#hasher):
 
 ```rust
 use crc32fast::Hasher;
@@ -147,5 +147,5 @@ fn hash(buf: &[u8]) -> u32
 
 Computes the CRC32 hash of a byte slice.
 
-Check out [`Hasher`](index.md) for more advanced use-cases.
+Check out [`Hasher`](#hasher) for more advanced use-cases.
 

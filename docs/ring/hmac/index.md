@@ -277,14 +277,14 @@ A key to use for HMAC signing.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(okm: hkdf::Okm<'_, Algorithm>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(okm: hkdf::Okm<'_, Algorithm>) -> Self`
 
 ##### `impl Into<T, U>`
 

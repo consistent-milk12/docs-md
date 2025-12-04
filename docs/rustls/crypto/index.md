@@ -28,7 +28,7 @@ struct WebPkiSupportedAlgorithms {
 ```
 
 Describes which `webpki` signature verification algorithms are supported and
-how they map to TLS [`SignatureScheme`](index.md)s.
+how they map to TLS [`SignatureScheme`](../index.md)s.
 
 #### Fields
 
@@ -44,7 +44,7 @@ how they map to TLS [`SignatureScheme`](index.md)s.
 
   A mapping from TLS `SignatureScheme`s to matching webpki signature verification algorithms.
   
-  This is one (`SignatureScheme`) to many ([`SignatureVerificationAlgorithm`](../../rustls_pki_types/index.md)) because
+  This is one (`SignatureScheme`) to many ([`SignatureVerificationAlgorithm`](#signatureverificationalgorithm)) because
   (depending on the protocol version) there is not necessary a 1-to-1 mapping.
   
   For TLS1.2, all `SignatureVerificationAlgorithm`s are tried in sequence.
@@ -294,7 +294,7 @@ a given process.
 
 It is used for functions like `ClientConfig::builder()` and `ServerConfig::builder()`.
 
-The intention is that an application can specify the [`CryptoProvider`](crypto/index.md) they wish to use
+The intention is that an application can specify the [`CryptoProvider`](#cryptoprovider) they wish to use
 once, and have that apply to the variety of places where their application does TLS
 (which may be wrapped inside other libraries).
 They should do this by calling `CryptoProvider::install_default()` early on.
@@ -309,7 +309,7 @@ To achieve this goal:
 
 # Using a specific `CryptoProvider`
 
-Supply the provider when constructing your [`ClientConfig`](index.md) or [`ServerConfig`](index.md):
+Supply the provider when constructing your [`ClientConfig`](../index.md) or [`ServerConfig`](../index.md):
 
 - `ClientConfig::builder_with_provider()`
 - `ServerConfig::builder_with_provider()`
@@ -330,8 +330,8 @@ Your goal will be to populate an instance of this `CryptoProvider` struct.
 
 ## Which elements are required?
 
-There is no requirement that the individual elements ([`SupportedCipherSuite`](index.md), [`SupportedKxGroup`](crypto/index.md),
-[`SigningKey`](index.md), etc.) come from the same crate.  It is allowed and expected that uninteresting
+There is no requirement that the individual elements ([`SupportedCipherSuite`](../index.md), [`SupportedKxGroup`](#supportedkxgroup),
+[`SigningKey`](../index.md), etc.) come from the same crate.  It is allowed and expected that uninteresting
 elements would be delegated back to one of the default providers (statically) or a parent
 provider (dynamically).
 
@@ -367,8 +367,8 @@ impl rustls::crypto::KeyProvider for HsmKeyLoader {
 The elements are documented separately:
 
 - **Random** - see `crypto::SecureRandom::fill()`.
-- **Cipher suites** - see [`SupportedCipherSuite`](index.md), [`Tls12CipherSuite`](index.md), and
-  [`Tls13CipherSuite`](index.md).
+- **Cipher suites** - see [`SupportedCipherSuite`](../index.md), [`Tls12CipherSuite`](../index.md), and
+  [`Tls13CipherSuite`](../index.md).
 - **Key exchange groups** - see `crypto::SupportedKxGroup`.
 - **Signature verification algorithms** - see `crypto::WebPkiSupportedAlgorithms`.
 - **Authentication key loading** - see `crypto::KeyProvider::load_private_key()` and
@@ -433,7 +433,7 @@ You can verify the configuration at runtime by checking
 
 - **`key_provider`**: `&'static dyn KeyProvider`
 
-  Provider for loading private [`SigningKey`](index.md)s from [`PrivateKeyDer`](../../rustls_pki_types/index.md).
+  Provider for loading private [`SigningKey`](../index.md)s from [`PrivateKeyDer`](#privatekeyder).
 
 #### Implementations
 
@@ -742,7 +742,7 @@ A source of cryptographically secure randomness.
 trait KeyProvider: Send + Sync + Debug { ... }
 ```
 
-A mechanism for loading private [`SigningKey`](index.md)s from [`PrivateKeyDer`](../../rustls_pki_types/index.md).
+A mechanism for loading private [`SigningKey`](../index.md)s from [`PrivateKeyDer`](#privatekeyder).
 
 This trait is intended to be used with private key material that is sourced from DER,
 such as a private-key that may be present on-disk. It is not intended to be used with
@@ -770,10 +770,10 @@ trait SupportedKxGroup: Send + Sync + Debug { ... }
 A supported key exchange group.
 
 This type carries both configuration and implementation. Specifically,
-it has a TLS-level name expressed using the [`NamedGroup`](index.md) enum, and
-a function which produces a [`ActiveKeyExchange`](crypto/index.md).
+it has a TLS-level name expressed using the [`NamedGroup`](../index.md) enum, and
+a function which produces a [`ActiveKeyExchange`](#activekeyexchange).
 
-Compare with [`NamedGroup`](index.md), which carries solely a protocol identifier.
+Compare with [`NamedGroup`](../index.md), which carries solely a protocol identifier.
 
 #### Required Methods
 
@@ -807,7 +807,7 @@ Compare with [`NamedGroup`](index.md), which carries solely a protocol identifie
 trait ActiveKeyExchange: Send + Sync { ... }
 ```
 
-An in-progress key exchange originating from a [`SupportedKxGroup`](crypto/index.md).
+An in-progress key exchange originating from a [`SupportedKxGroup`](#supportedkxgroup).
 
 #### Required Methods
 
@@ -821,7 +821,7 @@ An in-progress key exchange originating from a [`SupportedKxGroup`](crypto/index
 
 - `fn hybrid_component(self: &Self) -> Option<(NamedGroup, &[u8])>`
 
-  For hybrid key exchanges, returns the [`NamedGroup`](index.md) and key share
+  For hybrid key exchanges, returns the [`NamedGroup`](../index.md) and key share
 
 - `fn complete_hybrid_component(self: Box<Self>, _peer_pub_key: &[u8]) -> Result<SharedSecret, Error>`
 

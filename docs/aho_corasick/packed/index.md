@@ -19,11 +19,11 @@ searcher directly.
 
 The primary types in this sub-module are:
 
-* [`Searcher`](index.md) executes the actual search algorithm to report matches in a
+* [`Searcher`](../index.md) executes the actual search algorithm to report matches in a
 haystack.
-* [`Builder`](index.md) accumulates patterns incrementally and can construct a
+* [`Builder`](../dfa/index.md) accumulates patterns incrementally and can construct a
 `Searcher`.
-* [`Config`](index.md) permits tuning the searcher, and itself will produce a `Builder`
+* [`Config`](../index.md) permits tuning the searcher, and itself will produce a `Builder`
 (which can then be used to build a `Searcher`). Currently, the only tuneable
 knob are the match semantics, but this may be expanded in the future.
 
@@ -31,7 +31,7 @@ knob are the match semantics, but this may be expanded in the future.
 
 This example shows how to create a searcher from an iterator of patterns.
 By default, leftmost-first match semantics are used. (See the top-level
-[`MatchKind`](index.md) type for more details about match semantics, which apply
+[`MatchKind`](../index.md) type for more details about match semantics, which apply
 similarly to packed substring search.)
 
 ```
@@ -54,7 +54,7 @@ assert_eq!(vec![PatternID::ZERO], matches);
 # }
 ```
 
-This example shows how to use [`Config`](index.md) to change the match semantics to
+This example shows how to use [`Config`](../index.md) to change the match semantics to
 leftmost-longest:
 
 ```
@@ -363,7 +363,7 @@ struct FindIter<'s, 'h> {
 
 An iterator over non-overlapping matches from a packed searcher.
 
-The lifetime `'s` refers to the lifetime of the underlying [`Searcher`](index.md),
+The lifetime `'s` refers to the lifetime of the underlying [`Searcher`](../index.md),
 while the lifetime `'h` refers to the lifetime of the haystack being
 searched.
 
@@ -433,7 +433,7 @@ A packed searcher for quickly finding occurrences of multiple patterns.
 
 If callers need more flexible construction, or if one wants to change the
 match semantics (either leftmost-first or leftmost-longest), then one can
-use the [`Config`](index.md) and/or [`Builder`](index.md) types for more fine grained control.
+use the [`Config`](../index.md) and/or [`Builder`](../dfa/index.md) types for more fine grained control.
 
 # Example
 

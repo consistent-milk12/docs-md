@@ -7,7 +7,7 @@
 This module provides APIs for dealing with the alphabets of finite state
 machines.
 
-There are two principal types in this module, [`ByteClasses`](util/alphabet/index.md) and [`Unit`](util/alphabet/index.md).
+There are two principal types in this module, [`ByteClasses`](#byteclasses) and [`Unit`](#unit).
 The former defines the alphabet of a finite state machine while the latter
 represents an element of that alphabet.
 
@@ -41,7 +41,7 @@ In general, you should not expect to need either of these types unless you're
 doing lower level shenanigans with DFAs, or even building your own DFAs.
 (Although, you don't have to use these types to build your own DFAs of course.)
 For example, if you're walking a DFA's state graph, it's probably useful to
-make use of [`ByteClasses`](util/alphabet/index.md) to visit each element in the DFA's alphabet instead
+make use of [`ByteClasses`](#byteclasses) to visit each element in the DFA's alphabet instead
 of just visiting every distinct `u8` value. The latter isn't necessarily wrong,
 but it could be potentially very wasteful.
 

@@ -11,8 +11,8 @@ tree node.
 
 # Example
 
-Suppose in a procedural macro we have a [`Type`](index.md) that we want to assert
-implements the [`Sync`](../../flate2/index.md) trait. Maybe this is the type of one of the fields
+Suppose in a procedural macro we have a [`Type`](../index.md) that we want to assert
+implements the [`Sync`](#sync) trait. Maybe this is the type of one of the fields
 of a struct for which we are deriving a trait implementation, and we need to
 be able to pass a reference to one of those fields across threads.
 
@@ -94,7 +94,7 @@ A trait that can provide the `Span` of the complete contents of a syntax
 tree node.
 
 This trait is automatically implemented for all types that implement
-[`ToTokens`](../../quote/index.md) from the `quote` crate, as well as for `Span` itself.
+[`ToTokens`](#totokens) from the `quote` crate, as well as for `Span` itself.
 
 See the [module documentation] for an example.
 

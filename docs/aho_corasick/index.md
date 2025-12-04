@@ -15,17 +15,17 @@ Finally, unlike most other Aho-Corasick implementations, this one
 supports enabling [leftmost-first](MatchKind::LeftmostFirst) or
 [leftmost-longest](MatchKind::LeftmostLongest) match semantics, using a
 (seemingly) novel alternative construction algorithm. For more details on what
-match semantics means, see the [`MatchKind`](index.md) type.
+match semantics means, see the [`MatchKind`](#matchkind) type.
 
 # Overview
 
 This section gives a brief overview of the primary types in this crate:
 
-* [`AhoCorasick`](index.md) is the primary type and represents an Aho-Corasick automaton.
+* [`AhoCorasick`](#ahocorasick) is the primary type and represents an Aho-Corasick automaton.
 This is the type you use to execute searches.
-* [`AhoCorasickBuilder`](index.md) can be used to build an Aho-Corasick automaton, and
+* [`AhoCorasickBuilder`](#ahocorasickbuilder) can be used to build an Aho-Corasick automaton, and
 supports configuring a number of options.
-* [`Match`](index.md) represents a single match reported by an Aho-Corasick automaton.
+* [`Match`](#match) represents a single match reported by an Aho-Corasick automaton.
 Each match has two pieces of information: the pattern that matched and the
 start and end byte offsets corresponding to the position in the haystack at
 which it matched.
@@ -154,7 +154,7 @@ assert_eq!("Samwise", &haystack[mat.start()..mat.end()]);
 
 In addition to leftmost-first semantics, this library also supports
 leftmost-longest semantics, which match the POSIX behavior of a regular
-expression alternation. See [`MatchKind`](index.md) for more details.
+expression alternation. See [`MatchKind`](#matchkind) for more details.
 
 # Prefilters
 
@@ -175,7 +175,7 @@ disabled via `AhoCorasickBuilder::prefilter`.
 # Lower level APIs
 
 This crate also provides several sub-modules that collectively expose many of
-the implementation details of the main [`AhoCorasick`](index.md) type. Most users of this
+the implementation details of the main [`AhoCorasick`](#ahocorasick) type. Most users of this
 library can completely ignore the submodules and their contents, but if you
 needed finer grained control, some parts of them may be useful to you. Here is
 a brief overview of each and why you might want to use them:
@@ -197,7 +197,7 @@ trait. (The top-level `AhoCorasick` type does not implement the `Automaton`
 trait.)
 
 As mentioned above, if you aren't sure whether you need these sub-modules,
-you should be able to safely ignore them and just focus on the [`AhoCorasick`](index.md)
+you should be able to safely ignore them and just focus on the [`AhoCorasick`](#ahocorasick)
 type.
 
 # Crate features
@@ -253,7 +253,7 @@ The type variable `R` refers to the `io::Read` stream that is being read
 from.
 
 The lifetime `'a` refers to the lifetime of the corresponding
-[`AhoCorasick`](index.md) searcher.
+[`AhoCorasick`](#ahocorasick) searcher.
 
 #### Trait Implementations
 
@@ -322,7 +322,7 @@ An automaton for searching multiple strings in linear time.
 The `AhoCorasick` type supports a few basic ways of constructing an
 automaton, with the default being `AhoCorasick::new`. However, there
 are a fair number of configurable options that can be set by using
-[`AhoCorasickBuilder`](index.md) instead. Such options include, but are not limited
+[`AhoCorasickBuilder`](#ahocorasickbuilder) instead. Such options include, but are not limited
 to, how matches are determined, simple case insensitivity, whether to use a
 DFA or not and various knobs for controlling the space-vs-time trade offs
 taken when building the automaton.
@@ -358,7 +358,7 @@ This experiment very strongly argues that a contiguous NFA is often the
 best balance in terms of resource usage. It takes a little longer to build,
 but its memory usage is quite small. Its search speed (not listed) is
 also often faster than a noncontiguous NFA, but a little slower than a
-DFA. Indeed, when no specific [`AhoCorasickKind`](index.md) is used (which is the
+DFA. Indeed, when no specific [`AhoCorasickKind`](#ahocorasickkind) is used (which is the
 default), a contiguous NFA is used in most cases.
 
 The only "catch" to using a contiguous NFA is that, because of its variety
@@ -377,7 +377,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](index.md). This includes `&[u8](#u8)
+to an [`Input`](#input). This includes `&[u8](#u8)
 `, `&str` and `Input` itself.
 
 # Construction failure
@@ -477,36 +477,6 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
-  Returns true if and only if this automaton matches the haystack at any
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
-  Returns the location of the first match according to the match
-
-- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)`
-  Returns the location of the first overlapping match in the given
-
-- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>`
-  Returns an iterator of non-overlapping matches, using the match
-
-- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>`
-  Returns an iterator of overlapping matches. Stated differently, this
-
-- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
-  Replace all matches with a corresponding value in the `replace_with`
-
-- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
-  Replace all matches using raw bytes with a corresponding value in the
-
-- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
-  Replace all matches using a closure called on each match.
-
-- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
-  Replace all matches using raw bytes with a closure called on each
-
-- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
-  Returns an iterator of non-overlapping matches in the given
-
 - `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Result<Option<Match>, MatchError>`
   Returns the location of the first match according to the match
 
@@ -560,6 +530,36 @@ assert_eq!(result, "The slow grey sloth.");
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the approximate total amount of heap used by this automaton, in
+
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
+  Returns true if and only if this automaton matches the haystack at any
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
+  Returns the location of the first match according to the match
+
+- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)`
+  Returns the location of the first overlapping match in the given
+
+- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>`
+  Returns an iterator of non-overlapping matches, using the match
+
+- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>`
+  Returns an iterator of overlapping matches. Stated differently, this
+
+- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
+  Replace all matches with a corresponding value in the `replace_with`
+
+- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
+  Replace all matches using raw bytes with a corresponding value in the
+
+- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
+  Replace all matches using a closure called on each match.
+
+- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
+  Replace all matches using raw bytes with a closure called on each
+
+- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
+  Returns an iterator of non-overlapping matches in the given
 
 - `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
   Create a new Aho-Corasick automaton using the default configuration.
@@ -750,7 +750,7 @@ struct FindIter<'a, 'h>();
 
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](index.md) used by this
+This iterator yields matches according to the [`MatchKind`](#matchkind) used by this
 automaton.
 
 This iterator is constructed via the `AhoCorasick::find_iter` and
@@ -1232,13 +1232,13 @@ panics or silent logical errors.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
@@ -1250,7 +1250,7 @@ panics or silent logical errors.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -1388,7 +1388,7 @@ start of the search) or anchored (matches can only occur beginning at
 the start of the search) search. Unanchored search is the default. This is
 configured via `Input::anchored`.
 * Whether to quit the search as soon as a match has been found, regardless
-of the [`MatchKind`](index.md) that the searcher was built with. This is configured
+of the [`MatchKind`](#matchkind) that the searcher was built with. This is configured
 via `Input::earliest`.
 
 For most cases, the defaults for all optional parameters are appropriate.
@@ -1515,14 +1515,14 @@ assert_eq!(
 
 #### Trait Implementations
 
+##### `impl From<'h, H: ?Sized + AsRef<[u8]>>`
+
+- `fn from(haystack: &'h H) -> Input<'h>`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'h, H: ?Sized + AsRef<[u8]>>`
-
-- `fn from(haystack: &'h H) -> Input<'h>`
 
 ##### `impl Into<T, U>`
 
@@ -1583,8 +1583,8 @@ struct Match {
 
 A representation of a match reported by an Aho-Corasick searcher.
 
-A match has two essential pieces of information: the [`PatternID`](index.md) that
-matches, and the [`Span`](index.md) of the match in a haystack.
+A match has two essential pieces of information: the [`PatternID`](#patternid) that
+matches, and the [`Span`](#span) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
 (starting from `0`) relative to other patterns used to construct the
@@ -1756,14 +1756,14 @@ to create a span where `start > end`.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(range: Range<usize>) -> Span`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(range: Range<usize>) -> Span`
 
 ##### `impl Into<T, U>`
 
@@ -1844,7 +1844,7 @@ enum AhoCorasickKind {
 }
 ```
 
-The type of Aho-Corasick implementation to use in an [`AhoCorasick`](index.md)
+The type of Aho-Corasick implementation to use in an [`AhoCorasick`](#ahocorasick)
 searcher.
 
 This is principally used as an input to the
@@ -1947,7 +1947,7 @@ enum MatchErrorKind {
 }
 ```
 
-The underlying kind of a [`MatchError`](index.md).
+The underlying kind of a [`MatchError`](#matcherror).
 
 This is a **non-exhaustive** enum. That means new variants may be added in
 a semver-compatible release.

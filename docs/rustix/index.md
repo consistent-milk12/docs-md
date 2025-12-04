@@ -53,13 +53,13 @@ let nread = unsafe {
 ```
 
 rustix's APIs perform the following tasks:
- - Error values are translated to [`Result`](index.md)s.
+ - Error values are translated to [`Result`](#result)s.
  - Buffers are passed as Rust slices.
  - Out-parameters are presented as return values.
- - Path arguments use [`Arg`](../clap_builder/index.md), so they accept any string type.
+ - Path arguments use [`Arg`](#arg), so they accept any string type.
  - File descriptors are passed and returned via [`AsFd`](#asfd) and [`OwnedFd`](#ownedfd)
    instead of bare integers, ensuring I/O safety.
- - Constants use `enum`s and [`bitflags`](../bitflags/index.md) types, and enable [support for
+ - Constants use `enum`s and [`bitflags`](#bitflags) types, and enable [support for
    externally defined flags].
  - Multiplexed functions (eg. `fcntl`, `ioctl`, etc.) are de-multiplexed.
  - Variadic functions (eg. `openat`, etc.) are presented as non-variadic.

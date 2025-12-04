@@ -29,9 +29,9 @@ These two types come with conversion routines:
 [`Hir`](hir::Hir).
 
 As a convenience, the above two conversion routines are combined into one via
-the top-level [`Parser`](ast/parse/index.md) type. This `Parser` will first convert your pattern to
+the top-level [`Parser`](#parser) type. This `Parser` will first convert your pattern to
 an `Ast` and then convert the `Ast` to an `Hir`. It's also exposed as top-level
-[`parse`](index.md) free function.
+[`parse`](#parse) free function.
 
 
 # Example
@@ -192,7 +192,7 @@ convenience for never having to deal with it at all.
 If callers have more fine grained use cases that need an AST, then please
 see the `ast::parse` module.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](index.md).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](ast/parse/index.md).
 
 #### Implementations
 
@@ -467,18 +467,18 @@ new variant is not considered a breaking change.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(err: ast::Error) -> Error`
 
 ##### `impl From`
 
 - `fn from(err: hir::Error) -> Error`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(err: ast::Error) -> Error`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -588,7 +588,7 @@ match a literal `-` because `-` has no special meaning outside of character
 classes.
 
 In order to determine whether a character may be escaped at all, the
-[`is_escapeable_character`](index.md) routine should be used. The difference between
+[`is_escapeable_character`](#is-escapeable-character) routine should be used. The difference between
 `is_meta_character` and `is_escapeable_character` is that the latter will
 return true for some characters that are _not_ meta characters. For
 example, `%` and `\%` both match a literal `%` in all contexts. In other
@@ -679,7 +679,7 @@ or `Connector_Punctuation` general categories.
 
 If the `unicode-perl` feature is not enabled, then this function
 panics. For this reason, it is recommended that callers use
-[`try_is_word_character`](index.md) instead.
+[`try_is_word_character`](#try-is-word-character) instead.
 
 ### `try_is_word_character`
 

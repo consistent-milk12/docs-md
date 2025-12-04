@@ -4,7 +4,7 @@
 
 # Module `dispatcher`
 
-Dispatches trace events to [`Subscriber`](subscriber/index.md)s.
+Dispatches trace events to [`Subscriber`](../subscriber/index.md)s.
 
 The _dispatcher_ is the component of the tracing system which is responsible
 for forwarding trace data from the instrumentation points that generate it
@@ -20,13 +20,13 @@ current subscriber.
 
 By default, the current subscriber is an empty implementation that does
 nothing. To use a subscriber implementation, it must be set as the default.
-There are two methods for doing so: [`with_default`](dispatcher/index.md) and
-[`set_global_default`](dispatcher/index.md). `with_default` sets the default subscriber for the
+There are two methods for doing so: [`with_default`](#with-default) and
+[`set_global_default`](#set-global-default). `with_default` sets the default subscriber for the
 duration of a scope, while `set_global_default` sets a default subscriber
 for the entire process.
 
 To use either of these functions, we must first wrap our subscriber in a
-[`Dispatch`](dispatcher/index.md), a cloneable, type-erased reference to a subscriber. For
+[`Dispatch`](#dispatch), a cloneable, type-erased reference to a subscriber. For
 example:
 ```rust
 # pub struct FooSubscriber;
@@ -49,7 +49,7 @@ use dispatcher::Dispatch;
 let my_subscriber = FooSubscriber::new();
 let my_dispatch = Dispatch::new(my_subscriber);
 ```
-Then, we can use [`with_default`](dispatcher/index.md) to set our `Dispatch` as the default for
+Then, we can use [`with_default`](#with-default) to set our `Dispatch` as the default for
 the duration of a block:
 ```rust
 # pub struct FooSubscriber;
@@ -83,7 +83,7 @@ thread's default subscriber to any threads spawned within the `with_default`
 block. To propagate the default subscriber to new threads, either use
 `with_default` from the new thread, or use `set_global_default`.
 
-As an alternative to `with_default`, we can use [`set_global_default`](dispatcher/index.md) to
+As an alternative to `with_default`, we can use [`set_global_default`](#set-global-default) to
 set a `Dispatch` as the default for all threads, for the lifetime of the
 program. For example:
 ```rust
@@ -125,7 +125,7 @@ dispatcher::set_global_default(my_dispatch)
 ## Accessing the Default Subscriber
 
 A thread's current default subscriber can be accessed using the
-[`get_default`](dispatcher/index.md) function, which executes a closure with a reference to the
+[`get_default`](#get-default) function, which executes a closure with a reference to the
 currently default `Dispatch`. This is used primarily by `tracing`
 instrumentation.
 
@@ -139,7 +139,7 @@ struct Dispatch {
 }
 ```
 
-`Dispatch` trace data to a [`Subscriber`](subscriber/index.md).
+`Dispatch` trace data to a [`Subscriber`](../subscriber/index.md).
 
 #### Implementations
 
@@ -267,22 +267,22 @@ struct WeakDispatch {
 }
 ```
 
-`WeakDispatch` is a version of [`Dispatch`](dispatcher/index.md) that holds a non-owning reference
-to a [`Subscriber`](subscriber/index.md).
+`WeakDispatch` is a version of [`Dispatch`](#dispatch) that holds a non-owning reference
+to a [`Subscriber`](../subscriber/index.md).
 
 The `Subscriber` may be accessed by calling `WeakDispatch::upgrade`,
-which returns an `Option<Dispatch>`. If all [`Dispatch`](dispatcher/index.md) clones that point
+which returns an `Option<Dispatch>`. If all [`Dispatch`](#dispatch) clones that point
 at the `Subscriber` have been dropped, `WeakDispatch::upgrade` will return
 `None`. Otherwise, it will return `Some(Dispatch)`.
 
-A `WeakDispatch` may be created from a [`Dispatch`](dispatcher/index.md) by calling the
+A `WeakDispatch` may be created from a [`Dispatch`](#dispatch) by calling the
 `Dispatch::downgrade` method. The primary use for creating a
-[`WeakDispatch`](dispatcher/index.md) is to allow a Subscriber` to hold a cyclical reference to
+[`WeakDispatch`](#weakdispatch) is to allow a Subscriber` to hold a cyclical reference to
 itself without creating a memory leak. See [here](#here)
  for details.
 
 This type is analogous to the `std::sync::Weak` type, but for a
-[`Dispatch`](dispatcher/index.md) rather than an [`Arc`](#arc).
+[`Dispatch`](#dispatch) rather than an [`Arc`](#arc).
 
 [here](#here)
 : Subscriber#avoiding-memory-leaks
@@ -473,7 +473,7 @@ Sets this dispatch as the default for the duration of a closure.
 
 The default dispatcher is used when creating a new [span](#span)
  or
-[`Event`](event/index.md).
+[`Event`](../event/index.md).
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
     <strong>Note</strong>: This function required the Rust standard library.

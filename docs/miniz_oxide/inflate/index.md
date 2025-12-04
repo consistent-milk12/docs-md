@@ -235,7 +235,7 @@ NOTE: This function will not bound the output, so if the output is large enough 
 It is therefore suggested to not use this for anything other than test programs, use the functions with a specified limit, or
 ideally streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
 
-Returns a [`Result`](../../clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
+Returns a [`Result`](#result) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
 
 ### `decompress_to_vec_zlib`
 
@@ -249,7 +249,7 @@ NOTE: This function will not bound the output, so if the output is large enough 
 It is therefore suggested to not use this for anything other than test programs, use the functions with a specified limit, or
 ideally streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
 
-Returns a [`Result`](../../clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
+Returns a [`Result`](#result) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
 
 ### `decompress_to_vec_with_limit`
 
@@ -265,7 +265,7 @@ the error [struct][DecompressError] will contain the status `TINFLStatus::HasMor
 As this function tries to decompress everything in one go, it's not ideal for general use outside of tests or where the output size is expected to be small.
 It is suggested to use streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
 
-Returns a [`Result`](../../clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
+Returns a [`Result`](#result) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
 
 ### `decompress_to_vec_zlib_with_limit`
 
@@ -280,7 +280,7 @@ the error [struct][DecompressError] will contain the status `TINFLStatus::HasMor
 As this function tries to decompress everything in one go, it's not ideal for general use outside of tests or where the output size is expected to be small.
 It is suggested to use streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
 
-Returns a [`Result`](../../clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
+Returns a [`Result`](#result) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
 
 ### `decompress_slice_iter_to_slice`
 

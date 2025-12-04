@@ -69,7 +69,7 @@
 
  ## Events
 
- An [`Event`](index.md) represents a _moment_ in time. It signifies something that
+ An [`Event`](#event) represents a _moment_ in time. It signifies something that
  happened while a trace was being recorded. `Event`s are comparable to the log
  records emitted by unstructured logging code, but unlike a typical log line,
  an `Event` may occur within the context of a span.
@@ -94,21 +94,21 @@
  span — a request returned with a given status code, _n_ new items were
  taken from a queue, and so on.
 
- The [`Event` struct][`Event`](index.md) documentation provides further details on using
+ The [`Event` struct][`Event`](#event) documentation provides further details on using
  events.
 
  ## Subscribers
 
  As `Span`s and `Event`s occur, they are recorded or aggregated by
- implementations of the [`Subscriber`](index.md) trait. `Subscriber`s are notified
+ implementations of the [`Subscriber`](#subscriber) trait. `Subscriber`s are notified
  when an `Event` takes place and when a `Span` is entered or exited. These
  notifications are represented by the following `Subscriber` trait methods:
 
  + `event`, called when an `Event` takes place,
  + [`enter`](#enter), called when execution enters a `Span`,
- + [`exit`](../libc/index.md), called when execution exits a `Span`
+ + [`exit`](#exit), called when execution exits a `Span`
 
- In addition, subscribers may implement the [`enabled`](index.md) function to _filter_
+ In addition, subscribers may implement the [`enabled`](#enabled) function to _filter_
  the notifications they receive based on [metadata](#metadata)
  describing each `Span`
  or `Event`. If a call to `Subscriber::enabled` returns `false` for a given
@@ -133,7 +133,7 @@
 
  ### Spans
 
- The [`span`](index.md) macro expands to a [`Span` struct][`Span`](span/index.md) which is used to
+ The [`span`](#span) macro expands to a [`Span` struct][`Span`](span/index.md) which is used to
  record a span. The `Span::enter` method on that struct records that the
  span has been entered, and returns a [RAII] guard object, which will exit
  the span when dropped.
@@ -213,7 +213,7 @@
 
  ### Events
 
- [`Event`](index.md)s are recorded using the [`event`](index.md) macro:
+ [`Event`](#event)s are recorded using the [`event`](#event) macro:
 
  ```rust
  # fn main() {
@@ -224,13 +224,13 @@
 
  ## Using the Macros
 
- The [`span`](index.md) and [`event`](index.md) macros as well as the `#[instrument](#instrument)
+ The [`span`](#span) and [`event`](#event) macros as well as the `#[instrument](#instrument)
 ` attribute
  use fairly similar syntax, with some exceptions.
 
  ### Configuring Attributes
 
- Both macros require a [`Level`](index.md) specifying the verbosity of the span or
+ Both macros require a [`Level`](#level) specifying the verbosity of the span or
  event. Optionally, the, [target](#target)
  and [parent span] may be overridden. If the
  target and parent span are not overridden, they will default to the
@@ -409,7 +409,7 @@
  # }
  ```
 
- Additionally, a span may declare fields with the special value [`Empty`](../gimli/index.md),
+ Additionally, a span may declare fields with the special value [`Empty`](#empty),
  which indicates that that the value for that field does not currently exist
  but may be recorded later. For example:
 
@@ -469,13 +469,13 @@
  ### Shorthand Macros
 
  `tracing` also offers a number of macros with preset verbosity levels.
- The [`trace`](index.md), [`debug`](index.md), [`info`](index.md), [`warn`](index.md), and [`error`](index.md) behave
- similarly to the [`event`](index.md) macro, but with the [`Level`](index.md) argument already
- specified, while the corresponding [`trace_span`](index.md), [`debug_span`](index.md),
- [`info_span`](index.md), [`warn_span`](index.md), and [`error_span`](index.md) macros are the same,
- but for the [`span`](index.md) macro.
+ The [`trace`](#trace), [`debug`](#debug), [`info`](#info), [`warn`](#warn), and [`error`](#error) behave
+ similarly to the [`event`](#event) macro, but with the [`Level`](#level) argument already
+ specified, while the corresponding [`trace_span`](#trace-span), [`debug_span`](#debug-span),
+ [`info_span`](#info-span), [`warn_span`](#warn-span), and [`error_span`](#error-span) macros are the same,
+ but for the [`span`](#span) macro.
 
- These are intended both as a shorthand, and for compatibility with the [`log`](../log/index.md)
+ These are intended both as a shorthand, and for compatibility with the [`log`](#log)
  crate (see the next section).
 
 
@@ -491,7 +491,7 @@
 
  ### For `log` Users
 
- Users of the [`log`](../log/index.md) crate should note that `tracing` exposes a set of
+ Users of the [`log`](#log) crate should note that `tracing` exposes a set of
  macros for creating `Event`s (`trace!`, `debug!`, `info!`, `warn!`, and
  `error!`) which may be invoked with the same syntax as the similarly-named
  macros from the `log` crate. Often, the process of converting a project to
@@ -651,14 +651,14 @@
 
  ## `log` Compatibility
 
- The [`log`](../log/index.md) crate provides a simple, lightweight logging facade for Rust.
+ The [`log`](#log) crate provides a simple, lightweight logging facade for Rust.
  While `tracing` builds upon `log`'s foundation with richer structured
  diagnostic data, `log`'s simplicity and ubiquity make it the "lowest common
  denominator" for text-based logging in Rust — a vast majority of Rust
  libraries and applications either emit or consume `log` records. Therefore,
  `tracing` provides multiple forms of interoperability with `log`: `tracing`
  instrumentation can emit `log` records, and a compatibility layer enables
- `tracing` [`Subscriber`](index.md)s to consume `log` records as `tracing` [`Event`](index.md)s.
+ `tracing` [`Subscriber`](#subscriber)s to consume `log` records as `tracing` [`Event`](#event)s.
 
  ### Emitting `log` Records
 
@@ -700,7 +700,7 @@
  ### Consuming `log` Records
 
  The [`tracing-log`](#tracing-log) crate provides a compatibility layer which
- allows a `tracing` [`Subscriber`](index.md) to consume `log` records as though they
+ allows a `tracing` [`Subscriber`](#subscriber) to consume `log` records as though they
  were `tracing` [events](#events)
 . This allows applications using `tracing` to record
  the logs emitted by dependencies using `log` as events within the context of
@@ -725,7 +725,7 @@
     utilities for working with `Subscriber`s. This includes a [`FmtSubscriber`](#fmtsubscriber)
     `FmtSubscriber` for logging formatted trace data to stdout, with similar
     filtering and formatting to the [`env_logger`](#env-logger) crate.
-  - [`tracing-log`](#tracing-log) provides a compatibility layer with the [`log`](../log/index.md) crate,
+  - [`tracing-log`](#tracing-log) provides a compatibility layer with the [`log`](#log) crate,
     allowing log messages to be recorded as `tracing` `Event`s within the
     trace tree. This is useful when a project using `tracing` have
     dependencies which use `log`. Note that if you're using
@@ -839,7 +839,7 @@
  The following crate [feature flags] are available:
 
  * A set of features controlling the [static verbosity level].
- * `log`: causes trace instrumentation points to emit [`log`](../log/index.md) records as well
+ * `log`: causes trace instrumentation points to emit [`log`](#log) records as well
    as trace events, if a default `tracing` subscriber has not been set. This
    is intended for use in libraries whose users may be using either `tracing`
    or `log`.
@@ -971,7 +971,7 @@ An automaton for searching multiple strings in linear time.
 The `AhoCorasick` type supports a few basic ways of constructing an
 automaton, with the default being `AhoCorasick::new`. However, there
 are a fair number of configurable options that can be set by using
-[`AhoCorasickBuilder`](../aho_corasick/index.md) instead. Such options include, but are not limited
+[`AhoCorasickBuilder`](#ahocorasickbuilder) instead. Such options include, but are not limited
 to, how matches are determined, simple case insensitivity, whether to use a
 DFA or not and various knobs for controlling the space-vs-time trade offs
 taken when building the automaton.
@@ -1007,7 +1007,7 @@ This experiment very strongly argues that a contiguous NFA is often the
 best balance in terms of resource usage. It takes a little longer to build,
 but its memory usage is quite small. Its search speed (not listed) is
 also often faster than a noncontiguous NFA, but a little slower than a
-DFA. Indeed, when no specific [`AhoCorasickKind`](../aho_corasick/index.md) is used (which is the
+DFA. Indeed, when no specific [`AhoCorasickKind`](#ahocorasickkind) is used (which is the
 default), a contiguous NFA is used in most cases.
 
 The only "catch" to using a contiguous NFA is that, because of its variety
@@ -1026,7 +1026,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](../aho_corasick/index.md). This includes `&[u8](#u8)
+to an [`Input`](#input). This includes `&[u8](#u8)
 `, `&str` and `Input` itself.
 
 # Construction failure
@@ -1635,7 +1635,7 @@ and emitting an event for each item).
 # Usage
 
 [Subscribers] can make filtering decisions based all the data included in a
-span or event's [`Metadata`](index.md). This means that it is possible for `enabled!`
+span or event's [`Metadata`](#metadata). This means that it is possible for `enabled!`
 to return a _false positive_ (indicating that something would be enabled
 when it actually would not be) or a _false negative_ (indicating that
 something would be disabled when it would actually be enabled).
@@ -1699,7 +1699,7 @@ if enabled!(target: "my_crate", Level::DEBUG, hello) {
 
 # Alternatives
 
-`enabled!` queries subscribers with [`Metadata`](index.md) where
+`enabled!` queries subscribers with [`Metadata`](#metadata) where
 [`is_event`](#is-event) and [`is_span`](#is-span) both return `false`. Alternatively,
 use [`event_enabled!`](#event-enabled) or [`span_enabled!`](#span-enabled) to ensure one of these
 returns true.

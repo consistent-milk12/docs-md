@@ -26,4 +26,15 @@ conditions.
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
-*This is a procedural macro crate. The derive macros are re-exported from the parent crate.*
+## Overview
+
+This is a **procedural macro crate** that provides derive macros.
+
+The macros from this crate are typically re-exported from the parent crate [`clap`](../clap/index.md) for convenience. You should generally depend on the parent crate rather than this one directly.
+
+### Usage
+
+```toml
+[dependencies]
+clap = { version = "*", features = ["derive"] }
+```

@@ -54,7 +54,7 @@ const TINFL_FLAG_COMPUTE_ADLER32: u32 = 8u32;
 
 Calculate the adler32 checksum of the output data even if we're not inflating a zlib stream.
 
-If [`TINFL_FLAG_IGNORE_ADLER32`](inflate/core/inflate_flags/index.md) is specified, it will override this.
+If [`TINFL_FLAG_IGNORE_ADLER32`](#tinfl-flag-ignore-adler32) is specified, it will override this.
 
 NOTE: Enabling/disabling this between calls to decompress will result in an incorrect
 checksum.
@@ -67,7 +67,7 @@ const TINFL_FLAG_IGNORE_ADLER32: u32 = 64u32;
 
 Ignore adler32 checksum even if we are inflating a zlib stream.
 
-Overrides [`TINFL_FLAG_COMPUTE_ADLER32`](inflate/core/inflate_flags/index.md) if both are enabled.
+Overrides [`TINFL_FLAG_COMPUTE_ADLER32`](#tinfl-flag-compute-adler32) if both are enabled.
 
 NOTE: This flag does not exist in miniz as it does not support this and is a
 custom addition for miniz_oxide.

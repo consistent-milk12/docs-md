@@ -404,14 +404,14 @@ Previously encoded TLS data must be transmitted
 
 #### Implementations
 
+- `fn may_encrypt_early_data(self: &mut Self) -> Option<MayEncryptEarlyData<'_>>`
+  returns an adapter that allows encrypting early (RTT-0) data before transmitting the
+
 - `fn done(self: Self)`
   Signals that the previously encoded TLS data has been transmitted
 
 - `fn may_encrypt_app_data(self: &mut Self) -> Option<WriteTraffic<'_, Data>>`
   Returns an adapter that allows encrypting application data
-
-- `fn may_encrypt_early_data(self: &mut Self) -> Option<MayEncryptEarlyData<'_>>`
-  returns an adapter that allows encrypting early (RTT-0) data before transmitting the
 
 #### Trait Implementations
 
@@ -479,7 +479,7 @@ The current status of the `UnbufferedConnection*`
   
   This value MUST be handled prior to calling
   `UnbufferedConnectionCommon::process_tls_records` again. See the documentation on the
-  variants of [`ConnectionState`](index.md) for more details.
+  variants of [`ConnectionState`](../index.md) for more details.
 
 #### Trait Implementations
 
@@ -595,7 +595,7 @@ enum ConnectionState<'c, 'i, Data> {
 }
 ```
 
-The state of the [`UnbufferedConnectionCommon`](index.md) object
+The state of the [`UnbufferedConnectionCommon`](../index.md) object
 
 #### Variants
 
@@ -603,7 +603,7 @@ The state of the [`UnbufferedConnectionCommon`](index.md) object
 
   One, or more, application data records are available
   
-  See [`ReadTraffic`](index.md) for more details on how to use the enclosed object to access
+  See [`ReadTraffic`](../index.md) for more details on how to use the enclosed object to access
   the received data.
 
 - **`PeerClosed`**
@@ -683,20 +683,20 @@ The state of the [`UnbufferedConnectionCommon`](index.md) object
 
 ##### `impl From<'c, Data>`
 
-- `fn from(v: EncodeTlsData<'c, Data>) -> Self`
-
-##### `impl From<'c, Data>`
-
 - `fn from(v: TransmitTlsData<'c, Data>) -> Self`
-
-##### `impl From<'c, 'i, Data>`
-
-- `fn from(v: ReadEarlyData<'c, 'i, Data>) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'c, Data>`
+
+- `fn from(v: EncodeTlsData<'c, Data>) -> Self`
+
+##### `impl From<'c, 'i, Data>`
+
+- `fn from(v: ReadEarlyData<'c, 'i, Data>) -> Self`
 
 ##### `impl From<'c, 'i, Data>`
 
@@ -758,14 +758,14 @@ Errors that may arise when encoding a handshake record
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: InsufficientSizeError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: InsufficientSizeError) -> Self`
 
 ##### `impl Into<T, U>`
 

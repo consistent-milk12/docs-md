@@ -11,14 +11,14 @@ Lower level primitive types that are useful in a variety of circumstances.
 This list represents the principle types in this module and briefly describes
 when you might want to use them.
 
-* [`PatternID`](util/primitives/index.md) - A type that represents the identifier of a regex pattern.
+* [`PatternID`](#patternid) - A type that represents the identifier of a regex pattern.
 This is probably the most widely used type in this module (which is why it's
 also re-exported in the crate root).
-* [`StateID`](util/primitives/index.md) - A type the represents the identifier of a finite automaton
+* [`StateID`](#stateid) - A type the represents the identifier of a finite automaton
 state. This is used for both NFAs and DFAs, with the notable exception of
 the hybrid NFA/DFA. (The hybrid NFA/DFA uses a special purpose "lazy" state
 identifier.)
-* [`SmallIndex`](util/primitives/index.md) - The internal representation of both a `PatternID` and a
+* [`SmallIndex`](#smallindex) - The internal representation of both a `PatternID` and a
 `StateID`. Its purpose is to serve as a type that can index memory without
 being as big as a `usize` on 64-bit targets. The main idea behind this type
 is that there are many things in regex engines that will, in practice, never
@@ -27,7 +27,7 @@ or the number of states in an NFA.) Thus, a `SmallIndex` can be used to index
 memory without peppering `as` casts everywhere. Moreover, it forces callers
 to handle errors in the case where, somehow, the value would otherwise overflow
 either a 32-bit integer or a `usize` (e.g., on 16-bit targets).
-* [`NonMaxUsize`](util/primitives/index.md) - Represents a `usize` that cannot be `usize::MAX`. As a
+* [`NonMaxUsize`](#nonmaxusize) - Represents a `usize` that cannot be `usize::MAX`. As a
 result, `Option<NonMaxUsize>` has the same size in memory as a `usize`. This
 useful, for example, when representing the offsets of submatches since it
 reduces memory usage by a factor of 2. It is a legal optimization since Rust
@@ -184,8 +184,8 @@ for delta encoding.
 
 The following types wrap `SmallIndex` to provide a more focused use case:
 
-* [`PatternID`](util/primitives/index.md) is for representing the identifiers of patterns.
-* [`StateID`](util/primitives/index.md) is for representing the identifiers of states in finite
+* [`PatternID`](#patternid) is for representing the identifiers of patterns.
+* [`StateID`](#stateid) is for representing the identifiers of states in finite
 automata. It is used for both NFAs and DFAs.
 
 # Representation
@@ -252,14 +252,14 @@ in panics or silent logical errors.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(index: u8) -> SmallIndex`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(index: u8) -> SmallIndex`
 
 ##### `impl Into<T, U>`
 
@@ -320,7 +320,7 @@ in panics or silent logical errors.
 
 - `type Error = SmallIndexError`
 
-- `fn try_from(index: u32) -> Result<SmallIndex, SmallIndexError>`
+- `fn try_from(index: u16) -> Result<SmallIndex, SmallIndexError>`
 
 ##### `impl TryFrom`
 
@@ -328,11 +328,11 @@ in panics or silent logical errors.
 
 - `fn try_from(index: u64) -> Result<SmallIndex, SmallIndexError>`
 
-##### `impl TryFrom<T, U>`
+##### `impl TryFrom`
 
-- `type Error = Infallible`
+- `type Error = SmallIndexError`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(index: u32) -> Result<SmallIndex, SmallIndexError>`
 
 ##### `impl TryFrom`
 
@@ -340,11 +340,11 @@ in panics or silent logical errors.
 
 - `fn try_from(index: usize) -> Result<SmallIndex, SmallIndexError>`
 
-##### `impl TryFrom`
+##### `impl TryFrom<T, U>`
 
-- `type Error = SmallIndexError`
+- `type Error = Infallible`
 
-- `fn try_from(index: u16) -> Result<SmallIndex, SmallIndexError>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -459,7 +459,7 @@ When the `std` feature is enabled, this implements the `Error` trait.
 struct PatternID();
 ```
 
-The identifier of a regex pattern, represented by a [`SmallIndex`](util/primitives/index.md).
+The identifier of a regex pattern, represented by a [`SmallIndex`](#smallindex).
 
 The identifier for a pattern corresponds to its relative position among
 other patterns in a single finite state machine. Namely, when building
@@ -468,7 +468,7 @@ match. The position (starting at 0) of each pattern in that sequence
 represents its identifier. This identifier is in turn used to identify and
 report matches of that pattern in various APIs.
 
-See the [`SmallIndex`](util/primitives/index.md) type for more information about what it means for
+See the [`SmallIndex`](#smallindex) type for more information about what it means for
 a pattern ID to be a "small index."
 
 Note that this type is defined in the
@@ -588,19 +588,13 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
 - `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -612,7 +606,13 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryInto<T, U>`
 
@@ -635,7 +635,7 @@ struct StateID();
 ```
 
 The identifier of a finite automaton state, represented by a
-[`SmallIndex`](util/primitives/index.md).
+[`SmallIndex`](#smallindex).
 
 Most regex engines in this crate are built on top of finite automata. Each
 state in a finite automaton defines transitions from its state to another.
@@ -643,7 +643,7 @@ Those transitions point to other states via their identifiers, i.e., a
 `StateID`. Since finite automata tend to contain many transitions, it is
 much more memory efficient to define state IDs as small indices.
 
-See the [`SmallIndex`](util/primitives/index.md) type for more information about what it means for
+See the [`SmallIndex`](#smallindex) type for more information about what it means for
 a state ID to be a "small index."
 
 #### Implementations
@@ -691,14 +691,14 @@ a state ID to be a "small index."
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: u8) -> StateID`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: u8) -> StateID`
 
 ##### `impl Into<T, U>`
 
@@ -755,18 +755,6 @@ a state ID to be a "small index."
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
-
 ##### `impl TryFrom`
 
 - `type Error = StateIDError`
@@ -778,6 +766,18 @@ a state ID to be a "small index."
 - `type Error = StateIDError`
 
 - `fn try_from(value: usize) -> Result<StateID, StateIDError>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = StateIDError`
+
+- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 

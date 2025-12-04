@@ -9,7 +9,7 @@ HTTP/1.1 client protocol
 Sans-IO protocol impl, which means "writing" and "reading" are made via buffers
 rather than the Write/Read std traits.
 
-The [`Call`](client/index.md) object attempts to encode correct HTTP/1.1 handling using
+The [`Call`](#call) object attempts to encode correct HTTP/1.1 handling using
 state variables, for example `Call<'a, SendRequest>` to represent the
 lifecycle stage where we are to send the request.
 
@@ -254,74 +254,11 @@ visual representation of the state transitions.
 
 #### Implementations
 
-- `fn write(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
-  Write request body from `input` to `output`.
-
-- `fn consume_direct_write(self: &mut Self, amount: usize) -> Result<(), Error>`
-  Helper to avoid copying memory.
-
-- `fn calculate_max_input(self: &Self, output_len: usize) -> usize`
-  Calculate the max amount of input we can transfer to fill the `output_len`.
-
-- `fn is_chunked(self: &Self) -> bool`
-  Test if call is chunked.
-
-- `fn can_proceed(self: &Self) -> bool`
-  Check whether the request body is fully sent.
-
-- `fn proceed(self: Self) -> Option<Call<RecvResponse>>`
-  Proceed to the next state.
-
-- `fn as_new_call(self: &mut Self, redirect_auth_headers: RedirectAuthHeaders) -> Result<Option<Call<Prepare>>, Error>`
-  Construct a new `Call` by following the redirect.
-
-- `fn status(self: &Self) -> StatusCode`
-  The redirect status code.
-
-- `fn must_close_connection(self: &Self) -> bool`
-  Whether we must close the connection corresponding to the current call.
-
-- `fn close_reason(self: &Self) -> Option<&'static str>`
-  If we are closing the connection, give a reason why.
-
-- `fn proceed(self: Self) -> Call<Cleanup>`
-  Proceed to the cleanup state.
-
-- `fn write(self: &mut Self, output: &mut [u8]) -> Result<usize, Error>`
-  Write the request to the buffer.
-
-- `fn method(self: &Self) -> &Method`
-  The configured method.
-
-- `fn uri(self: &Self) -> &Uri`
-  The uri being requested.
-
-- `fn version(self: &Self) -> Version`
-  Version of the request.
-
-- `fn headers_map(self: &mut Self) -> Result<HeaderMap, Error>`
-  The configured headers.
-
-- `fn can_proceed(self: &Self) -> bool`
-  Check whether the entire request has been sent.
-
-- `fn proceed(self: Self) -> Result<Option<SendRequestResult>, Error>`
-  Attempt to proceed from this state to the next.
-
 - `fn must_close_connection(self: &Self) -> bool`
   Tell if we must close the connection.
 
 - `fn close_reason(self: &Self) -> Option<&'static str>`
   If we are closing the connection, give a reason.
-
-- `fn try_read_100(self: &mut Self, input: &[u8]) -> Result<usize, Error>`
-  Attempt to read a 100-continue response.
-
-- `fn can_keep_await_100(self: &Self) -> bool`
-  Tell if there is any point in waiting for more data from the server.
-
-- `fn proceed(self: Self) -> Result<Await100Result, Error>`
-  Proceed to the next state.
 
 - `fn try_response(self: &mut Self, input: &[u8], allow_partial_redirect: bool) -> Result<(usize, Option<Response<()>>), Error>`
   Try reading a response from the input.
@@ -334,27 +271,6 @@ visual representation of the state transitions.
 
 - `fn force_recv_body(self: &mut Self)`
   Convert the state to receive a body despite method.
-
-- `fn read(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
-  Read the response body from `input` to `output`.
-
-- `fn stop_on_chunk_boundary(self: &mut Self, enabled: bool)`
-  Set if we are stopping on chunk boundaries.
-
-- `fn is_on_chunk_boundary(self: &Self) -> bool`
-  Tell if the reading is on a chunk boundary.
-
-- `fn body_mode(self: &Self) -> BodyMode`
-  Tell which kind of mode the response body is.
-
-- `fn can_proceed(self: &Self) -> bool`
-  Check if the response body has been fully received.
-
-- `fn is_ended_chunked(self: &Self) -> bool`
-  Tell if we got an end chunk when reading chunked.
-
-- `fn proceed(self: Self) -> Option<RecvBodyResult>`
-  Proceed to the next state.
 
 - `fn new(request: Request<()>) -> Result<Self, Error>`
   Create a new Call instance from an HTTP request.
@@ -382,6 +298,90 @@ visual representation of the state transitions.
 
 - `fn proceed(self: Self) -> Call<SendRequest>`
   Continue to the next call state.
+
+- `fn read(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
+  Read the response body from `input` to `output`.
+
+- `fn stop_on_chunk_boundary(self: &mut Self, enabled: bool)`
+  Set if we are stopping on chunk boundaries.
+
+- `fn is_on_chunk_boundary(self: &Self) -> bool`
+  Tell if the reading is on a chunk boundary.
+
+- `fn body_mode(self: &Self) -> BodyMode`
+  Tell which kind of mode the response body is.
+
+- `fn can_proceed(self: &Self) -> bool`
+  Check if the response body has been fully received.
+
+- `fn is_ended_chunked(self: &Self) -> bool`
+  Tell if we got an end chunk when reading chunked.
+
+- `fn proceed(self: Self) -> Option<RecvBodyResult>`
+  Proceed to the next state.
+
+- `fn as_new_call(self: &mut Self, redirect_auth_headers: RedirectAuthHeaders) -> Result<Option<Call<Prepare>>, Error>`
+  Construct a new `Call` by following the redirect.
+
+- `fn status(self: &Self) -> StatusCode`
+  The redirect status code.
+
+- `fn must_close_connection(self: &Self) -> bool`
+  Whether we must close the connection corresponding to the current call.
+
+- `fn close_reason(self: &Self) -> Option<&'static str>`
+  If we are closing the connection, give a reason why.
+
+- `fn proceed(self: Self) -> Call<Cleanup>`
+  Proceed to the cleanup state.
+
+- `fn write(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
+  Write request body from `input` to `output`.
+
+- `fn consume_direct_write(self: &mut Self, amount: usize) -> Result<(), Error>`
+  Helper to avoid copying memory.
+
+- `fn calculate_max_input(self: &Self, output_len: usize) -> usize`
+  Calculate the max amount of input we can transfer to fill the `output_len`.
+
+- `fn is_chunked(self: &Self) -> bool`
+  Test if call is chunked.
+
+- `fn can_proceed(self: &Self) -> bool`
+  Check whether the request body is fully sent.
+
+- `fn proceed(self: Self) -> Option<Call<RecvResponse>>`
+  Proceed to the next state.
+
+- `fn try_read_100(self: &mut Self, input: &[u8]) -> Result<usize, Error>`
+  Attempt to read a 100-continue response.
+
+- `fn can_keep_await_100(self: &Self) -> bool`
+  Tell if there is any point in waiting for more data from the server.
+
+- `fn proceed(self: Self) -> Result<Await100Result, Error>`
+  Proceed to the next state.
+
+- `fn write(self: &mut Self, output: &mut [u8]) -> Result<usize, Error>`
+  Write the request to the buffer.
+
+- `fn method(self: &Self) -> &Method`
+  The configured method.
+
+- `fn uri(self: &Self) -> &Uri`
+  The uri being requested.
+
+- `fn version(self: &Self) -> Version`
+  Version of the request.
+
+- `fn headers_map(self: &mut Self) -> Result<HeaderMap, Error>`
+  The configured headers.
+
+- `fn can_proceed(self: &Self) -> bool`
+  Check whether the entire request has been sent.
+
+- `fn proceed(self: Self) -> Result<Option<SendRequestResult>, Error>`
+  Attempt to proceed from this state to the next.
 
 #### Trait Implementations
 

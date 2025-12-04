@@ -362,7 +362,7 @@ struct MultiCrateContext<'a> {
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](index.md) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](#multicrategenerator) to coordinate
 generation across crates.
 
 
@@ -633,7 +633,7 @@ struct SearchIndexGenerator<'a> {
 
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](index.md) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](#cratecollection) and builds a comprehensive
 search index of all public items.
 
 # Example
@@ -1012,14 +1012,14 @@ Controls how module files are organized in the output directory.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(cli: CliOutputFormat) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(cli: CliOutputFormat) -> Self`
 
 ##### `impl Into<T, U>`
 

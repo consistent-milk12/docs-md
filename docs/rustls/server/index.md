@@ -23,7 +23,7 @@ struct WantsServerCert {
 A config builder state where the caller must supply how to provide a server certificate to
 the connecting peer.
 
-For more information, see the [`ConfigBuilder`](index.md) documentation.
+For more information, see the [`ConfigBuilder`](../index.md) documentation.
 
 #### Trait Implementations
 
@@ -356,7 +356,7 @@ struct Accepted {
 }
 ```
 
-Represents a `ClientHello` message received through the [`Acceptor`](index.md).
+Represents a `ClientHello` message received through the [`Acceptor`](../index.md).
 
 Contains the state required to resume the connection through `Accepted::into_connection()`.
 
@@ -511,7 +511,7 @@ struct ServerConfig {
 Common configuration for a set of server sessions.
 
 Making one of these is cheap, though one of the inputs may be expensive: gathering trust roots
-from the operating system to add to the [`RootCertStore`](index.md) passed to a `ClientCertVerifier`
+from the operating system to add to the [`RootCertStore`](../index.md) passed to a `ClientCertVerifier`
 builder may take on the order of a few hundred milliseconds.
 
 These must be created via the `ServerConfig::builder()` or `ServerConfig::builder_with_provider()`
@@ -523,7 +523,7 @@ function.
 * `ServerConfig::session_storage`: if the `std` feature is enabled, the default stores 256
   sessions in memory. If the `std` feature is not enabled, the default is to not store any
   sessions. In a no-std context, by enabling the `hashbrown` feature you may provide your
-  own `session_storage` using [`ServerSessionMemoryCache`](index.md) and a `crate::lock::MakeMutex`
+  own `session_storage` using [`ServerSessionMemoryCache`](../index.md) and a `crate::lock::MakeMutex`
   implementation.
 * `ServerConfig::alpn_protocols`: the default is empty -- no ALPN protocol is negotiated.
 * `ServerConfig::key_log`: key material is not logged.
@@ -946,14 +946,14 @@ application can communicate failure to the client via `AcceptedAlert::write()`.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(conn: ConnectionCommon<ServerConnectionData>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(conn: ConnectionCommon<ServerConnectionData>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -998,7 +998,7 @@ struct Acceptor {
 
 Handle a server-side connection before configuration is available.
 
-`Acceptor` allows the caller to choose a [`ServerConfig`](index.md) after reading
+`Acceptor` allows the caller to choose a [`ServerConfig`](../index.md) after reading
 the `super::ClientHello` of an incoming connection. This is useful for servers
 that choose different certificates or cipher suites based on the
 characteristics of the `ClientHello`. In particular it is useful for
@@ -1316,7 +1316,7 @@ struct ClientCertVerifierBuilder {
 
 A builder for configuring a `webpki` client certificate verifier.
 
-For more information, see the [`WebPkiClientVerifier`](index.md) documentation.
+For more information, see the [`WebPkiClientVerifier`](../index.md) documentation.
 
 #### Implementations
 
@@ -1439,17 +1439,17 @@ This is used in order to avoid parsing twice when specifying custom verification
 
 - `fn borrow_mut(self: &mut Self) -> &mut T`
 
-##### `impl TryFrom<'a>`
-
-- `type Error = Error`
-
-- `fn try_from(value: &'a CertificateDer<'a>) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = Error`
+
+- `fn try_from(value: &'a CertificateDer<'a>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1471,7 +1471,7 @@ validation.
 It must be created via the `WebPkiClientVerifier::builder()` or
 `WebPkiClientVerifier::builder_with_provider()` functions.
 
-Once built, the provided `Arc<dyn ClientCertVerifier>` can be used with a Rustls [`ServerConfig`](index.md)
+Once built, the provided `Arc<dyn ClientCertVerifier>` can be used with a Rustls [`ServerConfig`](../index.md)
 to configure client certificate validation using [`with_client_cert_verifier`][ConfigBuilder<ClientConfig, WantsVerifier>::with_client_cert_verifier].
 
 Example:
@@ -1721,14 +1721,14 @@ An error that can occur when building a certificate verifier.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: CertRevocationListError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 

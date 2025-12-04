@@ -25,13 +25,13 @@ and end positions of each match.
 representation (uses lots of space, but fast searching).
 * A `sparse::DFA` provides the same API as a `dense::DFA`, but uses a sparse
 representation (uses less space, but slower searching).
-* An [`Automaton`](../../aho_corasick/automaton/index.md) trait that defines an interface that both dense and sparse
+* An [`Automaton`](#automaton) trait that defines an interface that both dense and sparse
 DFAs implement. (A `regex::Regex` is generic over this trait.)
 * Both dense DFAs and sparse DFAs support serialization to raw bytes (e.g.,
 `dense::DFA::to_bytes_little_endian`) and cheap deserialization (e.g.,
 `dense::DFA::from_bytes`).
 
-There is also a [`onepass`](dfa/onepass/index.md) module that provides a [one-pass
+There is also a [`onepass`](onepass/index.md) module that provides a [one-pass
 DFA](onepass::DFA). The unique advantage of this DFA is that, for the class
 of regexes it can be built with, it supports reporting the spans of matching
 capturing groups. It is the only DFA in this crate capable of such a thing.

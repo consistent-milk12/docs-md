@@ -125,10 +125,6 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(token: TokenTree) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -137,6 +133,10 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 ##### `impl From`
 
 - `fn from(inner: proc_macro::TokenStream) -> Self`
+
+##### `impl From`
+
+- `fn from(token: TokenTree) -> Self`
 
 ##### `impl FromIterator`
 
@@ -191,11 +191,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
 ##### `impl ToOwned<T>`
 
@@ -334,14 +334,14 @@ A region of source code, along with macro expansion information.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(proc_span: proc_macro::Span) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(proc_span: proc_macro::Span) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -601,9 +601,9 @@ Multicharacter operators like `+=` are represented as two instances of
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
-
 ##### `impl Token`
+
+##### `impl Parse`
 
 ### `Ident`
 
@@ -623,7 +623,7 @@ property.
 - A lifetime is not an identifier. Use `syn::Lifetime` instead.
 
 An identifier constructed with `Ident::new` is permitted to be a Rust
-keyword, though parsing one through its [`Parse`](../regex_syntax/index.md) implementation rejects
+keyword, though parsing one through its [`Parse`](#parse) implementation rejects
 Rust keywords. Use `input.call(Ident::parse_any)` when parsing to match the
 behaviour of `Ident::new`.
 
@@ -736,13 +736,13 @@ if ident_string.len() > 60 {
 
 - `fn cmp(self: &Self, other: &Ident) -> Ordering`
 
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Ident) -> bool`
-
 ##### `impl PartialEq<T>`
 
 - `fn eq(self: &Self, other: &T) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Ident) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -780,11 +780,11 @@ if ident_string.len() > 60 {
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
-
 ##### `impl Token`
 
 ##### `impl IdentExt`
+
+##### `impl Parse`
 
 ### `Literal`
 
@@ -1030,18 +1030,14 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(g: Group) -> Self`
-
-##### `impl From`
-
-- `fn from(g: Ident) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(g: Group) -> Self`
 
 ##### `impl From`
 
@@ -1050,6 +1046,10 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 ##### `impl From`
 
 - `fn from(g: Literal) -> Self`
+
+##### `impl From`
+
+- `fn from(g: Ident) -> Self`
 
 ##### `impl Into<T, U>`
 

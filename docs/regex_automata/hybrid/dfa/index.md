@@ -89,6 +89,33 @@ assert_eq!(expected, dfa.try_search_fwd(
 
 #### Implementations
 
+- `fn next_state(self: &Self, cache: &mut Cache, current: LazyStateID, input: u8) -> Result<LazyStateID, CacheError>`
+  Transitions from the current state to the next state, given the next
+
+- `fn next_state_untagged(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
+  Transitions from the current state to the next state, given the next
+
+- `unsafe fn next_state_untagged_unchecked(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
+  Transitions from the current state to the next state, eliding bounds
+
+- `fn next_eoi_state(self: &Self, cache: &mut Cache, current: LazyStateID) -> Result<LazyStateID, CacheError>`
+  Transitions from the current state to the next state for the special
+
+- `fn start_state(self: &Self, cache: &mut Cache, config: &start::Config) -> Result<LazyStateID, StartError>`
+  Return the ID of the start state for this lazy DFA for the given
+
+- `fn start_state_forward(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
+  Return the ID of the start state for this lazy DFA when executing a
+
+- `fn start_state_reverse(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
+  Return the ID of the start state for this lazy DFA when executing a
+
+- `fn match_len(self: &Self, cache: &Cache, id: LazyStateID) -> usize`
+  Returns the total number of patterns that match in this state.
+
+- `fn match_pattern(self: &Self, cache: &Cache, id: LazyStateID, match_index: usize) -> PatternID`
+  Returns the pattern ID corresponding to the given match index in the
+
 - `fn try_search_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>`
   Executes a forward search and returns the end position of the leftmost
 
@@ -142,33 +169,6 @@ assert_eq!(expected, dfa.try_search_fwd(
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the memory usage, in bytes, of this lazy DFA.
-
-- `fn next_state(self: &Self, cache: &mut Cache, current: LazyStateID, input: u8) -> Result<LazyStateID, CacheError>`
-  Transitions from the current state to the next state, given the next
-
-- `fn next_state_untagged(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
-  Transitions from the current state to the next state, given the next
-
-- `unsafe fn next_state_untagged_unchecked(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
-  Transitions from the current state to the next state, eliding bounds
-
-- `fn next_eoi_state(self: &Self, cache: &mut Cache, current: LazyStateID) -> Result<LazyStateID, CacheError>`
-  Transitions from the current state to the next state for the special
-
-- `fn start_state(self: &Self, cache: &mut Cache, config: &start::Config) -> Result<LazyStateID, StartError>`
-  Return the ID of the start state for this lazy DFA for the given
-
-- `fn start_state_forward(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
-  Return the ID of the start state for this lazy DFA when executing a
-
-- `fn start_state_reverse(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
-  Return the ID of the start state for this lazy DFA when executing a
-
-- `fn match_len(self: &Self, cache: &Cache, id: LazyStateID) -> usize`
-  Returns the total number of patterns that match in this state.
-
-- `fn match_pattern(self: &Self, cache: &Cache, id: LazyStateID, match_index: usize) -> PatternID`
-  Returns the pattern ID corresponding to the given match index in the
 
 #### Trait Implementations
 
@@ -242,7 +242,7 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`DFA`](dfa/onepass/index.md).
+a [`DFA`](../../dfa/onepass/index.md).
 
 Caches can be created from their corresponding DFA via
 `DFA::create_cache`. A cache can only be used with either the DFA that
@@ -352,7 +352,7 @@ with `Builder::configure`.
 The default configuration guarantees that a search will never return a
 "gave up" or "quit" error, although it is possible for a search to fail
 if `Config::starts_for_each_pattern` wasn't enabled (which it is not by
-default) and an `Anchored::Pattern` mode is requested via [`Input`](index.md).
+default) and an `Anchored::Pattern` mode is requested via [`Input`](../../index.md).
 
 #### Implementations
 
@@ -511,7 +511,7 @@ a DFA from different kinds of inputs. The most convenient is
 most flexible is `Builder::build_from_nfa`, which builds a DFA straight
 from an NFA.
 2. The builder permits configuring a number of things.
-`Builder::configure` is used with [`Config`](dfa/onepass/index.md) to configure aspects of
+`Builder::configure` is used with [`Config`](../../dfa/onepass/index.md) to configure aspects of
 the DFA and the construction process itself. `Builder::syntax` and
 `Builder::thompson` permit configuring the regex parser and Thompson NFA
 construction, respectively. The syntax and thompson configurations only

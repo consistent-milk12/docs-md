@@ -270,7 +270,7 @@ Most search routines in this crate accept anything that implements
 means that things like `engine.search("foo")` will work as you would expect.
 
 By virtue of accepting an `Into<Input>` though, callers can provide more than
-just a haystack. Indeed, the [`Input`](index.md) type has more details, but briefly,
+just a haystack. Indeed, the [`Input`](#input) type has more details, but briefly,
 callers can use it to configure various aspects of the search:
 
 * The span of the haystack to search via `Input::span` or `Input::range`,
@@ -293,7 +293,7 @@ Most, but not all, regex engines in this crate can fail to execute a search.
 When a search fails, callers cannot determine whether or not a match exists.
 That is, the result is indeterminate.
 
-Search failure, in all cases in this crate, is represented by a [`MatchError`](index.md).
+Search failure, in all cases in this crate, is represented by a [`MatchError`](#matcherror).
 Routines that can fail start with the `try_` prefix in their name. For example,
 `hybrid::regex::Regex::try_search` can fail for a number of reasons.
 Conversely, routines that either can't fail or can panic on failure lack the
@@ -686,19 +686,13 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
 - `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -710,7 +704,13 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryInto<T, U>`
 

@@ -140,6 +140,10 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `fn eq(self: &Self, other: &Method) -> bool`
 
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
+
 ##### `impl PartialEq<'a>`
 
 - `fn eq(self: &Self, other: &&'a str) -> bool`
@@ -147,10 +151,6 @@ assert_eq!(Method::POST.as_str(), "POST");
 ##### `impl PartialEq<'a>`
 
 - `fn eq(self: &Self, other: &&'a Method) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl StructuralPartialEq`
 

@@ -30,12 +30,12 @@ Best paired with other libraries in the family:
 
 # Progress Bars and Spinners
 
-indicatif comes with a [`ProgressBar`](index.md) type that supports both bounded
+indicatif comes with a [`ProgressBar`](#progressbar) type that supports both bounded
 progress bar uses as well as unbounded "spinner" type progress reports.
-Progress bars are [`Sync`](../flate2/index.md) and [`Send`](#send) objects which means that they are
+Progress bars are [`Sync`](#sync) and [`Send`](#send) objects which means that they are
 internally locked and can be passed from thread to thread.
 
-Additionally a [`MultiProgress`](index.md) utility is provided that can manage
+Additionally a [`MultiProgress`](#multiprogress) utility is provided that can manage
 rendering multiple progress bars at once (eg: from multiple threads).
 
 To whet your appetite, this is what this can look like:
@@ -1251,7 +1251,7 @@ struct WeakProgressBar {
 }
 ```
 
-A weak reference to a [`ProgressBar`](index.md).
+A weak reference to a [`ProgressBar`](#progressbar).
 
 Useful for creating custom steady tick implementations
 
@@ -1588,7 +1588,7 @@ enum ProgressFinish {
 
 Behavior of a progress bar when it is finished
 
-This is invoked when a [`ProgressBar`](index.md) or [`ProgressBarIter`](index.md) completes and
+This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#progressbariter) completes and
 `ProgressBar::is_finished` is false.
 
 

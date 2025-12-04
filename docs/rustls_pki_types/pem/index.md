@@ -261,17 +261,17 @@ A single recognised section in a PEM file.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = ()`
 
 - `fn try_from(value: &[u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -411,7 +411,7 @@ Items that can be decoded from PEM data.
 
 - `fn from_pem(kind: SectionKind, der: Vec<u8>) -> Option<Self>`
 
-  Conversion from a PEM [`SectionKind`](pem/index.md) and body data.
+  Conversion from a PEM [`SectionKind`](#sectionkind) and body data.
 
 ## Functions
 

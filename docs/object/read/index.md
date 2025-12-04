@@ -8,9 +8,9 @@ Interface for reading object files.
 
 ## Unified read API
 
-The [`Object`](index.md) trait provides a unified read API for accessing common features of
+The [`Object`](../index.md) trait provides a unified read API for accessing common features of
 object files, such as sections and symbols. There is an implementation of this
-trait for [`File`](index.md), which allows reading any file format, as well as implementations
+trait for [`File`](../index.md), which allows reading any file format, as well as implementations
 for each file format:
 [`ElfFile`](elf::ElfFile), [`MachOFile`](macho::MachOFile), [`CoffFile`](coff::CoffFile),
 [`PeFile`](pe::PeFile), [`WasmFile`](wasm::WasmFile), [`XcoffFile`](xcoff::XcoffFile).
@@ -324,7 +324,7 @@ struct SymbolMap<T: SymbolMapEntry> {
 
 A map from addresses to symbol information.
 
-The symbol information depends on the chosen entry type, such as [`SymbolMapName`](read/index.md).
+The symbol information depends on the chosen entry type, such as [`SymbolMapName`](#symbolmapname).
 
 Returned by `Object::symbol_map`.
 
@@ -407,7 +407,7 @@ struct SymbolMapName<'data> {
 }
 ```
 
-The type used for entries in a [`SymbolMap`](read/index.md) that maps from addresses to names.
+The type used for entries in a [`SymbolMap`](#symbolmap) that maps from addresses to names.
 
 #### Implementations
 
@@ -587,7 +587,7 @@ struct ObjectMapEntry<'data> {
 }
 ```
 
-A symbol in an [`ObjectMap`](read/index.md).
+A symbol in an [`ObjectMap`](#objectmap).
 
 #### Implementations
 
@@ -692,7 +692,7 @@ struct ObjectMapFile<'data> {
 }
 ```
 
-An object file name in an [`ObjectMap`](read/index.md).
+An object file name in an [`ObjectMap`](#objectmap).
 
 #### Implementations
 
@@ -1714,7 +1714,7 @@ enum SymbolSection {
 }
 ```
 
-The section where an [`ObjectSymbol`](index.md) is defined.
+The section where an [`ObjectSymbol`](../index.md) is defined.
 
 #### Variants
 
@@ -1827,7 +1827,7 @@ enum RelocationTarget {
 }
 ```
 
-The target referenced by a [`Relocation`](index.md).
+The target referenced by a [`Relocation`](#relocation).
 
 #### Variants
 
@@ -2026,7 +2026,7 @@ A data compression format.
 trait SymbolMapEntry { ... }
 ```
 
-An entry in a [`SymbolMap`](read/index.md).
+An entry in a [`SymbolMap`](#symbolmap).
 
 #### Required Methods
 

@@ -43,7 +43,7 @@ tracing = { version = "0.1", features = ["max_level_debug", "release_max_level_w
 ## Notes
 
 Please note that `tracing`'s static max level features do *not* control the
-[`log`](../../log/index.md) records that may be emitted when [`tracing`'s "log" feature flag][f](#f)
+[`log`](#log) records that may be emitted when [`tracing`'s "log" feature flag][f](#f)
  is
 enabled. This is to allow `tracing` to be disabled entirely at compile time
 while still emitting `log` records --- such as when a library using

@@ -20,7 +20,7 @@ If you're looking for fully compiled DFAs, then please see the top-level
 
 This section gives a brief overview of the primary types in this module:
 
-* A [`Regex`](hybrid/regex/index.md) provides a way to search for matches of a regular
+* A [`Regex`](regex/index.md) provides a way to search for matches of a regular
 expression using lazy DFAs. This includes iterating over matches with both the
 start and end positions of each match.
 * A `dfa::DFA` provides direct low level access to a lazy DFA.

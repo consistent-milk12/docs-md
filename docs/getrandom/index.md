@@ -105,7 +105,7 @@ This feature has no effect on targets other than `wasm32-unknown-unknown`.
 #### Node.js ES module support
 
 Node.js supports both [CommonJS modules] and [ES modules]. Due to
-limitations in wasm-bindgen's [`module`](../docs_md/generator/module/index.md) support, we cannot directly
+limitations in wasm-bindgen's [`module`](#module) support, we cannot directly
 support ES Modules running on Node.js. However, on Node v15 and later, the
 module author can add a simple shim to support the Web Cryptography API:
 ```js
@@ -127,7 +127,7 @@ outdated platform versions.
 ### Custom implementations
 
 The [`register_custom_getrandom!`](#register-custom-getrandom) macro allows a user to mark their own
-function as the backing implementation for [`getrandom`](index.md). See the macro's
+function as the backing implementation for [`getrandom`](#getrandom). See the macro's
 documentation for more information about writing and registering your own
 custom implementations.
 

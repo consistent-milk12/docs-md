@@ -15,4 +15,15 @@ Please refer to [https://serde.rs/derive.html] for how to set this up.
 
 [https://serde.rs/derive.html]: https://serde.rs/derive.html
 
-*This is a procedural macro crate. The derive macros are re-exported from the parent crate.*
+## Overview
+
+This is a **procedural macro crate** that provides derive macros.
+
+The macros from this crate are typically re-exported from the parent crate [`serde`](../serde/index.md) for convenience. You should generally depend on the parent crate rather than this one directly.
+
+### Usage
+
+```toml
+[dependencies]
+serde = { version = "*", features = ["derive"] }
+```

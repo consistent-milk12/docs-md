@@ -272,11 +272,11 @@ Tag that determines reset policy of [InflateState](#inflatestate)
 fn inflate(state: &mut InflateState, input: &[u8], output: &mut [u8], flush: crate::MZFlush) -> crate::StreamResult
 ```
 
-Try to decompress from `input` to `output` with the given [`InflateState`](inflate/stream/index.md)
+Try to decompress from `input` to `output` with the given [`InflateState`](#inflatestate)
 
 # `flush`
 
-Generally, the various [`MZFlush`](index.md) flags have meaning only on the compression side.  They can be
+Generally, the various [`MZFlush`](../../index.md) flags have meaning only on the compression side.  They can be
 supplied here, but the only one that has any semantic meaning is `MZFlush::Finish`, which is a
 signal that the stream is expected to finish, and failing to do so is an error.  It isn't
 necessary to specify it when the stream ends; you'll still get returned a
@@ -290,7 +290,7 @@ to lack of expected input data, or if called with `MZFlush::Finish` and input wa
 consumed.
 
 Returns `MZError::Data` if this or a a previous call failed with an error return from
-[`TINFLStatus`](inflate/index.md); probably indicates corrupted data.
+[`TINFLStatus`](../index.md); probably indicates corrupted data.
 
 Returns `MZError::Stream` when called with `MZFlush::Full` (meaningless on
 decompression), or when called without `MZFlush::Finish` after an earlier call with

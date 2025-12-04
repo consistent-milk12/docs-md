@@ -13,7 +13,7 @@
  that describe all `tracing` spans and events. Attributes describing spans
  include:
 
- - An [`Id`](span/index.md) assigned by the subscriber that uniquely identifies it in relation
+ - An [`Id`](#id) assigned by the subscriber that uniquely identifies it in relation
    to other spans.
  - The span's [parent](#parent)
  in the trace tree.
@@ -51,8 +51,8 @@
 
  ## Recording Span Creation
 
- The [`Attributes`](span/index.md) type contains data associated with a span, and is
- provided to the [`Subscriber`](index.md) when a new span is created. It contains
+ The [`Attributes`](#attributes) type contains data associated with a span, and is
+ provided to the [`Subscriber`](../index.md) when a new span is created. It contains
  the span's metadata, the ID of [the span's parent][parent](#parent)
  if one was
  explicitly set, and any fields whose values were recorded when the span was
@@ -236,9 +236,9 @@
  to be _idle_.
 
  Because spans may be entered and exited multiple times before they close,
- [`Subscriber`](index.md)s have separate trait methods which are called to notify them
+ [`Subscriber`](../index.md)s have separate trait methods which are called to notify them
  of span exits and when span handles are dropped. When execution exits a
- span, [`exit`](../../libc/index.md) will always be called with that span's ID to notify the
+ span, [`exit`](#exit) will always be called with that span's ID to notify the
  subscriber that the span has been exited. When span handles are dropped, the
  [`drop_span`](#drop-span) method is called with that span's ID. The subscriber may use
  this to determine whether or not the span will be entered again.
@@ -550,7 +550,7 @@ struct EnteredSpan {
 }
 ```
 
-An owned version of [`Entered`](span/index.md), a guard representing a span which has been
+An owned version of [`Entered`](#entered), a guard representing a span which has been
 entered and is currently executing.
 
 When the guard is dropped, the span will be exited.

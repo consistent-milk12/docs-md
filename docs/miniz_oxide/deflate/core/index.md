@@ -291,14 +291,14 @@ A list of deflate flush types.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(flush: MZFlush) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(flush: MZFlush) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -382,7 +382,7 @@ Return status of compression.
 
   Usage error.
   
-  This indicates that either the [`CompressorOxide`](deflate/core/index.md) experienced a previous error, or the
+  This indicates that either the [`CompressorOxide`](#compressoroxide) experienced a previous error, or the
   stream has already been `TDEFLFlush::Finish`'d.
 
 - **`PutBufFailed`**

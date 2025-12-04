@@ -78,15 +78,15 @@ A minimal representation of all possible errors that can occur using the
 
 ##### `impl Error`
 
+- `fn custom<T>(msg: T) -> Self`
+
+##### `impl Error`
+
+- `fn custom<T>(msg: T) -> Self`
+
+##### `impl Error`
+
 - `fn description(self: &Self) -> &str`
-
-##### `impl Error`
-
-- `fn custom<T>(msg: T) -> Self`
-
-##### `impl Error`
-
-- `fn custom<T>(msg: T) -> Self`
 
 ##### `impl PartialEq`
 
@@ -3504,11 +3504,11 @@ A deserializer that iterates over a sequence.
 
 #### Implementations
 
-- `fn new(iter: I) -> Self`
-  Construct a new `SeqDeserializer<I, E>`.
-
 - `fn end(self: Self) -> Result<(), E>`
   Check for remaining elements after passing a `SeqDeserializer` to
+
+- `fn new(iter: I) -> Self`
+  Construct a new `SeqDeserializer<I, E>`.
 
 #### Trait Implementations
 

@@ -352,6 +352,12 @@ A type which encapsulates a string (borrowed or owned) that is a syntactically v
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidDnsNameError`
@@ -369,12 +375,6 @@ A type which encapsulates a string (borrowed or owned) that is a syntactically v
 - `type Error = InvalidDnsNameError`
 
 - `fn try_from(value: String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -463,14 +463,14 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 - `fn from(value: [u8; 4]) -> Self`
 
+##### `impl From`
+
+- `fn from(addr: std::net::Ipv4Addr) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(addr: std::net::Ipv4Addr) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -559,14 +559,14 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(addr: std::net::Ipv6Addr) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(addr: std::net::Ipv6Addr) -> Self`
 
 ##### `impl From`
 
@@ -623,17 +623,17 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = AddrParseError`
 
 - `fn try_from(value: &str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -679,11 +679,6 @@ PrivatePkcs1KeyDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
@@ -691,6 +686,11 @@ PrivatePkcs1KeyDer::from_pem_slice(byte_slice).unwrap();
 ##### `impl From`
 
 - `fn from(vec: Vec<u8>) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -780,14 +780,14 @@ PrivateSec1KeyDer::from_pem_slice(byte_slice).unwrap();
 
 - `fn from(vec: Vec<u8>) -> Self`
 
-##### `impl From<'a>`
-
-- `fn from(slice: &'a [u8]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -950,7 +950,7 @@ A trust anchor (a.k.a. root CA)
 
 Traditionally, certificate verification libraries have represented trust anchors as full X.509
 root certificates. However, those certificates contain a lot more data than is needed for
-verifying certificates. The [`TrustAnchor`](index.md) representation allows an application to store
+verifying certificates. The [`TrustAnchor`](#trustanchor) representation allows an application to store
 just the essential elements of trust anchors.
 
 The most common way to get one of these is to call `rustls_webpki::anchor_from_trusted_cert()`.
@@ -1077,10 +1077,6 @@ assert!(crls.len() >= 1);
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(vec: Vec<u8>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -1089,6 +1085,10 @@ assert!(crls.len() >= 1);
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
+
+##### `impl From`
+
+- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1195,13 +1195,13 @@ CertificateSigningRequestDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(vec: Vec<u8>) -> Self`
-
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
+
+##### `impl From`
+
+- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl From<T>`
 
@@ -1330,18 +1330,18 @@ assert_eq!(certs.len(), 3);
 
 #### Trait Implementations
 
-##### `impl From<'a>`
+##### `impl From<T>`
 
-- `fn from(slice: &'a [u8]) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
 - `fn from(vec: Vec<u8>) -> Self`
 
-##### `impl From<T>`
+##### `impl From<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1452,6 +1452,11 @@ SubjectPublicKeyInfoDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
@@ -1459,11 +1464,6 @@ SubjectPublicKeyInfoDer::from_pem_slice(byte_slice).unwrap();
 ##### `impl From`
 
 - `fn from(vec: Vec<u8>) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -1555,11 +1555,11 @@ A TLS-encoded Encrypted Client Hello (ECH) configuration list (`ECHConfigList`);
 
 #### Implementations
 
-- `fn config_and_key_from_iter(iter: impl Iterator<Item = Result<(SectionKind, Vec<u8>), pem::Error>>) -> Result<(Self, PrivatePkcs8KeyDer<'static>), pem::Error>`
-  Convert an iterator over PEM items into an `EchConfigListBytes` and private key.
-
 - `fn into_owned(self: Self) -> EchConfigListBytes<'static>`
   Converts this config into its owned variant, unfreezing borrowed content (if any)
+
+- `fn config_and_key_from_iter(iter: impl Iterator<Item = Result<(SectionKind, Vec<u8>), pem::Error>>) -> Result<(Self, PrivatePkcs8KeyDer<'static>), pem::Error>`
+  Convert an iterator over PEM items into an `EchConfigListBytes` and private key.
 
 #### Trait Implementations
 
@@ -1840,10 +1840,6 @@ variant is only available when the `alloc` feature is enabled.
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(slice: &'a [u8]) -> Self`
-
 ##### `impl From`
 
 - `fn from(vec: Vec<u8>) -> Self`
@@ -1852,6 +1848,10 @@ variant is only available when the `alloc` feature is enabled.
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1959,11 +1959,11 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 ##### `impl From`
 
-- `fn from(v4: std::net::Ipv4Addr) -> Self`
+- `fn from(v6: std::net::Ipv6Addr) -> Self`
 
 ##### `impl From`
 
-- `fn from(addr: std::net::IpAddr) -> Self`
+- `fn from(v4: std::net::Ipv4Addr) -> Self`
 
 ##### `impl From<T>`
 
@@ -1972,7 +1972,7 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 ##### `impl From`
 
-- `fn from(v6: std::net::Ipv6Addr) -> Self`
+- `fn from(addr: std::net::IpAddr) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2116,15 +2116,7 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 ##### `impl From`
 
-- `fn from(v6: Ipv6Addr) -> Self`
-
-##### `impl From`
-
-- `fn from(v4: std::net::Ipv4Addr) -> Self`
-
-##### `impl From`
-
-- `fn from(v6: std::net::Ipv6Addr) -> Self`
+- `fn from(v4: Ipv4Addr) -> Self`
 
 ##### `impl From<'a>`
 
@@ -2132,7 +2124,11 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 ##### `impl From`
 
-- `fn from(v4: Ipv4Addr) -> Self`
+- `fn from(v4: std::net::Ipv4Addr) -> Self`
+
+##### `impl From`
+
+- `fn from(addr: IpAddr) -> Self`
 
 ##### `impl From`
 
@@ -2140,7 +2136,11 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 ##### `impl From`
 
-- `fn from(addr: IpAddr) -> Self`
+- `fn from(v6: Ipv6Addr) -> Self`
+
+##### `impl From`
+
+- `fn from(v6: std::net::Ipv6Addr) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2187,11 +2187,11 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom<T, U>`
 
-- `type Error = InvalidDnsNameError`
+- `type Error = Infallible`
 
-- `fn try_from(value: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryFrom`
 
@@ -2203,13 +2203,13 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 - `type Error = InvalidDnsNameError`
 
+- `fn try_from(value: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidDnsNameError`
+
 - `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -2276,15 +2276,6 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(key: PrivatePkcs1KeyDer<'a>) -> Self`
-
 ##### `impl From<'a>`
 
 - `fn from(key: PrivateSec1KeyDer<'a>) -> Self`
@@ -2292,6 +2283,15 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 ##### `impl From<'a>`
 
 - `fn from(key: PrivatePkcs8KeyDer<'a>) -> Self`
+
+##### `impl From<'a>`
+
+- `fn from(key: PrivatePkcs1KeyDer<'a>) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -2322,6 +2322,12 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 
 ##### `impl StructuralPartialEq<'a>`
 
+##### `impl TryFrom<'a>`
+
+- `type Error = &'static str`
+
+- `fn try_from(key: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
@@ -2333,12 +2339,6 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 - `type Error = &'static str`
 
 - `fn try_from(key: Vec<u8>) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = &'static str`
-
-- `fn try_from(key: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

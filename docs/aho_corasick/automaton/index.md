@@ -4,7 +4,7 @@
 
 # Module `automaton`
 
-Provides [`Automaton`](automaton/index.md) trait for abstracting over Aho-Corasick automata.
+Provides [`Automaton`](#automaton) trait for abstracting over Aho-Corasick automata.
 
 The `Automaton` trait provides a way to write generic code over any
 Aho-Corasick automaton. It also provides access to lower level APIs that
@@ -236,12 +236,6 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
 - `fn try_from(value: usize) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom<T, U>`
@@ -254,13 +248,19 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
+- `fn try_from(value: u64) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u64) -> Result<StateID, StateIDError>`
+- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = StateIDError`
+
+- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
 
 ##### `impl TryInto<T, U>`
 
@@ -510,15 +510,15 @@ struct FindIter<'a, 'h, A> {
 
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](index.md) used by this
+This iterator yields matches according to the [`MatchKind`](../index.md) used by this
 automaton.
 
 This iterator is constructed via the `Automaton::try_find_iter` method.
 
-The type variable `A` refers to the implementation of the [`Automaton`](automaton/index.md)
+The type variable `A` refers to the implementation of the [`Automaton`](#automaton)
 trait used to execute the search.
 
-The lifetime `'a` refers to the lifetime of the [`Automaton`](automaton/index.md)
+The lifetime `'a` refers to the lifetime of the [`Automaton`](#automaton)
 implementation.
 
 The lifetime `'h` refers to the lifetime of the haystack being searched.
@@ -593,10 +593,10 @@ even when the matches overlap.
 This iterator is constructed via the
 `Automaton::try_find_overlapping_iter` method.
 
-The type variable `A` refers to the implementation of the [`Automaton`](automaton/index.md)
+The type variable `A` refers to the implementation of the [`Automaton`](#automaton)
 trait used to execute the search.
 
-The lifetime `'a` refers to the lifetime of the [`Automaton`](automaton/index.md)
+The lifetime `'a` refers to the lifetime of the [`Automaton`](#automaton)
 implementation.
 
 The lifetime `'h` refers to the lifetime of the haystack being searched.
@@ -672,13 +672,13 @@ The iterator terminates only when the underlying stream reaches `EOF`.
 This iterator is constructed via the `Automaton::try_stream_find_iter`
 method.
 
-The type variable `A` refers to the implementation of the [`Automaton`](automaton/index.md)
+The type variable `A` refers to the implementation of the [`Automaton`](#automaton)
 trait used to execute the search.
 
 The type variable `R` refers to the `io::Read` stream that is being read
 from.
 
-The lifetime `'a` refers to the lifetime of the [`Automaton`](automaton/index.md)
+The lifetime `'a` refers to the lifetime of the [`Automaton`](#automaton)
 implementation.
 
 #### Trait Implementations
@@ -887,7 +887,7 @@ on a dead state lead back to itself. The dead state is meant to be treated
 as a sentinel indicating that the search should stop and return a match if
 one has been found, and nothing otherwise.
 * A match state is a state that indicates one or more patterns have
-matched. Depending on the [`MatchKind`](index.md) of the automaton, a search may
+matched. Depending on the [`MatchKind`](../index.md) of the automaton, a search may
 stop once a match is seen, or it may continue looking for matches until
 it enters a dead state or sees the end of the haystack.
 * A start state is a state that a search begins in. It is useful to know
@@ -941,7 +941,7 @@ _possible_ to do in the future.
 This example shows how one might implement a basic but correct search
 routine. We keep things simple by not using prefilters or worrying about
 anchored searches, but do make sure our search is correct for all possible
-[`MatchKind`](index.md) semantics. (The comments in the code below note the parts
+[`MatchKind`](../index.md) semantics. (The comments in the code below note the parts
 that are needed to support certain `MatchKind` semantics.)
 
 ```

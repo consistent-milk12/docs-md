@@ -33,14 +33,14 @@ A key for generating QUIC Header Protection masks.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(okm: hkdf::Okm<'_, &'static Algorithm>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(okm: hkdf::Okm<'_, &'static Algorithm>) -> Self`
 
 ##### `impl Into<T, U>`
 

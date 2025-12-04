@@ -275,7 +275,7 @@ A HKDF implementation oriented to the needs of TLS1.3.
 See [RFC5869](https://datatracker.ietf.org/doc/html/rfc5869) for the terminology
 used in this definition.
 
-You can use [`HkdfUsingHmac`](crypto/tls13/index.md) which implements this trait on top of an implementation
+You can use [`HkdfUsingHmac`](#hkdfusinghmac) which implements this trait on top of an implementation
 of `hmac::Hmac`.
 
 #### Required Methods

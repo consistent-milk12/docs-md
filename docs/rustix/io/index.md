@@ -6,7 +6,7 @@
 
 I/O operations.
 
-If you're looking for [`SeekFrom`](../../clap_lex/index.md), it's in the [`fs`](../../fs_err/os/unix/fs/index.md) module.
+If you're looking for [`SeekFrom`](#seekfrom), it's in the [`fs`](#fs) module.
 
 
 
@@ -49,15 +49,6 @@ but only holds an OS error code, and no extra error value.
 : https://sourceware.org/glibc/manual/latest/html_node/Error-Codes.html
 
 #### Implementations
-
-- `fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
-  Extract an `Errno` value from a `std::io::Error`.
-
-- `const fn raw_os_error(self: Self) -> i32`
-  Extract the raw OS error number from this error.
-
-- `const fn from_raw_os_error(raw: i32) -> Self`
-  Construct an `Errno` from a raw OS error number.
 
 - `const ACCESS: Self`
 
@@ -329,6 +320,15 @@ but only holds an OS error code, and no extra error value.
 
 - `fn kind(self: Self) -> std::io::ErrorKind`
   Shorthand for `std::io::Error::from(self).kind()`.
+
+- `fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
+  Extract an `Errno` value from a `std::io::Error`.
+
+- `const fn raw_os_error(self: Self) -> i32`
+  Extract the raw OS error number from this error.
+
+- `const fn from_raw_os_error(raw: i32) -> Self`
+  Construct an `Errno` from a raw OS error number.
 
 #### Trait Implementations
 

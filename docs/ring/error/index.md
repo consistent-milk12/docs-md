@@ -175,6 +175,14 @@ that they can be addressed individually.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(source: core::array::TryFromSliceError) -> Self`
+
+##### `impl From`
+
+- `fn from(source: untrusted::EndOfInput) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -182,15 +190,7 @@ that they can be addressed individually.
 
 ##### `impl From`
 
-- `fn from(source: untrusted::EndOfInput) -> Self`
-
-##### `impl From`
-
 - `fn from(source: KeyRejected) -> Self`
-
-##### `impl From`
-
-- `fn from(source: core::array::TryFromSliceError) -> Self`
 
 ##### `impl Into<T, U>`
 

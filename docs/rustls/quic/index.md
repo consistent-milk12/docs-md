@@ -658,11 +658,6 @@ A QUIC client or server connection.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From`
 
 - `fn from(c: ClientConnection) -> Self`
@@ -670,6 +665,11 @@ A QUIC client or server connection.
 ##### `impl From`
 
 - `fn from(c: ServerConnection) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -743,7 +743,7 @@ QUIC uses 4 different sets of keys (and progressive key updates for long-running
 * 1-RTT keys: these are returned from `ConnectionCommon::write_hs()` after the handshake is done
 
 Once the 1-RTT keys have been exchanged, either side may initiate a key update. Progressive
-update keys can be obtained from the [`Secrets`](quic/index.md) returned in `KeyChange::OneRtt`. Note that
+update keys can be obtained from the [`Secrets`](#secrets) returned in `KeyChange::OneRtt`. Note that
 only packet keys are updated by key updates; header protection keys remain the same.
 
 #### Variants

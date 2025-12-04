@@ -6,7 +6,7 @@
 
 Utilities for dealing with the syntax of a regular expression.
 
-This module currently only exposes a [`Config`](dfa/onepass/index.md) type that
+This module currently only exposes a [`Config`](../../dfa/onepass/index.md) type that
 itself represents a wrapper around the configuration for a
 [`regex-syntax::ParserBuilder`](regex_syntax::ParserBuilder). The purpose of
 this wrapper is to make configuring syntax options very similar to how other

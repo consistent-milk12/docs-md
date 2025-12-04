@@ -16,11 +16,11 @@ where
     S: Subscriber + Send + Sync + 'static
 ```
 
-Sets this [`Subscriber`](index.md) as the default for the current thread for the
+Sets this [`Subscriber`](../index.md) as the default for the current thread for the
 duration of a closure.
 
-The default subscriber is used when creating a new [`Span`](span/index.md) or
-[`Event`](index.md).
+The default subscriber is used when creating a new [`Span`](../span/index.md) or
+[`Event`](../index.md).
 
 
 
@@ -52,10 +52,10 @@ where
     S: Subscriber + Send + Sync + 'static
 ```
 
-Sets the [`Subscriber`](index.md) as the default for the current thread for the
-duration of the lifetime of the returned [`DefaultGuard`](dispatcher/index.md).
+Sets the [`Subscriber`](../index.md) as the default for the current thread for the
+duration of the lifetime of the returned [`DefaultGuard`](../dispatcher/index.md).
 
-The default subscriber is used when creating a new [`Span`](span/index.md) or [`Event`](index.md).
+The default subscriber is used when creating a new [`Span`](../span/index.md) or [`Event`](../index.md).
 
 
 

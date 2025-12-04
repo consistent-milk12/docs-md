@@ -14,12 +14,12 @@ documentation for entire dependency trees.
 
 The multi-crate system uses these components:
 
-- [`CrateCollection`](index.md): Container for parsed crates with processing order
-- [`MultiCrateParser`](index.md): Scans directories and parses JSON files
-- [`UnifiedLinkRegistry`](index.md): Cross-crate link resolution
-- [`MultiCrateContext`](index.md): Shared state during generation
-- [`MultiCrateGenerator`](index.md): Orchestrates per-crate generation
-- [`SummaryGenerator`](index.md): Creates mdBook-compatible SUMMARY.md
+- [`CrateCollection`](../index.md): Container for parsed crates with processing order
+- [`MultiCrateParser`](../index.md): Scans directories and parses JSON files
+- [`UnifiedLinkRegistry`](../index.md): Cross-crate link resolution
+- [`MultiCrateContext`](../index.md): Shared state during generation
+- [`MultiCrateGenerator`](../index.md): Orchestrates per-crate generation
+- [`SummaryGenerator`](../index.md): Creates mdBook-compatible SUMMARY.md
 
 # Usage
 
@@ -141,7 +141,7 @@ struct MultiCrateContext<'a> {
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](index.md) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](../index.md) to coordinate
 generation across crates.
 
 
@@ -213,8 +213,8 @@ struct SingleCrateView<'a> {
 
 View of a single crate within multi-crate context.
 
-Provides an interface similar to [`GeneratorContext`](index.md) but uses
-[`UnifiedLinkRegistry`](index.md) for cross-crate link resolution. This
+Provides an interface similar to [`GeneratorContext`](../index.md) but uses
+[`UnifiedLinkRegistry`](../index.md) for cross-crate link resolution. This
 allows existing rendering code to work with minimal changes.
 
 
@@ -436,7 +436,7 @@ struct UnifiedLinkRegistry {
 
 Registry mapping item IDs to documentation paths across multiple crates.
 
-Unlike [`LinkRegistry`](linker/index.md) which handles a single crate, this registry
+Unlike [`LinkRegistry`](../linker/index.md) which handles a single crate, this registry
 spans multiple crates and supports cross-crate link resolution with
 disambiguation based on local/primary crate preference.
 
@@ -608,7 +608,7 @@ struct SearchIndexGenerator<'a> {
 
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](index.md) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](../index.md) and builds a comprehensive
 search index of all public items.
 
 # Example

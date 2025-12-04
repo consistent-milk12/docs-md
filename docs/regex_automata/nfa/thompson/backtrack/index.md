@@ -7,7 +7,7 @@
 An NFA backed bounded backtracker for executing regex searches with capturing
 groups.
 
-This module provides a [`BoundedBacktracker`](nfa/thompson/backtrack/index.md) that works by simulating an NFA
+This module provides a [`BoundedBacktracker`](#boundedbacktracker) that works by simulating an NFA
 using the classical backtracking algorithm with a twist: it avoids redoing
 work that it has done before and thereby avoids worst case exponential time.
 In exchange, it can only be used on "short" haystacks. Its advantage is that
@@ -380,6 +380,12 @@ assert_eq!(None, it.next());
 - `fn max_haystack_len(self: &Self) -> usize`
   Returns the maximum haystack length supported by this backtracker.
 
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
+
 - `fn try_is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Result<bool, MatchError>`
   Returns true if and only if this regex matches the given haystack.
 
@@ -394,12 +400,6 @@ assert_eq!(None, it.next());
 
 - `fn try_captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryCapturesMatches<'r, 'c, 'h>`
   Returns an iterator over all non-overlapping `Captures` values. If no
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
 
 #### Trait Implementations
 
@@ -618,15 +618,15 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a [`BoundedBacktracker`](nfa/thompson/backtrack/index.md) requires
+A cache represents mutable state that a [`BoundedBacktracker`](#boundedbacktracker) requires
 during a search.
 
-For a given [`BoundedBacktracker`](nfa/thompson/backtrack/index.md), its corresponding cache may be created
+For a given [`BoundedBacktracker`](#boundedbacktracker), its corresponding cache may be created
 either via `BoundedBacktracker::create_cache`, or via `Cache::new`.
 They are equivalent in every way, except the former does not require
 explicitly importing `Cache`.
 
-A particular `Cache` is coupled with the [`BoundedBacktracker`](nfa/thompson/backtrack/index.md) from which
+A particular `Cache` is coupled with the [`BoundedBacktracker`](#boundedbacktracker) from which
 it was created. It may only be used with that `BoundedBacktracker`. A cache
 and its allocations may be re-purposed via `Cache::reset`, in which case,
 it can only be used with the new `BoundedBacktracker` (and not the old
@@ -711,7 +711,7 @@ Returns the minimum visited capacity for the given haystack.
 
 This function can be used as the argument to `Config::visited_capacity`
 in order to guarantee that a backtracking search for the given `input`
-won't return an error when using a [`BoundedBacktracker`](nfa/thompson/backtrack/index.md) built from the
+won't return an error when using a [`BoundedBacktracker`](#boundedbacktracker) built from the
 given `NFA`.
 
 This routine exists primarily as a way to test that the bounded backtracker

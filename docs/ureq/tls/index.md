@@ -192,9 +192,6 @@ feature flags **rustls** and **native-tls**).
 
 #### Implementations
 
-- `fn builder() -> TlsConfigBuilder`
-  Builder to make a bespoke config.
-
 - `fn provider(self: &Self) -> TlsProvider`
   The provider to use.
 
@@ -212,6 +209,9 @@ feature flags **rustls** and **native-tls**).
 
 - `fn unversioned_rustls_crypto_provider(self: &Self) -> &Option<Arc<::rustls::crypto::CryptoProvider>>`
   Specific `CryptoProvider` to use for `rustls`.
+
+- `fn builder() -> TlsConfigBuilder`
+  Builder to make a bespoke config.
 
 #### Trait Implementations
 
@@ -285,7 +285,7 @@ struct TlsConfigBuilder {
 }
 ```
 
-Builder of [`TlsConfig`](tls/index.md)
+Builder of [`TlsConfig`](#tlsconfig)
 
 #### Implementations
 
@@ -436,7 +436,7 @@ enum PemItem<'a> {
 }
 ```
 
-Kinds of PEM data found by [`parse_pem`](index.md)
+Kinds of PEM data found by [`parse_pem`](../index.md)
 
 #### Variants
 
@@ -454,14 +454,14 @@ Kinds of PEM data found by [`parse_pem`](index.md)
 
 - `fn from(value: Certificate<'a>) -> Self`
 
+##### `impl From<'a>`
+
+- `fn from(value: PrivateKey<'a>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(value: PrivateKey<'a>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -525,7 +525,7 @@ development dependencies.
   use the TLS libraries installed on the host running ureq.
   
   Requires the feature flag **native-tls** and that using an [`Agent`](crate::Agent) with
-  this config option set in the [`TlsConfig`](tls/index.md).
+  this config option set in the [`TlsConfig`](#tlsconfig).
   
   The setting is never picked up automatically.
 

@@ -22,7 +22,7 @@ The `bitflags` library defines a few Cargo features that you can opt-in to:
 
 ## Generating flags types
 
-Use the [`bitflags`](index.md) macro to generate flags types:
+Use the [`bitflags`](#bitflags) macro to generate flags types:
 
 ```rust
 use bitflags::bitflags;
@@ -76,7 +76,7 @@ libraries are currently supported:
 - `bytemuck`: Support `#[derive(Pod, Zeroable)]`, for casting between flags values and their
   underlying bits values.
 
-You can also define your own flags type outside of the [`bitflags`](index.md) macro and then use it to generate methods.
+You can also define your own flags type outside of the [`bitflags`](#bitflags) macro and then use it to generate methods.
 This can be useful if you need a custom `#[derive](#derive)
 ` attribute for a library that `bitflags` doesn't
 natively support:
@@ -98,7 +98,7 @@ bitflags! {
 
 ### Adding custom methods
 
-The [`bitflags`](index.md) macro supports attributes on generated flags types within the macro itself, while
+The [`bitflags`](#bitflags) macro supports attributes on generated flags types within the macro itself, while
 `impl` blocks can be added outside of it:
 
 ```rust
@@ -149,7 +149,7 @@ let b = ab - Flags::A;
 let c = !ab;
 ```
 
-See the docs for the [`Flags`](index.md) trait for more details on operators and how they behave.
+See the docs for the [`Flags`](#flags) trait for more details on operators and how they behave.
 
 # Formatting and parsing
 

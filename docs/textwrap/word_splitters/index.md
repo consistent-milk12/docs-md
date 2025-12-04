@@ -7,7 +7,7 @@
 Word splitting functionality.
 
 To wrap text into lines, long words sometimes need to be split
-across lines. The [`WordSplitter`](word_splitters/index.md) enum defines this
+across lines. The [`WordSplitter`](#wordsplitter) enum defines this
 functionality.
 
 ## Enums

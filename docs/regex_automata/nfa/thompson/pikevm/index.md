@@ -6,7 +6,7 @@
 
 An NFA backed Pike VM for executing regex searches with capturing groups.
 
-This module provides a [`PikeVM`](nfa/thompson/pikevm/index.md) that works by simulating an NFA and
+This module provides a [`PikeVM`](#pikevm) that works by simulating an NFA and
 resolving all spans of capturing groups that participate in a match.
 
 ## Structs
@@ -19,7 +19,7 @@ struct Config {
 }
 ```
 
-The configuration used for building a [`PikeVM`](nfa/thompson/pikevm/index.md).
+The configuration used for building a [`PikeVM`](#pikevm).
 
 A PikeVM configuration is a simple data object that is typically used with
 `Builder::configure`. It can be cheaply cloned.
@@ -257,7 +257,7 @@ A virtual machine for executing regex searches with capturing groups.
 # Infallible APIs
 
 Unlike most other regex engines in this crate, a `PikeVM` never returns an
-error at search time. It supports all [`Anchored`](index.md) configurations, never
+error at search time. It supports all [`Anchored`](../../../index.md) configurations, never
 quits and works on haystacks of arbitrary length.
 
 There are two caveats to mention though:
@@ -265,7 +265,7 @@ There are two caveats to mention though:
 * If an invalid pattern ID is given to a search via `Anchored::Pattern`,
 then the PikeVM will report "no match." This is consistent with all other
 regex engines in this crate.
-* When using `PikeVM::which_overlapping_matches` with a [`PatternSet`](index.md)
+* When using `PikeVM::which_overlapping_matches` with a [`PatternSet`](../../../index.md)
 that has insufficient capacity to store all valid pattern IDs, then if a
 match occurs for a `PatternID` that cannot be inserted, it is silently
 dropped as if it did not match.
@@ -319,6 +319,15 @@ assert_eq!(None, it.next());
 
 #### Implementations
 
+- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+  Writes the set of patterns that match anywhere in the given search
+
 - `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
   Returns true if and only if this `PikeVM` matches the given haystack.
 
@@ -333,15 +342,6 @@ assert_eq!(None, it.next());
 
 - `fn captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> CapturesMatches<'r, 'c, 'h>`
   Returns an iterator over all non-overlapping `Captures` values. If no
-
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
-  Writes the set of patterns that match anywhere in the given search
 
 - `fn new(pattern: &str) -> Result<PikeVM, BuildError>`
   Parse the given regular expression using the default configuration and
@@ -448,7 +448,7 @@ struct FindMatches<'r, 'c, 'h> {
 
 An iterator over all non-overlapping matches for a particular search.
 
-The iterator yields a [`Match`](index.md) value until no more matches could be found.
+The iterator yields a [`Match`](../../../index.md) value until no more matches could be found.
 
 The lifetime parameters are as follows:
 
@@ -523,7 +523,7 @@ struct CapturesMatches<'r, 'c, 'h> {
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a particular search.
 
-The iterator yields a [`Captures`](util/captures/index.md) value until no more matches could be
+The iterator yields a [`Captures`](../../../util/captures/index.md) value until no more matches could be
 found.
 
 The lifetime parameters are as follows:
@@ -596,14 +596,14 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a [`PikeVM`](nfa/thompson/pikevm/index.md) requires during a
+A cache represents mutable state that a [`PikeVM`](#pikevm) requires during a
 search.
 
-For a given [`PikeVM`](nfa/thompson/pikevm/index.md), its corresponding cache may be created either via
+For a given [`PikeVM`](#pikevm), its corresponding cache may be created either via
 `PikeVM::create_cache`, or via `Cache::new`. They are equivalent in
 every way, except the former does not require explicitly importing `Cache`.
 
-A particular `Cache` is coupled with the [`PikeVM`](nfa/thompson/pikevm/index.md) from which it
+A particular `Cache` is coupled with the [`PikeVM`](#pikevm) from which it
 was created. It may only be used with that `PikeVM`. A cache and its
 allocations may be re-purposed via `Cache::reset`, in which case, it can
 only be used with the new `PikeVM` (and not the old one).

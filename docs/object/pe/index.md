@@ -2154,27 +2154,6 @@ struct ImageSectionHeader {
 
 #### Implementations
 
-- `fn name_offset(self: &Self) -> Result<Option<u32>>`
-  Return the string table offset of the section name.
-
-- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
-  Return the section name.
-
-- `fn raw_name(self: &Self) -> &[u8]`
-  Return the raw section name.
-
-- `fn coff_file_range(self: &Self) -> Option<(u32, u32)>`
-  Return the offset and size of the section in a COFF file.
-
-- `fn coff_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> result::Result<&'data [u8], ()>`
-  Return the section data in a COFF file.
-
-- `fn coff_alignment(self: &Self) -> u64`
-  Return the section alignment in bytes.
-
-- `fn coff_relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [pe::ImageRelocation]>`
-  Read the relocations in a COFF file.
-
 - `fn pe_file_range(self: &Self) -> (u32, u32)`
   Return the offset and size of the section in a PE file.
 
@@ -2195,6 +2174,27 @@ struct ImageSectionHeader {
 
 - `fn pe_data_containing<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
   Return the section data if it contains the given virtual address.
+
+- `fn name_offset(self: &Self) -> Result<Option<u32>>`
+  Return the string table offset of the section name.
+
+- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
+  Return the section name.
+
+- `fn raw_name(self: &Self) -> &[u8]`
+  Return the raw section name.
+
+- `fn coff_file_range(self: &Self) -> Option<(u32, u32)>`
+  Return the offset and size of the section in a COFF file.
+
+- `fn coff_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> result::Result<&'data [u8], ()>`
+  Return the section data in a COFF file.
+
+- `fn coff_alignment(self: &Self) -> u64`
+  Return the section alignment in bytes.
+
+- `fn coff_relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [pe::ImageRelocation]>`
+  Read the relocations in a COFF file.
 
 #### Trait Implementations
 

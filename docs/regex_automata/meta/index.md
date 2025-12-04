@@ -7,7 +7,7 @@
 Provides a regex matcher that composes several other regex matchers
 automatically.
 
-This module is home to a meta [`Regex`](index.md), which provides a convenient high
+This module is home to a meta [`Regex`](../hybrid/regex/index.md), which provides a convenient high
 level API for executing regular expressions in linear time.
 
 # Comparison with the `regex` crate
@@ -42,7 +42,7 @@ pattern, while the latter supports multiple patterns but cannot report the
 offsets of a match.
 * A meta `Regex` provides the explicit capability of bypassing its internal
 memory pool for automatically acquiring mutable scratch space required by its
-internal regex engines. Namely, a [`Cache`](index.md) can be explicitly provided to lower
+internal regex engines. Namely, a [`Cache`](../hybrid/dfa/index.md) can be explicitly provided to lower
 level routines such as `Regex::search_with`.
 
 ## Structs
@@ -65,7 +65,7 @@ fails, usually because it gets too big with respect to limits like
 
 This error provides very little introspection capabilities. You can:
 
-* Ask for the [`PatternID`](util/primitives/index.md) of the pattern that caused an error, if one
+* Ask for the [`PatternID`](../util/primitives/index.md) of the pattern that caused an error, if one
 is available. This is available for things like syntax errors, but not for
 cases where build limits are exceeded.
 * Ask for the underlying syntax error, but only if the error is a syntax
@@ -169,7 +169,7 @@ A builder for configuring and constructing a `Regex`.
 The builder permits configuring two different aspects of a `Regex`:
 
 * `Builder::configure` will set high-level configuration options as
-described by a [`Config`](dfa/onepass/index.md).
+described by a [`Config`](../dfa/onepass/index.md).
 * `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
@@ -463,7 +463,7 @@ struct CapturesMatches<'r, 'h> {
 An iterator over all non-overlapping leftmost matches with their capturing
 groups.
 
-The iterator yields a [`Captures`](util/captures/index.md) value until no more matches could be
+The iterator yields a [`Captures`](../util/captures/index.md) value until no more matches could be
 found.
 
 The lifetime parameters are as follows:
@@ -743,7 +743,7 @@ struct FindMatches<'r, 'h> {
 
 An iterator over all non-overlapping matches.
 
-The iterator yields a [`Match`](index.md) value until no more matches could be found.
+The iterator yields a [`Match`](../index.md) value until no more matches could be found.
 
 The lifetime parameters are as follows:
 
@@ -881,7 +881,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](index.md).
+mutable scratch space. This scratch space is called a [`Cache`](../hybrid/dfa/index.md).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).
@@ -1021,33 +1021,6 @@ assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
 #### Implementations
 
-- `fn search(self: &Self, input: &Input<'_>) -> Option<Match>`
-  Returns the start and end offset of the leftmost match. If no match
-
-- `fn search_half(self: &Self, input: &Input<'_>) -> Option<HalfMatch>`
-  Returns the end offset of the leftmost match. If no match exists, then
-
-- `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)`
-  Writes the set of patterns that match anywhere in the given search
-
-- `fn new(pattern: &str) -> Result<Regex, BuildError>`
-  Builds a `Regex` from a single pattern string using the default
-
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>`
-  Builds a `Regex` from many pattern strings using the default
-
-- `fn config() -> Config`
-  Return a default configuration for a `Regex`.
-
-- `fn builder() -> Builder`
-  Return a builder for configuring the construction of a `Regex`.
-
 - `fn create_captures(self: &Self) -> Captures`
   Creates a new object for recording capture group offsets. This is used
 
@@ -1089,6 +1062,33 @@ assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
 - `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
   This is like [`Regex::which_overlapping_matches`], but requires the
+
+- `fn search(self: &Self, input: &Input<'_>) -> Option<Match>`
+  Returns the start and end offset of the leftmost match. If no match
+
+- `fn search_half(self: &Self, input: &Input<'_>) -> Option<HalfMatch>`
+  Returns the end offset of the leftmost match. If no match exists, then
+
+- `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)`
+  Writes the set of patterns that match anywhere in the given search
+
+- `fn new(pattern: &str) -> Result<Regex, BuildError>`
+  Builds a `Regex` from a single pattern string using the default
+
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>`
+  Builds a `Regex` from many pattern strings using the default
+
+- `fn config() -> Config`
+  Return a default configuration for a `Regex`.
+
+- `fn builder() -> Builder`
+  Return a builder for configuring the construction of a `Regex`.
 
 - `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
   Returns true if and only if this regex matches the given haystack.

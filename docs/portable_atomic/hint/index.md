@@ -6,7 +6,7 @@
 
 Re-export of the `core::hint` module.
 
-The only difference from the `core::hint` module is that [`spin_loop`](hint/index.md)
+The only difference from the `core::hint` module is that [`spin_loop`](#spin-loop)
 is available in all rust versions that this crate supports.
 
 ```

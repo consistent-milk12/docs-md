@@ -162,6 +162,6 @@ fn adler32_slice(data: &[u8]) -> u32
 
 Calculates the Adler-32 checksum of a byte slice.
 
-This is a convenience function around the [`Adler32`](index.md) type.
+This is a convenience function around the [`Adler32`](#adler32) type.
 
 

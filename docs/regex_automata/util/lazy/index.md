@@ -64,11 +64,11 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn get(this: &Lazy<T, F>) -> &T`
-  Return a reference to the lazily initialized value.
-
 - `const fn new(create: F) -> Lazy<T, F>`
   Create a new `Lazy` value that is initialized via the given function.
+
+- `fn get(this: &Lazy<T, F>) -> &T`
+  Return a reference to the lazily initialized value.
 
 #### Trait Implementations
 

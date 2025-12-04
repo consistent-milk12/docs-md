@@ -384,14 +384,47 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             // Empty crate - likely a proc-macro or re-export crate
             let crate_name = self.view.crate_name();
             if crate_name.ends_with("_derive") || crate_name.ends_with("-derive") {
+                // Derive macro crate - try to link to parent crate
+                let parent_crate = crate_name
+                    .strip_suffix("_derive")
+                    .or_else(|| crate_name.strip_suffix("-derive"))
+                    .unwrap_or(crate_name);
+
+                _ = writeln!(md, "## Overview\n");
                 _ = writeln!(
                     md,
-                    "*This is a procedural macro crate. The derive macros are re-exported from the parent crate.*"
+                    "This is a **procedural macro crate** that provides derive macros."
                 );
-            } else if crate_name.ends_with("_impl") || crate_name.ends_with("-impl") {
+                _ = writeln!(md);
                 _ = writeln!(
                     md,
-                    "*This is an implementation detail crate with no public API.*"
+                    "The macros from this crate are typically re-exported from the parent crate \
+                     [`{parent_crate}`](../{parent_crate}/index.md) for convenience. \
+                     You should generally depend on the parent crate rather than this one directly."
+                );
+                _ = writeln!(md);
+                _ = writeln!(md, "### Usage\n");
+                _ = writeln!(md, "```toml");
+                _ = writeln!(md, "[dependencies]");
+                _ = writeln!(md, "{parent_crate} = {{ version = \"*\", features = [\"derive\"] }}");
+                _ = writeln!(md, "```");
+            } else if crate_name.ends_with("_impl") || crate_name.ends_with("-impl") {
+                let parent_crate = crate_name
+                    .strip_suffix("_impl")
+                    .or_else(|| crate_name.strip_suffix("-impl"))
+                    .unwrap_or(crate_name);
+
+                _ = writeln!(md, "## Overview\n");
+                _ = writeln!(
+                    md,
+                    "This is an **implementation detail crate** with no public API."
+                );
+                _ = writeln!(md);
+                _ = writeln!(
+                    md,
+                    "The functionality from this crate is re-exported through \
+                     [`{parent_crate}`](../{parent_crate}/index.md). \
+                     You should depend on the parent crate instead."
                 );
             } else {
                 _ = writeln!(

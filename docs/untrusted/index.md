@@ -108,14 +108,14 @@ non-constant-time comparisons.
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from(value: &'a [u8]) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(value: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 

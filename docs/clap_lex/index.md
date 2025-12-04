@@ -239,7 +239,7 @@ struct ArgCursor {
 }
 ```
 
-Position within [`RawArgs`](index.md)
+Position within [`RawArgs`](#rawargs)
 
 #### Trait Implementations
 
@@ -442,7 +442,7 @@ struct ShortFlags<'s> {
 }
 ```
 
-Walk through short flags within a [`ParsedArg`](index.md)
+Walk through short flags within a [`ParsedArg`](#parsedarg)
 
 #### Implementations
 

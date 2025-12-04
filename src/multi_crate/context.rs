@@ -566,33 +566,45 @@ impl<'a> SingleCrateView<'a> {
         // First, try the item's links map (most accurate for current crate)
         if let Some(id) = item_links.get(link_text) {
             // Only look up in current crate - IDs are crate-local
-            // Searching other crates by ID would match wrong items with same numeric ID
             if let Some(path) = self.registry.get_path(&self.crate_name, *id) {
                 let display_name = self
                     .registry
                     .get_name(&self.crate_name, *id)
                     .map_or(link_text, String::as_str);
-                return Some(format!("[`{display_name}`]({path})"));
+
+                // Compute relative path from current file
+                let relative = Self::compute_relative_link(current_file, path, display_name);
+                return Some(relative);
             }
             // ID not in current crate - fall through to name-based resolution
         }
 
-        // Try resolving by name in the registry
+        // Try resolving by name in the registry (prefer current crate)
         if let Some((resolved_crate, id)) = self.registry.resolve_name(link_text, &self.crate_name)
             && let Some(path) = self.registry.get_path(&resolved_crate, id)
         {
-            // For cross-crate links, need relative path from current file
-            let full_path = if resolved_crate == self.crate_name {
-                path.clone()
+            if resolved_crate == self.crate_name {
+                // Same crate - compute relative path
+                let relative = Self::compute_relative_link(current_file, path, link_text);
+                return Some(relative);
+            }
+            // Cross-crate link - only use if this looks like an intentional external reference
+            // Skip if this is a simple name that's probably meant to be a local anchor
+            if !Self::looks_like_external_reference(link_text) {
+                // Fall through to anchor fallback
             } else {
                 // Compute relative path to other crate
-                let from_depth = current_file.matches('/').count();
-                let prefix = "../".repeat(from_depth);
+                // current_file includes crate prefix, so subtract 1 from depth
+                // e.g., "regex_syntax/hir/index.md" has depth 2, but relative to crate root is 1
+                let current_without_crate = current_file
+                    .find('/')
+                    .map_or(current_file, |idx| &current_file[idx + 1..]);
+                let from_depth = current_without_crate.matches('/').count();
+                let prefix = "../".repeat(from_depth + 1); // +1 to go up to docs root
+                let full_path = format!("{prefix}{resolved_crate}/{path}");
 
-                format!("{prefix}{resolved_crate}/{path}")
-            };
-
-            return Some(format!("[`{link_text}`]({full_path})"));
+                return Some(format!("[`{link_text}`]({full_path})"));
+            }
         }
 
         // Couldn't resolve - check if this looks like a method/path reference
@@ -606,6 +618,57 @@ impl<'a> SingleCrateView<'a> {
         let anchor = slugify_anchor(link_text);
 
         Some(format!("[`{link_text}`](#{anchor})"))
+    }
+
+    /// Compute a relative link from current file to target path.
+    ///
+    /// Note: `current_file` includes the crate prefix (e.g., `regex_syntax/hir/index.md`)
+    /// but `target_path` from the registry does NOT (e.g., `hir/index.md`).
+    /// We need to strip the crate prefix from `current_file` for comparison.
+    fn compute_relative_link(current_file: &str, target_path: &str, display_name: &str) -> String {
+        use crate::linker::LinkRegistry;
+
+        // Strip crate prefix from current_file (everything before first /)
+        let current_without_crate = current_file
+            .find('/')
+            .map_or(current_file, |idx| &current_file[idx + 1..]);
+
+        // Same file - use anchor
+        if current_without_crate == target_path {
+            let anchor = slugify_anchor(display_name);
+            return format!("[`{display_name}`](#{anchor})");
+        }
+
+        // Different file - compute relative path
+        let relative = LinkRegistry::compute_relative_path(current_without_crate, target_path);
+        format!("[`{display_name}`]({relative})")
+    }
+
+    /// Check if a link text looks like an intentional external crate reference.
+    ///
+    /// Simple names like "Wide", "Error", "Default" are often meant to be
+    /// local anchors or type aliases, not cross-crate links.
+    fn looks_like_external_reference(link_text: &str) -> bool {
+        // Contains :: - explicit path reference
+        if link_text.contains("::") {
+            return true;
+        }
+
+        // Known external crate names or patterns
+        let external_patterns = [
+            "std::", "core::", "alloc::",
+            "_crate", "_derive", "_impl",
+        ];
+
+        for pattern in external_patterns {
+            if link_text.contains(pattern) {
+                return true;
+            }
+        }
+
+        // Single PascalCase words are usually local items, not external
+        // (External items would be referenced with full paths)
+        false
     }
 }
 

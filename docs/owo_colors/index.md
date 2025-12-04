@@ -1,11 +1,11 @@
 # Crate `owo_colors`
 
-|**Quick Links**|[`OwoColorize`](index.md)|[`Style`](index.md)|[`StyledList`](index.md)|[`github`](https://github.com/owo-colors/owo-colors)|
+|**Quick Links**|[`OwoColorize`](#owocolorize)|[`Style`](#style)|[`StyledList`](#styledlist)|[`github`](https://github.com/owo-colors/owo-colors)|
 |-|-|-|-|-|
 
 ---
 
-This crate provides [`OwoColorize`](index.md), an extension trait for colorizing a
+This crate provides [`OwoColorize`](#owocolorize), an extension trait for colorizing a
 given type.
 
 ## Example
@@ -57,7 +57,7 @@ used. (Note: requires `supports-colors` feature)
 
 ## Style Objects
 
-owo-colors also features the ability to create a [`Style`](index.md) object and use it to
+owo-colors also features the ability to create a [`Style`](#style) object and use it to
 apply the same set of colors/effects to any number of things to display.
 
 ```rust
@@ -88,7 +88,7 @@ struct FgColorDisplay<'a, C: Color, T: ?Sized>();
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the foreground color. Recommended to be constructed using
-[`OwoColorize`](index.md).
+[`OwoColorize`](#owocolorize).
 
 #### Implementations
 
@@ -300,7 +300,7 @@ struct BgColorDisplay<'a, C: Color, T: ?Sized>();
 
 Transparent wrapper around a type which implements all the formatters the wrapped type does,
 with the addition of changing the background color. Recommended to be constructed using
-[`OwoColorize`](index.md).
+[`OwoColorize`](#owocolorize).
 
 #### Implementations
 
@@ -998,7 +998,7 @@ struct ComboDynColorDisplay<'a, Fg: DynColor, Bg: DynColor, T: ?Sized>();
 Wrapper around a type which implements all the formatters the wrapped type does, with the
 addition of changing the foreground and background color.
 
-If compile-time coloring is an option, consider using [`ComboColorDisplay`](index.md) instead.
+If compile-time coloring is an option, consider using [`ComboColorDisplay`](#combocolordisplay) instead.
 
 #### Implementations
 
@@ -1097,7 +1097,7 @@ where
     U: IsStyled;
 ```
 
-A collection of [`Styled`](index.md) items that are displayed in such a way as to minimize the amount of characters
+A collection of [`Styled`](#styled) items that are displayed in such a way as to minimize the amount of characters
 that are written when displayed.
 
 ```rust
@@ -1118,14 +1118,14 @@ assert!(styled_length < normal_length);
 
 #### Trait Implementations
 
-##### `impl From<T, U>`
-
-- `fn from(list: T) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<T, U>`
+
+- `fn from(list: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1193,14 +1193,14 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(color: &'a str) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(color: &'a str) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1840,8 +1840,8 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 trait Color: private::Sealed { ... }
 ```
 
-A trait for describing a type which can be used with [`FgColorDisplay`](index.md) or
-[`BgColorDisplay`](index.md)
+A trait for describing a type which can be used with [`FgColorDisplay`](#fgcolordisplay) or
+[`BgColorDisplay`](#bgcolordisplay)
 
 #### Required Methods
 
@@ -1859,8 +1859,8 @@ A trait for describing a type which can be used with [`FgColorDisplay`](index.md
 trait DynColor: private::Sealed { ... }
 ```
 
-A trait describing a runtime-configurable color which can displayed using [`FgDynColorDisplay`](index.md)
-or [`BgDynColorDisplay`](index.md). If your color will be known at compile time it
+A trait describing a runtime-configurable color which can displayed using [`FgDynColorDisplay`](#fgdyncolordisplay)
+or [`BgDynColorDisplay`](#bgdyncolordisplay). If your color will be known at compile time it
 is recommended you avoid this.
 
 #### Required Methods
@@ -1937,7 +1937,7 @@ Use the [`color`](OwoColorize::color), [`on_color`](OwoColorize::on_color),
 
 **Do you need to store a set of colors/effects to apply to multiple things?**
 
-Use [`style`](OwoColorize::style) to apply a [`Style`](index.md)
+Use [`style`](OwoColorize::style) to apply a [`Style`](#style)
 
 
 #### Required Methods

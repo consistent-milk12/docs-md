@@ -2,7 +2,7 @@
 
 Rustdoc's JSON output interface
 
-These types are the public API exposed through the `--output-format json` flag. The [`Crate`](index.md)
+These types are the public API exposed through the `--output-format json` flag. The [`Crate`](#crate)
 struct is the root of the JSON blob and all other items are contained within.
 
 We expose a `rustc-hash` feature that is disabled by default. This feature switches the
@@ -44,7 +44,7 @@ tools to find or link to them.
 
 - **`root`**: `Id`
 
-  The id of the root [`Module`](index.md) item of the local crate.
+  The id of the root [`Module`](#module) item of the local crate.
 
 - **`crate_version`**: `Option<String>`
 
@@ -508,7 +508,7 @@ struct ItemSummary {
 }
 ```
 
-Information about an external (not defined in the local crate) [`Item`](index.md).
+Information about an external (not defined in the local crate) [`Item`](#item).
 
 For external items, you don't get the same level of
 information. This struct should contain enough to generate a link/reference to the item in
@@ -529,7 +529,7 @@ the actual item definition with all the relevant info.
   
   Note that items can appear in multiple paths, and the one chosen is implementation
   defined. Currently, this is the full path to where the item was defined. Eg
-  [`String`](../clap_builder/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`]`std::collections::HashMap`
+  [`String`](#string) is currently `["alloc", "string", "String"]` and [`HashMap`]`std::collections::HashMap`
   is `["std", "collections", "hash", "map", "HashMap"]`, but this is subject to change.
 
 - **`kind`**: `ItemKind`
@@ -644,7 +644,7 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 - **`crate_id`**: `u32`
 
-  This can be used as a key to the `external_crates` map of [`Crate`](index.md) to see which crate
+  This can be used as a key to the `external_crates` map of [`Crate`](#crate) to see which crate
   this item came from.
 
 - **`name`**: `Option<String>`
@@ -993,13 +993,13 @@ struct Deprecation {
 }
 ```
 
-Information about the deprecation of an [`Item`](index.md).
+Information about the deprecation of an [`Item`](#item).
 
 #### Fields
 
 - **`since`**: `Option<String>`
 
-  Usually a version number when this [`Item`](index.md) first became deprecated.
+  Usually a version number when this [`Item`](#item) first became deprecated.
 
 - **`note`**: `Option<String>`
 
@@ -1516,7 +1516,7 @@ struct Id(u32);
 An opaque identifier for an item.
 
 It can be used to lookup in `Crate::index` or `Crate::paths` to resolve it
-to an [`Item`](index.md).
+to an [`Item`](#item).
 
 Id's are only valid within a single JSON blob. They cannot be used to
 resolve references between the JSON output's for different crates.
@@ -1636,7 +1636,7 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 - **`items`**: `Vec<Id>`
 
-  [`Item`](index.md)s declared inside this module.
+  [`Item`](#item)s declared inside this module.
 
 - **`is_stripped`**: `bool`
 
@@ -1748,13 +1748,13 @@ A `union`.
 
   The list of fields in the union.
   
-  All of the corresponding [`Item`](index.md)s are of kind `ItemEnum::StructField`.
+  All of the corresponding [`Item`](#item)s are of kind `ItemEnum::StructField`.
 
 - **`impls`**: `Vec<Id>`
 
   All impls (both of traits and inherent) for this union.
   
-  All of the corresponding [`Item`](index.md)s are of kind `ItemEnum::Impl`.
+  All of the corresponding [`Item`](#item)s are of kind `ItemEnum::Impl`.
 
 #### Trait Implementations
 
@@ -1860,7 +1860,7 @@ A `struct`.
 - **`impls`**: `Vec<Id>`
 
   All impls (both of traits and inherent) for this struct.
-  All of the corresponding [`Item`](index.md)s are of kind `ItemEnum::Impl`.
+  All of the corresponding [`Item`](#item)s are of kind `ItemEnum::Impl`.
 
 #### Trait Implementations
 
@@ -1967,7 +1967,7 @@ An `enum`.
 
   The list of variants in the enum.
   
-  All of the corresponding [`Item`](index.md)s are of kind `ItemEnum::Variant`
+  All of the corresponding [`Item`](#item)s are of kind `ItemEnum::Variant`
 
 - **`impls`**: `Vec<Id>`
 
@@ -2159,7 +2159,7 @@ struct Discriminant {
 }
 ```
 
-The value that distinguishes a variant in an [`Enum`](index.md) from other variants.
+The value that distinguishes a variant in an [`Enum`](#enum) from other variants.
 
 #### Fields
 
@@ -3053,7 +3053,7 @@ A `trait` declaration.
 
 - **`items`**: `Vec<Id>`
 
-  Associated [`Item`](index.md)s that can/must be implemented by the `impl` blocks.
+  Associated [`Item`](#item)s that can/must be implemented by the `impl` blocks.
 
 - **`generics`**: `Generics`
 
@@ -3526,7 +3526,7 @@ A procedural macro.
   
   Defined only for derive macros.
   
-  E.g. the [`Default`](index.md) derive macro defines a `#[default](#default)
+  E.g. the [`Default`](#default) derive macro defines a `#[default](#default)
   ` helper attribute so that one can
   do:
   
@@ -4018,7 +4018,7 @@ This doesn't include:
 
   Something else.
   
-  Things here are explicitly *not* covered by the [`FORMAT_VERSION`](index.md)
+  Things here are explicitly *not* covered by the [`FORMAT_VERSION`](#format-version)
   constant, and may change without bumping the format version.
   
   As an implementation detail, this is currently either:
@@ -4224,7 +4224,7 @@ enum Visibility {
 }
 ```
 
-Visibility of an [`Item`](index.md).
+Visibility of an [`Item`](#item).
 
 #### Variants
 
@@ -4451,7 +4451,7 @@ enum GenericArg {
 
 One argument in a list of generic arguments to a path segment.
 
-Part of [`GenericArgs`](index.md).
+Part of [`GenericArgs`](#genericargs).
 
 #### Variants
 
@@ -4703,9 +4703,9 @@ enum ItemKind {
 }
 ```
 
-The fundamental kind of an item. Unlike [`ItemEnum`](index.md), this does not carry any additional info.
+The fundamental kind of an item. Unlike [`ItemEnum`](#itemenum), this does not carry any additional info.
 
-Part of [`ItemSummary`](index.md).
+Part of [`ItemSummary`](#itemsummary).
 
 #### Variants
 
@@ -4808,20 +4808,20 @@ Part of [`ItemSummary`](index.md).
 
   A primitive type, e.g. `u32`.
   
-  [`Item`](index.md)s of this kind only come from the core library.
+  [`Item`](#item)s of this kind only come from the core library.
 
 - **`Keyword`**
 
   A keyword declaration.
   
-  [`Item`](index.md)s of this kind only come from the come library and exist solely
+  [`Item`](#item)s of this kind only come from the come library and exist solely
   to carry documentation for the respective keywords.
 
 - **`Attribute`**
 
   An attribute declaration.
   
-  [`Item`](index.md)s of this kind only come from the core library and exist solely
+  [`Item`](#item)s of this kind only come from the core library and exist solely
   to carry documentation for the respective builtin attributes.
 
 #### Trait Implementations
@@ -4947,7 +4947,7 @@ enum ItemEnum {
 
 Specific fields of an item.
 
-Part of [`Item`](index.md).
+Part of [`Item`](#item).
 
 #### Variants
 
@@ -5032,7 +5032,7 @@ Part of [`Item`](index.md).
 
   A primitive type, e.g. `u32`.
   
-  [`Item`](index.md)s of this kind only come from the core library.
+  [`Item`](#item)s of this kind only come from the core library.
 
 - **`AssocConst`**
 
@@ -5133,7 +5133,7 @@ enum StructKind {
 }
 ```
 
-The kind of a [`Struct`](index.md) and the data specific to it, i.e. fields.
+The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 #### Variants
 
@@ -5149,7 +5149,7 @@ The kind of a [`Struct`](index.md) and the data specific to it, i.e. fields.
 
   A struct with unnamed fields.
   
-  All [`Id`](index.md)'s will point to `ItemEnum::StructField`.
+  All [`Id`](#id)'s will point to `ItemEnum::StructField`.
   Unlike most of JSON, private and `#[doc(hidden)]` fields will be given as `None`
   instead of being omitted, because order matters.
   
@@ -5258,7 +5258,7 @@ enum VariantKind {
 }
 ```
 
-The kind of an [`Enum`](index.md) [`Variant`](index.md) and the data specific to it, i.e. fields.
+The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it, i.e. fields.
 
 #### Variants
 
@@ -5277,7 +5277,7 @@ The kind of an [`Enum`](index.md) [`Variant`](index.md) and the data specific to
 
   A variant with unnamed fields.
   
-  All [`Id`](index.md)'s will point to `ItemEnum::StructField`.
+  All [`Id`](#id)'s will point to `ItemEnum::StructField`.
   Unlike most of JSON, `#[doc(hidden)]` fields will be given as `None`
   instead of being omitted, because order matters.
   
@@ -5558,7 +5558,7 @@ enum GenericParamDefKind {
 }
 ```
 
-The kind of a [`GenericParamDef`](index.md).
+The kind of a [`GenericParamDef`](#genericparamdef).
 
 #### Variants
 
@@ -6106,7 +6106,7 @@ enum Term {
 ```
 
 Either a type or a constant, usually stored as the right-hand side of an equation in places like
-[`AssocItemConstraint`](index.md)
+[`AssocItemConstraint`](#associtemconstraint)
 
 #### Variants
 
@@ -6400,7 +6400,7 @@ enum MacroKind {
 }
 ```
 
-The way a [`ProcMacro`](index.md) is declared to be used.
+The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 #### Variants
 

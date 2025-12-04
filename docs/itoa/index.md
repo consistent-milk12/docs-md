@@ -15,7 +15,7 @@ strings. The implementation comes straight from [libcore](#libcore)
  but avoids the
 performance penalty of going through `core::fmt::Formatter`.
 
-See also [`ryu`](../ryu/index.md) for printing floating point primitives.
+See also [`ryu`](#ryu) for printing floating point primitives.
 
 [libcore](#libcore)
 : https://github.com/rust-lang/rust/blob/b8214dc6c6fc20d0a660fb5700dca9ebf51ebe89/src/libcore/fmt/num.rs#L201-L254

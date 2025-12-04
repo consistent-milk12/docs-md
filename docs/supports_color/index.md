@@ -216,5 +216,5 @@ fn on_cached(stream: Stream) -> Option<ColorLevel>
 Returns a [ColorLevel] if a [Stream] supports terminal colors, caching the result to
 be returned from then on.
 
-If you expect your environment to change between calls, use [`on`](index.md)
+If you expect your environment to change between calls, use [`on`](#on)
 

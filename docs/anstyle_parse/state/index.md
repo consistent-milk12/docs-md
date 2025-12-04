@@ -214,7 +214,7 @@ enum State {
 const fn state_change(state: State, byte: u8) -> (State, Action)
 ```
 
-Transition to next [`State`](index.md)
+Transition to next [`State`](../index.md)
 
 Note: This does not directly support UTF-8.
 - If the data is validated as UTF-8 (e.g. `str`) or single-byte C1 control codes are

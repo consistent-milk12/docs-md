@@ -6,8 +6,8 @@
 
 Provides literal extraction from `Hir` expressions.
 
-An [`Extractor`](hir/literal/index.md) pulls literals out of [`Hir`](hir/index.md) expressions and returns a
-[`Seq`](hir/literal/index.md) of [`Literal`](hir/literal/index.md)s.
+An [`Extractor`](#extractor) pulls literals out of [`Hir`](../index.md) expressions and returns a
+[`Seq`](#seq) of [`Literal`](#literal)s.
 
 The purpose of literal extraction is generally to provide avenues for
 optimizing regex searches. The main idea is that substring searches can be an
@@ -24,11 +24,11 @@ the substring search and the regex search.
 Here are some heuristics that might be used to help increase the chances of
 effective literal optimizations:
 
-* Stick to small [`Seq`](hir/literal/index.md)s. If you search for too many literals, it's likely
+* Stick to small [`Seq`](#seq)s. If you search for too many literals, it's likely
 to lead to substring search that is only a little faster than a regex search,
 and thus the overhead of using literal optimizations in the first place might
 make things slower overall.
-* The literals in your [`Seq`](hir/literal/index.md) shouldn't be too short. In general, longer is
+* The literals in your [`Seq`](#seq) shouldn't be too short. In general, longer is
 better. A sequence corresponding to single bytes that occur frequently in the
 haystack, for example, is probably a bad literal optimization because it's
 likely to produce many false positive candidates. Longer literals are less
@@ -44,16 +44,16 @@ might be a good idea to be conservative, or to even provide a means for
 literal optimizations to be dynamically disabled if they are determined to be
 ineffective according to some measure.)
 
-You're encouraged to explore the methods on [`Seq`](hir/literal/index.md), which permit shrinking
+You're encouraged to explore the methods on [`Seq`](#seq), which permit shrinking
 the size of sequences in a preference-order preserving fashion.
 
-Finally, note that it isn't strictly necessary to use an [`Extractor`](hir/literal/index.md). Namely,
-an `Extractor` only uses public APIs of the [`Seq`](hir/literal/index.md) and [`Literal`](hir/literal/index.md) types,
+Finally, note that it isn't strictly necessary to use an [`Extractor`](#extractor). Namely,
+an `Extractor` only uses public APIs of the [`Seq`](#seq) and [`Literal`](#literal) types,
 so it is possible to implement your own extractor. For example, for n-grams
 or "inner" literals (i.e., not prefix or suffix literals). The `Extractor`
 is mostly responsible for the case analysis over `Hir` expressions. Much of
 the "trickier" parts are how to combine literal sequences, and that is all
-implemented on [`Seq`](hir/literal/index.md).
+implemented on [`Seq`](#seq).
 
 ## Structs
 
@@ -65,7 +65,7 @@ struct Extractor {
 }
 ```
 
-Extracts prefix or suffix literal sequences from [`Hir`](hir/index.md) expressions.
+Extracts prefix or suffix literal sequences from [`Hir`](../index.md) expressions.
 
 Literal extraction is based on the following observations:
 
@@ -247,7 +247,7 @@ A sequence of literals.
 
 A `Seq` is very much like a set in that it represents a union of its
 members. That is, it corresponds to a set of literals where at least one
-must match in order for a particular [`Hir`](hir/index.md) expression to match. (Whether
+must match in order for a particular [`Hir`](../index.md) expression to match. (Whether
 this corresponds to the entire `Hir` expression, a prefix of it or a suffix
 of it depends on how the `Seq` was extracted from the `Hir`.)
 
@@ -264,7 +264,7 @@ A `Seq` has a few different logical states to consider:
 * The sequence can represent "any" literal. When this happens, the set does
 not have a finite size. The purpose of this state is to inhibit callers
 from making assumptions about what literals are required in order to match
-a particular [`Hir`](hir/index.md) expression. Generally speaking, when a set is in this
+a particular [`Hir`](../index.md) expression. Generally speaking, when a set is in this
 state, literal optimizations are inhibited. A good example of a regex that
 will cause this sort of set to appear is `[A-Za-z]`. The character class
 is just too big (and also too narrow) to be usefully expanded into 52
@@ -479,13 +479,13 @@ struct Literal {
 }
 ```
 
-A single literal extracted from an [`Hir`](hir/index.md) expression.
+A single literal extracted from an [`Hir`](../index.md) expression.
 
 A literal is composed of two things:
 
 * A sequence of bytes. No guarantees with respect to UTF-8 are provided.
 In particular, even if the regex a literal is extracted from is UTF-8, the
-literal extracted may not be valid UTF-8. (For example, if an [`Extractor`](hir/literal/index.md)
+literal extracted may not be valid UTF-8. (For example, if an [`Extractor`](#extractor)
 limit resulted in trimming a literal in a way that splits a codepoint.)
 * Whether the literal is "exact" or not. An "exact" literal means that it
 has not been trimmed, and may continue to be extended. If a literal is
@@ -536,16 +536,16 @@ literal extraction ignores look-around assertions.)
 
 ##### `impl From`
 
-- `fn from(ch: char) -> Literal`
-
-##### `impl From`
-
 - `fn from(byte: u8) -> Literal`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(ch: char) -> Literal`
 
 ##### `impl Into<T, U>`
 
@@ -627,7 +627,7 @@ enum ExtractKind {
 }
 ```
 
-The kind of literals to extract from an [`Hir`](hir/index.md) expression.
+The kind of literals to extract from an [`Hir`](../index.md) expression.
 
 The default extraction kind is `Prefix`.
 

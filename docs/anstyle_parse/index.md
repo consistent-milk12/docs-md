@@ -2,17 +2,17 @@
 
 Parser for implementing virtual terminal emulators
 
-[`Parser`](index.md) is implemented according to [Paul Williams' ANSI parser
+[`Parser`](#parser) is implemented according to [Paul Williams' ANSI parser
 state machine]. The state machine doesn't assign meaning to the parsed data
 and is thus not itself sufficient for writing a terminal emulator. Instead,
-it is expected that an implementation of [`Perform`](index.md) is provided which does
-something useful with the parsed data. The [`Parser`](index.md) handles the book
-keeping, and the [`Perform`](index.md) gets to simply handle actions.
+it is expected that an implementation of [`Perform`](#perform) is provided which does
+something useful with the parsed data. The [`Parser`](#parser) handles the book
+keeping, and the [`Perform`](#perform) gets to simply handle actions.
 
 # Examples
 
-For an example of using the [`Parser`](index.md) please see the examples folder. The example included
-there simply logs all the actions [`Perform`](index.md) does. One quick thing to see it in action is to
+For an example of using the [`Parser`](#parser) please see the examples folder. The example included
+there simply logs all the actions [`Perform`](#perform) does. One quick thing to see it in action is to
 pipe `vim` into it
 
 ```sh
@@ -194,7 +194,7 @@ struct Parser<C> {
 }
 ```
 
-Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](index.md)
+Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 #### Implementations
 
@@ -456,7 +456,7 @@ Build a `char` out of bytes
 trait Perform { ... }
 ```
 
-Performs actions requested by the [`Parser`](index.md)
+Performs actions requested by the [`Parser`](#parser)
 
 Actions in this case mean, for example, handling a CSI escape sequence describing cursor
 movement, or simply printing characters to the screen.
@@ -509,5 +509,5 @@ the future, consider checking archive.org.
 type DefaultCharAccumulator = Utf8Parser;
 ```
 
-Most flexible [`CharAccumulator`](index.md) for [`Parser`](index.md) based on active features
+Most flexible [`CharAccumulator`](#characcumulator) for [`Parser`](#parser) based on active features
 

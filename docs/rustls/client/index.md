@@ -23,7 +23,7 @@ struct WantsClientCert {
 A config builder state where the caller needs to supply whether and how to provide a client
 certificate.
 
-For more information, see the [`ConfigBuilder`](index.md) documentation.
+For more information, see the [`ConfigBuilder`](../index.md) documentation.
 
 #### Trait Implementations
 
@@ -101,7 +101,7 @@ struct ClientConfig {
 Common configuration for (typically) all connections made by a program.
 
 Making one of these is cheap, though one of the inputs may be expensive: gathering trust roots
-from the operating system to add to the [`RootCertStore`](index.md) passed to `with_root_certificates()`
+from the operating system to add to the [`RootCertStore`](../index.md) passed to `with_root_certificates()`
 (the rustls-native-certs crate is often used for this) may take on the order of a few hundred
 milliseconds.
 
@@ -1142,7 +1142,7 @@ struct ServerCertVerifierBuilder {
 
 A builder for configuring a `webpki` server certificate verifier.
 
-For more information, see the [`WebPkiServerVerifier`](index.md) documentation.
+For more information, see the [`WebPkiServerVerifier`](../index.md) documentation.
 
 #### Implementations
 
@@ -1311,14 +1311,14 @@ Errors that may arise when encrypting early (RTT-0) data
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: EncryptError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: EncryptError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1677,14 +1677,14 @@ An error that can occur when building a certificate verifier.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: CertRevocationListError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 

@@ -8,18 +8,18 @@
 
 Spans and events may be annotated with key-value data, known as _fields_.
 These fields consist of a mapping from a key (corresponding to a `&str` but
-represented internally as an array index) to a [`Value`](field/index.md).
+represented internally as an array index) to a [`Value`](#value).
 
 # `Value`s and `Subscriber`s
 
 `Subscriber`s consume `Value`s as fields attached to [span](#span)
-s or [`Event`](event/index.md)s.
-The set of field keys on a given span or event is defined on its [`Metadata`](metadata/index.md).
-When a span is created, it provides [`Attributes`](span/index.md) to the `Subscriber`'s
+s or [`Event`](../event/index.md)s.
+The set of field keys on a given span or event is defined on its [`Metadata`](../metadata/index.md).
+When a span is created, it provides [`Attributes`](../span/index.md) to the `Subscriber`'s
 [`new_span`](#new-span) method, containing any fields whose values were provided when
 the span was created; and may call the `Subscriber`'s [`record`](#record) method
-with additional [`Record`](span/index.md)s if values are added for more of its fields.
-Similarly, the [`Event`](event/index.md) type passed to the subscriber's [`event`](event/index.md) method
+with additional [`Record`](../span/index.md)s if values are added for more of its fields.
+Similarly, the [`Event`](../event/index.md) type passed to the subscriber's [`event`](../event/index.md) method
 will contain any fields attached to each event.
 
 `tracing` represents values as either one of a set of Rust primitives
@@ -29,7 +29,7 @@ these primitive value types as `dyn Value` trait objects.
 
 These trait objects can be formatted using `fmt::Debug`, but may also be
 recorded as typed data by calling the `Value::record` method on these
-trait objects with a _visitor_ implementing the [`Visit`](field/index.md) trait. This trait
+trait objects with a _visitor_ implementing the [`Visit`](#visit) trait. This trait
 represents the behavior used to record values of various types. For example,
 an implementation of `Visit` might record integers by incrementing counters
 for their field names rather than printing them.
@@ -37,7 +37,7 @@ for their field names rather than printing them.
 
 # Using `valuable`
 
-`tracing`'s [`Value`](field/index.md) trait is intentionally minimalist: it supports only a small
+`tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
 user-defined types with their `fmt::Debug` or `fmt::Display`
 implementations. However, there are some cases where it may be useful to record
@@ -49,7 +49,7 @@ To address `Value`'s limitations, `tracing` offers experimental support for
 the [`valuable`](#valuable) crate, which provides object-safe inspection of structured
 values. User-defined types can implement the `valuable::Valuable` trait,
 and be recorded as a `tracing` field by calling their [`as_value`](#as-value) method.
-If the [`Subscriber`](subscriber/index.md) also supports the `valuable` crate, it can
+If the [`Subscriber`](../subscriber/index.md) also supports the `valuable` crate, it can
 then visit those types fields as structured values using `valuable`.
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
@@ -95,7 +95,7 @@ tracing::info!(current_user = user.as_value());
 Alternatively, the [`valuable()`](#valuable) function may be used to convert a type
 implementing [`Valuable`](#valuable) into a `tracing` field value.
 
-When the `valuable` feature is enabled, the [`Visit`](field/index.md) trait will include an
+When the `valuable` feature is enabled, the [`Visit`](#visit) trait will include an
 optional [`record_value`](#record-value) method. `Visit` implementations that wish to
 record `valuable` values can implement this method with custom behavior.
 If a visitor does not implement `record_value`, the `valuable::Value` will
@@ -679,14 +679,14 @@ trait Visit { ... }
 Visits typed values.
 
 An instance of `Visit` ("a visitor") represents the logic necessary to
-record field values of various types. When an implementor of [`Value`](field/index.md) is
+record field values of various types. When an implementor of [`Value`](#value) is
 [recorded](#recorded)
 , it calls the appropriate method on the provided visitor to
 indicate the type that value should be recorded as.
 
-When a [`Subscriber`](subscriber/index.md) implementation [records an `Event`] or a
+When a [`Subscriber`](../subscriber/index.md) implementation [records an `Event`] or a
 [set of `Value`s added to a `Span`], it can pass an `&mut Visit` to the
-`record` method on the provided [`ValueSet`](field/index.md) or [`Event`](event/index.md). This visitor
+`record` method on the provided [`ValueSet`](#valueset) or [`Event`](../event/index.md). This visitor
 will then be used to record all the field-value pairs present on that
 `Event` or `ValueSet`.
 

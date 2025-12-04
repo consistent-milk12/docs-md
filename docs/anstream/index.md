@@ -1,10 +1,10 @@
 # Crate `anstream`
 
-**Auto-adapting [`stdout`](index.md) / [`stderr`](index.md) streams**
+**Auto-adapting [`stdout`](#stdout) / [`stderr`](#stderr) streams**
 
 *A portmanteau of "ansi stream"*
 
-[`AutoStream`](index.md) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
+[`AutoStream`](#autostream) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
 [adapting to the user's terminal's capabilities][AutoStream].
 
 Benefits
@@ -57,9 +57,12 @@ This includes
 
 You can customize auto-detection by calling into
 [anstyle_query](https://docs.rs/anstyle-query/latest/anstyle_query/)
-to get a [`ColorChoice`](index.md) and then calling `AutoStream::new(stream, choice)`.
+to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream, choice)`.
 
 #### Implementations
+
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
+  Get exclusive access to the `AutoStream`
 
 - `fn new(raw: S, choice: ColorChoice) -> Self`
   Runtime control over styling behavior
@@ -92,9 +95,6 @@ to get a [`ColorChoice`](index.md) and then calling `AutoStream::new(stream, cho
   Prefer [`AutoStream::choice`]
 
 - `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
-  Get exclusive access to the `AutoStream`
-
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
   Get exclusive access to the `AutoStream`
 
 #### Trait Implementations
@@ -163,11 +163,8 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>`
+- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
   Get exclusive access to the `StripStream`
-
-- `fn is_terminal(self: &Self) -> bool`
-  Returns `true` if the descriptor/handle refers to a terminal/tty.
 
 - `fn new(raw: S) -> Self`
   Only pass printable data to the inner `Write`
@@ -178,8 +175,11 @@ Only pass printable data to the inner `Write`
 - `fn as_inner(self: &Self) -> &S`
   Get the wrapped [`std::io::Write`]
 
-- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
+- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>`
   Get exclusive access to the `StripStream`
+
+- `fn is_terminal(self: &Self) -> bool`
+  Returns `true` if the descriptor/handle refers to a terminal/tty.
 
 #### Trait Implementations
 
@@ -464,7 +464,7 @@ tests. `panic!` is closely tied with the `unwrap` method of both
 [`Option`][ounwrap](#ounwrap)
  and [`Result`][runwrap](#runwrap)
  enums. Both implementations call
-`panic!` when they are set to [`None`](../aho_corasick/index.md) or [`Err`](#err) variants.
+`panic!` when they are set to [`None`](#none) or [`Err`](#err) variants.
 
 When using `panic!()` you can specify a string payload, that is built using
 the [`format!`](#format) syntax. That payload is used when injecting the panic into

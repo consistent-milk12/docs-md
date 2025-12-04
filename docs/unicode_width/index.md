@@ -26,7 +26,7 @@ It enables the `UnicodeWidthChar::width_cjk`
 and `UnicodeWidthStr::width_cjk`,
 which perform an alternate width calculation
 more suited to CJK contexts. The flag also unseals the
-[`UnicodeWidthChar`](index.md) and [`UnicodeWidthStr`](index.md) traits.
+[`UnicodeWidthChar`](#unicodewidthchar) and [`UnicodeWidthStr`](#unicodewidthstr) traits.
 
 Disabling the flag (with `no_default_features` in `Cargo.toml`)
 will reduce the amount of static data needed by the crate.
@@ -104,12 +104,12 @@ character or string, in order of decreasing precedence. These may be tweaked in 
         with the [`Grapheme_Extend=Prepend`](#grapheme-extendprepend) property, that are not also [`Prepended_Concatenation_Mark`](#prepended-concatenation-mark)s.
       - [`'\u{A8FA}'` DEVANAGARI CARET](https://util.unicode.org/UnicodeJsps/character.jsp?a=A8FA).
    5. [Characters](https://util.unicode.org/UnicodeJsps/list-unicodeset.jsp?a=%5Cp%7BEast_Asian_Width%3DF%7D%5Cp%7BEast_Asian_Width%3DW%7D)
-      with an [`East_Asian_Width`](#east-asian-width) of [`Fullwidth`](#fullwidth) or [`Wide`](../backtrace/index.md) have width 2.
+      with an [`East_Asian_Width`](#east-asian-width) of [`Fullwidth`](#fullwidth) or [`Wide`](#wide) have width 2.
    6. Characters fulfilling all of the following conditions have width 2 in an East Asian context, and width 1 otherwise:
       - Fulfills one of the following conditions:
-        - Has an [`East_Asian_Width`](#east-asian-width) of [`Ambiguous`](../unicode_linebreak/index.md), or
+        - Has an [`East_Asian_Width`](#east-asian-width) of [`Ambiguous`](#ambiguous), or
         - Has a [`Line_Break`](#line-break) of [`AI`](#ai), or
-        - Has a canonical decomposition to an [`Ambiguous`](../unicode_linebreak/index.md) character followed by [`'\u{0338}'` COMBINING LONG SOLIDUS OVERLAY], or
+        - Has a canonical decomposition to an [`Ambiguous`](#ambiguous) character followed by [`'\u{0338}'` COMBINING LONG SOLIDUS OVERLAY], or
         - Is [`'\u{0387}'` GREEK ANO TELEIA](https://util.unicode.org/UnicodeJsps/character.jsp?a=0387); and
       - Does not have a [`General_Category`](#general-category) of `Letter` or `Modifier_Symbol`.
    7. All other characters have width 1.

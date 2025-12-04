@@ -591,14 +591,14 @@ RSA public key components.
 
 #### Trait Implementations
 
-##### `impl From<B>`
-
-- `fn from(public_key: &PublicKey) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<B>`
+
+- `fn from(public_key: &PublicKey) -> Self`
 
 ##### `impl Into<T, U>`
 

@@ -14,14 +14,14 @@ Error reporting
 struct KindFormatter;
 ```
 
-Report [`ErrorKind`](index.md)
+Report [`ErrorKind`](../index.md)
 
 No context is included.
 
 <div class="warning">
 
 **NOTE:** Consider removing the `error-context` default feature if using this to remove all
-overhead for [`RichFormatter`](index.md).
+overhead for [`RichFormatter`](../index.md).
 
 </div>
 
@@ -231,14 +231,14 @@ See `Command::error` to create an error.
 
 - `fn from(e: io::Error) -> Self`
 
+##### `impl From<F: ErrorFormatter>`
+
+- `fn from(e: fmt::Error) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<F: ErrorFormatter>`
-
-- `fn from(e: fmt::Error) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -351,10 +351,10 @@ Command line argument parser kind of error
 
 - **`InvalidSubcommand`**
 
-  Occurs when the user provides an unrecognized [`Subcommand`](index.md) which meets the threshold for
+  Occurs when the user provides an unrecognized [`Subcommand`](../index.md) which meets the threshold for
   being similar enough to an existing subcommand.
   If it doesn't meet the threshold, or the 'suggestions' feature is disabled,
-  the more general [`UnknownArgument`](index.md) error is returned.
+  the more general [`UnknownArgument`](../index.md) error is returned.
   
   # Examples
   
@@ -599,7 +599,7 @@ Command line argument parser kind of error
 
 - **`DisplayHelpOnMissingArgumentOrSubcommand`**
 
-  Occurs when either an argument or a [`Subcommand`](index.md) is required, as defined by
+  Occurs when either an argument or a [`Subcommand`](../index.md) is required, as defined by
   `Command::arg_required_else_help` , but the user did not provide
   one.
   
@@ -934,7 +934,7 @@ A piece of error information
 
 - **`None`**
 
-  [`ContextKind`](index.md) is self-sufficient, no additional information needed
+  [`ContextKind`](../index.md) is self-sufficient, no additional information needed
 
 - **`Bool`**
 
@@ -1042,6 +1042,6 @@ A piece of error information
 type Result<T, E> = std::result::Result<T, E>;
 ```
 
-Short hand for [`Result`](error/index.md) type
+Short hand for [`Result`](#result) type
 
 

@@ -114,7 +114,7 @@ This parses a string representation of a regular expression into an
 abstract syntax tree. The size of the tree is proportional to the length
 of the regular expression pattern.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](index.md).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuilder).
 
 #### Implementations
 

@@ -115,7 +115,7 @@ named arguments.
 Only a limited set of formatting traits are supported. The current mapping
 of format types to traits is:
 
-* `{}` ⇒ [`IdentFragment`](index.md)
+* `{}` ⇒ [`IdentFragment`](#identfragment)
 * `{:o}` ⇒ [`Octal`](std::fmt::Octal)
 * `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
 * `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
@@ -127,19 +127,19 @@ See `std::fmt` for more information.
 
 # IdentFragment
 
-Unlike `format!`, this macro uses the [`IdentFragment`](index.md) formatting trait by
+Unlike `format!`, this macro uses the [`IdentFragment`](#identfragment) formatting trait by
 default. This trait is like `Display`, with a few differences:
 
 * `IdentFragment` is only implemented for a limited set of types, such as
   unsigned integers and strings.
-* [`Ident`](../object/elf/index.md) arguments will have their `r#` prefixes stripped, if present.
+* [`Ident`](#ident) arguments will have their `r#` prefixes stripped, if present.
 
 
 <br>
 
 # Hygiene
 
-The [`Span`](../aho_corasick/index.md) of the first `Ident` argument is used as the span of the final
+The [`Span`](#span) of the first `Ident` argument is used as the span of the final
 identifier, falling back to `Span::call_site` when no identifiers are
 provided.
 
@@ -226,7 +226,7 @@ Note: for returning tokens to the compiler in a procedural macro, use
 Variable interpolation is done with `#var` (similar to `$var` in
 `macro_rules!` macros). This grabs the `var` variable that is currently in
 scope and inserts it in that location in the output tokens. Any type
-implementing the [`ToTokens`](index.md) trait can be interpolated. This includes most
+implementing the [`ToTokens`](#totokens) trait can be interpolated. This includes most
 Rust primitive types as well as most of the syntax tree types from the [Syn]
 crate.
 
@@ -563,7 +563,7 @@ the macro invocation.
 
 # Syntax
 
-A span expression of type [`Span`](../aho_corasick/index.md), followed by `=>`, followed by the tokens
+A span expression of type [`Span`](#span), followed by `=>`, followed by the tokens
 to quote. The span expression should be brief &mdash; use a variable for
 anything more than a few characters. There should be no space before the
 `=>` token.
@@ -606,7 +606,7 @@ invocation are spanned with the given span argument.
 # Example
 
 The following procedural macro code uses `quote_spanned!` to assert that a
-particular Rust type implements the [`Sync`](../flate2/index.md) trait so that references can be
+particular Rust type implements the [`Sync`](#sync) trait so that references can be
 safely shared between threads.
 
 ```

@@ -117,7 +117,7 @@ of interacting with rustls directly.
 : https://github.com/rustls/rustls/tree/main/examples
 
 ### Rustls provides encrypted pipes
-These are the [`ServerConnection`](index.md) and [`ClientConnection`](index.md) types.  You supply raw TLS traffic
+These are the [`ServerConnection`](#serverconnection) and [`ClientConnection`](#clientconnection) types.  You supply raw TLS traffic
 on the left (via the [`read_tls()`](#read-tls) and [`write_tls()`](#write-tls) methods) and then read/write the
 plaintext on the right:
 
@@ -142,7 +142,7 @@ Certificate verification cannot be turned off or disabled in the main API.
 This is the minimum you need to do to make a TLS client connection.
 
 First we load some root certificates.  These are used to authenticate the server.
-The simplest way is to depend on the [`webpki_roots`](../webpki_roots/index.md) crate which contains
+The simplest way is to depend on the [`webpki_roots`](#webpki-roots) crate which contains
 the Mozilla set of root certificates.
 
 ```rust,no_run
@@ -358,7 +358,7 @@ struct ConfigBuilder<Side: ConfigSide, State> {
 ```
 
 A [builder](#builder)
- for [`ServerConfig`](index.md) or [`ClientConfig`](index.md) values.
+ for [`ServerConfig`](#serverconfig) or [`ClientConfig`](#clientconfig) values.
 
 To get one of these, call `ServerConfig::builder()` or `ClientConfig::builder()`.
 
@@ -367,7 +367,7 @@ To build a config, you must make at least two decisions (in order):
 - How should this client or server verify certificates provided by its peer?
 - What certificates should this client or server present to its peer?
 
-For settings besides these, see the fields of [`ServerConfig`](index.md) and [`ClientConfig`](index.md).
+For settings besides these, see the fields of [`ServerConfig`](#serverconfig) and [`ClientConfig`](#clientconfig).
 
 The usual choice for protocol primitives is to call
 `ClientConfig::builder`/`ServerConfig::builder`
@@ -410,7 +410,7 @@ since the code for the unused ones can be optimized away at link time.
 
 After choosing protocol primitives, you must choose (a) how to verify certificates and (b) what certificates
 (if any) to send to the peer. The methods to do this are specific to whether you're building a ClientConfig
-or a ServerConfig, as tracked by the [`ConfigSide`](index.md) type parameter on the various impls of ConfigBuilder.
+or a ServerConfig, as tracked by the [`ConfigSide`](#configside) type parameter on the various impls of ConfigBuilder.
 
 # ClientConfig certificate configuration
 
@@ -472,10 +472,10 @@ ConfigBuilder uses the [typestate](#typestate)
 configuration item is provided exactly once. This is tracked in the `State` type parameter,
 which can have these values:
 
-- [`WantsVersions`](index.md)
-- [`WantsVerifier`](index.md)
-- [`WantsClientCert`](index.md)
-- [`WantsServerCert`](index.md)
+- [`WantsVersions`](#wantsversions)
+- [`WantsVerifier`](#wantsverifier)
+- [`WantsClientCert`](#wantsclientcert)
+- [`WantsServerCert`](#wantsservercert)
 
 The other type parameter is `Side`, which is either `ServerConfig` or `ClientConfig`
 depending on whether the ConfigBuilder was built with `ServerConfig::builder()` or
@@ -511,11 +511,17 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 #### Implementations
 
-- `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
-  Enable Encrypted Client Hello (ECH) in the given mode.
-
 - `fn crypto_provider(self: &Self) -> &alloc::sync::Arc<CryptoProvider>`
   Return the crypto provider used to construct this builder.
+
+- `fn with_client_auth_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ClientConfig, Error>`
+  Sets a single certificate chain and matching private key for use
+
+- `fn with_no_client_auth(self: Self) -> ClientConfig`
+  Do not support client auth.
+
+- `fn with_client_cert_resolver(self: Self, client_auth_cert_resolver: alloc::sync::Arc<dyn ResolvesClientCert>) -> ClientConfig`
+  Sets a custom [`ResolvesClientCert`].
 
 - `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
   Choose how to verify server certificates.
@@ -526,23 +532,8 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 - `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
   Access configuration options whose use is dangerous and requires
 
-- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain and matching private key.  This
-
-- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain, matching private key and optional OCSP
-
-- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
-  Sets a custom [`ResolvesServerCert`].
-
-- `fn with_client_auth_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ClientConfig, Error>`
-  Sets a single certificate chain and matching private key for use
-
-- `fn with_no_client_auth(self: Self) -> ClientConfig`
-  Do not support client auth.
-
-- `fn with_client_cert_resolver(self: Self, client_auth_cert_resolver: alloc::sync::Arc<dyn ResolvesClientCert>) -> ClientConfig`
-  Sets a custom [`ResolvesClientCert`].
+- `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
+  Enable Encrypted Client Hello (ECH) in the given mode.
 
 - `fn with_client_cert_verifier(self: Self, client_cert_verifier: alloc::sync::Arc<dyn ClientCertVerifier>) -> ConfigBuilder<ServerConfig, WantsServerCert>`
   Choose how to verify client certificates.
@@ -555,6 +546,15 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 - `fn with_protocol_versions(self: Self, versions: &[&'static versions::SupportedProtocolVersion]) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
   Use a specific set of protocol versions.
+
+- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain and matching private key.  This
+
+- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain, matching private key and optional OCSP
+
+- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
+  Sets a custom [`ResolvesServerCert`].
 
 #### Trait Implementations
 
@@ -622,7 +622,7 @@ struct WantsVerifier {
 
 Config builder state where the caller must supply a verifier.
 
-For more information, see the [`ConfigBuilder`](index.md) documentation.
+For more information, see the [`ConfigBuilder`](#configbuilder) documentation.
 
 #### Trait Implementations
 
@@ -689,7 +689,7 @@ struct WantsVersions {
 
 Config builder state where the caller must supply TLS protocol versions.
 
-For more information, see the [`ConfigBuilder`](index.md) documentation.
+For more information, see the [`ConfigBuilder`](#configbuilder) documentation.
 
 #### Trait Implementations
 
@@ -1112,7 +1112,7 @@ Interface shared by client and server connections.
 struct OtherError(alloc::sync::Arc<dyn StdError + Send + Sync>);
 ```
 
-Any other error that cannot be expressed by a more specific [`Error`](index.md) variant.
+Any other error that cannot be expressed by a more specific [`Error`](#error) variant.
 
 For example, an `OtherError` could be produced by a custom crypto provider
 exposing a provider specific error.
@@ -1251,7 +1251,7 @@ KeyLog that does exactly nothing.
 struct KeyLogFile();
 ```
 
-[`KeyLog`](index.md) implementation that opens a file whose name is
+[`KeyLog`](#keylog) implementation that opens a file whose name is
 given by the `SSLKEYLOGFILE` environment variable, and writes
 keys into it.
 
@@ -1337,14 +1337,14 @@ The TLS encoding is defined in RFC5246: `opaque DistinguishedName<1..2^16-1>;`
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: Vec<u8>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1920,7 +1920,7 @@ A TLS 1.2 cipher suite supported by rustls.
 
   How to sign messages for authentication.
   
-  This is a set of [`SignatureScheme`](index.md)s that are usable once this cipher suite has been
+  This is a set of [`SignatureScheme`](#signaturescheme)s that are usable once this cipher suite has been
   negotiated.
   
   The precise scheme used is then chosen from this set by the selected authentication key.
@@ -2091,13 +2091,13 @@ struct DigitallySignedStruct {
 }
 ```
 
-This type combines a [`SignatureScheme`](index.md) and a signature payload produced with that scheme.
+This type combines a [`SignatureScheme`](#signaturescheme) and a signature payload produced with that scheme.
 
 #### Fields
 
 - **`scheme`**: `crate::enums::SignatureScheme`
 
-  The [`SignatureScheme`](index.md) used to produce the signature.
+  The [`SignatureScheme`](#signaturescheme) used to produce the signature.
 
 #### Implementations
 
@@ -2177,8 +2177,8 @@ struct SupportedProtocolVersion {
 A TLS protocol version supported by rustls.
 
 All possible instances of this class are provided by the library in
-the [`ALL_VERSIONS`](index.md) array, as well as individually as [`TLS12`](index.md)
-and [`TLS13`](index.md).
+the [`ALL_VERSIONS`](#all-versions) array, as well as individually as [`TLS12`](#tls12)
+and [`TLS13`](#tls13).
 
 #### Fields
 
@@ -2359,7 +2359,7 @@ struct ClientConfig {
 Common configuration for (typically) all connections made by a program.
 
 Making one of these is cheap, though one of the inputs may be expensive: gathering trust roots
-from the operating system to add to the [`RootCertStore`](index.md) passed to `with_root_certificates()`
+from the operating system to add to the [`RootCertStore`](#rootcertstore) passed to `with_root_certificates()`
 (the rustls-native-certs crate is often used for this) may take on the order of a few hundred
 milliseconds.
 
@@ -2703,7 +2703,7 @@ struct ServerConfig {
 Common configuration for a set of server sessions.
 
 Making one of these is cheap, though one of the inputs may be expensive: gathering trust roots
-from the operating system to add to the [`RootCertStore`](index.md) passed to a `ClientCertVerifier`
+from the operating system to add to the [`RootCertStore`](#rootcertstore) passed to a `ClientCertVerifier`
 builder may take on the order of a few hundred milliseconds.
 
 These must be created via the `ServerConfig::builder()` or `ServerConfig::builder_with_provider()`
@@ -2715,7 +2715,7 @@ function.
 * `ServerConfig::session_storage`: if the `std` feature is enabled, the default stores 256
   sessions in memory. If the `std` feature is not enabled, the default is to not store any
   sessions. In a no-std context, by enabling the `hashbrown` feature you may provide your
-  own `session_storage` using [`ServerSessionMemoryCache`](index.md) and a `crate::lock::MakeMutex`
+  own `session_storage` using [`ServerSessionMemoryCache`](#serversessionmemorycache) and a `crate::lock::MakeMutex`
   implementation.
 * `ServerConfig::alpn_protocols`: the default is empty -- no ALPN protocol is negotiated.
 * `ServerConfig::key_log`: key material is not logged.
@@ -3326,16 +3326,16 @@ A client or server connection.
 
 ##### `impl From`
 
-- `fn from(conn: ServerConnection) -> Self`
-
-##### `impl From`
-
 - `fn from(conn: ClientConnection) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(conn: ServerConnection) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -3439,18 +3439,18 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(x: u8) -> Self`
 
 ##### `impl From`
 
 - `fn from(e: InvalidMessage) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(x: u8) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
@@ -3545,14 +3545,14 @@ Values in this enum are taken from [RFC8879].
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4114,14 +4114,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4228,14 +4228,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4431,14 +4431,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -5261,31 +5261,11 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: CertRevocationListError) -> Self`
-
-##### `impl From`
-
-- `fn from(value: UnsupportedOperationError) -> Self`
-
-##### `impl From`
-
-- `fn from(e: EncryptedClientHelloError) -> Self`
-
-##### `impl From`
-
-- `fn from(e: CertificateError) -> Self`
-
-##### `impl From`
-
-- `fn from(e: InconsistentKeys) -> Self`
-
-##### `impl From`
-
 - `fn from(e: PeerIncompatible) -> Self`
 
 ##### `impl From`
 
-- `fn from(value: OtherError) -> Self`
+- `fn from(e: CertificateError) -> Self`
 
 ##### `impl From`
 
@@ -5297,7 +5277,27 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
+- `fn from(e: EncryptedClientHelloError) -> Self`
+
+##### `impl From`
+
 - `fn from(e: PeerMisbehaved) -> Self`
+
+##### `impl From`
+
+- `fn from(e: InconsistentKeys) -> Self`
+
+##### `impl From`
+
+- `fn from(value: UnsupportedOperationError) -> Self`
+
+##### `impl From`
+
+- `fn from(_: SystemTimeError) -> Self`
+
+##### `impl From`
+
+- `fn from(e: CertRevocationListError) -> Self`
 
 ##### `impl From<T>`
 
@@ -5306,7 +5306,7 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(_: SystemTimeError) -> Self`
+- `fn from(value: OtherError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -5492,12 +5492,12 @@ Specific failure cases from [`keys_match`](#keys-match) or a `crate::crypto::sig
 
 - **`KeyMismatch`**
 
-  The public key returned by the [`SigningKey`](index.md) does not match the public key information in the certificate.
+  The public key returned by the [`SigningKey`](#signingkey) does not match the public key information in the certificate.
   
 
 - **`Unknown`**
 
-  The [`SigningKey`](index.md) cannot produce its corresponding public key.
+  The [`SigningKey`](#signingkey) cannot produce its corresponding public key.
   
 
 #### Trait Implementations
@@ -6064,12 +6064,12 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Implementations
 
+- `fn key_exchange_algorithm(self: Self) -> KeyExchangeAlgorithm`
+  Return the key exchange algorithm associated with this `NamedGroup`
+
 - `fn to_array(self: Self) -> [u8; 2]`
 
 - `fn as_str(self: &Self) -> Option<&'static str>`
-
-- `fn key_exchange_algorithm(self: Self) -> KeyExchangeAlgorithm`
-  Return the key exchange algorithm associated with this `NamedGroup`
 
 #### Trait Implementations
 
@@ -6234,7 +6234,7 @@ enum SupportedCipherSuite {
 A cipher suite supported by rustls.
 
 This type carries both configuration and implementation. Compare with
-[`CipherSuite`](index.md), which carries solely a cipher suite identifier.
+[`CipherSuite`](#ciphersuite), which carries solely a cipher suite identifier.
 
 #### Variants
 
@@ -6267,11 +6267,11 @@ This type carries both configuration and implementation. Compare with
 
 ##### `impl From`
 
-- `fn from(s: &'static Tls13CipherSuite) -> Self`
+- `fn from(s: &'static Tls12CipherSuite) -> Self`
 
 ##### `impl From`
 
-- `fn from(s: &'static Tls12CipherSuite) -> Self`
+- `fn from(s: &'static Tls13CipherSuite) -> Self`
 
 ##### `impl From<T>`
 

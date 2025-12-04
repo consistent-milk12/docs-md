@@ -29,13 +29,13 @@ The iterator terminates only when the underlying stream reaches `EOF`.
 This iterator is constructed via the `Automaton::try_stream_find_iter`
 method.
 
-The type variable `A` refers to the implementation of the [`Automaton`](../../aho_corasick/automaton/index.md)
+The type variable `A` refers to the implementation of the [`Automaton`](#automaton)
 trait used to execute the search.
 
 The type variable `R` refers to the `io::Read` stream that is being read
 from.
 
-The lifetime `'a` refers to the lifetime of the [`Automaton`](../../aho_corasick/automaton/index.md)
+The lifetime `'a` refers to the lifetime of the [`Automaton`](#automaton)
 implementation.
 
 ## Functions

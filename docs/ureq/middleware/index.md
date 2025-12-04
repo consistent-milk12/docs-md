@@ -16,7 +16,7 @@ struct MiddlewareNext<'a> {
 }
 ```
 
-Continuation of a [`Middleware`](middleware/index.md) chain.
+Continuation of a [`Middleware`](#middleware) chain.
 
 #### Implementations
 

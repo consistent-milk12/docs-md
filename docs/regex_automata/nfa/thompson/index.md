@@ -14,7 +14,7 @@ string into something that can run a search looks roughly like this:
 
 * A `&str` is parsed into a [`regex-syntax::ast::Ast`](regex_syntax::ast::Ast).
 * An `Ast` is translated into a [`regex-syntax::hir::Hir`](regex_syntax::hir::Hir).
-* An `Hir` is compiled into a [`NFA`](index.md).
+* An `Hir` is compiled into a [`NFA`](../../index.md).
 * The `NFA` is then used to build one of a few different regex engines:
   * An `NFA` is used directly in the `PikeVM` and `BoundedBacktracker` engines.
   * An `NFA` is used by a [hybrid NFA/DFA](crate::hybrid) to build out a DFA's
@@ -76,7 +76,7 @@ An abstraction for building Thompson NFAs by hand.
 
 A builder is what a [`thompson::Compiler`](crate::nfa::thompson::Compiler)
 uses internally to translate a regex's high-level intermediate
-representation into an [`NFA`](index.md).
+representation into an [`NFA`](../../index.md).
 
 The primary function of this builder is to abstract away the internal
 representation of an NFA and make it difficult to produce NFAs are that

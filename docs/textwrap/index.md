@@ -129,7 +129,7 @@ These features are enabled by default:
   This feature can be disabled if you are happy to find words
   separated by ASCII space characters only. People wrapping text
   with emojis or East-Asian characters will want most likely want
-  to enable this feature. See [`WordSeparator`](index.md) for details.
+  to enable this feature. See [`WordSeparator`](#wordseparator) for details.
 
 * `unicode-width`: enables correct width computation of non-ASCII
   characters via the [unicode-width] crate. Without this feature,
@@ -259,7 +259,7 @@ Holds configuration options for wrapping and filling text.
 
 - **`word_separator`**: `crate::WordSeparator`
 
-  The line breaking algorithm to use, see the [`WordSeparator`](index.md)
+  The line breaking algorithm to use, see the [`WordSeparator`](#wordseparator)
   trait for an overview and possible implementations.
 
 - **`word_splitter`**: `crate::WordSplitter`
@@ -303,14 +303,14 @@ Holds configuration options for wrapping and filling text.
 
 - `fn from(width: usize) -> Self`
 
+##### `impl From<'a>`
+
+- `fn from(options: &'a Options<'a>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(options: &'a Options<'a>) -> Self`
 
 ##### `impl Into<T, U>`
 

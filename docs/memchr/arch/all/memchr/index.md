@@ -6,7 +6,7 @@
 
 Provides architecture independent implementations of `memchr` and friends.
 
-The main types in this module are [`One`](arch/x86_64/sse2/memchr/index.md), [`Two`](arch/x86_64/avx2/memchr/index.md) and [`Three`](arch/all/memchr/index.md). They are for
+The main types in this module are [`One`](../../x86_64/sse2/memchr/index.md), [`Two`](../../x86_64/sse2/memchr/index.md) and [`Three`](../../x86_64/sse2/memchr/index.md). They are for
 searching for one, two or three distinct bytes, respectively, in a haystack.
 Each type also has corresponding double ended iterators. These searchers
 are typically slower than hand-coded vector routines accomplishing the same
@@ -18,7 +18,7 @@ The `One` searcher also provides a `One::count` routine for efficiently
 counting the number of times a single byte occurs in a haystack. This is
 useful, for example, for counting the number of lines in a haystack. This
 routine exists because it is usually faster, especially with a high match
-count, than using `One::find` repeatedly. ([`OneIter`](arch/all/memchr/index.md) specializes its
+count, than using `One::find` repeatedly. ([`OneIter`](#oneiter) specializes its
 `Iterator::count` implementation to use this routine.)
 
 Only one, two and three bytes are supported because three bytes is about
@@ -140,7 +140,7 @@ This iterator is created by the `One::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`One`](arch/x86_64/sse2/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`One`](../../x86_64/sse2/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
@@ -330,7 +330,7 @@ This iterator is created by the `Two::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Two`](arch/x86_64/avx2/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Two`](../../x86_64/sse2/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
@@ -518,7 +518,7 @@ This iterator is created by the `Three::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Three`](arch/all/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Three`](../../x86_64/sse2/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations

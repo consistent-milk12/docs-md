@@ -41,7 +41,7 @@ Utilities
 
 # Examples
 
-The core type is [`Style`](index.md):
+The core type is [`Style`](#style):
 ```rust
 let style = anstyle::Style::new().bold();
 ```

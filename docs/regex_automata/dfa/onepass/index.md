@@ -8,7 +8,7 @@ A DFA that can return spans for matching capturing groups.
 
 This module is the home of a [one-pass DFA](DFA).
 
-This module also contains a [`Builder`](hybrid/dfa/index.md) and a [`Config`](dfa/onepass/index.md) for building and
+This module also contains a [`Builder`](../../index.md) and a [`Config`](#config) for building and
 configuring a one-pass DFA.
 
 ## Structs
@@ -302,8 +302,8 @@ do anchored searches.
 * Since iterators are most useful in the context of unanchored searches,
 there is no `DFA::captures_iter` method.
 * For lower level routines like `DFA::try_search`, an error will be
-returned if the given [`Input`](index.md) is configured to do an unanchored search or
-search for an invalid pattern ID. (Note that an [`Input`](index.md) is configured to
+returned if the given [`Input`](../../index.md) is configured to do an unanchored search or
+search for an invalid pattern ID. (Note that an [`Input`](../../index.md) is configured to
 do an unanchored search by default, so just giving a `Input::new` is
 guaranteed to return an error.)
 
@@ -552,7 +552,7 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a one-pass [`DFA`](dfa/onepass/index.md) requires during a
+A cache represents mutable state that a one-pass [`DFA`](#dfa) requires during a
 search.
 
 For a given one-pass DFA, its corresponding cache may be created either via

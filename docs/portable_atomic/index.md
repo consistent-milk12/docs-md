@@ -294,15 +294,15 @@ assembly.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(b: bool) -> Self`
-  Converts a `bool` into an `AtomicBool`.
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(b: bool) -> Self`
+  Converts a `bool` into an `AtomicBool`.
 
 ##### `impl Into<T, U>`
 
@@ -439,12 +439,12 @@ assembly.
 
 ##### `impl From<T>`
 
-- `fn from(p: *mut T) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From<T>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(p: *mut T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -611,14 +611,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: isize) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: isize) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1346,9 +1346,9 @@ struct AtomicU16 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`u16`](../gimli/leb128/read/index.md).
+[`u16`](#u16).
 
-If the compiler and the platform support atomic loads and stores of [`u16`](../gimli/leb128/read/index.md), this type is a wrapper for the standard library's `AtomicU16`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of [`u16`](#u16), this type is a wrapper for the standard library's `AtomicU16`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicU16::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -1625,14 +1625,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: i32) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i32) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1794,14 +1794,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: u32) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: u32) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1963,14 +1963,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i64) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i64) -> Self`
 
 ##### `impl Into<T, U>`
 

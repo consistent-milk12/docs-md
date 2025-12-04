@@ -4,7 +4,7 @@
 
 # Module `read`
 
-Types which operate over [`Read`](../../rustix/index.md) streams, both encoders and decoders for
+Types which operate over [`Read`](#read) streams, both encoders and decoders for
 various formats.
 
 Note that the `read` decoder types may read past the end of the compressed
@@ -27,8 +27,8 @@ struct DeflateDecoder<R> {
 
 A DEFLATE decoder, or decompressor.
 
-This structure implements a [`Read`](../../rustix/index.md) interface. When read from, it reads
-compressed data from the underlying [`Read`](../../rustix/index.md) and provides the uncompressed data.
+This structure implements a [`Read`](#read) interface. When read from, it reads
+compressed data from the underlying [`Read`](#read) and provides the uncompressed data.
 
 After reading a single member of the DEFLATE data this reader will return
 Ok(0) even if there are more bytes available in the underlying reader.
@@ -148,8 +148,8 @@ struct DeflateEncoder<R> {
 
 A DEFLATE encoder, or compressor.
 
-This structure implements a [`Read`](../../rustix/index.md) interface. When read from, it reads
-uncompressed data from the underlying [`Read`](../../rustix/index.md) and provides the compressed data.
+This structure implements a [`Read`](#read) interface. When read from, it reads
+uncompressed data from the underlying [`Read`](#read) and provides the compressed data.
 
 # Examples
 
@@ -256,8 +256,8 @@ struct GzDecoder<R> {
 
 A decoder for a single member of a [gzip file].
 
-This structure implements a [`Read`](../../rustix/index.md) interface. When read from, it reads
-compressed data from the underlying [`Read`](../../rustix/index.md) and provides the uncompressed data.
+This structure implements a [`Read`](#read) interface. When read from, it reads
+compressed data from the underlying [`Read`](#read) and provides the uncompressed data.
 
 After reading a single member of the gzip data this reader will return
 Ok(0) even if there are more bytes available in the underlying reader.
@@ -265,7 +265,7 @@ Ok(0) even if there are more bytes available in the underlying reader.
 If you need the following bytes, wrap the `Reader` in a `std::io::BufReader`
 and use `bufread::GzDecoder` instead.
 
-To handle gzip files that may have multiple members, see [`MultiGzDecoder`](index.md)
+To handle gzip files that may have multiple members, see [`MultiGzDecoder`](../index.md)
 or read more
 [in the introduction](../index.html#about-multi-member-gzip-files).
 
@@ -301,6 +301,9 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 #### Implementations
 
+- `fn new(r: R) -> GzDecoder<R>`
+  Creates a new decoder from the given reader, immediately parsing the
+
 - `fn header(self: &Self) -> Option<&GzHeader>`
   Returns the header associated with this stream, if it was valid.
 
@@ -312,9 +315,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn into_inner(self: Self) -> R`
   Consumes this decoder, returning the underlying reader.
-
-- `fn new(r: R) -> GzDecoder<R>`
-  Creates a new decoder from the given reader, immediately parsing the
 
 #### Trait Implementations
 
@@ -376,8 +376,8 @@ struct GzEncoder<R> {
 
 A gzip streaming encoder
 
-This structure implements a [`Read`](../../rustix/index.md) interface. When read from, it reads
-uncompressed data from the underlying [`Read`](../../rustix/index.md) and provides the compressed data.
+This structure implements a [`Read`](#read) interface. When read from, it reads
+uncompressed data from the underlying [`Read`](#read) and provides the compressed data.
 
 # Examples
 
@@ -472,8 +472,8 @@ struct MultiGzDecoder<R> {
 
 A gzip streaming decoder that decodes a [gzip file] that may have multiple members.
 
-This structure implements a [`Read`](../../rustix/index.md) interface. When read from, it reads
-compressed data from the underlying [`Read`](../../rustix/index.md) and provides the uncompressed
+This structure implements a [`Read`](#read) interface. When read from, it reads
+compressed data from the underlying [`Read`](#read) and provides the uncompressed
 data.
 
 A gzip file consists of a series of *members* concatenated one after another.
@@ -515,6 +515,9 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 #### Implementations
 
+- `fn new(r: R) -> MultiGzDecoder<R>`
+  Creates a new decoder from the given reader, immediately parsing the
+
 - `fn header(self: &Self) -> Option<&GzHeader>`
   Returns the current header associated with this stream, if it's valid.
 
@@ -526,9 +529,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn into_inner(self: Self) -> R`
   Consumes this decoder, returning the underlying reader.
-
-- `fn new(r: R) -> MultiGzDecoder<R>`
-  Creates a new decoder from the given reader, immediately parsing the
 
 #### Trait Implementations
 
@@ -590,8 +590,8 @@ struct ZlibDecoder<R> {
 
 A ZLIB decoder, or decompressor.
 
-This structure implements a [`Read`](../../rustix/index.md) interface. When read from, it reads
-compressed data from the underlying [`Read`](../../rustix/index.md) and provides the uncompressed data.
+This structure implements a [`Read`](#read) interface. When read from, it reads
+compressed data from the underlying [`Read`](#read) and provides the uncompressed data.
 
 After reading a single member of the ZLIB data this reader will return
 Ok(0) even if there are more bytes available in the underlying reader.
@@ -629,6 +629,18 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 #### Implementations
 
+- `fn new(r: R) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_buf(r: R, buf: Vec<u8>) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_decompress_and_buf(r: R, buf: Vec<u8>, decompression: Decompress) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this decoder entirely, swapping out the input
 
@@ -646,18 +658,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the decompressor has produced.
-
-- `fn new(r: R) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_buf(r: R, buf: Vec<u8>) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_decompress_and_buf(r: R, buf: Vec<u8>, decompression: Decompress) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
 
 #### Trait Implementations
 
@@ -719,8 +719,8 @@ struct ZlibEncoder<R> {
 
 A ZLIB encoder, or compressor.
 
-This structure implements a [`Read`](../../rustix/index.md) interface. When read from, it reads
-uncompressed data from the underlying [`Read`](../../rustix/index.md) and provides the compressed data.
+This structure implements a [`Read`](#read) interface. When read from, it reads
+uncompressed data from the underlying [`Read`](#read) and provides the compressed data.
 
 # Examples
 

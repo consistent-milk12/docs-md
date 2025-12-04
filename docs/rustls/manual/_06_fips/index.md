@@ -30,7 +30,7 @@ rustls::crypto::default_fips_provider()
 
 This snippet makes use of the process-default provider,
 and that assumes all your uses of rustls use that.
-See [`CryptoProvider`](crypto/index.md) documentation for other ways to
+See [`CryptoProvider`](../../crypto/index.md) documentation for other ways to
 specify which `CryptoProvider` to use.
 
 ## 3. Validate the FIPS status of your `ClientConfig`/`ServerConfig` at run-time

@@ -2,7 +2,7 @@
 
 Core primitives for `tracing`.
 
-[`tracing`](../tracing/index.md) is a framework for instrumenting Rust programs to collect
+[`tracing`](#tracing) is a framework for instrumenting Rust programs to collect
 structured, event-based diagnostic information. This crate defines the core
 primitives of `tracing`.
 
@@ -34,7 +34,7 @@ dispatcher which other components of the tracing system rely on.
 ## Usage
 
 Application authors will typically not use this crate directly. Instead,
-they will use the [`tracing`](../tracing/index.md) crate, which provides a much more
+they will use the [`tracing`](#tracing) crate, which provides a much more
 fully-featured API. However, this crate's API will change very infrequently,
 so it may be used when dependencies must be very stable.
 
@@ -682,18 +682,6 @@ recorded in.
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
-
-- `fn lt(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn le(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn gt(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn ge(self: &Self, other: &LevelFilter) -> bool`
-
-##### `impl PartialOrd`
-
 - `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
 
 - `fn lt(self: &Self, other: &Level) -> bool`
@@ -703,6 +691,18 @@ recorded in.
 - `fn gt(self: &Self, other: &Level) -> bool`
 
 - `fn ge(self: &Self, other: &Level) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
+
+- `fn lt(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn le(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn gt(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn ge(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -841,23 +841,11 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
-
-- `fn lt(self: &Self, other: &Level) -> bool`
-
-- `fn le(self: &Self, other: &Level) -> bool`
-
-- `fn gt(self: &Self, other: &Level) -> bool`
-
-- `fn ge(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -870,6 +858,18 @@ and `LevelFilter`s interact.
 - `fn gt(self: &Self, other: &LevelFilter) -> bool`
 
 - `fn ge(self: &Self, other: &LevelFilter) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
+
+- `fn lt(self: &Self, other: &Level) -> bool`
+
+- `fn le(self: &Self, other: &Level) -> bool`
+
+- `fn gt(self: &Self, other: &Level) -> bool`
+
+- `fn ge(self: &Self, other: &Level) -> bool`
 
 ##### `impl StructuralPartialEq`
 

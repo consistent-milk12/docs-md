@@ -16,11 +16,11 @@ impl<T> OnceCell<T> {
 }
 ```
 
-Note that, like with [`RefCell`](#refcell) and [`Mutex`](../rustls/index.md), the `set` method requires
+Note that, like with [`RefCell`](#refcell) and [`Mutex`](#mutex), the `set` method requires
 only a shared reference. Because of the single assignment restriction `get`
 can return a `&T` instead of `Ref<T>` or `MutexGuard<T>`.
 
-The `sync` flavor is thread-safe (that is, implements the [`Sync`](../flate2/index.md) trait),
+The `sync` flavor is thread-safe (that is, implements the [`Sync`](#sync) trait),
 while the `unsync` one is not.
 
 

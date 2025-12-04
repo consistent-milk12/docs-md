@@ -157,7 +157,7 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 - **`Partial`**
 
   Zlib partial flush.
-  Currently treated as [`Sync`](index.md).
+  Currently treated as [`Sync`](#sync).
 
 - **`Sync`**
 
@@ -166,7 +166,7 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 
 - **`Full`**
 
-  Same as [`Sync`](index.md), but resets the compression dictionary so that further compressed
+  Same as [`Sync`](#sync), but resets the compression dictionary so that further compressed
   data does not depend on data compressed before the flush.
   
   Has no use in decompression, and is an error to supply in that case.
@@ -266,7 +266,7 @@ enum MZStatus {
 
 A list of miniz successful status codes.
 
-These are emitted as the [`Ok`](index.md) side of a [`MZResult`](index.md) in the [`StreamResult`](index.md) returned from
+These are emitted as the [`Ok`](#ok) side of a [`MZResult`](#mzresult) in the [`StreamResult`](#streamresult) returned from
 `deflate::stream::deflate()` or `inflate::stream::inflate()`.
 
 #### Variants
@@ -275,7 +275,7 @@ These are emitted as the [`Ok`](index.md) side of a [`MZResult`](index.md) in th
 
   Operation succeeded.
   
-  Some data was decompressed or compressed; see the byte counters in the [`StreamResult`](index.md) for
+  Some data was decompressed or compressed; see the byte counters in the [`StreamResult`](#streamresult) for
   details.
 
 - **`StreamEnd`**
@@ -376,7 +376,7 @@ enum MZError {
 
 A list of miniz failed status codes.
 
-These are emitted as the [`Err`](#err) side of a [`MZResult`](index.md) in the [`StreamResult`](index.md) returned from
+These are emitted as the [`Err`](#err) side of a [`MZResult`](#mzresult) in the [`StreamResult`](#streamresult) returned from
 `deflate::stream::deflate()` or `inflate::stream::inflate()`.
 
 #### Variants

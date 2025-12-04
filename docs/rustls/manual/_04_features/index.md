@@ -8,7 +8,7 @@
 
 The below list reflects the support provided with the default crate features.
 Items marked with an asterisk `*` can be extended or altered via public
-APIs ([`CryptoProvider`](crypto/index.md) for example).
+APIs ([`CryptoProvider`](../../crypto/index.md) for example).
 
 ## Current features
 

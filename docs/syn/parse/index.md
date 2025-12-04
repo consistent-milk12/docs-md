@@ -6,10 +6,10 @@
 
 Parsing interface for parsing a token stream into a syntax tree node.
 
-Parsing in Syn is built on parser functions that take in a [`ParseStream`](parse/index.md)
+Parsing in Syn is built on parser functions that take in a [`ParseStream`](#parsestream)
 and produce a [`Result<T>`](#result) where `T` is some syntax tree node. Underlying
 these parser functions is a lower level mechanism built around the
-[`Cursor`](buffer/index.md) type. `Cursor` is a cheaply copyable cursor over a range of
+[`Cursor`](../buffer/index.md) type. `Cursor` is a cheaply copyable cursor over a range of
 tokens in a token stream.
 
 
@@ -17,7 +17,7 @@ tokens in a token stream.
 
 Here is a snippet of parsing code to get a feel for the style of the
 library. We define data structures for a subset of Rust syntax including
-enums (not shown) and structs, then provide implementations of the [`Parse`](parse/index.md)
+enums (not shown) and structs, then provide implementations of the [`Parse`](#parse)
 trait to parse these syntax tree data structures from a token stream.
 
 Once `Parse` impls have been defined, they can be called conveniently from a
@@ -99,7 +99,7 @@ pub fn my_macro(tokens: TokenStream) -> TokenStream {
 The `syn::parse`, `syn::parse2`, and `syn::parse_str` functions serve
 as an entry point for parsing syntax tree nodes that can be parsed in an
 obvious default way. These functions can return any syntax tree node that
-implements the [`Parse`](parse/index.md) trait, which includes most types in Syn.
+implements the [`Parse`](#parse) trait, which includes most types in Syn.
 
 
 
@@ -119,8 +119,8 @@ The [`parse_quote!`](#parse-quote) macro also uses this approach.
 # The `Parser` trait
 
 Some types can be parsed in several ways depending on context. For example
-an [`Attribute`](index.md) can be either "outer" like `#[...]` or "inner" like
-`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](punctuated/index.md)
+an [`Attribute`](../index.md) can be either "outer" like `#[...]` or "inner" like
+`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
 
@@ -146,7 +146,7 @@ let path: Punctuated<PathSegment, Token![::]> = syn::parse(tokens)?;
 
 In these cases the types provide a choice of parser functions rather than a
 single `Parse` implementation, and those parser functions can be invoked
-through the [`Parser`](parse/index.md) trait.
+through the [`Parser`](#parser) trait.
 
 
 ```
@@ -689,7 +689,7 @@ struct ParseBuffer<'a> {
 
 Cursor position within a buffered token stream.
 
-This type is more commonly used through the type alias [`ParseStream`](parse/index.md) which
+This type is more commonly used through the type alias [`ParseStream`](#parsestream) which
 is an alias for `&ParseBuffer`.
 
 `ParseStream` is the input type for all parser functions in Syn. They have
@@ -703,7 +703,7 @@ you will need to go through one of the public parsing entry points.
 
 - The [`parse_macro_input!`](#parse-macro-input) macro if parsing input of a procedural macro;
 - One of [the `syn::parse*` functions][syn-parse]; or
-- A method of the [`Parser`](parse/index.md) trait.
+- A method of the [`Parser`](#parser) trait.
 
 [syn-parse]: self#the-synparse-functions
 
@@ -1094,7 +1094,7 @@ type ParseStream<'a> = &'a ParseBuffer<'a>;
 
 Input to a Syn parser function.
 
-See the methods of this type under the documentation of [`ParseBuffer`](parse/index.md). For
+See the methods of this type under the documentation of [`ParseBuffer`](#parsebuffer). For
 an overview of parsing in Syn, refer to the [module documentation].
 
 [module documentation]: self

@@ -1,8 +1,8 @@
 # Crate `tracing_attributes`
 
-A procedural macro attribute for instrumenting functions with [`tracing`](../tracing/index.md).
+A procedural macro attribute for instrumenting functions with [`tracing`](#tracing).
 
-[`tracing`](../tracing/index.md) is a framework for instrumenting Rust programs to collect
+[`tracing`](#tracing) is a framework for instrumenting Rust programs to collect
 structured, event-based diagnostic information. This crate provides the
 [`#[instrument](#instrument)
 `][instrument](#instrument)

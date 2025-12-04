@@ -5,7 +5,7 @@ from files with DWARF debug information. Given an address, it can return the fil
 line number, and function name associated with that address, as well as the inline call
 stack leading to that address.
 
-At the lowest level, the library uses a [`Context`](index.md) to cache parsed information so that
+At the lowest level, the library uses a [`Context`](#context) to cache parsed information so that
 multiple lookups are efficient. To create a `Context`, you first need to open and parse the
 file using an object file parser such as [`object`](https://github.com/gimli-rs/object),
 create a `gimli::Dwarf`, and finally call `Context::from_dwarf`.
@@ -417,15 +417,6 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
-  Construct a new `Context` from DWARF sections.
-
-- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>`
-  Construct a new `Context` from an existing [`gimli::Dwarf`] object.
-
-- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>`
-  Construct a new `Context` from an existing [`gimli::Dwarf`] object.
-
 - `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>`
   Find the DWARF unit corresponding to the given virtual memory address.
 
@@ -440,6 +431,15 @@ when performing lookups for many addresses in the same executable.
 
 - `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>`
   Preload units for `probe`.
+
+- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
+  Construct a new `Context` from DWARF sections.
+
+- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>`
+  Construct a new `Context` from an existing [`gimli::Dwarf`] object.
+
+- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>`
+  Construct a new `Context` from an existing [`gimli::Dwarf`] object.
 
 #### Trait Implementations
 

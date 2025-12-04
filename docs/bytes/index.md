@@ -3,8 +3,8 @@
 Provides abstractions for working with bytes.
 
 The `bytes` crate provides an efficient byte buffer structure
-([`Bytes`](index.md)) and traits for working with buffer
-implementations ([`Buf`](index.md), [`BufMut`](index.md)).
+([`Bytes`](#bytes)) and traits for working with buffer
+implementations ([`Buf`](#buf), [`BufMut`](#bufmut)).
 
 # `Bytes`
 
@@ -211,22 +211,6 @@ v           v           v               v
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(slice: Box<[u8]>) -> Bytes`
-
-##### `impl From`
-
-- `fn from(s: String) -> Bytes`
-
-##### `impl From`
-
-- `fn from(slice: &'static str) -> Bytes`
-
-##### `impl From`
-
-- `fn from(src: BytesMut) -> Bytes`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -234,11 +218,27 @@ v           v           v               v
 
 ##### `impl From`
 
+- `fn from(slice: &'static str) -> Bytes`
+
+##### `impl From`
+
 - `fn from(slice: &'static [u8]) -> Bytes`
 
 ##### `impl From`
 
+- `fn from(slice: Box<[u8]>) -> Bytes`
+
+##### `impl From`
+
 - `fn from(vec: Vec<u8>) -> Bytes`
+
+##### `impl From`
+
+- `fn from(src: BytesMut) -> Bytes`
+
+##### `impl From`
+
+- `fn from(s: String) -> Bytes`
 
 ##### `impl FromIterator`
 
@@ -319,7 +319,15 @@ v           v           v               v
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &[u8]) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &Bytes) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl PartialEq`
 
@@ -331,14 +339,6 @@ v           v           v               v
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &[u8]) -> bool`
-
-##### `impl PartialEq`
-
 - `fn eq(self: &Self, other: &BytesMut) -> bool`
 
 ##### `impl PartialOrd`
@@ -347,23 +347,23 @@ v           v           v               v
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
 
-##### `impl PartialOrd<'a, T: ?Sized>`
+##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &Vec<u8>) -> Option<cmp::Ordering>`
 
-##### `impl PartialOrd`
+##### `impl PartialOrd<'a, T: ?Sized>`
 
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
 
 ##### `impl Receiver<P, T>`
 
@@ -520,31 +520,31 @@ assert_eq!(&b[..], b"hello");
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from(src: &'a [u8]) -> BytesMut`
+
 ##### `impl From`
 
 - `fn from(bytes: Bytes) -> Self`
   Convert self into `BytesMut`.
+
+##### `impl From<'a>`
+
+- `fn from(src: &'a str) -> BytesMut`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
 
-##### `impl From<'a>`
+##### `impl FromIterator`
 
-- `fn from(src: &'a str) -> BytesMut`
-
-##### `impl From<'a>`
-
-- `fn from(src: &'a [u8]) -> BytesMut`
+- `fn from_iter<T: IntoIterator<Item = u8>>(into_iter: T) -> Self`
 
 ##### `impl FromIterator<'a>`
 
 - `fn from_iter<T: IntoIterator<Item = &'a u8>>(into_iter: T) -> Self`
-
-##### `impl FromIterator`
-
-- `fn from_iter<T: IntoIterator<Item = u8>>(into_iter: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -571,13 +571,13 @@ assert_eq!(&b[..], b"hello");
 
 - `fn as_ref(self: &Self) -> &[u8]`
 
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
 ##### `impl Borrow`
 
 - `fn borrow(self: &Self) -> &[u8]`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
 
 ##### `impl BorrowMut<T>`
 
@@ -651,19 +651,7 @@ assert_eq!(&b[..], b"hello");
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Vec<u8>) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &[u8]) -> bool`
-
-##### `impl PartialEq<'a, T: ?Sized>`
-
-- `fn eq(self: &Self, other: &&'a T) -> bool`
+- `fn eq(self: &Self, other: &Bytes) -> bool`
 
 ##### `impl PartialEq`
 
@@ -671,19 +659,27 @@ assert_eq!(&b[..], b"hello");
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Bytes) -> bool`
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &String) -> bool`
 
+##### `impl PartialEq<'a, T: ?Sized>`
+
+- `fn eq(self: &Self, other: &&'a T) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &[u8]) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Vec<u8>) -> bool`
+
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Vec<u8>) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &BytesMut) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
@@ -691,15 +687,19 @@ assert_eq!(&b[..], b"hello");
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &BytesMut) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &Vec<u8>) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd<'a, T: ?Sized>`
 
 - `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
 
 ##### `impl Receiver<P, T>`
 
@@ -766,10 +766,10 @@ struct TryGetError {
 }
 ```
 
-Error type for the `try_get_` methods of [`Buf`](index.md).
+Error type for the `try_get_` methods of [`Buf`](#buf).
 Indicates that there were not enough remaining
 bytes in the buffer while attempting
-to get a value from a [`Buf`](index.md) with one
+to get a value from a [`Buf`](#buf) with one
 of the `try_get_` methods.
 
 #### Fields

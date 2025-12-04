@@ -85,16 +85,16 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 ##### `impl From<T>`
 
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
+##### `impl From<T>`
+
 - `fn from(t: never) -> T`
 
 ##### `impl From<T>`
 
 - `fn from(value: T) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 

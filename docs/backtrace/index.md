@@ -507,14 +507,14 @@ enabled, and the `std` feature is enabled by default.
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
 
+##### `impl Into`
+
+- `fn into(self: Self) -> Vec<BacktraceFrame>`
+
 ##### `impl Into<T, U>`
 
 - `fn into(self: Self) -> U`
   Calls `U::from(self)`.
-
-##### `impl Into`
-
-- `fn into(self: Self) -> Vec<BacktraceFrame>`
 
 ##### `impl Any<T>`
 
@@ -601,14 +601,14 @@ enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(frame: crate::Frame) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(frame: crate::Frame) -> Self`
 
 ##### `impl Into<T, U>`
 

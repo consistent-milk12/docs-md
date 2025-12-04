@@ -17,8 +17,8 @@ walkdir = "2"
 
 # From the top
 
-The [`WalkDir`](index.md) type builds iterators. The [`DirEntry`](index.md) type describes values
-yielded by the iterator. Finally, the [`Error`](index.md) type is a small wrapper around
+The [`WalkDir`](#walkdir) type builds iterators. The [`DirEntry`](#direntry) type describes values
+yielded by the iterator. Finally, the [`Error`](#error) type is a small wrapper around
 `std::io::Error` with additional information, such as if a loop was detected
 while following symbolic links (not enabled by default).
 
@@ -112,7 +112,7 @@ A directory entry.
 This is the type of value that is yielded from the iterators defined in
 this crate.
 
-On Unix systems, this type implements the [`DirEntryExt`](index.md) trait, which
+On Unix systems, this type implements the [`DirEntryExt`](#direntryext) trait, which
 provides efficient access to the inode number of the directory entry.
 
 # Differences with `std::fs::DirEntry`
@@ -489,7 +489,7 @@ struct IntoIter {
 
 An iterator for recursively descending into a directory.
 
-A value with this type must be constructed with the [`WalkDir`](index.md) type, which
+A value with this type must be constructed with the [`WalkDir`](#walkdir) type, which
 uses a builder pattern to set options such as min/max depth, max open file
 descriptors and whether the iterator should follow symbolic links. After
 constructing a `WalkDir`, call [`.into_iter()`](#into-iter) at the end of the chain.

@@ -12,7 +12,7 @@ expands to the token type of the given token.
 
 # Example
 
-The [`ItemStatic`](index.md) syntax tree node is defined like this.
+The [`ItemStatic`](../index.md) syntax tree node is defined like this.
 
 ```
 # use syn::{Attribute, Expr, Ident, Token, Type, Visibility};
@@ -81,7 +81,7 @@ Every keyword and punctuation token supports the following operations.
 
 - [Printing] — `quote!( ... #the_token ... )`
 
-- Construction from a [`Span`](../../aho_corasick/index.md) — `let the_token = Token![...](sp)`
+- Construction from a [`Span`](#span) — `let the_token = Token![...](sp)`
 
 - Field access to its span — `let sp = the_token.span`
 

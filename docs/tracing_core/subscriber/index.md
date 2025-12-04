@@ -14,7 +14,7 @@ Collectors collect and record trace data.
 struct Interest();
 ```
 
-Indicates a [`Subscriber`](subscriber/index.md)'s interest in a particular callsite.
+Indicates a [`Subscriber`](#subscriber)'s interest in a particular callsite.
 
 `Subscriber`s return an `Interest` from their [`register_callsite`](#register-callsite) methods
 in order to determine whether that span should be enabled or disabled.
@@ -103,9 +103,9 @@ in order to determine whether that span should be enabled or disabled.
 struct NoSubscriber();
 ```
 
-A no-op [`Subscriber`](subscriber/index.md).
+A no-op [`Subscriber`](#subscriber).
 
-[`NoSubscriber`](subscriber/index.md) implements the [`Subscriber`](subscriber/index.md) trait by never being enabled,
+[`NoSubscriber`](#nosubscriber) implements the [`Subscriber`](#subscriber) trait by never being enabled,
 never being interested in any callsite, and dropping all spans and events.
 
 #### Implementations
@@ -241,9 +241,9 @@ to override these default implementations.
 The following methods are likely of interest:
 
 - [`register_callsite`](#register-callsite) is called once for each callsite from which a span
-  event may originate, and returns an [`Interest`](subscriber/index.md) value describing whether or
+  event may originate, and returns an [`Interest`](#interest) value describing whether or
   not the subscriber wishes to see events or spans from that callsite. By
-  default, it calls [`enabled`](../../tracing/index.md), and returns `Interest::always()` if
+  default, it calls [`enabled`](#enabled), and returns `Interest::always()` if
   `enabled` returns true, or `Interest::never()` if enabled returns false.
   However, if the subscriber's interest can change dynamically at runtime,
   it may want to override this function to return `Interest::sometimes()`.
@@ -254,7 +254,7 @@ The following methods are likely of interest:
   See also the [documentation on the callsite registry][cs-reg] for details
   on [`register_callsite`](#register-callsite).
 
-- [`event_enabled`](../../tracing/index.md) is called once before every call to the [`event`](event/index.md)
+- [`event_enabled`](#event-enabled) is called once before every call to the [`event`](../event/index.md)
   method. This can be used to implement filtering on events once their field
   values are known, but before any processing is done in the `event` method.
 - [`clone_span`](#clone-span) is called every time a span ID is cloned, and [`try_close`](#try-close)
@@ -279,7 +279,7 @@ The following methods are likely of interest:
 
 - `fn on_register_dispatch(self: &Self, subscriber: &Dispatch)`
 
-  Invoked when this subscriber becomes a [`Dispatch`](dispatcher/index.md).
+  Invoked when this subscriber becomes a [`Dispatch`](../dispatcher/index.md).
 
 - `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> Interest`
 
@@ -307,11 +307,11 @@ The following methods are likely of interest:
 
 - `fn event_enabled(self: &Self, event: &Event<'_>) -> bool`
 
-  Determine if an [`Event`](event/index.md) should be recorded.
+  Determine if an [`Event`](../event/index.md) should be recorded.
 
 - `fn event(self: &Self, event: &Event<'_>)`
 
-  Records that an [`Event`](event/index.md) has occurred.
+  Records that an [`Event`](../event/index.md) has occurred.
 
 - `fn enter(self: &Self, span: &span::Id)`
 

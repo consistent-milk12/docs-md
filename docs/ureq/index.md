@@ -49,7 +49,7 @@
  # Ok::<(), ureq::Error>(())
  ```
 
- For more involved tasks, you'll want to create an [`Agent`](index.md). An Agent
+ For more involved tasks, you'll want to create an [`Agent`](#agent). An Agent
  holds a connection pool for reuse, and a cookie store if you use the
  **cookies** feature. An Agent can be cheaply cloned due to internal
  [`Arc`](#arc) and all clones of an Agent share state among each other. Creating
@@ -114,7 +114,7 @@
 
  ureq returns errors via `Result<T, ureq::Error>`. That includes I/O errors,
  protocol errors. By default, also HTTP status code errors (when the
- server responded 4xx or 5xx) results in [`Error`](index.md).
+ server responded 4xx or 5xx) results in [`Error`](#error).
 
  This behavior can be turned off via [`http_status_as_error()`](#http-status-as-error)
 
@@ -165,7 +165,7 @@
 
  These features are unstable and might change in a minor version.
 
- * **rustls-no-provider** Enables rustls, but does not enable any [`CryptoProvider`](../rustls/crypto/index.md) such as `ring`.
+ * **rustls-no-provider** Enables rustls, but does not enable any [`CryptoProvider`](#cryptoprovider) such as `ring`.
    Providers other than the default (currently `ring`) are never picked up from feature flags alone.
    It must be configured on the agent.
 
@@ -193,7 +193,7 @@
  ### rustls without ring
 
  ureq never changes TLS backend from feature flags alone. It is possible to compile ureq
- without ring, but it requires specific feature flags and configuring the [`Agent`](index.md).
+ without ring, but it requires specific feature flags and configuring the [`Agent`](#agent).
 
  Since rustls is not semver 1.x, this requires non-semver-guaranteed API. I.e. ureq might
  change this behavior without a major version bump.
@@ -291,7 +291,7 @@
  `Transfer-Encoding: chunked` header. ureq supports both and will use the
  appropriate method depending on which body is being sent.
 
- ureq has a [`AsSendBody`](index.md) trait that is implemented for many well known types
+ ureq has a [`AsSendBody`](#assendbody) trait that is implemented for many well known types
  of data that we might want to send. The request body can thus be anything
  from a `String` to a `File`, see below.
 
@@ -332,7 +332,7 @@
 
  ## Proxying a response body
 
- As a special case, when ureq sends a [`Body`](index.md) from a previous http call, the
+ As a special case, when ureq sends a [`Body`](#body) from a previous http call, the
  use of `Content-Length` or `chunked` depends on situation. For input such as
  gzip decoding (**gzip** feature) or charset transformation (**charset** feature),
  the output body might not match the input, which means ureq is forced to use
@@ -390,12 +390,12 @@
  the former is always available while the latter must be enabled using the feature
  **socks-proxy**.
 
- Proxies settings are configured on an [`Agent`](index.md). All request sent through the agent will be proxied.
+ Proxies settings are configured on an [`Agent`](#agent). All request sent through the agent will be proxied.
 
  ## Environment Variables
 
  ureq automatically reads proxy configuration from environment variables when creating
- a default [`Agent`](index.md). Proxy variables are checked in order: `ALL_PROXY`, `HTTPS_PROXY`,
+ a default [`Agent`](#agent). Proxy variables are checked in order: `ALL_PROXY`, `HTTPS_PROXY`,
  then `HTTP_PROXY` (with lowercase variants).
 
  `NO_PROXY` specifies hosts that bypass the proxy, supporting exact hosts, wildcard
@@ -1236,6 +1236,12 @@ make an API for sending requests.
 - `fn extensions_mut(self: &mut Self) -> Option<&mut Extensions>`
   Get a mutable reference to the extensions for this request builder.
 
+- `fn call(self: Self) -> Result<Response<Body>, Error>`
+  Sends the request and blocks the caller until we receive a response.
+
+- `fn force_send_body(self: Self) -> RequestBuilder<WithBody>`
+  Force sending a body.
+
 - `fn content_type<V>(self: Self, content_type: V) -> Self`
   Set the content-type header.
 
@@ -1247,12 +1253,6 @@ make an API for sending requests.
 
 - `fn send_form<I, K, V>(self: Self, iter: I) -> Result<Response<Body>, Error>`
   Send form encoded data.
-
-- `fn call(self: Self) -> Result<Response<Body>, Error>`
-  Sends the request and blocks the caller until we receive a response.
-
-- `fn force_send_body(self: Self) -> RequestBuilder<WithBody>`
-  Force sending a body.
 
 #### Trait Implementations
 
@@ -1353,13 +1353,13 @@ It follows that:
 
 * An Agent is borrowed for the duration of:
     1. Sending the request header (`http::Request`)
-    2. Sending the request body ([`SendBody`](index.md))
+    2. Sending the request body ([`SendBody`](#sendbody))
     3. Receiving the response header (`http::Response`)
-* The [`Body`](index.md) of the response is not bound to the lifetime of the Agent.
+* The [`Body`](#body) of the response is not bound to the lifetime of the Agent.
 
-A response [`Body`](index.md) can be streamed (for instance via `Body::into_reader()`). The [`Body`](index.md)
+A response [`Body`](#body) can be streamed (for instance via `Body::into_reader()`). The [`Body`](#body)
 implements [`Send`](#send), which means it's possible to read the response body on another thread than
-the one that run the request. Behind the scenes, the [`Body`](index.md) retains the connection to the remote
+the one that run the request. Behind the scenes, the [`Body`](#body) retains the connection to the remote
 server and it is returned to the agent's pool, once the Body instance (or reader) is dropped.
 
 There is an asymmetry in that sending a request body will borrow the Agent instance, while receiving
@@ -1494,13 +1494,13 @@ struct SendBody<'a> {
 
 Request body for sending data via POST, PUT and PATCH.
 
-Typically not interacted with directly since the trait [`AsSendBody`](index.md) is implemented
+Typically not interacted with directly since the trait [`AsSendBody`](#assendbody) is implemented
 for the majority of the types of data a user might want to send to a remote server.
 That means if you want to send things like `String`, `&str` or `[u8](#u8)
 `, they can be
-used directly. See documentation for [`AsSendBody`](index.md).
+used directly. See documentation for [`AsSendBody`](#assendbody).
 
-The exception is when using [`Read`](../rustix/index.md) trait bodies, in which case we wrap the request
+The exception is when using [`Read`](#read) trait bodies, in which case we wrap the request
 body directly. See below `SendBody::from_reader`.
 
 
@@ -1520,14 +1520,14 @@ body directly. See below `SendBody::from_reader`.
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1770,7 +1770,7 @@ Errors from ureq.
   
   This is a fallback error when there is no other explanation as to
   why a connector chain didn't produce a connection. The idea is that the connector
-  chain would return some other [`Error`](index.md) rather than rely om this value.
+  chain would return some other [`Error`](#error) rather than rely om this value.
   
   Typically bespoke connector chains should, as far as possible, map their underlying
   errors to `Error::Io` and use the `io::ErrorKind` to provide a reason.
@@ -1846,7 +1846,7 @@ Errors from ureq.
   map to any other error. For connector chains we recommend:
   
   1. Map to `Error::Io` as far as possible.
-  2. Map to other [`Error`](index.md) where reasonable.
+  2. Map to other [`Error`](#error) where reasonable.
   3. Fall back on `Error::Other`.
   4. As a last resort `Error::ConnectionFailed`.
   
@@ -1861,24 +1861,24 @@ Errors from ureq.
 
 ##### `impl From`
 
-- `fn from(value: http::Error) -> Self`
+- `fn from(value: ureq_proto::Error) -> Self`
 
 ##### `impl From`
 
 - `fn from(e: io::Error) -> Self`
 
-##### `impl From`
-
-- `fn from(value: rustls::Error) -> Self`
-
-##### `impl From`
-
-- `fn from(value: ureq_proto::Error) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: http::Error) -> Self`
+
+##### `impl From`
+
+- `fn from(value: rustls::Error) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2084,7 +2084,7 @@ where
 
 Make a GET request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 
 ### `post`
 
@@ -2097,7 +2097,7 @@ where
 
 Make a POST request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 
 ### `put`
 
@@ -2110,7 +2110,7 @@ where
 
 Make a PUT request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 
 ### `delete`
 
@@ -2123,7 +2123,7 @@ where
 
 Make a DELETE request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 
 ### `head`
 
@@ -2136,7 +2136,7 @@ where
 
 Make a HEAD request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 
 ### `options`
 
@@ -2149,7 +2149,7 @@ where
 
 Make an OPTIONS request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 
 ### `connect`
 
@@ -2162,7 +2162,7 @@ where
 
 Make a CONNECT request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 
 ### `patch`
 
@@ -2175,7 +2175,7 @@ where
 
 Make a PATCH request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 
 ### `trace`
 
@@ -2188,5 +2188,5 @@ where
 
 Make a TRACE request.
 
-Run on a use-once [`Agent`](index.md).
+Run on a use-once [`Agent`](#agent).
 

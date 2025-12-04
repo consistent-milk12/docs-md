@@ -18,7 +18,7 @@ There is no DeflateState as the needed state is contained in the compressor stru
 fn deflate(compressor: &mut crate::deflate::core::CompressorOxide, input: &[u8], output: &mut [u8], flush: crate::MZFlush) -> crate::StreamResult
 ```
 
-Try to compress from input to output with the given [`CompressorOxide`](deflate/core/index.md).
+Try to compress from input to output with the given [`CompressorOxide`](../core/index.md).
 
 # Errors
 

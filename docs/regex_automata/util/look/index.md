@@ -8,9 +8,9 @@ Types and routines for working with look-around assertions.
 
 This module principally defines two types:
 
-* [`Look`](index.md) enumerates all of the assertions supported by this crate.
-* [`LookSet`](util/look/index.md) provides a way to efficiently store a set of [`Look`](index.md) values.
-* [`LookMatcher`](util/look/index.md) provides routines for checking whether a `Look` or a
+* [`Look`](#look) enumerates all of the assertions supported by this crate.
+* [`LookSet`](#lookset) provides a way to efficiently store a set of [`Look`](#look) values.
+* [`LookMatcher`](#lookmatcher) provides routines for checking whether a `Look` or a
 `LookSet` matches at a particular position in a haystack.
 
 ## Structs
@@ -207,7 +207,7 @@ struct LookSetIter {
 }
 ```
 
-An iterator over all look-around assertions in a [`LookSet`](util/look/index.md).
+An iterator over all look-around assertions in a [`LookSet`](#lookset).
 
 This iterator is created by `LookSet::iter`.
 

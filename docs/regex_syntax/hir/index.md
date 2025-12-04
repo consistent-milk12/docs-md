@@ -6,7 +6,7 @@
 
 Defines a high-level intermediate (HIR) representation for regular expressions.
 
-The HIR is represented by the [`Hir`](hir/index.md) type, and it principally constructed via
+The HIR is represented by the [`Hir`](#hir) type, and it principally constructed via
 [translation](translate) from an [`Ast`](crate::ast::Ast). Alternatively, users
 may use the smart constructors defined on `Hir` to build their own by hand. The
 smart constructors simultaneously simplify and "optimize" the HIR, and are also
@@ -196,7 +196,7 @@ struct Hir {
 
 A high-level intermediate representation (HIR) for a regular expression.
 
-An HIR value is a combination of a [`HirKind`](hir/index.md) and a set of [`Properties`](hir/index.md).
+An HIR value is a combination of a [`HirKind`](#hirkind) and a set of [`Properties`](#properties).
 An `HirKind` indicates what kind of regular expression it is (a literal,
 a repetition, a look-around assertion, etc.), where as a `Properties`
 describes various facts about the regular expression. For example, whether
@@ -259,6 +259,15 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 #### Implementations
 
+- `fn kind(self: &Self) -> &HirKind`
+  Returns a reference to the underlying HIR kind.
+
+- `fn into_kind(self: Self) -> HirKind`
+  Consumes ownership of this HIR expression and returns its underlying
+
+- `fn properties(self: &Self) -> &Properties`
+  Returns the properties computed for this `Hir`.
+
 - `fn empty() -> Hir`
   Returns an empty HIR expression.
 
@@ -288,15 +297,6 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 - `fn dot(dot: Dot) -> Hir`
   Returns an HIR expression for `.`.
-
-- `fn kind(self: &Self) -> &HirKind`
-  Returns a reference to the underlying HIR kind.
-
-- `fn into_kind(self: Self) -> HirKind`
-  Consumes ownership of this HIR expression and returns its underlying
-
-- `fn properties(self: &Self) -> &Properties`
-  Returns the properties computed for this `Hir`.
 
 #### Trait Implementations
 
@@ -1398,7 +1398,7 @@ struct LookSet {
 A set of look-around assertions.
 
 This is useful for efficiently tracking look-around assertions. For
-example, an [`Hir`](hir/index.md) provides properties that return `LookSet`s.
+example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 
 #### Fields
 
@@ -1575,7 +1575,7 @@ struct LookSetIter {
 }
 ```
 
-An iterator over all look-around assertions in a [`LookSet`](hir/index.md).
+An iterator over all look-around assertions in a [`LookSet`](#lookset).
 
 This iterator is created by `LookSet::iter`.
 
@@ -1796,7 +1796,7 @@ enum HirKind {
 }
 ```
 
-The underlying kind of an arbitrary [`Hir`](hir/index.md) expression.
+The underlying kind of an arbitrary [`Hir`](#hir) expression.
 
 An `HirKind` is principally useful for doing case analysis on the type
 of a regular expression. If you're looking to build new `Hir` values,

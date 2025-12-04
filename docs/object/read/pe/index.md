@@ -7,18 +7,18 @@
 Support for reading PE files.
 
 Traits are used to abstract over the difference between PE32 and PE32+.
-The primary trait for this is [`ImageNtHeaders`](index.md).
+The primary trait for this is [`ImageNtHeaders`](../../index.md).
 
 ## High level API
 
-[`PeFile`](index.md) implements the [`Object`](crate::read::Object) trait for
-PE files. [`PeFile`](index.md) is parameterised by [`ImageNtHeaders`](index.md) to allow
+[`PeFile`](../../index.md) implements the [`Object`](crate::read::Object) trait for
+PE files. [`PeFile`](../../index.md) is parameterised by [`ImageNtHeaders`](../../index.md) to allow
 reading both PE32 and PE32+. There are type aliases for these parameters
-([`PeFile32`](index.md) and [`PeFile64`](index.md)).
+([`PeFile32`](../../index.md) and [`PeFile64`](../../index.md)).
 
 ## Low level API
 
-The [`ImageNtHeaders`](index.md) trait can be directly used to parse both
+The [`ImageNtHeaders`](../../index.md) trait can be directly used to parse both
 `pe::ImageNtHeaders32` and `pe::ImageNtHeaders64`.
 
 ### Example for low level API
@@ -62,6 +62,18 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
+- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
+  Return the file offset of the given virtual address, and the size up
+
+- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
+  Return the data starting at the given virtual address, up to the end of the
+
+- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
+  Return the data of the section that contains the given virtual address in a PE file.
+
+- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>`
+  Return the section that contains a given virtual address.
+
 - `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>`
   Parse the section table.
 
@@ -85,18 +97,6 @@ Returned by `CoffHeader::sections` and
 
 - `fn max_section_file_offset(self: &Self) -> u64`
   Compute the maximum file offset used by sections.
-
-- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
-  Return the file offset of the given virtual address, and the size up
-
-- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
-  Return the data starting at the given virtual address, up to the end of the
-
-- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
-  Return the data of the section that contains the given virtual address in a PE file.
-
-- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>`
-  Return the section that contains a given virtual address.
 
 #### Trait Implementations
 

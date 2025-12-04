@@ -6,7 +6,7 @@
 
 Word wrapping algorithms.
 
-After a text has been broken into words (or [`Fragment`](core/index.md)s), one
+After a text has been broken into words (or [`Fragment`](../core/index.md)s), one
 now has to decide how to break the fragments into lines. The
 simplest algorithm for this is implemented by
 [`wrap_first_fit()`](#wrap-first-fit): it uses no look-ahead and simply adds
@@ -59,7 +59,7 @@ an entire paragraph at a time in order to find optimal line breaks
   
   Use this if you want to implement your own wrapping algorithm.
   The function can freely decide how to turn a slice of
-  [`Word`](core/index.md)s into lines.
+  [`Word`](../core/index.md)s into lines.
   
   # Example
   

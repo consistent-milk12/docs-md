@@ -6,7 +6,7 @@
 
 Breadcrumb navigation generation for nested module pages.
 
-This module provides [`BreadcrumbGenerator`](generator/breadcrumbs/index.md) which creates navigation
+This module provides [`BreadcrumbGenerator`](#breadcrumbgenerator) which creates navigation
 links showing the path from crate root to the current module.
 
 ## Structs
