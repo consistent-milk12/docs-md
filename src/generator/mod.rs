@@ -37,20 +37,23 @@
 //! generator.generate()?;
 //! ```
 
-mod breadcrumbs;
+pub mod breadcrumbs;
 mod capture;
 mod context;
 mod doc_links;
 mod flat;
 mod impls;
 mod items;
-mod module;
+pub mod module;
 mod nested;
 
 pub use breadcrumbs::BreadcrumbGenerator;
 pub use capture::MarkdownCapture;
 pub use context::GeneratorContext;
-pub use doc_links::DocLinkProcessor;
+pub use doc_links::{
+    convert_html_links, convert_path_reference_links, strip_duplicate_title, DocLinkProcessor,
+};
+pub use module::ModuleRenderer;
 
 use crate::Args;
 use crate::CliOutputFormat;
@@ -192,6 +195,10 @@ impl<'a> Generator<'a> {
             path: None,
             crate_name: None,
             crate_version: None,
+            dir: None,
+            mdbook: false,
+            search_index: false,
+            primary_crate: None,
             output: std::path::PathBuf::new(),
             format,
             include_private,

@@ -5,7 +5,7 @@
 //! organized by type.
 
 use crate::generator::context::GeneratorContext;
-use crate::generator::doc_links::DocLinkProcessor;
+use crate::generator::doc_links::{strip_duplicate_title, DocLinkProcessor};
 use crate::generator::items::ItemRenderer;
 use rustdoc_types::{Id, Item, ItemEnum};
 use std::fmt::Write;
@@ -48,8 +48,14 @@ impl<'a> ModuleRenderer<'a> {
     ///
     /// Uses [`DocLinkProcessor`] to transform `` [`Type`] `` style links
     /// in doc comments into proper markdown links using the item's `links` map.
+    /// Also strips duplicate titles that match the item name.
     fn process_docs(&self, item: &Item) -> Option<String> {
         let docs = item.docs.as_ref()?;
+        let name = item.name.as_deref().unwrap_or("");
+
+        // Strip duplicate title if docs start with "# name"
+        let docs = strip_duplicate_title(docs, name);
+
         let processor = DocLinkProcessor::new(
             self.ctx.krate,
             &self.ctx.link_registry,

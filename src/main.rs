@@ -25,6 +25,7 @@ use miette::{IntoDiagnostic, Result};
 
 use Internals::Args;
 use Internals::generator::Generator;
+use Internals::multi_crate::{MultiCrateGenerator, MultiCrateParser};
 use Internals::parser::Parser as InternalParser;
 
 /// Entry point for the docs-md CLI tool.
@@ -49,7 +50,35 @@ fn main() -> Result<()> {
     // Parse CLI arguments (clap handles validation and help text)
     let args = Args::parse();
 
-    // Load the rustdoc JSON from the appropriate source.
+    // Handle multi-crate mode (--dir) separately from single-crate modes
+    if let Some(dir) = &args.dir {
+        // Multi-crate mode: scan directory for JSON files
+        eprintln!(
+            "Scanning directory for rustdoc JSON files: {}",
+            dir.display()
+        );
+
+        let crates = MultiCrateParser::parse_directory(dir)?;
+        eprintln!(
+            "Found {} crates: {}",
+            crates.len(),
+            crates.names().join(", ")
+        );
+
+        // Generate documentation for all crates
+        let generator = MultiCrateGenerator::new(&crates, &args);
+        generator.generate()?;
+
+        // Success message
+        println!(
+            "Multi-crate documentation generated successfully in '{}'",
+            args.output.display()
+        );
+
+        return Ok(());
+    }
+
+    // Single-crate mode: load from file or fetch from docs.rs
     // The `krate` variable holds the entire crate's documentation structure,
     // including all modules, items, and their relationships.
     let krate = if let Some(path) = &args.path {
@@ -63,8 +92,8 @@ fn main() -> Result<()> {
         let json_content = fetch_from_docs_rs(crate_name, args.crate_version.as_deref())?;
         InternalParser::parse_json_string(&json_content)?
     } else {
-        // This branch should never execute - clap ensures one of the two is provided
-        unreachable!("clap should ensure either path or crate_name is provided");
+        // This branch should never execute - clap ensures one of the three is provided
+        unreachable!("clap should ensure either path, crate_name, or dir is provided");
     };
 
     // Generate markdown files from the parsed crate documentation.

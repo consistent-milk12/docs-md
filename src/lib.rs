@@ -14,11 +14,16 @@ use clap::{Parser, ValueEnum};
 pub mod error;
 pub mod generator;
 pub mod linker;
+pub mod multi_crate;
 pub mod parser;
 pub mod types;
 
 pub use crate::generator::{Generator, MarkdownCapture};
 pub use crate::linker::LinkRegistry;
+pub use crate::multi_crate::{
+    CrateCollection, MultiCrateContext, MultiCrateGenerator, MultiCrateParser, SearchIndex,
+    SearchIndexGenerator, UnifiedLinkRegistry,
+};
 
 /// Output format for the generated markdown documentation.
 ///
@@ -58,12 +63,12 @@ pub struct Args {
     /// Generate this file with: `cargo doc --output-format json`
     /// The JSON file will be in `target/doc/{crate_name}.json`
     ///
-    /// Mutually exclusive with `--crate-name`.
+    /// Mutually exclusive with `--crate-name` and `--dir`.
     #[arg(
         short,
         long,
-        required_unless_present = "crate_name",
-        conflicts_with = "crate_name"
+        required_unless_present_any = ["crate_name", "dir"],
+        conflicts_with_all = ["crate_name", "dir"]
     )]
     pub path: Option<PathBuf>,
 
@@ -72,9 +77,57 @@ pub struct Args {
     /// **Note**: This feature is currently non-functional because docs.rs
     /// doesn't expose rustdoc JSON files publicly. Use `--path` instead.
     ///
-    /// Mutually exclusive with `--path`.
-    #[arg(short, long, required_unless_present = "path", conflicts_with = "path")]
+    /// Mutually exclusive with `--path` and `--dir`.
+    #[arg(
+        short,
+        long,
+        required_unless_present_any = ["path", "dir"],
+        conflicts_with_all = ["path", "dir"]
+    )]
     pub crate_name: Option<String>,
+
+    /// Directory containing multiple rustdoc JSON files.
+    ///
+    /// Use this for multi-crate documentation generation. The tool will
+    /// scan the directory for all `*.json` files (rustdoc format) and
+    /// generate documentation for each crate with cross-crate linking.
+    ///
+    /// Generate JSON files with:
+    /// `RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc`
+    ///
+    /// Mutually exclusive with `--path` and `--crate-name`.
+    #[arg(
+        long,
+        required_unless_present_any = ["path", "crate_name"],
+        conflicts_with_all = ["path", "crate_name"]
+    )]
+    pub dir: Option<PathBuf>,
+
+    /// Generate mdBook-compatible SUMMARY.md file.
+    ///
+    /// Only valid with `--dir` for multi-crate documentation.
+    /// Creates a `SUMMARY.md` file in the output directory that can be
+    /// used as the entry point for an mdBook documentation site.
+    #[arg(long, requires = "dir", default_value_t = false)]
+    pub mdbook: bool,
+
+    /// Generate search_index.json for client-side search.
+    ///
+    /// Only valid with `--dir` for multi-crate documentation.
+    /// Creates a `search_index.json` file containing all documented items,
+    /// which can be used with client-side search libraries like Fuse.js,
+    /// Lunr.js, or FlexSearch.
+    #[arg(long, requires = "dir", default_value_t = false)]
+    pub search_index: bool,
+
+    /// Primary crate name for preferential link resolution.
+    ///
+    /// When specified with `--dir`, links to items in this crate take
+    /// precedence over items with the same name in dependencies.
+    /// This helps resolve ambiguous links like `exit` to the intended
+    /// crate rather than `std::process::exit`.
+    #[arg(long, requires = "dir")]
+    pub primary_crate: Option<String>,
 
     /// Specific version to fetch from docs.rs.
     ///

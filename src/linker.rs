@@ -29,6 +29,7 @@
 
 use rustdoc_types::{Crate, Id, ItemEnum};
 use std::collections::HashMap;
+use std::path::Path;
 
 /// Registry mapping item IDs to their documentation file paths.
 ///
@@ -296,6 +297,7 @@ impl LinkRegistry {
     ///
     /// This function calculates the relative path needed to navigate from
     /// one markdown file to another within the generated documentation.
+    /// Uses `pathdiff` for robust cross-platform path calculation.
     ///
     /// # Arguments
     ///
@@ -305,13 +307,6 @@ impl LinkRegistry {
     /// # Returns
     ///
     /// A relative path string (e.g., `"../field/index.md"`)
-    ///
-    /// # Algorithm
-    ///
-    /// 1. Split both paths into components
-    /// 2. Find the common prefix (shared directories)
-    /// 3. Count how many `../` are needed to go up from source
-    /// 4. Append the remaining target path components
     ///
     /// # Examples
     ///
@@ -326,48 +321,13 @@ impl LinkRegistry {
             return String::new();
         }
 
-        // Split paths into directory components
-        let from_parts: Vec<&str> = from.split('/').collect();
-        let to_parts: Vec<&str> = to.split('/').collect();
+        // Get the directory containing 'from' (not the file itself)
+        let from_dir = Path::new(from).parent().unwrap_or(Path::new(""));
 
-        // Find how many leading components are the same
-        // e.g., "a/b/c.md" and "a/b/d.md" share ["a", "b"]
-        let common_len = from_parts
-            .iter()
-            .zip(to_parts.iter())
-            .take_while(|(a, b)| a == b)
-            .count();
-
-        // Calculate how many directories to go up from the source.
-        // We subtract 1 because the last component is the filename, not a directory.
-        // e.g., from "a/b/c.md" we need to go up 2 directories to reach root.
-        let ups = from_parts
-            .len()
-            .saturating_sub(1) // Don't count the filename
-            .saturating_sub(common_len); // Don't count shared directories
-
-        // Build the relative path
-        let mut result = String::new();
-
-        // Add "../" for each directory we need to go up
-        for _ in 0..ups {
-            result.push_str("../");
-        }
-
-        // Add the remaining path components from the target
-        for (i, part) in to_parts.iter().enumerate().skip(common_len) {
-            if i > common_len {
-                result.push('/');
-            }
-            result.push_str(part);
-        }
-
-        // If result is empty (same directory), just use the target path
-        if result.is_empty() {
-            to.to_string()
-        } else {
-            result
-        }
+        // Use pathdiff for robust relative path calculation
+        pathdiff::diff_paths(to, from_dir)
+            .map(|p| p.to_string_lossy().into_owned())
+            .unwrap_or_else(|| to.to_string())
     }
 }
 

@@ -21,14 +21,17 @@ indicatif = "0.18.3"
 fs-err = "3.2.0"
 
 # Pattern matching for doc processing
-regex = "1.11"
+regex = "1.12.2"
 
 # Directory traversal
-walkdir = "2.5"
+walkdir = "2.5.0"
+
+# Relative path computation (replaces custom implementation)
+pathdiff = "0.2.3"
 
 [dev-dependencies]
 # For testing with real crate JSON
 tracing = "0.1.43"
 
 # Snapshot testing
-insta = "1.41"
+insta = "1.44.3"
