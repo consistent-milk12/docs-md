@@ -5,6 +5,7 @@
 //! hierarchy.
 
 use crate::error::Error;
+use crate::generator::breadcrumbs::BreadcrumbGenerator;
 use crate::generator::context::GeneratorContext;
 use crate::generator::module::ModuleRenderer;
 use fs_err as fs;
@@ -80,7 +81,7 @@ impl<'a> NestedGenerator<'a> {
                     && let ItemEnum::Module(_) = &item.inner
                     && self.ctx.should_include_item(item)
                 {
-                    self.generate_module(item, self.output_dir, "")?;
+                    self.generate_module(item, self.output_dir, Vec::new())?;
                 }
             }
         }
@@ -91,18 +92,19 @@ impl<'a> NestedGenerator<'a> {
     /// Generate a single module directory with index.md and child modules.
     ///
     /// Creates a directory for the module and an `index.md` file inside it.
-    /// Recursively creates subdirectories for child modules.
+    /// Recursively creates subdirectories for child modules. Now tracks the
+    /// full module path for breadcrumb generation.
     ///
     /// # Arguments
     ///
     /// * `item` - The module item to generate
     /// * `parent_dir` - Parent directory to create module directory in
-    /// * `path_prefix` - Accumulated path for link resolution (e.g., "parent/child")
+    /// * `module_path` - Accumulated module path segments for breadcrumbs
     fn generate_module(
         &self,
         item: &Item,
         parent_dir: &Path,
-        path_prefix: &str,
+        module_path: Vec<String>,
     ) -> Result<(), Error> {
         let name = item.name.as_deref().unwrap_or("unnamed");
 
@@ -110,27 +112,37 @@ impl<'a> NestedGenerator<'a> {
         let module_dir = parent_dir.join(name);
         fs::create_dir_all(&module_dir).map_err(Error::CreateDir)?;
 
-        // Compute the file path for link resolution
-        let current_file = if path_prefix.is_empty() {
-            format!("{name}/index.md")
-        } else {
-            format!("{path_prefix}/{name}/index.md")
-        };
+        // Build updated module path for breadcrumbs
+        let mut current_path = module_path;
+        current_path.push(name.to_string());
 
+        // Compute the file path for link resolution
+        let current_file = format!("{}/index.md", current_path.join("/"));
+
+        // Get crate name for breadcrumbs
+        let crate_name = self
+            .ctx
+            .krate
+            .index
+            .get(&self.ctx.krate.root)
+            .and_then(|r| r.name.as_deref())
+            .unwrap_or("crate");
+
+        // Generate breadcrumbs
+        let breadcrumb_gen = BreadcrumbGenerator::new(&current_path, crate_name);
+        let breadcrumbs = breadcrumb_gen.generate();
+
+        // Generate module content
         let renderer = ModuleRenderer::new(self.ctx, &current_file, false);
-        let content = renderer.render(item);
+        let module_content = renderer.render(item);
+
+        // Combine breadcrumbs + content
+        let content = format!("{breadcrumbs}{module_content}");
 
         // Write index.md inside the module directory
         let file_path = module_dir.join("index.md");
         fs::write(&file_path, content).map_err(Error::FileWrite)?;
         self.progress.inc(1);
-
-        // Update the path prefix for child modules
-        let new_prefix = if path_prefix.is_empty() {
-            name.to_string()
-        } else {
-            format!("{path_prefix}/{name}")
-        };
 
         // Recursively generate child modules as subdirectories
         if let ItemEnum::Module(module) = &item.inner {
@@ -139,7 +151,7 @@ impl<'a> NestedGenerator<'a> {
                     && let ItemEnum::Module(_) = &sub_item.inner
                     && self.ctx.should_include_item(sub_item)
                 {
-                    self.generate_module(sub_item, &module_dir, &new_prefix)?;
+                    self.generate_module(sub_item, &module_dir, current_path.clone())?;
                 }
             }
         }

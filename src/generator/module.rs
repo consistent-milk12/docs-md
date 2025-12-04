@@ -5,6 +5,7 @@
 //! organized by type.
 
 use crate::generator::context::GeneratorContext;
+use crate::generator::doc_links::DocLinkProcessor;
 use crate::generator::items::ItemRenderer;
 use rustdoc_types::{Id, Item, ItemEnum};
 use std::fmt::Write;
@@ -43,6 +44,20 @@ impl<'a> ModuleRenderer<'a> {
         }
     }
 
+    /// Process documentation string to resolve intra-doc links.
+    ///
+    /// Uses [`DocLinkProcessor`] to transform `` [`Type`] `` style links
+    /// in doc comments into proper markdown links using the item's `links` map.
+    fn process_docs(&self, item: &Item) -> Option<String> {
+        let docs = item.docs.as_ref()?;
+        let processor = DocLinkProcessor::new(
+            self.ctx.krate,
+            &self.ctx.link_registry,
+            self.current_file,
+        );
+        Some(processor.process(docs, &item.links))
+    }
+
     /// Generate the complete markdown content for a module.
     ///
     /// # Output Structure
@@ -78,8 +93,8 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         // === Documentation Section ===
-        if let Some(docs) = &item.docs {
-            md.push_str(docs);
+        if let Some(docs) = self.process_docs(item) {
+            md.push_str(&docs);
             md.push_str("\n\n");
         }
 
@@ -126,7 +141,7 @@ impl<'a> ModuleRenderer<'a> {
         self.render_enums_section(md, &items.enums);
         self.render_traits_section(md, &items.traits);
         self.render_functions_section(md, &items.functions);
-        Self::render_macros_section(md, &items.macros);
+        self.render_macros_section(md, &items.macros);
         self.render_constants_section(md, &items.constants);
         self.render_type_aliases_section(md, &items.type_aliases);
     }
@@ -168,7 +183,7 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         md.push_str("## Structs\n\n");
-        let renderer = ItemRenderer::new(self.ctx);
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
         for (item_id, struct_item) in structs {
             renderer.render_struct(md, **item_id, struct_item);
         }
@@ -181,7 +196,7 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         md.push_str("## Enums\n\n");
-        let renderer = ItemRenderer::new(self.ctx);
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
         for (item_id, enum_item) in enums {
             renderer.render_enum(md, **item_id, enum_item);
         }
@@ -194,7 +209,7 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         md.push_str("## Traits\n\n");
-        let renderer = ItemRenderer::new(self.ctx);
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
         for (_item_id, trait_item) in traits {
             renderer.render_trait(md, trait_item);
         }
@@ -207,21 +222,22 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         md.push_str("## Functions\n\n");
-        let renderer = ItemRenderer::new(self.ctx);
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
         for func_item in functions {
             renderer.render_function(md, func_item);
         }
     }
 
     /// Render the Macros section.
-    fn render_macros_section(md: &mut String, macros: &[&Item]) {
+    fn render_macros_section(&self, md: &mut String, macros: &[&Item]) {
         if macros.is_empty() {
             return;
         }
 
         md.push_str("## Macros\n\n");
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
         for macro_item in macros {
-            ItemRenderer::render_macro(md, macro_item);
+            renderer.render_macro(md, macro_item);
         }
     }
 
@@ -232,7 +248,7 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         md.push_str("## Constants\n\n");
-        let renderer = ItemRenderer::new(self.ctx);
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
         for const_item in constants {
             renderer.render_constant(md, const_item);
         }
@@ -245,7 +261,7 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         md.push_str("## Type Aliases\n\n");
-        let renderer = ItemRenderer::new(self.ctx);
+        let renderer = ItemRenderer::new(self.ctx, self.current_file);
         for alias_item in type_aliases {
             renderer.render_type_alias(md, alias_item);
         }

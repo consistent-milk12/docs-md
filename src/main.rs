@@ -24,7 +24,7 @@ use docs_md as Internals;
 use miette::{IntoDiagnostic, Result};
 
 use Internals::Args;
-use Internals::generator;
+use Internals::generator::Generator;
 use Internals::parser::Parser as InternalParser;
 
 /// Entry point for the docs-md CLI tool.
@@ -69,7 +69,7 @@ fn main() -> Result<()> {
 
     // Generate markdown files from the parsed crate documentation.
     // This is the main work: traversing the module tree and writing .md files.
-    generator::generate(&krate, &args)?;
+    Generator::run(&krate, &args)?;
 
     // Success message to the user
     println!(

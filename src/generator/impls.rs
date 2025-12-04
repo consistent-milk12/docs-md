@@ -4,8 +4,9 @@
 //! impl blocks (both inherent and trait implementations) to markdown format.
 
 use crate::generator::context::GeneratorContext;
+use crate::generator::doc_links::DocLinkProcessor;
 use crate::types::TypeRenderer;
-use rustdoc_types::{Id, Impl, ItemEnum};
+use rustdoc_types::{Id, Impl, Item, ItemEnum};
 use std::fmt::Write;
 
 /// Renders impl blocks to markdown.
@@ -18,12 +19,34 @@ use std::fmt::Write;
 pub struct ImplRenderer<'a> {
     /// Reference to the shared generator context.
     ctx: &'a GeneratorContext<'a>,
+
+    /// Path of the current file being generated (for relative link calculation).
+    current_file: &'a str,
 }
 
 impl<'a> ImplRenderer<'a> {
     /// Create a new impl renderer with the given context.
-    pub fn new(ctx: &'a GeneratorContext<'a>) -> Self {
-        Self { ctx }
+    ///
+    /// # Arguments
+    ///
+    /// * `ctx` - Shared generator context
+    /// * `current_file` - Path of the current file (for relative link calculation)
+    pub fn new(ctx: &'a GeneratorContext<'a>, current_file: &'a str) -> Self {
+        Self { ctx, current_file }
+    }
+
+    /// Process documentation string to resolve intra-doc links.
+    ///
+    /// Uses [`DocLinkProcessor`] to transform `` [`Type`] `` style links
+    /// in doc comments into proper markdown links using the item's `links` map.
+    fn process_docs(&self, item: &Item) -> Option<String> {
+        let docs = item.docs.as_ref()?;
+        let processor = DocLinkProcessor::new(
+            self.ctx.krate,
+            &self.ctx.link_registry,
+            self.current_file,
+        );
+        Some(processor.process(docs, &item.links))
     }
 
     /// Render impl blocks for a given type.
@@ -45,8 +68,16 @@ impl<'a> ImplRenderer<'a> {
         };
 
         // Partition impls into trait and inherent
-        let (trait_impls, inherent_impls): (Vec<_>, Vec<_>) =
+        let (mut trait_impls, inherent_impls): (Vec<_>, Vec<_>) =
             impls.iter().partition(|i| i.trait_.is_some());
+
+        // Sort trait impls by trait name + generics for deterministic output
+        let type_renderer = TypeRenderer::new(self.ctx.krate);
+        trait_impls.sort_by(|a: &&&Impl, b: &&&Impl| {
+            let key_a = Self::impl_sort_key(a, &type_renderer);
+            let key_b = Self::impl_sort_key(b, &type_renderer);
+            key_a.cmp(&key_b)
+        });
 
         // === Inherent Implementations ===
         if !inherent_impls.is_empty() {
@@ -63,6 +94,20 @@ impl<'a> ImplRenderer<'a> {
                 self.render_trait_impl(md, impl_block);
             }
         }
+    }
+
+    /// Generate a sort key for an impl block for deterministic ordering.
+    ///
+    /// Combines trait name, generic params, and for-type to create a unique key.
+    fn impl_sort_key(impl_block: &Impl, type_renderer: &TypeRenderer) -> String {
+        let trait_name = impl_block
+            .trait_
+            .as_ref()
+            .map(|t| t.path.clone())
+            .unwrap_or_default();
+        let for_type = type_renderer.render_type(&impl_block.for_);
+        let generics = type_renderer.render_generics(&impl_block.generics.params);
+        format!("{trait_name}{generics}::{for_type}")
     }
 
     /// Render a single trait implementation block.
@@ -194,7 +239,7 @@ impl<'a> ImplRenderer<'a> {
             ret
         );
 
-        if let Some(docs) = &item.docs
+        if let Some(docs) = self.process_docs(item)
             && let Some(first_line) = docs.lines().next()
         {
             _ = write!(md, "\n\n  {first_line}");

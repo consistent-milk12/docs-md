@@ -1,0 +1,1099 @@
+---
+source: tests/integration_tests.rs
+expression: with_private.to_snapshot_string()
+---
+=== error.md ===
+# Module `error`
+
+Error types for docs-md.
+
+This module defines all errors that can occur during documentation generation.
+Errors use the `miette` crate for enhanced diagnostics, providing:
+- Human-readable error messages
+- Diagnostic codes for programmatic handling
+- Helpful suggestions for resolution
+
+# Error Categories
+
+- **I/O Errors** (`FileRead`, `CreateDir`, `FileWrite`): File system operations
+- **Parse Errors** (`JsonParse`): Invalid or malformed rustdoc JSON
+- **Lookup Errors** (`ItemNotFound`): Missing items in the documentation index
+
+## Enums
+
+### `Error`
+
+```rust
+enum Error {
+    FileRead(StdIO::Error),
+    JsonParse(SJSON::Error),
+    CreateDir(StdIO::Error),
+    FileWrite(StdIO::Error),
+    ItemNotFound(String),
+}
+```
+
+Errors that can occur during documentation generation.
+
+Each variant includes:
+- A human-readable error message
+- A diagnostic code (e.g., `docs_md::io::read`)
+- Optional help text for resolution
+- The underlying source error (where applicable)
+
+#### Variants
+
+- **`FileRead`**
+
+  Failed to read a file from disk.
+  
+  This typically occurs when:
+  - The file doesn't exist
+  - The process lacks read permissions
+  - The path is invalid
+
+- **`JsonParse`**
+
+  Failed to parse the rustdoc JSON file.
+  
+  This can happen when:
+  - The file is not valid JSON
+  - The JSON schema doesn't match `rustdoc-types` expectations
+  - The file is from an incompatible rustdoc version
+
+- **`CreateDir`**
+
+  Failed to create the output directory.
+  
+  This typically occurs when:
+  - The parent directory doesn't exist
+  - The process lacks write permissions
+  - The path is invalid or too long
+
+- **`FileWrite`**
+
+  Failed to write a markdown file.
+  
+  This typically occurs when:
+  - The output directory is not writable
+  - The disk is full
+  - The file is locked by another process
+
+- **`ItemNotFound`**
+
+  An item ID was not found in the crate's index.
+  
+  The rustdoc JSON index should contain all referenced items.
+  This error indicates data inconsistency, possibly from:
+  - Corrupted JSON
+  - Incompatible rustdoc-types version
+  - Items removed during filtering
+  
+  The string contains the ID that was not found.
+
+#### Trait Implementations
+
+##### `impl<T> Any for Error`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl<T> Borrow<T> for Error`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for Error`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Debug for Error`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Diagnostic for Error`
+
+- `fn code(self: &Self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
+
+- `fn help(self: &Self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
+
+##### `impl Display for Error`
+
+- `fn fmt(self: &Self, __formatter: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
+
+##### `impl Error for Error`
+
+- `fn source(self: &Self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
+
+##### `impl<T> From<T> for Error`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into<U> for Error`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for Error`
+
+##### `impl<T> ToString for Error`
+
+- `fn to_string(self: &Self) -> String`
+
+##### `impl<T, U> TryFrom<U> for Error`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for Error`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+
+=== generator.md ===
+# Module `generator`
+
+Markdown documentation generator for rustdoc JSON.
+
+This is the core module that transforms rustdoc JSON data into markdown files.
+It handles the complete generation pipeline: traversing modules, rendering
+different item types, and creating cross-reference links.
+
+# Architecture
+
+The generation process follows these steps:
+
+1. **Setup**: Create output directory, build path and impl maps
+2. **Link Registry**: Build a registry mapping item IDs to file paths
+3. **Generation**: Recursively traverse modules and write markdown files
+
+# Module Structure
+
+- [`context`] - Shared state for generation (crate data, maps, config)
+- [`module`] - Module-level markdown rendering
+- [`items`] - Individual item rendering (structs, enums, traits, etc.)
+- [`impls`] - Implementation block rendering
+- [`flat`] - Flat output format generator
+- [`nested`] - Nested output format generator
+
+# Output Formats
+
+Two output formats are supported:
+
+- **Flat**: All files in one directory (`module.md`, `parent__child.md`)
+- **Nested**: Directory hierarchy (`module/index.md`, `parent/child/index.md`)
+
+# Usage
+
+```ignore
+use docs_md::generator::Generator;
+
+let generator = Generator::new(&krate, &args)?;
+generator.generate()?;
+```
+
+## Structs
+
+### `Generator<'a>`
+
+```rust
+struct Generator<'a> {
+}
+```
+
+Main documentation generator.
+
+This struct orchestrates the entire documentation generation process,
+coordinating between the context, format-specific generators, and
+progress reporting.
+
+# Example
+
+```ignore
+let generator = Generator::new(&krate, &args)?;
+generator.generate()?;
+```
+
+#### Implementations
+
+- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>`
+
+  Create a new generator for the given crate and arguments.
+
+- `fn generate(self: &Self) -> Result<(), Error>`
+
+  Generate markdown documentation.
+
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>`
+
+  Generate documentation to memory instead of disk.
+
+- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>`
+
+  Convenience method to generate documentation in one call.
+
+#### Trait Implementations
+
+##### `impl<T> Any for Generator<'a>`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl<T> Borrow<T> for Generator<'a>`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for Generator<'a>`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl<T> From<T> for Generator<'a>`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into<U> for Generator<'a>`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for Generator<'a>`
+
+##### `impl<T, U> TryFrom<U> for Generator<'a>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for Generator<'a>`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+
+=== index.md ===
+# Crate `docs_md`
+
+**Version:** 0.1.0
+
+docs-md library interface for testing and reuse.
+
+This module exposes the core functionality of docs-md as a library,
+allowing integration tests and external tools to use the markdown
+generation capabilities programmatically.
+
+## Modules
+
+- [`error`](error.md) - Error types for docs-md.
+- [`generator`](generator.md) - Markdown documentation generator for rustdoc JSON.
+- [`linker`](linker.md) - Cross-reference linking for markdown documentation.
+- [`parser`](parser.md) - Rustdoc JSON parsing module.
+- [`types`](types.md) - Type rendering utilities for converting rustdoc types to string representations.
+- [`utils`](utils.md) - Utility data structures to test the crate.
+
+## Structs
+
+### `Args`
+
+```rust
+struct Args {
+    pub path: Option<std::path::PathBuf>,
+    pub crate_name: Option<String>,
+    pub crate_version: Option<String>,
+    pub output: std::path::PathBuf,
+    pub format: CliOutputFormat,
+    pub include_private: bool,
+}
+```
+
+Command-line arguments for docs-md.
+
+The tool accepts input from two mutually exclusive sources:
+1. A local rustdoc JSON file (`--path`)
+2. A crate name to fetch from docs.rs (`--crate-name`) - Note: currently non-functional
+   as docs.rs doesn't serve rustdoc JSON files publicly.
+
+#### Fields
+
+- **`path`**: `Option<std::path::PathBuf>`
+
+  Path to a local rustdoc JSON file.
+  
+  Generate this file with: `cargo doc --output-format json`
+  The JSON file will be in `target/doc/{crate_name}.json`
+  
+  Mutually exclusive with `--crate-name`.
+
+- **`crate_name`**: `Option<String>`
+
+  Crate name to fetch from docs.rs (experimental).
+  
+  **Note**: This feature is currently non-functional because docs.rs
+  doesn't expose rustdoc JSON files publicly. Use `--path` instead.
+  
+  Mutually exclusive with `--path`.
+
+- **`crate_version`**: `Option<String>`
+
+  Specific version to fetch from docs.rs.
+  
+  Only used with `--crate-name`. Defaults to "latest" if not specified.
+
+- **`output`**: `std::path::PathBuf`
+
+  Output directory for generated markdown files.
+  
+  The directory will be created if it doesn't exist.
+  Defaults to `docs/` in the current directory.
+
+- **`format`**: `CliOutputFormat`
+
+  Output format (flat or nested).
+  
+  - `flat`: All files in one directory (default)
+  - `nested`: Directory hierarchy mirroring modules
+
+- **`include_private`**: `bool`
+
+  Include private (non-public) items in the output.
+  
+  By default, only public items are documented. Enable this
+  to also include `pub(crate)`, `pub(super)`, and private items.
+
+#### Trait Implementations
+
+##### `impl<T> Any for Args`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl Args for Args`
+
+- `fn group_id() -> Option<clap::Id>`
+
+- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+##### `impl<T> Borrow<T> for Args`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for Args`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl CommandFactory for Args`
+
+- `fn command<'b>() -> clap::Command`
+
+- `fn command_for_update<'b>() -> clap::Command`
+
+##### `impl Debug for Args`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<T> From<T> for Args`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl FromArgMatches for Args`
+
+- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+- `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+##### `impl<T, U> Into<U> for Args`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for Args`
+
+##### `impl Parser for Args`
+
+##### `impl<T, U> TryFrom<U> for Args`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for Args`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+## Enums
+
+### `OutputFormat`
+
+```rust
+enum OutputFormat {
+    Flat,
+    Nested,
+}
+```
+
+Output format for the generated markdown documentation.
+
+Controls how module files are organized in the output directory.
+
+#### Variants
+
+- **`Flat`**
+
+  Flat structure: all files in one directory.
+  
+  Module hierarchy is encoded in filenames using double underscores.
+  Example: `parent__child__grandchild.md`
+
+- **`Nested`**
+
+  Nested structure: directories mirror module hierarchy.
+  
+  Each module gets its own directory with an `index.md` file.
+  Example: `parent/child/grandchild/index.md`
+
+#### Trait Implementations
+
+##### `impl<T> Any for OutputFormat`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl<T> Borrow<T> for OutputFormat`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for OutputFormat`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Clone for OutputFormat`
+
+- `fn clone(self: &Self) -> OutputFormat`
+
+##### `impl<T> CloneToUninit for OutputFormat`
+
+- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+
+##### `impl Copy for OutputFormat`
+
+##### `impl Debug for OutputFormat`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for OutputFormat`
+
+- `fn default() -> OutputFormat`
+
+##### `impl From<CliOutputFormat> for OutputFormat`
+
+- `fn from(cli: CliOutputFormat) -> Self`
+
+##### `impl<T> From<T> for OutputFormat`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into<U> for OutputFormat`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for OutputFormat`
+
+##### `impl<T> ToOwned for OutputFormat`
+
+- `type Owned = T`
+
+- `fn to_owned(self: &Self) -> T`
+
+- `fn clone_into(self: &Self, target: &mut T)`
+
+##### `impl<T, U> TryFrom<U> for OutputFormat`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for OutputFormat`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+##### `impl ValueEnum for OutputFormat`
+
+- `fn value_variants<'a>() -> &'a [Self]`
+
+- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+
+### `CliOutputFormat`
+
+```rust
+enum CliOutputFormat {
+    Flat,
+    Nested,
+}
+```
+
+CLI-compatible output format enum (for clap `ValueEnum` derive).
+
+#### Variants
+
+- **`Flat`**
+
+  Flat structure with double-underscore separators in filenames.
+
+- **`Nested`**
+
+  Nested directory structure mirroring the module hierarchy.
+
+#### Trait Implementations
+
+##### `impl<T> Any for CliOutputFormat`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl<T> Borrow<T> for CliOutputFormat`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for CliOutputFormat`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Clone for CliOutputFormat`
+
+- `fn clone(self: &Self) -> CliOutputFormat`
+
+##### `impl<T> CloneToUninit for CliOutputFormat`
+
+- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+
+##### `impl Copy for CliOutputFormat`
+
+##### `impl Debug for CliOutputFormat`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for CliOutputFormat`
+
+- `fn default() -> CliOutputFormat`
+
+##### `impl<T> From<T> for CliOutputFormat`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into<U> for CliOutputFormat`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for CliOutputFormat`
+
+##### `impl<T> ToOwned for CliOutputFormat`
+
+- `type Owned = T`
+
+- `fn to_owned(self: &Self) -> T`
+
+- `fn clone_into(self: &Self, target: &mut T)`
+
+##### `impl<T, U> TryFrom<U> for CliOutputFormat`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for CliOutputFormat`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+##### `impl ValueEnum for CliOutputFormat`
+
+- `fn value_variants<'a>() -> &'a [Self]`
+
+- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+
+
+=== linker.md ===
+# Module `linker`
+
+Cross-reference linking for markdown documentation.
+
+This module provides the `LinkRegistry` which maps rustdoc item IDs to their
+corresponding markdown file paths. This enables creating clickable links
+between items in the generated documentation.
+
+# How It Works
+
+1. During initialization, `LinkRegistry::build()` traverses the entire crate
+   and records where each item's documentation will be written.
+
+2. During markdown generation, `create_link()` is called to generate
+   relative links from one file to another.
+
+# Path Formats
+
+The registry supports two output formats:
+
+- **Flat**: `module.md`, `parent__child.md` (double-underscore separators)
+- **Nested**: `module/index.md`, `parent/child/index.md` (directory structure)
+
+# Example
+
+```ignore
+let registry = LinkRegistry::build(&krate, true); // flat format
+let link = registry.create_link(&some_id, "index.md");
+// Returns: Some("[`ItemName`](module.md)")
+```
+
+## Structs
+
+### `LinkRegistry`
+
+```rust
+struct LinkRegistry {
+}
+```
+
+Registry mapping item IDs to their documentation file paths.
+
+This is the central data structure for cross-reference resolution.
+It's built once during generation and queried whenever we need to
+create links between items.
+
+#### Implementations
+
+- `fn build(krate: &Crate, flat_format: bool) -> Self`
+
+  Build a link registry by traversing all items in the crate.
+
+- `fn get_path(self: &Self, id: Id) -> Option<&String>`
+
+  Get the file path where an item is documented.
+
+- `fn get_name(self: &Self, id: Id) -> Option<&String>`
+
+  Get the display name for an item.
+
+- `fn create_link(self: &Self, id: Id, from_path: &str) -> Option<String>`
+
+  Create a markdown link to an item from a given source file.
+
+- `fn compute_relative_path(from: &str, to: &str) -> String`
+
+  Compute the relative path from one file to another.
+
+#### Trait Implementations
+
+##### `impl<T> Any for LinkRegistry`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl<T> Borrow<T> for LinkRegistry`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for LinkRegistry`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Debug for LinkRegistry`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for LinkRegistry`
+
+- `fn default() -> LinkRegistry`
+
+##### `impl<T> From<T> for LinkRegistry`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into<U> for LinkRegistry`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for LinkRegistry`
+
+##### `impl<T, U> TryFrom<U> for LinkRegistry`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for LinkRegistry`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+
+=== parser.md ===
+# Module `parser`
+
+Rustdoc JSON parsing module.
+
+This module handles loading and parsing rustdoc JSON files into the
+`rustdoc_types::Crate` structure that represents the entire documented crate.
+
+# Rustdoc JSON Format
+
+Rustdoc JSON is generated by running:
+```bash
+cargo doc --output-format json
+```
+
+The output is a single JSON file at `target/doc/{crate_name}.json` containing:
+- The crate's module hierarchy
+- All public (and optionally private) items
+- Documentation strings
+- Type information and generics
+- Cross-reference links between items
+
+# Key Types
+
+The parsed `Crate` contains:
+- `root`: ID of the root module
+- `index`: `HashMap` of all items by their ID
+- `paths`: `HashMap` mapping IDs to their full module paths
+- `crate_version`: Optional version string
+
+## Structs
+
+### `Parser`
+
+```rust
+struct Parser;
+```
+
+Parser for rustdoc JSON files.
+
+Provides methods to load and parse rustdoc JSON from files or strings
+into the `rustdoc_types::Crate` structure.
+
+#### Implementations
+
+- `fn parse_json(path: &Path) -> Result<Crate, Error>`
+
+  Parse a rustdoc JSON file from disk into a `Crate` structure.
+
+- `fn parse_json_string(content: &str) -> Result<Crate, Error>`
+
+  Parse a rustdoc JSON string into a `Crate` structure.
+
+#### Trait Implementations
+
+##### `impl<T> Any for Parser`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl<T> Borrow<T> for Parser`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for Parser`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl<T> From<T> for Parser`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into<U> for Parser`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for Parser`
+
+##### `impl<T, U> TryFrom<U> for Parser`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for Parser`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+
+=== types.md ===
+# Module `types`
+
+Type rendering utilities for converting rustdoc types to string representations.
+
+This module provides the [`TypeRenderer`](#typerenderer) struct to convert the complex type
+structures from rustdoc JSON into human-readable Rust type syntax. These
+rendered strings are used in the generated markdown documentation.
+
+# Overview
+
+Rustdoc JSON represents types as a tree structure (the `Type` enum). The
+[`TypeRenderer`](#typerenderer) walks that tree and produces the string representation
+you'd write in code.
+
+# Usage
+
+```ignore
+let renderer = TypeRenderer::new(&krate);
+let type_string = renderer.render_type(&some_type);
+let generics = renderer.render_generics(&generic_params);
+```
+
+# Example Transformations
+
+| Rustdoc Type | Rendered String |
+|--------------|-----------------|
+| `Type::Primitive("u32")` | `"u32"` |
+| `Type::BorrowedRef { lifetime: Some("'a"), is_mutable: true, type_: ... }` | `"&'a mut T"` |
+| `Type::ResolvedPath { path: "Vec", args: ... }` | `"Vec<T>"` |
+
+## Structs
+
+### `TypeRenderer<'a>`
+
+```rust
+struct TypeRenderer<'a> {
+}
+```
+
+Type renderer for converting rustdoc types to Rust syntax strings.
+
+This struct holds a reference to the crate context and provides methods
+to render various type constructs into their string representations.
+
+# Design Note
+
+The `krate` field is currently unused because the `Type` enum is self-contained.
+However, it is retained for:
+- **Future-proofing**: May need to look up items in `krate.index` for enhanced rendering
+- **API consistency**: Signals that the renderer is bound to a specific crate context
+- **Type safety**: Prevents accidentally mixing renderers across different crates
+
+# Example
+
+```ignore
+let renderer = TypeRenderer::new(&krate);
+let type_str = renderer.render_type(&some_type);
+let generics = renderer.render_generics(&params);
+```
+
+#### Implementations
+
+- `fn new(krate: &'a Crate) -> Self`
+
+  Create a new type renderer with the given crate context.
+
+- `fn render_type(self: &Self, ty: &Type) -> String`
+
+  Render a rustdoc `Type` to its Rust syntax string representation.
+
+- `fn render_generic_bound(self: &Self, bound: &GenericBound) -> String`
+
+  Render a generic bound (trait bound or lifetime bound).
+
+- `fn render_generics(self: &Self, generics: &[GenericParamDef]) -> String`
+
+  Render a list of generic parameter definitions.
+
+- `fn render_where_clause(self: &Self, where_predicates: &[rustdoc_types::WherePredicate]) -> String`
+
+  Render where clause predicates.
+
+#### Trait Implementations
+
+##### `impl<T> Any for TypeRenderer<'a>`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl<T> Borrow<T> for TypeRenderer<'a>`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for TypeRenderer<'a>`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl<'a> Clone for TypeRenderer<'a>`
+
+- `fn clone(self: &Self) -> TypeRenderer<'a>`
+
+##### `impl<T> CloneToUninit for TypeRenderer<'a>`
+
+- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+
+##### `impl<'a> Copy for TypeRenderer<'a>`
+
+##### `impl<'a> Debug for TypeRenderer<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<T> From<T> for TypeRenderer<'a>`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into<U> for TypeRenderer<'a>`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for TypeRenderer<'a>`
+
+##### `impl<T> ToOwned for TypeRenderer<'a>`
+
+- `type Owned = T`
+
+- `fn to_owned(self: &Self) -> T`
+
+- `fn clone_into(self: &Self, target: &mut T)`
+
+##### `impl<T, U> TryFrom<U> for TypeRenderer<'a>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for TypeRenderer<'a>`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+
+
+=== utils.md ===
+# Module `utils`
+
+Utility data structures to test the crate.
+
+## Structs
+
+### `MarkdownCapture`
+
+```rust
+struct MarkdownCapture {
+}
+```
+
+Captures generated markdown in memory for testing.
+
+Instead of writing files to disk, this struct stores all generated
+markdown content in a `HashMap`, keyed by relative file path. This
+enables snapshot tsting and verification of output without filesystem
+side effects.
+
+#### Implementations
+
+- `fn new() -> Self`
+
+  Create p new empty capture.
+
+- `fn insert(self: &mut Self, path: String, content: String)`
+
+  Add a file to the capture.
+
+- `fn get(self: &Self, path: &str) -> Option<&String>`
+
+  Get the content of a specific file.
+
+- `fn paths(self: &Self) -> Vec<&String>`
+
+  Get all file paths in sorted order.
+
+- `fn len(self: &Self) -> usize`
+
+  Get the number of captured files.
+
+- `fn is_empty(self: &Self) -> bool`
+
+  Check if the capture is empty.
+
+- `fn to_snapshot_string(self: &Self) -> String`
+
+  Convert all captured files to a single string for snapshot testing.
+
+- `fn into_inner(self: Self) -> HashMap<String, String>`
+
+  Consume self and return the underlying `HashMap`.
+
+#### Trait Implementations
+
+##### `impl<T> Any for MarkdownCapture`
+
+- `fn type_id(self: &Self) -> TypeId`
+
+##### `impl<T> Borrow<T> for MarkdownCapture`
+
+- `fn borrow(self: &Self) -> &T`
+
+##### `impl<T> BorrowMut<T> for MarkdownCapture`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl Debug for MarkdownCapture`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for MarkdownCapture`
+
+- `fn default() -> MarkdownCapture`
+
+##### `impl<T> From<T> for MarkdownCapture`
+
+- `fn from(t: T) -> T`
+
+  Returns the argument unchanged.
+
+##### `impl<T, U> Into<U> for MarkdownCapture`
+
+- `fn into(self: Self) -> U`
+
+  Calls `U::from(self)`.
+
+##### `impl<D> OwoColorize for MarkdownCapture`
+
+##### `impl<T, U> TryFrom<U> for MarkdownCapture`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl<T, U> TryInto<U> for MarkdownCapture`
+
+- `type Error = <U as TryFrom>::Error`
+
+- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`

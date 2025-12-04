@@ -37,14 +37,20 @@
 //! generator.generate()?;
 //! ```
 
+mod breadcrumbs;
+mod capture;
 mod context;
+mod doc_links;
 mod flat;
 mod impls;
 mod items;
 mod module;
 mod nested;
 
+pub use breadcrumbs::BreadcrumbGenerator;
+pub use capture::MarkdownCapture;
 pub use context::GeneratorContext;
+pub use doc_links::DocLinkProcessor;
 
 use crate::Args;
 use crate::CliOutputFormat;
@@ -53,7 +59,7 @@ use flat::FlatGenerator;
 use fs_err as fs;
 use indicatif::{ProgressBar, ProgressStyle};
 use nested::NestedGenerator;
-use rustdoc_types::{Crate, Item};
+use rustdoc_types::{Crate, Item, ItemEnum};
 
 /// Main documentation generator.
 ///
@@ -156,30 +162,192 @@ impl<'a> Generator<'a> {
         );
         progress
     }
-}
 
-/// Generate markdown documentation from a parsed rustdoc JSON crate.
-///
-/// This is a convenience function that creates a [`Generator`] and runs it.
-/// For more control over the generation process, use [`Generator`] directly.
-///
-/// # Arguments
-///
-/// * `krate` - The parsed rustdoc JSON crate
-/// * `args` - CLI arguments containing output path, format, and options
-///
-/// # Returns
-///
-/// `Ok(())` on success, or an error if any file operation fails.
-///
-/// # Example
-///
-/// ```ignore
-/// use docs_md::generator::generate;
-///
-/// generate(&krate, &args)?;
-/// ```
-pub fn generate(krate: &Crate, args: &Args) -> Result<(), Error> {
-    let generator = Generator::new(krate, args)?;
-    generator.generate()
+    /// Generate documentation to memory instead of disk.
+    ///
+    /// This function mirrors `generate()` but captures all output in a
+    /// `MarkdownCapture` struct instead of writing to the filesystem.
+    /// Useful for testing and programmatic access to generated docs.
+    ///
+    /// # Arguments
+    ///
+    /// * `krate` - The parsed rustdoc JSON crate
+    /// * `format` - Output format (Flat or Nested)
+    /// * `include_private` - Whether to include private items
+    ///
+    /// # Returns
+    ///
+    /// A `MarkdownCapture` containing all generated markdown files.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the root item cannot be found in the crate index.
+    pub fn generate_to_capture(
+        krate: &Crate,
+        format: CliOutputFormat,
+        include_private: bool,
+    ) -> Result<MarkdownCapture, Error> {
+        // Create a mock Args for the context
+        let args = Args {
+            path: None,
+            crate_name: None,
+            crate_version: None,
+            output: std::path::PathBuf::new(),
+            format,
+            include_private,
+        };
+
+        let root_item = krate
+            .index
+            .get(&krate.root)
+            .ok_or_else(|| Error::ItemNotFound(krate.root.0.to_string()))?;
+
+        let ctx = GeneratorContext::new(krate, &args);
+        let mut capture = MarkdownCapture::new();
+
+        match format {
+            CliOutputFormat::Flat => {
+                Self::generate_flat_to_capture(&ctx, root_item, &mut capture)?;
+            }
+            CliOutputFormat::Nested => {
+                Self::generate_nested_to_capture(&ctx, root_item, "", &mut capture)?;
+            }
+        }
+
+        Ok(capture)
+    }
+
+    /// Generate flat structure to capture.
+    fn generate_flat_to_capture(
+        ctx: &GeneratorContext,
+        root: &Item,
+        capture: &mut MarkdownCapture,
+    ) -> Result<(), Error> {
+        // Generate root module
+        let renderer = module::ModuleRenderer::new(ctx, "index.md", true);
+        capture.insert("index.md".to_string(), renderer.render(root));
+
+        // Generate submodules
+        if let ItemEnum::Module(module) = &root.inner {
+            for item_id in &module.items {
+                if let Some(item) = ctx.krate.index.get(item_id)
+                    && let ItemEnum::Module(_) = &item.inner
+                    && ctx.should_include_item(item)
+                {
+                    Self::generate_flat_recursive_capture(ctx, item, "", capture)?;
+                }
+            }
+        }
+
+        Ok(())
+    }
+
+    /// Recursive flat generation to capture.
+    fn generate_flat_recursive_capture(
+        ctx: &GeneratorContext,
+        item: &Item,
+        prefix: &str,
+        capture: &mut MarkdownCapture,
+    ) -> Result<(), Error> {
+        let name = item.name.as_deref().unwrap_or("unnamed");
+        let current_file = if prefix.is_empty() {
+            format!("{name}.md")
+        } else {
+            format!("{prefix}__{name}.md")
+        };
+
+        let renderer = module::ModuleRenderer::new(ctx, &current_file, false);
+        let content = renderer.render(item);
+        capture.insert(current_file, content);
+
+        let new_prefix = if prefix.is_empty() {
+            name.to_string()
+        } else {
+            format!("{prefix}__{name}")
+        };
+
+        if let ItemEnum::Module(module) = &item.inner {
+            for sub_id in &module.items {
+                if let Some(sub_item) = ctx.krate.index.get(sub_id)
+                    && let ItemEnum::Module(_) = &sub_item.inner
+                    && ctx.should_include_item(sub_item)
+                {
+                    Self::generate_flat_recursive_capture(ctx, sub_item, &new_prefix, capture)?;
+                }
+            }
+        }
+
+        Ok(())
+    }
+
+    /// Generate nested structure to capture.
+    fn generate_nested_to_capture(
+        ctx: &GeneratorContext,
+        root: &Item,
+        path_prefix: &str,
+        capture: &mut MarkdownCapture,
+    ) -> Result<(), Error> {
+        let name = root.name.as_deref().unwrap_or("unnamed");
+        let is_root = path_prefix.is_empty()
+            && name == ctx.krate.index[&ctx.krate.root].name.as_deref().unwrap_or("");
+
+        let current_file = if path_prefix.is_empty() {
+            if is_root {
+                "index.md".to_string()
+            } else {
+                format!("{name}/index.md")
+            }
+        } else {
+            format!("{path_prefix}/{name}/index.md")
+        };
+
+        let renderer = module::ModuleRenderer::new(ctx, &current_file, is_root);
+        capture.insert(current_file.clone(), renderer.render(root));
+
+        let new_prefix = if path_prefix.is_empty() {
+            if is_root {
+                String::new()
+            } else {
+                name.to_string()
+            }
+        } else {
+            format!("{path_prefix}/{name}")
+        };
+
+        if let ItemEnum::Module(module) = &root.inner {
+            for sub_id in &module.items {
+                if let Some(sub_item) = ctx.krate.index.get(sub_id)
+                    && let ItemEnum::Module(_) = &sub_item.inner
+                    && ctx.should_include_item(sub_item)
+                {
+                    Self::generate_nested_to_capture(ctx, sub_item, &new_prefix, capture)?;
+                }
+            }
+        }
+
+        Ok(())
+    }
+
+
+    /// Convenience method to generate documentation in one call.
+    ///
+    /// Creates a `Generator` and runs it immediately. For more control
+    /// over the generation process, use `new()` and `generate()` separately.
+    ///
+    /// # Arguments
+    ///
+    /// * `krate` - The parsed rustdoc JSON crate
+    /// * `args` - CLI arguments containing output path, format, and options
+    ///
+    /// # Returns
+    ///
+    /// `Ok(())` on success, or an error if any file operation fails.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the root item cannot be found or if file operations fail.
+    pub fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error> {
+        let generator = Self::new(krate, args)?;
+        generator.generate()
+    }
 }

@@ -16,12 +16,9 @@ pub mod generator;
 pub mod linker;
 pub mod parser;
 pub mod types;
-pub mod utils;
 
-// pub use crate::error::Error;
-// pub use crate::generator::{MarkdownCapture, generate, generate_to_capture};
-// pub use crate::linker::LinkRegistry;
-// pub use crate::parser::{parse_json, parse_json_string};
+pub use crate::generator::{Generator, MarkdownCapture};
+pub use crate::linker::LinkRegistry;
 
 /// Output format for the generated markdown documentation.
 ///

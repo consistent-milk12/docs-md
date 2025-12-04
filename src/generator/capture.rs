@@ -1,15 +1,15 @@
-//! Utility data structures to test the crate.
+//! In-memory markdown capture for testing.
+//!
+//! This module provides [`MarkdownCapture`] for capturing generated markdown
+//! in memory instead of writing to disk, enabling snapshot testing.
 
 use std::collections::HashMap;
-use std::fmt::Write;
-
-use rustdoc_types::{Item, Visibility};
 
 /// Captures generated markdown in memory for testing.
 ///
 /// Instead of writing files to disk, this struct stores all generated
-/// markdown content in a `HashMap`, keyed by relative file path. This
-/// enables snapshot tsting and verification of output without filesystem
+/// markdown content in a HashMap, keyed by relative file path. This
+/// enables snapshot testing and verification of output without filesystem
 /// side effects.
 #[derive(Debug, Default)]
 pub struct MarkdownCapture {
@@ -18,8 +18,7 @@ pub struct MarkdownCapture {
 }
 
 impl MarkdownCapture {
-    /// Create p new empty capture.
-    #[must_use]
+    /// Create a new empty capture.
     pub fn new() -> Self {
         Self {
             files: HashMap::new(),
@@ -36,81 +35,51 @@ impl MarkdownCapture {
     }
 
     /// Get the content of a specific file.
-    #[must_use]
     pub fn get(&self, path: &str) -> Option<&String> {
         self.files.get(path)
     }
 
     /// Get all file paths in sorted order.
-    #[must_use]
     pub fn paths(&self) -> Vec<&String> {
-        let mut paths: Vec<&String> = self.files.keys().collect();
+        let mut paths: Vec<_> = self.files.keys().collect();
         paths.sort();
-
         paths
     }
 
     /// Get the number of captured files.
-    #[must_use]
     pub fn len(&self) -> usize {
         self.files.len()
     }
 
     /// Check if the capture is empty.
-    #[must_use]
     pub fn is_empty(&self) -> bool {
-        self.len() == 0
+        self.files.is_empty()
     }
 
     /// Convert all captured files to a single string for snapshot testing.
     ///
     /// Files are sorted by path and separated with clear headers.
-    /// Format:
-    /// ```text
-    /// === path/to/file.md ===
-    /// <content>
-    ///
-    /// === another/file.md ===
-    /// <content>
-    /// ```
-    #[must_use]
     pub fn to_snapshot_string(&self) -> String {
-        let mut result: String = String::new();
-        let mut paths: Vec<&String> = self.files.keys().collect();
+        use std::fmt::Write;
+
+        let mut result = String::new();
+        let mut paths: Vec<_> = self.files.keys().collect();
         paths.sort();
 
         for path in paths {
-            _ = write!(result, "=== {path} ===");
-            _ = write!(result, "{}", &self.files[path]);
-
+            _ = writeln!(result, "=== {path} ===");
+            result.push_str(&self.files[path]);
             if !self.files[path].ends_with('\n') {
-                _ = writeln!(result);
+                result.push('\n');
             }
-
-            _ = writeln!(result);
+            result.push('\n');
         }
 
         result
     }
 
-    /// Consume self and return the underlying `HashMap`.
-    #[must_use]
+    /// Consume self and return the underlying HashMap.
     pub fn into_inner(self) -> HashMap<String, String> {
         self.files
-    }
-}
-
-/// Mark args struct for testing without full CLI args.
-struct MockArgs {
-    include_private: bool,
-}
-
-impl MockArgs {
-    fn should_include(&self, item: &Item) -> bool {
-        match &item.visibility {
-            Visibility::Public => true,
-
-            _ => self.include_private,
-        }
     }
 }

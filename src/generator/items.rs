@@ -5,6 +5,7 @@
 //! and type aliases) to markdown format.
 
 use crate::generator::context::GeneratorContext;
+use crate::generator::doc_links::DocLinkProcessor;
 use crate::generator::impls::ImplRenderer;
 use crate::types::TypeRenderer;
 use rustdoc_types::{Id, Item, ItemEnum, StructKind, Visibility};
@@ -23,12 +24,34 @@ use std::fmt::Write;
 pub struct ItemRenderer<'a> {
     /// Reference to the shared generator context.
     ctx: &'a GeneratorContext<'a>,
+
+    /// Path of the current file being generated (for relative link calculation).
+    current_file: &'a str,
 }
 
 impl<'a> ItemRenderer<'a> {
     /// Create a new item renderer with the given context.
-    pub fn new(ctx: &'a GeneratorContext<'a>) -> Self {
-        Self { ctx }
+    ///
+    /// # Arguments
+    ///
+    /// * `ctx` - Shared generator context
+    /// * `current_file` - Path of the current file (for relative link calculation)
+    pub fn new(ctx: &'a GeneratorContext<'a>, current_file: &'a str) -> Self {
+        Self { ctx, current_file }
+    }
+
+    /// Process documentation string to resolve intra-doc links.
+    ///
+    /// Uses [`DocLinkProcessor`] to transform `` [`Type`] `` style links
+    /// in doc comments into proper markdown links using the item's `links` map.
+    fn process_docs(&self, item: &Item) -> Option<String> {
+        let docs = item.docs.as_ref()?;
+        let processor = DocLinkProcessor::new(
+            self.ctx.krate,
+            &self.ctx.link_registry,
+            self.current_file,
+        );
+        Some(processor.process(docs, &item.links))
     }
 
     /// Render a struct definition to markdown.
@@ -116,8 +139,8 @@ impl<'a> ItemRenderer<'a> {
         }
 
         // === Documentation Section ===
-        if let Some(docs) = &item.docs {
-            md.push_str(docs);
+        if let Some(docs) = self.process_docs(item) {
+            md.push_str(&docs);
             md.push_str("\n\n");
         }
 
@@ -129,7 +152,7 @@ impl<'a> ItemRenderer<'a> {
         }
 
         // === Implementations Section ===
-        let impl_renderer = ImplRenderer::new(self.ctx);
+        let impl_renderer = ImplRenderer::new(self.ctx, self.current_file);
         impl_renderer.render_impl_blocks(md, item_id);
     }
 
@@ -156,7 +179,7 @@ impl<'a> ItemRenderer<'a> {
                         type_renderer.render_type(ty)
                     );
 
-                    if let Some(docs) = &field.docs {
+                    if let Some(docs) = self.process_docs(field) {
                         _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
                     }
 
@@ -207,8 +230,8 @@ impl<'a> ItemRenderer<'a> {
         }
 
         // === Documentation Section ===
-        if let Some(docs) = &item.docs {
-            md.push_str(docs);
+        if let Some(docs) = self.process_docs(item) {
+            md.push_str(&docs);
             md.push_str("\n\n");
         }
 
@@ -218,7 +241,7 @@ impl<'a> ItemRenderer<'a> {
         }
 
         // === Implementations Section ===
-        let impl_renderer = ImplRenderer::new(self.ctx);
+        let impl_renderer = ImplRenderer::new(self.ctx, self.current_file);
         impl_renderer.render_impl_blocks(md, item_id);
     }
 
@@ -289,7 +312,7 @@ impl<'a> ItemRenderer<'a> {
                 let variant_name = variant.name.as_deref().unwrap_or("_");
                 _ = write!(md, "- **`{variant_name}`**");
 
-                if let Some(docs) = &variant.docs {
+                if let Some(docs) = self.process_docs(variant) {
                     _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
                 }
 
@@ -343,8 +366,8 @@ impl<'a> ItemRenderer<'a> {
         }
 
         // === Documentation Section ===
-        if let Some(docs) = &item.docs {
-            md.push_str(docs);
+        if let Some(docs) = self.process_docs(item) {
+            md.push_str(&docs);
             md.push_str("\n\n");
         }
 
@@ -399,7 +422,7 @@ impl<'a> ItemRenderer<'a> {
                     ret
                 );
 
-                if let Some(docs) = &item.docs
+                if let Some(docs) = self.process_docs(item)
                     && let Some(first_line) = docs.lines().next()
                 {
                     _ = write!(md, "\n\n  {first_line}");
@@ -498,8 +521,8 @@ impl<'a> ItemRenderer<'a> {
         }
 
         // === Documentation Section ===
-        if let Some(docs) = &item.docs {
-            md.push_str(docs);
+        if let Some(docs) = self.process_docs(item) {
+            md.push_str(&docs);
             md.push_str("\n\n");
         }
     }
@@ -512,13 +535,13 @@ impl<'a> ItemRenderer<'a> {
     ///
     /// Note: We don't show macro rules/implementation since rustdoc JSON
     /// doesn't provide the full macro definition, only metadata.
-    pub fn render_macro(md: &mut String, item: &Item) {
+    pub fn render_macro(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
 
         _ = write!(md, "### `{name}!`\n\n");
 
-        if let Some(docs) = &item.docs {
-            md.push_str(docs);
+        if let Some(docs) = self.process_docs(item) {
+            md.push_str(&docs);
             md.push_str("\n\n");
         }
     }
@@ -557,8 +580,8 @@ impl<'a> ItemRenderer<'a> {
             md.push_str("```\n\n");
         }
 
-        if let Some(docs) = &item.docs {
-            md.push_str(docs);
+        if let Some(docs) = self.process_docs(item) {
+            md.push_str(&docs);
             md.push_str("\n\n");
         }
     }
@@ -589,8 +612,8 @@ impl<'a> ItemRenderer<'a> {
             md.push_str("```\n\n");
         }
 
-        if let Some(docs) = &item.docs {
-            md.push_str(docs);
+        if let Some(docs) = self.process_docs(item) {
+            md.push_str(&docs);
             md.push_str("\n\n");
         }
     }

@@ -184,7 +184,11 @@ impl LinkRegistry {
                             };
 
                             // Build the prefix for any further nesting
-                            let sub_prefix = format!("{module_prefix}__{name}");
+                            let sub_prefix = if flat_format {
+                                format!("{module_prefix}__{name}")
+                            } else {
+                                format!("{module_prefix}/{name}")
+                            };
 
                             // Recurse into the submodule
                             self.register_module_items(
@@ -315,7 +319,8 @@ impl LinkRegistry {
     /// - Into subdirectory: `"index.md"` → `"span/index.md"` = `"span/index.md"`
     /// - Up to parent: `"span/index.md"` → `"index.md"` = `"../index.md"`
     /// - Sibling directory: `"span/index.md"` → `"field/index.md"` = `"../field/index.md"`
-    fn compute_relative_path(from: &str, to: &str) -> String {
+    #[must_use]
+    pub fn compute_relative_path(from: &str, to: &str) -> String {
         // Same file - no path needed
         if from == to {
             return String::new();
