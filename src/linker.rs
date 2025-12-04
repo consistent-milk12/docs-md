@@ -72,6 +72,7 @@ impl LinkRegistry {
     /// 2. For each top-level module: register it and recursively process children
     /// 3. For structs/enums/traits at root level: register them to `index.md`
     /// 4. Other items (functions, constants) are registered within their module's file
+    #[must_use]
     pub fn build(krate: &Crate, flat_format: bool) -> Self {
         let mut registry = Self::default();
 
@@ -214,6 +215,7 @@ impl LinkRegistry {
     ///
     /// The relative file path (e.g., `"span.md"` or `"span/index.md"`),
     /// or `None` if the item isn't registered.
+    #[must_use]
     pub fn get_path(&self, id: Id) -> Option<&String> {
         self.item_paths.get(&id)
     }
@@ -228,6 +230,7 @@ impl LinkRegistry {
     ///
     /// The item's name for display in links (e.g., `"Span"`),
     /// or `None` if the item isn't registered.
+    #[must_use]
     pub fn get_name(&self, id: Id) -> Option<&String> {
         self.item_names.get(&id)
     }
@@ -263,6 +266,7 @@ impl LinkRegistry {
     /// registry.create_link(&root_id, "span/index.md")
     /// // Returns: Some("[`crate`](../index.md)")
     /// ```
+    #[must_use]
     pub fn create_link(&self, id: Id, from_path: &str) -> Option<String> {
         let target_path = self.item_paths.get(&id)?;
         let name = self.item_names.get(&id)?;

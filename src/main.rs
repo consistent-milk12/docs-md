@@ -19,99 +19,13 @@
 //! - **Flat**: All markdown files in a single directory with `module__submodule.md` naming
 //! - **Nested**: Directory hierarchy mirroring module structure with `module/index.md` files
 
-use clap::{Parser, ValueEnum};
+use clap::Parser;
+use docs_md as Internals;
 use miette::{IntoDiagnostic, Result};
-use std::path::PathBuf;
 
-mod error;
-mod generator;
-mod linker;
-mod parser;
-mod types;
-
-/// Output format for the generated markdown documentation.
-///
-/// Controls how module files are organized in the output directory.
-#[derive(Debug, Clone, Copy, Default, ValueEnum)]
-pub enum OutputFormat {
-    /// Flat structure: all files in one directory.
-    ///
-    /// Module hierarchy is encoded in filenames using double underscores.
-    /// Example: `parent__child__grandchild.md`
-    #[default]
-    Flat,
-
-    /// Nested structure: directories mirror module hierarchy.
-    ///
-    /// Each module gets its own directory with an `index.md` file.
-    /// Example: `parent/child/grandchild/index.md`
-    Nested,
-}
-
-/// Command-line arguments for docs-md.
-///
-/// The tool accepts input from two mutually exclusive sources:
-/// 1. A local rustdoc JSON file (`--path`)
-/// 2. A crate name to fetch from docs.rs (`--crate-name`) - Note: currently non-functional
-///    as docs.rs doesn't serve rustdoc JSON files publicly.
-#[derive(Parser, Debug)]
-#[command(name = "docs-md")]
-#[command(
-    author,
-    version,
-    about = "Generate per-module markdown from rustdoc JSON"
-)]
-pub struct Args {
-    /// Path to a local rustdoc JSON file.
-    ///
-    /// Generate this file with: `cargo doc --output-format json`
-    /// The JSON file will be in `target/doc/{crate_name}.json`
-    ///
-    /// Mutually exclusive with `--crate-name`.
-    #[arg(
-        short,
-        long,
-        required_unless_present = "crate_name",
-        conflicts_with = "crate_name"
-    )]
-    pub path: Option<PathBuf>,
-
-    /// Crate name to fetch from docs.rs (experimental).
-    ///
-    /// **Note**: This feature is currently non-functional because docs.rs
-    /// doesn't expose rustdoc JSON files publicly. Use `--path` instead.
-    ///
-    /// Mutually exclusive with `--path`.
-    #[arg(short, long, required_unless_present = "path", conflicts_with = "path")]
-    pub crate_name: Option<String>,
-
-    /// Specific version to fetch from docs.rs.
-    ///
-    /// Only used with `--crate-name`. Defaults to "latest" if not specified.
-    #[arg(long, requires = "crate_name")]
-    pub crate_version: Option<String>,
-
-    /// Output directory for generated markdown files.
-    ///
-    /// The directory will be created if it doesn't exist.
-    /// Defaults to `docs/` in the current directory.
-    #[arg(short, long, default_value = "docs")]
-    pub output: PathBuf,
-
-    /// Output format (flat or nested).
-    ///
-    /// - `flat`: All files in one directory (default)
-    /// - `nested`: Directory hierarchy mirroring modules
-    #[arg(short, long, value_enum, default_value_t = OutputFormat::Flat)]
-    pub format: OutputFormat,
-
-    /// Include private (non-public) items in the output.
-    ///
-    /// By default, only public items are documented. Enable this
-    /// to also include `pub(crate)`, `pub(super)`, and private items.
-    #[arg(long, default_value_t = false)]
-    pub include_private: bool,
-}
+use Internals::Args;
+use Internals::generator;
+use Internals::parser::Parser as InternalParser;
 
 /// Entry point for the docs-md CLI tool.
 ///
@@ -140,13 +54,14 @@ fn main() -> Result<()> {
     // including all modules, items, and their relationships.
     let krate = if let Some(path) = &args.path {
         // Local file path provided - parse directly
-        parser::parse_json(path)?
+        InternalParser::parse_json(path)?
     } else if let Some(crate_name) = &args.crate_name {
         // Crate name provided - attempt to fetch from docs.rs
         // NOTE: This path is currently non-functional (docs.rs doesn't serve JSON)
         eprintln!("Fetching {crate_name} from docs.rs...");
+
         let json_content = fetch_from_docs_rs(crate_name, args.crate_version.as_deref())?;
-        parser::parse_json_string(&json_content)?
+        InternalParser::parse_json_string(&json_content)?
     } else {
         // This branch should never execute - clap ensures one of the two is provided
         unreachable!("clap should ensure either path or crate_name is provided");

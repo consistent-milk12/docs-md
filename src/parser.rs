@@ -30,65 +30,69 @@ use fs_err as fs;
 use rustdoc_types::Crate;
 use std::path::Path;
 
-/// Parse a rustdoc JSON file from disk into a `Crate` structure.
-///
-/// This is the primary entry point for loading documentation data.
-/// The file should be generated with `cargo doc --output-format json`.
-///
-/// # Arguments
-///
-/// * `path` - Path to the `.json` file (e.g., `target/doc/my_crate.json`)
-///
-/// # Returns
-///
-/// A parsed `Crate` structure containing all documentation data.
-///
-/// # Errors
-///
-/// Returns `Error::FileRead` if the file cannot be read, or
-/// `Error::JsonParse` if the JSON is invalid or doesn't match
-/// the expected rustdoc JSON schema.
-///
-/// # Example
-///
-/// ```ignore
-/// let krate = parse_json(Path::new("target/doc/my_crate.json"))?;
-/// println!("Crate: {:?}", krate.index.get(&krate.root));
-/// ```
-pub fn parse_json(path: &Path) -> Result<Crate, Error> {
-    // Read the entire file into memory (rustdoc JSON can be large, but
-    // we need it all in memory for serde anyway)
-    let content = fs::read_to_string(path).map_err(Error::FileRead)?;
+pub struct Parser;
 
-    // Delegate to string parsing
-    parse_json_string(&content)
-}
+impl Parser {
+    /// Parse a rustdoc JSON file from disk into a `Crate` structure.
+    ///
+    /// This is the primary entry point for loading documentation data.
+    /// The file should be generated with `cargo doc --output-format json`.
+    ///
+    /// # Arguments
+    ///
+    /// * `path` - Path to the `.json` file (e.g., `target/doc/my_crate.json`)
+    ///
+    /// # Returns
+    ///
+    /// A parsed `Crate` structure containing all documentation data.
+    ///
+    /// # Errors
+    ///
+    /// Returns `Error::FileRead` if the file cannot be read, or
+    /// `Error::JsonParse` if the JSON is invalid or doesn't match
+    /// the expected rustdoc JSON schema.
+    ///
+    /// # Example
+    ///
+    /// ```ignore
+    /// let krate = parse_json(Path::new("target/doc/my_crate.json"))?;
+    /// println!("Crate: {:?}", krate.index.get(&krate.root));
+    /// ```
+    pub fn parse_json(path: &Path) -> Result<Crate, Error> {
+        // Read the entire file into memory (rustdoc JSON can be large, but
+        // we need it all in memory for serde anyway)
+        let content = fs::read_to_string(path).map_err(Error::FileRead)?;
 
-/// Parse a rustdoc JSON string into a `Crate` structure.
-///
-/// This function is useful when the JSON content is already in memory
-/// (e.g., fetched from a URL or embedded in tests).
-///
-/// # Arguments
-///
-/// * `content` - The raw JSON string to parse
-///
-/// # Returns
-///
-/// A parsed `Crate` structure containing all documentation data.
-///
-/// # Errors
-///
-/// Returns `Error::JsonParse` if the JSON is invalid or doesn't match
-/// the expected rustdoc JSON schema.
-///
-/// # Schema Compatibility
-///
-/// The `rustdoc-types` crate version must match the rustdoc JSON format
-/// version. Mismatches can cause parsing failures or missing fields.
-pub fn parse_json_string(content: &str) -> Result<Crate, Error> {
-    // Deserialize the JSON into the Crate type from rustdoc-types.
-    // This validates the structure against the expected schema.
-    let krate: Crate = serde_json::from_str(content).map_err(Error::JsonParse)?;
-    Ok(krate)
+        // Delegate to string parsing
+        Self::parse_json_string(&content)
+    }
+
+    /// Parse a rustdoc JSON string into a `Crate` structure.
+    ///
+    /// This function is useful when the JSON content is already in memory
+    /// (e.g., fetched from a URL or embedded in tests).
+    ///
+    /// # Arguments
+    ///
+    /// * `content` - The raw JSON string to parse
+    ///
+    /// # Returns
+    ///
+    /// A parsed `Crate` structure containing all documentation data.
+    ///
+    /// # Errors
+    ///
+    /// Returns `Error::JsonParse` if the JSON is invalid or doesn't match
+    /// the expected rustdoc JSON schema.
+    ///
+    /// # Schema Compatibility
+    ///
+    /// The `rustdoc-types` crate version must match the rustdoc JSON format
+    /// version. Mismatches can cause parsing failures or missing fields.
+    pub fn parse_json_string(content: &str) -> Result<Crate, Error> {
+        // Deserialize the JSON into the Crate type from rustdoc-types.
+        // This validates the structure against the expected schema.
+        let krate: Crate = serde_json::from_str(content).map_err(Error::JsonParse)?;
+        Ok(krate)
+    }
 }

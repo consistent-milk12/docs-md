@@ -13,6 +13,9 @@
 //! - **Lookup Errors** (`ItemNotFound`): Missing items in the documentation index
 
 use miette::Diagnostic;
+use serde_json as SJSON;
+use std::io as StdIO;
+use thiserror::Error as ThisError;
 
 /// Errors that can occur during documentation generation.
 ///
@@ -21,7 +24,7 @@ use miette::Diagnostic;
 /// - A diagnostic code (e.g., `docs_md::io::read`)
 /// - Optional help text for resolution
 /// - The underlying source error (where applicable)
-#[derive(Debug, Diagnostic, thiserror::Error)]
+#[derive(Debug, Diagnostic, ThisError)]
 pub enum Error {
     /// Failed to read a file from disk.
     ///
@@ -34,7 +37,7 @@ pub enum Error {
         code(docs_md::io::read),
         help("Check that the file exists and is readable")
     )]
-    FileRead(#[source] std::io::Error),
+    FileRead(#[source] StdIO::Error),
 
     /// Failed to parse the rustdoc JSON file.
     ///
@@ -47,7 +50,7 @@ pub enum Error {
         code(docs_md::parse::json),
         help("Ensure the file is valid rustdoc JSON output (generated with --output-format json)")
     )]
-    JsonParse(#[source] serde_json::Error),
+    JsonParse(#[source] SJSON::Error),
 
     /// Failed to create the output directory.
     ///
@@ -57,7 +60,7 @@ pub enum Error {
     /// - The path is invalid or too long
     #[error("Failed to create output directory")]
     #[diagnostic(code(docs_md::io::mkdir))]
-    CreateDir(#[source] std::io::Error),
+    CreateDir(#[source] StdIO::Error),
 
     /// Failed to write a markdown file.
     ///
@@ -67,7 +70,7 @@ pub enum Error {
     /// - The file is locked by another process
     #[error("Failed to write file")]
     #[diagnostic(code(docs_md::io::write))]
-    FileWrite(#[source] std::io::Error),
+    FileWrite(#[source] StdIO::Error),
 
     /// An item ID was not found in the crate's index.
     ///
