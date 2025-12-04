@@ -12,7 +12,7 @@ expands to the token type of the given token.
 
 # Example
 
-The [`ItemStatic`](#itemstatic) syntax tree node is defined like this.
+The [`ItemStatic`](index.md) syntax tree node is defined like this.
 
 ```
 # use syn::{Attribute, Expr, Ident, Token, Type, Visibility};
@@ -35,7 +35,7 @@ pub struct ItemStatic {
 
 # Parsing
 
-Keywords and punctuation can be parsed through the [`ParseStream::parse`](#parse)
+Keywords and punctuation can be parsed through the `ParseStream::parse`
 method. Delimiter tokens are parsed using the [`parenthesized!`](#parenthesized),
 [`bracketed!`](#bracketed) and [`braced!`](#braced) macros.
 
@@ -81,7 +81,7 @@ Every keyword and punctuation token supports the following operations.
 
 - [Printing] — `quote!( ... #the_token ... )`
 
-- Construction from a [`Span`](../../proc_macro2/proc_macro2/index.md) — `let the_token = Token![...](sp)`
+- Construction from a [`Span`](../../aho_corasick/index.md) — `let the_token = Token![...](sp)`
 
 - Field access to its span — `let sp = the_token.span`
 

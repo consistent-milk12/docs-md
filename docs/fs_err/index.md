@@ -1,12 +1,12 @@
 # Crate `fs_err`
 
-fs-err is a drop-in replacement for [`std::fs`](#fs) that provides more
+fs-err is a drop-in replacement for `std::fs` that provides more
 helpful messages on errors. Extra information includes which operations was
 attempted and any involved paths.
 
 # Error Messages
 
-Using [`std::fs`](#fs), if this code fails:
+Using `std::fs`, if this code fails:
 
 ```no_run
 # use std::fs::File;
@@ -28,7 +28,7 @@ failed to open file `does not exist.txt`: The system cannot find the file specif
 
 # Usage
 
-fs-err's API is the same as [`std::fs`](#fs), so migrating code to use it is easy.
+fs-err's API is the same as `std::fs`, so migrating code to use it is easy.
 
 ```no_run
 // use std::fs;
@@ -41,9 +41,9 @@ println!("Read foo.txt: {}", contents);
 # Ok::<(), std::io::Error>(())
 ```
 
-fs-err uses [`std::io::Error`](#error) for all errors. This helps fs-err
+fs-err uses `std::io::Error` for all errors. This helps fs-err
 compose well with traits from the standard library like
-[`std::io::Read`](#read) and crates that use them like
+`std::io::Read` and crates that use them like
 [`serde_json`][serde_json](#serde-json)
 :
 

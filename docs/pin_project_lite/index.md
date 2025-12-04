@@ -255,7 +255,7 @@ impl<T> Enum<T> {
 ```
 
 If you want to call the `project()` method multiple times or later use the
-original [`Pin`](#pin) type, it needs to use [`.as_mut()`][`Pin::as_mut`](#as-mut) to avoid
+original [`Pin`](#pin) type, it needs to use [`.as_mut()`]`Pin::as_mut` to avoid
 consuming the [`Pin`](#pin).
 
 ```
@@ -322,12 +322,12 @@ attribute has no effect.
 
 # Pinned Drop
 
-In order to correctly implement pin projections, a type’s [`Drop`](#drop) impl must not move out of any
-structurally pinned fields. Unfortunately, [`Drop::drop`](#drop) takes `&mut Self`, not `Pin<&mut
+In order to correctly implement pin projections, a type’s [`Drop`](../gimli/index.md) impl must not move out of any
+structurally pinned fields. Unfortunately, `Drop::drop` takes `&mut Self`, not `Pin<&mut
 Self>`.
 
-To implement [`Drop`](#drop) for type that has pin, add an `impl PinnedDrop` block at the end of the
-[`pin_project`](pin_project_lite/index.md) macro block. PinnedDrop has the following interface:
+To implement [`Drop`](../gimli/index.md) for type that has pin, add an `impl PinnedDrop` block at the end of the
+[`pin_project`](index.md) macro block. PinnedDrop has the following interface:
 
 ```rust
 # use std::pin::Pin;
@@ -338,12 +338,12 @@ trait PinnedDrop {
 
 Note that the argument to `PinnedDrop::drop` cannot be named `self`.
 
-`pin_project!` implements the actual [`Drop`](#drop) trait via PinnedDrop you implemented. To
+`pin_project!` implements the actual [`Drop`](../gimli/index.md) trait via PinnedDrop you implemented. To
 explicitly drop a type that implements PinnedDrop, use the [drop](#drop)
  function just like dropping a
-type that directly implements [`Drop`](#drop).
+type that directly implements [`Drop`](../gimli/index.md).
 
-`PinnedDrop::drop` will never be called more than once, just like [`Drop::drop`](#drop).
+`PinnedDrop::drop` will never be called more than once, just like `Drop::drop`.
 
 ```rust
 use pin_project_lite::pin_project;

@@ -36,7 +36,7 @@ https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 
 Status code values in the range 100-999 (inclusive) are supported by this
 type. Values in the range 100-599 are semantically classified by the most
-significant digit. See [`StatusCode::is_success`](#is-success), etc. Values above 599
+significant digit. See `StatusCode::is_success`, etc. Values above 599
 are unclassified but allowed for legacy compatibility, though their use is
 discouraged. Applications may interpret such values as protocol errors.
 
@@ -51,36 +51,6 @@ assert!(StatusCode::OK.is_success());
 ```
 
 #### Implementations
-
-- `const fn from_u16(src: u16) -> Result<StatusCode, InvalidStatusCode>`
-  Converts a u16 to a status code.
-
-- `fn from_bytes(src: &[u8]) -> Result<StatusCode, InvalidStatusCode>`
-  Converts a `&[u8]` to a status code.
-
-- `const fn as_u16(self: &Self) -> u16`
-  Returns the `u16` corresponding to this `StatusCode`.
-
-- `fn as_str(self: &Self) -> &str`
-  Returns a &str representation of the `StatusCode`
-
-- `fn canonical_reason(self: &Self) -> Option<&'static str>`
-  Get the standardised `reason-phrase` for this status code.
-
-- `fn is_informational(self: &Self) -> bool`
-  Check if status is within 100-199.
-
-- `fn is_success(self: &Self) -> bool`
-  Check if status is within 200-299.
-
-- `fn is_redirection(self: &Self) -> bool`
-  Check if status is within 300-399.
-
-- `fn is_client_error(self: &Self) -> bool`
-  Check if status is within 400-499.
-
-- `fn is_server_error(self: &Self) -> bool`
-  Check if status is within 500-599.
 
 - `const CONTINUE: StatusCode`
 
@@ -206,16 +176,46 @@ assert!(StatusCode::OK.is_success());
 
 - `const NETWORK_AUTHENTICATION_REQUIRED: StatusCode`
 
+- `const fn from_u16(src: u16) -> Result<StatusCode, InvalidStatusCode>`
+  Converts a u16 to a status code.
+
+- `fn from_bytes(src: &[u8]) -> Result<StatusCode, InvalidStatusCode>`
+  Converts a `&[u8]` to a status code.
+
+- `const fn as_u16(self: &Self) -> u16`
+  Returns the `u16` corresponding to this `StatusCode`.
+
+- `fn as_str(self: &Self) -> &str`
+  Returns a &str representation of the `StatusCode`
+
+- `fn canonical_reason(self: &Self) -> Option<&'static str>`
+  Get the standardised `reason-phrase` for this status code.
+
+- `fn is_informational(self: &Self) -> bool`
+  Check if status is within 100-199.
+
+- `fn is_success(self: &Self) -> bool`
+  Check if status is within 200-299.
+
+- `fn is_redirection(self: &Self) -> bool`
+  Check if status is within 300-399.
+
+- `fn is_client_error(self: &Self) -> bool`
+  Check if status is within 400-499.
+
+- `fn is_server_error(self: &Self) -> bool`
+  Check if status is within 500-599.
+
 #### Trait Implementations
+
+##### `impl From<'a>`
+
+- `fn from(t: &'a StatusCode) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(t: &'a StatusCode) -> Self`
 
 ##### `impl FromStr`
 
@@ -266,11 +266,11 @@ assert!(StatusCode::OK.is_success());
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &u16) -> bool`
+- `fn eq(self: &Self, other: &StatusCode) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &StatusCode) -> bool`
+- `fn eq(self: &Self, other: &u16) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -290,11 +290,11 @@ assert!(StatusCode::OK.is_success());
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
+##### `impl TryFrom<'a>`
 
-- `type Error = Infallible`
+- `type Error = InvalidStatusCode`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -302,11 +302,11 @@ assert!(StatusCode::OK.is_success());
 
 - `fn try_from(t: u16) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom<T, U>`
 
-- `type Error = InvalidStatusCode`
+- `type Error = Infallible`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryFrom<'a>`
 

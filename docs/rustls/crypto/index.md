@@ -28,7 +28,7 @@ struct WebPkiSupportedAlgorithms {
 ```
 
 Describes which `webpki` signature verification algorithms are supported and
-how they map to TLS [`SignatureScheme`](#signaturescheme)s.
+how they map to TLS [`SignatureScheme`](index.md)s.
 
 #### Fields
 
@@ -44,7 +44,7 @@ how they map to TLS [`SignatureScheme`](#signaturescheme)s.
 
   A mapping from TLS `SignatureScheme`s to matching webpki signature verification algorithms.
   
-  This is one (`SignatureScheme`) to many ([`SignatureVerificationAlgorithm`](../../rustls_pki_types/rustls_pki_types/index.md)) because
+  This is one (`SignatureScheme`) to many ([`SignatureVerificationAlgorithm`](../../rustls_pki_types/index.md)) because
   (depending on the protocol version) there is not necessary a 1-to-1 mapping.
   
   For TLS1.2, all `SignatureVerificationAlgorithm`s are tried in sequence.
@@ -200,7 +200,7 @@ Common state for cipher suites (both for TLS 1.2 and TLS 1.3)
   
   This is to be set on the assumption that messages are maximally sized --
   each is 2<sup>14</sup> bytes. It **does not** consider confidentiality limits for
-  QUIC connections - see the [`quic::PacketKey::confidentiality_limit`](#confidentiality-limit) field for
+  QUIC connections - see the `quic::PacketKey::confidentiality_limit` field for
   this context.
   
   For AES-GCM implementations, this should be set to 2<sup>24</sup> to limit attack
@@ -277,10 +277,10 @@ Controls core cryptography used by rustls.
 This crate comes with two built-in options, provided as
 `CryptoProvider` structures:
 
-- [`crypto::aws_lc_rs::default_provider`](#default-provider): (behind the `aws_lc_rs` crate feature,
+- `crypto::aws_lc_rs::default_provider`: (behind the `aws_lc_rs` crate feature,
   which is enabled by default).  This provider uses the [aws-lc-rs](https://github.com/aws/aws-lc-rs)
   crate.  The `fips` crate feature makes this option use FIPS140-3-approved cryptography.
-- [`crypto::ring::default_provider`](#default-provider): (behind the `ring` crate feature, which
+- `crypto::ring::default_provider`: (behind the `ring` crate feature, which
   is optional).  This provider uses the [*ring*](https://github.com/briansmith/ring)
   crate.
 
@@ -292,33 +292,33 @@ runtime by replacing field values as needed.
 There is the concept of an implicit default provider, configured at run-time once in
 a given process.
 
-It is used for functions like [`ClientConfig::builder()`](#builder) and [`ServerConfig::builder()`](#builder).
+It is used for functions like `ClientConfig::builder()` and `ServerConfig::builder()`.
 
-The intention is that an application can specify the [`CryptoProvider`](rustls/crypto/index.md) they wish to use
+The intention is that an application can specify the [`CryptoProvider`](crypto/index.md) they wish to use
 once, and have that apply to the variety of places where their application does TLS
 (which may be wrapped inside other libraries).
-They should do this by calling [`CryptoProvider::install_default()`](#install-default) early on.
+They should do this by calling `CryptoProvider::install_default()` early on.
 
 To achieve this goal:
 
-- _libraries_ should use [`ClientConfig::builder()`](#builder)/[`ServerConfig::builder()`](#builder)
-  or otherwise rely on the [`CryptoProvider::get_default()`](#get-default) provider.
-- _applications_ should call [`CryptoProvider::install_default()`](#install-default) early
+- _libraries_ should use `ClientConfig::builder()`/`ServerConfig::builder()`
+  or otherwise rely on the `CryptoProvider::get_default()` provider.
+- _applications_ should call `CryptoProvider::install_default()` early
   in their `fn main()`. If _applications_ uses a custom provider based on the one built-in,
   they can activate the `custom-provider` feature to ensure its usage.
 
 # Using a specific `CryptoProvider`
 
-Supply the provider when constructing your [`ClientConfig`](#clientconfig) or [`ServerConfig`](#serverconfig):
+Supply the provider when constructing your [`ClientConfig`](index.md) or [`ServerConfig`](index.md):
 
-- [`ClientConfig::builder_with_provider()`](#builder-with-provider)
-- [`ServerConfig::builder_with_provider()`](#builder-with-provider)
+- `ClientConfig::builder_with_provider()`
+- `ServerConfig::builder_with_provider()`
 
 When creating and configuring a webpki-backed client or server certificate verifier, a choice of
 provider is also needed to start the configuration process:
 
-- [`client::WebPkiServerVerifier::builder_with_provider()`](#builder-with-provider)
-- [`server::WebPkiClientVerifier::builder_with_provider()`](#builder-with-provider)
+- `client::WebPkiServerVerifier::builder_with_provider()`
+- `server::WebPkiClientVerifier::builder_with_provider()`
 
 If you install a custom provider and want to avoid any accidental use of a built-in provider, the feature
 `custom-provider` can be activated to ensure your custom provider is used everywhere
@@ -330,13 +330,13 @@ Your goal will be to populate an instance of this `CryptoProvider` struct.
 
 ## Which elements are required?
 
-There is no requirement that the individual elements ([`SupportedCipherSuite`](#supportedciphersuite), [`SupportedKxGroup`](rustls/crypto/index.md),
-[`SigningKey`](#signingkey), etc.) come from the same crate.  It is allowed and expected that uninteresting
+There is no requirement that the individual elements ([`SupportedCipherSuite`](index.md), [`SupportedKxGroup`](crypto/index.md),
+[`SigningKey`](index.md), etc.) come from the same crate.  It is allowed and expected that uninteresting
 elements would be delegated back to one of the default providers (statically) or a parent
 provider (dynamically).
 
 For example, if we want to make a provider that just overrides key loading in the config builder
-API (with [`ConfigBuilder::with_single_cert`](#with-single-cert), etc.), it might look like this:
+API (with `ConfigBuilder::with_single_cert`, etc.), it might look like this:
 
 ```
 # #[cfg(feature = "aws_lc_rs")] {
@@ -366,13 +366,13 @@ impl rustls::crypto::KeyProvider for HsmKeyLoader {
 
 The elements are documented separately:
 
-- **Random** - see [`crypto::SecureRandom::fill()`](#fill).
-- **Cipher suites** - see [`SupportedCipherSuite`](#supportedciphersuite), [`Tls12CipherSuite`](#tls12ciphersuite), and
-  [`Tls13CipherSuite`](#tls13ciphersuite).
-- **Key exchange groups** - see [`crypto::SupportedKxGroup`](#supportedkxgroup).
-- **Signature verification algorithms** - see [`crypto::WebPkiSupportedAlgorithms`](#webpkisupportedalgorithms).
-- **Authentication key loading** - see [`crypto::KeyProvider::load_private_key()`](#load-private-key) and
-  [`sign::SigningKey`](#signingkey).
+- **Random** - see `crypto::SecureRandom::fill()`.
+- **Cipher suites** - see [`SupportedCipherSuite`](index.md), [`Tls12CipherSuite`](index.md), and
+  [`Tls13CipherSuite`](index.md).
+- **Key exchange groups** - see `crypto::SupportedKxGroup`.
+- **Signature verification algorithms** - see `crypto::WebPkiSupportedAlgorithms`.
+- **Authentication key loading** - see `crypto::KeyProvider::load_private_key()` and
+  `sign::SigningKey`.
 
 # Example code
 
@@ -393,7 +393,7 @@ Content-Length: 19899
 The `fips` crate feature enables use of the `aws-lc-rs` crate in FIPS mode.
 
 You can verify the configuration at runtime by checking
-[`ServerConfig::fips()`](#fips)/[`ClientConfig::fips()`](#fips) return `true`.
+`ServerConfig::fips()`/`ClientConfig::fips()` return `true`.
 
 #### Fields
 
@@ -405,7 +405,7 @@ You can verify the configuration at runtime by checking
   The `SupportedCipherSuite` type carries both configuration and implementation.
   
   A valid `CryptoProvider` must ensure that all cipher suites are accompanied by at least
-  one matching key exchange group in [`CryptoProvider::kx_groups`](#kx-groups).
+  one matching key exchange group in `CryptoProvider::kx_groups`.
 
 - **`kx_groups`**: `alloc::vec::Vec<&'static dyn SupportedKxGroup>`
 
@@ -423,9 +423,9 @@ You can verify the configuration at runtime by checking
   
   These are used for both certificate chain verification and handshake signature verification.
   
-  This is called by [`ConfigBuilder::with_root_certificates()`](#with-root-certificates),
-  [`server::WebPkiClientVerifier::builder_with_provider()`](#builder-with-provider) and
-  [`client::WebPkiServerVerifier::builder_with_provider()`](#builder-with-provider).
+  This is called by `ConfigBuilder::with_root_certificates()`,
+  `server::WebPkiClientVerifier::builder_with_provider()` and
+  `client::WebPkiServerVerifier::builder_with_provider()`.
 
 - **`secure_random`**: `&'static dyn SecureRandom`
 
@@ -433,7 +433,7 @@ You can verify the configuration at runtime by checking
 
 - **`key_provider`**: `&'static dyn KeyProvider`
 
-  Provider for loading private [`SigningKey`](#signingkey)s from [`PrivateKeyDer`](../../rustls_pki_types/rustls_pki_types/index.md).
+  Provider for loading private [`SigningKey`](index.md)s from [`PrivateKeyDer`](../../rustls_pki_types/index.md).
 
 #### Implementations
 
@@ -512,7 +512,7 @@ struct CompletedKeyExchange {
 }
 ```
 
-The result from [`SupportedKxGroup::start_and_complete()`](#start-and-complete).
+The result from `SupportedKxGroup::start_and_complete()`.
 
 #### Fields
 
@@ -572,7 +572,7 @@ struct SharedSecret {
 }
 ```
 
-The result from [`ActiveKeyExchange::complete`](#complete) or [`ActiveKeyExchange::complete_hybrid_component`](#complete-hybrid-component).
+The result from `ActiveKeyExchange::complete` or `ActiveKeyExchange::complete_hybrid_component`.
 
 #### Implementations
 
@@ -583,16 +583,16 @@ The result from [`ActiveKeyExchange::complete`](#complete) or [`ActiveKeyExchang
 
 ##### `impl From`
 
-- `fn from(source: &[u8]) -> Self`
-
-##### `impl From`
-
 - `fn from(buf: Vec<u8>) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(source: &[u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -742,7 +742,7 @@ A source of cryptographically secure randomness.
 trait KeyProvider: Send + Sync + Debug { ... }
 ```
 
-A mechanism for loading private [`SigningKey`](#signingkey)s from [`PrivateKeyDer`](../../rustls_pki_types/rustls_pki_types/index.md).
+A mechanism for loading private [`SigningKey`](index.md)s from [`PrivateKeyDer`](../../rustls_pki_types/index.md).
 
 This trait is intended to be used with private key material that is sourced from DER,
 such as a private-key that may be present on-disk. It is not intended to be used with
@@ -770,10 +770,10 @@ trait SupportedKxGroup: Send + Sync + Debug { ... }
 A supported key exchange group.
 
 This type carries both configuration and implementation. Specifically,
-it has a TLS-level name expressed using the [`NamedGroup`](#namedgroup) enum, and
-a function which produces a [`ActiveKeyExchange`](rustls/crypto/index.md).
+it has a TLS-level name expressed using the [`NamedGroup`](index.md) enum, and
+a function which produces a [`ActiveKeyExchange`](crypto/index.md).
 
-Compare with [`NamedGroup`](#namedgroup), which carries solely a protocol identifier.
+Compare with [`NamedGroup`](index.md), which carries solely a protocol identifier.
 
 #### Required Methods
 
@@ -807,7 +807,7 @@ Compare with [`NamedGroup`](#namedgroup), which carries solely a protocol identi
 trait ActiveKeyExchange: Send + Sync { ... }
 ```
 
-An in-progress key exchange originating from a [`SupportedKxGroup`](rustls/crypto/index.md).
+An in-progress key exchange originating from a [`SupportedKxGroup`](crypto/index.md).
 
 #### Required Methods
 
@@ -821,7 +821,7 @@ An in-progress key exchange originating from a [`SupportedKxGroup`](rustls/crypt
 
 - `fn hybrid_component(self: &Self) -> Option<(NamedGroup, &[u8])>`
 
-  For hybrid key exchanges, returns the [`NamedGroup`](#namedgroup) and key share
+  For hybrid key exchanges, returns the [`NamedGroup`](index.md) and key share
 
 - `fn complete_hybrid_component(self: Box<Self>, _peer_pub_key: &[u8]) -> Result<SharedSecret, Error>`
 

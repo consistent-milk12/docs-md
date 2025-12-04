@@ -17,8 +17,8 @@ fn clicolor() -> Option<bool>
 Check [CLICOLOR] status
 
 - When `true`, ANSI colors are supported and should be used when the program isn't piped,
-  similar to [`term_supports_color`](anstyle_query/index.md)
-- When `false`, don’t output ANSI color escape codes, similar to [`no_color`](anstyle_query/index.md)
+  similar to [`term_supports_color`](index.md)
+- When `false`, don’t output ANSI color escape codes, similar to [`no_color`](index.md)
 
 See also:
 - [terminfo](https://crates.io/crates/terminfo) or [term](https://crates.io/crates/term) for
@@ -72,7 +72,7 @@ fn term_supports_ansi_color() -> bool
 
 Check `TERM` for ANSI color support
 
-On Windows, you might need to also check [`windows::enable_ansi_colors`](#enable-ansi-colors) as ANSI color support
+On Windows, you might need to also check `windows::enable_ansi_colors` as ANSI color support
 is opt-in, rather than assumed.
 
 ### `truecolor`

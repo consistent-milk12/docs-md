@@ -9,7 +9,7 @@ Provides a contiguous NFA implementation of Aho-Corasick.
 This is a low-level API that generally only needs to be used in niche
 circumstances. When possible, prefer using [`AhoCorasick`](crate::AhoCorasick)
 instead of a contiguous NFA directly. Using an `NFA` directly is typically only
-necessary when one needs access to the [`Automaton`](aho_corasick/automaton/index.md) trait implementation.
+necessary when one needs access to the [`Automaton`](automaton/index.md) trait implementation.
 
 ## Structs
 
@@ -25,11 +25,11 @@ A contiguous NFA implementation of Aho-Corasick.
 
 When possible, prefer using [`AhoCorasick`](crate::AhoCorasick) instead of
 this type directly. Using an `NFA` directly is typically only necessary
-when one needs access to the [`Automaton`](aho_corasick/automaton/index.md) trait implementation.
+when one needs access to the [`Automaton`](automaton/index.md) trait implementation.
 
-This NFA can only be built by first constructing a [`noncontiguous::NFA`](#nfa).
-Both [`NFA::new`](#new) and [`Builder::build`](#build) do this for you automatically, but
-[`Builder::build_from_noncontiguous`](#build-from-noncontiguous) permits doing it explicitly.
+This NFA can only be built by first constructing a `noncontiguous::NFA`.
+Both `NFA::new` and `Builder::build` do this for you automatically, but
+`Builder::build_from_noncontiguous` permits doing it explicitly.
 
 The main difference between a noncontiguous NFA and a contiguous NFA is
 that the latter represents all of its states and transitions in a single
@@ -82,7 +82,7 @@ assert_eq!(
 ```
 
 It is also possible to implement your own version of `try_find`. See the
-[`Automaton`](aho_corasick/automaton/index.md) documentation for an example.
+[`Automaton`](automaton/index.md) documentation for an example.
 
 #### Implementations
 

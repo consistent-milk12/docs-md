@@ -20,10 +20,10 @@ If you're looking for fully compiled DFAs, then please see the top-level
 
 This section gives a brief overview of the primary types in this module:
 
-* A [`Regex`](regex_automata/hybrid/regex/index.md) provides a way to search for matches of a regular
+* A [`Regex`](hybrid/regex/index.md) provides a way to search for matches of a regular
 expression using lazy DFAs. This includes iterating over matches with both the
 start and end positions of each match.
-* A [`dfa::DFA`](#dfa) provides direct low level access to a lazy DFA.
+* A `dfa::DFA` provides direct low level access to a lazy DFA.
 
 # Example: basic regex searching
 
@@ -126,7 +126,7 @@ expressive power necessary. Note that it is okay to build a lazy DFA from an
 NFA that contains capture groups. The capture groups will simply be ignored.
 * Unicode word boundaries. These present particularly difficult challenges for
 DFA construction and would result in an explosion in the number of states.
-One can enable [`dfa::Config::unicode_word_boundary`](#unicode-word-boundary) though, which provides
+One can enable `dfa::Config::unicode_word_boundary` though, which provides
 heuristic support for Unicode word boundaries that only works on ASCII text.
 Otherwise, one can use `(?-u:\b)` for an ASCII word boundary, which will work
 on any input.

@@ -15,13 +15,13 @@ While Rustls itself is platform independent, by default it uses [`aws-lc-rs`](#a
 the cryptography in TLS.  See [the aws-lc-rs FAQ][aws-lc-rs-platforms-faq] for more details of the
 platform/architecture support constraints in aws-lc-rs.
 
-[`ring`](rustls/crypto/ring/index.md) is also available via the `ring` crate feature: see
+[`ring`](crypto/ring/index.md) is also available via the `ring` crate feature: see
 [the supported `ring` target platforms][ring-target-platforms].
 
-By providing a custom instance of the [`crypto::CryptoProvider`](#cryptoprovider) struct, you
+By providing a custom instance of the `crypto::CryptoProvider` struct, you
 can replace all cryptography dependencies of rustls.  This is a route to being portable
 to a wider set of architectures and environments, or compliance requirements.  See the
-[`crypto::CryptoProvider`](#cryptoprovider) documentation for more details.
+`crypto::CryptoProvider` documentation for more details.
 
 Specifying `default-features = false` when depending on rustls will remove the implicit
 dependency on aws-lc-rs.
@@ -41,16 +41,16 @@ requirements that aren't met by the default provider, [`aws-lc-rs`](#aws-lc-rs).
 
 Users that wish to customize the provider in use can do so when constructing `ClientConfig`
 and `ServerConfig` instances using the `with_crypto_provider` method on the respective config
-builder types. See the [`crypto::CryptoProvider`](#cryptoprovider) documentation for more details.
+builder types. See the `crypto::CryptoProvider` documentation for more details.
 
 #### Built-in providers
 
 Rustls ships with two built-in providers controlled by associated crate features:
 
   * [`aws-lc-rs`](#aws-lc-rs) - enabled by default, available with the `aws_lc_rs` crate feature enabled.
-  * [`ring`](rustls/crypto/ring/index.md) - available with the `ring` crate feature enabled.
+  * [`ring`](crypto/ring/index.md) - available with the `ring` crate feature enabled.
 
-See the documentation for [`crypto::CryptoProvider`](#cryptoprovider) for details on how providers are
+See the documentation for `crypto::CryptoProvider` for details on how providers are
 selected.
 
 #### Third-party providers
@@ -109,7 +109,7 @@ It doesn't make or accept TCP connections, or do DNS, or read or write files.
 
 Our [examples](#examples)
  directory contains demos that show how to handle I/O using the
-[`stream::Stream`](#stream) helper, as well as more complex asynchronous I/O using [`mio`](#mio).
+`stream::Stream` helper, as well as more complex asynchronous I/O using [`mio`](#mio).
 If you're already using Tokio for an async runtime you may prefer to use [`tokio-rustls`](#tokio-rustls) instead
 of interacting with rustls directly.
 
@@ -117,7 +117,7 @@ of interacting with rustls directly.
 : https://github.com/rustls/rustls/tree/main/examples
 
 ### Rustls provides encrypted pipes
-These are the [`ServerConnection`](#serverconnection) and [`ClientConnection`](#clientconnection) types.  You supply raw TLS traffic
+These are the [`ServerConnection`](index.md) and [`ClientConnection`](index.md) types.  You supply raw TLS traffic
 on the left (via the [`read_tls()`](#read-tls) and [`write_tls()`](#write-tls) methods) and then read/write the
 plaintext on the right:
 
@@ -296,7 +296,7 @@ they mean.
 - `fips`: enable support for FIPS140-3-approved cryptography, via the [`aws-lc-rs`](#aws-lc-rs) crate.
   This feature enables the `aws_lc_rs` crate feature, which makes the rustls crate depend
   on [aws-lc-rs](https://github.com/aws/aws-lc-rs).  It also changes the default
-  for [`ServerConfig::require_ems`](#require-ems) and [`ClientConfig::require_ems`](#require-ems).
+  for `ServerConfig::require_ems` and `ClientConfig::require_ems`.
 
   See [manual::_06_fips] for more details.
 
@@ -358,19 +358,19 @@ struct ConfigBuilder<Side: ConfigSide, State> {
 ```
 
 A [builder](#builder)
- for [`ServerConfig`](#serverconfig) or [`ClientConfig`](#clientconfig) values.
+ for [`ServerConfig`](index.md) or [`ClientConfig`](index.md) values.
 
-To get one of these, call [`ServerConfig::builder()`](#builder) or [`ClientConfig::builder()`](#builder).
+To get one of these, call `ServerConfig::builder()` or `ClientConfig::builder()`.
 
 To build a config, you must make at least two decisions (in order):
 
 - How should this client or server verify certificates provided by its peer?
 - What certificates should this client or server present to its peer?
 
-For settings besides these, see the fields of [`ServerConfig`](#serverconfig) and [`ClientConfig`](#clientconfig).
+For settings besides these, see the fields of [`ServerConfig`](index.md) and [`ClientConfig`](index.md).
 
 The usual choice for protocol primitives is to call
-[`ClientConfig::builder`](#builder)/[`ServerConfig::builder`](#builder)
+`ClientConfig::builder`/`ServerConfig::builder`
 which will use rustls' default cryptographic provider and safe defaults for ciphersuites and
 supported protocol versions.
 
@@ -410,19 +410,19 @@ since the code for the unused ones can be optimized away at link time.
 
 After choosing protocol primitives, you must choose (a) how to verify certificates and (b) what certificates
 (if any) to send to the peer. The methods to do this are specific to whether you're building a ClientConfig
-or a ServerConfig, as tracked by the [`ConfigSide`](#configside) type parameter on the various impls of ConfigBuilder.
+or a ServerConfig, as tracked by the [`ConfigSide`](index.md) type parameter on the various impls of ConfigBuilder.
 
 # ClientConfig certificate configuration
 
 For a client, _certificate verification_ must be configured either by calling one of:
- - [`ConfigBuilder::with_root_certificates`](#with-root-certificates) or
- - [`ConfigBuilder::dangerous()`](#dangerous) and [`DangerousClientConfigBuilder::with_custom_certificate_verifier`](#with-custom-certificate-verifier)
+ - `ConfigBuilder::with_root_certificates` or
+ - `ConfigBuilder::dangerous()` and `DangerousClientConfigBuilder::with_custom_certificate_verifier`
 
 Next, _certificate sending_ (also known as "client authentication", "mutual TLS", or "mTLS") must be configured
 or disabled using one of:
-- [`ConfigBuilder::with_no_client_auth`](#with-no-client-auth) - to not send client authentication (most common)
-- [`ConfigBuilder::with_client_auth_cert`](#with-client-auth-cert) - to always send a specific certificate
-- [`ConfigBuilder::with_client_cert_resolver`](#with-client-cert-resolver) - to send a certificate chosen dynamically
+- `ConfigBuilder::with_no_client_auth` - to not send client authentication (most common)
+- `ConfigBuilder::with_client_auth_cert` - to always send a specific certificate
+- `ConfigBuilder::with_client_cert_resolver` - to send a certificate chosen dynamically
 
 For example:
 
@@ -440,13 +440,13 @@ ClientConfig::builder()
 # ServerConfig certificate configuration
 
 For a server, _certificate verification_ must be configured by calling one of:
-- [`ConfigBuilder::with_no_client_auth`](#with-no-client-auth) - to not require client authentication (most common)
-- [`ConfigBuilder::with_client_cert_verifier`](#with-client-cert-verifier) - to use a custom verifier
+- `ConfigBuilder::with_no_client_auth` - to not require client authentication (most common)
+- `ConfigBuilder::with_client_cert_verifier` - to use a custom verifier
 
 Next, _certificate sending_ must be configured by calling one of:
-- [`ConfigBuilder::with_single_cert`](#with-single-cert) - to send a specific certificate
-- [`ConfigBuilder::with_single_cert_with_ocsp`](#with-single-cert-with-ocsp) - to send a specific certificate, plus stapled OCSP
-- [`ConfigBuilder::with_cert_resolver`](#with-cert-resolver) - to send a certificate chosen dynamically
+- `ConfigBuilder::with_single_cert` - to send a specific certificate
+- `ConfigBuilder::with_single_cert_with_ocsp` - to send a specific certificate, plus stapled OCSP
+- `ConfigBuilder::with_cert_resolver` - to send a certificate chosen dynamically
 
 For example:
 
@@ -472,14 +472,14 @@ ConfigBuilder uses the [typestate](#typestate)
 configuration item is provided exactly once. This is tracked in the `State` type parameter,
 which can have these values:
 
-- [`WantsVersions`](#wantsversions)
-- [`WantsVerifier`](#wantsverifier)
-- [`WantsClientCert`](#wantsclientcert)
-- [`WantsServerCert`](#wantsservercert)
+- [`WantsVersions`](index.md)
+- [`WantsVerifier`](index.md)
+- [`WantsClientCert`](index.md)
+- [`WantsServerCert`](index.md)
 
 The other type parameter is `Side`, which is either `ServerConfig` or `ClientConfig`
-depending on whether the ConfigBuilder was built with [`ServerConfig::builder()`](#builder) or
-[`ClientConfig::builder()`](#builder).
+depending on whether the ConfigBuilder was built with `ServerConfig::builder()` or
+`ClientConfig::builder()`.
 
 You won't need to write out either of these type parameters explicitly. If you write a
 correct chain of configuration calls they will be used automatically. If you write an
@@ -487,8 +487,8 @@ incorrect chain of configuration calls you will get an error message from the co
 mentioning some of these types.
 
 Additionally, ServerConfig and ClientConfig carry a private field containing a
-[`CryptoProvider`](rustls/crypto/index.md), from [`ClientConfig::builder_with_provider()`](#builder-with-provider) or
-[`ServerConfig::builder_with_provider()`](#builder-with-provider). This determines which cryptographic backend
+[`CryptoProvider`](crypto/index.md), from `ClientConfig::builder_with_provider()` or
+`ServerConfig::builder_with_provider()`. This determines which cryptographic backend
 is used. The default is [the process-default provider](`CryptoProvider::get_default`).
 
 [builder](#builder)
@@ -514,23 +514,8 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 - `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
   Enable Encrypted Client Hello (ECH) in the given mode.
 
-- `fn with_client_cert_verifier(self: Self, client_cert_verifier: alloc::sync::Arc<dyn ClientCertVerifier>) -> ConfigBuilder<ServerConfig, WantsServerCert>`
-  Choose how to verify client certificates.
-
-- `fn with_no_client_auth(self: Self) -> ConfigBuilder<ServerConfig, WantsServerCert>`
-  Disable client authentication.
-
 - `fn crypto_provider(self: &Self) -> &alloc::sync::Arc<CryptoProvider>`
   Return the crypto provider used to construct this builder.
-
-- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain and matching private key.  This
-
-- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain, matching private key and optional OCSP
-
-- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
-  Sets a custom [`ResolvesServerCert`].
 
 - `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
   Choose how to verify server certificates.
@@ -541,6 +526,15 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 - `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
   Access configuration options whose use is dangerous and requires
 
+- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain and matching private key.  This
+
+- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain, matching private key and optional OCSP
+
+- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
+  Sets a custom [`ResolvesServerCert`].
+
 - `fn with_client_auth_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ClientConfig, Error>`
   Sets a single certificate chain and matching private key for use
 
@@ -549,6 +543,12 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 - `fn with_client_cert_resolver(self: Self, client_auth_cert_resolver: alloc::sync::Arc<dyn ResolvesClientCert>) -> ClientConfig`
   Sets a custom [`ResolvesClientCert`].
+
+- `fn with_client_cert_verifier(self: Self, client_cert_verifier: alloc::sync::Arc<dyn ClientCertVerifier>) -> ConfigBuilder<ServerConfig, WantsServerCert>`
+  Choose how to verify client certificates.
+
+- `fn with_no_client_auth(self: Self) -> ConfigBuilder<ServerConfig, WantsServerCert>`
+  Disable client authentication.
 
 - `fn with_safe_default_protocol_versions(self: Self) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
   Accept the default protocol versions: both TLS1.2 and TLS1.3 are enabled.
@@ -622,7 +622,7 @@ struct WantsVerifier {
 
 Config builder state where the caller must supply a verifier.
 
-For more information, see the [`ConfigBuilder`](../ureq/ureq/config/index.md) documentation.
+For more information, see the [`ConfigBuilder`](index.md) documentation.
 
 #### Trait Implementations
 
@@ -689,7 +689,7 @@ struct WantsVersions {
 
 Config builder state where the caller must supply TLS protocol versions.
 
-For more information, see the [`ConfigBuilder`](../ureq/ureq/config/index.md) documentation.
+For more information, see the [`ConfigBuilder`](index.md) documentation.
 
 #### Trait Implementations
 
@@ -833,7 +833,7 @@ struct IoState {
 }
 ```
 
-Values of this structure are returned from [`Connection::process_new_packets`](#process-new-packets)
+Values of this structure are returned from `Connection::process_new_packets`
 and tell the caller the current I/O state of the TLS connection.
 
 
@@ -904,7 +904,7 @@ struct Reader<'a> {
 }
 ```
 
-A structure that implements [`std::io::Read`](#read) for reading plaintext.
+A structure that implements `std::io::Read` for reading plaintext.
 
 #### Implementations
 
@@ -967,7 +967,7 @@ struct Writer<'a> {
 }
 ```
 
-A structure that implements [`std::io::Write`](#write) for writing plaintext.
+A structure that implements `std::io::Write` for writing plaintext.
 
 #### Trait Implementations
 
@@ -1026,21 +1026,6 @@ Interface shared by client and server connections.
 
 #### Implementations
 
-- `fn reader(self: &mut Self) -> Reader<'_>`
-  Returns an object that allows reading plaintext.
-
-- `fn writer(self: &mut Self) -> Writer<'_>`
-  Returns an object that allows writing plaintext.
-
-- `fn complete_io<T>(self: &mut Self, io: &mut T) -> Result<(usize, usize), io::Error>`
-  This function uses `io` to complete any outstanding IO for
-
-- `fn read_tls(self: &mut Self, rd: &mut dyn io::Read) -> Result<usize, io::Error>`
-  Read TLS content from `rd` into the internal buffer.
-
-- `fn write_tls(self: &mut Self, wr: &mut dyn io::Write) -> Result<usize, io::Error>`
-  Writes TLS messages to `wr`.
-
 - `fn process_new_packets(self: &mut Self) -> Result<IoState, Error>`
   Processes any new packets read by a previous call to
 
@@ -1055,6 +1040,21 @@ Interface shared by client and server connections.
 
 - `fn refresh_traffic_keys(self: &mut Self) -> Result<(), Error>`
   Sends a TLS1.3 `key_update` message to refresh a connection's keys.
+
+- `fn reader(self: &mut Self) -> Reader<'_>`
+  Returns an object that allows reading plaintext.
+
+- `fn writer(self: &mut Self) -> Writer<'_>`
+  Returns an object that allows writing plaintext.
+
+- `fn complete_io<T>(self: &mut Self, io: &mut T) -> Result<(usize, usize), io::Error>`
+  This function uses `io` to complete any outstanding IO for
+
+- `fn read_tls(self: &mut Self, rd: &mut dyn io::Read) -> Result<usize, io::Error>`
+  Read TLS content from `rd` into the internal buffer.
+
+- `fn write_tls(self: &mut Self, wr: &mut dyn io::Write) -> Result<usize, io::Error>`
+  Writes TLS messages to `wr`.
 
 #### Trait Implementations
 
@@ -1112,7 +1112,7 @@ Interface shared by client and server connections.
 struct OtherError(alloc::sync::Arc<dyn StdError + Send + Sync>);
 ```
 
-Any other error that cannot be expressed by a more specific [`Error`](../docs_md/docs_md/error/index.md) variant.
+Any other error that cannot be expressed by a more specific [`Error`](index.md) variant.
 
 For example, an `OtherError` could be produced by a custom crypto provider
 exposing a provider specific error.
@@ -1251,7 +1251,7 @@ KeyLog that does exactly nothing.
 struct KeyLogFile();
 ```
 
-[`KeyLog`](#keylog) implementation that opens a file whose name is
+[`KeyLog`](index.md) implementation that opens a file whose name is
 given by the `SSLKEYLOGFILE` environment variable, and writes
 keys into it.
 
@@ -1337,14 +1337,14 @@ The TLS encoding is defined in RFC5246: `opaque DistinguishedName<1..2^16-1>;`
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: Vec<u8>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1417,7 +1417,7 @@ struct Stream<'a, C: 'a + ?Sized, T: 'a + Read + Write + ?Sized> {
 This type implements `io::Read` and `io::Write`, encapsulating
 a Connection `C` and an underlying transport `T`, such as a socket.
 
-Relies on [`ConnectionCommon::complete_io()`](#complete-io) to perform the necessary I/O.
+Relies on `ConnectionCommon::complete_io()` to perform the necessary I/O.
 
 This allows you to use a rustls Connection like a normal stream.
 
@@ -1506,7 +1506,7 @@ struct StreamOwned<C: Sized, T: Read + Write + Sized> {
 This type implements `io::Read` and `io::Write`, encapsulating
 and owning a Connection `C` and an underlying transport `T`, such as a socket.
 
-Relies on [`ConnectionCommon::complete_io()`](#complete-io) to perform the necessary I/O.
+Relies on `ConnectionCommon::complete_io()` to perform the necessary I/O.
 
 This allows you to use a rustls Connection like a normal stream.
 
@@ -1622,7 +1622,7 @@ Common state for cipher suites (both for TLS 1.2 and TLS 1.3)
   
   This is to be set on the assumption that messages are maximally sized --
   each is 2<sup>14</sup> bytes. It **does not** consider confidentiality limits for
-  QUIC connections - see the [`quic::PacketKey::confidentiality_limit`](#confidentiality-limit) field for
+  QUIC connections - see the `quic::PacketKey::confidentiality_limit` field for
   this context.
   
   For AES-GCM implementations, this should be set to 2<sup>24</sup> to limit attack
@@ -1901,10 +1901,10 @@ A TLS 1.2 cipher suite supported by rustls.
 
   How to compute the TLS1.2 PRF for the suite's hash function.
   
-  If you have a TLS1.2 PRF implementation, you should directly implement the [`crypto::tls12::Prf`](#prf) trait.
+  If you have a TLS1.2 PRF implementation, you should directly implement the `crypto::tls12::Prf` trait.
   
-  If not, you can implement the [`crypto::hmac::Hmac`](#hmac) trait (and associated), and then use
-  [`crypto::tls12::PrfUsingHmac`](#prfusinghmac).
+  If not, you can implement the `crypto::hmac::Hmac` trait (and associated), and then use
+  `crypto::tls12::PrfUsingHmac`.
 
 - **`kx`**: `crate::msgs::handshake::KeyExchangeAlgorithm`
 
@@ -1920,14 +1920,14 @@ A TLS 1.2 cipher suite supported by rustls.
 
   How to sign messages for authentication.
   
-  This is a set of [`SignatureScheme`](#signaturescheme)s that are usable once this cipher suite has been
+  This is a set of [`SignatureScheme`](index.md)s that are usable once this cipher suite has been
   negotiated.
   
   The precise scheme used is then chosen from this set by the selected authentication key.
 
 - **`aead_alg`**: `&'static dyn Tls12AeadAlgorithm`
 
-  How to produce a [`MessageDecrypter`](rustls/crypto/cipher/index.md) or [`MessageEncrypter`](rustls/crypto/cipher/index.md)
+  How to produce a [`MessageDecrypter`](crypto/cipher/index.md) or [`MessageEncrypter`](crypto/cipher/index.md)
   from raw key material.
 
 #### Implementations
@@ -2008,8 +2008,8 @@ A TLS 1.3 cipher suite supported by rustls.
   If you have a HKDF implementation, you should directly implement the `crypto::tls13::Hkdf`
   trait (and associated).
   
-  If not, you can implement the [`crypto::hmac::Hmac`](#hmac) trait (and associated), and then use
-  [`crypto::tls13::HkdfUsingHmac`](#hkdfusinghmac).
+  If not, you can implement the `crypto::hmac::Hmac` trait (and associated), and then use
+  `crypto::tls13::HkdfUsingHmac`.
 
 - **`aead_alg`**: `&'static dyn crypto::cipher::Tls13AeadAlgorithm`
 
@@ -2091,13 +2091,13 @@ struct DigitallySignedStruct {
 }
 ```
 
-This type combines a [`SignatureScheme`](#signaturescheme) and a signature payload produced with that scheme.
+This type combines a [`SignatureScheme`](index.md) and a signature payload produced with that scheme.
 
 #### Fields
 
 - **`scheme`**: `crate::enums::SignatureScheme`
 
-  The [`SignatureScheme`](#signaturescheme) used to produce the signature.
+  The [`SignatureScheme`](index.md) used to produce the signature.
 
 #### Implementations
 
@@ -2177,8 +2177,8 @@ struct SupportedProtocolVersion {
 A TLS protocol version supported by rustls.
 
 All possible instances of this class are provided by the library in
-the [`ALL_VERSIONS`](#all-versions) array, as well as individually as [`TLS12`](#tls12)
-and [`TLS13`](#tls13).
+the [`ALL_VERSIONS`](index.md) array, as well as individually as [`TLS12`](index.md)
+and [`TLS13`](index.md).
 
 #### Fields
 
@@ -2359,29 +2359,29 @@ struct ClientConfig {
 Common configuration for (typically) all connections made by a program.
 
 Making one of these is cheap, though one of the inputs may be expensive: gathering trust roots
-from the operating system to add to the [`RootCertStore`](#rootcertstore) passed to `with_root_certificates()`
+from the operating system to add to the [`RootCertStore`](index.md) passed to `with_root_certificates()`
 (the rustls-native-certs crate is often used for this) may take on the order of a few hundred
 milliseconds.
 
-These must be created via the [`ClientConfig::builder()`](#builder) or [`ClientConfig::builder_with_provider()`](#builder-with-provider)
+These must be created via the `ClientConfig::builder()` or `ClientConfig::builder_with_provider()`
 function.
 
-Note that using [`ConfigBuilder<ClientConfig, WantsVersions>::with_ech()`](#with-ech) will produce a common
-configuration specific to the provided [`crate::client::EchConfig`](#echconfig) that may not be appropriate
+Note that using `ConfigBuilder<ClientConfig, WantsVersions>::with_ech()` will produce a common
+configuration specific to the provided `crate::client::EchConfig` that may not be appropriate
 for all connections made by the program. In this case the configuration should only be shared
-by connections intended for domains that offer the provided [`crate::client::EchConfig`](#echconfig) in
+by connections intended for domains that offer the provided `crate::client::EchConfig` in
 their DNS zone.
 
 # Defaults
 
-* [`ClientConfig::max_fragment_size`](#max-fragment-size): the default is `None` (meaning 16kB).
-* [`ClientConfig::resumption`](#resumption): supports resumption with up to 256 server names, using session
+* `ClientConfig::max_fragment_size`: the default is `None` (meaning 16kB).
+* `ClientConfig::resumption`: supports resumption with up to 256 server names, using session
   ids or tickets, with a max of eight tickets per server.
-* [`ClientConfig::alpn_protocols`](#alpn-protocols): the default is empty -- no ALPN protocol is negotiated.
-* [`ClientConfig::key_log`](#key-log): key material is not logged.
-* [`ClientConfig::cert_decompressors`](#cert-decompressors): depends on the crate features, see [`compress::default_cert_decompressors()`](#default-cert-decompressors).
-* [`ClientConfig::cert_compressors`](#cert-compressors): depends on the crate features, see [`compress::default_cert_compressors()`](#default-cert-compressors).
-* [`ClientConfig::cert_compression_cache`](#cert-compression-cache): caches the most recently used 4 compressions
+* `ClientConfig::alpn_protocols`: the default is empty -- no ALPN protocol is negotiated.
+* `ClientConfig::key_log`: key material is not logged.
+* `ClientConfig::cert_decompressors`: depends on the crate features, see `compress::default_cert_decompressors()`.
+* `ClientConfig::cert_compressors`: depends on the crate features, see `compress::default_cert_compressors()`.
+* `ClientConfig::cert_compression_cache`: caches the most recently used 4 compressions
 
 
 #### Fields
@@ -2502,7 +2502,7 @@ their DNS zone.
 
   Caching for compressed certificates.
   
-  This is optional: [`compress::CompressionCache::Disabled`](#disabled) gives
+  This is optional: `compress::CompressionCache::Disabled` gives
   a cache that does no caching.
 
 #### Implementations
@@ -2703,49 +2703,49 @@ struct ServerConfig {
 Common configuration for a set of server sessions.
 
 Making one of these is cheap, though one of the inputs may be expensive: gathering trust roots
-from the operating system to add to the [`RootCertStore`](#rootcertstore) passed to a `ClientCertVerifier`
+from the operating system to add to the [`RootCertStore`](index.md) passed to a `ClientCertVerifier`
 builder may take on the order of a few hundred milliseconds.
 
-These must be created via the [`ServerConfig::builder()`](#builder) or [`ServerConfig::builder_with_provider()`](#builder-with-provider)
+These must be created via the `ServerConfig::builder()` or `ServerConfig::builder_with_provider()`
 function.
 
 # Defaults
 
-* [`ServerConfig::max_fragment_size`](#max-fragment-size): the default is `None` (meaning 16kB).
-* [`ServerConfig::session_storage`](#session-storage): if the `std` feature is enabled, the default stores 256
+* `ServerConfig::max_fragment_size`: the default is `None` (meaning 16kB).
+* `ServerConfig::session_storage`: if the `std` feature is enabled, the default stores 256
   sessions in memory. If the `std` feature is not enabled, the default is to not store any
   sessions. In a no-std context, by enabling the `hashbrown` feature you may provide your
-  own `session_storage` using [`ServerSessionMemoryCache`](#serversessionmemorycache) and a `crate::lock::MakeMutex`
+  own `session_storage` using [`ServerSessionMemoryCache`](index.md) and a `crate::lock::MakeMutex`
   implementation.
-* [`ServerConfig::alpn_protocols`](#alpn-protocols): the default is empty -- no ALPN protocol is negotiated.
-* [`ServerConfig::key_log`](#key-log): key material is not logged.
-* [`ServerConfig::send_tls13_tickets`](#send-tls13-tickets): 2 tickets are sent.
-* [`ServerConfig::cert_compressors`](#cert-compressors): depends on the crate features, see [`compress::default_cert_compressors()`](#default-cert-compressors).
-* [`ServerConfig::cert_compression_cache`](#cert-compression-cache): caches the most recently used 4 compressions
-* [`ServerConfig::cert_decompressors`](#cert-decompressors): depends on the crate features, see [`compress::default_cert_decompressors()`](#default-cert-decompressors).
+* `ServerConfig::alpn_protocols`: the default is empty -- no ALPN protocol is negotiated.
+* `ServerConfig::key_log`: key material is not logged.
+* `ServerConfig::send_tls13_tickets`: 2 tickets are sent.
+* `ServerConfig::cert_compressors`: depends on the crate features, see `compress::default_cert_compressors()`.
+* `ServerConfig::cert_compression_cache`: caches the most recently used 4 compressions
+* `ServerConfig::cert_decompressors`: depends on the crate features, see `compress::default_cert_decompressors()`.
 
 # Sharing resumption storage between `ServerConfig`s
 
 In a program using many `ServerConfig`s it may improve resumption rates
 (which has a significant impact on connection performance) if those
-configs share [`ServerConfig::session_storage`](#session-storage) or [`ServerConfig::ticketer`](#ticketer).
+configs share `ServerConfig::session_storage` or `ServerConfig::ticketer`.
 
 However, caution is needed: other fields influence the security of a session
 and resumption between them can be surprising.  If sharing
-[`ServerConfig::session_storage`](#session-storage) or [`ServerConfig::ticketer`](#ticketer) between two
+`ServerConfig::session_storage` or `ServerConfig::ticketer` between two
 `ServerConfig`s, you should also evaluate the following fields and ensure
 they are equivalent:
 
 * `ServerConfig::verifier` -- client authentication requirements,
-* [`ServerConfig::cert_resolver`](#cert-resolver) -- server identities.
+* `ServerConfig::cert_resolver` -- server identities.
 
 To illustrate, imagine two `ServerConfig`s `A` and `B`.  `A` requires
 client authentication, `B` does not.  If `A` and `B` shared a resumption store,
 it would be possible for a session originated by `B` (that is, an unauthenticated client)
 to be inserted into the store, and then resumed by `A`.  This would give a false
 impression to the user of `A` that the client was authenticated.  This is possible
-whether the resumption is performed statefully (via [`ServerConfig::session_storage`](#session-storage))
-or statelessly (via [`ServerConfig::ticketer`](#ticketer)).
+whether the resumption is performed statefully (via `ServerConfig::session_storage`)
+or statelessly (via `ServerConfig::ticketer`).
 
 _Unlike_ `ClientConfig`, rustls does not enforce any policy here.
 
@@ -2814,7 +2814,7 @@ _Unlike_ `ClientConfig`, rustls does not enforce any policy here.
   this config.  Specify 0 to disable early data.  The
   default is 0.
   
-  Read the early data via [`ServerConnection::early_data`](#early-data).
+  Read the early data via `ServerConnection::early_data`.
   
   The units for this are _both_ plaintext bytes, _and_ ciphertext
   bytes, depending on whether the server accepts a client's early_data
@@ -2893,7 +2893,7 @@ _Unlike_ `ClientConfig`, rustls does not enforce any policy here.
 
   Caching for compressed certificates.
   
-  This is optional: [`compress::CompressionCache::Disabled`](#disabled) gives
+  This is optional: `compress::CompressionCache::Disabled` gives
   a cache that does no caching.
 
 - **`cert_decompressors`**: `alloc::vec::Vec<&'static dyn compress::CertDecompressor>`
@@ -3324,11 +3324,6 @@ A client or server connection.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From`
 
 - `fn from(conn: ServerConnection) -> Self`
@@ -3336,6 +3331,11 @@ A client or server connection.
 ##### `impl From`
 
 - `fn from(conn: ClientConnection) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -3439,22 +3439,22 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(e: InvalidMessage) -> Self`
 
 ##### `impl From`
 
-- `fn from(e: CertificateError) -> Self`
+- `fn from(x: u8) -> Self`
 
 ##### `impl From`
 
-- `fn from(x: u8) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(e: CertificateError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -3545,14 +3545,14 @@ Values in this enum are taken from [RFC8879].
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4331,14 +4331,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4431,14 +4431,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4927,10 +4927,10 @@ a minor issue, but could be misleading).
 
   The OCSP response provided to the verifier was invalid.
   
-  This should be returned from [`ServerCertVerifier::verify_server_cert()`](#verify-server-cert)
+  This should be returned from `ServerCertVerifier::verify_server_cert()`
   when a verifier checks its `ocsp_response` parameter and finds it invalid.
   
-  This maps to [`AlertDescription::BadCertificateStatusResponse`](#badcertificatestatusresponse).
+  This maps to `AlertDescription::BadCertificateStatusResponse`.
   
 
 - **`ApplicationVerificationFailure`**
@@ -5244,7 +5244,7 @@ rustls reports protocol errors using this type.
 
 - **`InconsistentKeys`**
 
-  Specific failure cases from [`keys_match`](#keys-match) or a [`crate::crypto::signer::SigningKey`](#signingkey) that cannot produce a corresponding public key.
+  Specific failure cases from [`keys_match`](#keys-match) or a `crate::crypto::signer::SigningKey` that cannot produce a corresponding public key.
   
 
 - **`Other`**
@@ -5265,7 +5265,7 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: CertificateError) -> Self`
+- `fn from(value: UnsupportedOperationError) -> Self`
 
 ##### `impl From`
 
@@ -5273,19 +5273,7 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(_: rand::GetRandomFailed) -> Self`
-
-##### `impl From`
-
-- `fn from(_: SystemTimeError) -> Self`
-
-##### `impl From`
-
-- `fn from(e: PeerMisbehaved) -> Self`
-
-##### `impl From`
-
-- `fn from(e: InvalidMessage) -> Self`
+- `fn from(e: CertificateError) -> Self`
 
 ##### `impl From`
 
@@ -5301,12 +5289,24 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(value: UnsupportedOperationError) -> Self`
+- `fn from(_: rand::GetRandomFailed) -> Self`
+
+##### `impl From`
+
+- `fn from(e: InvalidMessage) -> Self`
+
+##### `impl From`
+
+- `fn from(e: PeerMisbehaved) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(_: SystemTimeError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -5485,19 +5485,19 @@ enum InconsistentKeys {
 }
 ```
 
-Specific failure cases from [`keys_match`](#keys-match) or a [`crate::crypto::signer::SigningKey`](#signingkey) that cannot produce a corresponding public key.
+Specific failure cases from [`keys_match`](#keys-match) or a `crate::crypto::signer::SigningKey` that cannot produce a corresponding public key.
 
 
 #### Variants
 
 - **`KeyMismatch`**
 
-  The public key returned by the [`SigningKey`](#signingkey) does not match the public key information in the certificate.
+  The public key returned by the [`SigningKey`](index.md) does not match the public key information in the certificate.
   
 
 - **`Unknown`**
 
-  The [`SigningKey`](#signingkey) cannot produce its corresponding public key.
+  The [`SigningKey`](index.md) cannot produce its corresponding public key.
   
 
 #### Trait Implementations
@@ -6073,14 +6073,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -6234,7 +6234,7 @@ enum SupportedCipherSuite {
 A cipher suite supported by rustls.
 
 This type carries both configuration and implementation. Compare with
-[`CipherSuite`](#ciphersuite), which carries solely a cipher suite identifier.
+[`CipherSuite`](index.md), which carries solely a cipher suite identifier.
 
 #### Variants
 
@@ -6267,16 +6267,16 @@ This type carries both configuration and implementation. Compare with
 
 ##### `impl From`
 
+- `fn from(s: &'static Tls13CipherSuite) -> Self`
+
+##### `impl From`
+
 - `fn from(s: &'static Tls12CipherSuite) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(s: &'static Tls13CipherSuite) -> Self`
 
 ##### `impl Into<T, U>`
 

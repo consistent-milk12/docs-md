@@ -134,15 +134,15 @@ Represents the authority component of a URI.
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Authority) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
 - `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Authority) -> Option<cmp::Ordering>`
 
 ##### `impl ToOwned<T>`
 
@@ -156,17 +156,11 @@ Represents the authority component of a URI.
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(t: String) -> Result<Self, <Self as >::Error>`
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -178,13 +172,19 @@ Represents the authority component of a URI.
 
 - `type Error = InvalidUri`
 
+- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
 - `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -353,10 +353,6 @@ Represents the path component of a URI
 
 - `fn eq(self: &Self, other: &str) -> bool`
 
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a str) -> bool`
-
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &PathAndQuery) -> bool`
@@ -365,21 +361,25 @@ Represents the path component of a URI
 
 - `fn eq(self: &Self, other: &String) -> bool`
 
+##### `impl PartialEq<'a>`
+
+- `fn eq(self: &Self, other: &&'a str) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
+
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &PathAndQuery) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd<'a>`
 
 - `fn partial_cmp(self: &Self, other: &&'a str) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &PathAndQuery) -> Option<cmp::Ordering>`
 
 ##### `impl ToOwned<T>`
 
@@ -403,19 +403,13 @@ Represents the path component of a URI
 
 - `type Error = InvalidUri`
 
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(s: &String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = InvalidUri`
-
 - `fn try_from(s: String) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
@@ -423,11 +417,17 @@ Represents the path component of a URI
 
 - `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(s: &String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -451,11 +451,11 @@ The port component of a URI.
 
 #### Implementations
 
-- `fn as_str(self: &Self) -> &str`
-  Returns the port number as a `str`.
-
 - `const fn as_u16(self: &Self) -> u16`
   Returns the port number as a `u16`.
+
+- `fn as_str(self: &Self) -> &str`
+  Returns the port number as a `str`.
 
 #### Trait Implementations
 
@@ -608,11 +608,11 @@ Represents the scheme component of a URI
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
+##### `impl TryFrom<'a>`
 
-- `type Error = Infallible`
+- `type Error = InvalidUri`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
@@ -620,11 +620,11 @@ Represents the scheme component of a URI
 
 - `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom<T, U>`
 
-- `type Error = InvalidUri`
+- `type Error = Infallible`
 
-- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -737,16 +737,16 @@ assert_eq!(uri.path(), "/install.html");
 
 ##### `impl From`
 
-- `fn from(authority: Authority) -> Self`
-
-##### `impl From`
-
 - `fn from(path_and_query: PathAndQuery) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(authority: Authority) -> Self`
 
 ##### `impl FromStr`
 
@@ -813,11 +813,29 @@ assert_eq!(uri.path(), "/install.html");
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom`
+##### `impl TryFrom<'a>`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(t: &'a String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -831,29 +849,11 @@ assert_eq!(uri.path(), "/install.html");
 
 - `fn try_from(src: Parts) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(t: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 

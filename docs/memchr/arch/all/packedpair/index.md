@@ -35,7 +35,7 @@ match.
 
 This is architecture independent because it utilizes `memchr` to find the
 occurrence of one of the bytes in the pair, and then checks whether the
-second byte matches. If it does, in the case of [`Finder::find_prefilter`](#find-prefilter),
+second byte matches. If it does, in the case of `Finder::find_prefilter`,
 the location at which the needle could match is returned.
 
 It is generally preferred to use architecture specific routines for a
@@ -233,7 +233,7 @@ relative frequency of a given byte in the dataset being searched.
 
 The use of this trait can have a dramatic impact on performance depending
 on the type of data being searched. The details of why are explained in the
-docs of [`crate::memmem::Prefilter`](#prefilter). To summarize, the core algorithm uses
+docs of `crate::memmem::Prefilter`. To summarize, the core algorithm uses
 a prefilter to quickly identify candidate matches that are later verified
 more slowly. This prefilter is implemented in terms of trying to find
 `rare` bytes at specific offsets that will occur less frequently in the

@@ -261,17 +261,17 @@ A single recognised section in a PEM file.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = ()`
-
-- `fn try_from(value: &[u8]) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = ()`
+
+- `fn try_from(value: &[u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -403,15 +403,15 @@ Items that can be decoded from PEM data.
 
 - `fn from_pem_reader(rd: impl std::io::Read) -> Result<Self, Error>`
 
-  Decode the first section of this type from PEM read from an [`io::Read`](#read).
+  Decode the first section of this type from PEM read from an `io::Read`.
 
 - `fn pem_reader_iter<R: std::io::Read>(rd: R) -> ReadIter<io::BufReader<R>, Self>`
 
-  Iterate over all sections of this type from PEM present in an [`io::Read`](#read).
+  Iterate over all sections of this type from PEM present in an `io::Read`.
 
 - `fn from_pem(kind: SectionKind, der: Vec<u8>) -> Option<Self>`
 
-  Conversion from a PEM [`SectionKind`](rustls_pki_types/pem/index.md) and body data.
+  Conversion from a PEM [`SectionKind`](pem/index.md) and body data.
 
 ## Functions
 

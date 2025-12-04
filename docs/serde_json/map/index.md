@@ -285,7 +285,7 @@ struct VacantEntry<'a> {
 }
 ```
 
-A vacant Entry. It is part of the [`Entry`](serde_json/map/index.md) enum.
+A vacant Entry. It is part of the [`Entry`](map/index.md) enum.
 
 #### Implementations
 
@@ -339,7 +339,7 @@ struct OccupiedEntry<'a> {
 }
 ```
 
-An occupied Entry. It is part of the [`Entry`](serde_json/map/index.md) enum.
+An occupied Entry. It is part of the [`Entry`](map/index.md) enum.
 
 #### Implementations
 
@@ -992,7 +992,7 @@ enum Entry<'a> {
 ```
 
 A view into a single entry in a map, which may either be vacant or occupied.
-This enum is constructed from the [`entry`](#entry) method on [`Map`](serde_json/map/index.md).
+This enum is constructed from the [`entry`](#entry) method on [`Map`](map/index.md).
 
 
 #### Variants

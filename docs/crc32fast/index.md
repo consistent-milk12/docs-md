@@ -16,7 +16,7 @@ let checksum = crc32fast::hash(b"foo bar baz");
 ### Advanced usage
 
 For use-cases that require more flexibility or performance, for example when
-processing large amounts of data, you can create and manipulate a [`Hasher`](crc32fast/index.md):
+processing large amounts of data, you can create and manipulate a [`Hasher`](index.md):
 
 ```rust
 use crc32fast::Hasher;
@@ -33,7 +33,7 @@ This crate contains multiple CRC32 implementations:
 - A fast baseline implementation which processes up to 16 bytes per iteration
 - An optimized implementation for modern `x86` using `sse` and `pclmulqdq` instructions
 
-Calling the [`Hasher::new`](#new) constructor at runtime will perform a feature detection to select the most
+Calling the `Hasher::new` constructor at runtime will perform a feature detection to select the most
 optimal implementation for the current CPU feature set.
 
 ## Structs
@@ -147,5 +147,5 @@ fn hash(buf: &[u8]) -> u32
 
 Computes the CRC32 hash of a byte slice.
 
-Check out [`Hasher`](crc32fast/index.md) for more advanced use-cases.
+Check out [`Hasher`](index.md) for more advanced use-cases.
 

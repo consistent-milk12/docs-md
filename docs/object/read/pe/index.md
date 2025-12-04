@@ -7,19 +7,19 @@
 Support for reading PE files.
 
 Traits are used to abstract over the difference between PE32 and PE32+.
-The primary trait for this is [`ImageNtHeaders`](#imagentheaders).
+The primary trait for this is [`ImageNtHeaders`](index.md).
 
 ## High level API
 
-[`PeFile`](#pefile) implements the [`Object`](crate::read::Object) trait for
-PE files. [`PeFile`](#pefile) is parameterised by [`ImageNtHeaders`](#imagentheaders) to allow
+[`PeFile`](index.md) implements the [`Object`](crate::read::Object) trait for
+PE files. [`PeFile`](index.md) is parameterised by [`ImageNtHeaders`](index.md) to allow
 reading both PE32 and PE32+. There are type aliases for these parameters
-([`PeFile32`](#pefile32) and [`PeFile64`](#pefile64)).
+([`PeFile32`](index.md) and [`PeFile64`](index.md)).
 
 ## Low level API
 
-The [`ImageNtHeaders`](#imagentheaders) trait can be directly used to parse both
-[`pe::ImageNtHeaders32`](#imagentheaders32) and [`pe::ImageNtHeaders64`](#imagentheaders64).
+The [`ImageNtHeaders`](index.md) trait can be directly used to parse both
+`pe::ImageNtHeaders32` and `pe::ImageNtHeaders64`.
 
 ### Example for low level API
  ```no_run
@@ -57,7 +57,7 @@ struct SectionTable<'data> {
 
 The table of section headers in a COFF or PE file.
 
-Returned by [`CoffHeader::sections`](#sections) and
+Returned by `CoffHeader::sections` and
 [`ImageNtHeaders::sections`](crate::read::pe::ImageNtHeaders::sections).
 
 #### Implementations
@@ -175,7 +175,7 @@ A table of symbol entries in a COFF or PE file.
 
 Also includes the string table used for the symbol names.
 
-Returned by [`CoffHeader::symbols`](#symbols) and
+Returned by `CoffHeader::symbols` and
 [`ImageNtHeaders::symbols`](crate::read::pe::ImageNtHeaders::symbols).
 
 #### Implementations

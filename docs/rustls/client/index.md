@@ -23,7 +23,7 @@ struct WantsClientCert {
 A config builder state where the caller needs to supply whether and how to provide a client
 certificate.
 
-For more information, see the [`ConfigBuilder`](../../ureq/ureq/config/index.md) documentation.
+For more information, see the [`ConfigBuilder`](index.md) documentation.
 
 #### Trait Implementations
 
@@ -101,29 +101,29 @@ struct ClientConfig {
 Common configuration for (typically) all connections made by a program.
 
 Making one of these is cheap, though one of the inputs may be expensive: gathering trust roots
-from the operating system to add to the [`RootCertStore`](#rootcertstore) passed to `with_root_certificates()`
+from the operating system to add to the [`RootCertStore`](index.md) passed to `with_root_certificates()`
 (the rustls-native-certs crate is often used for this) may take on the order of a few hundred
 milliseconds.
 
-These must be created via the [`ClientConfig::builder()`](#builder) or [`ClientConfig::builder_with_provider()`](#builder-with-provider)
+These must be created via the `ClientConfig::builder()` or `ClientConfig::builder_with_provider()`
 function.
 
-Note that using [`ConfigBuilder<ClientConfig, WantsVersions>::with_ech()`](#with-ech) will produce a common
-configuration specific to the provided [`crate::client::EchConfig`](#echconfig) that may not be appropriate
+Note that using `ConfigBuilder<ClientConfig, WantsVersions>::with_ech()` will produce a common
+configuration specific to the provided `crate::client::EchConfig` that may not be appropriate
 for all connections made by the program. In this case the configuration should only be shared
-by connections intended for domains that offer the provided [`crate::client::EchConfig`](#echconfig) in
+by connections intended for domains that offer the provided `crate::client::EchConfig` in
 their DNS zone.
 
 # Defaults
 
-* [`ClientConfig::max_fragment_size`](#max-fragment-size): the default is `None` (meaning 16kB).
-* [`ClientConfig::resumption`](#resumption): supports resumption with up to 256 server names, using session
+* `ClientConfig::max_fragment_size`: the default is `None` (meaning 16kB).
+* `ClientConfig::resumption`: supports resumption with up to 256 server names, using session
   ids or tickets, with a max of eight tickets per server.
-* [`ClientConfig::alpn_protocols`](#alpn-protocols): the default is empty -- no ALPN protocol is negotiated.
-* [`ClientConfig::key_log`](#key-log): key material is not logged.
-* [`ClientConfig::cert_decompressors`](#cert-decompressors): depends on the crate features, see [`compress::default_cert_decompressors()`](#default-cert-decompressors).
-* [`ClientConfig::cert_compressors`](#cert-compressors): depends on the crate features, see [`compress::default_cert_compressors()`](#default-cert-compressors).
-* [`ClientConfig::cert_compression_cache`](#cert-compression-cache): caches the most recently used 4 compressions
+* `ClientConfig::alpn_protocols`: the default is empty -- no ALPN protocol is negotiated.
+* `ClientConfig::key_log`: key material is not logged.
+* `ClientConfig::cert_decompressors`: depends on the crate features, see `compress::default_cert_decompressors()`.
+* `ClientConfig::cert_compressors`: depends on the crate features, see `compress::default_cert_compressors()`.
+* `ClientConfig::cert_compression_cache`: caches the most recently used 4 compressions
 
 
 #### Fields
@@ -244,7 +244,7 @@ their DNS zone.
 
   Caching for compressed certificates.
   
-  This is optional: [`compress::CompressionCache::Disabled`](#disabled) gives
+  This is optional: `compress::CompressionCache::Disabled` gives
   a cache that does no caching.
 
 #### Implementations
@@ -475,7 +475,7 @@ struct UnbufferedClientConnection {
 
 Unbuffered version of `ClientConnection`
 
-See the [`crate::unbuffered`](#unbuffered) module docs for more details
+See the `crate::unbuffered` module docs for more details
 
 #### Implementations
 
@@ -1142,7 +1142,7 @@ struct ServerCertVerifierBuilder {
 
 A builder for configuring a `webpki` server certificate verifier.
 
-For more information, see the [`WebPkiServerVerifier`](#webpkiserververifier) documentation.
+For more information, see the [`WebPkiServerVerifier`](index.md) documentation.
 
 #### Implementations
 
@@ -1490,18 +1490,18 @@ Controls how Encrypted Client Hello (ECH) is used in a client handshake.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(config: EchGreaseConfig) -> Self`
 
 ##### `impl From`
 
 - `fn from(config: EchConfig) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(config: EchGreaseConfig) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -1677,14 +1677,14 @@ An error that can occur when building a certificate verifier.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: CertRevocationListError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 

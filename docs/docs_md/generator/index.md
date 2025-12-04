@@ -21,7 +21,7 @@ The generation process follows these steps:
 # Module Structure
 
 - [`context`](#context) - Shared state for generation (crate data, maps, config)
-- [`module`](docs_md/generator/module/index.md) - Module-level markdown rendering
+- [`module`](generator/module/index.md) - Module-level markdown rendering
 - [`items`](#items) - Individual item rendering (structs, enums, traits, etc.)
 - [`impls`](#impls) - Implementation block rendering
 - [`flat`](#flat) - Flat output format generator
@@ -309,8 +309,8 @@ link text to item IDs. This processor uses that map along with the
 
 # Supported Patterns
 
-- `` [`Name`](#name) `` - Backtick code links (most common)
-- `` [`path::to::Item`](#item) `` - Qualified path links
+- `` [`Name`](../../object/index.md) `` - Backtick code links (most common)
+- `` `path::to::Item` `` - Qualified path links
 
 # External Crate Links
 

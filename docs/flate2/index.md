@@ -34,18 +34,18 @@ The `zlib-rs` backend typically outperforms all the C implementations.
 
 # Organization
 
-This crate consists mainly of three modules, [`read`](flate2/read/index.md), [`write`](flate2/write/index.md), and
-[`bufread`](flate2/bufread/index.md). Each module contains a number of types used to encode and
+This crate consists mainly of three modules, [`read`](read/index.md), [`write`](write/index.md), and
+[`bufread`](bufread/index.md). Each module contains a number of types used to encode and
 decode various streams of data.
 
-All types in the [`write`](flate2/write/index.md) module work on instances of [`Write`][write](#write)
+All types in the [`write`](write/index.md) module work on instances of [`Write`][write](#write)
 ,
-whereas all types in the [`read`](flate2/read/index.md) module work on instances of
+whereas all types in the [`read`](read/index.md) module work on instances of
 [`Read`][read](#read)
- and [`bufread`](flate2/bufread/index.md) works with [`BufRead`][bufread](#bufread)
+ and [`bufread`](bufread/index.md) works with [`BufRead`][bufread](#bufread)
 . If you
 are decoding directly from a `&[u8](#u8)
-`, use the [`bufread`](flate2/bufread/index.md) types.
+`, use the [`bufread`](bufread/index.md) types.
 
 ```
 use flate2::write::GzEncoder;
@@ -72,14 +72,14 @@ to the underlying object if available.
 # About multi-member Gzip files
 
 While most `gzip` files one encounters will have a single *member* that can be read
-with the [`GzDecoder`](#gzdecoder), there may be some files which have multiple members.
+with the [`GzDecoder`](index.md), there may be some files which have multiple members.
 
-A [`GzDecoder`](#gzdecoder) will only read the first member of gzip data, which may unexpectedly
+A [`GzDecoder`](index.md) will only read the first member of gzip data, which may unexpectedly
 provide partial results when a multi-member gzip file is encountered. `GzDecoder` is appropriate
 for data that is designed to be read as single members from a multi-member file. `bufread::GzDecoder`
 and `write::GzDecoder` also allow non-gzip data following gzip data to be handled.
 
-The [`MultiGzDecoder`](#multigzdecoder) on the other hand will decode all members of a `gzip` file
+The [`MultiGzDecoder`](index.md) on the other hand will decode all members of a `gzip` file
 into one consecutive stream of bytes, which hides the underlying *members* entirely.
 If a file contains non-gzip data after the gzip data, MultiGzDecoder will
 emit an error after decoding the gzip data. This behavior matches the `gzip`,
@@ -112,7 +112,7 @@ struct Crc {
 }
 ```
 
-The CRC calculated by a [`CrcReader`](#crcreader).
+The CRC calculated by a [`CrcReader`](index.md).
 
 
 #### Implementations
@@ -187,10 +187,13 @@ struct CrcReader<R> {
 }
 ```
 
-A wrapper around a [`Read`](#read) that calculates the CRC.
+A wrapper around a [`Read`](../rustix/index.md) that calculates the CRC.
 
 
 #### Implementations
+
+- `fn new(r: R) -> CrcReader<R>`
+  Create a new `CrcReader`.
 
 - `fn crc(self: &Self) -> &Crc`
   Get the Crc for this `CrcReader`.
@@ -206,9 +209,6 @@ A wrapper around a [`Read`](#read) that calculates the CRC.
 
 - `fn reset(self: &mut Self)`
   Reset the Crc in this `CrcReader`.
-
-- `fn new(r: R) -> CrcReader<R>`
-  Create a new `CrcReader`.
 
 #### Trait Implementations
 
@@ -268,7 +268,7 @@ struct CrcWriter<W> {
 }
 ```
 
-A wrapper around a [`Write`](#write) that calculates the CRC.
+A wrapper around a [`Write`](../rustix/index.md) that calculates the CRC.
 
 
 #### Implementations
@@ -555,7 +555,7 @@ struct Compress {
 Raw in-memory compression stream for blocks of data.
 
 This type is the building block for the I/O streams in the rest of this
-crate. It requires more management than the [`Read`](#read)/[`Write`](#write) API but is
+crate. It requires more management than the [`Read`](../rustix/index.md)/[`Write`](../rustix/index.md) API but is
 maximally flexible in terms of accepting input from any source and being
 able to produce output to any memory location.
 
@@ -720,7 +720,7 @@ struct Decompress {
 Raw in-memory decompression stream for blocks of data.
 
 This type is the building block for the I/O streams in the rest of this
-crate. It requires more management than the [`Read`](#read)/[`Write`](#write) API but is
+crate. It requires more management than the [`Read`](../rustix/index.md)/[`Write`](../rustix/index.md) API but is
 maximally flexible in terms of accepting input from any source and being
 able to produce output to any memory location.
 
@@ -803,11 +803,11 @@ bytes was not a valid input stream of bytes.
 
 #### Implementations
 
-- `fn message(self: &Self) -> Option<&str>`
-  Retrieve the implementation's message about why the operation failed, if one exists.
-
 - `fn needs_dictionary(self: &Self) -> Option<u32>`
   Indicates whether decompression failed due to requiring a dictionary.
+
+- `fn message(self: &Self) -> Option<&str>`
+  Retrieve the implementation's message about why the operation failed, if one exists.
 
 #### Trait Implementations
 

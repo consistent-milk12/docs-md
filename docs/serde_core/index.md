@@ -46,10 +46,10 @@ as shown in the following build timings.
 Helper macro when implementing the `Deserializer` part of a new data format
 for Serde.
 
-Some [`Deserializer`](serde_core/de/index.md) implementations for self-describing formats do not
-care what hint the [`Visitor`](serde_core/de/index.md) gives them, they just want to blindly call
-the [`Visitor`](serde_core/de/index.md) method corresponding to the data they can tell is in the
-input. This requires repetitive implementations of all the [`Deserializer`](serde_core/de/index.md)
+Some [`Deserializer`](de/index.md) implementations for self-describing formats do not
+care what hint the [`Visitor`](de/index.md) gives them, they just want to blindly call
+the [`Visitor`](de/index.md) method corresponding to the data they can tell is in the
+input. This requires repetitive implementations of all the [`Deserializer`](de/index.md)
 trait methods.
 
 ```edition2021
@@ -86,7 +86,7 @@ where
 ```
 
 The `forward_to_deserialize_any!` macro implements these simple forwarding
-methods so that they forward directly to [`Deserializer::deserialize_any`](#deserialize-any).
+methods so that they forward directly to `Deserializer::deserialize_any`.
 You can choose which methods to forward.
 
 ```edition2021

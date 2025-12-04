@@ -115,7 +115,7 @@ struct Serializer;
 
 Serializer whose output is a `Value`.
 
-This is the serializer that backs [`serde_json::to_value`](#to_value).
+This is the serializer that backs `serde_json::to_value`.
 Unlike the main serde_json serializer which goes from some serializable
 value of type `T` to JSON text, this one goes from `T` to
 `serde_json::Value`.
@@ -565,31 +565,15 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl From`
 
-- `fn from(u: u64) -> Self`
-
-##### `impl From`
-
-- `fn from(u: u8) -> Self`
-
-##### `impl From`
-
-- `fn from(u: u32) -> Self`
-
-##### `impl From`
-
-- `fn from(i: i8) -> Self`
-
-##### `impl From`
-
-- `fn from(i: i32) -> Self`
-
-##### `impl From`
-
 - `fn from(i: i64) -> Self`
 
 ##### `impl From`
 
-- `fn from(u: usize) -> Self`
+- `fn from(i: isize) -> Self`
+
+##### `impl From`
+
+- `fn from(u: u8) -> Self`
 
 ##### `impl From<T>`
 
@@ -598,7 +582,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl From`
 
-- `fn from(u: u16) -> Self`
+- `fn from(i: i8) -> Self`
 
 ##### `impl From`
 
@@ -606,7 +590,23 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl From`
 
-- `fn from(i: isize) -> Self`
+- `fn from(i: i32) -> Self`
+
+##### `impl From`
+
+- `fn from(u: u32) -> Self`
+
+##### `impl From`
+
+- `fn from(u: usize) -> Self`
+
+##### `impl From`
+
+- `fn from(u: u64) -> Self`
+
+##### `impl From`
+
+- `fn from(u: u16) -> Self`
 
 ##### `impl FromStr`
 
@@ -933,58 +933,14 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - `fn from(f: Map<String, Value>) -> Self`
   Convert map (with string keys) to `Value::Object`.
 
-##### `impl From<T: Into<super::Value>>`
-
-- `fn from(f: Vec<T>) -> Self`
-  Convert a `Vec` to `Value::Array`.
-
 ##### `impl From`
 
-- `fn from(n: usize) -> Self`
+- `fn from(f: &str) -> Self`
+  Convert string slice to `Value::String`.
 
 ##### `impl From`
 
 - `fn from(n: i16) -> Self`
-
-##### `impl From`
-
-- `fn from(f: String) -> Self`
-  Convert `String` to `Value::String`.
-
-##### `impl From`
-
-- `fn from(f: Number) -> Self`
-  Convert `Number` to `Value::Number`.
-
-##### `impl From`
-
-- `fn from(n: u32) -> Self`
-
-##### `impl From`
-
-- `fn from(n: u8) -> Self`
-
-##### `impl From<'a>`
-
-- `fn from(f: Cow<'a, str>) -> Self`
-  Convert copy-on-write string to `Value::String`.
-
-##### `impl From`
-
-- `fn from(n: i8) -> Self`
-
-##### `impl From<T: Into<super::Value>, const N: usize>`
-
-- `fn from(array: [T; N]) -> Self`
-
-##### `impl From`
-
-- `fn from(f: f64) -> Self`
-  Convert 64-bit floating point number to `Value::Number`, or
-
-##### `impl From`
-
-- `fn from(n: isize) -> Self`
 
 ##### `impl From`
 
@@ -996,23 +952,9 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - `fn from(f: bool) -> Self`
   Convert boolean to `Value::Bool`.
 
-##### `impl From<T: Clone + Into<super::Value>>`
-
-- `fn from(f: &[T]) -> Self`
-  Convert a slice to `Value::Array`.
-
 ##### `impl From`
 
-- `fn from(n: i64) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(n: u64) -> Self`
+- `fn from(n: isize) -> Self`
 
 ##### `impl From<T>`
 
@@ -1023,18 +965,76 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 - `fn from(f: f32) -> Self`
   Convert 32-bit floating point number to `Value::Number`, or
 
+##### `impl From<'a>`
+
+- `fn from(f: Cow<'a, str>) -> Self`
+  Convert copy-on-write string to `Value::String`.
+
+##### `impl From<T: Into<super::Value>>`
+
+- `fn from(f: Vec<T>) -> Self`
+  Convert a `Vec` to `Value::Array`.
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(f: Number) -> Self`
+  Convert `Number` to `Value::Number`.
+
+##### `impl From`
+
+- `fn from(n: i64) -> Self`
+
+##### `impl From`
+
+- `fn from(f: String) -> Self`
+  Convert `String` to `Value::String`.
+
+##### `impl From`
+
+- `fn from(n: u32) -> Self`
+
+##### `impl From`
+
+- `fn from(n: u8) -> Self`
+
+##### `impl From`
+
+- `fn from(n: i8) -> Self`
+
+##### `impl From`
+
+- `fn from(f: f64) -> Self`
+  Convert 64-bit floating point number to `Value::Number`, or
+
+##### `impl From`
+
+- `fn from(n: i32) -> Self`
+
+##### `impl From<T: Clone + Into<super::Value>>`
+
+- `fn from(f: &[T]) -> Self`
+  Convert a slice to `Value::Array`.
+
+##### `impl From`
+
+- `fn from(n: usize) -> Self`
+
+##### `impl From<T: Into<super::Value>, const N: usize>`
+
+- `fn from(array: [T; N]) -> Self`
+
 ##### `impl From`
 
 - `fn from(n: u16) -> Self`
 
 ##### `impl From`
 
-- `fn from(f: &str) -> Self`
-  Convert string slice to `Value::String`.
-
-##### `impl From`
-
-- `fn from(n: i32) -> Self`
+- `fn from(n: u64) -> Self`
 
 ##### `impl FromIterator<T: Into<super::Value>>`
 
@@ -1112,43 +1112,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &i64) -> bool`
-
-##### `impl PartialEq`
-
 - `fn eq(self: &Self, other: &bool) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &i8) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &String) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &i32) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &usize) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &isize) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &i16) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &u64) -> bool`
 
 ##### `impl PartialEq`
 
@@ -1156,7 +1120,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &u8) -> bool`
+- `fn eq(self: &Self, other: &usize) -> bool`
 
 ##### `impl PartialEq`
 
@@ -1164,7 +1128,39 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &u8) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &i16) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &i64) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &&str) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &String) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &u16) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &isize) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &i32) -> bool`
 
 ##### `impl PartialEq`
 
@@ -1172,7 +1168,11 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &&str) -> bool`
+- `fn eq(self: &Self, other: &u64) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &i8) -> bool`
 
 ##### `impl StructuralPartialEq`
 

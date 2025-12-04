@@ -18,7 +18,7 @@ enum Instant {
 }
 ```
 
-Wrapper for [`std::time::Instant`](#instant) that provides additional time points in the past or future
+Wrapper for `std::time::Instant` that provides additional time points in the past or future
 
 #### Variants
 
@@ -128,7 +128,7 @@ enum Duration {
 }
 ```
 
-Wrapper for [`std::time::Duration`](#duration) that provides a duration to a distant future
+Wrapper for `std::time::Duration` that provides a duration to a distant future
 
 #### Variants
 
@@ -150,14 +150,14 @@ Wrapper for [`std::time::Duration`](#duration) that provides a duration to a dis
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: std::time::Duration) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: std::time::Duration) -> Self`
 
 ##### `impl Into<T, U>`
 

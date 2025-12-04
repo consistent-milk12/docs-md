@@ -6,14 +6,14 @@
 
 Type rendering utilities for converting rustdoc types to string representations.
 
-This module provides the [`TypeRenderer`](docs_md/types/index.md) struct to convert the complex type
+This module provides the [`TypeRenderer`](types/index.md) struct to convert the complex type
 structures from rustdoc JSON into human-readable Rust type syntax. These
 rendered strings are used in the generated markdown documentation.
 
 # Overview
 
 Rustdoc JSON represents types as a tree structure (the `Type` enum). The
-[`TypeRenderer`](docs_md/types/index.md) walks that tree and produces the string representation
+[`TypeRenderer`](types/index.md) walks that tree and produces the string representation
 you'd write in code.
 
 # Usage

@@ -13,7 +13,7 @@
 This crate provides a fast conversion of integer primitives to decimal
 strings. The implementation comes straight from [libcore](#libcore)
  but avoids the
-performance penalty of going through [`core::fmt::Formatter`](#formatter).
+performance penalty of going through `core::fmt::Formatter`.
 
 See also [`ryu`](../ryu/index.md) for printing floating point primitives.
 

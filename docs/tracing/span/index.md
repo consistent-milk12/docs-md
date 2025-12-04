@@ -13,7 +13,7 @@
  that describe all `tracing` spans and events. Attributes describing spans
  include:
 
- - An [`Id`](../../rustdoc_types/rustdoc_types/index.md) assigned by the subscriber that uniquely identifies it in relation
+ - An [`Id`](span/index.md) assigned by the subscriber that uniquely identifies it in relation
    to other spans.
  - The span's [parent](#parent)
  in the trace tree.
@@ -51,8 +51,8 @@
 
  ## Recording Span Creation
 
- The [`Attributes`](../../tracing_core/tracing_core/span/index.md) type contains data associated with a span, and is
- provided to the [`Subscriber`](../../tracing_core/tracing_core/subscriber/index.md) when a new span is created. It contains
+ The [`Attributes`](span/index.md) type contains data associated with a span, and is
+ provided to the [`Subscriber`](index.md) when a new span is created. It contains
  the span's metadata, the ID of [the span's parent][parent](#parent)
  if one was
  explicitly set, and any fields whose values were recorded when the span was
@@ -227,7 +227,7 @@
  ```
 
  If this future was spawned on an executor, it might yield one or more times
- before `poll` returns [`Poll::Ready`](#ready). If the future were to yield, then
+ before `poll` returns `Poll::Ready`. If the future were to yield, then
  the executor would move on to poll the next future, which may _also_ enter
  an associated span or series of spans. Therefore, it is valid for a span to
  be entered repeatedly before it completes. Only the time when that span or
@@ -236,9 +236,9 @@
  to be _idle_.
 
  Because spans may be entered and exited multiple times before they close,
- [`Subscriber`](../../tracing_core/tracing_core/subscriber/index.md)s have separate trait methods which are called to notify them
+ [`Subscriber`](index.md)s have separate trait methods which are called to notify them
  of span exits and when span handles are dropped. When execution exits a
- span, [`exit`](../../rustix/rustix/not_implemented/libc_internals/index.md) will always be called with that span's ID to notify the
+ span, [`exit`](../../libc/index.md) will always be called with that span's ID to notify the
  subscriber that the span has been exited. When span handles are dropped, the
  [`drop_span`](#drop-span) method is called with that span's ID. The subscriber may use
  this to determine whether or not the span will be entered again.
@@ -491,7 +491,7 @@ executing.
 
 When the guard is dropped, the span will be exited.
 
-This is returned by the [`Span::enter`](#enter) function.
+This is returned by the `Span::enter` function.
 
 
 #### Trait Implementations
@@ -550,12 +550,12 @@ struct EnteredSpan {
 }
 ```
 
-An owned version of [`Entered`](tracing/span/index.md), a guard representing a span which has been
+An owned version of [`Entered`](span/index.md), a guard representing a span which has been
 entered and is currently executing.
 
 When the guard is dropped, the span will be exited.
 
-This is returned by the [`Span::entered`](#entered) function.
+This is returned by the `Span::entered` function.
 
 
 #### Implementations

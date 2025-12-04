@@ -214,14 +214,14 @@ enum State {
 const fn state_change(state: State, byte: u8) -> (State, Action)
 ```
 
-Transition to next [`State`](#state)
+Transition to next [`State`](index.md)
 
 Note: This does not directly support UTF-8.
 - If the data is validated as UTF-8 (e.g. `str`) or single-byte C1 control codes are
-  unsupported, then treat [`Action::BeginUtf8`](#beginutf8) and [`Action::Execute`](#execute) for UTF-8 continuations
-  as [`Action::Print`](#print).
+  unsupported, then treat `Action::BeginUtf8` and `Action::Execute` for UTF-8 continuations
+  as `Action::Print`.
 - If the data is not validated, then a UTF-8 state machine will need to be implemented on top,
-  starting with [`Action::BeginUtf8`](#beginutf8).
+  starting with `Action::BeginUtf8`.
 
-Note: When [`State::Anywhere`](#anywhere) is returned, revert back to the prior state.
+Note: When `State::Anywhere` is returned, revert back to the prior state.
 

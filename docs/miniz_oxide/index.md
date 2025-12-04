@@ -157,7 +157,7 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 - **`Partial`**
 
   Zlib partial flush.
-  Currently treated as [`Sync`](#sync).
+  Currently treated as [`Sync`](index.md).
 
 - **`Sync`**
 
@@ -166,7 +166,7 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 
 - **`Full`**
 
-  Same as [`Sync`](#sync), but resets the compression dictionary so that further compressed
+  Same as [`Sync`](index.md), but resets the compression dictionary so that further compressed
   data does not depend on data compressed before the flush.
   
   Has no use in decompression, and is an error to supply in that case.
@@ -266,8 +266,8 @@ enum MZStatus {
 
 A list of miniz successful status codes.
 
-These are emitted as the [`Ok`](#ok) side of a [`MZResult`](miniz_oxide/index.md) in the [`StreamResult`](miniz_oxide/index.md) returned from
-[`deflate::stream::deflate()`](#deflate) or [`inflate::stream::inflate()`](#inflate).
+These are emitted as the [`Ok`](index.md) side of a [`MZResult`](index.md) in the [`StreamResult`](index.md) returned from
+`deflate::stream::deflate()` or `inflate::stream::inflate()`.
 
 #### Variants
 
@@ -275,15 +275,15 @@ These are emitted as the [`Ok`](#ok) side of a [`MZResult`](miniz_oxide/index.md
 
   Operation succeeded.
   
-  Some data was decompressed or compressed; see the byte counters in the [`StreamResult`](miniz_oxide/index.md) for
+  Some data was decompressed or compressed; see the byte counters in the [`StreamResult`](index.md) for
   details.
 
 - **`StreamEnd`**
 
   Operation succeeded and end of deflate stream was found.
   
-  X-ref [`TINFLStatus::Done`](#done) or
-  [`TDEFLStatus::Done`](#done) for `inflate` or `deflate`
+  X-ref `TINFLStatus::Done` or
+  `TDEFLStatus::Done` for `inflate` or `deflate`
   respectively.
 
 - **`NeedDict`**
@@ -376,8 +376,8 @@ enum MZError {
 
 A list of miniz failed status codes.
 
-These are emitted as the [`Err`](#err) side of a [`MZResult`](miniz_oxide/index.md) in the [`StreamResult`](miniz_oxide/index.md) returned from
-[`deflate::stream::deflate()`](#deflate) or [`inflate::stream::inflate()`](#inflate).
+These are emitted as the [`Err`](#err) side of a [`MZResult`](index.md) in the [`StreamResult`](index.md) returned from
+`deflate::stream::deflate()` or `inflate::stream::inflate()`.
 
 #### Variants
 
@@ -389,16 +389,16 @@ These are emitted as the [`Err`](#err) side of a [`MZResult`](miniz_oxide/index.
 
   General stream error.
   
-  See [`inflate::stream::inflate()`](#inflate) docs for details of how it can occur there.
+  See `inflate::stream::inflate()` docs for details of how it can occur there.
   
-  See [`deflate::stream::deflate()`](#deflate) docs for how it can in principle occur there, though it's
+  See `deflate::stream::deflate()` docs for how it can in principle occur there, though it's
   believed impossible in practice.
 
 - **`Data`**
 
-  Error in inflation; see [`inflate::stream::inflate()`](#inflate) for details.
+  Error in inflation; see `inflate::stream::inflate()` for details.
   
-  Not returned from [`deflate::stream::deflate()`](#deflate).
+  Not returned from `deflate::stream::deflate()`.
 
 - **`Mem`**
 
@@ -408,7 +408,7 @@ These are emitted as the [`Err`](#err) side of a [`MZResult`](miniz_oxide/index.
 
   Buffer-related error.
   
-  See the docs of [`deflate::stream::deflate()`](#deflate) or [`inflate::stream::inflate()`](#inflate) for details
+  See the docs of `deflate::stream::deflate()` or `inflate::stream::inflate()` for details
   of when it would trigger in the one you're using.
 
 - **`Version`**
@@ -419,8 +419,8 @@ These are emitted as the [`Err`](#err) side of a [`MZResult`](miniz_oxide/index.
 
   Bad parameters.
   
-  This can be returned from [`deflate::stream::deflate()`](#deflate) in the case of bad parameters.  See
-  [`TDEFLStatus::BadParam`](#badparam).
+  This can be returned from `deflate::stream::deflate()` in the case of bad parameters.  See
+  `TDEFLStatus::BadParam`.
 
 #### Trait Implementations
 

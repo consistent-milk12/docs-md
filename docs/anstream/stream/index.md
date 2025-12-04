@@ -14,7 +14,7 @@ Higher-level traits to describe writeable streams
 trait RawStream: std::io::Write + IsTerminal + private::Sealed { ... }
 ```
 
-Required functionality for underlying [`std::io::Write`](#write) for adaptation
+Required functionality for underlying `std::io::Write` for adaptation
 
 ### `IsTerminal`
 

@@ -4,9 +4,9 @@
 
 # Module `alg_id`
 
-The PKIX [`AlgorithmIdentifier`](rustls_pki_types/alg_id/index.md) type, and common values.
+The PKIX [`AlgorithmIdentifier`](alg_id/index.md) type, and common values.
 
-If you need to use an [`AlgorithmIdentifier`](rustls_pki_types/alg_id/index.md) not defined here,
+If you need to use an [`AlgorithmIdentifier`](alg_id/index.md) not defined here,
 you can define it locally.
 
 ## Structs
@@ -33,7 +33,7 @@ The outer sequence encoding is *not included*, so this is the DER encoding
 of an OID for `algorithm` plus the `parameters` value.
 
 For example, this is the `rsaEncryption` algorithm (but prefer to use the constant
-[`RSA_ENCRYPTION`](rustls_pki_types/alg_id/index.md) instead):
+[`RSA_ENCRYPTION`](alg_id/index.md) instead):
 
 ```
 let rsa_encryption = rustls_pki_types::AlgorithmIdentifier::from_slice(

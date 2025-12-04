@@ -23,7 +23,7 @@ struct WantsServerCert {
 A config builder state where the caller must supply how to provide a server certificate to
 the connecting peer.
 
-For more information, see the [`ConfigBuilder`](../../ureq/ureq/config/index.md) documentation.
+For more information, see the [`ConfigBuilder`](index.md) documentation.
 
 #### Trait Implementations
 
@@ -356,9 +356,9 @@ struct Accepted {
 }
 ```
 
-Represents a `ClientHello` message received through the [`Acceptor`](#acceptor).
+Represents a `ClientHello` message received through the [`Acceptor`](index.md).
 
-Contains the state required to resume the connection through [`Accepted::into_connection()`](#into-connection).
+Contains the state required to resume the connection through `Accepted::into_connection()`.
 
 #### Implementations
 
@@ -511,49 +511,49 @@ struct ServerConfig {
 Common configuration for a set of server sessions.
 
 Making one of these is cheap, though one of the inputs may be expensive: gathering trust roots
-from the operating system to add to the [`RootCertStore`](#rootcertstore) passed to a `ClientCertVerifier`
+from the operating system to add to the [`RootCertStore`](index.md) passed to a `ClientCertVerifier`
 builder may take on the order of a few hundred milliseconds.
 
-These must be created via the [`ServerConfig::builder()`](#builder) or [`ServerConfig::builder_with_provider()`](#builder-with-provider)
+These must be created via the `ServerConfig::builder()` or `ServerConfig::builder_with_provider()`
 function.
 
 # Defaults
 
-* [`ServerConfig::max_fragment_size`](#max-fragment-size): the default is `None` (meaning 16kB).
-* [`ServerConfig::session_storage`](#session-storage): if the `std` feature is enabled, the default stores 256
+* `ServerConfig::max_fragment_size`: the default is `None` (meaning 16kB).
+* `ServerConfig::session_storage`: if the `std` feature is enabled, the default stores 256
   sessions in memory. If the `std` feature is not enabled, the default is to not store any
   sessions. In a no-std context, by enabling the `hashbrown` feature you may provide your
-  own `session_storage` using [`ServerSessionMemoryCache`](#serversessionmemorycache) and a `crate::lock::MakeMutex`
+  own `session_storage` using [`ServerSessionMemoryCache`](index.md) and a `crate::lock::MakeMutex`
   implementation.
-* [`ServerConfig::alpn_protocols`](#alpn-protocols): the default is empty -- no ALPN protocol is negotiated.
-* [`ServerConfig::key_log`](#key-log): key material is not logged.
-* [`ServerConfig::send_tls13_tickets`](#send-tls13-tickets): 2 tickets are sent.
-* [`ServerConfig::cert_compressors`](#cert-compressors): depends on the crate features, see [`compress::default_cert_compressors()`](#default-cert-compressors).
-* [`ServerConfig::cert_compression_cache`](#cert-compression-cache): caches the most recently used 4 compressions
-* [`ServerConfig::cert_decompressors`](#cert-decompressors): depends on the crate features, see [`compress::default_cert_decompressors()`](#default-cert-decompressors).
+* `ServerConfig::alpn_protocols`: the default is empty -- no ALPN protocol is negotiated.
+* `ServerConfig::key_log`: key material is not logged.
+* `ServerConfig::send_tls13_tickets`: 2 tickets are sent.
+* `ServerConfig::cert_compressors`: depends on the crate features, see `compress::default_cert_compressors()`.
+* `ServerConfig::cert_compression_cache`: caches the most recently used 4 compressions
+* `ServerConfig::cert_decompressors`: depends on the crate features, see `compress::default_cert_decompressors()`.
 
 # Sharing resumption storage between `ServerConfig`s
 
 In a program using many `ServerConfig`s it may improve resumption rates
 (which has a significant impact on connection performance) if those
-configs share [`ServerConfig::session_storage`](#session-storage) or [`ServerConfig::ticketer`](#ticketer).
+configs share `ServerConfig::session_storage` or `ServerConfig::ticketer`.
 
 However, caution is needed: other fields influence the security of a session
 and resumption between them can be surprising.  If sharing
-[`ServerConfig::session_storage`](#session-storage) or [`ServerConfig::ticketer`](#ticketer) between two
+`ServerConfig::session_storage` or `ServerConfig::ticketer` between two
 `ServerConfig`s, you should also evaluate the following fields and ensure
 they are equivalent:
 
 * `ServerConfig::verifier` -- client authentication requirements,
-* [`ServerConfig::cert_resolver`](#cert-resolver) -- server identities.
+* `ServerConfig::cert_resolver` -- server identities.
 
 To illustrate, imagine two `ServerConfig`s `A` and `B`.  `A` requires
 client authentication, `B` does not.  If `A` and `B` shared a resumption store,
 it would be possible for a session originated by `B` (that is, an unauthenticated client)
 to be inserted into the store, and then resumed by `A`.  This would give a false
 impression to the user of `A` that the client was authenticated.  This is possible
-whether the resumption is performed statefully (via [`ServerConfig::session_storage`](#session-storage))
-or statelessly (via [`ServerConfig::ticketer`](#ticketer)).
+whether the resumption is performed statefully (via `ServerConfig::session_storage`)
+or statelessly (via `ServerConfig::ticketer`).
 
 _Unlike_ `ClientConfig`, rustls does not enforce any policy here.
 
@@ -622,7 +622,7 @@ _Unlike_ `ClientConfig`, rustls does not enforce any policy here.
   this config.  Specify 0 to disable early data.  The
   default is 0.
   
-  Read the early data via [`ServerConnection::early_data`](#early-data).
+  Read the early data via `ServerConnection::early_data`.
   
   The units for this are _both_ plaintext bytes, _and_ ciphertext
   bytes, depending on whether the server accepts a client's early_data
@@ -701,7 +701,7 @@ _Unlike_ `ClientConfig`, rustls does not enforce any policy here.
 
   Caching for compressed certificates.
   
-  This is optional: [`compress::CompressionCache::Disabled`](#disabled) gives
+  This is optional: `compress::CompressionCache::Disabled` gives
   a cache that does no caching.
 
 - **`cert_decompressors`**: `alloc::vec::Vec<&'static dyn compress::CertDecompressor>`
@@ -862,7 +862,7 @@ struct UnbufferedServerConnection {
 
 Unbuffered version of `ServerConnection`
 
-See the [`crate::unbuffered`](#unbuffered) module docs for more details
+See the `crate::unbuffered` module docs for more details
 
 #### Implementations
 
@@ -933,8 +933,8 @@ struct AcceptedAlert();
 
 Represents a TLS alert resulting from handling the client's `ClientHello` message.
 
-When [`Acceptor::accept()`](#accept) returns an error, it yields an `AcceptedAlert` such that the
-application can communicate failure to the client via [`AcceptedAlert::write()`](#write).
+When `Acceptor::accept()` returns an error, it yields an `AcceptedAlert` such that the
+application can communicate failure to the client via `AcceptedAlert::write()`.
 
 #### Implementations
 
@@ -998,15 +998,15 @@ struct Acceptor {
 
 Handle a server-side connection before configuration is available.
 
-`Acceptor` allows the caller to choose a [`ServerConfig`](#serverconfig) after reading
-the [`super::ClientHello`](#clienthello) of an incoming connection. This is useful for servers
+`Acceptor` allows the caller to choose a [`ServerConfig`](index.md) after reading
+the `super::ClientHello` of an incoming connection. This is useful for servers
 that choose different certificates or cipher suites based on the
 characteristics of the `ClientHello`. In particular it is useful for
 servers that need to do some I/O to load a certificate and its private key
 and don't want to use the blocking interface provided by
-[`super::ResolvesServerCert`](#resolvesservercert).
+`super::ResolvesServerCert`.
 
-Create an Acceptor with [`Acceptor::default()`](#default).
+Create an Acceptor with `Acceptor::default()`.
 
 # Example
 
@@ -1104,7 +1104,7 @@ Allows reading of early data in resumed TLS1.3 connections.
 
 "Early data" is also known as "0-RTT data".
 
-This structure implements [`std::io::Read`](#read).
+This structure implements `std::io::Read`.
 
 #### Trait Implementations
 
@@ -1316,7 +1316,7 @@ struct ClientCertVerifierBuilder {
 
 A builder for configuring a `webpki` client certificate verifier.
 
-For more information, see the [`WebPkiClientVerifier`](#webpkiclientverifier) documentation.
+For more information, see the [`WebPkiClientVerifier`](index.md) documentation.
 
 #### Implementations
 
@@ -1468,10 +1468,10 @@ struct WebPkiClientVerifier {
 A client certificate verifier that uses the `webpki` crate[^1] to perform client certificate
 validation.
 
-It must be created via the [`WebPkiClientVerifier::builder()`](#builder) or
-[`WebPkiClientVerifier::builder_with_provider()`](#builder-with-provider) functions.
+It must be created via the `WebPkiClientVerifier::builder()` or
+`WebPkiClientVerifier::builder_with_provider()` functions.
 
-Once built, the provided `Arc<dyn ClientCertVerifier>` can be used with a Rustls [`ServerConfig`](#serverconfig)
+Once built, the provided `Arc<dyn ClientCertVerifier>` can be used with a Rustls [`ServerConfig`](index.md)
 to configure client certificate validation using [`with_client_cert_verifier`][ConfigBuilder<ClientConfig, WantsVerifier>::with_client_cert_verifier].
 
 Example:
@@ -1620,14 +1620,14 @@ Values in this enum are taken from the various RFCs covering TLS, and are listed
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1721,14 +1721,14 @@ An error that can occur when building a certificate verifier.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: CertRevocationListError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 

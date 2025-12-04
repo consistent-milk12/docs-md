@@ -15,17 +15,17 @@ Finally, unlike most other Aho-Corasick implementations, this one
 supports enabling [leftmost-first](MatchKind::LeftmostFirst) or
 [leftmost-longest](MatchKind::LeftmostLongest) match semantics, using a
 (seemingly) novel alternative construction algorithm. For more details on what
-match semantics means, see the [`MatchKind`](#matchkind) type.
+match semantics means, see the [`MatchKind`](index.md) type.
 
 # Overview
 
 This section gives a brief overview of the primary types in this crate:
 
-* [`AhoCorasick`](#ahocorasick) is the primary type and represents an Aho-Corasick automaton.
+* [`AhoCorasick`](index.md) is the primary type and represents an Aho-Corasick automaton.
 This is the type you use to execute searches.
-* [`AhoCorasickBuilder`](#ahocorasickbuilder) can be used to build an Aho-Corasick automaton, and
+* [`AhoCorasickBuilder`](index.md) can be used to build an Aho-Corasick automaton, and
 supports configuring a number of options.
-* [`Match`](../syn/syn/token/index.md) represents a single match reported by an Aho-Corasick automaton.
+* [`Match`](index.md) represents a single match reported by an Aho-Corasick automaton.
 Each match has two pieces of information: the pattern that matched and the
 start and end byte offsets corresponding to the position in the haystack at
 which it matched.
@@ -154,7 +154,7 @@ assert_eq!("Samwise", &haystack[mat.start()..mat.end()]);
 
 In addition to leftmost-first semantics, this library also supports
 leftmost-longest semantics, which match the POSIX behavior of a regular
-expression alternation. See [`MatchKind`](#matchkind) for more details.
+expression alternation. See [`MatchKind`](index.md) for more details.
 
 # Prefilters
 
@@ -170,34 +170,34 @@ number of patterns gets too big, prefilters are no longer used.
 While a prefilter is generally good to have on by default since it works
 well in the common case, it can lead to less predictable or even sub-optimal
 performance in some cases. For that reason, prefilters can be explicitly
-disabled via [`AhoCorasickBuilder::prefilter`](#prefilter).
+disabled via `AhoCorasickBuilder::prefilter`.
 
 # Lower level APIs
 
 This crate also provides several sub-modules that collectively expose many of
-the implementation details of the main [`AhoCorasick`](#ahocorasick) type. Most users of this
+the implementation details of the main [`AhoCorasick`](index.md) type. Most users of this
 library can completely ignore the submodules and their contents, but if you
 needed finer grained control, some parts of them may be useful to you. Here is
 a brief overview of each and why you might want to use them:
 
-* The [`packed`](aho_corasick/packed/index.md) sub-module contains a lower level API for using fast
+* The [`packed`](packed/index.md) sub-module contains a lower level API for using fast
 vectorized routines for finding a small number of patterns in a haystack.
 You might want to use this API when you want to completely side-step using
 Aho-Corasick automata. Otherwise, the fast vectorized routines are used
 automatically as prefilters for `AhoCorasick` searches whenever possible.
-* The [`automaton`](aho_corasick/automaton/index.md) sub-module provides a lower level finite state
+* The [`automaton`](automaton/index.md) sub-module provides a lower level finite state
 machine interface that the various Aho-Corasick implementations in
 this crate implement. This sub-module's main contribution is the
 [`Automaton`](automaton::Automaton) trait, which permits manually walking the
 state transitions of an Aho-Corasick automaton.
-* The [`dfa`](aho_corasick/dfa/index.md) and [`nfa`](aho_corasick/nfa/index.md) sub-modules provide DFA and NFA implementations of
+* The [`dfa`](dfa/index.md) and [`nfa`](nfa/index.md) sub-modules provide DFA and NFA implementations of
 the aforementioned `Automaton` trait. The main reason one might want to use
 these sub-modules is to get access to a type that implements the `Automaton`
 trait. (The top-level `AhoCorasick` type does not implement the `Automaton`
 trait.)
 
 As mentioned above, if you aren't sure whether you need these sub-modules,
-you should be able to safely ignore them and just focus on the [`AhoCorasick`](#ahocorasick)
+you should be able to safely ignore them and just focus on the [`AhoCorasick`](index.md)
 type.
 
 # Crate features
@@ -210,7 +210,7 @@ this crate can be used without the standard library.
   default. When disabled, only `core` and `alloc` are used. At an API
   level, enabling `std` enables `std::error::Error` trait impls for the
   various error types, and higher level stream search routines such as
-  [`AhoCorasick::try_stream_find_iter`](#try-stream-find-iter). But the `std` feature is also required
+  `AhoCorasick::try_stream_find_iter`. But the `std` feature is also required
   to enable vectorized prefilters. Prefilters can greatly accelerate searches,
   but generally only apply when the number of patterns is small (less than
   ~100).
@@ -246,14 +246,14 @@ where an error is reported if there was a problem reading from the
 underlying stream. The iterator terminates only when the underlying stream
 reaches `EOF`.
 
-This iterator is constructed via the [`AhoCorasick::stream_find_iter`](#stream-find-iter) and
-[`AhoCorasick::try_stream_find_iter`](#try-stream-find-iter) methods.
+This iterator is constructed via the `AhoCorasick::stream_find_iter` and
+`AhoCorasick::try_stream_find_iter` methods.
 
 The type variable `R` refers to the `io::Read` stream that is being read
 from.
 
 The lifetime `'a` refers to the lifetime of the corresponding
-[`AhoCorasick`](#ahocorasick) searcher.
+[`AhoCorasick`](index.md) searcher.
 
 #### Trait Implementations
 
@@ -320,9 +320,9 @@ struct AhoCorasick {
 An automaton for searching multiple strings in linear time.
 
 The `AhoCorasick` type supports a few basic ways of constructing an
-automaton, with the default being [`AhoCorasick::new`](#new). However, there
+automaton, with the default being `AhoCorasick::new`. However, there
 are a fair number of configurable options that can be set by using
-[`AhoCorasickBuilder`](#ahocorasickbuilder) instead. Such options include, but are not limited
+[`AhoCorasickBuilder`](index.md) instead. Such options include, but are not limited
 to, how matches are determined, simple case insensitivity, whether to use a
 DFA or not and various knobs for controlling the space-vs-time trade offs
 taken when building the automaton.
@@ -333,21 +333,21 @@ Aho-Corasick automatons are always constructed in `O(p)` time, where
 `p` is the combined length of all patterns being searched. With that
 said, building an automaton can be fairly costly because of high constant
 factors, particularly when enabling the [DFA](AhoCorasickKind::DFA) option
-with [`AhoCorasickBuilder::kind`](#kind). For this reason, it's generally a good
+with `AhoCorasickBuilder::kind`. For this reason, it's generally a good
 idea to build an automaton once and reuse it as much as possible.
 
 Aho-Corasick automatons can also use a fair bit of memory. To get
 a concrete idea of how much memory is being used, try using the
-[`AhoCorasick::memory_usage`](#memory-usage) method.
+`AhoCorasick::memory_usage` method.
 
 To give a quick idea of the differences between Aho-Corasick
 implementations and their resource usage, here's a sample of construction
 times and heap memory used after building an automaton from 100,000
 randomly selected titles from Wikipedia:
 
-* 99MB for a [`noncontiguous::NFA`](#nfa) in 240ms.
-* 21MB for a [`contiguous::NFA`](#nfa) in 275ms.
-* 1.6GB for a [`dfa::DFA`](#dfa) in 1.88s.
+* 99MB for a `noncontiguous::NFA` in 240ms.
+* 21MB for a `contiguous::NFA` in 275ms.
+* 1.6GB for a `dfa::DFA` in 1.88s.
 
 (Note that the memory usage above reflects the size of each automaton and
 not peak memory usage. For example, building a contiguous NFA requires
@@ -358,7 +358,7 @@ This experiment very strongly argues that a contiguous NFA is often the
 best balance in terms of resource usage. It takes a little longer to build,
 but its memory usage is quite small. Its search speed (not listed) is
 also often faster than a noncontiguous NFA, but a little slower than a
-DFA. Indeed, when no specific [`AhoCorasickKind`](#ahocorasickkind) is used (which is the
+DFA. Indeed, when no specific [`AhoCorasickKind`](index.md) is used (which is the
 default), a contiguous NFA is used in most cases.
 
 The only "catch" to using a contiguous NFA is that, because of its variety
@@ -377,7 +377,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](#input). This includes `&[u8](#u8)
+to an [`Input`](index.md). This includes `&[u8](#u8)
 `, `&str` and `Input` itself.
 
 # Construction failure
@@ -408,17 +408,17 @@ for searching. The infallible methods panic if an error occurs, and can be
 used for convenience and when you know the search will never return an
 error.
 
-For example, the [`AhoCorasick::find_iter`](#find-iter) method is the infallible
-version of the [`AhoCorasick::try_find_iter`](#try-find-iter) method.
+For example, the `AhoCorasick::find_iter` method is the infallible
+version of the `AhoCorasick::try_find_iter` method.
 
 Examples of errors that can occur:
 
-* Running a search that requires [`MatchKind::Standard`](#standard) semantics (such
+* Running a search that requires `MatchKind::Standard` semantics (such
 as a stream or overlapping search) with an automaton that was built with
-[`MatchKind::LeftmostFirst`](#leftmostfirst) or [`MatchKind::LeftmostLongest`](#leftmostlongest) semantics.
+`MatchKind::LeftmostFirst` or `MatchKind::LeftmostLongest` semantics.
 * Running an anchored search with an automaton that only supports
 unanchored searches. (By default, `AhoCorasick` only supports unanchored
-searches. But this can be toggled with [`AhoCorasickBuilder::start_kind`](#start-kind).)
+searches. But this can be toggled with `AhoCorasickBuilder::start_kind`.)
 * Running an unanchored search with an automaton that only supports
 anchored searches.
 
@@ -477,6 +477,36 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
+  Returns true if and only if this automaton matches the haystack at any
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
+  Returns the location of the first match according to the match
+
+- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)`
+  Returns the location of the first overlapping match in the given
+
+- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>`
+  Returns an iterator of non-overlapping matches, using the match
+
+- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>`
+  Returns an iterator of overlapping matches. Stated differently, this
+
+- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
+  Replace all matches with a corresponding value in the `replace_with`
+
+- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
+  Replace all matches using raw bytes with a corresponding value in the
+
+- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
+  Replace all matches using a closure called on each match.
+
+- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
+  Replace all matches using raw bytes with a closure called on each
+
+- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
+  Returns an iterator of non-overlapping matches in the given
+
 - `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Result<Option<Match>, MatchError>`
   Returns the location of the first match according to the match
 
@@ -510,42 +540,6 @@ assert_eq!(result, "The slow grey sloth.");
 - `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> Result<(), std::io::Error>`
   Search the given reader and replace all matches of this automaton
 
-- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
-  Create a new Aho-Corasick automaton using the default configuration.
-
-- `fn builder() -> AhoCorasickBuilder`
-  A convenience method for returning a new Aho-Corasick builder.
-
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
-  Returns true if and only if this automaton matches the haystack at any
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
-  Returns the location of the first match according to the match
-
-- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)`
-  Returns the location of the first overlapping match in the given
-
-- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>`
-  Returns an iterator of non-overlapping matches, using the match
-
-- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>`
-  Returns an iterator of overlapping matches. Stated differently, this
-
-- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
-  Replace all matches with a corresponding value in the `replace_with`
-
-- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
-  Replace all matches using raw bytes with a corresponding value in the
-
-- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
-  Replace all matches using a closure called on each match.
-
-- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
-  Replace all matches using raw bytes with a closure called on each
-
-- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
-  Returns an iterator of non-overlapping matches in the given
-
 - `fn kind(self: &Self) -> AhoCorasickKind`
   Returns the kind of the Aho-Corasick automaton used by this searcher.
 
@@ -566,6 +560,12 @@ assert_eq!(result, "The slow grey sloth.");
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the approximate total amount of heap used by this automaton, in
+
+- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
+  Create a new Aho-Corasick automaton using the default configuration.
+
+- `fn builder() -> AhoCorasickBuilder`
+  A convenience method for returning a new Aho-Corasick builder.
 
 #### Trait Implementations
 
@@ -635,20 +635,20 @@ A builder for configuring an Aho-Corasick automaton.
 
 # Quick advice
 
-* Use [`AhoCorasickBuilder::match_kind`](#match-kind) to configure your searcher
-with [`MatchKind::LeftmostFirst`](#leftmostfirst) if you want to match how backtracking
+* Use `AhoCorasickBuilder::match_kind` to configure your searcher
+with `MatchKind::LeftmostFirst` if you want to match how backtracking
 regex engines execute searches for `pat1|pat2|..|patN`. Use
-[`MatchKind::LeftmostLongest`](#leftmostlongest) if you want to match how POSIX regex engines
+`MatchKind::LeftmostLongest` if you want to match how POSIX regex engines
 do it.
-* If you need an anchored search, use [`AhoCorasickBuilder::start_kind`](#start-kind) to
-set the [`StartKind::Anchored`](#anchored) mode since [`StartKind::Unanchored`](#unanchored) is the
-default. Or just use [`StartKind::Both`](#both) to support both types of searches.
-* You might want to use [`AhoCorasickBuilder::kind`](#kind) to set your searcher
-to always use a [`AhoCorasickKind::DFA`](#dfa) if search speed is critical and
+* If you need an anchored search, use `AhoCorasickBuilder::start_kind` to
+set the `StartKind::Anchored` mode since `StartKind::Unanchored` is the
+default. Or just use `StartKind::Both` to support both types of searches.
+* You might want to use `AhoCorasickBuilder::kind` to set your searcher
+to always use a `AhoCorasickKind::DFA` if search speed is critical and
 memory usage isn't a concern. Otherwise, not setting a kind will probably
-make the right choice for you. Beware that if you use [`StartKind::Both`](#both)
+make the right choice for you. Beware that if you use `StartKind::Both`
 to build a searcher that supports both unanchored and anchored searches
-_and_ you set [`AhoCorasickKind::DFA`](#dfa), then the DFA will essentially be
+_and_ you set `AhoCorasickKind::DFA`, then the DFA will essentially be
 duplicated to support both simultaneously. This results in very high memory
 usage.
 * For all other options, their defaults are almost certainly what you want.
@@ -750,11 +750,11 @@ struct FindIter<'a, 'h>();
 
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](#matchkind) used by this
+This iterator yields matches according to the [`MatchKind`](index.md) used by this
 automaton.
 
-This iterator is constructed via the [`AhoCorasick::find_iter`](#find-iter) and
-[`AhoCorasick::try_find_iter`](#try-find-iter) methods.
+This iterator is constructed via the `AhoCorasick::find_iter` and
+`AhoCorasick::try_find_iter` methods.
 
 The lifetime `'a` refers to the lifetime of the `AhoCorasick` automaton.
 
@@ -825,8 +825,8 @@ An iterator of overlapping matches in a particular haystack.
 This iterator will report all possible matches in a particular haystack,
 even when the matches overlap.
 
-This iterator is constructed via the [`AhoCorasick::find_overlapping_iter`](#find-overlapping-iter)
-and [`AhoCorasick::try_find_overlapping_iter`](#try-find-overlapping-iter) methods.
+This iterator is constructed via the `AhoCorasick::find_overlapping_iter`
+and `AhoCorasick::try_find_overlapping_iter` methods.
 
 The lifetime `'a` refers to the lifetime of the `AhoCorasick` automaton.
 
@@ -1164,14 +1164,14 @@ panics or silent logical errors.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: u8) -> PatternID`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: u8) -> PatternID`
 
 ##### `impl Into<T, U>`
 
@@ -1232,13 +1232,13 @@ panics or silent logical errors.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
@@ -1378,18 +1378,18 @@ The configuration and the haystack to use for an Aho-Corasick search.
 When executing a search, there are a few parameters one might want to
 configure:
 
-* The haystack to search, provided to the [`Input::new`](#new) constructor. This
+* The haystack to search, provided to the `Input::new` constructor. This
 is the only required parameter.
 * The span _within_ the haystack to limit a search to. (The default
-is the entire haystack.) This is configured via [`Input::span`](#span) or
-[`Input::range`](#range).
+is the entire haystack.) This is configured via `Input::span` or
+`Input::range`.
 * Whether to run an unanchored (matches can occur anywhere after the
 start of the search) or anchored (matches can only occur beginning at
 the start of the search) search. Unanchored search is the default. This is
-configured via [`Input::anchored`](#anchored).
+configured via `Input::anchored`.
 * Whether to quit the search as soon as a match has been found, regardless
-of the [`MatchKind`](#matchkind) that the searcher was built with. This is configured
-via [`Input::earliest`](#earliest).
+of the [`MatchKind`](index.md) that the searcher was built with. This is configured
+via `Input::earliest`.
 
 For most cases, the defaults for all optional parameters are appropriate.
 The utility of this type is that it keeps the default or common case simple
@@ -1399,14 +1399,14 @@ the same search APIs.
 # Valid bounds and search termination
 
 An `Input` permits setting the bounds of a search via either
-[`Input::span`](#span) or [`Input::range`](#range). The bounds set must be valid, or
+`Input::span` or `Input::range`. The bounds set must be valid, or
 else a panic will occur. Bounds are valid if and only if:
 
 * The bounds represent a valid range into the input's haystack.
 * **or** the end bound is a valid ending bound for the haystack *and*
 the start bound is exactly one greater than the end bound.
 
-In the latter case, [`Input::is_done`](#is-done) will return true and indicates any
+In the latter case, `Input::is_done` will return true and indicates any
 search receiving such an input should immediately return with no match.
 
 Other than representing "search is complete," the `Input::span` and
@@ -1515,14 +1515,14 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl From<'h, H: ?Sized + AsRef<[u8]>>`
-
-- `fn from(haystack: &'h H) -> Input<'h>`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'h, H: ?Sized + AsRef<[u8]>>`
+
+- `fn from(haystack: &'h H) -> Input<'h>`
 
 ##### `impl Into<T, U>`
 
@@ -1583,8 +1583,8 @@ struct Match {
 
 A representation of a match reported by an Aho-Corasick searcher.
 
-A match has two essential pieces of information: the [`PatternID`](../regex_automata/regex_automata/util/primitives/index.md) that
-matches, and the [`Span`](../proc_macro2/proc_macro2/index.md) of the match in a haystack.
+A match has two essential pieces of information: the [`PatternID`](index.md) that
+matches, and the [`Span`](index.md) of the match in a haystack.
 
 The pattern is identified by an ID, which corresponds to its position
 (starting from `0`) relative to other patterns used to construct the
@@ -1713,7 +1713,7 @@ ending offset is exclusive. That is, a span is a half-open interval.
 
 A span is used to report the offsets of a match, but it is also used to
 convey which region of a haystack should be searched via routines like
-[`Input::span`](#span).
+`Input::span`.
 
 This is basically equivalent to a `std::ops::Range<usize>`, except this
 type implements `Copy` which makes it more ergonomic to use in the context
@@ -1800,11 +1800,11 @@ to create a span where `start > end`.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, range: &Range<usize>) -> bool`
+- `fn eq(self: &Self, other: &Span) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Span) -> bool`
+- `fn eq(self: &Self, range: &Range<usize>) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -1844,11 +1844,11 @@ enum AhoCorasickKind {
 }
 ```
 
-The type of Aho-Corasick implementation to use in an [`AhoCorasick`](#ahocorasick)
+The type of Aho-Corasick implementation to use in an [`AhoCorasick`](index.md)
 searcher.
 
 This is principally used as an input to the
-[`AhoCorasickBuilder::start_kind`](#start-kind) method. Its documentation goes into more
+`AhoCorasickBuilder::start_kind` method. Its documentation goes into more
 detail about each choice.
 
 #### Variants
@@ -1947,7 +1947,7 @@ enum MatchErrorKind {
 }
 ```
 
-The underlying kind of a [`MatchError`](#matcherror).
+The underlying kind of a [`MatchError`](index.md).
 
 This is a **non-exhaustive** enum. That means new variants may be added in
 a semver-compatible release.
@@ -2357,7 +2357,7 @@ can be used to configure whether your searcher supports unanchored,
 anchored or both kinds of searches.
 
 This searcher configuration knob works in concert with the search time
-configuration [`Input::anchored`](#anchored). Namely, if one requests an unsupported
+configuration `Input::anchored`. Namely, if one requests an unsupported
 anchored mode, then the search will either panic or return an error,
 depending on whether you're using infallible or fallibe APIs, respectively.
 

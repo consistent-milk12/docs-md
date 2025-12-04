@@ -6,13 +6,13 @@
 
 Generic helpers for iteration of matches from a regex engine in a haystack.
 
-The principle type in this module is a [`Searcher`](regex_automata/util/iter/index.md). A `Searcher` provides
+The principle type in this module is a [`Searcher`](util/iter/index.md). A `Searcher` provides
 its own lower level iterator-like API in addition to methods for constructing
 types that implement `Iterator`. The documentation for `Searcher` explains a
 bit more about why these different APIs exist.
 
 Currently, this module supports iteration over any regex engine that works
-with the [`HalfMatch`](#halfmatch), [`Match`](../../../syn/syn/token/index.md) or [`Captures`](regex_automata/util/captures/index.md) types.
+with the [`HalfMatch`](index.md), [`Match`](index.md) or [`Captures`](util/captures/index.md) types.
 
 ## Structs
 
@@ -54,12 +54,12 @@ unwieldy to use.
 
 In particular, a `Searcher` is not itself an iterator. Instead, it provides
 `advance` routines that permit moving the search along explicitly. It also
-provides various routines, like [`Searcher::into_matches_iter`](#into-matches-iter), that
+provides various routines, like `Searcher::into_matches_iter`, that
 accept a closure (representing how a regex engine executes a search) and
 returns a conventional iterator.
 
-The lifetime parameters come from the [`Input`](#input) type passed to
-[`Searcher::new`](#new):
+The lifetime parameters come from the [`Input`](index.md) type passed to
+`Searcher::new`:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -106,7 +106,7 @@ group allocation on subsequent searches. A proper iterator doesn't permit
 this API due to its interface, so it's useful to have something a bit lower
 level that permits callers to amortize allocations while also reusing a
 shared implementation of iteration. (See the documentation for
-[`Searcher::advance`](#advance) for an example of using the "advance" API with the
+`Searcher::advance` for an example of using the "advance" API with the
 PikeVM.)
 
 What this boils down to is that there are "advance" APIs which require
@@ -118,7 +118,7 @@ for conveniently writing custom iterators on-the-fly.
 # Example: iterating with captures
 
 Several regex engines in this crate over convenient iterator APIs over
-[`Captures`](regex_automata/util/captures/index.md) values. To do so, this requires allocating a new `Captures`
+[`Captures`](util/captures/index.md) values. To do so, this requires allocating a new `Captures`
 value for each iteration step. This can perhaps be more costly than you
 might want. Instead of implementing your own iterator to avoid that
 cost (which can be a little subtle if you want to handle empty matches
@@ -256,7 +256,7 @@ The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](#input) type:
+The lifetime parameters come from the [`Input`](index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -264,7 +264,7 @@ When possible, prefer the iterators defined on the regex engine you're
 using. This tries to abstract over the regex engine and is thus a bit more
 unwieldy to use.
 
-This iterator is created by [`Searcher::into_half_matches_iter`](#into-half-matches-iter).
+This iterator is created by `Searcher::into_half_matches_iter`.
 
 #### Implementations
 
@@ -336,14 +336,14 @@ struct HalfMatchesIter<'h, F>();
 
 An iterator over all non-overlapping half matches for an infallible search.
 
-The iterator yields a [`HalfMatch`](#halfmatch) value until no more matches could be
+The iterator yields a [`HalfMatch`](index.md) value until no more matches could be
 found.
 
 The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](#input) type:
+The lifetime parameters come from the [`Input`](index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -351,8 +351,8 @@ When possible, prefer the iterators defined on the regex engine you're
 using. This tries to abstract over the regex engine and is thus a bit more
 unwieldy to use.
 
-This iterator is created by [`Searcher::into_half_matches_iter`](#into-half-matches-iter) and
-then calling [`TryHalfMatchesIter::infallible`](#infallible).
+This iterator is created by `Searcher::into_half_matches_iter` and
+then calling `TryHalfMatchesIter::infallible`.
 
 #### Implementations
 
@@ -430,7 +430,7 @@ The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](#input) type:
+The lifetime parameters come from the [`Input`](index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -438,7 +438,7 @@ When possible, prefer the iterators defined on the regex engine you're
 using. This tries to abstract over the regex engine and is thus a bit more
 unwieldy to use.
 
-This iterator is created by [`Searcher::into_matches_iter`](#into-matches-iter).
+This iterator is created by `Searcher::into_matches_iter`.
 
 #### Implementations
 
@@ -510,13 +510,13 @@ struct MatchesIter<'h, F>();
 
 An iterator over all non-overlapping matches for an infallible search.
 
-The iterator yields a [`Match`](../../../syn/syn/token/index.md) value until no more matches could be found.
+The iterator yields a [`Match`](index.md) value until no more matches could be found.
 
 The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](#input) type:
+The lifetime parameters come from the [`Input`](index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -524,8 +524,8 @@ When possible, prefer the iterators defined on the regex engine you're
 using. This tries to abstract over the regex engine and is thus a bit more
 unwieldy to use.
 
-This iterator is created by [`Searcher::into_matches_iter`](#into-matches-iter) and
-then calling [`TryMatchesIter::infallible`](#infallible).
+This iterator is created by `Searcher::into_matches_iter` and
+then calling `TryMatchesIter::infallible`.
 
 #### Implementations
 
@@ -603,7 +603,7 @@ The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](#input) type:
+The lifetime parameters come from the [`Input`](index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -611,7 +611,7 @@ When possible, prefer the iterators defined on the regex engine you're
 using. This tries to abstract over the regex engine and is thus a bit more
 unwieldy to use.
 
-This iterator is created by [`Searcher::into_captures_iter`](#into-captures-iter).
+This iterator is created by `Searcher::into_captures_iter`.
 
 #### Implementations
 
@@ -680,14 +680,14 @@ struct CapturesIter<'h, F>();
 
 An iterator over all non-overlapping captures for an infallible search.
 
-The iterator yields a [`Captures`](regex_automata/util/captures/index.md) value until no more matches could be
+The iterator yields a [`Captures`](util/captures/index.md) value until no more matches could be
 found.
 
 The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](#input) type:
+The lifetime parameters come from the [`Input`](index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -695,8 +695,8 @@ When possible, prefer the iterators defined on the regex engine you're
 using. This tries to abstract over the regex engine and is thus a bit more
 unwieldy to use.
 
-This iterator is created by [`Searcher::into_captures_iter`](#into-captures-iter) and then
-calling [`TryCapturesIter::infallible`](#infallible).
+This iterator is created by `Searcher::into_captures_iter` and then
+calling `TryCapturesIter::infallible`.
 
 #### Trait Implementations
 

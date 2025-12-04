@@ -6,7 +6,7 @@
 
 Provides architecture independent implementations of `memchr` and friends.
 
-The main types in this module are [`One`](memchr/arch/all/memchr/index.md), [`Two`](memchr/arch/all/memchr/index.md) and [`Three`](memchr/arch/all/memchr/index.md). They are for
+The main types in this module are [`One`](arch/x86_64/sse2/memchr/index.md), [`Two`](arch/x86_64/avx2/memchr/index.md) and [`Three`](arch/all/memchr/index.md). They are for
 searching for one, two or three distinct bytes, respectively, in a haystack.
 Each type also has corresponding double ended iterators. These searchers
 are typically slower than hand-coded vector routines accomplishing the same
@@ -14,11 +14,11 @@ task, but are also typically faster than naive scalar code. These routines
 effectively work by treating a `usize` as a vector of 8-bit lanes, and thus
 achieves some level of data parallelism even without explicit vector support.
 
-The `One` searcher also provides a [`One::count`](#count) routine for efficiently
+The `One` searcher also provides a `One::count` routine for efficiently
 counting the number of times a single byte occurs in a haystack. This is
 useful, for example, for counting the number of lines in a haystack. This
 routine exists because it is usually faster, especially with a high match
-count, than using [`One::find`](#find) repeatedly. ([`OneIter`](memchr/arch/all/memchr/index.md) specializes its
+count, than using `One::find` repeatedly. ([`OneIter`](arch/all/memchr/index.md) specializes its
 `Iterator::count` implementation to use this routine.)
 
 Only one, two and three bytes are supported because three bytes is about
@@ -136,11 +136,11 @@ An iterator over all occurrences of a single byte in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`One::iter`](#iter) method.
+This iterator is created by the `One::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`One`](memchr/arch/all/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`One`](arch/x86_64/sse2/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
@@ -326,11 +326,11 @@ An iterator over all occurrences of two possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`Two::iter`](#iter) method.
+This iterator is created by the `Two::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Two`](memchr/arch/all/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Two`](arch/x86_64/avx2/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
@@ -514,11 +514,11 @@ An iterator over all occurrences of three possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`Three::iter`](#iter) method.
+This iterator is created by the `Three::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Three`](memchr/arch/all/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Three`](arch/all/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations

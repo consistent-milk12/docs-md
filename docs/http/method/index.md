@@ -136,21 +136,21 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a str) -> bool`
-
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &Method) -> bool`
 
-##### `impl PartialEq`
+##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- `fn eq(self: &Self, other: &&'a str) -> bool`
 
 ##### `impl PartialEq<'a>`
 
 - `fn eq(self: &Self, other: &&'a Method) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -170,13 +170,13 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `type Error = InvalidMethod`
 
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidMethod`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 

@@ -6,7 +6,7 @@
 
 I/O operations.
 
-If you're looking for [`SeekFrom`](#seekfrom), it's in the [`fs`](../../fs_err/fs_err/os/unix/fs/index.md) module.
+If you're looking for [`SeekFrom`](../../clap_lex/index.md), it's in the [`fs`](../../fs_err/os/unix/fs/index.md) module.
 
 
 
@@ -20,7 +20,7 @@ struct Errno();
 
 `errno`—An error code.
 
-The error type for `rustix` APIs. This is similar to [`std::io::Error`](#error),
+The error type for `rustix` APIs. This is similar to `std::io::Error`,
 but only holds an OS error code, and no extra error value.
 
 # References
@@ -58,9 +58,6 @@ but only holds an OS error code, and no extra error value.
 
 - `const fn from_raw_os_error(raw: i32) -> Self`
   Construct an `Errno` from a raw OS error number.
-
-- `fn kind(self: Self) -> std::io::ErrorKind`
-  Shorthand for `std::io::Error::from(self).kind()`.
 
 - `const ACCESS: Self`
 
@@ -329,6 +326,9 @@ but only holds an OS error code, and no extra error value.
 - `const XDEV: Self`
 
 - `const XFULL: Self`
+
+- `fn kind(self: Self) -> std::io::ErrorKind`
+  Shorthand for `std::io::Error::from(self).kind()`.
 
 #### Trait Implementations
 

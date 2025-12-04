@@ -161,14 +161,14 @@ Command-line arguments
 
 #### Trait Implementations
 
-##### `impl From<I, T>`
-
-- `fn from(val: I) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<I, T>`
+
+- `fn from(val: I) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -239,7 +239,7 @@ struct ArgCursor {
 }
 ```
 
-Position within [`RawArgs`](clap_lex/index.md)
+Position within [`RawArgs`](index.md)
 
 #### Trait Implementations
 
@@ -442,7 +442,7 @@ struct ShortFlags<'s> {
 }
 ```
 
-Walk through short flags within a [`ParsedArg`](clap_lex/index.md)
+Walk through short flags within a [`ParsedArg`](index.md)
 
 #### Implementations
 

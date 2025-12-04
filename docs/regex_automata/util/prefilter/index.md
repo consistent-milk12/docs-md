@@ -6,7 +6,7 @@
 
 Defines a prefilter for accelerating regex searches.
 
-A prefilter can be created by building a [`Prefilter`](regex_automata/util/prefilter/index.md) value.
+A prefilter can be created by building a [`Prefilter`](util/prefilter/index.md) value.
 
 A prefilter represents one of the most important optimizations available for
 accelerating regex searches. The idea of a prefilter is to very quickly find
@@ -50,9 +50,9 @@ struct Prefilter {
 A prefilter for accelerating regex searches.
 
 If you already have your literals that you want to search with,
-then the vanilla [`Prefilter::new`](#new) constructor is for you. But
-if you have an [`Hir`](../../../regex_syntax/regex_syntax/hir/index.md) value from the `regex-syntax` crate, then
-[`Prefilter::from_hir_prefix`](#from-hir-prefix) might be more convenient. Namely, it uses
+then the vanilla `Prefilter::new` constructor is for you. But
+if you have an [`Hir`](../../../regex_syntax/hir/index.md) value from the `regex-syntax` crate, then
+`Prefilter::from_hir_prefix` might be more convenient. Namely, it uses
 the [`regex-syntax::hir::literal`](regex_syntax::hir::literal) module to
 extract literal prefixes for you, optimize them and then select and build a
 prefilter matcher.
@@ -62,10 +62,10 @@ nature, it may produce false positives. That is, a prefilter will never
 skip over a position in the haystack that corresponds to a match of the
 original regex pattern, but it *may* produce a match for a position
 in the haystack that does *not* correspond to a match of the original
-regex pattern. If you use either the [`Prefilter::from_hir_prefix`](#from-hir-prefix) or
-[`Prefilter::from_hirs_prefix`](#from-hirs-prefix) constructors, then this guarantee is
+regex pattern. If you use either the `Prefilter::from_hir_prefix` or
+`Prefilter::from_hirs_prefix` constructors, then this guarantee is
 upheld for you automatically. This guarantee is not preserved if you use
-[`Prefilter::new`](#new) though, since it is up to the caller to provide correct
+`Prefilter::new` though, since it is up to the caller to provide correct
 literal strings with respect to the original regex pattern.
 
 # Cloning

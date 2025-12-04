@@ -65,3 +65,4 @@ supported compiler version is not considered a semver breaking change as
 long as doing so complies with this policy.
 
 
+*This crate has no public items to document.*

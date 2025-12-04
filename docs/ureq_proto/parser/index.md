@@ -28,7 +28,7 @@ The first `usize` in the resulting pair, is the number of bytes required from
 the input buffer to form the response.
 
 The const `N` is the number of headers to max expect. If the input has more
-headers than `N` you get an error [`Error::HttpParseTooManyHeaders`](#httpparsetoomanyheaders).
+headers than `N` you get an error `Error::HttpParseTooManyHeaders`.
 
 ### `try_parse_partial_response`
 
@@ -42,7 +42,7 @@ To get a result we need at least the complete initial status row,
 but we don't need complete headers.
 
 The const `N` is the number of headers to max expect. If the input has more
-headers than `N` you get an error [`Error::HttpParseTooManyHeaders`](#httpparsetoomanyheaders).
+headers than `N` you get an error `Error::HttpParseTooManyHeaders`.
 
 ### `try_parse_request`
 
@@ -62,5 +62,5 @@ The first `usize` in the resulting pair, is the number of bytes required from
 the input buffer to form the request.
 
 The const `N` is the number of headers to max expect. If the input has more
-headers than `N` you get an error [`Error::HttpParseTooManyHeaders`](#httpparsetoomanyheaders).
+headers than `N` you get an error `Error::HttpParseTooManyHeaders`.
 

@@ -18,7 +18,7 @@ be faster. In some cases, significantly so.
 
 # Example: iterating over substring matches
 
-This example shows how to use [`find_iter`](memchr/memmem/index.md) to find occurrences of a substring
+This example shows how to use [`find_iter`](memmem/index.md) to find occurrences of a substring
 in a haystack.
 
 ```
@@ -35,7 +35,7 @@ assert_eq!(None, it.next());
 
 # Example: iterating over substring matches in reverse
 
-This example shows how to use [`rfind_iter`](memchr/memmem/index.md) to find occurrences of a substring
+This example shows how to use [`rfind_iter`](memmem/index.md) to find occurrences of a substring
 in a haystack starting from the end of the haystack.
 
 **NOTE:** This module does not implement double ended iterators, so reverse
@@ -58,7 +58,7 @@ assert_eq!(None, it.next());
 It may be possible for the overhead of constructing a substring searcher to be
 measurable in some workloads. In cases where the same needle is used to search
 many haystacks, it is possible to do construction once and thus to avoid it for
-subsequent searches. This can be done with a [`Finder`](memchr/arch/all/packedpair/index.md) (or a [`FinderRev`](memchr/arch/all/rabinkarp/index.md) for
+subsequent searches. This can be done with a [`Finder`](arch/x86_64/sse2/packedpair/index.md) (or a [`FinderRev`](arch/all/twoway/index.md) for
 reverse searches).
 
 ```
@@ -269,7 +269,7 @@ searcher that can be used to search haystacks without the overhead of
 constructing the searcher in the first place. This is a somewhat niche
 concern when it's necessary to re-use the same needle to search multiple
 different haystacks with as little overhead as possible. In general, using
-[`find`](memchr/memmem/index.md) is good enough, but `Finder` is useful when you can meaningfully
+[`find`](memmem/index.md) is good enough, but `Finder` is useful when you can meaningfully
 observe searcher construction time in a profile.
 
 When the `std` feature is enabled, then this type has an `into_owned`
@@ -367,7 +367,7 @@ searcher that can be used to search haystacks without the overhead of
 constructing the searcher in the first place. This is a somewhat niche
 concern when it's necessary to re-use the same needle to search multiple
 different haystacks with as little overhead as possible. In general,
-using [`rfind`](memchr/memmem/index.md) is good enough, but `FinderRev` is useful when you can
+using [`rfind`](memmem/index.md) is good enough, but `FinderRev` is useful when you can
 meaningfully observe searcher construction time in a profile.
 
 When the `std` feature is enabled, then this type has an `into_owned`
@@ -729,7 +729,7 @@ fn find(haystack: &[u8], needle: &[u8]) -> Option<usize>
 Returns the index of the first occurrence of the given needle.
 
 Note that if you're are searching for the same needle in many different
-small haystacks, it may be faster to initialize a [`Finder`](memchr/arch/all/packedpair/index.md) once,
+small haystacks, it may be faster to initialize a [`Finder`](arch/x86_64/sse2/packedpair/index.md) once,
 and reuse it for each search.
 
 # Complexity
@@ -763,7 +763,7 @@ fn rfind(haystack: &[u8], needle: &[u8]) -> Option<usize>
 Returns the index of the last occurrence of the given needle.
 
 Note that if you're are searching for the same needle in many different
-small haystacks, it may be faster to initialize a [`FinderRev`](memchr/arch/all/rabinkarp/index.md) once,
+small haystacks, it may be faster to initialize a [`FinderRev`](arch/all/twoway/index.md) once,
 and reuse it for each search.
 
 # Complexity

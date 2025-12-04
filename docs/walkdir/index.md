@@ -17,9 +17,9 @@ walkdir = "2"
 
 # From the top
 
-The [`WalkDir`](walkdir/index.md) type builds iterators. The [`DirEntry`](#direntry) type describes values
-yielded by the iterator. Finally, the [`Error`](../docs_md/docs_md/error/index.md) type is a small wrapper around
-[`std::io::Error`](#error) with additional information, such as if a loop was detected
+The [`WalkDir`](index.md) type builds iterators. The [`DirEntry`](index.md) type describes values
+yielded by the iterator. Finally, the [`Error`](index.md) type is a small wrapper around
+`std::io::Error` with additional information, such as if a loop was detected
 while following symbolic links (not enabled by default).
 
 
@@ -112,12 +112,12 @@ A directory entry.
 This is the type of value that is yielded from the iterators defined in
 this crate.
 
-On Unix systems, this type implements the [`DirEntryExt`](#direntryext) trait, which
+On Unix systems, this type implements the [`DirEntryExt`](index.md) trait, which
 provides efficient access to the inode number of the directory entry.
 
 # Differences with `std::fs::DirEntry`
 
-This type mostly mirrors the type by the same name in [`std::fs`](#fs). There
+This type mostly mirrors the type by the same name in `std::fs`. There
 are some differences however:
 
 * All recursive directory iterators must inspect the entry's type.
@@ -227,7 +227,7 @@ struct Error {
 
 An error produced by recursively walking a directory.
 
-This error type is a light wrapper around [`std::io::Error`](#error). In
+This error type is a light wrapper around `std::io::Error`. In
 particular, it adds the following information:
 
 * The depth at which the error occurred in the file tree, relative to the
@@ -239,7 +239,7 @@ case, there is no underlying IO error.
 To maintain good ergonomics, this type has a
 [`impl From<Error> for std::io::Error`][impl](#impl)
  defined which preserves the original context.
-This allows you to use an [`io::Result`](#result) with methods in this crate if you don't care about
+This allows you to use an `io::Result` with methods in this crate if you don't care about
 accessing the underlying error data in a structured form.
 
 
@@ -489,7 +489,7 @@ struct IntoIter {
 
 An iterator for recursively descending into a directory.
 
-A value with this type must be constructed with the [`WalkDir`](walkdir/index.md) type, which
+A value with this type must be constructed with the [`WalkDir`](index.md) type, which
 uses a builder pattern to set options such as min/max depth, max open file
 descriptors and whether the iterator should follow symbolic links. After
 constructing a `WalkDir`, call [`.into_iter()`](#into-iter) at the end of the chain.
@@ -673,8 +673,8 @@ Note that this result type embeds the error type in this crate. This
 is only useful if you care about the additional information provided by
 the error (such as the path associated with the error or whether a loop
 was dectected). If you want things to Just Work, then you can use
-[`io::Result`](#result) instead since the error type in this package will
-automatically convert to an [`io::Result`](#result) when using the [`try!`](#try) macro.
+`io::Result` instead since the error type in this package will
+automatically convert to an `io::Result` when using the [`try!`](#try) macro.
 
 
 

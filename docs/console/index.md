@@ -862,7 +862,7 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-A wrapper struct that implements [`core::fmt::Display`](#display), only displaying non-ansi parts.
+A wrapper struct that implements `core::fmt::Display`, only displaying non-ansi parts.
 
 #### Implementations
 

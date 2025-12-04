@@ -9,7 +9,7 @@ HTTP/1.1 client protocol
 Sans-IO protocol impl, which means "writing" and "reading" are made via buffers
 rather than the Write/Read std traits.
 
-The [`Call`](ureq_proto/client/index.md) object attempts to encode correct HTTP/1.1 handling using
+The [`Call`](client/index.md) object attempts to encode correct HTTP/1.1 handling using
 state variables, for example `Call<'a, SendRequest>` to represent the
 lifecycle stage where we are to send the request.
 
@@ -249,43 +249,43 @@ states during the lifecycle of an HTTP request/response.
 The type parameters are:
 - `State`: The current state of the state machine (e.g., `Prepare`, `SendRequest`, etc.)
 
-See the [state graph](#client) in the client module documentation for a
+See the `state graph` in the client module documentation for a
 visual representation of the state transitions.
 
 #### Implementations
 
-- `fn read(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
-  Read the response body from `input` to `output`.
+- `fn write(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
+  Write request body from `input` to `output`.
 
-- `fn stop_on_chunk_boundary(self: &mut Self, enabled: bool)`
-  Set if we are stopping on chunk boundaries.
+- `fn consume_direct_write(self: &mut Self, amount: usize) -> Result<(), Error>`
+  Helper to avoid copying memory.
 
-- `fn is_on_chunk_boundary(self: &Self) -> bool`
-  Tell if the reading is on a chunk boundary.
+- `fn calculate_max_input(self: &Self, output_len: usize) -> usize`
+  Calculate the max amount of input we can transfer to fill the `output_len`.
 
-- `fn body_mode(self: &Self) -> BodyMode`
-  Tell which kind of mode the response body is.
-
-- `fn can_proceed(self: &Self) -> bool`
-  Check if the response body has been fully received.
-
-- `fn is_ended_chunked(self: &Self) -> bool`
-  Tell if we got an end chunk when reading chunked.
-
-- `fn proceed(self: Self) -> Option<RecvBodyResult>`
-  Proceed to the next state.
-
-- `fn try_response(self: &mut Self, input: &[u8], allow_partial_redirect: bool) -> Result<(usize, Option<Response<()>>), Error>`
-  Try reading a response from the input.
+- `fn is_chunked(self: &Self) -> bool`
+  Test if call is chunked.
 
 - `fn can_proceed(self: &Self) -> bool`
-  Tell if we have finished receiving the response.
+  Check whether the request body is fully sent.
 
-- `fn proceed(self: Self) -> Option<RecvResponseResult>`
+- `fn proceed(self: Self) -> Option<Call<RecvResponse>>`
   Proceed to the next state.
 
-- `fn force_recv_body(self: &mut Self)`
-  Convert the state to receive a body despite method.
+- `fn as_new_call(self: &mut Self, redirect_auth_headers: RedirectAuthHeaders) -> Result<Option<Call<Prepare>>, Error>`
+  Construct a new `Call` by following the redirect.
+
+- `fn status(self: &Self) -> StatusCode`
+  The redirect status code.
+
+- `fn must_close_connection(self: &Self) -> bool`
+  Whether we must close the connection corresponding to the current call.
+
+- `fn close_reason(self: &Self) -> Option<&'static str>`
+  If we are closing the connection, give a reason why.
+
+- `fn proceed(self: Self) -> Call<Cleanup>`
+  Proceed to the cleanup state.
 
 - `fn write(self: &mut Self, output: &mut [u8]) -> Result<usize, Error>`
   Write the request to the buffer.
@@ -307,6 +307,54 @@ visual representation of the state transitions.
 
 - `fn proceed(self: Self) -> Result<Option<SendRequestResult>, Error>`
   Attempt to proceed from this state to the next.
+
+- `fn must_close_connection(self: &Self) -> bool`
+  Tell if we must close the connection.
+
+- `fn close_reason(self: &Self) -> Option<&'static str>`
+  If we are closing the connection, give a reason.
+
+- `fn try_read_100(self: &mut Self, input: &[u8]) -> Result<usize, Error>`
+  Attempt to read a 100-continue response.
+
+- `fn can_keep_await_100(self: &Self) -> bool`
+  Tell if there is any point in waiting for more data from the server.
+
+- `fn proceed(self: Self) -> Result<Await100Result, Error>`
+  Proceed to the next state.
+
+- `fn try_response(self: &mut Self, input: &[u8], allow_partial_redirect: bool) -> Result<(usize, Option<Response<()>>), Error>`
+  Try reading a response from the input.
+
+- `fn can_proceed(self: &Self) -> bool`
+  Tell if we have finished receiving the response.
+
+- `fn proceed(self: Self) -> Option<RecvResponseResult>`
+  Proceed to the next state.
+
+- `fn force_recv_body(self: &mut Self)`
+  Convert the state to receive a body despite method.
+
+- `fn read(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
+  Read the response body from `input` to `output`.
+
+- `fn stop_on_chunk_boundary(self: &mut Self, enabled: bool)`
+  Set if we are stopping on chunk boundaries.
+
+- `fn is_on_chunk_boundary(self: &Self) -> bool`
+  Tell if the reading is on a chunk boundary.
+
+- `fn body_mode(self: &Self) -> BodyMode`
+  Tell which kind of mode the response body is.
+
+- `fn can_proceed(self: &Self) -> bool`
+  Check if the response body has been fully received.
+
+- `fn is_ended_chunked(self: &Self) -> bool`
+  Tell if we got an end chunk when reading chunked.
+
+- `fn proceed(self: Self) -> Option<RecvBodyResult>`
+  Proceed to the next state.
 
 - `fn new(request: Request<()>) -> Result<Self, Error>`
   Create a new Call instance from an HTTP request.
@@ -334,54 +382,6 @@ visual representation of the state transitions.
 
 - `fn proceed(self: Self) -> Call<SendRequest>`
   Continue to the next call state.
-
-- `fn as_new_call(self: &mut Self, redirect_auth_headers: RedirectAuthHeaders) -> Result<Option<Call<Prepare>>, Error>`
-  Construct a new `Call` by following the redirect.
-
-- `fn status(self: &Self) -> StatusCode`
-  The redirect status code.
-
-- `fn must_close_connection(self: &Self) -> bool`
-  Whether we must close the connection corresponding to the current call.
-
-- `fn close_reason(self: &Self) -> Option<&'static str>`
-  If we are closing the connection, give a reason why.
-
-- `fn proceed(self: Self) -> Call<Cleanup>`
-  Proceed to the cleanup state.
-
-- `fn try_read_100(self: &mut Self, input: &[u8]) -> Result<usize, Error>`
-  Attempt to read a 100-continue response.
-
-- `fn can_keep_await_100(self: &Self) -> bool`
-  Tell if there is any point in waiting for more data from the server.
-
-- `fn proceed(self: Self) -> Result<Await100Result, Error>`
-  Proceed to the next state.
-
-- `fn must_close_connection(self: &Self) -> bool`
-  Tell if we must close the connection.
-
-- `fn close_reason(self: &Self) -> Option<&'static str>`
-  If we are closing the connection, give a reason.
-
-- `fn write(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
-  Write request body from `input` to `output`.
-
-- `fn consume_direct_write(self: &mut Self, amount: usize) -> Result<(), Error>`
-  Helper to avoid copying memory.
-
-- `fn calculate_max_input(self: &Self, output_len: usize) -> usize`
-  Calculate the max amount of input we can transfer to fill the `output_len`.
-
-- `fn is_chunked(self: &Self) -> bool`
-  Test if call is chunked.
-
-- `fn can_proceed(self: &Self) -> bool`
-  Check whether the request body is fully sent.
-
-- `fn proceed(self: Self) -> Option<Call<RecvResponse>>`
-  Proceed to the next state.
 
 #### Trait Implementations
 
@@ -442,7 +442,7 @@ After sending the request headers, the call can transition to one of three state
 - `SendBody`: If the request has a body to send
 - `RecvResponse`: If the request has no body (e.g., GET, HEAD)
 
-See the [state graph](#client) for a visual representation.
+See the `state graph` for a visual representation.
 
 #### Variants
 
@@ -509,7 +509,7 @@ After awaiting a 100 Continue response, the call can transition to one of two st
 - `SendBody`: If the server sent a 100 Continue response or the timeout expired
 - `RecvResponse`: If the server sent a different response
 
-See the [state graph](#client) for a visual representation.
+See the `state graph` for a visual representation.
 
 #### Variants
 
@@ -574,7 +574,7 @@ After receiving a response (status and headers), the call can transition to one 
 - `Redirect`: If the response is a redirect
 - `Cleanup`: If the response has no body and is not a redirect
 
-See the [state graph](#client) for a visual representation.
+See the `state graph` for a visual representation.
 
 #### Variants
 
@@ -641,7 +641,7 @@ After receiving a response body, the call can transition to one of two states:
 - `Redirect`: If the response is a redirect
 - `Cleanup`: If the response is not a redirect
 
-See the [state graph](#client) for a visual representation.
+See the `state graph` for a visual representation.
 
 #### Variants
 

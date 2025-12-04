@@ -34,7 +34,7 @@ it's _much_ more likely that both peers will have good quality implementations.
 
 ### About the post-quantum-secure key exchange `X25519MLKEM768`
 
-[`X25519MLKEM768`](#x25519mlkem768) -- a hybrid[^1], post-quantum-secure[^2] key exchange
+[`X25519MLKEM768`](index.md) -- a hybrid[^1], post-quantum-secure[^2] key exchange
 algorithm -- is available when using the aws-lc-rs provider.
 
 The `prefer-post-quantum` crate feature makes `X25519MLKEM768` the
@@ -52,7 +52,7 @@ X25519 alone is already used by default by rustls, and tends to have
 higher quality implementations than other elliptic curves.
 ML-KEM-768 was standardized by NIST in [FIPS203].
 
-[`MLKEM768`](#mlkem768) is available separately, but is not currently enabled
+[`MLKEM768`](index.md) is available separately, but is not currently enabled
 by default out of conservatism.
 
 [^1]: meaning: a construction that runs a classical and post-quantum

@@ -4,7 +4,7 @@
 
 # Module `automaton`
 
-Provides [`Automaton`](aho_corasick/automaton/index.md) trait for abstracting over Aho-Corasick automata.
+Provides [`Automaton`](automaton/index.md) trait for abstracting over Aho-Corasick automata.
 
 The `Automaton` trait provides a way to write generic code over any
 Aho-Corasick automaton. It also provides access to lower level APIs that
@@ -168,14 +168,14 @@ panics or silent logical errors.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: u8) -> StateID`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: u8) -> StateID`
 
 ##### `impl Into<T, U>`
 
@@ -236,6 +236,12 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
+- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = StateIDError`
+
 - `fn try_from(value: usize) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom<T, U>`
@@ -248,19 +254,13 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
+- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = StateIDError`
 
 - `fn try_from(value: u64) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
 
 ##### `impl TryInto<T, U>`
 
@@ -392,7 +392,7 @@ caller can do is construct it and pass it around to permit search routines
 to use it to track state, and to ask whether a match has been found.
 
 Callers should always provide a fresh state constructed via
-[`OverlappingState::start`](#start) when starting a new search. That same state
+`OverlappingState::start` when starting a new search. That same state
 should be reused for subsequent searches on the same `Input`. The state
 given will advance through the haystack itself. Callers can detect the end
 of a search when neither an error nor a match is returned.
@@ -510,15 +510,15 @@ struct FindIter<'a, 'h, A> {
 
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](#matchkind) used by this
+This iterator yields matches according to the [`MatchKind`](index.md) used by this
 automaton.
 
-This iterator is constructed via the [`Automaton::try_find_iter`](#try-find-iter) method.
+This iterator is constructed via the `Automaton::try_find_iter` method.
 
-The type variable `A` refers to the implementation of the [`Automaton`](aho_corasick/automaton/index.md)
+The type variable `A` refers to the implementation of the [`Automaton`](automaton/index.md)
 trait used to execute the search.
 
-The lifetime `'a` refers to the lifetime of the [`Automaton`](aho_corasick/automaton/index.md)
+The lifetime `'a` refers to the lifetime of the [`Automaton`](automaton/index.md)
 implementation.
 
 The lifetime `'h` refers to the lifetime of the haystack being searched.
@@ -591,12 +591,12 @@ This iterator will report all possible matches in a particular haystack,
 even when the matches overlap.
 
 This iterator is constructed via the
-[`Automaton::try_find_overlapping_iter`](#try-find-overlapping-iter) method.
+`Automaton::try_find_overlapping_iter` method.
 
-The type variable `A` refers to the implementation of the [`Automaton`](aho_corasick/automaton/index.md)
+The type variable `A` refers to the implementation of the [`Automaton`](automaton/index.md)
 trait used to execute the search.
 
-The lifetime `'a` refers to the lifetime of the [`Automaton`](aho_corasick/automaton/index.md)
+The lifetime `'a` refers to the lifetime of the [`Automaton`](automaton/index.md)
 implementation.
 
 The lifetime `'h` refers to the lifetime of the haystack being searched.
@@ -669,16 +669,16 @@ This iterator yields elements of type `io::Result<Match>`, where an error
 is reported if there was a problem reading from the underlying stream.
 The iterator terminates only when the underlying stream reaches `EOF`.
 
-This iterator is constructed via the [`Automaton::try_stream_find_iter`](#try-stream-find-iter)
+This iterator is constructed via the `Automaton::try_stream_find_iter`
 method.
 
-The type variable `A` refers to the implementation of the [`Automaton`](aho_corasick/automaton/index.md)
+The type variable `A` refers to the implementation of the [`Automaton`](automaton/index.md)
 trait used to execute the search.
 
 The type variable `R` refers to the `io::Read` stream that is being read
 from.
 
-The lifetime `'a` refers to the lifetime of the [`Automaton`](aho_corasick/automaton/index.md)
+The lifetime `'a` refers to the lifetime of the [`Automaton`](automaton/index.md)
 implementation.
 
 #### Trait Implementations
@@ -867,7 +867,7 @@ to use or even know about this trait. Indeed, the top level
 about this trait, nor does it implement it itself.
 
 Note that this trait defines a number of default methods, such as
-[`Automaton::try_find`](#try-find) and [`Automaton::try_find_iter`](#try-find-iter), which implement
+`Automaton::try_find` and `Automaton::try_find_iter`, which implement
 higher level search routines in terms of the lower level automata API.
 
 # Sealed
@@ -887,7 +887,7 @@ on a dead state lead back to itself. The dead state is meant to be treated
 as a sentinel indicating that the search should stop and return a match if
 one has been found, and nothing otherwise.
 * A match state is a state that indicates one or more patterns have
-matched. Depending on the [`MatchKind`](#matchkind) of the automaton, a search may
+matched. Depending on the [`MatchKind`](index.md) of the automaton, a search may
 stop once a match is seen, or it may continue looking for matches until
 it enters a dead state or sees the end of the haystack.
 * A start state is a state that a search begins in. It is useful to know
@@ -902,7 +902,7 @@ the main state transition and the "special" state logic.
 
 Since checking whether a state is special by doing three different
 checks would be too expensive inside a fast search loop, the
-[`Automaton::is_special`](#is-special) method is provided for quickly checking whether
+`Automaton::is_special` method is provided for quickly checking whether
 the state is special. The `Automaton::is_dead`, `Automaton::is_match` and
 `Automaton::is_start` predicates can then be used to determine which kind
 of special state it is.
@@ -941,7 +941,7 @@ _possible_ to do in the future.
 This example shows how one might implement a basic but correct search
 routine. We keep things simple by not using prefilters or worrying about
 anchored searches, but do make sure our search is correct for all possible
-[`MatchKind`](#matchkind) semantics. (The comments in the code below note the parts
+[`MatchKind`](index.md) semantics. (The comments in the code below note the parts
 that are needed to support certain `MatchKind` semantics.)
 
 ```

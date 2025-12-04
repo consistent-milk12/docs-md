@@ -10,7 +10,7 @@ This section gives a brief high level overview of what this crate offers.
   in the forward or reverse direction. When searching for more than one byte,
   positions are considered a match if the byte at that position matches any
   of the bytes.
-* The [`memmem`](memchr/memmem/index.md) sub-module provides forward and reverse substring search
+* The [`memmem`](memmem/index.md) sub-module provides forward and reverse substring search
   routines.
 
 In all such cases, routines operate on `&[u8](#u8)
@@ -48,7 +48,7 @@ assert_eq!(None, it.next());
 
 # Example: iterating over substring matches
 
-This example shows how to use the [`memmem`](memchr/memmem/index.md) sub-module to find occurrences of
+This example shows how to use the [`memmem`](memmem/index.md) sub-module to find occurrences of
 a substring in a haystack.
 
 ```
@@ -68,7 +68,7 @@ assert_eq!(None, it.next());
 It may be possible for the overhead of constructing a substring searcher to be
 measurable in some workloads. In cases where the same needle is used to search
 many haystacks, it is possible to do construction once and thus to avoid it for
-subsequent searches. This can be done with a [`memmem::Finder`](#finder):
+subsequent searches. This can be done with a `memmem::Finder`:
 
 ```
 use memchr::memmem;
@@ -191,8 +191,8 @@ An iterator over all occurrences of a single byte in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr_iter`](#memchr-iter) or `[memrchr_iter`]
-functions. It can also be created with the [`Memchr::new`](#new) method.
+This iterator is created by the [`memchr_iter`](index.md) or `[memrchr_iter`]
+functions. It can also be created with the `Memchr::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
 searched.
@@ -295,8 +295,8 @@ An iterator over all occurrences of two possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
-functions. It can also be created with the [`Memchr2::new`](#new) method.
+This iterator is created by the [`memchr2_iter`](index.md) or `[memrchr2_iter`]
+functions. It can also be created with the `Memchr2::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
 searched.
@@ -397,8 +397,8 @@ An iterator over all occurrences of three possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
-functions. It can also be created with the [`Memchr3::new`](#new) method.
+This iterator is created by the [`memchr2_iter`](index.md) or `[memrchr2_iter`]
+functions. It can also be created with the `Memchr3::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
 searched.

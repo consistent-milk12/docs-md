@@ -30,12 +30,12 @@ Best paired with other libraries in the family:
 
 # Progress Bars and Spinners
 
-indicatif comes with a [`ProgressBar`](#progressbar) type that supports both bounded
+indicatif comes with a [`ProgressBar`](index.md) type that supports both bounded
 progress bar uses as well as unbounded "spinner" type progress reports.
-Progress bars are [`Sync`](#sync) and [`Send`](#send) objects which means that they are
+Progress bars are [`Sync`](../flate2/index.md) and [`Send`](#send) objects which means that they are
 internally locked and can be passed from thread to thread.
 
-Additionally a [`MultiProgress`](#multiprogress) utility is provided that can manage
+Additionally a [`MultiProgress`](index.md) utility is provided that can manage
 rendering multiple progress bars at once (eg: from multiple threads).
 
 To whet your appetite, this is what this can look like:
@@ -218,11 +218,11 @@ The following keys exist:
 * `duration`: the extrapolated total duration time (like `elapsed`).
 
 If the list above does not contain the value you need, consider creating a custom
-[`ProgressTracker`](#progresstracker) implementation.
+`ProgressTracker` implementation.
 
 The design of the progress bar can be altered with the integrated
 template functionality.  The template can be set by changing a
-[`ProgressStyle`](indicatif/style/index.md) and attaching it to the progress bar.
+[`ProgressStyle`](style/index.md) and attaching it to the progress bar.
 
 # Human Readable Formatting
 
@@ -1251,7 +1251,7 @@ struct WeakProgressBar {
 }
 ```
 
-A weak reference to a [`ProgressBar`](#progressbar).
+A weak reference to a [`ProgressBar`](index.md).
 
 Useful for creating custom steady tick implementations
 
@@ -1588,8 +1588,8 @@ enum ProgressFinish {
 
 Behavior of a progress bar when it is finished
 
-This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#progressbariter) completes and
-[`ProgressBar::is_finished`](#is-finished) is false.
+This is invoked when a [`ProgressBar`](index.md) or [`ProgressBarIter`](index.md) completes and
+`ProgressBar::is_finished` is false.
 
 
 

@@ -110,14 +110,14 @@ https://www.chosenplaintext.ca/open-source/rust-timing-shield/security
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(input: u8) -> Choice`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(input: u8) -> Choice`
 
 ##### `impl Into<T, U>`
 

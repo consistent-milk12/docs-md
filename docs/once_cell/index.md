@@ -2,8 +2,8 @@
 
 # Overview
 
-`once_cell` provides two new cell-like types, [`unsync::OnceCell`](#oncecell) and
-[`sync::OnceCell`](#oncecell). A `OnceCell` might store arbitrary non-`Copy` types, can
+`once_cell` provides two new cell-like types, `unsync::OnceCell` and
+`sync::OnceCell`. A `OnceCell` might store arbitrary non-`Copy` types, can
 be assigned to at most once and provides direct access to the stored
 contents. The core API looks *roughly* like this (and there's much more
 inside, read on!):
@@ -16,11 +16,11 @@ impl<T> OnceCell<T> {
 }
 ```
 
-Note that, like with [`RefCell`](#refcell) and [`Mutex`](#mutex), the `set` method requires
+Note that, like with [`RefCell`](#refcell) and [`Mutex`](../rustls/index.md), the `set` method requires
 only a shared reference. Because of the single assignment restriction `get`
 can return a `&T` instead of `Ref<T>` or `MutexGuard<T>`.
 
-The `sync` flavor is thread-safe (that is, implements the [`Sync`](#sync) trait),
+The `sync` flavor is thread-safe (that is, implements the [`Sync`](../flate2/index.md) trait),
 while the `unsync` one is not.
 
 
@@ -82,7 +82,7 @@ fn global_data() -> &'static Mutex<HashMap<i32, String>> {
 }
 ```
 
-There are also the [`sync::Lazy`](#lazy) and [`unsync::Lazy`](#lazy) convenience types to
+There are also the `sync::Lazy` and `unsync::Lazy` convenience types to
 streamline this pattern:
 
 ```rust
@@ -287,7 +287,7 @@ considered a semver-breaking change and requires only a minor version bump.
 The implementation is based on the
 [`lazy_static`](https://github.com/rust-lang-nursery/lazy-static.rs/) and
 [`lazy_cell`](https://github.com/indiv0/lazycell/) crates and
-[`std::sync::Once`](#once). In some sense, `once_cell` just streamlines and unifies
+`std::sync::Once`. In some sense, `once_cell` just streamlines and unifies
 those APIs.
 
 To implement a sync flavor of `OnceCell`, this crates uses either a custom

@@ -362,7 +362,7 @@ struct MultiCrateContext<'a> {
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](#multicrategenerator) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](index.md) to coordinate
 generation across crates.
 
 
@@ -633,7 +633,7 @@ struct SearchIndexGenerator<'a> {
 
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](#cratecollection) and builds a comprehensive
+Traverses all crates in a [`CrateCollection`](index.md) and builds a comprehensive
 search index of all public items.
 
 # Example
@@ -703,7 +703,7 @@ struct UnifiedLinkRegistry {
 
 Registry mapping item IDs to documentation paths across multiple crates.
 
-Unlike [`LinkRegistry`](docs_md/linker/index.md) which handles a single crate, this registry
+Unlike [`LinkRegistry`](linker/index.md) which handles a single crate, this registry
 spans multiple crates and supports cross-crate link resolution with
 disambiguation based on local/primary crate preference.
 

@@ -16,13 +16,13 @@ Currently, there are two NFA implementations provided: noncontiguous and
 contiguous. The names reflect their internal representation, and consequently,
 the trade offs associated with them:
 
-* A [`noncontiguous::NFA`](#nfa) uses a separate allocation for every NFA state to
+* A `noncontiguous::NFA` uses a separate allocation for every NFA state to
 represent its transitions in a sparse format. This is ideal for building an
 NFA, since it cheaply permits different states to have a different number of
 transitions. A noncontiguous NFA is where the main Aho-Corasick construction
 algorithm is implemented. All other Aho-Corasick implementations are built by
 first constructing a noncontiguous NFA.
-* A [`contiguous::NFA`](#nfa) is uses a single allocation to represent all states,
+* A `contiguous::NFA` is uses a single allocation to represent all states,
 while still encoding most states as sparse states but permitting states near
 the starting state to have a dense representation. The dense representation
 uses more memory, but permits computing transitions during a search more

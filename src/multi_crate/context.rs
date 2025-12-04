@@ -516,8 +516,8 @@ impl<'a> SingleCrateView<'a> {
             if let Some(resolved) = self.resolve_link(link_text, item_links, current_file) {
                 result.push_str(&resolved);
             } else {
-                // Keep original if not resolved
-                result.push_str(full_match.as_str());
+                // Couldn't resolve - convert to plain inline code
+                result.push_str(&format!("`{link_text}`"));
             }
         }
 
@@ -563,9 +563,10 @@ impl<'a> SingleCrateView<'a> {
         item_links: &HashMap<String, Id>,
         current_file: &str,
     ) -> Option<String> {
-        // First, try the item's links map (most accurate)
+        // First, try the item's links map (most accurate for current crate)
         if let Some(id) = item_links.get(link_text) {
-            // Look up in registry
+            // Only look up in current crate - IDs are crate-local
+            // Searching other crates by ID would match wrong items with same numeric ID
             if let Some(path) = self.registry.get_path(&self.crate_name, *id) {
                 let display_name = self
                     .registry
@@ -573,6 +574,7 @@ impl<'a> SingleCrateView<'a> {
                     .map_or(link_text, String::as_str);
                 return Some(format!("[`{display_name}`]({path})"));
             }
+            // ID not in current crate - fall through to name-based resolution
         }
 
         // Try resolving by name in the registry
@@ -593,9 +595,15 @@ impl<'a> SingleCrateView<'a> {
             return Some(format!("[`{link_text}`]({full_path})"));
         }
 
-        // Try as an anchor on the current page
-        let short_name = link_text.split("::").last().unwrap_or(link_text);
-        let anchor = slugify_anchor(short_name);
+        // Couldn't resolve - check if this looks like a method/path reference
+        if link_text.contains("::") {
+            // For Type::method or path::Item that we can't resolve,
+            // just return as inline code without a broken anchor
+            return None;
+        }
+
+        // Try as an anchor on the current page (only for simple names)
+        let anchor = slugify_anchor(link_text);
 
         Some(format!("[`{link_text}`](#{anchor})"))
     }

@@ -206,7 +206,7 @@ static METHOD_LINK_RE: LazyLock<Regex> = LazyLock::new(|| {
 ///
 /// Transforms links like:
 /// - `(enum.NumberPrefix.html)` -> `(#numberprefix)`
-/// - `(struct.Foo.html#method.bar)` -> `(#bar)`
+/// - `(struct.Foo.html#method.bar)` -> removes the link (methods don't have anchors)
 ///
 /// This is useful for multi-crate documentation where the full processor
 /// context may not be available.
@@ -215,11 +215,15 @@ pub fn convert_html_links(docs: &str) -> String {
     replace_with_regex(docs, &HTML_LINK_RE, |caps| {
         let item_name = &caps[2];
 
-        let anchor = caps
-            .get(4)
-            .map_or_else(|| item_name.to_lowercase(), |m| m.as_str().to_lowercase());
-
-        format!("(#{anchor})")
+        // If there's a method/variant anchor part, remove the link entirely
+        // since methods don't have individual headings
+        if caps.get(4).is_some() {
+            // Return empty to remove the (link) part, keeping just the display text
+            String::new()
+        } else {
+            // Type-level anchor should exist
+            format!("(#{})", item_name.to_lowercase())
+        }
     })
 }
 
@@ -267,23 +271,23 @@ pub fn strip_reference_definitions(docs: &str) -> String {
     REFERENCE_DEF_RE.replace_all(docs, "").to_string()
 }
 
-/// Convert path-style reference links to markdown anchors.
+/// Convert path-style reference links to inline code.
 ///
 /// Transforms: `[``ProgressTracker``][crate::style::ProgressTracker]`
-/// Into: `[``ProgressTracker``](#progresstracker)`
+/// Into: `` `ProgressTracker` ``
 ///
-/// Uses the last segment of the path as an anchor on the current page.
+/// Without full link resolution context, we can't create valid anchors,
+/// so we preserve the display text as inline code.
 #[must_use]
 pub fn convert_path_reference_links(docs: &str) -> String {
     replace_with_regex(docs, &PATH_REF_LINK_RE, |caps| {
         let display_text = &caps[1];
-        let rust_path = &caps[2];
-        let anchor = rust_path
-            .split("::")
-            .last()
-            .unwrap_or(rust_path)
-            .to_lowercase();
-        format!("[{display_text}](#{anchor})")
+        // Don't double-wrap in backticks
+        if display_text.starts_with('`') && display_text.ends_with('`') {
+            display_text.to_string()
+        } else {
+            format!("`{display_text}`")
+        }
     })
 }
 
@@ -519,14 +523,14 @@ impl<'a> DocLinkProcessor<'a> {
             let rust_path = &caps[2];
 
             self.resolve_to_url(rust_path, item_links).map_or_else(
+                // Can't resolve - keep as inline code without broken anchor
                 || {
-                    // Fallback: anchor from last segment
-                    let anchor = rust_path
-                        .split("::")
-                        .last()
-                        .unwrap_or(rust_path)
-                        .to_lowercase();
-                    format!("[{display_text}](#{anchor})")
+                    // Don't double-wrap in backticks
+                    if display_text.starts_with('`') && display_text.ends_with('`') {
+                        display_text.to_string()
+                    } else {
+                        format!("`{display_text}`")
+                    }
                 },
                 |url| format!("[{display_text}]({url})"),
             )
@@ -591,10 +595,13 @@ impl<'a> DocLinkProcessor<'a> {
     fn process_html_links(text: &str) -> String {
         replace_with_regex(text, &HTML_LINK_RE, |caps| {
             let item_name = &caps[2];
-            let anchor = caps
-                .get(4)
-                .map_or_else(|| item_name.to_lowercase(), |m| m.as_str().to_lowercase());
-            format!("(#{anchor})")
+
+            // If there's a method/variant anchor part, remove the link entirely
+            if caps.get(4).is_some() {
+                String::new()
+            } else {
+                format!("(#{})", item_name.to_lowercase())
+            }
         })
     }
 
@@ -730,7 +737,10 @@ impl<'a> DocLinkProcessor<'a> {
         }
     }
 
-    /// Resolve a method link to a markdown link with anchor.
+    /// Resolve a method link to a markdown link (without method anchor).
+    ///
+    /// Links to the type's page since methods don't have individual headings
+    /// in the generated markdown.
     fn resolve_method_link(
         &self,
         type_name: &str,
@@ -748,10 +758,10 @@ impl<'a> DocLinkProcessor<'a> {
 
         let type_path = self.link_registry.get_path(*type_id)?;
         let relative = LinkRegistry::compute_relative_path(self.current_file, type_path);
-        let anchor = method_name.to_lowercase();
         let display = format!("{type_name}::{method_name}");
 
-        Some(format!("[`{display}`]({relative}#{anchor})"))
+        // Link to the type page without a method anchor (methods don't have headings)
+        Some(format!("[`{display}`]({relative})"))
     }
 
     /// Try to resolve link text to a markdown link.
@@ -874,13 +884,15 @@ mod tests {
 
     #[test]
     fn test_convert_html_links() {
+        // Type-level links get anchors
         assert_eq!(
             convert_html_links("See (enum.Foo.html) for details"),
             "See (#foo) for details"
         );
+        // Method-level links are removed (methods don't have anchors)
         assert_eq!(
             convert_html_links("Call (struct.Bar.html#method.new)"),
-            "Call (#new)"
+            "Call "
         );
     }
 
@@ -907,8 +919,9 @@ mod tests {
 
     #[test]
     fn test_convert_path_reference_links() {
+        // Path references become inline code (can't create valid anchors without context)
         let docs = "[`Tracker`][crate::style::Tracker] is useful";
         let result = convert_path_reference_links(docs);
-        assert_eq!(result, "[`Tracker`](#tracker) is useful");
+        assert_eq!(result, "`Tracker` is useful");
     }
 }

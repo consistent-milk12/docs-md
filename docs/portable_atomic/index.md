@@ -439,12 +439,12 @@ assembly.
 
 ##### `impl From<T>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(p: *mut T) -> Self`
 
 ##### `impl From<T>`
 
-- `fn from(p: *mut T) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -505,7 +505,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`isize`](#isize), this type is a wrapper for the standard library's `AtomicIsize`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicIsize::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicIsize::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -611,14 +611,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: isize) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: isize) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -674,7 +674,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`usize`](#usize), this type is a wrapper for the standard library's `AtomicUsize`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicUsize::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicUsize::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -843,7 +843,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`i8`](#i8), this type is a wrapper for the standard library's `AtomicI8`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicI8::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicI8::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -949,14 +949,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1012,7 +1012,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`u8`](#u8), this type is a wrapper for the standard library's `AtomicU8`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicU8::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicU8::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -1181,7 +1181,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`i16`](#i16), this type is a wrapper for the standard library's `AtomicI16`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicI16::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicI16::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -1346,11 +1346,11 @@ struct AtomicU16 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`u16`](../gimli/gimli/leb128/read/index.md).
+[`u16`](../gimli/leb128/read/index.md).
 
-If the compiler and the platform support atomic loads and stores of [`u16`](../gimli/gimli/leb128/read/index.md), this type is a wrapper for the standard library's `AtomicU16`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of [`u16`](../gimli/leb128/read/index.md), this type is a wrapper for the standard library's `AtomicU16`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicU16::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicU16::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -1456,14 +1456,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1519,7 +1519,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`i32`](#i32), this type is a wrapper for the standard library's `AtomicI32`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicI32::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicI32::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -1688,7 +1688,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`u32`](#u32), this type is a wrapper for the standard library's `AtomicU32`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicU32::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicU32::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -1794,14 +1794,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: u32) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: u32) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1857,7 +1857,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`i64`](#i64), this type is a wrapper for the standard library's `AtomicI64`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicI64::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicI64::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -1963,14 +1963,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: i64) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i64) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2026,7 +2026,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`u64`](#u64), this type is a wrapper for the standard library's `AtomicU64`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicU64::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicU64::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -2132,14 +2132,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: u64) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: u64) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2195,7 +2195,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`i128`](#i128), this type is a wrapper for the standard library's `AtomicI128`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicI128::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicI128::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations
@@ -2301,14 +2301,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i128) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i128) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2364,7 +2364,7 @@ This type has the same in-memory representation as the underlying integer type,
 
 If the compiler and the platform support atomic loads and stores of [`u128`](#u128), this type is a wrapper for the standard library's `AtomicU128`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
-You can call [`AtomicU128::is_lock_free()`](#is-lock-free) to check whether
+You can call `AtomicU128::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
 #### Implementations

@@ -105,7 +105,7 @@ This feature has no effect on targets other than `wasm32-unknown-unknown`.
 #### Node.js ES module support
 
 Node.js supports both [CommonJS modules] and [ES modules]. Due to
-limitations in wasm-bindgen's [`module`](../docs_md/docs_md/generator/module/index.md) support, we cannot directly
+limitations in wasm-bindgen's [`module`](../docs_md/generator/module/index.md) support, we cannot directly
 support ES Modules running on Node.js. However, on Node v15 and later, the
 module author can add a simple shim to support the Web Cryptography API:
 ```js
@@ -213,12 +213,12 @@ struct Error();
 
 A small and `no_std` compatible error type
 
-The [`Error::raw_os_error()`](#raw-os-error) will indicate if the error is from the OS, and
+The `Error::raw_os_error()` will indicate if the error is from the OS, and
 if so, which error code the OS gave the application. If such an error is
 encountered, please consult with your system documentation.
 
 Internally this type is a NonZeroU32, with certain values reserved for
-certain purposes, see [`Error::INTERNAL_START`](#internal-start) and [`Error::CUSTOM_START`](#custom-start).
+certain purposes, see `Error::INTERNAL_START` and `Error::CUSTOM_START`.
 
 *If this crate's `"std"` Cargo feature is enabled*, then:
 - [`getrandom::Error`][Error] implements
@@ -266,14 +266,14 @@ certain purposes, see [`Error::INTERNAL_START`](#internal-start) and [`Error::CU
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(code: NonZeroU32) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(code: NonZeroU32) -> Self`
 
 ##### `impl Into<T, U>`
 

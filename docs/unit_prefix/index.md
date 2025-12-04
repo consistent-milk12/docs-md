@@ -6,7 +6,7 @@ turning “3000 metres” into “3 kilometres”, or “8705 bytes” into “8
 
 # Usage
 
-The function [`NumberPrefix::decimal`](#decimal)
+The function `NumberPrefix::decimal`
 returns either a pair of the resulting number and its prefix, or a
 notice that the number was too small to have any prefix applied to it. For
 example:
@@ -66,7 +66,7 @@ prefixes — they often need to be special-cased.
 This library also allows you to use the *binary prefixes*, which use the
 number 1024 (2<sup>10</sup>) as the multiplier, rather than the more common 1000
 (10<sup>3</sup>). This uses the
-[`NumberPrefix::binary`](#binary) function.
+`NumberPrefix::binary` function.
 For example:
 
 ```

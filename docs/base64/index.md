@@ -9,27 +9,27 @@ allowed.
 
 # Usage
 
-Use an [`Engine`](base64/engine/index.md) to decode or encode base64, configured with the base64
+Use an [`Engine`](engine/index.md) to decode or encode base64, configured with the base64
 alphabet and padding behavior best suited to your application.
 
 ## Engine setup
 
 There is more than one way to encode a stream of bytes as “base64”.
 Different applications use different encoding
-[alphabets](#alphabet) and
-[padding behaviors](#generalpurposeconfig).
+`alphabets` and
+`padding behaviors`.
 
 ### Encoding alphabet
 
-Almost all base64 [alphabets](#alphabet) use `A-Z`, `a-z`, and
+Almost all base64 `alphabets` use `A-Z`, `a-z`, and
 `0-9`, which gives nearly 64 characters (26 + 26 + 10 = 62), but they differ
 in their choice of their final 2.
 
-Most applications use the [standard](#standard) alphabet specified
+Most applications use the `standard` alphabet specified
 in [RFC 4648][rfc-alphabet].  If that’s all you need, you can get started
 quickly by using the pre-configured
-[`STANDARD`](#standard) engine, which is also available
-in the [`prelude`](base64/prelude/index.md) module as shown here, if you prefer a minimal `use`
+`STANDARD` engine, which is also available
+in the [`prelude`](prelude/index.md) module as shown here, if you prefer a minimal `use`
 footprint.
 
 ```
@@ -44,7 +44,7 @@ assert_eq!(BASE64_STANDARD.encode(b"\xFF\xEC\x20\x55\0"), "/+wgVQA=");
 
 [rfc-alphabet]: https://datatracker.ietf.org/doc/html/rfc4648#section-4
 
-Other common alphabets are available in the [`alphabet`](base64/alphabet/index.md) module.
+Other common alphabets are available in the [`alphabet`](alphabet/index.md) module.
 
 #### URL-safe alphabet
 
@@ -52,10 +52,10 @@ The standard alphabet uses `+` and `/` as its two non-alphanumeric tokens,
 which cannot be safely used in URL’s without encoding them as `%2B` and
 `%2F`.
 
-To avoid that, some applications use a [“URL-safe” alphabet](#url_safe),
+To avoid that, some applications use a `“URL-safe” alphabet`,
 which uses `-` and `_` instead. To use that alternative alphabet, use the
-[`URL_SAFE`](#url_safe) engine. This example doesn't
-use [`prelude`](base64/prelude/index.md) to show what a more explicit `use` would look like.
+`URL_SAFE` engine. This example doesn't
+use [`prelude`](prelude/index.md) to show what a more explicit `use` would look like.
 
 ```
 use base64::{engine::general_purpose::URL_SAFE, Engine as _};
@@ -92,7 +92,7 @@ assert_eq!(STANDARD.encode(b"foo"), "Zm9v");
 Canonical encoding ensures that base64 encodings will be exactly the same,
 byte-for-byte, regardless of input length. But the `=` padding characters
 aren’t necessary for decoding, and they may be omitted by using a
-[`NO_PAD`](#no_pad) configuration:
+`NO_PAD` configuration:
 
 ```
 use base64::{engine::general_purpose::STANDARD_NO_PAD, Engine as _};
@@ -105,8 +105,8 @@ assert_eq!(STANDARD_NO_PAD.encode(b"foo"), "Zm9v");
 
 The pre-configured `NO_PAD` engines will reject inputs containing padding
 `=` characters. To encode without padding and still accept padding while
-decoding, create an [engine](#generalpurpose) with
-that [padding mode](#decodepaddingmode).
+decoding, create an `engine` with
+that `padding mode`.
 
 ```
 # use base64::{engine::general_purpose::STANDARD_NO_PAD, Engine as _};
@@ -116,8 +116,8 @@ assert_eq!(STANDARD_NO_PAD.decode(b"Zm8="), Err(base64::DecodeError::InvalidPadd
 ### Further customization
 
 Decoding and encoding behavior can be customized by creating an
-[engine](#generalpurpose) with an [alphabet](#alphabet) and
-[padding configuration](#generalpurposeconfig):
+`engine` with an `alphabet` and
+`padding configuration`:
 
 ```
 use base64::{engine, alphabet, Engine as _};
@@ -150,27 +150,27 @@ you allocated, use one of the alternative methods:
 
 | Method                     | Output                        | Allocates memory              |
 | -------------------------- | ----------------------------- | ----------------------------- |
-| [`Engine::decode`](#decode)         | returns a new `Vec<u8>`       | always                        |
-| [`Engine::decode_vec`](#decode-vec)     | appends to provided `Vec<u8>` | if `Vec` lacks capacity       |
-| [`Engine::decode_slice`](#decode-slice)   | writes to provided `&[u8](#u8)
+| `Engine::decode`         | returns a new `Vec<u8>`       | always                        |
+| `Engine::decode_vec`     | appends to provided `Vec<u8>` | if `Vec` lacks capacity       |
+| `Engine::decode_slice`   | writes to provided `&[u8](#u8)
 `    | never
 
 #### Encoding
 
 | Method                     | Output                       | Allocates memory               |
 | -------------------------- | ---------------------------- | ------------------------------ |
-| [`Engine::encode`](#encode)         | returns a new `String`       | always                         |
-| [`Engine::encode_string`](#encode-string)  | appends to provided `String` | if `String` lacks capacity     |
-| [`Engine::encode_slice`](#encode-slice)   | writes to provided `&[u8](#u8)
+| `Engine::encode`         | returns a new `String`       | always                         |
+| `Engine::encode_string`  | appends to provided `String` | if `String` lacks capacity     |
+| `Engine::encode_slice`   | writes to provided `&[u8](#u8)
 `   | never                          |
 
 ## Input and output
 
 The `base64` crate can [decode][Engine::decode()] and
 [encode][Engine::encode()] values in memory, or
-[`DecoderReader`](#decoderreader) and
-[`EncoderWriter`](#encoderwriter) provide streaming decoding and
-encoding for any [readable](#read) or [writable](#write)
+`DecoderReader` and
+`EncoderWriter` provide streaming decoding and
+encoding for any `readable` or `writable`
 byte stream.
 
 #### Decoding
@@ -204,8 +204,8 @@ io::copy(&mut io::stdin(), &mut encoder)?;
 #### Display
 
 If you only need a base64 representation for implementing the
-[`Display`](#display) trait, use
-[`Base64Display`](#base64display):
+`Display` trait, use
+`Base64Display`:
 
 ```
 use base64::{display::Base64Display, engine::general_purpose::STANDARD};

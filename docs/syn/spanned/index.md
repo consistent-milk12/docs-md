@@ -11,8 +11,8 @@ tree node.
 
 # Example
 
-Suppose in a procedural macro we have a [`Type`](syn/token/index.md) that we want to assert
-implements the [`Sync`](#sync) trait. Maybe this is the type of one of the fields
+Suppose in a procedural macro we have a [`Type`](index.md) that we want to assert
+implements the [`Sync`](../../flate2/index.md) trait. Maybe this is the type of one of the fields
 of a struct for which we are deriving a trait implementation, and we need to
 be able to pass a reference to one of those fields across threads.
 
@@ -71,13 +71,13 @@ error appear in the correct place underlining the right type.
 
 # Limitations
 
-The underlying [`proc_macro::Span::join`](#join) method is nightly-only. When
+The underlying `proc_macro::Span::join` method is nightly-only. When
 called from within a procedural macro in a nightly compiler, `Spanned` will
 use `join` to produce the intended span. When not using a nightly compiler,
 only the span of the *first token* of the syntax tree node is returned.
 
 In the common case of wanting to use the joined span as the span of a
-`syn::Error`, consider instead using [`syn::Error::new_spanned`](#new-spanned) which is
+`syn::Error`, consider instead using `syn::Error::new_spanned` which is
 able to span the error correctly under the complete syntax tree node without
 needing the unstable `join`.
 
@@ -94,7 +94,7 @@ A trait that can provide the `Span` of the complete contents of a syntax
 tree node.
 
 This trait is automatically implemented for all types that implement
-[`ToTokens`](#totokens) from the `quote` crate, as well as for `Span` itself.
+[`ToTokens`](../../quote/index.md) from the `quote` crate, as well as for `Span` itself.
 
 See the [module documentation] for an example.
 

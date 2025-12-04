@@ -8,9 +8,9 @@ Interface for reading object files.
 
 ## Unified read API
 
-The [`Object`](#object) trait provides a unified read API for accessing common features of
+The [`Object`](index.md) trait provides a unified read API for accessing common features of
 object files, such as sections and symbols. There is an implementation of this
-trait for [`File`](#file), which allows reading any file format, as well as implementations
+trait for [`File`](index.md), which allows reading any file format, as well as implementations
 for each file format:
 [`ElfFile`](elf::ElfFile), [`MachOFile`](macho::MachOFile), [`CoffFile`](coff::CoffFile),
 [`PeFile`](pe::PeFile), [`WasmFile`](wasm::WasmFile), [`XcoffFile`](xcoff::XcoffFile).
@@ -324,9 +324,9 @@ struct SymbolMap<T: SymbolMapEntry> {
 
 A map from addresses to symbol information.
 
-The symbol information depends on the chosen entry type, such as [`SymbolMapName`](object/read/index.md).
+The symbol information depends on the chosen entry type, such as [`SymbolMapName`](read/index.md).
 
-Returned by [`Object::symbol_map`](#symbol-map).
+Returned by `Object::symbol_map`.
 
 #### Implementations
 
@@ -407,7 +407,7 @@ struct SymbolMapName<'data> {
 }
 ```
 
-The type used for entries in a [`SymbolMap`](object/read/index.md) that maps from addresses to names.
+The type used for entries in a [`SymbolMap`](read/index.md) that maps from addresses to names.
 
 #### Implementations
 
@@ -506,7 +506,7 @@ A map from addresses to symbol names and object files.
 
 This is derived from STAB entries in Mach-O files.
 
-Returned by [`Object::object_map`](#object-map).
+Returned by `Object::object_map`.
 
 #### Implementations
 
@@ -587,7 +587,7 @@ struct ObjectMapEntry<'data> {
 }
 ```
 
-A symbol in an [`ObjectMap`](object/read/index.md).
+A symbol in an [`ObjectMap`](read/index.md).
 
 #### Implementations
 
@@ -692,7 +692,7 @@ struct ObjectMapFile<'data> {
 }
 ```
 
-An object file name in an [`ObjectMap`](object/read/index.md).
+An object file name in an [`ObjectMap`](read/index.md).
 
 #### Implementations
 
@@ -782,7 +782,7 @@ struct Import<'data> {
 
 An imported symbol.
 
-Returned by [`Object::imports`](#imports).
+Returned by `Object::imports`.
 
 #### Implementations
 
@@ -868,7 +868,7 @@ struct Export<'data> {
 
 An exported symbol.
 
-Returned by [`Object::exports`](#exports).
+Returned by `Object::exports`.
 
 #### Implementations
 
@@ -1041,7 +1041,7 @@ struct Relocation {
 
 A relocation entry.
 
-Returned by [`Object::dynamic_relocations`](#dynamic-relocations) or [`ObjectSection::relocations`](#relocations).
+Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 
 #### Implementations
 
@@ -1121,7 +1121,7 @@ This can be used to apply relocations to a value at a given section offset.
 This is intended for use with DWARF in relocatable object files, and only
 supports relocations that are used in DWARF.
 
-Returned by [`ObjectSection::relocation_map`](#relocation-map).
+Returned by `ObjectSection::relocation_map`.
 
 #### Implementations
 
@@ -1191,7 +1191,7 @@ struct CompressedFileRange {
 
 A range in a file that may be compressed.
 
-Returned by [`ObjectSection::compressed_file_range`](#compressed-file-range).
+Returned by `ObjectSection::compressed_file_range`.
 
 #### Fields
 
@@ -1301,7 +1301,7 @@ struct CompressedData<'data> {
 
 Data that may be compressed.
 
-Returned by [`ObjectSection::compressed_data`](#compressed-data).
+Returned by `ObjectSection::compressed_data`.
 
 #### Fields
 
@@ -1427,13 +1427,13 @@ A file format kind.
 
   A Unix archive.
   
-  See [`archive::ArchiveFile`](#archivefile).
+  See `archive::ArchiveFile`.
 
 - **`Coff`**
 
   A COFF object file.
   
-  See [`coff::CoffFile`](#cofffile).
+  See `coff::CoffFile`.
 
 - **`CoffBig`**
 
@@ -1441,79 +1441,79 @@ A file format kind.
   
   This supports a larger number of sections.
   
-  See [`coff::CoffBigFile`](#coffbigfile).
+  See `coff::CoffBigFile`.
 
 - **`CoffImport`**
 
   A Windows short import file.
   
-  See [`coff::ImportFile`](#importfile).
+  See `coff::ImportFile`.
 
 - **`DyldCache`**
 
   A dyld cache file containing Mach-O images.
   
-  See [`macho::DyldCache`](#dyldcache)
+  See `macho::DyldCache`
 
 - **`Elf32`**
 
   A 32-bit ELF file.
   
-  See [`elf::ElfFile32`](#elffile32).
+  See `elf::ElfFile32`.
 
 - **`Elf64`**
 
   A 64-bit ELF file.
   
-  See [`elf::ElfFile64`](#elffile64).
+  See `elf::ElfFile64`.
 
 - **`MachO32`**
 
   A 32-bit Mach-O file.
   
-  See [`macho::MachOFile32`](#machofile32).
+  See `macho::MachOFile32`.
 
 - **`MachO64`**
 
   A 64-bit Mach-O file.
   
-  See [`macho::MachOFile64`](#machofile64).
+  See `macho::MachOFile64`.
 
 - **`MachOFat32`**
 
   A 32-bit Mach-O fat binary.
   
-  See [`macho::MachOFatFile32`](#machofatfile32).
+  See `macho::MachOFatFile32`.
 
 - **`MachOFat64`**
 
   A 64-bit Mach-O fat binary.
   
-  See [`macho::MachOFatFile64`](#machofatfile64).
+  See `macho::MachOFatFile64`.
 
 - **`Pe32`**
 
   A 32-bit PE file.
   
-  See [`pe::PeFile32`](#pefile32).
+  See `pe::PeFile32`.
 
 - **`Pe64`**
 
   A 64-bit PE file.
   
-  See [`pe::PeFile64`](#pefile64).
+  See `pe::PeFile64`.
 
 - **`Xcoff32`**
 
   A 32-bit XCOFF file.
   
-  See [`xcoff::XcoffFile32`](#xcofffile32).
+  See `xcoff::XcoffFile32`.
 
 - **`Xcoff64`**
 
   A 64-bit XCOFF file.
   
-  See [`xcoff::XcoffFile64`](#xcofffile64).
+  See `xcoff::XcoffFile64`.
 
 #### Implementations
 
@@ -1607,7 +1607,7 @@ enum ObjectKind {
 
 An object kind.
 
-Returned by [`Object::kind`](#kind).
+Returned by `Object::kind`.
 
 #### Variants
 
@@ -1714,7 +1714,7 @@ enum SymbolSection {
 }
 ```
 
-The section where an [`ObjectSymbol`](#objectsymbol) is defined.
+The section where an [`ObjectSymbol`](index.md) is defined.
 
 #### Variants
 
@@ -1827,7 +1827,7 @@ enum RelocationTarget {
 }
 ```
 
-The target referenced by a [`Relocation`](object/read/index.md).
+The target referenced by a [`Relocation`](index.md).
 
 #### Variants
 
@@ -2026,7 +2026,7 @@ A data compression format.
 trait SymbolMapEntry { ... }
 ```
 
-An entry in a [`SymbolMap`](object/read/index.md).
+An entry in a [`SymbolMap`](read/index.md).
 
 #### Required Methods
 

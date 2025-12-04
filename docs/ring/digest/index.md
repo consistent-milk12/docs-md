@@ -114,7 +114,7 @@ struct Digest {
 
 A calculated digest value.
 
-Use [`Self::as_ref`](#as-ref) to get the value as a `&[u8](#u8)
+Use `Self::as_ref` to get the value as a `&[u8](#u8)
 `.
 
 #### Implementations
@@ -269,7 +269,7 @@ Returns the digest of `data` using the given digest algorithm.
 const MAX_BLOCK_LEN: usize = 128usize;
 ```
 
-The maximum block length ([`Algorithm::block_len()`](#block-len)) of all the algorithms
+The maximum block length (`Algorithm::block_len()`) of all the algorithms
 in this module.
 
 ### `MAX_OUTPUT_LEN`
@@ -278,7 +278,7 @@ in this module.
 const MAX_OUTPUT_LEN: usize = 64usize;
 ```
 
-The maximum output length ([`Algorithm::output_len()`](#output-len)) of all the
+The maximum output length (`Algorithm::output_len()`) of all the
 algorithms in this module.
 
 ### `MAX_CHAINING_LEN`
@@ -287,7 +287,7 @@ algorithms in this module.
 const MAX_CHAINING_LEN: usize = 64usize;
 ```
 
-The maximum chaining length ([`Algorithm::chaining_len()`](#chaining-len)) of all the
+The maximum chaining length (`Algorithm::chaining_len()`) of all the
 algorithms in this module.
 
 ### `SHA1_OUTPUT_LEN`

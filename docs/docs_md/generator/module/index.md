@@ -6,7 +6,7 @@
 
 Module markdown rendering for documentation generation.
 
-This module provides the [`ModuleRenderer`](docs_md/generator/module/index.md) struct which handles rendering
+This module provides the [`ModuleRenderer`](generator/module/index.md) struct which handles rendering
 a Rust module's documentation to markdown format, including all its items
 organized by type.
 

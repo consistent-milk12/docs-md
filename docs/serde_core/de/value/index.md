@@ -3208,7 +3208,7 @@ struct BytesDeserializer<'a, E> {
 ```
 
 A deserializer holding a `&[u8](#u8)
-`. Always calls [`Visitor::visit_bytes`](#visit-bytes).
+`. Always calls `Visitor::visit_bytes`.
 
 #### Implementations
 
@@ -3355,7 +3355,7 @@ struct BorrowedBytesDeserializer<'de, E> {
 
 A deserializer holding a `&[u8](#u8)
 ` with a lifetime tied to another
-deserializer. Always calls [`Visitor::visit_borrowed_bytes`](#visit-borrowed-bytes).
+deserializer. Always calls `Visitor::visit_borrowed_bytes`.
 
 #### Implementations
 
@@ -3504,11 +3504,11 @@ A deserializer that iterates over a sequence.
 
 #### Implementations
 
-- `fn end(self: Self) -> Result<(), E>`
-  Check for remaining elements after passing a `SeqDeserializer` to
-
 - `fn new(iter: I) -> Self`
   Construct a new `SeqDeserializer<I, E>`.
+
+- `fn end(self: Self) -> Result<(), E>`
+  Check for remaining elements after passing a `SeqDeserializer` to
 
 #### Trait Implementations
 
@@ -3804,11 +3804,11 @@ A deserializer that iterates over a map.
 
 #### Implementations
 
-- `fn end(self: Self) -> Result<(), E>`
-  Check for remaining elements after passing a `MapDeserializer` to
-
 - `fn new(iter: I) -> Self`
   Construct a new `MapDeserializer<I, E>`.
+
+- `fn end(self: Self) -> Result<(), E>`
+  Check for remaining elements after passing a `MapDeserializer` to
 
 #### Trait Implementations
 

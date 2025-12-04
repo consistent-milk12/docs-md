@@ -13,7 +13,7 @@ advanced wrapping functionality when [`wrap()`](crate::wrap())
 In general, you want to follow these steps when wrapping
 something:
 
-1. Split your input into [`Fragment`](textwrap/core/index.md)s. These are abstract blocks
+1. Split your input into [`Fragment`](core/index.md)s. These are abstract blocks
    of text or content which can be wrapped into lines. See
    [`WordSeparator`](crate::word_separators::WordSeparator) for
    how to do this for text.
@@ -24,7 +24,7 @@ something:
    enum for this.
 
 3. Potentially break apart fragments that are still too large to
-   fit on a single line. This is implemented in [`break_words`](textwrap/core/index.md).
+   fit on a single line. This is implemented in [`break_words`](core/index.md).
 
 4. Finally take your fragments and put them into lines. There are
    two algorithms for this in the
@@ -55,7 +55,7 @@ struct Word<'a> {
 
 A piece of wrappable text, including any trailing whitespace.
 
-A `Word` is an example of a [`Fragment`](textwrap/core/index.md), so it has a width,
+A `Word` is an example of a [`Fragment`](core/index.md), so it has a width,
 trailing whitespace, and potentially a penalty item.
 
 #### Fields
@@ -309,7 +309,7 @@ where
 
 Forcibly break words wider than `line_width` into smaller words.
 
-This simply calls [`Word::break_apart`](#break-apart) on words that are too
+This simply calls `Word::break_apart` on words that are too
 wide. This means that no extra `'-'` is inserted, the word is
 simply broken into smaller pieces.
 

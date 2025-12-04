@@ -276,14 +276,14 @@ A list of deflate flush types.
 
 - **`Full`**
 
-  Same as [`Sync`](#sync), but reset the dictionary so that the following data does not
+  Same as `Sync`, but reset the dictionary so that the following data does not
   depend on previous data.
 
 - **`Finish`**
 
   Try to flush everything and end the deflate stream.
   
-  On success this will yield a [`TDEFLStatus::Done`](#done) return status.
+  On success this will yield a `TDEFLStatus::Done` return status.
 
 #### Implementations
 
@@ -291,14 +291,14 @@ A list of deflate flush types.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(flush: MZFlush) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(flush: MZFlush) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -382,8 +382,8 @@ Return status of compression.
 
   Usage error.
   
-  This indicates that either the [`CompressorOxide`](miniz_oxide/deflate/core/index.md) experienced a previous error, or the
-  stream has already been [`TDEFLFlush::Finish`](#finish)'d.
+  This indicates that either the [`CompressorOxide`](deflate/core/index.md) experienced a previous error, or the
+  stream has already been `TDEFLFlush::Finish`'d.
 
 - **`PutBufFailed`**
 
@@ -399,7 +399,7 @@ Return status of compression.
 
   Compression succeeded and the deflate stream was ended.
   
-  This is the result of calling compression with [`TDEFLFlush::Finish`](#finish).
+  This is the result of calling compression with `TDEFLFlush::Finish`.
 
 #### Trait Implementations
 
@@ -485,10 +485,10 @@ puts compressed output into `out_buf`.
 The value of `flush` determines if the compressor should attempt to flush all output
 and alternatively try to finish the stream.
 
-Use [`TDEFLFlush::Finish`](#finish) on the final call to signal that the stream is finishing.
+Use `TDEFLFlush::Finish` on the final call to signal that the stream is finishing.
 
 Note that this function does not keep track of whether a flush marker has been output, so
-if called using [`TDEFLFlush::Sync`](#sync), the caller needs to ensure there is enough space in the
+if called using `TDEFLFlush::Sync`, the caller needs to ensure there is enough space in the
 output buffer if they want to avoid repeated flush markers.
 See #105 for details.
 

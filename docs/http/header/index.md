@@ -6,7 +6,7 @@
 
 HTTP header types
 
-The module provides [`HeaderName`](#headername), [`HeaderMap`](#headermap), and a number of types
+The module provides [`HeaderName`](index.md), [`HeaderMap`](index.md), and a number of types
 used for interacting with `HeaderMap`. These types allow representing both
 HTTP/1 and HTTP/2 headers.
 
@@ -34,7 +34,7 @@ parse longer names will result in a panic.
 
 # `HeaderMap`
 
-The [`HeaderMap`](#headermap) type is a specialized
+The [`HeaderMap`](index.md) type is a specialized
 [multimap](<https://en.wikipedia.org/wiki/Multimap>) structure for storing
 header names and values. It is designed specifically for efficient
 manipulation of HTTP headers. It supports multiple values per header name
@@ -391,12 +391,12 @@ assert!(!headers.contains_key(HOST));
 
 ##### `impl Extend<T>`
 
-- `fn extend<I: IntoIterator<Item = (Option<HeaderName>, T)>>(self: &mut Self, iter: I)`
-  Extend a `HeaderMap` with the contents of another `HeaderMap`.
+- `fn extend<I: IntoIterator<Item = (HeaderName, T)>>(self: &mut Self, iter: I)`
 
 ##### `impl Extend<T>`
 
-- `fn extend<I: IntoIterator<Item = (HeaderName, T)>>(self: &mut Self, iter: I)`
+- `fn extend<I: IntoIterator<Item = (Option<HeaderName>, T)>>(self: &mut Self, iter: I)`
+  Extend a `HeaderMap` with the contents of another `HeaderMap`.
 
 ##### `impl Index<K, T>`
 
@@ -417,17 +417,17 @@ assert!(!headers.contains_key(HOST));
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<'a, K, V, S, T>`
-
-- `type Error = Error`
-
-- `fn try_from(c: &'a HashMap<K, V, S>) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom<'a, K, V, S, T>`
+
+- `type Error = Error`
+
+- `fn try_from(c: &'a HashMap<K, V, S>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1351,8 +1351,8 @@ headers with the same name. The HTTP specification defines a number of
 standard headers, but HTTP messages may include non-standard header names as
 well as long as they adhere to the specification.
 
-`HeaderName` is used as the [`HeaderMap`](#headermap) key. Constants are available for
-all standard header names in the [`header`](http/header/index.md) module.
+`HeaderName` is used as the [`HeaderMap`](index.md) key. Constants are available for
+all standard header names in the [`header`](header/index.md) module.
 
 # Representation
 
@@ -1410,19 +1410,19 @@ computation and the comparison operation.
 
 ##### `impl AsRef`
 
-- `fn as_ref(self: &Self) -> &[u8]`
+- `fn as_ref(self: &Self) -> &str`
 
 ##### `impl AsRef`
 
-- `fn as_ref(self: &Self) -> &str`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
+- `fn as_ref(self: &Self) -> &[u8]`
 
 ##### `impl Borrow`
 
 - `fn borrow(self: &Self) -> &str`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
 
 ##### `impl BorrowMut<T>`
 
@@ -1446,15 +1446,14 @@ computation and the comparison operation.
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a str) -> bool`
-  Performs a case-insensitive comparison of the string against the header
-
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &str) -> bool`
   Performs a case-insensitive comparison of the string against the header
+
+##### `impl PartialEq<'a>`
+
+- `fn eq(self: &Self, other: &&'a HeaderName) -> bool`
 
 ##### `impl PartialEq`
 
@@ -1462,7 +1461,8 @@ computation and the comparison operation.
 
 ##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &&'a HeaderName) -> bool`
+- `fn eq(self: &Self, other: &&'a str) -> bool`
+  Performs a case-insensitive comparison of the string against the header
 
 ##### `impl StructuralPartialEq`
 
@@ -1478,23 +1478,29 @@ computation and the comparison operation.
 
 - `fn to_string(self: &Self) -> String`
 
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderName`
+
+- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
 ##### `impl TryFrom`
 
 - `type Error = InvalidHeaderName`
 
 - `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom`
-
-- `type Error = InvalidHeaderName`
-
-- `fn try_from(s: String) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidHeaderName`
 
 - `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = InvalidHeaderName`
+
+- `fn try_from(s: String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -1507,12 +1513,6 @@ computation and the comparison operation.
 - `type Error = InvalidHeaderName`
 
 - `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderName`
-
-- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1642,9 +1642,18 @@ an `Err` if the header value contains non visible ascii characters.
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from(t: &'a HeaderValue) -> Self`
+
 ##### `impl From`
 
 - `fn from(h: HeaderName) -> HeaderValue`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
@@ -1652,28 +1661,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl From`
 
-- `fn from(num: u32) -> HeaderValue`
-
-##### `impl From`
-
-- `fn from(num: usize) -> HeaderValue`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(t: &'a HeaderValue) -> Self`
-
-##### `impl From`
-
 - `fn from(num: u16) -> HeaderValue`
-
-##### `impl From`
-
-- `fn from(num: u64) -> HeaderValue`
 
 ##### `impl From`
 
@@ -1682,6 +1670,18 @@ an `Err` if the header value contains non visible ascii characters.
 ##### `impl From`
 
 - `fn from(num: i32) -> HeaderValue`
+
+##### `impl From`
+
+- `fn from(num: u32) -> HeaderValue`
+
+##### `impl From`
+
+- `fn from(num: u64) -> HeaderValue`
+
+##### `impl From`
+
+- `fn from(num: usize) -> HeaderValue`
 
 ##### `impl From`
 
@@ -1736,33 +1736,25 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `fn eq(self: &Self, other: &[u8]) -> bool`
 
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &String) -> bool`
-
 ##### `impl PartialEq<'a, T: ?Sized>`
 
 - `fn eq(self: &Self, other: &&'a T) -> bool`
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &String) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &HeaderValue) -> bool`
 
-##### `impl PartialOrd`
+##### `impl PartialEq`
 
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd<'a, T: ?Sized>`
-
-- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
@@ -1772,6 +1764,14 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `fn partial_cmp(self: &Self, other: &HeaderValue) -> Option<cmp::Ordering>`
 
+##### `impl PartialOrd<'a, T: ?Sized>`
+
+- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+
 ##### `impl ToOwned<T>`
 
 - `type Owned = T`
@@ -1780,29 +1780,17 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderValue`
-
-- `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderValue`
-
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = InvalidHeaderValue`
 
 - `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -1814,7 +1802,19 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `type Error = InvalidHeaderValue`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 

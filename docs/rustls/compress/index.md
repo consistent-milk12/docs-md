@@ -21,7 +21,7 @@ We especially recommend `brotli` as it has the widest deployment so far.
 
 # Custom compression/decompression implementations
 
-1. Implement the [`CertCompressor`](rustls/compress/index.md) and/or [`CertDecompressor`](rustls/compress/index.md) traits
+1. Implement the [`CertCompressor`](compress/index.md) and/or [`CertDecompressor`](compress/index.md) traits
 2. Provide those to:
   - [`ClientConfig::cert_compressors`][cc_cc](#cc-cc)
  or [`ServerConfig::cert_compressors`][sc_cc](#sc-cc)
@@ -160,7 +160,7 @@ struct CompressionCacheInner {
 
 Innards of an enabled CompressionCache.
 
-You cannot make one of these directly. Use [`CompressionCache::new`](#new).
+You cannot make one of these directly. Use `CompressionCache::new`.
 
 #### Trait Implementations
 

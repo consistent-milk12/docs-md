@@ -272,27 +272,27 @@ Tag that determines reset policy of [InflateState](#inflatestate)
 fn inflate(state: &mut InflateState, input: &[u8], output: &mut [u8], flush: crate::MZFlush) -> crate::StreamResult
 ```
 
-Try to decompress from `input` to `output` with the given [`InflateState`](miniz_oxide/inflate/stream/index.md)
+Try to decompress from `input` to `output` with the given [`InflateState`](inflate/stream/index.md)
 
 # `flush`
 
-Generally, the various [`MZFlush`](miniz_oxide/index.md) flags have meaning only on the compression side.  They can be
-supplied here, but the only one that has any semantic meaning is [`MZFlush::Finish`](#finish), which is a
+Generally, the various [`MZFlush`](index.md) flags have meaning only on the compression side.  They can be
+supplied here, but the only one that has any semantic meaning is `MZFlush::Finish`, which is a
 signal that the stream is expected to finish, and failing to do so is an error.  It isn't
 necessary to specify it when the stream ends; you'll still get returned a
-[`MZStatus::StreamEnd`](#streamend) anyway.  Other values either have no effect or cause errors.  It's
-likely that you'll almost always just want to use [`MZFlush::None`](#none).
+`MZStatus::StreamEnd` anyway.  Other values either have no effect or cause errors.  It's
+likely that you'll almost always just want to use `MZFlush::None`.
 
 # Errors
 
-Returns [`MZError::Buf`](#buf) if the size of the `output` slice is empty or no progress was made due
-to lack of expected input data, or if called with [`MZFlush::Finish`](#finish) and input wasn't all
+Returns `MZError::Buf` if the size of the `output` slice is empty or no progress was made due
+to lack of expected input data, or if called with `MZFlush::Finish` and input wasn't all
 consumed.
 
-Returns [`MZError::Data`](#data) if this or a a previous call failed with an error return from
-[`TINFLStatus`](miniz_oxide/inflate/index.md); probably indicates corrupted data.
+Returns `MZError::Data` if this or a a previous call failed with an error return from
+[`TINFLStatus`](inflate/index.md); probably indicates corrupted data.
 
-Returns [`MZError::Stream`](#stream) when called with [`MZFlush::Full`](#full) (meaningless on
-decompression), or when called without [`MZFlush::Finish`](#finish) after an earlier call with
-[`MZFlush::Finish`](#finish) has been made.
+Returns `MZError::Stream` when called with `MZFlush::Full` (meaningless on
+decompression), or when called without `MZFlush::Finish` after an earlier call with
+`MZFlush::Finish` has been made.
 

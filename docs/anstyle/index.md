@@ -41,8 +41,9 @@ Utilities
 
 # Examples
 
-The core type is [`Style`](#style):
+The core type is [`Style`](index.md):
 ```rust
 let style = anstyle::Style::new().bold();
 ```
 
+*This crate has no public items to document.*

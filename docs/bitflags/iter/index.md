@@ -82,7 +82,7 @@ struct IterNames<B: 'static> {
 An iterator over flags values.
 
 This iterator only yields flags values for contained, defined, named flags. Any remaining bits
-won't be yielded, but can be found with the [`IterNames::remaining`](#remaining) method.
+won't be yielded, but can be found with the `IterNames::remaining` method.
 
 #### Implementations
 

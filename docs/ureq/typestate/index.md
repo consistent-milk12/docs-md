@@ -14,7 +14,7 @@ Typestate variables.
 struct WithBody();
 ```
 
-Typestate when [`RequestBuilder`](#requestbuilder) needs to a send body.
+Typestate when [`RequestBuilder`](index.md) needs to a send body.
 
 `RequestBuilder<WithBody>`
 
@@ -66,7 +66,7 @@ Methods: POST, PUT, PATCH
 struct WithoutBody();
 ```
 
-Typestate when [`RequestBuilder`](#requestbuilder) has no send body.
+Typestate when [`RequestBuilder`](index.md) has no send body.
 
 `RequestBuilder<WithoutBody>`
 
@@ -118,7 +118,7 @@ Methods: GET, DELETE, HEAD, OPTIONS, CONNECT, TRACE
 struct AgentScope();
 ```
 
-Typestate for [`Config`](ureq/config/index.md) when configured for an [`Agent`](#agent).
+Typestate for [`Config`](config/index.md) when configured for an [`Agent`](index.md).
 
 #### Trait Implementations
 
@@ -162,7 +162,7 @@ Typestate for [`Config`](ureq/config/index.md) when configured for an [`Agent`](
 struct HttpCrateScope<S: AsSendBody>();
 ```
 
-Typestate for for [`Config`](ureq/config/index.md) when configured via [`Agent::configure_request`](#configure-request).
+Typestate for for [`Config`](config/index.md) when configured via `Agent::configure_request`.
 
 #### Trait Implementations
 
@@ -206,7 +206,7 @@ Typestate for for [`Config`](ureq/config/index.md) when configured via [`Agent::
 struct RequestScope<Any>();
 ```
 
-Typestate for [`Config`](ureq/config/index.md) when configured on the [`RequestBuilder`](#requestbuilder) level.
+Typestate for [`Config`](config/index.md) when configured on the [`RequestBuilder`](index.md) level.
 
 #### Trait Implementations
 

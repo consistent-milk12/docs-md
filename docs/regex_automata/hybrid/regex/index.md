@@ -6,7 +6,7 @@
 
 A lazy DFA backed `Regex`.
 
-This module provides a [`Regex`](regex_automata/hybrid/regex/index.md) backed by a lazy DFA. A `Regex` implements
+This module provides a [`Regex`](index.md) backed by a lazy DFA. A `Regex` implements
 convenience routines you might have come to expect, such as finding a match
 and iterating over all non-overlapping matches. This `Regex` type is limited
 in its capabilities to what a lazy DFA can provide. Therefore, APIs involving
@@ -48,10 +48,10 @@ word boundary support, although neither are enabled by default. It might
 also fail if the underlying DFA determines it isn't making effective use of
 the cache (which also never happens by default). Or it might fail because
 an invalid `Input` configuration is given, for example, with an unsupported
-[`Anchored`](#anchored) mode.
+[`Anchored`](index.md) mode.
 
 If you need to handle these error cases instead of allowing them to trigger
-a panic, then the lower level [`Regex::try_search`](#try-search) provides a fallible API
+a panic, then the lower level `Regex::try_search` provides a fallible API
 that never panics.
 
 # Example
@@ -92,18 +92,6 @@ assert_eq!(expected, got);
 - `fn pattern_len(self: &Self) -> usize`
   Returns the total number of patterns matched by this regex.
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Returns true if and only if this regex matches the given haystack.
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Returns the start and end offset of the leftmost match. If no match
-
-- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping leftmost matches in the
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
-  Returns the start and end offset of the leftmost match. If no match
-
 - `fn new(pattern: &str) -> Result<Regex, BuildError>`
   Parse the given regular expression using the default configuration and
 
@@ -118,6 +106,18 @@ assert_eq!(expected, got);
 
 - `fn reset_cache(self: &Self, cache: &mut Cache)`
   Reset the given cache such that it can be used for searching with the
+
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
+  Returns true if and only if this regex matches the given haystack.
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
+  Returns the start and end offset of the leftmost match. If no match
+
+- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
+  Returns an iterator over all non-overlapping leftmost matches in the
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
+  Returns the start and end offset of the leftmost match. If no match
 
 #### Trait Implementations
 
@@ -169,7 +169,7 @@ struct FindMatches<'r, 'c, 'h> {
 
 An iterator over all non-overlapping matches for an infallible search.
 
-The iterator yields a [`Match`](../../../syn/syn/token/index.md) value until no more matches could be found.
+The iterator yields a [`Match`](index.md) value until no more matches could be found.
 If the underlying regex engine returns an error, then a panic occurs.
 
 The lifetime parameters are as follows:
@@ -178,7 +178,7 @@ The lifetime parameters are as follows:
 * `'h` represents the lifetime of the haystack being searched.
 * `'c` represents the lifetime of the regex cache.
 
-This iterator can be created with the [`Regex::find_iter`](#find-iter) method.
+This iterator can be created with the `Regex::find_iter` method.
 
 #### Trait Implementations
 
@@ -250,12 +250,12 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`Regex`](regex_automata/hybrid/regex/index.md).
+a [`Regex`](index.md).
 
 Caches can be created from their corresponding `Regex` via
-[`Regex::create_cache`](#create-cache). A cache can only be used with either the `Regex`
+`Regex::create_cache`. A cache can only be used with either the `Regex`
 that created it, or the `Regex` that was most recently used to reset it
-with [`Cache::reset`](#reset). Using a cache with any other `Regex` may result in
+with `Cache::reset`. Using a cache with any other `Regex` may result in
 panics or incorrect results.
 
 #### Implementations
@@ -364,7 +364,7 @@ different UTF-8 modes:
 * [`syntax::Config::utf8`](crate::util::syntax::Config::utf8) controls
 whether the pattern itself can contain sub-expressions that match invalid
 UTF-8.
-* [`thompson::Config::utf8`](#utf8) controls how the regex iterators themselves
+* `thompson::Config::utf8` controls how the regex iterators themselves
 advance the starting position of the next search when a match with zero
 length is found.
 
@@ -375,7 +375,7 @@ Internally, building a regex requires building two hybrid NFA/DFAs,
 where one is responsible for finding the end of a match and the other is
 responsible for finding the start of a match. If you only need to detect
 whether something matched, or only the end of a match, then you should use
-a [`dfa::Builder`](#builder) to construct a single hybrid NFA/DFA, which is cheaper
+a `dfa::Builder` to construct a single hybrid NFA/DFA, which is cheaper
 than building two of them.
 
 # Example

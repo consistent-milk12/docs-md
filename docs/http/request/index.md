@@ -158,6 +158,36 @@ fn serialize<T>(req: Request<T>) -> serde_json::Result<Request<Vec<u8>>>
 
 #### Implementations
 
+- `fn builder() -> Builder`
+  Creates a new builder-style object to manufacture a `Request`
+
+- `fn get<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a GET method and the given URI.
+
+- `fn put<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a PUT method and the given URI.
+
+- `fn post<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a POST method and the given URI.
+
+- `fn delete<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a DELETE method and the given URI.
+
+- `fn options<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with an OPTIONS method and the given URI.
+
+- `fn head<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a HEAD method and the given URI.
+
+- `fn connect<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a CONNECT method and the given URI.
+
+- `fn patch<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a PATCH method and the given URI.
+
+- `fn trace<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a TRACE method and the given URI.
+
 - `fn new(body: T) -> Request<T>`
   Creates a new blank `Request` with the body
 
@@ -208,36 +238,6 @@ fn serialize<T>(req: Request<T>) -> serde_json::Result<Request<Vec<u8>>>
 
 - `fn map<F, U>(self: Self, f: F) -> Request<U>`
   Consumes the request returning a new request with body mapped to the
-
-- `fn builder() -> Builder`
-  Creates a new builder-style object to manufacture a `Request`
-
-- `fn get<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a GET method and the given URI.
-
-- `fn put<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a PUT method and the given URI.
-
-- `fn post<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a POST method and the given URI.
-
-- `fn delete<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a DELETE method and the given URI.
-
-- `fn options<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with an OPTIONS method and the given URI.
-
-- `fn head<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a HEAD method and the given URI.
-
-- `fn connect<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a CONNECT method and the given URI.
-
-- `fn patch<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a PATCH method and the given URI.
-
-- `fn trace<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a TRACE method and the given URI.
 
 #### Trait Implementations
 

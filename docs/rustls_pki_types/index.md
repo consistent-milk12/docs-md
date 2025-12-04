@@ -23,16 +23,16 @@ of object contained in the PEM blob.
 
 Types here can be created from:
 
-- DER using (for example) [`PrivatePkcs8KeyDer::from()`](#from).
-- PEM using (for example) [`pem::PemObject::from_pem_slice()`](#from-pem-slice).
+- DER using (for example) `PrivatePkcs8KeyDer::from()`.
+- PEM using (for example) `pem::PemObject::from_pem_slice()`.
 
-The [`pem::PemObject`](#pemobject) trait contains the full selection of ways to construct
+The `pem::PemObject` trait contains the full selection of ways to construct
 these types from PEM encodings.  That includes ways to open and read from a file,
 from a slice, or from an `std::io` stream.
 
 There is also a lower-level API that allows a given PEM file to be fully consumed
 in one pass, even if it contains different data types: see the implementation of
-the [`pem::PemObject`](#pemobject) trait on the `(pem::SectionKind, Vec<u8>)` tuple.
+the `pem::PemObject` trait on the `(pem::SectionKind, Vec<u8>)` tuple.
 
 ## Creating new certificates and keys
 
@@ -44,7 +44,7 @@ the [rcgen](https://docs.rs/rcgen) crate can be used to create new certificates 
 This crate intentionally **does not** implement `Clone` on private key types in
 order to minimize the exposure of private key data in memory.
 
-If you want to extend the lifetime of a `PrivateKeyDer<'_>`, consider [`PrivateKeyDer::clone_key()`](#clone-key).
+If you want to extend the lifetime of a `PrivateKeyDer<'_>`, consider `PrivateKeyDer::clone_key()`.
 Alternatively  since these types are immutable, consider wrapping the `PrivateKeyDer<'_>` in a [`Rc`](#rc)
 or an [`Arc`](#arc).
 
@@ -89,7 +89,7 @@ The outer sequence encoding is *not included*, so this is the DER encoding
 of an OID for `algorithm` plus the `parameters` value.
 
 For example, this is the `rsaEncryption` algorithm (but prefer to use the constant
-[`RSA_ENCRYPTION`](rustls_pki_types/alg_id/index.md) instead):
+[`RSA_ENCRYPTION`](alg_id/index.md) instead):
 
 ```
 let rsa_encryption = rustls_pki_types::AlgorithmIdentifier::from_slice(
@@ -352,17 +352,11 @@ A type which encapsulates a string (borrowed or owned) that is a syntactically v
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom`
+##### `impl TryFrom<'a>`
 
 - `type Error = InvalidDnsNameError`
 
-- `fn try_from(value: String) -> Result<Self, <Self as >::Error>`
+- `fn try_from(value: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
@@ -370,11 +364,17 @@ A type which encapsulates a string (borrowed or owned) that is a syntactically v
 
 - `fn try_from(value: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
 - `type Error = InvalidDnsNameError`
 
-- `fn try_from(value: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(value: String) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -459,6 +459,10 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: [u8; 4]) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -467,10 +471,6 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 ##### `impl From`
 
 - `fn from(addr: std::net::Ipv4Addr) -> Self`
-
-##### `impl From`
-
-- `fn from(value: [u8; 4]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -523,17 +523,17 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = AddrParseError`
 
 - `fn try_from(value: &str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -684,13 +684,13 @@ PrivatePkcs1KeyDer::from_pem_slice(byte_slice).unwrap();
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
 
-##### `impl From`
-
-- `fn from(vec: Vec<u8>) -> Self`
-
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
+
+##### `impl From`
+
+- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -780,14 +780,14 @@ PrivateSec1KeyDer::from_pem_slice(byte_slice).unwrap();
 
 - `fn from(vec: Vec<u8>) -> Self`
 
+##### `impl From<'a>`
+
+- `fn from(slice: &'a [u8]) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -874,10 +874,6 @@ PrivatePkcs8KeyDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(slice: &'a [u8]) -> Self`
-
 ##### `impl From`
 
 - `fn from(vec: Vec<u8>) -> Self`
@@ -886,6 +882,10 @@ PrivatePkcs8KeyDer::from_pem_slice(byte_slice).unwrap();
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -950,10 +950,10 @@ A trust anchor (a.k.a. root CA)
 
 Traditionally, certificate verification libraries have represented trust anchors as full X.509
 root certificates. However, those certificates contain a lot more data than is needed for
-verifying certificates. The [`TrustAnchor`](rustls_pki_types/index.md) representation allows an application to store
+verifying certificates. The [`TrustAnchor`](index.md) representation allows an application to store
 just the essential elements of trust anchors.
 
-The most common way to get one of these is to call [`rustls_webpki::anchor_from_trusted_cert()`](#anchor-from-trusted-cert).
+The most common way to get one of these is to call `rustls_webpki::anchor_from_trusted_cert()`.
 
 
 #### Fields
@@ -1077,6 +1077,10 @@ assert!(crls.len() >= 1);
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(vec: Vec<u8>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -1085,10 +1089,6 @@ assert!(crls.len() >= 1);
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
-
-##### `impl From`
-
-- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1195,18 +1195,18 @@ CertificateSigningRequestDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(vec: Vec<u8>) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -1334,14 +1334,14 @@ assert_eq!(certs.len(), 3);
 
 - `fn from(slice: &'a [u8]) -> Self`
 
+##### `impl From`
+
+- `fn from(vec: Vec<u8>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1452,6 +1452,10 @@ SubjectPublicKeyInfoDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from(slice: &'a [u8]) -> Self`
+
 ##### `impl From`
 
 - `fn from(vec: Vec<u8>) -> Self`
@@ -1460,10 +1464,6 @@ SubjectPublicKeyInfoDer::from_pem_slice(byte_slice).unwrap();
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1555,11 +1555,11 @@ A TLS-encoded Encrypted Client Hello (ECH) configuration list (`ECHConfigList`);
 
 #### Implementations
 
-- `fn into_owned(self: Self) -> EchConfigListBytes<'static>`
-  Converts this config into its owned variant, unfreezing borrowed content (if any)
-
 - `fn config_and_key_from_iter(iter: impl Iterator<Item = Result<(SectionKind, Vec<u8>), pem::Error>>) -> Result<(Self, PrivatePkcs8KeyDer<'static>), pem::Error>`
   Convert an iterator over PEM items into an `EchConfigListBytes` and private key.
+
+- `fn into_owned(self: Self) -> EchConfigListBytes<'static>`
+  Converts this config into its owned variant, unfreezing borrowed content (if any)
 
 #### Trait Implementations
 
@@ -1567,14 +1567,14 @@ A TLS-encoded Encrypted Client Hello (ECH) configuration list (`ECHConfigList`);
 
 - `fn from(vec: Vec<u8>) -> Self`
 
-##### `impl From<'a>`
-
-- `fn from(slice: &'a [u8]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1840,11 +1840,6 @@ variant is only available when the `alloc` feature is enabled.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
@@ -1852,6 +1847,11 @@ variant is only available when the `alloc` feature is enabled.
 ##### `impl From`
 
 - `fn from(vec: Vec<u8>) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -1963,7 +1963,7 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 ##### `impl From`
 
-- `fn from(v6: std::net::Ipv6Addr) -> Self`
+- `fn from(addr: std::net::IpAddr) -> Self`
 
 ##### `impl From<T>`
 
@@ -1972,7 +1972,7 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 ##### `impl From`
 
-- `fn from(addr: std::net::IpAddr) -> Self`
+- `fn from(v6: std::net::Ipv6Addr) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2109,26 +2109,22 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(v6: Ipv6Addr) -> Self`
 
 ##### `impl From`
 
-- `fn from(addr: IpAddr) -> Self`
+- `fn from(v4: std::net::Ipv4Addr) -> Self`
 
 ##### `impl From`
 
 - `fn from(v6: std::net::Ipv6Addr) -> Self`
-
-##### `impl From`
-
-- `fn from(v4: std::net::Ipv4Addr) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl From<'a>`
 
@@ -2136,11 +2132,15 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 ##### `impl From`
 
+- `fn from(v4: Ipv4Addr) -> Self`
+
+##### `impl From`
+
 - `fn from(addr: std::net::IpAddr) -> Self`
 
 ##### `impl From`
 
-- `fn from(v4: Ipv4Addr) -> Self`
+- `fn from(addr: IpAddr) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2187,29 +2187,29 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = InvalidDnsNameError`
-
-- `fn try_from(value: String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidDnsNameError`
 
 - `fn try_from(value: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
+##### `impl TryFrom`
+
+- `type Error = InvalidDnsNameError`
+
+- `fn try_from(value: String) -> Result<Self, <Self as >::Error>`
+
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidDnsNameError`
 
 - `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -2276,9 +2276,10 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 
 #### Trait Implementations
 
-##### `impl From<'a>`
+##### `impl From<T>`
 
-- `fn from(key: PrivatePkcs8KeyDer<'a>) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From<'a>`
 
@@ -2288,10 +2289,9 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 
 - `fn from(key: PrivateSec1KeyDer<'a>) -> Self`
 
-##### `impl From<T>`
+##### `impl From<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(key: PrivatePkcs8KeyDer<'a>) -> Self`
 
 ##### `impl Into<T, U>`
 

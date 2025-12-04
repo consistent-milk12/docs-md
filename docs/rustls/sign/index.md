@@ -120,15 +120,10 @@ struct SingleCertAndKey();
 
 Server certificate resolver which always resolves to the same certificate and key.
 
-For use with [`ConfigBuilder::with_cert_resolver()`](#with-cert-resolver).
+For use with `ConfigBuilder::with_cert_resolver()`.
 
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl From`
 
@@ -137,6 +132,11 @@ For use with [`ConfigBuilder::with_cert_resolver()`](#with-cert-resolver).
 ##### `impl From`
 
 - `fn from(certified_key: CertifiedKey) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 

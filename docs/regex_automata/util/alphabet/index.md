@@ -7,7 +7,7 @@
 This module provides APIs for dealing with the alphabets of finite state
 machines.
 
-There are two principal types in this module, [`ByteClasses`](regex_automata/util/alphabet/index.md) and [`Unit`](regex_automata/util/alphabet/index.md).
+There are two principal types in this module, [`ByteClasses`](util/alphabet/index.md) and [`Unit`](util/alphabet/index.md).
 The former defines the alphabet of a finite state machine while the latter
 represents an element of that alphabet.
 
@@ -33,7 +33,7 @@ considerably) shrinking the size of the transition table.
 One last hiccup concerns `Unit`. Namely, because of look-around and how the
 DFAs in this crate work, we need to add a sentinel value to our alphabet
 of equivalence classes that represents the "end" of a search. We call that
-sentinel [`Unit::eoi`](#eoi) or "end of input." Thus, a `Unit` is either an
+sentinel `Unit::eoi` or "end of input." Thus, a `Unit` is either an
 equivalence class corresponding to a set of bytes, or it is a special "end of
 input" sentinel.
 
@@ -41,7 +41,7 @@ In general, you should not expect to need either of these types unless you're
 doing lower level shenanigans with DFAs, or even building your own DFAs.
 (Although, you don't have to use these types to build your own DFAs of course.)
 For example, if you're walking a DFA's state graph, it's probably useful to
-make use of [`ByteClasses`](regex_automata/util/alphabet/index.md) to visit each element in the DFA's alphabet instead
+make use of [`ByteClasses`](util/alphabet/index.md) to visit each element in the DFA's alphabet instead
 of just visiting every distinct `u8` value. The latter isn't necessarily wrong,
 but it could be potentially very wasteful.
 
@@ -330,9 +330,9 @@ struct ByteClassIter<'a> {
 
 An iterator over each equivalence class.
 
-The last element in this iterator always corresponds to [`Unit::eoi`](#eoi).
+The last element in this iterator always corresponds to `Unit::eoi`.
 
-This is created by the [`ByteClasses::iter`](#iter) method.
+This is created by the `ByteClasses::iter` method.
 
 The lifetime `'a` refers to the lifetime of the byte classes that this
 iterator was created from.
@@ -401,7 +401,7 @@ struct ByteClassRepresentatives<'a> {
 
 An iterator over representative bytes from each equivalence class.
 
-This is created by the [`ByteClasses::representatives`](#representatives) method.
+This is created by the `ByteClasses::representatives` method.
 
 The lifetime `'a` refers to the lifetime of the byte classes that this
 iterator was created from.
@@ -470,7 +470,7 @@ struct ByteClassElements<'a> {
 
 An iterator over all elements in an equivalence class.
 
-This is created by the [`ByteClasses::elements`](#elements) method.
+This is created by the `ByteClasses::elements` method.
 
 The lifetime `'a` refers to the lifetime of the byte classes that this
 iterator was created from.

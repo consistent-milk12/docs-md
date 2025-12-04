@@ -7,7 +7,7 @@
 Provides a regex matcher that composes several other regex matchers
 automatically.
 
-This module is home to a meta [`Regex`](regex_automata/hybrid/regex/index.md), which provides a convenient high
+This module is home to a meta [`Regex`](index.md), which provides a convenient high
 level API for executing regular expressions in linear time.
 
 # Comparison with the `regex` crate
@@ -42,8 +42,8 @@ pattern, while the latter supports multiple patterns but cannot report the
 offsets of a match.
 * A meta `Regex` provides the explicit capability of bypassing its internal
 memory pool for automatically acquiring mutable scratch space required by its
-internal regex engines. Namely, a [`Cache`](regex_automata/dfa/onepass/index.md) can be explicitly provided to lower
-level routines such as [`Regex::search_with`](#search-with).
+internal regex engines. Namely, a [`Cache`](index.md) can be explicitly provided to lower
+level routines such as `Regex::search_with`.
 
 ## Structs
 
@@ -65,7 +65,7 @@ fails, usually because it gets too big with respect to limits like
 
 This error provides very little introspection capabilities. You can:
 
-* Ask for the [`PatternID`](regex_automata/util/primitives/index.md) of the pattern that caused an error, if one
+* Ask for the [`PatternID`](util/primitives/index.md) of the pattern that caused an error, if one
 is available. This is available for things like syntax errors, but not for
 cases where build limits are exceeded.
 * Ask for the underlying syntax error, but only if the error is a syntax
@@ -168,20 +168,20 @@ A builder for configuring and constructing a `Regex`.
 
 The builder permits configuring two different aspects of a `Regex`:
 
-* [`Builder::configure`](#configure) will set high-level configuration options as
-described by a [`Config`](regex_automata/dfa/onepass/index.md).
-* [`Builder::syntax`](#syntax) will set the syntax level configuration options
+* `Builder::configure` will set high-level configuration options as
+described by a [`Config`](dfa/onepass/index.md).
+* `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
 
 Once configured, the builder can then be used to construct a `Regex` from
 one of 4 different inputs:
 
-* [`Builder::build`](#build) creates a regex from a single pattern string.
-* [`Builder::build_many`](#build-many) creates a regex from many pattern strings.
-* [`Builder::build_from_hir`](#build-from-hir) creates a regex from a
+* `Builder::build` creates a regex from a single pattern string.
+* `Builder::build_many` creates a regex from many pattern strings.
+* `Builder::build_from_hir` creates a regex from a
 [`regex-syntax::Hir`](Hir) expression.
-* [`Builder::build_many_from_hir`](#build-many-from-hir) creates a regex from many
+* `Builder::build_many_from_hir` creates a regex from many
 [`regex-syntax::Hir`](Hir) expressions.
 
 The latter two methods in particular provide a way to construct a fully
@@ -190,7 +190,7 @@ without having to first convert it to a string. (This is in contrast to the
 top-level `regex` crate which intentionally provides no such API in order
 to avoid making `regex-syntax` a public dependency.)
 
-As a convenience, this builder may be created via [`Regex::builder`](#builder), which
+As a convenience, this builder may be created via `Regex::builder`, which
 may help avoid an extra import.
 
 # Example: change the line terminator
@@ -355,7 +355,7 @@ pool internally. Its size scales roughly with the number of simultaneous
 regex searches.
 
 For cases where one does not want to rely on a `Regex`'s internal thread
-pool, lower level routines such as [`Regex::search_with`](#search-with) are provided
+pool, lower level routines such as `Regex::search_with` are provided
 that permit callers to pass a `Cache` into the search routine explicitly.
 
 General advice is that the thread pool is often more than good enough.
@@ -364,9 +364,9 @@ especially when searching many small haystacks from many threads
 simultaneously.
 
 Caches can be created from their corresponding `Regex` via
-[`Regex::create_cache`](#create-cache). A cache can only be used with either the `Regex`
+`Regex::create_cache`. A cache can only be used with either the `Regex`
 that created it, or the `Regex` that was most recently used to reset it
-with [`Cache::reset`](#reset). Using a cache with any other `Regex` may result in
+with `Cache::reset`. Using a cache with any other `Regex` may result in
 panics or incorrect results.
 
 # Example
@@ -463,7 +463,7 @@ struct CapturesMatches<'r, 'h> {
 An iterator over all non-overlapping leftmost matches with their capturing
 groups.
 
-The iterator yields a [`Captures`](regex_automata/util/captures/index.md) value until no more matches could be
+The iterator yields a [`Captures`](util/captures/index.md) value until no more matches could be
 found.
 
 The lifetime parameters are as follows:
@@ -471,7 +471,7 @@ The lifetime parameters are as follows:
 * `'r` represents the lifetime of the `Regex` that produced this iterator.
 * `'h` represents the lifetime of the haystack being searched.
 
-This iterator can be created with the [`Regex::captures_iter`](#captures-iter) method.
+This iterator can be created with the `Regex::captures_iter` method.
 
 #### Implementations
 
@@ -551,7 +551,7 @@ An object describing the configuration of a `Regex`.
 
 This configuration only includes options for the
 non-syntax behavior of a `Regex`, and can be applied via the
-[`Builder::configure`](#configure) method. For configuring the syntax options, see
+`Builder::configure` method. For configuring the syntax options, see
 [`util::syntax::Config`](crate::util::syntax::Config).
 
 # Example: lower the NFA size limit
@@ -743,14 +743,14 @@ struct FindMatches<'r, 'h> {
 
 An iterator over all non-overlapping matches.
 
-The iterator yields a [`Match`](../../syn/syn/token/index.md) value until no more matches could be found.
+The iterator yields a [`Match`](index.md) value until no more matches could be found.
 
 The lifetime parameters are as follows:
 
 * `'r` represents the lifetime of the `Regex` that produced this iterator.
 * `'h` represents the lifetime of the haystack being searched.
 
-This iterator can be created with the [`Regex::find_iter`](#find-iter) method.
+This iterator can be created with the `Regex::find_iter` method.
 
 #### Implementations
 
@@ -844,7 +844,7 @@ This is called a "meta" matcher precisely because it uses other regex
 matchers to provide a convenient high level regex API. Here are some
 examples of how other regex matchers are composed:
 
-* When calling [`Regex::captures`](#captures), instead of immediately
+* When calling `Regex::captures`, instead of immediately
 running a slower but more capable regex engine like the
 [`PikeVM`](crate::nfa::thompson::pikevm::PikeVM), the meta regex engine
 will usually first look for the bounds of a match with a higher throughput
@@ -873,7 +873,7 @@ capable engines tend to be slower.
 
 Note that the forms of composition that are allowed are determined by
 compile time crate features and configuration. For example, if the `hybrid`
-feature isn't enabled, or if [`Config::hybrid`](#hybrid) has been disabled, then the
+feature isn't enabled, or if `Config::hybrid` has been disabled, then the
 meta regex engine will never use a lazy DFA.
 
 # Synchronization and cloning
@@ -881,7 +881,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](regex_automata/dfa/onepass/index.md).
+mutable scratch space. This scratch space is called a [`Cache`](index.md).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).
@@ -911,7 +911,7 @@ But it does lead to each `Regex` having its own memory pool, which in
 turn eliminates the problem of contention. In general, this technique should
 not result in any additional memory usage when compared to sharing the same
 `Regex` across multiple threads simultaneously.
-* Use lower level APIs, like [`Regex::search_with`](#search-with), which permit passing
+* Use lower level APIs, like `Regex::search_with`, which permit passing
 a `Cache` explicitly. In this case, it is up to you to determine how best
 to provide a `Cache`. For example, you might put a `Cache` in thread-local
 storage if your use case allows for it.
@@ -932,7 +932,7 @@ result in a deadlock.
 
 If one wants to avoid the use of spin-locks when the `std` feature is
 disabled, then you must use APIs that accept a `Cache` value explicitly.
-For example, [`Regex::search_with`](#search-with).
+For example, `Regex::search_with`.
 
 # Example
 
@@ -947,7 +947,7 @@ assert!(re.is_match("2010-03-14"));
 
 # Example: anchored search
 
-This example shows how to use [`Input::anchored`](#anchored) to run an anchored
+This example shows how to use `Input::anchored` to run an anchored
 search, even when the regex pattern itself isn't anchored. An anchored
 search guarantees that if a match is found, then the start offset of the
 match corresponds to the offset at which the search was started.
@@ -979,7 +979,7 @@ assert_eq!(Some(Match::must(0, 0..3)), re.find(input));
 
 # Example: earliest search
 
-This example shows how to use [`Input::earliest`](#earliest) to run a search that
+This example shows how to use `Input::earliest` to run a search that
 might stop before finding the typical leftmost match.
 
 ```
@@ -1020,6 +1020,33 @@ assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 ```
 
 #### Implementations
+
+- `fn search(self: &Self, input: &Input<'_>) -> Option<Match>`
+  Returns the start and end offset of the leftmost match. If no match
+
+- `fn search_half(self: &Self, input: &Input<'_>) -> Option<HalfMatch>`
+  Returns the end offset of the leftmost match. If no match exists, then
+
+- `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)`
+  Writes the set of patterns that match anywhere in the given search
+
+- `fn new(pattern: &str) -> Result<Regex, BuildError>`
+  Builds a `Regex` from a single pattern string using the default
+
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>`
+  Builds a `Regex` from many pattern strings using the default
+
+- `fn config() -> Config`
+  Return a default configuration for a `Regex`.
+
+- `fn builder() -> Builder`
+  Return a builder for configuring the construction of a `Regex`.
 
 - `fn create_captures(self: &Self) -> Captures`
   Creates a new object for recording capture group offsets. This is used
@@ -1062,33 +1089,6 @@ assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
 - `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
   This is like [`Regex::which_overlapping_matches`], but requires the
-
-- `fn new(pattern: &str) -> Result<Regex, BuildError>`
-  Builds a `Regex` from a single pattern string using the default
-
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>`
-  Builds a `Regex` from many pattern strings using the default
-
-- `fn config() -> Config`
-  Return a default configuration for a `Regex`.
-
-- `fn builder() -> Builder`
-  Return a builder for configuring the construction of a `Regex`.
-
-- `fn search(self: &Self, input: &Input<'_>) -> Option<Match>`
-  Returns the start and end offset of the leftmost match. If no match
-
-- `fn search_half(self: &Self, input: &Input<'_>) -> Option<HalfMatch>`
-  Returns the end offset of the leftmost match. If no match exists, then
-
-- `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)`
-  Writes the set of patterns that match anywhere in the given search
 
 - `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
   Returns true if and only if this regex matches the given haystack.
@@ -1184,7 +1184,7 @@ The lifetime parameters are as follows:
 * `'r` represents the lifetime of the `Regex` that produced this iterator.
 * `'h` represents the lifetime of the haystack being searched.
 
-This iterator can be created with the [`Regex::split`](#split) method.
+This iterator can be created with the `Regex::split` method.
 
 #### Implementations
 
@@ -1265,7 +1265,7 @@ The lifetime parameters are as follows:
 * `'r` represents the lifetime of the `Regex` that produced this iterator.
 * `'h` represents the lifetime of the haystack being searched.
 
-This iterator can be created with the [`Regex::splitn`](#splitn) method.
+This iterator can be created with the `Regex::splitn` method.
 
 #### Implementations
 

@@ -4,7 +4,7 @@
 
 # Module `parser`
 
-[`Command`](#command) line argument parser
+`Command` line argument parser
 
 ## Structs
 
@@ -16,7 +16,7 @@ struct IdsRef<'a> {
 }
 ```
 
-Iterate over [`Arg`](#arg) and [`ArgGroup`](#arggroup) [`Id`](../../rustdoc_types/rustdoc_types/index.md)s via [`ArgMatches::ids`](#ids).
+Iterate over `Arg` and `ArgGroup` [`Id`](index.md)s via `ArgMatches::ids`.
 
 # Examples
 
@@ -124,7 +124,7 @@ struct RawValues<'a> {
 }
 ```
 
-Iterate over raw argument values via [`ArgMatches::get_raw`](#get-raw).
+Iterate over raw argument values via `ArgMatches::get_raw`.
 
 # Examples
 
@@ -241,7 +241,7 @@ struct Values<T> {
 }
 ```
 
-Iterate over multiple values for an argument via [`ArgMatches::remove_many`](#remove-many).
+Iterate over multiple values for an argument via `ArgMatches::remove_many`.
 
 # Examples
 
@@ -352,7 +352,7 @@ struct ValuesRef<'a, T> {
 }
 ```
 
-Iterate over multiple values for an argument via [`ArgMatches::get_many`](#get-many).
+Iterate over multiple values for an argument via `ArgMatches::get_many`.
 
 # Examples
 
@@ -467,7 +467,7 @@ struct ArgMatches {
 Container for parse results.
 
 Used to get information about the arguments that were supplied to the program at runtime by
-the user. New instances of this struct are obtained by using the [`Command::get_matches`](#get-matches) family of
+the user. New instances of this struct are obtained by using the `Command::get_matches` family of
 methods.
 
 # Examples
@@ -513,18 +513,6 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
-  The name and `ArgMatches` of the current [subcommand].
-
-- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>`
-  Return the name and `ArgMatches` of the current [subcommand].
-
-- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>`
-  The `ArgMatches` for the current [subcommand].
-
-- `fn subcommand_name(self: &Self) -> Option<&str>`
-  The name of the current [subcommand].
-
 - `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
   Non-panicking version of [`ArgMatches::get_one`]
 
@@ -554,6 +542,18 @@ if matches.contains_id("out") {
 
 - `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>`
   Clears the values for the given `id`
+
+- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
+  The name and `ArgMatches` of the current [subcommand].
+
+- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>`
+  Return the name and `ArgMatches` of the current [subcommand].
+
+- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>`
+  The `ArgMatches` for the current [subcommand].
+
+- `fn subcommand_name(self: &Self) -> Option<&str>`
+  The name of the current [subcommand].
 
 - `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
   Gets the value of a specific option or positional argument.
@@ -679,7 +679,7 @@ struct Indices<'a> {
 }
 ```
 
-Iterate over indices for where an argument appeared when parsing, via [`ArgMatches::indices_of`](#indices-of)
+Iterate over indices for where an argument appeared when parsing, via `ArgMatches::indices_of`
 
 # Examples
 
@@ -801,11 +801,11 @@ Origin of the argument's value
 
 - **`DefaultValue`**
 
-  Value came [`Arg::default_value`](#default_value)
+  Value came `Arg::default_value`
 
 - **`EnvVariable`**
 
-  Value came [`Arg::env`](#env)
+  Value came `Arg::env`
 
 - **`CommandLine`**
 
@@ -898,7 +898,7 @@ enum MatchesError {
 }
 ```
 
-Violation of [`ArgMatches`](#argmatches) assumptions
+Violation of `ArgMatches` assumptions
 
 #### Variants
 
@@ -908,7 +908,7 @@ Violation of [`ArgMatches`](#argmatches) assumptions
 
 - **`UnknownArgument`**
 
-  Argument not defined in [`Command`](#command)
+  Argument not defined in `Command`
 
 #### Trait Implementations
 

@@ -6,7 +6,7 @@
 
 An NFA backed Pike VM for executing regex searches with capturing groups.
 
-This module provides a [`PikeVM`](regex_automata/nfa/thompson/pikevm/index.md) that works by simulating an NFA and
+This module provides a [`PikeVM`](nfa/thompson/pikevm/index.md) that works by simulating an NFA and
 resolving all spans of capturing groups that participate in a match.
 
 ## Structs
@@ -19,13 +19,13 @@ struct Config {
 }
 ```
 
-The configuration used for building a [`PikeVM`](regex_automata/nfa/thompson/pikevm/index.md).
+The configuration used for building a [`PikeVM`](nfa/thompson/pikevm/index.md).
 
 A PikeVM configuration is a simple data object that is typically used with
-[`Builder::configure`](#configure). It can be cheaply cloned.
+`Builder::configure`. It can be cheaply cloned.
 
 A default configuration can be created either with `Config::new`, or
-perhaps more conveniently, with [`PikeVM::config`](#config).
+perhaps more conveniently, with `PikeVM::config`.
 
 #### Implementations
 
@@ -124,7 +124,7 @@ make sense. For example, there are two different UTF-8 modes:
 * [`util::syntax::Config::utf8`](crate::util::syntax::Config::utf8)
 controls whether the pattern itself can contain sub-expressions that match
 invalid UTF-8.
-* [`thompson::Config::utf8`](#utf8) controls whether empty matches that split a
+* `thompson::Config::utf8` controls whether empty matches that split a
 Unicode codepoint are reported or not.
 
 Generally speaking, callers will want to either enable all of these or
@@ -257,15 +257,15 @@ A virtual machine for executing regex searches with capturing groups.
 # Infallible APIs
 
 Unlike most other regex engines in this crate, a `PikeVM` never returns an
-error at search time. It supports all [`Anchored`](#anchored) configurations, never
+error at search time. It supports all [`Anchored`](index.md) configurations, never
 quits and works on haystacks of arbitrary length.
 
 There are two caveats to mention though:
 
-* If an invalid pattern ID is given to a search via [`Anchored::Pattern`](#pattern),
+* If an invalid pattern ID is given to a search via `Anchored::Pattern`,
 then the PikeVM will report "no match." This is consistent with all other
 regex engines in this crate.
-* When using [`PikeVM::which_overlapping_matches`](#which-overlapping-matches) with a [`PatternSet`](#patternset)
+* When using `PikeVM::which_overlapping_matches` with a [`PatternSet`](index.md)
 that has insufficient capacity to store all valid pattern IDs, then if a
 match occurs for a `PatternID` that cannot be inserted, it is silently
 dropped as if it did not match.
@@ -448,7 +448,7 @@ struct FindMatches<'r, 'c, 'h> {
 
 An iterator over all non-overlapping matches for a particular search.
 
-The iterator yields a [`Match`](../../../../syn/syn/token/index.md) value until no more matches could be found.
+The iterator yields a [`Match`](index.md) value until no more matches could be found.
 
 The lifetime parameters are as follows:
 
@@ -456,7 +456,7 @@ The lifetime parameters are as follows:
 * `'c` represents the lifetime of the PikeVM's cache.
 * `'h` represents the lifetime of the haystack being searched.
 
-This iterator can be created with the [`PikeVM::find_iter`](#find-iter) method.
+This iterator can be created with the `PikeVM::find_iter` method.
 
 #### Trait Implementations
 
@@ -523,7 +523,7 @@ struct CapturesMatches<'r, 'c, 'h> {
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a particular search.
 
-The iterator yields a [`Captures`](regex_automata/util/captures/index.md) value until no more matches could be
+The iterator yields a [`Captures`](util/captures/index.md) value until no more matches could be
 found.
 
 The lifetime parameters are as follows:
@@ -532,7 +532,7 @@ The lifetime parameters are as follows:
 * `'c` represents the lifetime of the PikeVM's cache.
 * `'h` represents the lifetime of the haystack being searched.
 
-This iterator can be created with the [`PikeVM::captures_iter`](#captures-iter) method.
+This iterator can be created with the `PikeVM::captures_iter` method.
 
 #### Trait Implementations
 
@@ -596,16 +596,16 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a [`PikeVM`](regex_automata/nfa/thompson/pikevm/index.md) requires during a
+A cache represents mutable state that a [`PikeVM`](nfa/thompson/pikevm/index.md) requires during a
 search.
 
-For a given [`PikeVM`](regex_automata/nfa/thompson/pikevm/index.md), its corresponding cache may be created either via
-[`PikeVM::create_cache`](#create-cache), or via [`Cache::new`](#new). They are equivalent in
+For a given [`PikeVM`](nfa/thompson/pikevm/index.md), its corresponding cache may be created either via
+`PikeVM::create_cache`, or via `Cache::new`. They are equivalent in
 every way, except the former does not require explicitly importing `Cache`.
 
-A particular `Cache` is coupled with the [`PikeVM`](regex_automata/nfa/thompson/pikevm/index.md) from which it
+A particular `Cache` is coupled with the [`PikeVM`](nfa/thompson/pikevm/index.md) from which it
 was created. It may only be used with that `PikeVM`. A cache and its
-allocations may be re-purposed via [`Cache::reset`](#reset), in which case, it can
+allocations may be re-purposed via `Cache::reset`, in which case, it can
 only be used with the new `PikeVM` (and not the old one).
 
 #### Implementations

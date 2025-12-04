@@ -14,7 +14,7 @@ _NOTE: Transport is deep configuration of ureq and is not required for regular u
 ureq provides a pluggable transport layer making it possible to write bespoke
 transports using the HTTP/1.1 protocol from point A to B. The
 [`Agent::with_parts()`](crate::Agent::with_parts) constructor takes an implementation
-of the [`Connector`](ureq/unversioned/transport/index.md) trait which is used for all connections made using that
+of the [`Connector`](unversioned/transport/index.md) trait which is used for all connections made using that
 agent.
 
 The [DefaultConnector] covers the regular needs for HTTP/1.1:
@@ -24,7 +24,7 @@ The [DefaultConnector] covers the regular needs for HTTP/1.1:
 * HTTPS/TLS using rustls (feature flag **rustls**)
 * HTTPS/TLS using native-tls (feature flag **native-tls** + [config](crate::tls::TlsProvider::NativeTls))
 
-The [`Connector`](ureq/unversioned/transport/index.md) trait anticipates a chain of connectors that each decide
+The [`Connector`](unversioned/transport/index.md) trait anticipates a chain of connectors that each decide
 whether to help perform the connection or not. It is for instance possible to make a
 connector handling other schemes than `http`/`https` without affecting "regular" connections.
 
@@ -175,7 +175,7 @@ struct TransportAdapter<T: Transport> {
 }
 ```
 
-Helper to turn a [`Transport`](ureq/unversioned/transport/index.md) into a std::io [`Read`](io::Read) and [`Write`](io::Write).
+Helper to turn a [`Transport`](unversioned/transport/index.md) into a std::io [`Read`](io::Read) and [`Write`](io::Write).
 
 This is useful when integrating with components that expect a regular `Read`/`Write`. In
 ureq this is used both for the [`RustlsConnector`](crate::unversioned::transport::RustlsConnector) and the
@@ -255,7 +255,7 @@ struct ChainedConnector<In, First, Second>();
 
 Two chained connectors called one after another.
 
-Created by calling [`Connector::chain`](#chain) on the first connector.
+Created by calling `Connector::chain` on the first connector.
 
 #### Trait Implementations
 
@@ -451,7 +451,7 @@ struct NextTimeout {
 }
 ```
 
-A pair of [`Duration`](ureq/unversioned/transport/time/index.md) and [`Timeout`](#timeout).
+A pair of [`Duration`](unversioned/transport/time/index.md) and [`Timeout`](index.md).
 
 #### Fields
 
@@ -549,7 +549,7 @@ struct ConnectionDetails<'a> {
 }
 ```
 
-The parameters needed to create a [`Transport`](ureq/unversioned/transport/index.md).
+The parameters needed to create a [`Transport`](unversioned/transport/index.md).
 
 #### Fields
 
@@ -562,7 +562,7 @@ The parameters needed to create a [`Transport`](ureq/unversioned/transport/index
 
 - **`addrs`**: `super::resolver::ResolvedSocketAddrs`
 
-  The resolved IP address + port for the uri being requested. See [`Resolver`](ureq/unversioned/resolver/index.md).
+  The resolved IP address + port for the uri being requested. See [`Resolver`](unversioned/resolver/index.md).
   
   For proxies, whetherh this holds real addresses depends on
   [`Proxy::resolve_target()`](crate::Proxy::resolve_target).
@@ -653,8 +653,8 @@ Default connector providing TCP sockets, TLS and SOCKS proxy.
 This connector is the following chain:
 
 1. [`SocksConnector`](#socksconnector) to handle proxy settings if set.
-2. [`TcpConnector`](#tcpconnector) to open a socket directly if a proxy is not used.
-3. [`RustlsConnector`](#rustlsconnector) which wraps the
+2. [`TcpConnector`](index.md) to open a socket directly if a proxy is not used.
+3. [`RustlsConnector`](index.md) which wraps the
    connection from 1 or 2 in TLS if the scheme is `https` and the
    [`TlsConfig`](crate::tls::TlsConfig) indicate we are using **rustls**.
    This is the default TLS provider.
@@ -803,26 +803,26 @@ trait Connector<In: Transport>: Debug + Send + Sync + 'static { ... }
 
 Trait for components providing some aspect of connecting.
 
-A connector instance is reused to produce multiple [`Transport`](ureq/unversioned/transport/index.md) instances (where `Transport`
+A connector instance is reused to produce multiple [`Transport`](unversioned/transport/index.md) instances (where `Transport`
 instance would typically be a socket connection).
 
-A connector can be part of a chain of connectors. The [`DefaultConnector`](ureq/unversioned/transport/index.md) provides a chain that
-first tries to make a concrete socket connection (using [`TcpConnector`](#tcpconnector)) and then pass the
-resulting [`Transport`](ureq/unversioned/transport/index.md) to a TLS wrapping connector
-(see [`RustlsConnector`](#rustlsconnector)). This makes it possible combine connectors
+A connector can be part of a chain of connectors. The [`DefaultConnector`](unversioned/transport/index.md) provides a chain that
+first tries to make a concrete socket connection (using [`TcpConnector`](index.md)) and then pass the
+resulting [`Transport`](unversioned/transport/index.md) to a TLS wrapping connector
+(see [`RustlsConnector`](index.md)). This makes it possible combine connectors
 in new ways. A user of ureq could implement bespoke connector (such as SCTP) and still use
 the `RustlsConnector` to wrap the underlying transport in TLS.
 
-The built-in [`DefaultConnector`](ureq/unversioned/transport/index.md) provides SOCKS, TCP sockets and TLS wrapping.
+The built-in [`DefaultConnector`](unversioned/transport/index.md) provides SOCKS, TCP sockets and TLS wrapping.
 
 # Errors
 
 When writing a bespoke connector chain we recommend handling errors like this:
 
-1. Map to [`Error::Io`](#io) as far as possible.
-2. Map to any other [`Error`](../../../docs_md/docs_md/error/index.md) where reasonable.
-3. Fall back on [`Error::Other`](#other) preserving the original error.
-4. As a last resort [`Error::ConnectionFailed`](#connectionfailed) + logging.
+1. Map to `Error::Io` as far as possible.
+2. Map to any other [`Error`](index.md) where reasonable.
+3. Fall back on `Error::Other` preserving the original error.
+4. As a last resort `Error::ConnectionFailed` + logging.
 
 # Example
 
@@ -856,7 +856,7 @@ let body = res.body_mut().read_to_string().unwrap();
 
 - `fn connect(self: &Self, details: &ConnectionDetails<'_>, chained: Option<In>) -> Result<Option<<Self as >::Out>, Error>`
 
-  Use this connector to make a [`Transport`](ureq/unversioned/transport/index.md).
+  Use this connector to make a [`Transport`](unversioned/transport/index.md).
 
 - `fn chain<Next: Connector<<Self as >::Out>>(self: Self, next: Next) -> ChainedConnector<In, Self, Next>`
 
@@ -868,31 +868,31 @@ let body = res.body_mut().read_to_string().unwrap();
 trait Transport: Debug + Send + Sync + 'static { ... }
 ```
 
-Transport of HTTP/1.1 as created by a [`Connector`](ureq/unversioned/transport/index.md).
+Transport of HTTP/1.1 as created by a [`Connector`](unversioned/transport/index.md).
 
-In ureq, [`Transport`](ureq/unversioned/transport/index.md) and [`Buffers`](#buffers) go hand in hand. The rest of ureq tries to minimize
+In ureq, [`Transport`](unversioned/transport/index.md) and [`Buffers`](index.md) go hand in hand. The rest of ureq tries to minimize
 the allocations, and the transport is responsible for providing the buffers required
 to perform the request. Unless the transport requires special buffer handling, the
-[`LazyBuffers`](#lazybuffers) implementation can be used.
+[`LazyBuffers`](index.md) implementation can be used.
 
 For sending data, the order of calls are:
 
-1. [`Transport::buffers()`](#buffers) to obtain the buffers.
-2. [`Buffers::output()`](#output) or [`Buffers::tmp_and_output`](#tmp-and-output)
+1. `Transport::buffers()` to obtain the buffers.
+2. `Buffers::output()` or `Buffers::tmp_and_output`
    depending where in the life cycle of the request ureq is.
-3. [`Transport::transmit_output()`](#transmit-output) to ask the transport to send/flush the `amount` of
+3. `Transport::transmit_output()` to ask the transport to send/flush the `amount` of
    buffers used in 2.
 
 For receiving data, the order of calls are:
 
-1. [`Transport::maybe_await_input()`](#maybe-await-input)
-2. The transport impl itself uses [`Buffers::input_append_buf()`](#input-append-buf) to fill a number
-   of bytes from the underlying transport and use [`Buffers::input_appended()`](#input-appended) to
+1. `Transport::maybe_await_input()`
+2. The transport impl itself uses `Buffers::input_append_buf()` to fill a number
+   of bytes from the underlying transport and use `Buffers::input_appended()` to
    tell the buffer how much been filled.
-3. [`Transport::buffers()`](#buffers) to obtain the buffers
-4. [`Buffers::input()`](#input) followed by [`Buffers::input_consume()`](#input-consume). It's important to retain the
-   unconsumed bytes for the next call to `maybe_await_input()`. This is handled by [`LazyBuffers`](#lazybuffers).
-   It's important to call [`Buffers::input_consume()`](#input-consume) also with 0 consumed bytes since that's
+3. `Transport::buffers()` to obtain the buffers
+4. `Buffers::input()` followed by `Buffers::input_consume()`. It's important to retain the
+   unconsumed bytes for the next call to `maybe_await_input()`. This is handled by [`LazyBuffers`](index.md).
+   It's important to call `Buffers::input_consume()` also with 0 consumed bytes since that's
    how we keep track of whether the input is making progress.
 
 

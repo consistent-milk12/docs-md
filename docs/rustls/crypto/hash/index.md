@@ -179,7 +179,7 @@ trait Hash: Send + Sync { ... }
 Describes a single cryptographic hash function.
 
 This interface can do both one-shot and incremental hashing, using
-[`Hash::hash()`](#hash) and [`Hash::start()`](#start) respectively.
+`Hash::hash()` and `Hash::start()` respectively.
 
 #### Required Methods
 

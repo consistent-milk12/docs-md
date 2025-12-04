@@ -26,7 +26,7 @@ This finder picks two bytes that it believes have high predictive power
 for indicating an overall match of a needle. Depending on whether
 `Finder::find` or `Finder::find_prefilter` is used, it reports offsets
 where the needle matches or could match. In the prefilter case, candidates
-are reported whenever the [`Pair`](memchr/arch/all/packedpair/index.md) of bytes given matches.
+are reported whenever the [`Pair`](arch/all/packedpair/index.md) of bytes given matches.
 
 #### Implementations
 

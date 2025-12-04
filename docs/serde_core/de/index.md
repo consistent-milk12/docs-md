@@ -6,8 +6,8 @@
 
 Generic data structure deserialization framework.
 
-The two most important traits in this module are [`Deserialize`](serde_core/de/index.md) and
-[`Deserializer`](serde_core/de/index.md).
+The two most important traits in this module are [`Deserialize`](de/index.md) and
+[`Deserializer`](de/index.md).
 
  - **A type that implements `Deserialize` is a data structure** that can be
    deserialized from any data format supported by Serde, and conversely
@@ -16,26 +16,26 @@ The two most important traits in this module are [`Deserialize`](serde_core/de/i
 
 # The Deserialize trait
 
-Serde provides [`Deserialize`](serde_core/de/index.md) implementations for many Rust primitive and
+Serde provides [`Deserialize`](de/index.md) implementations for many Rust primitive and
 standard library types. The complete list is below. All of these can be
 deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called [`serde_derive`](../../serde_derive/index.md) to
-automatically generate [`Deserialize`](serde_core/de/index.md) implementations for structs and enums
+automatically generate [`Deserialize`](de/index.md) implementations for structs and enums
 in your program. See the [derive section of the manual] for how to use this.
 
-In rare cases it may be necessary to implement [`Deserialize`](serde_core/de/index.md) manually for
+In rare cases it may be necessary to implement [`Deserialize`](de/index.md) manually for
 some type in your program. See the [Implementing `Deserialize`] section of
 the manual for more about this.
 
-Third-party crates may provide [`Deserialize`](serde_core/de/index.md) implementations for types
+Third-party crates may provide [`Deserialize`](de/index.md) implementations for types
 that they expose. For example the [`linked-hash-map`](#linked-hash-map) crate provides a
 [`LinkedHashMap<K, V>`](#linkedhashmap) type that is deserializable by Serde because the
-crate provides an implementation of [`Deserialize`](serde_core/de/index.md) for it.
+crate provides an implementation of [`Deserialize`](de/index.md) for it.
 
 # The Deserializer trait
 
-[`Deserializer`](serde_core/de/index.md) implementations are provided by third-party crates, for
+[`Deserializer`](de/index.md) implementations are provided by third-party crates, for
 example [`serde_json`](../../serde_json/index.md), [`serde_yaml`](#serde-yaml) and [`postcard`](#postcard).
 
 A partial list of well-maintained formats is given on the [Serde
@@ -695,7 +695,7 @@ A **data structure** that can be deserialized from any data format supported
 by Serde.
 
 Serde provides `Deserialize` implementations for many Rust primitive and
-standard library types. The complete list is [here](#de). All of these
+standard library types. The complete list is `here`. All of these
 can be deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to

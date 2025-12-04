@@ -15,7 +15,7 @@ a safe interface for every `ioctl` call, as they all have wildly varying
 semantics.
 
 This module provides an unsafe interface to write your own `ioctl` API. To
-start, create a type that implements [`Ioctl`](rustix/ioctl/index.md). Then, pass it to [`ioctl`](rustix/ioctl/index.md)
+start, create a type that implements [`Ioctl`](ioctl/index.md). Then, pass it to [`ioctl`](ioctl/index.md)
 to make the `ioctl` call.
 
 ## Modules
@@ -146,7 +146,7 @@ trait Ioctl { ... }
 
 A trait defining the properties of an `ioctl` command.
 
-Objects implementing this trait can be passed to [`ioctl`](rustix/ioctl/index.md) to make an
+Objects implementing this trait can be passed to [`ioctl`](ioctl/index.md) to make an
 `ioctl` call. The contents of the object represent the inputs to the
 `ioctl` call. The inputs must be convertible to a pointer through the
 `as_ptr` method. In most cases, this involves either casting a number to a
@@ -206,17 +206,17 @@ generic file descriptors, many drivers expose their own `ioctl` calls for
 controlling their behavior, some of which are proprietary.
 
 This crate exposes many other `ioctl` interfaces with safe and idiomatic
-wrappers, like [`ioctl_fionbio`](#ioctl-fionbio) and [`ioctl_fionread`](#ioctl-fionread). It is recommended
+wrappers, like [`ioctl_fionbio`](index.md) and [`ioctl_fionread`](index.md). It is recommended
 to use those instead of this function, as they are safer and more
-idiomatic. For other cases, implement the [`Ioctl`](rustix/ioctl/index.md) API and pass it to this
+idiomatic. For other cases, implement the [`Ioctl`](ioctl/index.md) API and pass it to this
 function.
 
-See documentation for [`Ioctl`](rustix/ioctl/index.md) for more information.
+See documentation for [`Ioctl`](ioctl/index.md) for more information.
 
 
 # Safety
 
-While [`Ioctl`](rustix/ioctl/index.md) takes much of the unsafety out of `ioctl` calls, callers
+While [`Ioctl`](ioctl/index.md) takes much of the unsafety out of `ioctl` calls, callers
 must still ensure that the opcode value, operand type, and data access
 correctly reflect what's in the device driver servicing the call. `ioctl`
 calls form a protocol between the userspace `ioctl` callers and the device

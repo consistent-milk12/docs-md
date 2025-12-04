@@ -8,7 +8,7 @@ A DFA that can return spans for matching capturing groups.
 
 This module is the home of a [one-pass DFA](DFA).
 
-This module also contains a [`Builder`](regex_automata/dfa/onepass/index.md) and a [`Config`](regex_automata/dfa/onepass/index.md) for building and
+This module also contains a [`Builder`](hybrid/dfa/index.md) and a [`Config`](dfa/onepass/index.md) for building and
 configuring a one-pass DFA.
 
 ## Structs
@@ -24,10 +24,10 @@ struct Config {
 The configuration used for building a [one-pass DFA](DFA).
 
 A one-pass DFA configuration is a simple data object that is typically used
-with [`Builder::configure`](#configure). It can be cheaply cloned.
+with `Builder::configure`. It can be cheaply cloned.
 
 A default configuration can be created either with `Config::new`, or
-perhaps more conveniently, with [`DFA::config`](#config).
+perhaps more conveniently, with `DFA::config`.
 
 #### Implementations
 
@@ -138,7 +138,7 @@ example, there are two different UTF-8 modes:
 * [`syntax::Config::utf8`](crate::util::syntax::Config::utf8) controls
 whether the pattern itself can contain sub-expressions that match invalid
 UTF-8.
-* [`thompson::Config::utf8`](#utf8) controls whether empty matches that split a
+* `thompson::Config::utf8` controls whether empty matches that split a
 Unicode codepoint are reported or not.
 
 Generally speaking, callers will want to either enable all of these or
@@ -297,13 +297,13 @@ capturing groups.
 To clarify, when we say that unanchored searches are not supported, what
 that actually means is:
 
-* The high level routines, [`DFA::is_match`](#is-match) and [`DFA::captures`](#captures), always
+* The high level routines, `DFA::is_match` and `DFA::captures`, always
 do anchored searches.
 * Since iterators are most useful in the context of unanchored searches,
 there is no `DFA::captures_iter` method.
-* For lower level routines like [`DFA::try_search`](#try-search), an error will be
-returned if the given [`Input`](#input) is configured to do an unanchored search or
-search for an invalid pattern ID. (Note that an [`Input`](#input) is configured to
+* For lower level routines like `DFA::try_search`, an error will be
+returned if the given [`Input`](index.md) is configured to do an unanchored search or
+search for an invalid pattern ID. (Note that an [`Input`](index.md) is configured to
 do an unanchored search by default, so just giving a `Input::new` is
 guaranteed to return an error.)
 
@@ -419,6 +419,21 @@ assert_eq!(Some(Span::from(1..2)), caps0.get_group(1));
 
 #### Implementations
 
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
+  Executes an anchored leftmost forward search, and returns true if and
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
+  Executes an anchored leftmost forward search, and returns a `Match` if
+
+- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
+  Executes an anchored leftmost forward search and writes the spans
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
+  Executes an anchored leftmost forward search and writes the spans
+
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
+  Executes an anchored leftmost forward search and writes the spans
+
 - `fn new(pattern: &str) -> Result<DFA, BuildError>`
   Parse the given regular expression using the default configuration and
 
@@ -472,21 +487,6 @@ assert_eq!(Some(Span::from(1..2)), caps0.get_group(1));
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the memory usage, in bytes, of this DFA.
-
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Executes an anchored leftmost forward search, and returns true if and
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Executes an anchored leftmost forward search, and returns a `Match` if
-
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
-  Executes an anchored leftmost forward search and writes the spans
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes an anchored leftmost forward search and writes the spans
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes an anchored leftmost forward search and writes the spans
 
 #### Trait Implementations
 
@@ -552,16 +552,16 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a one-pass [`DFA`](regex_automata/dfa/onepass/index.md) requires during a
+A cache represents mutable state that a one-pass [`DFA`](dfa/onepass/index.md) requires during a
 search.
 
 For a given one-pass DFA, its corresponding cache may be created either via
-[`DFA::create_cache`](#create-cache), or via [`Cache::new`](#new). They are equivalent in every
+`DFA::create_cache`, or via `Cache::new`. They are equivalent in every
 way, except the former does not require explicitly importing `Cache`.
 
 A particular `Cache` is coupled with the one-pass DFA from which it was
 created. It may only be used with that one-pass DFA. A cache and its
-allocations may be re-purposed via [`Cache::reset`](#reset), in which case, it can
+allocations may be re-purposed via `Cache::reset`, in which case, it can
 only be used with the new one-pass DFA (and not the old one).
 
 #### Implementations
@@ -645,7 +645,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`thompson::BuildError`](#builderror) type from its `source`
+* Access an underlying `thompson::BuildError` type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building a one-pass DFA directly from a pattern
 string.

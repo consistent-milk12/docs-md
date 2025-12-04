@@ -3,7 +3,7 @@
 This crate provides a safe and simple **cross platform** way to determine
 whether two file paths refer to the same file or directory.
 
-Most uses of this crate should be limited to the top-level [`is_same_file`](same_file/index.md)
+Most uses of this crate should be limited to the top-level [`is_same_file`](index.md)
 function, which takes two file paths and returns true if they refer to the
 same file or directory:
 
@@ -21,7 +21,7 @@ assert!(is_same_file("/bin/sh", "/usr/bin/sh")?);
 # }
 ```
 
-Additionally, this crate provides a [`Handle`](same_file/index.md) type that permits a more efficient
+Additionally, this crate provides a [`Handle`](index.md) type that permits a more efficient
 equality check depending on your access pattern. For example, if one wanted to
 check whether any path in a list of paths corresponded to the process' stdout
 handle, then one could build a handle once for stdout. The equality check for
@@ -196,7 +196,7 @@ Note that it's possible for this to produce a false positive on some
 platforms. Namely, this can return true even if the two file paths *don't*
 resolve to the same file.
 # Errors
-This function will return an [`io::Error`](#error) if any of the two paths cannot
+This function will return an `io::Error` if any of the two paths cannot
 be opened. The most common reasons for this are: the path does not exist,
 or there were not enough permissions.
 

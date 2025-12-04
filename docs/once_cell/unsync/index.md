@@ -18,7 +18,7 @@ struct OnceCell<T> {
 
 A cell which can be written to only once. It is not thread safe.
 
-Unlike [`std::cell::RefCell`](#refcell), a `OnceCell` provides simple `&`
+Unlike `std::cell::RefCell`, a `OnceCell` provides simple `&`
 references to the contents.
 
 # Example
@@ -178,12 +178,6 @@ println!("{}", *lazy);
 
 #### Implementations
 
-- `const fn new(init: F) -> Lazy<T, F>`
-  Creates a new lazy value with the given initializing function.
-
-- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
-  Consumes this `Lazy` returning the stored value.
-
 - `fn force(this: &Lazy<T, F>) -> &T`
   Forces the evaluation of this lazy value and returns a reference to
 
@@ -195,6 +189,12 @@ println!("{}", *lazy);
 
 - `fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>`
   Gets the mutable reference to the result of this lazy value if
+
+- `const fn new(init: F) -> Lazy<T, F>`
+  Creates a new lazy value with the given initializing function.
+
+- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
+  Consumes this `Lazy` returning the stored value.
 
 #### Trait Implementations
 

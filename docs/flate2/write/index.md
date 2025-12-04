@@ -4,7 +4,7 @@
 
 # Module `write`
 
-Types which operate over [`Write`](#write) streams, both encoders and decoders for
+Types which operate over [`Write`](../../rustix/index.md) streams, both encoders and decoders for
 various formats.
 
 
@@ -20,7 +20,7 @@ struct DeflateDecoder<W: Write> {
 
 A DEFLATE decoder, or decompressor.
 
-This structure implements a [`Write`](#write) and will emit a stream of decompressed
+This structure implements a [`Write`](../../rustix/index.md) and will emit a stream of decompressed
 data when fed a stream of compressed data.
 
 After decoding a single member of the DEFLATE data this writer will return the number of bytes up to
@@ -140,7 +140,7 @@ struct DeflateEncoder<W: Write> {
 
 A DEFLATE encoder, or compressor.
 
-This structure implements a [`Write`](#write) interface and takes a stream of
+This structure implements a [`Write`](../../rustix/index.md) interface and takes a stream of
 uncompressed data, writing the compressed data to the wrapped writer.
 
 # Examples
@@ -248,14 +248,14 @@ struct GzDecoder<W: Write> {
 
 A decoder for a single member of a [gzip file].
 
-This structure exposes a [`Write`](#write) interface, receiving compressed data and
+This structure exposes a [`Write`](../../rustix/index.md) interface, receiving compressed data and
 writing uncompressed data to the underlying writer.
 
 After decoding a single member of the gzip data this writer will return the number of bytes up to
 to the end of the gzip member and subsequent writes will return Ok(0) allowing the caller to
 handle any data following the gzip member.
 
-To handle gzip files that may have multiple members, see [`MultiGzDecoder`](#multigzdecoder)
+To handle gzip files that may have multiple members, see [`MultiGzDecoder`](index.md)
 or read more
 [in the introduction](../index.html#about-multi-member-gzip-files).
 
@@ -367,7 +367,7 @@ struct GzEncoder<W: Write> {
 
 A gzip streaming encoder
 
-This structure exposes a [`Write`](#write) interface that will emit compressed data
+This structure exposes a [`Write`](../../rustix/index.md) interface that will emit compressed data
 to the underlying writer `W`.
 
 # Examples
@@ -467,7 +467,7 @@ struct MultiGzDecoder<W: Write> {
 
 A gzip streaming decoder that decodes a [gzip file] with multiple members.
 
-This structure exposes a [`Write`](#write) interface that will consume compressed data and
+This structure exposes a [`Write`](../../rustix/index.md) interface that will consume compressed data and
 write uncompressed data to the underlying writer.
 
 A gzip file consists of a series of *members* concatenated one after another.
@@ -555,7 +555,7 @@ struct ZlibDecoder<W: Write> {
 
 A ZLIB decoder, or decompressor.
 
-This structure implements a [`Write`](#write) and will emit a stream of decompressed
+This structure implements a [`Write`](../../rustix/index.md) and will emit a stream of decompressed
 data when fed a stream of compressed data.
 
 After decoding a single member of the ZLIB data this writer will return the number of bytes up
@@ -680,7 +680,7 @@ struct ZlibEncoder<W: Write> {
 
 A ZLIB encoder, or compressor.
 
-This structure implements a [`Write`](#write) interface and takes a stream of
+This structure implements a [`Write`](../../rustix/index.md) interface and takes a stream of
 uncompressed data, writing the compressed data to the wrapped writer.
 
 # Examples

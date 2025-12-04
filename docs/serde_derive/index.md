@@ -15,3 +15,4 @@ Please refer to [https://serde.rs/derive.html] for how to set this up.
 
 [https://serde.rs/derive.html]: https://serde.rs/derive.html
 
+*This is a procedural macro crate. The derive macros are re-exported from the parent crate.*

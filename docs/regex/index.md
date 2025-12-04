@@ -10,7 +10,7 @@ and `n` is proportional to the size of the string being searched.
 
 [regular expression]: https://en.wikipedia.org/wiki/Regular_expression
 
-If you just want API documentation, then skip to the [`Regex`](../regex_automata/regex_automata/hybrid/regex/index.md) type. Otherwise,
+If you just want API documentation, then skip to the [`Regex`](index.md) type. Otherwise,
 here's a quick example showing one way of parsing the output of a grep-like
 program:
 
@@ -38,21 +38,21 @@ assert_eq!(results, vec![
 
 # Overview
 
-The primary type in this crate is a [`Regex`](../regex_automata/regex_automata/hybrid/regex/index.md). Its most important methods are
+The primary type in this crate is a [`Regex`](index.md). Its most important methods are
 as follows:
 
-* [`Regex::new`](#new) compiles a regex using the default configuration. A
-[`RegexBuilder`](#regexbuilder) permits setting a non-default configuration. (For example,
+* `Regex::new` compiles a regex using the default configuration. A
+[`RegexBuilder`](index.md) permits setting a non-default configuration. (For example,
 case insensitive matching, verbose mode and others.)
-* [`Regex::is_match`](#is-match) reports whether a match exists in a particular haystack.
-* [`Regex::find`](#find) reports the byte offsets of a match in a haystack, if one
-exists. [`Regex::find_iter`](#find-iter) returns an iterator over all such matches.
-* [`Regex::captures`](#captures) returns a [`Captures`](../regex_automata/regex_automata/util/captures/index.md), which reports both the byte
+* `Regex::is_match` reports whether a match exists in a particular haystack.
+* `Regex::find` reports the byte offsets of a match in a haystack, if one
+exists. `Regex::find_iter` returns an iterator over all such matches.
+* `Regex::captures` returns a [`Captures`](index.md), which reports both the byte
 offsets of a match in a haystack and the byte offsets of each matching capture
 group from the regex in the haystack.
-[`Regex::captures_iter`](#captures-iter) returns an iterator over all such matches.
+`Regex::captures_iter` returns an iterator over all such matches.
 
-There is also a [`RegexSet`](#regexset), which permits searching for multiple regex
+There is also a [`RegexSet`](index.md), which permits searching for multiple regex
 patterns simultaneously in a single search. However, it currently only reports
 which patterns match and *not* the byte offsets of a match.
 
@@ -266,7 +266,7 @@ assert_eq!(dates, vec![
 ]);
 ```
 
-We can also iterate over [`Captures`](../regex_automata/regex_automata/util/captures/index.md) values instead of [`Match`](../syn/syn/token/index.md) values, and
+We can also iterate over [`Captures`](index.md) values instead of [`Match`](index.md) values, and
 that in turn permits accessing each component of the date via capturing groups:
 
 ```rust
@@ -298,7 +298,7 @@ assert_eq!(dates, vec![
 
 ### Example: simpler capture group extraction
 
-One can use [`Captures::extract`](#extract) to make the code from the previous example a
+One can use `Captures::extract` to make the code from the previous example a
 bit simpler in this case:
 
 ```rust
@@ -328,7 +328,7 @@ arrays does the rest.
 
 Building on the previous example, perhaps we'd like to rearrange the date
 formats. This can be done by finding each match and replacing it with
-something different. The [`Regex::replace_all`](#replace-all) routine provides a convenient
+something different. The `Regex::replace_all` routine provides a convenient
 way to do this, including by supporting references to named groups in the
 replacement string:
 
@@ -343,7 +343,7 @@ assert_eq!(after, "01/05/1973, 08/25/1975 and 10/18/1980");
 
 The replace methods are actually polymorphic in the replacement, which
 provides more flexibility than is seen here. (See the documentation for
-[`Regex::replace`](#replace) for more details.)
+`Regex::replace` for more details.)
 
 ### Example: verbose mode
 
@@ -376,7 +376,7 @@ the `x` flag, e.g., `(?-x: )`.
 
 ### Example: match multiple regular expressions simultaneously
 
-This demonstrates how to use a [`RegexSet`](#regexset) to match multiple (possibly
+This demonstrates how to use a [`RegexSet`](index.md) to match multiple (possibly
 overlapping) regexes in a single scan of a haystack:
 
 ```rust
@@ -422,8 +422,8 @@ which would subsume #1 and #2 automatically. However, it can be significantly
 more expensive to compute the location of capturing group matches, so it's best
 not to do it if you don't need to.
 
-Therefore, only ask for what you need. For example, don't use [`Regex::find`](#find)
-if you only need to test if a regex matches a haystack. Use [`Regex::is_match`](#is-match)
+Therefore, only ask for what you need. For example, don't use `Regex::find`
+if you only need to test if a regex matches a haystack. Use `Regex::is_match`
 instead.
 
 ### Unicode can impact memory usage and search speed
@@ -474,7 +474,7 @@ allocations internally to the regex engine.
 
 In Rust, it can sometimes be a pain to pass regular expressions around if
 they're used from inside a helper function. Instead, we recommend using
-[`std::sync::LazyLock`](#lazylock), or the [`once_cell`](../once_cell/index.md) crate,
+`std::sync::LazyLock`, or the [`once_cell`](../once_cell/index.md) crate,
 if you can't use the standard library.
 
 This example shows how to use `std::sync::LazyLock`:
@@ -528,10 +528,10 @@ specified by the [Unicode Technical Standard #18][UTS18]. The full details
 of what is supported are documented in [UNICODE.md] in the root of the regex
 crate repository. There is virtually no support for "Extended Unicode Support"
 (Level 2) from UTS#18.
-* The top-level [`Regex`](../regex_automata/regex_automata/hybrid/regex/index.md) runs searches *as if* iterating over each of the
+* The top-level [`Regex`](index.md) runs searches *as if* iterating over each of the
 codepoints in the haystack. That is, the fundamental atom of matching is a
 single codepoint.
-* [`bytes::Regex`](#regex), in contrast, permits disabling Unicode mode for part of all
+* `bytes::Regex`, in contrast, permits disabling Unicode mode for part of all
 of your pattern in all cases. When Unicode mode is disabled, then a search is
 run *as if* iterating over each byte in the haystack. That is, the fundamental
 atom of matching is a single byte. (A top-level `Regex` also permits disabling
@@ -606,7 +606,7 @@ assert_eq!(subs, vec!["ΔδΔ𐅌ΔδΔ"]);
 
 ### Opt out of Unicode support
 
-The [`bytes::Regex`](#regex) type that can be used to search `&[u8](#u8)
+The `bytes::Regex` type that can be used to search `&[u8](#u8)
 ` haystacks. By
 default, haystacks are conventionally treated as UTF-8 just like it is with the
 main `Regex` type. However, this behavior can be disabled by turning off the
@@ -742,9 +742,9 @@ $               the end of a haystack (or end-of-line with multi-line mode)
 
 The empty regex is valid and matches the empty string. For example, the
 empty regex matches `abc` at positions `0`, `1`, `2` and `3`. When using the
-top-level [`Regex`](../regex_automata/regex_automata/hybrid/regex/index.md) on `&str` haystacks, an empty match that splits a codepoint
+top-level [`Regex`](index.md) on `&str` haystacks, an empty match that splits a codepoint
 is guaranteed to never be returned. However, such matches are permitted when
-using a [`bytes::Regex`](#regex). For example:
+using a `bytes::Regex`. For example:
 
 ```rust
 let re = regex::Regex::new(r"").unwrap();
@@ -963,7 +963,7 @@ with unit and integration tests, but also via fuzz testing. For example, this
 crate is part of the [OSS-fuzz project]. Panics should be incredibly rare, but
 it is possible for bugs to exist, and thus possible for a panic to occur. If
 you need a rock solid guarantee against panics, then you should wrap calls into
-this library with [`std::panic::catch_unwind`](#catch-unwind).
+this library with `std::panic::catch_unwind`.
 
 It's also worth pointing out that this library will *generally* panic when
 other regex engines would commit undefined behavior. When undefined behavior
@@ -976,7 +976,7 @@ the worst thing a panic can do is a denial of service.
 ### Untrusted patterns
 
 The principal way this crate deals with them is by limiting their size by
-default. The size limit can be configured via [`RegexBuilder::size_limit`](#size-limit). The
+default. The size limit can be configured via `RegexBuilder::size_limit`. The
 idea of a size limit is that compiling a pattern into a `Regex` will fail if it
 becomes "too big." Namely, while *most* resources consumed by compiling a regex
 are approximately proportional (albeit with some high constant factors in some
@@ -1016,7 +1016,7 @@ Unicode character classes---can be quite high. Still though, the memory used by
 an HIR can be reasonably limited by limiting the length of the pattern string.
 * The HIR is compiled into a [Thompson NFA]. This is the stage at which
 something like `\w{5}` is rewritten to `\w\w\w\w\w`. Thus, this is the stage
-at which [`RegexBuilder::size_limit`](#size-limit) is enforced. If the NFA exceeds the
+at which `RegexBuilder::size_limit` is enforced. If the NFA exceeds the
 configured size, then this stage will fail.
 
 [Thompson NFA]: https://en.wikipedia.org/wiki/Thompson%27s_construction
@@ -1035,7 +1035,7 @@ worst case `O(m)` time, where `m` is proportional to the size of regex. The
 size of the regex here is *after* the counted repetitions have been expanded.
 
 **Advice for those using untrusted regexes**: limit the pattern length to
-something small and expand it as needed. Configure [`RegexBuilder::size_limit`](#size-limit)
+something small and expand it as needed. Configure `RegexBuilder::size_limit`
 to something small and then expand it as needed.
 
 ### Untrusted haystacks
@@ -1056,7 +1056,7 @@ haystack."
 
 But the `m` factor here is important not to ignore. If a regex is
 particularly big, the search times can get quite slow. This is why, in part,
-[`RegexBuilder::size_limit`](#size-limit) exists.
+`RegexBuilder::size_limit` exists.
 
 **Advice for those searching untrusted haystacks**: As long as your regexes
 are not enormous, you should expect to be able to search untrusted haystacks
@@ -1068,9 +1068,9 @@ haystack is made up of.
 ### Iterating over matches
 
 One thing that is perhaps easy to miss is that the worst case time
-complexity bound of `O(m * n)` applies to methods like [`Regex::is_match`](#is-match),
-[`Regex::find`](#find) and [`Regex::captures`](#captures). It does **not** apply to
-[`Regex::find_iter`](#find-iter) or [`Regex::captures_iter`](#captures-iter). Namely, since iterating over
+complexity bound of `O(m * n)` applies to methods like `Regex::is_match`,
+`Regex::find` and `Regex::captures`. It does **not** apply to
+`Regex::find_iter` or `Regex::captures_iter`. Namely, since iterating over
 all matches can execute many searches, and each search can scan the entire
 haystack, the worst case time complexity for iterators is `O(m * n^2)`.
 
@@ -1114,9 +1114,9 @@ This is especially true when they are combined with counted repetitions. While
 the regex size limit above will protect you from the most egregious cases,
 the default size limit still permits pretty big regexes that can execute more
 slowly than one might expect.
-* While routines like [`Regex::find`](#find) and [`Regex::captures`](#captures) guarantee
-worst case `O(m * n)` search time, routines like [`Regex::find_iter`](#find-iter) and
-[`Regex::captures_iter`](#captures-iter) actually have worst case `O(m * n^2)` search time.
+* While routines like `Regex::find` and `Regex::captures` guarantee
+worst case `O(m * n)` search time, routines like `Regex::find_iter` and
+`Regex::captures_iter` actually have worst case `O(m * n^2)` search time.
 This is because `find_iter` runs many searches, and each search takes worst
 case `O(m * n)` time. Thus, iteration of all matches in a haystack has
 worst case `O(m * n^2)`. A good example of a pattern that exhibits this is
@@ -1131,7 +1131,7 @@ means that your only line of defense is to put a limit on how big `m` (and
 perhaps also `n`) can be in `O(m * n)`. `n` is limited by simply inspecting
 the length of the haystack while `m` is limited by *both* applying a limit to
 the length of the pattern *and* a limit on the compiled size of the regex via
-[`RegexBuilder::size_limit`](#size-limit).
+`RegexBuilder::size_limit`.
 
 It bears repeating: if you're accepting untrusted patterns, it would be a good
 idea to start with conservative limits on `m` and `n`, and then carefully

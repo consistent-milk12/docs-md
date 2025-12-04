@@ -370,6 +370,38 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             }
         }
 
+        // Check if crate/module is empty
+        let is_empty = modules.is_empty()
+            && structs.is_empty()
+            && enums.is_empty()
+            && traits.is_empty()
+            && functions.is_empty()
+            && types.is_empty()
+            && constants.is_empty()
+            && macros.is_empty();
+
+        if is_empty && self.is_root {
+            // Empty crate - likely a proc-macro or re-export crate
+            let crate_name = self.view.crate_name();
+            if crate_name.ends_with("_derive") || crate_name.ends_with("-derive") {
+                _ = writeln!(
+                    md,
+                    "*This is a procedural macro crate. The derive macros are re-exported from the parent crate.*"
+                );
+            } else if crate_name.ends_with("_impl") || crate_name.ends_with("-impl") {
+                _ = writeln!(
+                    md,
+                    "*This is an implementation detail crate with no public API.*"
+                );
+            } else {
+                _ = writeln!(
+                    md,
+                    "*This crate has no public items to document.*"
+                );
+            }
+            return;
+        }
+
         // Render sections with full detail
         Self::render_modules_section(md, &modules);
         self.render_structs_section(md, &structs);

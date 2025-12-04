@@ -34,12 +34,12 @@ the DFA will need to inspect a single byte immediately before the start of
 the search to choose the correct start state.
 
 Indeed, this configuration precisely encapsulates all of the above factors.
-The [`Config::anchored`](#anchored) method sets which kind of anchored search to
-perform while the [`Config::look_behind`](#look-behind) method provides a way to set
+The `Config::anchored` method sets which kind of anchored search to
+perform while the `Config::look_behind` method provides a way to set
 the byte that occurs immediately before the start of the search.
 
 Generally speaking, this type is only useful when you want to run searches
-without using an [`Input`](#input). In particular, an `Input` wants a haystack
+without using an [`Input`](index.md). In particular, an `Input` wants a haystack
 slice, but callers may not have a contiguous sequence of bytes as a
 haystack in all cases. This type provides a lower level of control such
 that callers can provide their own anchored configuration and look-behind

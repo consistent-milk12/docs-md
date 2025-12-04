@@ -531,21 +531,21 @@ An end-entity certificate.
 Server certificate processing in a TLS connection consists of several
 steps. All of these steps are necessary:
 
-* [`EndEntityCert::verify_for_usage()`](#verify-for-usage): Verify that the peer's certificate
+* `EndEntityCert::verify_for_usage()`: Verify that the peer's certificate
   is valid for the current usage scenario. For server authentication, use
-  [`crate::KeyUsage::server_auth()`](#server-auth).
-* [`EndEntityCert::verify_is_valid_for_subject_name()`](#verify-is-valid-for-subject-name): Verify that the server's
+  `crate::KeyUsage::server_auth()`.
+* `EndEntityCert::verify_is_valid_for_subject_name()`: Verify that the server's
   certificate is valid for the host or IP address that is being connected to.
-* [`EndEntityCert::verify_signature()`](#verify-signature): Verify that the signature of server's
+* `EndEntityCert::verify_signature()`: Verify that the signature of server's
   `ServerKeyExchange` message is valid for the server's certificate.
 
 Client certificate processing in a TLS connection consists of analogous
 steps. All of these steps are necessary:
 
-* [`EndEntityCert::verify_for_usage()`](#verify-for-usage): Verify that the peer's certificate
+* `EndEntityCert::verify_for_usage()`: Verify that the peer's certificate
   is valid for the current usage scenario. For client authentication, use
-  [`crate::KeyUsage::client_auth()`](#client-auth).
-* [`EndEntityCert::verify_signature()`](#verify-signature): Verify that the signature of client's
+  `crate::KeyUsage::client_auth()`.
+* `EndEntityCert::verify_signature()`: Verify that the signature of client's
   `CertificateVerify` message is valid using the public key from the
   client's certificate.
 
@@ -556,7 +556,7 @@ which order the steps are done in, but **all of these steps must completed
 before application data is sent and before received application data is
 processed**. The [`TryFrom`](#tryfrom) conversion from `&CertificateDer<'_>` is an
 inexpensive operation and is deterministic, so if these tasks are done in
-multiple threads, it is probably best to just create multiple [`EndEntityCert`](#endentitycert)
+multiple threads, it is probably best to just create multiple [`EndEntityCert`](index.md)
 instances for the same DER-encoded ASN.1 certificate bytes.
 
 #### Implementations
@@ -598,18 +598,18 @@ instances for the same DER-encoded ASN.1 certificate bytes.
 
 - `type Target = T`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = Error`
 
 - `fn try_from(cert: &'a CertificateDer<'a>) -> Result<Self, <Self as >::Error>`
   Parse the ASN.1 DER-encoded X.509 encoding of the certificate
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1106,7 +1106,7 @@ struct KeyPurposeIdIter<'a, 'r> {
 }
 ```
 
-Iterator over [`KeyPurposeId`](#keypurposeid)s, for use in [`ExtendedKeyUsageValidator`](#extendedkeyusagevalidator).
+Iterator over [`KeyPurposeId`](index.md)s, for use in [`ExtendedKeyUsageValidator`](index.md).
 
 #### Trait Implementations
 
@@ -1367,7 +1367,7 @@ struct VerifiedPath<'p> {
 
 Path from end-entity certificate to trust anchor that's been verified.
 
-See [`EndEntityCert::verify_for_usage()`](#verify-for-usage) for more details on what verification entails.
+See `EndEntityCert::verify_for_usage()` for more details on what verification entails.
 
 #### Implementations
 
@@ -1631,6 +1631,10 @@ May be either an owned, or a borrowed representation.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(crl: OwnedCertRevocationList) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -1639,10 +1643,6 @@ May be either an owned, or a borrowed representation.
 ##### `impl From<'a>`
 
 - `fn from(crl: BorrowedCertRevocationList<'a>) -> Self`
-
-##### `impl From`
-
-- `fn from(crl: OwnedCertRevocationList) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1940,17 +1940,17 @@ See [RFC 5280 §5.3.1][1]
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = Error`
-
-- `fn try_from(value: u8) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = Error`
+
+- `fn try_from(value: u8) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

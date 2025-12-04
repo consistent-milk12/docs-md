@@ -14,14 +14,14 @@ Error reporting
 struct KindFormatter;
 ```
 
-Report [`ErrorKind`](../../regex_syntax/regex_syntax/ast/index.md)
+Report [`ErrorKind`](index.md)
 
 No context is included.
 
 <div class="warning">
 
 **NOTE:** Consider removing the `error-context` default feature if using this to remove all
-overhead for [`RichFormatter`](#richformatter).
+overhead for [`RichFormatter`](index.md).
 
 </div>
 
@@ -175,7 +175,7 @@ struct Error<F: ErrorFormatter> {
 
 Command Line Argument Parser Error
 
-See [`Command::error`](#error) to create an error.
+See `Command::error` to create an error.
 
 
 #### Implementations
@@ -229,16 +229,16 @@ See [`Command::error`](#error) to create an error.
 
 ##### `impl From<F: ErrorFormatter>`
 
-- `fn from(e: fmt::Error) -> Self`
-
-##### `impl From<F: ErrorFormatter>`
-
 - `fn from(e: io::Error) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<F: ErrorFormatter>`
+
+- `fn from(e: fmt::Error) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -317,7 +317,7 @@ Command line argument parser kind of error
 
 - **`InvalidValue`**
 
-  Occurs when an [`Arg`](#arg) has a set of possible values,
+  Occurs when an `Arg` has a set of possible values,
   and the user provides a value which isn't in that set.
   
   # Examples
@@ -351,10 +351,10 @@ Command line argument parser kind of error
 
 - **`InvalidSubcommand`**
 
-  Occurs when the user provides an unrecognized [`Subcommand`](#subcommand) which meets the threshold for
+  Occurs when the user provides an unrecognized [`Subcommand`](index.md) which meets the threshold for
   being similar enough to an existing subcommand.
   If it doesn't meet the threshold, or the 'suggestions' feature is disabled,
-  the more general [`UnknownArgument`](#unknownargument) error is returned.
+  the more general [`UnknownArgument`](index.md) error is returned.
   
   # Examples
   
@@ -421,7 +421,7 @@ Command line argument parser kind of error
 - **`TooManyValues`**
 
   Occurs when a user provides more values for an argument than were defined by setting
-  [`Arg::num_args`](#num-args).
+  `Arg::num_args`.
   
   # Examples
   
@@ -440,7 +440,7 @@ Command line argument parser kind of error
 - **`TooFewValues`**
 
   Occurs when the user provides fewer values for an argument than were defined by setting
-  [`Arg::num_args`](#num-args).
+  `Arg::num_args`.
   
   # Examples
   
@@ -460,8 +460,8 @@ Command line argument parser kind of error
 - **`WrongNumberOfValues`**
 
   Occurs when the user provides a different number of values for an argument than what's
-  been defined by setting [`Arg::num_args`](#num-args) or than was implicitly set by
-  [`Arg::value_names`](#value-names).
+  been defined by setting `Arg::num_args` or than was implicitly set by
+  `Arg::value_names`.
   
   # Examples
   
@@ -522,7 +522,7 @@ Command line argument parser kind of error
 
 - **`MissingSubcommand`**
 
-  Occurs when a subcommand is required (as defined by [`Command::subcommand_required`](#subcommand-required)),
+  Occurs when a subcommand is required (as defined by `Command::subcommand_required`),
   but the user does not provide one.
   
   # Examples
@@ -547,8 +547,8 @@ Command line argument parser kind of error
   Occurs when the user provides a value containing invalid UTF-8.
   
   To allow arbitrary data
-  - Set [`Arg::value_parser(value_parser!(OsString))`](#value_parser) for argument values
-  - Set [`Command::external_subcommand_value_parser`](#external-subcommand-value-parser) for external-subcommand
+  - Set `Arg::value_parser(value_parser!(OsString))` for argument values
+  - Set `Command::external_subcommand_value_parser` for external-subcommand
     values
   
   # Platform Specific
@@ -599,8 +599,8 @@ Command line argument parser kind of error
 
 - **`DisplayHelpOnMissingArgumentOrSubcommand`**
 
-  Occurs when either an argument or a [`Subcommand`](#subcommand) is required, as defined by
-  [`Command::arg_required_else_help`](#arg-required-else-help) , but the user did not provide
+  Occurs when either an argument or a [`Subcommand`](index.md) is required, as defined by
+  `Command::arg_required_else_help` , but the user did not provide
   one.
   
   # Examples
@@ -934,7 +934,7 @@ A piece of error information
 
 - **`None`**
 
-  [`ContextKind`](#contextkind) is self-sufficient, no additional information needed
+  [`ContextKind`](index.md) is self-sufficient, no additional information needed
 
 - **`Bool`**
 
@@ -1042,6 +1042,6 @@ A piece of error information
 type Result<T, E> = std::result::Result<T, E>;
 ```
 
-Short hand for [`Result`](clap_builder/error/index.md) type
+Short hand for [`Result`](error/index.md) type
 
 

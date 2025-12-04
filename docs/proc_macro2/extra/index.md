@@ -17,7 +17,7 @@ struct DelimSpan {
 }
 ```
 
-An object that holds a [`Group`](proc_macro2/index.md)'s `span_open()` and `span_close()` together
+An object that holds a [`Group`](index.md)'s `span_open()` and `span_close()` together
 in a more compact representation than holding those 2 spans individually.
 
 

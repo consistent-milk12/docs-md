@@ -1,6 +1,6 @@
 # Crate `zeroize`
 
-Securely zero memory with a simple trait ([`Zeroize`](zeroize/index.md)) built on stable Rust
+Securely zero memory with a simple trait ([`Zeroize`](index.md)) built on stable Rust
 primitives which guarantee the operation will not be "optimized away".
 
 ## About
@@ -10,8 +10,8 @@ in doing so they love to "optimize away" unnecessary zeroing calls. There are
 many documented "tricks" to attempt to avoid these optimizations and ensure
 that a zeroing routine is performed reliably.
 
-This crate isn't about tricks: it uses [`core::ptr::write_volatile`](#write-volatile)
-and [`core::sync::atomic`](#atomic) memory fences to provide easy-to-use, portable
+This crate isn't about tricks: it uses `core::ptr::write_volatile`
+and `core::sync::atomic` memory fences to provide easy-to-use, portable
 zeroing behavior which works on all of Rust's core number types and slices
 thereof, implemented in pure Rust with no usage of FFI or assembly.
 
@@ -45,24 +45,24 @@ let mut secret = b"Air shield password: 1,2,3,4,5".to_vec();
 secret.zeroize();
 ```
 
-The [`Zeroize`](zeroize/index.md) trait is impl'd on all of Rust's core scalar types including
+The [`Zeroize`](index.md) trait is impl'd on all of Rust's core scalar types including
 integers, floats, `bool`, and `char`.
 
 Additionally, it's implemented on slices and `IterMut`s of the above types.
 
 When the `alloc` feature is enabled (which it is by default), it's also
 impl'd for `Vec<T>` for the above types as well as `String`, where it provides
-[`Vec::clear`](#clear) / [`String::clear`](#clear)-like behavior (truncating to zero-length)
+`Vec::clear` / `String::clear`-like behavior (truncating to zero-length)
 but ensures the backing memory is securely zeroed with some caveats.
 
-With the `std` feature enabled (which it is **not** by default), [`Zeroize`](zeroize/index.md)
-is also implemented for [`CString`](#cstring). After calling `zeroize()` on a `CString`,
+With the `std` feature enabled (which it is **not** by default), [`Zeroize`](index.md)
+is also implemented for [`CString`](../rustix/ffi/index.md). After calling `zeroize()` on a `CString`,
 its internal buffer will contain exactly one nul byte. The backing
 memory is zeroed by converting it to a `Vec<u8>` and back into a `CString`.
 (NOTE: see "Stack/Heap Zeroing Notes" for important `Vec`/`String`/`CString` details)
 
-The [`DefaultIsZeroes`](zeroize/index.md) marker trait can be impl'd on types which also
-impl [`Default`](../owo_colors/owo_colors/colors/index.md), which implements [`Zeroize`](zeroize/index.md) by overwriting a value with
+The [`DefaultIsZeroes`](index.md) marker trait can be impl'd on types which also
+impl [`Default`](../gimli/index.md), which implements [`Zeroize`](index.md) by overwriting a value with
 the default value.
 
 ## Custom Derive Support
@@ -166,9 +166,9 @@ in the documentation for `write_volatile`, however after some discussion
 [these remarks have been removed] and the specific usage pattern in this
 crate is considered to be well-defined.
 
-Additionally this crate leverages [`core::sync::atomic::compiler_fence`](#compiler-fence)
+Additionally this crate leverages `core::sync::atomic::compiler_fence`
 with the strictest ordering
-([`Ordering::SeqCst`](#seqcst)) as a
+(`Ordering::SeqCst`) as a
 precaution to help ensure reads are not reordered before memory has been
 zeroed.
 
@@ -184,11 +184,11 @@ This crate can be used to zero values from either the stack or the heap.
 However, be aware several operations in Rust can unintentionally leave
 copies of data in memory. This includes but is not limited to:
 
-- Moves and [`Copy`](#copy)
-- Heap reallocation when using [`Vec`](#vec) and [`String`](#string)
+- Moves and [`Copy`](../gimli/index.md)
+- Heap reallocation when using [`Vec`](#vec) and [`String`](../clap_builder/index.md)
 - Borrowers of a reference making copies of the data
 
-[`Pin`][`core::pin::Pin`](#pin) can be leveraged in conjunction with this crate
+[`Pin`]`core::pin::Pin` can be leveraged in conjunction with this crate
 to ensure data kept on the stack isn't moved.
 
 The `Zeroize` impls for `Vec`, `String` and `CString` zeroize the entire
@@ -247,14 +247,14 @@ struct Zeroizing<Z: Zeroize>();
 
 #### Trait Implementations
 
+##### `impl From<Z>`
+
+- `fn from(value: Z) -> Zeroizing<Z>`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<Z>`
-
-- `fn from(value: Z) -> Zeroizing<Z>`
 
 ##### `impl Into<T, U>`
 
@@ -373,7 +373,7 @@ Trait for securely erasing values from memory.
 trait ZeroizeOnDrop { ... }
 ```
 
-Marker trait signifying that this type will [`Zeroize::zeroize`](#zeroize) itself on [`Drop`](#drop).
+Marker trait signifying that this type will `Zeroize::zeroize` itself on [`Drop`](../gimli/index.md).
 
 ### `DefaultIsZeroes`
 
@@ -381,7 +381,7 @@ Marker trait signifying that this type will [`Zeroize::zeroize`](#zeroize) itsel
 trait DefaultIsZeroes: Copy + Default + Sized { ... }
 ```
 
-Marker trait for types whose [`Default`](../owo_colors/owo_colors/colors/index.md) is the desired zeroization result
+Marker trait for types whose [`Default`](../gimli/index.md) is the desired zeroization result
 
 ### `TryZeroize`
 

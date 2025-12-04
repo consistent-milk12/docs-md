@@ -125,7 +125,7 @@ A translator may be benefit from reuse. That is, a translator can translate
 many abstract syntax trees.
 
 A `Translator` can be configured in more detail via a
-[`TranslatorBuilder`](regex_syntax/hir/translate/index.md).
+[`TranslatorBuilder`](hir/translate/index.md).
 
 #### Implementations
 

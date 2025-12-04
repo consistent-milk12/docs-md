@@ -6,7 +6,7 @@
 
 An implementation of the [Two-Way substring search algorithm][two-way].
 
-[`Finder`](memchr/arch/all/packedpair/index.md) can be built for forward searches, while [`FinderRev`](memchr/arch/all/rabinkarp/index.md) can be built
+[`Finder`](arch/x86_64/sse2/packedpair/index.md) can be built for forward searches, while [`FinderRev`](arch/all/twoway/index.md) can be built
 for reverse searches.
 
 Two-Way makes for a nice general purpose substring search algorithm because of

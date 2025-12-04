@@ -149,13 +149,13 @@ let b = ab - Flags::A;
 let c = !ab;
 ```
 
-See the docs for the [`Flags`](../regex_syntax/regex_syntax/ast/index.md) trait for more details on operators and how they behave.
+See the docs for the [`Flags`](index.md) trait for more details on operators and how they behave.
 
 # Formatting and parsing
 
 `bitflags` defines a text format that can be used to convert any flags value to and from strings.
 
-See the [`parser`](bitflags/parser/index.md) module for more details.
+See the [`parser`](parser/index.md) module for more details.
 
 # Specification
 
@@ -216,8 +216,8 @@ flag, as described in [externally defined flags](#externally-defined-flags).
 
 ## Zero-bit flags
 
-Flags with no bits set should be avoided because they interact strangely with [`Flags::contains`](#contains)
-and [`Flags::intersects`](#intersects). A zero-bit flag is always contained, but is never intersected. The
+Flags with no bits set should be avoided because they interact strangely with `Flags::contains`
+and `Flags::intersects`. A zero-bit flag is always contained, but is never intersected. The
 names of zero-bit flags can be parsed, but are never formatted.
 
 ## Multi-bit flags
@@ -354,7 +354,7 @@ bitflags! {
 }
 ```
 
-Flags may refer to other flags using their [`Flags::bits`](#bits) value:
+Flags may refer to other flags using their `Flags::bits` value:
 
 ```
 # use bitflags::bitflags;

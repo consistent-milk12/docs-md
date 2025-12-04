@@ -7,7 +7,7 @@
 Word splitting functionality.
 
 To wrap text into lines, long words sometimes need to be split
-across lines. The [`WordSplitter`](textwrap/word_splitters/index.md) enum defines this
+across lines. The [`WordSplitter`](word_splitters/index.md) enum defines this
 functionality.
 
 ## Enums
@@ -26,7 +26,7 @@ The `WordSplitter` enum describes where words can be split.
 
 If the textwrap crate has been compiled with the `hyphenation`
 Cargo feature enabled, you will find a
-[`WordSplitter::Hyphenation`](#hyphenation) variant. Use this struct for
+`WordSplitter::Hyphenation` variant. Use this struct for
 language-aware hyphenation:
 
 ```

@@ -129,25 +129,25 @@ These features are enabled by default:
   This feature can be disabled if you are happy to find words
   separated by ASCII space characters only. People wrapping text
   with emojis or East-Asian characters will want most likely want
-  to enable this feature. See [`WordSeparator`](#wordseparator) for details.
+  to enable this feature. See [`WordSeparator`](index.md) for details.
 
 * `unicode-width`: enables correct width computation of non-ASCII
   characters via the [unicode-width] crate. Without this feature,
   every [`char`](#char) is 1 column wide, except for emojis which are 2
-  columns wide. See [`core::display_width()`](#display-width) for details.
+  columns wide. See `core::display_width()` for details.
 
   This feature can be disabled if you only need to wrap ASCII
-  text, or if the functions in [`core`](textwrap/core/index.md) are used directly with
-  [`core::Fragment`](#fragment)s for which the widths have been computed in
+  text, or if the functions in [`core`](core/index.md) are used directly with
+  `core::Fragment`s for which the widths have been computed in
   other ways.
 
 * `smawk`: enables linear-time wrapping of the whole paragraph via
   the [smawk](#smawk)
- crate. See [`wrap_algorithms::wrap_optimal_fit()`](#wrap-optimal-fit)
+ crate. See `wrap_algorithms::wrap_optimal_fit()`
   for details on the optimal-fit algorithm.
 
   This feature can be disabled if you only ever intend to use
-  [`wrap_algorithms::wrap_first_fit()`](#wrap-first-fit).
+  `wrap_algorithms::wrap_first_fit()`.
 
 <!-- begin binary-sizes -->
 
@@ -183,11 +183,11 @@ These Cargo features enable new functionality:
 * `terminal_size`: enables automatic detection of the terminal
   width via the [terminal_size](#terminal-size)
  crate. See
-  [`Options::with_termwidth()`](#with-termwidth) for details.
+  `Options::with_termwidth()` for details.
 
 * `hyphenation`: enables language-sensitive hyphenation via the
   [hyphenation](#hyphenation)
- crate. See the [`word_splitters::WordSplitter`](#wordsplitter)
+ crate. See the `word_splitters::WordSplitter`
   trait for details.
 
 [unicode-linebreak]: https://docs.rs/unicode-linebreak/
@@ -239,27 +239,27 @@ Holds configuration options for wrapping and filling text.
 - **`initial_indent`**: `&'a str`
 
   Indentation used for the first line of output. See the
-  [`Options::initial_indent`](#initial-indent) method.
+  `Options::initial_indent` method.
 
 - **`subsequent_indent`**: `&'a str`
 
   Indentation used for subsequent lines of output. See the
-  [`Options::subsequent_indent`](#subsequent-indent) method.
+  `Options::subsequent_indent` method.
 
 - **`break_words`**: `bool`
 
   Allow long words to be broken if they cannot fit on a line.
   When set to `false`, some lines may be longer than
-  `self.width`. See the [`Options::break_words`](#break-words) method.
+  `self.width`. See the `Options::break_words` method.
 
 - **`wrap_algorithm`**: `crate::WrapAlgorithm`
 
   Wrapping algorithm to use, see the implementations of the
-  [`WrapAlgorithm`](textwrap/wrap_algorithms/index.md) trait for details.
+  [`WrapAlgorithm`](wrap_algorithms/index.md) trait for details.
 
 - **`word_separator`**: `crate::WordSeparator`
 
-  The line breaking algorithm to use, see the [`WordSeparator`](#wordseparator)
+  The line breaking algorithm to use, see the [`WordSeparator`](index.md)
   trait for an overview and possible implementations.
 
 - **`word_splitter`**: `crate::WordSplitter`
@@ -303,14 +303,14 @@ Holds configuration options for wrapping and filling text.
 
 - `fn from(width: usize) -> Self`
 
-##### `impl From<'a>`
-
-- `fn from(options: &'a Options<'a>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(options: &'a Options<'a>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -522,7 +522,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
   
   # Examples
   
-  Unlike [`WordSeparator::AsciiSpace`](#asciispace), the Unicode line
+  Unlike `WordSeparator::AsciiSpace`, the Unicode line
   breaking algorithm will find line break opportunities between
   some characters with no intervening whitespace:
   
@@ -660,7 +660,7 @@ The `WordSplitter` enum describes where words can be split.
 
 If the textwrap crate has been compiled with the `hyphenation`
 Cargo feature enabled, you will find a
-[`WordSplitter::Hyphenation`](#hyphenation) variant. Use this struct for
+`WordSplitter::Hyphenation` variant. Use this struct for
 language-aware hyphenation:
 
 ```
@@ -820,10 +820,10 @@ Describes how to wrap words into lines.
 
 The simplest approach is to wrap words one word at a time and
 accept the first way of wrapping which fit
-([`WrapAlgorithm::FirstFit`](#firstfit)). If the `smawk` Cargo feature is
+(`WrapAlgorithm::FirstFit`). If the `smawk` Cargo feature is
 enabled, a more complex algorithm is available which will look at
 an entire paragraph at a time in order to find optimal line breaks
-([`WrapAlgorithm::OptimalFit`](#optimalfit)).
+(`WrapAlgorithm::OptimalFit`).
 
 #### Variants
 
@@ -841,7 +841,7 @@ an entire paragraph at a time in order to find optimal line breaks
   
   Use this if you want to implement your own wrapping algorithm.
   The function can freely decide how to turn a slice of
-  [`Word`](textwrap/core/index.md)s into lines.
+  [`Word`](core/index.md)s into lines.
   
   # Example
   

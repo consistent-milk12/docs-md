@@ -24,10 +24,10 @@ Other regex implementations might call capturing groups "submatches."
 
 The main types in this module are:
 
-* [`Captures`](regex_automata/util/captures/index.md) records the capturing group offsets found during a search. It
+* [`Captures`](util/captures/index.md) records the capturing group offsets found during a search. It
 provides convenience routines for looking up capturing group offsets by either
 index or name.
-* [`GroupInfo`](regex_automata/util/captures/index.md) records the mapping between capturing groups and "slots,"
+* [`GroupInfo`](util/captures/index.md) records the mapping between capturing groups and "slots,"
 where the latter are how capturing groups are recorded during a regex search.
 This also keeps a mapping from capturing group name to index, and capture
 group index to name. A `GroupInfo` is used by `Captures` internally to
@@ -51,12 +51,12 @@ The span offsets of capturing groups after a match has been found.
 This type represents the output of regex engines that can report the
 offsets at which capturing groups matches or "submatches" occur. For
 example, the [`PikeVM`](crate::nfa::thompson::pikevm::PikeVM). When a match
-occurs, it will at minimum contain the [`PatternID`](regex_automata/util/primitives/index.md) of the pattern that
+occurs, it will at minimum contain the [`PatternID`](util/primitives/index.md) of the pattern that
 matched. Depending upon how it was constructed, it may also contain the
 start/end offsets of the entire match of the pattern and the start/end
 offsets of each capturing group that participated in the match.
 
-Values of this type are always created for a specific [`GroupInfo`](regex_automata/util/captures/index.md). It is
+Values of this type are always created for a specific [`GroupInfo`](util/captures/index.md). It is
 unspecified behavior to use a `Captures` value in a search with any regex
 engine that has a different `GroupInfo` than the one the `Captures` were
 created with.
@@ -66,12 +66,12 @@ created with.
 There are three constructors for this type that control what kind of
 information is available upon a match:
 
-* [`Captures::all`](#all): Will store overall pattern match offsets in addition
+* `Captures::all`: Will store overall pattern match offsets in addition
 to the offsets of capturing groups that participated in the match.
-* [`Captures::matches`](#matches): Will store only the overall pattern
+* `Captures::matches`: Will store only the overall pattern
 match offsets. The offsets of capturing groups (even ones that participated
 in the match) are not available.
-* [`Captures::empty`](#empty): Will only store the pattern ID that matched. No
+* `Captures::empty`: Will only store the pattern ID that matched. No
 match offsets are available at all.
 
 If you aren't sure which to choose, then pick the first one. The first one
@@ -86,7 +86,7 @@ to run more quickly.
 # Notes
 
 It is worth pointing out that this type is not coupled to any one specific
-regex engine. Instead, its coupling is with [`GroupInfo`](regex_automata/util/captures/index.md), which is the
+regex engine. Instead, its coupling is with [`GroupInfo`](util/captures/index.md), which is the
 thing that is responsible for mapping capturing groups to "slot" offsets.
 Slot offsets are indices into a single sequence of memory at which matching
 haystack offsets for the corresponding group are written by regex engines.
@@ -132,18 +132,6 @@ assert_eq!(Some(Span::from(8..10)), caps.get_group_by_name("d"));
 ```
 
 #### Implementations
-
-- `fn clear(self: &mut Self)`
-  Clear this `Captures` value.
-
-- `fn set_pattern(self: &mut Self, pid: Option<PatternID>)`
-  Set the pattern on this `Captures` value.
-
-- `fn slots(self: &Self) -> &[Option<NonMaxUsize>]`
-  Returns the underlying slots, where each slot stores a single offset.
-
-- `fn slots_mut(self: &mut Self) -> &mut [Option<NonMaxUsize>]`
-  Returns the underlying slots as a mutable slice, where each slot stores
 
 - `fn all(group_info: GroupInfo) -> Captures`
   Create new storage for the offsets of all matching capturing groups.
@@ -195,6 +183,18 @@ assert_eq!(Some(Span::from(8..10)), caps.get_group_by_name("d"));
 
 - `fn extract_bytes<'h, const N: usize>(self: &Self, haystack: &'h [u8]) -> (&'h [u8], [&'h [u8]; N])`
   This is a convenience routine for extracting the substrings
+
+- `fn clear(self: &mut Self)`
+  Clear this `Captures` value.
+
+- `fn set_pattern(self: &mut Self, pid: Option<PatternID>)`
+  Set the pattern on this `Captures` value.
+
+- `fn slots(self: &Self) -> &[Option<NonMaxUsize>]`
+  Returns the underlying slots, where each slot stores a single offset.
+
+- `fn slots_mut(self: &mut Self) -> &mut [Option<NonMaxUsize>]`
+  Returns the underlying slots as a mutable slice, where each slot stores
 
 #### Trait Implementations
 
@@ -263,7 +263,7 @@ struct CapturesPatternIter<'a> {
 An iterator over all capturing groups in a `Captures` value.
 
 This iterator includes capturing groups that did not participate in a
-match. See the [`Captures::iter`](#iter) method documentation for more details
+match. See the `Captures::iter` method documentation for more details
 and examples.
 
 The lifetime parameter `'a` refers to the lifetime of the underlying
@@ -389,7 +389,7 @@ NFA state includes the slot index. When a regex engine transitions through
 this state, it will likely use the slot index to write the current haystack
 offset to some region of memory. When a match is found, those slots are
 then reported to the caller, typically via a convenient abstraction like a
-[`Captures`](regex_automata/util/captures/index.md) value.
+[`Captures`](util/captures/index.md) value.
 
 Because this crate provides first class support for multi-pattern regexes,
 and because of some performance related reasons, the mapping between
@@ -437,8 +437,8 @@ groups are. This is because each pattern can contain a different number
 of groups.
 
 The intended way of getting the slots for a particular capturing group
-(whether implicit or explicit) is via the [`GroupInfo::slot`](#slot) or
-[`GroupInfo::slots`](#slots) method.
+(whether implicit or explicit) is via the `GroupInfo::slot` or
+`GroupInfo::slots` method.
 
 See below for a concrete example of how capturing groups get mapped to
 slots.
@@ -721,7 +721,7 @@ struct GroupInfoPatternNames<'a> {
 
 An iterator over capturing groups and their names for a specific pattern.
 
-This iterator is created by [`GroupInfo::pattern_names`](#pattern-names).
+This iterator is created by `GroupInfo::pattern_names`.
 
 The lifetime parameter `'a` refers to the lifetime of the `GroupInfo`
 from which this iterator was created.
@@ -814,7 +814,7 @@ struct GroupInfoAllNames<'a> {
 
 An iterator over capturing groups and their names for a `GroupInfo`.
 
-This iterator is created by [`GroupInfo::all_names`](#all-names).
+This iterator is created by `GroupInfo::all_names`.
 
 The lifetime parameter `'a` refers to the lifetime of the `GroupInfo`
 from which this iterator was created.

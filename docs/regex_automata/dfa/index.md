@@ -18,20 +18,20 @@ search, then please see the top-level [`hybrid` module](crate::hybrid).
 
 This section gives a brief overview of the primary types in this module:
 
-* A [`regex::Regex`](#regex) provides a way to search for matches of a regular
+* A `regex::Regex` provides a way to search for matches of a regular
 expression using DFAs. This includes iterating over matches with both the start
 and end positions of each match.
-* A [`dense::DFA`](#dfa) provides low level access to a DFA that uses a dense
+* A `dense::DFA` provides low level access to a DFA that uses a dense
 representation (uses lots of space, but fast searching).
-* A [`sparse::DFA`](#dfa) provides the same API as a `dense::DFA`, but uses a sparse
+* A `sparse::DFA` provides the same API as a `dense::DFA`, but uses a sparse
 representation (uses less space, but slower searching).
-* An [`Automaton`](../../aho_corasick/aho_corasick/automaton/index.md) trait that defines an interface that both dense and sparse
+* An [`Automaton`](../../aho_corasick/automaton/index.md) trait that defines an interface that both dense and sparse
 DFAs implement. (A `regex::Regex` is generic over this trait.)
 * Both dense DFAs and sparse DFAs support serialization to raw bytes (e.g.,
-[`dense::DFA::to_bytes_little_endian`](#to-bytes-little-endian)) and cheap deserialization (e.g.,
-[`dense::DFA::from_bytes`](#from-bytes)).
+`dense::DFA::to_bytes_little_endian`) and cheap deserialization (e.g.,
+`dense::DFA::from_bytes`).
 
-There is also a [`onepass`](regex_automata/dfa/onepass/index.md) module that provides a [one-pass
+There is also a [`onepass`](dfa/onepass/index.md) module that provides a [one-pass
 DFA](onepass::DFA). The unique advantage of this DFA is that, for the class
 of regexes it can be built with, it supports reporting the spans of matching
 capturing groups. It is the only DFA in this crate capable of such a thing.
@@ -152,13 +152,13 @@ assert_eq!(matches, vec![
 There are a few points worth noting here:
 
 * We need to extract the raw DFAs used by the regex and serialize those. You
-can build the DFAs manually yourself using [`dense::Builder`](#builder), but using
+can build the DFAs manually yourself using `dense::Builder`, but using
 the DFAs from a `Regex` guarantees that the DFAs are built correctly. (In
 particular, a `Regex` constructs a reverse DFA for finding the starting
 location of matches.)
 * To convert the DFA to raw bytes, we use the `to_bytes_native_endian` method.
-In practice, you'll want to use either [`dense::DFA::to_bytes_little_endian`](#to-bytes-little-endian)
-or [`dense::DFA::to_bytes_big_endian`](#to-bytes-big-endian), depending on which platform you're
+In practice, you'll want to use either `dense::DFA::to_bytes_little_endian`
+or `dense::DFA::to_bytes_big_endian`, depending on which platform you're
 deserializing your DFA from. If you intend to deserialize on either platform,
 then you'll need to serialize both and deserialize the right one depending on
 your target's endianness.
@@ -166,7 +166,7 @@ your target's endianness.
 they are untrusted, since an invalid DFA could cause logical errors, panics
 or even undefined behavior. This verification step requires visiting all of
 the transitions in the DFA, which can be costly. If cheaper verification is
-desired, then [`dense::DFA::from_bytes_unchecked`](#from-bytes-unchecked) is available that only does
+desired, then `dense::DFA::from_bytes_unchecked` is available that only does
 verification that can be performed in constant time. However, one can only use
 this routine if the caller can guarantee that the bytes provided encoded a
 valid DFA.
@@ -242,7 +242,7 @@ the offsets of each capturing group. This is because DFAs do not have the
 expressive power necessary.
 * Unicode word boundaries. These present particularly difficult challenges for
 DFA construction and would result in an explosion in the number of states.
-One can enable [`dense::Config::unicode_word_boundary`](#unicode-word-boundary) though, which provides
+One can enable `dense::Config::unicode_word_boundary` though, which provides
 heuristic support for Unicode word boundaries that only works on ASCII text.
 Otherwise, one can use `(?-u:\b)` for an ASCII word boundary, which will work
 on any input.
@@ -316,15 +316,15 @@ difficult to do.
 * Sparse DFAs provide a way to build a DFA ahead of time that sacrifices search
 performance a small amount, but uses much less storage space. Potentially even
 less than what the regex crate uses.
-* This module exposes DFAs directly, such as [`dense::DFA`](#dfa) and
-[`sparse::DFA`](#dfa), which enables one to do less work in some cases. For example,
+* This module exposes DFAs directly, such as `dense::DFA` and
+`sparse::DFA`, which enables one to do less work in some cases. For example,
 if you only need the end of a match and not the start of a match, then you can
 use a DFA directly without building a `Regex`, which always requires a second
 DFA to find the start of a match.
 * This module provides more control over memory usage. Aside from choosing
 between dense and sparse DFAs, one can also choose a smaller state identifier
 representation to use less space. Also, one can enable DFA minimization
-via [`dense::Config::minimize`](#minimize), but it can increase compilation times
+via `dense::Config::minimize`, but it can increase compilation times
 dramatically.
 
 ## Modules

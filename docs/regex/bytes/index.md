@@ -7,7 +7,7 @@
 Search for regex matches in `&[u8](#u8)
 ` haystacks.
 
-This module provides a nearly identical API via [`Regex`](../../regex_automata/regex_automata/hybrid/regex/index.md) to the one found in
+This module provides a nearly identical API via [`Regex`](index.md) to the one found in
 the top-level of this crate. There are two important differences:
 
 1. Matching is done on `&[u8](#u8)

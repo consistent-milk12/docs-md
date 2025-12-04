@@ -69,7 +69,7 @@
 
  ## Events
 
- An [`Event`](../tracing_core/tracing_core/event/index.md) represents a _moment_ in time. It signifies something that
+ An [`Event`](index.md) represents a _moment_ in time. It signifies something that
  happened while a trace was being recorded. `Event`s are comparable to the log
  records emitted by unstructured logging code, but unlike a typical log line,
  an `Event` may occur within the context of a span.
@@ -94,21 +94,21 @@
  span — a request returned with a given status code, _n_ new items were
  taken from a queue, and so on.
 
- The [`Event` struct][`Event`](../tracing_core/tracing_core/event/index.md) documentation provides further details on using
+ The [`Event` struct][`Event`](index.md) documentation provides further details on using
  events.
 
  ## Subscribers
 
  As `Span`s and `Event`s occur, they are recorded or aggregated by
- implementations of the [`Subscriber`](../tracing_core/tracing_core/subscriber/index.md) trait. `Subscriber`s are notified
+ implementations of the [`Subscriber`](index.md) trait. `Subscriber`s are notified
  when an `Event` takes place and when a `Span` is entered or exited. These
  notifications are represented by the following `Subscriber` trait methods:
 
- + [`event`](#event), called when an `Event` takes place,
+ + `event`, called when an `Event` takes place,
  + [`enter`](#enter), called when execution enters a `Span`,
- + [`exit`](../rustix/rustix/not_implemented/libc_internals/index.md), called when execution exits a `Span`
+ + [`exit`](../libc/index.md), called when execution exits a `Span`
 
- In addition, subscribers may implement the [`enabled`](tracing/index.md) function to _filter_
+ In addition, subscribers may implement the [`enabled`](index.md) function to _filter_
  the notifications they receive based on [metadata](#metadata)
  describing each `Span`
  or `Event`. If a call to `Subscriber::enabled` returns `false` for a given
@@ -133,8 +133,8 @@
 
  ### Spans
 
- The [`span`](tracing/index.md) macro expands to a [`Span` struct][`Span`](tracing/span/index.md) which is used to
- record a span. The [`Span::enter`](#enter) method on that struct records that the
+ The [`span`](index.md) macro expands to a [`Span` struct][`Span`](span/index.md) which is used to
+ record a span. The `Span::enter` method on that struct records that the
  span has been entered, and returns a [RAII] guard object, which will exit
  the span when dropped.
 
@@ -185,7 +185,7 @@
  For functions which don't have built-in tracing support and can't have
  the `#[instrument](#instrument)
 ` attribute applied (such as from an external crate),
- the [`Span` struct][`Span`](tracing/span/index.md) has a [`in_scope()` method][`in_scope`](#in-scope)
+ the [`Span` struct][`Span`](span/index.md) has a [`in_scope()` method][`in_scope`](#in-scope)
  which can be used to easily wrap synchronous code in a span.
 
  For example:
@@ -213,7 +213,7 @@
 
  ### Events
 
- [`Event`](../tracing_core/tracing_core/event/index.md)s are recorded using the [`event`](tracing/index.md) macro:
+ [`Event`](index.md)s are recorded using the [`event`](index.md) macro:
 
  ```rust
  # fn main() {
@@ -224,13 +224,13 @@
 
  ## Using the Macros
 
- The [`span`](tracing/index.md) and [`event`](tracing/index.md) macros as well as the `#[instrument](#instrument)
+ The [`span`](index.md) and [`event`](index.md) macros as well as the `#[instrument](#instrument)
 ` attribute
  use fairly similar syntax, with some exceptions.
 
  ### Configuring Attributes
 
- Both macros require a [`Level`](../log/log/index.md) specifying the verbosity of the span or
+ Both macros require a [`Level`](index.md) specifying the verbosity of the span or
  event. Optionally, the, [target](#target)
  and [parent span] may be overridden. If the
  target and parent span are not overridden, they will default to the
@@ -351,7 +351,7 @@
 ```
 
  The `?` sigil is shorthand that specifies a field should be recorded using
- its [`fmt::Debug`](#debug) implementation:
+ its `fmt::Debug` implementation:
  ```
  # use tracing::{event, Level};
  # fn main() {
@@ -372,7 +372,7 @@
  ```
 
  The `%` sigil operates similarly, but indicates that the value should be
- recorded using its [`fmt::Display`](#display) implementation:
+ recorded using its `fmt::Display` implementation:
  ```
  # use tracing::{event, Level};
  # fn main() {
@@ -409,7 +409,7 @@
  # }
  ```
 
- Additionally, a span may declare fields with the special value [`Empty`](../tracing_core/tracing_core/field/index.md),
+ Additionally, a span may declare fields with the special value [`Empty`](../gimli/index.md),
  which indicates that that the value for that field does not currently exist
  but may be recorded later. For example:
 
@@ -469,11 +469,11 @@
  ### Shorthand Macros
 
  `tracing` also offers a number of macros with preset verbosity levels.
- The [`trace`](tracing/index.md), [`debug`](tracing/index.md), [`info`](tracing/index.md), [`warn`](tracing/index.md), and [`error`](tracing/index.md) behave
- similarly to the [`event`](tracing/index.md) macro, but with the [`Level`](../log/log/index.md) argument already
- specified, while the corresponding [`trace_span`](tracing/index.md), [`debug_span`](tracing/index.md),
- [`info_span`](tracing/index.md), [`warn_span`](tracing/index.md), and [`error_span`](tracing/index.md) macros are the same,
- but for the [`span`](tracing/index.md) macro.
+ The [`trace`](index.md), [`debug`](index.md), [`info`](index.md), [`warn`](index.md), and [`error`](index.md) behave
+ similarly to the [`event`](index.md) macro, but with the [`Level`](index.md) argument already
+ specified, while the corresponding [`trace_span`](index.md), [`debug_span`](index.md),
+ [`info_span`](index.md), [`warn_span`](index.md), and [`error_span`](index.md) macros are the same,
+ but for the [`span`](index.md) macro.
 
  These are intended both as a shorthand, and for compatibility with the [`log`](../log/index.md)
  crate (see the next section).
@@ -572,7 +572,7 @@
  This library does not contain any `Subscriber` implementations; these are
  provided by [other crates](#related-crates).
 
- The simplest way to use a subscriber is to call the [`set_global_default`](tracing/subscriber/index.md)
+ The simplest way to use a subscriber is to call the [`set_global_default`](subscriber/index.md)
  function:
 
  ```
@@ -610,7 +610,7 @@
  in the `log` crate.
 
  In addition, the default subscriber can be set through using the
- [`with_default`](tracing/subscriber/index.md) function. This follows the `tokio` pattern of using
+ [`with_default`](subscriber/index.md) function. This follows the `tokio` pattern of using
  closures to represent executing code in a context that is exited at the end
  of the closure. For example:
 
@@ -658,7 +658,7 @@
  libraries and applications either emit or consume `log` records. Therefore,
  `tracing` provides multiple forms of interoperability with `log`: `tracing`
  instrumentation can emit `log` records, and a compatibility layer enables
- `tracing` [`Subscriber`](../tracing_core/tracing_core/subscriber/index.md)s to consume `log` records as `tracing` [`Event`](../tracing_core/tracing_core/event/index.md)s.
+ `tracing` [`Subscriber`](index.md)s to consume `log` records as `tracing` [`Event`](index.md)s.
 
  ### Emitting `log` Records
 
@@ -700,7 +700,7 @@
  ### Consuming `log` Records
 
  The [`tracing-log`](#tracing-log) crate provides a compatibility layer which
- allows a `tracing` [`Subscriber`](../tracing_core/tracing_core/subscriber/index.md) to consume `log` records as though they
+ allows a `tracing` [`Subscriber`](index.md) to consume `log` records as though they
  were `tracing` [events](#events)
 . This allows applications using `tracing` to record
  the logs emitted by dependencies using `log` as events within the context of
@@ -969,9 +969,9 @@ struct Metadata {
 An automaton for searching multiple strings in linear time.
 
 The `AhoCorasick` type supports a few basic ways of constructing an
-automaton, with the default being [`AhoCorasick::new`](#new). However, there
+automaton, with the default being `AhoCorasick::new`. However, there
 are a fair number of configurable options that can be set by using
-[`AhoCorasickBuilder`](#ahocorasickbuilder) instead. Such options include, but are not limited
+[`AhoCorasickBuilder`](../aho_corasick/index.md) instead. Such options include, but are not limited
 to, how matches are determined, simple case insensitivity, whether to use a
 DFA or not and various knobs for controlling the space-vs-time trade offs
 taken when building the automaton.
@@ -982,21 +982,21 @@ Aho-Corasick automatons are always constructed in `O(p)` time, where
 `p` is the combined length of all patterns being searched. With that
 said, building an automaton can be fairly costly because of high constant
 factors, particularly when enabling the [DFA](AhoCorasickKind::DFA) option
-with [`AhoCorasickBuilder::kind`](#kind). For this reason, it's generally a good
+with `AhoCorasickBuilder::kind`. For this reason, it's generally a good
 idea to build an automaton once and reuse it as much as possible.
 
 Aho-Corasick automatons can also use a fair bit of memory. To get
 a concrete idea of how much memory is being used, try using the
-[`AhoCorasick::memory_usage`](#memory-usage) method.
+`AhoCorasick::memory_usage` method.
 
 To give a quick idea of the differences between Aho-Corasick
 implementations and their resource usage, here's a sample of construction
 times and heap memory used after building an automaton from 100,000
 randomly selected titles from Wikipedia:
 
-* 99MB for a [`noncontiguous::NFA`](#nfa) in 240ms.
-* 21MB for a [`contiguous::NFA`](#nfa) in 275ms.
-* 1.6GB for a [`dfa::DFA`](#dfa) in 1.88s.
+* 99MB for a `noncontiguous::NFA` in 240ms.
+* 21MB for a `contiguous::NFA` in 275ms.
+* 1.6GB for a `dfa::DFA` in 1.88s.
 
 (Note that the memory usage above reflects the size of each automaton and
 not peak memory usage. For example, building a contiguous NFA requires
@@ -1007,7 +1007,7 @@ This experiment very strongly argues that a contiguous NFA is often the
 best balance in terms of resource usage. It takes a little longer to build,
 but its memory usage is quite small. Its search speed (not listed) is
 also often faster than a noncontiguous NFA, but a little slower than a
-DFA. Indeed, when no specific [`AhoCorasickKind`](#ahocorasickkind) is used (which is the
+DFA. Indeed, when no specific [`AhoCorasickKind`](../aho_corasick/index.md) is used (which is the
 default), a contiguous NFA is used in most cases.
 
 The only "catch" to using a contiguous NFA is that, because of its variety
@@ -1026,7 +1026,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](#input). This includes `&[u8](#u8)
+to an [`Input`](../aho_corasick/index.md). This includes `&[u8](#u8)
 `, `&str` and `Input` itself.
 
 # Construction failure
@@ -1057,17 +1057,17 @@ for searching. The infallible methods panic if an error occurs, and can be
 used for convenience and when you know the search will never return an
 error.
 
-For example, the [`AhoCorasick::find_iter`](#find-iter) method is the infallible
-version of the [`AhoCorasick::try_find_iter`](#try-find-iter) method.
+For example, the `AhoCorasick::find_iter` method is the infallible
+version of the `AhoCorasick::try_find_iter` method.
 
 Examples of errors that can occur:
 
-* Running a search that requires [`MatchKind::Standard`](#standard) semantics (such
+* Running a search that requires `MatchKind::Standard` semantics (such
 as a stream or overlapping search) with an automaton that was built with
-[`MatchKind::LeftmostFirst`](#leftmostfirst) or [`MatchKind::LeftmostLongest`](#leftmostlongest) semantics.
+`MatchKind::LeftmostFirst` or `MatchKind::LeftmostLongest` semantics.
 * Running an anchored search with an automaton that only supports
 unanchored searches. (By default, `AhoCorasick` only supports unanchored
-searches. But this can be toggled with [`AhoCorasickBuilder::start_kind`](#start-kind).)
+searches. But this can be toggled with `AhoCorasickBuilder::start_kind`.)
 * Running an unanchored search with an automaton that only supports
 anchored searches.
 
@@ -1635,7 +1635,7 @@ and emitting an event for each item).
 # Usage
 
 [Subscribers] can make filtering decisions based all the data included in a
-span or event's [`Metadata`](../log/log/index.md). This means that it is possible for `enabled!`
+span or event's [`Metadata`](index.md). This means that it is possible for `enabled!`
 to return a _false positive_ (indicating that something would be enabled
 when it actually would not be) or a _false negative_ (indicating that
 something would be disabled when it would actually be enabled).
@@ -1699,7 +1699,7 @@ if enabled!(target: "my_crate", Level::DEBUG, hello) {
 
 # Alternatives
 
-`enabled!` queries subscribers with [`Metadata`](../log/log/index.md) where
+`enabled!` queries subscribers with [`Metadata`](index.md) where
 [`is_event`](#is-event) and [`is_span`](#is-span) both return `false`. Alternatively,
 use [`event_enabled!`](#event-enabled) or [`span_enabled!`](#span-enabled) to ensure one of these
 returns true.

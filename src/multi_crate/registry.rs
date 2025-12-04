@@ -81,16 +81,53 @@ impl UnifiedLinkRegistry {
             return;
         };
 
-        // Register root module at crate_name/index.md
+        // Register root module at index.md (no crate prefix in path)
         self.register_item(crate_name, krate.root, crate_name, "index.md");
 
-        // Process all items in root module
+        // Strategy 1: Use the `paths` field to register all items by their canonical path
+        // This catches items that are re-exported or in private modules
+        self.register_from_paths(crate_name, krate);
+
+        // Strategy 2: Process all items in root module recursively
+        // This ensures we have correct paths for the generated markdown structure
         if let ItemEnum::Module(module) = &root.inner {
             for item_id in &module.items {
                 if let Some(item) = krate.index.get(item_id) {
-                    self.register_item_recursive(krate, crate_name, *item_id, item, crate_name);
+                    self.register_item_recursive(krate, crate_name, *item_id, item, "");
                 }
             }
+        }
+    }
+
+    /// Register items using the `paths` field from rustdoc JSON.
+    ///
+    /// The `paths` field contains canonical paths for all items, including
+    /// those in private modules that are re-exported publicly. Since we only
+    /// generate docs for public modules, items in private modules are
+    /// documented at their public re-export location (typically root).
+    fn register_from_paths(&mut self, crate_name: &str, krate: &Crate) {
+        for (id, path_info) in &krate.paths {
+            // Only register items from this crate
+            if path_info.crate_id != 0 {
+                continue;
+            }
+
+            // Get the item name (last segment of path)
+            let Some(name) = path_info.path.last() else {
+                continue;
+            };
+
+            // Skip modules - they're handled by recursive traversal
+            if path_info.kind == rustdoc_types::ItemKind::Module {
+                continue;
+            }
+
+            // Items from paths are typically in private modules that get re-exported
+            // at the crate root. Register them at index.md since that's where
+            // public re-exports are documented.
+            // The recursive traversal will overwrite with correct paths for items
+            // that ARE in public modules.
+            self.register_item(crate_name, *id, name, "index.md");
         }
     }
 
@@ -108,7 +145,12 @@ impl UnifiedLinkRegistry {
         match &item.inner {
             // Modules get their own directory with index.md
             ItemEnum::Module(module) => {
-                let module_path = format!("{parent_path}/{name}");
+                // Build module path (handle empty parent for root-level modules)
+                let module_path = if parent_path.is_empty() {
+                    name.to_string()
+                } else {
+                    format!("{parent_path}/{name}")
+                };
                 let file_path = format!("{module_path}/index.md");
 
                 self.register_item(crate_name, item_id, name, &file_path);
@@ -135,8 +177,25 @@ impl UnifiedLinkRegistry {
             | ItemEnum::Constant { .. }
             | ItemEnum::TypeAlias(_)
             | ItemEnum::Macro(_) => {
-                let file_path = format!("{parent_path}/index.md");
+                // Handle root-level items (parent_path is empty)
+                let file_path = if parent_path.is_empty() {
+                    "index.md".to_string()
+                } else {
+                    format!("{parent_path}/index.md")
+                };
                 self.register_item(crate_name, item_id, name, &file_path);
+            },
+
+            // Re-exports (pub use) should be registered under this crate's namespace
+            // This allows links to resolve within the current crate rather than cross-crate
+            ItemEnum::Use(use_item) if !use_item.is_glob => {
+                let export_name = &use_item.name;
+                let file_path = if parent_path.is_empty() {
+                    "index.md".to_string()
+                } else {
+                    format!("{parent_path}/index.md")
+                };
+                self.register_item(crate_name, item_id, export_name, &file_path);
             },
 
             _ => {},

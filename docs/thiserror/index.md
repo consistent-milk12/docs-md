@@ -11,7 +11,7 @@
 <br>
 
 This library provides a convenient derive macro for the standard library's
-[`std::error::Error`](#error) trait.
+`std::error::Error` trait.
 
 <br>
 
@@ -44,7 +44,7 @@ pub enum DataStoreError {
 
 - Thiserror deliberately does not appear in your public API. You get the
   same thing as if you had written an implementation of
-  [`std::error::Error`](#error) by hand, and switching from handwritten impls to
+  `std::error::Error` by hand, and switching from handwritten impls to
   thiserror or vice versa is not a breaking change.
 
 - Errors may be enums, structs with named fields, tuple structs, or unit
@@ -173,7 +173,7 @@ pub enum DataStoreError {
 
 - The Error trait's [`provide()`](#provide) method is implemented to provide whichever
   field has a type named `Backtrace`, if any, as a
-  [`std::backtrace::Backtrace`](#backtrace). Using `Backtrace` in errors requires a
+  `std::backtrace::Backtrace`. Using `Backtrace` in errors requires a
   nightly compiler with Rust version 1.73 or newer.
 
   ```rust
@@ -282,3 +282,4 @@ pub enum DataStoreError {
 
 
 
+*This crate has no public items to document.*

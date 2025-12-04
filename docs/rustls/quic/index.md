@@ -372,14 +372,14 @@ Authentication tag from an AEAD seal operation.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: &[u8]) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: &[u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -658,6 +658,11 @@ A QUIC client or server connection.
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(c: ClientConnection) -> Self`
@@ -665,11 +670,6 @@ A QUIC client or server connection.
 ##### `impl From`
 
 - `fn from(c: ServerConnection) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -736,14 +736,14 @@ Key material for use in QUIC packet spaces
 
 QUIC uses 4 different sets of keys (and progressive key updates for long-running connections):
 
-* Initial: these can be created from [`Keys::initial()`](#initial)
-* 0-RTT keys: can be retrieved from [`ConnectionCommon::zero_rtt_keys()`](#zero-rtt-keys)
-* Handshake: these are returned from [`ConnectionCommon::write_hs()`](#write-hs) after `ClientHello` and
+* Initial: these can be created from `Keys::initial()`
+* 0-RTT keys: can be retrieved from `ConnectionCommon::zero_rtt_keys()`
+* Handshake: these are returned from `ConnectionCommon::write_hs()` after `ClientHello` and
   `ServerHello` messages have been exchanged
-* 1-RTT keys: these are returned from [`ConnectionCommon::write_hs()`](#write-hs) after the handshake is done
+* 1-RTT keys: these are returned from `ConnectionCommon::write_hs()` after the handshake is done
 
 Once the 1-RTT keys have been exchanged, either side may initiate a key update. Progressive
-update keys can be obtained from the [`Secrets`](rustls/quic/index.md) returned in [`KeyChange::OneRtt`](#onertt). Note that
+update keys can be obtained from the [`Secrets`](quic/index.md) returned in `KeyChange::OneRtt`. Note that
 only packet keys are updated by key updates; header protection keys remain the same.
 
 #### Variants

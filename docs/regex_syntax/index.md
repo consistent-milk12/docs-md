@@ -23,15 +23,15 @@ This crate defines two primary types:
 
 These two types come with conversion routines:
 
-* An [`ast::parse::Parser`](#parser) converts concrete syntax (a `&str`) to an
+* An `ast::parse::Parser` converts concrete syntax (a `&str`) to an
 [`Ast`](ast::Ast).
-* A [`hir::translate::Translator`](#translator) converts an [`Ast`](ast::Ast) to a
+* A `hir::translate::Translator` converts an [`Ast`](ast::Ast) to a
 [`Hir`](hir::Hir).
 
 As a convenience, the above two conversion routines are combined into one via
-the top-level [`Parser`](regex_syntax/ast/parse/index.md) type. This `Parser` will first convert your pattern to
+the top-level [`Parser`](ast/parse/index.md) type. This `Parser` will first convert your pattern to
 an `Ast` and then convert the `Ast` to an `Hir`. It's also exposed as top-level
-[`parse`](regex_syntax/ast/parse/index.md) free function.
+[`parse`](index.md) free function.
 
 
 # Example
@@ -190,9 +190,9 @@ The AST is itself far more complex than the HIR, so this parser serves as a
 convenience for never having to deal with it at all.
 
 If callers have more fine grained use cases that need an AST, then please
-see the [`ast::parse`](#parse) module.
+see the `ast::parse` module.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](regex_syntax/ast/parse/index.md).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](index.md).
 
 #### Implementations
 
@@ -467,14 +467,14 @@ new variant is not considered a breaking change.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(err: hir::Error) -> Error`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(err: hir::Error) -> Error`
 
 ##### `impl From`
 
@@ -588,7 +588,7 @@ match a literal `-` because `-` has no special meaning outside of character
 classes.
 
 In order to determine whether a character may be escaped at all, the
-[`is_escapeable_character`](regex_syntax/index.md) routine should be used. The difference between
+[`is_escapeable_character`](index.md) routine should be used. The difference between
 `is_meta_character` and `is_escapeable_character` is that the latter will
 return true for some characters that are _not_ meta characters. For
 example, `%` and `\%` both match a literal `%` in all contexts. In other
@@ -679,7 +679,7 @@ or `Connector_Punctuation` general categories.
 
 If the `unicode-perl` feature is not enabled, then this function
 panics. For this reason, it is recommended that callers use
-[`try_is_word_character`](regex_syntax/index.md) instead.
+[`try_is_word_character`](index.md) instead.
 
 ### `try_is_word_character`
 

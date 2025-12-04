@@ -25,7 +25,7 @@ a single state. Stated differently, NFAs require a variable number of CPU
 instructions to process one byte in a haystack where as a DFA uses a constant
 number of CPU instructions to process one byte.
 * NFAs are generally easier to amend with secondary storage. For example, the
-[`thompson::pikevm::PikeVM`](#pikevm) uses an NFA to match, but also uses additional
+`thompson::pikevm::PikeVM` uses an NFA to match, but also uses additional
 memory beyond the model of a finite state machine to track offsets for matching
 capturing groups. Conversely, the most a DFA can do is report the offset (and
 pattern ID) at which a match occurred. This is generally why we also compile

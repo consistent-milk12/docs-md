@@ -187,14 +187,14 @@ A structure that deserializes JSON into Rust values.
 - `fn new(read: R) -> Self`
   Create a JSON deserializer from one of the possible serde_json input
 
+- `fn from_reader(reader: R) -> Self`
+  Creates a JSON deserializer from an `io::Read`.
+
 - `fn end(self: &mut Self) -> Result<()>`
   The `Deserializer::end` method should be called after a value has been fully deserialized.
 
 - `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>`
   Turn a JSON deserializer into an iterator over values of type T.
-
-- `fn from_reader(reader: R) -> Self`
-  Creates a JSON deserializer from an `io::Read`.
 
 - `fn from_str(s: &'a str) -> Self`
   Creates a JSON deserializer from a `&str`.
@@ -344,17 +344,17 @@ The content of the I/O stream is deserialized directly from the stream
 without being buffered in memory by serde_json.
 
 When reading from a source against which short reads are not efficient, such
-as a [`File`](#file), you will want to apply your own buffering because serde_json
-will not buffer the input. See [`std::io::BufReader`](#bufreader).
+as a [`File`](../../console/index.md), you will want to apply your own buffering because serde_json
+will not buffer the input. See `std::io::BufReader`.
 
 It is expected that the input stream ends after the deserialized object.
 If the stream does not end, such as in the case of a persistent socket connection,
 this function will not return. It is possible instead to deserialize from a prefix of an input
-stream without looking for EOF by managing your own [`Deserializer`](serde_json/de/index.md).
+stream without looking for EOF by managing your own [`Deserializer`](de/index.md).
 
 Note that counter to intuition, this function is usually slower than
-reading a file completely into memory and then applying [`from_str`](serde_json/de/index.md)
-or [`from_slice`](serde_json/de/index.md) on it. See [issue #160].
+reading a file completely into memory and then applying [`from_str`](de/index.md)
+or [`from_slice`](de/index.md) on it. See [issue #160].
 
 [issue #160]: https://github.com/serde-rs/json/issues/160
 

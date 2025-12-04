@@ -4,9 +4,9 @@
 
 # Module `hint`
 
-Re-export of the [`core::hint`](#hint) module.
+Re-export of the `core::hint` module.
 
-The only difference from the [`core::hint`](#hint) module is that [`spin_loop`](portable_atomic/hint/index.md)
+The only difference from the `core::hint` module is that [`spin_loop`](hint/index.md)
 is available in all rust versions that this crate supports.
 
 ```
@@ -29,7 +29,7 @@ a busy-wait spin-loop ("spin lock").
 Upon receiving the spin-loop signal the processor can optimize its behavior by,
 for example, saving power or switching hyper-threads.
 
-This function is different from [`thread::yield_now`](#yield-now) which directly
+This function is different from `thread::yield_now` which directly
 yields to the system's scheduler, whereas `spin_loop` does not interact
 with the operating system.
 

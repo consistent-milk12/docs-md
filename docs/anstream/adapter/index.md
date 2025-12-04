@@ -102,7 +102,7 @@ struct StripBytesIter<'s> {
 }
 ```
 
-See [`StripBytes`](#stripbytes)
+See [`StripBytes`](index.md)
 
 #### Trait Implementations
 
@@ -260,7 +260,7 @@ struct StripStrIter<'s> {
 }
 ```
 
-See [`StripStr`](#stripstr)
+See [`StripStr`](index.md)
 
 #### Trait Implementations
 
@@ -332,7 +332,7 @@ struct StrippedBytes<'s> {
 }
 ```
 
-See [`strip_bytes`](#strip-bytes)
+See [`strip_bytes`](index.md)
 
 #### Implementations
 
@@ -438,7 +438,7 @@ struct StrippedStr<'s> {
 }
 ```
 
-See [`strip_str`](#strip-str)
+See [`strip_str`](index.md)
 
 #### Implementations
 
@@ -630,7 +630,7 @@ struct WinconBytesIter<'s> {
 }
 ```
 
-See [`WinconBytes`](#winconbytes)
+See [`WinconBytes`](index.md)
 
 #### Trait Implementations
 

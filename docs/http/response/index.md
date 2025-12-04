@@ -288,9 +288,9 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
 
 - `fn default() -> Response<T>`
 
-##### `impl ResponseExt`
-
 ##### `impl AsSendBody`
+
+##### `impl ResponseExt`
 
 ### `Parts`
 

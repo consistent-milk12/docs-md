@@ -34,7 +34,7 @@ If you're here because there is something specific you want to do that can't
 be easily done with `regex` crate, then you are perhaps in the right place.
 It's most likely that the first stop you'll want to make is to explore the
 [`meta` regex APIs](meta). Namely, the `regex` crate is just a light wrapper
-over a [`meta::Regex`](#regex), so its API will probably be the easiest to transition
+over a `meta::Regex`, so its API will probably be the easiest to transition
 to. In contrast to the `regex` crate, the `meta::Regex` API supports more
 search parameters and does multi-pattern searches. However, it isn't quite as
 ergonomic.
@@ -213,7 +213,7 @@ assert_eq!(matches, vec![
 The following is a complete list of all regex engines provided by this crate,
 along with a very brief description of it and why you might want to use it.
 
-* [`dfa::regex::Regex`](#regex) is a regex engine that works on top of either
+* `dfa::regex::Regex` is a regex engine that works on top of either
 [dense](dfa::dense) or [sparse](dfa::sparse) fully compiled DFAs. You might
 use a DFA if you need the fastest possible regex engine in this crate and can
 afford the exorbitant memory usage usually required by DFAs. Low level APIs on
@@ -221,7 +221,7 @@ fully compiled DFAs are provided by the [`Automaton` trait](dfa::Automaton).
 Fully compiled dense DFAs can handle all regexes except for searching a regex
 with a Unicode word boundary on non-ASCII haystacks. A fully compiled DFA based
 regex can only report the start and end of each match.
-* [`hybrid::regex::Regex`](#regex) is a regex engine that works on top of a lazily
+* `hybrid::regex::Regex` is a regex engine that works on top of a lazily
 built DFA. Its performance profile is very similar to that of fully compiled
 DFAs, but can be slower in some pathological cases. Fully compiled DFAs are
 also amenable to more optimizations, such as state acceleration, that aren't
@@ -229,24 +229,24 @@ available in a lazy DFA. You might use this lazy DFA if you can't abide the
 worst case exponential compile time of a full DFA, but still want the DFA
 search performance in the vast majority of cases. A lazy DFA based regex can
 only report the start and end of each match.
-* [`dfa::onepass::DFA`](#dfa) is a regex engine that is implemented as a DFA, but
+* `dfa::onepass::DFA` is a regex engine that is implemented as a DFA, but
 can report the matches of each capture group in addition to the start and end
 of each match. The catch is that it only works on a somewhat small subset of
 regexes known as "one-pass." You'll want to use this for cases when you need
 capture group matches and the regex is one-pass since it is likely to be faster
 than any alternative. A one-pass DFA can handle all types of regexes, but does
 have some reasonable limits on the number of capture groups it can handle.
-* [`nfa::thompson::backtrack::BoundedBacktracker`](#boundedbacktracker) is a regex engine that uses
+* `nfa::thompson::backtrack::BoundedBacktracker` is a regex engine that uses
 backtracking, but keeps track of the work it has done to avoid catastrophic
 backtracking. Like the one-pass DFA, it provides the matches of each capture
 group. It retains the `O(m * n)` worst case time bound. This tends to be slower
 than the one-pass DFA regex engine, but faster than the PikeVM. It can handle
 all types of regexes, but usually only works well with small haystacks and
 small regexes due to the memory required to avoid redoing work.
-* [`nfa::thompson::pikevm::PikeVM`](#pikevm) is a regex engine that can handle all
+* `nfa::thompson::pikevm::PikeVM` is a regex engine that can handle all
 regexes, of all sizes and provides capture group matches. It tends to be a tool
 of last resort because it is also usually the slowest regex engine.
-* [`meta::Regex`](#regex) is the meta regex engine that combines *all* of the above
+* `meta::Regex` is the meta regex engine that combines *all* of the above
 engines into one. The reason for this is that each of the engines above have
 their own caveats such as, "only handles a subset of regexes" or "is generally
 slow." The meta regex engine accounts for all of these caveats and composes
@@ -270,16 +270,16 @@ Most search routines in this crate accept anything that implements
 means that things like `engine.search("foo")` will work as you would expect.
 
 By virtue of accepting an `Into<Input>` though, callers can provide more than
-just a haystack. Indeed, the [`Input`](#input) type has more details, but briefly,
+just a haystack. Indeed, the [`Input`](index.md) type has more details, but briefly,
 callers can use it to configure various aspects of the search:
 
-* The span of the haystack to search via [`Input::span`](#span) or [`Input::range`](#range),
+* The span of the haystack to search via `Input::span` or `Input::range`,
 which might be a substring of the haystack.
-* Whether to run an anchored search or not via [`Input::anchored`](#anchored). This
+* Whether to run an anchored search or not via `Input::anchored`. This
 permits one to require matches to start at the same offset that the search
 started.
 * Whether to ask the regex engine to stop as soon as a match is seen via
-[`Input::earliest`](#earliest). This can be used to find the offset of a match as soon
+`Input::earliest`. This can be used to find the offset of a match as soon
 as it is known without waiting for the full leftmost-first match to be found.
 This can also be used to avoid the worst case `O(m * n^2)` time complexity
 of iteration.
@@ -293,13 +293,13 @@ Most, but not all, regex engines in this crate can fail to execute a search.
 When a search fails, callers cannot determine whether or not a match exists.
 That is, the result is indeterminate.
 
-Search failure, in all cases in this crate, is represented by a [`MatchError`](#matcherror).
+Search failure, in all cases in this crate, is represented by a [`MatchError`](index.md).
 Routines that can fail start with the `try_` prefix in their name. For example,
-[`hybrid::regex::Regex::try_search`](#try-search) can fail for a number of reasons.
+`hybrid::regex::Regex::try_search` can fail for a number of reasons.
 Conversely, routines that either can't fail or can panic on failure lack the
-`try_` prefix. For example, [`hybrid::regex::Regex::find`](#find) will panic in
-cases where [`hybrid::regex::Regex::try_search`](#try-search) would return an error, and
-[`meta::Regex::find`](#find) will never panic. Therefore, callers need to pay close
+`try_` prefix. For example, `hybrid::regex::Regex::find` will panic in
+cases where `hybrid::regex::Regex::try_search` would return an error, and
+`meta::Regex::find` will never panic. Therefore, callers need to pay close
 attention to the panicking conditions in the documentation.
 
 In most cases, the reasons that a search fails are either predictable or
@@ -360,32 +360,32 @@ so flexible: it needs to support not just convenient construction, but also
 construction from parts built elsewhere.
 
 This is also in turn why there are many different `Config` structs in this
-crate. Let's look more closely at an example: [`hybrid::regex::Builder`](#builder). It
+crate. Let's look more closely at an example: `hybrid::regex::Builder`. It
 accepts three different `Config` types for configuring construction of a lazy
 DFA regex:
 
-* [`hybrid::regex::Builder::syntax`](#syntax) accepts a
-[`util::syntax::Config`](#config) for configuring the options found in the
+* `hybrid::regex::Builder::syntax` accepts a
+`util::syntax::Config` for configuring the options found in the
 [`regex-syntax`](regex_syntax) crate. For example, whether to match
 case insensitively.
-* [`hybrid::regex::Builder::thompson`](#thompson) accepts a [`nfa::thompson::Config`](#config) for
+* `hybrid::regex::Builder::thompson` accepts a `nfa::thompson::Config` for
 configuring construction of a [Thompson NFA](nfa::thompson::NFA). For example,
 whether to build an NFA that matches the reverse language described by the
 regex.
-* [`hybrid::regex::Builder::dfa`](#dfa) accept a [`Config`](regex_automata/hybrid/dfa/index.md) for
+* `hybrid::regex::Builder::dfa` accept a [`Config`](hybrid/dfa/index.md) for
 configuring construction of the pair of underlying lazy DFAs that make up the
 lazy DFA regex engine. For example, changing the capacity of the cache used to
 store the transition table.
 
 The lazy DFA regex engine uses all three of those configuration objects for
-methods like [`hybrid::regex::Builder::build`](#build), which accepts a pattern
+methods like `hybrid::regex::Builder::build`, which accepts a pattern
 string containing the concrete syntax of your regex. It uses the syntax
 configuration to parse it into an AST and translate it into an HIR. Then the
 NFA configuration when compiling the HIR into an NFA. And then finally the DFA
 configuration when lazily determinizing the NFA into a DFA.
 
 Notice though that the builder also has a
-[`hybrid::regex::Builder::build_from_dfas`](#build-from-dfas) constructor. This permits callers
+`hybrid::regex::Builder::build_from_dfas` constructor. This permits callers
 to build the underlying pair of lazy DFAs themselves (one for the forward
 searching to find the end of a match and one for the reverse searching to find
 the start of a match), and then build the regex engine from them. The lazy
@@ -557,7 +557,7 @@ enables `alloc` and `nfa-thompson`.
 struct PatternID();
 ```
 
-The identifier of a regex pattern, represented by a [`SmallIndex`](regex_automata/util/primitives/index.md).
+The identifier of a regex pattern, represented by a [`SmallIndex`](util/primitives/index.md).
 
 The identifier for a pattern corresponds to its relative position among
 other patterns in a single finite state machine. Namely, when building
@@ -566,7 +566,7 @@ match. The position (starting at 0) of each pattern in that sequence
 represents its identifier. This identifier is in turn used to identify and
 report matches of that pattern in various APIs.
 
-See the [`SmallIndex`](regex_automata/util/primitives/index.md) type for more information about what it means for
+See the [`SmallIndex`](util/primitives/index.md) type for more information about what it means for
 a pattern ID to be a "small index."
 
 Note that this type is defined in the
@@ -618,14 +618,14 @@ re-exported at the crate root due to how common it is.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: u8) -> PatternID`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: u8) -> PatternID`
 
 ##### `impl Into<T, U>`
 
@@ -686,19 +686,13 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = PatternIDError`
 
 - `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
@@ -711,6 +705,12 @@ re-exported at the crate root due to how common it is.
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryInto<T, U>`
 

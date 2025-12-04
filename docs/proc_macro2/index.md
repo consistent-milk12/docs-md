@@ -127,7 +127,7 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl From`
 
-- `fn from(inner: proc_macro::TokenStream) -> Self`
+- `fn from(token: TokenTree) -> Self`
 
 ##### `impl From<T>`
 
@@ -136,7 +136,7 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl From`
 
-- `fn from(token: TokenTree) -> Self`
+- `fn from(inner: proc_macro::TokenStream) -> Self`
 
 ##### `impl FromIterator`
 
@@ -191,11 +191,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl ToOwned<T>`
 
@@ -229,9 +229,9 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 - `fn default() -> Self`
 
-##### `impl ToTokens`
-
 ##### `impl TokenStreamExt`
+
+##### `impl ToTokens`
 
 ##### `impl Parse`
 
@@ -501,9 +501,9 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 - `fn clone(self: &Self) -> DelimSpan`
 
-##### `impl Token`
-
 ##### `impl Parse`
+
+##### `impl Token`
 
 ### `Punct`
 
@@ -601,9 +601,9 @@ Multicharacter operators like `+=` are represented as two instances of
 
 ##### `impl ToTokens`
 
-##### `impl Token`
-
 ##### `impl Parse`
+
+##### `impl Token`
 
 ### `Ident`
 
@@ -623,7 +623,7 @@ property.
 - A lifetime is not an identifier. Use `syn::Lifetime` instead.
 
 An identifier constructed with `Ident::new` is permitted to be a Rust
-keyword, though parsing one through its [`Parse`](../syn/syn/parse/index.md) implementation rejects
+keyword, though parsing one through its [`Parse`](../regex_syntax/index.md) implementation rejects
 Rust keywords. Use `input.call(Ident::parse_any)` when parsing to match the
 behaviour of `Ident::new`.
 
@@ -776,9 +776,9 @@ if ident_string.len() > 60 {
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToTokens`
-
 ##### `impl IdentFragment`
+
+##### `impl ToTokens`
 
 ##### `impl Parse`
 
@@ -983,9 +983,9 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 ##### `impl ToTokens`
 
-##### `impl Token`
-
 ##### `impl Parse`
+
+##### `impl Token`
 
 ## Enums
 
@@ -1030,6 +1030,14 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(g: Group) -> Self`
+
+##### `impl From`
+
+- `fn from(g: Ident) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -1037,19 +1045,11 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl From`
 
-- `fn from(g: Ident) -> Self`
-
-##### `impl From`
-
-- `fn from(g: Group) -> Self`
+- `fn from(g: Punct) -> Self`
 
 ##### `impl From`
 
 - `fn from(g: Literal) -> Self`
-
-##### `impl From`
-
-- `fn from(g: Punct) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1110,9 +1110,9 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
-
 ##### `impl Token`
+
+##### `impl Parse`
 
 ### `Delimiter`
 

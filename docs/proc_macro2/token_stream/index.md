@@ -39,7 +39,7 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl From`
 
-- `fn from(inner: proc_macro::TokenStream) -> Self`
+- `fn from(token: TokenTree) -> Self`
 
 ##### `impl From<T>`
 
@@ -48,7 +48,7 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl From`
 
-- `fn from(token: TokenTree) -> Self`
+- `fn from(inner: proc_macro::TokenStream) -> Self`
 
 ##### `impl FromIterator`
 
@@ -103,11 +103,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl ToOwned<T>`
 
@@ -141,9 +141,9 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 - `fn default() -> Self`
 
-##### `impl ToTokens`
-
 ##### `impl TokenStreamExt`
+
+##### `impl ToTokens`
 
 ##### `impl Parse`
 

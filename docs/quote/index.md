@@ -115,32 +115,32 @@ named arguments.
 Only a limited set of formatting traits are supported. The current mapping
 of format types to traits is:
 
-* `{}` ⇒ [`IdentFragment`](#identfragment)
+* `{}` ⇒ [`IdentFragment`](index.md)
 * `{:o}` ⇒ [`Octal`](std::fmt::Octal)
 * `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
 * `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
 * `{:b}` ⇒ [`Binary`](std::fmt::Binary)
 
-See [`std::fmt`](#fmt) for more information.
+See `std::fmt` for more information.
 
 <br>
 
 # IdentFragment
 
-Unlike `format!`, this macro uses the [`IdentFragment`](#identfragment) formatting trait by
+Unlike `format!`, this macro uses the [`IdentFragment`](index.md) formatting trait by
 default. This trait is like `Display`, with a few differences:
 
 * `IdentFragment` is only implemented for a limited set of types, such as
   unsigned integers and strings.
-* [`Ident`](../object/object/elf/index.md) arguments will have their `r#` prefixes stripped, if present.
+* [`Ident`](../object/elf/index.md) arguments will have their `r#` prefixes stripped, if present.
 
 
 <br>
 
 # Hygiene
 
-The [`Span`](../proc_macro2/proc_macro2/index.md) of the first `Ident` argument is used as the span of the final
-identifier, falling back to [`Span::call_site`](#call-site) when no identifiers are
+The [`Span`](../aho_corasick/index.md) of the first `Ident` argument is used as the span of the final
+identifier, falling back to `Span::call_site` when no identifiers are
 provided.
 
 ```
@@ -214,10 +214,10 @@ assert_eq!(upper_hex, "Id_A");
 The whole point.
 
 Performs variable interpolation against the input and produces it as
-[`proc_macro2::TokenStream`](#tokenstream).
+`proc_macro2::TokenStream`.
 
 Note: for returning tokens to the compiler in a procedural macro, use
-`.into()` on the result to convert to [`proc_macro::TokenStream`](#tokenstream).
+`.into()` on the result to convert to `proc_macro::TokenStream`.
 
 <br>
 
@@ -226,7 +226,7 @@ Note: for returning tokens to the compiler in a procedural macro, use
 Variable interpolation is done with `#var` (similar to `$var` in
 `macro_rules!` macros). This grabs the `var` variable that is currently in
 scope and inserts it in that location in the output tokens. Any type
-implementing the [`ToTokens`](#totokens) trait can be interpolated. This includes most
+implementing the [`ToTokens`](index.md) trait can be interpolated. This includes most
 Rust primitive types as well as most of the syntax tree types from the [Syn]
 crate.
 
@@ -249,7 +249,7 @@ for each one. The variables in an interpolation may be a `Vec`, slice,
 
 Any interpolated tokens preserve the `Span` information provided by their
 `ToTokens` implementation. Tokens that originate within the `quote!`
-invocation are spanned with [`Span::call_site()`](#call-site).
+invocation are spanned with `Span::call_site()`.
 
 A different span can be provided through the [`quote_spanned!`](#quote-spanned) macro.
 
@@ -502,7 +502,7 @@ quote! {
 ### Indexing into a tuple struct
 
 When interpolating indices of a tuple or tuple struct, we need them not to
-appears suffixed as integer literals by interpolating them as [`syn::Index`](#index)
+appears suffixed as integer literals by interpolating them as `syn::Index`
 instead.
 
 ```compile_fail
@@ -563,7 +563,7 @@ the macro invocation.
 
 # Syntax
 
-A span expression of type [`Span`](../proc_macro2/proc_macro2/index.md), followed by `=>`, followed by the tokens
+A span expression of type [`Span`](../aho_corasick/index.md), followed by `=>`, followed by the tokens
 to quote. The span expression should be brief &mdash; use a variable for
 anything more than a few characters. There should be no space before the
 `=>` token.
@@ -606,7 +606,7 @@ invocation are spanned with the given span argument.
 # Example
 
 The following procedural macro code uses `quote_spanned!` to assert that a
-particular Rust type implements the [`Sync`](#sync) trait so that references can be
+particular Rust type implements the [`Sync`](../flate2/index.md) trait so that references can be
 safely shared between threads.
 
 ```

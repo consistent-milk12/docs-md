@@ -3,7 +3,7 @@
 > **Command Line Argument Parser for Rust**
 
 Quick Links:
-- Derive [tutorial](#_tutorial) and [reference][_derive]
+- Derive `tutorial` and [reference][_derive]
 - Builder [tutorial][_tutorial] and [reference][Command]
 - [Cookbook][_cookbook]
 - [CLI Concepts][_concepts]
@@ -87,7 +87,7 @@ Hello Me!
 ```
 *(version number and `.exe` extension on windows replaced by placeholders)*
 
-See also the derive [tutorial](#_tutorial) and [reference][_derive]
+See also the derive `tutorial` and [reference][_derive]
 
 ### Related Projects
 
@@ -114,3 +114,4 @@ Documentation:
 - [Command-line Apps for Rust](https://rust-cli.github.io/book/index.html) book
 
 
+*This crate has no public items to document.*

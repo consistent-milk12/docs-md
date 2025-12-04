@@ -177,14 +177,14 @@ An HPKE private key.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(bytes: Vec<u8>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(bytes: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 

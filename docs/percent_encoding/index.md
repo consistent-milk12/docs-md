@@ -12,7 +12,7 @@ When encoding, the set of characters that can (and should, for readability) be l
 depends on the context.
 The `?` question mark mentioned above is not a separator when used literally
 inside of a query string, and therefore does not need to be encoded.
-The [`AsciiSet`](#asciiset) parameter of [`percent_encode`](percent_encoding/index.md) and [`utf8_percent_encode`](percent_encoding/index.md)
+The [`AsciiSet`](index.md) parameter of [`percent_encode`](index.md) and [`utf8_percent_encode`](index.md)
 lets callers configure this.
 
 This crate deliberately does not provide many different sets.
@@ -43,7 +43,7 @@ struct AsciiSet {
 
 Represents a set of characters or bytes in the ASCII range.
 
-This is used in [`percent_encode`](percent_encoding/index.md) and [`utf8_percent_encode`](percent_encoding/index.md).
+This is used in [`percent_encode`](index.md) and [`utf8_percent_encode`](index.md).
 This is similar to [percent-encode sets](https://url.spec.whatwg.org/#percent-encoded-bytes).
 
 Use the `add` method of an existing set to define a new set. For example:
@@ -138,7 +138,7 @@ struct PercentEncode<'a> {
 }
 ```
 
-The return type of [`percent_encode`](percent_encoding/index.md) and [`utf8_percent_encode`](percent_encoding/index.md).
+The return type of [`percent_encode`](index.md) and [`utf8_percent_encode`](index.md).
 
 #### Trait Implementations
 
@@ -236,7 +236,7 @@ struct PercentDecode<'a> {
 }
 ```
 
-The return type of [`percent_decode`](percent_encoding/index.md).
+The return type of [`percent_decode`](index.md).
 
 #### Implementations
 
@@ -371,7 +371,7 @@ fn utf8_percent_encode<'a>(input: &'a str, ascii_set: &'static AsciiSet) -> Perc
 
 Percent-encode the UTF-8 encoding of the given string.
 
-See [`percent_encode`](percent_encoding/index.md) regarding the return type.
+See [`percent_encode`](index.md) regarding the return type.
 
 # Examples
 
@@ -391,7 +391,7 @@ Percent-decode the given string.
 
 <https://url.spec.whatwg.org/#string-percent-decode>
 
-See [`percent_decode`](percent_encoding/index.md) regarding the return type.
+See [`percent_decode`](index.md) regarding the return type.
 
 ### `percent_decode`
 

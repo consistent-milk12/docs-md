@@ -14,7 +14,7 @@ Cryptography specific to TLS1.2.
 struct PrfUsingHmac<'a>(&'a dyn hmac::Hmac);
 ```
 
-Implements [`Prf`](rustls/crypto/tls12/index.md) using a [`hmac::Hmac`](#hmac).
+Implements [`Prf`](crypto/tls12/index.md) using a `hmac::Hmac`.
 
 #### Trait Implementations
 
@@ -70,8 +70,8 @@ An instantiation of the TLS1.2 PRF with a specific, implicit hash function.
 
 See the definition in [RFC5246 section 5](https://www.rfc-editor.org/rfc/rfc5246#section-5).
 
-See [`PrfUsingHmac`](rustls/crypto/tls12/index.md) as a route to implementing this trait with just
-an implementation of [`hmac::Hmac`](#hmac).
+See [`PrfUsingHmac`](crypto/tls12/index.md) as a route to implementing this trait with just
+an implementation of `hmac::Hmac`.
 
 #### Required Methods
 

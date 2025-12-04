@@ -10,7 +10,7 @@ sequences when rendering with the [`GraphicalReportHighlighter`](crate::Graphica
 
 It also provides built-in highlighter implementations that you can use out of the box.
 By default, there are no syntax highlighters exported by miette
-(except for the no-op [`BlankHighlighter`](#blankhighlighter)).
+(except for the no-op [`BlankHighlighter`](index.md)).
 To enable support for specific highlighters, you should enable their associated feature flag.
 
 Currently supported syntax highlighters and their feature flags:
@@ -31,7 +31,7 @@ A syntax highlighter for highlighting miette [`SourceCode`](crate::SourceCode) s
 
 - `fn start_highlighter_state<'h>(self: &'h Self, source: &dyn SpanContents<'_>) -> Box<dyn HighlighterState>`
 
-   Creates a new [`HighlighterState`](miette/highlighters/index.md) to begin parsing and highlighting
+   Creates a new [`HighlighterState`](highlighters/index.md) to begin parsing and highlighting
 
 ### `HighlighterState`
 
@@ -47,7 +47,7 @@ will create a highlighter state by calling
 [`start_highlighter_state`](Highlighter::start_highlighter_state) at the
 start of rendering, then it will iteratively call
 [`highlight_line`](HighlighterState::highlight_line) to render individual
-highlighted lines. This allows [`Highlighter`](miette/highlighters/index.md) implementations to maintain
+highlighted lines. This allows [`Highlighter`](highlighters/index.md) implementations to maintain
 mutable parsing and highlighting state.
 
 #### Required Methods

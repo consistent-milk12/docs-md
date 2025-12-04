@@ -7,7 +7,7 @@
 An NFA backed bounded backtracker for executing regex searches with capturing
 groups.
 
-This module provides a [`BoundedBacktracker`](regex_automata/nfa/thompson/backtrack/index.md) that works by simulating an NFA
+This module provides a [`BoundedBacktracker`](nfa/thompson/backtrack/index.md) that works by simulating an NFA
 using the classical backtracking algorithm with a twist: it avoids redoing
 work that it has done before and thereby avoids worst case exponential time.
 In exchange, it can only be used on "short" haystacks. Its advantage is that
@@ -27,7 +27,7 @@ struct Config {
 The configuration used for building a bounded backtracker.
 
 A bounded backtracker configuration is a simple data object that is
-typically used with [`Builder::configure`](#configure).
+typically used with `Builder::configure`.
 
 #### Implementations
 
@@ -126,7 +126,7 @@ make sense. For example, there are two different UTF-8 modes:
 * [`syntax::Config::utf8`](crate::util::syntax::Config::utf8) controls
 whether the pattern itself can contain sub-expressions that match invalid
 UTF-8.
-* [`thompson::Config::utf8`](#utf8) controls how the regex iterators themselves
+* `thompson::Config::utf8` controls how the regex iterators themselves
 advance the starting position of the next search when a match with zero
 length is found.
 
@@ -276,7 +276,7 @@ in a haystack more than once. Thus, the total memory required to bound
 backtracking is proportional to `haystack.len() * nfa.states().len()`.
 This can obviously get quite large, since large haystacks aren't terribly
 uncommon. To avoid using exorbitant memory, the capacity is bounded by
-a fixed limit set via [`Config::visited_capacity`](#visited-capacity). Thus, if the total
+a fixed limit set via `Config::visited_capacity`. Thus, if the total
 capacity required for a particular regex and a haystack exceeds this
 capacity, then the search routine will return an error.
 
@@ -289,7 +289,7 @@ when running a search on a haystack that is too big.
 If one wants to use the fallible search APIs without handling the
 error, the only way to guarantee an error won't occur from the
 haystack length is to ensure the haystack length does not exceed
-[`BoundedBacktracker::max_haystack_len`](#max-haystack-len).
+`BoundedBacktracker::max_haystack_len`.
 
 # Example: Unicode word boundaries
 
@@ -476,7 +476,7 @@ The lifetime parameters are as follows:
 * `'c` represents the lifetime of the BoundedBacktracker's cache.
 * `'h` represents the lifetime of the haystack being searched.
 
-This iterator can be created with the [`BoundedBacktracker::try_find_iter`](#try-find-iter)
+This iterator can be created with the `BoundedBacktracker::try_find_iter`
 method.
 
 #### Trait Implementations
@@ -554,7 +554,7 @@ The lifetime parameters are as follows:
 * `'h` represents the lifetime of the haystack being searched.
 
 This iterator can be created with the
-[`BoundedBacktracker::try_captures_iter`](#try-captures-iter) method.
+`BoundedBacktracker::try_captures_iter` method.
 
 #### Trait Implementations
 
@@ -618,17 +618,17 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a [`BoundedBacktracker`](regex_automata/nfa/thompson/backtrack/index.md) requires
+A cache represents mutable state that a [`BoundedBacktracker`](nfa/thompson/backtrack/index.md) requires
 during a search.
 
-For a given [`BoundedBacktracker`](regex_automata/nfa/thompson/backtrack/index.md), its corresponding cache may be created
-either via [`BoundedBacktracker::create_cache`](#create-cache), or via [`Cache::new`](#new).
+For a given [`BoundedBacktracker`](nfa/thompson/backtrack/index.md), its corresponding cache may be created
+either via `BoundedBacktracker::create_cache`, or via `Cache::new`.
 They are equivalent in every way, except the former does not require
 explicitly importing `Cache`.
 
-A particular `Cache` is coupled with the [`BoundedBacktracker`](regex_automata/nfa/thompson/backtrack/index.md) from which
+A particular `Cache` is coupled with the [`BoundedBacktracker`](nfa/thompson/backtrack/index.md) from which
 it was created. It may only be used with that `BoundedBacktracker`. A cache
-and its allocations may be re-purposed via [`Cache::reset`](#reset), in which case,
+and its allocations may be re-purposed via `Cache::reset`, in which case,
 it can only be used with the new `BoundedBacktracker` (and not the old
 one).
 
@@ -709,9 +709,9 @@ fn min_visited_capacity(nfa: &crate::nfa::thompson::NFA, input: &crate::util::se
 
 Returns the minimum visited capacity for the given haystack.
 
-This function can be used as the argument to [`Config::visited_capacity`](#visited-capacity)
+This function can be used as the argument to `Config::visited_capacity`
 in order to guarantee that a backtracking search for the given `input`
-won't return an error when using a [`BoundedBacktracker`](regex_automata/nfa/thompson/backtrack/index.md) built from the
+won't return an error when using a [`BoundedBacktracker`](nfa/thompson/backtrack/index.md) built from the
 given `NFA`.
 
 This routine exists primarily as a way to test that the bounded backtracker

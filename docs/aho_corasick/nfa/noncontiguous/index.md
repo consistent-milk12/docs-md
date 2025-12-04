@@ -9,7 +9,7 @@ Provides a noncontiguous NFA implementation of Aho-Corasick.
 This is a low-level API that generally only needs to be used in niche
 circumstances. When possible, prefer using [`AhoCorasick`](crate::AhoCorasick)
 instead of a noncontiguous NFA directly. Using an `NFA` directly is typically
-only necessary when one needs access to the [`Automaton`](aho_corasick/automaton/index.md) trait implementation.
+only necessary when one needs access to the [`Automaton`](automaton/index.md) trait implementation.
 
 ## Structs
 
@@ -25,7 +25,7 @@ A noncontiguous NFA implementation of Aho-Corasick.
 
 When possible, prefer using [`AhoCorasick`](crate::AhoCorasick) instead of
 this type directly. Using an `NFA` directly is typically only necessary
-when one needs access to the [`Automaton`](aho_corasick/automaton/index.md) trait implementation.
+when one needs access to the [`Automaton`](automaton/index.md) trait implementation.
 
 This NFA represents the "core" implementation of Aho-Corasick in this
 crate. Namely, constructing this NFA involving building a trie and then
@@ -70,7 +70,7 @@ assert_eq!(
 ```
 
 It is also possible to implement your own version of `try_find`. See the
-[`Automaton`](aho_corasick/automaton/index.md) documentation for an example.
+[`Automaton`](automaton/index.md) documentation for an example.
 
 #### Implementations
 

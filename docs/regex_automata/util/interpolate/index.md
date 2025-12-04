@@ -12,7 +12,7 @@ named `foo` and `foo1`, respectively. Similarly, syntax like `$1` and `${1}`
 is supported as well, with `1` corresponding to a capture group index and not
 a name.
 
-This module provides the free functions [`string`](regex_automata/util/interpolate/index.md) and [`bytes`](regex_automata/util/interpolate/index.md), which
+This module provides the free functions [`string`](util/interpolate/index.md) and [`bytes`](util/interpolate/index.md), which
 interpolate Rust Unicode strings and byte strings, respectively.
 
 # Format

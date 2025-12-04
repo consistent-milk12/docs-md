@@ -14,7 +14,7 @@ string into something that can run a search looks roughly like this:
 
 * A `&str` is parsed into a [`regex-syntax::ast::Ast`](regex_syntax::ast::Ast).
 * An `Ast` is translated into a [`regex-syntax::hir::Hir`](regex_syntax::hir::Hir).
-* An `Hir` is compiled into a [`NFA`](../../../aho_corasick/aho_corasick/nfa/contiguous/index.md).
+* An `Hir` is compiled into a [`NFA`](index.md).
 * The `NFA` is then used to build one of a few different regex engines:
   * An `NFA` is used directly in the `PikeVM` and `BoundedBacktracker` engines.
   * An `NFA` is used by a [hybrid NFA/DFA](crate::hybrid) to build out a DFA's
@@ -76,7 +76,7 @@ An abstraction for building Thompson NFAs by hand.
 
 A builder is what a [`thompson::Compiler`](crate::nfa::thompson::Compiler)
 uses internally to translate a regex's high-level intermediate
-representation into an [`NFA`](../../../aho_corasick/aho_corasick/nfa/contiguous/index.md).
+representation into an [`NFA`](index.md).
 
 The primary function of this builder is to abstract away the internal
 representation of an NFA and make it difficult to produce NFAs are that
@@ -97,7 +97,7 @@ with the configured [`size_limit`](Builder::set_size_limit).)
 ## Adding multiple patterns
 
 Each pattern you add to an NFA should correspond to a pair of
-[`Builder::start_pattern`](#start-pattern) and [`Builder::finish_pattern`](#finish-pattern) calls, with
+`Builder::start_pattern` and `Builder::finish_pattern` calls, with
 calls inbetween that add NFA states for that pattern. NFA states may be
 added without first calling `start_pattern`, with the exception of adding
 capturing states.
@@ -144,7 +144,7 @@ no outgoing transitions.
 
 ## Setting transitions between NFA states
 
-The [`Builder::patch`](#patch) method creates a transition from one state to the
+The `Builder::patch` method creates a transition from one state to the
 next. If the `from` state corresponds to a state that supports multiple
 outgoing transitions (such as "union"), then this adds the corresponding
 transition. Otherwise, it sets the single transition. (This routine panics
@@ -371,7 +371,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](#error) type from its `source`
+* Access an underlying `regex_syntax::Error` type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -561,7 +561,7 @@ struct PatternIter<'a> {
 
 An iterator over all pattern IDs in an NFA.
 
-This iterator is created by [`NFA::patterns`](#patterns).
+This iterator is created by `NFA::patterns`.
 
 The lifetime parameter `'a` refers to the lifetime of the NFA from which
 this pattern iterator was created.
@@ -1144,7 +1144,7 @@ NFA state graph. The NFA state graph can either be used directly to execute
 a search (e.g., with a Pike VM), or it can be further used to build a DFA.
 
 This compiler provides APIs both for compiling regex patterns directly from
-their concrete syntax, or via a [`regex_syntax::hir::Hir`](#hir).
+their concrete syntax, or via a `regex_syntax::hir::Hir`.
 
 This compiler has various options that may be configured via
 [`thompson::Config`](Config).
@@ -1625,10 +1625,10 @@ enum WhichCaptures {
 A configuration indicating which kinds of
 [`State::Capture`](crate::nfa::thompson::State::Capture) states to include.
 
-This configuration can be used with [`Config::which_captures`](#which-captures) to control
+This configuration can be used with `Config::which_captures` to control
 which capture states are compiled into a Thompson NFA.
 
-The default configuration is [`WhichCaptures::All`](#all).
+The default configuration is `WhichCaptures::All`.
 
 #### Variants
 

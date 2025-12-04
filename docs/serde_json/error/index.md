@@ -77,17 +77,17 @@ deserializing JSON data.
 
 - `fn custom<T: Display>(msg: T) -> Error`
 
-- `fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+##### `impl Error`
 
-- `fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+- `fn source(self: &Self) -> Option<&dyn error::Error>`
 
 ##### `impl Error`
 
 - `fn custom<T: Display>(msg: T) -> Error`
 
-##### `impl Error`
+- `fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
 
-- `fn source(self: &Self) -> Option<&dyn error::Error>`
+- `fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
 
 ##### `impl ToString<T>`
 

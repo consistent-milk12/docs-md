@@ -1,10 +1,10 @@
 # Crate `anstream`
 
-**Auto-adapting [`stdout`](anstream/index.md) / [`stderr`](anstream/index.md) streams**
+**Auto-adapting [`stdout`](index.md) / [`stderr`](index.md) streams**
 
 *A portmanteau of "ansi stream"*
 
-[`AutoStream`](#autostream) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
+[`AutoStream`](index.md) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
 [adapting to the user's terminal's capabilities][AutoStream].
 
 Benefits
@@ -48,7 +48,7 @@ struct AutoStream<S: RawStream> {
 }
 ```
 
-[`std::io::Write`](#write) that adapts ANSI escape codes to the underlying `Write`s capabilities
+`std::io::Write` that adapts ANSI escape codes to the underlying `Write`s capabilities
 
 This includes
 - Stripping colors for non-terminals
@@ -57,15 +57,9 @@ This includes
 
 You can customize auto-detection by calling into
 [anstyle_query](https://docs.rs/anstyle-query/latest/anstyle_query/)
-to get a [`ColorChoice`](../colorchoice/colorchoice/index.md) and then calling [`AutoStream::new(stream, choice)`](#newstream-choice).
+to get a [`ColorChoice`](index.md) and then calling `AutoStream::new(stream, choice)`.
 
 #### Implementations
-
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `AutoStream`
-
-- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
-  Get exclusive access to the `AutoStream`
 
 - `fn new(raw: S, choice: ColorChoice) -> Self`
   Runtime control over styling behavior
@@ -96,6 +90,12 @@ to get a [`ColorChoice`](../colorchoice/colorchoice/index.md) and then calling [
 
 - `fn current_choice(self: &Self) -> ColorChoice`
   Prefer [`AutoStream::choice`]
+
+- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
+  Get exclusive access to the `AutoStream`
+
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
+  Get exclusive access to the `AutoStream`
 
 #### Trait Implementations
 
@@ -166,9 +166,6 @@ Only pass printable data to the inner `Write`
 - `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>`
   Get exclusive access to the `StripStream`
 
-- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `StripStream`
-
 - `fn is_terminal(self: &Self) -> bool`
   Returns `true` if the descriptor/handle refers to a terminal/tty.
 
@@ -180,6 +177,9 @@ Only pass printable data to the inner `Write`
 
 - `fn as_inner(self: &Self) -> &S`
   Get the wrapped [`std::io::Write`]
+
+- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
+  Get exclusive access to the `StripStream`
 
 #### Trait Implementations
 
@@ -243,8 +243,8 @@ fn stdout() -> Stdout
 
 Create an ANSI escape code compatible stdout
 
-**Note:** Call [`AutoStream::lock`](#lock) in loops to avoid the performance hit of acquiring/releasing
-from the implicit locking in each [`std::io::Write`](#write) call
+**Note:** Call `AutoStream::lock` in loops to avoid the performance hit of acquiring/releasing
+from the implicit locking in each `std::io::Write` call
 
 ### `stderr`
 
@@ -254,8 +254,8 @@ fn stderr() -> Stderr
 
 Create an ANSI escape code compatible stderr
 
-**Note:** Call [`AutoStream::lock`](#lock) in loops to avoid the performance hit of acquiring/releasing
-from the implicit locking in each [`std::io::Write`](#write) call
+**Note:** Call `AutoStream::lock` in loops to avoid the performance hit of acquiring/releasing
+from the implicit locking in each `std::io::Write` call
 
 ## Type Aliases
 
@@ -279,18 +279,18 @@ An adaptive wrapper around the global standard error stream of the current proce
 
 ### `print!`
 
-Prints to [`stdout`](#stdout).
+Prints to `stdout`.
 
 Equivalent to the [`println!`](#println) macro except that a newline is not printed at
 the end of the message.
 
 Note that stdout is frequently line-buffered by default so it may be
-necessary to use [`std::io::Write::flush()`](#flush) to ensure the output is emitted
+necessary to use `std::io::Write::flush()` to ensure the output is emitted
 immediately.
 
 **NOTE:** The `print!` macro will lock the standard output on each call. If you call
 `print!` within a hot loop, this behavior may be the bottleneck of the loop.
-To avoid this, lock stdout with [`AutoStream::lock`](#lock):
+To avoid this, lock stdout with `AutoStream::lock`:
 ```
 #  #[cfg(feature = "auto")] {
 use std::io::Write as _;
@@ -303,7 +303,7 @@ write!(lock, "hello world").unwrap();
 Use `print!` only for the primary output of your program. Use
 [`eprint!`](#eprint) instead to print error and progress messages.
 
-**NOTE:** Not all `print!` calls will be captured in tests like [`std::print!`](#print)
+**NOTE:** Not all `print!` calls will be captured in tests like `std::print!`
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -340,17 +340,17 @@ stdout().flush().unwrap();
 
 ### `println!`
 
-Prints to [`stdout`](#stdout), with a newline.
+Prints to `stdout`, with a newline.
 
 On all platforms, the newline is the LINE FEED character (`\n`/`U+000A`) alone
 (no additional CARRIAGE RETURN (`\r`/`U+000D`)).
 
 This macro uses the same syntax as [`format!`](#format), but writes to the standard output instead.
-See [`std::fmt`](#fmt) for more information.
+See `std::fmt` for more information.
 
 **NOTE:** The `println!` macro will lock the standard output on each call. If you call
 `println!` within a hot loop, this behavior may be the bottleneck of the loop.
-To avoid this, lock stdout with [`AutoStream::lock`](#lock):
+To avoid this, lock stdout with `AutoStream::lock`:
 ```
 #  #[cfg(feature = "auto")] {
 use std::io::Write as _;
@@ -363,7 +363,7 @@ writeln!(lock, "hello world").unwrap();
 Use `println!` only for the primary output of your program. Use
 [`eprintln!`](#eprintln) instead to print error and progress messages.
 
-**NOTE:** Not all `println!` calls will be captured in tests like [`std::println!`](#println)
+**NOTE:** Not all `println!` calls will be captured in tests like `std::println!`
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -390,7 +390,7 @@ println!("format {local_variable} arguments");
 
 ### `eprint!`
 
-Prints to [`stderr`](#stderr).
+Prints to `stderr`.
 
 Equivalent to the [`print!`](#print) macro, except that output goes to
 `stderr` instead of `stdout`. See [`print!`](#print) for
@@ -399,7 +399,7 @@ example usage.
 Use `eprint!` only for error and progress messages. Use `print!`
 instead for the primary output of your program.
 
-**NOTE:** Not all `eprint!` calls will be captured in tests like [`std::eprint!`](#eprint)
+**NOTE:** Not all `eprint!` calls will be captured in tests like `std::eprint!`
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -422,7 +422,7 @@ eprint!("Error: Could not complete task");
 
 ### `eprintln!`
 
-Prints to [`stderr`](#stderr), with a newline.
+Prints to `stderr`, with a newline.
 
 Equivalent to the [`println!`](#println) macro, except that output goes to
 `stderr` instead of `stdout`. See [`println!`](#println) for
@@ -431,7 +431,7 @@ example usage.
 Use `eprintln!` only for error and progress messages. Use `println!`
 instead for the primary output of your program.
 
-**NOTE:** Not all `eprintln!` calls will be captured in tests like [`std::eprintln!`](#eprintln)
+**NOTE:** Not all `eprintln!` calls will be captured in tests like `std::eprintln!`
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -464,7 +464,7 @@ tests. `panic!` is closely tied with the `unwrap` method of both
 [`Option`][ounwrap](#ounwrap)
  and [`Result`][runwrap](#runwrap)
  enums. Both implementations call
-`panic!` when they are set to [`None`](#none) or [`Err`](#err) variants.
+`panic!` when they are set to [`None`](../aho_corasick/index.md) or [`Err`](#err) variants.
 
 When using `panic!()` you can specify a string payload, that is built using
 the [`format!`](#format) syntax. That payload is used when injecting the panic into
@@ -473,7 +473,7 @@ the calling Rust thread, causing the thread to panic entirely.
 The behavior of the default `std` hook, i.e. the code that runs directly
 after the panic is invoked, is to print the message payload to
 `stderr` along with the file/line/column information of the `panic!()`
-call. You can override the panic hook using [`std::panic::set_hook()`](#set-hook).
+call. You can override the panic hook using `std::panic::set_hook()`.
 Inside the hook a panic can be accessed as a `&dyn Any + Send`,
 which contains either a `&str` or `String` for regular `panic!()` invocations.
 To panic with a value of another other type, [`panic_any`](#panic-any) can be used.
@@ -506,7 +506,7 @@ the help of the `Error` trait.
 
 For more detailed information about error handling check out the [book](#book)
  or the
-[`std::result`](#result) module docs.
+`std::result` module docs.
 
 [ounwrap](#ounwrap)
 : Option::unwrap

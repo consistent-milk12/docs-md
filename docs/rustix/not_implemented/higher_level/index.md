@@ -205,7 +205,7 @@ See [rustix-openpty](https://crates.io/crates/rustix-openpty).
 fn isatty()
 ```
 
-See [`std::io::IsTerminal`](#isterminal).
+See `std::io::IsTerminal`.
 
 For Rust < 1.70, see [is-terminal]. For a rustix-based implementation,
 see [rustix-is-terminal].

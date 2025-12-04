@@ -127,7 +127,7 @@ error handling logic.
 
 `Result<T, ring::error::Unspecified>` is mostly equivalent to
 `Result<T, ()>`. However, `ring::error::Unspecified` implements
-[`std::error::Error`](#error) and users of *ring* can implement
+`std::error::Error` and users of *ring* can implement
 `From<ring::error::Unspecified>` to map this to their own error types, as
 described in [“Error Handling” in the Rust Book]:
 
@@ -175,6 +175,11 @@ that they can be addressed individually.
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(source: untrusted::EndOfInput) -> Self`
@@ -182,11 +187,6 @@ that they can be addressed individually.
 ##### `impl From`
 
 - `fn from(source: KeyRejected) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl From`
 

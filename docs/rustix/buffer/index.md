@@ -14,10 +14,10 @@ Utilities for functions that return data via buffers.
 struct SpareCapacity<'a, T>();
 ```
 
-A type that implements [`Buffer`](rustix/buffer/index.md) by appending to a `Vec`, up to its
+A type that implements [`Buffer`](buffer/index.md) by appending to a `Vec`, up to its
 capacity.
 
-To use this, use the [`spare_capacity`](rustix/buffer/index.md) function.
+To use this, use the [`spare_capacity`](buffer/index.md) function.
 
 Because this uses the capacity, and never reallocates, the `Vec` should
 have some non-empty spare capacity.
@@ -79,7 +79,7 @@ use determines the return type of the functions that use it:
 `              | `usize`, indicating the number of elements initialized. |
 | `&mut [MaybeUninit<u8>]` | `(&mut [u8](#u8)
 , &mut [MaybeUninit<u8>])`, holding the initialized and uninitialized subslices. |
-| [`SpareCapacity`](rustix/buffer/index.md)        | `usize`, indicating the number of elements initialized. And the `Vec` is extended. |
+| [`SpareCapacity`](buffer/index.md)        | `usize`, indicating the number of elements initialized. And the `Vec` is extended. |
 
 # Examples
 
@@ -111,7 +111,7 @@ let (init, uninit) = read(fd, &mut buf)?;
 # }
 ```
 
-Passing a [`SpareCapacity`](rustix/buffer/index.md), via the [`spare_capacity`](rustix/buffer/index.md) helper function:
+Passing a [`SpareCapacity`](buffer/index.md), via the [`spare_capacity`](buffer/index.md) helper function:
 
 ```
 # use rustix::io::read;
@@ -169,7 +169,7 @@ that. See `error_retry_closure_uninit` in examples/buffer_errors.rs.
 fn spare_capacity<'a, T>(v: &'a mut alloc::vec::Vec<T>) -> SpareCapacity<'a, T>
 ```
 
-Construct an [`SpareCapacity`](rustix/buffer/index.md), which implements [`Buffer`](rustix/buffer/index.md).
+Construct an [`SpareCapacity`](buffer/index.md), which implements [`Buffer`](buffer/index.md).
 
 This wraps a `Vec` and uses the spare capacity of the `Vec` as the buffer
 to receive data in, automatically calling `set_len` on the `Vec` to set the

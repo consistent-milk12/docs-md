@@ -180,7 +180,7 @@ here are some of the most popular ones:
 
 # Implementing a Logger
 
-Loggers implement the [`Log`](log/index.md) trait. Here's a very basic example that simply
+Loggers implement the [`Log`](index.md) trait. Here's a very basic example that simply
 logs all messages at the [`Error`][level_link](#level-link)
 , [`Warn`][level_link](#level-link)
  or
@@ -209,8 +209,8 @@ impl log::Log for SimpleLogger {
 # fn main() {}
 ```
 
-Loggers are installed by calling the [`set_logger`](log/index.md) function. The maximum
-log level also needs to be adjusted via the [`set_max_level`](log/index.md) function. The
+Loggers are installed by calling the [`set_logger`](index.md) function. The maximum
+log level also needs to be adjusted via the [`set_max_level`](index.md) function. The
 logging facade uses this as an optimization to improve performance of log
 messages at levels that are disabled. It's important to set it, as it
 defaults to [`Off`][filter_link](#filter-link)
@@ -221,8 +221,8 @@ to [`Info`][filter_link](#filter-link)
  or
 [`Trace`][level_link](#level-link)
  level log messages. A logging implementation should
-provide a function that wraps a call to [`set_logger`](log/index.md) and
-[`set_max_level`](log/index.md), handling initialization of the logger:
+provide a function that wraps a call to [`set_logger`](index.md) and
+[`set_max_level`](index.md), handling initialization of the logger:
 
 ```
 # use log::{Level, Metadata};
@@ -399,7 +399,7 @@ The "payload" of a log message.
 # Use
 
 `Record` structures are passed as parameters to the [`log`][method.log]
-method of the [`Log`](log/index.md) trait. Logger implementors manipulate these
+method of the [`Log`](index.md) trait. Logger implementors manipulate these
 structures in order to display log messages. `Record`s are automatically
 created by the [`log!`](#log) macro and so are not seen by log users.
 
@@ -882,7 +882,7 @@ let metadata = MetadataBuilder::new()
 struct SetLoggerError();
 ```
 
-The type returned by [`set_logger`](log/index.md) if [`set_logger`](log/index.md) has already been called.
+The type returned by [`set_logger`](index.md) if [`set_logger`](index.md) has already been called.
 
 
 #### Trait Implementations
@@ -935,7 +935,7 @@ The type returned by [`set_logger`](log/index.md) if [`set_logger`](log/index.md
 struct ParseLevelError();
 ```
 
-The type returned by [`from_str`](../bitflags/bitflags/parser/index.md) when the string doesn't match any of the log levels.
+The type returned by [`from_str`](../bitflags/parser/index.md) when the string doesn't match any of the log levels.
 
 
 #### Trait Implementations
@@ -1119,19 +1119,19 @@ Typical usage includes: checking if a certain `Level` is enabled with
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &Level) -> $crate::option::Option<$crate::cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
 
 ##### `impl StructuralPartialEq`
 
@@ -1166,8 +1166,8 @@ enum LevelFilter {
 
 An enum representing the available verbosity level filters of the logger.
 
-A `LevelFilter` may be compared directly to a [`Level`](log/index.md). Use this type
-to get and set the maximum log level with [`max_level()`](#max-level) and [`set_max_level`](log/index.md).
+A `LevelFilter` may be compared directly to a [`Level`](index.md). Use this type
+to get and set the maximum log level with [`max_level()`](#max-level) and [`set_max_level`](index.md).
 
 
 
@@ -1350,12 +1350,12 @@ Note that `Trace` is the maximum level, because it provides the maximum amount o
 unsafe fn set_max_level_racy(level: LevelFilter)
 ```
 
-A thread-unsafe version of [`set_max_level`](log/index.md).
+A thread-unsafe version of [`set_max_level`](index.md).
 
 This function is available on all platforms, even those that do not have
-support for atomics that is needed by [`set_max_level`](log/index.md).
+support for atomics that is needed by [`set_max_level`](index.md).
 
-In almost all cases, [`set_max_level`](log/index.md) should be preferred.
+In almost all cases, [`set_max_level`](index.md) should be preferred.
 
 # Safety
 
@@ -1379,7 +1379,7 @@ Returns the current maximum log level.
 
 The [`log!`](#log), [`error!`](#error), [`warn!`](#warn), [`info!`](#info), [`debug!`](#debug), and [`trace!`](#trace) macros check
 this value and discard any message logged at a higher level. The maximum
-log level is set by the [`set_max_level`](log/index.md) function.
+log level is set by the [`set_max_level`](index.md) function.
 
 
 
@@ -1408,7 +1408,7 @@ logger internally.
 This method is available even when the `std` feature is disabled. However,
 it is currently unavailable on `thumbv6` targets, which lack support for
 some atomic operations which are used by this function. Even on those
-targets, [`set_logger_racy`](log/index.md) will be available.
+targets, [`set_logger_racy`](index.md) will be available.
 
 # Errors
 
@@ -1453,12 +1453,12 @@ error!("oops");
 unsafe fn set_logger_racy(logger: &'static dyn Log) -> Result<(), SetLoggerError>
 ```
 
-A thread-unsafe version of [`set_logger`](log/index.md).
+A thread-unsafe version of [`set_logger`](index.md).
 
 This function is available on all platforms, even those that do not have
-support for atomics that is needed by [`set_logger`](log/index.md).
+support for atomics that is needed by [`set_logger`](index.md).
 
-In almost all cases, [`set_logger`](log/index.md) should be preferred.
+In almost all cases, [`set_logger`](index.md) should be preferred.
 
 # Safety
 
@@ -1495,7 +1495,7 @@ The statically resolved maximum log level.
 See the crate level documentation for information on how to configure this.
 
 This value is checked by the log macros, but not by the `Log`ger returned by
-the [`logger`](log/index.md) function. Code that manually calls functions on that value
+the [`logger`](index.md) function. Code that manually calls functions on that value
 should compare the level against this value.
 
 

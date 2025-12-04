@@ -11,12 +11,12 @@ and writing relocatable object files and some executable files.
 Raw structs are defined for: [ELF](elf), [Mach-O](macho), [PE/COFF](pe),
 [XCOFF](xcoff), [archive](#archive)
 .
-Types and traits for zerocopy support are defined in the [`pod`](object/pod/index.md) and [`endian`](object/endian/index.md) modules.
+Types and traits for zerocopy support are defined in the [`pod`](pod/index.md) and [`endian`](endian/index.md) modules.
 
 ## Unified read API
 
-The [`read`](object/read/index.md) module provides a unified read API using the [`read::Object`](#object) trait.
-There is an implementation of this trait for [`read::File`](#file), which allows reading any
+The [`read`](read/index.md) module provides a unified read API using the `read::Object` trait.
+There is an implementation of this trait for `read::File`, which allows reading any
 file format, as well as implementations for each file format.
 
 ## Low level read API
@@ -28,7 +28,7 @@ details that are not available via the unified API.
 ## Unified write API
 
 The [`mod@write`](#modwrite) module provides a unified write API for relocatable object files
-using [`write::Object`](#object). This does not support writing executable files.
+using `write::Object`. This does not support writing executable files.
 
 ## Low level write API
 

@@ -428,13 +428,13 @@ struct PrefixedPayload();
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(content: &[u8]) -> Self`
-
 ##### `impl From<const N: usize>`
 
 - `fn from(content: &[u8; N]) -> Self`
+
+##### `impl From`
+
+- `fn from(content: &[u8]) -> Self`
 
 ##### `impl From<T>`
 
@@ -682,14 +682,14 @@ A write or read IV.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(bytes: [u8; 12]) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(bytes: [u8; 12]) -> Self`
 
 ##### `impl Into<T, U>`
 

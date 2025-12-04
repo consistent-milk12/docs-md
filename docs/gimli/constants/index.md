@@ -3137,8 +3137,6 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
-
 - `fn format(self: Self) -> DwEhPe`
   Get the pointer encoding's format.
 
@@ -3153,6 +3151,8 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 - `fn is_valid_encoding(self: Self) -> bool`
   Is this a known, valid pointer encoding?
+
+- `fn static_string(self: &Self) -> Option<&'static str>`
 
 #### Trait Implementations
 

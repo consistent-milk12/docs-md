@@ -24,12 +24,12 @@ structured attributes.
 
 Refer to usage examples on the following two entry-points:
 
-- [`Attribute::parse_nested_meta`](#parse-nested-meta) if you have an entire `Attribute` to
+- `Attribute::parse_nested_meta` if you have an entire `Attribute` to
   parse. Always use this if possible. Generally this is able to produce
   better error messages because `Attribute` holds span information for all
   of the delimiters therein.
 
-- [`syn::meta::parser`](#parser) if you are implementing a `proc_macro_attribute`
+- `syn::meta::parser` if you are implementing a `proc_macro_attribute`
   macro and parsing the arguments to the attribute macro, i.e. the ones
   written in the same attribute that dispatched the macro invocation. Rustc
   does not pass span information for the surrounding delimiters into the
@@ -102,7 +102,7 @@ Make a parser that is usable with `parse_macro_input!` in a
 need this function. In several cases your callers will get worse error
 messages if you use this function, because the surrounding delimiter's span
 is concealed from attribute macros by rustc. Use
-[`Attribute::parse_nested_meta`](#parse-nested-meta) instead.
+`Attribute::parse_nested_meta` instead.
 
 # Example
 

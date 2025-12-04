@@ -53,10 +53,10 @@ let nread = unsafe {
 ```
 
 rustix's APIs perform the following tasks:
- - Error values are translated to [`Result`](../clap_builder/clap_builder/error/index.md)s.
+ - Error values are translated to [`Result`](index.md)s.
  - Buffers are passed as Rust slices.
  - Out-parameters are presented as return values.
- - Path arguments use [`Arg`](#arg), so they accept any string type.
+ - Path arguments use [`Arg`](../clap_builder/index.md), so they accept any string type.
  - File descriptors are passed and returned via [`AsFd`](#asfd) and [`OwnedFd`](#ownedfd)
    instead of bare integers, ensuring I/O safety.
  - Constants use `enum`s and [`bitflags`](../bitflags/index.md) types, and enable [support for
@@ -113,7 +113,7 @@ which does perform sandboxing and restricts ambient authorities.
 
 ### `cstr!`
 
-A macro for [`CStr`](#cstr) literals.
+A macro for [`CStr`](ffi/index.md) literals.
 
 This can make passing string literals to rustix APIs more efficient, since
 most underlying system calls with string arguments expect NUL-terminated

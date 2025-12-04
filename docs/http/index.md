@@ -3,12 +3,12 @@
 A general purpose library of common HTTP types
 
 This crate is a general purpose library for common types found when working
-with the HTTP protocol. You'll find [`Request`](http/request/index.md) and [`Response`](http/response/index.md) types for
+with the HTTP protocol. You'll find [`Request`](request/index.md) and [`Response`](response/index.md) types for
 working as either a client or a server as well as all of their components.
-Notably you'll find `Uri` for what a [`Request`](http/request/index.md) is requesting, a [`Method`](http/method/index.md)
-for how it's being requested, a [`StatusCode`](http/status/index.md) for what sort of response came
-back, a [`Version`](http/version/index.md) for how this was communicated, and
-[`HeaderName`](#headername)/[`HeaderValue`](#headervalue) definitions to get grouped in a [`HeaderMap`](#headermap) to
+Notably you'll find `Uri` for what a [`Request`](request/index.md) is requesting, a [`Method`](method/index.md)
+for how it's being requested, a [`StatusCode`](status/index.md) for what sort of response came
+back, a [`Version`](version/index.md) for how this was communicated, and
+[`HeaderName`](index.md)/[`HeaderValue`](index.md) definitions to get grouped in a [`HeaderMap`](index.md) to
 work with request/response headers.
 
 You will notably *not* find an implementation of sending requests or
@@ -18,11 +18,11 @@ particular implementation.
 
 ## Requests and Responses
 
-Perhaps the main two types in this crate are the [`Request`](http/request/index.md) and [`Response`](http/response/index.md)
-types. A [`Request`](http/request/index.md) could either be constructed to get sent off as a client
-or it can also be received to generate a [`Response`](http/response/index.md) for a server. Similarly
-as a client a [`Response`](http/response/index.md) is what you get after sending a [`Request`](http/request/index.md), whereas
-on a server you'll be manufacturing a [`Response`](http/response/index.md) to send back to the client.
+Perhaps the main two types in this crate are the [`Request`](request/index.md) and [`Response`](response/index.md)
+types. A [`Request`](request/index.md) could either be constructed to get sent off as a client
+or it can also be received to generate a [`Response`](response/index.md) for a server. Similarly
+as a client a [`Response`](response/index.md) is what you get after sending a [`Request`](request/index.md), whereas
+on a server you'll be manufacturing a [`Response`](response/index.md) to send back to the client.
 
 Each type has a number of accessors for the component fields. For as a
 server you might want to inspect a requests URI to dispatch it:
@@ -44,8 +44,8 @@ fn response(req: Request<()>) -> http::Result<Response<()>> {
 # fn not_found(_req: Request<()>) -> http::Result<Response<()>> { panic!() }
 ```
 
-On a [`Request`](http/request/index.md) you'll also find accessors like [`method`](#method) to return a
-[`Method`](http/method/index.md) and [`headers`](#method) to inspect the various headers. A [`Response`](http/response/index.md)
+On a [`Request`](request/index.md) you'll also find accessors like `method` to return a
+[`Method`](method/index.md) and `headers` to inspect the various headers. A [`Response`](response/index.md)
 has similar methods for headers, the status code, etc.
 
 In addition to getters, request/response types also have mutable accessors
@@ -63,7 +63,7 @@ fn add_server_headers<T>(response: &mut Response<T>) {
 ```
 
 And finally, one of the most important aspects of requests/responses, the
-body! The [`Request`](http/request/index.md) and [`Response`](http/response/index.md) types in this crate are *generic* in
+body! The [`Request`](request/index.md) and [`Response`](response/index.md) types in this crate are *generic* in
 what their body is. This allows downstream libraries to use different
 representations such as `Request<Vec<u8>>`, `Response<impl Read>`,
 `Request<impl Stream<Item = Vec<u8>, Error = _>>`, or even
@@ -86,14 +86,14 @@ GET /foo HTTP/1.1
 Accept: text/html
 ```
 
-Then `"Accept"` is a [`HeaderName`](#headername) while `"text/html"` is a [`HeaderValue`](#headervalue).
+Then `"Accept"` is a [`HeaderName`](index.md) while `"text/html"` is a [`HeaderValue`](index.md).
 Each of these is a dedicated type to allow for a number of interesting
 optimizations and to also encode the static guarantees of each type. For
-example a [`HeaderName`](#headername) is always a valid `&str`, but a [`HeaderValue`](#headervalue) may
+example a [`HeaderName`](index.md) is always a valid `&str`, but a [`HeaderValue`](index.md) may
 not be valid UTF-8.
 
 The most common header names are already defined for you as constant values
-in the [`header`](http/header/index.md) module of this crate. For example:
+in the [`header`](header/index.md) module of this crate. For example:
 
 ```
 use http::header::{self, HeaderName};
@@ -111,7 +111,7 @@ let name = "Accept".parse::<HeaderName>().unwrap();
 assert_eq!(name, header::ACCEPT);
 ```
 
-Header values can be created from string literals through the [`from_static`](#from_static)
+Header values can be created from string literals through the `from_static`
 function:
 
 ```
@@ -132,15 +132,15 @@ let value = value.parse::<HeaderValue>().unwrap();
 
 Most HTTP requests and responses tend to come with more than one header, so
 it's not too useful to just work with names and values only! This crate also
-provides a [`HeaderMap`](#headermap) type which is a specialized hash map for keys as
-[`HeaderName`](#headername) and generic values. This type, like header names, is optimized
+provides a [`HeaderMap`](index.md) type which is a specialized hash map for keys as
+[`HeaderName`](index.md) and generic values. This type, like header names, is optimized
 for common usage but should continue to scale with your needs over time.
 
 # URIs
 
-Each HTTP [`Request`](http/request/index.md) has an associated URI with it. This may just be a path
+Each HTTP [`Request`](request/index.md) has an associated URI with it. This may just be a path
 like `/index.html` but it could also be an absolute URL such as
-`https://www.rust-lang.org/index.html`. A [`URI`](#uri) has a number of accessors to
+`https://www.rust-lang.org/index.html`. A `URI` has a number of accessors to
 interpret it:
 
 ```
@@ -194,14 +194,6 @@ of error for conversions with the `?` operator.
 
 ##### `impl From`
 
-- `fn from(err: std::convert::Infallible) -> Error`
-
-##### `impl From`
-
-- `fn from(err: MaxSizeReached) -> Error`
-
-##### `impl From`
-
 - `fn from(err: status::InvalidStatusCode) -> Error`
 
 ##### `impl From`
@@ -212,14 +204,6 @@ of error for conversions with the `?` operator.
 
 - `fn from(err: uri::InvalidUri) -> Error`
 
-##### `impl From`
-
-- `fn from(err: header::InvalidHeaderValue) -> Error`
-
-##### `impl From`
-
-- `fn from(err: method::InvalidMethod) -> Error`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -227,7 +211,23 @@ of error for conversions with the `?` operator.
 
 ##### `impl From`
 
+- `fn from(err: std::convert::Infallible) -> Error`
+
+##### `impl From`
+
 - `fn from(err: uri::InvalidUriParts) -> Error`
+
+##### `impl From`
+
+- `fn from(err: header::InvalidHeaderValue) -> Error`
+
+##### `impl From`
+
+- `fn from(err: MaxSizeReached) -> Error`
+
+##### `impl From`
+
+- `fn from(err: method::InvalidMethod) -> Error`
 
 ##### `impl Into<T, U>`
 
@@ -587,12 +587,12 @@ assert!(!headers.contains_key(HOST));
 
 ##### `impl Extend<T>`
 
-- `fn extend<I: IntoIterator<Item = (Option<HeaderName>, T)>>(self: &mut Self, iter: I)`
-  Extend a `HeaderMap` with the contents of another `HeaderMap`.
+- `fn extend<I: IntoIterator<Item = (HeaderName, T)>>(self: &mut Self, iter: I)`
 
 ##### `impl Extend<T>`
 
-- `fn extend<I: IntoIterator<Item = (HeaderName, T)>>(self: &mut Self, iter: I)`
+- `fn extend<I: IntoIterator<Item = (Option<HeaderName>, T)>>(self: &mut Self, iter: I)`
+  Extend a `HeaderMap` with the contents of another `HeaderMap`.
 
 ##### `impl Index<K, T>`
 
@@ -613,17 +613,17 @@ assert!(!headers.contains_key(HOST));
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<'a, K, V, S, T>`
-
-- `type Error = Error`
-
-- `fn try_from(c: &'a HashMap<K, V, S>) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom<'a, K, V, S, T>`
+
+- `type Error = Error`
+
+- `fn try_from(c: &'a HashMap<K, V, S>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -654,8 +654,8 @@ headers with the same name. The HTTP specification defines a number of
 standard headers, but HTTP messages may include non-standard header names as
 well as long as they adhere to the specification.
 
-`HeaderName` is used as the [`HeaderMap`](#headermap) key. Constants are available for
-all standard header names in the [`header`](http/header/index.md) module.
+`HeaderName` is used as the [`HeaderMap`](index.md) key. Constants are available for
+all standard header names in the [`header`](header/index.md) module.
 
 # Representation
 
@@ -713,19 +713,19 @@ computation and the comparison operation.
 
 ##### `impl AsRef`
 
-- `fn as_ref(self: &Self) -> &[u8]`
+- `fn as_ref(self: &Self) -> &str`
 
 ##### `impl AsRef`
 
-- `fn as_ref(self: &Self) -> &str`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
+- `fn as_ref(self: &Self) -> &[u8]`
 
 ##### `impl Borrow`
 
 - `fn borrow(self: &Self) -> &str`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
 
 ##### `impl BorrowMut<T>`
 
@@ -749,15 +749,14 @@ computation and the comparison operation.
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a str) -> bool`
-  Performs a case-insensitive comparison of the string against the header
-
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &str) -> bool`
   Performs a case-insensitive comparison of the string against the header
+
+##### `impl PartialEq<'a>`
+
+- `fn eq(self: &Self, other: &&'a HeaderName) -> bool`
 
 ##### `impl PartialEq`
 
@@ -765,7 +764,8 @@ computation and the comparison operation.
 
 ##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &&'a HeaderName) -> bool`
+- `fn eq(self: &Self, other: &&'a str) -> bool`
+  Performs a case-insensitive comparison of the string against the header
 
 ##### `impl StructuralPartialEq`
 
@@ -781,23 +781,29 @@ computation and the comparison operation.
 
 - `fn to_string(self: &Self) -> String`
 
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderName`
+
+- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
 ##### `impl TryFrom`
 
 - `type Error = InvalidHeaderName`
 
 - `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom`
-
-- `type Error = InvalidHeaderName`
-
-- `fn try_from(s: String) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidHeaderName`
 
 - `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = InvalidHeaderName`
+
+- `fn try_from(s: String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -810,12 +816,6 @@ computation and the comparison operation.
 - `type Error = InvalidHeaderName`
 
 - `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderName`
-
-- `fn try_from(s: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -885,9 +885,18 @@ an `Err` if the header value contains non visible ascii characters.
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from(t: &'a HeaderValue) -> Self`
+
 ##### `impl From`
 
 - `fn from(h: HeaderName) -> HeaderValue`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
@@ -895,28 +904,7 @@ an `Err` if the header value contains non visible ascii characters.
 
 ##### `impl From`
 
-- `fn from(num: u32) -> HeaderValue`
-
-##### `impl From`
-
-- `fn from(num: usize) -> HeaderValue`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(t: &'a HeaderValue) -> Self`
-
-##### `impl From`
-
 - `fn from(num: u16) -> HeaderValue`
-
-##### `impl From`
-
-- `fn from(num: u64) -> HeaderValue`
 
 ##### `impl From`
 
@@ -925,6 +913,18 @@ an `Err` if the header value contains non visible ascii characters.
 ##### `impl From`
 
 - `fn from(num: i32) -> HeaderValue`
+
+##### `impl From`
+
+- `fn from(num: u32) -> HeaderValue`
+
+##### `impl From`
+
+- `fn from(num: u64) -> HeaderValue`
+
+##### `impl From`
+
+- `fn from(num: usize) -> HeaderValue`
 
 ##### `impl From`
 
@@ -979,33 +979,25 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `fn eq(self: &Self, other: &[u8]) -> bool`
 
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &String) -> bool`
-
 ##### `impl PartialEq<'a, T: ?Sized>`
 
 - `fn eq(self: &Self, other: &&'a T) -> bool`
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &String) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &HeaderValue) -> bool`
 
-##### `impl PartialOrd`
+##### `impl PartialEq`
 
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd<'a, T: ?Sized>`
-
-- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
@@ -1015,6 +1007,14 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `fn partial_cmp(self: &Self, other: &HeaderValue) -> Option<cmp::Ordering>`
 
+##### `impl PartialOrd<'a, T: ?Sized>`
+
+- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+
 ##### `impl ToOwned<T>`
 
 - `type Owned = T`
@@ -1023,29 +1023,17 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderValue`
-
-- `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidHeaderValue`
-
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = InvalidHeaderValue`
 
 - `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -1057,7 +1045,19 @@ an `Err` if the header value contains non visible ascii characters.
 
 - `type Error = InvalidHeaderValue`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidHeaderValue`
+
+- `fn try_from(s: &'a String) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1182,21 +1182,21 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a str) -> bool`
-
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &Method) -> bool`
 
-##### `impl PartialEq`
+##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- `fn eq(self: &Self, other: &&'a str) -> bool`
 
 ##### `impl PartialEq<'a>`
 
 - `fn eq(self: &Self, other: &&'a Method) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -1216,13 +1216,13 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `type Error = InvalidMethod`
 
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidMethod`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -1342,6 +1342,36 @@ fn serialize<T>(req: Request<T>) -> serde_json::Result<Request<Vec<u8>>>
 
 #### Implementations
 
+- `fn builder() -> Builder`
+  Creates a new builder-style object to manufacture a `Request`
+
+- `fn get<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a GET method and the given URI.
+
+- `fn put<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a PUT method and the given URI.
+
+- `fn post<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a POST method and the given URI.
+
+- `fn delete<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a DELETE method and the given URI.
+
+- `fn options<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with an OPTIONS method and the given URI.
+
+- `fn head<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a HEAD method and the given URI.
+
+- `fn connect<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a CONNECT method and the given URI.
+
+- `fn patch<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a PATCH method and the given URI.
+
+- `fn trace<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a TRACE method and the given URI.
+
 - `fn new(body: T) -> Request<T>`
   Creates a new blank `Request` with the body
 
@@ -1392,36 +1422,6 @@ fn serialize<T>(req: Request<T>) -> serde_json::Result<Request<Vec<u8>>>
 
 - `fn map<F, U>(self: Self, f: F) -> Request<U>`
   Consumes the request returning a new request with body mapped to the
-
-- `fn builder() -> Builder`
-  Creates a new builder-style object to manufacture a `Request`
-
-- `fn get<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a GET method and the given URI.
-
-- `fn put<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a PUT method and the given URI.
-
-- `fn post<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a POST method and the given URI.
-
-- `fn delete<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a DELETE method and the given URI.
-
-- `fn options<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with an OPTIONS method and the given URI.
-
-- `fn head<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a HEAD method and the given URI.
-
-- `fn connect<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a CONNECT method and the given URI.
-
-- `fn patch<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a PATCH method and the given URI.
-
-- `fn trace<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a TRACE method and the given URI.
 
 #### Trait Implementations
 
@@ -1704,9 +1704,9 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
 
 - `fn default() -> Response<T>`
 
-##### `impl ResponseExt`
-
 ##### `impl AsSendBody`
+
+##### `impl ResponseExt`
 
 ### `StatusCode`
 
@@ -1722,7 +1722,7 @@ https://www.iana.org/assignments/http-status-codes/http-status-codes.xhtml).
 
 Status code values in the range 100-999 (inclusive) are supported by this
 type. Values in the range 100-599 are semantically classified by the most
-significant digit. See [`StatusCode::is_success`](#is-success), etc. Values above 599
+significant digit. See `StatusCode::is_success`, etc. Values above 599
 are unclassified but allowed for legacy compatibility, though their use is
 discouraged. Applications may interpret such values as protocol errors.
 
@@ -1737,36 +1737,6 @@ assert!(StatusCode::OK.is_success());
 ```
 
 #### Implementations
-
-- `const fn from_u16(src: u16) -> Result<StatusCode, InvalidStatusCode>`
-  Converts a u16 to a status code.
-
-- `fn from_bytes(src: &[u8]) -> Result<StatusCode, InvalidStatusCode>`
-  Converts a `&[u8]` to a status code.
-
-- `const fn as_u16(self: &Self) -> u16`
-  Returns the `u16` corresponding to this `StatusCode`.
-
-- `fn as_str(self: &Self) -> &str`
-  Returns a &str representation of the `StatusCode`
-
-- `fn canonical_reason(self: &Self) -> Option<&'static str>`
-  Get the standardised `reason-phrase` for this status code.
-
-- `fn is_informational(self: &Self) -> bool`
-  Check if status is within 100-199.
-
-- `fn is_success(self: &Self) -> bool`
-  Check if status is within 200-299.
-
-- `fn is_redirection(self: &Self) -> bool`
-  Check if status is within 300-399.
-
-- `fn is_client_error(self: &Self) -> bool`
-  Check if status is within 400-499.
-
-- `fn is_server_error(self: &Self) -> bool`
-  Check if status is within 500-599.
 
 - `const CONTINUE: StatusCode`
 
@@ -1892,16 +1862,46 @@ assert!(StatusCode::OK.is_success());
 
 - `const NETWORK_AUTHENTICATION_REQUIRED: StatusCode`
 
+- `const fn from_u16(src: u16) -> Result<StatusCode, InvalidStatusCode>`
+  Converts a u16 to a status code.
+
+- `fn from_bytes(src: &[u8]) -> Result<StatusCode, InvalidStatusCode>`
+  Converts a `&[u8]` to a status code.
+
+- `const fn as_u16(self: &Self) -> u16`
+  Returns the `u16` corresponding to this `StatusCode`.
+
+- `fn as_str(self: &Self) -> &str`
+  Returns a &str representation of the `StatusCode`
+
+- `fn canonical_reason(self: &Self) -> Option<&'static str>`
+  Get the standardised `reason-phrase` for this status code.
+
+- `fn is_informational(self: &Self) -> bool`
+  Check if status is within 100-199.
+
+- `fn is_success(self: &Self) -> bool`
+  Check if status is within 200-299.
+
+- `fn is_redirection(self: &Self) -> bool`
+  Check if status is within 300-399.
+
+- `fn is_client_error(self: &Self) -> bool`
+  Check if status is within 400-499.
+
+- `fn is_server_error(self: &Self) -> bool`
+  Check if status is within 500-599.
+
 #### Trait Implementations
+
+##### `impl From<'a>`
+
+- `fn from(t: &'a StatusCode) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(t: &'a StatusCode) -> Self`
 
 ##### `impl FromStr`
 
@@ -1952,11 +1952,11 @@ assert!(StatusCode::OK.is_success());
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &u16) -> bool`
+- `fn eq(self: &Self, other: &StatusCode) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &StatusCode) -> bool`
+- `fn eq(self: &Self, other: &u16) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -1976,11 +1976,11 @@ assert!(StatusCode::OK.is_success());
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
+##### `impl TryFrom<'a>`
 
-- `type Error = Infallible`
+- `type Error = InvalidStatusCode`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -1988,11 +1988,11 @@ assert!(StatusCode::OK.is_success());
 
 - `fn try_from(t: u16) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom<T, U>`
 
-- `type Error = InvalidStatusCode`
+- `type Error = Infallible`
 
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryFrom<'a>`
 
@@ -2115,16 +2115,16 @@ assert_eq!(uri.path(), "/install.html");
 
 ##### `impl From`
 
-- `fn from(authority: Authority) -> Self`
-
-##### `impl From`
-
 - `fn from(path_and_query: PathAndQuery) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(authority: Authority) -> Self`
 
 ##### `impl FromStr`
 
@@ -2191,11 +2191,29 @@ assert_eq!(uri.path(), "/install.html");
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom`
+##### `impl TryFrom<'a>`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidUri`
+
+- `fn try_from(t: &'a String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom`
 
@@ -2209,29 +2227,11 @@ assert_eq!(uri.path(), "/install.html");
 
 - `fn try_from(src: Parts) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom<'a>`
+##### `impl TryFrom`
 
 - `type Error = InvalidUri`
 
-- `fn try_from(t: &'a String) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidUri`
-
-- `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
+- `fn try_from(vec: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 

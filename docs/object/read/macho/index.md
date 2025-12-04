@@ -7,20 +7,20 @@
 Support for reading Mach-O files.
 
 Traits are used to abstract over the difference between 32-bit and 64-bit Mach-O
-files. The primary trait for this is [`MachHeader`](#machheader).
+files. The primary trait for this is [`MachHeader`](index.md).
 
 ## High level API
 
-[`MachOFile`](#machofile) implements the [`Object`](crate::read::Object) trait for Mach-O files.
-[`MachOFile`](#machofile) is parameterised by [`MachHeader`](#machheader) to allow reading both 32-bit and
-64-bit Mach-O files. There are type aliases for these parameters ([`MachOFile32`](#machofile32) and
-[`MachOFile64`](#machofile64)).
+[`MachOFile`](index.md) implements the [`Object`](crate::read::Object) trait for Mach-O files.
+[`MachOFile`](index.md) is parameterised by [`MachHeader`](index.md) to allow reading both 32-bit and
+64-bit Mach-O files. There are type aliases for these parameters ([`MachOFile32`](index.md) and
+[`MachOFile64`](index.md)).
 
 ## Low level API
 
-The [`MachHeader`](#machheader) trait can be directly used to parse both [`macho::MachHeader32`](#machheader32)
-and [`macho::MachHeader64`](#machheader64). Additionally, [`FatHeader`](object/macho/index.md) and the [`FatArch`](#fatarch) trait
-can be used to iterate images in multi-architecture binaries, and [`DyldCache`](#dyldcache) can
+The [`MachHeader`](index.md) trait can be directly used to parse both `macho::MachHeader32`
+and `macho::MachHeader64`. Additionally, [`FatHeader`](macho/index.md) and the [`FatArch`](index.md) trait
+can be used to iterate images in multi-architecture binaries, and [`DyldCache`](index.md) can
 be used to locate images in a dyld shared cache.
 
 ### Example for low level API

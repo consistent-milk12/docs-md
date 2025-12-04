@@ -30,7 +30,7 @@ All spans and events have the following metadata:
   overridden.
 - A [verbosity level]. This determines how verbose a given span or event
   is, and allows enabling or disabling more verbose diagnostics
-  situationally. See the documentation for the [`Level`](tracing_core/metadata/index.md) type for details.
+  situationally. See the documentation for the [`Level`](metadata/index.md) type for details.
 - The names of the [fields](#fields)
  defined by the span or event.
 - Whether the metadata corresponds to a span or event.
@@ -41,7 +41,7 @@ location where the span or event originated _may_ be provided:
 - The [line number]
 - The [module path]
 
-Metadata is used by [`Subscriber`](tracing_core/subscriber/index.md)s when filtering spans and events, and it
+Metadata is used by [`Subscriber`](subscriber/index.md)s when filtering spans and events, and it
 may also be used as part of their data payload.
 
 When created by the `event!` or `span!` macro, the metadata describing a
@@ -54,7 +54,7 @@ filtering is based on metadata, rather than on the constructed span.
 
 In well-behaved applications, two `Metadata` with equal
 [callsite identifiers] will be equal in all other ways (i.e., have the same
-`name`, `target`, etc.). Consequently, in release builds, [`Metadata::eq`](#eq)
+`name`, `target`, etc.). Consequently, in release builds, `Metadata::eq`
 *only* checks that its arguments have equal callsites. However, the equality
 of `Metadata`'s other fields is checked in debug builds.
 
@@ -261,8 +261,8 @@ Describes the level of verbosity of a span or event.
 `Level` implements the [`PartialOrd`](#partialord) and [`Ord`](#ord) traits, allowing two
 `Level`s to be compared to determine which is considered more or less
 verbose. Levels which are more verbose are considered "greater than" levels
-which are less verbose, with [`Level::ERROR`](#error) considered the lowest, and
-[`Level::TRACE`](#trace) considered the highest.
+which are less verbose, with `Level::ERROR` considered the lowest, and
+`Level::TRACE` considered the highest.
 
 For example:
 ```
@@ -286,10 +286,10 @@ Applications using those libraries typically chose to ignore those traces. Howev
 debugging an issue involving said libraries, it may be useful to temporarily
 enable the more verbose traces.
 
-The [`LevelFilter`](tracing_core/metadata/index.md) type is provided to enable filtering traces by
-verbosity. `Level`s can be compared against [`LevelFilter`](tracing_core/metadata/index.md)s, and
-[`LevelFilter`](tracing_core/metadata/index.md) has a variant for each `Level`, which compares analogously
-to that level. In addition, [`LevelFilter`](tracing_core/metadata/index.md) adds a [`LevelFilter::OFF`](#off)
+The [`LevelFilter`](metadata/index.md) type is provided to enable filtering traces by
+verbosity. `Level`s can be compared against [`LevelFilter`](metadata/index.md)s, and
+[`LevelFilter`](metadata/index.md) has a variant for each `Level`, which compares analogously
+to that level. In addition, [`LevelFilter`](metadata/index.md) adds a `LevelFilter::OFF`
 variant, which is considered "less verbose" than every other `Level`. This is
 intended to allow filters to completely disable tracing in a particular context.
 
@@ -306,10 +306,10 @@ assert!(LevelFilter::INFO >= Level::INFO);
 
 ## Examples
 
-Below is a simple example of how a [`Subscriber`](tracing_core/subscriber/index.md) could implement filtering through
-a [`LevelFilter`](tracing_core/metadata/index.md). When a span or event is recorded, the [`Subscriber::enabled`](#enabled) method
-compares the span or event's `Level` against the configured [`LevelFilter`](tracing_core/metadata/index.md).
-The optional [`Subscriber::max_level_hint`](#max-level-hint) method can also be implemented to allow spans
+Below is a simple example of how a [`Subscriber`](subscriber/index.md) could implement filtering through
+a [`LevelFilter`](metadata/index.md). When a span or event is recorded, the `Subscriber::enabled` method
+compares the span or event's `Level` against the configured [`LevelFilter`](metadata/index.md).
+The optional `Subscriber::max_level_hint` method can also be implemented to allow spans
 and events above a maximum verbosity level to be skipped more efficiently,
 often improving performance in short-lived programs.
 
@@ -455,23 +455,11 @@ recorded in.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
-
-- `fn lt(self: &Self, other: &Level) -> bool`
-
-- `fn le(self: &Self, other: &Level) -> bool`
-
-- `fn gt(self: &Self, other: &Level) -> bool`
-
-- `fn ge(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -484,6 +472,18 @@ recorded in.
 - `fn gt(self: &Self, other: &LevelFilter) -> bool`
 
 - `fn ge(self: &Self, other: &LevelFilter) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
+
+- `fn lt(self: &Self, other: &Level) -> bool`
+
+- `fn le(self: &Self, other: &Level) -> bool`
+
+- `fn gt(self: &Self, other: &Level) -> bool`
+
+- `fn ge(self: &Self, other: &Level) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -521,17 +521,17 @@ recorded in.
 struct LevelFilter();
 ```
 
-A filter comparable to a verbosity [`Level`](tracing_core/metadata/index.md).
+A filter comparable to a verbosity [`Level`](metadata/index.md).
 
-If a [`Level`](tracing_core/metadata/index.md) is considered less than or equal to a `LevelFilter`, it
+If a [`Level`](metadata/index.md) is considered less than or equal to a `LevelFilter`, it
 should be considered enabled; if greater than the `LevelFilter`, that level
-is disabled. See [`LevelFilter::current`](#current) for more details.
+is disabled. See `LevelFilter::current` for more details.
 
 Note that this is essentially identical to the `Level` type, but with the
 addition of an [`OFF`](#off) level that completely disables all trace
 instrumentation.
 
-See the documentation for the [`Level`](tracing_core/metadata/index.md) type to see how `Level`s
+See the documentation for the [`Level`](metadata/index.md) type to see how `Level`s
 and `LevelFilter`s interact.
 
 
@@ -560,14 +560,14 @@ and `LevelFilter`s interact.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(level: Option<Level>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(level: Option<Level>) -> Self`
 
 ##### `impl From`
 
@@ -622,23 +622,11 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
-
-- `fn lt(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn le(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn gt(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn ge(self: &Self, other: &LevelFilter) -> bool`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -651,6 +639,18 @@ and `LevelFilter`s interact.
 - `fn gt(self: &Self, other: &Level) -> bool`
 
 - `fn ge(self: &Self, other: &Level) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
+
+- `fn lt(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn le(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn gt(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn ge(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl StructuralPartialEq`
 

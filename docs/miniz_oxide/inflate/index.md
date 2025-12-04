@@ -108,10 +108,10 @@ Return status codes.
   input stream is likely truncated.
   
   This can't happen if you have provided the
-  [`TINFL_FLAG_HAS_MORE_INPUT`](#tinfl_flag_has_more_input) flag to the
+  `TINFL_FLAG_HAS_MORE_INPUT` flag to the
   decompression.  By setting that flag, you indicate more input exists but is not provided,
   and so reaching the end of the input data without finding the end of the compressed stream
-  would instead return a [`NeedsMoreInput`](#needsmoreinput) status.
+  would instead return a `NeedsMoreInput` status.
 
 - **`BadParam`**
 
@@ -138,10 +138,10 @@ Return status codes.
   
   This occurs when there's no more consumable input, but the end of the stream hasn't been
   reached, and you have supplied the
-  [`TINFL_FLAG_HAS_MORE_INPUT`](#tinfl_flag_has_more_input) flag to the
+  `TINFL_FLAG_HAS_MORE_INPUT` flag to the
   decompressor.  Had you not supplied that flag (which would mean you were asserting that you
   believed all the data was available) you would have gotten a
-  [`FailedCannotMakeProcess`](#failedcannotmakeprogress) instead.
+  `FailedCannotMakeProcess` instead.
 
 - **`HasMoreOutput`**
 
@@ -235,7 +235,7 @@ NOTE: This function will not bound the output, so if the output is large enough 
 It is therefore suggested to not use this for anything other than test programs, use the functions with a specified limit, or
 ideally streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
 
-Returns a [`Result`](../../clap_builder/clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
+Returns a [`Result`](../../clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
 
 ### `decompress_to_vec_zlib`
 
@@ -249,7 +249,7 @@ NOTE: This function will not bound the output, so if the output is large enough 
 It is therefore suggested to not use this for anything other than test programs, use the functions with a specified limit, or
 ideally streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
 
-Returns a [`Result`](../../clap_builder/clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
+Returns a [`Result`](../../clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
 
 ### `decompress_to_vec_with_limit`
 
@@ -260,12 +260,12 @@ fn decompress_to_vec_with_limit(input: &[u8], max_size: usize) -> Result<crate::
 Decompress the deflate-encoded data in `input` to a vector.
 
 The vector is grown to at most `max_size` bytes; if the data does not fit in that size,
-the error [struct][DecompressError] will contain the status [`TINFLStatus::HasMoreOutput`](#hasmoreoutput) and the data that was decompressed on failure.
+the error [struct][DecompressError] will contain the status `TINFLStatus::HasMoreOutput` and the data that was decompressed on failure.
 
 As this function tries to decompress everything in one go, it's not ideal for general use outside of tests or where the output size is expected to be small.
 It is suggested to use streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
 
-Returns a [`Result`](../../clap_builder/clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
+Returns a [`Result`](../../clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
 
 ### `decompress_to_vec_zlib_with_limit`
 
@@ -275,12 +275,12 @@ fn decompress_to_vec_zlib_with_limit(input: &[u8], max_size: usize) -> Result<cr
 
 Decompress the deflate-encoded data (with a zlib wrapper) in `input` to a vector.
 The vector is grown to at most `max_size` bytes; if the data does not fit in that size,
-the error [struct][DecompressError] will contain the status [`TINFLStatus::HasMoreOutput`](#hasmoreoutput) and the data that was decompressed on failure.
+the error [struct][DecompressError] will contain the status `TINFLStatus::HasMoreOutput` and the data that was decompressed on failure.
 
 As this function tries to decompress everything in one go, it's not ideal for general use outside of tests or where the output size is expected to be small.
 It is suggested to use streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
 
-Returns a [`Result`](../../clap_builder/clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
+Returns a [`Result`](../../clap_builder/error/index.md) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
 
 ### `decompress_slice_iter_to_slice`
 

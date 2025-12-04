@@ -108,7 +108,7 @@ deflate stream.
 
 # Arguments
 
-`r` is a [`DecompressorOxide`](miniz_oxide/inflate/core/index.md) struct with the state of this stream.
+`r` is a [`DecompressorOxide`](inflate/core/index.md) struct with the state of this stream.
 
 `in_buf` is a reference to the compressed data that is to be decompressed. The decompressor will
 start at the first byte of this buffer.
@@ -117,7 +117,7 @@ start at the first byte of this buffer.
 stores previously decompressed data if any.
 
 * The offset given by `out_pos` indicates where in the output buffer slice writing should start.
-* If [`TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF`](miniz_oxide/inflate/core/inflate_flags/index.md) is not set, the output buffer is used in a
+* If [`TINFL_FLAG_USING_NON_WRAPPING_OUTPUT_BUF`](inflate/core/inflate_flags/index.md) is not set, the output buffer is used in a
   wrapping manner, and it's size is required to be a power of 2.
 * The decompression function normally needs access to 32KiB of the previously decompressed data
   (or to the beginning of the decompressed data if less than 32KiB has been decompressed.)
@@ -128,9 +128,9 @@ stores previously decompressed data if any.
       header structure, however, the header data should not be relied on to be correct.
 
 `flags` indicates settings and status to the decompression function.
-* The [`TINFL_FLAG_HAS_MORE_INPUT`](miniz_oxide/inflate/core/inflate_flags/index.md) has to be specified if more compressed data is to be provided
+* The [`TINFL_FLAG_HAS_MORE_INPUT`](inflate/core/inflate_flags/index.md) has to be specified if more compressed data is to be provided
   in a subsequent call to this function.
-* See the the [`inflate_flags`](miniz_oxide/inflate/core/inflate_flags/index.md) module for details on other flags.
+* See the the [`inflate_flags`](inflate/core/inflate_flags/index.md) module for details on other flags.
 
 # Returns
 
