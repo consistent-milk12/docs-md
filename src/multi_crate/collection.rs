@@ -61,6 +61,17 @@ impl CrateCollection {
         self.crates.get(name)
     }
 
+    /// Get a crate by name, returning the stored key as well.
+    ///
+    /// This is useful when you need a reference to the crate name that
+    /// has the same lifetime as the collection.
+    #[must_use]
+    pub fn get_with_name(&self, name: &str) -> Option<(&str, &Crate)> {
+        self.crates
+            .get_key_value(name)
+            .map(|(k, v)| (k.as_str(), v))
+    }
+
     /// Check if a crate exists in the collection.
     #[must_use]
     pub fn contains(&self, name: &str) -> bool {

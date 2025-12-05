@@ -43,22 +43,84 @@ pub struct MultiCrateContext<'a> {
 
     /// CLI arguments.
     args: &'a Args,
+
+    /// Pre-computed cross-crate impl blocks.
+    ///
+    /// Maps target crate name -> type name -> impl blocks from other crates.
+    /// This is computed once during construction rather than per-view.
+    cross_crate_impls: HashMap<String, HashMap<String, Vec<&'a Impl>>>,
 }
 
 impl<'a> MultiCrateContext<'a> {
     /// Create a new multi-crate context.
     ///
-    /// Builds the unified link registry from all crates.
+    /// Builds the unified link registry and pre-computes cross-crate impls.
     #[must_use]
     pub fn new(crates: &'a CrateCollection, args: &'a Args) -> Self {
         let primary = args.primary_crate.as_deref();
         let registry = UnifiedLinkRegistry::build(crates, primary);
 
+        // Pre-compute cross-crate impls for all crates
+        let cross_crate_impls = Self::build_cross_crate_impls(crates);
+
         Self {
             crates,
             registry,
             args,
+            cross_crate_impls,
         }
+    }
+
+    /// Build the cross-crate impl map for all crates.
+    ///
+    /// Scans all crates once and groups impl blocks by their target crate
+    /// and type name. This avoids O(n*m) scanning per view creation.
+    fn build_cross_crate_impls(
+        crates: &'a CrateCollection,
+    ) -> HashMap<String, HashMap<String, Vec<&'a Impl>>> {
+        let mut result: HashMap<String, HashMap<String, Vec<&'a Impl>>> = HashMap::new();
+
+        // Initialize empty maps for all crates
+        for crate_name in crates.names() {
+            result.insert(crate_name.clone(), HashMap::new());
+        }
+
+        // Scan all crates for impl blocks
+        for (source_crate, krate) in crates.iter() {
+            for item in krate.index.values() {
+                if let ItemEnum::Impl(impl_block) = &item.inner {
+                    // Skip synthetic impls
+                    if impl_block.is_synthetic {
+                        continue;
+                    }
+
+                    // Get the target type path
+                    if let Some(type_path) = Self::get_impl_target_path(impl_block) {
+                        // Extract the target crate name (first segment)
+                        if let Some(target_crate) = type_path.split("::").next() {
+                            // Skip if targeting same crate (not cross-crate)
+                            if target_crate == source_crate {
+                                continue;
+                            }
+
+                            // Only add if target crate is in our collection
+                            if let Some(type_map) = result.get_mut(target_crate) {
+                                // Extract the type name (last segment)
+                                let type_name = type_path
+                                    .split("::")
+                                    .last()
+                                    .unwrap_or(&type_path)
+                                    .to_string();
+
+                                type_map.entry(type_name).or_default().push(impl_block);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        result
     }
 
     /// Get the crate collection.
@@ -86,10 +148,11 @@ impl<'a> MultiCrateContext<'a> {
     /// registry for cross-crate link resolution.
     #[must_use]
     pub fn single_crate_view(&'a self, crate_name: &str) -> Option<SingleCrateView<'a>> {
-        let krate = self.crates.get(crate_name)?;
+        // Use get_with_name to get the crate name with the collection's lifetime
+        let (name, krate) = self.crates.get_with_name(crate_name)?;
 
         Some(SingleCrateView::new(
-            crate_name,
+            name,
             krate,
             &self.registry,
             self.args,
@@ -117,52 +180,21 @@ impl<'a> MultiCrateContext<'a> {
         None
     }
 
-    /// Find cross-crate impl blocks for types in the target crate.
+    /// Get pre-computed cross-crate impl blocks for a target crate.
     ///
-    /// Scans all other crates for impl blocks that target types from the
-    /// specified crate. Returns a map from type name to impl blocks.
+    /// Returns a map from type name to impl blocks from other crates.
+    /// This data is pre-computed during context construction for efficiency.
     ///
-    /// This is used to show trait implementations from dependency crates
-    /// on types from the target crate.
+    /// # Returns
+    ///
+    /// Reference to the type-name -> impl-blocks map, or `None` if the
+    /// crate is not in the collection.
     #[must_use]
-    pub fn find_cross_crate_impls(&self, target_crate: &str) -> HashMap<String, Vec<&Impl>> {
-        let mut result: HashMap<String, Vec<&Impl>> = HashMap::new();
-
-        for (source_crate, krate) in self.crates.iter() {
-            // Skip the target crate itself
-            if source_crate == target_crate {
-                continue;
-            }
-
-            // Find impls in this crate that target types from target_crate
-            for item in krate.index.values() {
-                if let ItemEnum::Impl(impl_block) = &item.inner {
-                    // Skip synthetic impls
-                    if impl_block.is_synthetic {
-                        continue;
-                    }
-
-                    // Check if this impl targets a type from target_crate
-                    if let Some(type_path) = Self::get_impl_target_path(impl_block) {
-                        // Check if the path starts with the target crate name
-                        if let Some(first_segment) = type_path.split("::").next()
-                            && first_segment == target_crate
-                        {
-                            // Extract the type name (last segment)
-                            let type_name = type_path
-                                .split("::")
-                                .last()
-                                .unwrap_or(&type_path)
-                                .to_string();
-
-                            result.entry(type_name).or_default().push(impl_block);
-                        }
-                    }
-                }
-            }
-        }
-
-        result
+    pub fn get_cross_crate_impls(
+        &self,
+        target_crate: &str,
+    ) -> Option<&HashMap<String, Vec<&'a Impl>>> {
+        self.cross_crate_impls.get(target_crate)
     }
 
     /// Get the target type path for an impl block.
@@ -184,8 +216,8 @@ impl<'a> MultiCrateContext<'a> {
 ///
 /// [`GeneratorContext`]: crate::generator::GeneratorContext
 pub struct SingleCrateView<'a> {
-    /// Name of this crate.
-    crate_name: String,
+    /// Name of this crate (borrowed from the context).
+    crate_name: &'a str,
 
     /// The crate being rendered.
     krate: &'a Crate,
@@ -205,9 +237,9 @@ pub struct SingleCrateView<'a> {
     /// Map from type ID to impl blocks (local crate only).
     impl_map: HashMap<Id, Vec<&'a Impl>>,
 
-    /// Map from type name to impl blocks from other crates.
-    /// These are trait implementations from dependency crates.
-    cross_crate_impls: HashMap<String, Vec<&'a Impl>>,
+    /// Reference to pre-computed cross-crate impl blocks from context.
+    /// Maps type name to impl blocks from other crates.
+    cross_crate_impls: Option<&'a HashMap<String, Vec<&'a Impl>>>,
 
     /// Map from type name to type ID for cross-crate impl lookup.
     type_name_to_id: HashMap<String, Id>,
@@ -216,30 +248,30 @@ pub struct SingleCrateView<'a> {
 impl<'a> SingleCrateView<'a> {
     /// Create a new single-crate view.
     fn new(
-        crate_name: &str,
+        crate_name: &'a str,
         krate: &'a Crate,
         registry: &'a UnifiedLinkRegistry,
         args: &'a Args,
         ctx: &'a MultiCrateContext<'a>,
     ) -> Self {
+        // Get reference to pre-computed cross-crate impls
+        let cross_crate_impls = ctx.get_cross_crate_impls(crate_name);
+
         let mut view = Self {
-            crate_name: crate_name.to_owned(),
+            crate_name,
             krate,
             registry,
             args,
             ctx,
             path_map: HashMap::new(),
             impl_map: HashMap::new(),
-            cross_crate_impls: HashMap::new(),
+            cross_crate_impls,
             type_name_to_id: HashMap::new(),
         };
 
         view.build_path_map();
         view.build_impl_map();
         view.build_type_name_map();
-
-        // Get cross-crate impls from the context
-        view.cross_crate_impls = ctx.find_cross_crate_impls(crate_name);
 
         view
     }
@@ -353,8 +385,8 @@ impl<'a> SingleCrateView<'a> {
 
     /// Get the crate name.
     #[must_use]
-    pub fn crate_name(&self) -> &str {
-        &self.crate_name
+    pub const fn crate_name(&self) -> &str {
+        self.crate_name
     }
 
     /// Get the crate being rendered.
@@ -403,7 +435,8 @@ impl<'a> SingleCrateView<'a> {
         // Add cross-crate impls by looking up the type name
         if let Some(item) = self.krate.index.get(&id)
             && let Some(type_name) = &item.name
-            && let Some(external_impls) = self.cross_crate_impls.get(type_name)
+            && let Some(cross_crate_map) = self.cross_crate_impls
+            && let Some(external_impls) = cross_crate_map.get(type_name)
         {
             result.extend(external_impls.iter().copied());
         }
@@ -435,13 +468,13 @@ impl<'a> SingleCrateView<'a> {
     #[must_use]
     pub fn create_link(&self, to_crate: &str, to_id: Id, from_path: &str) -> Option<String> {
         self.registry
-            .create_link(&self.crate_name, from_path, to_crate, to_id)
+            .create_link(self.crate_name, from_path, to_crate, to_id)
     }
 
     /// Resolve a name to a crate and ID.
     #[must_use]
     pub fn resolve_name(&self, name: &str) -> Option<(String, Id)> {
-        self.registry.resolve_name(name, &self.crate_name)
+        self.registry.resolve_name(name, self.crate_name)
     }
 
     /// Look up an item across all crates by ID.
@@ -458,7 +491,7 @@ impl<'a> SingleCrateView<'a> {
     pub fn lookup_item_across_crates(&self, id: &Id) -> Option<(&str, &Item)> {
         // First check local crate (fast path)
         if let Some(item) = self.krate.index.get(id) {
-            return Some((&self.crate_name, item));
+            return Some((self.crate_name, item));
         }
 
         // Fall back to searching all crates
@@ -633,7 +666,7 @@ impl<'a> SingleCrateView<'a> {
         // Example:
         //   link_text = "Agent"
         //   registry.resolve_name("Agent", "ureq") → Some(("ureq", Id(456)))
-        if let Some((resolved_crate, id)) = self.registry.resolve_name(link_text, &self.crate_name)
+        if let Some((resolved_crate, id)) = self.registry.resolve_name(link_text, self.crate_name)
             && let Some(target_path) = self.registry.get_path(&resolved_crate, id)
         {
             // Only use this if:
@@ -724,12 +757,12 @@ impl<'a> SingleCrateView<'a> {
     ) -> Option<String> {
         // Look up the file path for this ID in the current crate
         // Returns None if the ID isn't registered (shouldn't happen for valid links)
-        let target_path = self.registry.get_path(&self.crate_name, id)?;
+        let target_path = self.registry.get_path(self.crate_name, id)?;
 
         // Delegate to build_markdown_link for the actual path computation
         Some(self.build_markdown_link(
             current_file,
-            &self.crate_name, // Same crate as current context
+            self.crate_name, // Same crate as current context
             target_path,
             display_name,
             anchor,
@@ -793,7 +826,7 @@ impl<'a> SingleCrateView<'a> {
 
         // Step 3: Look up the type in our cross-crate registry
         // This finds which crate owns "ConfigBuilder" and what file it's in
-        let (resolved_crate, id) = self.registry.resolve_name(type_name, &self.crate_name)?;
+        let (resolved_crate, id) = self.registry.resolve_name(type_name, self.crate_name)?;
         let target_path = self.registry.get_path(&resolved_crate, id)?;
 
         // Step 4: Build the final markdown link
@@ -1136,7 +1169,7 @@ impl RenderContext for SingleCrateView<'_> {
     }
 
     fn crate_name(&self) -> &str {
-        &self.crate_name
+        self.crate_name
     }
 
     fn get_item(&self, id: &Id) -> Option<&Item> {
@@ -1196,12 +1229,12 @@ impl RenderContext for SingleCrateView<'_> {
 
     fn create_link(&self, id: Id, current_file: &str) -> Option<String> {
         // Look up path in the unified registry
-        let path = self.registry.get_path(&self.crate_name, id)?;
+        let path = self.registry.get_path(self.crate_name, id)?;
 
         // Get the item name for display
         let display_name = self
             .registry
-            .get_name(&self.crate_name, id)
+            .get_name(self.crate_name, id)
             .cloned()
             .unwrap_or_else(|| "item".to_string());
 
