@@ -3,6 +3,7 @@
 //! This module provides [`MultiCrateGenerator`] which orchestrates
 //! documentation generation across multiple crates with cross-crate linking.
 
+use std::collections::{HashMap, HashSet};
 use std::fmt::Write;
 use std::path::Path;
 use std::sync::Arc;
@@ -123,8 +124,12 @@ impl<'a> MultiCrateGenerator<'a> {
         // Generate search index if requested (sequential - single file)
         if self.args.search_index {
             progress.set_message("Generating search_index.json...");
+
+            // Collect the IDs of all rendered items to filter the search index
+            let rendered_items = self.collect_rendered_items();
+
             let search_gen =
-                SearchIndexGenerator::new(self.ctx.crates(), self.args.include_private);
+                SearchIndexGenerator::new(self.ctx.crates(), self.args.include_private, rendered_items);
             search_gen
                 .write(&self.args.output)
                 .map_err(Error::FileWrite)?;
@@ -132,6 +137,87 @@ impl<'a> MultiCrateGenerator<'a> {
 
         progress.finish_with_message("Done!");
         Ok(())
+    }
+
+    /// Collect the IDs of all items that would be rendered.
+    ///
+    /// This walks the module tree for each crate using the same visibility
+    /// rules as rendering, collecting the IDs of items that will have
+    /// documentation generated for them.
+    fn collect_rendered_items(&self) -> HashMap<String, HashSet<Id>> {
+        let mut result = HashMap::new();
+
+        for crate_name in self.ctx.crates().names() {
+            if let Some(view) = self.ctx.single_crate_view(crate_name) {
+                let mut ids = HashSet::new();
+                Self::collect_crate_items(&view, &mut ids);
+                result.insert(crate_name.to_string(), ids);
+            }
+        }
+
+        result
+    }
+
+    /// Collect rendered item IDs for a single crate.
+    fn collect_crate_items(view: &SingleCrateView, ids: &mut HashSet<Id>) {
+        let krate = view.krate();
+
+        // Get root item
+        let Some(root_item) = krate.index.get(&krate.root) else {
+            return;
+        };
+
+        // Collect root module items
+        Self::collect_module_items(view, root_item, ids);
+    }
+
+    /// Recursively collect rendered item IDs from a module.
+    fn collect_module_items(view: &SingleCrateView, item: &Item, ids: &mut HashSet<Id>) {
+        let krate = view.krate();
+
+        if let ItemEnum::Module(module) = &item.inner {
+            for item_id in &module.items {
+                if let Some(child) = krate.index.get(item_id) {
+                    if !view.should_include_item(child) {
+                        continue;
+                    }
+
+                    match &child.inner {
+                        // Documentable items - add their IDs
+                        ItemEnum::Struct(_)
+                        | ItemEnum::Enum(_)
+                        | ItemEnum::Trait(_)
+                        | ItemEnum::Function(_)
+                        | ItemEnum::TypeAlias(_)
+                        | ItemEnum::Constant { .. }
+                        | ItemEnum::Macro(_) => {
+                            ids.insert(*item_id);
+                        },
+
+                        // Modules - add ID and recurse
+                        ItemEnum::Module(_) => {
+                            ids.insert(*item_id);
+                            Self::collect_module_items(view, child, ids);
+                        },
+
+                        // Re-exports - add the Use item ID (not the target)
+                        ItemEnum::Use(use_item) if !use_item.is_glob => {
+                            // Verify target exists (same logic as rendering)
+                            let target_exists = use_item.id.as_ref().map_or(false, |target_id| {
+                                krate.index.contains_key(target_id)
+                                    || view.lookup_item_across_crates(target_id).is_some()
+                            }) || view.resolve_external_path(&use_item.source).is_some();
+
+                            if target_exists {
+                                ids.insert(*item_id);
+                            }
+                        },
+
+                        _ => {},
+                    }
+                }
+            }
+        }
     }
 
     /// Generate documentation for a single crate.

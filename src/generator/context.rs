@@ -159,7 +159,7 @@ impl<'a> GeneratorContext<'a> {
 
         let impl_map = Self::build_impl_map(krate);
         let is_flat = matches!(args.format, CliOutputFormat::Flat);
-        let link_registry = LinkRegistry::build(krate, is_flat);
+        let link_registry = LinkRegistry::build(krate, is_flat, args.include_private);
 
         Self {
             krate,

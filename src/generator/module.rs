@@ -125,6 +125,28 @@ impl<'a> ModuleRenderer<'a> {
                     ItemEnum::Macro(_) => items.macros.push(child),
                     ItemEnum::Constant { .. } => items.constants.push(child),
                     ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+
+                    // Handle re-exports: pub use other::Item;
+                    // Skip glob re-exports (pub use foo::*) as they create duplicates
+                    ItemEnum::Use(use_item) if !use_item.is_glob => {
+                        // Try to resolve target item by ID
+                        if let Some(target_id) = &use_item.id {
+                            if let Some(target_item) = self.ctx.get_item(target_id) {
+                                // Categorize based on target type, but store the original Use item
+                                match &target_item.inner {
+                                    ItemEnum::Module(_) => items.modules.push((item_id, child)),
+                                    ItemEnum::Struct(_) => items.structs.push((item_id, child)),
+                                    ItemEnum::Enum(_) => items.enums.push((item_id, child)),
+                                    ItemEnum::Trait(_) => items.traits.push((item_id, child)),
+                                    ItemEnum::Function(_) => items.functions.push(child),
+                                    ItemEnum::Macro(_) => items.macros.push(child),
+                                    ItemEnum::Constant { .. } => items.constants.push(child),
+                                    ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+                                    _ => {},
+                                }
+                            }
+                        }
+                    },
                     _ => {},
                 }
             }

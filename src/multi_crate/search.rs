@@ -30,7 +30,7 @@
 //! generator.write(Path::new("docs/"))?;
 //! ```
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::path::Path;
 
 use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
@@ -86,7 +86,8 @@ pub struct SearchIndex {
 ///
 /// ```ignore
 /// let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
-/// let generator = SearchIndexGenerator::new(&crates, false);
+/// let rendered_items = generator.generate();  // Returns HashMap<String, HashSet<Id>>
+/// let generator = SearchIndexGenerator::new(&crates, false, rendered_items);
 /// generator.write(Path::new("docs/"))?;
 /// ```
 pub struct SearchIndexGenerator<'a> {
@@ -98,6 +99,12 @@ pub struct SearchIndexGenerator<'a> {
     /// When false (default), only public items are indexed.
     /// When true, all items regardless of visibility are indexed.
     include_private: bool,
+
+    /// Set of item IDs that were actually rendered per crate.
+    ///
+    /// Only items in this set will appear in the search index.
+    /// This ensures the search index matches the generated documentation.
+    rendered_items: HashMap<String, HashSet<Id>>,
 }
 
 impl<'a> SearchIndexGenerator<'a> {
@@ -107,11 +114,17 @@ impl<'a> SearchIndexGenerator<'a> {
     ///
     /// * `crates` - Collection of parsed crates to index
     /// * `include_private` - Whether to include non-public items
+    /// * `rendered_items` - Map of crate name to set of rendered item IDs
     #[must_use]
-    pub const fn new(crates: &'a CrateCollection, include_private: bool) -> Self {
+    pub fn new(
+        crates: &'a CrateCollection,
+        include_private: bool,
+        rendered_items: HashMap<String, HashSet<Id>>,
+    ) -> Self {
         Self {
             crates,
             include_private,
+            rendered_items,
         }
     }
 
@@ -160,12 +173,24 @@ impl<'a> SearchIndexGenerator<'a> {
     }
 
     /// Index all items in a single crate.
+    ///
+    /// Only indexes items that were actually rendered (present in `rendered_items`).
     fn index_crate(&self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate) {
+        // Get the set of rendered items for this crate
+        let rendered_set = self.rendered_items.get(crate_name);
+
         // Build a map of item ID to module path for accurate path construction
         let path_map = Self::build_path_map(krate);
 
         for (id, item) in &krate.index {
             let Some(name) = &item.name else { continue };
+
+            // Filter by rendered items - only include items that were actually rendered
+            if let Some(rendered) = rendered_set {
+                if !rendered.contains(id) {
+                    continue;
+                }
+            }
 
             // Filter by visibility unless include_private is set
             if !self.include_private && !matches!(item.visibility, Visibility::Public) {

@@ -30,7 +30,7 @@
 use std::collections::HashMap;
 use std::path::Path;
 
-use rustdoc_types::{Crate, Id, ItemEnum};
+use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
 use unicode_normalization::UnicodeNormalization;
 
 /// Convert a name to a GitHub-style markdown anchor slug.
@@ -179,6 +179,7 @@ impl LinkRegistry {
     ///
     /// * `krate` - The parsed rustdoc crate containing all items
     /// * `flat_format` - If true, use flat paths (`mod.md`); if false, use nested (`mod/index.md`)
+    /// * `include_private` - If true, include non-public items; if false, only public items
     ///
     /// # Returns
     ///
@@ -190,8 +191,9 @@ impl LinkRegistry {
     /// 2. For each top-level module: register it and recursively process children
     /// 3. For structs/enums/traits at root level: register them to `index.md`
     /// 4. Other items (functions, constants) are registered within their module's file
+    /// 5. Items are filtered by visibility unless `include_private` is true
     #[must_use]
-    pub fn build(krate: &Crate, flat_format: bool) -> Self {
+    pub fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self {
         let mut registry = Self::default();
 
         // Get root module - if missing, return empty registry
@@ -203,6 +205,11 @@ impl LinkRegistry {
         if let ItemEnum::Module(module) = &root.inner {
             for item_id in &module.items {
                 if let Some(item) = krate.index.get(item_id) {
+                    // Skip non-public items unless include_private is set
+                    if !include_private && !matches!(item.visibility, Visibility::Public) {
+                        continue;
+                    }
+
                     match &item.inner {
                         // Modules get their own files and are processed recursively
                         ItemEnum::Module(_) => {
@@ -223,6 +230,7 @@ impl LinkRegistry {
                                 &path,
                                 module_name,
                                 flat_format,
+                                include_private,
                             );
                         },
 
@@ -239,7 +247,15 @@ impl LinkRegistry {
                             registry.item_names.insert(*item_id, name.to_string());
                         },
 
-                        // Other items (imports, primitives, etc.) don't need registration
+                        // Re-exports (pub use) are registered with their alias name
+                        // Skip glob re-exports (pub use foo::*) as they don't have specific names
+                        ItemEnum::Use(use_item) if !use_item.is_glob => {
+                            let name = &use_item.name;
+                            registry.item_paths.insert(*item_id, "index.md".to_string());
+                            registry.item_names.insert(*item_id, name.clone());
+                        },
+
+                        // Other items (primitives, etc.) don't need registration
                         _ => {},
                     }
                 }
@@ -262,6 +278,7 @@ impl LinkRegistry {
     /// * `path` - File path where this module's docs will be written
     /// * `module_prefix` - Prefix for building child paths (e.g., "parent" or "`parent__child`")
     /// * `flat_format` - Whether to use flat naming convention
+    /// * `include_private` - Whether to include non-public items
     fn register_module_items(
         &mut self,
         krate: &Crate,
@@ -270,6 +287,7 @@ impl LinkRegistry {
         path: &str,
         module_prefix: &str,
         flat_format: bool,
+        include_private: bool,
     ) {
         // First, register the module itself
         let module_name = module_item.name.as_deref().unwrap_or("unnamed");
@@ -280,6 +298,11 @@ impl LinkRegistry {
         if let ItemEnum::Module(module) = &module_item.inner {
             for item_id in &module.items {
                 if let Some(item) = krate.index.get(item_id) {
+                    // Skip non-public items unless include_private is set
+                    if !include_private && !matches!(item.visibility, Visibility::Public) {
+                        continue;
+                    }
+
                     let name = item.name.as_deref().unwrap_or("unnamed");
 
                     match &item.inner {
@@ -294,6 +317,13 @@ impl LinkRegistry {
                         | ItemEnum::Macro(_) => {
                             self.item_paths.insert(*item_id, path.to_string());
                             self.item_names.insert(*item_id, name.to_string());
+                        },
+
+                        // Re-exports (pub use) are registered with their alias name
+                        // Skip glob re-exports (pub use foo::*) as they don't have specific names
+                        ItemEnum::Use(use_item) if !use_item.is_glob => {
+                            self.item_paths.insert(*item_id, path.to_string());
+                            self.item_names.insert(*item_id, use_item.name.clone());
                         },
 
                         // Nested modules get their own files - recurse into them
@@ -322,6 +352,7 @@ impl LinkRegistry {
                                 &sub_path,
                                 &sub_prefix,
                                 flat_format,
+                                include_private,
                             );
                         },
 

@@ -64,6 +64,32 @@ impl<'a> ItemRenderer<'a> {
         self.ctx.process_docs(item, self.current_file)
     }
 
+    /// Resolve a Use item to its target, returning the alias name and target item.
+    ///
+    /// For non-Use items, returns the item's own name and itself.
+    /// For Use items, resolves the target and returns the alias name with the target.
+    fn resolve_use_target<'b>(&self, item: &'b Item) -> Option<(&'b str, &'b Item)>
+    where
+        'a: 'b,
+    {
+        if let ItemEnum::Use(use_item) = &item.inner {
+            // Get alias name from the Use item
+            let name = use_item.name.as_str();
+
+            // Try to resolve target by ID
+            if let Some(target_id) = &use_item.id {
+                if let Some(target) = self.ctx.get_item(target_id) {
+                    return Some((name, target));
+                }
+            }
+            // Can't resolve - return None
+            None
+        } else {
+            // Not a Use item - return the item itself
+            Some((item.name.as_deref().unwrap_or("unnamed"), item))
+        }
+    }
+
     /// Render a struct definition to markdown.
     ///
     /// Produces a section with:
@@ -79,20 +105,35 @@ impl<'a> ItemRenderer<'a> {
     /// - **Unit**: `struct Foo;`
     /// - **Tuple**: `struct Foo(T, U);`
     /// - **Plain** (named fields): `struct Foo { field: T }`
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to a struct.
     pub fn render_struct(&self, md: &mut String, item_id: Id, item: &Item) {
-        let name = item.name.as_deref().unwrap_or("unnamed");
         let krate = self.ctx.krate();
 
-        if let ItemEnum::Struct(s) = &item.inner {
+        // Resolve Use items to their target, getting the display name and actual item
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return; // Couldn't resolve Use target
+        };
+
+        // Get the actual ID for impl lookup (use target ID for Use items)
+        let actual_id = if let ItemEnum::Use(use_item) = &item.inner {
+            use_item.id.unwrap_or(item_id)
+        } else {
+            item_id
+        };
+
+        if let ItemEnum::Struct(s) = &actual_item.inner {
             // Struct definition (heading + code block)
             render_struct_definition(md, name, s, krate, &self.type_renderer);
         }
 
-        // Documentation
-        append_docs(md, self.process_docs(item));
+        // Documentation (from actual item, not the Use item)
+        append_docs(md, self.process_docs(actual_item));
 
         // Fields documentation
-        if let ItemEnum::Struct(s) = &item.inner
+        if let ItemEnum::Struct(s) = &actual_item.inner
             && let StructKind::Plain { fields, .. } = &s.kind
         {
             render_struct_fields(md, fields, krate, &self.type_renderer, |field| {
@@ -102,7 +143,7 @@ impl<'a> ItemRenderer<'a> {
 
         // Implementations
         let impl_renderer = ImplRenderer::new(self.ctx, self.current_file);
-        impl_renderer.render_impl_blocks(md, item_id);
+        impl_renderer.render_impl_blocks(md, actual_id);
     }
 
     /// Render an enum definition to markdown.
@@ -120,20 +161,35 @@ impl<'a> ItemRenderer<'a> {
     /// - **Plain**: `Variant` (no data)
     /// - **Tuple**: `Variant(T, U)` (positional data)
     /// - **Struct**: `Variant { field: T }` (named fields)
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to an enum.
     pub fn render_enum(&self, md: &mut String, item_id: Id, item: &Item) {
-        let name = item.name.as_deref().unwrap_or("unnamed");
         let krate = self.ctx.krate();
 
-        if let ItemEnum::Enum(e) = &item.inner {
+        // Resolve Use items to their target, getting the display name and actual item
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return; // Couldn't resolve Use target
+        };
+
+        // Get the actual ID for impl lookup (use target ID for Use items)
+        let actual_id = if let ItemEnum::Use(use_item) = &item.inner {
+            use_item.id.unwrap_or(item_id)
+        } else {
+            item_id
+        };
+
+        if let ItemEnum::Enum(e) = &actual_item.inner {
             // Enum definition (heading + code block with variants)
             render_enum_definition(md, name, e, krate, &self.type_renderer);
         }
 
-        // Documentation
-        append_docs(md, self.process_docs(item));
+        // Documentation (from actual item, not the Use item)
+        append_docs(md, self.process_docs(actual_item));
 
         // Variants documentation
-        if let ItemEnum::Enum(e) = &item.inner {
+        if let ItemEnum::Enum(e) = &actual_item.inner {
             render_enum_variants_docs(md, &e.variants, krate, |variant| {
                 self.process_docs(variant)
             });
@@ -141,7 +197,7 @@ impl<'a> ItemRenderer<'a> {
 
         // Implementations
         let impl_renderer = ImplRenderer::new(self.ctx, self.current_file);
-        impl_renderer.render_impl_blocks(md, item_id);
+        impl_renderer.render_impl_blocks(md, actual_id);
     }
 
     /// Render a trait definition to markdown.
@@ -158,19 +214,26 @@ impl<'a> ItemRenderer<'a> {
     /// - **Methods**: `fn method(&self) -> T`
     /// - **Associated Types**: `type Item;`
     /// - **Associated Constants**: `const VALUE: T;`
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to a trait.
     pub fn render_trait(&self, md: &mut String, item: &Item) {
-        let name = item.name.as_deref().unwrap_or("unnamed");
+        // Resolve Use items to their target
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return;
+        };
 
-        if let ItemEnum::Trait(t) = &item.inner {
+        if let ItemEnum::Trait(t) = &actual_item.inner {
             // Trait definition (heading + code block)
             render_trait_definition(md, name, t, &self.type_renderer);
         }
 
         // Documentation
-        append_docs(md, self.process_docs(item));
+        append_docs(md, self.process_docs(actual_item));
 
         // Required methods section
-        if let ItemEnum::Trait(t) = &item.inner
+        if let ItemEnum::Trait(t) = &actual_item.inner
             && !t.items.is_empty()
         {
             md.push_str("#### Required Methods\n\n");
@@ -196,10 +259,17 @@ impl<'a> ItemRenderer<'a> {
     /// - `const fn` - Compile-time evaluable
     /// - `async fn` - Returns a Future
     /// - `unsafe fn` - Requires unsafe block to call
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to a function.
     pub fn render_function(&self, md: &mut String, item: &Item) {
-        let name = item.name.as_deref().unwrap_or("unnamed");
+        // Resolve Use items to their target
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return;
+        };
 
-        if let ItemEnum::Function(f) = &item.inner {
+        if let ItemEnum::Function(f) = &actual_item.inner {
             render_function_definition(md, name, f, &self.type_renderer);
 
             // Add type links for function signature types
@@ -207,7 +277,7 @@ impl<'a> ItemRenderer<'a> {
         }
 
         // Documentation
-        append_docs(md, self.process_docs(item));
+        append_docs(md, self.process_docs(actual_item));
     }
 
     /// Render linked types used in a function signature.
@@ -269,11 +339,18 @@ impl<'a> ItemRenderer<'a> {
     ///
     /// Note: We don't show macro rules/implementation since rustdoc JSON
     /// doesn't provide the full macro definition, only metadata.
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to a macro.
     pub fn render_macro(&self, md: &mut String, item: &Item) {
-        let name = item.name.as_deref().unwrap_or("unnamed");
+        // Resolve Use items to their target
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return;
+        };
 
         render_macro_heading(md, name);
-        append_docs(md, self.process_docs(item));
+        append_docs(md, self.process_docs(actual_item));
     }
 
     /// Render a constant definition to markdown.
@@ -285,14 +362,21 @@ impl<'a> ItemRenderer<'a> {
     ///
     /// The value may be omitted if rustdoc couldn't determine it
     /// (e.g., for complex const expressions).
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to a constant.
     pub fn render_constant(&self, md: &mut String, item: &Item) {
-        let name = item.name.as_deref().unwrap_or("unnamed");
+        // Resolve Use items to their target
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return;
+        };
 
-        if let ItemEnum::Constant { type_, const_ } = &item.inner {
+        if let ItemEnum::Constant { type_, const_ } = &actual_item.inner {
             render_constant_definition(md, name, type_, const_, &self.type_renderer);
         }
 
-        append_docs(md, self.process_docs(item));
+        append_docs(md, self.process_docs(actual_item));
     }
 
     /// Render a type alias to markdown.
@@ -301,13 +385,20 @@ impl<'a> ItemRenderer<'a> {
     /// - Heading with alias name and generics
     /// - Rust code block showing `type Name<T> = TargetType;`
     /// - Documentation from doc comments
+    ///
+    /// # Re-exports
+    ///
+    /// Also handles `pub use` re-exports where the item is a Use pointing to a type alias.
     pub fn render_type_alias(&self, md: &mut String, item: &Item) {
-        let name = item.name.as_deref().unwrap_or("unnamed");
+        // Resolve Use items to their target
+        let Some((name, actual_item)) = self.resolve_use_target(item) else {
+            return;
+        };
 
-        if let ItemEnum::TypeAlias(ta) = &item.inner {
+        if let ItemEnum::TypeAlias(ta) = &actual_item.inner {
             render_type_alias_definition(md, name, ta, &self.type_renderer);
         }
 
-        append_docs(md, self.process_docs(item));
+        append_docs(md, self.process_docs(actual_item));
     }
 }
