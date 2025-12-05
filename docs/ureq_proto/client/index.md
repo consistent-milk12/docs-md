@@ -254,60 +254,6 @@ visual representation of the state transitions.
 
 #### Implementations
 
-- `fn try_response(self: &mut Self, input: &[u8], allow_partial_redirect: bool) -> Result<(usize, Option<Response<()>>), Error>`
-  Try reading a response from the input.
-
-- `fn can_proceed(self: &Self) -> bool`
-  Tell if we have finished receiving the response.
-
-- `fn proceed(self: Self) -> Option<RecvResponseResult>`
-  Proceed to the next state.
-
-- `fn force_recv_body(self: &mut Self)`
-  Convert the state to receive a body despite method.
-
-- `fn try_read_100(self: &mut Self, input: &[u8]) -> Result<usize, Error>`
-  Attempt to read a 100-continue response.
-
-- `fn can_keep_await_100(self: &Self) -> bool`
-  Tell if there is any point in waiting for more data from the server.
-
-- `fn proceed(self: Self) -> Result<Await100Result, Error>`
-  Proceed to the next state.
-
-- `fn new(request: Request<()>) -> Result<Self, Error>`
-  Create a new Call instance from an HTTP request.
-
-- `fn method(self: &Self) -> &Method`
-  Inspect call method
-
-- `fn uri(self: &Self) -> &Uri`
-  Inspect call URI
-
-- `fn version(self: &Self) -> Version`
-  Inspect call HTTP version
-
-- `fn headers(self: &Self) -> &HeaderMap`
-  Inspect call headers
-
-- `fn allow_non_standard_methods(self: &mut Self, v: bool)`
-  Set whether to allow non-standard HTTP methods.
-
-- `fn header<K, V>(self: &mut Self, key: K, value: V) -> Result<(), Error>`
-  Add more headers to the call
-
-- `fn force_send_body(self: &mut Self)`
-  Convert the state to send body despite method.
-
-- `fn proceed(self: Self) -> Call<SendRequest>`
-  Continue to the next call state.
-
-- `fn must_close_connection(self: &Self) -> bool`
-  Tell if we must close the connection.
-
-- `fn close_reason(self: &Self) -> Option<&'static str>`
-  If we are closing the connection, give a reason.
-
 - `fn write(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
   Write request body from `input` to `output`.
 
@@ -347,6 +293,75 @@ visual representation of the state transitions.
 - `fn proceed(self: Self) -> Result<Option<SendRequestResult>, Error>`
   Attempt to proceed from this state to the next.
 
+- `fn as_new_call(self: &mut Self, redirect_auth_headers: RedirectAuthHeaders) -> Result<Option<Call<Prepare>>, Error>`
+  Construct a new `Call` by following the redirect.
+
+- `fn status(self: &Self) -> StatusCode`
+  The redirect status code.
+
+- `fn must_close_connection(self: &Self) -> bool`
+  Whether we must close the connection corresponding to the current call.
+
+- `fn close_reason(self: &Self) -> Option<&'static str>`
+  If we are closing the connection, give a reason why.
+
+- `fn proceed(self: Self) -> Call<Cleanup>`
+  Proceed to the cleanup state.
+
+- `fn try_response(self: &mut Self, input: &[u8], allow_partial_redirect: bool) -> Result<(usize, Option<Response<()>>), Error>`
+  Try reading a response from the input.
+
+- `fn can_proceed(self: &Self) -> bool`
+  Tell if we have finished receiving the response.
+
+- `fn proceed(self: Self) -> Option<RecvResponseResult>`
+  Proceed to the next state.
+
+- `fn force_recv_body(self: &mut Self)`
+  Convert the state to receive a body despite method.
+
+- `fn try_read_100(self: &mut Self, input: &[u8]) -> Result<usize, Error>`
+  Attempt to read a 100-continue response.
+
+- `fn can_keep_await_100(self: &Self) -> bool`
+  Tell if there is any point in waiting for more data from the server.
+
+- `fn proceed(self: Self) -> Result<Await100Result, Error>`
+  Proceed to the next state.
+
+- `fn must_close_connection(self: &Self) -> bool`
+  Tell if we must close the connection.
+
+- `fn close_reason(self: &Self) -> Option<&'static str>`
+  If we are closing the connection, give a reason.
+
+- `fn new(request: Request<()>) -> Result<Self, Error>`
+  Create a new Call instance from an HTTP request.
+
+- `fn method(self: &Self) -> &Method`
+  Inspect call method
+
+- `fn uri(self: &Self) -> &Uri`
+  Inspect call URI
+
+- `fn version(self: &Self) -> Version`
+  Inspect call HTTP version
+
+- `fn headers(self: &Self) -> &HeaderMap`
+  Inspect call headers
+
+- `fn allow_non_standard_methods(self: &mut Self, v: bool)`
+  Set whether to allow non-standard HTTP methods.
+
+- `fn header<K, V>(self: &mut Self, key: K, value: V) -> Result<(), Error>`
+  Add more headers to the call
+
+- `fn force_send_body(self: &mut Self)`
+  Convert the state to send body despite method.
+
+- `fn proceed(self: Self) -> Call<SendRequest>`
+  Continue to the next call state.
+
 - `fn read(self: &mut Self, input: &[u8], output: &mut [u8]) -> Result<(usize, usize), Error>`
   Read the response body from `input` to `output`.
 
@@ -367,21 +382,6 @@ visual representation of the state transitions.
 
 - `fn proceed(self: Self) -> Option<RecvBodyResult>`
   Proceed to the next state.
-
-- `fn as_new_call(self: &mut Self, redirect_auth_headers: RedirectAuthHeaders) -> Result<Option<Call<Prepare>>, Error>`
-  Construct a new `Call` by following the redirect.
-
-- `fn status(self: &Self) -> StatusCode`
-  The redirect status code.
-
-- `fn must_close_connection(self: &Self) -> bool`
-  Whether we must close the connection corresponding to the current call.
-
-- `fn close_reason(self: &Self) -> Option<&'static str>`
-  If we are closing the connection, give a reason why.
-
-- `fn proceed(self: Self) -> Call<Cleanup>`
-  Proceed to the cleanup state.
 
 #### Trait Implementations
 

@@ -34,6 +34,11 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(token: TokenTree) -> Self`
@@ -41,11 +46,6 @@ Token stream is both the input and output of `#[proc_macro]`,
 ##### `impl From`
 
 - `fn from(inner: proc_macro::TokenStream) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl FromIterator`
 

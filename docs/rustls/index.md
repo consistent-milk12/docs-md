@@ -498,14 +498,14 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 #### Implementations
 
-- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain and matching private key.  This
+- `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
+  Choose how to verify server certificates.
 
-- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain, matching private key and optional OCSP
+- `fn with_webpki_verifier(self: Self, verifier: alloc::sync::Arc<WebPkiServerVerifier>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
+  Choose how to verify server certificates using a webpki verifier.
 
-- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
-  Sets a custom [`ResolvesServerCert`].
+- `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
+  Access configuration options whose use is dangerous and requires
 
 - `fn with_client_auth_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ClientConfig, Error>`
   Sets a single certificate chain and matching private key for use
@@ -516,32 +516,32 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 - `fn with_client_cert_resolver(self: Self, client_auth_cert_resolver: alloc::sync::Arc<dyn ResolvesClientCert>) -> ClientConfig`
   Sets a custom [`ResolvesClientCert`].
 
-- `fn with_safe_default_protocol_versions(self: Self) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
-  Accept the default protocol versions: both TLS1.2 and TLS1.3 are enabled.
-
-- `fn with_protocol_versions(self: Self, versions: &[&'static versions::SupportedProtocolVersion]) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
-  Use a specific set of protocol versions.
-
 - `fn crypto_provider(self: &Self) -> &alloc::sync::Arc<CryptoProvider>`
   Return the crypto provider used to construct this builder.
 
 - `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
   Enable Encrypted Client Hello (ECH) in the given mode.
 
-- `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
-  Choose how to verify server certificates.
+- `fn with_safe_default_protocol_versions(self: Self) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
+  Accept the default protocol versions: both TLS1.2 and TLS1.3 are enabled.
 
-- `fn with_webpki_verifier(self: Self, verifier: alloc::sync::Arc<WebPkiServerVerifier>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
-  Choose how to verify server certificates using a webpki verifier.
-
-- `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
-  Access configuration options whose use is dangerous and requires
+- `fn with_protocol_versions(self: Self, versions: &[&'static versions::SupportedProtocolVersion]) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
+  Use a specific set of protocol versions.
 
 - `fn with_client_cert_verifier(self: Self, client_cert_verifier: alloc::sync::Arc<dyn ClientCertVerifier>) -> ConfigBuilder<ServerConfig, WantsServerCert>`
   Choose how to verify client certificates.
 
 - `fn with_no_client_auth(self: Self) -> ConfigBuilder<ServerConfig, WantsServerCert>`
   Disable client authentication.
+
+- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain and matching private key.  This
+
+- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain, matching private key and optional OCSP
+
+- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
+  Sets a custom [`ResolvesServerCert`].
 
 #### Trait Implementations
 
@@ -3311,18 +3311,18 @@ A client or server connection.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(conn: ServerConnection) -> Self`
 
 ##### `impl From`
 
 - `fn from(conn: ClientConnection) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(conn: ServerConnection) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -3428,10 +3428,6 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 ##### `impl From`
 
-- `fn from(x: u8) -> Self`
-
-##### `impl From`
-
 - `fn from(e: CertificateError) -> Self`
 
 ##### `impl From`
@@ -3442,6 +3438,10 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4002,14 +4002,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4101,14 +4101,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4215,14 +4215,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4318,14 +4318,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4528,14 +4528,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -5248,7 +5248,7 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: EncryptedClientHelloError) -> Self`
+- `fn from(e: PeerIncompatible) -> Self`
 
 ##### `impl From`
 
@@ -5256,19 +5256,15 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
+- `fn from(e: PeerMisbehaved) -> Self`
+
+##### `impl From`
+
+- `fn from(value: UnsupportedOperationError) -> Self`
+
+##### `impl From`
+
 - `fn from(e: InconsistentKeys) -> Self`
-
-##### `impl From`
-
-- `fn from(e: CertRevocationListError) -> Self`
-
-##### `impl From`
-
-- `fn from(e: CertificateError) -> Self`
-
-##### `impl From`
-
-- `fn from(e: PeerIncompatible) -> Self`
 
 ##### `impl From`
 
@@ -5276,7 +5272,15 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: PeerMisbehaved) -> Self`
+- `fn from(e: InvalidMessage) -> Self`
+
+##### `impl From`
+
+- `fn from(e: EncryptedClientHelloError) -> Self`
+
+##### `impl From`
+
+- `fn from(e: CertificateError) -> Self`
 
 ##### `impl From`
 
@@ -5284,16 +5288,12 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: InvalidMessage) -> Self`
+- `fn from(e: CertRevocationListError) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: UnsupportedOperationError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -6060,14 +6060,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -6252,18 +6252,18 @@ This type carries both configuration and implementation. Compare with
 
 #### Trait Implementations
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(s: &'static Tls13CipherSuite) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
 - `fn from(s: &'static Tls12CipherSuite) -> Self`
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(s: &'static Tls13CipherSuite) -> Self`
 
 ##### `impl Into<T, U>`
 

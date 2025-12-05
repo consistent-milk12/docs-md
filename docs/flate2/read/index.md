@@ -174,6 +174,9 @@ fn deflateencoder_read_hello_world() -> io::Result<Vec<u8>> {
 
 #### Implementations
 
+- `fn new(r: R, level: crate::Compression) -> DeflateEncoder<R>`
+  Creates a new encoder which will read uncompressed data from the given
+
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this encoder entirely, swapping out the input
 
@@ -191,9 +194,6 @@ fn deflateencoder_read_hello_world() -> io::Result<Vec<u8>> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the compressor has produced.
-
-- `fn new(r: R, level: crate::Compression) -> DeflateEncoder<R>`
-  Creates a new encoder which will read uncompressed data from the given
 
 #### Trait Implementations
 
@@ -398,6 +398,9 @@ fn gzencode_hello_world() -> io::Result<Vec<u8>> {
 
 #### Implementations
 
+- `fn new(r: R, level: Compression) -> GzEncoder<R>`
+  Creates a new encoder which will use the given compression level.
+
 - `fn get_ref(self: &Self) -> &R`
   Acquires a reference to the underlying reader.
 
@@ -406,9 +409,6 @@ fn gzencode_hello_world() -> io::Result<Vec<u8>> {
 
 - `fn into_inner(self: Self) -> R`
   Returns the underlying stream, consuming this encoder
-
-- `fn new(r: R, level: Compression) -> GzEncoder<R>`
-  Creates a new encoder which will use the given compression level.
 
 #### Trait Implementations
 
@@ -512,6 +512,9 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 #### Implementations
 
+- `fn new(r: R) -> MultiGzDecoder<R>`
+  Creates a new decoder from the given reader, immediately parsing the
+
 - `fn header(self: &Self) -> Option<&GzHeader>`
   Returns the current header associated with this stream, if it's valid.
 
@@ -523,9 +526,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn into_inner(self: Self) -> R`
   Consumes this decoder, returning the underlying reader.
-
-- `fn new(r: R) -> MultiGzDecoder<R>`
-  Creates a new decoder from the given reader, immediately parsing the
 
 #### Trait Implementations
 
@@ -739,6 +739,12 @@ Ok(buffer)
 
 #### Implementations
 
+- `fn new(r: R, level: crate::Compression) -> ZlibEncoder<R>`
+  Creates a new encoder which will read uncompressed data from the given
+
+- `fn new_with_compress(r: R, compression: crate::Compress) -> ZlibEncoder<R>`
+  Creates a new encoder with the given `compression` settings which will
+
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this encoder entirely, swapping out the input
 
@@ -756,12 +762,6 @@ Ok(buffer)
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the compressor has produced.
-
-- `fn new(r: R, level: crate::Compression) -> ZlibEncoder<R>`
-  Creates a new encoder which will read uncompressed data from the given
-
-- `fn new_with_compress(r: R, compression: crate::Compress) -> ZlibEncoder<R>`
-  Creates a new encoder with the given `compression` settings which will
 
 #### Trait Implementations
 

@@ -6,7 +6,7 @@
 
 A lazy DFA backed `Regex`.
 
-This module provides a [`Regex`](../../index.md) backed by a lazy DFA. A `Regex` implements
+This module provides a [`Regex`](#regex) backed by a lazy DFA. A `Regex` implements
 convenience routines you might have come to expect, such as finding a match
 and iterating over all non-overlapping matches. This `Regex` type is limited
 in its capabilities to what a lazy DFA can provide. Therefore, APIs involving
@@ -98,18 +98,6 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - `fn reset_cache(self: &Self, cache: &mut Cache)`
   Reset the given cache such that it can be used for searching with the
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Returns true if and only if this regex matches the given haystack.
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Returns the start and end offset of the leftmost match. If no match
-
-- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping leftmost matches in the
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
-  Returns the start and end offset of the leftmost match. If no match
-
 - `fn forward(self: &Self) -> &DFA`
   Return the underlying lazy DFA responsible for forward matching.
 
@@ -118,6 +106,18 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn pattern_len(self: &Self) -> usize`
   Returns the total number of patterns matched by this regex.
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
+  Returns the start and end offset of the leftmost match. If no match
+
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
+  Returns true if and only if this regex matches the given haystack.
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
+  Returns the start and end offset of the leftmost match. If no match
+
+- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
+  Returns an iterator over all non-overlapping leftmost matches in the
 
 #### Trait Implementations
 
@@ -250,7 +250,7 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`Regex`](../../index.md).
+a [`Regex`](#regex).
 
 Caches can be created from their corresponding `Regex` via
 `Regex::create_cache`. A cache can only be used with either the `Regex`

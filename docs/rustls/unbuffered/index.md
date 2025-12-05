@@ -404,14 +404,14 @@ Previously encoded TLS data must be transmitted
 
 #### Implementations
 
-- `fn may_encrypt_early_data(self: &mut Self) -> Option<MayEncryptEarlyData<'_>>`
-  returns an adapter that allows encrypting early (RTT-0) data before transmitting the
-
 - `fn done(self: Self)`
   Signals that the previously encoded TLS data has been transmitted
 
 - `fn may_encrypt_app_data(self: &mut Self) -> Option<WriteTraffic<'_, Data>>`
   Returns an adapter that allows encrypting application data
+
+- `fn may_encrypt_early_data(self: &mut Self) -> Option<MayEncryptEarlyData<'_>>`
+  returns an adapter that allows encrypting early (RTT-0) data before transmitting the
 
 #### Trait Implementations
 
@@ -681,14 +681,6 @@ The state of the [`UnbufferedConnectionCommon`](../index.md) object
 
 #### Trait Implementations
 
-##### `impl From<'c, Data>`
-
-- `fn from(v: TransmitTlsData<'c, Data>) -> Self`
-
-##### `impl From<'c, Data>`
-
-- `fn from(v: EncodeTlsData<'c, Data>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -697,6 +689,14 @@ The state of the [`UnbufferedConnectionCommon`](../index.md) object
 ##### `impl From<'c, 'i, Data>`
 
 - `fn from(v: ReadTraffic<'c, 'i, Data>) -> Self`
+
+##### `impl From<'c, Data>`
+
+- `fn from(v: EncodeTlsData<'c, Data>) -> Self`
+
+##### `impl From<'c, Data>`
+
+- `fn from(v: TransmitTlsData<'c, Data>) -> Self`
 
 ##### `impl From<'c, 'i, Data>`
 
@@ -833,14 +833,14 @@ Errors that may arise when encrypting application data
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: InsufficientSizeError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: InsufficientSizeError) -> Self`
 
 ##### `impl Into<T, U>`
 

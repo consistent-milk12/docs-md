@@ -1193,14 +1193,14 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(color: &'a str) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(color: &'a str) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1760,14 +1760,14 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 

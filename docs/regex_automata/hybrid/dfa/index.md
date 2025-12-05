@@ -89,48 +89,6 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn next_state(self: &Self, cache: &mut Cache, current: LazyStateID, input: u8) -> Result<LazyStateID, CacheError>`
-  Transitions from the current state to the next state, given the next
-
-- `fn next_state_untagged(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
-  Transitions from the current state to the next state, given the next
-
-- `unsafe fn next_state_untagged_unchecked(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
-  Transitions from the current state to the next state, eliding bounds
-
-- `fn next_eoi_state(self: &Self, cache: &mut Cache, current: LazyStateID) -> Result<LazyStateID, CacheError>`
-  Transitions from the current state to the next state for the special
-
-- `fn start_state(self: &Self, cache: &mut Cache, config: &start::Config) -> Result<LazyStateID, StartError>`
-  Return the ID of the start state for this lazy DFA for the given
-
-- `fn start_state_forward(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
-  Return the ID of the start state for this lazy DFA when executing a
-
-- `fn start_state_reverse(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
-  Return the ID of the start state for this lazy DFA when executing a
-
-- `fn match_len(self: &Self, cache: &Cache, id: LazyStateID) -> usize`
-  Returns the total number of patterns that match in this state.
-
-- `fn match_pattern(self: &Self, cache: &Cache, id: LazyStateID, match_index: usize) -> PatternID`
-  Returns the pattern ID corresponding to the given match index in the
-
-- `fn try_search_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>`
-  Executes a forward search and returns the end position of the leftmost
-
-- `fn try_search_rev(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>`
-  Executes a reverse search and returns the start of the position of the
-
-- `fn try_search_overlapping_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
-  Executes an overlapping forward search and returns the end position of
-
-- `fn try_search_overlapping_rev(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
-  Executes a reverse overlapping search and returns the start of the
-
-- `fn try_which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), MatchError>`
-  Writes the set of patterns that match anywhere in the given search
-
 - `fn new(pattern: &str) -> Result<DFA, BuildError>`
   Parse the given regular expression using a default configuration and
 
@@ -169,6 +127,48 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the memory usage, in bytes, of this lazy DFA.
+
+- `fn try_search_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>`
+  Executes a forward search and returns the end position of the leftmost
+
+- `fn try_search_rev(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>`
+  Executes a reverse search and returns the start of the position of the
+
+- `fn try_search_overlapping_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
+  Executes an overlapping forward search and returns the end position of
+
+- `fn try_search_overlapping_rev(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
+  Executes a reverse overlapping search and returns the start of the
+
+- `fn try_which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), MatchError>`
+  Writes the set of patterns that match anywhere in the given search
+
+- `fn next_state(self: &Self, cache: &mut Cache, current: LazyStateID, input: u8) -> Result<LazyStateID, CacheError>`
+  Transitions from the current state to the next state, given the next
+
+- `fn next_state_untagged(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
+  Transitions from the current state to the next state, given the next
+
+- `unsafe fn next_state_untagged_unchecked(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
+  Transitions from the current state to the next state, eliding bounds
+
+- `fn next_eoi_state(self: &Self, cache: &mut Cache, current: LazyStateID) -> Result<LazyStateID, CacheError>`
+  Transitions from the current state to the next state for the special
+
+- `fn start_state(self: &Self, cache: &mut Cache, config: &start::Config) -> Result<LazyStateID, StartError>`
+  Return the ID of the start state for this lazy DFA for the given
+
+- `fn start_state_forward(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
+  Return the ID of the start state for this lazy DFA when executing a
+
+- `fn start_state_reverse(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
+  Return the ID of the start state for this lazy DFA when executing a
+
+- `fn match_len(self: &Self, cache: &Cache, id: LazyStateID) -> usize`
+  Returns the total number of patterns that match in this state.
+
+- `fn match_pattern(self: &Self, cache: &Cache, id: LazyStateID, match_index: usize) -> PatternID`
+  Returns the pattern ID corresponding to the given match index in the
 
 #### Trait Implementations
 
@@ -511,7 +511,7 @@ a DFA from different kinds of inputs. The most convenient is
 most flexible is `Builder::build_from_nfa`, which builds a DFA straight
 from an NFA.
 2. The builder permits configuring a number of things.
-`Builder::configure` is used with [`Config`](../../util/start/index.md) to configure aspects of
+`Builder::configure` is used with [`Config`](#config) to configure aspects of
 the DFA and the construction process itself. `Builder::syntax` and
 `Builder::thompson` permit configuring the regex parser and Thompson NFA
 construction, respectively. The syntax and thompson configurations only

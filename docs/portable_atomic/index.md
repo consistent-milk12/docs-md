@@ -288,15 +288,15 @@ assembly.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(b: bool) -> Self`
-  Converts a `bool` into an `AtomicBool`.
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(b: bool) -> Self`
+  Converts a `bool` into an `AtomicBool`.
 
 ##### `impl Into<T, U>`
 
@@ -774,14 +774,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: usize) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: usize) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -943,14 +943,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: i8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1112,14 +1112,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(v: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1281,14 +1281,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1450,14 +1450,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1957,14 +1957,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i64) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i64) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2126,14 +2126,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: u64) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: u64) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2295,14 +2295,14 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: i128) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: i128) -> Self`
 
 ##### `impl Into<T, U>`
 

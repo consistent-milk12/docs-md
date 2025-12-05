@@ -290,14 +290,14 @@ mod expand {
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(err: LexError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(err: LexError) -> Self`
 
 ##### `impl Into<T, U>`
 

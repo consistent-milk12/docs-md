@@ -46,9 +46,6 @@ but only holds an OS error code, and no extra error value.
 
 #### Implementations
 
-- `fn kind(self: Self) -> std::io::ErrorKind`
-  Shorthand for `std::io::Error::from(self).kind()`.
-
 - `fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
   Extract an `Errno` value from a `std::io::Error`.
 
@@ -57,6 +54,9 @@ but only holds an OS error code, and no extra error value.
 
 - `const fn from_raw_os_error(raw: i32) -> Self`
   Construct an `Errno` from a raw OS error number.
+
+- `fn kind(self: Self) -> std::io::ErrorKind`
+  Shorthand for `std::io::Error::from(self).kind()`.
 
 - `const ACCESS: Self`
 

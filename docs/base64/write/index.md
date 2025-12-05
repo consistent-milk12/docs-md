@@ -187,14 +187,14 @@ bytes to a `io::Write`.
 
 #### Implementations
 
+- `fn new(engine: &'e E) -> Self`
+  Create a EncoderStringWriter that will encode into a new `String` with the provided config.
+
 - `fn from_consumer(str_consumer: S, engine: &'e E) -> Self`
   Create a EncoderStringWriter that will append to the provided `StrConsumer`.
 
 - `fn into_inner(self: Self) -> S`
   Encode all remaining buffered data, including any trailing incomplete input triples and
-
-- `fn new(engine: &'e E) -> Self`
-  Create a EncoderStringWriter that will encode into a new `String` with the provided config.
 
 #### Trait Implementations
 

@@ -600,14 +600,14 @@ enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(frame: crate::Frame) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(frame: crate::Frame) -> Self`
 
 ##### `impl Into<T, U>`
 

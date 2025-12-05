@@ -209,23 +209,23 @@ v           v           v               v
 
 ##### `impl From`
 
-- `fn from(slice: Box<[u8]>) -> Bytes`
-
-##### `impl From`
-
-- `fn from(s: String) -> Bytes`
-
-##### `impl From`
-
-- `fn from(vec: Vec<u8>) -> Bytes`
-
-##### `impl From`
-
 - `fn from(slice: &'static [u8]) -> Bytes`
 
 ##### `impl From`
 
+- `fn from(slice: Box<[u8]>) -> Bytes`
+
+##### `impl From`
+
 - `fn from(src: BytesMut) -> Bytes`
+
+##### `impl From`
+
+- `fn from(slice: &'static str) -> Bytes`
+
+##### `impl From`
+
+- `fn from(vec: Vec<u8>) -> Bytes`
 
 ##### `impl From<T>`
 
@@ -234,7 +234,7 @@ v           v           v               v
 
 ##### `impl From`
 
-- `fn from(slice: &'static str) -> Bytes`
+- `fn from(s: String) -> Bytes`
 
 ##### `impl FromIterator`
 
@@ -309,25 +309,21 @@ v           v           v               v
 
 - `fn cmp(self: &Self, other: &Bytes) -> cmp::Ordering`
 
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
+
 ##### `impl PartialEq<'a, T: ?Sized>`
 
 - `fn eq(self: &Self, other: &&'a T) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &[u8]) -> bool`
+- `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &BytesMut) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialEq`
 
@@ -337,17 +333,9 @@ v           v           v               v
 
 - `fn eq(self: &Self, other: &Vec<u8>) -> bool`
 
-##### `impl PartialOrd<'a, T: ?Sized>`
+##### `impl PartialEq`
 
-- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Bytes) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
+- `fn eq(self: &Self, other: &[u8]) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -360,6 +348,18 @@ v           v           v               v
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd<'a, T: ?Sized>`
+
+- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Bytes) -> Option<cmp::Ordering>`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
 
 ##### `impl Receiver<P, T>`
 
@@ -516,11 +516,6 @@ assert_eq!(&b[..], b"hello");
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From`
 
 - `fn from(bytes: Bytes) -> Self`
@@ -530,17 +525,22 @@ assert_eq!(&b[..], b"hello");
 
 - `fn from(src: &'a [u8]) -> BytesMut`
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From<'a>`
 
 - `fn from(src: &'a str) -> BytesMut`
 
-##### `impl FromIterator`
-
-- `fn from_iter<T: IntoIterator<Item = u8>>(into_iter: T) -> Self`
-
 ##### `impl FromIterator<'a>`
 
 - `fn from_iter<T: IntoIterator<Item = &'a u8>>(into_iter: T) -> Self`
+
+##### `impl FromIterator`
+
+- `fn from_iter<T: IntoIterator<Item = u8>>(into_iter: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -567,21 +567,21 @@ assert_eq!(&b[..], b"hello");
 
 - `fn as_ref(self: &Self) -> &[u8]`
 
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
 ##### `impl Borrow`
 
 - `fn borrow(self: &Self) -> &[u8]`
 
-##### `impl BorrowMut`
+##### `impl Borrow<T>`
 
-- `fn borrow_mut(self: &mut Self) -> &mut [u8]`
+- `fn borrow(self: &Self) -> &T`
 
 ##### `impl BorrowMut<T>`
 
 - `fn borrow_mut(self: &mut Self) -> &mut T`
+
+##### `impl BorrowMut`
+
+- `fn borrow_mut(self: &mut Self) -> &mut [u8]`
 
 ##### `impl Buf`
 
@@ -647,23 +647,7 @@ assert_eq!(&b[..], b"hello");
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Bytes) -> bool`
-
-##### `impl PartialEq`
-
 - `fn eq(self: &Self, other: &BytesMut) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq<'a, T: ?Sized>`
-
-- `fn eq(self: &Self, other: &&'a T) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &[u8]) -> bool`
 
 ##### `impl PartialEq`
 
@@ -671,19 +655,31 @@ assert_eq!(&b[..], b"hello");
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &[u8]) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &Vec<u8>) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Bytes) -> bool`
+
+##### `impl PartialEq<'a, T: ?Sized>`
+
+- `fn eq(self: &Self, other: &&'a T) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &str) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Vec<u8>) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
 - `fn partial_cmp(self: &Self, other: &String) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd<'a, T: ?Sized>`
-
-- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
 
 ##### `impl PartialOrd`
 
@@ -693,9 +689,13 @@ assert_eq!(&b[..], b"hello");
 
 - `fn partial_cmp(self: &Self, other: &str) -> Option<cmp::Ordering>`
 
+##### `impl PartialOrd<'a, T: ?Sized>`
+
+- `fn partial_cmp(self: &Self, other: &&'a T) -> Option<cmp::Ordering>`
+
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Vec<u8>) -> Option<cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &[u8]) -> Option<cmp::Ordering>`
 
 ##### `impl Receiver<P, T>`
 

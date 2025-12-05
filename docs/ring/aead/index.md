@@ -452,11 +452,11 @@ for some constant `N`, `Vec<u8>`, etc.
 
 #### Implementations
 
-- `fn empty() -> Self`
-  Construct an empty `Aad`.
-
 - `fn from(aad: A) -> Self`
   Construct the `Aad` from the given bytes.
+
+- `fn empty() -> Self`
+  Construct an empty `Aad`.
 
 #### Trait Implementations
 
@@ -536,14 +536,14 @@ A possibly valid authentication tag.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: [u8; 16]) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: [u8; 16]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -584,17 +584,17 @@ A possibly valid authentication tag.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = Unspecified`
-
-- `fn try_from(value: &[u8]) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = Unspecified`
+
+- `fn try_from(value: &[u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

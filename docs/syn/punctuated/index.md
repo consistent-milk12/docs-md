@@ -752,6 +752,8 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Implementations
 
+- `fn cloned(self: Self) -> Pair<T, P>`
+
 - `fn into_value(self: Self) -> T`
   Extracts the syntax tree node from this punctuated pair, discarding the
 
@@ -772,8 +774,6 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_tuple(self: Self) -> (T, Option<P>)`
   Produces this punctuated pair as a tuple of syntax tree node and
-
-- `fn cloned(self: Self) -> Pair<T, P>`
 
 #### Trait Implementations
 

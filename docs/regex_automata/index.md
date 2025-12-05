@@ -617,14 +617,14 @@ re-exported at the crate root due to how common it is.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: u8) -> PatternID`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: u8) -> PatternID`
 
 ##### `impl Into<T, U>`
 
@@ -681,17 +681,17 @@ re-exported at the crate root due to how common it is.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
@@ -703,13 +703,13 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryInto<T, U>`
 

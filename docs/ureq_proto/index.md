@@ -62,14 +62,14 @@ Error type for ureq-proto
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: httparse::Error) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: httparse::Error) -> Self`
 
 ##### `impl Into<T, U>`
 

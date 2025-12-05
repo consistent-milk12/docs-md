@@ -180,17 +180,17 @@ enum State {
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = u8`
-
-- `fn try_from(raw: u8) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = u8`
+
+- `fn try_from(raw: u8) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

@@ -533,10 +533,6 @@ literal extraction ignores look-around assertions.)
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(byte: u8) -> Literal`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -545,6 +541,10 @@ literal extraction ignores look-around assertions.)
 ##### `impl From`
 
 - `fn from(ch: char) -> Literal`
+
+##### `impl From`
+
+- `fn from(byte: u8) -> Literal`
 
 ##### `impl Into<T, U>`
 

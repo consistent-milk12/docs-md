@@ -400,6 +400,9 @@ fn open_hello_world() -> io::Result<Vec<u8>> {
 
 #### Implementations
 
+- `fn new(r: R, level: Compression) -> GzEncoder<R>`
+  Creates a new encoder which will use the given compression level.
+
 - `fn get_ref(self: &Self) -> &R`
   Acquires a reference to the underlying reader.
 
@@ -408,9 +411,6 @@ fn open_hello_world() -> io::Result<Vec<u8>> {
 
 - `fn into_inner(self: Self) -> R`
   Returns the underlying stream, consuming this encoder
-
-- `fn new(r: R, level: Compression) -> GzEncoder<R>`
-  Creates a new encoder which will use the given compression level.
 
 #### Trait Implementations
 
@@ -512,9 +512,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 #### Implementations
 
-- `fn new(r: R) -> MultiGzDecoder<R>`
-  Creates a new decoder from the given reader, immediately parsing the
-
 - `fn header(self: &Self) -> Option<&GzHeader>`
   Returns the current header associated with this stream, if it's valid
 
@@ -526,6 +523,9 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn into_inner(self: Self) -> R`
   Consumes this decoder, returning the underlying reader.
+
+- `fn new(r: R) -> MultiGzDecoder<R>`
+  Creates a new decoder from the given reader, immediately parsing the
 
 #### Trait Implementations
 
@@ -619,6 +619,12 @@ fn decode_bufreader(bytes: Vec<u8>) -> io::Result<String> {
 
 #### Implementations
 
+- `fn new(r: R) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this decoder entirely, swapping out the input
 
@@ -636,12 +642,6 @@ fn decode_bufreader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the decompressor has produced.
-
-- `fn new(r: R) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
 
 #### Trait Implementations
 

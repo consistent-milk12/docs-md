@@ -1012,14 +1012,14 @@ Controls how module files are organized in the output directory.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(cli: CliOutputFormat) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(cli: CliOutputFormat) -> Self`
 
 ##### `impl Into<T, U>`
 

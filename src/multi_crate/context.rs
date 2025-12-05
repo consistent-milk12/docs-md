@@ -517,7 +517,7 @@ impl<'a> SingleCrateView<'a> {
                 result.push_str(&resolved);
             } else {
                 // Couldn't resolve - convert to plain inline code
-                result.push_str(&format!("`{link_text}`"));
+                _ = write!(result, "`{link_text}`");
             }
         }
 
@@ -568,92 +568,541 @@ impl<'a> SingleCrateView<'a> {
     }
 
     /// Resolve a link text to a markdown link using the registry.
-    #[expect(clippy::unnecessary_wraps, reason = "wrong clippy?")]
+    ///
+    /// This function attempts to convert rustdoc link syntax into valid markdown
+    /// links that work in the generated documentation.
+    ///
+    /// # Arguments
+    /// * `link_text` - The raw link target from rustdoc (e.g., "`crate::config::ConfigBuilder::method`")
+    /// * `item_links` - Map of link texts to Item IDs from rustdoc's `links` field
+    /// * `current_file` - The markdown file being generated (e.g., "ureq/index.md")
+    ///
+    /// # Returns
+    /// * `Some(markdown_link)` - A formatted markdown link like `[`text`](path.md#anchor)`
+    /// * `None` - If the link cannot be resolved (will be rendered as inline code)
+    ///
+    /// # Examples
+    ///
+    /// ```text
+    /// Input:  link_text = "crate::config::ConfigBuilder::http_status_as_error"
+    ///         current_file = "ureq/index.md"
+    /// Output: Some("[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)")
+    ///
+    /// Input:  link_text = "ConfigBuilder"
+    ///         current_file = "ureq/agent/index.md"
+    /// Output: Some("[`ConfigBuilder`](../config/index.md#configbuilder)")
+    ///
+    /// Input:  link_text = "std::io::Error"  (external crate, not in registry)
+    ///         current_file = "ureq/index.md"
+    /// Output: None  (rendered as `std::io::Error` inline code)
+    /// ```
     fn resolve_link(
         &self,
         link_text: &str,
         item_links: &HashMap<String, Id>,
         current_file: &str,
     ) -> Option<String> {
-        // First, try the item's links map (most accurate for current crate)
+        // ─────────────────────────────────────────────────────────────────────
+        // Strategy 1: Try the item's links map (most accurate)
+        // ─────────────────────────────────────────────────────────────────────
+        // Rustdoc provides a `links` map on each item that maps link text to
+        // the resolved Item ID. This is the most reliable source because rustdoc
+        // has already done the name resolution.
+        //
+        // Example item_links map:
+        //   {
+        //     "ConfigBuilder" => Id(123),
+        //     "crate::config::ConfigBuilder" => Id(123),
+        //     "Agent" => Id(456)
+        //   }
         if let Some(id) = item_links.get(link_text) {
-            // Only look up in current crate - IDs are crate-local
-            if let Some(path) = self.registry.get_path(&self.crate_name, *id) {
-                let display_name = self
-                    .registry
-                    .get_name(&self.crate_name, *id)
-                    .map_or(link_text, String::as_str);
-
-                // Compute relative path from current file
-                let relative = Self::compute_relative_link(current_file, path, display_name);
-                return Some(relative);
+            // We have an ID! Now convert it to a markdown path.
+            // Example: Id(123) → "config/index.md" → "[`ConfigBuilder`](config/index.md)"
+            if let Some(link) = self.build_link_to_id(*id, current_file, link_text, None) {
+                return Some(link);
             }
-            // ID not in current crate - fall through to name-based resolution
         }
 
-        // Try resolving by name in the registry (prefer current crate)
+        // ─────────────────────────────────────────────────────────────────────
+        // Strategy 2: Try resolving by name in the registry
+        // ─────────────────────────────────────────────────────────────────────
+        // If the item_links map didn't have this link (can happen with re-exports
+        // or manually written links), try looking up the name directly in our
+        // cross-crate registry.
+        //
+        // Example:
+        //   link_text = "Agent"
+        //   registry.resolve_name("Agent", "ureq") → Some(("ureq", Id(456)))
         if let Some((resolved_crate, id)) = self.registry.resolve_name(link_text, &self.crate_name)
-            && let Some(path) = self.registry.get_path(&resolved_crate, id)
+            && let Some(target_path) = self.registry.get_path(&resolved_crate, id)
         {
-            if resolved_crate == self.crate_name {
-                // Same crate - compute relative path
-                let relative = Self::compute_relative_link(current_file, path, link_text);
-                return Some(relative);
-            }
-            // Cross-crate link - only use if this looks like an intentional external reference
-            // Skip if this is a simple name that's probably meant to be a local anchor
-            if !Self::looks_like_external_reference(link_text) {
-                // Fall through to anchor fallback
-            } else {
-                // Compute relative path to other crate
-                // current_file includes crate prefix, so subtract 1 from depth
-                // e.g., "regex_syntax/hir/index.md" has depth 2, but relative to crate root is 1
-                let current_without_crate = current_file
-                    .find('/')
-                    .map_or(current_file, |idx| &current_file[idx + 1..]);
-                let from_depth = current_without_crate.matches('/').count();
-                let prefix = "../".repeat(from_depth + 1); // +1 to go up to docs root
-                let full_path = format!("{prefix}{resolved_crate}/{path}");
-
-                return Some(format!("[`{link_text}`]({full_path})"));
+            // Only use this if:
+            // 1. Same crate (internal link), OR
+            // 2. Explicitly looks like an external reference (contains "::")
+            //
+            // This prevents accidental cross-crate linking for common names like "Error"
+            if resolved_crate == self.crate_name || Self::looks_like_external_reference(link_text) {
+                return Some(self.build_markdown_link(
+                    current_file,
+                    &resolved_crate,
+                    target_path,
+                    link_text,
+                    None,
+                ));
             }
         }
 
-        // Couldn't resolve - check if this looks like a method/path reference
+        // ─────────────────────────────────────────────────────────────────────
+        // Strategy 3: Try crate:: prefixed paths
+        // ─────────────────────────────────────────────────────────────────────
+        // Handle explicit crate-relative paths like "crate::config::ConfigBuilder::method"
+        // These are common in rustdoc comments and need special parsing.
+        //
+        // Example:
+        //   link_text = "crate::config::ConfigBuilder::http_status_as_error"
+        //   → strip prefix → "config::ConfigBuilder::http_status_as_error"
+        //   → resolve_crate_path() handles the rest
+        if let Some(path_without_crate) = link_text.strip_prefix("crate::")
+            && let Some(link) = self.resolve_crate_path(path_without_crate, link_text, current_file)
+        {
+            return Some(link);
+        }
+
+        // ─────────────────────────────────────────────────────────────────────
+        // Give up on qualified paths we can't resolve
+        // ─────────────────────────────────────────────────────────────────────
+        // If it has "::" and we still haven't resolved it, it's probably an
+        // external crate we don't have (like std, serde, tokio, etc.)
+        // Return None so it renders as inline code: `std::io::Error`
         if link_text.contains("::") {
-            // For Type::method or path::Item that we can't resolve,
-            // just return as inline code without a broken anchor
             return None;
         }
 
-        // Try as an anchor on the current page (only for simple names)
-        let anchor = slugify_anchor(link_text);
-
-        Some(format!("[`{link_text}`](#{anchor})"))
+        // ─────────────────────────────────────────────────────────────────────
+        // Fallback: anchor on current page
+        // ─────────────────────────────────────────────────────────────────────
+        // For simple names without ::, assume it's something on the current page.
+        // Example: "new" → "[`new`](#new)"
+        Some(format!("[`{link_text}`](#{})", slugify_anchor(link_text)))
     }
 
-    /// Compute a relative link from current file to target path.
+    /// Build a link to an item by ID.
     ///
-    /// Note: `current_file` includes the crate prefix (e.g., `regex_syntax/hir/index.md`)
-    /// but `target_path` from the registry does NOT (e.g., `hir/index.md`).
-    /// We need to strip the crate prefix from `current_file` for comparison.
-    fn compute_relative_link(current_file: &str, target_path: &str, display_name: &str) -> String {
-        use crate::linker::LinkRegistry;
+    /// This is the simplest path when we already have a resolved Item ID from
+    /// rustdoc's links map. We just need to look up the file path in our registry.
+    ///
+    /// # Arguments
+    /// * `id` - The rustdoc Item ID to link to
+    /// * `current_file` - Source file for relative path computation
+    /// * `display_name` - Text to show in the link
+    /// * `anchor` - Optional anchor (e.g., method name)
+    ///
+    /// # Example Transformation
+    ///
+    /// ```text
+    /// Input:
+    ///   id = Id(123)  (rustdoc's internal ID for ConfigBuilder)
+    ///   current_file = "ureq/agent/index.md"
+    ///   display_name = "ConfigBuilder"
+    ///   anchor = None
+    ///
+    /// Step 1: Look up ID in registry
+    ///   registry.get_path("ureq", Id(123)) → Some("config/index.md")
+    ///
+    /// Step 2: Build markdown link
+    ///   build_markdown_link("ureq/agent/index.md", "ureq", "config/index.md", "ConfigBuilder", None)
+    ///   → "[`ConfigBuilder`](../config/index.md)"
+    ///
+    /// Output: Some("[`ConfigBuilder`](../config/index.md)")
+    /// ```
+    fn build_link_to_id(
+        &self,
+        id: Id,
+        current_file: &str,
+        display_name: &str,
+        anchor: Option<&str>,
+    ) -> Option<String> {
+        // Look up the file path for this ID in the current crate
+        // Returns None if the ID isn't registered (shouldn't happen for valid links)
+        let target_path = self.registry.get_path(&self.crate_name, id)?;
 
-        // Strip crate prefix from current_file (everything before first /)
-        let current_without_crate = current_file
-            .find('/')
-            .map_or(current_file, |idx| &current_file[idx + 1..]);
+        // Delegate to build_markdown_link for the actual path computation
+        Some(self.build_markdown_link(
+            current_file,
+            &self.crate_name, // Same crate as current context
+            target_path,
+            display_name,
+            anchor,
+        ))
+    }
 
-        // Same file - use anchor
-        if current_without_crate == target_path {
-            let anchor = slugify_anchor(display_name);
-            return format!("[`{display_name}`](#{anchor})");
+    /// Resolve `crate::path::Item` or `crate::path::Item::method` patterns.
+    ///
+    /// This handles the common rustdoc pattern where docs reference items using
+    /// crate-relative paths. The tricky part is distinguishing between:
+    /// - `crate::module::Type` (link to Type, no anchor)
+    /// - `crate::module::Type::method` (link to Type with #method anchor)
+    /// - `crate::module::Type::Variant` (link to Type with #Variant anchor)
+    ///
+    /// # Arguments
+    /// * `path_without_crate` - The path after stripping "`crate::`" prefix
+    /// * `display_name` - Full original text for display (includes "`crate::`")
+    /// * `current_file` - Source file for relative path computation
+    ///
+    /// # Example Transformation
+    ///
+    /// ```text
+    /// Input:
+    ///   path_without_crate = "config::ConfigBuilder::http_status_as_error"
+    ///   display_name = "crate::config::ConfigBuilder::http_status_as_error"
+    ///   current_file = "ureq/index.md"
+    ///
+    /// Step 1: Split into type path and anchor
+    ///   split_type_and_anchor("config::ConfigBuilder::http_status_as_error")
+    ///   → ("config::ConfigBuilder", Some("http_status_as_error"))
+    ///   (lowercase "http_status_as_error" indicates a method)
+    ///
+    /// Step 2: Extract the type name (last segment of type path)
+    ///   "config::ConfigBuilder".rsplit("::").next() → "ConfigBuilder"
+    ///
+    /// Step 3: Resolve type name in registry
+    ///   registry.resolve_name("ConfigBuilder", "ureq") → Some(("ureq", Id(123)))
+    ///   registry.get_path("ureq", Id(123)) → Some("config/index.md")
+    ///
+    /// Step 4: Build markdown link with anchor
+    ///   build_markdown_link("ureq/index.md", "ureq", "config/index.md",
+    ///                       "crate::config::ConfigBuilder::http_status_as_error",
+    ///                       Some("http_status_as_error"))
+    ///   → "[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)"
+    ///
+    /// Output: Some("[`crate::config::ConfigBuilder::http_status_as_error`](config/index.md#http_status_as_error)")
+    /// ```
+    fn resolve_crate_path(
+        &self,
+        path_without_crate: &str,
+        display_name: &str,
+        current_file: &str,
+    ) -> Option<String> {
+        // Step 1: Separate the type path from any method/variant anchor
+        // "config::ConfigBuilder::method" → ("config::ConfigBuilder", Some("method"))
+        let (type_path, anchor) = Self::split_type_and_anchor(path_without_crate);
+
+        // Step 2: Get just the type name (we'll search for this in the registry)
+        // "config::ConfigBuilder" → "ConfigBuilder"
+        let type_name = type_path.rsplit("::").next()?;
+
+        // Step 3: Look up the type in our cross-crate registry
+        // This finds which crate owns "ConfigBuilder" and what file it's in
+        let (resolved_crate, id) = self.registry.resolve_name(type_name, &self.crate_name)?;
+        let target_path = self.registry.get_path(&resolved_crate, id)?;
+
+        // Step 4: Build the final markdown link
+        Some(self.build_markdown_link(
+            current_file,
+            &resolved_crate,
+            target_path,
+            display_name,
+            anchor,
+        ))
+    }
+
+    /// Split `config::ConfigBuilder::method` into (`config::ConfigBuilder`, Some("method")).
+    ///
+    /// Detects methods (lowercase) and enum variants (`Type::Variant` pattern).
+    ///
+    /// # Detection Rules
+    ///
+    /// 1. **Methods/fields**: Last segment starts with lowercase
+    ///    - `Type::method` → (Type, method)
+    ///    - `mod::Type::field_name` → (`mod::Type`, `field_name`)
+    ///
+    /// 2. **Enum variants**: Two consecutive uppercase segments
+    ///    - `Option::Some` → (Option, Some)
+    ///    - `mod::Error::IoError` → (`mod::Error`, `IoError`)
+    ///
+    /// 3. **Nested types**: Uppercase but no uppercase predecessor
+    ///    - `mod::OuterType::InnerType` → (`mod::OuterType::InnerType`, None)
+    ///
+    /// # Examples
+    ///
+    /// ```text
+    /// "ConfigBuilder::http_status_as_error"
+    ///   Last segment "http_status_as_error" starts lowercase → method
+    ///   → ("ConfigBuilder", Some("http_status_as_error"))
+    ///
+    /// "config::ConfigBuilder::new"
+    ///   Last segment "new" starts lowercase → method
+    ///   → ("config::ConfigBuilder", Some("new"))
+    ///
+    /// "Option::Some"
+    ///   "Option" uppercase, "Some" uppercase → enum variant
+    ///   → ("Option", Some("Some"))
+    ///
+    /// "error::Error::Io"
+    ///   "Error" uppercase, "Io" uppercase → enum variant
+    ///   → ("error::Error", Some("Io"))
+    ///
+    /// "config::ConfigBuilder"
+    ///   "config" lowercase, "ConfigBuilder" uppercase → not a variant
+    ///   → ("config::ConfigBuilder", None)
+    ///
+    /// "Vec"
+    ///   No "::" separator
+    ///   → ("Vec", None)
+    /// ```
+    fn split_type_and_anchor(path: &str) -> (&str, Option<&str>) {
+        // Find the last "::" separator
+        // "config::ConfigBuilder::method" → sep_pos = 21 (before "method")
+        let Some(sep_pos) = path.rfind("::") else {
+            // No separator, just a simple name like "Vec"
+            return (path, None);
+        };
+
+        // Split into: rest = "config::ConfigBuilder", last = "method"
+        let last = &path[sep_pos + 2..]; // Skip the "::"
+        let rest = &path[..sep_pos];
+
+        // ─────────────────────────────────────────────────────────────────────
+        // Rule 1: Lowercase last segment = method/field
+        // ─────────────────────────────────────────────────────────────────────
+        // Methods and fields in Rust are snake_case by convention
+        if last.starts_with(|c: char| c.is_lowercase()) {
+            return (rest, Some(last));
         }
 
-        // Different file - compute relative path
-        let relative = LinkRegistry::compute_relative_path(current_without_crate, target_path);
-        format!("[`{display_name}`]({relative})")
+        // ─────────────────────────────────────────────────────────────────────
+        // Rule 2: Check for enum variant (Type::Variant pattern)
+        // ─────────────────────────────────────────────────────────────────────
+        // Both the type and variant are uppercase (PascalCase)
+
+        // Check if there's another "::" before this one
+        // "error::Error::Io" → prev_sep at position of "Error", prev = "Error"
+        if let Some(prev_sep) = rest.rfind("::") {
+            let prev = &rest[prev_sep + 2..]; // The segment before "last"
+
+            // Both uppercase = likely Type::Variant
+            // "Error" uppercase + "Io" uppercase → enum variant
+            if prev.starts_with(|c: char| c.is_uppercase())
+                && last.starts_with(|c: char| c.is_uppercase())
+            {
+                return (rest, Some(last));
+            }
+        } else if rest.starts_with(|c: char| c.is_uppercase())
+            && last.starts_with(|c: char| c.is_uppercase())
+        {
+            // Simple case: "Option::Some" with no module prefix
+            // "Option" uppercase + "Some" uppercase → enum variant
+            return (rest, Some(last));
+        }
+
+        // ─────────────────────────────────────────────────────────────────────
+        // No anchor detected
+        // ─────────────────────────────────────────────────────────────────────
+        // This is something like "mod::Type" where Type is not a variant
+        (path, None)
+    }
+
+    /// Build a markdown link, handling same-crate and cross-crate cases.
+    ///
+    /// This is the core function that computes relative paths between markdown
+    /// files and formats the final link.
+    ///
+    /// # Arguments
+    /// * `current_file` - The file we're generating (e.g., "ureq/agent/index.md")
+    /// * `target_crate` - The crate containing the target item
+    /// * `target_path` - Path to target within its crate (e.g., "config/index.md")
+    /// * `display_name` - Text to show in the link
+    /// * `anchor` - Optional anchor suffix (e.g., "`method_name`")
+    ///
+    /// # Path Computation Examples
+    ///
+    /// ## Same Crate Examples
+    ///
+    /// ```text
+    /// Example 1: Link from index to nested module
+    ///    current_file = "ureq/index.md"
+    ///    target_crate = "ureq"
+    ///    target_path = "config/index.md"
+    ///
+    ///    Step 1: Strip crate prefix from current
+    ///      "ureq/index.md" -> "index.md"
+    ///
+    ///    Step 2: Compute relative path
+    ///      from "index.md" to "config/index.md"
+    ///      -> "config/index.md"
+    ///
+    ///    Output: "[`display`](config/index.md)"
+    ///
+    /// Example 2: Link from nested to sibling module
+    ///    current_file = "ureq/agent/index.md"
+    ///    target_crate = "ureq"
+    ///    target_path = "config/index.md"
+    ///
+    ///    Step 1: Strip crate prefix
+    ///      "ureq/agent/index.md" -> "agent/index.md"
+    ///
+    ///    Step 2: Compute relative path
+    ///      from "agent/index.md" to "config/index.md"
+    ///      -> "config/index.md"
+    ///
+    ///    Output: "[`display`][../config/index.md]"
+    ///
+    /// ## Cross-Crate Examples
+    ///
+    /// ```text
+    /// Example 3: Link from one crate to another
+    ///   current_file = "ureq/agent/index.md"
+    ///   target_crate = "http"
+    ///   target_path  = "status/index.md"
+    ///
+    ///   Step 1: Strip crate prefix
+    ///     "ureq/agent/index.md" → "agent/index.md"
+    ///
+    ///   Step 2: Count depth (number of '/' in local path)
+    ///     "agent/index.md" has 1 slash → depth = 1
+    ///
+    ///   Step 3: Build cross-crate path
+    ///     Go up (depth + 1) levels: "../" * 2 = "../../"
+    ///     Then into target crate: "../../http/status/index.md"
+    ///
+    ///   Output: "[`display`](../../http/status/index.md)"
+    ///
+    /// Example 4: Cross-crate from root
+    ///   current_file = "ureq/index.md"
+    ///   target_crate = "http"
+    ///   target_path  = "index.md"
+    ///
+    ///   depth = 0 (no slashes in "index.md")
+    ///   prefix = "../" * 1 = "../"
+    ///
+    ///   Output: "[`display`](../http/index.md)"
+    /// ```
+    fn build_markdown_link(
+        &self,
+        current_file: &str,
+        target_crate: &str,
+        target_path: &str,
+        display_name: &str,
+        anchor: Option<&str>,
+    ) -> String {
+        use crate::linker::LinkRegistry;
+
+        // ------------------------------------------------------------------------
+        //  Step 1: Get the crate-local portion of the current path
+        // ------------------------------------------------------------------------
+        // "ureq/agent/index.md" -> "agent/index.md"
+        // This is needed because target_path doesn't include the crate prefix
+        let current_local = Self::strip_crate_prefix(current_file);
+
+        // ------------------------------------------------------------------------
+        //  Step 2: Compute the file path portion of the link
+        // ------------------------------------------------------------------------
+        let file_link = if target_crate == self.crate_name {
+            // ====================================================================
+            //  SAME CRATE: Use relative path within the crate
+            // ====================================================================
+            if current_local == target_path {
+                // Same file, we only need an anchor, no file path.
+                // Example: linking to a method on the same page
+                String::new()
+            } else {
+                // Different file in same crate - compute relative path
+                // "agent/index.md" -> "config/index.md" = "../config/index.md"
+                LinkRegistry::compute_relative_path(current_local, target_path)
+            }
+        } else {
+            // ================================================================
+            // CROSS-CRATE: Navigate up to docs root, then into target crate
+            // ================================================================
+            Self::compute_cross_crate_path(current_local, target_crate, target_path)
+        };
+
+        // ─────────────────────────────────────────────────────────────────────
+        // Step 3: Build the anchor suffix
+        // ─────────────────────────────────────────────────────────────────────
+        // Convert anchor to slug format (lowercase, hyphens for special chars)
+        // "http_status_as_error" → "#http_status_as_error"
+        let anchor_suffix = anchor.map_or_else(String::new, |a| format!("#{}", slugify_anchor(a)));
+
+        // ─────────────────────────────────────────────────────────────────────
+        // Step 4: Assemble the final markdown link
+        // ─────────────────────────────────────────────────────────────────────
+        if file_link.is_empty() {
+            // Same file - we need an anchor (either explicit or from display name)
+            // If no explicit anchor was provided, use the display name as anchor
+            let anchor = if anchor.is_some() {
+                anchor_suffix
+            } else {
+                // Turn display name into anchor: "ConfigBuilder" → "#configbuilder"
+                format!("#{}", slugify_anchor(display_name))
+            };
+            format!("[`{display_name}`]({anchor})")
+        } else {
+            // Different file - include file path and optional anchor
+            format!("[`{display_name}`]({file_link}{anchor_suffix})")
+        }
+    }
+
+    /// Compute a relative path for cross-crate linking.
+    ///
+    /// Given the local portion of the current file path (without crate prefix),
+    /// computes the `../` prefix needed to navigate to another crate's file.
+    ///
+    /// # Arguments
+    /// * `current_local` - Current file path within crate (e.g., "agent/index.md")
+    /// * `target_crate` - Name of the target crate
+    /// * `target_path` - Path within target crate (e.g., "status/index.md")
+    ///
+    /// # Examples
+    ///
+    /// ```text
+    /// // From root of one crate to another
+    /// compute_cross_crate_path("index.md", "http", "index.md")
+    ///   → "../http/index.md"
+    ///
+    /// // From nested module to another crate
+    /// compute_cross_crate_path("agent/index.md", "http", "status/index.md")
+    ///   → "../../http/status/index.md"
+    ///
+    /// // From deeply nested to another crate root
+    /// compute_cross_crate_path("a/b/c/index.md", "other", "index.md")
+    ///   → "../../../../other/index.md"
+    /// ```
+    fn compute_cross_crate_path(current_local: &str, target_crate: &str, target_path: &str) -> String {
+        // Count depth: number of '/' in current path
+        // "agent/index.md" has 1 slash → depth = 1
+        let depth = current_local.matches('/').count();
+
+        // We need to go up:
+        // - `depth` levels to get to crate root
+        // - +1 more level to get to docs root (above all crates)
+        let prefix = "../".repeat(depth + 1);
+
+        // Then descend into the target crate
+        format!("{prefix}{target_crate}/{target_path}")
+    }
+
+    /// Strip the crate prefix from a file path.
+    ///
+    /// File paths in our system includes the crate name as the first directory.
+    /// This helper removes it to get the crate-local path.
+    ///
+    /// # Examples
+    ///
+    /// ```text
+    /// "ureq/config/index.md" -> "config/index.md"
+    /// "ureq/index.md"        -> "index.md"
+    /// "http/status/index.md" -> "status/index.md"
+    /// "simple.md"            -> "simple.md" (no slash returns as is)
+    /// ```
+    #[inline]
+    fn strip_crate_prefix(path: &str) -> &str {
+        // Find the first '/' which seperates crate name from the rest
+        // "ureq/config/index.md"
+        //      ^ position = 4
+        //
+        // Then return everything after it: "config/index.md"
+        path.find('/').map_or(path, |i| &path[(i + 1)..])
     }
 
     /// Check if a link text looks like an intentional external crate reference.
@@ -667,10 +1116,7 @@ impl<'a> SingleCrateView<'a> {
         }
 
         // Known external crate names or patterns
-        let external_patterns = [
-            "std::", "core::", "alloc::",
-            "_crate", "_derive", "_impl",
-        ];
+        let external_patterns = ["std::", "core::", "alloc::", "_crate", "_derive", "_impl"];
 
         for pattern in external_patterns {
             if link_text.contains(pattern) {
@@ -772,5 +1218,354 @@ impl RenderContext for SingleCrateView<'_> {
         };
 
         Some(format!("[`{display_name}`]({relative_path})"))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    // =========================================================================
+    // Tests for split_type_and_anchor
+    // =========================================================================
+
+    mod split_type_and_anchor {
+        use super::*;
+
+        #[test]
+        fn simple_type_no_anchor() {
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("Vec"),
+                ("Vec", None)
+            );
+        }
+
+        #[test]
+        fn module_path_no_anchor() {
+            // Module prefix + type = no anchor (lowercase then uppercase)
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("config::ConfigBuilder"),
+                ("config::ConfigBuilder", None)
+            );
+        }
+
+        #[test]
+        fn type_with_method() {
+            // Type::method - last segment lowercase = method anchor
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("Type::method"),
+                ("Type", Some("method"))
+            );
+        }
+
+        #[test]
+        fn type_with_snake_case_method() {
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("ConfigBuilder::http_status_as_error"),
+                ("ConfigBuilder", Some("http_status_as_error"))
+            );
+        }
+
+        #[test]
+        fn module_type_method() {
+            // Full path with method
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("config::ConfigBuilder::new"),
+                ("config::ConfigBuilder", Some("new"))
+            );
+        }
+
+        #[test]
+        fn enum_variant_simple() {
+            // Both uppercase = enum variant
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("Option::Some"),
+                ("Option", Some("Some"))
+            );
+        }
+
+        #[test]
+        fn enum_variant_with_module() {
+            // Module + Type::Variant
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("error::Error::Io"),
+                ("error::Error", Some("Io"))
+            );
+        }
+
+        #[test]
+        fn result_variant() {
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("Result::Ok"),
+                ("Result", Some("Ok"))
+            );
+        }
+
+        #[test]
+        fn nested_modules_with_type() {
+            // Deep nesting ending in type (no anchor)
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("a::b::c::Type"),
+                ("a::b::c::Type", None)
+            );
+        }
+
+        #[test]
+        fn nested_modules_with_method() {
+            // Deep nesting ending in method
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("a::b::Type::method"),
+                ("a::b::Type", Some("method"))
+            );
+        }
+
+        #[test]
+        fn associated_type_treated_as_variant() {
+            // Iterator::Item - both uppercase, treated as variant (acceptable)
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("Iterator::Item"),
+                ("Iterator", Some("Item"))
+            );
+        }
+
+        #[test]
+        fn const_associated_item() {
+            // Type::CONST - uppercase const, treated as variant
+            assert_eq!(
+                SingleCrateView::split_type_and_anchor("Type::MAX"),
+                ("Type", Some("MAX"))
+            );
+        }
+    }
+
+    // =========================================================================
+    // Tests for strip_crate_prefix
+    // =========================================================================
+
+    mod strip_crate_prefix {
+        use super::*;
+
+        #[test]
+        fn strips_crate_from_nested_path() {
+            assert_eq!(
+                SingleCrateView::strip_crate_prefix("ureq/config/index.md"),
+                "config/index.md"
+            );
+        }
+
+        #[test]
+        fn strips_crate_from_root() {
+            assert_eq!(
+                SingleCrateView::strip_crate_prefix("ureq/index.md"),
+                "index.md"
+            );
+        }
+
+        #[test]
+        fn strips_crate_from_deep_path() {
+            assert_eq!(
+                SingleCrateView::strip_crate_prefix("http/uri/authority/index.md"),
+                "uri/authority/index.md"
+            );
+        }
+
+        #[test]
+        fn no_slash_returns_as_is() {
+            assert_eq!(SingleCrateView::strip_crate_prefix("simple.md"), "simple.md");
+        }
+    }
+
+    // =========================================================================
+    // Tests for looks_like_external_reference
+    // =========================================================================
+
+    mod looks_like_external_reference {
+        use super::*;
+
+        #[test]
+        fn qualified_path_is_external() {
+            assert!(SingleCrateView::looks_like_external_reference("std::io::Error"));
+        }
+
+        #[test]
+        fn crate_path_is_external() {
+            assert!(SingleCrateView::looks_like_external_reference("regex::Regex"));
+        }
+
+        #[test]
+        fn std_prefix_is_external() {
+            assert!(SingleCrateView::looks_like_external_reference("std::vec::Vec"));
+        }
+
+        #[test]
+        fn core_prefix_is_external() {
+            assert!(SingleCrateView::looks_like_external_reference("core::mem::drop"));
+        }
+
+        #[test]
+        fn alloc_prefix_is_external() {
+            assert!(SingleCrateView::looks_like_external_reference("alloc::string::String"));
+        }
+
+        #[test]
+        fn simple_name_not_external() {
+            assert!(!SingleCrateView::looks_like_external_reference("Error"));
+        }
+
+        #[test]
+        fn pascal_case_not_external() {
+            assert!(!SingleCrateView::looks_like_external_reference("ConfigBuilder"));
+        }
+
+        #[test]
+        fn derive_suffix_is_external() {
+            assert!(SingleCrateView::looks_like_external_reference("serde_derive"));
+        }
+    }
+
+    // =========================================================================
+    // Tests for compute_cross_crate_path (relative path computation)
+    // =========================================================================
+
+    mod compute_cross_crate_path {
+        use super::*;
+
+        #[test]
+        fn from_root_to_root() {
+            // From crate root (index.md) to another crate's root
+            assert_eq!(
+                SingleCrateView::compute_cross_crate_path("index.md", "http", "index.md"),
+                "../http/index.md"
+            );
+        }
+
+        #[test]
+        fn from_root_to_nested() {
+            // From crate root to nested module in another crate
+            assert_eq!(
+                SingleCrateView::compute_cross_crate_path("index.md", "http", "status/index.md"),
+                "../http/status/index.md"
+            );
+        }
+
+        #[test]
+        fn from_nested_to_root() {
+            // From nested module to another crate's root
+            // depth = 1 (one '/'), needs "../" * 2 = "../../"
+            assert_eq!(
+                SingleCrateView::compute_cross_crate_path("agent/index.md", "http", "index.md"),
+                "../../http/index.md"
+            );
+        }
+
+        #[test]
+        fn from_nested_to_nested() {
+            // From nested module to nested module in another crate
+            assert_eq!(
+                SingleCrateView::compute_cross_crate_path("agent/index.md", "http", "status/index.md"),
+                "../../http/status/index.md"
+            );
+        }
+
+        #[test]
+        fn from_deeply_nested() {
+            // From deeply nested (3 levels) to another crate
+            // depth = 3, needs "../" * 4 = "../../../../"
+            assert_eq!(
+                SingleCrateView::compute_cross_crate_path(
+                    "a/b/c/index.md",
+                    "other",
+                    "index.md"
+                ),
+                "../../../../other/index.md"
+            );
+        }
+
+        #[test]
+        fn to_deeply_nested() {
+            // From root to deeply nested in another crate
+            assert_eq!(
+                SingleCrateView::compute_cross_crate_path(
+                    "index.md",
+                    "target",
+                    "x/y/z/index.md"
+                ),
+                "../target/x/y/z/index.md"
+            );
+        }
+
+        #[test]
+        fn both_deeply_nested() {
+            // Both source and target are deeply nested
+            assert_eq!(
+                SingleCrateView::compute_cross_crate_path(
+                    "a/b/index.md",
+                    "target",
+                    "x/y/index.md"
+                ),
+                "../../../target/x/y/index.md"
+            );
+        }
+    }
+
+    // =========================================================================
+    // Tests for process_plain_links (static method)
+    // =========================================================================
+
+    mod process_plain_links {
+        use super::*;
+
+        #[test]
+        fn converts_snake_case_link() {
+            let input = "See [enter] for details.";
+            let result = SingleCrateView::process_plain_links(input);
+            assert_eq!(result, "See [enter](#enter) for details.");
+        }
+
+        #[test]
+        fn skips_existing_links() {
+            let input = "See [enter](somewhere.md) for details.";
+            let result = SingleCrateView::process_plain_links(input);
+            assert_eq!(result, input); // No change
+        }
+
+        #[test]
+        fn skips_reference_links() {
+            // Note: [enter] is skipped because it's followed by [
+            // but [ref] at the end matches because it looks like a plain link
+            // This is a known limitation - reference link targets get converted
+            let input = "See [enter][ref] for details.";
+            let result = SingleCrateView::process_plain_links(input);
+            assert_eq!(result, "See [enter][ref](#ref) for details.");
+        }
+
+        #[test]
+        fn skips_inside_backticks() {
+            let input = "Use `array[index]` syntax.";
+            let result = SingleCrateView::process_plain_links(input);
+            assert_eq!(result, input); // No change - inside backticks
+        }
+
+        #[test]
+        fn handles_multiple_links() {
+            let input = "See [foo] and [bar] methods.";
+            let result = SingleCrateView::process_plain_links(input);
+            assert_eq!(result, "See [foo](#foo) and [bar](#bar) methods.");
+        }
+
+        #[test]
+        fn ignores_uppercase_words() {
+            let input = "See [Error] for details.";
+            let result = SingleCrateView::process_plain_links(input);
+            assert_eq!(result, input); // Uppercase not matched by pattern
+        }
+
+        #[test]
+        fn handles_underscores() {
+            // Note: slugify_anchor converts underscores to hyphens
+            let input = "Call [my_function] here.";
+            let result = SingleCrateView::process_plain_links(input);
+            assert_eq!(result, "Call [my_function](#my-function) here.");
+        }
     }
 }

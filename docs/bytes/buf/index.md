@@ -458,7 +458,19 @@ that it is possible in safe code to write uninitialized bytes to an
 
 - `type Output = UninitSlice`
 
-- `fn index(self: &Self, index: RangeTo<usize>) -> &UninitSlice`
+- `fn index(self: &Self, index: Range<usize>) -> &UninitSlice`
+
+##### `impl Index`
+
+- `type Output = UninitSlice`
+
+- `fn index(self: &Self, index: RangeToInclusive<usize>) -> &UninitSlice`
+
+##### `impl Index`
+
+- `type Output = UninitSlice`
+
+- `fn index(self: &Self, index: RangeFrom<usize>) -> &UninitSlice`
 
 ##### `impl Index`
 
@@ -476,23 +488,7 @@ that it is possible in safe code to write uninitialized bytes to an
 
 - `type Output = UninitSlice`
 
-- `fn index(self: &Self, index: RangeToInclusive<usize>) -> &UninitSlice`
-
-##### `impl Index`
-
-- `type Output = UninitSlice`
-
-- `fn index(self: &Self, index: Range<usize>) -> &UninitSlice`
-
-##### `impl Index`
-
-- `type Output = UninitSlice`
-
-- `fn index(self: &Self, index: RangeFrom<usize>) -> &UninitSlice`
-
-##### `impl IndexMut`
-
-- `fn index_mut(self: &mut Self, index: RangeInclusive<usize>) -> &mut UninitSlice`
+- `fn index(self: &Self, index: RangeTo<usize>) -> &UninitSlice`
 
 ##### `impl IndexMut`
 
@@ -504,7 +500,7 @@ that it is possible in safe code to write uninitialized bytes to an
 
 ##### `impl IndexMut`
 
-- `fn index_mut(self: &mut Self, index: RangeFull) -> &mut UninitSlice`
+- `fn index_mut(self: &mut Self, index: Range<usize>) -> &mut UninitSlice`
 
 ##### `impl IndexMut`
 
@@ -512,7 +508,11 @@ that it is possible in safe code to write uninitialized bytes to an
 
 ##### `impl IndexMut`
 
-- `fn index_mut(self: &mut Self, index: Range<usize>) -> &mut UninitSlice`
+- `fn index_mut(self: &mut Self, index: RangeFull) -> &mut UninitSlice`
+
+##### `impl IndexMut`
+
+- `fn index_mut(self: &mut Self, index: RangeInclusive<usize>) -> &mut UninitSlice`
 
 ##### `impl Debug`
 

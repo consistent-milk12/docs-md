@@ -1620,14 +1620,14 @@ Values in this enum are taken from the various RFCs covering TLS, and are listed
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 

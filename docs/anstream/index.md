@@ -61,6 +61,12 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
+- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
+  Get exclusive access to the `AutoStream`
+
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
+  Get exclusive access to the `AutoStream`
+
 - `fn new(raw: S, choice: ColorChoice) -> Self`
   Runtime control over styling behavior
 
@@ -90,12 +96,6 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 - `fn current_choice(self: &Self) -> ColorChoice`
   Prefer [`AutoStream::choice`]
-
-- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
-  Get exclusive access to the `AutoStream`
-
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `AutoStream`
 
 #### Trait Implementations
 
@@ -163,12 +163,6 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `StripStream`
-
-- `fn is_terminal(self: &Self) -> bool`
-  Returns `true` if the descriptor/handle refers to a terminal/tty.
-
 - `fn new(raw: S) -> Self`
   Only pass printable data to the inner `Write`
 
@@ -180,6 +174,12 @@ Only pass printable data to the inner `Write`
 
 - `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>`
   Get exclusive access to the `StripStream`
+
+- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
+  Get exclusive access to the `StripStream`
+
+- `fn is_terminal(self: &Self) -> bool`
+  Returns `true` if the descriptor/handle refers to a terminal/tty.
 
 #### Trait Implementations
 

@@ -1185,6 +1185,18 @@ make an API for sending requests.
 
 #### Implementations
 
+- `fn content_type<V>(self: Self, content_type: V) -> Self`
+  Set the content-type header.
+
+- `fn send(self: Self, data: impl AsSendBody) -> Result<Response<Body>, Error>`
+  Send body data and blocks the caller until we receive response.
+
+- `fn send_empty(self: Self) -> Result<Response<Body>, Error>`
+  Send an empty body.
+
+- `fn send_form<I, K, V>(self: Self, iter: I) -> Result<Response<Body>, Error>`
+  Send form encoded data.
+
 - `fn call(self: Self) -> Result<Response<Body>, Error>`
   Sends the request and blocks the caller until we receive a response.
 
@@ -1238,18 +1250,6 @@ make an API for sending requests.
 
 - `fn extensions_mut(self: &mut Self) -> Option<&mut Extensions>`
   Get a mutable reference to the extensions for this request builder.
-
-- `fn content_type<V>(self: Self, content_type: V) -> Self`
-  Set the content-type header.
-
-- `fn send(self: Self, data: impl AsSendBody) -> Result<Response<Body>, Error>`
-  Send body data and blocks the caller until we receive response.
-
-- `fn send_empty(self: Self) -> Result<Response<Body>, Error>`
-  Send an empty body.
-
-- `fn send_form<I, K, V>(self: Self, iter: I) -> Result<Response<Body>, Error>`
-  Send form encoded data.
 
 #### Trait Implementations
 
@@ -1516,14 +1516,14 @@ body directly. See below `SendBody::from_reader`.
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1857,7 +1857,7 @@ Errors from ureq.
 
 ##### `impl From`
 
-- `fn from(value: http::Error) -> Self`
+- `fn from(value: ureq_proto::Error) -> Self`
 
 ##### `impl From`
 
@@ -1865,7 +1865,7 @@ Errors from ureq.
 
 ##### `impl From`
 
-- `fn from(value: ureq_proto::Error) -> Self`
+- `fn from(value: http::Error) -> Self`
 
 ##### `impl From<T>`
 

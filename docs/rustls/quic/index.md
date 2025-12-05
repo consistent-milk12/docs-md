@@ -658,18 +658,18 @@ A QUIC client or server connection.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(c: ClientConnection) -> Self`
 
 ##### `impl From`
 
 - `fn from(c: ServerConnection) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(c: ClientConnection) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 

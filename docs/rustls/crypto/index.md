@@ -581,6 +581,10 @@ The result from `ActiveKeyExchange::complete` or `ActiveKeyExchange::complete_hy
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(source: &[u8]) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -589,10 +593,6 @@ The result from `ActiveKeyExchange::complete` or `ActiveKeyExchange::complete_hy
 ##### `impl From`
 
 - `fn from(buf: Vec<u8>) -> Self`
-
-##### `impl From`
-
-- `fn from(source: &[u8]) -> Self`
 
 ##### `impl Into<T, U>`
 

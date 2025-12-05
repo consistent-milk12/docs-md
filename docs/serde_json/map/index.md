@@ -992,7 +992,7 @@ enum Entry<'a> {
 ```
 
 A view into a single entry in a map, which may either be vacant or occupied.
-This enum is constructed from the [`entry`](#entry) method on [`Map`](../index.md).
+This enum is constructed from the [`entry`](#entry) method on [`Map`](#map).
 
 
 #### Variants

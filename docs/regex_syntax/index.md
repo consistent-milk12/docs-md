@@ -192,7 +192,7 @@ convenience for never having to deal with it at all.
 If callers have more fine grained use cases that need an AST, then please
 see the `ast::parse` module.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuilder).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](ast/parse/index.md).
 
 #### Implementations
 
@@ -467,10 +467,6 @@ new variant is not considered a breaking change.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(err: ast::Error) -> Error`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -479,6 +475,10 @@ new variant is not considered a breaking change.
 ##### `impl From`
 
 - `fn from(err: hir::Error) -> Error`
+
+##### `impl From`
+
+- `fn from(err: ast::Error) -> Error`
 
 ##### `impl Into<T, U>`
 

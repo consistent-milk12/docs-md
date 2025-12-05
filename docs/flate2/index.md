@@ -185,9 +185,6 @@ A wrapper around a [`Read`](#read) that calculates the CRC.
 
 #### Implementations
 
-- `fn new(r: R) -> CrcReader<R>`
-  Create a new `CrcReader`.
-
 - `fn crc(self: &Self) -> &Crc`
   Get the Crc for this `CrcReader`.
 
@@ -202,6 +199,9 @@ A wrapper around a [`Read`](#read) that calculates the CRC.
 
 - `fn reset(self: &mut Self)`
   Reset the Crc in this `CrcReader`.
+
+- `fn new(r: R) -> CrcReader<R>`
+  Create a new `CrcReader`.
 
 #### Trait Implementations
 
@@ -796,11 +796,11 @@ bytes was not a valid input stream of bytes.
 
 #### Implementations
 
-- `fn needs_dictionary(self: &Self) -> Option<u32>`
-  Indicates whether decompression failed due to requiring a dictionary.
-
 - `fn message(self: &Self) -> Option<&str>`
   Retrieve the implementation's message about why the operation failed, if one exists.
+
+- `fn needs_dictionary(self: &Self) -> Option<u32>`
+  Indicates whether decompression failed due to requiring a dictionary.
 
 #### Trait Implementations
 

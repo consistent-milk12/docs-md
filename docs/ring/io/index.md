@@ -18,11 +18,11 @@ A serialized positive integer.
 
 #### Implementations
 
-- `fn big_endian_without_leading_zero(self: &Self) -> &'a [u8]`
-  Returns the value, ordered from significant byte to least significant
-
 - `fn first_byte(self: &Self) -> u8`
   Returns the first byte.
+
+- `fn big_endian_without_leading_zero(self: &Self) -> &'a [u8]`
+  Returns the value, ordered from significant byte to least significant
 
 #### Trait Implementations
 

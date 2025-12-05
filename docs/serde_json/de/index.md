@@ -181,23 +181,23 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn from_slice(bytes: &'a [u8]) -> Self`
-  Creates a JSON deserializer from a `&[u8]`.
-
 - `fn end(self: &mut Self) -> Result<()>`
   The `Deserializer::end` method should be called after a value has been fully deserialized.
 
 - `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>`
   Turn a JSON deserializer into an iterator over values of type T.
 
+- `fn from_slice(bytes: &'a [u8]) -> Self`
+  Creates a JSON deserializer from a `&[u8]`.
+
+- `fn from_reader(reader: R) -> Self`
+  Creates a JSON deserializer from an `io::Read`.
+
 - `fn new(read: R) -> Self`
   Create a JSON deserializer from one of the possible serde_json input
 
 - `fn from_str(s: &'a str) -> Self`
   Creates a JSON deserializer from a `&str`.
-
-- `fn from_reader(reader: R) -> Self`
-  Creates a JSON deserializer from an `io::Read`.
 
 #### Trait Implementations
 

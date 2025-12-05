@@ -319,21 +319,6 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Returns true if and only if this `PikeVM` matches the given haystack.
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Executes a leftmost forward search and returns a `Match` if one exists.
-
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping leftmost matches in the
-
-- `fn captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> CapturesMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping `Captures` values. If no
-
 - `fn new(pattern: &str) -> Result<PikeVM, BuildError>`
   Parse the given regular expression using the default configuration and
 
@@ -372,6 +357,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get_nfa(self: &Self) -> &NFA`
   Returns a reference to the underlying NFA.
+
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
+  Returns true if and only if this `PikeVM` matches the given haystack.
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
+  Executes a leftmost forward search and returns a `Match` if one exists.
+
+- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
+  Returns an iterator over all non-overlapping leftmost matches in the
+
+- `fn captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> CapturesMatches<'r, 'c, 'h>`
+  Returns an iterator over all non-overlapping `Captures` values. If no
 
 - `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
   Executes a leftmost forward search and writes the spans of capturing

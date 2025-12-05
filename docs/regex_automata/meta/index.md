@@ -7,7 +7,7 @@
 Provides a regex matcher that composes several other regex matchers
 automatically.
 
-This module is home to a meta [`Regex`](../index.md), which provides a convenient high
+This module is home to a meta [`Regex`](../hybrid/regex/index.md), which provides a convenient high
 level API for executing regular expressions in linear time.
 
 # Comparison with the `regex` crate
@@ -42,7 +42,7 @@ pattern, while the latter supports multiple patterns but cannot report the
 offsets of a match.
 * A meta `Regex` provides the explicit capability of bypassing its internal
 memory pool for automatically acquiring mutable scratch space required by its
-internal regex engines. Namely, a [`Cache`](../dfa/onepass/index.md) can be explicitly provided to lower
+internal regex engines. Namely, a [`Cache`](../index.md) can be explicitly provided to lower
 level routines such as `Regex::search_with`.
 
 ## Structs
@@ -169,7 +169,7 @@ A builder for configuring and constructing a `Regex`.
 The builder permits configuring two different aspects of a `Regex`:
 
 * `Builder::configure` will set high-level configuration options as
-described by a [`Config`](../util/start/index.md).
+described by a [`Config`](../hybrid/dfa/index.md).
 * `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
@@ -880,7 +880,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](../dfa/onepass/index.md).
+mutable scratch space. This scratch space is called a [`Cache`](../index.md).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).
@@ -1020,21 +1020,6 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn search_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
-  This is like [`Regex::search`], but requires the caller to
-
-- `fn search_half_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
-  This is like [`Regex::search_half`], but requires the caller to
-
-- `fn search_captures_with(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
-  This is like [`Regex::search_captures`], but requires the caller to
-
-- `fn search_slots_with(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  This is like [`Regex::search_slots`], but requires the caller to
-
-- `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
-  This is like [`Regex::which_overlapping_matches`], but requires the
-
 - `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
   Returns true if and only if this regex matches the given haystack.
 
@@ -1109,6 +1094,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn memory_usage(self: &Self) -> usize`
   Return the total approximate heap memory, in bytes, used by this `Regex`.
+
+- `fn search_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
+  This is like [`Regex::search`], but requires the caller to
+
+- `fn search_half_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
+  This is like [`Regex::search_half`], but requires the caller to
+
+- `fn search_captures_with(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
+  This is like [`Regex::search_captures`], but requires the caller to
+
+- `fn search_slots_with(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  This is like [`Regex::search_slots`], but requires the caller to
+
+- `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+  This is like [`Regex::which_overlapping_matches`], but requires the
 
 #### Trait Implementations
 

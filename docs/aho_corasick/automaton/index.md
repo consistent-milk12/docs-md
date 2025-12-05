@@ -236,13 +236,7 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u64) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
+- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 
@@ -254,7 +248,13 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
+- `fn try_from(value: u64) -> Result<StateID, StateIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = StateIDError`
+
+- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom<T, U>`
 

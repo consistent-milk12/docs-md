@@ -352,14 +352,14 @@ or encrypted into an OpaqueMessage, and it is also used for joining and fragment
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(msg: Message<'_>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(msg: Message<'_>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -428,10 +428,6 @@ struct PrefixedPayload();
 
 #### Trait Implementations
 
-##### `impl From<const N: usize>`
-
-- `fn from(content: &[u8; N]) -> Self`
-
 ##### `impl From`
 
 - `fn from(content: &[u8]) -> Self`
@@ -440,6 +436,10 @@ struct PrefixedPayload();
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<const N: usize>`
+
+- `fn from(content: &[u8; N]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -794,14 +794,14 @@ This is a value type for a byte string up to `AeadKey::MAX_LEN` bytes in length.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(bytes: [u8; 32]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(bytes: [u8; 32]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -897,14 +897,14 @@ Multiple can hold non fragmented or empty payloads.
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(payload: &'a [u8]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(payload: &'a [u8]) -> Self`
 
 ##### `impl Into<T, U>`
 

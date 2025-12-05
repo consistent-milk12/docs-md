@@ -8,7 +8,7 @@ A DFA that can return spans for matching capturing groups.
 
 This module is the home of a [one-pass DFA](DFA).
 
-This module also contains a [`Builder`](#builder) and a [`Config`](../../util/start/index.md) for building and
+This module also contains a [`Builder`](../../nfa/thompson/backtrack/index.md) and a [`Config`](../../hybrid/dfa/index.md) for building and
 configuring a one-pass DFA.
 
 ## Structs

@@ -82,11 +82,11 @@ A minimal representation of all possible errors that can occur using the
 
 ##### `impl Error`
 
-- `fn custom<T>(msg: T) -> Self`
+- `fn description(self: &Self) -> &str`
 
 ##### `impl Error`
 
-- `fn description(self: &Self) -> &str`
+- `fn custom<T>(msg: T) -> Self`
 
 ##### `impl PartialEq`
 

@@ -1492,11 +1492,11 @@ Controls how Encrypted Client Hello (ECH) is used in a client handshake.
 
 ##### `impl From`
 
-- `fn from(config: EchGreaseConfig) -> Self`
+- `fn from(config: EchConfig) -> Self`
 
 ##### `impl From`
 
-- `fn from(config: EchConfig) -> Self`
+- `fn from(config: EchGreaseConfig) -> Self`
 
 ##### `impl From<T>`
 

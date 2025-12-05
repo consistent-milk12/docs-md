@@ -116,6 +116,11 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(token: TokenTree) -> Self`
@@ -123,11 +128,6 @@ Token stream is both the input and output of `#[proc_macro]`,
 ##### `impl From`
 
 - `fn from(inner: proc_macro::TokenStream) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl FromIterator`
 
@@ -592,9 +592,9 @@ Multicharacter operators like `+=` are represented as two instances of
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
-
 ##### `impl Token`
+
+##### `impl Parse`
 
 ### `Ident`
 
@@ -727,13 +727,13 @@ if ident_string.len() > 60 {
 
 - `fn cmp(self: &Self, other: &Ident) -> Ordering`
 
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Ident) -> bool`
-
 ##### `impl PartialEq<T>`
 
 - `fn eq(self: &Self, other: &T) -> bool`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Ident) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -771,11 +771,11 @@ if ident_string.len() > 60 {
 
 ##### `impl IdentFragment`
 
-##### `impl IdentExt`
-
 ##### `impl Parse`
 
 ##### `impl Token`
+
+##### `impl IdentExt`
 
 ### `Literal`
 
@@ -974,9 +974,9 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
-
 ##### `impl Token`
+
+##### `impl Parse`
 
 ## Enums
 
@@ -1021,6 +1021,14 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(g: Punct) -> Self`
+
+##### `impl From`
+
+- `fn from(g: Ident) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -1032,15 +1040,7 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl From`
 
-- `fn from(g: Punct) -> Self`
-
-##### `impl From`
-
 - `fn from(g: Group) -> Self`
-
-##### `impl From`
-
-- `fn from(g: Ident) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1101,9 +1101,9 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl ToTokens`
 
-##### `impl Token`
-
 ##### `impl Parse`
+
+##### `impl Token`
 
 ### `Delimiter`
 

@@ -21,7 +21,7 @@ The primary types in this sub-module are:
 
 * [`Searcher`](../index.md) executes the actual search algorithm to report matches in a
 haystack.
-* [`Builder`](../nfa/contiguous/index.md) accumulates patterns incrementally and can construct a
+* [`Builder`](../nfa/noncontiguous/index.md) accumulates patterns incrementally and can construct a
 `Searcher`.
 * [`Config`](../index.md) permits tuning the searcher, and itself will produce a `Builder`
 (which can then be used to build a `Searcher`). Currently, the only tuneable
@@ -433,7 +433,7 @@ A packed searcher for quickly finding occurrences of multiple patterns.
 
 If callers need more flexible construction, or if one wants to change the
 match semantics (either leftmost-first or leftmost-longest), then one can
-use the [`Config`](../index.md) and/or [`Builder`](../nfa/contiguous/index.md) types for more fine grained control.
+use the [`Config`](../index.md) and/or [`Builder`](../nfa/noncontiguous/index.md) types for more fine grained control.
 
 # Example
 

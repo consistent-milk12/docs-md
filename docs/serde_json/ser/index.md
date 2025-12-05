@@ -20,9 +20,6 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- `fn pretty(writer: W) -> Self`
-  Creates a new JSON pretty print serializer.
-
 - `fn with_formatter(writer: W, formatter: F) -> Self`
   Creates a new JSON visitor whose output will be written to the writer
 
@@ -31,6 +28,9 @@ A structure for serializing Rust values into JSON.
 
 - `fn new(writer: W) -> Self`
   Creates a new JSON serializer.
+
+- `fn pretty(writer: W) -> Self`
+  Creates a new JSON pretty print serializer.
 
 #### Trait Implementations
 

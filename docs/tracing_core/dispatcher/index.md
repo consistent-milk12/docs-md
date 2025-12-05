@@ -196,14 +196,14 @@ struct Dispatch {
 
 #### Trait Implementations
 
-##### `impl From<S>`
-
-- `fn from(subscriber: S) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<S>`
+
+- `fn from(subscriber: S) -> Self`
 
 ##### `impl Into<T, U>`
 

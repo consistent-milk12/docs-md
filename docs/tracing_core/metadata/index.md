@@ -443,23 +443,11 @@ recorded in.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
-
-- `fn lt(self: &Self, other: &Level) -> bool`
-
-- `fn le(self: &Self, other: &Level) -> bool`
-
-- `fn gt(self: &Self, other: &Level) -> bool`
-
-- `fn ge(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -472,6 +460,18 @@ recorded in.
 - `fn gt(self: &Self, other: &LevelFilter) -> bool`
 
 - `fn ge(self: &Self, other: &LevelFilter) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
+
+- `fn lt(self: &Self, other: &Level) -> bool`
+
+- `fn le(self: &Self, other: &Level) -> bool`
+
+- `fn gt(self: &Self, other: &Level) -> bool`
+
+- `fn ge(self: &Self, other: &Level) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -548,18 +548,18 @@ and `LevelFilter`s interact.
 
 #### Trait Implementations
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(level: Level) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
 - `fn from(level: Option<Level>) -> Self`
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(level: Level) -> Self`
 
 ##### `impl FromStr`
 
@@ -618,18 +618,6 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
-
-- `fn lt(self: &Self, other: &Level) -> bool`
-
-- `fn le(self: &Self, other: &Level) -> bool`
-
-- `fn gt(self: &Self, other: &Level) -> bool`
-
-- `fn ge(self: &Self, other: &Level) -> bool`
-
-##### `impl PartialOrd`
-
 - `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
 
 - `fn lt(self: &Self, other: &LevelFilter) -> bool`
@@ -639,6 +627,18 @@ and `LevelFilter`s interact.
 - `fn gt(self: &Self, other: &LevelFilter) -> bool`
 
 - `fn ge(self: &Self, other: &LevelFilter) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>`
+
+- `fn lt(self: &Self, other: &Level) -> bool`
+
+- `fn le(self: &Self, other: &Level) -> bool`
+
+- `fn gt(self: &Self, other: &Level) -> bool`
+
+- `fn ge(self: &Self, other: &Level) -> bool`
 
 ##### `impl StructuralPartialEq`
 

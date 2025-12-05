@@ -192,6 +192,9 @@ feature flags **rustls** and **native-tls**).
 
 #### Implementations
 
+- `fn builder() -> TlsConfigBuilder`
+  Builder to make a bespoke config.
+
 - `fn provider(self: &Self) -> TlsProvider`
   The provider to use.
 
@@ -209,9 +212,6 @@ feature flags **rustls** and **native-tls**).
 
 - `fn unversioned_rustls_crypto_provider(self: &Self) -> &Option<Arc<::rustls::crypto::CryptoProvider>>`
   Specific `CryptoProvider` to use for `rustls`.
-
-- `fn builder() -> TlsConfigBuilder`
-  Builder to make a bespoke config.
 
 #### Trait Implementations
 
@@ -450,11 +450,6 @@ Kinds of PEM data found by [`parse_pem`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
 ##### `impl From<'a>`
 
 - `fn from(value: Certificate<'a>) -> Self`
@@ -462,6 +457,11 @@ Kinds of PEM data found by [`parse_pem`](../index.md)
 ##### `impl From<'a>`
 
 - `fn from(value: PrivateKey<'a>) -> Self`
+
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
