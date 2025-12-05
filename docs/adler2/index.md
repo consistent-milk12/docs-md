@@ -8,8 +8,7 @@ This implementation features:
 - Zero dependencies.
 - Zero `unsafe`.
 - Decent performance (3-4 GB/s).
-- `#![no_std](#no-std)
-` support (with `default-features = false`).
+- `#![no_std]` support (with `default-features = false`).
 
 ## Structs
 
@@ -36,7 +35,7 @@ good one).
 
 Basic, piecewise checksum calculation:
 
-```
+```rust
 use adler2::Adler32;
 
 let mut adler = Adler32::new();
@@ -49,7 +48,7 @@ assert_eq!(adler.checksum(), 0x00290010);
 
 Using `Hash` to process structures:
 
-```
+```rust
 use std::hash::Hash;
 use adler2::Adler32;
 

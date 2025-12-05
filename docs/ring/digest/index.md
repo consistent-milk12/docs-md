@@ -24,7 +24,7 @@ A context for multi-step (Init-Update-Finish) digest calculations.
 
 # Examples
 
-```
+```rust
 use ring::digest;
 
 let one_shot = digest::digest(&digest::SHA384, b"hello, world");
@@ -114,8 +114,7 @@ struct Digest {
 
 A calculated digest value.
 
-Use `Self::as_ref` to get the value as a `&[u8](#u8)
-`.
+Use `Self::as_ref` to get the value as a `&[u8]`.
 
 #### Implementations
 

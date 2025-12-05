@@ -8,7 +8,7 @@ A DFA that can return spans for matching capturing groups.
 
 This module is the home of a [one-pass DFA](DFA).
 
-This module also contains a [`Builder`](../../index.md) and a [`Config`](#config) for building and
+This module also contains a [`Builder`](#builder) and a [`Config`](../../util/start/index.md) for building and
 configuring a one-pass DFA.
 
 ## Structs
@@ -149,8 +149,8 @@ disable all of these.
 This example shows how to disable UTF-8 mode in the syntax and the NFA.
 This is generally what you want for matching on arbitrary bytes.
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{
     dfa::onepass::DFA,
     nfa::thompson,
@@ -176,7 +176,7 @@ re.captures(&mut cache, haystack, &mut caps);
 // produce matches of length 0.
 assert_eq!(Some(Match::must(0, 0..8)), caps.get_match());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -371,8 +371,8 @@ correctly while simultaneously reporting spans for capturing groups that
 participate in a match. (This is the only DFA that implements full support
 for Unicode word boundaries.)
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{dfa::onepass::DFA, Match, Span};
 
 let re = DFA::new(r"\b(?P<first>\w+)[[:space:]]+(?P<last>\w+)\b")?;
@@ -382,7 +382,7 @@ re.captures(&mut cache, "Шерлок Холмс", &mut caps);
 assert_eq!(Some(Match::must(0, 0..23)), caps.get_match());
 assert_eq!(Some(Span::from(0..12)), caps.get_group_by_name("first"));
 assert_eq!(Some(Span::from(13..23)), caps.get_group_by_name("last"));
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: iteration
@@ -396,8 +396,8 @@ directly adjacent, then an iterator can be used. The
 [`util::iter::Searcher`](crate::util::iter::Searcher) type can be used for
 this purpose:
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{
     dfa::onepass::DFA,
     util::iter::Searcher,
@@ -414,25 +414,10 @@ let mut it = Searcher::new(input).into_captures_iter(caps, |input, caps| {
 let caps0 = it.next().unwrap();
 assert_eq!(Some(Span::from(1..2)), caps0.get_group(1));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
-
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Executes an anchored leftmost forward search, and returns true if and
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Executes an anchored leftmost forward search, and returns a `Match` if
-
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
-  Executes an anchored leftmost forward search and writes the spans
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes an anchored leftmost forward search and writes the spans
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes an anchored leftmost forward search and writes the spans
 
 - `fn new(pattern: &str) -> Result<DFA, BuildError>`
   Parse the given regular expression using the default configuration and
@@ -487,6 +472,21 @@ assert_eq!(Some(Span::from(1..2)), caps0.get_group(1));
 
 - `fn memory_usage(self: &Self) -> usize`
   Returns the memory usage, in bytes, of this DFA.
+
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
+  Executes an anchored leftmost forward search, and returns true if and
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
+  Executes an anchored leftmost forward search, and returns a `Match` if
+
+- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
+  Executes an anchored leftmost forward search and writes the spans
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
+  Executes an anchored leftmost forward search and writes the spans
+
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
+  Executes an anchored leftmost forward search and writes the spans
 
 #### Trait Implementations
 

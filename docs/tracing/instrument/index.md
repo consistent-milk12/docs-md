@@ -248,11 +248,9 @@ trait Instrument: Sized { ... }
 Attaches spans to a `std::future::Future`.
 
 Extension trait allowing futures to be
-instrumented with a `tracing` [span](#span)
-.
+instrumented with a `tracing` [span](#span).
 
-[span](#span)
-: super::Span
+[span](#span): super::Span
 
 #### Required Methods
 
@@ -262,7 +260,7 @@ instrumented with a `tracing` [span](#span)
 
 - `fn in_current_span(self: Self) -> Instrumented<Self>`
 
-  Instruments this type with the [current](#current)
+  Instruments this type with the [current](#current) [`Span`](../span/index.md), returning an
 
 ### `WithSubscriber`
 
@@ -281,5 +279,5 @@ a `tracing` [`Subscriber`](crate::Subscriber).
 
 - `fn with_current_subscriber(self: Self) -> WithDispatch<Self>`
 
-  Attaches the current [default](#default)
+  Attaches the current [default](#default) [`Subscriber`](../index.md) to this type, returning a
 

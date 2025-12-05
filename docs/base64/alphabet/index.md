@@ -25,7 +25,7 @@ can be made via `from_str` or the `TryFrom<str>` implementation.
 
 Building and using a custom Alphabet:
 
-```
+```rust
 let custom = base64::alphabet::Alphabet::new("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/").unwrap();
 
 let engine = base64::engine::GeneralPurpose::new(
@@ -35,7 +35,7 @@ let engine = base64::engine::GeneralPurpose::new(
 
 Building a const:
 
-```
+```rust
 use base64::alphabet::Alphabet;
 
 static CUSTOM: Alphabet = {
@@ -49,7 +49,7 @@ static CUSTOM: Alphabet = {
 
 Building lazily:
 
-```
+```rust
 use base64::{
     alphabet::Alphabet,
     engine::{general_purpose::GeneralPurpose, GeneralPurposeConfig},
@@ -117,17 +117,17 @@ static CUSTOM: Lazy<Alphabet> = Lazy::new(||
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = ParseAlphabetError`
-
-- `fn try_from(value: &str) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = ParseAlphabetError`
+
+- `fn try_from(value: &str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

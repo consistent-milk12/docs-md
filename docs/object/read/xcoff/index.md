@@ -30,7 +30,7 @@ use std::fs;
 
 /// Reads a file and displays the name of each section and symbol.
 fn main() -> Result<(), Box<dyn Error>> {
-#   #[cfg(feature = "std")] {
+  #[cfg(feature = "std")] {
     let data = fs::read("path/to/binary")?;
     let mut offset = 0;
     let header = xcoff::FileHeader64::parse(&*data, &mut offset)?;
@@ -43,7 +43,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     for (_index, symbol) in symbols.iter() {
         println!("{}", String::from_utf8_lossy(symbol.name(symbols.strings())?));
     }
-#   }
+  }
     Ok(())
 }
 ```

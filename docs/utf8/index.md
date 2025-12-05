@@ -19,8 +19,7 @@ For example, `String::from_utf8_lossy` (but returning `String` instead of `Cow`)
 can be rewritten as:
 
 ```rust
-fn string_from_utf8_lossy(input: &[u8](#u8)
-) -> String {
+fn string_from_utf8_lossy(input: &[u8]) -> String {
     let mut string = String::new();
     utf8::LossyDecoder::new(|s| string.push_str(s)).feed(input);
     string

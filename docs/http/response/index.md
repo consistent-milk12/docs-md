@@ -15,7 +15,7 @@ module itself.
 
 Creating a `Response` to return
 
-```
+```rust
 use http::{Request, Response, StatusCode};
 
 fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
@@ -33,7 +33,7 @@ fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
 
 A simple 404 handler
 
-```
+```rust
 use http::{Request, Response, StatusCode};
 
 fn not_found(_req: Request<()>) -> http::Result<Response<()>> {
@@ -50,7 +50,7 @@ use http::{Request, Response};
 
 fn get(url: &str) -> http::Result<Response<()>> {
     // ...
-# panic!()
+panic!()
 }
 
 let response = get("https://www.rust-lang.org/").unwrap();
@@ -92,7 +92,7 @@ send back to the client.
 
 Creating a `Response` to return
 
-```
+```rust
 use http::{Request, Response, StatusCode};
 
 fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
@@ -110,7 +110,7 @@ fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
 
 A simple 404 handler
 
-```
+```rust
 use http::{Request, Response, StatusCode};
 
 fn not_found(_req: Request<()>) -> http::Result<Response<()>> {
@@ -127,7 +127,7 @@ use http::{Request, Response};
 
 fn get(url: &str) -> http::Result<Response<()>> {
     // ...
-# panic!()
+panic!()
 }
 
 let response = get("https://www.rust-lang.org/").unwrap();
@@ -146,7 +146,7 @@ let body = response.body();
 
 Deserialize a response of bytes via json:
 
-```
+```rust
 use http::Response;
 use serde::de;
 
@@ -157,13 +157,13 @@ fn deserialize<T>(res: Response<Vec<u8>>) -> serde_json::Result<Response<T>>
     let body = serde_json::from_slice(&body)?;
     Ok(Response::from_parts(parts, body))
 }
-#
-# fn main() {}
+
+fn main() {}
 ```
 
 Or alternatively, serialize the body of a response to json
 
-```
+```rust
 use http::Response;
 use serde::ser;
 
@@ -174,8 +174,8 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
     let body = serde_json::to_vec(&body)?;
     Ok(Response::from_parts(parts, body))
 }
-#
-# fn main() {}
+
+fn main() {}
 ```
 
 #### Implementations
@@ -288,9 +288,9 @@ fn serialize<T>(res: Response<T>) -> serde_json::Result<Response<Vec<u8>>>
 
 - `fn default() -> Response<T>`
 
-##### `impl AsSendBody`
-
 ##### `impl ResponseExt`
+
+##### `impl AsSendBody`
 
 ### `Parts`
 

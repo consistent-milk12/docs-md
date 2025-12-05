@@ -22,7 +22,7 @@ Unlike `std::cell::RefCell`, a `OnceCell` provides simple `&`
 references to the contents.
 
 # Example
-```
+```rust
 use once_cell::unsync::OnceCell;
 
 let cell = OnceCell::new();
@@ -71,16 +71,16 @@ assert!(cell.get().is_some());
 
 ##### `impl From<T>`
 
+- `fn from(value: T) -> Self`
+
+##### `impl From<T>`
+
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
 
 ##### `impl From<T>`
 
 - `fn from(t: never) -> T`
-
-##### `impl From<T>`
-
-- `fn from(value: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -158,7 +158,7 @@ struct Lazy<T, F> {
 A value which is initialized on the first access.
 
 # Example
-```
+```rust
 use once_cell::unsync::Lazy;
 
 let lazy: Lazy<i32> = Lazy::new(|| {

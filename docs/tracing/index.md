@@ -21,11 +21,9 @@
  The `tracing` crate provides the APIs necessary for instrumenting libraries
  and applications to emit trace data.
 
- *Compiler support: [requires `rustc` 1.65+][msrv](#msrv)
-*
+ *Compiler support: [requires `rustc` 1.65+][msrv](#msrv)*
 
- [msrv](#msrv)
-: #supported-rust-versions
+ [msrv](#msrv): #supported-rust-versions
  # Core Concepts
 
  The core of `tracing`'s API is composed of _spans_, _events_ and
@@ -34,8 +32,7 @@
  ## Spans
 
  To record the flow of execution through a program, `tracing` introduces the
- concept of [spans](#spans)
-. Unlike a log line that represents a _moment in
+ concept of [spans](#spans). Unlike a log line that represents a _moment in
  time_, a span represents a _period of time_ with a beginning and an end. When a
  program begins executing in a context or performing a unit of work, it
  _enters_ that context's span, and when it stops executing in that context,
@@ -43,19 +40,18 @@
  referred to as that thread's _current_ span.
 
  For example:
- ```
+ ```rust
  use tracing::{span, Level};
- # fn main() {
+ fn main() {
  let span = span!(Level::TRACE, "my_span");
  // `enter` returns a RAII guard which, when dropped, exits the span. this
  // indicates that we are in the span for the current lexical scope.
  let _enter = span.enter();
  // perform some work in the context of `my_span`...
- # }
+ }
 ```
 
- The [`span` module][span](#span)
-'s documentation provides further details on how to
+ The [`span` module][span](#span)'s documentation provides further details on how to
  use spans.
 
  <div class="example-wrap" style="display:inline-block"><pre class="compile_fail" style="white-space:normal;font:inherit;">
@@ -75,10 +71,10 @@
  an `Event` may occur within the context of a span.
 
  For example:
- ```
+ ```rust
  use tracing::{event, span, Level};
 
- # fn main() {
+ fn main() {
  // records an event outside of any span context:
  event!(Level::INFO, "something happened");
 
@@ -87,7 +83,7 @@
 
  // records an event within "my_span".
  event!(Level::DEBUG, "something happened inside my_span");
- # }
+ }
 ```
 
  In general, events should be used to represent points in time _within_ a
@@ -109,8 +105,7 @@
  + [`exit`](#exit), called when execution exits a `Span`
 
  In addition, subscribers may implement the [`enabled`](#enabled) function to _filter_
- the notifications they receive based on [metadata](#metadata)
- describing each `Span`
+ the notifications they receive based on [metadata](#metadata) describing each `Span`
  or `Event`. If a call to `Subscriber::enabled` returns `false` for a given
  set of metadata, that `Subscriber` will *not* be notified about the
  corresponding `Span` or `Event`. For performance reasons, if no currently
@@ -122,8 +117,7 @@
  First, add this to your `Cargo.toml`:
 
  ```toml
- [dependencies](#dependencies)
-
+ [dependencies]
  tracing = "0.1"
  ```
 
@@ -142,7 +136,7 @@
 
  ```rust
  use tracing::{span, Level};
- # fn main() {
+ fn main() {
  // Construct a new span named "my span" with trace log level.
  let span = span!(Level::TRACE, "my span");
 
@@ -153,38 +147,33 @@
  // within the span.
 
  // Dropping the guard will exit the span.
- # }
+ }
  ```
 
- The [`#[instrument](#instrument)
-`][instrument](#instrument)
- attribute provides an easy way to
- add `tracing` spans to functions. A function annotated with `#[instrument](#instrument)
-`
+ The [`#[instrument]`][instrument](#instrument) attribute provides an easy way to
+ add `tracing` spans to functions. A function annotated with `#[instrument]`
  will create and enter a span with that function's name every time the
  function is called, with arguments to that function will be recorded as
  fields using `fmt::Debug`.
 
  For example:
  ```ignore
- # // this doctest is ignored because we don't have a way to say
- # // that it should only be run with cfg(feature = "attributes")
+ // this doctest is ignored because we don't have a way to say
+ // that it should only be run with cfg(feature = "attributes")
  use tracing::{Level, event, instrument};
 
- #[instrument](#instrument)
-
+ #[instrument]
  pub fn my_function(my_arg: usize) {
      // This event will be recorded inside a span named `my_function` with the
      // field `my_arg`.
      event!(Level::INFO, "inside my_function!");
      // ...
  }
- # fn main() {}
+ fn main() {}
  ```
 
  For functions which don't have built-in tracing support and can't have
- the `#[instrument](#instrument)
-` attribute applied (such as from an external crate),
+ the `#[instrument]` attribute applied (such as from an external crate),
  the [`Span` struct][`Span`](span/index.md) has a [`in_scope()` method][`in_scope`](#in-scope)
  which can be used to easily wrap synchronous code in a span.
 
@@ -192,78 +181,73 @@
  ```rust
  use tracing::info_span;
 
- # fn doc() -> Result<(), ()> {
- # mod serde_json {
- #    pub(crate) fn from_slice(buf: &[u8](#u8)
-) -> Result<(), ()> { Ok(()) }
- # }
- # let buf: [u8; 0] = [];
+ fn doc() -> Result<(), ()> {
+ mod serde_json {
+    pub(crate) fn from_slice(buf: &[u8]) -> Result<(), ()> { Ok(()) }
+ }
+ let buf: [u8; 0] = [];
  let json = info_span!("json.parse").in_scope(|| serde_json::from_slice(&buf))?;
- # let _ = json; // suppress unused variable warning
- # Ok(())
- # }
+ let _ = json; // suppress unused variable warning
+ Ok(())
+ }
  ```
 
- You can find more examples showing how to use this crate [here][examples](#examples)
-.
+ You can find more examples showing how to use this crate [here][examples](#examples).
 
  [RAII]: https://github.com/rust-unofficial/patterns/blob/main/src/patterns/behavioural/RAII.md
- [examples](#examples)
-: https://github.com/tokio-rs/tracing/tree/main/examples
+ [examples](#examples): https://github.com/tokio-rs/tracing/tree/main/examples
 
  ### Events
 
  [`Event`](#event)s are recorded using the [`event`](#event) macro:
 
  ```rust
- # fn main() {
+ fn main() {
  use tracing::{event, Level};
  event!(Level::INFO, "something has happened!");
- # }
+ }
  ```
 
  ## Using the Macros
 
- The [`span`](#span) and [`event`](#event) macros as well as the `#[instrument](#instrument)
-` attribute
+ The [`span`](#span) and [`event`](#event) macros as well as the `#[instrument]` attribute
  use fairly similar syntax, with some exceptions.
 
  ### Configuring Attributes
 
  Both macros require a [`Level`](#level) specifying the verbosity of the span or
- event. Optionally, the, [target](#target)
- and [parent span] may be overridden. If the
+ event. Optionally, the, [target](#target) and [parent span] may be overridden. If the
  target and parent span are not overridden, they will default to the
  module path where the macro was invoked and the current span (as determined
  by the subscriber), respectively.
 
  For example:
 
- ```
- # use tracing::{span, event, Level};
- # fn main() {
+ ```rust
+ use tracing::{span, event, Level};
+ fn main() {
  span!(target: "app_spans", Level::TRACE, "my span");
  event!(target: "app_events", Level::INFO, "something has happened!");
- # }
+ }
  ```
- ```
- # use tracing::{span, event, Level};
- # fn main() {
+ ```rust
+ use tracing::{span, event, Level};
+ fn main() {
  let span = span!(Level::TRACE, "my span");
  event!(parent: &span, Level::INFO, "something has happened!");
- # }
+ }
  ```
 
  The span macros also take a string literal after the level, to set the name
  of the span (as above).  In the case of the event macros, the name of the event can
  be overridden (the default is `event file:line`) using the `name:` specifier.
 
- ```
- # use tracing::{span, event, Level};
- # fn main() {
+ ```rust
+ use tracing::{span, event, Level};
+ fn main() {
  span!(Level::TRACE, "my span");
  event!(name: "some_info", Level::INFO, "something has happened!");
- # }
+ }
  ```
 
  ### Recording Fields
@@ -271,49 +255,49 @@
  Structured fields on spans and events are specified using the syntax
  `field_name = field_value`. Fields are separated by commas.
 
- ```
- # use tracing::{event, Level};
- # fn main() {
+ ```rust
+ use tracing::{event, Level};
+ fn main() {
  // records an event with two fields:
  //  - "answer", with the value 42
  //  - "question", with the value "life, the universe and everything"
  event!(Level::INFO, answer = 42, question = "life, the universe, and everything");
- # }
+ }
  ```
 
  As shorthand, local variables may be used as field values without an
  assignment, similar to [struct initializers]. For example:
 
- ```
- # use tracing::{span, Level};
- # fn main() {
+ ```rust
+ use tracing::{span, Level};
+ fn main() {
  let user = "ferris";
 
  span!(Level::TRACE, "login", user);
  // is equivalent to:
  span!(Level::TRACE, "login", user = user);
- # }
+ }
 ```
 
  Field names can include dots, but should not be terminated by them:
- ```
- # use tracing::{span, Level};
- # fn main() {
+ ```rust
+ use tracing::{span, Level};
+ fn main() {
  let user = "ferris";
  let email = "ferris@rust-lang.org";
  span!(Level::TRACE, "login", user, user.email = email);
- # }
+ }
 ```
 
  Since field names can include dots, fields on local structs can be used
  using the local variable shorthand:
- ```
- # use tracing::{span, Level};
- # fn main() {
- # struct User {
- #    name: &'static str,
- #    email: &'static str,
- # }
+ ```rust
+ use tracing::{span, Level};
+ fn main() {
+ struct User {
+    name: &'static str,
+    email: &'static str,
+ }
  let user = User {
      name: "ferris",
      email: "ferris@rust-lang.org",
@@ -321,40 +305,40 @@
  // the span will have the fields `user.name = "ferris"` and
  // `user.email = "ferris@rust-lang.org"`.
  span!(Level::TRACE, "login", user.name, user.email);
- # }
+ }
 ```
 
  Fields with names that are not Rust identifiers, or with names that are Rust reserved words,
  may be created using quoted string literals. However, this may not be used with the local
  variable shorthand.
- ```
- # use tracing::{span, Level};
- # fn main() {
+ ```rust
+ use tracing::{span, Level};
+ fn main() {
  // records an event with fields whose names are not Rust identifiers
  //  - "guid:x-request-id", containing a `:`, with the value "abcdef"
  //  - "type", which is a reserved word, with the value "request"
  span!(Level::TRACE, "api", "guid:x-request-id" = "abcdef", "type" = "request");
- # }
+ }
 ```
 
  Constant expressions can also be used as field names. Constants
  must be enclosed in curly braces (`{}`) to indicate that the *value*
  of the constant is to be used as the field name, rather than the
  constant's name. For example:
- ```
- # use tracing::{span, Level};
- # fn main() {
+ ```rust
+ use tracing::{span, Level};
+ fn main() {
  const RESOURCE_NAME: &str = "foo";
  // this span will have the field `foo = "some_id"`
  span!(Level::TRACE, "get", { RESOURCE_NAME } = "some_id");
- # }
+ }
 ```
 
  The `?` sigil is shorthand that specifies a field should be recorded using
  its `fmt::Debug` implementation:
- ```
- # use tracing::{event, Level};
- # fn main() {
+ ```rust
+ use tracing::{event, Level};
+ fn main() {
  #[derive(Debug)]
  struct MyStruct {
      field: &'static str,
@@ -368,52 +352,52 @@
  event!(Level::TRACE, greeting = ?my_struct);
  // is equivalent to:
  event!(Level::TRACE, greeting = tracing::field::debug(&my_struct));
- # }
+ }
  ```
 
  The `%` sigil operates similarly, but indicates that the value should be
  recorded using its `fmt::Display` implementation:
- ```
- # use tracing::{event, Level};
- # fn main() {
- # #[derive(Debug)]
- # struct MyStruct {
- #     field: &'static str,
- # }
- #
- # let my_struct = MyStruct {
- #     field: "Hello world!"
- # };
+ ```rust
+ use tracing::{event, Level};
+ fn main() {
+ #[derive(Debug)]
+ struct MyStruct {
+     field: &'static str,
+ }
+
+ let my_struct = MyStruct {
+     field: "Hello world!"
+ };
  // `my_struct.field` will be recorded using its `fmt::Display` implementation.
  event!(Level::TRACE, greeting = %my_struct.field);
  // is equivalent to:
  event!(Level::TRACE, greeting = tracing::field::display(&my_struct.field));
- # }
+ }
  ```
 
  The `%` and `?` sigils may also be used with local variable shorthand:
 
- ```
- # use tracing::{event, Level};
- # fn main() {
- # #[derive(Debug)]
- # struct MyStruct {
- #     field: &'static str,
- # }
- #
- # let my_struct = MyStruct {
- #     field: "Hello world!"
- # };
+ ```rust
+ use tracing::{event, Level};
+ fn main() {
+ #[derive(Debug)]
+ struct MyStruct {
+     field: &'static str,
+ }
+
+ let my_struct = MyStruct {
+     field: "Hello world!"
+ };
  // `my_struct.field` will be recorded using its `fmt::Display` implementation.
  event!(Level::TRACE, %my_struct.field);
- # }
+ }
  ```
 
  Additionally, a span may declare fields with the special value [`Empty`](#empty),
  which indicates that that the value for that field does not currently exist
  but may be recorded later. For example:
 
- ```
+ ```rust
  use tracing::{trace_span, field};
 
  // Create a span with two fields: `greeting`, with the value "hello world", and
@@ -427,17 +411,16 @@
  ```
 
  Finally, events may also include human-readable messages, in the form of a
- [format string][fmt](#fmt)
- and (optional) arguments, **after** the event's
+ [format string][fmt](#fmt) and (optional) arguments, **after** the event's
  key-value fields. If a format string and arguments are provided,
  they will implicitly create a new field named `message` whose value is the
  provided set of format arguments.
 
  For example:
 
- ```
- # use tracing::{event, Level};
- # fn main() {
+ ```rust
+ use tracing::{event, Level};
+ fn main() {
  let question = "the ultimate question of life, the universe, and everything";
  let answer = 42;
  // records an event with the following fields:
@@ -451,20 +434,18 @@
      question.tricky = true,
      "the answer to {} is {}.", question, answer
  );
- # }
+ }
  ```
 
  Specifying a formatted message in this manner does not allocate by default.
 
  [struct initializers]: https://doc.rust-lang.org/book/ch05-01-defining-structs.html#using-the-field-init-shorthand-when-variables-and-fields-have-the-same-name
- [target](#target)
-: Metadata::target
+ [target](#target): Metadata::target
  [parent span]: span::Attributes::parent
  [determined contextually]: span::Attributes::is_contextual
 
 
- [fmt](#fmt)
-: std::fmt#usage
+ [fmt](#fmt): std::fmt#usage
 
  ### Shorthand Macros
 
@@ -575,28 +556,28 @@
  The simplest way to use a subscriber is to call the [`set_global_default`](subscriber/index.md)
  function:
 
- ```
+ ```rust
  extern crate tracing;
- # pub struct FooSubscriber;
- # use tracing::{span::{Id, Attributes, Record}, Metadata};
- # impl tracing::Subscriber for FooSubscriber {
- #   fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
- #   fn record(&self, _: &Id, _: &Record) {}
- #   fn event(&self, _: &tracing::Event) {}
- #   fn record_follows_from(&self, _: &Id, _: &Id) {}
- #   fn enabled(&self, _: &Metadata) -> bool { false }
- #   fn enter(&self, _: &Id) {}
- #   fn exit(&self, _: &Id) {}
- # }
- # impl FooSubscriber {
- #   fn new() -> Self { FooSubscriber }
- # }
- # fn main() {
+ pub struct FooSubscriber;
+ use tracing::{span::{Id, Attributes, Record}, Metadata};
+ impl tracing::Subscriber for FooSubscriber {
+   fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
+   fn record(&self, _: &Id, _: &Record) {}
+   fn event(&self, _: &tracing::Event) {}
+   fn record_follows_from(&self, _: &Id, _: &Id) {}
+   fn enabled(&self, _: &Metadata) -> bool { false }
+   fn enter(&self, _: &Id) {}
+   fn exit(&self, _: &Id) {}
+ }
+ impl FooSubscriber {
+   fn new() -> Self { FooSubscriber }
+ }
+ fn main() {
 
  let my_subscriber = FooSubscriber::new();
  tracing::subscriber::set_global_default(my_subscriber)
      .expect("setting tracing default failed");
- # }
+ }
  ```
 
  <pre class="compile_fail" style="white-space:normal;font:inherit;">
@@ -615,29 +596,29 @@
  of the closure. For example:
 
  ```rust
- # pub struct FooSubscriber;
- # use tracing::{span::{Id, Attributes, Record}, Metadata};
- # impl tracing::Subscriber for FooSubscriber {
- #   fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
- #   fn record(&self, _: &Id, _: &Record) {}
- #   fn event(&self, _: &tracing::Event) {}
- #   fn record_follows_from(&self, _: &Id, _: &Id) {}
- #   fn enabled(&self, _: &Metadata) -> bool { false }
- #   fn enter(&self, _: &Id) {}
- #   fn exit(&self, _: &Id) {}
- # }
- # impl FooSubscriber {
- #   fn new() -> Self { FooSubscriber }
- # }
- # fn main() {
+ pub struct FooSubscriber;
+ use tracing::{span::{Id, Attributes, Record}, Metadata};
+ impl tracing::Subscriber for FooSubscriber {
+   fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
+   fn record(&self, _: &Id, _: &Record) {}
+   fn event(&self, _: &tracing::Event) {}
+   fn record_follows_from(&self, _: &Id, _: &Id) {}
+   fn enabled(&self, _: &Metadata) -> bool { false }
+   fn enter(&self, _: &Id) {}
+   fn exit(&self, _: &Id) {}
+ }
+ impl FooSubscriber {
+   fn new() -> Self { FooSubscriber }
+ }
+ fn main() {
 
  let my_subscriber = FooSubscriber::new();
- # #[cfg(feature = "std")]
+ #[cfg(feature = "std")]
  tracing::subscriber::with_default(my_subscriber, || {
      // Any trace events generated in this closure or by functions it calls
      // will be collected by `my_subscriber`.
  })
- # }
+ }
  ```
 
  This approach allows trace data to be collected by multiple subscribers
@@ -663,9 +644,7 @@
  ### Emitting `log` Records
 
  This crate provides two feature flags, "log" and "log-always", which will
- cause [spans](#spans)
- and [events](#events)
- to emit `log` records. When the "log" feature is
+ cause [spans](#spans) and [events](#events) to emit `log` records. When the "log" feature is
  enabled, if no `tracing` `Subscriber` is active, invoking an event macro or
  creating a span with fields will emit a `log` record. This is intended
  primarily for use in libraries which wish to emit diagnostics that can be
@@ -681,8 +660,7 @@
  libraries generally should **not** enable the "log-always" feature, as doing
  so will prevent applications from being able to opt out of the `log` records.
 
- See [here][flags](#flags)
- for more details on this crate's feature flags.
+ See [here][flags](#flags) for more details on this crate's feature flags.
 
  The generated `log` records' messages will be a string representation of the
  span or event's fields, and all additional information recorded by `log`
@@ -701,8 +679,7 @@
 
  The [`tracing-log`](#tracing-log) crate provides a compatibility layer which
  allows a `tracing` [`Subscriber`](#subscriber) to consume `log` records as though they
- were `tracing` [events](#events)
-. This allows applications using `tracing` to record
+ were `tracing` [events](#events). This allows applications using `tracing` to record
  the logs emitted by dependencies using `log` as events within the context of
  the application's trace tree. See [that crate's documentation][log-tracer]
  for details.
@@ -750,18 +727,15 @@
   - [`axum-insights`](#axum-insights) provides `tracing` integration and Application insights export for the `axum` web framework.
   - [`tracing-gelf`](#tracing-gelf) implements a subscriber for exporting traces in Greylog
     GELF format.
-  - [`tracing-coz`](#tracing-coz) provides integration with the [coz](#coz)
- causal profiler
+  - [`tracing-coz`](#tracing-coz) provides integration with the [coz](#coz) causal profiler
     (Linux-only).
   - [`tracing-bunyan-formatter`](#tracing-bunyan-formatter) provides a layer implementation that reports events and spans
-    in [bunyan](#bunyan)
- format, enriched with timing information.
+    in [bunyan](#bunyan) format, enriched with timing information.
   - [`tracing-wasm`](#tracing-wasm) provides a `Subscriber`/`Layer` implementation that reports
     events and spans via browser `console.log` and [User Timing API (`window.performance`)].
   - [`tracing-web`](#tracing-web) provides a layer implementation of level-aware logging of events
     to web browsers' `console.*` and span events to the [User Timing API (`window.performance`)].
-  - [`tide-tracing`](#tide-tracing) provides a [tide](#tide)
- middleware to trace all incoming requests and responses.
+  - [`tide-tracing`](#tide-tracing) provides a [tide](#tide) middleware to trace all incoming requests and responses.
   - [`test-log`](#test-log) takes care of initializing `tracing` for tests, based on
     environment variables with an `env_logger` compatible syntax.
   - [`tracing-unwrap`](#tracing-unwrap) provides convenience methods to report failed unwraps
@@ -795,17 +769,14 @@
 
 
 
- [coz](#coz)
-: https://github.com/plasma-umass/coz
+ [coz](#coz): https://github.com/plasma-umass/coz
 
- [bunyan](#bunyan)
-: https://github.com/trentm/node-bunyan
+ [bunyan](#bunyan): https://github.com/trentm/node-bunyan
 
 
  [User Timing API (`window.performance`)]: https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API
 
- [tide](#tide)
-: https://crates.io/crates/tide
+ [tide](#tide): https://crates.io/crates/tide
 
 
 
@@ -848,8 +819,7 @@
    applications which intend to collect traces and logs separately; if an
    adapter is used to convert `log` records into `tracing` events, this will
    cause duplicate events to occur.
- * `attributes`: Includes support for the `#[instrument](#instrument)
-` attribute.
+ * `attributes`: Includes support for the `#[instrument]` attribute.
    This is on by default, but does bring in the `syn` crate as a dependency,
    which may add to the compile time of crates that do not already use it.
  * `std`: Depend on the Rust standard library (enabled by default).
@@ -857,8 +827,7 @@
    `no_std` users may disable this feature with `default-features = false`:
 
    ```toml
-   [dependencies](#dependencies)
-
+   [dependencies]
    tracing = { version = "0.1.38", default-features = false }
    ```
 
@@ -890,8 +859,7 @@
  project to automatically enable the cfg flag for that project:
 
  ```toml
- [build](#build)
-
+ [build]
  rustflags = ["--cfg", "tracing_unstable"]
  ```
 
@@ -912,23 +880,18 @@
  supported compiler version is not considered a semver breaking change as
  long as doing so complies with this policy.
 
- [span](#span)
-: mod@span
- [spans](#spans)
-: mod@span
+ [span](#span): mod@span
+ [spans](#spans): mod@span
 
 
- [event](#event)
-: Event
- [events](#events)
-: Event
+ [event](#event): Event
+ [events](#events): Event
 
  [Subscriber::event]: subscriber::Subscriber::event
 
 
 
- [metadata](#metadata)
-: Metadata
+ [metadata](#metadata): Metadata
 
 
 
@@ -942,10 +905,8 @@
 
 
  [static verbosity level]: level_filters#compile-time-filters
- [instrument](#instrument)
-: https://docs.rs/tracing-attributes/latest/tracing_attributes/attr.instrument.html
- [flags](#flags)
-: #crate-feature-flags
+ [instrument](#instrument): https://docs.rs/tracing-attributes/latest/tracing_attributes/attr.instrument.html
+ [flags](#flags): #crate-feature-flags
 
 ## Modules
 
@@ -1026,8 +987,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](#input). This includes `&[u8](#u8)
-`, `&str` and `Input` itself.
+to an [`Input`](#input). This includes `&[u8]`, `&str` and `Input` itself.
 
 # Construction failure
 
@@ -1089,7 +1049,7 @@ This example shows how to search for occurrences of multiple patterns
 simultaneously in a case insensitive fashion. Each match includes the
 pattern that matched along with the byte offsets of the match.
 
-```
+```rust
 use aho_corasick::{AhoCorasick, PatternID};
 
 let patterns = &["apple", "maple", "snapple"];
@@ -1112,7 +1072,7 @@ assert_eq!(matches, vec![
 
 This example shows how to replace matches with some other string:
 
-```
+```rust
 use aho_corasick::AhoCorasick;
 
 let patterns = &["fox", "brown", "quick"];
@@ -1284,19 +1244,17 @@ The event macro is invoked with a `Level` and up to 32 key-value fields.
 Optionally, a format string and arguments may follow the fields; this will
 be used to construct an implicit field named "message".
 
-See [the top-level documentation][lib](#lib)
- for details on the syntax accepted by
+See [the top-level documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
+[lib](#lib): crate#using-the-macros
 
 # Examples
 
 ```rust
 use tracing::{event, Level};
 
-# fn main() {
+fn main() {
 let data = (42, "forty-two");
 let private_data = "private";
 let error = "a bad error";
@@ -1312,7 +1270,7 @@ event!(
 );
 event!(name: "answer", Level::INFO, the_answer = data.0);
 event!(Level::INFO, the_answer = data.0);
-# }
+}
 ```
 
 
@@ -1320,23 +1278,21 @@ event!(Level::INFO, the_answer = data.0);
 
 Constructs a new span.
 
-See [the top-level documentation][lib](#lib)
- for details on the syntax accepted by
+See [the top-level documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
+[lib](#lib): crate#using-the-macros
 
 # Examples
 
 Creating a new span:
-```
-# use tracing::{span, Level};
-# fn main() {
+```rust
+use tracing::{span, Level};
+fn main() {
 let span = span!(Level::TRACE, "my span");
 let _enter = span.enter();
 // do work inside the span...
-# }
+}
 ```
 
 ### `record_all!`
@@ -1348,16 +1304,14 @@ This macro supports two optional sigils:
 - `%` uses the Display implementation.
 - `?` uses the Debug implementation.
 
-For more details, see the [top-level documentation][lib](#lib)
-.
+For more details, see the [top-level documentation][lib](#lib).
 
-[lib](#lib)
-: tracing/#recording-fields
+[lib](#lib): tracing/#recording-fields
 
 # Examples
 
-```
-# use tracing::{field, info_span, record_all};
+```rust
+use tracing::{field, info_span, record_all};
 let span = info_span!("my span", field1 = field::Empty, field2 = field::Empty, field3 = field::Empty).entered();
 record_all!(span, field1 = ?"1", field2 = %"2", field3 = 3);
 ```
@@ -1366,195 +1320,175 @@ record_all!(span, field1 = ?"1", field2 = %"2", field3 = 3);
 
 Constructs a span at the trace level.
 
-[Fields] and [attributes](#attributes)
- are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib)
- for details on the syntax accepted by
+See [the top-level documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
-[attributes](#attributes)
-: crate#configuring-attributes
+[lib](#lib): crate#using-the-macros
+[attributes](#attributes): crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
 
 ```rust
-# use tracing::{trace_span, span, Level};
-# fn main() {
+use tracing::{trace_span, span, Level};
+fn main() {
 trace_span!("my_span");
 // is equivalent to:
 span!(Level::TRACE, "my_span");
-# }
+}
 ```
 
 ```rust
-# use tracing::{trace_span, span, Level};
-# fn main() {
+use tracing::{trace_span, span, Level};
+fn main() {
 let span = trace_span!("my span");
 span.in_scope(|| {
     // do work inside the span...
 });
-# }
+}
 ```
 
 ### `debug_span!`
 
 Constructs a span at the debug level.
 
-[Fields] and [attributes](#attributes)
- are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib)
- for details on the syntax accepted by
+See [the top-level documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
-[attributes](#attributes)
-: crate#configuring-attributes
+[lib](#lib): crate#using-the-macros
+[attributes](#attributes): crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
 
 ```rust
-# use tracing::{debug_span, span, Level};
-# fn main() {
+use tracing::{debug_span, span, Level};
+fn main() {
 debug_span!("my_span");
 // is equivalent to:
 span!(Level::DEBUG, "my_span");
-# }
+}
 ```
 
 ```rust
-# use tracing::debug_span;
-# fn main() {
+use tracing::debug_span;
+fn main() {
 let span = debug_span!("my span");
 span.in_scope(|| {
     // do work inside the span...
 });
-# }
+}
 ```
 
 ### `info_span!`
 
 Constructs a span at the info level.
 
-[Fields] and [attributes](#attributes)
- are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib)
- for details on the syntax accepted by
+See [the top-level documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
-[attributes](#attributes)
-: crate#configuring-attributes
+[lib](#lib): crate#using-the-macros
+[attributes](#attributes): crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
 
 ```rust
-# use tracing::{span, info_span, Level};
-# fn main() {
+use tracing::{span, info_span, Level};
+fn main() {
 info_span!("my_span");
 // is equivalent to:
 span!(Level::INFO, "my_span");
-# }
+}
 ```
 
 ```rust
-# use tracing::info_span;
-# fn main() {
+use tracing::info_span;
+fn main() {
 let span = info_span!("my span");
 span.in_scope(|| {
     // do work inside the span...
 });
-# }
+}
 ```
 
 ### `warn_span!`
 
 Constructs a span at the warn level.
 
-[Fields] and [attributes](#attributes)
- are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib)
- for details on the syntax accepted by
+See [the top-level documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
-[attributes](#attributes)
-: crate#configuring-attributes
+[lib](#lib): crate#using-the-macros
+[attributes](#attributes): crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
 
 ```rust
-# use tracing::{warn_span, span, Level};
-# fn main() {
+use tracing::{warn_span, span, Level};
+fn main() {
 warn_span!("my_span");
 // is equivalent to:
 span!(Level::WARN, "my_span");
-# }
+}
 ```
 
 ```rust
 use tracing::warn_span;
-# fn main() {
+fn main() {
 let span = warn_span!("my span");
 span.in_scope(|| {
     // do work inside the span...
 });
-# }
+}
 ```
 
 ### `error_span!`
 
 Constructs a span at the error level.
 
-[Fields] and [attributes](#attributes)
- are set using the same syntax as the [`span!`](#span)
+[Fields] and [attributes](#attributes) are set using the same syntax as the [`span!`](#span)
 macro.
 
-See [the top-level documentation][lib](#lib)
- for details on the syntax accepted by
+See [the top-level documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
-[attributes](#attributes)
-: crate#configuring-attributes
+[lib](#lib): crate#using-the-macros
+[attributes](#attributes): crate#configuring-attributes
 [Fields]: crate#recording-fields
 
 # Examples
 
 ```rust
-# use tracing::{span, error_span, Level};
-# fn main() {
+use tracing::{span, error_span, Level};
+fn main() {
 error_span!("my_span");
 // is equivalent to:
 span!(Level::ERROR, "my_span");
-# }
+}
 ```
 
 ```rust
-# use tracing::error_span;
-# fn main() {
+use tracing::error_span;
+fn main() {
 let span = error_span!("my span");
 span.in_scope(|| {
     // do work inside the span...
 });
-# }
+}
 ```
 
 ### `event_enabled!`
@@ -1570,7 +1504,7 @@ See also [`span_enabled!`](#span-enabled).
 # Examples
 
 ```rust
-# use tracing::{event_enabled, Level};
+use tracing::{event_enabled, Level};
 if event_enabled!(target: "my_crate", Level::DEBUG) {
     // some expensive work...
 }
@@ -1599,7 +1533,7 @@ See also [`span_enabled!`](#span-enabled).
 # Examples
 
 ```rust
-# use tracing::{span_enabled, Level};
+use tracing::{span_enabled, Level};
 if span_enabled!(target: "my_crate", Level::DEBUG) {
     // some expensive work...
 }
@@ -1617,14 +1551,10 @@ if span_enabled!(Level::DEBUG, foo_field) {
 
 ### `enabled!`
 
-Checks whether a span or event is [enabled](#enabled)
- based on the provided [metadata](#metadata)
-.
+Checks whether a span or event is [enabled](#enabled) based on the provided [metadata](#metadata).
 
-[enabled](#enabled)
-: crate::Subscriber::enabled
-[metadata](#metadata)
-: crate::Metadata
+[enabled](#enabled): crate::Subscriber::enabled
+[metadata](#metadata): crate::Metadata
 
 This macro is a specialized tool: it is intended to be used prior
 to an expensive computation required *just* for that event, but
@@ -1679,7 +1609,7 @@ If the current subscriber is interested in recording spans and events
 in the current file and module path, with the target "my_crate", and at the
 level  `DEBUG`, this will evaluate to true:
 ```rust
-# use tracing::{enabled, Level};
+use tracing::{enabled, Level};
 if enabled!(target: "my_crate", Level::DEBUG) {
     // some expensive work...
 }
@@ -1691,7 +1621,7 @@ the level `DEBUG`, and with a field named "hello", this will evaluate
 to true:
 
 ```rust
-# use tracing::{enabled, Level};
+use tracing::{enabled, Level};
 if enabled!(target: "my_crate", Level::DEBUG, hello) {
     // some expensive work...
 }
@@ -1714,26 +1644,24 @@ returns true.
 Constructs an event at the trace level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib)
- for details on the syntax accepted by
+documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
+[lib](#lib): crate#using-the-macros
 
 # Examples
 
 ```rust
 use tracing::trace;
-# #[derive(Debug, Copy, Clone)] struct Position { x: f32, y: f32 }
-# impl Position {
-# const ORIGIN: Self = Self { x: 0.0, y: 0.0 };
-# fn dist(&self, other: Position) -> f32 {
-#    let x = (other.x - self.x).exp2(); let y = (self.y - other.y).exp2();
-#    (x + y).sqrt()
-# }
-# }
-# fn main() {
+#[derive(Debug, Copy, Clone)] struct Position { x: f32, y: f32 }
+impl Position {
+const ORIGIN: Self = Self { x: 0.0, y: 0.0 };
+fn dist(&self, other: Position) -> f32 {
+   let x = (other.x - self.x).exp2(); let y = (self.y - other.y).exp2();
+   (x + y).sqrt()
+}
+}
+fn main() {
 let pos = Position { x: 3.234, y: -1.223 };
 let origin_dist = pos.dist(Position::ORIGIN);
 
@@ -1746,7 +1674,7 @@ trace!(
     if pos.y >= 0.0 { "positive" } else { "negative" }
 );
 trace!(name: "completed", position = ?pos);
-# }
+}
 ```
 
 ### `debug!`
@@ -1754,26 +1682,24 @@ trace!(name: "completed", position = ?pos);
 Constructs an event at the debug level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib)
- for details on the syntax accepted by
+documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
+[lib](#lib): crate#using-the-macros
 
 # Examples
 
 ```rust
 use tracing::debug;
-# fn main() {
-# #[derive(Debug)] struct Position { x: f32, y: f32 }
+fn main() {
+#[derive(Debug)] struct Position { x: f32, y: f32 }
 
 let pos = Position { x: 3.234, y: -1.223 };
 
 debug!(?pos.x, ?pos.y);
 debug!(target: "app_events", position = ?pos, "New position");
 debug!(name: "completed", position = ?pos);
-# }
+}
 ```
 
 ### `info!`
@@ -1781,23 +1707,21 @@ debug!(name: "completed", position = ?pos);
 Constructs an event at the info level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib)
- for details on the syntax accepted by
+documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
+[lib](#lib): crate#using-the-macros
 
 # Examples
 
 ```rust
 use tracing::info;
-# // this is so the test will still work in no-std mode
-# #[derive(Debug)]
-# pub struct Ipv4Addr;
-# impl Ipv4Addr { fn new(o1: u8, o2: u8, o3: u8, o4: u8) -> Self { Self } }
-# fn main() {
-# struct Connection { port: u32, speed: f32 }
+// this is so the test will still work in no-std mode
+#[derive(Debug)]
+pub struct Ipv4Addr;
+impl Ipv4Addr { fn new(o1: u8, o2: u8, o3: u8, o4: u8) -> Self { Self } }
+fn main() {
+struct Connection { port: u32, speed: f32 }
 use tracing::field;
 
 let addr = Ipv4Addr::new(127, 0, 0, 1);
@@ -1811,7 +1735,7 @@ info!(
     ?conn.speed,
 );
 info!(name: "completed", "completed connection to {:?}", addr);
-# }
+}
 ```
 
 ### `warn!`
@@ -1819,18 +1743,16 @@ info!(name: "completed", "completed connection to {:?}", addr);
 Constructs an event at the warn level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib)
- for details on the syntax accepted by
+documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
+[lib](#lib): crate#using-the-macros
 
 # Examples
 
 ```rust
 use tracing::warn;
-# fn main() {
+fn main() {
 
 let warn_description = "Invalid Input";
 let input = &[0x27, 0x45];
@@ -1842,7 +1764,7 @@ warn!(
     "Received warning for input: {:?}", input,
 );
 warn!(name: "invalid", ?input);
-# }
+}
 ```
 
 ### `error!`
@@ -1850,18 +1772,16 @@ warn!(name: "invalid", ?input);
 Constructs an event at the error level.
 
 This functions similarly to the [`event!`](#event) macro. See [the top-level
-documentation][lib](#lib)
- for details on the syntax accepted by
+documentation][lib](#lib) for details on the syntax accepted by
 this macro.
 
-[lib](#lib)
-: crate#using-the-macros
+[lib](#lib): crate#using-the-macros
 
 # Examples
 
 ```rust
 use tracing::error;
-# fn main() {
+fn main() {
 
 let (err_info, port) = ("No connection", 22);
 
@@ -1869,6 +1789,6 @@ error!(port, error = %err_info);
 error!(target: "app_events", "App Error: {}", err_info);
 error!({ info = err_info }, "error on port: {}", port);
 error!(name: "invalid_input", "Invalid input: {}", err_info);
-# }
+}
 ```
 

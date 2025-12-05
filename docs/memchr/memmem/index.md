@@ -21,7 +21,7 @@ be faster. In some cases, significantly so.
 This example shows how to use [`find_iter`](#find-iter) to find occurrences of a substring
 in a haystack.
 
-```
+```rust
 use memchr::memmem;
 
 let haystack = b"foo bar foo baz foo";
@@ -41,7 +41,7 @@ in a haystack starting from the end of the haystack.
 **NOTE:** This module does not implement double ended iterators, so reverse
 searches aren't done by calling `rev` on a forward iterator.
 
-```
+```rust
 use memchr::memmem;
 
 let haystack = b"foo bar foo baz foo";
@@ -58,10 +58,10 @@ assert_eq!(None, it.next());
 It may be possible for the overhead of constructing a substring searcher to be
 measurable in some workloads. In cases where the same needle is used to search
 many haystacks, it is possible to do construction once and thus to avoid it for
-subsequent searches. This can be done with a [`Finder`](../arch/x86_64/avx2/packedpair/index.md) (or a [`FinderRev`](#finderrev) for
+subsequent searches. This can be done with a [`Finder`](../arch/all/rabinkarp/index.md) (or a [`FinderRev`](../arch/all/twoway/index.md) for
 reverse searches).
 
-```
+```rust
 use memchr::memmem;
 
 let finder = memmem::Finder::new("foo");
@@ -676,7 +676,7 @@ complexity.
 
 Basic usage:
 
-```
+```rust
 use memchr::memmem;
 
 let haystack = b"foo bar foo baz foo";
@@ -709,7 +709,7 @@ complexity.
 
 Basic usage:
 
-```
+```rust
 use memchr::memmem;
 
 let haystack = b"foo bar foo baz foo";
@@ -729,7 +729,7 @@ fn find(haystack: &[u8], needle: &[u8]) -> Option<usize>
 Returns the index of the first occurrence of the given needle.
 
 Note that if you're are searching for the same needle in many different
-small haystacks, it may be faster to initialize a [`Finder`](../arch/x86_64/avx2/packedpair/index.md) once,
+small haystacks, it may be faster to initialize a [`Finder`](../arch/all/rabinkarp/index.md) once,
 and reuse it for each search.
 
 # Complexity
@@ -745,7 +745,7 @@ complexity.
 
 Basic usage:
 
-```
+```rust
 use memchr::memmem;
 
 let haystack = b"foo bar baz";
@@ -763,7 +763,7 @@ fn rfind(haystack: &[u8], needle: &[u8]) -> Option<usize>
 Returns the index of the last occurrence of the given needle.
 
 Note that if you're are searching for the same needle in many different
-small haystacks, it may be faster to initialize a [`FinderRev`](#finderrev) once,
+small haystacks, it may be faster to initialize a [`FinderRev`](../arch/all/twoway/index.md) once,
 and reuse it for each search.
 
 # Complexity
@@ -779,7 +779,7 @@ complexity.
 
 Basic usage:
 
-```
+```rust
 use memchr::memmem;
 
 let haystack = b"foo bar baz";

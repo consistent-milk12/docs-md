@@ -81,7 +81,7 @@ docs_md --dir target/doc/ -o docs/ --mdbook --primary-crate my_crate
 
 **Flat format:**
 
-```
+```bash
 docs/
 ├── index.md           # Crate root
 ├── module_a.md
@@ -91,7 +91,7 @@ docs/
 
 **Nested format:**
 
-```
+```bash
 docs/
 ├── index.md
 ├── module_a/
@@ -104,7 +104,7 @@ docs/
 
 **Multi-crate:**
 
-```
+```bash
 docs/
 ├── my_crate/
 │   └── index.md

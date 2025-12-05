@@ -13,7 +13,7 @@ primarily.
 
 # Examples
 
-```
+```rust
 use http::Method;
 
 assert_eq!(Method::GET, Method::from_bytes(b"GET").unwrap());
@@ -40,7 +40,7 @@ and an Extension variant for all extensions.
 
 # Examples
 
-```
+```rust
 use http::Method;
 
 assert_eq!(Method::GET, Method::from_bytes(b"GET").unwrap());
@@ -136,6 +136,14 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
+##### `impl PartialEq<'a>`
+
+- `fn eq(self: &Self, other: &&'a Method) -> bool`
+
+##### `impl PartialEq<'a>`
+
+- `fn eq(self: &Self, other: &&'a str) -> bool`
+
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &Method) -> bool`
@@ -143,14 +151,6 @@ assert_eq!(Method::POST.as_str(), "POST");
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a str) -> bool`
-
-##### `impl PartialEq<'a>`
-
-- `fn eq(self: &Self, other: &&'a Method) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -172,17 +172,17 @@ assert_eq!(Method::POST.as_str(), "POST");
 
 - `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidMethod`
-
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidMethod`
+
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

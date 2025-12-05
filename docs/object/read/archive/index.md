@@ -14,14 +14,14 @@ use std::fs;
 
 /// Reads an archive and displays the name of each member.
 fn main() -> Result<(), Box<dyn Error>> {
-#   #[cfg(feature = "std")] {
+  #[cfg(feature = "std")] {
     let data = fs::read("path/to/binary")?;
     let file = object::read::archive::ArchiveFile::parse(&*data)?;
     for member in file.members() {
         let member = member?;
         println!("{}", String::from_utf8_lossy(member.name()));
     }
-#   }
+  }
     Ok(())
 }
 ```

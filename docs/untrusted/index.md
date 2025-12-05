@@ -81,8 +81,7 @@ struct Input<'a> {
 }
 ```
 
-A wrapper around `&'a [u8](#u8)
-` that helps in writing panic-free code.
+A wrapper around `&'a [u8]` that helps in writing panic-free code.
 
 No methods of `Input` will ever panic.
 

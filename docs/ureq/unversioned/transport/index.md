@@ -6,8 +6,7 @@
 
 HTTP/1.1 data transport.
 
-**NOTE: transport does not (yet) [follow semver][super](#super)
-.**
+**NOTE: transport does not (yet) [follow semver][super](#super).**
 
 _NOTE: Transport is deep configuration of ureq and is not required for regular use._
 
@@ -826,8 +825,8 @@ When writing a bespoke connector chain we recommend handling errors like this:
 
 # Example
 
-```
-# #[cfg(all(feature = "rustls", not(feature = "_test")))] {
+```rust
+#[cfg(all(feature = "rustls", not(feature = "_test")))] {
 use ureq::{Agent, config::Config};
 
 // These types are not covered by the promises of semver (yet)
@@ -847,7 +846,7 @@ let agent = Agent::with_parts(config, connector, resolver);
 
 let mut res = agent.get("https://httpbin.org/get").call().unwrap();
 let body = res.body_mut().read_to_string().unwrap();
-# }
+}
 ```
 
 #### Required Methods

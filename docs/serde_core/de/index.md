@@ -222,16 +222,16 @@ where
     }
 }
 
-# fn example<'de, D>(deserializer: D) -> Result<(), D::Error>
-# where
-#     D: Deserializer<'de>,
-# {
+fn example<'de, D>(deserializer: D) -> Result<(), D::Error>
+where
+    D: Deserializer<'de>,
+{
 // Deserialize only the sequence element at index 3 from this deserializer.
 // The element at index 3 is required to be a string. Elements before and
 // after index 3 are allowed to be of any type.
 let s: String = NthElement::new(3).deserialize(deserializer)?;
-#     Ok(())
-# }
+    Ok(())
+}
 ```
 
 #### Trait Implementations
@@ -382,26 +382,26 @@ This is used as an argument to the `invalid_type`, `invalid_value`, and
 `invalid_length` methods of the `Error` trait to build error messages.
 
 ```edition2021
-# use std::fmt;
-#
-# use serde::de::{self, Unexpected, Visitor};
-#
-# struct Example;
-#
-# impl<'de> Visitor<'de> for Example {
-#     type Value = ();
-#
-#     fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-#         write!(formatter, "definitely not a boolean")
-#     }
-#
+use std::fmt;
+
+use serde::de::{self, Unexpected, Visitor};
+
+struct Example;
+
+impl<'de> Visitor<'de> for Example {
+    type Value = ();
+
+    fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+        write!(formatter, "definitely not a boolean")
+    }
+
 fn visit_bool<E>(self, v: bool) -> Result<Self::Value, E>
 where
     E: de::Error,
 {
     Err(de::Error::invalid_type(Unexpected::Bool(v), &self))
 }
-# }
+}
 ```
 
 #### Variants
@@ -435,8 +435,7 @@ where
 
 - **`Bytes`**
 
-  The input contained a `&[u8](#u8)
-  ` or `Vec<u8>` that was not expected.
+  The input contained a `&[u8]` or `Vec<u8>` that was not expected.
 
 - **`Unit`**
 
@@ -641,42 +640,42 @@ Within the context of a `Visitor` implementation, the `Visitor` itself
 (`&self`) is an implementation of this trait.
 
 ```edition2021
-# use serde::de::{self, Unexpected, Visitor};
-# use std::fmt;
-#
-# struct Example;
-#
-# impl<'de> Visitor<'de> for Example {
-#     type Value = ();
-#
-#     fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-#         write!(formatter, "definitely not a boolean")
-#     }
-#
+use serde::de::{self, Unexpected, Visitor};
+use std::fmt;
+
+struct Example;
+
+impl<'de> Visitor<'de> for Example {
+    type Value = ();
+
+    fn expecting(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+        write!(formatter, "definitely not a boolean")
+    }
+
 fn visit_bool<E>(self, v: bool) -> Result<Self::Value, E>
 where
     E: de::Error,
 {
     Err(de::Error::invalid_type(Unexpected::Bool(v), &self))
 }
-# }
+}
 ```
 
 Outside of a `Visitor`, `&"..."` can be used.
 
 ```edition2021
-# use serde::de::{self, Unexpected};
-#
-# fn example<E>() -> Result<(), E>
-# where
-#     E: de::Error,
-# {
-#     let v = true;
+use serde::de::{self, Unexpected};
+
+fn example<E>() -> Result<(), E>
+where
+    E: de::Error,
+{
+    let v = true;
 return Err(de::Error::invalid_type(
     Unexpected::Bool(v),
     &"a negative integer",
 ));
-# }
+}
 ```
 
 #### Required Methods
@@ -700,8 +699,7 @@ can be deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
 automatically generate `Deserialize` implementations for structs and enums
-in your program. See the [derive section of the manual][derive](#derive)
- for how to
+in your program. See the [derive section of the manual][derive](#derive) for how to
 use this.
 
 In rare cases it may be necessary to implement `Deserialize` manually for
@@ -713,8 +711,7 @@ they expose. For example the `linked-hash-map` crate provides a
 `LinkedHashMap<K, V>` type that is deserializable by Serde because the crate
 provides an implementation of `Deserialize` for it.
 
-[derive](#derive)
-: https://serde.rs/derive.html
+[derive](#derive): https://serde.rs/derive.html
 [impl-deserialize]: https://serde.rs/impl-deserialize.html
 
 # Lifetime
@@ -746,10 +743,10 @@ from the input string, but a `from_reader` function may only deserialize
 owned data.
 
 ```edition2021
-# use serde::de::{Deserialize, DeserializeOwned};
-# use std::io::{Read, Result};
-#
-# trait Ignore {
+use serde::de::{Deserialize, DeserializeOwned};
+use std::io::{Read, Result};
+
+trait Ignore {
 fn from_str<'a, T>(s: &'a str) -> Result<T>
 where
     T: Deserialize<'a>;
@@ -758,7 +755,7 @@ fn from_reader<R, T>(rdr: R) -> Result<T>
 where
     R: Read,
     T: DeserializeOwned;
-# }
+}
 ```
 
 # Lifetime
@@ -789,29 +786,29 @@ example code below.
 The canonical API for stateless deserialization looks like this:
 
 ```edition2021
-# use serde::Deserialize;
-#
-# enum Error {}
-#
+use serde::Deserialize;
+
+enum Error {}
+
 fn func<'de, T: Deserialize<'de>>() -> Result<T, Error>
-# {
-#     unimplemented!()
-# }
+{
+    unimplemented!()
+}
 ```
 
 Adjusting an API like this to support stateful deserialization is a matter
 of accepting a seed as input:
 
 ```edition2021
-# use serde::de::DeserializeSeed;
-#
-# enum Error {}
-#
+use serde::de::DeserializeSeed;
+
+enum Error {}
+
 fn func_seed<'de, T: DeserializeSeed<'de>>(seed: T) -> Result<T::Value, Error>
-# {
-#     let _ = seed;
-#     unimplemented!()
-# }
+{
+    let _ = seed;
+    unimplemented!()
+}
 ```
 
 In practice the majority of deserialization is stateless. An API expecting a
@@ -928,14 +925,14 @@ where
     }
 }
 
-# fn example<'de, D>(deserializer: D) -> Result<(), D::Error>
-# where
-#     D: Deserializer<'de>,
-# {
+fn example<'de, D>(deserializer: D) -> Result<(), D::Error>
+where
+    D: Deserializer<'de>,
+{
 let visitor = FlattenedVecVisitor(PhantomData);
 let flattened: Vec<u64> = deserializer.deserialize_seq(visitor)?;
-#     Ok(())
-# }
+    Ok(())
+}
 ```
 
 #### Required Methods
@@ -1212,9 +1209,9 @@ deserializer lifetimes] for a more detailed explanation of these lifetimes.
 # Example
 
 ```edition2021
-# use serde::de::{self, Unexpected, Visitor};
-# use std::fmt;
-#
+use serde::de::{self, Unexpected, Visitor};
+use std::fmt;
+
 /// A visitor that deserializes a long string - a string containing at least
 /// some minimum number of bytes.
 struct LongString {

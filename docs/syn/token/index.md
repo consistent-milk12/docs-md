@@ -14,16 +14,14 @@ expands to the token type of the given token.
 
 The [`ItemStatic`](../index.md) syntax tree node is defined like this.
 
-```
-# use syn::{Attribute, Expr, Ident, Token, Type, Visibility};
-#
+```rust
+use syn::{Attribute, Expr, Ident, Token, Type, Visibility};
+
 pub struct ItemStatic {
     pub attrs: Vec<Attribute>,
     pub vis: Visibility,
-    pub static_token: Token![static](#static)
-,
-    pub mutability: Option<Token![mut](#mut)
->,
+    pub static_token: Token![static],
+    pub mutability: Option<Token![mut]>,
     pub ident: Ident,
     pub colon_token: Token![:],
     pub ty: Box<Type>,
@@ -42,17 +40,17 @@ method. Delimiter tokens are parsed using the [`parenthesized!`](#parenthesized)
 
 
 
-```
+```rust
 use syn::{Attribute, Result};
 use syn::parse::{Parse, ParseStream};
-#
-# enum ItemStatic {}
+
+enum ItemStatic {}
 
 // Parse the ItemStatic struct shown above.
 impl Parse for ItemStatic {
     fn parse(input: ParseStream) -> Result<Self> {
-        # use syn::ItemStatic;
-        # fn parse(input: ParseStream) -> Result<ItemStatic> {
+        use syn::ItemStatic;
+        fn parse(input: ParseStream) -> Result<ItemStatic> {
         Ok(ItemStatic {
             attrs: input.call(Attribute::parse_outer)?,
             vis: input.parse()?,
@@ -65,8 +63,8 @@ impl Parse for ItemStatic {
             expr: input.parse()?,
             semi_token: input.parse()?,
         })
-        # }
-        # unimplemented!()
+        }
+        unimplemented!()
     }
 }
 ```

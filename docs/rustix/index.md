@@ -6,32 +6,30 @@ configurable backends.
 
 With rustix, you can write code like this:
 
-```
-# #[cfg(feature = "net")]
-# fn read(sock: std::net::TcpStream, buf: &mut [u8](#u8)
-) -> std::io::Result<()> {
-# use rustix::net::RecvFlags;
+```rust
+#[cfg(feature = "net")]
+fn read(sock: std::net::TcpStream, buf: &mut [u8]) -> std::io::Result<()> {
+use rustix::net::RecvFlags;
 let (nread, _received) = rustix::net::recv(&sock, buf, RecvFlags::PEEK)?;
-# let _ = nread;
-# Ok(())
-# }
+let _ = nread;
+Ok(())
+}
 ```
 
 instead of like this:
 
-```
-# #[cfg(feature = "net")]
-# fn read(sock: std::net::TcpStream, buf: &mut [u8](#u8)
-) -> std::io::Result<()> {
-# #[cfg(unix)]
-# use std::os::unix::io::AsRawFd;
-# #[cfg(target_os = "wasi")]
-# use std::os::wasi::io::AsRawFd;
-# #[cfg(windows)]
-# use windows_sys::Win32::Networking::WinSock as libc;
-# #[cfg(windows)]
-# use std::os::windows::io::AsRawSocket;
-# const MSG_PEEK: i32 = libc::MSG_PEEK;
+```rust
+#[cfg(feature = "net")]
+fn read(sock: std::net::TcpStream, buf: &mut [u8]) -> std::io::Result<()> {
+#[cfg(unix)]
+use std::os::unix::io::AsRawFd;
+#[cfg(target_os = "wasi")]
+use std::os::wasi::io::AsRawFd;
+#[cfg(windows)]
+use windows_sys::Win32::Networking::WinSock as libc;
+#[cfg(windows)]
+use std::os::windows::io::AsRawSocket;
+const MSG_PEEK: i32 = libc::MSG_PEEK;
 let nread = unsafe {
     #[cfg(any(unix, target_os = "wasi"))]
     let raw = sock.as_raw_fd();
@@ -47,9 +45,9 @@ let nread = unsafe {
         nread => nread as usize,
     }
 };
-# let _ = nread;
-# Ok(())
-# }
+let _ = nread;
+Ok(())
+}
 ```
 
 rustix's APIs perform the following tasks:
@@ -126,16 +124,16 @@ In Rust ≥ 1.77, users can use [C-string literals] instead of this macro.
 
 # Examples
 
-```
-# #[cfg(feature = "fs")]
-# fn main() -> rustix::io::Result<()> {
+```rust
+#[cfg(feature = "fs")]
+fn main() -> rustix::io::Result<()> {
 use rustix::cstr;
 use rustix::fs::{statat, AtFlags, CWD};
 
 let metadata = statat(CWD, cstr!("Cargo.toml"), AtFlags::empty())?;
-# Ok(())
-# }
-# #[cfg(not(feature = "fs"))]
-# fn main() {}
+Ok(())
+}
+#[cfg(not(feature = "fs"))]
+fn main() {}
 ```
 

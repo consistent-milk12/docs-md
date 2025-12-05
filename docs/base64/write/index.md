@@ -26,7 +26,7 @@ handle such errors, call `finish()` yourself.
 
 # Examples
 
-```
+```rust
 use std::io::Write;
 use base64::engine::general_purpose;
 
@@ -146,7 +146,7 @@ then exposed via `into_inner()`.
 
 Buffer base64 in a new String:
 
-```
+```rust
 use std::io::Write;
 use base64::engine::general_purpose;
 
@@ -162,7 +162,7 @@ assert_eq!("YXNkZg==", &b64_string);
 
 Or, append to an existing `String`, which implements `StrConsumer`:
 
-```
+```rust
 use std::io::Write;
 use base64::engine::general_purpose;
 

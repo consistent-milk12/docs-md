@@ -80,7 +80,7 @@ This example shows how to attach a `Prefilter` to the
 [`PikeVM`](crate::nfa::thompson::pikevm::PikeVM) in order to accelerate
 searches.
 
-```
+```rust
 use regex_automata::{
     nfa::thompson::pikevm::PikeVM,
     util::prefilter::Prefilter,
@@ -97,13 +97,13 @@ assert_eq!(
     Some(Match::must(0, 6..23)),
     re.find(&mut cache, "Hello Bruce Springsteen!"),
 );
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 But note that if you get your prefilter incorrect, it could lead to an
 incorrect result!
 
-```
+```rust
 use regex_automata::{
     nfa::thompson::pikevm::PikeVM,
     util::prefilter::Prefilter,
@@ -122,7 +122,7 @@ assert_eq!(
     None,
     re.find(&mut cache, "Hello Bruce Springsteen!"),
 );
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

@@ -8,8 +8,7 @@ A lightweight version of [pin-project] written with declarative macros.
 Add this to your `Cargo.toml`:
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 pin-project-lite = "0.2"
 ```
 
@@ -25,8 +24,7 @@ use pin_project_lite::pin_project;
 
 pin_project! {
     struct Struct<T, U> {
-        #[pin](#pin)
-
+        #[pin]
         pinned: T,
         unpinned: U,
     }
@@ -52,8 +50,7 @@ use pin_project_lite::pin_project;
 pin_project! {
     #[project = EnumProj]
     enum Enum<T, U> {
-        Variant { #[pin](#pin)
- pinned: T, unpinned: U },
+        Variant { #[pin] pinned: T, unpinned: U },
     }
 }
 
@@ -122,34 +119,32 @@ A macro that creates a projection type covering all the fields of struct.
 
 This macro creates a projection type according to the following rules:
 
-- For the field that uses `#[pin](#pin)
-` attribute, makes the pinned reference to the field.
+- For the field that uses `#[pin]` attribute, makes the pinned reference to the field.
 - For the other fields, makes the unpinned reference to the field.
 
 And the following methods are implemented on the original type:
 
-```
-# use std::pin::Pin;
-# type Projection<'a> = &'a ();
-# type ProjectionRef<'a> = &'a ();
-# trait Dox {
+```rust
+use std::pin::Pin;
+type Projection<'a> = &'a ();
+type ProjectionRef<'a> = &'a ();
+trait Dox {
 fn project(self: Pin<&mut Self>) -> Projection<'_>;
 fn project_ref(self: Pin<&Self>) -> ProjectionRef<'_>;
-# }
+}
 ```
 
 By passing an attribute with the same name as the method to the macro,
 you can name the projection type returned from the method. This allows you
 to use pattern matching on the projected types.
 
-```
-# use pin_project_lite::pin_project;
-# use std::pin::Pin;
+```rust
+use pin_project_lite::pin_project;
+use std::pin::Pin;
 pin_project! {
     #[project = EnumProj]
     enum Enum<T> {
-        Variant { #[pin](#pin)
- field: T },
+        Variant { #[pin] field: T },
     }
 }
 
@@ -169,12 +164,12 @@ By passing the `#[project_replace = MyProjReplace]` attribute you may create an 
 method which allows the contents of `Pin<&mut Self>` to be replaced while simultaneously moving
 out all unpinned fields in `Self`.
 
-```
-# use std::pin::Pin;
-# type MyProjReplace = ();
-# trait Dox {
+```rust
+use std::pin::Pin;
+type MyProjReplace = ();
+trait Dox {
 fn project_replace(self: Pin<&mut Self>, replacement: Self) -> MyProjReplace;
-# }
+}
 ```
 
 Also, note that the projection types returned by `project` and `project_ref` have
@@ -199,15 +194,14 @@ See [pin-project] crate for more details.
 
 # Examples
 
-```
+```rust
 use std::pin::Pin;
 
 use pin_project_lite::pin_project;
 
 pin_project! {
     struct Struct<T, U> {
-        #[pin](#pin)
-
+        #[pin]
         pinned: T,
         unpinned: U,
     }
@@ -225,7 +219,7 @@ impl<T, U> Struct<T, U> {
 To use `pin_project!` on enums, you need to name the projection type
 returned from the method.
 
-```
+```rust
 use std::pin::Pin;
 
 use pin_project_lite::pin_project;
@@ -234,8 +228,7 @@ pin_project! {
     #[project = EnumProj]
     enum Enum<T> {
         Struct {
-            #[pin](#pin)
-
+            #[pin]
             field: T,
         },
         Unit,
@@ -258,15 +251,14 @@ If you want to call the `project()` method multiple times or later use the
 original [`Pin`](#pin) type, it needs to use [`.as_mut()`]`Pin::as_mut` to avoid
 consuming the [`Pin`](#pin).
 
-```
+```rust
 use std::pin::Pin;
 
 use pin_project_lite::pin_project;
 
 pin_project! {
     struct Struct<T> {
-        #[pin](#pin)
-
+        #[pin]
         field: T,
     }
 }
@@ -285,23 +277,21 @@ impl<T> Struct<T> {
 If you want to make sure `Unpin` is not implemented, use the `#[project(!Unpin)]`
 attribute.
 
-```
+```rust
 use pin_project_lite::pin_project;
 
 pin_project! {
      #[project(!Unpin)]
      struct Struct<T> {
-         #[pin](#pin)
-
+         #[pin]
          field: T,
      }
 }
 ```
 
-This is equivalent to using `#[pin](#pin)
-` attribute for a [`PhantomPinned`](#phantompinned) field.
+This is equivalent to using `#[pin]` attribute for a [`PhantomPinned`](#phantompinned) field.
 
-```
+```rust
 use std::marker::PhantomPinned;
 
 use pin_project_lite::pin_project;
@@ -309,15 +299,13 @@ use pin_project_lite::pin_project;
 pin_project! {
     struct Struct<T> {
         field: T,
-        #[pin](#pin)
-
+        #[pin]
         _pin: PhantomPinned,
     }
 }
 ```
 
-Note that using [`PhantomPinned`](#phantompinned) without `#[pin](#pin)
-` or `#[project(!Unpin)]`
+Note that using [`PhantomPinned`](#phantompinned) without `#[pin]` or `#[project(!Unpin)]`
 attribute has no effect.
 
 # Pinned Drop
@@ -330,7 +318,7 @@ To implement [`Drop`](#drop) for type that has pin, add an `impl PinnedDrop` blo
 [`pin_project`](#pin-project) macro block. PinnedDrop has the following interface:
 
 ```rust
-# use std::pin::Pin;
+use std::pin::Pin;
 trait PinnedDrop {
     fn drop(this: Pin<&mut Self>);
 }
@@ -339,8 +327,7 @@ trait PinnedDrop {
 Note that the argument to `PinnedDrop::drop` cannot be named `self`.
 
 `pin_project!` implements the actual [`Drop`](#drop) trait via PinnedDrop you implemented. To
-explicitly drop a type that implements PinnedDrop, use the [drop](#drop)
- function just like dropping a
+explicitly drop a type that implements PinnedDrop, use the [drop](#drop) function just like dropping a
 type that directly implements [`Drop`](#drop).
 
 `PinnedDrop::drop` will never be called more than once, just like `Drop::drop`.
@@ -351,8 +338,7 @@ use pin_project_lite::pin_project;
 pin_project! {
     pub struct Struct<'a> {
         was_dropped: &'a mut bool,
-        #[pin](#pin)
-
+        #[pin]
         field: u8,
     }
 

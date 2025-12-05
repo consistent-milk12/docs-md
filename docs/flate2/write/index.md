@@ -29,19 +29,19 @@ handle any data following the DEFLATE member.
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
-# use flate2::Compression;
-# use flate2::write::DeflateEncoder;
+use flate2::Compression;
+use flate2::write::DeflateEncoder;
 use flate2::write::DeflateDecoder;
 
-# fn main() {
-#    let mut e = DeflateEncoder::new(Vec::new(), Compression::default());
-#    e.write_all(b"Hello World").unwrap();
-#    let bytes = e.finish().unwrap();
-#    println!("{}", decode_writer(bytes).unwrap());
-# }
+fn main() {
+   let mut e = DeflateEncoder::new(Vec::new(), Compression::default());
+   e.write_all(b"Hello World").unwrap();
+   let bytes = e.finish().unwrap();
+   println!("{}", decode_writer(bytes).unwrap());
+}
 // Uncompresses a Deflate Encoded vector of bytes and returns a string or error
 // Here Vec<u8> implements Write
 fn decode_writer(bytes: Vec<u8>) -> io::Result<String> {
@@ -145,18 +145,18 @@ uncompressed data, writing the compressed data to the wrapped writer.
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use flate2::Compression;
 use flate2::write::DeflateEncoder;
 
 // Vec<u8> implements Write to print the compressed bytes of sample string
-# fn main() {
+fn main() {
 
 let mut e = DeflateEncoder::new(Vec::new(), Compression::default());
 e.write_all(b"Hello World").unwrap();
 println!("{:?}", e.finish().unwrap());
-# }
+}
 ```
 
 #### Implementations
@@ -263,18 +263,18 @@ or read more
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
 use flate2::Compression;
 use flate2::write::{GzEncoder, GzDecoder};
 
-# fn main() {
-#    let mut e = GzEncoder::new(Vec::new(), Compression::default());
-#    e.write(b"Hello World").unwrap();
-#    let bytes = e.finish().unwrap();
-#    assert_eq!("Hello World", decode_writer(bytes).unwrap());
-# }
+fn main() {
+   let mut e = GzEncoder::new(Vec::new(), Compression::default());
+   e.write(b"Hello World").unwrap();
+   let bytes = e.finish().unwrap();
+   assert_eq!("Hello World", decode_writer(bytes).unwrap());
+}
 // Uncompresses a gzip encoded vector of bytes and returns a string or error
 // Here Vec<u8> implements Write
 fn decode_writer(bytes: Vec<u8>) -> io::Result<String> {
@@ -372,18 +372,18 @@ to the underlying writer `W`.
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use flate2::Compression;
 use flate2::write::GzEncoder;
 
 // Vec<u8> implements Write to print the compressed bytes of sample string
-# fn main() {
+fn main() {
 
 let mut e = GzEncoder::new(Vec::new(), Compression::default());
 e.write_all(b"Hello World").unwrap();
 println!("{:?}", e.finish().unwrap());
-# }
+}
 ```
 
 #### Implementations
@@ -564,20 +564,20 @@ handle any data following the ZLIB member.
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
-# use flate2::Compression;
-# use flate2::write::ZlibEncoder;
+use flate2::Compression;
+use flate2::write::ZlibEncoder;
 use flate2::write::ZlibDecoder;
 
-# fn main() {
-#    let mut e = ZlibEncoder::new(Vec::new(), Compression::default());
-#    e.write_all(b"Hello World").unwrap();
-#    let bytes = e.finish().unwrap();
-#    println!("{}", decode_reader(bytes).unwrap());
-# }
-#
+fn main() {
+   let mut e = ZlibEncoder::new(Vec::new(), Compression::default());
+   e.write_all(b"Hello World").unwrap();
+   let bytes = e.finish().unwrap();
+   println!("{}", decode_reader(bytes).unwrap());
+}
+
 // Uncompresses a Zlib Encoded vector of bytes and returns a string or error
 // Here Vec<u8> implements Write
 
@@ -685,19 +685,19 @@ uncompressed data, writing the compressed data to the wrapped writer.
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use flate2::Compression;
 use flate2::write::ZlibEncoder;
 
 // Vec<u8> implements Write, assigning the compressed bytes of sample string
 
-# fn zlib_encoding() -> std::io::Result<()> {
+fn zlib_encoding() -> std::io::Result<()> {
 let mut e = ZlibEncoder::new(Vec::new(), Compression::default());
 e.write_all(b"Hello World")?;
 let compressed = e.finish()?;
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 #### Implementations

@@ -30,7 +30,7 @@ start and end positions of each match.
 This example shows how to compile a regex using the default configuration
 and then use it to find matches in a byte string:
 
-```
+```rust
 use regex_automata::{hybrid::regex::Regex, Match};
 
 let re = Regex::new(r"[0-9]{4}-[0-9]{2}-[0-9]{2}")?;
@@ -42,7 +42,7 @@ assert_eq!(matches, vec![
     Match::must(0, 0..10),
     Match::must(0, 11..21),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: searching with multiple regexes
@@ -51,8 +51,8 @@ The lazy DFAs in this module all fully support searching with multiple regexes
 simultaneously. You can use this support with standard leftmost-first style
 searching to find non-overlapping matches:
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{hybrid::regex::Regex, Match};
 
 let re = Regex::new_many(&[r"\w+", r"\S+"])?;
@@ -64,7 +64,7 @@ assert_eq!(matches, vec![
     Match::must(1, 0..4),
     Match::must(0, 5..8),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # When should I use this?
@@ -393,7 +393,7 @@ Notice also how a correct search implementation deals with
 the lazy DFA routines. When a `CacheError` occurs, it returns
 [`MatchError::gave_up`](crate::MatchError::gave_up).
 
-```
+```rust
 use regex_automata::{
     hybrid::dfa::{Cache, DFA},
     HalfMatch, MatchError, Input,
@@ -402,8 +402,7 @@ use regex_automata::{
 fn find_leftmost_first(
     dfa: &DFA,
     cache: &mut Cache,
-    haystack: &[u8](#u8)
-,
+    haystack: &[u8],
 ) -> Result<Option<HalfMatch>, MatchError> {
     // The start state is determined by inspecting the position and the
     // initial bytes of the haystack. Note that start states can never
@@ -499,7 +498,7 @@ let mat = find_leftmost_first(&dfa, &mut cache, &haystack[10..])?.unwrap();
 assert_eq!(mat.pattern().as_usize(), 1);
 assert_eq!(mat.offset(), 5);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

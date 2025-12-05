@@ -75,54 +75,50 @@ use determines the return type of the functions that use it:
 
 | If you pass a…           | You get back a… |
 | ------------------------ | --------------- |
-| `&mut [u8](#u8)
-`              | `usize`, indicating the number of elements initialized. |
-| `&mut [MaybeUninit<u8>]` | `(&mut [u8](#u8)
-, &mut [MaybeUninit<u8>])`, holding the initialized and uninitialized subslices. |
+| `&mut [u8]`              | `usize`, indicating the number of elements initialized. |
+| `&mut [MaybeUninit<u8>]` | `(&mut [u8], &mut [MaybeUninit<u8>])`, holding the initialized and uninitialized subslices. |
 | [`SpareCapacity`](#sparecapacity)        | `usize`, indicating the number of elements initialized. And the `Vec` is extended. |
 
 # Examples
 
-Passing a `&mut [u8](#u8)
-`:
+Passing a `&mut [u8]`:
 
-```
-# use rustix::io::read;
-# fn example(fd: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
+```rust
+use rustix::io::read;
+fn example(fd: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
 let mut buf = [0_u8; 64];
 let nread = read(fd, &mut buf)?;
 // `nread` is the number of bytes read.
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 Passing a `&mut [MaybeUninit<u8>]`:
 
-```
-# use rustix::io::read;
-# use std::mem::MaybeUninit;
-# fn example(fd: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
+```rust
+use rustix::io::read;
+use std::mem::MaybeUninit;
+fn example(fd: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
 let mut buf = [MaybeUninit::<u8>::uninit(); 64];
 let (init, uninit) = read(fd, &mut buf)?;
-// `init` is a `&mut [u8](#u8)
-` with the initialized bytes.
+// `init` is a `&mut [u8](#u8)` with the initialized bytes.
 // `uninit` is a `&mut [MaybeUninit<u8>]` with the remaining bytes.
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 Passing a [`SpareCapacity`](#sparecapacity), via the [`spare_capacity`](#spare-capacity) helper function:
 
-```
-# use rustix::io::read;
-# use rustix::buffer::spare_capacity;
-# fn example(fd: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
+```rust
+use rustix::io::read;
+use rustix::buffer::spare_capacity;
+fn example(fd: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
 let mut buf = Vec::with_capacity(64);
 let nread = read(fd, spare_capacity(&mut buf))?;
 // `nread` is the number of bytes read.
 // Also, `buf.len()` is now `nread` elements longer than it was before.
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 # Guide to error messages
@@ -133,8 +129,7 @@ Here are some we've encountered, along with ways to fix them.
 If you see errors like
 "cannot move out of `self` which is behind a mutable reference"
 and
-"move occurs because `x` has type `&mut [u8](#u8)
-`, which does not implement the `Copy` trait",
+"move occurs because `x` has type `&mut [u8]`, which does not implement the `Copy` trait",
 replace `x` with `&mut *x`. See `error_buffer_wrapper` in
 examples/buffer_errors.rs.
 
@@ -180,8 +175,8 @@ have some non-empty spare capacity!
 
 # Examples
 
-```
-# fn test(input: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
+```rust
+fn test(input: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
 use rustix::buffer::spare_capacity;
 use rustix::io::{read, Errno};
 
@@ -195,7 +190,7 @@ match read(input, spare_capacity(&mut buf)) {
     }
 }
 
-# Ok(())
-# }
+Ok(())
+}
 ```
 

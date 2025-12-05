@@ -105,15 +105,14 @@ iterators with [Rayon](https://github.com/rayon-rs/rayon). In your
 `Cargo.toml`, use the "rayon" feature:
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 indicatif = {version = "*", features = ["rayon"]}
 ```
 
 And then use it like this:
 
 ```rust,ignore
-# extern crate rayon;
+extern crate rayon;
 use indicatif::ParallelProgressIterator;
 use rayon::iter::{ParallelIterator, IntoParallelRefIterator};
 
@@ -125,7 +124,7 @@ assert_eq!(v2[0], 1);
 Or if you'd like to customize the progress bar:
 
 ```rust,ignore
-# extern crate rayon;
+extern crate rayon;
 use indicatif::{ProgressBar, ParallelProgressIterator, ProgressStyle};
 use rayon::iter::{ParallelIterator, IntoParallelRefIterator};
 
@@ -167,8 +166,8 @@ Alternative styles are currently only used for progress bars.
 Example configuration:
 
 ```rust
-# use indicatif::{ProgressBar, ProgressStyle};
-# let bar = ProgressBar::new(0);
+use indicatif::{ProgressBar, ProgressStyle};
+let bar = ProgressBar::new(0);
 bar.set_style(ProgressStyle::with_template("[{elapsed_precise}] {bar:40.cyan/blue} {pos:>7}/{len:7} {msg}")
     .unwrap()
     .progress_chars("##-"));
@@ -230,7 +229,7 @@ There are some formatting wrappers for showing elapsed time and
 file sizes for human users:
 
 ```rust
-# use std::time::Duration;
+use std::time::Duration;
 use indicatif::{HumanBytes, HumanCount, HumanDuration, HumanFloatCount};
 
 assert_eq!("3.00 MiB", HumanBytes(3*1024*1024).to_string());
@@ -345,7 +344,7 @@ Formats bytes for human readability using ISO/IEC prefixes
 
 # Examples
 ```rust
-# use indicatif::BinaryBytes;
+use indicatif::BinaryBytes;
 assert_eq!("15 B",     format!("{}", BinaryBytes(15)));
 assert_eq!("1.46 KiB", format!("{}", BinaryBytes(1_500)));
 assert_eq!("1.43 MiB", format!("{}", BinaryBytes(1_500_000)));
@@ -412,7 +411,7 @@ Formats bytes for human readability using SI prefixes
 
 # Examples
 ```rust
-# use indicatif::DecimalBytes;
+use indicatif::DecimalBytes;
 assert_eq!("15 B",    format!("{}", DecimalBytes(15)));
 assert_eq!("1.50 kB", format!("{}", DecimalBytes(1_500)));
 assert_eq!("1.50 MB", format!("{}", DecimalBytes(1_500_000)));
@@ -535,7 +534,7 @@ Formats bytes for human readability
 
 # Examples
 ```rust
-# use indicatif::HumanBytes;
+use indicatif::HumanBytes;
 assert_eq!("15 B",     format!("{}", HumanBytes(15)));
 assert_eq!("1.46 KiB", format!("{}", HumanBytes(1_500)));
 assert_eq!("1.43 MiB", format!("{}", HumanBytes(1_500_000)));

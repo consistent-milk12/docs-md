@@ -450,6 +450,11 @@ Kinds of PEM data found by [`parse_pem`](../index.md)
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From<'a>`
 
 - `fn from(value: Certificate<'a>) -> Self`
@@ -457,11 +462,6 @@ Kinds of PEM data found by [`parse_pem`](../index.md)
 ##### `impl From<'a>`
 
 - `fn from(value: PrivateKey<'a>) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -645,14 +645,14 @@ Configuration setting for root certs.
 
 #### Trait Implementations
 
+##### `impl From<I: IntoIterator<Item = Certificate<'static>>>`
+
+- `fn from(value: I) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<I: IntoIterator<Item = Certificate<'static>>>`
-
-- `fn from(value: I) -> Self`
 
 ##### `impl Into<T, U>`
 

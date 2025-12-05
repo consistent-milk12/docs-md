@@ -4,51 +4,40 @@ A procedural macro attribute for instrumenting functions with [`tracing`](#traci
 
 [`tracing`](#tracing) is a framework for instrumenting Rust programs to collect
 structured, event-based diagnostic information. This crate provides the
-[`#[instrument](#instrument)
-`][instrument](#instrument)
- procedural macro attribute.
+[`#[instrument]`][instrument](#instrument) procedural macro attribute.
 
 Note that this macro is also re-exported by the main `tracing` crate.
 
-*Compiler support: [requires `rustc` 1.65+][msrv](#msrv)
-*
+*Compiler support: [requires `rustc` 1.65+][msrv](#msrv)*
 
-[msrv](#msrv)
-: #supported-rust-versions
+[msrv](#msrv): #supported-rust-versions
 
 ## Usage
 
 In the `Cargo.toml`:
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 tracing-attributes = "0.1.24"
 ```
 
-The [`#[instrument](#instrument)
-`][instrument](#instrument)
- attribute can now be added to a function
-to automatically create and enter `tracing` [span](#span)
- when that function is
+The [`#[instrument]`][instrument](#instrument) attribute can now be added to a function
+to automatically create and enter `tracing` [span](#span) when that function is
 called. For example:
 
-```
+```rust
 use tracing::instrument;
 
-#[instrument](#instrument)
-
+#[instrument]
 pub fn my_function(my_arg: usize) {
     // ...
 }
 
-# fn main() {}
+fn main() {}
 ```
 
-[span](#span)
-: https://docs.rs/tracing/latest/tracing/span/index.html
-[instrument](#instrument)
-: macro@self::instrument
+[span](#span): https://docs.rs/tracing/latest/tracing/span/index.html
+[instrument](#instrument): macro@self::instrument
 
 ## Supported Rust Versions
 

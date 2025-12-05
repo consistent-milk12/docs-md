@@ -250,7 +250,7 @@ custom `HeuristicFrequencyRank` you should probably just use the default.
 
 # Example
 
-```
+```rust
 use memchr::{
     arch::all::packedpair::HeuristicFrequencyRank,
     memmem::FinderBuilder,

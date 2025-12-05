@@ -30,11 +30,9 @@
  the API simple and keeps dependencies to a minimum. For TLS, ureq uses
  rustls or native-tls.
 
- See the [changelog](#changelog)
- for details of recent releases.
+ See the [changelog](#changelog) for details of recent releases.
 
- [changelog](#changelog)
-: https://github.com/algesten/ureq/blob/main/CHANGELOG.md
+ [changelog](#changelog): https://github.com/algesten/ureq/blob/main/CHANGELOG.md
 
  # Usage
 
@@ -46,7 +44,7 @@
      .call()?
      .body_mut()
      .read_to_string()?;
- # Ok::<(), ureq::Error>(())
+ Ok::<(), ureq::Error>(())
  ```
 
  For more involved tasks, you'll want to create an [`Agent`](#agent). An Agent
@@ -56,7 +54,7 @@
  an Agent also allows setting options like the TLS configuration.
 
  ```rust
- # fn no_run() -> Result<(), ureq::Error> {
+ fn no_run() -> Result<(), ureq::Error> {
  use ureq::Agent;
  use std::time::Duration;
 
@@ -77,7 +75,7 @@
      .send("some body data")?
      .body_mut()
      .read_to_string()?;
- # Ok(())}
+ Ok(())}
  ```
 
  ## JSON
@@ -85,8 +83,8 @@
  Ureq supports sending and receiving json, if you enable the **json** feature:
 
  ```rust
- # #[cfg(feature = "json")]
- # fn no_run() -> Result<(), ureq::Error> {
+ #[cfg(feature = "json")]
+ fn no_run() -> Result<(), ureq::Error> {
  use serde::{Serialize, Deserialize};
 
  #[derive(Serialize)]
@@ -107,7 +105,7 @@
      .send_json(&send_body)?
      .body_mut()
      .read_json::<MyRecvBody>()?;
- # Ok(())}
+ Ok(())}
  ```
 
  ## Error handling
@@ -121,7 +119,7 @@
  ```rust
  use ureq::Error;
 
- # fn no_run() -> Result<(), ureq::Error> {
+ fn no_run() -> Result<(), ureq::Error> {
  match ureq::get("http://mypage.example.com/").call() {
      Ok(response) => { /* it worked */},
      Err(Error::StatusCode(code)) => {
@@ -130,7 +128,7 @@
      }
      Err(_) => { /* some kind of io/transport/etc error */ }
  }
- # Ok(())}
+ Ok(())}
  ```
 
  # Features
@@ -182,12 +180,12 @@
  ureq does not guarantee to default to ring indefinitely. `rustls` as a feature flag will always
  work, but the specific crypto backend might change in a minor version.
 
- ```
- # #[cfg(feature = "rustls")]
- # {
+ ```rust
+ #[cfg(feature = "rustls")]
+ {
  // This uses rustls
  ureq::get("https://www.google.com/").call().unwrap();
- # } Ok::<_, ureq::Error>(())
+ } Ok::<_, ureq::Error>(())
  ```
 
  ### rustls without ring
@@ -208,9 +206,9 @@
  up as a default or used by the crate level convenience calls (`ureq::get` etc) – it
  must be configured on the agent.
 
- ```
- # #[cfg(feature = "native-tls")]
- # {
+ ```rust
+ #[cfg(feature = "native-tls")]
+ {
  use ureq::config::Config;
  use ureq::tls::{TlsConfig, TlsProvider};
 
@@ -226,7 +224,7 @@
  let agent = config.new_agent();
 
  agent.get("https://www.google.com/").call().unwrap();
- # } Ok::<_, ureq::Error>(())
+ } Ok::<_, ureq::Error>(())
  ```
 
  ## Root certificates
@@ -252,9 +250,9 @@
  To use this verifier, you need to enable it using feature flag **platform-verifier** as well as
  configure an agent to use it.
 
- ```
- # #[cfg(all(feature = "rustls", feature="platform-verifier"))]
- # {
+ ```rust
+ #[cfg(all(feature = "rustls", feature="platform-verifier"))]
+ {
  use ureq::Agent;
  use ureq::tls::{TlsConfig, RootCerts};
 
@@ -268,7 +266,7 @@
      .new_agent();
 
  let response = agent.get("https://httpbin.org/get").call()?;
- # } Ok::<_, ureq::Error>(())
+ } Ok::<_, ureq::Error>(())
  ```
 
  Setting `RootCerts::PlatformVerifier` together with `TlsProvider::NativeTls` means
@@ -300,8 +298,7 @@
  The library will send a `Content-Length` header on requests with bodies of
  known size, in other words, if the body to send is one of:
 
- * `&[u8](#u8)
-`
+ * `&[u8]`
  * `&[u8; N]`
  * `&str`
  * `String`
@@ -351,11 +348,11 @@
  sending the body, ureq will respect that header by not overriding it,
  and by encoding the body or not, as indicated by the headers you set.
 
- ```
+ ```rust
  let resp = ureq::put("https://httpbin.org/put")
      .header("Transfer-Encoding", "chunked")
      .send("Hello world")?;
- # Ok::<_, ureq::Error>(())
+ Ok::<_, ureq::Error>(())
  ```
 
  # Character encoding
@@ -405,7 +402,7 @@
 
  ```rust
  use ureq::{Agent, Proxy};
- # fn no_run() -> std::result::Result<(), ureq::Error> {
+ fn no_run() -> std::result::Result<(), ureq::Error> {
  // Configure an http connect proxy.
  let proxy = Proxy::new("http://user:password@cool.proxy:9090")?;
  let agent: Agent = Agent::config_builder()
@@ -415,16 +412,16 @@
 
  // This is proxied.
  let resp = agent.get("http://cool.server").call()?;
- # Ok(())}
- # fn main() {}
+ Ok(())}
+ fn main() {}
  ```
 
  ## Example using SOCKS5
 
  ```rust
  use ureq::{Agent, Proxy};
- # #[cfg(feature = "socks-proxy")]
- # fn no_run() -> std::result::Result<(), ureq::Error> {
+ #[cfg(feature = "socks-proxy")]
+ fn no_run() -> std::result::Result<(), ureq::Error> {
  // Configure a SOCKS proxy.
  let proxy = Proxy::new("socks5://user:password@cool.proxy:9090")?;
  let agent: Agent = Agent::config_builder()
@@ -434,7 +431,7 @@
 
  // This is proxied.
  let resp = agent.get("http://cool.server").call()?;
- # Ok(())}
+ Ok(())}
  ```
 
  # Log levels
@@ -545,7 +542,7 @@ A response body returned as `http::Response<Body>`.
 Methods like `read_to_string()`, `read_to_vec()`, and `read_json()` have a **default 10MB limit**
 to prevent memory exhaustion. To download larger files, use `with_config().limit(new_size)`:
 
-```
+```rust
 // Download a 20MB file
 let bytes = ureq::get("http://httpbin.org/bytes/200000000")
     .call()?
@@ -553,7 +550,7 @@ let bytes = ureq::get("http://httpbin.org/bytes/200000000")
     .with_config()
     .limit(20 * 1024 * 1024) // 20MB
     .read_to_vec()?;
-# Ok::<_, ureq::Error>(())
+Ok::<_, ureq::Error>(())
 ```
 
 # Body lengths
@@ -582,7 +579,7 @@ shorter size than the actual response body, the connection will not be reused.
 
 # Example
 
-```
+```rust
 use std::io::Read;
 let mut res = ureq::get("http://httpbin.org/bytes/100")
     .call()?;
@@ -596,7 +593,7 @@ res.body_mut().as_reader()
     .read_to_end(&mut bytes)?;
 
 assert_eq!(bytes.len(), len);
-# Ok::<_, ureq::Error>(())
+Ok::<_, ureq::Error>(())
 ```
 
 [request smuggling]: https://en.wikipedia.org/wiki/HTTP_request_smuggling
@@ -690,7 +687,7 @@ returns another body than the requested one.
 
 # Example
 
-```
+```rust
 use ureq::Body;
 use ureq::http::Response;
 
@@ -709,7 +706,7 @@ let text = response
     .read_to_string()?;
 
 assert_eq!(text, "Hello world!");
-# Ok::<_, ureq::Error>(())
+Ok::<_, ureq::Error>(())
 ```
 
 #### Implementations
@@ -796,7 +793,7 @@ limit accordingly.
 
 # Example
 
-```
+```rust
 use std::io::Read;
 let mut res = ureq::get("http://httpbin.org/bytes/100")
     .call()?;
@@ -810,7 +807,7 @@ res.body_mut().as_reader()
     .read_to_end(&mut bytes)?;
 
 assert_eq!(bytes.len(), len);
-# Ok::<_, ureq::Error>(())
+Ok::<_, ureq::Error>(())
 ```
 
 #### Trait Implementations
@@ -873,7 +870,7 @@ Obtained via one of:
 The `BodyWithConfig` is the primary way to increase the default 10MB size limit
 when downloading large files to memory:
 
-```
+```rust
 // Download a 50MB file
 let large_data = ureq::get("http://httpbin.org/bytes/200000000")
     .call()?
@@ -881,7 +878,7 @@ let large_data = ureq::get("http://httpbin.org/bytes/200000000")
     .with_config()
     .limit(50 * 1024 * 1024) // 50MB
     .read_to_vec()?;
-# Ok::<_, ureq::Error>(())
+Ok::<_, ureq::Error>(())
 ```
 
 #### Implementations
@@ -1188,6 +1185,12 @@ make an API for sending requests.
 
 #### Implementations
 
+- `fn call(self: Self) -> Result<Response<Body>, Error>`
+  Sends the request and blocks the caller until we receive a response.
+
+- `fn force_send_body(self: Self) -> RequestBuilder<WithBody>`
+  Force sending a body.
+
 - `fn method_ref(self: &Self) -> Option<&Method>`
   Get the HTTP Method for this request.
 
@@ -1235,12 +1238,6 @@ make an API for sending requests.
 
 - `fn extensions_mut(self: &mut Self) -> Option<&mut Extensions>`
   Get a mutable reference to the extensions for this request builder.
-
-- `fn call(self: Self) -> Result<Response<Body>, Error>`
-  Sends the request and blocks the caller until we receive a response.
-
-- `fn force_send_body(self: Self) -> RequestBuilder<WithBody>`
-  Force sending a body.
 
 - `fn content_type<V>(self: Self, content_type: V) -> Self`
   Set the content-type header.
@@ -1328,7 +1325,7 @@ let secret = agent
     .read_to_string()?;
 
   println!("Secret is: {}", secret);
-# Ok::<_, ureq::Error>(())
+Ok::<_, ureq::Error>(())
 ```
 
 # About threads and cloning
@@ -1341,11 +1338,11 @@ held when borrowing a pooled connection, or returning a connection to the pool.
 
 All request functions in ureq have a signature similar to this:
 
-```
-# use ureq::{http, Body, AsSendBody, Error};
+```rust
+use ureq::{http, Body, AsSendBody, Error};
 fn run(request: http::Request<impl AsSendBody>) -> Result<http::Response<Body>, Error> {
     // <something>
-# todo!()
+todo!()
 }
 ```
 
@@ -1496,8 +1493,7 @@ Request body for sending data via POST, PUT and PATCH.
 
 Typically not interacted with directly since the trait [`AsSendBody`](#assendbody) is implemented
 for the majority of the types of data a user might want to send to a remote server.
-That means if you want to send things like `String`, `&str` or `[u8](#u8)
-`, they can be
+That means if you want to send things like `String`, `&str` or `[u8]`, they can be
 used directly. See documentation for [`AsSendBody`](#assendbody).
 
 The exception is when using [`Read`](#read) trait bodies, in which case we wrap the request
@@ -1520,14 +1516,14 @@ body directly. See below `SendBody::from_reader`.
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from((size, inner): (Option<u64>, BodyInner<'a>)) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1660,17 +1656,17 @@ Proxy protocol
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom`
-
-- `type Error = Error`
-
-- `fn try_from(scheme: &str) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = Error`
+
+- `fn try_from(scheme: &str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1861,11 +1857,15 @@ Errors from ureq.
 
 ##### `impl From`
 
-- `fn from(value: ureq_proto::Error) -> Self`
+- `fn from(value: http::Error) -> Self`
 
 ##### `impl From`
 
-- `fn from(e: io::Error) -> Self`
+- `fn from(value: rustls::Error) -> Self`
+
+##### `impl From`
+
+- `fn from(value: ureq_proto::Error) -> Self`
 
 ##### `impl From<T>`
 
@@ -1874,11 +1874,7 @@ Errors from ureq.
 
 ##### `impl From`
 
-- `fn from(value: http::Error) -> Self`
-
-##### `impl From`
-
-- `fn from(value: rustls::Error) -> Self`
+- `fn from(e: io::Error) -> Self`
 
 ##### `impl Into<T, U>`
 

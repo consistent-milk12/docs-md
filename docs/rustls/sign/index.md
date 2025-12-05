@@ -129,14 +129,14 @@ For use with `ConfigBuilder::with_cert_resolver()`.
 
 - `fn from(certified_key: alloc::sync::Arc<CertifiedKey>) -> Self`
 
+##### `impl From`
+
+- `fn from(certified_key: CertifiedKey) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(certified_key: CertifiedKey) -> Self`
 
 ##### `impl Into<T, U>`
 

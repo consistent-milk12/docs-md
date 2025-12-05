@@ -499,10 +499,10 @@ in the `Load` variant.
 
 This enum is intended to be used in a loop like so:
 ```no_run
-  # use addr2line::*;
-  # use std::sync::Arc;
-  # let ctx: Context<gimli::EndianSlice<gimli::RunTimeEndian>> = todo!();
-  # let do_split_dwarf_load = |load: SplitDwarfLoad<gimli::EndianSlice<gimli::RunTimeEndian>>| -> Option<Arc<gimli::Dwarf<gimli::EndianSlice<gimli::RunTimeEndian>>>> { None };
+  use addr2line::*;
+  use std::sync::Arc;
+  let ctx: Context<gimli::EndianSlice<gimli::RunTimeEndian>> = todo!();
+  let do_split_dwarf_load = |load: SplitDwarfLoad<gimli::EndianSlice<gimli::RunTimeEndian>>| -> Option<Arc<gimli::Dwarf<gimli::EndianSlice<gimli::RunTimeEndian>>>> { None };
   const ADDRESS: u64 = 0xdeadbeef;
   let mut r = ctx.find_frames(ADDRESS);
   let result = loop {

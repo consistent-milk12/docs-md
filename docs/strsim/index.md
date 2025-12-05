@@ -92,7 +92,7 @@ fn hamming(a: &str, b: &str) -> HammingResult
 Calculates the number of positions in the two strings where the characters
 differ. Returns an error if the strings have different lengths.
 
-```
+```rust
 use strsim::{hamming, StrSimError::DifferentLengthArgs};
 
 assert_eq!(Ok(3), hamming("hamming", "hammers"));
@@ -122,7 +122,7 @@ fn jaro(a: &str, b: &str) -> f64
 Calculates the Jaro similarity between two strings. The returned value
 is between 0.0 and 1.0 (higher value means more similar).
 
-```
+```rust
 use strsim::jaro;
 
 assert!((0.392 - jaro("Friedrich Nietzsche", "Jean-Paul Sartre")).abs() <
@@ -149,7 +149,7 @@ fn jaro_winkler(a: &str, b: &str) -> f64
 
 Like Jaro but gives a boost to strings that have a common prefix.
 
-```
+```rust
 use strsim::jaro_winkler;
 
 assert!((0.866 - jaro_winkler("cheeseburger", "cheese fries")).abs() <
@@ -169,7 +169,7 @@ where
 Calculates the minimum number of insertions, deletions, and substitutions
 required to change one sequence into the other.
 
-```
+```rust
 use strsim::generic_levenshtein;
 
 assert_eq!(3, generic_levenshtein(&[1,2,3], &[1,2,3,4,5,6]));
@@ -184,7 +184,7 @@ fn levenshtein(a: &str, b: &str) -> usize
 Calculates the minimum number of insertions, deletions, and substitutions
 required to change one string into the other.
 
-```
+```rust
 use strsim::levenshtein;
 
 assert_eq!(3, levenshtein("kitten", "sitting"));
@@ -199,7 +199,7 @@ fn normalized_levenshtein(a: &str, b: &str) -> f64
 Calculates a normalized score of the Levenshtein algorithm between 0.0 and
 1.0 (inclusive), where 1.0 means the strings are the same.
 
-```
+```rust
 use strsim::normalized_levenshtein;
 
 assert!((normalized_levenshtein("kitten", "sitting") - 0.57142).abs() < 0.00001);
@@ -218,7 +218,7 @@ fn osa_distance(a: &str, b: &str) -> usize
 Like Levenshtein but allows for adjacent transpositions. Each substring can
 only be edited once.
 
-```
+```rust
 use strsim::osa_distance;
 
 assert_eq!(3, osa_distance("ab", "bca"));
@@ -235,7 +235,7 @@ where
 Like optimal string alignment, but substrings can be edited an unlimited
 number of times, and the triangle inequality holds.
 
-```
+```rust
 use strsim::generic_damerau_levenshtein;
 
 assert_eq!(2, generic_damerau_levenshtein(&[1,2], &[2,3,1]));
@@ -250,7 +250,7 @@ fn damerau_levenshtein(a: &str, b: &str) -> usize
 Like optimal string alignment, but substrings can be edited an unlimited
 number of times, and the triangle inequality holds.
 
-```
+```rust
 use strsim::damerau_levenshtein;
 
 assert_eq!(2, damerau_levenshtein("ab", "bca"));
@@ -265,7 +265,7 @@ fn normalized_damerau_levenshtein(a: &str, b: &str) -> f64
 Calculates a normalized score of the Damerau–Levenshtein algorithm between
 0.0 and 1.0 (inclusive), where 1.0 means the strings are the same.
 
-```
+```rust
 use strsim::normalized_damerau_levenshtein;
 
 assert!((normalized_damerau_levenshtein("levenshtein", "löwenbräu") - 0.27272).abs() < 0.00001);
@@ -284,7 +284,7 @@ fn sorensen_dice(a: &str, b: &str) -> f64
 Calculates a Sørensen-Dice similarity distance using bigrams.
 See <https://en.wikipedia.org/wiki/S%C3%B8rensen%E2%80%93Dice_coefficient>.
 
-```
+```rust
 use strsim::sorensen_dice;
 
 assert_eq!(1.0, sorensen_dice("", ""));

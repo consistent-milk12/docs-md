@@ -18,8 +18,7 @@ performance over `Iterator` by providing an API optimized for byte slices.
 
 See [`Buf`](../index.md) and [`BufMut`](../index.md) for more details.
 
-[rope](#rope)
-: https://en.wikipedia.org/wiki/Rope_(data_structure)
+[rope](#rope): https://en.wikipedia.org/wiki/Rope_(data_structure)
 
 ## Structs
 
@@ -42,7 +41,7 @@ function's documentation for more detail.
 
 # Examples
 
-```
+```rust
 use bytes::{Bytes, Buf};
 
 let mut buf = (&b"hello "[..])
@@ -152,7 +151,7 @@ Iterator over the bytes contained by the buffer.
 
 Basic usage:
 
-```
+```rust
 use bytes::Bytes;
 
 let buf = Bytes::from(&b"abc"[..]);
@@ -465,13 +464,19 @@ that it is possible in safe code to write uninitialized bytes to an
 
 - `type Output = UninitSlice`
 
-- `fn index(self: &Self, index: RangeToInclusive<usize>) -> &UninitSlice`
+- `fn index(self: &Self, index: RangeInclusive<usize>) -> &UninitSlice`
 
 ##### `impl Index`
 
 - `type Output = UninitSlice`
 
-- `fn index(self: &Self, index: RangeInclusive<usize>) -> &UninitSlice`
+- `fn index(self: &Self, index: RangeFull) -> &UninitSlice`
+
+##### `impl Index`
+
+- `type Output = UninitSlice`
+
+- `fn index(self: &Self, index: RangeToInclusive<usize>) -> &UninitSlice`
 
 ##### `impl Index`
 
@@ -485,19 +490,9 @@ that it is possible in safe code to write uninitialized bytes to an
 
 - `fn index(self: &Self, index: RangeFrom<usize>) -> &UninitSlice`
 
-##### `impl Index`
-
-- `type Output = UninitSlice`
-
-- `fn index(self: &Self, index: RangeFull) -> &UninitSlice`
-
 ##### `impl IndexMut`
 
-- `fn index_mut(self: &mut Self, index: RangeToInclusive<usize>) -> &mut UninitSlice`
-
-##### `impl IndexMut`
-
-- `fn index_mut(self: &mut Self, index: RangeFull) -> &mut UninitSlice`
+- `fn index_mut(self: &mut Self, index: RangeInclusive<usize>) -> &mut UninitSlice`
 
 ##### `impl IndexMut`
 
@@ -505,15 +500,19 @@ that it is possible in safe code to write uninitialized bytes to an
 
 ##### `impl IndexMut`
 
-- `fn index_mut(self: &mut Self, index: RangeInclusive<usize>) -> &mut UninitSlice`
+- `fn index_mut(self: &mut Self, index: RangeFrom<usize>) -> &mut UninitSlice`
+
+##### `impl IndexMut`
+
+- `fn index_mut(self: &mut Self, index: RangeFull) -> &mut UninitSlice`
+
+##### `impl IndexMut`
+
+- `fn index_mut(self: &mut Self, index: RangeToInclusive<usize>) -> &mut UninitSlice`
 
 ##### `impl IndexMut`
 
 - `fn index_mut(self: &mut Self, index: Range<usize>) -> &mut UninitSlice`
-
-##### `impl IndexMut`
-
-- `fn index_mut(self: &mut Self, index: RangeFrom<usize>) -> &mut UninitSlice`
 
 ##### `impl Debug`
 

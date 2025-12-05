@@ -4,8 +4,7 @@
 
 # Module `rabinkarp`
 
-An implementation of the [Rabin-Karp substring search algorithm][rabinkarp](#rabinkarp)
-.
+An implementation of the [Rabin-Karp substring search algorithm][rabinkarp](#rabinkarp).
 
 Rabin-Karp works by creating a hash of the needle provided and then computing
 a rolling hash for each needle sized window in the haystack. When the rolling
@@ -19,8 +18,7 @@ quickly with very little memory. This makes it especially useful when searching
 for small needles in small haystacks, as it might finish its search before a
 beefier algorithm (like Two-Way) even starts.
 
-[rabinkarp](#rabinkarp)
-: https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
+[rabinkarp](#rabinkarp): https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
 
 ## Structs
 

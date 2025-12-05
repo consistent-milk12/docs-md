@@ -19,8 +19,8 @@ Available styling crates:
 
 # Example
 
-```
-#  #[cfg(feature = "auto")] {
+```rust
+ #[cfg(feature = "auto")] {
 use anstream::println;
 use owo_colors::OwoColorize as _;
 
@@ -28,7 +28,7 @@ use owo_colors::OwoColorize as _;
 println!("My number is {:#x}!", 10.green());
 // Background colors
 println!("My number is not {}!", 4.on_red());
-# }
+}
 ```
 
 And this will correctly handle piping to a file, etc
@@ -61,9 +61,6 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `AutoStream`
-
 - `fn new(raw: S, choice: ColorChoice) -> Self`
   Runtime control over styling behavior
 
@@ -95,6 +92,9 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
   Prefer [`AutoStream::choice`]
 
 - `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
+  Get exclusive access to the `AutoStream`
+
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
   Get exclusive access to the `AutoStream`
 
 #### Trait Implementations
@@ -166,6 +166,9 @@ Only pass printable data to the inner `Write`
 - `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
   Get exclusive access to the `StripStream`
 
+- `fn is_terminal(self: &Self) -> bool`
+  Returns `true` if the descriptor/handle refers to a terminal/tty.
+
 - `fn new(raw: S) -> Self`
   Only pass printable data to the inner `Write`
 
@@ -177,9 +180,6 @@ Only pass printable data to the inner `Write`
 
 - `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>`
   Get exclusive access to the `StripStream`
-
-- `fn is_terminal(self: &Self) -> bool`
-  Returns `true` if the descriptor/handle refers to a terminal/tty.
 
 #### Trait Implementations
 
@@ -291,13 +291,13 @@ immediately.
 **NOTE:** The `print!` macro will lock the standard output on each call. If you call
 `print!` within a hot loop, this behavior may be the bottleneck of the loop.
 To avoid this, lock stdout with `AutoStream::lock`:
-```
-#  #[cfg(feature = "auto")] {
+```rust
+ #[cfg(feature = "auto")] {
 use std::io::Write as _;
 
 let mut lock = anstream::stdout().lock();
 write!(lock, "hello world").unwrap();
-# }
+}
 ```
 
 Use `print!` only for the primary output of your program. Use
@@ -316,8 +316,8 @@ this macro to panic.
 
 # Examples
 
-```
-#  #[cfg(feature = "auto")] {
+```rust
+ #[cfg(feature = "auto")] {
 use std::io::Write as _;
 use anstream::print;
 use anstream::stdout;
@@ -335,7 +335,7 @@ stdout().flush().unwrap();
 print!("this string has a newline, why not choose println! instead?\n");
 
 stdout().flush().unwrap();
-# }
+}
 ```
 
 ### `println!`
@@ -351,13 +351,13 @@ See `std::fmt` for more information.
 **NOTE:** The `println!` macro will lock the standard output on each call. If you call
 `println!` within a hot loop, this behavior may be the bottleneck of the loop.
 To avoid this, lock stdout with `AutoStream::lock`:
-```
-#  #[cfg(feature = "auto")] {
+```rust
+ #[cfg(feature = "auto")] {
 use std::io::Write as _;
 
 let mut lock = anstream::stdout().lock();
 writeln!(lock, "hello world").unwrap();
-# }
+}
 ```
 
 Use `println!` only for the primary output of your program. Use
@@ -376,8 +376,8 @@ this macro to panic.
 
 # Examples
 
-```
-#  #[cfg(feature = "auto")] {
+```rust
+ #[cfg(feature = "auto")] {
 use anstream::println;
 
 println!(); // prints just a newline
@@ -385,7 +385,7 @@ println!("hello there!");
 println!("format {} arguments", "some");
 let local_variable = "some";
 println!("format {local_variable} arguments");
-# }
+}
 ```
 
 ### `eprint!`
@@ -412,12 +412,12 @@ this macro to panic.
 
 # Examples
 
-```
-#  #[cfg(feature = "auto")] {
+```rust
+ #[cfg(feature = "auto")] {
 use anstream::eprint;
 
 eprint!("Error: Could not complete task");
-# }
+}
 ```
 
 ### `eprintln!`
@@ -444,12 +444,12 @@ this macro to panic.
 
 # Examples
 
-```
-#  #[cfg(feature = "auto")] {
+```rust
+ #[cfg(feature = "auto")] {
 use anstream::eprintln;
 
 eprintln!("Error: Could not complete task");
-# }
+}
 ```
 
 ### `panic!`
@@ -461,9 +461,7 @@ to the caller of the program.
 
 This macro is the perfect way to assert conditions in example code and in
 tests. `panic!` is closely tied with the `unwrap` method of both
-[`Option`][ounwrap](#ounwrap)
- and [`Result`][runwrap](#runwrap)
- enums. Both implementations call
+[`Option`][ounwrap](#ounwrap) and [`Result`][runwrap](#runwrap) enums. Both implementations call
 `panic!` when they are set to [`None`](#none) or [`Err`](#err) variants.
 
 When using `panic!()` you can specify a string payload, that is built using
@@ -504,20 +502,16 @@ encounter. `Result` must be propagated manually, often with the help of the
 `?` operator and `Try` trait, and they must be reported manually, often with
 the help of the `Error` trait.
 
-For more detailed information about error handling check out the [book](#book)
- or the
+For more detailed information about error handling check out the [book](#book) or the
 `std::result` module docs.
 
-[ounwrap](#ounwrap)
-: Option::unwrap
-[runwrap](#runwrap)
-: Result::unwrap
+[ounwrap](#ounwrap): Option::unwrap
+[runwrap](#runwrap): Result::unwrap
 
 
 
 
-[book](#book)
-: ../book/ch09-00-error-handling.html
+[book](#book): ../book/ch09-00-error-handling.html
 
 # Current implementation
 
@@ -527,7 +521,7 @@ program with code `101`.
 # Examples
 
 ```should_panic
-# #![allow(unreachable_code)]
+#![allow(unreachable_code)]
 use anstream::panic;
 panic!();
 panic!("this is a terrible mistake!");

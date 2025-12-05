@@ -118,13 +118,13 @@ signature using the secure random number generator passed to `sign()`.
 
 ## Signing and verifying with Ed25519
 
-```
+```rust
 use ring::{
     rand,
     signature::{self, KeyPair},
 };
 
-# fn main() -> Result<(), ring::error::Unspecified> {
+fn main() -> Result<(), ring::error::Unspecified> {
 // Generate a key pair in PKCS#8 (v2) format.
 let rng = rand::SystemRandom::new();
 let pkcs8_bytes = signature::Ed25519KeyPair::generate_pkcs8(&rng)?;
@@ -135,8 +135,7 @@ let pkcs8_bytes = signature::Ed25519KeyPair::generate_pkcs8(&rng)?;
 let key_pair = signature::Ed25519KeyPair::from_pkcs8(pkcs8_bytes.as_ref())?;
 
 // Sign the message "hello, world".
-const MESSAGE: &[u8](#u8)
- = b"hello, world";
+const MESSAGE: &[u8] = b"hello, world";
 let sig = key_pair.sign(MESSAGE);
 
 // Normally an application would extract the bytes of the signature and
@@ -151,8 +150,8 @@ let peer_public_key =
     signature::UnparsedPublicKey::new(&signature::ED25519, peer_public_key_bytes);
 peer_public_key.verify(MESSAGE, sig.as_ref())?;
 
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 ## Signing and verifying with RSA (PKCS#1 1.5 padding)
@@ -183,11 +182,11 @@ openssl rsa -in private_key.der \
             -out public_key.der
 ```
 
-```
-# #[cfg(feature = "std")]
+```rust
+#[cfg(feature = "std")]
 use ring::{rand, rsa, signature};
 
-# #[cfg(feature = "std")]
+#[cfg(feature = "std")]
 fn sign_and_verify_rsa(private_key_path: &std::path::Path,
                        public_key_path: &std::path::Path)
                        -> Result<(), MyError> {
@@ -199,8 +198,7 @@ let key_pair = rsa::KeyPair::from_der(&private_key_der)
 
 // Sign the message "hello, world", using PKCS#1 v1.5 padding and the
 // SHA256 digest algorithm.
-const MESSAGE: &'static [u8](#u8)
- = b"hello, world";
+const MESSAGE: &'static [u8] = b"hello, world";
 let rng = rand::SystemRandom::new();
 let mut signature = vec![0; key_pair.public().modulus_len()];
 key_pair.sign(&signature::RSA_PKCS1_SHA256, &rng, MESSAGE, &mut signature)
@@ -216,14 +214,14 @@ public_key.verify(MESSAGE, &signature)
 
 #[derive(Debug)]
 enum MyError {
-#  #[cfg(feature = "std")]
+ #[cfg(feature = "std")]
    IO(std::io::Error),
    BadPrivateKey,
    OOM,
    BadSignature,
 }
 
-# #[cfg(feature = "std")]
+#[cfg(feature = "std")]
 fn read_file(path: &std::path::Path) -> Result<Vec<u8>, MyError> {
     use std::io::Read;
 
@@ -232,21 +230,21 @@ fn read_file(path: &std::path::Path) -> Result<Vec<u8>, MyError> {
     file.read_to_end(&mut contents).map_err(|e| MyError::IO(e))?;
     Ok(contents)
 }
-#
-# #[cfg(not(feature = "std"))]
-# fn sign_and_verify_rsa(_private_key_path: &std::path::Path,
-#                        _public_key_path: &std::path::Path)
-#                        -> Result<(), ()> {
-#     Ok(())
-# }
-#
-# fn main() {
-#     let private_key_path =
-#         std::path::Path::new("src/rsa/signature_rsa_example_private_key.der");
-#     let public_key_path =
-#         std::path::Path::new("src/rsa/signature_rsa_example_public_key.der");
-#     sign_and_verify_rsa(&private_key_path, &public_key_path).unwrap()
-# }
+
+#[cfg(not(feature = "std"))]
+fn sign_and_verify_rsa(_private_key_path: &std::path::Path,
+                       _public_key_path: &std::path::Path)
+                       -> Result<(), ()> {
+    Ok(())
+}
+
+fn main() {
+    let private_key_path =
+        std::path::Path::new("src/rsa/signature_rsa_example_private_key.der");
+    let public_key_path =
+        std::path::Path::new("src/rsa/signature_rsa_example_public_key.der");
+    sign_and_verify_rsa(&private_key_path, &public_key_path).unwrap()
+}
 ```
 
 ## Structs
@@ -570,9 +568,7 @@ struct RsaPublicKeyComponents<B> {
 
 RSA public key components.
 
-`B` must implement `AsRef<[u8](#u8)
->` like `&[u8](#u8)
-` or `Vec<u8>`.
+`B` must implement `AsRef<[u8]>` like `&[u8]` or `Vec<u8>`.
 
 #### Fields
 

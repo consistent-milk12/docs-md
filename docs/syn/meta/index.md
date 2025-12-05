@@ -94,8 +94,7 @@ fn parser(logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) ->
 ```
 
 Make a parser that is usable with `parse_macro_input!` in a
-`#[proc_macro_attribute](#proc-macro-attribute)
-` macro.
+`#[proc_macro_attribute]` macro.
 
 *Warning:* When parsing attribute args **other than** the
 `proc_macro::TokenStream` input of a `proc_macro_attribute`, you do **not**
@@ -108,11 +107,11 @@ is concealed from attribute macros by rustc. Use
 
 This example implements an attribute macro whose invocations look like this:
 
-```
-# const IGNORE: &str = stringify! {
+```rust
+const IGNORE: &str = stringify! {
 #[tea(kind = "EarlGrey", hot)]
 struct Picard {...}
-# };
+};
 ```
 
 The "parameters" supported by the attribute are:
@@ -121,16 +120,15 @@ The "parameters" supported by the attribute are:
 - `hot`
 - `with(sugar, milk, ...)`, a comma-separated list of ingredients
 
-```
-# extern crate proc_macro;
-#
+```rust
+extern crate proc_macro;
+
 use proc_macro::TokenStream;
 use syn::{parse_macro_input, LitStr, Path};
 
-# const IGNORE: &str = stringify! {
-#[proc_macro_attribute](#proc-macro-attribute)
-
-# };
+const IGNORE: &str = stringify! {
+#[proc_macro_attribute]
+};
 pub fn tea(args: TokenStream, input: TokenStream) -> TokenStream {
     let mut kind: Option<LitStr> = None;
     let mut hot: bool = false;
@@ -156,7 +154,7 @@ pub fn tea(args: TokenStream, input: TokenStream) -> TokenStream {
     eprintln!("kind={kind:?} hot={hot} with={with:?}");
 
     /* ... */
-#   TokenStream::new()
+  TokenStream::new()
 }
 ```
 
@@ -175,25 +173,24 @@ error: expected `,`
 
 Same as above but we factor out most of the logic into a separate function.
 
-```
-# extern crate proc_macro;
-#
+```rust
+extern crate proc_macro;
+
 use proc_macro::TokenStream;
 use syn::meta::ParseNestedMeta;
 use syn::parse::{Parser, Result};
 use syn::{parse_macro_input, LitStr, Path};
 
-# const IGNORE: &str = stringify! {
-#[proc_macro_attribute](#proc-macro-attribute)
-
-# };
+const IGNORE: &str = stringify! {
+#[proc_macro_attribute]
+};
 pub fn tea(args: TokenStream, input: TokenStream) -> TokenStream {
     let mut attrs = TeaAttributes::default();
     let tea_parser = syn::meta::parser(|meta| attrs.parse(meta));
     parse_macro_input!(args with tea_parser);
 
     /* ... */
-#   TokenStream::new()
+  TokenStream::new()
 }
 
 #[derive(Default)]
@@ -209,7 +206,7 @@ impl TeaAttributes {
             self.kind = Some(meta.value()?.parse()?);
             Ok(())
         } else /* just like in last example */
-#           { unimplemented!() }
+          { unimplemented!() }
 
     }
 }

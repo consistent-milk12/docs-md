@@ -1677,14 +1677,14 @@ An error that can occur when building a certificate verifier.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: CertRevocationListError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 

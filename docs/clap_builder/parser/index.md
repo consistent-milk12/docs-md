@@ -21,8 +21,8 @@ Iterate over `Arg` and `ArgGroup` [`Id`](../index.md)s via `ArgMatches::ids`.
 # Examples
 
 ```rust
-# use clap_builder as clap;
-# use clap::{Command, arg, value_parser};
+use clap_builder as clap;
+use clap::{Command, arg, value_parser};
 
 let m = Command::new("myprog")
     .arg(arg!(--color <when>)
@@ -129,9 +129,9 @@ Iterate over raw argument values via `ArgMatches::get_raw`.
 # Examples
 
 ```rust
-# #[cfg(unix)] {
-# use clap_builder as clap;
-# use clap::{Command, arg, value_parser};
+#[cfg(unix)] {
+use clap_builder as clap;
+use clap::{Command, arg, value_parser};
 use std::ffi::OsString;
 use std::os::unix::ffi::{OsStrExt,OsStringExt};
 
@@ -148,7 +148,7 @@ assert_eq!(
         .as_bytes(),
     [b'H', b'i', b' ', 0xe9, b'!']
 );
-# }
+}
 ```
 
 #### Trait Implementations
@@ -246,8 +246,8 @@ Iterate over multiple values for an argument via `ArgMatches::remove_many`.
 # Examples
 
 ```rust
-# use clap_builder as clap;
-# use clap::{Command, Arg, ArgAction};
+use clap_builder as clap;
+use clap::{Command, Arg, ArgAction};
 let mut m = Command::new("myapp")
     .arg(Arg::new("output")
         .short('o')
@@ -357,8 +357,8 @@ Iterate over multiple values for an argument via `ArgMatches::get_many`.
 # Examples
 
 ```rust
-# use clap_builder as clap;
-# use clap::{Command, Arg, ArgAction};
+use clap_builder as clap;
+use clap::{Command, Arg, ArgAction};
 let m = Command::new("myapp")
     .arg(Arg::new("output")
         .short('o')
@@ -473,9 +473,9 @@ methods.
 # Examples
 
 ```no_run
-# use clap_builder as clap;
-# use clap::{Command, Arg, ArgAction};
-# use clap::parser::ValueSource;
+use clap_builder as clap;
+use clap::{Command, Arg, ArgAction};
+use clap::parser::ValueSource;
 let matches = Command::new("MyApp")
     .arg(Arg::new("out")
         .long("output")
@@ -512,6 +512,36 @@ if matches.contains_id("out") {
 
 
 #### Implementations
+
+- `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_one`]
+
+- `fn try_get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_many`]
+
+- `fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_occurrences`]
+
+- `fn try_get_raw(self: &Self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_raw`]
+
+- `fn try_get_raw_occurrences(self: &Self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_raw_occurrences`]
+
+- `fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<T>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_one`]
+
+- `fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Values<T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_many`]
+
+- `fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_occurrences`]
+
+- `fn try_contains_id(self: &Self, id: &str) -> Result<bool, MatchesError>`
+  Non-panicking version of [`ArgMatches::contains_id`]
+
+- `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>`
+  Clears the values for the given `id`
 
 - `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
   Gets the value of a specific option or positional argument.
@@ -560,36 +590,6 @@ if matches.contains_id("out") {
 
 - `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>`
   All indices an argument appeared at when parsing.
-
-- `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_one`]
-
-- `fn try_get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_many`]
-
-- `fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_occurrences`]
-
-- `fn try_get_raw(self: &Self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_raw`]
-
-- `fn try_get_raw_occurrences(self: &Self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_raw_occurrences`]
-
-- `fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<T>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_one`]
-
-- `fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Values<T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_many`]
-
-- `fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_occurrences`]
-
-- `fn try_contains_id(self: &Self, id: &str) -> Result<bool, MatchesError>`
-  Non-panicking version of [`ArgMatches::contains_id`]
-
-- `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>`
-  Clears the values for the given `id`
 
 - `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
   The name and `ArgMatches` of the current [subcommand].
@@ -684,8 +684,8 @@ Iterate over indices for where an argument appeared when parsing, via `ArgMatche
 # Examples
 
 ```rust
-# use clap_builder as clap;
-# use clap::{Command, Arg, ArgAction};
+use clap_builder as clap;
+use clap::{Command, Arg, ArgAction};
 let m = Command::new("myapp")
     .arg(Arg::new("output")
         .short('o')

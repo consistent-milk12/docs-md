@@ -67,7 +67,7 @@ assert_eq!(
     nfa.try_find(&Input::new(haystack))?,
 );
 # Ok::<(), Box<dyn std::error::Error>>(())
-```
+```rust
 
 It is also possible to implement your own version of `try_find`. See the
 [`Automaton`](../../automaton/index.md) documentation for an example.

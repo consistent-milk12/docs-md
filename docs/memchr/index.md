@@ -13,8 +13,7 @@ This section gives a brief high level overview of what this crate offers.
 * The [`memmem`](memmem/index.md) sub-module provides forward and reverse substring search
   routines.
 
-In all such cases, routines operate on `&[u8](#u8)
-` without regard to encoding. This
+In all such cases, routines operate on `&[u8]` without regard to encoding. This
 is exactly what you want when searching either UTF-8 or arbitrary bytes.
 
 # Example: using `memchr`
@@ -22,7 +21,7 @@ is exactly what you want when searching either UTF-8 or arbitrary bytes.
 This example shows how to use `memchr` to find the first occurrence of `z` in
 a haystack:
 
-```
+```rust
 use memchr::memchr;
 
 let haystack = b"foo bar baz quuz";
@@ -34,7 +33,7 @@ assert_eq!(Some(10), memchr(b'z', haystack));
 This examples shows how to use `memrchr3` to find occurrences of `a`, `b` or
 `c`, starting at the end of the haystack.
 
-```
+```rust
 use memchr::memchr3_iter;
 
 let haystack = b"xyzaxyzbxyzc";
@@ -51,7 +50,7 @@ assert_eq!(None, it.next());
 This example shows how to use the [`memmem`](memmem/index.md) sub-module to find occurrences of
 a substring in a haystack.
 
-```
+```rust
 use memchr::memmem;
 
 let haystack = b"foo bar foo baz foo";
@@ -70,7 +69,7 @@ measurable in some workloads. In cases where the same needle is used to search
 many haystacks, it is possible to do construction once and thus to avoid it for
 subsequent searches. This can be done with a `memmem::Finder`:
 
-```
+```rust
 use memchr::memmem;
 
 let finder = memmem::Finder::new("foo");
@@ -85,9 +84,8 @@ At first glance, the APIs provided by this crate might seem weird. Why provide
 a dedicated routine like `memchr` for something that could be implemented
 clearly and trivially in one line:
 
-```
-fn memchr(needle: u8, haystack: &[u8](#u8)
-) -> Option<usize> {
+```rust
+fn memchr(needle: u8, haystack: &[u8]) -> Option<usize> {
     haystack.iter().position(|&b| b == needle)
 }
 ```
@@ -95,7 +93,7 @@ fn memchr(needle: u8, haystack: &[u8](#u8)
 Or similarly, why does this crate provide substring search routines when Rust's
 core library already provides them?
 
-```
+```rust
 fn search(haystack: &str, needle: &str) -> Option<usize> {
     haystack.find(needle)
 }

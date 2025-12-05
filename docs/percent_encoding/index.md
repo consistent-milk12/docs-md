@@ -22,7 +22,7 @@ This is done by using the `add` method of an existing set.
 
 # Examples
 
-```
+```rust
 use percent_encoding::{utf8_percent_encode, AsciiSet, CONTROLS};
 
 /// https://url.spec.whatwg.org/#fragment-percent-encode-set
@@ -49,7 +49,7 @@ This is similar to [percent-encode sets](https://url.spec.whatwg.org/#percent-en
 Use the `add` method of an existing set to define a new set. For example:
 
 
-```
+```rust
 use percent_encoding::{AsciiSet, CONTROLS};
 
 /// https://url.spec.whatwg.org/#fragment-percent-encode-set
@@ -332,7 +332,7 @@ This is unconditional, unlike `percent_encode()` which has an `AsciiSet` paramet
 
 # Examples
 
-```
+```rust
 use percent_encoding::percent_encode_byte;
 
 assert_eq!("foo bar".bytes().map(percent_encode_byte).collect::<String>(),
@@ -357,7 +357,7 @@ The return type:
 
 # Examples
 
-```
+```rust
 use percent_encoding::{percent_encode, NON_ALPHANUMERIC};
 
 assert_eq!(percent_encode(b"foo bar?", NON_ALPHANUMERIC).to_string(), "foo%20bar%3F");
@@ -375,7 +375,7 @@ See [`percent_encode`](#percent-encode) regarding the return type.
 
 # Examples
 
-```
+```rust
 use percent_encoding::{utf8_percent_encode, NON_ALPHANUMERIC};
 
 assert_eq!(utf8_percent_encode("foo bar?", NON_ALPHANUMERIC).to_string(), "foo%20bar%3F");
@@ -412,7 +412,7 @@ The return type:
 
 # Examples
 
-```
+```rust
 use percent_encoding::percent_decode;
 
 assert_eq!(percent_decode(b"foo%20bar%3f").decode_utf8().unwrap(), "foo bar?");

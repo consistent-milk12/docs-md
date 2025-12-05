@@ -9,8 +9,7 @@ and writing relocatable object files and some executable files.
 ## Raw struct definitions
 
 Raw structs are defined for: [ELF](elf), [Mach-O](macho), [PE/COFF](pe),
-[XCOFF](xcoff), [archive](#archive)
-.
+[XCOFF](xcoff), [archive](#archive).
 Types and traits for zerocopy support are defined in the [`pod`](pod/index.md) and [`endian`](endian/index.md) modules.
 
 ## Unified read API

@@ -1,10 +1,8 @@
 # Crate `thiserror`
 
-[![github](#github)
-](https://github.com/dtolnay/thiserror)&ensp;[![crates-io]](https://crates.io/crates/thiserror)&ensp;[![docs-rs]](https://docs.rs/thiserror)
+[![github](#github)](https://github.com/dtolnay/thiserror)&ensp;[![crates-io]](https://crates.io/crates/thiserror)&ensp;[![docs-rs]](https://docs.rs/thiserror)
 
-[github](#github)
-: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
@@ -18,14 +16,13 @@ This library provides a convenient derive macro for the standard library's
 # Example
 
 ```rust
-# use std::io;
+use std::io;
 use thiserror::Error;
 
 #[derive(Error, Debug)]
 pub enum DataStoreError {
     #[error("data store disconnected")]
-    Disconnect(#[from](#from)
- io::Error),
+    Disconnect(#[from] io::Error),
     #[error("the data for key `{0}` is not available")]
     Redaction(String),
     #[error("invalid header (expected {expected:?}, found {found:?})")]
@@ -65,9 +62,9 @@ pub enum DataStoreError {
   which may be arbitrary expressions. For example:
 
   ```rust
-  # use core::i32;
-  # use thiserror::Error;
-  #
+  use core::i32;
+  use thiserror::Error;
+
   #[derive(Error, Debug)]
   pub enum Error {
       #[error("invalid rdo_lookahead_frames {0} (expected < {max})", max = i32::MAX)]
@@ -80,18 +77,18 @@ pub enum DataStoreError {
   as `.0`.
 
   ```rust
-  # use thiserror::Error;
-  #
-  # fn first_char(s: &String) -> char {
-  #     s.chars().next().unwrap()
-  # }
-  #
-  # #[derive(Debug)]
-  # struct Limits {
-  #     lo: usize,
-  #     hi: usize,
-  # }
-  #
+  use thiserror::Error;
+
+  fn first_char(s: &String) -> char {
+      s.chars().next().unwrap()
+  }
+
+  #[derive(Debug)]
+  struct Limits {
+      lo: usize,
+      hi: usize,
+  }
+
   #[derive(Error, Debug)]
   pub enum Error {
       #[error("first letter must be lowercase but was {:?}", first_char(.0))]
@@ -101,74 +98,64 @@ pub enum DataStoreError {
   }
   ```
 
-- A [`From`](#from) impl is generated for each variant that contains a `#[from](#from)
-`
+- A [`From`](#from) impl is generated for each variant that contains a `#[from]`
   attribute.
 
-  The variant using `#[from](#from)
-` must not contain any other fields beyond the
+  The variant using `#[from]` must not contain any other fields beyond the
   source error (and possibly a backtrace &mdash; see below). Usually
-  `#[from](#from)
-` fields are unnamed, but `#[from](#from)
-` is allowed on a named field
+  `#[from]` fields are unnamed, but `#[from]` is allowed on a named field
   too.
 
   ```rust
-  # use core::fmt::{self, Display};
-  # use std::io;
-  # use thiserror::Error;
-  #
-  # mod globset {
-  #     #[derive(thiserror::Error, Debug)]
-  #     #[error("...")]
-  #     pub struct Error;
-  # }
-  #
+  use core::fmt::{self, Display};
+  use std::io;
+  use thiserror::Error;
+
+  mod globset {
+      #[derive(thiserror::Error, Debug)]
+      #[error("...")]
+      pub struct Error;
+  }
+
   #[derive(Error, Debug)]
   pub enum MyError {
-      Io(#[from](#from)
- io::Error),
-      Glob(#[from](#from)
- globset::Error),
+      Io(#[from] io::Error),
+      Glob(#[from] globset::Error),
   }
-  #
-  # impl Display for MyError {
-  #     fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-  #         unimplemented!()
-  #     }
-  # }
+
+  impl Display for MyError {
+      fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+          unimplemented!()
+      }
+  }
   ```
 
 - The Error trait's [`source()`](#source) method is implemented to return whichever
-  field has a `#[source](#source)
-` attribute or is named `source`, if any. This is
+  field has a `#[source]` attribute or is named `source`, if any. This is
   for identifying the underlying lower level error that caused your error.
 
-  The `#[from](#from)
-` attribute always implies that the same field is `#[source](#source)
-`,
+  The `#[from]` attribute always implies that the same field is `#[source]`,
   so you don't ever need to specify both attributes.
 
   Any error type that implements `std::error::Error` or dereferences to `dyn
   std::error::Error` will work as a source.
 
   ```rust
-  # use core::fmt::{self, Display};
-  # use thiserror::Error;
-  #
+  use core::fmt::{self, Display};
+  use thiserror::Error;
+
   #[derive(Error, Debug)]
   pub struct MyError {
       msg: String,
-      #[source](#source)
-  // optional if field name is `source`
+      #[source]  // optional if field name is `source`
       source: anyhow::Error,
   }
-  #
-  # impl Display for MyError {
-  #     fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
-  #         unimplemented!()
-  #     }
-  # }
+
+  impl Display for MyError {
+      fn fmt(&self, formatter: &mut fmt::Formatter) -> fmt::Result {
+          unimplemented!()
+      }
+  }
   ```
 
 - The Error trait's [`provide()`](#provide) method is implemented to provide whichever
@@ -177,7 +164,7 @@ pub enum DataStoreError {
   nightly compiler with Rust version 1.73 or newer.
 
   ```rust
-  # const IGNORE: &str = stringify! {
+  const IGNORE: &str = stringify! {
   use std::backtrace::Backtrace;
 
   #[derive(Error, Debug)]
@@ -185,48 +172,41 @@ pub enum DataStoreError {
       msg: String,
       backtrace: Backtrace,  // automatically detected
   }
-  # };
+  };
   ```
 
-- If a field is both a source (named `source`, or has `#[source](#source)
-` or
-  `#[from](#from)
-` attribute) *and* is marked `#[backtrace](#backtrace)
-`, then the Error
+- If a field is both a source (named `source`, or has `#[source]` or
+  `#[from]` attribute) *and* is marked `#[backtrace]`, then the Error
   trait's [`provide()`](#provide) method is forwarded to the source's `provide` so
-  that both layers of the error share the same backtrace. The `#[backtrace](#backtrace)
-`
+  that both layers of the error share the same backtrace. The `#[backtrace]`
   attribute requires a nightly compiler with Rust version 1.73 or newer.
 
   ```rust
-  # const IGNORE: &str = stringify! {
+  const IGNORE: &str = stringify! {
   #[derive(Error, Debug)]
   pub enum MyError {
       Io {
-          #[backtrace](#backtrace)
-
+          #[backtrace]
           source: io::Error,
       },
   }
-  # };
+  };
   ```
 
-- For variants that use `#[from](#from)
-` and also contain a `Backtrace` field, a
+- For variants that use `#[from]` and also contain a `Backtrace` field, a
   backtrace is captured from within the `From` impl.
 
   ```rust
-  # const IGNORE: &str = stringify! {
+  const IGNORE: &str = stringify! {
   #[derive(Error, Debug)]
   pub enum MyError {
       Io {
-          #[from](#from)
-
+          #[from]
           source: io::Error,
           backtrace: Backtrace,
       },
   }
-  # };
+  };
   ```
 
 - Errors may use `error(transparent)` to forward the source and [`Display`](#display)
@@ -234,18 +214,17 @@ pub enum DataStoreError {
   additional message. This would be appropriate for enums that need an
   "anything else" variant.
 
-  ```
-  # use thiserror::Error;
-  #
+  ```rust
+  use thiserror::Error;
+
   #[derive(Error, Debug)]
   pub enum MyError {
-      # /*
+      /*
       ...
-      # */
+      */
 
       #[error(transparent)]
-      Other(#[from](#from)
- anyhow::Error),  // source and Display delegate to anyhow::Error
+      Other(#[from] anyhow::Error),  // source and Display delegate to anyhow::Error
   }
   ```
 
@@ -253,14 +232,13 @@ pub enum DataStoreError {
   representation behind an opaque error type, so that the representation is
   able to evolve without breaking the crate's public API.
 
-  ```
-  # use thiserror::Error;
-  #
+  ```rust
+  use thiserror::Error;
+
   // PublicError is public, but opaque and easy to keep compatible.
   #[derive(Error, Debug)]
   #[error(transparent)]
-  pub struct PublicError(#[from](#from)
- ErrorRepr);
+  pub struct PublicError(#[from] ErrorRepr);
 
   impl PublicError {
       // Accessors for anything we do want to expose publicly.
@@ -269,9 +247,9 @@ pub enum DataStoreError {
   // Private and free to change across minor version of the crate.
   #[derive(Error, Debug)]
   enum ErrorRepr {
-      # /*
+      /*
       ...
-      # */
+      */
   }
   ```
 

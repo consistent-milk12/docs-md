@@ -29,7 +29,7 @@ Cargo feature enabled, you will find a
 `WordSplitter::Hyphenation` variant. Use this struct for
 language-aware hyphenation:
 
-```
+```rust
 #[cfg(feature = "hyphenation")] {
     use hyphenation::{Language, Load, Standard};
     use textwrap::{wrap, Options, WordSplitter};
@@ -45,12 +45,10 @@ language-aware hyphenation:
 }
 ```
 
-Please see the documentation for the [hyphenation](#hyphenation)
- crate for more
+Please see the documentation for the [hyphenation](#hyphenation) crate for more
 details.
 
-[hyphenation](#hyphenation)
-: https://docs.rs/hyphenation/
+[hyphenation](#hyphenation): https://docs.rs/hyphenation/
 
 #### Variants
 
@@ -59,7 +57,7 @@ details.
   Use this as a [`Options.word_splitter`](#optionsword-splitter) to avoid any kind of
   hyphenation:
   
-  ```
+  ```rust
   use textwrap::{wrap, Options, WordSplitter};
   
   let options = Options::new(8).word_splitter(WordSplitter::NoHyphenation);
@@ -80,7 +78,7 @@ details.
   
   # Examples
   
-  ```
+  ```rust
   use textwrap::WordSplitter;
   
   assert_eq!(WordSplitter::HyphenSplitter.split_points("--foo-bar"),
@@ -96,7 +94,7 @@ details.
   
   # Examples
   
-  ```
+  ```rust
   use textwrap::WordSplitter;
   
   fn split_at_underscore(word: &str) -> Vec<usize> {

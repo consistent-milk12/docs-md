@@ -85,8 +85,7 @@ struct SliceIter<'a, T> {
 }
 ```
 
-Iterator over all PEM sections in a `&[u8](#u8)
-` slice.
+Iterator over all PEM sections in a `&[u8]` slice.
 
 #### Implementations
 

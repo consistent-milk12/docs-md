@@ -12,8 +12,7 @@ represented internally as an array index) to a [`Value`](#value).
 
 # `Value`s and `Subscriber`s
 
-`Subscriber`s consume `Value`s as fields attached to [span](#span)
-s or [`Event`](../event/index.md)s.
+`Subscriber`s consume `Value`s as fields attached to [span](#span)s or [`Event`](../event/index.md)s.
 The set of field keys on a given span or event is defined on its [`Metadata`](../metadata/index.md).
 When a span is created, it provides [`Attributes`](../span/index.md) to the `Subscriber`'s
 [`new_span`](#new-span) method, containing any fields whose values were provided when
@@ -105,8 +104,7 @@ be forwarded to the visitor's [`record_debug`](#record-debug) method.
 
 
 
-[span](#span)
-: super::span
+[span](#span): super::span
 
 
 
@@ -301,14 +299,12 @@ Describes the fields present on a span.
 
 ## Equality
 
-In well-behaved applications, two `FieldSet`s [initialized](#initialized)
- with equal
+In well-behaved applications, two `FieldSet`s [initialized](#initialized) with equal
 [callsite identifiers] will have identical fields. Consequently, in release
 builds, `FieldSet::eq` *only* checks that its arguments have equal
 callsites. However, the equality of field names is checked in debug builds.
 
-[initialized](#initialized)
-: Self::new
+[initialized](#initialized): Self::new
 [callsite identifiers]: callsite::Identifier
 
 #### Implementations
@@ -680,8 +676,7 @@ Visits typed values.
 
 An instance of `Visit` ("a visitor") represents the logic necessary to
 record field values of various types. When an implementor of [`Value`](#value) is
-[recorded](#recorded)
-, it calls the appropriate method on the provided visitor to
+[recorded](#recorded), it calls the appropriate method on the provided visitor to
 indicate the type that value should be recorded as.
 
 When a [`Subscriber`](../subscriber/index.md) implementation [records an `Event`] or a
@@ -693,8 +688,8 @@ will then be used to record all the field-value pairs present on that
 # Examples
 
 A simple visitor that writes to a string might be implemented like so:
-```
-# extern crate tracing_core as tracing;
+```rust
+extern crate tracing_core as tracing;
 use std::fmt::{self, Write};
 use tracing::field::{Value, Visit, Field};
 pub struct StringVisitor<'a> {
@@ -724,10 +719,10 @@ Additionally, when a visitor receives a value of a type it does not care
 about, it is free to ignore those values completely. For example, a
 visitor which only records numeric data might look like this:
 
-```
-# extern crate tracing_core as tracing;
-# use std::fmt::{self, Write};
-# use tracing::field::{Value, Visit, Field};
+```rust
+extern crate tracing_core as tracing;
+use std::fmt::{self, Write};
+use tracing::field::{Value, Visit, Field};
 pub struct SumVisitor {
     sum: i64,
 }
@@ -760,8 +755,7 @@ available when the Rust standard library is present, as it requires the
 <code>std::error::Error</code> trait.
 </pre></div>
 
-[recorded](#recorded)
-: Value::record
+[recorded](#recorded): Value::record
 
 [records an `Event`]: super::subscriber::Subscriber::event
 [set of `Value`s added to a `Span`]: super::subscriber::Subscriber::record
@@ -818,12 +812,10 @@ trait Value: crate::sealed::Sealed { ... }
 A field value of an erased type.
 
 Implementors of `Value` may call the appropriate typed recording methods on
-the [visitor](#visitor)
- passed to their `record` method in order to indicate how
+the [visitor](#visitor) passed to their `record` method in order to indicate how
 their data should be recorded.
 
-[visitor](#visitor)
-: Visit
+[visitor](#visitor): Visit
 
 #### Required Methods
 

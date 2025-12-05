@@ -21,7 +21,7 @@ PBKDF2 is specified in [RFC 2898 Section 5.2] with test vectors given in
 
 ## Password Database Example
 
-```
+```rust
 use ring::{digest, pbkdf2};
 use std::{collections::HashMap, num::NonZeroU32};
 

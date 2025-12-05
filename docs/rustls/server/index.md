@@ -946,14 +946,14 @@ application can communicate failure to the client via `AcceptedAlert::write()`.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(conn: ConnectionCommon<ServerConnectionData>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(conn: ConnectionCommon<ServerConnectionData>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1011,14 +1011,14 @@ Create an Acceptor with `Acceptor::default()`.
 # Example
 
 ```no_run
-# #[cfg(feature = "aws_lc_rs")] {
-# fn choose_server_config(
-#     _: rustls::server::ClientHello,
-# ) -> std::sync::Arc<rustls::ServerConfig> {
-#     unimplemented!();
-# }
-# #[allow(unused_variables)]
-# fn main() {
+#[cfg(feature = "aws_lc_rs")] {
+fn choose_server_config(
+    _: rustls::server::ClientHello,
+) -> std::sync::Arc<rustls::ServerConfig> {
+    unimplemented!();
+}
+#[allow(unused_variables)]
+fn main() {
 use rustls::server::{Acceptor, ServerConfig};
 let listener = std::net::TcpListener::bind("127.0.0.1:0").unwrap();
 for stream in listener.incoming() {
@@ -1039,8 +1039,8 @@ for stream in listener.incoming() {
 
     // Proceed with handling the ServerConnection.
 }
-# }
-# }
+}
+}
 ```
 
 #### Implementations
@@ -1478,51 +1478,51 @@ Example:
 
 To require all clients present a client certificate issued by a trusted CA:
 ```no_run
-# #[cfg(any(feature = "ring", feature = "aws_lc_rs"))] {
-# use rustls::RootCertStore;
-# use rustls::server::WebPkiClientVerifier;
-# let roots = RootCertStore::empty();
+#[cfg(any(feature = "ring", feature = "aws_lc_rs"))] {
+use rustls::RootCertStore;
+use rustls::server::WebPkiClientVerifier;
+let roots = RootCertStore::empty();
 let client_verifier = WebPkiClientVerifier::builder(roots.into())
   .build()
   .unwrap();
-# }
+}
 ```
 
 Or, to allow clients presenting a client certificate authenticated by a trusted CA, or
 anonymous clients that present no client certificate:
 ```no_run
-# #[cfg(any(feature = "ring", feature = "aws_lc_rs"))] {
-# use rustls::RootCertStore;
-# use rustls::server::WebPkiClientVerifier;
-# let roots = RootCertStore::empty();
+#[cfg(any(feature = "ring", feature = "aws_lc_rs"))] {
+use rustls::RootCertStore;
+use rustls::server::WebPkiClientVerifier;
+let roots = RootCertStore::empty();
 let client_verifier = WebPkiClientVerifier::builder(roots.into())
   .allow_unauthenticated()
   .build()
   .unwrap();
-# }
+}
 ```
 
 If you wish to disable advertising client authentication:
 ```no_run
-# use rustls::RootCertStore;
-# use rustls::server::WebPkiClientVerifier;
-# let roots = RootCertStore::empty();
+use rustls::RootCertStore;
+use rustls::server::WebPkiClientVerifier;
+let roots = RootCertStore::empty();
 let client_verifier = WebPkiClientVerifier::no_client_auth();
 ```
 
 You can also configure the client verifier to check for certificate revocation with
 client certificate revocation lists (CRLs):
 ```no_run
-# #[cfg(any(feature = "ring", feature = "aws_lc_rs"))] {
-# use rustls::RootCertStore;
-# use rustls::server::{WebPkiClientVerifier};
-# let roots = RootCertStore::empty();
-# let crls = Vec::new();
+#[cfg(any(feature = "ring", feature = "aws_lc_rs"))] {
+use rustls::RootCertStore;
+use rustls::server::{WebPkiClientVerifier};
+let roots = RootCertStore::empty();
+let crls = Vec::new();
 let client_verifier = WebPkiClientVerifier::builder(roots.into())
   .with_crls(crls)
   .build()
   .unwrap();
-# }
+}
 ```
 
 [^1]: <https://github.com/rustls/webpki>
@@ -1620,14 +1620,14 @@ Values in this enum are taken from the various RFCs covering TLS, and are listed
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1721,14 +1721,14 @@ An error that can occur when building a certificate verifier.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: CertRevocationListError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: CertRevocationListError) -> Self`
 
 ##### `impl Into<T, U>`
 

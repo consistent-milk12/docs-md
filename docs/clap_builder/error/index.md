@@ -323,8 +323,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind};
   let result = Command::new("prog")
       .arg(Arg::new("speed")
           .value_parser(["fast", "slow"]))
@@ -340,8 +340,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, arg, error::ErrorKind};
+  use clap_builder as clap;
+  use clap::{Command, arg, error::ErrorKind};
   let result = Command::new("prog")
       .arg(arg!(--flag "some flag"))
       .try_get_matches_from(vec!["prog", "--other"]);
@@ -359,9 +359,9 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # #[cfg(feature = "suggestions")] {
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind, };
+  #[cfg(feature = "suggestions")] {
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind, };
   let result = Command::new("prog")
       .subcommand(Command::new("config")
           .about("Used for configuration")
@@ -370,7 +370,7 @@ Command line argument parser kind of error
       .try_get_matches_from(vec!["prog", "confi"]);
   assert!(result.is_err());
   assert_eq!(result.unwrap_err().kind(), ErrorKind::InvalidSubcommand);
-  # }
+  }
   ```
   
   
@@ -381,8 +381,8 @@ Command line argument parser kind of error
   sign to provide values.
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind, ArgAction};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind, ArgAction};
   let res = Command::new("prog")
       .arg(Arg::new("color")
            .action(ArgAction::Set)
@@ -401,8 +401,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind, value_parser};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind, value_parser};
   fn is_numeric(val: &str) -> Result<(), String> {
       match val.parse::<i64>() {
           Ok(..) => Ok(()),
@@ -426,8 +426,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind};
   let result = Command::new("prog")
       .arg(Arg::new("arg")
           .num_args(1..=2))
@@ -445,8 +445,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind};
   let result = Command::new("prog")
       .arg(Arg::new("some_opt")
           .long("opt")
@@ -466,8 +466,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind, ArgAction};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind, ArgAction};
   let result = Command::new("prog")
       .arg(Arg::new("some_opt")
           .long("opt")
@@ -488,8 +488,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind, ArgAction};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind, ArgAction};
   let result = Command::new("prog")
       .arg(Arg::new("debug")
           .long("debug")
@@ -510,8 +510,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind};
   let result = Command::new("prog")
       .arg(Arg::new("debug")
           .required(true))
@@ -528,8 +528,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, error::ErrorKind};
+  use clap_builder as clap;
+  use clap::{Command, error::ErrorKind};
   let err = Command::new("prog")
       .subcommand_required(true)
       .subcommand(Command::new("test"))
@@ -538,7 +538,7 @@ Command line argument parser kind of error
       ]);
   assert!(err.is_err());
   assert_eq!(err.unwrap_err().kind(), ErrorKind::MissingSubcommand);
-  # ;
+  ;
   ```
   
 
@@ -558,11 +558,11 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # #[cfg(unix)] {
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind, ArgAction};
-  # use std::os::unix::ffi::OsStringExt;
-  # use std::ffi::OsString;
+  #[cfg(unix)] {
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind, ArgAction};
+  use std::os::unix::ffi::OsStringExt;
+  use std::ffi::OsString;
   let result = Command::new("prog")
       .arg(Arg::new("utf8")
           .short('u')
@@ -572,7 +572,7 @@ Command line argument parser kind of error
                                   OsString::from_vec(vec![0xE9])]);
   assert!(result.is_err());
   assert_eq!(result.unwrap_err().kind(), ErrorKind::InvalidUtf8);
-  # }
+  }
   ```
   
 
@@ -587,14 +587,14 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # #[cfg(feature = "help")] {
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind};
+  #[cfg(feature = "help")] {
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind};
   let result = Command::new("prog")
       .try_get_matches_from(vec!["prog", "--help"]);
   assert!(result.is_err());
   assert_eq!(result.unwrap_err().kind(), ErrorKind::DisplayHelp);
-  # }
+  }
   ```
 
 - **`DisplayHelpOnMissingArgumentOrSubcommand`**
@@ -606,8 +606,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind, };
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind, };
   let result = Command::new("prog")
       .arg_required_else_help(true)
       .subcommand(Command::new("config")
@@ -629,8 +629,8 @@ Command line argument parser kind of error
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::{Command, Arg, error::ErrorKind};
+  use clap_builder as clap;
+  use clap::{Command, Arg, error::ErrorKind};
   let result = Command::new("prog")
       .version("3.0")
       .try_get_matches_from(vec!["prog", "--version"]);

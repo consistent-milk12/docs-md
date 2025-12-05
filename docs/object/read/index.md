@@ -36,13 +36,13 @@ use std::fs;
 
 /// Reads a file and displays the name of each section.
 fn main() -> Result<(), Box<dyn Error>> {
-#   #[cfg(all(feature = "read", feature = "std"))] {
+  #[cfg(all(feature = "read", feature = "std"))] {
     let data = fs::read("path/to/binary")?;
     let file = object::File::parse(&*data)?;
     for section in file.sections() {
         println!("{}", section.name()?);
     }
-#   }
+  }
     Ok(())
 }
 ```
@@ -1827,7 +1827,7 @@ enum RelocationTarget {
 }
 ```
 
-The target referenced by a [`Relocation`](#relocation).
+The target referenced by a [`Relocation`](../macho/index.md).
 
 #### Variants
 

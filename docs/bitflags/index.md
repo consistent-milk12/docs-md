@@ -46,7 +46,7 @@ If you're generating flags types for an external source, such as a C API, you ca
 an extra unnamed flag as a mask of all bits the external source may ever set. Usually this would be all bits (`!0`):
 
 ```rust
-# use bitflags::bitflags;
+use bitflags::bitflags;
 bitflags! {
     pub struct Flags: u32 {
         const A = 0b00000001;
@@ -77,13 +77,12 @@ libraries are currently supported:
   underlying bits values.
 
 You can also define your own flags type outside of the [`bitflags`](#bitflags) macro and then use it to generate methods.
-This can be useful if you need a custom `#[derive](#derive)
-` attribute for a library that `bitflags` doesn't
+This can be useful if you need a custom `#[derive]` attribute for a library that `bitflags` doesn't
 natively support:
 
 ```rust
-# use std::fmt::Debug as SomeTrait;
-# use bitflags::bitflags;
+use std::fmt::Debug as SomeTrait;
+use bitflags::bitflags;
 #[derive(SomeTrait)]
 pub struct Flags(u32);
 
@@ -102,7 +101,7 @@ The [`bitflags`](#bitflags) macro supports attributes on generated flags types w
 `impl` blocks can be added outside of it:
 
 ```rust
-# use bitflags::bitflags;
+use bitflags::bitflags;
 bitflags! {
     // Attributes can be applied to flags types
     #[repr(transparent)]
@@ -127,15 +126,15 @@ impl Flags {
 Use generated constants and standard bitwise operators to interact with flags values:
 
 ```rust
-# use bitflags::bitflags;
-# bitflags! {
-#     #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
-#     pub struct Flags: u32 {
-#         const A = 0b00000001;
-#         const B = 0b00000010;
-#         const C = 0b00000100;
-#     }
-# }
+use bitflags::bitflags;
+bitflags! {
+    #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+    pub struct Flags: u32 {
+        const A = 0b00000001;
+        const B = 0b00000010;
+        const C = 0b00000100;
+    }
+}
 // union
 let ab = Flags::A | Flags::B;
 
@@ -173,8 +172,8 @@ The spec and these docs use consistent terminology to refer to things in the bit
 - **Flags type**: A set of defined flags over a specific bits type.
 - **Flags value**: An instance of a flags type using its specific bits value for storage.
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {
     struct FlagsType: u8 {
 //                    -- Bits type
@@ -193,8 +192,8 @@ let flag = FlagsType::A;
 Any bits in a flag you define are called _known bits_. Any other bits are _unknown bits_.
 In the following flags type:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {
     struct Flags: u8 {
         const A = 1;
@@ -225,8 +224,8 @@ names of zero-bit flags can be parsed, but are never formatted.
 Flags that set multiple bits should be avoided unless each bit is also in a single-bit flag.
 Take the following flags type as an example:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {
     struct Flags: u8 {
         const A = 1;
@@ -330,8 +329,8 @@ where each constant is a flags value of the generated flags type.
 
 Generate a flags type using `u8` as the bits type:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {
     struct Flags: u8 {
         const A = 1;
@@ -344,8 +343,8 @@ bitflags! {
 Flags types are private by default and accept standard visibility modifiers. Flags themselves
 are always public:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {
     pub struct Flags: u8 {
         // Constants are always `pub`
@@ -356,8 +355,8 @@ bitflags! {
 
 Flags may refer to other flags using their `Flags::bits` value:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {
     struct Flags: u8 {
         const A = 1;
@@ -369,8 +368,8 @@ bitflags! {
 
 A single `bitflags` invocation may include zero or more flags type declarations:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {}
 
 bitflags! {
@@ -397,8 +396,8 @@ The syntax for `impl` mode is identical to `struct` mode besides the starting to
 
 Implement flags methods and traits for a custom flags type using `u8` as its underlying bits type:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 struct Flags(u8);
 
 bitflags! {
@@ -420,8 +419,8 @@ generated API, but affect how bits are truncated.
 
 Adding an unnamed flag that makes all bits known:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {
     struct Flags: u8 {
         const A = 1;
@@ -434,8 +433,8 @@ bitflags! {
 
 Flags types may define multiple unnamed flags:
 
-```
-# use bitflags::bitflags;
+```rust
+use bitflags::bitflags;
 bitflags! {
     struct Flags: u8 {
         const _ = 1;

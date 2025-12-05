@@ -8,17 +8,17 @@ function, which takes two file paths and returns true if they refer to the
 same file or directory:
 
 ```rust,no_run
-# use std::error::Error;
+use std::error::Error;
 use same_file::is_same_file;
 
-# fn try_main() -> Result<(), Box<Error>> {
+fn try_main() -> Result<(), Box<Error>> {
 assert!(is_same_file("/bin/sh", "/usr/bin/sh")?);
-#    Ok(())
-# }
-#
-# fn main() {
-#    try_main().unwrap();
-# }
+   Ok(())
+}
+
+fn main() {
+   try_main().unwrap();
+}
 ```
 
 Additionally, this crate provides a [`Handle`](#handle) type that permits a more efficient
@@ -29,10 +29,10 @@ each file in the list then only requires one stat call instead of two. The code
 might look like this:
 
 ```rust,no_run
-# use std::error::Error;
+use std::error::Error;
 use same_file::Handle;
 
-# fn try_main() -> Result<(), Box<Error>> {
+fn try_main() -> Result<(), Box<Error>> {
 let candidates = &[
     "examples/is_same_file.rs",
     "examples/is_stderr.rs",
@@ -47,12 +47,12 @@ for candidate in candidates {
         println!("{:?} is NOT stdout!", candidate);
     }
 }
-#    Ok(())
-# }
-#
-# fn main() {
-#     try_main().unwrap();
-# }
+   Ok(())
+}
+
+fn main() {
+    try_main().unwrap();
+}
 ```
 
 See [`examples/is_stderr.rs`](#examplesis-stderrrs) for a runnable example and compare the output of:
@@ -83,12 +83,10 @@ Equality is determined by comparing inode numbers on Unix and a combination
 of identifier, volume serial, and file size on Windows. Note that it's
 possible for comparing two handles to produce a false positive on some
 platforms. Namely, two handles can compare equal even if the two handles
-*don't* point to the same file. Check the [source](#source)
- for specific
+*don't* point to the same file. Check the [source](#source) for specific
 implementation details.
 
-[source](#source)
-: https://github.com/BurntSushi/same-file/tree/master/src
+[source](#source): https://github.com/BurntSushi/same-file/tree/master/src
 
 #### Implementations
 

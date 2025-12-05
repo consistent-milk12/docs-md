@@ -10,7 +10,7 @@ Module for drop-in [`colored`](https://docs.rs/colored) support to aid in portin
 Just replace:
 
 ```rust
-# mod colored {}
+mod colored {}
 use colored::*;
 ```
 
@@ -51,14 +51,14 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from(color: &'a str) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(color: &'a str) -> Self`
 
 ##### `impl Into<T, U>`
 

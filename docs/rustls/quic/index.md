@@ -372,14 +372,14 @@ Authentication tag from an AEAD seal operation.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: &[u8]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: &[u8]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -658,18 +658,18 @@ A QUIC client or server connection.
 
 #### Trait Implementations
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(c: ClientConnection) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From`
 
 - `fn from(c: ServerConnection) -> Self`
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(c: ClientConnection) -> Self`
 
 ##### `impl Into<T, U>`
 

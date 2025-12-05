@@ -77,7 +77,7 @@ The middleware trait is implemented for all functions that have the signature
 
 That means the easiest way to implement middleware is by providing a `fn`, like so
 
-```
+```rust
 use ureq::{Body, SendBody};
 use ureq::middleware::MiddlewareNext;
 use ureq::http::{Request, Response};
@@ -105,8 +105,8 @@ use ureq::{Body, SendBody, Agent, config::Config};
 use ureq::middleware::MiddlewareNext;
 use ureq::http::{Request, Response, header::HeaderValue};
 
-# #[cfg(feature = "json")]
-# {
+#[cfg(feature = "json")]
+{
 fn my_middleware(mut req: Request<SendBody>, next: MiddlewareNext)
     -> Result<Response<Body>, ureq::Error> {
 
@@ -126,7 +126,7 @@ let result: serde_json::Value =
     agent.get("http://httpbin.org/headers").call()?.body_mut().read_json()?;
 
 assert_eq!(&result["headers"]["X-My-Header"], "value_42");
-# } Ok::<_, ureq::Error>(())
+} Ok::<_, ureq::Error>(())
 ```
 
 # State
@@ -139,7 +139,7 @@ the simple `fn` and implement the `Middleware` trait directly.
 In the `examples` directory there is an additional example `count-bytes.rs` which uses
 a mutex lock like shown below.
 
-```
+```rust
 use std::sync::{Arc, Mutex};
 
 use ureq::{Body, SendBody};
@@ -176,7 +176,7 @@ impl Middleware for MyMiddleware {
 This example shows how we can increase a counter for each request going
 through the agent.
 
-```
+```rust
 use ureq::{Body, SendBody, Agent, config::Config};
 use ureq::middleware::{Middleware, MiddlewareNext};
 use ureq::http::{Request, Response};
@@ -214,7 +214,7 @@ agent.get("http://httpbin.org/get").call()?;
 // Check we did indeed increase the counter twice.
 assert_eq!(shared_counter.load(Ordering::Relaxed), 2);
 
-# Ok::<_, ureq::Error>(())
+Ok::<_, ureq::Error>(())
 ```
 
 #### Required Methods

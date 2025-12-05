@@ -161,14 +161,14 @@ Command-line arguments
 
 #### Trait Implementations
 
+##### `impl From<I, T>`
+
+- `fn from(val: I) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<I, T>`
-
-- `fn from(val: I) -> Self`
 
 ##### `impl Into<T, U>`
 

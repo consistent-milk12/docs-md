@@ -13,7 +13,7 @@ trailing hash value.
 
 # Examples
 
-```
+```rust
 use rustc_demangle::demangle;
 
 assert_eq!(demangle("_ZN4testE").to_string(), "test");
@@ -160,7 +160,7 @@ a mangled symbol, the original value will be written instead.
 
 # Examples
 
-```
+```rust
 use rustc_demangle::demangle;
 
 assert_eq!(demangle("_ZN4testE").to_string(), "test");
@@ -177,7 +177,7 @@ fn try_demangle(s: &str) -> Result<Demangle<'_>, TryDemangleError>
 The same as `demangle`, except return an `Err` if the string does not appear
 to be a Rust symbol, rather than "demangling" the given string as a no-op.
 
-```
+```rust
 extern crate rustc_demangle;
 
 let not_a_rust_symbol = "la la la";

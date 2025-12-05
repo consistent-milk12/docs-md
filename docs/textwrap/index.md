@@ -9,14 +9,14 @@ Wrapping text can be very useful in command-line programs where
 you want to format dynamic output nicely so it looks good in a
 terminal. A quick example:
 
-```
-# #[cfg(feature = "smawk")] {
+```rust
+#[cfg(feature = "smawk")] {
 let text = "textwrap: a small library for wrapping text.";
 assert_eq!(textwrap::wrap(text, 18),
            vec!["textwrap: a",
                 "small library for",
                 "wrapping text."]);
-# }
+}
 ```
 
 The [`wrap()`](#wrap) function returns the individual lines, use
@@ -26,7 +26,7 @@ The [`wrap()`](#wrap) function returns the individual lines, use
 If you enable the `hyphenation` Cargo feature, you can get
 automatic hyphenation for a number of languages:
 
-```
+```rust
 #[cfg(feature = "hyphenation")] {
 use hyphenation::{Language, Load, Standard};
 use textwrap::{wrap, Options, WordSplitter};
@@ -76,7 +76,7 @@ every line of a string and to remove leading whitespace. As an
 example, [`indent()`](#indent) allows you to turn lines of text into a
 bullet list:
 
-```
+```rust
 let before = "\
 foo
 bar
@@ -92,7 +92,7 @@ assert_eq!(textwrap::indent(before, "* "), after);
 
 Removing leading whitespace is done with [`dedent()`](#dedent):
 
-```
+```rust
 let before = "
     Some
       indented
@@ -142,8 +142,7 @@ These features are enabled by default:
   other ways.
 
 * `smawk`: enables linear-time wrapping of the whole paragraph via
-  the [smawk](#smawk)
- crate. See `wrap_algorithms::wrap_optimal_fit()`
+  the [smawk](#smawk) crate. See `wrap_algorithms::wrap_optimal_fit()`
   for details on the optimal-fit algorithm.
 
   This feature can be disabled if you only ever intend to use
@@ -181,25 +180,20 @@ results.
 These Cargo features enable new functionality:
 
 * `terminal_size`: enables automatic detection of the terminal
-  width via the [terminal_size](#terminal-size)
- crate. See
+  width via the [terminal_size](#terminal-size) crate. See
   `Options::with_termwidth()` for details.
 
 * `hyphenation`: enables language-sensitive hyphenation via the
-  [hyphenation](#hyphenation)
- crate. See the `word_splitters::WordSplitter`
+  [hyphenation](#hyphenation) crate. See the `word_splitters::WordSplitter`
   trait for details.
 
 [unicode-linebreak]: https://docs.rs/unicode-linebreak/
 [unicode-width]: https://docs.rs/unicode-width/
-[smawk](#smawk)
-: https://docs.rs/smawk/
+[smawk](#smawk): https://docs.rs/smawk/
 [binary-sizes demo]: https://github.com/mgeisler/textwrap/tree/master/examples/binary-sizes
 [textwrap-macros]: https://docs.rs/textwrap-macros/
-[terminal_size](#terminal-size)
-: https://docs.rs/terminal_size/
-[hyphenation](#hyphenation)
-: https://docs.rs/hyphenation/
+[terminal_size](#terminal-size): https://docs.rs/terminal_size/
+[hyphenation](#hyphenation): https://docs.rs/hyphenation/
 
 ## Modules
 
@@ -299,10 +293,6 @@ Holds configuration options for wrapping and filling text.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(width: usize) -> Self`
-
 ##### `impl From<'a>`
 
 - `fn from(options: &'a Options<'a>) -> Self`
@@ -311,6 +301,10 @@ Holds configuration options for wrapping and filling text.
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(width: usize) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -482,7 +476,7 @@ hyphenation of individual words.
 
 # Examples
 
-```
+```rust
 use textwrap::core::Word;
 use textwrap::WordSeparator::AsciiSpace;
 
@@ -498,7 +492,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
   
   # Examples
   
-  ```
+  ```rust
   use textwrap::core::Word;
   use textwrap::WordSeparator::AsciiSpace;
   
@@ -526,7 +520,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
   breaking algorithm will find line break opportunities between
   some characters with no intervening whitespace:
   
-  ```
+  ```rust
   #[cfg(feature = "unicode-linebreak")] {
   use textwrap::core::Word;
   use textwrap::WordSeparator::UnicodeBreakProperties;
@@ -546,7 +540,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
   A U+2060 (Word Joiner) character can be inserted if you want to
   manually override the defaults and keep the characters together:
   
-  ```
+  ```rust
   #[cfg(feature = "unicode-linebreak")] {
   use textwrap::core::Word;
   use textwrap::WordSeparator::UnicodeBreakProperties;
@@ -560,7 +554,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
   The Unicode line breaking algorithm will also automatically
   suppress break breaks around certain punctuation characters::
   
-  ```
+  ```rust
   #[cfg(feature = "unicode-linebreak")] {
   use textwrap::core::Word;
   use textwrap::WordSeparator::UnicodeBreakProperties;
@@ -663,7 +657,7 @@ Cargo feature enabled, you will find a
 `WordSplitter::Hyphenation` variant. Use this struct for
 language-aware hyphenation:
 
-```
+```rust
 #[cfg(feature = "hyphenation")] {
     use hyphenation::{Language, Load, Standard};
     use textwrap::{wrap, Options, WordSplitter};
@@ -679,12 +673,10 @@ language-aware hyphenation:
 }
 ```
 
-Please see the documentation for the [hyphenation](#hyphenation)
- crate for more
+Please see the documentation for the [hyphenation](#hyphenation) crate for more
 details.
 
-[hyphenation](#hyphenation)
-: https://docs.rs/hyphenation/
+[hyphenation](#hyphenation): https://docs.rs/hyphenation/
 
 #### Variants
 
@@ -693,7 +685,7 @@ details.
   Use this as a [`Options.word_splitter`](#optionsword-splitter) to avoid any kind of
   hyphenation:
   
-  ```
+  ```rust
   use textwrap::{wrap, Options, WordSplitter};
   
   let options = Options::new(8).word_splitter(WordSplitter::NoHyphenation);
@@ -714,7 +706,7 @@ details.
   
   # Examples
   
-  ```
+  ```rust
   use textwrap::WordSplitter;
   
   assert_eq!(WordSplitter::HyphenSplitter.split_points("--foo-bar"),
@@ -730,7 +722,7 @@ details.
   
   # Examples
   
-  ```
+  ```rust
   use textwrap::WordSplitter;
   
   fn split_at_underscore(word: &str) -> Vec<usize> {
@@ -845,12 +837,11 @@ an entire paragraph at a time in order to find optimal line breaks
   
   # Example
   
-  ```
+  ```rust
   use textwrap::core::Word;
   use textwrap::{wrap, Options, WrapAlgorithm};
   
-  fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize](#usize)
-  ) -> Vec<&'b [Word<'a>]> {
+  fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize]) -> Vec<&'b [Word<'a>]> {
       let mut lines = Vec::new();
       let mut step = 1;
       let mut start_idx = 0;

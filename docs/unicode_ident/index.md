@@ -1,21 +1,17 @@
 # Crate `unicode_ident`
 
-[![github](#github)
-](https://github.com/dtolnay/unicode-ident)&ensp;[![crates-io]](https://crates.io/crates/unicode-ident)&ensp;[![docs-rs]](https://docs.rs/unicode-ident)
+[![github](#github)](https://github.com/dtolnay/unicode-ident)&ensp;[![crates-io]](https://crates.io/crates/unicode-ident)&ensp;[![docs-rs]](https://docs.rs/unicode-ident)
 
-[github](#github)
-: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
 <br>
 
-Implementation of [Unicode Standard Annex #31][tr31](#tr31)
- for determining which
+Implementation of [Unicode Standard Annex #31][tr31](#tr31) for determining which
 `char` values are valid in programming language identifiers.
 
-[tr31](#tr31)
-: https://www.unicode.org/reports/tr31/
+[tr31](#tr31): https://www.unicode.org/reports/tr31/
 
 This crate is a better optimized implementation of the older `unicode-xid`
 crate. This crate uses less static storage, and is able to classify both
@@ -66,16 +62,16 @@ They use a sorted array of character ranges, and do a binary search to look
 up whether a given character lands inside one of those ranges.
 
 ```rust
-# const _: &str = stringify! {
+const _: &str = stringify! {
 static XID_Continue_table: [(char, char); 763] = [
     ('\u{30}', '\u{39}'),  // 0-9
     ('\u{41}', '\u{5a}'),  // A-Z
-# "
+"
     …
-# "
+"
     ('\u{e0100}', '\u{e01ef}'),
 ];
-# };
+};
 ```
 
 The static storage used by this data structure scales with the number of
@@ -119,13 +115,10 @@ Unicode codepoints. The design is credited to Raph Levien in
 pub struct TrieSet {
     tree1_level1: &'static [u64; 32],
     tree2_level1: &'static [u8; 992],
-    tree2_level2: &'static [u64](#u64)
-,
+    tree2_level2: &'static [u64],
     tree3_level1: &'static [u8; 256],
-    tree3_level2: &'static [u8](#u8)
-,
-    tree3_level3: &'static [u64](#u64)
-,
+    tree3_level2: &'static [u8],
+    tree3_level3: &'static [u64],
 }
 ```
 
@@ -158,14 +151,12 @@ converting back into the variable-length representation for trie traversal.
 
 #### fst
 
-Uses a [finite state transducer][fst](#fst)
-. This representation is built into
+Uses a [finite state transducer][fst](#fst). This representation is built into
 [ucd-generate] but I am not aware of any advantage over the `ucd-trie`
 representation. In particular `ucd-trie` is optimized for storing Unicode
 properties while `fst` is not.
 
-[fst](#fst)
-: https://github.com/BurntSushi/fst
+[fst](#fst): https://github.com/BurntSushi/fst
 [ucd-generate]: https://github.com/BurntSushi/ucd-generate
 
 As far as I can tell, the main thing that causes `fst` to have large size

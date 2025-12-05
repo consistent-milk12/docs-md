@@ -1107,15 +1107,13 @@ A bracketed character class, e.g., `[a-z0-9]`.
 
 - **`negated`**: `bool`
 
-  Whether this class is negated or not. e.g., `[a](#a)
-  ` is not negated but
+  Whether this class is negated or not. e.g., `[a]` is not negated but
   `[^a]` is.
 
 - **`kind`**: `ClassSet`
 
   The type of this set. A set is either a normal union of things, e.g.,
-  `[abc](#abc)
-  ` or a result of applying set operations, e.g., `[\pL--c]`.
+  `[abc]` or a result of applying set operations, e.g., `[\pL--c]`.
 
 #### Trait Implementations
 

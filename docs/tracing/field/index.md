@@ -12,8 +12,7 @@ a `&str` but represented internally as an array index) to a [`Value`](../index.m
 
 # `Value`s and `Subscriber`s
 
-`Subscriber`s consume `Value`s as fields attached to [span](#span)
-s or [`Event`](../index.md)s.
+`Subscriber`s consume `Value`s as fields attached to [span](#span)s or [`Event`](../index.md)s.
 The set of field keys on a given span or event is defined on its [`Metadata`](../index.md).
 When a span is created, it provides [`Attributes`](../span/index.md) to the `Subscriber`'s
 [`new_span`](#new-span) method, containing any fields whose values were provided when
@@ -109,8 +108,7 @@ be forwarded to the visitor's [`record_debug`](#record-debug) method.
 
 
 
-[span](#span)
-: mod@crate::span
+[span](#span): mod@crate::span
 
 
 

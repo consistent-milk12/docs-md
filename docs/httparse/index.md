@@ -698,7 +698,7 @@ parsed headers.
 
 # Example
 
-```
+```rust
 let buf = b"Host: foo.bar\nAccept: */*\n\nblah blah";
 let mut headers = [httparse::EMPTY_HEADER; 4];
 assert_eq!(httparse::parse_headers(buf, &mut headers),
@@ -721,7 +721,7 @@ buffer that parsing stopped at, and the size of the following chunk.
 
 # Example
 
-```
+```rust
 let buf = b"4\r\nRust\r\n0\r\n\r\n";
 assert_eq!(httparse::parse_chunk_size(buf),
            Ok(httparse::Status::Complete((3, 4))));
@@ -754,7 +754,7 @@ parsing.
 
 # Example
 
-```
+```rust
 let headers = [httparse::EMPTY_HEADER; 64];
 ```
 

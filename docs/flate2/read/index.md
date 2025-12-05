@@ -38,22 +38,21 @@ and use `bufread::DeflateDecoder` instead.
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
-# use flate2::Compression;
-# use flate2::write::DeflateEncoder;
+use flate2::Compression;
+use flate2::write::DeflateEncoder;
 use flate2::read::DeflateDecoder;
 
-# fn main() {
-#    let mut e = DeflateEncoder::new(Vec::new(), Compression::default());
-#    e.write_all(b"Hello World").unwrap();
-#    let bytes = e.finish().unwrap();
-#    println!("{}", decode_reader(bytes).unwrap());
-# }
+fn main() {
+   let mut e = DeflateEncoder::new(Vec::new(), Compression::default());
+   e.write_all(b"Hello World").unwrap();
+   let bytes = e.finish().unwrap();
+   println!("{}", decode_reader(bytes).unwrap());
+}
 // Uncompresses a Deflate Encoded vector of bytes and returns a string or error
-// Here &[u8](#u8)
- implements Read
+// Here &[u8] implements Read
 fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
    let mut deflater = DeflateDecoder::new(&bytes[..]);
    let mut s = String::new();
@@ -153,16 +152,16 @@ uncompressed data from the underlying [`Read`](#read) and provides the compresse
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
 use flate2::Compression;
 use flate2::read::DeflateEncoder;
 
-# fn main() {
-#    println!("{:?}", deflateencoder_read_hello_world().unwrap());
-# }
-#
+fn main() {
+   println!("{:?}", deflateencoder_read_hello_world().unwrap());
+}
+
 // Return a vector containing the Deflate compressed version of hello world
 fn deflateencoder_read_hello_world() -> io::Result<Vec<u8>> {
    let mut ret_vec = Vec::new();
@@ -273,23 +272,22 @@ or read more
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
-# use flate2::Compression;
-# use flate2::write::GzEncoder;
+use flate2::Compression;
+use flate2::write::GzEncoder;
 use flate2::read::GzDecoder;
 
-# fn main() {
-#    let mut e = GzEncoder::new(Vec::new(), Compression::default());
-#    e.write_all(b"Hello World").unwrap();
-#    let bytes = e.finish().unwrap();
-#    println!("{}", decode_reader(bytes).unwrap());
-# }
-#
+fn main() {
+   let mut e = GzEncoder::new(Vec::new(), Compression::default());
+   e.write_all(b"Hello World").unwrap();
+   let bytes = e.finish().unwrap();
+   println!("{}", decode_reader(bytes).unwrap());
+}
+
 // Uncompresses a Gz Encoded vector of bytes and returns a string or error
-// Here &[u8](#u8)
- implements Read
+// Here &[u8] implements Read
 
 fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
    let mut gz = GzDecoder::new(&bytes[..]);
@@ -381,7 +379,7 @@ uncompressed data from the underlying [`Read`](#read) and provides the compresse
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
 use flate2::Compression;
@@ -400,9 +398,6 @@ fn gzencode_hello_world() -> io::Result<Vec<u8>> {
 
 #### Implementations
 
-- `fn new(r: R, level: Compression) -> GzEncoder<R>`
-  Creates a new encoder which will use the given compression level.
-
 - `fn get_ref(self: &Self) -> &R`
   Acquires a reference to the underlying reader.
 
@@ -411,6 +406,9 @@ fn gzencode_hello_world() -> io::Result<Vec<u8>> {
 
 - `fn into_inner(self: Self) -> R`
   Returns the underlying stream, consuming this encoder
+
+- `fn new(r: R, level: Compression) -> GzEncoder<R>`
+  Creates a new encoder which will use the given compression level.
 
 #### Trait Implementations
 
@@ -487,23 +485,22 @@ To handle members separately, see [GzDecoder] or read more
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
-# use flate2::Compression;
-# use flate2::write::GzEncoder;
+use flate2::Compression;
+use flate2::write::GzEncoder;
 use flate2::read::MultiGzDecoder;
 
-# fn main() {
-#    let mut e = GzEncoder::new(Vec::new(), Compression::default());
-#    e.write_all(b"Hello World").unwrap();
-#    let bytes = e.finish().unwrap();
-#    println!("{}", decode_reader(bytes).unwrap());
-# }
-#
+fn main() {
+   let mut e = GzEncoder::new(Vec::new(), Compression::default());
+   e.write_all(b"Hello World").unwrap();
+   let bytes = e.finish().unwrap();
+   println!("{}", decode_reader(bytes).unwrap());
+}
+
 // Uncompresses a Gz Encoded vector of bytes and returns a string or error
-// Here &[u8](#u8)
- implements Read
+// Here &[u8] implements Read
 
 fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
    let mut gz = MultiGzDecoder::new(&bytes[..]);
@@ -514,9 +511,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 ```
 
 #### Implementations
-
-- `fn new(r: R) -> MultiGzDecoder<R>`
-  Creates a new decoder from the given reader, immediately parsing the
 
 - `fn header(self: &Self) -> Option<&GzHeader>`
   Returns the current header associated with this stream, if it's valid.
@@ -529,6 +523,9 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn into_inner(self: Self) -> R`
   Consumes this decoder, returning the underlying reader.
+
+- `fn new(r: R) -> MultiGzDecoder<R>`
+  Creates a new decoder from the given reader, immediately parsing the
 
 #### Trait Implementations
 
@@ -601,23 +598,22 @@ and use `bufread::ZlibDecoder` instead.
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use std::io;
-# use flate2::Compression;
-# use flate2::write::ZlibEncoder;
+use flate2::Compression;
+use flate2::write::ZlibEncoder;
 use flate2::read::ZlibDecoder;
 
-# fn main() {
-# let mut e = ZlibEncoder::new(Vec::new(), Compression::default());
-# e.write_all(b"Hello World").unwrap();
-# let bytes = e.finish().unwrap();
-# println!("{}", decode_reader(bytes).unwrap());
-# }
-#
+fn main() {
+let mut e = ZlibEncoder::new(Vec::new(), Compression::default());
+e.write_all(b"Hello World").unwrap();
+let bytes = e.finish().unwrap();
+println!("{}", decode_reader(bytes).unwrap());
+}
+
 // Uncompresses a Zlib Encoded vector of bytes and returns a string or error
-// Here &[u8](#u8)
- implements Read
+// Here &[u8] implements Read
 
 fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
     let mut z = ZlibDecoder::new(&bytes[..]);
@@ -628,18 +624,6 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 ```
 
 #### Implementations
-
-- `fn new(r: R) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_buf(r: R, buf: Vec<u8>) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
-
-- `fn new_with_decompress_and_buf(r: R, buf: Vec<u8>, decompression: Decompress) -> ZlibDecoder<R>`
-  Creates a new decoder which will decompress data read from the given
 
 - `fn reset(self: &mut Self, r: R) -> R`
   Resets the state of this decoder entirely, swapping out the input
@@ -658,6 +642,18 @@ fn decode_reader(bytes: Vec<u8>) -> io::Result<String> {
 
 - `fn total_out(self: &Self) -> u64`
   Returns the number of bytes that the decompressor has produced.
+
+- `fn new(r: R) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_buf(r: R, buf: Vec<u8>) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_decompress(r: R, decompression: Decompress) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
+
+- `fn new_with_decompress_and_buf(r: R, buf: Vec<u8>, decompression: Decompress) -> ZlibDecoder<R>`
+  Creates a new decoder which will decompress data read from the given
 
 #### Trait Implementations
 
@@ -724,7 +720,7 @@ uncompressed data from the underlying [`Read`](#read) and provides the compresse
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
 use flate2::Compression;
 use flate2::read::ZlibEncoder;
@@ -732,13 +728,13 @@ use std::fs::File;
 
 // Open example file and compress the contents using Read interface
 
-# fn open_hello_world() -> std::io::Result<Vec<u8>> {
+fn open_hello_world() -> std::io::Result<Vec<u8>> {
 let f = File::open("examples/hello_world.txt")?;
 let mut z = ZlibEncoder::new(f, Compression::fast());
 let mut buffer = Vec::new();
 z.read_to_end(&mut buffer)?;
-# Ok(buffer)
-# }
+Ok(buffer)
+}
 ```
 
 #### Implementations

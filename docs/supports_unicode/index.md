@@ -104,8 +104,7 @@ fn on(stream: Stream) -> bool
 ```
 
 Returns true if `stream` is a TTY or the current terminal
-[supports_unicode](#supports-unicode)
-.
+[supports_unicode](#supports-unicode).
 
 ### `supports_unicode`
 

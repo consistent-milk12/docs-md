@@ -30,7 +30,7 @@ use std::fs;
 
 /// Reads a file and displays the name of each symbol.
 fn main() -> Result<(), Box<dyn Error>> {
-#   #[cfg(feature = "std")] {
+  #[cfg(feature = "std")] {
     let data = fs::read("path/to/binary")?;
     let elf = elf::FileHeader64::<object::Endianness>::parse(&*data)?;
     let endian = elf.endian()?;
@@ -40,7 +40,7 @@ fn main() -> Result<(), Box<dyn Error>> {
         let name = symbol.name(endian, symbols.strings())?;
         println!("{}", String::from_utf8_lossy(name));
     }
-#   }
+  }
     Ok(())
 }
 ```

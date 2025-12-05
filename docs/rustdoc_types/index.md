@@ -169,8 +169,7 @@ Information about a target
 
 - **`target_features`**: `Vec<TargetFeature>`
 
-  A list of features valid for use in `#[target_feature](#target-feature)
-  ` attributes
+  A list of features valid for use in `#[target_feature]` attributes
   for the target where this rustdoc JSON was generated.
 
 #### Trait Implementations
@@ -263,8 +262,7 @@ Information about a target feature.
 Rust target features are used to influence code generation, especially around selecting
 instructions which are not universally supported by the target architecture.
 
-Target features are commonly enabled by the [`#[target_feature](#target-feature)
-` attribute][1] to influence code
+Target features are commonly enabled by the [`#[target_feature]` attribute][1] to influence code
 generation for a particular function, and less commonly enabled by compiler options like
 `-Ctarget-feature` or `-Ctarget-cpu`. Targets themselves automatically enable certain target
 features by default, for example because the target's ABI specification requires saving specific
@@ -674,17 +672,12 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
   Attributes on this item.
   
-  Does not include `#[deprecated](#deprecated)
-  ` attributes: see the `Self::deprecation` field instead.
+  Does not include `#[deprecated]` attributes: see the `Self::deprecation` field instead.
   
   Attributes appear in pretty-printed Rust form, regardless of their formatting
   in the original source code. For example:
-  - `#[non_exhaustive](#non-exhaustive)
-  ` and `#[must_use](#must-use)
-  ` are represented as themselves.
-  - `#[no_mangle](#no-mangle)
-  ` and `#[export_name](#export-name)
-  ` are also represented as themselves.
+  - `#[non_exhaustive]` and `#[must_use]` are represented as themselves.
+  - `#[no_mangle]` and `#[export_name]` are also represented as themselves.
   - `#[repr(C)]` and other reprs also appear as themselves,
     though potentially with a different order: e.g. `repr(i8, C)` may become `repr(C, i8)`.
     Multiple repr attributes on the same item may be combined into an equivalent single attr.
@@ -3517,8 +3510,7 @@ A procedural macro.
 
 - **`kind`**: `MacroKind`
 
-  How this macro is supposed to be called: `foo!()`, `#[foo](#foo)
-  ` or `#[derive(foo)]`
+  How this macro is supposed to be called: `foo!()`, `#[foo]` or `#[derive(foo)]`
 
 - **`helpers`**: `Vec<String>`
 
@@ -3526,15 +3518,13 @@ A procedural macro.
   
   Defined only for derive macros.
   
-  E.g. the [`Default`](#default) derive macro defines a `#[default](#default)
-  ` helper attribute so that one can
+  E.g. the [`Default`](#default) derive macro defines a `#[default]` helper attribute so that one can
   do:
   
   ```rust
   #[derive(Default)]
   enum Option<T> {
-      #[default](#default)
-  
+      #[default]
       None,
       Some(T),
   }
@@ -3967,25 +3957,21 @@ An attribute, e.g. `#[repr(C)]`
 
 This doesn't include:
 - `#[doc = "Doc Comment"]` or `/// Doc comment`. These are in `Item::docs` instead.
-- `#[deprecated](#deprecated)
-`. These are in `Item::deprecation` instead.
+- `#[deprecated]`. These are in `Item::deprecation` instead.
 
 #### Variants
 
 - **`NonExhaustive`**
 
-  `#[non_exhaustive](#non-exhaustive)
-  `
+  `#[non_exhaustive]`
 
 - **`MustUse`**
 
-  `#[must_use](#must-use)
-  `
+  `#[must_use]`
 
 - **`MacroExport`**
 
-  `#[macro_export](#macro-export)
-  `
+  `#[macro_export]`
 
 - **`ExportName`**
 
@@ -3997,18 +3983,15 @@ This doesn't include:
 
 - **`AutomaticallyDerived`**
 
-  `#[automatically_derived](#automatically-derived)
-  `
+  `#[automatically_derived]`
 
 - **`Repr`**
 
-  `#[repr](#repr)
-  `
+  `#[repr]`
 
 - **`NoMangle`**
 
-  `#[no_mangle](#no-mangle)
-  `
+  `#[no_mangle]`
 
 - **`TargetFeature`**
 
@@ -4111,8 +4094,7 @@ enum ReprKind {
 }
 ```
 
-The kind of `#[repr](#repr)
-`.
+The kind of `#[repr]`.
 
 See [AttributeRepr::kind]`.
 
@@ -6278,8 +6260,7 @@ A type.
 
 - **`Slice`**
 
-  An unsized slice type, e.g. `[u32](#u32)
-  `.
+  An unsized slice type, e.g. `[u32]`.
 
 - **`Array`**
 
@@ -6410,8 +6391,7 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 - **`Attr`**
 
-  An attribute macro `#[foo](#foo)
-  `.
+  An attribute macro `#[foo]`.
 
 - **`Derive`**
 

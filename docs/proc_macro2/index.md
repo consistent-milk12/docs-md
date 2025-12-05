@@ -1,10 +1,8 @@
 # Crate `proc_macro2`
 
-[![github](#github)
-](https://github.com/dtolnay/proc-macro2)&ensp;[![crates-io]](https://crates.io/crates/proc-macro2)&ensp;[![docs-rs]](crate)
+[![github](#github)](https://github.com/dtolnay/proc-macro2)&ensp;[![crates-io]](https://crates.io/crates/proc-macro2)&ensp;[![docs-rs]](crate)
 
-[github](#github)
-: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
@@ -17,9 +15,7 @@ crate. This library serves two purposes:
   main.rs.** Types from `proc_macro` are entirely specific to procedural
   macros and cannot ever exist in code outside of a procedural macro.
   Meanwhile `proc_macro2` types may exist anywhere including non-macro code.
-  By developing foundational libraries like [syn](#syn)
- and [quote](#quote)
- against
+  By developing foundational libraries like [syn](#syn) and [quote](#quote) against
   `proc_macro2` rather than `proc_macro`, the procedural macro ecosystem
   becomes easily applicable to many other use cases and we avoid
   reimplementing non-macro equivalents of those libraries.
@@ -30,28 +26,26 @@ crate. This library serves two purposes:
   a macro to be testable in isolation, they must be implemented using
   `proc_macro2`.
 
-[syn](#syn)
-: https://github.com/dtolnay/syn
-[quote](#quote)
-: https://github.com/dtolnay/quote
+[syn](#syn): https://github.com/dtolnay/syn
+[quote](#quote): https://github.com/dtolnay/quote
 
 # Usage
 
 The skeleton of a typical procedural macro typically looks like this:
 
-```
+```rust
 extern crate proc_macro;
 
-# const IGNORE: &str = stringify! {
+const IGNORE: &str = stringify! {
 #[proc_macro_derive(MyDerive)]
-# };
-# #[cfg(wrap_proc_macro)]
+};
+#[cfg(wrap_proc_macro)]
 pub fn my_derive(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let input = proc_macro2::TokenStream::from(input);
 
     let output: proc_macro2::TokenStream = {
         /* transform input */
-        # input
+        input
     };
 
     proc_macro::TokenStream::from(output)
@@ -109,11 +103,8 @@ An abstract stream of tokens, or more concretely a sequence of token trees.
 This type provides interfaces for iterating over token trees and for
 collecting token trees into one stream.
 
-Token stream is both the input and output of `#[proc_macro](#proc-macro)
-`,
-`#[proc_macro_attribute](#proc-macro-attribute)
-` and `#[proc_macro_derive](#proc-macro-derive)
-` definitions.
+Token stream is both the input and output of `#[proc_macro]`,
+`#[proc_macro_attribute]` and `#[proc_macro_derive]` definitions.
 
 #### Implementations
 
@@ -125,26 +116,26 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(token: TokenTree) -> Self`
 
 ##### `impl From`
 
 - `fn from(inner: proc_macro::TokenStream) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(token: TokenTree) -> Self`
-
-##### `impl FromIterator`
-
-- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl FromIterator`
 
 - `fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
+
+##### `impl FromIterator`
+
+- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
 
 ##### `impl FromStr`
 
@@ -191,11 +182,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl ToOwned<T>`
 
@@ -601,9 +592,9 @@ Multicharacter operators like `+=` are represented as two instances of
 
 ##### `impl ToTokens`
 
-##### `impl Token`
-
 ##### `impl Parse`
+
+##### `impl Token`
 
 ### `Ident`
 
@@ -633,7 +624,7 @@ A new ident can be created from a string using the `Ident::new` function.
 A span must be provided explicitly which governs the name resolution
 behavior of the resulting identifier.
 
-```
+```rust
 use proc_macro2::{Ident, Span};
 
 fn main() {
@@ -645,7 +636,7 @@ fn main() {
 
 An ident can be interpolated into a token stream using the `quote!` macro.
 
-```
+```rust
 use proc_macro2::{Ident, Span};
 use quote::quote;
 
@@ -664,11 +655,11 @@ fn main() {
 A string representation of the ident is available through the `to_string()`
 method.
 
-```
-# use proc_macro2::{Ident, Span};
-#
-# let ident = Ident::new("another_identifier", Span::call_site());
-#
+```rust
+use proc_macro2::{Ident, Span};
+
+let ident = Ident::new("another_identifier", Span::call_site());
+
 // Examine the ident as a string.
 let ident_string = ident.to_string();
 if ident_string.len() > 60 {
@@ -736,13 +727,13 @@ if ident_string.len() > 60 {
 
 - `fn cmp(self: &Self, other: &Ident) -> Ordering`
 
-##### `impl PartialEq<T>`
-
-- `fn eq(self: &Self, other: &T) -> bool`
-
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &Ident) -> bool`
+
+##### `impl PartialEq<T>`
+
+- `fn eq(self: &Self, other: &T) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -776,15 +767,15 @@ if ident_string.len() > 60 {
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IdentFragment`
-
 ##### `impl ToTokens`
 
-##### `impl Token`
+##### `impl IdentFragment`
 
 ##### `impl IdentExt`
 
 ##### `impl Parse`
+
+##### `impl Token`
 
 ### `Literal`
 
@@ -1037,7 +1028,7 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl From`
 
-- `fn from(g: Group) -> Self`
+- `fn from(g: Literal) -> Self`
 
 ##### `impl From`
 
@@ -1045,7 +1036,7 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 ##### `impl From`
 
-- `fn from(g: Literal) -> Self`
+- `fn from(g: Group) -> Self`
 
 ##### `impl From`
 

@@ -135,7 +135,7 @@ disable all of these.
 This example shows how to disable UTF-8 mode in the syntax and the regex
 itself. This is generally what you want for matching on arbitrary bytes.
 
-```
+```rust
 use regex_automata::{
     nfa::thompson::{self, pikevm::PikeVM},
     util::syntax,
@@ -162,7 +162,7 @@ assert_eq!(expected, got);
 // length 0.
 assert_eq!(b"foo\xFFarzz", &haystack[got.unwrap().range()]);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -303,8 +303,8 @@ tend to result in making the regex _not_ one-pass.)
 This example shows that the `PikeVM` implements Unicode word boundaries
 correctly by default.
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{nfa::thompson::pikevm::PikeVM, Match};
 
 let re = PikeVM::new(r"\b\w+\b")?;
@@ -314,19 +314,10 @@ let mut it = re.find_iter(&mut cache, "Шерлок Холмс");
 assert_eq!(Some(Match::must(0, 0..12)), it.next());
 assert_eq!(Some(Match::must(0, 13..23)), it.next());
 assert_eq!(None, it.next());
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
-
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
-  Writes the set of patterns that match anywhere in the given search
 
 - `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
   Returns true if and only if this `PikeVM` matches the given haystack.
@@ -381,6 +372,15 @@ assert_eq!(None, it.next());
 
 - `fn get_nfa(self: &Self) -> &NFA`
   Returns a reference to the underlying NFA.
+
+- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+  Writes the set of patterns that match anywhere in the given search
 
 #### Trait Implementations
 

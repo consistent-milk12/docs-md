@@ -7,7 +7,7 @@
 Provides a regex matcher that composes several other regex matchers
 automatically.
 
-This module is home to a meta [`Regex`](../hybrid/regex/index.md), which provides a convenient high
+This module is home to a meta [`Regex`](../index.md), which provides a convenient high
 level API for executing regular expressions in linear time.
 
 # Comparison with the `regex` crate
@@ -42,7 +42,7 @@ pattern, while the latter supports multiple patterns but cannot report the
 offsets of a match.
 * A meta `Regex` provides the explicit capability of bypassing its internal
 memory pool for automatically acquiring mutable scratch space required by its
-internal regex engines. Namely, a [`Cache`](../hybrid/dfa/index.md) can be explicitly provided to lower
+internal regex engines. Namely, a [`Cache`](../dfa/onepass/index.md) can be explicitly provided to lower
 level routines such as `Regex::search_with`.
 
 ## Structs
@@ -169,7 +169,7 @@ A builder for configuring and constructing a `Regex`.
 The builder permits configuring two different aspects of a `Regex`:
 
 * `Builder::configure` will set high-level configuration options as
-described by a [`Config`](../dfa/onepass/index.md).
+described by a [`Config`](../util/start/index.md).
 * `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
@@ -198,7 +198,7 @@ may help avoid an extra import.
 This example shows how to enable multi-line mode by default and change the
 line terminator to the NUL byte:
 
-```
+```rust
 use regex_automata::{meta::Regex, util::syntax, Match};
 
 let re = Regex::builder()
@@ -208,7 +208,7 @@ let re = Regex::builder()
 let hay = "\x00foo\x00";
 assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: disable UTF-8 requirement
@@ -219,10 +219,9 @@ empty match, by default, matches will not appear between the code units of
 a UTF-8 encoded codepoint.
 
 However, it can be useful to disable this requirement, particularly if
-you're searching things like `&[u8](#u8)
-` that are not known to be valid UTF-8.
+you're searching things like `&[u8]` that are not known to be valid UTF-8.
 
-```
+```rust
 use regex_automata::{meta::Regex, util::syntax, Match};
 
 let mut builder = Regex::builder();
@@ -248,7 +247,7 @@ assert_eq!(re.find_iter(hay).collect::<Vec<Match>>(), vec![
     Match::must(0, 3..3),
 ]);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -371,7 +370,7 @@ panics or incorrect results.
 
 # Example
 
-```
+```rust
 use regex_automata::{meta::Regex, Input, Match};
 
 let re = Regex::new(r"(?-u)m\w+\s+m\w+")?;
@@ -382,7 +381,7 @@ assert_eq!(
     re.search_with(&mut cache, &input),
 );
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -559,8 +558,8 @@ non-syntax behavior of a `Regex`, and can be applied via the
 In some cases, the default size limit might be too big. The size limit can
 be lowered, which will prevent large regex patterns from compiling.
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::meta::Regex;
 
 let result = Regex::builder()
@@ -569,7 +568,7 @@ let result = Regex::builder()
     .build(r"\pL");
 assert!(result.is_err());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -881,7 +880,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](../hybrid/dfa/index.md).
+mutable scratch space. This scratch space is called a [`Cache`](../dfa/onepass/index.md).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).
@@ -936,13 +935,13 @@ For example, `Regex::search_with`.
 
 # Example
 
-```
+```rust
 use regex_automata::meta::Regex;
 
 let re = Regex::new(r"^[0-9]{4}-[0-9]{2}-[0-9]{2}$")?;
 assert!(re.is_match("2010-03-14"));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: anchored search
@@ -952,7 +951,7 @@ search, even when the regex pattern itself isn't anchored. An anchored
 search guarantees that if a match is found, then the start offset of the
 match corresponds to the offset at which the search was started.
 
-```
+```rust
 use regex_automata::{meta::Regex, Anchored, Input, Match};
 
 let re = Regex::new(r"\bfoo\b")?;
@@ -974,7 +973,7 @@ let input = Input::new(&hay[2..]).anchored(Anchored::Yes);
 // WRONG!
 assert_eq!(Some(Match::must(0, 0..3)), re.find(input));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: earliest search
@@ -982,7 +981,7 @@ assert_eq!(Some(Match::must(0, 0..3)), re.find(input));
 This example shows how to use `Input::earliest` to run a search that
 might stop before finding the typical leftmost match.
 
-```
+```rust
 use regex_automata::{meta::Regex, Anchored, Input, Match};
 
 let re = Regex::new(r"[a-z]{3}|b")?;
@@ -998,7 +997,7 @@ let re = Regex::new(r"abc|b")?;
 let input = Input::new("abc").earliest(true);
 assert_eq!(Some(Match::must(0, 0..3)), re.find(input));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: change the line terminator
@@ -1006,7 +1005,7 @@ assert_eq!(Some(Match::must(0, 0..3)), re.find(input));
 This example shows how to enable multi-line mode by default and change
 the line terminator to the NUL byte:
 
-```
+```rust
 use regex_automata::{meta::Regex, util::syntax, Match};
 
 let re = Regex::builder()
@@ -1016,10 +1015,73 @@ let re = Regex::builder()
 let hay = "\x00foo\x00";
 assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
+
+- `fn search_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
+  This is like [`Regex::search`], but requires the caller to
+
+- `fn search_half_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
+  This is like [`Regex::search_half`], but requires the caller to
+
+- `fn search_captures_with(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
+  This is like [`Regex::search_captures`], but requires the caller to
+
+- `fn search_slots_with(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  This is like [`Regex::search_slots`], but requires the caller to
+
+- `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
+  This is like [`Regex::which_overlapping_matches`], but requires the
+
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
+  Returns true if and only if this regex matches the given haystack.
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
+  Executes a leftmost search and returns the first match that is found,
+
+- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, input: I, caps: &mut Captures)`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn find_iter<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> FindMatches<'r, 'h>`
+  Returns an iterator over all non-overlapping leftmost matches in
+
+- `fn captures_iter<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> CapturesMatches<'r, 'h>`
+  Returns an iterator over all non-overlapping `Captures` values. If no
+
+- `fn split<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> Split<'r, 'h>`
+  Returns an iterator of spans of the haystack given, delimited by a
+
+- `fn splitn<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I, limit: usize) -> SplitN<'r, 'h>`
+  Returns an iterator of at most `limit` spans of the haystack given,
+
+- `fn new(pattern: &str) -> Result<Regex, BuildError>`
+  Builds a `Regex` from a single pattern string using the default
+
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>`
+  Builds a `Regex` from many pattern strings using the default
+
+- `fn config() -> Config`
+  Return a default configuration for a `Regex`.
+
+- `fn builder() -> Builder`
+  Return a builder for configuring the construction of a `Regex`.
+
+- `fn search(self: &Self, input: &Input<'_>) -> Option<Match>`
+  Returns the start and end offset of the leftmost match. If no match
+
+- `fn search_half(self: &Self, input: &Input<'_>) -> Option<HalfMatch>`
+  Returns the end offset of the leftmost match. If no match exists, then
+
+- `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)`
+  Writes the set of patterns that match anywhere in the given search
 
 - `fn create_captures(self: &Self) -> Captures`
   Creates a new object for recording capture group offsets. This is used
@@ -1047,69 +1109,6 @@ assert_eq!(Some(Match::must(0, 1..4)), re.find(hay));
 
 - `fn memory_usage(self: &Self) -> usize`
   Return the total approximate heap memory, in bytes, used by this `Regex`.
-
-- `fn search_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>`
-  This is like [`Regex::search`], but requires the caller to
-
-- `fn search_half_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>`
-  This is like [`Regex::search_half`], but requires the caller to
-
-- `fn search_captures_with(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
-  This is like [`Regex::search_captures`], but requires the caller to
-
-- `fn search_slots_with(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  This is like [`Regex::search_slots`], but requires the caller to
-
-- `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
-  This is like [`Regex::which_overlapping_matches`], but requires the
-
-- `fn search(self: &Self, input: &Input<'_>) -> Option<Match>`
-  Returns the start and end offset of the leftmost match. If no match
-
-- `fn search_half(self: &Self, input: &Input<'_>) -> Option<HalfMatch>`
-  Returns the end offset of the leftmost match. If no match exists, then
-
-- `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)`
-  Writes the set of patterns that match anywhere in the given search
-
-- `fn new(pattern: &str) -> Result<Regex, BuildError>`
-  Builds a `Regex` from a single pattern string using the default
-
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>`
-  Builds a `Regex` from many pattern strings using the default
-
-- `fn config() -> Config`
-  Return a default configuration for a `Regex`.
-
-- `fn builder() -> Builder`
-  Return a builder for configuring the construction of a `Regex`.
-
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
-  Returns true if and only if this regex matches the given haystack.
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>`
-  Executes a leftmost search and returns the first match that is found,
-
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, input: I, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn find_iter<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> FindMatches<'r, 'h>`
-  Returns an iterator over all non-overlapping leftmost matches in
-
-- `fn captures_iter<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> CapturesMatches<'r, 'h>`
-  Returns an iterator over all non-overlapping `Captures` values. If no
-
-- `fn split<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> Split<'r, 'h>`
-  Returns an iterator of spans of the haystack given, delimited by a
-
-- `fn splitn<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I, limit: usize) -> SplitN<'r, 'h>`
-  Returns an iterator of at most `limit` spans of the haystack given,
 
 #### Trait Implementations
 

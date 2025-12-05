@@ -19,8 +19,8 @@ on windows where cursor movements are currently directly passed through.
 
 Example usage:
 
-```
-# fn test() -> Result<(), Box<dyn std::error::Error>> {
+```rust
+fn test() -> Result<(), Box<dyn std::error::Error>> {
 use std::thread;
 use std::time::Duration;
 
@@ -30,7 +30,7 @@ let term = Term::stdout();
 term.write_line("Hello World!")?;
 thread::sleep(Duration::from_millis(2000));
 term.clear_line()?;
-# Ok(()) } test().unwrap();
+Ok(()) } test().unwrap();
 ```
 
 # Colors and Styles
@@ -41,7 +41,7 @@ displayed with the `style` function and utility types.
 
 Example usage:
 
-```
+```rust
 use console::style;
 
 println!("This is {} neat", style("quite").cyan());
@@ -49,7 +49,7 @@ println!("This is {} neat", style("quite").cyan());
 
 You can also store styles and apply them to text later:
 
-```
+```rust
 use console::Style;
 
 let cyan = Style::new().cyan();

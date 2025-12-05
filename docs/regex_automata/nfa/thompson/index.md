@@ -156,7 +156,7 @@ need more specialized handling.)
 This annotated example shows how to hand construct the regex `[a-z]+`
 (without an unanchored prefix).
 
-```
+```rust
 use regex_automata::{
     nfa::thompson::{pikevm::PikeVM, Builder, Transition},
     util::primitives::StateID,
@@ -211,7 +211,7 @@ let expected = Some(Match::must(0, 0..3));
 re.captures(&mut cache, "foo0", &mut caps);
 assert_eq!(expected, caps.get_match());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -936,7 +936,7 @@ word boundaries on non-ASCII text and cannot resolve capturing groups.)
 This shows how to build an NFA with the default configuration and execute a
 search using the Pike VM.
 
-```
+```rust
 use regex_automata::{nfa::thompson::pikevm::PikeVM, Match};
 
 let re = PikeVM::new(r"foo[0-9]+")?;
@@ -947,7 +947,7 @@ let expected = Some(Match::must(0, 0..8));
 re.captures(&mut cache, b"foo12345", &mut caps);
 assert_eq!(expected, caps.get_match());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: resolving capturing groups
@@ -955,8 +955,8 @@ assert_eq!(expected, caps.get_match());
 This example shows how to parse some simple dates and extract the
 components of each date via capturing groups.
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{
     nfa::thompson::pikevm::PikeVM,
     util::captures::Captures,
@@ -973,17 +973,16 @@ let all: Vec<Captures> = vm.captures_iter(
 assert_eq!(3, all.len());
 // The year from the second match is '2013'.
 let span = all[1].get_group_by_name("y").unwrap();
-assert_eq!("2013", &haystack[span](#span)
-);
+assert_eq!("2013", &haystack[span]);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 This example shows that only the last match of a capturing group is
 reported, even if it had to match multiple times for an overall match
 to occur.
 
-```
+```rust
 use regex_automata::{nfa::thompson::pikevm::PikeVM, Span};
 
 let re = PikeVM::new(r"([a-z]){4}")?;
@@ -995,7 +994,7 @@ re.captures(&mut cache, haystack, &mut caps);
 assert!(caps.is_match());
 assert_eq!(Some(Span::from(3..4)), caps.get_group(1));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -1159,7 +1158,7 @@ together an NFA by hand. See its docs for examples.
 This shows how to compile an NFA from a pattern string while setting a size
 limit on how big the NFA is allowed to be (in terms of bytes of heap used).
 
-```
+```rust
 use regex_automata::{
     nfa::thompson::{NFA, pikevm::PikeVM},
     Match,
@@ -1175,7 +1174,7 @@ let expected = Some(Match::must(0, 3..4));
 re.captures(&mut cache, "!@#A#@!", &mut caps);
 assert_eq!(expected, caps.get_match());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: compilation from HIR
@@ -1183,7 +1182,7 @@ assert_eq!(expected, caps.get_match());
 This shows how to hand assemble a regular expression via its HIR, and then
 compile an NFA directly from it.
 
-```
+```rust
 use regex_automata::{nfa::thompson::{NFA, pikevm::PikeVM}, Match};
 use regex_syntax::hir::{Hir, Class, ClassBytes, ClassBytesRange};
 
@@ -1204,7 +1203,7 @@ let expected = Some(Match::must(0, 3..4));
 re.captures(&mut cache, "!@#A#@!", &mut caps);
 assert_eq!(expected, caps.get_match());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

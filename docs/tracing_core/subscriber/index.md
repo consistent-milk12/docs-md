@@ -283,15 +283,15 @@ The following methods are likely of interest:
 
 - `fn register_callsite(self: &Self, metadata: &'static Metadata<'static>) -> Interest`
 
-  Registers a new [callsite](#callsite)
+  Registers a new [callsite](#callsite) with this subscriber, returning whether or not
 
 - `fn enabled(self: &Self, metadata: &Metadata<'_>) -> bool`
 
-  Returns true if a span or event with the specified [metadata](#metadata)
+  Returns true if a span or event with the specified [metadata](#metadata) would be
 
 - `fn max_level_hint(self: &Self) -> Option<LevelFilter>`
 
-  Returns the highest [verbosity level][level](#level)
+  Returns the highest [verbosity level][level](#level) that this `Subscriber` will
 
 - `fn new_span(self: &Self, span: &span::Attributes<'_>) -> span::Id`
 

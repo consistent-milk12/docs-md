@@ -1529,10 +1529,10 @@ See Section 7.12, Table 7.17.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
-
 - `fn default_lower_bound(self: Self) -> Option<usize>`
   Get the default DW_AT_lower_bound for this language.
+
+- `fn static_string(self: &Self) -> Option<&'static str>`
 
 #### Trait Implementations
 
@@ -3137,6 +3137,8 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Implementations
 
+- `fn static_string(self: &Self) -> Option<&'static str>`
+
 - `fn format(self: Self) -> DwEhPe`
   Get the pointer encoding's format.
 
@@ -3151,8 +3153,6 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 - `fn is_valid_encoding(self: Self) -> bool`
   Is this a known, valid pointer encoding?
-
-- `fn static_string(self: &Self) -> Option<&'static str>`
 
 #### Trait Implementations
 

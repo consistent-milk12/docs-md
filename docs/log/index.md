@@ -39,10 +39,10 @@ macros to log whatever information will be useful to downstream consumers.
 
 ### Examples
 
-```
-# #[derive(Debug)] pub struct Yak(String);
-# impl Yak { fn shave(&mut self, _: u32) {} }
-# fn find_a_razor() -> Result<u32, u32> { Ok(1) }
+```rust
+#[derive(Debug)] pub struct Yak(String);
+impl Yak { fn shave(&mut self, _: u32) {} }
+fn find_a_razor() -> Result<u32, u32> { Ok(1) }
 use log::{info, warn};
 
 pub fn shave_the_yak(yak: &mut Yak) {
@@ -61,7 +61,7 @@ pub fn shave_the_yak(yak: &mut Yak) {
         }
     }
 }
-# fn main() {}
+fn main() {}
 ```
 
 ## In executables
@@ -83,13 +83,13 @@ If you enable the `kv` feature you can associate structured values
 with your log records. If we take the example from before, we can include
 some additional context besides what's in the formatted message:
 
-```
-# use serde::Serialize;
-# #[derive(Debug, Serialize)] pub struct Yak(String);
-# impl Yak { fn shave(&mut self, _: u32) {} }
-# fn find_a_razor() -> Result<u32, std::io::Error> { Ok(1) }
-# #[cfg(feature = "kv_serde")]
-# fn main() {
+```rust
+use serde::Serialize;
+#[derive(Debug, Serialize)] pub struct Yak(String);
+impl Yak { fn shave(&mut self, _: u32) {} }
+fn find_a_razor() -> Result<u32, std::io::Error> { Ok(1) }
+#[cfg(feature = "kv_serde")]
+fn main() {
 use log::{info, warn};
 
 pub fn shave_the_yak(yak: &mut Yak) {
@@ -108,9 +108,9 @@ pub fn shave_the_yak(yak: &mut Yak) {
         }
     }
 }
-# }
-# #[cfg(not(feature = "kv_serde"))]
-# fn main() {}
+}
+#[cfg(not(feature = "kv_serde"))]
+fn main() {}
 ```
 
 See the [`kv`](#kv) module documentation for more details.
@@ -124,70 +124,47 @@ here are some of the most popular ones:
 
 * Simple minimal loggers:
     * [env_logger](#env-logger)
-
     * [colog](#colog)
-
     * [simple_logger](#simple-logger)
-
     * [simplelog](#simplelog)
-
     * [pretty_env_logger](#pretty-env-logger)
-
     * [stderrlog](#stderrlog)
-
     * [flexi_logger](#flexi-logger)
-
     * [call_logger](#call-logger)
-
     * [std-logger]
     * [structured-logger]
     * [clang_log](#clang-log)
-
     * [ftail](#ftail)
-
 * Complex configurable frameworks:
     * [log4rs](#log4rs)
-
     * [logforth](#logforth)
-
     * [fern](#fern)
-
     * [spdlog-rs]
 * Adaptors for other facilities:
     * [syslog](#syslog)
-
     * [slog-stdlog]
     * [systemd-journal-logger]
     * [android_log](#android-log)
-
     * [win_dbg_logger](#win-dbg-logger)
-
     * [db_logger](#db-logger)
-
     * [log-to-defmt]
     * [logcontrol-log]
 * For WebAssembly binaries:
     * [console_log](#console-log)
-
 * For dynamic libraries:
     * You may need to construct an FFI-safe wrapper over `log` to initialize in your libraries
 * Utilities:
     * [log_err](#log-err)
-
     * [log-reload]
     * [alterable_logger](#alterable-logger)
-
 
 # Implementing a Logger
 
 Loggers implement the [`Log`](#log) trait. Here's a very basic example that simply
-logs all messages at the [`Error`][level_link](#level-link)
-, [`Warn`][level_link](#level-link)
- or
-[`Info`][level_link](#level-link)
- levels to stdout:
+logs all messages at the [`Error`][level_link](#level-link), [`Warn`][level_link](#level-link) or
+[`Info`][level_link](#level-link) levels to stdout:
 
-```
+```rust
 use log::{Record, Level, Metadata};
 
 struct SimpleLogger;
@@ -206,33 +183,29 @@ impl log::Log for SimpleLogger {
     fn flush(&self) {}
 }
 
-# fn main() {}
+fn main() {}
 ```
 
 Loggers are installed by calling the [`set_logger`](#set-logger) function. The maximum
 log level also needs to be adjusted via the [`set_max_level`](#set-max-level) function. The
 logging facade uses this as an optimization to improve performance of log
 messages at levels that are disabled. It's important to set it, as it
-defaults to [`Off`][filter_link](#filter-link)
-, so no log messages will ever be captured!
+defaults to [`Off`][filter_link](#filter-link), so no log messages will ever be captured!
 In the case of our example logger, we'll want to set the maximum log level
-to [`Info`][filter_link](#filter-link)
-, since we ignore any [`Debug`][level_link](#level-link)
- or
-[`Trace`][level_link](#level-link)
- level log messages. A logging implementation should
+to [`Info`][filter_link](#filter-link), since we ignore any [`Debug`][level_link](#level-link) or
+[`Trace`][level_link](#level-link) level log messages. A logging implementation should
 provide a function that wraps a call to [`set_logger`](#set-logger) and
 [`set_max_level`](#set-max-level), handling initialization of the logger:
 
-```
-# use log::{Level, Metadata};
-# struct SimpleLogger;
-# impl log::Log for SimpleLogger {
-#   fn enabled(&self, _: &Metadata) -> bool { false }
-#   fn log(&self, _: &log::Record) {}
-#   fn flush(&self) {}
-# }
-# fn main() {}
+```rust
+use log::{Level, Metadata};
+struct SimpleLogger;
+impl log::Log for SimpleLogger {
+  fn enabled(&self, _: &Metadata) -> bool { false }
+  fn log(&self, _: &log::Record) {}
+  fn flush(&self) {}
+}
+fn main() {}
 use log::{SetLoggerError, LevelFilter};
 
 static LOGGER: SimpleLogger = SimpleLogger;
@@ -254,16 +227,16 @@ obtain if your logger depends on some runtime configuration. The
 identical to `set_logger` except that it takes a `Box<Log>` rather than a
 `&'static Log`:
 
-```
-# use log::{Level, LevelFilter, Log, SetLoggerError, Metadata};
-# struct SimpleLogger;
-# impl log::Log for SimpleLogger {
-#   fn enabled(&self, _: &Metadata) -> bool { false }
-#   fn log(&self, _: &log::Record) {}
-#   fn flush(&self) {}
-# }
-# fn main() {}
-# #[cfg(feature = "std")]
+```rust
+use log::{Level, LevelFilter, Log, SetLoggerError, Metadata};
+struct SimpleLogger;
+impl log::Log for SimpleLogger {
+  fn enabled(&self, _: &Metadata) -> bool { false }
+  fn log(&self, _: &log::Record) {}
+  fn flush(&self) {}
+}
+fn main() {}
+#[cfg(feature = "std")]
 pub fn init() -> Result<(), SetLoggerError> {
     log::set_boxed_logger(Box::new(SimpleLogger))
         .map(|()| log::set_max_level(LevelFilter::Info))
@@ -301,8 +274,7 @@ For example, a crate can disable trace level logs in debug builds and trace, deb
 level logs in release builds with the following configuration:
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 log = { version = "0.4", features = ["max_level_debug", "release_max_level_warn"] }
 ```
 # Crate Feature Flags
@@ -315,8 +287,7 @@ configured in your `Cargo.toml`.
 * `serde` enables support for serialization and deserialization of `Level` and `LevelFilter`.
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 log = { version = "0.4", features = ["std", "serde"] }
 ```
 
@@ -327,62 +298,40 @@ made using `log` 0.3 will forward transparently to a logger implementation using
 messages made using `log` 0.4 will forward to a logger implementation using `log` 0.3, but the
 module path and file name information associated with the message will unfortunately be lost.
 
-[level_link](#level-link)
-: enum.Level.html
-[filter_link](#filter-link)
-: enum.LevelFilter.html
+[level_link](#level-link): enum.Level.html
+[filter_link](#filter-link): enum.LevelFilter.html
 
 
 
 
-[env_logger](#env-logger)
-: https://docs.rs/env_logger/*/env_logger/
-[colog](#colog)
-: https://docs.rs/colog/*/colog/
-[simple_logger](#simple-logger)
-: https://github.com/borntyping/rust-simple_logger
-[simplelog](#simplelog)
-: https://github.com/drakulix/simplelog.rs
-[pretty_env_logger](#pretty-env-logger)
-: https://docs.rs/pretty_env_logger/*/pretty_env_logger/
-[stderrlog](#stderrlog)
-: https://docs.rs/stderrlog/*/stderrlog/
-[flexi_logger](#flexi-logger)
-: https://docs.rs/flexi_logger/*/flexi_logger/
-[call_logger](#call-logger)
-: https://docs.rs/call_logger/*/call_logger/
+[env_logger](#env-logger): https://docs.rs/env_logger/*/env_logger/
+[colog](#colog): https://docs.rs/colog/*/colog/
+[simple_logger](#simple-logger): https://github.com/borntyping/rust-simple_logger
+[simplelog](#simplelog): https://github.com/drakulix/simplelog.rs
+[pretty_env_logger](#pretty-env-logger): https://docs.rs/pretty_env_logger/*/pretty_env_logger/
+[stderrlog](#stderrlog): https://docs.rs/stderrlog/*/stderrlog/
+[flexi_logger](#flexi-logger): https://docs.rs/flexi_logger/*/flexi_logger/
+[call_logger](#call-logger): https://docs.rs/call_logger/*/call_logger/
 [std-logger]: https://docs.rs/std-logger/*/std_logger/
-[syslog](#syslog)
-: https://docs.rs/syslog/*/syslog/
+[syslog](#syslog): https://docs.rs/syslog/*/syslog/
 [slog-stdlog]: https://docs.rs/slog-stdlog/*/slog_stdlog/
-[log4rs](#log4rs)
-: https://docs.rs/log4rs/*/log4rs/
-[logforth](#logforth)
-: https://docs.rs/logforth/*/logforth/
-[fern](#fern)
-: https://docs.rs/fern/*/fern/
+[log4rs](#log4rs): https://docs.rs/log4rs/*/log4rs/
+[logforth](#logforth): https://docs.rs/logforth/*/logforth/
+[fern](#fern): https://docs.rs/fern/*/fern/
 [spdlog-rs]: https://docs.rs/spdlog-rs/*/spdlog/
 [systemd-journal-logger]: https://docs.rs/systemd-journal-logger/*/systemd_journal_logger/
-[android_log](#android-log)
-: https://docs.rs/android_log/*/android_log/
-[win_dbg_logger](#win-dbg-logger)
-: https://docs.rs/win_dbg_logger/*/win_dbg_logger/
-[db_logger](#db-logger)
-: https://docs.rs/db_logger/*/db_logger/
+[android_log](#android-log): https://docs.rs/android_log/*/android_log/
+[win_dbg_logger](#win-dbg-logger): https://docs.rs/win_dbg_logger/*/win_dbg_logger/
+[db_logger](#db-logger): https://docs.rs/db_logger/*/db_logger/
 [log-to-defmt]: https://docs.rs/log-to-defmt/*/log_to_defmt/
-[console_log](#console-log)
-: https://docs.rs/console_log/*/console_log/
+[console_log](#console-log): https://docs.rs/console_log/*/console_log/
 [structured-logger]: https://docs.rs/structured-logger/latest/structured_logger/
 [logcontrol-log]: https://docs.rs/logcontrol-log/*/logcontrol_log/
-[log_err](#log-err)
-: https://docs.rs/log_err/*/log_err/
+[log_err](#log-err): https://docs.rs/log_err/*/log_err/
 [log-reload]: https://docs.rs/log-reload/*/log_reload/
-[alterable_logger](#alterable-logger)
-: https://docs.rs/alterable_logger/*/alterable_logger
-[clang_log](#clang-log)
-: https://docs.rs/clang_log/latest/clang_log
-[ftail](#ftail)
-: https://docs.rs/ftail/latest/ftail
+[alterable_logger](#alterable-logger): https://docs.rs/alterable_logger/*/alterable_logger
+[clang_log](#clang-log): https://docs.rs/clang_log/latest/clang_log
+[ftail](#ftail): https://docs.rs/ftail/latest/ftail
 
 ## Structs
 
@@ -412,7 +361,7 @@ These methods are provided as a convenience for users of this structure.
 The following example shows a simple logger that displays the level,
 module path, and message of any `Record` that is passed to it.
 
-```
+```rust
 struct SimpleLogger;
 
 impl log::Log for SimpleLogger {
@@ -536,7 +485,7 @@ the created object when `build` is called.
 
 # Examples
 
-```
+```rust
 use log::{Level, Record};
 
 let record = Record::builder()
@@ -551,7 +500,7 @@ let record = Record::builder()
 
 Alternatively, use [`MetadataBuilder`](#metadatabuilder):
 
-```
+```rust
 use log::{Record, Level, MetadataBuilder};
 
 let error_metadata = MetadataBuilder::new()
@@ -673,7 +622,7 @@ constructing expensive log messages.
 
 # Examples
 
-```
+```rust
 use log::{Record, Level, Metadata};
 
 struct MyLogger;
@@ -691,7 +640,7 @@ impl log::Log for MyLogger {
     fn flush(&self) {}
 }
 
-# fn main(){}
+fn main(){}
 ```
 
 #### Implementations
@@ -789,7 +738,7 @@ the created object when `build` is called.
 
 # Example
 
-```
+```rust
 let target = "myApp";
 use log::{Level, MetadataBuilder};
 let metadata = MetadataBuilder::new()
@@ -1274,11 +1223,11 @@ to get and set the maximum log level with [`max_level()`](#max-level) and [`set_
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -1416,7 +1365,7 @@ An error is returned if a logger has already been set.
 
 # Examples
 
-```
+```rust
 use log::{error, info, warn, Record, Level, Metadata, LevelFilter};
 
 static MY_LOGGER: MyLogger = MyLogger;
@@ -1436,14 +1385,14 @@ impl log::Log for MyLogger {
     fn flush(&self) {}
 }
 
-# fn main(){
+fn main(){
 log::set_logger(&MY_LOGGER).unwrap();
 log::set_max_level(LevelFilter::Info);
 
 info!("hello log");
 warn!("warning");
 error!("oops");
-# }
+}
 ```
 
 
@@ -1511,12 +1460,12 @@ the message would be ignored anyway.
 
 # Examples
 
-```
+```rust
 use log::{debug, log_enabled, Level};
 
-# struct Data { x: u32, y: u32 }
-# fn expensive_call() -> Data { Data { x: 0, y: 0 } }
-# let my_logger = log::__private_api::GlobalLogger;
+struct Data { x: u32, y: u32 }
+fn expensive_call() -> Data { Data { x: 0, y: 0 } }
+let my_logger = log::__private_api::GlobalLogger;
 if log_enabled!(Level::Debug) {
     let data = expensive_call();
     debug!("expensive debug data: {} {}", data.x, data.y);
@@ -1542,7 +1491,7 @@ The standard logging macro.
 This macro will generically log with the specified `Level` and `format!`
 based argument list.
 
-```
+```rust
 use log::{log, Level};
 
 let data = (42, "Forty-two");
@@ -1554,7 +1503,7 @@ log!(Level::Error, "Received errors: {}, {}", data.0, data.1);
 Optionally, you can specify a `target` argument to attach a specific target
 to the log record. By default, the target is the module path of the caller.
 
-```
+```rust
 use log::{log, Level};
 
 let data = (42, "Forty-two");
@@ -1571,15 +1520,15 @@ log!(
 And optionally, you can specify a `logger` argument to use a specific logger
 instead of the default global logger.
 
-```
-# struct MyLogger {}
-# impl Log for MyLogger {
-#     fn enabled(&self, _metadata: &log::Metadata) -> bool {
-#         false
-#     }
-#     fn log(&self, _record: &log::Record) {}
-#     fn flush(&self) {}
-# }
+```rust
+struct MyLogger {}
+impl Log for MyLogger {
+    fn enabled(&self, _metadata: &log::Metadata) -> bool {
+        false
+    }
+    fn log(&self, _record: &log::Record) {}
+    fn flush(&self) {}
+}
 use log::{log, Level, Log};
 
 let data = (42, "Forty-two");
@@ -1606,10 +1555,10 @@ Logs a message at the error level.
 
 # Examples
 
-```
+```rust
 use log::error;
 
-# let my_logger = log::__private_api::GlobalLogger;
+let my_logger = log::__private_api::GlobalLogger;
 let (err_info, port) = ("No connection", 22);
 
 error!("Error: {err_info} on port {port}");
@@ -1623,10 +1572,10 @@ Logs a message at the warn level.
 
 # Examples
 
-```
+```rust
 use log::warn;
 
-# let my_logger = log::__private_api::GlobalLogger;
+let my_logger = log::__private_api::GlobalLogger;
 let warn_description = "Invalid Input";
 
 warn!("Warning! {warn_description}!");
@@ -1640,11 +1589,11 @@ Logs a message at the info level.
 
 # Examples
 
-```
+```rust
 use log::info;
 
-# let my_logger = log::__private_api::GlobalLogger;
-# struct Connection { port: u32, speed: f32 }
+let my_logger = log::__private_api::GlobalLogger;
+struct Connection { port: u32, speed: f32 }
 let conn_info = Connection { port: 40, speed: 3.20 };
 
 info!("Connected to port {} at {} Mb/s", conn_info.port, conn_info.speed);
@@ -1666,11 +1615,11 @@ Logs a message at the debug level.
 
 # Examples
 
-```
+```rust
 use log::debug;
 
-# let my_logger = log::__private_api::GlobalLogger;
-# struct Position { x: f32, y: f32 }
+let my_logger = log::__private_api::GlobalLogger;
+struct Position { x: f32, y: f32 }
 let pos = Position { x: 3.234, y: -1.223 };
 
 debug!("New position: x: {}, y: {}", pos.x, pos.y);
@@ -1684,11 +1633,11 @@ Logs a message at the trace level.
 
 # Examples
 
-```
+```rust
 use log::trace;
 
-# let my_logger = log::__private_api::GlobalLogger;
-# struct Position { x: f32, y: f32 }
+let my_logger = log::__private_api::GlobalLogger;
+struct Position { x: f32, y: f32 }
 let pos = Position { x: 3.234, y: -1.223 };
 
 trace!("Position is: x: {}, y: {}", pos.x, pos.y);

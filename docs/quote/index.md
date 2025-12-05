@@ -1,10 +1,8 @@
 # Crate `quote`
 
-[![github](#github)
-](https://github.com/dtolnay/quote)&ensp;[![crates-io]](https://crates.io/crates/quote)&ensp;[![docs-rs]](https://docs.rs/quote)
+[![github](#github)](https://github.com/dtolnay/quote)&ensp;[![crates-io]](https://crates.io/crates/quote)&ensp;[![docs-rs]](https://docs.rs/quote)
 
-[github](#github)
-: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
@@ -32,8 +30,7 @@ general-purpose Rust quasi-quoting library and is not specific to procedural
 macros.
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 quote = "1.0"
 ```
 
@@ -42,26 +39,24 @@ quote = "1.0"
 # Example
 
 The following quasi-quoted block of code is something you might find in [a](#a)
-
 procedural macro having to do with data structure serialization. The `#var`
 syntax performs interpolation of runtime variables into the quoted tokens.
 Check out the documentation of the [`quote!`](#quote) macro for more detail about
 the syntax. See also the [`quote_spanned!`](#quote-spanned) macro which is important for
 implementing hygienic procedural macros.
 
-[a](#a)
-: https://serde.rs/
+[a](#a): https://serde.rs/
 
-```
-# use quote::quote;
-#
-# let generics = "";
-# let where_clause = "";
-# let field_ty = "";
-# let item_ty = "";
-# let path = "";
-# let value = "";
-#
+```rust
+use quote::quote;
+
+let generics = "";
+let where_clause = "";
+let field_ty = "";
+let item_ty = "";
+let path = "";
+let value = "";
+
 let tokens = quote! {
     struct SerializeWith #generics #where_clause {
         value: &'a #field_ty,
@@ -90,12 +85,10 @@ let tokens = quote! {
 
 When using `quote` in a build.rs or main.rs and writing the output out to a
 file, consider having the code generator pass the tokens through
-[prettyplease](#prettyplease)
- before writing. This way if an error occurs in the generated
+[prettyplease](#prettyplease) before writing. This way if an error occurs in the generated
 code it is convenient for a human to read and debug.
 
-[prettyplease](#prettyplease)
-: https://github.com/dtolnay/prettyplease
+[prettyplease](#prettyplease): https://github.com/dtolnay/prettyplease
 
 ## Traits
 
@@ -143,9 +136,9 @@ The [`Span`](#span) of the first `Ident` argument is used as the span of the fin
 identifier, falling back to `Span::call_site` when no identifiers are
 provided.
 
-```
-# use quote::format_ident;
-# let ident = format_ident!("Ident");
+```rust
+use quote::format_ident;
+let ident = format_ident!("Ident");
 // If `ident` is an Ident, the span of `my_ident` will be inherited from it.
 let my_ident = format_ident!("My{}{}", ident, "IsCool");
 assert_eq!(my_ident, "MyIdentIsCool");
@@ -154,12 +147,12 @@ assert_eq!(my_ident, "MyIdentIsCool");
 Alternatively, the span can be overridden by passing the `span` named
 argument.
 
-```
-# use quote::format_ident;
-# const IGNORE_TOKENS: &'static str = stringify! {
+```rust
+use quote::format_ident;
+const IGNORE_TOKENS: &'static str = stringify! {
 let my_span = /* ... */;
-# };
-# let my_span = proc_macro2::Span::call_site();
+};
+let my_span = proc_macro2::Span::call_site();
 format_ident!("MyIdent", span = my_span);
 ```
 
@@ -176,8 +169,8 @@ identifier.
 # Examples
 
 Composing raw and non-raw identifiers:
-```
-# use quote::format_ident;
+```rust
+use quote::format_ident;
 let my_ident = format_ident!("My{}", "Ident");
 assert_eq!(my_ident, "MyIdent");
 
@@ -189,8 +182,8 @@ assert_eq!(my_ident_raw, "MyIdentIsRaw");
 ```
 
 Integer formatting options:
-```
-# use quote::format_ident;
+```rust
+use quote::format_ident;
 let num: u32 = 10;
 
 let decimal = format_ident!("Id_{}", num);
@@ -285,28 +278,28 @@ macro.
 
 [Syn]: https://github.com/dtolnay/syn
 
-```
-# #[cfg(any())]
+```rust
+#[cfg(any())]
 extern crate proc_macro;
-# extern crate proc_macro2;
+extern crate proc_macro2;
 
-# #[cfg(any())]
+#[cfg(any())]
 use proc_macro::TokenStream;
-# use proc_macro2::TokenStream;
+use proc_macro2::TokenStream;
 use quote::quote;
 
-# const IGNORE_TOKENS: &'static str = stringify! {
+const IGNORE_TOKENS: &'static str = stringify! {
 #[proc_macro_derive(HeapSize)]
-# };
+};
 pub fn derive_heap_size(input: TokenStream) -> TokenStream {
     // Parse the input and figure out what implementation to generate...
-    # const IGNORE_TOKENS: &'static str = stringify! {
+    const IGNORE_TOKENS: &'static str = stringify! {
     let name = /* ... */;
     let expr = /* ... */;
-    # };
-    #
-    # let name = 0;
-    # let expr = 0;
+    };
+
+    let name = 0;
+    let expr = 0;
 
     let expanded = quote! {
         // The generated impl.
@@ -331,9 +324,9 @@ piece. Different parts may come from different helper functions. The tokens
 produced by `quote!` themselves implement `ToTokens` and so can be
 interpolated into later `quote!` invocations to build up a final result.
 
-```
-# use quote::quote;
-#
+```rust
+use quote::quote;
+
 let type_definition = quote! {...};
 let methods = quote! {...};
 
@@ -355,52 +348,52 @@ Simply interpolating the identifier next to an underscore will not have the
 behavior of concatenating them. The underscore and the identifier will
 continue to be two separate tokens as if you had written `_ x`.
 
-```
-# use proc_macro2::{self as syn, Span};
-# use quote::quote;
-#
-# let ident = syn::Ident::new("i", Span::call_site());
-#
+```rust
+use proc_macro2::{self as syn, Span};
+use quote::quote;
+
+let ident = syn::Ident::new("i", Span::call_site());
+
 // incorrect
 quote! {
     let mut _#ident = 0;
 }
-# ;
+;
 ```
 
 The solution is to build a new identifier token with the correct value. As
 this is such a common case, the [`format_ident!`](#format-ident) macro provides a
 convenient utility for doing so correctly.
 
-```
-# use proc_macro2::{Ident, Span};
-# use quote::{format_ident, quote};
-#
-# let ident = Ident::new("i", Span::call_site());
-#
+```rust
+use proc_macro2::{Ident, Span};
+use quote::{format_ident, quote};
+
+let ident = Ident::new("i", Span::call_site());
+
 let varname = format_ident!("_{}", ident);
 quote! {
     let mut #varname = 0;
 }
-# ;
+;
 ```
 
 Alternatively, the APIs provided by Syn and proc-macro2 can be used to
 directly build the identifier. This is roughly equivalent to the above, but
 will not handle `ident` being a raw identifier.
 
-```
-# use proc_macro2::{self as syn, Span};
-# use quote::quote;
-#
-# let ident = syn::Ident::new("i", Span::call_site());
-#
+```rust
+use proc_macro2::{self as syn, Span};
+use quote::quote;
+
+let ident = syn::Ident::new("i", Span::call_site());
+
 let concatenated = format!("_{}", ident);
 let varname = syn::Ident::new(&concatenated, ident.span());
 quote! {
     let mut #varname = 0;
 }
-# ;
+;
 ```
 
 <p><br></p>
@@ -411,16 +404,16 @@ Let's say our macro requires some type specified in the macro input to have
 a constructor called `new`. We have the type in a variable called
 `field_type` of type `syn::Type` and want to invoke the constructor.
 
-```
-# use quote::quote;
-#
-# let field_type = quote!(...);
-#
+```rust
+use quote::quote;
+
+let field_type = quote!(...);
+
 // incorrect
 quote! {
     let value = #field_type::new();
 }
-# ;
+;
 ```
 
 This works only sometimes. If `field_type` is `String`, the expanded code
@@ -429,30 +422,30 @@ like `Vec<i32>` then the expanded code is `Vec<i32>::new()` which is invalid
 syntax. Ordinarily in handwritten Rust we would write `Vec::<i32>::new()`
 but for macros often the following is more convenient.
 
-```
-# use quote::quote;
-#
-# let field_type = quote!(...);
-#
+```rust
+use quote::quote;
+
+let field_type = quote!(...);
+
 quote! {
     let value = <#field_type>::new();
 }
-# ;
+;
 ```
 
 This expands to `<Vec<i32>>::new()` which behaves correctly.
 
 A similar pattern is appropriate for trait methods.
 
-```
-# use quote::quote;
-#
-# let field_type = quote!(...);
-#
+```rust
+use quote::quote;
+
+let field_type = quote!(...);
+
 quote! {
     let value = <#field_type as core::default::Default>::default();
 }
-# ;
+;
 ```
 
 <p><br></p>
@@ -480,21 +473,21 @@ Instead the best way to build doc comments that involve variables is by
 formatting the doc string literal outside of quote.
 
 ```rust
-# use proc_macro2::{Ident, Span};
-# use quote::quote;
-#
-# const IGNORE: &str = stringify! {
+use proc_macro2::{Ident, Span};
+use quote::quote;
+
+const IGNORE: &str = stringify! {
 let msg = format!(...);
-# };
-#
-# let ident = Ident::new("var", Span::call_site());
-# let msg = format!("try to interpolate: {}", ident);
+};
+
+let ident = Ident::new("var", Span::call_site());
+let msg = format!("try to interpolate: {}", ident);
 quote! {
     #[doc = #msg]
     ///
     /// ...
 }
-# ;
+;
 ```
 
 <p><br></p>
@@ -515,43 +508,43 @@ quote! {
 }
 ```
 
-```
-# use proc_macro2::{Ident, TokenStream};
-# use quote::quote;
-#
-# mod syn {
-#     use proc_macro2::{Literal, TokenStream};
-#     use quote::{ToTokens, TokenStreamExt};
-#
-#     pub struct Index(usize);
-#
-#     impl From<usize> for Index {
-#         fn from(i: usize) -> Self {
-#             Index(i)
-#         }
-#     }
-#
-#     impl ToTokens for Index {
-#         fn to_tokens(&self, tokens: &mut TokenStream) {
-#             tokens.append(Literal::usize_unsuffixed(self.0));
-#         }
-#     }
-# }
-#
-# struct Struct {
-#     fields: Vec<Ident>,
-# }
-#
-# impl Struct {
-#     fn example(&self) -> TokenStream {
+```rust
+use proc_macro2::{Ident, TokenStream};
+use quote::quote;
+
+mod syn {
+    use proc_macro2::{Literal, TokenStream};
+    use quote::{ToTokens, TokenStreamExt};
+
+    pub struct Index(usize);
+
+    impl From<usize> for Index {
+        fn from(i: usize) -> Self {
+            Index(i)
+        }
+    }
+
+    impl ToTokens for Index {
+        fn to_tokens(&self, tokens: &mut TokenStream) {
+            tokens.append(Literal::usize_unsuffixed(self.0));
+        }
+    }
+}
+
+struct Struct {
+    fields: Vec<Ident>,
+}
+
+impl Struct {
+    fn example(&self) -> TokenStream {
 let i = (0..self.fields.len()).map(syn::Index::from);
 
 // expands to 0 + self.0.heap_size() + self.1.heap_size() + ...
 quote! {
     0 #( + self.#i.heap_size() )*
 }
-#     }
-# }
+    }
+}
 ```
 
 ### `quote_spanned!`
@@ -568,15 +561,15 @@ to quote. The span expression should be brief &mdash; use a variable for
 anything more than a few characters. There should be no space before the
 `=>` token.
 
-```
-# use proc_macro2::Span;
-# use quote::quote_spanned;
-#
-# const IGNORE_TOKENS: &'static str = stringify! {
+```rust
+use proc_macro2::Span;
+use quote::quote_spanned;
+
+const IGNORE_TOKENS: &'static str = stringify! {
 let span = /* ... */;
-# };
-# let span = Span::call_site();
-# let init = 0;
+};
+let span = Span::call_site();
+let init = 0;
 
 // On one line, use parentheses.
 let tokens = quote_spanned!(span=> Box::into_raw(Box::new(#init)));
@@ -609,25 +602,25 @@ The following procedural macro code uses `quote_spanned!` to assert that a
 particular Rust type implements the [`Sync`](#sync) trait so that references can be
 safely shared between threads.
 
-```
-# use quote::{quote_spanned, TokenStreamExt, ToTokens};
-# use proc_macro2::{Span, TokenStream};
-#
-# struct Type;
-#
-# impl Type {
-#     fn span(&self) -> Span {
-#         Span::call_site()
-#     }
-# }
-#
-# impl ToTokens for Type {
-#     fn to_tokens(&self, _tokens: &mut TokenStream) {}
-# }
-#
-# let ty = Type;
-# let call_site = Span::call_site();
-#
+```rust
+use quote::{quote_spanned, TokenStreamExt, ToTokens};
+use proc_macro2::{Span, TokenStream};
+
+struct Type;
+
+impl Type {
+    fn span(&self) -> Span {
+        Span::call_site()
+    }
+}
+
+impl ToTokens for Type {
+    fn to_tokens(&self, _tokens: &mut TokenStream) {}
+}
+
+let ty = Type;
+let call_site = Span::call_site();
+
 let ty_span = ty.span();
 let assert_sync = quote_spanned! {ty_span=>
     struct _AssertSync where #ty: Sync;

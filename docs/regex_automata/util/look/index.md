@@ -8,8 +8,8 @@ Types and routines for working with look-around assertions.
 
 This module principally defines two types:
 
-* [`Look`](#look) enumerates all of the assertions supported by this crate.
-* [`LookSet`](#lookset) provides a way to efficiently store a set of [`Look`](#look) values.
+* [`Look`](../../index.md) enumerates all of the assertions supported by this crate.
+* [`LookSet`](#lookset) provides a way to efficiently store a set of [`Look`](../../index.md) values.
 * [`LookMatcher`](#lookmatcher) provides routines for checking whether a `Look` or a
 `LookSet` matches at a particular position in a haystack.
 
@@ -299,7 +299,7 @@ matched.
 A `LookMatcher` can change the line terminator used for matching multi-line
 anchors such as `(?m:^)` and `(?m:$)`.
 
-```
+```rust
 use regex_automata::{
     nfa::thompson::{self, pikevm::PikeVM},
     util::look::LookMatcher,
@@ -325,7 +325,7 @@ assert_eq!(
     re.find(&mut cache, b"\nabc\n"),
 );
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

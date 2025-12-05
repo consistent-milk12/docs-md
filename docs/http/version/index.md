@@ -15,7 +15,7 @@ of the HTTP protocol.
 
 # Examples
 
-```
+```rust
 use http::Version;
 
 let http11 = Version::HTTP_11;

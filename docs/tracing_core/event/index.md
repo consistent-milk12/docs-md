@@ -21,21 +21,17 @@ execution of a program.
 
 An `Event` can be compared to a log record in unstructured logging, but with
 two key differences:
-- `Event`s exist _within the context of a [span](#span)
-_. Unlike log lines, they
+- `Event`s exist _within the context of a [span](#span)_. Unlike log lines, they
   may be located within the trace tree, allowing visibility into the
   _temporal_ context in which the event occurred, as well as the source
   code location.
-- Like spans, `Event`s have structured key-value data known as _[fields](#fields)
-_,
+- Like spans, `Event`s have structured key-value data known as _[fields](#fields)_,
   which may include textual message. In general, a majority of the data
   associated with an event should be in the event's fields rather than in
   the textual message, as the fields are more structured.
 
-[span](#span)
-: super::span
-[fields](#fields)
-: super::field
+[span](#span): super::span
+[fields](#fields): super::field
 
 #### Implementations
 

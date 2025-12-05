@@ -32,7 +32,7 @@ use std::fs;
 
 /// Reads a file and displays the name of each symbol.
 fn main() -> Result<(), Box<dyn Error>> {
-#   #[cfg(feature = "std")] {
+  #[cfg(feature = "std")] {
     let data = fs::read("path/to/binary")?;
     let header = macho::MachHeader64::<object::Endianness>::parse(&*data, 0)?;
     let endian = header.endian()?;
@@ -46,7 +46,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
         }
     }
-#   }
+  }
     Ok(())
 }
 ```

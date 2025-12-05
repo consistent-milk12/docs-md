@@ -13,16 +13,15 @@ implementations.
 First, add this to your Cargo.toml
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 backtrace = "0.3"
 ```
 
 Next:
 
-```
-# // Unsafe here so test passes on no_std.
-# #[cfg(feature = "std")] {
+```rust
+// Unsafe here so test passes on no_std.
+#[cfg(feature = "std")] {
 backtrace::trace(|frame| {
     let ip = frame.ip();
     let symbol_address = frame.symbol_address();
@@ -39,7 +38,7 @@ backtrace::trace(|frame| {
 
     true // keep going to the next frame
 });
-# }
+}
 ```
 
 # Backtrace accuracy
@@ -498,23 +497,23 @@ enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(frames: Vec<BacktraceFrame>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
 
-##### `impl Into`
+##### `impl From`
 
-- `fn into(self: Self) -> Vec<BacktraceFrame>`
+- `fn from(frames: Vec<BacktraceFrame>) -> Self`
 
 ##### `impl Into<T, U>`
 
 - `fn into(self: Self) -> U`
   Calls `U::from(self)`.
+
+##### `impl Into`
+
+- `fn into(self: Self) -> Vec<BacktraceFrame>`
 
 ##### `impl Any<T>`
 
@@ -601,14 +600,14 @@ enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(frame: crate::Frame) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(frame: crate::Frame) -> Self`
 
 ##### `impl Into<T, U>`
 

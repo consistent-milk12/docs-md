@@ -24,8 +24,8 @@ See also `Command::styles`.
 
 clap v3 styling
 ```rust
-# use clap_builder as clap;
-# use clap::builder::styling::*;
+use clap_builder as clap;
+use clap::builder::styling::*;
 let styles = Styles::styled()
     .header(AnsiColor::Yellow.on_default())
     .usage(AnsiColor::Green.on_default())

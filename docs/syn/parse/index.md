@@ -26,9 +26,9 @@ the snippet. If the caller provides syntactically invalid input to the
 procedural macro, they will receive a helpful compiler error message
 pointing out the exact token that triggered the failure to parse.
 
-```
-# extern crate proc_macro;
-#
+```rust
+extern crate proc_macro;
+
 use proc_macro::TokenStream;
 use syn::{braced, parse_macro_input, token, Field, Ident, Result, Token};
 use syn::parse::{Parse, ParseStream};
@@ -40,23 +40,20 @@ enum Item {
 }
 
 struct ItemStruct {
-    struct_token: Token![struct](#struct)
-,
+    struct_token: Token![struct],
     ident: Ident,
     brace_token: token::Brace,
     fields: Punctuated<Field, Token![,]>,
 }
-#
-# enum ItemEnum {}
+
+enum ItemEnum {}
 
 impl Parse for Item {
     fn parse(input: ParseStream) -> Result<Self> {
         let lookahead = input.lookahead1();
-        if lookahead.peek(Token![struct](#struct)
-) {
+        if lookahead.peek(Token![struct]) {
             input.parse().map(Item::Struct)
-        } else if lookahead.peek(Token![enum](#enum)
-) {
+        } else if lookahead.peek(Token![enum]) {
             input.parse().map(Item::Enum)
         } else {
             Err(lookahead.error())
@@ -75,22 +72,21 @@ impl Parse for ItemStruct {
         })
     }
 }
-#
-# impl Parse for ItemEnum {
-#     fn parse(input: ParseStream) -> Result<Self> {
-#         unimplemented!()
-#     }
-# }
 
-# const IGNORE: &str = stringify! {
-#[proc_macro](#proc-macro)
+impl Parse for ItemEnum {
+    fn parse(input: ParseStream) -> Result<Self> {
+        unimplemented!()
+    }
+}
 
-# };
+const IGNORE: &str = stringify! {
+#[proc_macro]
+};
 pub fn my_macro(tokens: TokenStream) -> TokenStream {
     let input = parse_macro_input!(tokens as Item);
 
     /* ... */
-#   TokenStream::new()
+  TokenStream::new()
 }
 ```
 
@@ -103,15 +99,15 @@ implements the [`Parse`](#parse) trait, which includes most types in Syn.
 
 
 
-```
+```rust
 use syn::Type;
 
-# fn run_parser() -> syn::Result<()> {
+fn run_parser() -> syn::Result<()> {
 let t: Type = syn::parse_str("std::collections::HashMap<String, Value>")?;
-#     Ok(())
-# }
-#
-# run_parser().unwrap();
+    Ok(())
+}
+
+run_parser().unwrap();
 ```
 
 The [`parse_quote!`](#parse-quote) macro also uses this approach.
@@ -129,19 +125,19 @@ The `Parse` trait is not implemented in these cases because there is no good
 behavior to consider the default.
 
 ```compile_fail
-# extern crate proc_macro;
-#
-# use syn::punctuated::Punctuated;
-# use syn::{PathSegment, Result, Token};
-#
-# fn f(tokens: proc_macro::TokenStream) -> Result<()> {
-#
+extern crate proc_macro;
+
+use syn::punctuated::Punctuated;
+use syn::{PathSegment, Result, Token};
+
+fn f(tokens: proc_macro::TokenStream) -> Result<()> {
+
 // Can't parse `Punctuated` without knowing whether trailing punctuation
 // should be allowed in this context.
 let path: Punctuated<PathSegment, Token![::]> = syn::parse(tokens)?;
-#
-#     Ok(())
-# }
+
+    Ok(())
+}
 ```
 
 In these cases the types provide a choice of parser functions rather than a
@@ -149,9 +145,9 @@ single `Parse` implementation, and those parser functions can be invoked
 through the [`Parser`](#parser) trait.
 
 
-```
-# extern crate proc_macro;
-#
+```rust
+extern crate proc_macro;
+
 use proc_macro::TokenStream;
 use syn::parse::Parser;
 use syn::punctuated::Punctuated;
@@ -205,37 +201,36 @@ message than simply panicking the macro.
 When parsing macro input, the [`parse_macro_input!`](#parse-macro-input) macro handles the
 conversion to `compile_error!` automatically.
 
-```
-# extern crate proc_macro;
-#
+```rust
+extern crate proc_macro;
+
 use proc_macro::TokenStream;
 use syn::parse::{Parse, ParseStream, Result};
 use syn::{parse_macro_input, ItemFn};
 
-# const IGNORE: &str = stringify! {
-#[proc_macro_attribute](#proc-macro-attribute)
-
-# };
+const IGNORE: &str = stringify! {
+#[proc_macro_attribute]
+};
 pub fn my_attr(args: TokenStream, input: TokenStream) -> TokenStream {
     let args = parse_macro_input!(args as MyAttrArgs);
     let input = parse_macro_input!(input as ItemFn);
 
     /* ... */
-    # TokenStream::new()
+    TokenStream::new()
 }
 
 struct MyAttrArgs {
-    # _k: [(); { stringify! {
+    _k: [(); { stringify! {
     ...
-    # }; 0 }]
+    }; 0 }]
 }
 
 impl Parse for MyAttrArgs {
     fn parse(input: ParseStream) -> Result<Self> {
-        # stringify! {
+        stringify! {
         ...
-        # };
-        # unimplemented!()
+        };
+        unimplemented!()
     }
 }
 ```
@@ -245,15 +240,15 @@ For errors that arise later than the initial parsing stage, the
 perform an explicit conversion to `compile_error!`.
 
 
-```
-# extern crate proc_macro;
-#
-# use proc_macro::TokenStream;
-# use syn::{parse_macro_input, DeriveInput};
-#
-# const IGNORE: &str = stringify! {
+```rust
+extern crate proc_macro;
+
+use proc_macro::TokenStream;
+use syn::{parse_macro_input, DeriveInput};
+
+const IGNORE: &str = stringify! {
 #[proc_macro_derive(MyDerive)]
-# };
+};
 pub fn my_derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input as DeriveInput);
 
@@ -262,15 +257,15 @@ pub fn my_derive(input: TokenStream) -> TokenStream {
         .unwrap_or_else(syn::Error::into_compile_error)
         .into()
 }
-#
-# mod expand {
-#     use proc_macro2::TokenStream;
-#     use syn::{DeriveInput, Result};
-#
-#     pub fn my_derive(input: DeriveInput) -> Result<TokenStream> {
-#         unimplemented!()
-#     }
-# }
+
+mod expand {
+    use proc_macro2::TokenStream;
+    use syn::{DeriveInput, Result};
+
+    pub fn my_derive(input: DeriveInput) -> Result<TokenStream> {
+        unimplemented!()
+    }
+}
 ```
 
 #### Implementations
@@ -295,14 +290,14 @@ pub fn my_derive(input: TokenStream) -> TokenStream {
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(err: LexError) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(err: LexError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -410,7 +405,7 @@ input.peek2(End)` to recognize the case of a trailing comma without
 consuming the comma from the parse stream, because if it isn't a trailing
 comma, that same comma needs to be parsed as part of `args`.
 
-```
+```rust
 use proc_macro2::TokenStream;
 use quote::quote;
 use syn::parse::{End, Parse, ParseStream, Result};
@@ -472,12 +467,12 @@ we'd need a parse stream actually advanced past the comma before being able
 to find out whether there is anything after it. It would look something
 like:
 
-```
-# use proc_macro2::TokenStream;
-# use syn::parse::{ParseStream, Result};
-# use syn::Token;
-#
-# fn parse(input: ParseStream) -> Result<()> {
+```rust
+use proc_macro2::TokenStream;
+use syn::parse::{ParseStream, Result};
+use syn::Token;
+
+fn parse(input: ParseStream) -> Result<()> {
 use syn::parse::discouraged::Speculative as _;
 
 let ahead = input.fork();
@@ -488,18 +483,18 @@ let args = if ahead.is_empty() {
 } else {
     input.parse()?
 };
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 or:
 
-```
-# use proc_macro2::TokenStream;
-# use syn::parse::{ParseStream, Result};
-# use syn::Token;
-#
-# fn parse(input: ParseStream) -> Result<()> {
+```rust
+use proc_macro2::TokenStream;
+use syn::parse::{ParseStream, Result};
+use syn::Token;
+
+fn parse(input: ParseStream) -> Result<()> {
 use quote::ToTokens as _;
 
 let comma: Option<Token![,]> = input.parse()?;
@@ -508,8 +503,8 @@ if !input.is_empty() {
     comma.to_tokens(&mut args);
     input.parse::<TokenStream>()?.to_tokens(&mut args);
 }
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 #### Trait Implementations
@@ -597,7 +592,7 @@ object does not also advance the lookahead object.
 
 # Example
 
-```
+```rust
 use syn::{ConstParam, Ident, Lifetime, LifetimeParam, Result, Token, TypeParam};
 use syn::parse::{Parse, ParseStream};
 
@@ -625,8 +620,7 @@ impl Parse for GenericParam {
             input.parse().map(GenericParam::Type)
         } else if lookahead.peek(Lifetime) {
             input.parse().map(GenericParam::Lifetime)
-        } else if lookahead.peek(Token![const](#const)
-) {
+        } else if lookahead.peek(Token![const]) {
             input.parse().map(GenericParam::Const)
         } else {
             Err(lookahead.error())
@@ -826,7 +820,7 @@ This type is the input of the closure provided to `ParseStream::step`.
 
 # Example
 
-```
+```rust
 use proc_macro2::TokenTree;
 use syn::Result;
 use syn::parse::ParseStream;
@@ -848,19 +842,19 @@ fn skip_past_next_at(input: ParseStream) -> Result<()> {
         Err(cursor.error("no `@` was found after this point"))
     })
 }
-#
-# fn remainder_after_skipping_past_next_at(
-#     input: ParseStream,
-# ) -> Result<proc_macro2::TokenStream> {
-#     skip_past_next_at(input)?;
-#     input.parse()
-# }
-#
-# use syn::parse::Parser;
-# let remainder = remainder_after_skipping_past_next_at
-#     .parse_str("a @ b c")
-#     .unwrap();
-# assert_eq!(remainder.to_string(), "b c");
+
+fn remainder_after_skipping_past_next_at(
+    input: ParseStream,
+) -> Result<proc_macro2::TokenStream> {
+    skip_past_next_at(input)?;
+    input.parse()
+}
+
+use syn::parse::Parser;
+let remainder = remainder_after_skipping_past_next_at
+    .parse_str("a @ b c")
+    .unwrap();
+assert_eq!(remainder.to_string(), "b c");
 ```
 
 #### Implementations
@@ -943,22 +937,21 @@ An empty syntax tree node that consumes no tokens when parsed.
 This is useful for attribute macros that want to ensure they are not
 provided any attribute args.
 
-```
-# extern crate proc_macro;
-#
+```rust
+extern crate proc_macro;
+
 use proc_macro::TokenStream;
 use syn::parse_macro_input;
 use syn::parse::Nothing;
 
-# const IGNORE: &str = stringify! {
-#[proc_macro_attribute](#proc-macro-attribute)
-
-# };
+const IGNORE: &str = stringify! {
+#[proc_macro_attribute]
+};
 pub fn my_attr(args: TokenStream, input: TokenStream) -> TokenStream {
     parse_macro_input!(args as Nothing);
 
     /* ... */
-#   TokenStream::new()
+  TokenStream::new()
 }
 ```
 

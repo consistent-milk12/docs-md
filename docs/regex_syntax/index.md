@@ -29,7 +29,7 @@ These two types come with conversion routines:
 [`Hir`](hir::Hir).
 
 As a convenience, the above two conversion routines are combined into one via
-the top-level [`Parser`](#parser) type. This `Parser` will first convert your pattern to
+the top-level [`Parser`](ast/parse/index.md) type. This `Parser` will first convert your pattern to
 an `Ast` and then convert the `Ast` to an `Hir`. It's also exposed as top-level
 [`parse`](#parse) free function.
 
@@ -38,7 +38,7 @@ an `Ast` and then convert the `Ast` to an `Hir`. It's also exposed as top-level
 
 This example shows how to parse a pattern string into its HIR:
 
-```
+```rust
 use regex_syntax::{hir::Hir, parse};
 
 let hir = parse("a|b")?;
@@ -46,7 +46,7 @@ assert_eq!(hir, Hir::alternation(vec![
     Hir::literal("a".as_bytes()),
     Hir::literal("b".as_bytes()),
 ]));
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 
@@ -192,7 +192,7 @@ convenience for never having to deal with it at all.
 If callers have more fine grained use cases that need an AST, then please
 see the `ast::parse` module.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](ast/parse/index.md).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuilder).
 
 #### Implementations
 
@@ -471,14 +471,14 @@ new variant is not considered a breaking change.
 
 - `fn from(err: ast::Error) -> Error`
 
-##### `impl From`
-
-- `fn from(err: hir::Error) -> Error`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(err: hir::Error) -> Error`
 
 ##### `impl Into<T, U>`
 
@@ -602,7 +602,7 @@ breaking change for not just `regex-syntax` but also `regex` itself.)
 
 # Example
 
-```
+```rust
 use regex_syntax::is_meta_character;
 
 assert!(is_meta_character('?'));
@@ -644,7 +644,7 @@ manner.
 
 # Example
 
-```
+```rust
 use regex_syntax::is_escapeable_character;
 
 assert!(is_escapeable_character('?'));

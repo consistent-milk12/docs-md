@@ -96,7 +96,7 @@ haystack offsets for the corresponding group are written by regex engines.
 This example shows how to parse a simple date and extract the components of
 the date via capturing groups:
 
-```
+```rust
 use regex_automata::{nfa::thompson::pikevm::PikeVM, Span};
 
 let re = PikeVM::new(r"^([0-9]{4})-([0-9]{2})-([0-9]{2})$")?;
@@ -108,7 +108,7 @@ assert_eq!(Some(Span::from(0..4)), caps.get_group(1));
 assert_eq!(Some(Span::from(5..7)), caps.get_group(2));
 assert_eq!(Some(Span::from(8..10)), caps.get_group(3));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: named capturing groups
@@ -116,7 +116,7 @@ assert_eq!(Some(Span::from(8..10)), caps.get_group(3));
 This example is like the one above, but leverages the ability to name
 capturing groups in order to make the code a bit clearer:
 
-```
+```rust
 use regex_automata::{nfa::thompson::pikevm::PikeVM, Span};
 
 let re = PikeVM::new(r"^(?P<y>[0-9]{4})-(?P<m>[0-9]{2})-(?P<d>[0-9]{2})$")?;
@@ -128,7 +128,7 @@ assert_eq!(Some(Span::from(0..4)), caps.get_group_by_name("y"));
 assert_eq!(Some(Span::from(5..7)), caps.get_group_by_name("m"));
 assert_eq!(Some(Span::from(8..10)), caps.get_group_by_name("d"));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -448,7 +448,7 @@ slots.
 This example shows how to build a new `GroupInfo` and query it for
 information.
 
-```
+```rust
 use regex_automata::util::{captures::GroupInfo, primitives::PatternID};
 
 let info = GroupInfo::new(vec![
@@ -477,7 +477,7 @@ assert_eq!(None, info.to_name(PatternID::must(2), 4));
 assert_eq!(Some(1), info.to_index(PatternID::must(0), "foo"));
 assert_eq!(Some(2), info.to_index(PatternID::must(3), "foo"));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: mapping from capture groups to slots
@@ -486,7 +486,7 @@ This example shows the specific mapping from capture group indices for
 each pattern to their corresponding slots. The slot values shown in this
 example are considered an API guarantee.
 
-```
+```rust
 use regex_automata::util::{captures::GroupInfo, primitives::PatternID};
 
 let info = GroupInfo::new(vec![
@@ -518,7 +518,7 @@ assert_eq!(Some((20, 21)), info.slots(PatternID::must(3), 2));
 assert_eq!(None, info.slots(PatternID::must(5), 0));
 assert_eq!(None, info.slots(PatternID::must(1), 1));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

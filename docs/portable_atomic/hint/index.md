@@ -9,7 +9,7 @@ Re-export of the `core::hint` module.
 The only difference from the `core::hint` module is that [`spin_loop`](#spin-loop)
 is available in all rust versions that this crate supports.
 
-```
+```rust
 use portable_atomic::hint;
 
 hint::spin_loop();

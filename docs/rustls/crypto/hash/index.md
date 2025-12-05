@@ -94,14 +94,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 

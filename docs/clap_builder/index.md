@@ -63,8 +63,8 @@ When deriving a `Parser`, you can use
 # Examples
 
 ```no_run
-# use clap_builder as clap;
-# use clap::{Command, Arg};
+use clap_builder as clap;
+use clap::{Command, Arg};
 let m = Command::new("My Program")
     .author("Me, me@mail.com")
     .version("1.0.2")
@@ -81,81 +81,6 @@ let m = Command::new("My Program")
 
 
 #### Implementations
-
-- `fn short_flag(self: Self, short: impl IntoResettable<char>) -> Self`
-  Sets the short version of the subcommand flag without the preceding `-`.
-
-- `fn long_flag(self: Self, long: impl Into<Str>) -> Self`
-  Sets the long version of the subcommand flag without the preceding `--`.
-
-- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Sets a hidden alias to this subcommand.
-
-- `fn short_flag_alias(self: Self, name: impl IntoResettable<char>) -> Self`
-  Add an alias, which functions as  "hidden" short flag subcommand
-
-- `fn long_flag_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Add an alias, which functions as a "hidden" long flag subcommand.
-
-- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Sets multiple hidden aliases to this subcommand.
-
-- `fn short_flag_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
-  Add aliases, which function as "hidden" short flag subcommands.
-
-- `fn long_flag_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Add aliases, which function as "hidden" long flag subcommands.
-
-- `fn visible_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Sets a visible alias to this subcommand.
-
-- `fn visible_short_flag_alias(self: Self, name: impl IntoResettable<char>) -> Self`
-  Add an alias, which functions as  "visible" short flag subcommand
-
-- `fn visible_long_flag_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
-  Add an alias, which functions as a "visible" long flag subcommand.
-
-- `fn visible_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Sets multiple visible aliases to this subcommand.
-
-- `fn visible_short_flag_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
-  Add aliases, which function as *visible* short flag subcommands.
-
-- `fn visible_long_flag_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
-  Add aliases, which function as *visible* long flag subcommands.
-
-- `fn display_order(self: Self, ord: impl IntoResettable<usize>) -> Self`
-  Set the placement of this subcommand within the help.
-
-- `fn hide(self: Self, yes: bool) -> Self`
-  Specifies that this [`subcommand`] should be hidden from help messages
-
-- `fn subcommand_required(self: Self, yes: bool) -> Self`
-  If no [`subcommand`] is present at runtime, error and exit gracefully.
-
-- `fn allow_external_subcommands(self: Self, yes: bool) -> Self`
-  Assume unexpected positional arguments are a [`subcommand`].
-
-- `fn external_subcommand_value_parser(self: Self, parser: impl IntoResettable<super::ValueParser>) -> Self`
-  Specifies how to parse external subcommand arguments.
-
-- `fn args_conflicts_with_subcommands(self: Self, yes: bool) -> Self`
-  Specifies that use of an argument prevents the use of [`subcommands`].
-
-- `fn subcommand_precedence_over_arg(self: Self, yes: bool) -> Self`
-  Prevent subcommands from being consumed as an arguments value.
-
-- `fn subcommand_negates_reqs(self: Self, yes: bool) -> Self`
-  Allows [`subcommands`] to override all requirements of the parent command.
-
-- `fn multicall(self: Self, yes: bool) -> Self`
-  Multiple-personality program dispatched on the binary name (`argv[0]`)
-
-- `fn subcommand_value_name(self: Self, value_name: impl IntoResettable<Str>) -> Self`
-  Sets the value name used for subcommands when printing usage and help.
-
-- `fn subcommand_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
-  Sets the help heading used for subcommands when printing usage and help.
 
 - `fn new(name: impl Into<Str>) -> Self`
   Creates a new instance of an `Command`.
@@ -240,123 +165,6 @@ let m = Command::new("My Program")
 
 - `fn render_usage(self: &mut Self) -> StyledStr`
   Usage statement
-
-- `fn no_binary_name(self: Self, yes: bool) -> Self`
-  Specifies that the parser should not assume the first argument passed is the binary name.
-
-- `fn ignore_errors(self: Self, yes: bool) -> Self`
-  Try not to fail on parse errors, like missing option values.
-
-- `fn args_override_self(self: Self, yes: bool) -> Self`
-  Replace prior occurrences of arguments rather than error
-
-- `fn dont_delimit_trailing_values(self: Self, yes: bool) -> Self`
-  Disables the automatic [delimiting of values][Arg::value_delimiter] after `--` or when [`Arg::trailing_var_arg`]
-
-- `fn color(self: Self, color: ColorChoice) -> Self`
-  Sets when to color output.
-
-- `fn styles(self: Self, styles: Styles) -> Self`
-  Sets the [`Styles`] for terminal output
-
-- `fn term_width(self: Self, width: usize) -> Self`
-  Sets the terminal width at which to wrap help messages.
-
-- `fn max_term_width(self: Self, width: usize) -> Self`
-  Limit the line length for wrapping help when using the current terminal's width.
-
-- `fn disable_version_flag(self: Self, yes: bool) -> Self`
-  Disables `-V` and `--version` flag.
-
-- `fn propagate_version(self: Self, yes: bool) -> Self`
-  Specifies to use the version of the current command for all [`subcommands`].
-
-- `fn next_line_help(self: Self, yes: bool) -> Self`
-  Places the help string for all arguments and subcommands on the line after them.
-
-- `fn disable_help_flag(self: Self, yes: bool) -> Self`
-  Disables `-h` and `--help` flag.
-
-- `fn disable_help_subcommand(self: Self, yes: bool) -> Self`
-  Disables the `help` [`subcommand`].
-
-- `fn disable_colored_help(self: Self, yes: bool) -> Self`
-  Disables colorized help messages.
-
-- `fn help_expected(self: Self, yes: bool) -> Self`
-   Panic if help descriptions are omitted.
-
-- `fn hide_possible_values(self: Self, yes: bool) -> Self`
-  Tells `clap` *not* to print possible values when displaying help information.
-
-- `fn infer_long_args(self: Self, yes: bool) -> Self`
-  Allow partial matches of long arguments or their [aliases].
-
-- `fn infer_subcommands(self: Self, yes: bool) -> Self`
-  Allow partial matches of [subcommand] names and their [aliases].
-
-- `fn name(self: Self, name: impl Into<Str>) -> Self`
-  (Re)Sets the program's name.
-
-- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self`
-  Overrides the runtime-determined name of the binary for help and error messages.
-
-- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self`
-  Overrides the runtime-determined display name of the program for help and error messages.
-
-- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self`
-  Sets the author(s) for the help message.
-
-- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self`
-  Sets the program's description for the short help (`-h`).
-
-- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self`
-  Sets the program's description for the long help (`--help`).
-
-- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Free-form help text for after auto-generated short help (`-h`).
-
-- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Free-form help text for after auto-generated long help (`--help`).
-
-- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Free-form help text for before auto-generated short help (`-h`).
-
-- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Free-form help text for before auto-generated long help (`--help`).
-
-- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self`
-  Sets the version for the short version (`-V`) and help messages.
-
-- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self`
-  Sets the version for the long version (`--version`) and help messages.
-
-- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self`
-  Overrides the `clap` generated usage string for help and error messages.
-
-- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
-  Overrides the `clap` generated help message (both `-h` and `--help`).
-
-- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self`
-  Sets the help template to be used, overriding the default format.
-
-- `fn flatten_help(self: Self, yes: bool) -> Self`
-  Flatten subcommand help into the current command's help
-
-- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
-  Set the default section heading for future args.
-
-- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self`
-  Change the starting value for assigning future display orders for args.
-
-- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
-  Exit gracefully if no arguments are present (e.g. `$ myprog`).
-
-- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
-  Allows one to implement two styles of CLIs where positionals can be used out of order.
-
-- `fn build(self: &mut Self)`
-  Prepare for introspecting on all included [`Command`]s
 
 - `fn get_display_name(self: &Self) -> Option<&str>`
   Get the name of the binary.
@@ -532,16 +340,208 @@ let m = Command::new("My Program")
 - `fn is_multicall_set(self: &Self) -> bool`
   Report whether [`Command::multicall`] is set
 
+- `fn short_flag(self: Self, short: impl IntoResettable<char>) -> Self`
+  Sets the short version of the subcommand flag without the preceding `-`.
+
+- `fn long_flag(self: Self, long: impl Into<Str>) -> Self`
+  Sets the long version of the subcommand flag without the preceding `--`.
+
+- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Sets a hidden alias to this subcommand.
+
+- `fn short_flag_alias(self: Self, name: impl IntoResettable<char>) -> Self`
+  Add an alias, which functions as  "hidden" short flag subcommand
+
+- `fn long_flag_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Add an alias, which functions as a "hidden" long flag subcommand.
+
+- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Sets multiple hidden aliases to this subcommand.
+
+- `fn short_flag_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
+  Add aliases, which function as "hidden" short flag subcommands.
+
+- `fn long_flag_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Add aliases, which function as "hidden" long flag subcommands.
+
+- `fn visible_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Sets a visible alias to this subcommand.
+
+- `fn visible_short_flag_alias(self: Self, name: impl IntoResettable<char>) -> Self`
+  Add an alias, which functions as  "visible" short flag subcommand
+
+- `fn visible_long_flag_alias(self: Self, name: impl IntoResettable<Str>) -> Self`
+  Add an alias, which functions as a "visible" long flag subcommand.
+
+- `fn visible_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Sets multiple visible aliases to this subcommand.
+
+- `fn visible_short_flag_aliases(self: Self, names: impl IntoIterator<Item = char>) -> Self`
+  Add aliases, which function as *visible* short flag subcommands.
+
+- `fn visible_long_flag_aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self`
+  Add aliases, which function as *visible* long flag subcommands.
+
+- `fn display_order(self: Self, ord: impl IntoResettable<usize>) -> Self`
+  Set the placement of this subcommand within the help.
+
+- `fn hide(self: Self, yes: bool) -> Self`
+  Specifies that this [`subcommand`] should be hidden from help messages
+
+- `fn subcommand_required(self: Self, yes: bool) -> Self`
+  If no [`subcommand`] is present at runtime, error and exit gracefully.
+
+- `fn allow_external_subcommands(self: Self, yes: bool) -> Self`
+  Assume unexpected positional arguments are a [`subcommand`].
+
+- `fn external_subcommand_value_parser(self: Self, parser: impl IntoResettable<super::ValueParser>) -> Self`
+  Specifies how to parse external subcommand arguments.
+
+- `fn args_conflicts_with_subcommands(self: Self, yes: bool) -> Self`
+  Specifies that use of an argument prevents the use of [`subcommands`].
+
+- `fn subcommand_precedence_over_arg(self: Self, yes: bool) -> Self`
+  Prevent subcommands from being consumed as an arguments value.
+
+- `fn subcommand_negates_reqs(self: Self, yes: bool) -> Self`
+  Allows [`subcommands`] to override all requirements of the parent command.
+
+- `fn multicall(self: Self, yes: bool) -> Self`
+  Multiple-personality program dispatched on the binary name (`argv[0]`)
+
+- `fn subcommand_value_name(self: Self, value_name: impl IntoResettable<Str>) -> Self`
+  Sets the value name used for subcommands when printing usage and help.
+
+- `fn subcommand_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
+  Sets the help heading used for subcommands when printing usage and help.
+
+- `fn build(self: &mut Self)`
+  Prepare for introspecting on all included [`Command`]s
+
+- `fn name(self: Self, name: impl Into<Str>) -> Self`
+  (Re)Sets the program's name.
+
+- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self`
+  Overrides the runtime-determined name of the binary for help and error messages.
+
+- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self`
+  Overrides the runtime-determined display name of the program for help and error messages.
+
+- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self`
+  Sets the author(s) for the help message.
+
+- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self`
+  Sets the program's description for the short help (`-h`).
+
+- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self`
+  Sets the program's description for the long help (`--help`).
+
+- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Free-form help text for after auto-generated short help (`-h`).
+
+- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Free-form help text for after auto-generated long help (`--help`).
+
+- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Free-form help text for before auto-generated short help (`-h`).
+
+- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Free-form help text for before auto-generated long help (`--help`).
+
+- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self`
+  Sets the version for the short version (`-V`) and help messages.
+
+- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self`
+  Sets the version for the long version (`--version`) and help messages.
+
+- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self`
+  Overrides the `clap` generated usage string for help and error messages.
+
+- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self`
+  Overrides the `clap` generated help message (both `-h` and `--help`).
+
+- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self`
+  Sets the help template to be used, overriding the default format.
+
+- `fn flatten_help(self: Self, yes: bool) -> Self`
+  Flatten subcommand help into the current command's help
+
+- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
+  Set the default section heading for future args.
+
+- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self`
+  Change the starting value for assigning future display orders for args.
+
+- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
+  Exit gracefully if no arguments are present (e.g. `$ myprog`).
+
+- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
+  Allows one to implement two styles of CLIs where positionals can be used out of order.
+
+- `fn no_binary_name(self: Self, yes: bool) -> Self`
+  Specifies that the parser should not assume the first argument passed is the binary name.
+
+- `fn ignore_errors(self: Self, yes: bool) -> Self`
+  Try not to fail on parse errors, like missing option values.
+
+- `fn args_override_self(self: Self, yes: bool) -> Self`
+  Replace prior occurrences of arguments rather than error
+
+- `fn dont_delimit_trailing_values(self: Self, yes: bool) -> Self`
+  Disables the automatic [delimiting of values][Arg::value_delimiter] after `--` or when [`Arg::trailing_var_arg`]
+
+- `fn color(self: Self, color: ColorChoice) -> Self`
+  Sets when to color output.
+
+- `fn styles(self: Self, styles: Styles) -> Self`
+  Sets the [`Styles`] for terminal output
+
+- `fn term_width(self: Self, width: usize) -> Self`
+  Sets the terminal width at which to wrap help messages.
+
+- `fn max_term_width(self: Self, width: usize) -> Self`
+  Limit the line length for wrapping help when using the current terminal's width.
+
+- `fn disable_version_flag(self: Self, yes: bool) -> Self`
+  Disables `-V` and `--version` flag.
+
+- `fn propagate_version(self: Self, yes: bool) -> Self`
+  Specifies to use the version of the current command for all [`subcommands`].
+
+- `fn next_line_help(self: Self, yes: bool) -> Self`
+  Places the help string for all arguments and subcommands on the line after them.
+
+- `fn disable_help_flag(self: Self, yes: bool) -> Self`
+  Disables `-h` and `--help` flag.
+
+- `fn disable_help_subcommand(self: Self, yes: bool) -> Self`
+  Disables the `help` [`subcommand`].
+
+- `fn disable_colored_help(self: Self, yes: bool) -> Self`
+  Disables colorized help messages.
+
+- `fn help_expected(self: Self, yes: bool) -> Self`
+   Panic if help descriptions are omitted.
+
+- `fn hide_possible_values(self: Self, yes: bool) -> Self`
+  Tells `clap` *not* to print possible values when displaying help information.
+
+- `fn infer_long_args(self: Self, yes: bool) -> Self`
+  Allow partial matches of long arguments or their [aliases].
+
+- `fn infer_subcommands(self: Self, yes: bool) -> Self`
+  Allow partial matches of [subcommand] names and their [aliases].
+
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(cmd: &Command) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(cmd: &Command) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -634,8 +634,8 @@ use a combination of the two methods to achieve the best of both worlds.
 # Examples
 
 ```rust
-# use clap_builder as clap;
-# use clap::{Arg, arg, ArgAction};
+use clap_builder as clap;
+use clap::{Arg, arg, ArgAction};
 // Using the traditional builder pattern and setting each option manually
 let cfg = Arg::new("config")
       .short('c')
@@ -648,60 +648,6 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 ```
 
 #### Implementations
-
-- `fn group(self: Self, group_id: impl IntoResettable<Id>) -> Self`
-  The name of the [`ArgGroup`] the argument belongs to.
-
-- `fn groups(self: Self, group_ids: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  The names of [`ArgGroup`]'s the argument belongs to.
-
-- `fn default_value_if(self: Self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, default: impl IntoResettable<OsStr>) -> Self`
-  Specifies the value of the argument if `arg` has been used at runtime.
-
-- `fn default_values_if(self: Self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, defaults: impl IntoIterator<Item = impl Into<OsStr>>) -> Self`
-  Specifies the values of the argument if `arg` has been used at runtime.
-
-- `fn default_value_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoResettable<OsStr>)>) -> Self`
-  Specifies multiple values and conditions in the same manner as [`Arg::default_value_if`].
-
-- `fn default_values_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoIterator<Item = impl Into<OsStr>>)>) -> Self`
-  Specifies multiple values and conditions in the same manner as [`Arg::default_values_if`].
-
-- `fn required_unless_present(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
-  Set this arg as [required] as long as the specified argument is not present at runtime.
-
-- `fn required_unless_present_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  Sets this arg as [required] unless *all* of the specified arguments are present at runtime.
-
-- `fn required_unless_present_any(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  Sets this arg as [required] unless *any* of the specified arguments are present at runtime.
-
-- `fn required_if_eq(self: Self, arg_id: impl Into<Id>, val: impl Into<OsStr>) -> Self`
-  This argument is [required] only if the specified `arg` is present at runtime and its value
-
-- `fn required_if_eq_any(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self`
-  Specify this argument is [required] based on multiple conditions.
-
-- `fn required_if_eq_all(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self`
-  Specify this argument is [required] based on multiple conditions.
-
-- `fn requires_if(self: Self, val: impl Into<ArgPredicate>, arg_id: impl Into<Id>) -> Self`
-  Require another argument if this arg matches the [`ArgPredicate`]
-
-- `fn requires_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<ArgPredicate>, impl Into<Id>)>) -> Self`
-  Allows multiple conditional requirements.
-
-- `fn conflicts_with(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
-  This argument is mutually exclusive with the specified argument.
-
-- `fn conflicts_with_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  This argument is mutually exclusive with the specified arguments.
-
-- `fn overrides_with(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
-  Sets an overridable argument.
-
-- `fn overrides_with_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
-  Sets multiple mutually overridable arguments by name.
 
 - `fn new(id: impl Into<Id>) -> Self`
   Create a new [`Arg`] with a unique name.
@@ -759,36 +705,6 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 - `fn global(self: Self, yes: bool) -> Self`
   Specifies that an argument can be matched to all child [`Subcommand`]s.
-
-- `fn help(self: Self, h: impl IntoResettable<StyledStr>) -> Self`
-  Sets the description of the argument for short help (`-h`).
-
-- `fn long_help(self: Self, h: impl IntoResettable<StyledStr>) -> Self`
-  Sets the description of the argument for long help (`--help`).
-
-- `fn display_order(self: Self, ord: impl IntoResettable<usize>) -> Self`
-  Allows custom ordering of args within the help message.
-
-- `fn help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
-  Override the `--help` section this appears in.
-
-- `fn next_line_help(self: Self, yes: bool) -> Self`
-  Render the [help][Arg::help] on the line after the argument.
-
-- `fn hide(self: Self, yes: bool) -> Self`
-  Do not display the argument in help message.
-
-- `fn hide_possible_values(self: Self, yes: bool) -> Self`
-  Do not display the [possible values][crate::builder::ValueParser::possible_values] in the help message.
-
-- `fn hide_default_value(self: Self, yes: bool) -> Self`
-  Do not display the default value of the argument in the help message.
-
-- `fn hide_short_help(self: Self, yes: bool) -> Self`
-  Hides an argument from short help (`-h`).
-
-- `fn hide_long_help(self: Self, yes: bool) -> Self`
-  Hides an argument from long help (`--help`).
 
 - `fn get_id(self: &Self) -> &Id`
   Get the name of the argument
@@ -967,16 +883,100 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 - `fn default_missing_values_os(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self`
   Value for the argument when the flag is present but no value is specified.
 
+- `fn group(self: Self, group_id: impl IntoResettable<Id>) -> Self`
+  The name of the [`ArgGroup`] the argument belongs to.
+
+- `fn groups(self: Self, group_ids: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  The names of [`ArgGroup`]'s the argument belongs to.
+
+- `fn default_value_if(self: Self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, default: impl IntoResettable<OsStr>) -> Self`
+  Specifies the value of the argument if `arg` has been used at runtime.
+
+- `fn default_values_if(self: Self, arg_id: impl Into<Id>, predicate: impl Into<ArgPredicate>, defaults: impl IntoIterator<Item = impl Into<OsStr>>) -> Self`
+  Specifies the values of the argument if `arg` has been used at runtime.
+
+- `fn default_value_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoResettable<OsStr>)>) -> Self`
+  Specifies multiple values and conditions in the same manner as [`Arg::default_value_if`].
+
+- `fn default_values_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<ArgPredicate>, impl IntoIterator<Item = impl Into<OsStr>>)>) -> Self`
+  Specifies multiple values and conditions in the same manner as [`Arg::default_values_if`].
+
+- `fn required_unless_present(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
+  Set this arg as [required] as long as the specified argument is not present at runtime.
+
+- `fn required_unless_present_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  Sets this arg as [required] unless *all* of the specified arguments are present at runtime.
+
+- `fn required_unless_present_any(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  Sets this arg as [required] unless *any* of the specified arguments are present at runtime.
+
+- `fn required_if_eq(self: Self, arg_id: impl Into<Id>, val: impl Into<OsStr>) -> Self`
+  This argument is [required] only if the specified `arg` is present at runtime and its value
+
+- `fn required_if_eq_any(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self`
+  Specify this argument is [required] based on multiple conditions.
+
+- `fn required_if_eq_all(self: Self, ifs: impl IntoIterator<Item = (impl Into<Id>, impl Into<OsStr>)>) -> Self`
+  Specify this argument is [required] based on multiple conditions.
+
+- `fn requires_if(self: Self, val: impl Into<ArgPredicate>, arg_id: impl Into<Id>) -> Self`
+  Require another argument if this arg matches the [`ArgPredicate`]
+
+- `fn requires_ifs(self: Self, ifs: impl IntoIterator<Item = (impl Into<ArgPredicate>, impl Into<Id>)>) -> Self`
+  Allows multiple conditional requirements.
+
+- `fn conflicts_with(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
+  This argument is mutually exclusive with the specified argument.
+
+- `fn conflicts_with_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  This argument is mutually exclusive with the specified arguments.
+
+- `fn overrides_with(self: Self, arg_id: impl IntoResettable<Id>) -> Self`
+  Sets an overridable argument.
+
+- `fn overrides_with_all(self: Self, names: impl IntoIterator<Item = impl Into<Id>>) -> Self`
+  Sets multiple mutually overridable arguments by name.
+
+- `fn help(self: Self, h: impl IntoResettable<StyledStr>) -> Self`
+  Sets the description of the argument for short help (`-h`).
+
+- `fn long_help(self: Self, h: impl IntoResettable<StyledStr>) -> Self`
+  Sets the description of the argument for long help (`--help`).
+
+- `fn display_order(self: Self, ord: impl IntoResettable<usize>) -> Self`
+  Allows custom ordering of args within the help message.
+
+- `fn help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self`
+  Override the `--help` section this appears in.
+
+- `fn next_line_help(self: Self, yes: bool) -> Self`
+  Render the [help][Arg::help] on the line after the argument.
+
+- `fn hide(self: Self, yes: bool) -> Self`
+  Do not display the argument in help message.
+
+- `fn hide_possible_values(self: Self, yes: bool) -> Self`
+  Do not display the [possible values][crate::builder::ValueParser::possible_values] in the help message.
+
+- `fn hide_default_value(self: Self, yes: bool) -> Self`
+  Do not display the default value of the argument in the help message.
+
+- `fn hide_short_help(self: Self, yes: bool) -> Self`
+  Hides an argument from short help (`-h`).
+
+- `fn hide_long_help(self: Self, yes: bool) -> Self`
+  Hides an argument from long help (`--help`).
+
 #### Trait Implementations
+
+##### `impl From`
+
+- `fn from(a: &Arg) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(a: &Arg) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1063,12 +1063,9 @@ struct ArgGroup {
 
 Specifies a logical group of [arguments](#arguments)
 
-
 You can use this for
 - applying validation to an entire group, like `ArgGroup::multiple`
-- validate relationships between an argument and a group, like [conflicts](#conflicts)
- or [requirements](#requirements)
-
+- validate relationships between an argument and a group, like [conflicts](#conflicts) or [requirements](#requirements)
 - check which argument in a group was specified on the command-line
 
 For visually grouping arguments in help, see instead
@@ -1080,8 +1077,8 @@ The following example demonstrates using an `ArgGroup` to ensure that one, and o
 the arguments from the specified group is present at runtime.
 
 ```rust
-# use clap_builder as clap;
-# use clap::{Command, arg, ArgGroup, error::ErrorKind};
+use clap_builder as clap;
+use clap::{Command, arg, ArgGroup, error::ErrorKind};
 let result = Command::new("cmd")
     .arg(arg!(--"set-ver" <ver> "set the version manually"))
     .arg(arg!(--major           "auto increase major"))
@@ -1099,8 +1096,8 @@ assert_eq!(err.kind(), ErrorKind::ArgumentConflict);
 
 This next example shows a passing parse of the same scenario
 ```rust
-# use clap_builder as clap;
-# use clap::{Command, arg, ArgGroup, Id};
+use clap_builder as clap;
+use clap::{Command, arg, ArgGroup, Id};
 let result = Command::new("cmd")
     .arg(arg!(--"set-ver" <ver> "set the version manually"))
     .arg(arg!(--major           "auto increase major"))
@@ -1123,14 +1120,17 @@ assert_eq!(matches
 );
 // we could also alternatively check each arg individually (not shown here)
 ```
-[arguments](#arguments)
-: crate::Arg
-[conflicts](#conflicts)
-: crate::Arg::conflicts_with()
-[requirements](#requirements)
-: crate::Arg::requires()
+[arguments](#arguments): crate::Arg
+[conflicts](#conflicts): crate::Arg::conflicts_with()
+[requirements](#requirements): crate::Arg::requires()
 
 #### Implementations
+
+- `fn get_id(self: &Self) -> &Id`
+  Get the name of the group
+
+- `fn is_required_set(self: &Self) -> bool`
+  Reports whether [`ArgGroup::required`] is set
 
 - `fn new(id: impl Into<Id>) -> Self`
   Create a `ArgGroup` using a unique name.
@@ -1167,12 +1167,6 @@ assert_eq!(matches
 
 - `fn conflicts_with_all(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self`
   Specify arguments or groups that must **not** be present when this group is.
-
-- `fn get_id(self: &Self) -> &Id`
-  Get the name of the group
-
-- `fn is_required_set(self: &Self) -> bool`
-  Reports whether [`ArgGroup::required`] is set
 
 #### Trait Implementations
 
@@ -1263,9 +1257,9 @@ methods.
 # Examples
 
 ```no_run
-# use clap_builder as clap;
-# use clap::{Command, Arg, ArgAction};
-# use clap::parser::ValueSource;
+use clap_builder as clap;
+use clap::{Command, Arg, ArgAction};
+use clap::parser::ValueSource;
 let matches = Command::new("MyApp")
     .arg(Arg::new("out")
         .long("output")
@@ -1302,6 +1296,36 @@ if matches.contains_id("out") {
 
 
 #### Implementations
+
+- `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_one`]
+
+- `fn try_get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_many`]
+
+- `fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_occurrences`]
+
+- `fn try_get_raw(self: &Self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_raw`]
+
+- `fn try_get_raw_occurrences(self: &Self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::get_raw_occurrences`]
+
+- `fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<T>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_one`]
+
+- `fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Values<T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_many`]
+
+- `fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>`
+  Non-panicking version of [`ArgMatches::remove_occurrences`]
+
+- `fn try_contains_id(self: &Self, id: &str) -> Result<bool, MatchesError>`
+  Non-panicking version of [`ArgMatches::contains_id`]
+
+- `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>`
+  Clears the values for the given `id`
 
 - `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
   Gets the value of a specific option or positional argument.
@@ -1350,36 +1374,6 @@ if matches.contains_id("out") {
 
 - `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>`
   All indices an argument appeared at when parsing.
-
-- `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_one`]
-
-- `fn try_get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_many`]
-
-- `fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_occurrences`]
-
-- `fn try_get_raw(self: &Self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_raw`]
-
-- `fn try_get_raw_occurrences(self: &Self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_raw_occurrences`]
-
-- `fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<T>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_one`]
-
-- `fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Values<T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_many`]
-
-- `fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_occurrences`]
-
-- `fn try_contains_id(self: &Self, id: &str) -> Result<bool, MatchesError>`
-  Non-panicking version of [`ArgMatches::contains_id`]
-
-- `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>`
-  Clears the values for the given `id`
 
 - `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
   The name and `ArgMatches` of the current [subcommand].
@@ -1480,6 +1474,11 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 #### Trait Implementations
 
+##### `impl From<T>`
+
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
+
 ##### `impl From`
 
 - `fn from(name: &'static str) -> Self`
@@ -1488,18 +1487,13 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - `fn from(name: &&'static str) -> Self`
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(id: &Id) -> Self`
 
 ##### `impl From`
 
 - `fn from(name: &Str) -> Self`
-
-##### `impl From`
-
-- `fn from(id: &Id) -> Self`
 
 ##### `impl From`
 
@@ -1512,11 +1506,11 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl IntoResettable<I>`
 
-- `fn into_resettable(self: Self) -> Resettable<Str>`
+- `fn into_resettable(self: Self) -> Resettable<String>`
 
 ##### `impl IntoResettable<I>`
 
-- `fn into_resettable(self: Self) -> Resettable<String>`
+- `fn into_resettable(self: Self) -> Resettable<Str>`
 
 ##### `impl Any<T>`
 
@@ -1526,13 +1520,13 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 - `fn as_ref(self: &Self) -> &str`
 
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
 ##### `impl Borrow`
 
 - `fn borrow(self: &Self) -> &str`
+
+##### `impl Borrow<T>`
+
+- `fn borrow(self: &Self) -> &T`
 
 ##### `impl BorrowMut<T>`
 
@@ -1562,6 +1556,10 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl PartialEq`
 
+- `fn eq(self: &Self, other: &Str) -> bool`
+
+##### `impl PartialEq`
+
 - `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialEq`
@@ -1575,10 +1573,6 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 ##### `impl PartialEq`
 
 - `fn eq(self: &Self, other: &Id) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Str) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -1641,10 +1635,10 @@ Behavior of arguments when they are encountered while parsing
 # Examples
 
 ```rust
-# #[cfg(feature = "help")] {
-# use clap_builder as clap;
-# use clap::Command;
-# use clap::Arg;
+#[cfg(feature = "help")] {
+use clap_builder as clap;
+use clap::Command;
+use clap::Arg;
 let cmd = Command::new("mycmd")
     .arg(
         Arg::new("special-help")
@@ -1659,7 +1653,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
 // New help available
 let err = cmd.try_get_matches_from(["mycmd", "-?"]).unwrap_err();
 assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
-# }
+}
 ```
 
 #### Variants
@@ -1679,9 +1673,9 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("flag")
@@ -1704,9 +1698,9 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("flag")
@@ -1742,9 +1736,9 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("flag")
@@ -1770,11 +1764,11 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   You can use `TypedValueParser::map` to have the
   flag control an application-specific type:
   ```rust
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
-  # use clap::builder::TypedValueParser as _;
-  # use clap::builder::BoolishValueParser;
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
+  use clap::builder::TypedValueParser as _;
+  use clap::builder::BoolishValueParser;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("flag")
@@ -1823,9 +1817,9 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("flag")
@@ -1860,9 +1854,9 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("flag")
@@ -1894,10 +1888,10 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # #[cfg(feature = "help")] {
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  #[cfg(feature = "help")] {
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("special-help")
@@ -1912,7 +1906,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   // New help available
   let err = cmd.try_get_matches_from(["mycmd", "-?"]).unwrap_err();
   assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
-  # }
+  }
   ```
 
 - **`HelpShort`**
@@ -1922,10 +1916,10 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # #[cfg(feature = "help")] {
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  #[cfg(feature = "help")] {
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("special-help")
@@ -1940,7 +1934,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   // New help available
   let err = cmd.try_get_matches_from(["mycmd", "-?"]).unwrap_err();
   assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
-  # }
+  }
   ```
 
 - **`HelpLong`**
@@ -1950,10 +1944,10 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # #[cfg(feature = "help")] {
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  #[cfg(feature = "help")] {
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .arg(
           Arg::new("special-help")
@@ -1968,7 +1962,7 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   // New help available
   let err = cmd.try_get_matches_from(["mycmd", "-?"]).unwrap_err();
   assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
-  # }
+  }
   ```
 
 - **`Version`**
@@ -1980,9 +1974,9 @@ assert_eq!(err.kind(), clap::error::ErrorKind::DisplayHelp);
   # Examples
   
   ```rust
-  # use clap_builder as clap;
-  # use clap::Command;
-  # use clap::Arg;
+  use clap_builder as clap;
+  use clap::Command;
+  use clap::Arg;
   let cmd = Command::new("mycmd")
       .version("1.0.0")
       .arg(
@@ -2285,13 +2279,13 @@ Represents the color preferences for program output
   # Examples
   
   ```rust
-  # #[cfg(feature = "color")] {
-  # use clap_builder as clap;
-  # use clap::{Command, ColorChoice};
+  #[cfg(feature = "color")] {
+  use clap_builder as clap;
+  use clap::{Command, ColorChoice};
   Command::new("myprog")
       .color(ColorChoice::Auto)
       .get_matches();
-  # }
+  }
   ```
 
 - **`Always`**
@@ -2301,13 +2295,13 @@ Represents the color preferences for program output
   # Examples
   
   ```rust
-  # #[cfg(feature = "color")] {
-  # use clap_builder as clap;
-  # use clap::{Command, ColorChoice};
+  #[cfg(feature = "color")] {
+  use clap_builder as clap;
+  use clap::{Command, ColorChoice};
   Command::new("myprog")
       .color(ColorChoice::Always)
       .get_matches();
-  # }
+  }
   ```
 
 - **`Never`**
@@ -2317,13 +2311,13 @@ Represents the color preferences for program output
   # Examples
   
   ```rust
-  # #[cfg(feature = "color")] {
-  # use clap_builder as clap;
-  # use clap::{Command, ColorChoice};
+  #[cfg(feature = "color")] {
+  use clap_builder as clap;
+  use clap::{Command, ColorChoice};
   Command::new("myprog")
       .color(ColorChoice::Never)
       .get_matches();
-  # }
+  }
   ```
 
 #### Implementations
@@ -2460,9 +2454,7 @@ only available via the builder pattern.
 Usage strings typically following the form:
 
 ```notrust
-[explicit name] [short](#short)
- [long](#long)
- [value names] [...] [help string]
+[explicit name] [short] [long] [value names] [...] [help string]
 ```
 
 ### Explicit Name
@@ -2525,14 +2517,13 @@ characters.
 # Examples
 
 ```rust
-# use clap_builder as clap;
-# use clap::{Command, Arg, arg};
+use clap_builder as clap;
+use clap::{Command, Arg, arg};
 let cmd = Command::new("prog")
     .args(&[
         arg!(--config <FILE> "a required file for the configuration and no short"),
         arg!(-d --debug ... "turns on debugging information and allows multiples"),
-        arg!([input](#input)
- "an optional input file to use")
+        arg!([input] "an optional input file to use")
     ]);
 
 let m = cmd.try_get_matches_from(["prog", "--config", "file.toml"]).unwrap();
@@ -2559,9 +2550,9 @@ Supported types
 
 Usage:
 ```rust
-# use clap_builder as clap;
-# use std::path::PathBuf;
-# use std::path::Path;
+use clap_builder as clap;
+use std::path::PathBuf;
+use std::path::Path;
 let mut cmd = clap::Command::new("raw")
     .arg(
         clap::Arg::new("output")
@@ -2577,8 +2568,8 @@ assert_eq!(port, Path::new("file.txt"));
 
 Example mappings:
 ```rust
-# use clap_builder as clap;
-# use clap::ColorChoice;
+use clap_builder as clap;
+use clap::ColorChoice;
 // Built-in types
 let parser = clap::value_parser!(String);
 assert_eq!(format!("{parser:?}"), "ValueParser::string");

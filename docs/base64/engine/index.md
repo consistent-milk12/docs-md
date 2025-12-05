@@ -105,8 +105,8 @@ struct GeneralPurposeConfig {
 
 Contains configuration parameters for base64 encoding and decoding.
 
-```
-# use base64::engine::GeneralPurposeConfig;
+```rust
+use base64::engine::GeneralPurposeConfig;
 let config = GeneralPurposeConfig::new()
     .with_encode_padding(false);
     // further customize using `.with_*` methods as needed

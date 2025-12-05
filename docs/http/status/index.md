@@ -12,7 +12,7 @@ this module but rather the `http::StatusCode` type.
 
 # Examples
 
-```
+```rust
 use http::StatusCode;
 
 assert_eq!(StatusCode::from_u16(200).unwrap(), StatusCode::OK);
@@ -42,7 +42,7 @@ discouraged. Applications may interpret such values as protocol errors.
 
 # Examples
 
-```
+```rust
 use http::StatusCode;
 
 assert_eq!(StatusCode::from_u16(200).unwrap(), StatusCode::OK);
@@ -208,14 +208,14 @@ assert!(StatusCode::OK.is_success());
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from(t: &'a StatusCode) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(t: &'a StatusCode) -> Self`
 
 ##### `impl FromStr`
 
@@ -302,17 +302,17 @@ assert!(StatusCode::OK.is_success());
 
 - `fn try_from(t: &'a str) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
-
-- `type Error = InvalidStatusCode`
-
-- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidStatusCode`
+
+- `fn try_from(t: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

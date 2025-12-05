@@ -44,13 +44,13 @@ Interface shared by unbuffered client and server connections.
 
 #### Implementations
 
-- `fn process_tls_records<'c, 'i>(self: &'c mut Self, incoming_tls: &'i mut [u8]) -> UnbufferedStatus<'c, 'i, ServerConnectionData>`
+- `fn process_tls_records<'c, 'i>(self: &'c mut Self, incoming_tls: &'i mut [u8]) -> UnbufferedStatus<'c, 'i, ClientConnectionData>`
   Processes the TLS records in `incoming_tls` buffer until a new [`UnbufferedStatus`] is
 
 - `fn dangerous_extract_secrets(self: Self) -> Result<ExtractedSecrets, Error>`
   Extract secrets, so they can be used when configuring kTLS, for example.
 
-- `fn process_tls_records<'c, 'i>(self: &'c mut Self, incoming_tls: &'i mut [u8]) -> UnbufferedStatus<'c, 'i, ClientConnectionData>`
+- `fn process_tls_records<'c, 'i>(self: &'c mut Self, incoming_tls: &'i mut [u8]) -> UnbufferedStatus<'c, 'i, ServerConnectionData>`
   Processes the TLS records in `incoming_tls` buffer until a new [`UnbufferedStatus`] is
 
 #### Trait Implementations
@@ -685,22 +685,22 @@ The state of the [`UnbufferedConnectionCommon`](../index.md) object
 
 - `fn from(v: TransmitTlsData<'c, Data>) -> Self`
 
+##### `impl From<'c, Data>`
+
+- `fn from(v: EncodeTlsData<'c, Data>) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
 
-##### `impl From<'c, Data>`
+##### `impl From<'c, 'i, Data>`
 
-- `fn from(v: EncodeTlsData<'c, Data>) -> Self`
+- `fn from(v: ReadTraffic<'c, 'i, Data>) -> Self`
 
 ##### `impl From<'c, 'i, Data>`
 
 - `fn from(v: ReadEarlyData<'c, 'i, Data>) -> Self`
-
-##### `impl From<'c, 'i, Data>`
-
-- `fn from(v: ReadTraffic<'c, 'i, Data>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -758,14 +758,14 @@ Errors that may arise when encoding a handshake record
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(v: InsufficientSizeError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(v: InsufficientSizeError) -> Self`
 
 ##### `impl Into<T, U>`
 

@@ -50,7 +50,7 @@ byte explicitly.
 This shows basic usage that permits running a search with a DFA without
 using the `Input` abstraction.
 
-```
+```rust
 use regex_automata::{
     dfa::{Automaton, dense},
     util::start,
@@ -68,14 +68,14 @@ for &b in haystack.as_bytes().iter() {
 state = dfa.next_eoi_state(state);
 assert!(dfa.is_match_state(state));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 This example shows how to correctly run a search that doesn't begin at
 the start of a haystack. Notice how we set the look-behind byte, and as
 a result, the `\b` assertion does not match.
 
-```
+```rust
 use regex_automata::{
     dfa::{Automaton, dense},
     util::start,
@@ -96,14 +96,14 @@ state = dfa.next_eoi_state(state);
 // No match!
 assert!(!dfa.is_match_state(state));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 If we had instead not set a look-behind byte, then the DFA would assume
 that it was starting at the beginning of the haystack, and thus `\b` should
 match. This in turn would result in erroneously reporting a match:
 
-```
+```rust
 use regex_automata::{
     dfa::{Automaton, dense},
     util::start,
@@ -123,7 +123,7 @@ state = dfa.next_eoi_state(state);
 // And now we get a match unexpectedly.
 assert!(dfa.is_match_state(state));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

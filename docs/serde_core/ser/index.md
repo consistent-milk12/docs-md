@@ -132,11 +132,11 @@ corresponding to the [`Serializer`](#serializer) compound types: [`SerializeSeq`
 [`SerializeMap`](#serializemap), [`SerializeStruct`](#serializestruct), and [`SerializeStructVariant`](#serializestructvariant).
 
 ```edition2021
-# use serde::ser::{Serializer, Impossible};
-# use serde_core::__private::doc::Error;
-#
-# struct MySerializer;
-#
+use serde::ser::{Serializer, Impossible};
+use serde_core::__private::doc::Error;
+
+struct MySerializer;
+
 impl Serializer for MySerializer {
     type Ok = ();
     type Error = Error;
@@ -150,18 +150,18 @@ impl Serializer for MySerializer {
                      -> Result<Self::SerializeSeq, Error> {
         // Given Impossible cannot be instantiated, the only
         // thing we can do here is to return an error.
-#         stringify! {
+        stringify! {
         Err(...)
-#         };
-#         unimplemented!()
+        };
+        unimplemented!()
     }
 
     /* other Serializer methods */
-#     serde_core::__serialize_unimplemented! {
-#         bool i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 char str bytes none some
-#         unit unit_struct unit_variant newtype_struct newtype_variant
-#         tuple tuple_struct tuple_variant map struct struct_variant
-#     }
+    serde_core::__serialize_unimplemented! {
+        bool i8 i16 i32 i64 u8 u16 u32 u64 f32 f64 char str bytes none some
+        unit unit_struct unit_variant newtype_struct newtype_variant
+        tuple tuple_struct tuple_variant map struct struct_variant
+    }
 }
 ```
 
@@ -595,24 +595,24 @@ Returned from `Serializer::serialize_seq`.
 # Example use
 
 ```edition2021
-# use std::marker::PhantomData;
-#
-# struct Vec<T>(PhantomData<T>);
-#
-# impl<T> Vec<T> {
-#     fn len(&self) -> usize {
-#         unimplemented!()
-#     }
-# }
-#
-# impl<'a, T> IntoIterator for &'a Vec<T> {
-#     type Item = &'a T;
-#     type IntoIter = Box<dyn Iterator<Item = &'a T>>;
-#     fn into_iter(self) -> Self::IntoIter {
-#         unimplemented!()
-#     }
-# }
-#
+use std::marker::PhantomData;
+
+struct Vec<T>(PhantomData<T>);
+
+impl<T> Vec<T> {
+    fn len(&self) -> usize {
+        unimplemented!()
+    }
+}
+
+impl<'a, T> IntoIterator for &'a Vec<T> {
+    type Item = &'a T;
+    type IntoIter = Box<dyn Iterator<Item = &'a T>>;
+    fn into_iter(self) -> Self::IntoIter {
+        unimplemented!()
+    }
+}
+
 use serde::ser::{Serialize, SerializeSeq, Serializer};
 
 impl<T> Serialize for Vec<T>
@@ -666,15 +666,15 @@ Returned from `Serializer::serialize_tuple`.
 ```edition2021
 use serde::ser::{Serialize, SerializeTuple, Serializer};
 
-# mod fool {
-#     trait Serialize {}
+mod fool {
+    trait Serialize {}
 impl<A, B, C> Serialize for (A, B, C)
-#     {}
-# }
-#
-# struct Tuple3<A, B, C>(A, B, C);
-#
-# impl<A, B, C> Serialize for Tuple3<A, B, C>
+    {}
+}
+
+struct Tuple3<A, B, C>(A, B, C);
+
+impl<A, B, C> Serialize for Tuple3<A, B, C>
 where
     A: Serialize,
     B: Serialize,
@@ -694,33 +694,33 @@ where
 ```
 
 ```edition2021
-# use std::marker::PhantomData;
-#
-# struct Array<T>(PhantomData<T>);
-#
-# impl<T> Array<T> {
-#     fn len(&self) -> usize {
-#         unimplemented!()
-#     }
-# }
-#
-# impl<'a, T> IntoIterator for &'a Array<T> {
-#     type Item = &'a T;
-#     type IntoIter = Box<dyn Iterator<Item = &'a T>>;
-#     fn into_iter(self) -> Self::IntoIter {
-#         unimplemented!()
-#     }
-# }
-#
+use std::marker::PhantomData;
+
+struct Array<T>(PhantomData<T>);
+
+impl<T> Array<T> {
+    fn len(&self) -> usize {
+        unimplemented!()
+    }
+}
+
+impl<'a, T> IntoIterator for &'a Array<T> {
+    type Item = &'a T;
+    type IntoIter = Box<dyn Iterator<Item = &'a T>>;
+    fn into_iter(self) -> Self::IntoIter {
+        unimplemented!()
+    }
+}
+
 use serde::ser::{Serialize, SerializeTuple, Serializer};
 
-# mod fool {
-#     trait Serialize {}
+mod fool {
+    trait Serialize {}
 impl<T> Serialize for [T; 16]
-#     {}
-# }
-#
-# impl<T> Serialize for Array<T>
+    {}
+}
+
+impl<T> Serialize for Array<T>
 where
     T: Serialize,
 {
@@ -882,25 +882,25 @@ Returned from `Serializer::serialize_map`.
 # Example use
 
 ```edition2021
-# use std::marker::PhantomData;
-#
-# struct HashMap<K, V>(PhantomData<K>, PhantomData<V>);
-#
-# impl<K, V> HashMap<K, V> {
-#     fn len(&self) -> usize {
-#         unimplemented!()
-#     }
-# }
-#
-# impl<'a, K, V> IntoIterator for &'a HashMap<K, V> {
-#     type Item = (&'a K, &'a V);
-#     type IntoIter = Box<dyn Iterator<Item = (&'a K, &'a V)>>;
-#
-#     fn into_iter(self) -> Self::IntoIter {
-#         unimplemented!()
-#     }
-# }
-#
+use std::marker::PhantomData;
+
+struct HashMap<K, V>(PhantomData<K>, PhantomData<V>);
+
+impl<K, V> HashMap<K, V> {
+    fn len(&self) -> usize {
+        unimplemented!()
+    }
+}
+
+impl<'a, K, V> IntoIterator for &'a HashMap<K, V> {
+    type Item = (&'a K, &'a V);
+    type IntoIter = Box<dyn Iterator<Item = (&'a K, &'a V)>>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        unimplemented!()
+    }
+}
+
 use serde::ser::{Serialize, SerializeMap, Serializer};
 
 impl<K, V> Serialize for HashMap<K, V>

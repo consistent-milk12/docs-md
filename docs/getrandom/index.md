@@ -87,8 +87,7 @@ and Node.js environments are supported, invoking the methods
 To enable the `js` Cargo feature, add the following to the `dependencies`
 section in your `Cargo.toml` file:
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 getrandom = { version = "0.2", features = ["js"] }
 ```
 
@@ -372,12 +371,11 @@ of what is returned.
 # Examples
 
 ```ignore
-# // We ignore this test since `uninit_array` is unstable.
+// We ignore this test since `uninit_array` is unstable.
 #![feature(maybe_uninit_uninit_array)]
-# fn main() -> Result<(), getrandom::Error> {
+fn main() -> Result<(), getrandom::Error> {
 let mut buf = core::mem::MaybeUninit::uninit_array::<1024>();
-let buf: &mut [u8](#u8)
- = getrandom::getrandom_uninit(&mut buf)?;
-# Ok(()) }
+let buf: &mut [u8] = getrandom::getrandom_uninit(&mut buf)?;
+Ok(()) }
 ```
 

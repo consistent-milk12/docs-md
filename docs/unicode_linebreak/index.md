@@ -7,7 +7,7 @@ lines when displaying text.
 
 # Example
 
-```
+```rust
 use unicode_linebreak::{linebreaks, BreakOpportunity::{Mandatory, Allowed}};
 
 let text = "a b \nc";
@@ -401,7 +401,7 @@ Returns the line break property of the specified code point.
 
 # Examples
 
-```
+```rust
 use unicode_linebreak::{BreakClass, break_property};
 assert_eq!(break_property(0x2CF3), BreakClass::Alphabetic);
 ```
@@ -423,7 +423,7 @@ General_Category.
 
 # Examples
 
-```
+```rust
 use unicode_linebreak::{linebreaks, BreakOpportunity::{Mandatory, Allowed}};
 assert!(linebreaks("Hello world!").eq(vec![(6, Allowed), (12, Mandatory)]));
 ```
@@ -447,7 +447,7 @@ there are two approaches:
 
 # Examples
 
-```
+```rust
 use unicode_linebreak::{linebreaks, split_at_safe};
 let s = "Not allowed to break within em dashes: — —";
 let (prev, safe) = split_at_safe(s);

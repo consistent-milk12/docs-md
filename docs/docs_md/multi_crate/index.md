@@ -684,7 +684,7 @@ allowing the documentation to be built as an mdBook site.
 # Output Format
 
 ```markdown
-# Summary
+Summary
 
 - [tracing](tracing/index.md)
   - [span](tracing/span/index.md)

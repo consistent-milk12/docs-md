@@ -207,7 +207,7 @@ result of a search wouldn't change.
 This example shows how to get byte classes from an
 [`NFA`](crate::nfa::thompson::NFA) and ask for the class of various bytes.
 
-```
+```rust
 use regex_automata::nfa::thompson::NFA;
 
 let nfa = NFA::new("[a-z]+")?;
@@ -217,7 +217,7 @@ assert_eq!(classes.get(b'a'), classes.get(b'z'));
 // But 'a' and 'A' are not.
 assert_ne!(classes.get(b'a'), classes.get(b'A'));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

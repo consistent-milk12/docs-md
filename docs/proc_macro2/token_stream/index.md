@@ -21,11 +21,8 @@ An abstract stream of tokens, or more concretely a sequence of token trees.
 This type provides interfaces for iterating over token trees and for
 collecting token trees into one stream.
 
-Token stream is both the input and output of `#[proc_macro](#proc-macro)
-`,
-`#[proc_macro_attribute](#proc-macro-attribute)
-` and `#[proc_macro_derive](#proc-macro-derive)
-` definitions.
+Token stream is both the input and output of `#[proc_macro]`,
+`#[proc_macro_attribute]` and `#[proc_macro_derive]` definitions.
 
 #### Implementations
 
@@ -37,26 +34,26 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(token: TokenTree) -> Self`
 
 ##### `impl From`
 
 - `fn from(inner: proc_macro::TokenStream) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(token: TokenTree) -> Self`
-
-##### `impl FromIterator`
-
-- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl FromIterator`
 
 - `fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
+
+##### `impl FromIterator`
+
+- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
 
 ##### `impl FromStr`
 
@@ -103,11 +100,11 @@ Token stream is both the input and output of `#[proc_macro](#proc-macro)
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
 ##### `impl Extend`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl ToOwned<T>`
 

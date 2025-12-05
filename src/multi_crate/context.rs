@@ -15,7 +15,7 @@ use crate::Args;
 use crate::generator::RenderContext;
 use crate::generator::doc_links::{
     convert_html_links, convert_path_reference_links, strip_duplicate_title,
-    strip_reference_definitions,
+    strip_reference_definitions, unhide_code_lines,
 };
 use crate::linker::{LinkRegistry, slugify_anchor};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
@@ -526,6 +526,10 @@ impl<'a> SingleCrateView<'a> {
     }
 
     /// Process plain links like `[enter]` to markdown links.
+    ///
+    /// Skips matches that are:
+    /// - Inside inline code (backticks)
+    /// - Already markdown links (followed by `(` or `[`)
     fn process_plain_links(docs: &str) -> String {
         let mut result = String::with_capacity(docs.len());
         let mut last_end = 0;
@@ -541,6 +545,14 @@ impl<'a> SingleCrateView<'a> {
                 continue;
             }
 
+            // Check if inside inline code (count backticks before match)
+            let before = &docs[..match_start];
+            let backtick_count = before.chars().filter(|&c| c == '`').count();
+            if backtick_count % 2 == 1 {
+                // Odd number of backticks means we're inside inline code
+                continue;
+            }
+
             result.push_str(&docs[last_end..match_start]);
             last_end = match_end;
 
@@ -548,7 +560,7 @@ impl<'a> SingleCrateView<'a> {
 
             // Plain links usually refer to items on the same page
             let anchor = slugify_anchor(link_text);
-            _ = writeln!(result, "[{link_text}](#{anchor})");
+            _ = write!(result, "[{link_text}](#{anchor})");
         }
 
         result.push_str(&docs[last_end..]);
@@ -719,8 +731,11 @@ impl RenderContext for SingleCrateView<'_> {
         // Strip reference definitions first to prevent mangled output
         let stripped = strip_reference_definitions(docs);
 
+        // Unhide rustdoc hidden lines and add `rust` to bare code fences
+        let unhidden = unhide_code_lines(&stripped);
+
         // Convert HTML and path reference links
-        let html_processed = convert_html_links(&stripped);
+        let html_processed = convert_html_links(&unhidden);
         let path_processed = convert_path_reference_links(&html_processed);
 
         // Process backtick links [`Name`]

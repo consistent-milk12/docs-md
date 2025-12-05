@@ -138,7 +138,7 @@ disable all of these.
 This example shows how to disable UTF-8 mode in the syntax and the regex
 itself. This is generally what you want for matching on arbitrary bytes.
 
-```
+```rust
 use regex_automata::{
     nfa::thompson::{self, backtrack::BoundedBacktracker},
     util::syntax,
@@ -165,7 +165,7 @@ assert_eq!(expected, got);
 // length 0.
 assert_eq!(b"foo\xFFarzz", &haystack[got.unwrap()?.range()]);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -296,8 +296,8 @@ haystack length is to ensure the haystack length does not exceed
 This example shows that the bounded backtracker implements Unicode word
 boundaries correctly by default.
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{nfa::thompson::backtrack::BoundedBacktracker, Match};
 
 let re = BoundedBacktracker::new(r"\b\w+\b")?;
@@ -307,7 +307,7 @@ let mut it = re.try_find_iter(&mut cache, "Шерлок Холмс");
 assert_eq!(Some(Ok(Match::must(0, 0..12))), it.next());
 assert_eq!(Some(Ok(Match::must(0, 13..23))), it.next());
 assert_eq!(None, it.next());
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: multiple regex patterns
@@ -319,7 +319,7 @@ as more patterns are added. But then again, as more patterns are added, the
 maximum haystack length allowed will also shorten (assuming the visited
 capacity remains invariant).
 
-```
+```rust
 use regex_automata::{nfa::thompson::backtrack::BoundedBacktracker, Match};
 
 let re = BoundedBacktracker::new_many(&["[a-z]+", "[0-9]+"])?;
@@ -333,7 +333,7 @@ assert_eq!(Some(Ok(Match::must(1, 10..14))), it.next());
 assert_eq!(Some(Ok(Match::must(1, 15..16))), it.next());
 assert_eq!(Some(Ok(Match::must(0, 17..21))), it.next());
 assert_eq!(None, it.next());
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -380,12 +380,6 @@ assert_eq!(None, it.next());
 - `fn max_haystack_len(self: &Self) -> usize`
   Returns the maximum haystack length supported by this backtracker.
 
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
 - `fn try_is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Result<bool, MatchError>`
   Returns true if and only if this regex matches the given haystack.
 
@@ -400,6 +394,12 @@ assert_eq!(None, it.next());
 
 - `fn try_captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryCapturesMatches<'r, 'c, 'h>`
   Returns an iterator over all non-overlapping `Captures` values. If no
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
+
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
+  Executes a leftmost forward search and writes the spans of capturing
 
 #### Trait Implementations
 

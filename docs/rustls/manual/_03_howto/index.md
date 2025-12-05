@@ -12,16 +12,11 @@ By default rustls supports PKCS#8-format[^1] RSA or ECDSA keys, plus PKCS#1-form
 However, if your private key resides in a HSM, or in another process, or perhaps
 another machine, rustls has some extension points to support this:
 
-The main trait you must implement is [`sign::SigningKey`][signing_key](#signing-key)
-. The primary method here
-is [`choose_scheme()`][choose_scheme](#choose-scheme)
- where you are given a set of [`SignatureScheme`s][sig_scheme](#sig-scheme)
- the client says
+The main trait you must implement is [`sign::SigningKey`][signing_key](#signing-key). The primary method here
+is [`choose_scheme()`][choose_scheme](#choose-scheme) where you are given a set of [`SignatureScheme`s][sig_scheme](#sig-scheme) the client says
 it supports: you must choose one (or return `None` -- this aborts the handshake). Having
-done that, you return an implementation of the [`sign::Signer`][signer](#signer)
- trait.
-The [`sign()`][sign_method](#sign-method)
- performs the signature and returns it.
+done that, you return an implementation of the [`sign::Signer`][signer](#signer) trait.
+The [`sign()`][sign_method](#sign-method) performs the signature and returns it.
 
 (Unfortunately this is currently designed for keys with low latency access, like in a
 PKCS#11 provider, Microsoft CryptoAPI, etc. so is blocking rather than asynchronous.
@@ -29,36 +24,21 @@ It's a TODO to make these and other extension points async.)
 
 Once you have these two pieces, configuring a server to use them involves, briefly:
 
-- packaging your [`sign::SigningKey`][signing_key](#signing-key)
- with the matching certificate chain into a [`sign::CertifiedKey`][certified_key](#certified-key)
-
-- making a [`ResolvesServerCertUsingSni`][cert_using_sni](#cert-using-sni)
- and feeding in your [`sign::CertifiedKey`][certified_key](#certified-key)
- for all SNI hostnames you want to use it for,
+- packaging your [`sign::SigningKey`][signing_key](#signing-key) with the matching certificate chain into a [`sign::CertifiedKey`][certified_key](#certified-key)
+- making a [`ResolvesServerCertUsingSni`][cert_using_sni](#cert-using-sni) and feeding in your [`sign::CertifiedKey`][certified_key](#certified-key) for all SNI hostnames you want to use it for,
 - setting that as your `ServerConfig`'s [`cert_resolver`][cert_resolver](#cert-resolver)
 
+For a complete example of implementing a custom [`sign::SigningKey`][signing_key](#signing-key) and
+[`sign::Signer`][signer](#signer) see the [`signer` module in the `rustls-cng` crate][rustls-cng-signer].
 
-For a complete example of implementing a custom [`sign::SigningKey`][signing_key](#signing-key)
- and
-[`sign::Signer`][signer](#signer)
- see the [`signer` module in the `rustls-cng` crate][rustls-cng-signer].
-
-[signing_key](#signing-key)
-: crate::crypto::signer::SigningKey
-[choose_scheme](#choose-scheme)
-: crate::crypto::signer::SigningKey::choose_scheme
-[sig_scheme](#sig-scheme)
-: crate::SignatureScheme
-[signer](#signer)
-: crate::crypto::signer::Signer
-[sign_method](#sign-method)
-: crate::crypto::signer::Signer::sign
-[certified_key](#certified-key)
-: crate::crypto::signer::CertifiedKey
-[cert_using_sni](#cert-using-sni)
-: crate::server::ResolvesServerCertUsingSni
-[cert_resolver](#cert-resolver)
-: crate::ServerConfig::cert_resolver
+[signing_key](#signing-key): crate::crypto::signer::SigningKey
+[choose_scheme](#choose-scheme): crate::crypto::signer::SigningKey::choose_scheme
+[sig_scheme](#sig-scheme): crate::SignatureScheme
+[signer](#signer): crate::crypto::signer::Signer
+[sign_method](#sign-method): crate::crypto::signer::Signer::sign
+[certified_key](#certified-key): crate::crypto::signer::CertifiedKey
+[cert_using_sni](#cert-using-sni): crate::server::ResolvesServerCertUsingSni
+[cert_resolver](#cert-resolver): crate::ServerConfig::cert_resolver
 [rustls-cng-signer]: https://github.com/rustls/rustls-cng/blob/dev/src/signer.rs
 
 [^1]: For PKCS#8 it does not support password encryption -- there's not a meaningful threat

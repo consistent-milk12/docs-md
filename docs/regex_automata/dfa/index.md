@@ -41,7 +41,7 @@ capturing groups. It is the only DFA in this crate capable of such a thing.
 This example shows how to compile a regex using the default configuration
 and then use it to find matches in a byte string:
 
-```
+```rust
 use regex_automata::{Match, dfa::regex::Regex};
 
 let re = Regex::new(r"[0-9]{4}-[0-9]{2}-[0-9]{2}")?;
@@ -51,7 +51,7 @@ assert_eq!(matches, vec![
     Match::must(0, 0..10),
     Match::must(0, 11..21),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: searching with regex sets
@@ -60,8 +60,8 @@ The DFAs in this module all fully support searching with multiple regexes
 simultaneously. You can use this support with standard leftmost-first style
 searching to find non-overlapping matches:
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{Match, dfa::regex::Regex};
 
 let re = Regex::new_many(&[r"\w+", r"\S+"])?;
@@ -71,7 +71,7 @@ assert_eq!(matches, vec![
     Match::must(1, 0..4),
     Match::must(0, 5..8),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: use sparse DFAs
@@ -84,7 +84,7 @@ use significantly less space.
 Using sparse DFAs is as easy as using `Regex::new_sparse` instead of
 `Regex::new`:
 
-```
+```rust
 use regex_automata::{Match, dfa::regex::Regex};
 
 let re = Regex::new_sparse(r"[0-9]{4}-[0-9]{2}-[0-9]{2}").unwrap();
@@ -94,13 +94,13 @@ assert_eq!(matches, vec![
     Match::must(0, 0..10),
     Match::must(0, 11..21),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 If you already have dense DFAs for some reason, they can be converted to sparse
 DFAs and used to build a new `Regex`. For example:
 
-```
+```rust
 use regex_automata::{Match, dfa::regex::Regex};
 
 let dense_re = Regex::new(r"[0-9]{4}-[0-9]{2}-[0-9]{2}").unwrap();
@@ -114,7 +114,7 @@ assert_eq!(matches, vec![
     Match::must(0, 0..10),
     Match::must(0, 11..21),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Example: deserialize a DFA
@@ -124,7 +124,7 @@ those raw bytes back into a DFA. While this particular example is a
 bit contrived, this same technique can be used in your program to
 deserialize a DFA at start up time or by memory mapping a file.
 
-```
+```rust
 use regex_automata::{Match, dfa::{dense, regex::Regex}};
 
 let re1 = Regex::new(r"[0-9]{4}-[0-9]{2}-[0-9]{2}").unwrap();
@@ -132,10 +132,8 @@ let re1 = Regex::new(r"[0-9]{4}-[0-9]{2}-[0-9]{2}").unwrap();
 let (fwd_bytes, fwd_pad) = re1.forward().to_bytes_native_endian();
 let (rev_bytes, rev_pad) = re1.reverse().to_bytes_native_endian();
 // now deserialize both---we need to specify the correct type!
-let fwd: dense::DFA<&[u32](#u32)
-> = dense::DFA::from_bytes(&fwd_bytes[fwd_pad..])?.0;
-let rev: dense::DFA<&[u32](#u32)
-> = dense::DFA::from_bytes(&rev_bytes[rev_pad..])?.0;
+let fwd: dense::DFA<&[u32]> = dense::DFA::from_bytes(&fwd_bytes[fwd_pad..])?.0;
+let rev: dense::DFA<&[u32]> = dense::DFA::from_bytes(&rev_bytes[rev_pad..])?.0;
 // finally, reconstruct our regex
 let re2 = Regex::builder().build_from_dfas(fwd, rev);
 
@@ -146,7 +144,7 @@ assert_eq!(matches, vec![
     Match::must(0, 0..10),
     Match::must(0, 11..21),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 There are a few points worth noting here:
@@ -173,7 +171,7 @@ valid DFA.
 
 The same process can be achieved with sparse DFAs as well:
 
-```
+```rust
 use regex_automata::{Match, dfa::{sparse, regex::Regex}};
 
 let re1 = Regex::new(r"[0-9]{4}-[0-9]{2}-[0-9]{2}").unwrap();
@@ -181,10 +179,8 @@ let re1 = Regex::new(r"[0-9]{4}-[0-9]{2}-[0-9]{2}").unwrap();
 let fwd_bytes = re1.forward().to_sparse()?.to_bytes_native_endian();
 let rev_bytes = re1.reverse().to_sparse()?.to_bytes_native_endian();
 // now deserialize both---we need to specify the correct type!
-let fwd: sparse::DFA<&[u8](#u8)
-> = sparse::DFA::from_bytes(&fwd_bytes)?.0;
-let rev: sparse::DFA<&[u8](#u8)
-> = sparse::DFA::from_bytes(&rev_bytes)?.0;
+let fwd: sparse::DFA<&[u8]> = sparse::DFA::from_bytes(&fwd_bytes)?.0;
+let rev: sparse::DFA<&[u8]> = sparse::DFA::from_bytes(&rev_bytes)?.0;
 // finally, reconstruct our regex
 let re2 = Regex::builder().build_from_dfas(fwd, rev);
 
@@ -195,7 +191,7 @@ assert_eq!(matches, vec![
     Match::must(0, 0..10),
     Match::must(0, 11..21),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 Note that unlike dense DFAs, sparse DFAs have no alignment requirements.
@@ -292,8 +288,7 @@ optimizations means that searches may run much slower than what you're
 accustomed to, although, it does provide more predictable and consistent
 performance.
 * There is no `&str` API like in the regex crate. In this module, all APIs
-operate on `&[u8](#u8)
-`. By default, match indices are
+operate on `&[u8]`. By default, match indices are
 guaranteed to fall on UTF-8 boundaries, unless either of
 [`syntax::Config::utf8`](crate::util::syntax::Config::utf8) or
 [`thompson::Config::utf8`](crate::nfa::thompson::Config::utf8) are disabled.

@@ -122,6 +122,5 @@ fn on(stream: Stream) -> bool
 ```
 
 Returns true if `stream` is a TTY, and the current terminal
-[supports_hyperlinks](#supports-hyperlinks)
-.
+[supports_hyperlinks](#supports-hyperlinks).
 

@@ -25,11 +25,9 @@ This crate provides:
 In addition, it defines the global callsite registry and per-thread current
 dispatcher which other components of the tracing system rely on.
 
-*Compiler support: [requires `rustc` 1.65+][msrv](#msrv)
-*
+*Compiler support: [requires `rustc` 1.65+][msrv](#msrv)*
 
-[msrv](#msrv)
-: #supported-rust-versions
+[msrv](#msrv): #supported-rust-versions
 
 ## Usage
 
@@ -56,8 +54,7 @@ The following crate [feature flags] are available:
   `no_std` users may disable this feature with `default-features = false`:
 
   ```toml
-  [dependencies](#dependencies)
-
+  [dependencies]
   tracing-core = { version = "0.1.22", default-features = false }
   ```
 
@@ -86,8 +83,7 @@ Alternatively, the following can be added to the `.cargo/config` file in a
 project to automatically enable the cfg flag for that project:
 
 ```toml
-[build](#build)
-
+[build]
 rustflags = ["--cfg", "tracing_unstable"]
 ```
 
@@ -273,21 +269,17 @@ execution of a program.
 
 An `Event` can be compared to a log record in unstructured logging, but with
 two key differences:
-- `Event`s exist _within the context of a [span](#span)
-_. Unlike log lines, they
+- `Event`s exist _within the context of a [span](#span)_. Unlike log lines, they
   may be located within the trace tree, allowing visibility into the
   _temporal_ context in which the event occurred, as well as the source
   code location.
-- Like spans, `Event`s have structured key-value data known as _[fields](#fields)
-_,
+- Like spans, `Event`s have structured key-value data known as _[fields](#fields)_,
   which may include textual message. In general, a majority of the data
   associated with an event should be in the event's fields rather than in
   the textual message, as the fields are more structured.
 
-[span](#span)
-: super::span
-[fields](#fields)
-: super::field
+[span](#span): super::span
+[fields](#fields): super::field
 
 #### Implementations
 
@@ -484,7 +476,7 @@ which are less verbose, with `Level::ERROR` considered the lowest, and
 `Level::TRACE` considered the highest.
 
 For example:
-```
+```rust
 use tracing_core::Level;
 
 assert!(Level::TRACE > Level::DEBUG);
@@ -513,7 +505,7 @@ variant, which is considered "less verbose" than every other `Level`. This is
 intended to allow filters to completely disable tracing in a particular context.
 
 For example:
-```
+```rust
 use tracing_core::{Level, LevelFilter};
 
 assert!(LevelFilter::OFF < Level::TRACE);
@@ -532,9 +524,9 @@ The optional `Subscriber::max_level_hint` method can also be implemented to allo
 and events above a maximum verbosity level to be skipped more efficiently,
 often improving performance in short-lived programs.
 
-```
+```rust
 use tracing_core::{span, Event, Level, LevelFilter, Subscriber, Metadata};
-# use tracing_core::span::{Id, Record, Current};
+use tracing_core::span::{Id, Record, Current};
 
 #[derive(Debug)]
 pub struct MySubscriber {
@@ -573,25 +565,24 @@ impl Subscriber for MySubscriber {
     // Implement the rest of the subscriber...
     fn new_span(&self, span: &span::Attributes<'_>) -> span::Id {
         // ...
-        # drop(span); Id::from_u64(1)
+        drop(span); Id::from_u64(1)
     }
 
     fn event(&self, event: &Event<'_>) {
         // ...
-        # drop(event);
+        drop(event);
     }
 
     // ...
-    # fn enter(&self, _: &Id) {}
-    # fn exit(&self, _: &Id) {}
-    # fn record(&self, _: &Id, _: &Record<'_>) {}
-    # fn record_follows_from(&self, _: &Id, _: &Id) {}
+    fn enter(&self, _: &Id) {}
+    fn exit(&self, _: &Id) {}
+    fn record(&self, _: &Id, _: &Record<'_>) {}
+    fn record_follows_from(&self, _: &Id, _: &Id) {}
 }
 ```
 
 It is worth noting that the `tracing-subscriber` crate provides [additional
-APIs][envfilter](#envfilter)
- for performing more sophisticated filtering, such as
+APIs][envfilter](#envfilter) for performing more sophisticated filtering, such as
 enabling different levels based on which module or crate a span or event is
 recorded in.
 
@@ -600,8 +591,7 @@ recorded in.
 
 
 
-[envfilter](#envfilter)
-: https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html
+[envfilter](#envfilter): https://docs.rs/tracing-subscriber/latest/tracing_subscriber/filter/struct.EnvFilter.html
 
 #### Implementations
 
@@ -779,18 +769,18 @@ and `LevelFilter`s interact.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(level: Level) -> Self`
 
 ##### `impl From`
 
 - `fn from(level: Option<Level>) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(level: Level) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl FromStr`
 
@@ -841,23 +831,11 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Level) -> bool`
+- `fn eq(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
-
-- `fn lt(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn le(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn gt(self: &Self, other: &LevelFilter) -> bool`
-
-- `fn ge(self: &Self, other: &LevelFilter) -> bool`
+- `fn eq(self: &Self, other: &Level) -> bool`
 
 ##### `impl PartialOrd`
 
@@ -870,6 +848,18 @@ and `LevelFilter`s interact.
 - `fn gt(self: &Self, other: &Level) -> bool`
 
 - `fn ge(self: &Self, other: &Level) -> bool`
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>`
+
+- `fn lt(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn le(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn gt(self: &Self, other: &LevelFilter) -> bool`
+
+- `fn ge(self: &Self, other: &LevelFilter) -> bool`
 
 ##### `impl StructuralPartialEq`
 
@@ -909,23 +899,18 @@ struct Metadata<'a> {
 }
 ```
 
-Metadata describing a [span](#span)
- or [event](#event)
-.
+Metadata describing a [span](#span) or [event](#event).
 
 All spans and events have the following metadata:
-- A [name](#name)
-, represented as a static string.
-- A [target](#target)
-, a string that categorizes part of the system where the span
+- A [name](#name), represented as a static string.
+- A [target](#target), a string that categorizes part of the system where the span
   or event occurred. The `tracing` macros default to using the module
   path where the span or event originated as the target, but it may be
   overridden.
 - A [verbosity level]. This determines how verbose a given span or event
   is, and allows enabling or disabling more verbose diagnostics
   situationally. See the documentation for the [`Level`](metadata/index.md) type for details.
-- The names of the [fields](#fields)
- defined by the span or event.
+- The names of the [fields](#fields) defined by the span or event.
 - Whether the metadata corresponds to a span or event.
 
 In addition, the following optional metadata describing the source code
@@ -951,16 +936,11 @@ In well-behaved applications, two `Metadata` with equal
 *only* checks that its arguments have equal callsites. However, the equality
 of `Metadata`'s other fields is checked in debug builds.
 
-[span](#span)
-: super::span
-[event](#event)
-: super::event
-[name](#name)
-: Self::name
-[target](#target)
-: Self::target
-[fields](#fields)
-: Self::fields
+[span](#span): super::span
+[event](#event): super::event
+[name](#name): Self::name
+[target](#target): Self::target
+[fields](#fields): Self::fields
 [verbosity level]: Self::level
 [file name]: Self::file
 [line number]: Self::line
@@ -1243,14 +1223,14 @@ This may be used in contexts such as static initializers.
 For example:
 ```rust
 use tracing_core::{callsite, identify_callsite};
-# use tracing_core::{Metadata, subscriber::Interest};
-# fn main() {
+use tracing_core::{Metadata, subscriber::Interest};
+fn main() {
 pub struct MyCallsite {
    // ...
 }
 impl callsite::Callsite for MyCallsite {
-# fn set_interest(&self, _: Interest) { unimplemented!() }
-# fn metadata(&self) -> &Metadata { unimplemented!() }
+fn set_interest(&self, _: Interest) { unimplemented!() }
+fn metadata(&self) -> &Metadata { unimplemented!() }
     // ...
 }
 
@@ -1259,28 +1239,27 @@ static CALLSITE: MyCallsite = MyCallsite {
 };
 
 static CALLSITE_ID: callsite::Identifier = identify_callsite!(&CALLSITE);
-# }
+}
 ```
 
 
 
 ### `metadata!`
 
-Statically constructs new span [metadata](#metadata)
-.
+Statically constructs new span [metadata](#metadata).
 
 /// For example:
 ```rust
-# use tracing_core::{callsite::Callsite, subscriber::Interest};
+use tracing_core::{callsite::Callsite, subscriber::Interest};
 use tracing_core::metadata;
 use tracing_core::metadata::{Kind, Level, Metadata};
-# fn main() {
-# pub struct MyCallsite { }
-# impl Callsite for MyCallsite {
-# fn set_interest(&self, _: Interest) { unimplemented!() }
-# fn metadata(&self) -> &Metadata { unimplemented!() }
-# }
-#
+fn main() {
+pub struct MyCallsite { }
+impl Callsite for MyCallsite {
+fn set_interest(&self, _: Interest) { unimplemented!() }
+fn metadata(&self) -> &Metadata { unimplemented!() }
+}
+
 static FOO_CALLSITE: MyCallsite = MyCallsite {
     // ...
 };
@@ -1293,10 +1272,9 @@ static FOO_METADATA: Metadata = metadata!{
     callsite: &FOO_CALLSITE,
     kind: Kind::SPAN,
 };
-# }
+}
 ```
 
-[metadata](#metadata)
-: metadata::Metadata
+[metadata](#metadata): metadata::Metadata
 
 

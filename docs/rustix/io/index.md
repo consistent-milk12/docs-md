@@ -32,9 +32,7 @@ but only holds an OS error code, and no extra error value.
  - [OpenBSD]
  - [DragonFly BSD]
  - [illumos](#illumos)
-
  - [glibc](#glibc)
-
 
 [POSIX]: https://pubs.opengroup.org/onlinepubs/9799919799/functions/errno.html
 [Linux]: https://man7.org/linux/man-pages/man3/errno.3.html
@@ -43,12 +41,22 @@ but only holds an OS error code, and no extra error value.
 [NetBSD]: https://man.netbsd.org/errno.2
 [OpenBSD]: https://man.openbsd.org/errno.2
 [DragonFly BSD]: https://man.dragonflybsd.org/?command=errno&section=2
-[illumos](#illumos)
-: https://illumos.org/man/3C/errno
-[glibc](#glibc)
-: https://sourceware.org/glibc/manual/latest/html_node/Error-Codes.html
+[illumos](#illumos): https://illumos.org/man/3C/errno
+[glibc](#glibc): https://sourceware.org/glibc/manual/latest/html_node/Error-Codes.html
 
 #### Implementations
+
+- `fn kind(self: Self) -> std::io::ErrorKind`
+  Shorthand for `std::io::Error::from(self).kind()`.
+
+- `fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
+  Extract an `Errno` value from a `std::io::Error`.
+
+- `const fn raw_os_error(self: Self) -> i32`
+  Extract the raw OS error number from this error.
+
+- `const fn from_raw_os_error(raw: i32) -> Self`
+  Construct an `Errno` from a raw OS error number.
 
 - `const ACCESS: Self`
 
@@ -317,18 +325,6 @@ but only holds an OS error code, and no extra error value.
 - `const XDEV: Self`
 
 - `const XFULL: Self`
-
-- `fn kind(self: Self) -> std::io::ErrorKind`
-  Shorthand for `std::io::Error::from(self).kind()`.
-
-- `fn from_io_error(io_err: &std::io::Error) -> Option<Self>`
-  Extract an `Errno` value from a `std::io::Error`.
-
-- `const fn raw_os_error(self: Self) -> i32`
-  Extract the raw OS error number from this error.
-
-- `const fn from_raw_os_error(raw: i32) -> Self`
-  Construct an `Errno` from a raw OS error number.
 
 #### Trait Implementations
 

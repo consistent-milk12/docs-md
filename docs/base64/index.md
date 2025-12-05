@@ -4,8 +4,7 @@ Correct, fast, and configurable [base64][] decoding and encoding. Base64
 transports binary data efficiently in contexts where only plain text is
 allowed.
 
-[base64](#base64)
-: https://developer.mozilla.org/en-US/docs/Glossary/Base64
+[base64](#base64): https://developer.mozilla.org/en-US/docs/Glossary/Base64
 
 # Usage
 
@@ -32,14 +31,14 @@ quickly by using the pre-configured
 in the [`prelude`](prelude/index.md) module as shown here, if you prefer a minimal `use`
 footprint.
 
-```
+```rust
 use base64::prelude::*;
 
-# fn main() -> Result<(), base64::DecodeError> {
+fn main() -> Result<(), base64::DecodeError> {
 assert_eq!(BASE64_STANDARD.decode(b"+uwgVQA=")?, b"\xFA\xEC\x20\x55\0");
 assert_eq!(BASE64_STANDARD.encode(b"\xFF\xEC\x20\x55\0"), "/+wgVQA=");
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 [rfc-alphabet]: https://datatracker.ietf.org/doc/html/rfc4648#section-4
@@ -57,14 +56,14 @@ which uses `-` and `_` instead. To use that alternative alphabet, use the
 `URL_SAFE` engine. This example doesn't
 use [`prelude`](prelude/index.md) to show what a more explicit `use` would look like.
 
-```
+```rust
 use base64::{engine::general_purpose::URL_SAFE, Engine as _};
 
-# fn main() -> Result<(), base64::DecodeError> {
+fn main() -> Result<(), base64::DecodeError> {
 assert_eq!(URL_SAFE.decode(b"-uwgVQA=")?, b"\xFA\xEC\x20\x55\0");
 assert_eq!(URL_SAFE.encode(b"\xFF\xEC\x20\x55\0"), "_-wgVQA=");
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 ### Padding characters
@@ -77,10 +76,9 @@ When the input is not an even multiple of 3 bytes in length, [canonical][]
 base64 encoders insert padding characters at the end, so that the output
 length is always a multiple of 4:
 
-[canonical](#canonical)
-: https://datatracker.ietf.org/doc/html/rfc4648#section-3.5
+[canonical](#canonical): https://datatracker.ietf.org/doc/html/rfc4648#section-3.5
 
-```
+```rust
 use base64::{engine::general_purpose::STANDARD, Engine as _};
 
 assert_eq!(STANDARD.encode(b""),    "");
@@ -94,7 +92,7 @@ byte-for-byte, regardless of input length. But the `=` padding characters
 aren’t necessary for decoding, and they may be omitted by using a
 `NO_PAD` configuration:
 
-```
+```rust
 use base64::{engine::general_purpose::STANDARD_NO_PAD, Engine as _};
 
 assert_eq!(STANDARD_NO_PAD.encode(b""),    "");
@@ -108,8 +106,8 @@ The pre-configured `NO_PAD` engines will reject inputs containing padding
 decoding, create an `engine` with
 that `padding mode`.
 
-```
-# use base64::{engine::general_purpose::STANDARD_NO_PAD, Engine as _};
+```rust
+use base64::{engine::general_purpose::STANDARD_NO_PAD, Engine as _};
 assert_eq!(STANDARD_NO_PAD.decode(b"Zm8="), Err(base64::DecodeError::InvalidPadding));
 ```
 
@@ -119,7 +117,7 @@ Decoding and encoding behavior can be customized by creating an
 `engine` with an `alphabet` and
 `padding configuration`:
 
-```
+```rust
 use base64::{engine, alphabet, Engine as _};
 
 // bizarro-world base64: +/ as the first symbols instead of the last
@@ -152,8 +150,7 @@ you allocated, use one of the alternative methods:
 | -------------------------- | ----------------------------- | ----------------------------- |
 | `Engine::decode`         | returns a new `Vec<u8>`       | always                        |
 | `Engine::decode_vec`     | appends to provided `Vec<u8>` | if `Vec` lacks capacity       |
-| `Engine::decode_slice`   | writes to provided `&[u8](#u8)
-`    | never
+| `Engine::decode_slice`   | writes to provided `&[u8]`    | never
 
 #### Encoding
 
@@ -161,8 +158,7 @@ you allocated, use one of the alternative methods:
 | -------------------------- | ---------------------------- | ------------------------------ |
 | `Engine::encode`         | returns a new `String`       | always                         |
 | `Engine::encode_string`  | appends to provided `String` | if `String` lacks capacity     |
-| `Engine::encode_slice`   | writes to provided `&[u8](#u8)
-`   | never                          |
+| `Engine::encode_slice`   | writes to provided `&[u8]`   | never                          |
 
 ## Input and output
 
@@ -175,30 +171,30 @@ byte stream.
 
 #### Decoding
 
-```
-# use std::io;
+```rust
+use std::io;
 use base64::{engine::general_purpose::STANDARD, read::DecoderReader};
 
-# fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
 let mut input = io::stdin();
 let mut decoder = DecoderReader::new(&mut input, &STANDARD);
 io::copy(&mut decoder, &mut io::stdout())?;
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 #### Encoding
 
-```
-# use std::io;
+```rust
+use std::io;
 use base64::{engine::general_purpose::STANDARD, write::EncoderWriter};
 
-# fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
 let mut output = io::stdout();
 let mut encoder = EncoderWriter::new(&mut output, &STANDARD);
 io::copy(&mut io::stdin(), &mut encoder)?;
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 #### Display
@@ -207,7 +203,7 @@ If you only need a base64 representation for implementing the
 `Display` trait, use
 `Base64Display`:
 
-```
+```rust
 use base64::{display::Base64Display, engine::general_purpose::STANDARD};
 
 let value = Base64Display::new(b"\0\x01\x02\x03", &STANDARD);
@@ -458,14 +454,14 @@ Errors that can occur while decoding into a slice.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(e: DecodeError) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(e: DecodeError) -> Self`
 
 ##### `impl Into<T, U>`
 

@@ -11,7 +11,7 @@ returns either a pair of the resulting number and its prefix, or a
 notice that the number was too small to have any prefix applied to it. For
 example:
 
-```
+```rust
 use unit_prefix::NumberPrefix;
 
 let amount = 8542_f32;
@@ -38,7 +38,7 @@ formatted as a string.
 If the value is too small to have any prefixes applied to it — in this case,
 if it’s under 1000 — then the standalone value will be returned:
 
-```
+```rust
 use unit_prefix::NumberPrefix;
 
 let amount = 705_f32;
@@ -69,7 +69,7 @@ number 1024 (2<sup>10</sup>) as the multiplier, rather than the more common 1000
 `NumberPrefix::binary` function.
 For example:
 
-```
+```rust
 use unit_prefix::NumberPrefix;
 
 let amount = 8542_f32;
@@ -105,7 +105,7 @@ If you need to describe your unit in actual words, rather than just with the
 symbol, use one of the `upper`, `caps`, `lower`, or `symbol`, which output the
 prefix in a variety of formats. For example:
 
-```
+```rust
 use unit_prefix::NumberPrefix;
 
 let amount = 8542_f32;
@@ -130,7 +130,7 @@ strings containing numbers and trailing prefixes, such as `7.5E`.
 Currently, the only supported units are `b` and `B` for bytes, and `m` for
 metres. Whitespace is allowed between the number and the rest of the string.
 
-```
+```rust
 use unit_prefix::{NumberPrefix, Prefix};
 
 assert_eq!(

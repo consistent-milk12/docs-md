@@ -42,7 +42,7 @@ $ cargo add clap --features derive
 
 Then define your CLI in `main.rs`:
 ```rust
-# #[cfg(feature = "derive")] {
+#[cfg(feature = "derive")] {
 use clap::Parser;
 
 /// Simple program to greet a person
@@ -65,7 +65,7 @@ fn main() {
         println!("Hello {}!", args.name);
     }
 }
-# }
+}
 ```
 
 And try it out:

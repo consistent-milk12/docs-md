@@ -29,21 +29,21 @@ To use either of these functions, we must first wrap our subscriber in a
 [`Dispatch`](#dispatch), a cloneable, type-erased reference to a subscriber. For
 example:
 ```rust
-# pub struct FooSubscriber;
-# use tracing_core::{
-#   dispatcher, Event, Metadata,
-#   span::{Attributes, Id, Record}
-# };
-# impl tracing_core::Subscriber for FooSubscriber {
-#   fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
-#   fn record(&self, _: &Id, _: &Record) {}
-#   fn event(&self, _: &Event) {}
-#   fn record_follows_from(&self, _: &Id, _: &Id) {}
-#   fn enabled(&self, _: &Metadata) -> bool { false }
-#   fn enter(&self, _: &Id) {}
-#   fn exit(&self, _: &Id) {}
-# }
-# impl FooSubscriber { fn new() -> Self { FooSubscriber } }
+pub struct FooSubscriber;
+use tracing_core::{
+  dispatcher, Event, Metadata,
+  span::{Attributes, Id, Record}
+};
+impl tracing_core::Subscriber for FooSubscriber {
+  fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
+  fn record(&self, _: &Id, _: &Record) {}
+  fn event(&self, _: &Event) {}
+  fn record_follows_from(&self, _: &Id, _: &Id) {}
+  fn enabled(&self, _: &Metadata) -> bool { false }
+  fn enter(&self, _: &Id) {}
+  fn exit(&self, _: &Id) {}
+}
+impl FooSubscriber { fn new() -> Self { FooSubscriber } }
 use dispatcher::Dispatch;
 
 let my_subscriber = FooSubscriber::new();
@@ -52,26 +52,26 @@ let my_dispatch = Dispatch::new(my_subscriber);
 Then, we can use [`with_default`](#with-default) to set our `Dispatch` as the default for
 the duration of a block:
 ```rust
-# pub struct FooSubscriber;
-# use tracing_core::{
-#   dispatcher, Event, Metadata,
-#   span::{Attributes, Id, Record}
-# };
-# impl tracing_core::Subscriber for FooSubscriber {
-#   fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
-#   fn record(&self, _: &Id, _: &Record) {}
-#   fn event(&self, _: &Event) {}
-#   fn record_follows_from(&self, _: &Id, _: &Id) {}
-#   fn enabled(&self, _: &Metadata) -> bool { false }
-#   fn enter(&self, _: &Id) {}
-#   fn exit(&self, _: &Id) {}
-# }
-# impl FooSubscriber { fn new() -> Self { FooSubscriber } }
-# let my_subscriber = FooSubscriber::new();
-# let my_dispatch = dispatcher::Dispatch::new(my_subscriber);
+pub struct FooSubscriber;
+use tracing_core::{
+  dispatcher, Event, Metadata,
+  span::{Attributes, Id, Record}
+};
+impl tracing_core::Subscriber for FooSubscriber {
+  fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
+  fn record(&self, _: &Id, _: &Record) {}
+  fn event(&self, _: &Event) {}
+  fn record_follows_from(&self, _: &Id, _: &Id) {}
+  fn enabled(&self, _: &Metadata) -> bool { false }
+  fn enter(&self, _: &Id) {}
+  fn exit(&self, _: &Id) {}
+}
+impl FooSubscriber { fn new() -> Self { FooSubscriber } }
+let my_subscriber = FooSubscriber::new();
+let my_dispatch = dispatcher::Dispatch::new(my_subscriber);
 // no default subscriber
 
-# #[cfg(feature = "std")]
+#[cfg(feature = "std")]
 dispatcher::with_default(&my_dispatch, || {
     // my_subscriber is the default
 });
@@ -87,23 +87,23 @@ As an alternative to `with_default`, we can use [`set_global_default`](#set-glob
 set a `Dispatch` as the default for all threads, for the lifetime of the
 program. For example:
 ```rust
-# pub struct FooSubscriber;
-# use tracing_core::{
-#   dispatcher, Event, Metadata,
-#   span::{Attributes, Id, Record}
-# };
-# impl tracing_core::Subscriber for FooSubscriber {
-#   fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
-#   fn record(&self, _: &Id, _: &Record) {}
-#   fn event(&self, _: &Event) {}
-#   fn record_follows_from(&self, _: &Id, _: &Id) {}
-#   fn enabled(&self, _: &Metadata) -> bool { false }
-#   fn enter(&self, _: &Id) {}
-#   fn exit(&self, _: &Id) {}
-# }
-# impl FooSubscriber { fn new() -> Self { FooSubscriber } }
-# let my_subscriber = FooSubscriber::new();
-# let my_dispatch = dispatcher::Dispatch::new(my_subscriber);
+pub struct FooSubscriber;
+use tracing_core::{
+  dispatcher, Event, Metadata,
+  span::{Attributes, Id, Record}
+};
+impl tracing_core::Subscriber for FooSubscriber {
+  fn new_span(&self, _: &Attributes) -> Id { Id::from_u64(0) }
+  fn record(&self, _: &Id, _: &Record) {}
+  fn event(&self, _: &Event) {}
+  fn record_follows_from(&self, _: &Id, _: &Id) {}
+  fn enabled(&self, _: &Metadata) -> bool { false }
+  fn enter(&self, _: &Id) {}
+  fn exit(&self, _: &Id) {}
+}
+impl FooSubscriber { fn new() -> Self { FooSubscriber } }
+let my_subscriber = FooSubscriber::new();
+let my_dispatch = dispatcher::Dispatch::new(my_subscriber);
 // no default subscriber
 
 dispatcher::set_global_default(my_dispatch)
@@ -278,14 +278,12 @@ at the `Subscriber` have been dropped, `WeakDispatch::upgrade` will return
 A `WeakDispatch` may be created from a [`Dispatch`](#dispatch) by calling the
 `Dispatch::downgrade` method. The primary use for creating a
 [`WeakDispatch`](#weakdispatch) is to allow a Subscriber` to hold a cyclical reference to
-itself without creating a memory leak. See [here](#here)
- for details.
+itself without creating a memory leak. See [here] for details.
 
 This type is analogous to the `std::sync::Weak` type, but for a
 [`Dispatch`](#dispatch) rather than an [`Arc`](#arc).
 
-[here](#here)
-: Subscriber#avoiding-memory-leaks
+[here]: Subscriber#avoiding-memory-leaks
 
 #### Implementations
 
@@ -471,8 +469,7 @@ fn with_default<T>(dispatcher: &Dispatch, f: impl FnOnce() -> T) -> T
 
 Sets this dispatch as the default for the duration of a closure.
 
-The default dispatcher is used when creating a new [span](#span)
- or
+The default dispatcher is used when creating a new [span](#span) or
 [`Event`](../event/index.md).
 
 <pre class="ignore" style="white-space:normal;font:inherit;">
@@ -481,8 +478,7 @@ The default dispatcher is used when creating a new [span](#span)
     <code>set_global_default</code></a> instead.
 </pre>
 
-[span](#span)
-: super::span
+[span](#span): super::span
 
 
 
@@ -521,8 +517,7 @@ Returns `Err` if the global default has already been set.
     executables that depend on the library try to set the default later.
 </pre></div>
 
-[span](#span)
-: super::span
+[span](#span): super::span
 
 
 
@@ -534,13 +529,11 @@ where
     F: FnMut(&Dispatch) -> T
 ```
 
-Executes a closure with a reference to this thread's current [dispatcher](#dispatcher)
-.
+Executes a closure with a reference to this thread's current [dispatcher](#dispatcher).
 
 Note that calls to `get_default` should not be nested; if this function is
 called while inside of another `get_default`, that closure will be provided
 with `Dispatch::none` rather than the previously set dispatcher.
 
-[dispatcher](#dispatcher)
-: super::dispatcher::Dispatch
+[dispatcher](#dispatcher): super::dispatcher::Dispatch
 

@@ -91,7 +91,7 @@ of an OID for `algorithm` plus the `parameters` value.
 For example, this is the `rsaEncryption` algorithm (but prefer to use the constant
 [`RSA_ENCRYPTION`](alg_id/index.md) instead):
 
-```
+```rust
 let rsa_encryption = rustls_pki_types::AlgorithmIdentifier::from_slice(
     &[
         // algorithm: 1.2.840.113549.1.1.1
@@ -352,11 +352,11 @@ A type which encapsulates a string (borrowed or owned) that is a syntactically v
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
+##### `impl TryFrom`
 
-- `type Error = Infallible`
+- `type Error = InvalidDnsNameError`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(value: String) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryFrom<'a>`
 
@@ -370,11 +370,11 @@ A type which encapsulates a string (borrowed or owned) that is a syntactically v
 
 - `fn try_from(value: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom`
+##### `impl TryFrom<T, U>`
 
-- `type Error = InvalidDnsNameError`
+- `type Error = Infallible`
 
-- `fn try_from(value: String) -> Result<Self, <Self as >::Error>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -463,14 +463,14 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 - `fn from(value: [u8; 4]) -> Self`
 
-##### `impl From`
-
-- `fn from(addr: std::net::Ipv4Addr) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(addr: std::net::Ipv4Addr) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -523,17 +523,17 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom`
-
-- `type Error = AddrParseError`
-
-- `fn try_from(value: &str) -> Result<Self, <Self as >::Error>`
-
 ##### `impl TryFrom<T, U>`
 
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
+##### `impl TryFrom`
+
+- `type Error = AddrParseError`
+
+- `fn try_from(value: &str) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -657,16 +657,16 @@ RSA private keys are identified in PEM context as `RSA PRIVATE KEY` and when sto
 file usually use a `.pem` or `.key` extension.
 
 ```rust
-# #[cfg(all(feature = "alloc", feature = "std"))] {
+#[cfg(all(feature = "alloc", feature = "std"))] {
 use rustls_pki_types::{PrivatePkcs1KeyDer, pem::PemObject};
 
 // load from a PEM file
 PrivatePkcs1KeyDer::from_pem_file("tests/data/rsa1024.pkcs1.pem").unwrap();
 
 // or from a PEM byte slice...
-# let byte_slice = include_bytes!("../tests/data/rsa1024.pkcs1.pem");
+let byte_slice = include_bytes!("../tests/data/rsa1024.pkcs1.pem");
 PrivatePkcs1KeyDer::from_pem_slice(byte_slice).unwrap();
-# }
+}
 ```
 
 #### Implementations
@@ -679,13 +679,13 @@ PrivatePkcs1KeyDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(slice: &'a [u8]) -> Self`
-
 ##### `impl From`
 
 - `fn from(vec: Vec<u8>) -> Self`
+
+##### `impl From<'a>`
+
+- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl From<T>`
 
@@ -754,16 +754,16 @@ file usually use a `.pem` or `.key` extension. For more on PEM files, refer to t
 documentation.
 
 ```rust
-# #[cfg(all(feature = "alloc", feature = "std"))] {
+#[cfg(all(feature = "alloc", feature = "std"))] {
 use rustls_pki_types::{PrivateSec1KeyDer, pem::PemObject};
 
 // load from a PEM file
 PrivateSec1KeyDer::from_pem_file("tests/data/nistp256key.pem").unwrap();
 
 // or from a PEM byte slice...
-# let byte_slice = include_bytes!("../tests/data/nistp256key.pem");
+let byte_slice = include_bytes!("../tests/data/nistp256key.pem");
 PrivateSec1KeyDer::from_pem_slice(byte_slice).unwrap();
-# }
+}
 ```
 
 #### Implementations
@@ -776,14 +776,14 @@ PrivateSec1KeyDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(vec: Vec<u8>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl From<'a>`
 
@@ -851,7 +851,7 @@ file usually use a `.pem` or `.key` extension. For more on PEM files, refer to t
 documentation.
 
 ```rust
-# #[cfg(all(feature = "alloc", feature = "std"))] {
+#[cfg(all(feature = "alloc", feature = "std"))] {
 use rustls_pki_types::{PrivatePkcs8KeyDer, pem::PemObject};
 
 // load from a PEM file
@@ -859,9 +859,9 @@ PrivatePkcs8KeyDer::from_pem_file("tests/data/nistp256key.pkcs8.pem").unwrap();
 PrivatePkcs8KeyDer::from_pem_file("tests/data/rsa1024.pkcs8.pem").unwrap();
 
 // or from a PEM byte slice...
-# let byte_slice = include_bytes!("../tests/data/nistp256key.pkcs8.pem");
+let byte_slice = include_bytes!("../tests/data/nistp256key.pkcs8.pem");
 PrivatePkcs8KeyDer::from_pem_slice(byte_slice).unwrap();
-# }
+}
 ```
 
 #### Implementations
@@ -1055,7 +1055,7 @@ Certificate revocation lists are identified in PEM context as `X509 CRL` and whe
 file usually use a `.crl` extension. For more on PEM files, refer to the crate documentation.
 
 ```rust
-# #[cfg(all(feature = "alloc", feature = "std"))] {
+#[cfg(all(feature = "alloc", feature = "std"))] {
 use rustls_pki_types::{CertificateRevocationListDer, pem::PemObject};
 
 // load several from a PEM file
@@ -1065,26 +1065,26 @@ let crls: Vec<_> = CertificateRevocationListDer::pem_file_iter("tests/data/crl.p
 assert!(crls.len() >= 1);
 
 // or one from a PEM byte slice...
-# let byte_slice = include_bytes!("../tests/data/crl.pem");
+let byte_slice = include_bytes!("../tests/data/crl.pem");
 CertificateRevocationListDer::from_pem_slice(byte_slice).unwrap();
 
 // or several from a PEM byte slice
 let crls: Vec<_> = CertificateRevocationListDer::pem_slice_iter(byte_slice)
     .collect();
 assert!(crls.len() >= 1);
-# }
+}
 ```
 
 #### Trait Implementations
+
+##### `impl From<'a>`
+
+- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl From`
 
@@ -1181,16 +1181,16 @@ Certificate signing requests are identified in PEM context as `CERTIFICATE REQUE
 file usually use a `.csr` extension. For more on PEM files, refer to the crate documentation.
 
 ```rust
-# #[cfg(all(feature = "alloc", feature = "std"))] {
+#[cfg(all(feature = "alloc", feature = "std"))] {
 use rustls_pki_types::{CertificateSigningRequestDer, pem::PemObject};
 
 // load from a PEM file
 CertificateSigningRequestDer::from_pem_file("tests/data/csr.pem").unwrap();
 
 // or from a PEM byte slice...
-# let byte_slice = include_bytes!("../tests/data/csr.pem");
+let byte_slice = include_bytes!("../tests/data/csr.pem");
 CertificateSigningRequestDer::from_pem_slice(byte_slice).unwrap();
-# }
+}
 ```
 
 #### Trait Implementations
@@ -1300,7 +1300,7 @@ file usually use a `.pem`, `.cer` or `.crt` extension. For more on PEM files, re
 crate documentation.
 
 ```rust
-# #[cfg(all(feature = "alloc", feature = "std"))] {
+#[cfg(all(feature = "alloc", feature = "std"))] {
 use rustls_pki_types::{CertificateDer, pem::PemObject};
 
 // load several from a PEM file
@@ -1310,14 +1310,14 @@ let certs: Vec<_> = CertificateDer::pem_file_iter("tests/data/certificate.chain.
 assert_eq!(certs.len(), 3);
 
 // or one from a PEM byte slice...
-# let byte_slice = include_bytes!("../tests/data/certificate.chain.pem");
+let byte_slice = include_bytes!("../tests/data/certificate.chain.pem");
 CertificateDer::from_pem_slice(byte_slice).unwrap();
 
 // or several from a PEM byte slice
 let certs: Vec<_> = CertificateDer::pem_slice_iter(byte_slice)
     .collect();
 assert_eq!(certs.len(), 3);
-# }
+}
 ```
 
 #### Implementations
@@ -1433,16 +1433,16 @@ A DER-encoded SubjectPublicKeyInfo (SPKI), as specified in RFC 5280.
 Public keys are identified in PEM context as a `PUBLIC KEY`.
 
 ```rust
-# #[cfg(all(feature = "alloc", feature = "std"))] {
+#[cfg(all(feature = "alloc", feature = "std"))] {
 use rustls_pki_types::{SubjectPublicKeyInfoDer, pem::PemObject};
 
 // load from a PEM file
 SubjectPublicKeyInfoDer::from_pem_file("tests/data/spki.pem").unwrap();
 
 // or from a PEM byte slice...
-# let byte_slice = include_bytes!("../tests/data/spki.pem");
+let byte_slice = include_bytes!("../tests/data/spki.pem");
 SubjectPublicKeyInfoDer::from_pem_slice(byte_slice).unwrap();
-# }
+}
 ```
 
 #### Implementations
@@ -1452,18 +1452,18 @@ SubjectPublicKeyInfoDer::from_pem_slice(byte_slice).unwrap();
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl From`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
 
-##### `impl From`
+##### `impl From<T>`
 
-- `fn from(vec: Vec<u8>) -> Self`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl Into<T, U>`
 
@@ -1555,26 +1555,26 @@ A TLS-encoded Encrypted Client Hello (ECH) configuration list (`ECHConfigList`);
 
 #### Implementations
 
-- `fn into_owned(self: Self) -> EchConfigListBytes<'static>`
-  Converts this config into its owned variant, unfreezing borrowed content (if any)
-
 - `fn config_and_key_from_iter(iter: impl Iterator<Item = Result<(SectionKind, Vec<u8>), pem::Error>>) -> Result<(Self, PrivatePkcs8KeyDer<'static>), pem::Error>`
   Convert an iterator over PEM items into an `EchConfigListBytes` and private key.
 
+- `fn into_owned(self: Self) -> EchConfigListBytes<'static>`
+  Converts this config into its owned variant, unfreezing borrowed content (if any)
+
 #### Trait Implementations
 
-##### `impl From`
+##### `impl From<'a>`
 
-- `fn from(vec: Vec<u8>) -> Self`
+- `fn from(slice: &'a [u8]) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
 
-##### `impl From<'a>`
+##### `impl From`
 
-- `fn from(slice: &'a [u8]) -> Self`
+- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1829,8 +1829,7 @@ struct Der<'a>();
 DER-encoded data, either owned or borrowed
 
 This wrapper type is used to represent DER-encoded data in a way that is agnostic to whether
-the data is owned (by a `Vec<u8>`) or borrowed (by a `&[u8](#u8)
-`). Support for the owned
+the data is owned (by a `Vec<u8>`) or borrowed (by a `&[u8]`). Support for the owned
 variant is only available when the `alloc` feature is enabled.
 
 #### Implementations
@@ -1840,10 +1839,6 @@ variant is only available when the `alloc` feature is enabled.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(vec: Vec<u8>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
@@ -1852,6 +1847,10 @@ variant is only available when the `alloc` feature is enabled.
 ##### `impl From<'a>`
 
 - `fn from(slice: &'a [u8]) -> Self`
+
+##### `impl From`
+
+- `fn from(vec: Vec<u8>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1959,11 +1958,11 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 ##### `impl From`
 
-- `fn from(v6: std::net::Ipv6Addr) -> Self`
+- `fn from(v4: std::net::Ipv4Addr) -> Self`
 
 ##### `impl From`
 
-- `fn from(v4: std::net::Ipv4Addr) -> Self`
+- `fn from(addr: std::net::IpAddr) -> Self`
 
 ##### `impl From<T>`
 
@@ -1972,7 +1971,7 @@ attached interfaces are stable; they form a subset of those provided by `core::n
 
 ##### `impl From`
 
-- `fn from(addr: std::net::IpAddr) -> Self`
+- `fn from(v6: std::net::Ipv6Addr) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2063,15 +2062,15 @@ for the server ("ECH").  For this reason this enum is `non_exhaustive`.
 If you have a DNS name as a `&str`, this type implements `TryFrom<&str>`,
 so you can do:
 
-```
-# use rustls_pki_types::ServerName;
+```rust
+use rustls_pki_types::ServerName;
 ServerName::try_from("example.com").expect("invalid DNS name");
 ```
 
 If you have an owned `String`, you can use `TryFrom` directly:
 
-```
-# use rustls_pki_types::ServerName;
+```rust
+use rustls_pki_types::ServerName;
 let name = "example.com".to_string();
 #[cfg(feature = "alloc")]
 ServerName::try_from(name).expect("invalid DNS name");
@@ -2081,8 +2080,8 @@ which will yield a `ServerName<'static>` if successful.
 
 or, alternatively...
 
-```
-# use rustls_pki_types::ServerName;
+```rust
+use rustls_pki_types::ServerName;
 let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 ```
 
@@ -2118,17 +2117,17 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 - `fn from(v4: Ipv4Addr) -> Self`
 
-##### `impl From<'a>`
-
-- `fn from(dns_name: DnsName<'a>) -> Self`
-
-##### `impl From`
-
-- `fn from(v4: std::net::Ipv4Addr) -> Self`
-
 ##### `impl From`
 
 - `fn from(addr: IpAddr) -> Self`
+
+##### `impl From`
+
+- `fn from(v6: Ipv6Addr) -> Self`
+
+##### `impl From<'a>`
+
+- `fn from(dns_name: DnsName<'a>) -> Self`
 
 ##### `impl From`
 
@@ -2136,11 +2135,11 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 ##### `impl From`
 
-- `fn from(v6: Ipv6Addr) -> Self`
+- `fn from(v6: std::net::Ipv6Addr) -> Self`
 
 ##### `impl From`
 
-- `fn from(v6: std::net::Ipv6Addr) -> Self`
+- `fn from(v4: std::net::Ipv4Addr) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2187,29 +2186,29 @@ let x: ServerName = "example.com".try_into().expect("invalid DNS name");
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = InvalidDnsNameError`
 
 - `fn try_from(value: String) -> Result<Self, <Self as >::Error>`
 
-##### `impl TryFrom<'a>`
+##### `impl TryFrom<T, U>`
 
-- `type Error = InvalidDnsNameError`
+- `type Error = Infallible`
 
-- `fn try_from(value: &'a [u8]) -> Result<Self, <Self as >::Error>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryFrom<'a>`
 
 - `type Error = InvalidDnsNameError`
 
 - `fn try_from(s: &'a str) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<'a>`
+
+- `type Error = InvalidDnsNameError`
+
+- `fn try_from(value: &'a [u8]) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -2239,7 +2238,7 @@ This can load several types of PEM-encoded private key, and then reveal
 which types were found:
 
 ```rust
-# #[cfg(all(feature = "alloc", feature = "std"))] {
+#[cfg(all(feature = "alloc", feature = "std"))] {
 use rustls_pki_types::{PrivateKeyDer, pem::PemObject};
 
 // load from a PEM file
@@ -2249,7 +2248,7 @@ let sec1 = PrivateKeyDer::from_pem_file("tests/data/nistp256key.pem").unwrap();
 assert!(matches!(pkcs8, PrivateKeyDer::Pkcs8(_)));
 assert!(matches!(pkcs1, PrivateKeyDer::Pkcs1(_)));
 assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
-# }
+}
 ```
 
 #### Variants
@@ -2284,14 +2283,14 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 
 - `fn from(key: PrivatePkcs8KeyDer<'a>) -> Self`
 
-##### `impl From<'a>`
-
-- `fn from(key: PrivatePkcs1KeyDer<'a>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'a>`
+
+- `fn from(key: PrivatePkcs1KeyDer<'a>) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -2322,6 +2321,12 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 
 ##### `impl StructuralPartialEq<'a>`
 
+##### `impl TryFrom`
+
+- `type Error = &'static str`
+
+- `fn try_from(key: Vec<u8>) -> Result<Self, <Self as >::Error>`
+
 ##### `impl TryFrom<'a>`
 
 - `type Error = &'static str`
@@ -2333,12 +2338,6 @@ assert!(matches!(sec1, PrivateKeyDer::Sec1(_)));
 - `type Error = Infallible`
 
 - `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = &'static str`
-
-- `fn try_from(key: Vec<u8>) -> Result<Self, <Self as >::Error>`
 
 ##### `impl TryInto<T, U>`
 

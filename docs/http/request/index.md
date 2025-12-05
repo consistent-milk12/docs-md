@@ -28,19 +28,19 @@ if needs_awesome_header() {
 
 let response = send(request.body(()).unwrap());
 
-# fn needs_awesome_header() -> bool {
-#     true
-# }
-#
+fn needs_awesome_header() -> bool {
+    true
+}
+
 fn send(req: Request<()>) -> Response<()> {
     // ...
-# panic!()
+panic!()
 }
 ```
 
 Inspecting a request to see what was sent.
 
-```
+```rust
 use http::{Request, Response, StatusCode};
 
 fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
@@ -54,7 +54,7 @@ fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
     let body = req.body();
 
     // ...
-# panic!()
+panic!()
 }
 ```
 
@@ -92,19 +92,19 @@ if needs_awesome_header() {
 
 let response = send(request.body(()).unwrap());
 
-# fn needs_awesome_header() -> bool {
-#     true
-# }
-#
+fn needs_awesome_header() -> bool {
+    true
+}
+
 fn send(req: Request<()>) -> Response<()> {
     // ...
-# panic!()
+panic!()
 }
 ```
 
 Inspecting a request to see what was sent.
 
-```
+```rust
 use http::{Request, Response, StatusCode};
 
 fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
@@ -118,13 +118,13 @@ fn respond_to(req: Request<()>) -> http::Result<Response<()>> {
     let body = req.body();
 
     // ...
-# panic!()
+panic!()
 }
 ```
 
 Deserialize a request of bytes via json:
 
-```
+```rust
 use http::Request;
 use serde::de;
 
@@ -135,13 +135,13 @@ fn deserialize<T>(req: Request<Vec<u8>>) -> serde_json::Result<Request<T>>
     let body = serde_json::from_slice(&body)?;
     Ok(Request::from_parts(parts, body))
 }
-#
-# fn main() {}
+
+fn main() {}
 ```
 
 Or alternatively, serialize the body of a request to json
 
-```
+```rust
 use http::Request;
 use serde::ser;
 
@@ -152,11 +152,41 @@ fn serialize<T>(req: Request<T>) -> serde_json::Result<Request<Vec<u8>>>
     let body = serde_json::to_vec(&body)?;
     Ok(Request::from_parts(parts, body))
 }
-#
-# fn main() {}
+
+fn main() {}
 ```
 
 #### Implementations
+
+- `fn builder() -> Builder`
+  Creates a new builder-style object to manufacture a `Request`
+
+- `fn get<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a GET method and the given URI.
+
+- `fn put<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a PUT method and the given URI.
+
+- `fn post<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a POST method and the given URI.
+
+- `fn delete<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a DELETE method and the given URI.
+
+- `fn options<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with an OPTIONS method and the given URI.
+
+- `fn head<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a HEAD method and the given URI.
+
+- `fn connect<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a CONNECT method and the given URI.
+
+- `fn patch<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a PATCH method and the given URI.
+
+- `fn trace<T>(uri: T) -> Builder`
+  Creates a new `Builder` initialized with a TRACE method and the given URI.
 
 - `fn new(body: T) -> Request<T>`
   Creates a new blank `Request` with the body
@@ -208,36 +238,6 @@ fn serialize<T>(req: Request<T>) -> serde_json::Result<Request<Vec<u8>>>
 
 - `fn map<F, U>(self: Self, f: F) -> Request<U>`
   Consumes the request returning a new request with body mapped to the
-
-- `fn builder() -> Builder`
-  Creates a new builder-style object to manufacture a `Request`
-
-- `fn get<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a GET method and the given URI.
-
-- `fn put<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a PUT method and the given URI.
-
-- `fn post<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a POST method and the given URI.
-
-- `fn delete<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a DELETE method and the given URI.
-
-- `fn options<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with an OPTIONS method and the given URI.
-
-- `fn head<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a HEAD method and the given URI.
-
-- `fn connect<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a CONNECT method and the given URI.
-
-- `fn patch<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a PATCH method and the given URI.
-
-- `fn trace<T>(uri: T) -> Builder`
-  Creates a new `Builder` initialized with a TRACE method and the given URI.
 
 #### Trait Implementations
 

@@ -168,14 +168,14 @@ panics or silent logical errors.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: u8) -> StateID`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: u8) -> StateID`
 
 ##### `impl Into<T, U>`
 
@@ -236,19 +236,19 @@ panics or silent logical errors.
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: usize) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(value: u64) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 
 - `type Error = StateIDError`
 
-- `fn try_from(value: u64) -> Result<StateID, StateIDError>`
+- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = StateIDError`
+
+- `fn try_from(value: usize) -> Result<StateID, StateIDError>`
 
 ##### `impl TryFrom`
 
@@ -256,11 +256,11 @@ panics or silent logical errors.
 
 - `fn try_from(value: u32) -> Result<StateID, StateIDError>`
 
-##### `impl TryFrom`
+##### `impl TryFrom<T, U>`
 
-- `type Error = StateIDError`
+- `type Error = Infallible`
 
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -404,7 +404,7 @@ you need this, you might consider using
 [`AhoCorasick::find_overlapping_iter`](crate::AhoCorasick::find_overlapping_iter)
 instead, but this shows how to correctly use an `OverlappingState`.
 
-```
+```rust
 use aho_corasick::{
     automaton::OverlappingState,
     AhoCorasick, Input, Match,
@@ -944,7 +944,7 @@ anchored searches, but do make sure our search is correct for all possible
 [`MatchKind`](../index.md) semantics. (The comments in the code below note the parts
 that are needed to support certain `MatchKind` semantics.)
 
-```
+```rust
 use aho_corasick::{
     automaton::Automaton,
     nfa::noncontiguous::NFA,
@@ -956,8 +956,7 @@ use aho_corasick::{
 // if the given automaton does not support unanchored searches.
 fn find<A: Automaton>(
     aut: A,
-    haystack: &[u8](#u8)
-,
+    haystack: &[u8],
 ) -> Result<Option<Match>, MatchError> {
     let mut sid = aut.start_state(Anchored::No)?;
     let mut at = 0;
@@ -978,8 +977,7 @@ fn find<A: Automaton>(
         }
     }
     while at < haystack.len() {
-        sid = aut.next_state(Anchored::No, sid, haystack[at](#at)
-);
+        sid = aut.next_state(Anchored::No, sid, haystack[at]);
         if aut.is_special(sid) {
             if aut.is_dead(sid) {
                 return Ok(mat);
@@ -1009,7 +1007,7 @@ let nfa = NFA::builder()
     .unwrap();
 assert_eq!(Some(Match::must(0, 0..7)), find(&nfa, b"samwise")?);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Required Methods

@@ -15,8 +15,7 @@ A SIMD-accelerated Adler-32 hash algorithm implementation.
 > Cargo.toml
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 simd-adler32 = "*"
 ```
 

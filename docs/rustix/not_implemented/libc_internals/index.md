@@ -21,7 +21,6 @@ scope for rustix itself.
 
 If you would like to write a Rust program which does not use a libc, and
 which does provide APIs for some of these functions, [Eyra] and [origin](#origin)
-
 are two libraries which may be useful, and which provide public interfaces
 for some of this functionality.
 
@@ -31,8 +30,7 @@ yourself, rustix's codebase does include experimental implementations of
 the primitives needed to implement most of these functions.
 
 [Eyra]: https://github.com/sunfishcode/eyra?tab=readme-ov-file#eyra
-[origin](#origin)
-: https://github.com/sunfishcode/origin?tab=readme-ov-file#origin
+[origin](#origin): https://github.com/sunfishcode/origin?tab=readme-ov-file#origin
 
 ## Functions
 

@@ -10,8 +10,7 @@ To use this crate, add `walkdir` as a dependency to your project's
 `Cargo.toml`:
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 walkdir = "2"
 ```
 
@@ -32,14 +31,14 @@ the path for each entry:
 
 ```no_run
 use walkdir::WalkDir;
-# use walkdir::Error;
+use walkdir::Error;
 
-# fn try_main() -> Result<(), Error> {
+fn try_main() -> Result<(), Error> {
 for entry in WalkDir::new("foo") {
     println!("{}", entry?.path().display());
 }
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 Or, if you'd like to iterate over all entries and ignore any errors that
@@ -61,14 +60,14 @@ The same code as above, except [`follow_links`](#follow-links) is enabled:
 
 ```no_run
 use walkdir::WalkDir;
-# use walkdir::Error;
+use walkdir::Error;
 
-# fn try_main() -> Result<(), Error> {
+fn try_main() -> Result<(), Error> {
 for entry in WalkDir::new("foo").follow_links(true) {
     println!("{}", entry?.path().display());
 }
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 # Example: skip hidden files and directories on unix
@@ -78,7 +77,7 @@ and directories efficiently (i.e. without recursing into hidden directories):
 
 ```no_run
 use walkdir::{DirEntry, WalkDir};
-# use walkdir::Error;
+use walkdir::Error;
 
 fn is_hidden(entry: &DirEntry) -> bool {
     entry.file_name()
@@ -87,13 +86,13 @@ fn is_hidden(entry: &DirEntry) -> bool {
          .unwrap_or(false)
 }
 
-# fn try_main() -> Result<(), Error> {
+fn try_main() -> Result<(), Error> {
 let walker = WalkDir::new("foo").into_iter();
 for entry in walker.filter_entry(|e| !is_hidden(e)) {
     println!("{}", entry?.path().display());
 }
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 
@@ -237,14 +236,12 @@ root.
 case, there is no underlying IO error.
 
 To maintain good ergonomics, this type has a
-[`impl From<Error> for std::io::Error`][impl](#impl)
- defined which preserves the original context.
+[`impl From<Error> for std::io::Error`][impl](#impl) defined which preserves the original context.
 This allows you to use an `io::Result` with methods in this crate if you don't care about
 accessing the underlying error data in a structured form.
 
 
-[impl](#impl)
-: struct.Error.html#impl-From%3CError%3E
+[impl](#impl): struct.Error.html#impl-From%3CError%3E
 
 #### Implementations
 
@@ -355,14 +352,14 @@ options. For example, this only shows entries with a depth of `1`, `2` or
 
 ```no_run
 use walkdir::WalkDir;
-# use walkdir::Error;
+use walkdir::Error;
 
-# fn try_main() -> Result<(), Error> {
+fn try_main() -> Result<(), Error> {
 for entry in WalkDir::new("foo").min_depth(1).max_depth(3) {
     println!("{}", entry?.path().display());
 }
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 
@@ -373,14 +370,14 @@ with the [`min_depth`](#min-depth) setting:
 
 ```no_run
 use walkdir::WalkDir;
-# use walkdir::Error;
+use walkdir::Error;
 
-# fn try_main() -> Result<(), Error> {
+fn try_main() -> Result<(), Error> {
 for entry in WalkDir::new("foo").min_depth(1) {
     println!("{}", entry?.path().display());
 }
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 This will only return descendents of the `foo` directory and not `foo`

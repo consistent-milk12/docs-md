@@ -51,7 +51,7 @@ impl Logger {
 
     fn from_cli(args: env::Args) -> Result<Logger, std::io::Error> {
        // ...
-#      Ok(Logger {})
+     Ok(Logger {})
     }
 }
 
@@ -150,7 +150,7 @@ impl Ctx {
 This is a `regex!` macro which takes a string literal and returns an
 *expression* that evaluates to a `&'static Regex`:
 
-```
+```rust
 macro_rules! regex {
     ($re:literal $(,)?) => {{
         static RE: once_cell::sync::OnceCell<regex::Regex> = once_cell::sync::OnceCell::new();
@@ -168,7 +168,7 @@ The `include_bytes` macro is useful to include test resources, but it slows
 down test compilation a lot. An alternative is to load the resources at
 runtime:
 
-```
+```rust
 use std::path::Path;
 
 use once_cell::sync::OnceCell;
@@ -182,8 +182,7 @@ impl TestResource {
     pub const fn new(path: &'static str) -> TestResource {
         TestResource { path, cell: OnceCell::new() }
     }
-    pub fn bytes(&self) -> &[u8](#u8)
- {
+    pub fn bytes(&self) -> &[u8] {
         self.cell.get_or_init(|| {
             let dir = std::env::var("CARGO_MANIFEST_DIR").unwrap();
             let path = Path::new(dir.as_str()).join(self.path);
@@ -196,13 +195,11 @@ impl TestResource {
 
 static TEST_IMAGE: TestResource = TestResource::new("test_data/lena.png");
 
-#[test](#test)
-
+#[test]
 fn test_sobel_filter() {
-    let rgb: &[u8](#u8)
- = TEST_IMAGE.bytes();
+    let rgb: &[u8] = TEST_IMAGE.bytes();
     // ...
-# drop(rgb);
+drop(rgb);
 }
 ```
 
@@ -212,7 +209,7 @@ fn test_sobel_filter() {
 `lateinit` keyword and allows construction of cyclic data structures:
 
 
-```
+```rust
 use once_cell::sync::OnceCell;
 
 pub struct LateInit<T> { cell: OnceCell<T> }

@@ -11,7 +11,7 @@ prefix for those who prefer to `use` the entire path to a name.
 
 # Examples
 
-```
+```rust
 use base64::prelude::{Engine as _, BASE64_STANDARD_NO_PAD};
 
 assert_eq!("c29tZSBieXRlcw", &BASE64_STANDARD_NO_PAD.encode(b"some bytes"));

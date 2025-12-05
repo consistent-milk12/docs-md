@@ -6,7 +6,7 @@
 
 Utilities for dealing with the syntax of a regular expression.
 
-This module currently only exposes a [`Config`](../../dfa/onepass/index.md) type that
+This module currently only exposes a [`Config`](../start/index.md) type that
 itself represents a wrapper around the configuration for a
 [`regex-syntax::ParserBuilder`](regex_syntax::ParserBuilder). The purpose of
 this wrapper is to make configuring syntax options very similar to how other
@@ -187,13 +187,13 @@ default configuration.
 
 This shows how to parse a pattern into an HIR value:
 
-```
+```rust
 use regex_automata::util::syntax;
 
 let hir = syntax::parse(r"([a-z]+)|([0-9]+)")?;
 assert_eq!(Some(1), hir.properties().static_explicit_captures_len());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 ### `parse_many`
@@ -209,7 +209,7 @@ default configuration.
 
 This shows how to parse many patterns into an corresponding HIR values:
 
-```
+```rust
 use {
     regex_automata::util::syntax,
     regex_syntax::hir::Properties,
@@ -222,7 +222,7 @@ let hirs = syntax::parse_many(&[
 let props = Properties::union(hirs.iter().map(|h| h.properties()));
 assert_eq!(Some(1), props.static_explicit_captures_len());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 ### `parse_with`
@@ -239,7 +239,7 @@ A convenience routine for parsing a pattern into an HIR value using a
 This shows how to parse a pattern into an HIR value with a non-default
 configuration:
 
-```
+```rust
 use regex_automata::util::syntax;
 
 let hir = syntax::parse_with(
@@ -248,7 +248,7 @@ let hir = syntax::parse_with(
 )?;
 assert!(hir.properties().look_set().contains_anchor_crlf());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 ### `parse_many_with`
@@ -265,7 +265,7 @@ A convenience routine for parsing many patterns into HIR values using a
 This shows how to parse many patterns into an corresponding HIR values
 with a non-default configuration:
 
-```
+```rust
 use {
     regex_automata::util::syntax,
     regex_syntax::hir::Properties,
@@ -281,6 +281,6 @@ let hirs = syntax::parse_many_with(patterns, &config)?;
 let props = Properties::union(hirs.iter().map(|h| h.properties()));
 assert!(!props.is_utf8());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 

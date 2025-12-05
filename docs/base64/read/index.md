@@ -20,7 +20,7 @@ A `Read` implementation that decodes base64 data read from an underlying reader.
 
 # Examples
 
-```
+```rust
 use std::io::Read;
 use std::io::Cursor;
 use base64::engine::general_purpose;

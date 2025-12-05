@@ -8,7 +8,7 @@ This crate requires a minimum Rust version of 1.63.0 (2022-08-11).
 
 # Example
 
-```
+```rust
 use terminal_size::{Width, Height, terminal_size};
 
 let size = terminal_size();

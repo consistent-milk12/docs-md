@@ -271,6 +271,88 @@ pub fn strip_reference_definitions(docs: &str) -> String {
     REFERENCE_DEF_RE.replace_all(docs, "").to_string()
 }
 
+/// Unhide rustdoc hidden lines in code blocks and add language identifiers.
+///
+/// This function performs two transformations on code blocks:
+/// 1. Lines starting with `# ` inside code blocks are hidden in rustdoc
+///    but compiled. We remove the prefix to show the full example.
+/// 2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
+///    examples are Rust code.
+#[must_use]
+pub fn unhide_code_lines(docs: &str) -> String {
+    let mut result = String::with_capacity(docs.len());
+    let mut in_code_block = false;
+    let mut fence: Option<&str> = None;
+
+    for line in docs.lines() {
+        let trimmed = line.trim_start();
+
+        // Track code block boundaries
+        if let Some(f) = detect_fence(trimmed) {
+            if in_code_block && fence.is_some_and(|open| trimmed.starts_with(open)) {
+                // Closing fence
+                in_code_block = false;
+                fence = None;
+                result.push_str(line);
+            } else if !in_code_block {
+                // Opening fence - check if it needs a language identifier
+                in_code_block = true;
+                fence = Some(f);
+
+                // Add `rust` to bare fences (``` or ~~~)
+                let leading_ws = &line[..line.len() - trimmed.len()];
+                if trimmed == "```" || trimmed == "~~~" {
+                    result.push_str(leading_ws);
+                    result.push_str(trimmed);
+                    result.push_str("rust");
+                } else {
+                    result.push_str(line);
+                }
+            } else {
+                // Nested fence (different style) - just pass through
+                result.push_str(line);
+            }
+            result.push('\n');
+            continue;
+        }
+
+        if in_code_block {
+            let leading_ws = &line[..line.len() - trimmed.len()];
+
+            if trimmed == "#" {
+                // Just "#" becomes empty line (newline added below)
+            } else if let Some(rest) = trimmed.strip_prefix("# ") {
+                // "# code" becomes "code"
+                result.push_str(leading_ws);
+                result.push_str(rest);
+            } else {
+                result.push_str(line);
+            }
+        } else {
+            result.push_str(line);
+        }
+        result.push('\n');
+    }
+
+    // Remove trailing newline if original didn't have one
+    if !docs.ends_with('\n') && result.ends_with('\n') {
+        result.pop();
+    }
+
+    result
+}
+
+/// Detect a code fence and return the fence string.
+fn detect_fence(trimmed: &str) -> Option<&'static str> {
+    if trimmed.starts_with("```") {
+        Some("```")
+    } else if trimmed.starts_with("~~~") {
+        Some("~~~")
+    } else {
+        None
+    }
+}
+
 /// Convert path-style reference links to inline code.
 ///
 /// Transforms: `[``ProgressTracker``][crate::style::ProgressTracker]`
@@ -361,8 +443,8 @@ impl<'a> DocLinkProcessor<'a> {
         // Step 1: Strip reference definitions first
         let stripped = strip_reference_definitions(docs);
 
-        // Step 2: Unhide rustdoc hidden lines in code blocks
-        let unhidden = Self::unhide_code_lines(&stripped);
+        // Step 2: Unhide rustdoc hidden lines in code blocks and add `rust` to bare fences
+        let unhidden = unhide_code_lines(&stripped);
 
         // Step 3: Process all link types (with code block protection)
         let processed = self.process_links_protected(&unhidden, item_links);
@@ -386,7 +468,7 @@ impl<'a> DocLinkProcessor<'a> {
 
             // Check for code fence
             let trimmed = line.trim_start();
-            if let Some(f) = Self::detect_fence(trimmed) {
+            if let Some(f) = detect_fence(trimmed) {
                 if in_code_block {
                     // Check if this closes the current block
                     if let Some(open_fence) = fence
@@ -421,17 +503,6 @@ impl<'a> DocLinkProcessor<'a> {
         result
     }
 
-    /// Detect a code fence and return the fence string.
-    fn detect_fence(trimmed: &str) -> Option<&'static str> {
-        if trimmed.starts_with("```") {
-            Some("```")
-        } else if trimmed.starts_with("~~~") {
-            Some("~~~")
-        } else {
-            None
-        }
-    }
-
     /// Process a single line for all link types.
     fn process_line(&self, line: &str, item_links: &HashMap<String, Id>) -> String {
         // Skip lines that look like reference definitions (backup check)
@@ -447,60 +518,6 @@ impl<'a> DocLinkProcessor<'a> {
         let s = self.process_plain_links(&s, item_links);
 
         Self::process_html_links(&s)
-    }
-
-    /// Unhide rustdoc hidden lines in code blocks.
-    ///
-    /// Lines starting with `# ` inside code blocks are hidden in rustdoc
-    /// but compiled. We remove the prefix to show the full example.
-    fn unhide_code_lines(docs: &str) -> String {
-        let mut result = String::with_capacity(docs.len());
-        let mut in_code_block = false;
-        let mut fence: Option<&str> = None;
-
-        for line in docs.lines() {
-            let trimmed = line.trim_start();
-
-            // Track code block boundaries
-            if let Some(f) = Self::detect_fence(trimmed) {
-                if in_code_block && fence.map_or_else(|| false, |open| trimmed.starts_with(open)) {
-                    in_code_block = false;
-                    fence = None;
-                } else if !in_code_block {
-                    in_code_block = true;
-                    fence = Some(f);
-                }
-
-                result.push_str(line);
-                result.push('\n');
-
-                continue;
-            }
-
-            if in_code_block {
-                let leading_ws = &line[..line.len() - trimmed.len()];
-
-                if trimmed == "#" {
-                    // Just "#" becomes empty line (newline added below)
-                } else if let Some(rest) = trimmed.strip_prefix("# ") {
-                    // "# code" becomes "code"
-                    result.push_str(leading_ws);
-                    result.push_str(rest);
-                } else {
-                    result.push_str(line);
-                }
-            } else {
-                result.push_str(line);
-            }
-            result.push('\n');
-        }
-
-        // Remove trailing newline if original didn't have one
-        if !docs.ends_with('\n') && result.ends_with('\n') {
-            result.pop();
-        }
-
-        result
     }
 
     /// Process reference-style links `[display text][`Span`]`.
@@ -923,5 +940,44 @@ mod tests {
         let docs = "[`Tracker`][crate::style::Tracker] is useful";
         let result = convert_path_reference_links(docs);
         assert_eq!(result, "`Tracker` is useful");
+    }
+
+    #[test]
+    fn test_unhide_code_lines_strips_hidden_prefix() {
+        let docs = "```\n# #[cfg(feature = \"test\")]\n# {\nuse foo::bar;\n# }\n```";
+        let result = unhide_code_lines(docs);
+        assert_eq!(
+            result,
+            "```rust\n#[cfg(feature = \"test\")]\n{\nuse foo::bar;\n}\n```"
+        );
+    }
+
+    #[test]
+    fn test_unhide_code_lines_adds_rust_to_bare_fence() {
+        let docs = "```\nlet x = 1;\n```";
+        let result = unhide_code_lines(docs);
+        assert_eq!(result, "```rust\nlet x = 1;\n```");
+    }
+
+    #[test]
+    fn test_unhide_code_lines_preserves_existing_language() {
+        let docs = "```python\nprint('hello')\n```";
+        let result = unhide_code_lines(docs);
+        assert_eq!(result, "```python\nprint('hello')\n```");
+    }
+
+    #[test]
+    fn test_unhide_code_lines_handles_tilde_fence() {
+        let docs = "~~~\ncode\n~~~";
+        let result = unhide_code_lines(docs);
+        assert_eq!(result, "~~~rust\ncode\n~~~");
+    }
+
+    #[test]
+    fn test_unhide_code_lines_lone_hash() {
+        // A lone # becomes an empty line
+        let docs = "```\n#\nlet x = 1;\n```";
+        let result = unhide_code_lines(docs);
+        assert_eq!(result, "```rust\n\nlet x = 1;\n```");
     }
 }

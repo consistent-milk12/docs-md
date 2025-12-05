@@ -598,18 +598,18 @@ instances for the same DER-encoded ASN.1 certificate bytes.
 
 - `type Target = T`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom<'a>`
 
 - `type Error = Error`
 
 - `fn try_from(cert: &'a CertificateDer<'a>) -> Result<Self, <Self as >::Error>`
   Parse the ASN.1 DER-encoded X.509 encoding of the certificate
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1631,14 +1631,14 @@ May be either an owned, or a borrowed representation.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(crl: OwnedCertRevocationList) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(crl: OwnedCertRevocationList) -> Self`
 
 ##### `impl From<'a>`
 
@@ -1940,17 +1940,17 @@ See [RFC 5280 §5.3.1][1]
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = Error`
 
 - `fn try_from(value: u8) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 

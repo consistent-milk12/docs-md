@@ -338,10 +338,10 @@ provider (dynamically).
 For example, if we want to make a provider that just overrides key loading in the config builder
 API (with `ConfigBuilder::with_single_cert`, etc.), it might look like this:
 
-```
-# #[cfg(feature = "aws_lc_rs")] {
-# use std::sync::Arc;
-# mod fictious_hsm_api { pub fn load_private_key(key_der: pki_types::PrivateKeyDer<'static>) -> ! { unreachable!(); } }
+```rust
+#[cfg(feature = "aws_lc_rs")] {
+use std::sync::Arc;
+mod fictious_hsm_api { pub fn load_private_key(key_der: pki_types::PrivateKeyDer<'static>) -> ! { unreachable!(); } }
 use rustls::crypto::aws_lc_rs;
 
 pub fn provider() -> rustls::crypto::CryptoProvider {
@@ -359,7 +359,7 @@ impl rustls::crypto::KeyProvider for HsmKeyLoader {
          fictious_hsm_api::load_private_key(key_der)
     }
 }
-# }
+}
 ```
 
 ## References to the individual elements
@@ -581,14 +581,14 @@ The result from `ActiveKeyExchange::complete` or `ActiveKeyExchange::complete_hy
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(buf: Vec<u8>) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(buf: Vec<u8>) -> Self`
 
 ##### `impl From`
 

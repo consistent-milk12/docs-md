@@ -682,14 +682,14 @@ A write or read IV.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(bytes: [u8; 12]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(bytes: [u8; 12]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -794,14 +794,14 @@ This is a value type for a byte string up to `AeadKey::MAX_LEN` bytes in length.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(bytes: [u8; 32]) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(bytes: [u8; 32]) -> Self`
 
 ##### `impl Into<T, U>`
 

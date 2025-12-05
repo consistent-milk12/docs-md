@@ -7,7 +7,7 @@
 Provides literal extraction from `Hir` expressions.
 
 An [`Extractor`](#extractor) pulls literals out of [`Hir`](../index.md) expressions and returns a
-[`Seq`](#seq) of [`Literal`](#literal)s.
+[`Seq`](#seq) of [`Literal`](../../index.md)s.
 
 The purpose of literal extraction is generally to provide avenues for
 optimizing regex searches. The main idea is that substring searches can be an
@@ -48,7 +48,7 @@ You're encouraged to explore the methods on [`Seq`](#seq), which permit shrinkin
 the size of sequences in a preference-order preserving fashion.
 
 Finally, note that it isn't strictly necessary to use an [`Extractor`](#extractor). Namely,
-an `Extractor` only uses public APIs of the [`Seq`](#seq) and [`Literal`](#literal) types,
+an `Extractor` only uses public APIs of the [`Seq`](#seq) and [`Literal`](../../index.md) types,
 so it is possible to implement your own extractor. For example, for n-grams
 or "inner" literals (i.e., not prefix or suffix literals). The `Extractor`
 is mostly responsible for the case analysis over `Hir` expressions. Much of
@@ -108,7 +108,7 @@ regex.
 
 This shows how to extract prefixes:
 
-```
+```rust
 use regex_syntax::{hir::literal::{Extractor, Literal, Seq}, parse};
 
 let hir = parse(r"(a|b|c)(x|y|z)[A-Z]+foo")?;
@@ -128,12 +128,12 @@ let expected = Seq::from_iter([
 ]);
 assert_eq!(expected, got);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 This shows how to extract suffixes:
 
-```
+```rust
 use regex_syntax::{
     hir::literal::{Extractor, ExtractKind, Literal, Seq},
     parse,
@@ -149,7 +149,7 @@ let expected = Seq::from_iter([
 ]);
 assert_eq!(expected, got);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -254,8 +254,7 @@ of it depends on how the `Seq` was extracted from the `Hir`.)
 It is also unlike a set in that multiple identical literals may appear,
 and that the order of the literals in the `Seq` matters. For example, if
 the sequence is `[sam, samwise]` and leftmost-first matching is used, then
-`samwise` can never match and the sequence is equivalent to `[sam](#sam)
-`.
+`samwise` can never match and the sequence is equivalent to `[sam]`.
 
 # States of a sequence
 
@@ -282,7 +281,7 @@ literals must match in order for the corresponding `Hir` to match.
 This example shows how literal sequences can be simplified by stripping
 suffixes and minimizing while maintaining preference order.
 
-```
+```rust
 use regex_syntax::hir::literal::{Literal, Seq};
 
 let mut seq = Seq::new(&[

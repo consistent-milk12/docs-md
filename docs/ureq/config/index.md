@@ -24,7 +24,7 @@ Config objects are cheap to clone and should not incur any heap allocations.
 
 ## Example
 
-```
+```rust
 use ureq::Agent;
 use std::time::Duration;
 
@@ -49,7 +49,7 @@ There are two ways of getting a request level config.
 
 The first way is via `RequestBuilder::config()`.
 
-```
+```rust
 use ureq::Agent;
 
 let agent: Agent = Agent::config_builder()
@@ -70,7 +70,7 @@ let response = agent.get("http://httpbin.org/get")
 The second way is via `Agent::configure_request()`.
 This is used when working with the http crate `http::Request` type directly.
 
-```
+```rust
 use ureq::{http, Agent};
 
 let agent: Agent = Agent::config_builder()
@@ -231,13 +231,13 @@ Builder of [`Config`](#config)
 
 #### Implementations
 
-- `fn build(self: Self) -> RequestBuilder<Any>`
-  Finalize the config
-
 - `fn build(self: Self) -> Config`
   Finalize the config
 
 - `fn build(self: Self) -> http::Request<S>`
+  Finalize the config
+
+- `fn build(self: Self) -> RequestBuilder<Any>`
   Finalize the config
 
 - `fn http_status_as_error(self: Self, v: bool) -> Self`
@@ -528,14 +528,14 @@ Possible config values for headers.
 
 #### Trait Implementations
 
+##### `impl From<S: AsRef<str>>`
+
+- `fn from(value: S) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<S: AsRef<str>>`
-
-- `fn from(value: S) -> Self`
 
 ##### `impl Into<T, U>`
 

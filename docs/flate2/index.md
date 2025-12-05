@@ -38,27 +38,23 @@ This crate consists mainly of three modules, [`read`](read/index.md), [`write`](
 [`bufread`](bufread/index.md). Each module contains a number of types used to encode and
 decode various streams of data.
 
-All types in the [`write`](write/index.md) module work on instances of [`Write`][write](#write)
-,
+All types in the [`write`](write/index.md) module work on instances of [`Write`][write](#write),
 whereas all types in the [`read`](read/index.md) module work on instances of
-[`Read`][read](#read)
- and [`bufread`](bufread/index.md) works with [`BufRead`][bufread](#bufread)
-. If you
-are decoding directly from a `&[u8](#u8)
-`, use the [`bufread`](bufread/index.md) types.
+[`Read`][read](#read) and [`bufread`](bufread/index.md) works with [`BufRead`][bufread](#bufread). If you
+are decoding directly from a `&[u8]`, use the [`bufread`](bufread/index.md) types.
 
-```
+```rust
 use flate2::write::GzEncoder;
 use flate2::Compression;
 use std::io;
 use std::io::prelude::*;
 
-# fn main() { let _ = run(); }
-# fn run() -> io::Result<()> {
+fn main() { let _ = run(); }
+fn run() -> io::Result<()> {
 let mut encoder = GzEncoder::new(Vec::new(), Compression::default());
 encoder.write_all(b"Example")?;
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 
@@ -87,12 +83,9 @@ emit an error after decoding the gzip data. This behavior matches the `gzip`,
 
 
 
-[read](#read)
-: https://doc.rust-lang.org/std/io/trait.Read.html
-[write](#write)
-: https://doc.rust-lang.org/std/io/trait.Write.html
-[bufread](#bufread)
-: https://doc.rust-lang.org/std/io/trait.BufRead.html
+[read](#read): https://doc.rust-lang.org/std/io/trait.Read.html
+[write](#write): https://doc.rust-lang.org/std/io/trait.Write.html
+[bufread](#bufread): https://doc.rust-lang.org/std/io/trait.BufRead.html
 
 
 
@@ -192,6 +185,9 @@ A wrapper around a [`Read`](#read) that calculates the CRC.
 
 #### Implementations
 
+- `fn new(r: R) -> CrcReader<R>`
+  Create a new `CrcReader`.
+
 - `fn crc(self: &Self) -> &Crc`
   Get the Crc for this `CrcReader`.
 
@@ -206,9 +202,6 @@ A wrapper around a [`Read`](#read) that calculates the CRC.
 
 - `fn reset(self: &mut Self)`
   Reset the Crc in this `CrcReader`.
-
-- `fn new(r: R) -> CrcReader<R>`
-  Create a new `CrcReader`.
 
 #### Trait Implementations
 
@@ -273,6 +266,9 @@ A wrapper around a [`Write`](#write) that calculates the CRC.
 
 #### Implementations
 
+- `fn new(w: W) -> CrcWriter<W>`
+  Create a new `CrcWriter`.
+
 - `fn crc(self: &Self) -> &Crc`
   Get the Crc for this `CrcWriter`.
 
@@ -287,9 +283,6 @@ A wrapper around a [`Write`](#write) that calculates the CRC.
 
 - `fn reset(self: &mut Self)`
   Reset the Crc in this `CrcWriter`.
-
-- `fn new(w: W) -> CrcWriter<W>`
-  Create a new `CrcWriter`.
 
 #### Trait Implementations
 
@@ -351,16 +344,16 @@ This structure controls header configuration options such as the filename.
 
 # Examples
 
-```
+```rust
 use std::io::prelude::*;
-# use std::io;
+use std::io;
 use std::fs::File;
 use flate2::GzBuilder;
 use flate2::Compression;
 
 // GzBuilder opens a file and writes a sample string using GzBuilder pattern
 
-# fn sample_builder() -> Result<(), io::Error> {
+fn sample_builder() -> Result<(), io::Error> {
 let f = File::create("examples/hello_world.gz")?;
 let mut gz = GzBuilder::new()
                 .filename("hello_world.txt")
@@ -368,8 +361,8 @@ let mut gz = GzBuilder::new()
                 .write(f, Compression::default());
 gz.write_all(b"hello world")?;
 gz.finish()?;
-# Ok(())
-# }
+Ok(())
+}
 ```
 
 #### Implementations
@@ -803,11 +796,11 @@ bytes was not a valid input stream of bytes.
 
 #### Implementations
 
-- `fn message(self: &Self) -> Option<&str>`
-  Retrieve the implementation's message about why the operation failed, if one exists.
-
 - `fn needs_dictionary(self: &Self) -> Option<u32>`
   Indicates whether decompression failed due to requiring a dictionary.
+
+- `fn message(self: &Self) -> Option<&str>`
+  Retrieve the implementation's message about why the operation failed, if one exists.
 
 #### Trait Implementations
 

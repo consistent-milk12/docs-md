@@ -251,7 +251,7 @@ A stream deserializer can be created from any JSON deserializer using the
 The data can consist of any JSON value. Values need to be a self-delineating value e.g.
 arrays, objects, or strings, or be followed by whitespace or a self-delineating value.
 
-```
+```rust
 use serde_json::{Deserializer, Value};
 
 fn main() {
@@ -362,7 +362,7 @@ or [`from_slice`](#from-slice) on it. See [issue #160].
 
 Reading the contents of a file.
 
-```
+```rust
 use serde::Deserialize;
 
 use std::error::Error;
@@ -389,8 +389,8 @@ fn read_user_from_file<P: AsRef<Path>>(path: P) -> Result<User, Box<dyn Error>> 
 }
 
 fn main() {
-# }
-# fn fake_main() {
+}
+fn fake_main() {
     let u = read_user_from_file("test.json").unwrap();
     println!("{:#?}", u);
 }
@@ -398,7 +398,7 @@ fn main() {
 
 Reading from a persistent socket connection.
 
-```
+```rust
 use serde::Deserialize;
 
 use std::error::Error;
@@ -419,8 +419,8 @@ fn read_user_from_stream(stream: &mut BufReader<TcpStream>) -> Result<User, Box<
 }
 
 fn main() {
-# }
-# fn fake_main() {
+}
+fn fake_main() {
     let listener = TcpListener::bind("127.0.0.1:4000").unwrap();
 
     for tcp_stream in listener.incoming() {
@@ -452,7 +452,7 @@ Deserialize an instance of type `T` from bytes of JSON text.
 
 # Example
 
-```
+```rust
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
@@ -462,8 +462,7 @@ struct User {
 }
 
 fn main() {
-    // The type of `j` is `&[u8](#u8)
-`
+    // The type of `j` is `&[u8](#u8)`
     let j = b"
         {
             \"fingerprint\": \"0xF9BA143B95FF6D82\",
@@ -497,7 +496,7 @@ Deserialize an instance of type `T` from a string of JSON text.
 
 # Example
 
-```
+```rust
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]

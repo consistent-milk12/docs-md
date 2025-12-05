@@ -20,7 +20,7 @@ used.
 
 ## Signing a value and verifying it wasn't tampered with
 
-```
+```rust
 use ring::{hmac, rand};
 
 let rng = rand::SystemRandom::new();
@@ -35,12 +35,12 @@ let tag = hmac::sign(&key, msg.as_bytes());
 
 hmac::verify(&key, msg.as_bytes(), tag.as_ref())?;
 
-# Ok::<(), ring::error::Unspecified>(())
+Ok::<(), ring::error::Unspecified>(())
 ```
 
 ## Using the one-shot API:
 
-```
+```rust
 use ring::{digest, hmac, rand};
 use ring::rand::SecureRandom;
 
@@ -60,11 +60,11 @@ let tag = hmac::sign(&s_key, msg.as_bytes());
 let v_key = hmac::Key::new(hmac::HMAC_SHA256, key_value.as_ref());
 hmac::verify(&v_key, msg.as_bytes(), tag.as_ref())?;
 
-# Ok::<(), ring::error::Unspecified>(())
+Ok::<(), ring::error::Unspecified>(())
 ```
 
 ## Using the multi-part API:
-```
+```rust
 use ring::{digest, hmac, rand};
 use ring::rand::SecureRandom;
 
@@ -92,7 +92,7 @@ for part in &parts {
 }
 hmac::verify(&v_key, &msg.as_ref(), tag.as_ref())?;
 
-# Ok::<(), ring::error::Unspecified>(())
+Ok::<(), ring::error::Unspecified>(())
 ```
 
 [RFC 2104]: https://tools.ietf.org/html/rfc2104

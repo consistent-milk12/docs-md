@@ -82,7 +82,7 @@ which means it works in all regex engines and even for capture groups as well.
 This example shows how to search for matches of multiple regexes, where each
 regex uses the same capture group names to parse different key-value formats.
 
-```
+```rust
 use regex_automata::{meta::Regex, PatternID};
 
 let re = Regex::new_many(&[
@@ -113,7 +113,7 @@ assert_eq!(kvs, vec![
     ("best_simpsons_episode", "HOMR"),
 ]);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 ### Build a full DFA and walk it manually
@@ -123,7 +123,7 @@ case exponential time to build, but once built, it can be easily explored and
 used for searches. Here's a simple example that uses its lower level APIs to
 implement a simple anchored search by hand.
 
-```
+```rust
 use regex_automata::{dfa::{Automaton, dense}, Input};
 
 let dfa = dense::DFA::new(r"(?-u)\b[A-Z]\w+z\b")?;
@@ -142,13 +142,13 @@ for &b in haystack.as_bytes().iter() {
 state = dfa.next_eoi_state(state);
 assert!(dfa.is_match_state(state));
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 Or do the same with a lazy DFA that avoids exponential worst case compile time,
 but requires mutable scratch space to lazily build the DFA during the search.
 
-```
+```rust
 use regex_automata::{hybrid::dfa::DFA, Input};
 
 let dfa = DFA::new(r"(?-u)\b[A-Z]\w+z\b")?;
@@ -168,7 +168,7 @@ for &b in hay.as_bytes().iter() {
 state = dfa.next_eoi_state(&mut cache, state)?;
 assert!(state.is_match());
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 ### Find all overlapping matches
@@ -178,7 +178,7 @@ including overlapping matches. A similar example will work with a lazy DFA as
 well. This also works with multiple patterns and will report all matches at the
 same position where multiple patterns match.
 
-```
+```rust
 use regex_automata::{
     dfa::{dense, Automaton, OverlappingState},
     Input, MatchKind,
@@ -205,7 +205,7 @@ assert_eq!(matches, vec![
     25, 26, 27, 28, // mag, magg, maggi, maggie
 ]);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Available regex engines
@@ -265,8 +265,7 @@ some general themes followed by all of them.
 ### The `Input` abstraction
 
 Most search routines in this crate accept anything that implements
-`Into<Input>`. Both `&str` and `&[u8](#u8)
-` haystacks satisfy this constraint, which
+`Into<Input>`. Both `&str` and `&[u8]` haystacks satisfy this constraint, which
 means that things like `engine.search("foo")` will work as you would expect.
 
 By virtue of accepting an `Into<Input>` though, callers can provide more than
@@ -686,13 +685,7 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom<T, U>`
 
@@ -704,7 +697,13 @@ re-exported at the crate root due to how common it is.
 
 - `type Error = PatternIDError`
 
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
+- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
+
+##### `impl TryFrom`
+
+- `type Error = PatternIDError`
+
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 

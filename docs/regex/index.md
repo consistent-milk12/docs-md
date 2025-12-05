@@ -33,7 +33,7 @@ assert_eq!(results, vec![
     ("path/to/bar", 90, "Something, Something, Something, Dark Side"),
     ("path/to/baz", 3, "It's a Trap!"),
 ]);
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Overview
@@ -97,7 +97,7 @@ $ cargo add regex
 
 Third, edit `src/main.rs`. Delete what's there and replace it with this:
 
-```
+```rust
 use regex::Regex;
 
 fn main() {
@@ -606,8 +606,7 @@ assert_eq!(subs, vec!["ΔδΔ𐅌ΔδΔ"]);
 
 ### Opt out of Unicode support
 
-The `bytes::Regex` type that can be used to search `&[u8](#u8)
-` haystacks. By
+The `bytes::Regex` type that can be used to search `&[u8]` haystacks. By
 default, haystacks are conventionally treated as UTF-8 just like it is with the
 main `Regex` type. However, this behavior can be disabled by turning off the
 `u` flag, even if doing so could result in matching invalid UTF-8. For example,
@@ -652,8 +651,7 @@ a separate crate, [`regex-syntax`](https://docs.rs/regex-syntax).
 ### Character classes
 
 <pre class="rust">
-[xyz](#xyz)
-         A character class matching either x, y or z (union).
+[xyz](#xyz)         A character class matching either x, y or z (union).
 [^xyz]        A character class matching any character except x, y and z.
 [a-z]         A character class matching any character in range a-z.
 [[:alpha:]]   ASCII character class ([A-Za-z])
@@ -674,9 +672,7 @@ codepoint in the `Greek` script. `[\p{Greek}&&\pL]` matches Greek letters.
 Precedence in character classes, from most binding to least:
 
 1. Ranges: `[a-cd]` == `[[a-c]d]`
-2. Union: `[ab&&bc]` == `[[ab](#ab)
-&&[bc](#bc)
-]`
+2. Union: `[ab&&bc]` == `[[ab]&&[bc]]`
 3. Intersection, difference, symmetric difference. All three have equivalent
 precedence, and are evaluated in left-to-right order. For example,
 `[\pL--\p{Greek}&&\p{Uppercase}]` == `[[\pL--\p{Greek}]&&\p{Uppercase}]`.
@@ -692,7 +688,7 @@ x|y   alternation (x or y, prefer x)
 This example shows how an alternation works, and what it means to prefer a
 branch in the alternation over subsequent branches.
 
-```
+```rust
 use regex::Regex;
 
 let haystack = "samwise";
@@ -817,7 +813,7 @@ Notice that the `a+` matches either `a` or `A`, but the `b+` only matches
 Multi-line mode means `^` and `$` no longer match just at the beginning/end of
 the input, but also at the beginning/end of lines:
 
-```
+```rust
 use regex::Regex;
 
 let re = Regex::new(r"(?m)^line \d+").unwrap();
@@ -827,7 +823,7 @@ assert_eq!(m.as_str(), "line 2");
 
 Note that `^` matches after new lines, even at the end of input:
 
-```
+```rust
 use regex::Regex;
 
 let re = Regex::new(r"(?m)^").unwrap();
@@ -838,7 +834,7 @@ assert_eq!((m.start(), m.end()), (5, 5));
 When both CRLF mode and multi-line mode are enabled, then `^` and `$` will
 match either `\r` or `\n`, but never in the middle of a `\r\n`:
 
-```
+```rust
 use regex::Regex;
 
 let re = Regex::new(r"(?mR)^foo$").unwrap();

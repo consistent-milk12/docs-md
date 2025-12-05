@@ -124,7 +124,7 @@ might want. Instead of implementing your own iterator to avoid that
 cost (which can be a little subtle if you want to handle empty matches
 correctly), you can use this `Searcher` to do it for you:
 
-```
+```rust
 use regex_automata::{
     nfa::thompson::pikevm::PikeVM,
     util::iter::Searcher,
@@ -151,7 +151,7 @@ assert_eq!(matches, vec![
     Span::from(14..17),
 ]);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

@@ -36,7 +36,7 @@ This example shows how to search for occurrences of multiple patterns
 simultaneously. Each match includes the pattern that matched along with the
 byte offsets of the match.
 
-```
+```rust
 use aho_corasick::{AhoCorasick, PatternID};
 
 let patterns = &["apple", "maple", "Snapple"];
@@ -59,7 +59,7 @@ assert_eq!(matches, vec![
 This is like the previous example, but matches `Snapple` case insensitively
 using `AhoCorasickBuilder`:
 
-```
+```rust
 use aho_corasick::{AhoCorasick, PatternID};
 
 let patterns = &["apple", "maple", "snapple"];
@@ -85,11 +85,11 @@ assert_eq!(matches, vec![
 This example shows how to execute a search and replace on a stream without
 loading the entire stream into memory first.
 
-```
-# #[cfg(feature = "std")] {
+```rust
+#[cfg(feature = "std")] {
 use aho_corasick::AhoCorasick;
 
-# fn example() -> Result<(), std::io::Error> {
+fn example() -> Result<(), std::io::Error> {
 let patterns = &["fox", "brown", "quick"];
 let replace_with = &["sloth", "grey", "slow"];
 
@@ -101,8 +101,8 @@ let mut wtr = vec![];
 let ac = AhoCorasick::new(patterns).unwrap();
 ac.try_stream_replace_all(rdr.as_bytes(), &mut wtr, replace_with)?;
 assert_eq!(b"The slow grey sloth.".to_vec(), wtr);
-# Ok(()) }; example().unwrap()
-# }
+Ok(()) }; example().unwrap()
+}
 ```
 
 # Example: finding the leftmost first match
@@ -124,7 +124,7 @@ A novel contribution of this library is the ability to change the match
 semantics of Aho-Corasick (without additional search time overhead) such that
 `Samwise` is reported instead. For example, here's the standard approach:
 
-```
+```rust
 use aho_corasick::AhoCorasick;
 
 let patterns = &["Samwise", "Sam"];
@@ -138,7 +138,7 @@ assert_eq!("Sam", &haystack[mat.start()..mat.end()]);
 And now here's the leftmost-first version, which matches how a Perl-like
 regex will work:
 
-```
+```rust
 use aho_corasick::{AhoCorasick, MatchKind};
 
 let patterns = &["Samwise", "Sam"];
@@ -377,8 +377,7 @@ is guaranteed that it is cheap to clone.
 # Search configuration
 
 Most of the search routines accept anything that can be cheaply converted
-to an [`Input`](#input). This includes `&[u8](#u8)
-`, `&str` and `Input` itself.
+to an [`Input`](#input). This includes `&[u8]`, `&str` and `Input` itself.
 
 # Construction failure
 
@@ -440,7 +439,7 @@ This example shows how to search for occurrences of multiple patterns
 simultaneously in a case insensitive fashion. Each match includes the
 pattern that matched along with the byte offsets of the match.
 
-```
+```rust
 use aho_corasick::{AhoCorasick, PatternID};
 
 let patterns = &["apple", "maple", "snapple"];
@@ -463,7 +462,7 @@ assert_eq!(matches, vec![
 
 This example shows how to replace matches with some other string:
 
-```
+```rust
 use aho_corasick::AhoCorasick;
 
 let patterns = &["fox", "brown", "quick"];
@@ -477,38 +476,11 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Result<Option<Match>, MatchError>`
-  Returns the location of the first match according to the match
+- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
+  Create a new Aho-Corasick automaton using the default configuration.
 
-- `fn try_find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState) -> Result<(), MatchError>`
-  Returns the location of the first overlapping match in the given
-
-- `fn try_find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> Result<FindIter<'a, 'h>, MatchError>`
-  Returns an iterator of non-overlapping matches, using the match
-
-- `fn try_find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> Result<FindOverlappingIter<'a, 'h>, MatchError>`
-  Returns an iterator of overlapping matches.
-
-- `fn try_replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> Result<String, MatchError>`
-  Replace all matches with a corresponding value in the `replace_with`
-
-- `fn try_replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Result<Vec<u8>, MatchError>`
-  Replace all matches using raw bytes with a corresponding value in the
-
-- `fn try_replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F) -> Result<(), MatchError>`
-  Replace all matches using a closure called on each match.
-
-- `fn try_replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F) -> Result<(), MatchError>`
-  Replace all matches using raw bytes with a closure called on each
-
-- `fn try_stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> Result<StreamFindIter<'a, R>, MatchError>`
-  Returns an iterator of non-overlapping matches in the given
-
-- `fn try_stream_replace_all<R, W, B>(self: &Self, rdr: R, wtr: W, replace_with: &[B]) -> Result<(), std::io::Error>`
-  Search for and replace all matches of this automaton in
-
-- `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> Result<(), std::io::Error>`
-  Search the given reader and replace all matches of this automaton
+- `fn builder() -> AhoCorasickBuilder`
+  A convenience method for returning a new Aho-Corasick builder.
 
 - `fn kind(self: &Self) -> AhoCorasickKind`
   Returns the kind of the Aho-Corasick automaton used by this searcher.
@@ -561,11 +533,38 @@ assert_eq!(result, "The slow grey sloth.");
 - `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>`
   Returns an iterator of non-overlapping matches in the given
 
-- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>`
-  Create a new Aho-Corasick automaton using the default configuration.
+- `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Result<Option<Match>, MatchError>`
+  Returns the location of the first match according to the match
 
-- `fn builder() -> AhoCorasickBuilder`
-  A convenience method for returning a new Aho-Corasick builder.
+- `fn try_find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState) -> Result<(), MatchError>`
+  Returns the location of the first overlapping match in the given
+
+- `fn try_find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> Result<FindIter<'a, 'h>, MatchError>`
+  Returns an iterator of non-overlapping matches, using the match
+
+- `fn try_find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> Result<FindOverlappingIter<'a, 'h>, MatchError>`
+  Returns an iterator of overlapping matches.
+
+- `fn try_replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> Result<String, MatchError>`
+  Replace all matches with a corresponding value in the `replace_with`
+
+- `fn try_replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Result<Vec<u8>, MatchError>`
+  Replace all matches using raw bytes with a corresponding value in the
+
+- `fn try_replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F) -> Result<(), MatchError>`
+  Replace all matches using a closure called on each match.
+
+- `fn try_replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F) -> Result<(), MatchError>`
+  Replace all matches using raw bytes with a closure called on each
+
+- `fn try_stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> Result<StreamFindIter<'a, R>, MatchError>`
+  Returns an iterator of non-overlapping matches in the given
+
+- `fn try_stream_replace_all<R, W, B>(self: &Self, rdr: R, wtr: W, replace_with: &[B]) -> Result<(), std::io::Error>`
+  Search for and replace all matches of this automaton in
+
+- `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> Result<(), std::io::Error>`
+  Search the given reader and replace all matches of this automaton
 
 #### Trait Implementations
 
@@ -1228,17 +1227,17 @@ panics or silent logical errors.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+
 ##### `impl TryFrom`
 
 - `type Error = PatternIDError`
 
 - `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryFrom`
 
@@ -1252,11 +1251,11 @@ panics or silent logical errors.
 
 - `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
 
-##### `impl TryFrom<T, U>`
+##### `impl TryFrom`
 
-- `type Error = Infallible`
+- `type Error = PatternIDError`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
 
 ##### `impl TryInto<T, U>`
 
@@ -1418,18 +1417,15 @@ haystack. If you instead use `&haystack[start..end]`, then you'll need to
 add `start` to any match position returned in order for it to be a correct
 index into `haystack`.
 
-# Example: `&str` and `&[u8](#u8)
-` automatically convert to an `Input`
+# Example: `&str` and `&[u8]` automatically convert to an `Input`
 
-There is a `From<&T> for Input` implementation for all `T: AsRef<[u8](#u8)
->`.
+There is a `From<&T> for Input` implementation for all `T: AsRef<[u8]>`.
 Additionally, the [`AhoCorasick`](crate::AhoCorasick) search APIs accept
 a `Into<Input>`. These two things combined together mean you can provide
-things like `&str` and `&[u8](#u8)
-` to search APIs when the defaults are
+things like `&str` and `&[u8]` to search APIs when the defaults are
 suitable, but also an `Input` when they're not. For example:
 
-```
+```rust
 use aho_corasick::{AhoCorasick, Anchored, Input, Match, StartKind};
 
 // Build a searcher that supports both unanchored and anchored modes.
@@ -1515,14 +1511,14 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl From<'h, H: ?Sized + AsRef<[u8]>>`
-
-- `fn from(haystack: &'h H) -> Input<'h>`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<'h, H: ?Sized + AsRef<[u8]>>`
+
+- `fn from(haystack: &'h H) -> Input<'h>`
 
 ##### `impl Into<T, U>`
 
@@ -1718,10 +1714,8 @@ convey which region of a haystack should be searched via routines like
 This is basically equivalent to a `std::ops::Range<usize>`, except this
 type implements `Copy` which makes it more ergonomic to use in the context
 of this crate. Indeed, `Span` exists only because `Range<usize>` does
-not implement `Copy`. Like a range, this implements `Index` for `[u8](#u8)
-`
-and `str`, and `IndexMut` for `[u8](#u8)
-`. For convenience, this also impls
+not implement `Copy`. Like a range, this implements `Index` for `[u8]`
+and `str`, and `IndexMut` for `[u8]`. For convenience, this also impls
 `From<Range>`, which means things like `Span::from(5..10)` work.
 
 There are no constraints on the values of a span. It is, for example, legal

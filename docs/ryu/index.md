@@ -1,10 +1,8 @@
 # Crate `ryu`
 
-[![github](#github)
-](https://github.com/dtolnay/ryu)&ensp;[![crates-io]](https://crates.io/crates/ryu)&ensp;[![docs-rs]](https://docs.rs/ryu)
+[![github](#github)](https://github.com/dtolnay/ryu)&ensp;[![crates-io]](https://crates.io/crates/ryu)&ensp;[![docs-rs]](https://docs.rs/ryu)
 
-[github](#github)
-: https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
+[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
 [crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
 [docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
 
@@ -13,23 +11,19 @@
 Pure Rust implementation of Ryū, an algorithm to quickly convert floating
 point numbers to decimal strings.
 
-The PLDI'18 paper [*Ryū: fast float-to-string conversion*][paper](#paper)
- by Ulf
+The PLDI'18 paper [*Ryū: fast float-to-string conversion*][paper](#paper) by Ulf
 Adams includes a complete correctness proof of the algorithm. The paper is
 available under the creative commons CC-BY-SA license.
 
 This Rust implementation is a line-by-line port of Ulf Adams' implementation
-in C, [https://github.com/ulfjack/ryu][upstream](#upstream)
-.
+in C, [https://github.com/ulfjack/ryu][upstream](#upstream).
 
-[paper](#paper)
-: https://dl.acm.org/citation.cfm?id=3192369
-[upstream](#upstream)
-: https://github.com/ulfjack/ryu
+[paper](#paper): https://dl.acm.org/citation.cfm?id=3192369
+[upstream](#upstream): https://github.com/ulfjack/ryu
 
 # Example
 
-```
+```rust
 fn main() {
     let mut buffer = ryu::Buffer::new();
     let printed = buffer.format(1.234);
@@ -106,7 +100,7 @@ Safe API for formatting floating point numbers to text.
 
 ## Example
 
-```
+```rust
 let mut buffer = ryu::Buffer::new();
 let printed = buffer.format_finite(1.234);
 assert_eq!(printed, "1.234");

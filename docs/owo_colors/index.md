@@ -40,7 +40,7 @@ println!("{}", "strikethrough".strikethrough());
 ## Only Style on Supported Terminals
 
 ```rust
-# #[cfg(feature = "supports-color")] {
+#[cfg(feature = "supports-color")] {
 use owo_colors::{OwoColorize, Stream::Stdout};
 
 println!(
@@ -48,7 +48,7 @@ println!(
     "colored blue if a supported terminal"
         .if_supports_color(Stdout, |text| text.bright_blue())
 );
-# }
+}
 ```
 
 Supports `NO_COLOR`/`FORCE_COLOR` environment variables, checks if it's a tty, checks
@@ -1118,14 +1118,14 @@ assert!(styled_length < normal_length);
 
 #### Trait Implementations
 
+##### `impl From<T, U>`
+
+- `fn from(list: T) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<T, U>`
-
-- `fn from(list: T) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1193,14 +1193,14 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
+##### `impl From<'a>`
+
+- `fn from(color: &'a str) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From<'a>`
-
-- `fn from(color: &'a str) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -1760,14 +1760,14 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 

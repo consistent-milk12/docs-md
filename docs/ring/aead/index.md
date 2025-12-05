@@ -447,8 +447,7 @@ struct Aad<A>();
 The additionally authenticated data (AAD) for an opening or sealing
 operation. This data is authenticated but is **not** encrypted.
 
-The type `A` could be a byte slice `&[u8](#u8)
-`, a byte array `[u8; N]`
+The type `A` could be a byte slice `&[u8]`, a byte array `[u8; N]`
 for some constant `N`, `Vec<u8>`, etc.
 
 #### Implementations
@@ -537,14 +536,14 @@ A possibly valid authentication tag.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: [u8; 16]) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(value: [u8; 16]) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -585,17 +584,17 @@ A possibly valid authentication tag.
 
 - `fn clone_into(self: &Self, target: &mut T)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
 ##### `impl TryFrom`
 
 - `type Error = Unspecified`
 
 - `fn try_from(value: &[u8]) -> Result<Self, <Self as >::Error>`
+
+##### `impl TryFrom<T, U>`
+
+- `type Error = Infallible`
+
+- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
 
 ##### `impl TryInto<T, U>`
 

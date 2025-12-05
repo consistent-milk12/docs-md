@@ -40,7 +40,7 @@ See `ClientConfig::fips()` or `ServerConfig::fips()`.
 You could, for example:
 
 ```rust,ignore
-# let client_config = unreachable!();
+let client_config = unreachable!();
 assert!(client_config.fips());
 ```
 

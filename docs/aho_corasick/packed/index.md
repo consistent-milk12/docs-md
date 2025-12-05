@@ -21,7 +21,7 @@ The primary types in this sub-module are:
 
 * [`Searcher`](../index.md) executes the actual search algorithm to report matches in a
 haystack.
-* [`Builder`](../dfa/index.md) accumulates patterns incrementally and can construct a
+* [`Builder`](../nfa/contiguous/index.md) accumulates patterns incrementally and can construct a
 `Searcher`.
 * [`Config`](../index.md) permits tuning the searcher, and itself will produce a `Builder`
 (which can then be used to build a `Searcher`). Currently, the only tuneable
@@ -34,33 +34,33 @@ By default, leftmost-first match semantics are used. (See the top-level
 [`MatchKind`](../index.md) type for more details about match semantics, which apply
 similarly to packed substring search.)
 
-```
+```rust
 use aho_corasick::{packed::{MatchKind, Searcher}, PatternID};
 
-# fn example() -> Option<()> {
+fn example() -> Option<()> {
 let searcher = Searcher::new(["foobar", "foo"].iter().cloned())?;
 let matches: Vec<PatternID> = searcher
     .find_iter("foobar")
     .map(|mat| mat.pattern())
     .collect();
 assert_eq!(vec![PatternID::ZERO], matches);
-# Some(()) }
-# if cfg!(all(feature = "std", any(
-#     target_arch = "x86_64", target_arch = "aarch64",
-# ))) {
-#     example().unwrap()
-# } else {
-#     assert!(example().is_none());
-# }
+Some(()) }
+if cfg!(all(feature = "std", any(
+    target_arch = "x86_64", target_arch = "aarch64",
+))) {
+    example().unwrap()
+} else {
+    assert!(example().is_none());
+}
 ```
 
 This example shows how to use [`Config`](../index.md) to change the match semantics to
 leftmost-longest:
 
-```
+```rust
 use aho_corasick::{packed::{Config, MatchKind}, PatternID};
 
-# fn example() -> Option<()> {
+fn example() -> Option<()> {
 let searcher = Config::new()
     .match_kind(MatchKind::LeftmostLongest)
     .builder()
@@ -72,14 +72,14 @@ let matches: Vec<PatternID> = searcher
     .map(|mat| mat.pattern())
     .collect();
 assert_eq!(vec![PatternID::must(1)], matches);
-# Some(()) }
-# if cfg!(all(feature = "std", any(
-#     target_arch = "x86_64", target_arch = "aarch64",
-# ))) {
-#     example().unwrap()
-# } else {
-#     assert!(example().is_none());
-# }
+Some(()) }
+if cfg!(all(feature = "std", any(
+    target_arch = "x86_64", target_arch = "aarch64",
+))) {
+    example().unwrap()
+} else {
+    assert!(example().is_none());
+}
 ```
 
 # Packed substring searching
@@ -129,10 +129,10 @@ A builder for constructing a packed searcher from a collection of patterns.
 This example shows how to use a builder to construct a searcher. By
 default, leftmost-first match semantics are used.
 
-```
+```rust
 use aho_corasick::{packed::{Builder, MatchKind}, PatternID};
 
-# fn example() -> Option<()> {
+fn example() -> Option<()> {
 let searcher = Builder::new()
     .add("foobar")
     .add("foo")
@@ -142,14 +142,14 @@ let matches: Vec<PatternID> = searcher
     .map(|mat| mat.pattern())
     .collect();
 assert_eq!(vec![PatternID::ZERO], matches);
-# Some(()) }
-# if cfg!(all(feature = "std", any(
-#     target_arch = "x86_64", target_arch = "aarch64",
-# ))) {
-#     example().unwrap()
-# } else {
-#     assert!(example().is_none());
-# }
+Some(()) }
+if cfg!(all(feature = "std", any(
+    target_arch = "x86_64", target_arch = "aarch64",
+))) {
+    example().unwrap()
+} else {
+    assert!(example().is_none());
+}
 ```
 
 #### Implementations
@@ -254,10 +254,10 @@ be used to construct a [`packed::Searcher`](Searcher) for searching.
 This example shows how to use leftmost-longest semantics instead of the
 default (leftmost-first).
 
-```
+```rust
 use aho_corasick::{packed::{Config, MatchKind}, PatternID};
 
-# fn example() -> Option<()> {
+fn example() -> Option<()> {
 let searcher = Config::new()
     .match_kind(MatchKind::LeftmostLongest)
     .builder()
@@ -269,14 +269,14 @@ let matches: Vec<PatternID> = searcher
     .map(|mat| mat.pattern())
     .collect();
 assert_eq!(vec![PatternID::must(1)], matches);
-# Some(()) }
-# if cfg!(all(feature = "std", any(
-#     target_arch = "x86_64", target_arch = "aarch64",
-# ))) {
-#     example().unwrap()
-# } else {
-#     assert!(example().is_none());
-# }
+Some(()) }
+if cfg!(all(feature = "std", any(
+    target_arch = "x86_64", target_arch = "aarch64",
+))) {
+    example().unwrap()
+} else {
+    assert!(example().is_none());
+}
 ```
 
 #### Implementations
@@ -433,31 +433,31 @@ A packed searcher for quickly finding occurrences of multiple patterns.
 
 If callers need more flexible construction, or if one wants to change the
 match semantics (either leftmost-first or leftmost-longest), then one can
-use the [`Config`](../index.md) and/or [`Builder`](../dfa/index.md) types for more fine grained control.
+use the [`Config`](../index.md) and/or [`Builder`](../nfa/contiguous/index.md) types for more fine grained control.
 
 # Example
 
 This example shows how to create a searcher from an iterator of patterns.
 By default, leftmost-first match semantics are used.
 
-```
+```rust
 use aho_corasick::{packed::{MatchKind, Searcher}, PatternID};
 
-# fn example() -> Option<()> {
+fn example() -> Option<()> {
 let searcher = Searcher::new(["foobar", "foo"].iter().cloned())?;
 let matches: Vec<PatternID> = searcher
     .find_iter("foobar")
     .map(|mat| mat.pattern())
     .collect();
 assert_eq!(vec![PatternID::ZERO], matches);
-# Some(()) }
-# if cfg!(all(feature = "std", any(
-#     target_arch = "x86_64", target_arch = "aarch64",
-# ))) {
-#     example().unwrap()
-# } else {
-#     assert!(example().is_none());
-# }
+Some(()) }
+if cfg!(all(feature = "std", any(
+    target_arch = "x86_64", target_arch = "aarch64",
+))) {
+    example().unwrap()
+} else {
+    assert!(example().is_none());
+}
 ```
 
 #### Implementations

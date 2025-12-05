@@ -74,7 +74,7 @@ This shows how to build a lazy DFA with the default configuration and
 execute a search. Notice how, in contrast to a `dense::DFA`, we must create
 a cache and pass it to our search routine.
 
-```
+```rust
 use regex_automata::{hybrid::dfa::DFA, HalfMatch, Input};
 
 let dfa = DFA::new("foo[0-9]+")?;
@@ -84,7 +84,7 @@ let expected = Some(HalfMatch::must(0, 8));
 assert_eq!(expected, dfa.try_search_fwd(
     &mut cache, &Input::new("foo12345"))?,
 );
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
@@ -511,7 +511,7 @@ a DFA from different kinds of inputs. The most convenient is
 most flexible is `Builder::build_from_nfa`, which builds a DFA straight
 from an NFA.
 2. The builder permits configuring a number of things.
-`Builder::configure` is used with [`Config`](../../dfa/onepass/index.md) to configure aspects of
+`Builder::configure` is used with [`Config`](../../util/start/index.md) to configure aspects of
 the DFA and the construction process itself. `Builder::syntax` and
 `Builder::thompson` permit configuring the regex parser and Thompson NFA
 construction, respectively. The syntax and thompson configurations only
@@ -539,7 +539,7 @@ and completely disables Unicode. That is:
 * The pattern itself is permitted to match invalid UTF-8. For example,
   things like `[^a]` that match any byte except for `a` are permitted.
 
-```
+```rust
 use regex_automata::{
     hybrid::dfa::DFA,
     nfa::thompson,
@@ -559,7 +559,7 @@ let expected = Some(HalfMatch::must(0, 10));
 let got = dfa.try_search_fwd(&mut cache, &Input::new(haystack))?;
 assert_eq!(expected, got);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

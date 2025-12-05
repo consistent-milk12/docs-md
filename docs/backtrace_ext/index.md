@@ -56,7 +56,7 @@ copied the logic from `human-panic` (MIT/Apache-2.0).
 FIXME: it would be nice if this example consulted `RUST_BACKTRACE=full`,
 and maybe other vars used by rust's builtin panic handler..?
 
-```
+```rust
 fn backtrace() -> String {
     use std::fmt::Write;
     if let Ok(var) = std::env::var("RUST_BACKTRACE") {
@@ -77,8 +77,7 @@ fn backtrace() -> String {
                     continue;
                 }
      
-                for (idx, symbol) in symbols[subframes](#subframes)
-.iter().enumerate() {
+                for (idx, symbol) in symbols[subframes].iter().enumerate() {
                     // Print symbols from this address,
                     // if there are several addresses
                     // we need to put it on next line

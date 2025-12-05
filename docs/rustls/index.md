@@ -95,26 +95,20 @@ on this topic.
 ## Design overview
 
 Rustls is a low-level library. If your goal is to make HTTPS connections you may prefer
-to use a library built on top of Rustls like [hyper](#hyper)
- or [ureq](#ureq)
-.
+to use a library built on top of Rustls like [hyper](#hyper) or [ureq](#ureq).
 
-[hyper](#hyper)
-: https://crates.io/crates/hyper
-[ureq](#ureq)
-: https://crates.io/crates/ureq
+[hyper](#hyper): https://crates.io/crates/hyper
+[ureq](#ureq): https://crates.io/crates/ureq
 
 ### Rustls does not take care of network IO
 It doesn't make or accept TCP connections, or do DNS, or read or write files.
 
-Our [examples](#examples)
- directory contains demos that show how to handle I/O using the
+Our [examples](#examples) directory contains demos that show how to handle I/O using the
 `stream::Stream` helper, as well as more complex asynchronous I/O using [`mio`](#mio).
 If you're already using Tokio for an async runtime you may prefer to use [`tokio-rustls`](#tokio-rustls) instead
 of interacting with rustls directly.
 
-[examples](#examples)
-: https://github.com/rustls/rustls/tree/main/examples
+[examples](#examples): https://github.com/rustls/rustls/tree/main/examples
 
 ### Rustls provides encrypted pipes
 These are the [`ServerConnection`](#serverconnection) and [`ClientConnection`](#clientconnection) types.  You supply raw TLS traffic
@@ -146,48 +140,48 @@ The simplest way is to depend on the [`webpki_roots`](#webpki-roots) crate which
 the Mozilla set of root certificates.
 
 ```rust,no_run
-# #[cfg(feature = "aws-lc-rs")] {
+#[cfg(feature = "aws-lc-rs")] {
 let root_store = rustls::RootCertStore::from_iter(
     webpki_roots::TLS_SERVER_ROOTS
         .iter()
         .cloned(),
 );
-# }
+}
 ```
 
 Next, we make a `ClientConfig`.  You're likely to make one of these per process,
 and use it for all connections made by that process.
 
 ```rust,no_run
-# #[cfg(feature = "aws_lc_rs")] {
-# let root_store: rustls::RootCertStore = panic!();
+#[cfg(feature = "aws_lc_rs")] {
+let root_store: rustls::RootCertStore = panic!();
 let config = rustls::ClientConfig::builder()
     .with_root_certificates(root_store)
     .with_no_client_auth();
-# }
+}
 ```
 
 Now we can make a connection.  You need to provide the server's hostname so we
 know what to expect to find in the server's certificate.
 
 ```rust
-# #[cfg(feature = "aws_lc_rs")] {
-# use rustls;
-# use webpki;
-# use std::sync::Arc;
-# rustls::crypto::aws_lc_rs::default_provider().install_default();
-# let root_store = rustls::RootCertStore::from_iter(
-#  webpki_roots::TLS_SERVER_ROOTS
-#      .iter()
-#      .cloned(),
-# );
-# let config = rustls::ClientConfig::builder()
-#     .with_root_certificates(root_store)
-#     .with_no_client_auth();
+#[cfg(feature = "aws_lc_rs")] {
+use rustls;
+use webpki;
+use std::sync::Arc;
+rustls::crypto::aws_lc_rs::default_provider().install_default();
+let root_store = rustls::RootCertStore::from_iter(
+ webpki_roots::TLS_SERVER_ROOTS
+     .iter()
+     .cloned(),
+);
+let config = rustls::ClientConfig::builder()
+    .with_root_certificates(root_store)
+    .with_no_client_auth();
 let rc_config = Arc::new(config);
 let example_com = "example.com".try_into().unwrap();
 let mut client = rustls::ClientConnection::new(rc_config, example_com);
-# }
+}
 ```
 
 Now you should do appropriate IO for the `client` object.  If `client.wants_read()` yields
@@ -214,29 +208,27 @@ The following code uses a fictional socket IO API for illustration, and does not
 errors.
 
 ```rust,no_run
-# #[cfg(feature = "aws_lc_rs")] {
-# let mut client = rustls::ClientConnection::new(panic!(), panic!()).unwrap();
-# struct Socket { }
-# impl Socket {
-#   fn ready_for_write(&self) -> bool { false }
-#   fn ready_for_read(&self) -> bool { false }
-#   fn wait_for_something_to_happen(&self) { }
-# }
-#
-# use std::io::{Read, Write, Result};
-# impl Read for Socket {
-#   fn read(&mut self, buf: &mut [u8](#u8)
-) -> Result<usize> { panic!() }
-# }
-# impl Write for Socket {
-#   fn write(&mut self, buf: &[u8](#u8)
-) -> Result<usize> { panic!() }
-#   fn flush(&mut self) -> Result<()> { panic!() }
-# }
-#
-# fn connect(_address: &str, _port: u16) -> Socket {
-#   panic!();
-# }
+#[cfg(feature = "aws_lc_rs")] {
+let mut client = rustls::ClientConnection::new(panic!(), panic!()).unwrap();
+struct Socket { }
+impl Socket {
+  fn ready_for_write(&self) -> bool { false }
+  fn ready_for_read(&self) -> bool { false }
+  fn wait_for_something_to_happen(&self) { }
+}
+
+use std::io::{Read, Write, Result};
+impl Read for Socket {
+  fn read(&mut self, buf: &mut [u8]) -> Result<usize> { panic!() }
+}
+impl Write for Socket {
+  fn write(&mut self, buf: &[u8]) -> Result<usize> { panic!() }
+  fn flush(&mut self) -> Result<()> { panic!() }
+}
+
+fn connect(_address: &str, _port: u16) -> Socket {
+  panic!();
+}
 use std::io;
 use rustls::Connection;
 
@@ -258,13 +250,12 @@ loop {
 
   socket.wait_for_something_to_happen();
 }
-# }
+}
 ```
 
 # Examples
 
 You can find several client and server examples of varying complexity in the [examples](#examples)
-
 directory, including [`tlsserver-mio`](https://github.com/rustls/rustls/blob/main/examples/src/bin/tlsserver-mio.rs)
 and [`tlsclient-mio`](https://github.com/rustls/rustls/blob/main/examples/src/bin/tlsclient-mio.rs)
 \- full worked examples using [`mio`](#mio).
@@ -357,8 +348,7 @@ struct ConfigBuilder<Side: ConfigSide, State> {
 }
 ```
 
-A [builder](#builder)
- for [`ServerConfig`](#serverconfig) or [`ClientConfig`](#clientconfig) values.
+A [builder](#builder) for [`ServerConfig`](#serverconfig) or [`ClientConfig`](#clientconfig) values.
 
 To get one of these, call `ServerConfig::builder()` or `ClientConfig::builder()`.
 
@@ -374,30 +364,30 @@ The usual choice for protocol primitives is to call
 which will use rustls' default cryptographic provider and safe defaults for ciphersuites and
 supported protocol versions.
 
-```
-# #[cfg(feature = "aws_lc_rs")] {
-# rustls::crypto::aws_lc_rs::default_provider().install_default();
+```rust
+#[cfg(feature = "aws_lc_rs")] {
+rustls::crypto::aws_lc_rs::default_provider().install_default();
 use rustls::{ClientConfig, ServerConfig};
 ClientConfig::builder()
 //  ...
-# ;
+;
 
 ServerConfig::builder()
 //  ...
-# ;
-# }
+;
+}
 ```
 
 You may also override the choice of protocol versions:
 
 ```no_run
-# #[cfg(feature = "aws_lc_rs")] {
-# rustls::crypto::aws_lc_rs::default_provider().install_default();
-# use rustls::ServerConfig;
+#[cfg(feature = "aws_lc_rs")] {
+rustls::crypto::aws_lc_rs::default_provider().install_default();
+use rustls::ServerConfig;
 ServerConfig::builder_with_protocol_versions(&[&rustls::version::TLS13])
 //  ...
-# ;
-# }
+;
+}
 ```
 
 Overriding the default cryptographic provider introduces a `Result` that must be unwrapped,
@@ -426,15 +416,15 @@ or disabled using one of:
 
 For example:
 
-```
-# #[cfg(feature = "aws_lc_rs")] {
-# rustls::crypto::aws_lc_rs::default_provider().install_default();
-# use rustls::ClientConfig;
-# let root_certs = rustls::RootCertStore::empty();
+```rust
+#[cfg(feature = "aws_lc_rs")] {
+rustls::crypto::aws_lc_rs::default_provider().install_default();
+use rustls::ClientConfig;
+let root_certs = rustls::RootCertStore::empty();
 ClientConfig::builder()
     .with_root_certificates(root_certs)
     .with_no_client_auth();
-# }
+}
 ```
 
 # ServerConfig certificate configuration
@@ -451,24 +441,23 @@ Next, _certificate sending_ must be configured by calling one of:
 For example:
 
 ```no_run
-# #[cfg(feature = "aws_lc_rs")] {
-# rustls::crypto::aws_lc_rs::default_provider().install_default();
-# use rustls::ServerConfig;
-# let certs = vec![];
-# let private_key = pki_types::PrivateKeyDer::from(
-#    pki_types::PrivatePkcs8KeyDer::from(vec![])
-# );
+#[cfg(feature = "aws_lc_rs")] {
+rustls::crypto::aws_lc_rs::default_provider().install_default();
+use rustls::ServerConfig;
+let certs = vec![];
+let private_key = pki_types::PrivateKeyDer::from(
+   pki_types::PrivatePkcs8KeyDer::from(vec![])
+);
 ServerConfig::builder()
     .with_no_client_auth()
     .with_single_cert(certs, private_key)
     .expect("bad certificate/key");
-# }
+}
 ```
 
 # Types
 
-ConfigBuilder uses the [typestate](#typestate)
- pattern to ensure at compile time that each required
+ConfigBuilder uses the [typestate](#typestate) pattern to ensure at compile time that each required
 configuration item is provided exactly once. This is tracked in the `State` type parameter,
 which can have these values:
 
@@ -491,10 +480,8 @@ Additionally, ServerConfig and ClientConfig carry a private field containing a
 `ServerConfig::builder_with_provider()`. This determines which cryptographic backend
 is used. The default is [the process-default provider](`CryptoProvider::get_default`).
 
-[builder](#builder)
-: https://rust-unofficial.github.io/patterns/patterns/creational/builder.html
-[typestate](#typestate)
-: http://cliffle.com/blog/rust-typestate/
+[builder](#builder): https://rust-unofficial.github.io/patterns/patterns/creational/builder.html
+[typestate](#typestate): http://cliffle.com/blog/rust-typestate/
 
 
 
@@ -511,8 +498,14 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 
 #### Implementations
 
-- `fn crypto_provider(self: &Self) -> &alloc::sync::Arc<CryptoProvider>`
-  Return the crypto provider used to construct this builder.
+- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain and matching private key.  This
+
+- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
+  Sets a single certificate chain, matching private key and optional OCSP
+
+- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
+  Sets a custom [`ResolvesServerCert`].
 
 - `fn with_client_auth_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ClientConfig, Error>`
   Sets a single certificate chain and matching private key for use
@@ -523,6 +516,18 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 - `fn with_client_cert_resolver(self: Self, client_auth_cert_resolver: alloc::sync::Arc<dyn ResolvesClientCert>) -> ClientConfig`
   Sets a custom [`ResolvesClientCert`].
 
+- `fn with_safe_default_protocol_versions(self: Self) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
+  Accept the default protocol versions: both TLS1.2 and TLS1.3 are enabled.
+
+- `fn with_protocol_versions(self: Self, versions: &[&'static versions::SupportedProtocolVersion]) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
+  Use a specific set of protocol versions.
+
+- `fn crypto_provider(self: &Self) -> &alloc::sync::Arc<CryptoProvider>`
+  Return the crypto provider used to construct this builder.
+
+- `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
+  Enable Encrypted Client Hello (ECH) in the given mode.
+
 - `fn with_root_certificates(self: Self, root_store: impl Into<alloc::sync::Arc<webpki::RootCertStore>>) -> ConfigBuilder<ClientConfig, WantsClientCert>`
   Choose how to verify server certificates.
 
@@ -532,29 +537,11 @@ is used. The default is [the process-default provider](`CryptoProvider::get_defa
 - `fn dangerous(self: Self) -> danger::DangerousClientConfigBuilder`
   Access configuration options whose use is dangerous and requires
 
-- `fn with_ech(self: Self, mode: EchMode) -> Result<ConfigBuilder<ClientConfig, WantsVerifier>, Error>`
-  Enable Encrypted Client Hello (ECH) in the given mode.
-
 - `fn with_client_cert_verifier(self: Self, client_cert_verifier: alloc::sync::Arc<dyn ClientCertVerifier>) -> ConfigBuilder<ServerConfig, WantsServerCert>`
   Choose how to verify client certificates.
 
 - `fn with_no_client_auth(self: Self) -> ConfigBuilder<ServerConfig, WantsServerCert>`
   Disable client authentication.
-
-- `fn with_safe_default_protocol_versions(self: Self) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
-  Accept the default protocol versions: both TLS1.2 and TLS1.3 are enabled.
-
-- `fn with_protocol_versions(self: Self, versions: &[&'static versions::SupportedProtocolVersion]) -> Result<ConfigBuilder<S, WantsVerifier>, Error>`
-  Use a specific set of protocol versions.
-
-- `fn with_single_cert(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain and matching private key.  This
-
-- `fn with_single_cert_with_ocsp(self: Self, cert_chain: Vec<CertificateDer<'static>>, key_der: PrivateKeyDer<'static>, ocsp: Vec<u8>) -> Result<ServerConfig, Error>`
-  Sets a single certificate chain, matching private key and optional OCSP
-
-- `fn with_cert_resolver(self: Self, cert_resolver: alloc::sync::Arc<dyn ResolvesServerCert>) -> ServerConfig`
-  Sets a custom [`ResolvesServerCert`].
 
 #### Trait Implementations
 
@@ -3324,14 +3311,14 @@ A client or server connection.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(conn: ClientConnection) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(conn: ClientConnection) -> Self`
 
 ##### `impl From`
 
@@ -3445,16 +3432,16 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 ##### `impl From`
 
+- `fn from(e: CertificateError) -> Self`
+
+##### `impl From`
+
 - `fn from(e: InvalidMessage) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(e: CertificateError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4015,14 +4002,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4114,14 +4101,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(x: u8) -> Self`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(x: u8) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4331,14 +4318,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -4541,14 +4528,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -5261,11 +5248,7 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: PeerIncompatible) -> Self`
-
-##### `impl From`
-
-- `fn from(e: CertificateError) -> Self`
+- `fn from(e: EncryptedClientHelloError) -> Self`
 
 ##### `impl From`
 
@@ -5273,23 +5256,19 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: InvalidMessage) -> Self`
-
-##### `impl From`
-
-- `fn from(e: EncryptedClientHelloError) -> Self`
-
-##### `impl From`
-
-- `fn from(e: PeerMisbehaved) -> Self`
-
-##### `impl From`
-
 - `fn from(e: InconsistentKeys) -> Self`
 
 ##### `impl From`
 
-- `fn from(value: UnsupportedOperationError) -> Self`
+- `fn from(e: CertRevocationListError) -> Self`
+
+##### `impl From`
+
+- `fn from(e: CertificateError) -> Self`
+
+##### `impl From`
+
+- `fn from(e: PeerIncompatible) -> Self`
 
 ##### `impl From`
 
@@ -5297,7 +5276,15 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(e: CertRevocationListError) -> Self`
+- `fn from(e: PeerMisbehaved) -> Self`
+
+##### `impl From`
+
+- `fn from(value: OtherError) -> Self`
+
+##### `impl From`
+
+- `fn from(e: InvalidMessage) -> Self`
 
 ##### `impl From<T>`
 
@@ -5306,7 +5293,7 @@ rustls reports protocol errors using this type.
 
 ##### `impl From`
 
-- `fn from(value: OtherError) -> Self`
+- `fn from(value: UnsupportedOperationError) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -6073,14 +6060,14 @@ The `Unknown` item is used when processing unrecognised ordinals.
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(x: u16) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(x: u16) -> Self`
 
 ##### `impl Into<T, U>`
 
@@ -6267,11 +6254,11 @@ This type carries both configuration and implementation. Compare with
 
 ##### `impl From`
 
-- `fn from(s: &'static Tls12CipherSuite) -> Self`
+- `fn from(s: &'static Tls13CipherSuite) -> Self`
 
 ##### `impl From`
 
-- `fn from(s: &'static Tls13CipherSuite) -> Self`
+- `fn from(s: &'static Tls12CipherSuite) -> Self`
 
 ##### `impl From<T>`
 

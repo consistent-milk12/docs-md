@@ -25,7 +25,7 @@ subsequently reads the result of this call, B also observes all the side
 effects of `f`.
 
 # Example
-```
+```rust
 use once_cell::sync::OnceCell;
 
 static CELL: OnceCell<String> = OnceCell::new();
@@ -85,12 +85,12 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 ##### `impl From<T>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn from(t: never) -> T`
 
 ##### `impl From<T>`
 
-- `fn from(t: never) -> T`
+- `fn from(t: T) -> T`
+  Returns the argument unchanged.
 
 ##### `impl From<T>`
 
@@ -171,7 +171,7 @@ This type is thread-safe and can be used in statics.
 
 # Example
 
-```
+```rust
 use std::collections::HashMap;
 
 use once_cell::sync::Lazy;
@@ -201,6 +201,12 @@ fn main() {
 
 #### Implementations
 
+- `const fn new(f: F) -> Lazy<T, F>`
+  Creates a new lazy value with the given initializing
+
+- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
+  Consumes this `Lazy` returning the stored value.
+
 - `fn force(this: &Lazy<T, F>) -> &T`
   Forces the evaluation of this lazy value and
 
@@ -212,12 +218,6 @@ fn main() {
 
 - `fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>`
   Gets the reference to the result of this lazy value if
-
-- `const fn new(f: F) -> Lazy<T, F>`
-  Creates a new lazy value with the given initializing
-
-- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
-  Consumes this `Lazy` returning the stored value.
 
 #### Trait Implementations
 

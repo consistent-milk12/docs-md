@@ -131,13 +131,13 @@ error handling logic.
 `From<ring::error::Unspecified>` to map this to their own error types, as
 described in [“Error Handling” in the Rust Book]:
 
-```
+```rust
 use ring::rand::{self, SecureRandom};
 
 enum Error {
     CryptoError,
 
-#  #[cfg(feature = "alloc")]
+ #[cfg(feature = "alloc")]
     IOError(std::io::Error),
     // [...]
 }
@@ -177,16 +177,16 @@ that they can be addressed individually.
 
 ##### `impl From`
 
-- `fn from(source: core::array::TryFromSliceError) -> Self`
-
-##### `impl From`
-
 - `fn from(source: untrusted::EndOfInput) -> Self`
 
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From`
+
+- `fn from(source: core::array::TryFromSliceError) -> Self`
 
 ##### `impl From`
 

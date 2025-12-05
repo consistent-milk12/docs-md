@@ -15,10 +15,10 @@ Read DWARF debugging information.
 Print out all of the functions in the debuggee program:
 
 ```rust,no_run
-# fn example() -> Result<(), gimli::Error> {
-# type R = gimli::EndianSlice<'static, gimli::LittleEndian>;
-# let get_file_section_reader = |name| -> Result<R, gimli::Error> { unimplemented!() };
-# let get_sup_file_section_reader = |name| -> Result<R, gimli::Error> { unimplemented!() };
+fn example() -> Result<(), gimli::Error> {
+type R = gimli::EndianSlice<'static, gimli::LittleEndian>;
+let get_file_section_reader = |name| -> Result<R, gimli::Error> { unimplemented!() };
+let get_sup_file_section_reader = |name| -> Result<R, gimli::Error> { unimplemented!() };
 // Read the DWARF sections with whatever object loader you're using.
 // These closures should return a `Reader` instance (e.g. `EndianSlice`).
 let loader = |section: gimli::SectionId| { get_file_section_reader(section.name()) };
@@ -41,8 +41,8 @@ while let Some(header) = iter.next()? {
         }
     }
 }
-# unreachable!()
-# }
+unreachable!()
+}
 ```
 
 Full example programs:
@@ -158,9 +158,9 @@ having iterated through many items.
 To use `gimli` iterators with `FallibleIterator`, import the crate and trait
 into your code:
 
-```
-# #[cfg(feature = "fallible-iterator")]
-# fn foo() {
+```rust
+#[cfg(feature = "fallible-iterator")]
+fn foo() {
 // Use the `FallibleIterator` trait so its methods are in scope!
 use fallible_iterator::FallibleIterator;
 use gimli::{DebugAranges, EndianSlice, LittleEndian};
@@ -177,8 +177,8 @@ fn find_sum_of_address_range_lengths(aranges: DebugAranges<EndianSlice<LittleEnd
         // `fold` is provided by `FallibleIterator`!
         .fold(0, |sum, len| Ok(sum + len))
 }
-# }
-# fn main() {}
+}
+fn main() {}
 ```
 
 ## Structs
@@ -896,7 +896,7 @@ trait Section<R>: From<R> { ... }
 A convenience trait for loading DWARF sections from object files.  To be
 used like:
 
-```
+```rust
 use gimli::{DebugInfo, EndianSlice, LittleEndian, Reader, Section};
 
 let buf = [0x00, 0x01, 0x02, 0x03];

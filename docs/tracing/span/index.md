@@ -7,16 +7,14 @@
  Spans represent periods of time in which a program was executing in a
  particular context.
 
- A span consists of [fields](#fields)
-, user-defined key-value pairs of arbitrary data
+ A span consists of [fields](#fields), user-defined key-value pairs of arbitrary data
  that describe the context the span represents, and a set of fixed attributes
  that describe all `tracing` spans and events. Attributes describing spans
  include:
 
  - An [`Id`](#id) assigned by the subscriber that uniquely identifies it in relation
    to other spans.
- - The span's [parent](#parent)
- in the trace tree.
+ - The span's [parent](#parent) in the trace tree.
  - [Metadata] that describes static characteristics of all spans
    originating from that callsite, such as its name, source code location,
    [verbosity level], and the names of its fields.
@@ -26,8 +24,7 @@
  Spans are created using the [`span!`](#span) macro. This macro is invoked with the
  following arguments, in order:
 
- - The [`target`](#target) and/or [`parent`][parent](#parent)
- attributes, if the user wishes to
+ - The [`target`](#target) and/or [`parent`][parent](#parent) attributes, if the user wishes to
    override their default values.
  - The span's [verbosity level]
  - A string literal providing the span's name.
@@ -53,8 +50,7 @@
 
  The [`Attributes`](#attributes) type contains data associated with a span, and is
  provided to the [`Subscriber`](../index.md) when a new span is created. It contains
- the span's metadata, the ID of [the span's parent][parent](#parent)
- if one was
+ the span's metadata, the ID of [the span's parent][parent](#parent) if one was
  explicitly set, and any fields whose values were recorded when the span was
  constructed. The subscriber, which is responsible for recording `tracing`
  data, can then store or record these values.
@@ -67,11 +63,10 @@
  and _exit_ the span when it switches to another context. Spans may be
  entered through the [`enter`](#enter), [`entered`](#entered), and [`in_scope`](#in-scope) methods.
 
- The [`enter`](#enter) method enters a span, returning a [guard](#guard)
- that exits the span
+ The [`enter`](#enter) method enters a span, returning a [guard](#guard) that exits the span
  when dropped
- ```
- # use tracing::{span, Level};
+ ```rust
+ use tracing::{span, Level};
  let my_var: u64 = 5;
  let my_span = span!(Level::TRACE, "my_span", my_var);
 
@@ -96,8 +91,8 @@
  the returned guard, rather than borrowing it. This allows creating and
  entering a span in a single expression:
 
- ```
- # use tracing::{span, Level};
+ ```rust
+ use tracing::{span, Level};
  // Create a span and enter it, returning a guard:
  let span = span!(Level::INFO, "my_span").entered();
 
@@ -112,8 +107,8 @@
  Finally, [`in_scope`](#in-scope) takes a closure or function pointer and executes it
  inside the span:
 
- ```
- # use tracing::{span, Level};
+ ```rust
+ use tracing::{span, Level};
  let my_var: u64 = 5;
  let my_span = span!(Level::TRACE, "my_span", my_var = &my_var);
 
@@ -144,8 +139,8 @@
  represented by its children. Thus, a parent span always lasts for at least
  as long as the longest-executing span in its subtree.
 
- ```
- # use tracing::{Level, span};
+ ```rust
+ use tracing::{Level, span};
  // this span is considered the "root" of a new trace tree:
  span!(Level::INFO, "root").in_scope(|| {
      // since we are now inside "root", this span is considered a child
@@ -165,7 +160,7 @@
  the `span!` macro. For example:
 
  ```rust
- # use tracing::{Level, span};
+ use tracing::{Level, span};
  // Create, but do not enter, a span called "foo".
  let foo = span!(Level::INFO, "foo");
 
@@ -207,9 +202,9 @@
  _closed_. Consider, for example, a future which has an associated
  span and enters that span every time it is polled:
  ```rust
- # use std::future::Future;
- # use std::task::{Context, Poll};
- # use std::pin::Pin;
+ use std::future::Future;
+ use std::task::{Context, Poll};
+ use std::pin::Pin;
  struct MyFuture {
     // data
     span: tracing::Span,
@@ -221,7 +216,7 @@
      fn poll(self: Pin<&mut Self>, _cx: &mut Context<'_>) -> Poll<Self::Output> {
          let _enter = self.span.enter();
          // Do actual future work...
- # Poll::Ready(())
+ Poll::Ready(())
      }
  }
  ```
@@ -246,8 +241,8 @@
  If there is only a single handle with the capacity to exit a span, dropping
  that handle "closes" the span, since the capacity to enter it no longer
  exists. For example:
- ```
- # use tracing::{Level, span};
+ ```rust
+ use tracing::{Level, span};
  {
      span!(Level::TRACE, "my_span").in_scope(|| {
          // perform some work in the context of `my_span`...
@@ -280,19 +275,19 @@
  construct one span and perform the entire loop inside of that span, like:
 
  ```rust
- # use tracing::{Level, span};
- # let n = 1;
+ use tracing::{Level, span};
+ let n = 1;
  let span = span!(Level::TRACE, "my_loop");
  let _enter = span.enter();
  for i in 0..n {
-     # let _ = i;
+     let _ = i;
      // ...
  }
  ```
  Or, should we create a new span for each iteration of the loop, as in:
  ```rust
- # use tracing::{Level, span};
- # let n = 1u64;
+ use tracing::{Level, span};
+ let n = 1u64;
  for i in 0..n {
      let span = span!(Level::TRACE, "my_loop", iteration = i);
      let _enter = span.enter();
@@ -306,8 +301,7 @@
  much time was spent in each individual iteration, we would enter a new span
  on every iteration.
 
- [fields](#fields)
-: super::field
+ [fields](#fields): super::field
  [Metadata]: super::Metadata
  [verbosity level]: super::Level
 
@@ -325,10 +319,8 @@
 
 
 
- [guard](#guard)
-: Entered
- [parent](#parent)
-: #span-relationships
+ [guard](#guard): Entered
+ [parent](#parent): #span-relationships
 
 ## Structs
 

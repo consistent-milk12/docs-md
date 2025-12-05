@@ -59,12 +59,10 @@ of taste and depends on your code architecture.
 
 When this crate is compiled _without_ the `std` feature, then this type
 may used a spin lock internally. This can have subtle effects that may
-be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm)
- for a more
+be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm) for a more
 thorough treatment of this topic.
 
-[spinharm](#spinharm)
-: https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
+[spinharm](#spinharm): https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
 
 # Example
 
@@ -73,7 +71,7 @@ threads, while also safely getting exclusive access to a hybrid's
 [`Cache`](crate::hybrid::regex::Cache) without preventing other searches
 from running while your thread uses the `Cache`.
 
-```
+```rust
 use regex_automata::{
     hybrid::regex::{Cache, Regex},
     util::{lazy::Lazy, pool::Pool},

@@ -2154,27 +2154,6 @@ struct ImageSectionHeader {
 
 #### Implementations
 
-- `fn pe_file_range(self: &Self) -> (u32, u32)`
-  Return the offset and size of the section in a PE file.
-
-- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
-  Return the file offset of the given virtual address, and the remaining size up
-
-- `fn pe_address_range(self: &Self) -> (u32, u32)`
-  Return the virtual address and size of the section.
-
-- `fn pe_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> Result<&'data [u8]>`
-  Return the section data in a PE file.
-
-- `fn pe_data_at<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
-  Return the data starting at the given virtual address, up to the end of the
-
-- `fn contains_rva(self: &Self, va: u32) -> bool`
-  Tests whether a given RVA is part of this section
-
-- `fn pe_data_containing<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
-  Return the section data if it contains the given virtual address.
-
 - `fn name_offset(self: &Self) -> Result<Option<u32>>`
   Return the string table offset of the section name.
 
@@ -2195,6 +2174,27 @@ struct ImageSectionHeader {
 
 - `fn coff_relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [pe::ImageRelocation]>`
   Read the relocations in a COFF file.
+
+- `fn pe_file_range(self: &Self) -> (u32, u32)`
+  Return the offset and size of the section in a PE file.
+
+- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
+  Return the file offset of the given virtual address, and the remaining size up
+
+- `fn pe_address_range(self: &Self) -> (u32, u32)`
+  Return the virtual address and size of the section.
+
+- `fn pe_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> Result<&'data [u8]>`
+  Return the section data in a PE file.
+
+- `fn pe_data_at<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
+  Return the data starting at the given virtual address, up to the end of the
+
+- `fn contains_rva(self: &Self, va: u32) -> bool`
+  Tests whether a given RVA is part of this section
+
+- `fn pe_data_containing<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
+  Return the section data if it contains the given virtual address.
 
 #### Trait Implementations
 

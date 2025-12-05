@@ -35,7 +35,7 @@ of an OID for `algorithm` plus the `parameters` value.
 For example, this is the `rsaEncryption` algorithm (but prefer to use the constant
 [`RSA_ENCRYPTION`](#rsa-encryption) instead):
 
-```
+```rust
 let rsa_encryption = rustls_pki_types::AlgorithmIdentifier::from_slice(
     &[
         // algorithm: 1.2.840.113549.1.1.1
@@ -195,9 +195,9 @@ AlgorithmIdentifier for `id-ecPublicKey` with named curve `secp256r1`.
 This is:
 
 ```text
-# ecPublicKey
+ecPublicKey
 OBJECT_IDENTIFIER { 1.2.840.10045.2.1 }
-# secp256r1
+secp256r1
 OBJECT_IDENTIFIER { 1.2.840.10045.3.1.7 }
 ```
 
@@ -212,9 +212,9 @@ AlgorithmIdentifier for `id-ecPublicKey` with named curve `secp384r1`.
 This is:
 
 ```text
-# ecPublicKey
+ecPublicKey
 OBJECT_IDENTIFIER { 1.2.840.10045.2.1 }
-# secp384r1
+secp384r1
 OBJECT_IDENTIFIER { 1.3.132.0.34 }
 ```
 
@@ -229,9 +229,9 @@ AlgorithmIdentifier for `id-ecPublicKey` with named curve `secp521r1`.
 This is:
 
 ```text
-# ecPublicKey
+ecPublicKey
 OBJECT_IDENTIFIER { 1.2.840.10045.2.1 }
-# secp521r1
+secp521r1
 OBJECT_IDENTIFIER { 1.3.132.0.35 }
 ```
 
@@ -246,7 +246,7 @@ AlgorithmIdentifier for `ecdsa-with-SHA256`.
 This is:
 
 ```text
-# ecdsa-with-SHA256
+ecdsa-with-SHA256
 OBJECT_IDENTIFIER { 1.2.840.10045.4.3.2 }
 ```
 
@@ -261,7 +261,7 @@ AlgorithmIdentifier for `ecdsa-with-SHA384`.
 This is:
 
 ```text
-# ecdsa-with-SHA384
+ecdsa-with-SHA384
 OBJECT_IDENTIFIER { 1.2.840.10045.4.3.3 }
 ```
 
@@ -276,7 +276,7 @@ AlgorithmIdentifier for `ecdsa-with-SHA512`.
 This is:
 
 ```text
-# ecdsa-with-SHA512
+ecdsa-with-SHA512
 OBJECT_IDENTIFIER { 1.2.840.10045.4.3.4 }
 ```
 
@@ -291,7 +291,7 @@ AlgorithmIdentifier for `rsaEncryption`.
 This is:
 
 ```text
-# rsaEncryption
+rsaEncryption
 OBJECT_IDENTIFIER { 1.2.840.113549.1.1.1 }
 NULL {}
 ```
@@ -307,7 +307,7 @@ AlgorithmIdentifier for `sha256WithRSAEncryption`.
 This is:
 
 ```text
-# sha256WithRSAEncryption
+sha256WithRSAEncryption
 OBJECT_IDENTIFIER { 1.2.840.113549.1.1.11 }
 NULL {}
 ```
@@ -323,7 +323,7 @@ AlgorithmIdentifier for `sha384WithRSAEncryption`.
 This is:
 
 ```text
-# sha384WithRSAEncryption
+sha384WithRSAEncryption
 OBJECT_IDENTIFIER { 1.2.840.113549.1.1.12 }
 NULL {}
 ```
@@ -339,7 +339,7 @@ AlgorithmIdentifier for `sha512WithRSAEncryption`.
 This is:
 
 ```text
-# sha512WithRSAEncryption
+sha512WithRSAEncryption
 OBJECT_IDENTIFIER { 1.2.840.113549.1.1.13 }
 NULL {}
 ```
@@ -359,30 +359,30 @@ AlgorithmIdentifier for `rsassaPss` with:
 This is:
 
 ```text
-# rsassa-pss
+rsassa-pss
 OBJECT_IDENTIFIER { 1.2.840.113549.1.1.10 }
 SEQUENCE {
-  # hashAlgorithm:
+  hashAlgorithm:
   [0] {
     SEQUENCE {
-      # sha256
+      sha256
       OBJECT_IDENTIFIER { 2.16.840.1.101.3.4.2.1 }
       NULL {}
     }
   }
-  # maskGenAlgorithm:
+  maskGenAlgorithm:
   [1] {
     SEQUENCE {
-      # mgf1
+      mgf1
       OBJECT_IDENTIFIER { 1.2.840.113549.1.1.8 }
       SEQUENCE {
-        # sha256
+        sha256
         OBJECT_IDENTIFIER { 2.16.840.1.101.3.4.2.1 }
         NULL {}
       }
     }
   }
-  # saltLength:
+  saltLength:
   [2] {
     INTEGER { 32 }
   }
@@ -407,30 +407,30 @@ AlgorithmIdentifier for `rsassaPss` with:
 This is:
 
 ```text
-# rsassa-pss
+rsassa-pss
 OBJECT_IDENTIFIER { 1.2.840.113549.1.1.10 }
 SEQUENCE {
-  # hashAlgorithm:
+  hashAlgorithm:
   [0] {
     SEQUENCE {
-      # sha384
+      sha384
       OBJECT_IDENTIFIER { 2.16.840.1.101.3.4.2.2 }
       NULL {}
     }
   }
-  # maskGenAlgorithm:
+  maskGenAlgorithm:
   [1] {
     SEQUENCE {
-      # mgf1
+      mgf1
       OBJECT_IDENTIFIER { 1.2.840.113549.1.1.8 }
       SEQUENCE {
-        # sha384
+        sha384
         OBJECT_IDENTIFIER { 2.16.840.1.101.3.4.2.2 }
         NULL {}
       }
     }
   }
-  # saltLength:
+  saltLength:
   [2] {
     INTEGER { 48 }
   }
@@ -455,30 +455,30 @@ AlgorithmIdentifier for `rsassaPss` with:
 This is:
 
 ```text
-# rsassa-pss
+rsassa-pss
 OBJECT_IDENTIFIER { 1.2.840.113549.1.1.10 }
 SEQUENCE {
-  # hashAlgorithm:
+  hashAlgorithm:
   [0] {
     SEQUENCE {
-      # sha512
+      sha512
       OBJECT_IDENTIFIER { 2.16.840.1.101.3.4.2.3 }
       NULL {}
     }
   }
-  # maskGenAlgorithm:
+  maskGenAlgorithm:
   [1] {
     SEQUENCE {
-      # mgf1
+      mgf1
       OBJECT_IDENTIFIER { 1.2.840.113549.1.1.8 }
       SEQUENCE {
-        # sha512
+        sha512
         OBJECT_IDENTIFIER { 2.16.840.1.101.3.4.2.3 }
         NULL {}
       }
     }
   }
-  # saltLength:
+  saltLength:
   [2] {
     INTEGER { 64 }
   }
@@ -499,7 +499,7 @@ AlgorithmIdentifier for `ED25519`.
 This is:
 
 ```text
-# ed25519
+ed25519
 OBJECT_IDENTIFIER { 1.3.101.112 }
 ```
 
@@ -514,7 +514,7 @@ AlgorithmIdentifier for `ED448`.
 This is:
 
 ```text
-# ed448
+ed448
 OBJECT_IDENTIFIER { 1.3.101.113 }
 ```
 

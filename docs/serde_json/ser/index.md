@@ -23,14 +23,14 @@ A structure for serializing Rust values into JSON.
 - `fn pretty(writer: W) -> Self`
   Creates a new JSON pretty print serializer.
 
-- `fn new(writer: W) -> Self`
-  Creates a new JSON serializer.
-
 - `fn with_formatter(writer: W, formatter: F) -> Self`
   Creates a new JSON visitor whose output will be written to the writer
 
 - `fn into_inner(self: Self) -> W`
   Unwrap the `Writer` from the `Serializer`.
+
+- `fn new(writer: W) -> Self`
+  Creates a new JSON serializer.
 
 #### Trait Implementations
 

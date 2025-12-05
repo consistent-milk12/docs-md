@@ -63,12 +63,11 @@ an entire paragraph at a time in order to find optimal line breaks
   
   # Example
   
-  ```
+  ```rust
   use textwrap::core::Word;
   use textwrap::{wrap, Options, WrapAlgorithm};
   
-  fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize](#usize)
-  ) -> Vec<&'b [Word<'a>]> {
+  fn stair<'a, 'b>(words: &'b [Word<'a>], _: &'b [usize]) -> Vec<&'b [Word<'a>]> {
       let mut lines = Vec::new();
       let mut step = 1;
       let mut start_idx = 0;
@@ -191,7 +190,7 @@ While fast and predictable, this algorithm can produce poor line
 breaks when a long fragment is moved to a new line, leaving behind
 a large gap:
 
-```
+```rust
 use textwrap::core::Word;
 use textwrap::wrap_algorithms::wrap_first_fit;
 use textwrap::WordSeparator;
@@ -244,7 +243,7 @@ switch to another task.
 You would like to make a list of tasks to execute every day based
 on your estimates. You can model this with a program like this:
 
-```
+```rust
 use textwrap::core::{Fragment, Word};
 use textwrap::wrap_algorithms::wrap_first_fit;
 
@@ -282,8 +281,7 @@ fn assign_days<'a>(tasks: &[Task<'a>], day_length: f64) -> Vec<(f64, Vec<&'a str
     let mut days = Vec::new();
     // Assign tasks to days. The assignment is a vector of slices,
     // with a slice per day.
-    let assigned_days: Vec<&[Task<'a>]> = wrap_first_fit(&tasks, &[day_length](#day-length)
-);
+    let assigned_days: Vec<&[Task<'a>]> = wrap_first_fit(&tasks, &[day_length]);
     for day in assigned_days.iter() {
         let last = day.last().unwrap();
         let work_hours: f64 = day.iter().map(|t| t.hours + t.sweep).sum();

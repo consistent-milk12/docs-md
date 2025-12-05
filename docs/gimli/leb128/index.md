@@ -12,8 +12,8 @@ standard's appendix C.
 
 Read and write signed integers:
 
-```
-# #[cfg(all(feature = "read", feature = "write"))] {
+```rust
+#[cfg(all(feature = "read", feature = "write"))] {
 use gimli::{EndianSlice, NativeEndian, leb128};
 
 let mut buf = [0; 1024];
@@ -28,13 +28,13 @@ let mut buf = [0; 1024];
 let mut readable = EndianSlice::new(&buf[..], NativeEndian);
 let val = leb128::read::signed(&mut readable).expect("Should read number");
 assert_eq!(val, -12345);
-# }
+}
 ```
 
 Or read and write unsigned integers:
 
-```
-# #[cfg(all(feature = "read", feature = "write"))] {
+```rust
+#[cfg(all(feature = "read", feature = "write"))] {
 use gimli::{EndianSlice, NativeEndian, leb128};
 
 let mut buf = [0; 1024];
@@ -47,7 +47,7 @@ let mut buf = [0; 1024];
 let mut readable = EndianSlice::new(&buf[..], NativeEndian);
 let val = leb128::read::unsigned(&mut readable).expect("Should read number");
 assert_eq!(val, 98765);
-# }
+}
 ```
 
 ## Modules

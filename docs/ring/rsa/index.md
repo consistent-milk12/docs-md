@@ -74,9 +74,6 @@ An RSA key pair, used for signing.
 
 #### Implementations
 
-- `fn sign(self: &Self, padding_alg: &'static dyn RsaEncoding, rng: &dyn rand::SecureRandom, msg: &[u8], signature: &mut [u8]) -> Result<(), error::Unspecified>`
-  Computes the signature of `msg` and writes it into `signature`.
-
 - `fn from_pkcs8(pkcs8: &[u8]) -> Result<Self, KeyRejected>`
   Parses an unencrypted PKCS#8-encoded RSA private key.
 
@@ -91,6 +88,9 @@ An RSA key pair, used for signing.
 
 - `fn public_modulus_len(self: &Self) -> usize`
   Returns the length in bytes of the key pair's public modulus.
+
+- `fn sign(self: &Self, padding_alg: &'static dyn RsaEncoding, rng: &dyn rand::SecureRandom, msg: &[u8], signature: &mut [u8]) -> Result<(), error::Unspecified>`
+  Computes the signature of `msg` and writes it into `signature`.
 
 #### Trait Implementations
 
@@ -328,9 +328,7 @@ struct PublicKeyComponents<B> {
 
 RSA public key components.
 
-`B` must implement `AsRef<[u8](#u8)
->` like `&[u8](#u8)
-` or `Vec<u8>`.
+`B` must implement `AsRef<[u8]>` like `&[u8]` or `Vec<u8>`.
 
 #### Fields
 

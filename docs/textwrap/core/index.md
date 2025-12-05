@@ -210,7 +210,7 @@ escape sequences.
 
 # Examples
 
-```
+```rust
 use textwrap::core::display_width;
 
 assert_eq!(display_width("Café Plain"), 10);
@@ -230,7 +230,7 @@ decomposed into: “e” followed by a combining acute accent: “◌́”.
 Without the `unicode-width` Cargo feature, every `char` below
 U+1100 has a width of 1. This includes the combining accent:
 
-```
+```rust
 use textwrap::core::display_width;
 
 assert_eq!(display_width("Cafe Plain"), 10);
@@ -246,7 +246,7 @@ Characters such as emojis and [CJK characters] used in the
 Chinese, Japanese, and Korean languages are seen as double-width,
 even if the `unicode-width` feature is disabled:
 
-```
+```rust
 use textwrap::core::display_width;
 
 assert_eq!(display_width("😂😭🥺🤣✨😍🙏🥰😊🔥"), 20);
@@ -271,7 +271,7 @@ A more complex example would be “👨‍🦰” which should depict a man
 with red hair. Here the computed width is too large — and the
 width differs depending on the use of the `unicode-width` feature:
 
-```
+```rust
 use textwrap::core::display_width;
 
 assert_eq!("👨‍🦰".chars().collect::<Vec<char>>(), ['\u{1f468}', '\u{200d}', '\u{1f9b0}']);

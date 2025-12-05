@@ -18,8 +18,7 @@ thereof, implemented in pure Rust with no usage of FFI or assembly.
 - No insecure fallbacks!
 - No dependencies!
 - No FFI or inline assembly! **WASM friendly** (and tested)!
-- `#![no_std](#no-std)
-` i.e. **embedded-friendly**!
+- `#![no_std]` i.e. **embedded-friendly**!
 - No functionality besides securely zeroing memory!
 - (Optional) Custom derive support for zeroing complex structures
 
@@ -33,7 +32,7 @@ by a minor version bump.
 
 ## Usage
 
-```
+```rust
 use zeroize::Zeroize;
 
 // Protip: don't embed secrets in your source code.
@@ -89,41 +88,41 @@ On the field level:
 
 Example which derives `Drop`:
 
-```
-# #[cfg(feature = "zeroize_derive")]
-# {
+```rust
+#[cfg(feature = "zeroize_derive")]
+{
 use zeroize::{Zeroize, ZeroizeOnDrop};
 
 // This struct will be zeroized on drop
 #[derive(Zeroize, ZeroizeOnDrop)]
 struct MyStruct([u8; 32]);
-# }
+}
 ```
 
 Example which does not derive `Drop` (useful for e.g. `Copy` types)
 
-```
+```rust
 #[cfg(feature = "zeroize_derive")]
-# {
+{
 use zeroize::Zeroize;
 
 // This struct will *NOT* be zeroized on drop
 #[derive(Copy, Clone, Zeroize)]
 struct MyStruct([u8; 32]);
-# }
+}
 ```
 
 Example which only derives `Drop`:
 
-```
-# #[cfg(feature = "zeroize_derive")]
-# {
+```rust
+#[cfg(feature = "zeroize_derive")]
+{
 use zeroize::ZeroizeOnDrop;
 
 // This struct will be zeroized on drop
 #[derive(ZeroizeOnDrop)]
 struct MyStruct([u8; 32]);
-# }
+}
 ```
 
 ## `Zeroizing<Z>`: wrapper for zeroizing arbitrary values on drop
@@ -132,7 +131,7 @@ struct MyStruct([u8; 32]);
 and `DerefMut`, allowing access to an inner value of type `Z`, and also
 impls a `Drop` handler which calls `zeroize()` on its contents:
 
-```
+```rust
 use zeroize::Zeroizing;
 
 fn use_secret() {
@@ -146,7 +145,7 @@ fn use_secret() {
     // The contents of `secret` will be automatically zeroized on drop
 }
 
-# use_secret()
+use_secret()
 ```
 
 ## What guarantees does this crate provide?
@@ -247,14 +246,14 @@ struct Zeroizing<Z: Zeroize>();
 
 #### Trait Implementations
 
-##### `impl From<Z>`
-
-- `fn from(value: Z) -> Zeroizing<Z>`
-
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
+
+##### `impl From<Z>`
+
+- `fn from(value: Z) -> Zeroizing<Z>`
 
 ##### `impl Into<T, U>`
 
@@ -432,7 +431,7 @@ but are not limited to:
 
 # Examples
 Safe usage for a struct containing strictly flat data:
-```
+```rust
 use zeroize::{ZeroizeOnDrop, zeroize_flat_type};
 
 struct DataToZeroize {

@@ -51,7 +51,7 @@ This wrapper performs a kebab case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsKebabCase;
 
 let sentence = "We are going to inherit the earth.";
@@ -112,7 +112,7 @@ This wrapper performs a lower camel case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsLowerCamelCase;
 
 let sentence = "It is we who built these palaces and cities.";
@@ -173,7 +173,7 @@ This wrapper performs a kebab case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsShoutyKebabCase;
 
 let sentence = "We are going to inherit the earth.";
@@ -234,7 +234,7 @@ This wrapper performs a shouty snake  case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsShoutySnakeCase;
 
 let sentence = "That world is growing in this minute.";
@@ -295,7 +295,7 @@ This wrapper performs a shouty snake  case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsShoutySnakeCase;
 
 let sentence = "That world is growing in this minute.";
@@ -356,7 +356,7 @@ This wrapper performs a snake case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsSnakeCase;
 
 let sentence = "We carry a new world here, in our hearts.";
@@ -417,7 +417,7 @@ This wrapper performs a snake case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsSnakeCase;
 
 let sentence = "We carry a new world here, in our hearts.";
@@ -478,7 +478,7 @@ This wrapper performs a title case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsTitleCase;
 
 let sentence = "We have always lived in slums and holes in the wall.";
@@ -539,7 +539,7 @@ This wrapper performs a train case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsTrainCase;
 
 let sentence = "We are going to inherit the earth.";
@@ -600,7 +600,7 @@ This wrapper performs a upper camel case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsUpperCamelCase;
 
 let sentence = "We are not in the least afraid of ruins.";
@@ -661,7 +661,7 @@ This wrapper performs a upper camel case conversion in `fmt::Display`.
 
 ## Example:
 
-```
+```rust
 use heck::AsUpperCamelCase;
 
 let sentence = "We are not in the least afraid of ruins.";

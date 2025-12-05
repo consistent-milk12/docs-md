@@ -150,14 +150,14 @@ Wrapper for `std::time::Duration` that provides a duration to a distant future
 
 #### Trait Implementations
 
+##### `impl From`
+
+- `fn from(value: std::time::Duration) -> Self`
+
 ##### `impl From<T>`
 
 - `fn from(t: T) -> T`
   Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: std::time::Duration) -> Self`
 
 ##### `impl Into<T, U>`
 

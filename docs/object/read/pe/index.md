@@ -30,7 +30,7 @@ use std::fs;
 
 /// Reads a file and displays the name of each section.
 fn main() -> Result<(), Box<dyn Error>> {
-#   #[cfg(feature = "std")] {
+  #[cfg(feature = "std")] {
     let data = fs::read("path/to/binary")?;
     let dos_header = pe::ImageDosHeader::parse(&*data)?;
     let mut offset = dos_header.nt_headers_offset().into();
@@ -40,7 +40,7 @@ fn main() -> Result<(), Box<dyn Error>> {
     for section in sections.iter() {
         println!("{}", String::from_utf8_lossy(section.name(symbols.strings())?));
     }
-#   }
+  }
     Ok(())
 }
 ```

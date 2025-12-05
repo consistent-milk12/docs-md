@@ -9,9 +9,9 @@ attempted and any involved paths.
 Using `std::fs`, if this code fails:
 
 ```no_run
-# use std::fs::File;
+use std::fs::File;
 let file = File::open("does not exist.txt")?;
-# Ok::<(), std::io::Error>(())
+Ok::<(), std::io::Error>(())
 ```
 
 The error message that Rust gives you isn't very useful:
@@ -38,14 +38,13 @@ let contents = fs::read_to_string("foo.txt")?;
 
 println!("Read foo.txt: {}", contents);
 
-# Ok::<(), std::io::Error>(())
+Ok::<(), std::io::Error>(())
 ```
 
 fs-err uses `std::io::Error` for all errors. This helps fs-err
 compose well with traits from the standard library like
 `std::io::Read` and crates that use them like
-[`serde_json`][serde_json](#serde-json)
-:
+[`serde_json`][serde_json](#serde-json):
 
 ```no_run
 use fs_err::File;
@@ -58,7 +57,7 @@ let decoded: Vec<String> = serde_json::from_reader(file)?;
 
 println!("Program config: {:?}", decoded);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 # Feature flags
@@ -89,8 +88,7 @@ fs-err = { features = ["debug"] }
 To use with the `tokio` feature, use `debug_tokio`:
 
 ```toml
-[dependencies](#dependencies)
-
+[dependencies]
 fs-err = { features = ["debug_tokio", "tokio"] }
 ```
 
@@ -105,8 +103,7 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 [std::fs]: https://doc.rust-lang.org/stable/std/fs/
 [std::io::Error]: https://doc.rust-lang.org/stable/std/io/struct.Error.html
 [std::io::Read]: https://doc.rust-lang.org/stable/std/io/trait.Read.html
-[serde_json](#serde-json)
-: https://crates.io/crates/serde_json
+[serde_json](#serde-json): https://crates.io/crates/serde_json
 
 ## Modules
 
@@ -123,15 +120,6 @@ struct OpenOptions();
 Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)
 
 #### Implementations
-
-- `fn from_options(options: fs::OpenOptions) -> Self`
-  Constructs `Self` from [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html)
-
-- `fn options(self: &Self) -> &fs::OpenOptions`
-  Returns a reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
-
-- `fn options_mut(self: &mut Self) -> &mut fs::OpenOptions`
-  Returns a mutable reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
 
 - `fn new() -> Self`
   Creates a blank new set of options ready for configuration.
@@ -156,6 +144,15 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 
 - `fn open<P>(self: &Self, path: P) -> io::Result<crate::File>`
   Opens a file at `path` with the options specified by `self`.
+
+- `fn from_options(options: fs::OpenOptions) -> Self`
+  Constructs `Self` from [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html)
+
+- `fn options(self: &Self) -> &fs::OpenOptions`
+  Returns a reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
+
+- `fn options_mut(self: &mut Self) -> &mut fs::OpenOptions`
+  Returns a mutable reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
 
 #### Trait Implementations
 

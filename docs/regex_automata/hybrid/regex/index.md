@@ -6,7 +6,7 @@
 
 A lazy DFA backed `Regex`.
 
-This module provides a [`Regex`](#regex) backed by a lazy DFA. A `Regex` implements
+This module provides a [`Regex`](../../index.md) backed by a lazy DFA. A `Regex` implements
 convenience routines you might have come to expect, such as finding a match
 and iterating over all non-overlapping matches. This `Regex` type is limited
 in its capabilities to what a lazy DFA can provide. Therefore, APIs involving
@@ -61,8 +61,8 @@ This example shows how to cause a search to terminate if it sees a
 example, you wanted to prevent a user supplied pattern from matching
 across a line boundary.
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{hybrid::{dfa, regex::Regex}, Input, MatchError};
 
 let re = Regex::builder()
@@ -78,31 +78,10 @@ let expected = MatchError::quit(b'\n', 3);
 let got = re.try_search(&mut cache, &input).unwrap_err();
 assert_eq!(expected, got);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations
-
-- `fn forward(self: &Self) -> &DFA`
-  Return the underlying lazy DFA responsible for forward matching.
-
-- `fn reverse(self: &Self) -> &DFA`
-  Return the underlying lazy DFA responsible for reverse matching.
-
-- `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns matched by this regex.
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
-  Returns the start and end offset of the leftmost match. If no match
-
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Returns true if and only if this regex matches the given haystack.
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Returns the start and end offset of the leftmost match. If no match
-
-- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping leftmost matches in the
 
 - `fn new(pattern: &str) -> Result<Regex, BuildError>`
   Parse the given regular expression using the default configuration and
@@ -118,6 +97,27 @@ assert_eq!(expected, got);
 
 - `fn reset_cache(self: &Self, cache: &mut Cache)`
   Reset the given cache such that it can be used for searching with the
+
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
+  Returns true if and only if this regex matches the given haystack.
+
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
+  Returns the start and end offset of the leftmost match. If no match
+
+- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
+  Returns an iterator over all non-overlapping leftmost matches in the
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>`
+  Returns the start and end offset of the leftmost match. If no match
+
+- `fn forward(self: &Self) -> &DFA`
+  Return the underlying lazy DFA responsible for forward matching.
+
+- `fn reverse(self: &Self) -> &DFA`
+  Return the underlying lazy DFA responsible for reverse matching.
+
+- `fn pattern_len(self: &Self) -> usize`
+  Returns the total number of patterns matched by this regex.
 
 #### Trait Implementations
 
@@ -250,7 +250,7 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`Regex`](#regex).
+a [`Regex`](../../index.md).
 
 Caches can be created from their corresponding `Regex` via
 `Regex::create_cache`. A cache can only be used with either the `Regex`
@@ -383,8 +383,8 @@ than building two of them.
 This example shows how to disable UTF-8 mode in the syntax and the regex
 itself. This is generally what you want for matching on arbitrary bytes.
 
-```
-# if cfg!(miri) { return Ok(()); } // miri takes too long
+```rust
+if cfg!(miri) { return Ok(()); } // miri takes too long
 use regex_automata::{
     hybrid::regex::Regex, nfa::thompson, util::syntax, Match,
 };
@@ -404,7 +404,7 @@ assert_eq!(expected, got);
 // on the syntax permits this.
 assert_eq!(b"foo\xFFarzz", &haystack[got.unwrap().range()]);
 
-# Ok::<(), Box<dyn std::error::Error>>(())
+Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
 #### Implementations

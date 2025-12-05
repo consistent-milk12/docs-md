@@ -6,8 +6,7 @@ and other portions of the Unicode standard.
 See the [Rules for determining width](#rules-for-determining-width) section
 for the exact rules.
 
-This crate is `#![no_std](#no-std)
-`.
+This crate is `#![no_std]`.
 
 ```rust
 use unicode_width::UnicodeWidthStr;

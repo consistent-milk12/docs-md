@@ -41,19 +41,17 @@ guarantees or a more flexible API, then it is recommended to use either
 
 When this crate is compiled _without_ the `alloc` feature, then this type
 may used a spin lock internally. This can have subtle effects that may
-be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm)
- for a more
+be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm) for a more
 thorough treatment of this topic.
 
-[spinharm](#spinharm)
-: https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
+[spinharm](#spinharm): https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
 
 # Example
 
 This type is useful for creating regexes once, and then using them from
 multiple threads simultaneously without worrying about synchronization.
 
-```
+```rust
 use regex_automata::{dfa::regex::Regex, util::lazy::Lazy, Match};
 
 static RE: Lazy<Regex> = Lazy::new(|| Regex::new("foo[0-9]+bar").unwrap());

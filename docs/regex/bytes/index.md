@@ -4,14 +4,12 @@
 
 # Module `bytes`
 
-Search for regex matches in `&[u8](#u8)
-` haystacks.
+Search for regex matches in `&[u8]` haystacks.
 
 This module provides a nearly identical API via [`Regex`](../index.md) to the one found in
 the top-level of this crate. There are two important differences:
 
-1. Matching is done on `&[u8](#u8)
-` instead of `&str`. Additionally, `Vec<u8>`
+1. Matching is done on `&[u8]` instead of `&str`. Additionally, `Vec<u8>`
 is used where `String` would have been used in the top-level API.
 2. Unicode support can be disabled even when disabling it would result in
 matching invalid UTF-8 bytes.
@@ -29,8 +27,7 @@ let hay = b"foo\x00qu\xFFux\x00baz\x00";
 
 // Extract all of the strings without the NUL terminator from each match.
 // The unwrap is OK here since a match requires the `cstr` capture to match.
-let cstrs: Vec<&[u8](#u8)
-> =
+let cstrs: Vec<&[u8]> =
     re.captures_iter(hay)
       .map(|c| c.name("cstr").unwrap().as_bytes())
       .collect();
@@ -54,8 +51,7 @@ let hay = b"\x12\xd0\x3b\x5f\x7b\xa9\x85\xe2\x98\x83\x80\x98\x54\x76\x68\x65";
 // because Unicode mode was enabled with the `u` flag. Without the `u` flag,
 // the `.*` would match the rest of the bytes regardless of whether they were
 // valid UTF-8.
-let (_, [title](#title)
-) = re.captures(hay).unwrap().extract();
+let (_, [title]) = re.captures(hay).unwrap().extract();
 assert_eq!(title, b"\xE2\x98\x83");
 // We can UTF-8 decode the title now. And the unwrap here
 // is correct because the existence of a match guarantees
@@ -94,7 +90,6 @@ notation when enabled.
 
 # Performance
 
-In general, one should expect performance on `&[u8](#u8)
-` to be roughly similar to
+In general, one should expect performance on `&[u8]` to be roughly similar to
 performance on `&str`.
 

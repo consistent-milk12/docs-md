@@ -7,8 +7,7 @@
 Certificate compression and decompression support
 
 This crate supports compression and decompression everywhere
-certificates are used, in accordance with [RFC8879][rfc8879](#rfc8879)
-.
+certificates are used, in accordance with [RFC8879][rfc8879](#rfc8879).
 
 Note that this is only supported for TLS1.3 connections.
 
@@ -23,34 +22,21 @@ We especially recommend `brotli` as it has the widest deployment so far.
 
 1. Implement the [`CertCompressor`](#certcompressor) and/or [`CertDecompressor`](#certdecompressor) traits
 2. Provide those to:
-  - [`ClientConfig::cert_compressors`][cc_cc](#cc-cc)
- or [`ServerConfig::cert_compressors`][sc_cc](#sc-cc)
-.
-  - [`ClientConfig::cert_decompressors`][cc_cd](#cc-cd)
- or [`ServerConfig::cert_decompressors`][sc_cd](#sc-cd)
-.
+  - [`ClientConfig::cert_compressors`][cc_cc](#cc-cc) or [`ServerConfig::cert_compressors`][sc_cc](#sc-cc).
+  - [`ClientConfig::cert_decompressors`][cc_cd](#cc-cd) or [`ServerConfig::cert_decompressors`][sc_cd](#sc-cd).
 
 These are used in these circumstances:
 
 | Peer | Client authentication | Server authentication |
 | ---- | --------------------- | --------------------- |
-| *Client* | [`ClientConfig::cert_compressors`][cc_cc](#cc-cc)
- | [`ClientConfig::cert_decompressors`][cc_cd](#cc-cd)
- |
-| *Server* | [`ServerConfig::cert_decompressors`][sc_cd](#sc-cd)
- | [`ServerConfig::cert_compressors`][sc_cc](#sc-cc)
- |
+| *Client* | [`ClientConfig::cert_compressors`][cc_cc](#cc-cc) | [`ClientConfig::cert_decompressors`][cc_cd](#cc-cd) |
+| *Server* | [`ServerConfig::cert_decompressors`][sc_cd](#sc-cd) | [`ServerConfig::cert_compressors`][sc_cc](#sc-cc) |
 
-[rfc8879](#rfc8879)
-: https://datatracker.ietf.org/doc/html/rfc8879
-[cc_cc](#cc-cc)
-: crate::ClientConfig::cert_compressors
-[sc_cc](#sc-cc)
-: crate::ServerConfig::cert_compressors
-[cc_cd](#cc-cd)
-: crate::ClientConfig::cert_decompressors
-[sc_cd](#sc-cd)
-: crate::ServerConfig::cert_decompressors
+[rfc8879](#rfc8879): https://datatracker.ietf.org/doc/html/rfc8879
+[cc_cc](#cc-cc): crate::ClientConfig::cert_compressors
+[sc_cc](#sc-cc): crate::ServerConfig::cert_compressors
+[cc_cd](#cc-cd): crate::ClientConfig::cert_decompressors
+[sc_cd](#sc-cd): crate::ServerConfig::cert_decompressors
 
 ## Structs
 
