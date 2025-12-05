@@ -40,50 +40,11 @@ Refer to usage examples on the following two entry-points:
 
 #### Implementations
 
-- `fn value(self: &Self) -> Result<ParseStream<'a>>`
-  Used when parsing `key = "value"` syntax.
+- `fn value(self: &Self) -> Result<ParseStream<'a>>` — [`Result`](../../error/index.md), [`ParseStream`](../../parse/index.md)
 
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>`
-  Used when parsing `list(...)` syntax **if** the content inside the
+- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../../meta/index.md), [`Result`](../../error/index.md)
 
-- `fn error(self: &Self, msg: impl Display) -> Error`
-  Report that the attribute's content did not conform to expectations.
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn error(self: &Self, msg: impl Display) -> Error` — [`Error`](../../error/index.md)
 
 ## Functions
 

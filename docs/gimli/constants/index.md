@@ -31,37 +31,15 @@ See Section 7.3.5.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwSect`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwSect` — [`DwSect`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -75,45 +53,21 @@ See Section 7.3.5.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwSect) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwSect) -> $crate::cmp::Ordering` — [`DwSect`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwSect) -> bool`
+- `fn eq(self: &Self, other: &DwSect) -> bool` — [`DwSect`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwSect) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwSect) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSect`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwSectV2`
 
@@ -129,37 +83,15 @@ The section type field in a `.dwp` unit index with version 2.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwSectV2`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwSectV2` — [`DwSectV2`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -173,45 +105,21 @@ The section type field in a `.dwp` unit index with version 2.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwSectV2) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwSectV2) -> $crate::cmp::Ordering` — [`DwSectV2`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwSectV2) -> bool`
+- `fn eq(self: &Self, other: &DwSectV2) -> bool` — [`DwSectV2`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwSectV2) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwSectV2) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSectV2`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwUt`
 
@@ -229,37 +137,15 @@ See Section 7.5.1, Table 7.2.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwUt`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwUt` — [`DwUt`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -273,45 +159,21 @@ See Section 7.5.1, Table 7.2.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwUt) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwUt) -> $crate::cmp::Ordering` — [`DwUt`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwUt) -> bool`
+- `fn eq(self: &Self, other: &DwUt) -> bool` — [`DwUt`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwUt) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwUt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwUt`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwCfa`
 
@@ -333,37 +195,15 @@ Section 7.24:
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwCfa`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwCfa` — [`DwCfa`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -377,45 +217,21 @@ Section 7.24:
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwCfa) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwCfa) -> $crate::cmp::Ordering` — [`DwCfa`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwCfa) -> bool`
+- `fn eq(self: &Self, other: &DwCfa) -> bool` — [`DwCfa`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwCfa) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwCfa) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCfa`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwChildren`
 
@@ -433,37 +249,15 @@ See Section 7.5.3, Table 7.4.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwChildren`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwChildren` — [`DwChildren`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -477,45 +271,21 @@ See Section 7.5.3, Table 7.4.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwChildren) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwChildren) -> $crate::cmp::Ordering` — [`DwChildren`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwChildren) -> bool`
+- `fn eq(self: &Self, other: &DwChildren) -> bool` — [`DwChildren`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwChildren) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwChildren) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwChildren`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwTag`
 
@@ -533,37 +303,15 @@ See Section 7.5.3, Table 7.3.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwTag`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwTag` — [`DwTag`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -577,45 +325,21 @@ See Section 7.5.3, Table 7.3.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwTag) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwTag) -> $crate::cmp::Ordering` — [`DwTag`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwTag) -> bool`
+- `fn eq(self: &Self, other: &DwTag) -> bool` — [`DwTag`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwTag) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwTag) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwTag`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwAt`
 
@@ -633,37 +357,15 @@ See Section 7.5.4, Table 7.5.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwAt`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwAt` — [`DwAt`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -677,45 +379,21 @@ See Section 7.5.4, Table 7.5.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwAt) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwAt) -> $crate::cmp::Ordering` — [`DwAt`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwAt) -> bool`
+- `fn eq(self: &Self, other: &DwAt) -> bool` — [`DwAt`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwAt) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwAt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAt`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwForm`
 
@@ -733,37 +411,15 @@ See Section 7.5.6, Table 7.6.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwForm`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwForm` — [`DwForm`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -777,45 +433,21 @@ See Section 7.5.6, Table 7.6.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwForm) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwForm) -> $crate::cmp::Ordering` — [`DwForm`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwForm) -> bool`
+- `fn eq(self: &Self, other: &DwForm) -> bool` — [`DwForm`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwForm) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwForm) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwForm`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwAte`
 
@@ -833,37 +465,15 @@ See Section 7.8, Table 7.11.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwAte`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwAte` — [`DwAte`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -877,45 +487,21 @@ See Section 7.8, Table 7.11.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwAte) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwAte) -> $crate::cmp::Ordering` — [`DwAte`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwAte) -> bool`
+- `fn eq(self: &Self, other: &DwAte) -> bool` — [`DwAte`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwAte) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwAte) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAte`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwLle`
 
@@ -933,37 +519,15 @@ See Section 7.7.3, Table 7.10.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwLle`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwLle` — [`DwLle`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -977,45 +541,21 @@ See Section 7.7.3, Table 7.10.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwLle) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwLle) -> $crate::cmp::Ordering` — [`DwLle`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwLle) -> bool`
+- `fn eq(self: &Self, other: &DwLle) -> bool` — [`DwLle`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwLle) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwLle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLle`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwDs`
 
@@ -1033,37 +573,15 @@ See Section 7.8, Table 7.12.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwDs`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwDs` — [`DwDs`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1077,45 +595,21 @@ See Section 7.8, Table 7.12.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwDs) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwDs) -> $crate::cmp::Ordering` — [`DwDs`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwDs) -> bool`
+- `fn eq(self: &Self, other: &DwDs) -> bool` — [`DwDs`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwDs) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwDs) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDs`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwEnd`
 
@@ -1133,37 +627,15 @@ See Section 7.8, Table 7.13.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwEnd`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwEnd` — [`DwEnd`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1177,45 +649,21 @@ See Section 7.8, Table 7.13.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwEnd) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwEnd) -> $crate::cmp::Ordering` — [`DwEnd`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwEnd) -> bool`
+- `fn eq(self: &Self, other: &DwEnd) -> bool` — [`DwEnd`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwEnd) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwEnd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEnd`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwAccess`
 
@@ -1233,37 +681,15 @@ See Section 7.9, Table 7.14.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwAccess`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwAccess` — [`DwAccess`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1277,45 +703,21 @@ See Section 7.9, Table 7.14.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwAccess) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwAccess) -> $crate::cmp::Ordering` — [`DwAccess`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwAccess) -> bool`
+- `fn eq(self: &Self, other: &DwAccess) -> bool` — [`DwAccess`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwAccess) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwAccess) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAccess`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwVis`
 
@@ -1333,37 +735,15 @@ See Section 7.10, Table 7.15.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwVis`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwVis` — [`DwVis`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1377,45 +757,21 @@ See Section 7.10, Table 7.15.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwVis) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwVis) -> $crate::cmp::Ordering` — [`DwVis`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwVis) -> bool`
+- `fn eq(self: &Self, other: &DwVis) -> bool` — [`DwVis`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwVis) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwVis) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVis`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwVirtuality`
 
@@ -1433,37 +789,15 @@ See Section 7.11, Table 7.16.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwVirtuality`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwVirtuality` — [`DwVirtuality`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1477,45 +811,21 @@ See Section 7.11, Table 7.16.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwVirtuality) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwVirtuality) -> $crate::cmp::Ordering` — [`DwVirtuality`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwVirtuality) -> bool`
+- `fn eq(self: &Self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwVirtuality) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwVirtuality) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVirtuality`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwLang`
 
@@ -1531,42 +841,17 @@ See Section 7.12, Table 7.17.
 
 - `fn static_string(self: &Self) -> Option<&'static str>`
 
-- `fn default_lower_bound(self: Self) -> Option<usize>`
-  Get the default DW_AT_lower_bound for this language.
-
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwLang`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwLang` — [`DwLang`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1580,45 +865,21 @@ See Section 7.12, Table 7.17.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwLang) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwLang) -> $crate::cmp::Ordering` — [`DwLang`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwLang) -> bool`
+- `fn eq(self: &Self, other: &DwLang) -> bool` — [`DwLang`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwLang) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwLang) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLang`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwAddr`
 
@@ -1637,37 +898,15 @@ See Section 7.13.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwAddr`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwAddr` — [`DwAddr`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1681,45 +920,21 @@ See Section 7.13.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwAddr) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwAddr) -> $crate::cmp::Ordering` — [`DwAddr`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwAddr) -> bool`
+- `fn eq(self: &Self, other: &DwAddr) -> bool` — [`DwAddr`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwAddr) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwAddr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAddr`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwId`
 
@@ -1737,37 +952,15 @@ See Section 7.14, Table 7.18.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwId`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwId` — [`DwId`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1781,45 +974,21 @@ See Section 7.14, Table 7.18.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwId) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwId) -> $crate::cmp::Ordering` — [`DwId`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwId) -> bool`
+- `fn eq(self: &Self, other: &DwId) -> bool` — [`DwId`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwId) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwId) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwId`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwCc`
 
@@ -1837,37 +1006,15 @@ See Section 7.15, Table 7.19.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwCc`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwCc` — [`DwCc`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1881,45 +1028,21 @@ See Section 7.15, Table 7.19.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwCc) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwCc) -> $crate::cmp::Ordering` — [`DwCc`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwCc) -> bool`
+- `fn eq(self: &Self, other: &DwCc) -> bool` — [`DwCc`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwCc) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwCc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCc`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwInl`
 
@@ -1937,37 +1060,15 @@ See Section 7.16, Table 7.20.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwInl`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwInl` — [`DwInl`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1981,45 +1082,21 @@ See Section 7.16, Table 7.20.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwInl) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwInl) -> $crate::cmp::Ordering` — [`DwInl`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwInl) -> bool`
+- `fn eq(self: &Self, other: &DwInl) -> bool` — [`DwInl`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwInl) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwInl) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwInl`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwOrd`
 
@@ -2037,37 +1114,15 @@ See Section 7.17, Table 7.17.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwOrd`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwOrd` — [`DwOrd`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2081,45 +1136,21 @@ See Section 7.17, Table 7.17.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwOrd) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwOrd) -> $crate::cmp::Ordering` — [`DwOrd`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwOrd) -> bool`
+- `fn eq(self: &Self, other: &DwOrd) -> bool` — [`DwOrd`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwOrd) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwOrd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOrd`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwDsc`
 
@@ -2137,37 +1168,15 @@ See Section 7.18, Table 7.22.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwDsc`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwDsc` — [`DwDsc`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2181,45 +1190,21 @@ See Section 7.18, Table 7.22.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwDsc) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwDsc) -> $crate::cmp::Ordering` — [`DwDsc`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwDsc) -> bool`
+- `fn eq(self: &Self, other: &DwDsc) -> bool` — [`DwDsc`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwDsc) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwDsc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDsc`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwIdx`
 
@@ -2237,37 +1222,15 @@ See Section 7.19, Table 7.23.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwIdx`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwIdx` — [`DwIdx`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2281,45 +1244,21 @@ See Section 7.19, Table 7.23.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwIdx) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwIdx) -> $crate::cmp::Ordering` — [`DwIdx`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwIdx) -> bool`
+- `fn eq(self: &Self, other: &DwIdx) -> bool` — [`DwIdx`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwIdx) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwIdx) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwIdx`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwDefaulted`
 
@@ -2337,37 +1276,15 @@ See Section 7.20, Table 7.24.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwDefaulted`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwDefaulted` — [`DwDefaulted`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2381,45 +1298,21 @@ See Section 7.20, Table 7.24.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwDefaulted) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwDefaulted) -> $crate::cmp::Ordering` — [`DwDefaulted`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwDefaulted) -> bool`
+- `fn eq(self: &Self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwDefaulted) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwDefaulted) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDefaulted`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwLns`
 
@@ -2437,37 +1330,15 @@ See Section 7.22, Table 7.25.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwLns`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwLns` — [`DwLns`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2481,45 +1352,21 @@ See Section 7.22, Table 7.25.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwLns) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwLns) -> $crate::cmp::Ordering` — [`DwLns`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwLns) -> bool`
+- `fn eq(self: &Self, other: &DwLns) -> bool` — [`DwLns`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwLns) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwLns) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLns`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwLne`
 
@@ -2537,37 +1384,15 @@ See Section 7.22, Table 7.26.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwLne`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwLne` — [`DwLne`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2581,45 +1406,21 @@ See Section 7.22, Table 7.26.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwLne) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwLne) -> $crate::cmp::Ordering` — [`DwLne`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwLne) -> bool`
+- `fn eq(self: &Self, other: &DwLne) -> bool` — [`DwLne`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwLne) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwLne) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLne`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwLnct`
 
@@ -2637,37 +1438,15 @@ See Section 7.22, Table 7.27.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwLnct`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwLnct` — [`DwLnct`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2681,45 +1460,21 @@ See Section 7.22, Table 7.27.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwLnct) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwLnct) -> $crate::cmp::Ordering` — [`DwLnct`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwLnct) -> bool`
+- `fn eq(self: &Self, other: &DwLnct) -> bool` — [`DwLnct`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwLnct) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwLnct) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLnct`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwMacinfo`
 
@@ -2737,37 +1492,15 @@ See Section 7.22, Figure 39 for DWARF 4.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwMacinfo`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwMacinfo` — [`DwMacinfo`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2781,45 +1514,21 @@ See Section 7.22, Figure 39 for DWARF 4.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwMacinfo) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwMacinfo) -> $crate::cmp::Ordering` — [`DwMacinfo`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwMacinfo) -> bool`
+- `fn eq(self: &Self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwMacinfo) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwMacinfo) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacinfo`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwMacro`
 
@@ -2837,37 +1546,15 @@ See Section 7.23, Table 7.28 for DWARF 5.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwMacro`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwMacro` — [`DwMacro`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2881,45 +1568,21 @@ See Section 7.23, Table 7.28 for DWARF 5.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwMacro) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwMacro) -> $crate::cmp::Ordering` — [`DwMacro`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwMacro) -> bool`
+- `fn eq(self: &Self, other: &DwMacro) -> bool` — [`DwMacro`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwMacro) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwMacro) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacro`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwRle`
 
@@ -2937,37 +1600,15 @@ See Section 7.25, Table 7.30.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwRle`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwRle` — [`DwRle`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -2981,45 +1622,21 @@ See Section 7.25, Table 7.30.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwRle) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwRle) -> $crate::cmp::Ordering` — [`DwRle`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwRle) -> bool`
+- `fn eq(self: &Self, other: &DwRle) -> bool` — [`DwRle`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwRle) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwRle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwRle`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwOp`
 
@@ -3037,37 +1654,15 @@ See Section 7.7.1, Table 7.9.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwOp`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwOp` — [`DwOp`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -3081,45 +1676,21 @@ See Section 7.7.1, Table 7.9.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwOp) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwOp) -> $crate::cmp::Ordering` — [`DwOp`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwOp) -> bool`
+- `fn eq(self: &Self, other: &DwOp) -> bool` — [`DwOp`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwOp) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwOp) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOp`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwEhPe`
 
@@ -3137,62 +1708,25 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Implementations
 
-- `fn format(self: Self) -> DwEhPe`
-  Get the pointer encoding's format.
-
-- `fn application(self: Self) -> DwEhPe`
-  Get the pointer encoding's application.
-
-- `fn is_absent(self: Self) -> bool`
-  Is this encoding the absent pointer encoding?
-
-- `fn is_indirect(self: Self) -> bool`
-  Is this coding indirect? If so, its encoded value is the address of the
-
-- `fn is_valid_encoding(self: Self) -> bool`
-  Is this a known, valid pointer encoding?
-
 - `fn static_string(self: &Self) -> Option<&'static str>`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl BitOr`
 
 - `type Output = DwEhPe`
 
-- `fn bitor(self: Self, rhs: DwEhPe) -> DwEhPe`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn bitor(self: Self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](../../constants/index.md)
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwEhPe`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwEhPe` — [`DwEhPe`](../../constants/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -3206,45 +1740,21 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &DwEhPe) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &DwEhPe) -> $crate::cmp::Ordering` — [`DwEhPe`](../../constants/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DwEhPe) -> bool`
+- `fn eq(self: &Self, other: &DwEhPe) -> bool` — [`DwEhPe`](../../constants/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwEhPe) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &DwEhPe) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEhPe`](../../constants/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Constants
 

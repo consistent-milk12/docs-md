@@ -61,7 +61,11 @@ implemented on [`Seq`](#seq).
 
 ```rust
 struct Extractor {
-    // [REDACTED: Private Fields]
+    kind: ExtractKind,
+    limit_class: usize,
+    limit_repeat: usize,
+    limit_literal_len: usize,
+    limit_total: usize,
 }
 ```
 
@@ -154,78 +158,45 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Extractor`
-  Create a new extractor with a default configuration.
+- `fn new() -> Extractor` — [`Extractor`](../../../hir/literal/index.md)
 
-- `fn extract(self: &Self, hir: &Hir) -> Seq`
-  Execute the extractor and return a sequence of literals.
+- `fn extract(self: &Self, hir: &Hir) -> Seq` — [`Hir`](../../../hir/index.md), [`Seq`](../../../hir/literal/index.md)
 
-- `fn kind(self: &mut Self, kind: ExtractKind) -> &mut Extractor`
-  Set the kind of literal sequence to extract from an [`Hir`] expression.
+- `fn kind(self: &mut Self, kind: ExtractKind) -> &mut Extractor` — [`ExtractKind`](../../../hir/literal/index.md), [`Extractor`](../../../hir/literal/index.md)
 
-- `fn limit_class(self: &mut Self, limit: usize) -> &mut Extractor`
-  Configure a limit on the length of the sequence that is permitted for
+- `fn limit_class(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](../../../hir/literal/index.md)
 
-- `fn limit_repeat(self: &mut Self, limit: usize) -> &mut Extractor`
-  Configure a limit on the total number of repetitions that is permitted
+- `fn limit_repeat(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](../../../hir/literal/index.md)
 
-- `fn limit_literal_len(self: &mut Self, limit: usize) -> &mut Extractor`
-  Configure a limit on the maximum length of any literal in a sequence.
+- `fn limit_literal_len(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](../../../hir/literal/index.md)
 
-- `fn limit_total(self: &mut Self, limit: usize) -> &mut Extractor`
-  Configure a limit on the total number of literals that will be
+- `fn limit_total(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](../../../hir/literal/index.md)
+
+- `fn extract_concat<'a, I: Iterator<Item = &'a Hir>>(self: &Self, it: I) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+
+- `fn extract_alternation<'a, I: Iterator<Item = &'a Hir>>(self: &Self, it: I) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+
+- `fn extract_repetition(self: &Self, rep: &hir::Repetition) -> Seq` — [`Repetition`](../../../hir/index.md), [`Seq`](../../../hir/literal/index.md)
+
+- `fn extract_class_unicode(self: &Self, cls: &hir::ClassUnicode) -> Seq` — [`ClassUnicode`](../../../hir/index.md), [`Seq`](../../../hir/literal/index.md)
+
+- `fn extract_class_bytes(self: &Self, cls: &hir::ClassBytes) -> Seq` — [`ClassBytes`](../../../hir/index.md), [`Seq`](../../../hir/literal/index.md)
+
+- `fn class_over_limit_unicode(self: &Self, cls: &hir::ClassUnicode) -> bool` — [`ClassUnicode`](../../../hir/index.md)
+
+- `fn class_over_limit_bytes(self: &Self, cls: &hir::ClassBytes) -> bool` — [`ClassBytes`](../../../hir/index.md)
+
+- `fn cross(self: &Self, seq1: Seq, seq2: &mut Seq) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+
+- `fn union(self: &Self, seq1: Seq, seq2: &mut Seq) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+
+- `fn enforce_literal_len(self: &Self, seq: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Extractor`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Extractor` — [`Extractor`](../../../hir/literal/index.md)
 
 ##### `impl Debug`
 
@@ -233,13 +204,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default`
 
-- `fn default() -> Extractor`
+- `fn default() -> Extractor` — [`Extractor`](../../../hir/literal/index.md)
 
 ### `Seq`
 
 ```rust
 struct Seq {
-    // [REDACTED: Private Fields]
+    literals: Option<alloc::vec::Vec<Literal>>,
 }
 ```
 
@@ -307,174 +278,117 @@ let expected = Seq::from_iter([
 assert_eq!(expected, seq);
 ```
 
+#### Fields
+
+- **`literals`**: `Option<alloc::vec::Vec<Literal>>`
+
+  The members of this seq.
+  
+  When `None`, the seq represents all possible literals. That is, it
+  prevents one from making assumptions about specific literals in the
+  seq, and forces one to treat it as if any literal might be in the seq.
+  
+  Note that `Some(vec![])` is valid and corresponds to the empty seq of
+  literals, i.e., a regex that can never match. For example, `[a&&b]`.
+  It is distinct from `Some(vec![""])`, which corresponds to the seq
+  containing an empty string, which matches at every position.
+
 #### Implementations
 
-- `fn empty() -> Seq`
-  Returns an empty sequence.
+- `fn empty() -> Seq` — [`Seq`](../../../hir/literal/index.md)
 
-- `fn infinite() -> Seq`
-  Returns a sequence of literals without a finite size and may contain
+- `fn infinite() -> Seq` — [`Seq`](../../../hir/literal/index.md)
 
-- `fn singleton(lit: Literal) -> Seq`
-  Returns a sequence containing a single literal.
+- `fn singleton(lit: Literal) -> Seq` — [`Literal`](../../../hir/literal/index.md), [`Seq`](../../../hir/literal/index.md)
 
-- `fn new<I, B>(it: I) -> Seq`
-  Returns a sequence of exact literals from the given byte strings.
+- `fn new<I, B>(it: I) -> Seq` — [`Seq`](../../../hir/literal/index.md)
 
-- `fn literals(self: &Self) -> Option<&[Literal]>`
-  If this is a finite sequence, return its members as a slice of
+- `fn literals(self: &Self) -> Option<&[Literal]>` — [`Literal`](../../../hir/literal/index.md)
 
-- `fn push(self: &mut Self, lit: Literal)`
-  Push a literal to the end of this sequence.
+- `fn push(self: &mut Self, lit: Literal)` — [`Literal`](../../../hir/literal/index.md)
 
 - `fn make_inexact(self: &mut Self)`
-  Make all of the literals in this sequence inexact.
 
 - `fn make_infinite(self: &mut Self)`
-  Converts this sequence to an infinite sequence.
 
-- `fn cross_forward(self: &mut Self, other: &mut Seq)`
-  Modify this sequence to contain the cross product between it and the
+- `fn cross_forward(self: &mut Self, other: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
 
-- `fn cross_reverse(self: &mut Self, other: &mut Seq)`
-  Modify this sequence to contain the cross product between it and
+- `fn cross_reverse(self: &mut Self, other: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
 
-- `fn union(self: &mut Self, other: &mut Seq)`
-  Unions the `other` sequence into this one.
+- `fn cross_preamble<'a>(self: &'a mut Self, other: &'a mut Seq) -> Option<(&'a mut Vec<Literal>, &'a mut Vec<Literal>)>` — [`Seq`](../../../hir/literal/index.md), [`Literal`](../../../hir/literal/index.md)
 
-- `fn union_into_empty(self: &mut Self, other: &mut Seq)`
-  Unions the `other` sequence into this one by splice the `other`
+- `fn union(self: &mut Self, other: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
+
+- `fn union_into_empty(self: &mut Self, other: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
 
 - `fn dedup(self: &mut Self)`
-  Deduplicate adjacent equivalent literals in this sequence.
 
 - `fn sort(self: &mut Self)`
-  Sorts this sequence of literals lexicographically.
 
 - `fn reverse_literals(self: &mut Self)`
-  Reverses all of the literals in this sequence.
 
 - `fn minimize_by_preference(self: &mut Self)`
-  Shrinks this seq to its minimal size while respecting the preference
 
 - `fn keep_first_bytes(self: &mut Self, len: usize)`
-  Trims all literals in this seq such that only the first `len` bytes
 
 - `fn keep_last_bytes(self: &mut Self, len: usize)`
-  Trims all literals in this seq such that only the last `len` bytes
 
 - `fn is_finite(self: &Self) -> bool`
-  Returns true if this sequence is finite.
 
 - `fn is_empty(self: &Self) -> bool`
-  Returns true if and only if this sequence is finite and empty.
 
 - `fn len(self: &Self) -> Option<usize>`
-  Returns the number of literals in this sequence if the sequence is
 
 - `fn is_exact(self: &Self) -> bool`
-  Returns true if and only if all literals in this sequence are exact.
 
 - `fn is_inexact(self: &Self) -> bool`
-  Returns true if and only if all literals in this sequence are inexact.
 
-- `fn max_union_len(self: &Self, other: &Seq) -> Option<usize>`
-  Return the maximum length of the sequence that would result from
+- `fn max_union_len(self: &Self, other: &Seq) -> Option<usize>` — [`Seq`](../../../hir/literal/index.md)
 
-- `fn max_cross_len(self: &Self, other: &Seq) -> Option<usize>`
-  Return the maximum length of the sequence that would result from the
+- `fn max_cross_len(self: &Self, other: &Seq) -> Option<usize>` — [`Seq`](../../../hir/literal/index.md)
 
 - `fn min_literal_len(self: &Self) -> Option<usize>`
-  Returns the length of the shortest literal in this sequence.
 
 - `fn max_literal_len(self: &Self) -> Option<usize>`
-  Returns the length of the longest literal in this sequence.
 
 - `fn longest_common_prefix(self: &Self) -> Option<&[u8]>`
-  Returns the longest common prefix from this seq.
 
 - `fn longest_common_suffix(self: &Self) -> Option<&[u8]>`
-  Returns the longest common suffix from this seq.
 
 - `fn optimize_for_prefix_by_preference(self: &mut Self)`
-  Optimizes this seq while treating its literals as prefixes and
 
 - `fn optimize_for_suffix_by_preference(self: &mut Self)`
-  Optimizes this seq while treating its literals as suffixes and
+
+- `fn optimize_by_preference(self: &mut Self, prefix: bool)`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl FromIterator`
-
-- `fn from_iter<T: IntoIterator<Item = Literal>>(it: T) -> Seq`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Seq`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Seq) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Seq` — [`Seq`](../../../hir/literal/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
+##### `impl Eq`
+
+##### `impl FromIterator`
+
+- `fn from_iter<T: IntoIterator<Item = Literal>>(it: T) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Seq) -> bool` — [`Seq`](../../../hir/literal/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `Literal`
 
 ```rust
 struct Literal {
-    // [REDACTED: Private Fields]
+    bytes: alloc::vec::Vec<u8>,
+    exact: bool,
 }
 ```
 
@@ -495,125 +409,61 @@ literal extraction ignores look-around assertions.)
 
 #### Implementations
 
-- `fn exact<B: Into<Vec<u8>>>(bytes: B) -> Literal`
-  Returns a new exact literal containing the bytes given.
+- `fn exact<B: Into<Vec<u8>>>(bytes: B) -> Literal` — [`Literal`](../../../hir/literal/index.md)
 
-- `fn inexact<B: Into<Vec<u8>>>(bytes: B) -> Literal`
-  Returns a new inexact literal containing the bytes given.
+- `fn inexact<B: Into<Vec<u8>>>(bytes: B) -> Literal` — [`Literal`](../../../hir/literal/index.md)
 
 - `fn as_bytes(self: &Self) -> &[u8]`
-  Returns the bytes in this literal.
 
 - `fn into_bytes(self: Self) -> Vec<u8>`
-  Yields ownership of the bytes inside this literal.
 
 - `fn len(self: &Self) -> usize`
-  Returns the length of this literal in bytes.
 
 - `fn is_empty(self: &Self) -> bool`
-  Returns true if and only if this literal has zero bytes.
 
 - `fn is_exact(self: &Self) -> bool`
-  Returns true if and only if this literal is exact.
 
 - `fn make_inexact(self: &mut Self)`
-  Marks this literal as inexact.
 
 - `fn reverse(self: &mut Self)`
-  Reverse the bytes in this literal.
 
-- `fn extend(self: &mut Self, lit: &Literal)`
-  Extend this literal with the literal given.
+- `fn extend(self: &mut Self, lit: &Literal)` — [`Literal`](../../../hir/literal/index.md)
 
 - `fn keep_first_bytes(self: &mut Self, len: usize)`
-  Trims this literal such that only the first `len` bytes remain. If
 
 - `fn keep_last_bytes(self: &mut Self, len: usize)`
-  Trims this literal such that only the last `len` bytes remain. If this
+
+- `fn is_poisonous(self: &Self) -> bool`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(ch: char) -> Literal`
-
-##### `impl From`
-
-- `fn from(byte: u8) -> Literal`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl AsRef`
 
 - `fn as_ref(self: &Self) -> &[u8]`
 
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Literal`
+- `fn clone(self: &Self) -> Literal` — [`Literal`](../../../hir/literal/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &Literal) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &Literal) -> $crate::cmp::Ordering` — [`Literal`](../../../hir/literal/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Literal) -> bool`
+- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](../../../hir/literal/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Literal) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &Literal) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Literal`](../../../hir/literal/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ## Enums
 
@@ -647,62 +497,14 @@ The default extraction kind is `Prefix`.
 #### Implementations
 
 - `fn is_prefix(self: &Self) -> bool`
-  Returns true if this kind is the `Prefix` variant.
 
 - `fn is_suffix(self: &Self) -> bool`
-  Returns true if this kind is the `Suffix` variant.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ExtractKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ExtractKind` — [`ExtractKind`](../../../hir/literal/index.md)
 
 ##### `impl Debug`
 
@@ -710,7 +512,7 @@ The default extraction kind is `Prefix`.
 
 ##### `impl Default`
 
-- `fn default() -> ExtractKind`
+- `fn default() -> ExtractKind` — [`ExtractKind`](../../../hir/literal/index.md)
 
 ## Functions
 

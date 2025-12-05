@@ -24,6 +24,12 @@
 //! - `index`: `HashMap` of all items by their ID
 //! - `paths`: `HashMap` mapping IDs to their full module paths
 //! - `crate_version`: Optional version string
+//!
+//! # Performance
+//!
+//! When the `simd-json` feature is enabled, parsing uses SIMD-accelerated
+//! JSON parsing which is significantly faster for large rustdoc JSON files
+//! (10-50MB+). This requires AVX2/SSE4.2 on x86 platforms.
 
 use std::path::Path;
 
@@ -64,13 +70,29 @@ impl Parser {
     /// let krate = parse_json(Path::new("target/doc/my_crate.json"))?;
     /// println!("Crate: {:?}", krate.index.get(&krate.root));
     /// ```
+    #[cfg(not(feature = "simd-json"))]
     pub fn parse_json(path: &Path) -> Result<Crate, Error> {
-        // Read the entire file into memory (rustdoc JSON can be large, but
-        // we need it all in memory for serde anyway)
+        // Read the entire file into memory
         let content = fs::read_to_string(path).map_err(Error::FileRead)?;
 
         // Delegate to string parsing
         Self::parse_json_string(&content)
+    }
+
+    /// Parse a rustdoc JSON file using SIMD-accelerated parsing.
+    ///
+    /// This variant is used when the `simd-json` feature is enabled.
+    /// It reads the file as bytes and uses simd-json's in-place parsing
+    /// for significantly faster performance on large files.
+    #[cfg(feature = "simd-json")]
+    pub fn parse_json(path: &Path) -> Result<Crate, Error> {
+        // Read file as mutable bytes for simd-json's in-place parsing
+        let mut content = fs::read(path).map_err(Error::FileRead)?;
+
+        // simd-json requires mutable slice for in-place string parsing
+        let krate: Crate = simd_json::from_slice(&mut content).map_err(Error::SimdJsonParse)?;
+
+        Ok(krate)
     }
 
     /// Parse a rustdoc JSON string into a `Crate` structure.

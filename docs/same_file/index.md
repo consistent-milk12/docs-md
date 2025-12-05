@@ -68,7 +68,7 @@ See [`examples/is_stderr.rs`](#examplesis-stderrrs) for a runnable example and c
 ### `Handle`
 
 ```rust
-struct Handle();
+struct Handle(imp::Handle);
 ```
 
 A handle to a file that can be tested for equality with other handles.
@@ -90,64 +90,33 @@ implementation details.
 
 #### Implementations
 
-- `fn from_path<P: AsRef<Path>>(p: P) -> io::Result<Handle>`
-  Construct a handle from a path.
+- `fn from_path<P: AsRef<Path>>(p: P) -> io::Result<Handle>` — [`Handle`](../index.md)
 
-- `fn from_file(file: File) -> io::Result<Handle>`
-  Construct a handle from a file.
+- `fn from_file(file: File) -> io::Result<Handle>` — [`Handle`](../index.md)
 
-- `fn stdin() -> io::Result<Handle>`
-  Construct a handle from stdin.
+- `fn stdin() -> io::Result<Handle>` — [`Handle`](../index.md)
 
-- `fn stdout() -> io::Result<Handle>`
-  Construct a handle from stdout.
+- `fn stdout() -> io::Result<Handle>` — [`Handle`](../index.md)
 
-- `fn stderr() -> io::Result<Handle>`
-  Construct a handle from stderr.
+- `fn stderr() -> io::Result<Handle>` — [`Handle`](../index.md)
 
 - `fn as_file(self: &Self) -> &File`
-  Return a reference to the underlying file.
 
 - `fn as_file_mut(self: &mut Self) -> &mut File`
-  Return a mutable reference to the underlying file.
 
 - `fn dev(self: &Self) -> u64`
-  Return the underlying device number of this handle.
 
 - `fn ino(self: &Self) -> u64`
-  Return the underlying inode number of this handle.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoRawFd`
-
-- `fn into_raw_fd(self: Self) -> RawFd`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl AsRawFd`
 
 - `fn as_raw_fd(self: &Self) -> RawFd`
 
-##### `impl Borrow<T>`
+##### `impl Debug`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -155,27 +124,15 @@ implementation details.
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
+##### `impl IntoRawFd`
+
+- `fn into_raw_fd(self: Self) -> RawFd`
+
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Handle) -> bool`
+- `fn eq(self: &Self, other: &Handle) -> bool` — [`Handle`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Functions
 

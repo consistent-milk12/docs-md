@@ -32,7 +32,7 @@ to its simplified structure.
 ### `CaseFoldError`
 
 ```rust
-struct CaseFoldError();
+struct CaseFoldError(());
 ```
 
 An error that occurs when Unicode-aware simple case folding fails.
@@ -43,27 +43,9 @@ aware case folding are unavailable. This only occurs when the
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -75,74 +57,50 @@ aware case folding are unavailable. This only occurs when the
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `Error`
 
 ```rust
 struct Error {
-    // [REDACTED: Private Fields]
+    kind: ErrorKind,
+    pattern: alloc::string::String,
+    span: crate::ast::Span,
 }
 ```
 
 An error that can occur while translating an `Ast` to a `Hir`.
 
+#### Fields
+
+- **`kind`**: `ErrorKind`
+
+  The kind of error.
+
+- **`pattern`**: `alloc::string::String`
+
+  The original pattern that the translator's Ast was parsed from. Every
+  span in an error is a valid range into this string.
+
+- **`span`**: `crate::ast::Span`
+
+  The span of this error, derived from the Ast given to the translator.
+
 #### Implementations
 
-- `fn kind(self: &Self) -> &ErrorKind`
-  Return the type of this error.
+- `fn kind(self: &Self) -> &ErrorKind` — [`ErrorKind`](../../hir/index.md)
 
 - `fn pattern(self: &Self) -> &str`
-  The original pattern string in which this error occurred.
 
-- `fn span(self: &Self) -> &Span`
-  Return the span at which this error occurred.
+- `fn span(self: &Self) -> &Span` — [`Span`](../../ast/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Error`
+- `fn clone(self: &Self) -> Error` — [`Error`](../../hir/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -154,43 +112,20 @@ An error that can occur while translating an `Ast` to a `Hir`.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Error) -> bool`
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `Hir`
 
 ```rust
 struct Hir {
-    // [REDACTED: Private Fields]
+    kind: HirKind,
+    props: Properties,
 }
 ```
 
@@ -257,78 +192,47 @@ An `Hir`'s `fmt::Debug` implementation currently does not use constant
 stack space. The implementation will also suppress some details (such as
 the `Properties` inlined into every `Hir` value to make it less noisy).
 
+#### Fields
+
+- **`kind`**: `HirKind`
+
+  The underlying HIR kind.
+
+- **`props`**: `Properties`
+
+  Analysis info about this HIR, computed during construction.
+
 #### Implementations
 
-- `fn kind(self: &Self) -> &HirKind`
-  Returns a reference to the underlying HIR kind.
+- `fn empty() -> Hir` — [`Hir`](../../hir/index.md)
 
-- `fn into_kind(self: Self) -> HirKind`
-  Consumes ownership of this HIR expression and returns its underlying
+- `fn fail() -> Hir` — [`Hir`](../../hir/index.md)
 
-- `fn properties(self: &Self) -> &Properties`
-  Returns the properties computed for this `Hir`.
+- `fn literal<B: Into<Box<[u8]>>>(lit: B) -> Hir` — [`Hir`](../../hir/index.md)
 
-- `fn empty() -> Hir`
-  Returns an empty HIR expression.
+- `fn class(class: Class) -> Hir` — [`Class`](../../hir/index.md), [`Hir`](../../hir/index.md)
 
-- `fn fail() -> Hir`
-  Returns an HIR expression that can never match anything. That is,
+- `fn look(look: Look) -> Hir` — [`Look`](../../hir/index.md), [`Hir`](../../hir/index.md)
 
-- `fn literal<B: Into<Box<[u8]>>>(lit: B) -> Hir`
-  Creates a literal HIR expression.
+- `fn repetition(rep: Repetition) -> Hir` — [`Repetition`](../../hir/index.md), [`Hir`](../../hir/index.md)
 
-- `fn class(class: Class) -> Hir`
-  Creates a class HIR expression. The class may either be defined over
+- `fn capture(capture: Capture) -> Hir` — [`Capture`](../../hir/index.md), [`Hir`](../../hir/index.md)
 
-- `fn look(look: Look) -> Hir`
-  Creates a look-around assertion HIR expression.
+- `fn concat(subs: Vec<Hir>) -> Hir` — [`Hir`](../../hir/index.md)
 
-- `fn repetition(rep: Repetition) -> Hir`
-  Creates a repetition HIR expression.
+- `fn alternation(subs: Vec<Hir>) -> Hir` — [`Hir`](../../hir/index.md)
 
-- `fn capture(capture: Capture) -> Hir`
-  Creates a capture HIR expression.
-
-- `fn concat(subs: Vec<Hir>) -> Hir`
-  Returns the concatenation of the given expressions.
-
-- `fn alternation(subs: Vec<Hir>) -> Hir`
-  Returns the alternation of the given expressions.
-
-- `fn dot(dot: Dot) -> Hir`
-  Returns an HIR expression for `.`.
+- `fn dot(dot: Dot) -> Hir` — [`Dot`](../../hir/index.md), [`Hir`](../../hir/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Hir`
+- `fn clone(self: &Self) -> Hir` — [`Hir`](../../hir/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Display`
 
@@ -342,37 +246,13 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Hir) -> bool`
+- `fn eq(self: &Self, other: &Hir) -> bool` — [`Hir`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Literal`
 
@@ -393,73 +273,27 @@ is, not a sequence of decimal numbers.)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Literal`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Literal) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Literal` — [`Literal`](../../hir/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](../../hir/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `ClassUnicode`
 
 ```rust
 struct ClassUnicode {
-    // [REDACTED: Private Fields]
+    set: crate::hir::interval::IntervalSet<ClassUnicodeRange>,
 }
 ```
 
@@ -467,125 +301,62 @@ A set of characters represented by Unicode scalar values.
 
 #### Implementations
 
-- `fn new<I>(ranges: I) -> ClassUnicode`
-  Create a new class from a sequence of ranges.
+- `fn new<I>(ranges: I) -> ClassUnicode` — [`ClassUnicode`](../../hir/index.md)
 
-- `fn empty() -> ClassUnicode`
-  Create a new class with no ranges.
+- `fn empty() -> ClassUnicode` — [`ClassUnicode`](../../hir/index.md)
 
-- `fn push(self: &mut Self, range: ClassUnicodeRange)`
-  Add a new range to this set.
+- `fn push(self: &mut Self, range: ClassUnicodeRange)` — [`ClassUnicodeRange`](../../hir/index.md)
 
-- `fn iter(self: &Self) -> ClassUnicodeIter<'_>`
-  Return an iterator over all ranges in this class.
+- `fn iter(self: &Self) -> ClassUnicodeIter<'_>` — [`ClassUnicodeIter`](../../hir/index.md)
 
-- `fn ranges(self: &Self) -> &[ClassUnicodeRange]`
-  Return the underlying ranges as a slice.
+- `fn ranges(self: &Self) -> &[ClassUnicodeRange]` — [`ClassUnicodeRange`](../../hir/index.md)
 
 - `fn case_fold_simple(self: &mut Self)`
-  Expand this character class such that it contains all case folded
 
-- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>`
-  Expand this character class such that it contains all case folded
+- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md)
 
 - `fn negate(self: &mut Self)`
-  Negate this character class.
 
-- `fn union(self: &mut Self, other: &ClassUnicode)`
-  Union this character class with the given character class, in place.
+- `fn union(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](../../hir/index.md)
 
-- `fn intersect(self: &mut Self, other: &ClassUnicode)`
-  Intersect this character class with the given character class, in
+- `fn intersect(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](../../hir/index.md)
 
-- `fn difference(self: &mut Self, other: &ClassUnicode)`
-  Subtract the given character class from this character class, in place.
+- `fn difference(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](../../hir/index.md)
 
-- `fn symmetric_difference(self: &mut Self, other: &ClassUnicode)`
-  Compute the symmetric difference of the given character classes, in
+- `fn symmetric_difference(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](../../hir/index.md)
 
 - `fn is_ascii(self: &Self) -> bool`
-  Returns true if and only if this character class will either match
 
 - `fn minimum_len(self: &Self) -> Option<usize>`
-  Returns the length, in bytes, of the smallest string matched by this
 
 - `fn maximum_len(self: &Self) -> Option<usize>`
-  Returns the length, in bytes, of the longest string matched by this
 
 - `fn literal(self: &Self) -> Option<Vec<u8>>`
-  If this class consists of exactly one codepoint, then return it as
 
-- `fn to_byte_class(self: &Self) -> Option<ClassBytes>`
-  If this class consists of only ASCII ranges, then return its
+- `fn to_byte_class(self: &Self) -> Option<ClassBytes>` — [`ClassBytes`](../../hir/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ClassUnicode`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ClassUnicode) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ClassUnicode` — [`ClassUnicode`](../../hir/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](../../hir/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `ClassUnicodeIter<'a>`
 
 ```rust
-struct ClassUnicodeIter<'a>();
+struct ClassUnicodeIter<'a>(crate::hir::interval::IntervalSetIter<'a, ClassUnicodeRange>);
 ```
 
 An iterator over all ranges in a Unicode character class.
@@ -594,15 +365,9 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -612,45 +377,18 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = &'a ClassUnicodeRange`
 
-- `fn next(self: &mut Self) -> Option<&'a ClassUnicodeRange>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<&'a ClassUnicodeRange>` — [`ClassUnicodeRange`](../../hir/index.md)
 
 ### `ClassUnicodeRange`
 
 ```rust
 struct ClassUnicodeRange {
-    // [REDACTED: Private Fields]
+    start: char,
+    end: char,
 }
 ```
 
@@ -661,87 +399,21 @@ in the range.
 
 #### Implementations
 
-- `fn new(start: char, end: char) -> ClassUnicodeRange`
-  Create a new Unicode scalar value range for a character class.
+- `fn new(start: char, end: char) -> ClassUnicodeRange` — [`ClassUnicodeRange`](../../hir/index.md)
 
 - `fn start(self: &Self) -> char`
-  Return the start of this range.
 
 - `fn end(self: &Self) -> char`
-  Return the end of this range.
 
 - `fn len(self: &Self) -> usize`
-  Returns the number of codepoints in this range.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ClassUnicodeRange`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ClassUnicodeRange` — [`ClassUnicodeRange`](../../hir/index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl Ord`
-
-- `fn cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::cmp::Ordering`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ClassUnicodeRange) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::option::Option<$crate::cmp::Ordering>`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -749,13 +421,43 @@ in the range.
 
 ##### `impl Default`
 
-- `fn default() -> ClassUnicodeRange`
+- `fn default() -> ClassUnicodeRange` — [`ClassUnicodeRange`](../../hir/index.md)
+
+##### `impl Eq`
+
+##### `impl Interval`
+
+- `type Bound = char`
+
+- `fn lower(self: &Self) -> char`
+
+- `fn upper(self: &Self) -> char`
+
+- `fn set_lower(self: &mut Self, bound: char)`
+
+- `fn set_upper(self: &mut Self, bound: char)`
+
+- `fn case_fold_simple(self: &Self, ranges: &mut Vec<ClassUnicodeRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassUnicodeRange`](../../hir/index.md), [`CaseFoldError`](../../unicode/index.md)
+
+##### `impl Ord`
+
+- `fn cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::cmp::Ordering` — [`ClassUnicodeRange`](../../hir/index.md)
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ClassUnicodeRange) -> bool` — [`ClassUnicodeRange`](../../hir/index.md)
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ClassUnicodeRange`](../../hir/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `ClassBytes`
 
 ```rust
 struct ClassBytes {
-    // [REDACTED: Private Fields]
+    set: crate::hir::interval::IntervalSet<ClassBytesRange>,
 }
 ```
 
@@ -765,122 +467,60 @@ Each byte corresponds to one character.
 
 #### Implementations
 
-- `fn new<I>(ranges: I) -> ClassBytes`
-  Create a new class from a sequence of ranges.
+- `fn new<I>(ranges: I) -> ClassBytes` — [`ClassBytes`](../../hir/index.md)
 
-- `fn empty() -> ClassBytes`
-  Create a new class with no ranges.
+- `fn empty() -> ClassBytes` — [`ClassBytes`](../../hir/index.md)
 
-- `fn push(self: &mut Self, range: ClassBytesRange)`
-  Add a new range to this set.
+- `fn push(self: &mut Self, range: ClassBytesRange)` — [`ClassBytesRange`](../../hir/index.md)
 
-- `fn iter(self: &Self) -> ClassBytesIter<'_>`
-  Return an iterator over all ranges in this class.
+- `fn iter(self: &Self) -> ClassBytesIter<'_>` — [`ClassBytesIter`](../../hir/index.md)
 
-- `fn ranges(self: &Self) -> &[ClassBytesRange]`
-  Return the underlying ranges as a slice.
+- `fn ranges(self: &Self) -> &[ClassBytesRange]` — [`ClassBytesRange`](../../hir/index.md)
 
 - `fn case_fold_simple(self: &mut Self)`
-  Expand this character class such that it contains all case folded
 
 - `fn negate(self: &mut Self)`
-  Negate this byte class.
 
-- `fn union(self: &mut Self, other: &ClassBytes)`
-  Union this byte class with the given byte class, in place.
+- `fn union(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](../../hir/index.md)
 
-- `fn intersect(self: &mut Self, other: &ClassBytes)`
-  Intersect this byte class with the given byte class, in place.
+- `fn intersect(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](../../hir/index.md)
 
-- `fn difference(self: &mut Self, other: &ClassBytes)`
-  Subtract the given byte class from this byte class, in place.
+- `fn difference(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](../../hir/index.md)
 
-- `fn symmetric_difference(self: &mut Self, other: &ClassBytes)`
-  Compute the symmetric difference of the given byte classes, in place.
+- `fn symmetric_difference(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](../../hir/index.md)
 
 - `fn is_ascii(self: &Self) -> bool`
-  Returns true if and only if this character class will either match
 
 - `fn minimum_len(self: &Self) -> Option<usize>`
-  Returns the length, in bytes, of the smallest string matched by this
 
 - `fn maximum_len(self: &Self) -> Option<usize>`
-  Returns the length, in bytes, of the longest string matched by this
 
 - `fn literal(self: &Self) -> Option<Vec<u8>>`
-  If this class consists of exactly one byte, then return it as
 
-- `fn to_unicode_class(self: &Self) -> Option<ClassUnicode>`
-  If this class consists of only ASCII ranges, then return its
+- `fn to_unicode_class(self: &Self) -> Option<ClassUnicode>` — [`ClassUnicode`](../../hir/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ClassBytes`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ClassBytes) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ClassBytes` — [`ClassBytes`](../../hir/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ClassBytes) -> bool` — [`ClassBytes`](../../hir/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `ClassBytesIter<'a>`
 
 ```rust
-struct ClassBytesIter<'a>();
+struct ClassBytesIter<'a>(crate::hir::interval::IntervalSetIter<'a, ClassBytesRange>);
 ```
 
 An iterator over all ranges in a byte character class.
@@ -889,15 +529,9 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -907,45 +541,18 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = &'a ClassBytesRange`
 
-- `fn next(self: &mut Self) -> Option<&'a ClassBytesRange>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<&'a ClassBytesRange>` — [`ClassBytesRange`](../../hir/index.md)
 
 ### `ClassBytesRange`
 
 ```rust
 struct ClassBytesRange {
-    // [REDACTED: Private Fields]
+    start: u8,
+    end: u8,
 }
 ```
 
@@ -956,87 +563,21 @@ in the range.
 
 #### Implementations
 
-- `fn new(start: u8, end: u8) -> ClassBytesRange`
-  Create a new byte range for a character class.
+- `fn new(start: u8, end: u8) -> ClassBytesRange` — [`ClassBytesRange`](../../hir/index.md)
 
 - `fn start(self: &Self) -> u8`
-  Return the start of this range.
 
 - `fn end(self: &Self) -> u8`
-  Return the end of this range.
 
 - `fn len(self: &Self) -> usize`
-  Returns the number of bytes in this range.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ClassBytesRange`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ClassBytesRange` — [`ClassBytesRange`](../../hir/index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl Ord`
-
-- `fn cmp(self: &Self, other: &ClassBytesRange) -> $crate::cmp::Ordering`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ClassBytesRange) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &ClassBytesRange) -> $crate::option::Option<$crate::cmp::Ordering>`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1044,7 +585,37 @@ in the range.
 
 ##### `impl Default`
 
-- `fn default() -> ClassBytesRange`
+- `fn default() -> ClassBytesRange` — [`ClassBytesRange`](../../hir/index.md)
+
+##### `impl Eq`
+
+##### `impl Interval`
+
+- `type Bound = u8`
+
+- `fn lower(self: &Self) -> u8`
+
+- `fn upper(self: &Self) -> u8`
+
+- `fn set_lower(self: &mut Self, bound: u8)`
+
+- `fn set_upper(self: &mut Self, bound: u8)`
+
+- `fn case_fold_simple(self: &Self, ranges: &mut Vec<ClassBytesRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassBytesRange`](../../hir/index.md), [`CaseFoldError`](../../unicode/index.md)
+
+##### `impl Ord`
+
+- `fn cmp(self: &Self, other: &ClassBytesRange) -> $crate::cmp::Ordering` — [`ClassBytesRange`](../../hir/index.md)
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ClassBytesRange) -> bool` — [`ClassBytesRange`](../../hir/index.md)
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &ClassBytesRange) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ClassBytesRange`](../../hir/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `Capture`
 
@@ -1082,67 +653,21 @@ the recursive structure of the `Hir` itself.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Capture`
+- `fn clone(self: &Self) -> Capture` — [`Capture`](../../hir/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Capture) -> bool`
+- `fn eq(self: &Self, other: &Capture) -> bool` — [`Capture`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Repetition`
 
@@ -1197,77 +722,30 @@ sub-expression.
 
 #### Implementations
 
-- `fn with(self: &Self, sub: Hir) -> Repetition`
-  Returns a new repetition with the same `min`, `max` and `greedy`
+- `fn with(self: &Self, sub: Hir) -> Repetition` — [`Hir`](../../hir/index.md), [`Repetition`](../../hir/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Repetition`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Repetition) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Repetition` — [`Repetition`](../../hir/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Repetition) -> bool` — [`Repetition`](../../hir/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `Properties`
 
 ```rust
-struct Properties();
+struct Properties(alloc::boxed::Box<PropertiesI>);
 ```
 
 A type that collects various properties of an HIR value.
@@ -1282,110 +760,50 @@ be cheap to call.
 #### Implementations
 
 - `fn minimum_len(self: &Self) -> Option<usize>`
-  Returns the length (in bytes) of the smallest string matched by this
 
 - `fn maximum_len(self: &Self) -> Option<usize>`
-  Returns the length (in bytes) of the longest string matched by this
 
-- `fn look_set(self: &Self) -> LookSet`
-  Returns a set of all look-around assertions that appear at least once
+- `fn look_set(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn look_set_prefix(self: &Self) -> LookSet`
-  Returns a set of all look-around assertions that appear as a prefix for
+- `fn look_set_prefix(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn look_set_prefix_any(self: &Self) -> LookSet`
-  Returns a set of all look-around assertions that appear as a _possible_
+- `fn look_set_prefix_any(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn look_set_suffix(self: &Self) -> LookSet`
-  Returns a set of all look-around assertions that appear as a suffix for
+- `fn look_set_suffix(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn look_set_suffix_any(self: &Self) -> LookSet`
-  Returns a set of all look-around assertions that appear as a _possible_
+- `fn look_set_suffix_any(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
 
 - `fn is_utf8(self: &Self) -> bool`
-  Return true if and only if the corresponding HIR will always match
 
 - `fn explicit_captures_len(self: &Self) -> usize`
-  Returns the total number of explicit capturing groups in the
 
 - `fn static_explicit_captures_len(self: &Self) -> Option<usize>`
-  Returns the total number of explicit capturing groups that appear in
 
 - `fn is_literal(self: &Self) -> bool`
-  Return true if and only if this HIR is a simple literal. This is
 
 - `fn is_alternation_literal(self: &Self) -> bool`
-  Return true if and only if this HIR is either a simple literal or an
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the total amount of heap memory usage, in bytes, used by this
 
-- `fn union<I, P>(props: I) -> Properties`
-  Returns a new set of properties that corresponds to the union of the
+- `fn union<I, P>(props: I) -> Properties` — [`Properties`](../../hir/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Properties`
+- `fn clone(self: &Self) -> Properties` — [`Properties`](../../hir/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Properties) -> bool`
+- `fn eq(self: &Self, other: &Properties) -> bool` — [`Properties`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `LookSet`
 
@@ -1416,148 +834,67 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 
 #### Implementations
 
-- `fn empty() -> LookSet`
-  Create an empty set of look-around assertions.
+- `fn empty() -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn full() -> LookSet`
-  Create a full set of look-around assertions.
+- `fn full() -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn singleton(look: Look) -> LookSet`
-  Create a look-around set containing the look-around assertion given.
+- `fn singleton(look: Look) -> LookSet` — [`Look`](../../hir/index.md), [`LookSet`](../../hir/index.md)
 
 - `fn len(self: Self) -> usize`
-  Returns the total number of look-around assertions in this set.
 
 - `fn is_empty(self: Self) -> bool`
-  Returns true if and only if this set is empty.
 
-- `fn contains(self: Self, look: Look) -> bool`
-  Returns true if and only if the given look-around assertion is in this
+- `fn contains(self: Self, look: Look) -> bool` — [`Look`](../../hir/index.md)
 
 - `fn contains_anchor(self: &Self) -> bool`
-  Returns true if and only if this set contains any anchor assertions.
 
 - `fn contains_anchor_haystack(self: &Self) -> bool`
-  Returns true if and only if this set contains any "start/end of
 
 - `fn contains_anchor_line(self: &Self) -> bool`
-  Returns true if and only if this set contains any "start/end of line"
 
 - `fn contains_anchor_lf(self: &Self) -> bool`
-  Returns true if and only if this set contains any "start/end of line"
 
 - `fn contains_anchor_crlf(self: &Self) -> bool`
-  Returns true if and only if this set contains any "start/end of line"
 
 - `fn contains_word(self: Self) -> bool`
-  Returns true if and only if this set contains any word boundary or
 
 - `fn contains_word_unicode(self: Self) -> bool`
-  Returns true if and only if this set contains any Unicode word boundary
 
 - `fn contains_word_ascii(self: Self) -> bool`
-  Returns true if and only if this set contains any ASCII word boundary
 
-- `fn iter(self: Self) -> LookSetIter`
-  Returns an iterator over all of the look-around assertions in this set.
+- `fn iter(self: Self) -> LookSetIter` — [`LookSetIter`](../../hir/index.md)
 
-- `fn insert(self: Self, look: Look) -> LookSet`
-  Return a new set that is equivalent to the original, but with the given
+- `fn insert(self: Self, look: Look) -> LookSet` — [`Look`](../../hir/index.md), [`LookSet`](../../hir/index.md)
 
-- `fn set_insert(self: &mut Self, look: Look)`
-  Updates this set in place with the result of inserting the given
+- `fn set_insert(self: &mut Self, look: Look)` — [`Look`](../../hir/index.md)
 
-- `fn remove(self: Self, look: Look) -> LookSet`
-  Return a new set that is equivalent to the original, but with the given
+- `fn remove(self: Self, look: Look) -> LookSet` — [`Look`](../../hir/index.md), [`LookSet`](../../hir/index.md)
 
-- `fn set_remove(self: &mut Self, look: Look)`
-  Updates this set in place with the result of removing the given
+- `fn set_remove(self: &mut Self, look: Look)` — [`Look`](../../hir/index.md)
 
-- `fn subtract(self: Self, other: LookSet) -> LookSet`
-  Returns a new set that is the result of subtracting the given set from
+- `fn subtract(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn set_subtract(self: &mut Self, other: LookSet)`
-  Updates this set in place with the result of subtracting the given set
+- `fn set_subtract(self: &mut Self, other: LookSet)` — [`LookSet`](../../hir/index.md)
 
-- `fn union(self: Self, other: LookSet) -> LookSet`
-  Returns a new set that is the union of this and the one given.
+- `fn union(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn set_union(self: &mut Self, other: LookSet)`
-  Updates this set in place with the result of unioning it with the one
+- `fn set_union(self: &mut Self, other: LookSet)` — [`LookSet`](../../hir/index.md)
 
-- `fn intersect(self: Self, other: LookSet) -> LookSet`
-  Returns a new set that is the intersection of this and the one given.
+- `fn intersect(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../hir/index.md)
 
-- `fn set_intersect(self: &mut Self, other: LookSet)`
-  Updates this set in place with the result of intersecting it with the
+- `fn set_intersect(self: &mut Self, other: LookSet)` — [`LookSet`](../../hir/index.md)
 
-- `fn read_repr(slice: &[u8]) -> LookSet`
-  Return a `LookSet` from the slice given as a native endian 32-bit
+- `fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](../../hir/index.md)
 
 - `fn write_repr(self: Self, slice: &mut [u8])`
-  Write a `LookSet` as a native endian 32-bit integer to the beginning
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> LookSet`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &LookSet) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1565,13 +902,21 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 
 ##### `impl Default`
 
-- `fn default() -> LookSet`
+- `fn default() -> LookSet` — [`LookSet`](../../hir/index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &LookSet) -> bool` — [`LookSet`](../../hir/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `LookSetIter`
 
 ```rust
 struct LookSetIter {
-    // [REDACTED: Private Fields]
+    set: LookSet,
 }
 ```
 
@@ -1581,15 +926,13 @@ This iterator is created by `LookSet::iter`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> LookSetIter` — [`LookSetIter`](../../hir/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -1599,55 +942,11 @@ This iterator is created by `LookSet::iter`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone`
-
-- `fn clone(self: &Self) -> LookSetIter`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Iterator`
 
 - `type Item = Look`
 
-- `fn next(self: &mut Self) -> Option<Look>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Look>` — [`Look`](../../hir/index.md)
 
 ## Enums
 
@@ -1711,35 +1010,13 @@ new variant is not considered a breaking change.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ErrorKind`
+- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](../../hir/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1749,37 +1026,13 @@ new variant is not considered a breaking change.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &ErrorKind) -> bool`
+- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `HirKind`
 
@@ -1858,72 +1111,25 @@ not expose any way of building an `Hir` directly from an `HirKind`.
 
 #### Implementations
 
-- `fn subs(self: &Self) -> &[Hir]`
-  Returns a slice of this kind's sub-expressions, if any.
+- `fn subs(self: &Self) -> &[Hir]` — [`Hir`](../../hir/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> HirKind`
+- `fn clone(self: &Self) -> HirKind` — [`HirKind`](../../hir/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &HirKind) -> bool`
+- `fn eq(self: &Self, other: &HirKind) -> bool` — [`HirKind`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Class`
 
@@ -1969,92 +1175,38 @@ and `(?i-u)k` will not match the same set of strings.
 #### Implementations
 
 - `fn case_fold_simple(self: &mut Self)`
-  Apply Unicode simple case folding to this character class, in place.
 
-- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>`
-  Apply Unicode simple case folding to this character class, in place.
+- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md)
 
 - `fn negate(self: &mut Self)`
-  Negate this character class in place.
 
 - `fn is_utf8(self: &Self) -> bool`
-  Returns true if and only if this character class will only ever match
 
 - `fn minimum_len(self: &Self) -> Option<usize>`
-  Returns the length, in bytes, of the smallest string matched by this
 
 - `fn maximum_len(self: &Self) -> Option<usize>`
-  Returns the length, in bytes, of the longest string matched by this
 
 - `fn is_empty(self: &Self) -> bool`
-  Returns true if and only if this character class is empty. That is,
 
 - `fn literal(self: &Self) -> Option<Vec<u8>>`
-  If this class consists of exactly one element (whether a codepoint or a
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Class`
+- `fn clone(self: &Self) -> Class` — [`Class`](../../hir/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Class) -> bool`
+- `fn eq(self: &Self, other: &Class) -> bool` — [`Class`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Look`
 
@@ -2197,83 +1349,33 @@ An assertion match is always zero-length. Also called an "empty match."
 
 #### Implementations
 
-- `const fn reversed(self: Self) -> Look`
-  Flip the look-around assertion to its equivalent for reverse searches.
+- `const fn reversed(self: Self) -> Look` — [`Look`](../../hir/index.md)
 
 - `const fn as_repr(self: Self) -> u32`
-  Return the underlying representation of this look-around enumeration
 
-- `const fn from_repr(repr: u32) -> Option<Look>`
-  Given the underlying representation of a `Look` value, return the
+- `const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](../../hir/index.md)
 
 - `const fn as_char(self: Self) -> char`
-  Returns a convenient single codepoint representation of this
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Look`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Look` — [`Look`](../../hir/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Look) -> bool`
+- `fn eq(self: &Self, other: &Look) -> bool` — [`Look`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Dot`
 
@@ -2363,69 +1465,23 @@ routine for building HIR values derived from the `.` regex.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Dot`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Dot` — [`Dot`](../../hir/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Dot) -> bool`
+- `fn eq(self: &Self, other: &Dot) -> bool` — [`Dot`](../../hir/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 

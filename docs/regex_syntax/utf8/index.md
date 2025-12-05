@@ -109,88 +109,43 @@ A single inclusive range of UTF-8 bytes.
 
 #### Implementations
 
+- `fn new(start: u8, end: u8) -> Self`
+
 - `fn matches(self: &Self, b: u8) -> bool`
-  Returns true if and only if the given byte is in this range.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Utf8Range`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Utf8Range` — [`Utf8Range`](../../utf8/index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl Ord`
-
-- `fn cmp(self: &Self, other: &Utf8Range) -> $crate::cmp::Ordering`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Utf8Range) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Utf8Range) -> $crate::option::Option<$crate::cmp::Ordering>`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+##### `impl Eq`
+
+##### `impl Ord`
+
+- `fn cmp(self: &Self, other: &Utf8Range) -> $crate::cmp::Ordering` — [`Utf8Range`](../../utf8/index.md)
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Utf8Range) -> bool` — [`Utf8Range`](../../utf8/index.md)
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Utf8Range) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Range`](../../utf8/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `Utf8Sequences`
 
 ```rust
 struct Utf8Sequences {
-    // [REDACTED: Private Fields]
+    range_stack: alloc::vec::Vec<ScalarRange>,
 }
 ```
 
@@ -248,19 +203,16 @@ always possible (for example, in a byte based automaton).
 #### Implementations
 
 - `fn new(start: char, end: char) -> Self`
-  Create a new iterator over UTF-8 byte ranges for the scalar value range
+
+- `fn push(self: &mut Self, start: u32, end: u32)`
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl FusedIterator`
 
 ##### `impl IntoIterator<I>`
 
@@ -270,41 +222,11 @@ always possible (for example, in a byte based automaton).
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl FusedIterator`
-
 ##### `impl Iterator`
 
 - `type Item = Utf8Sequence`
 
 - `fn next(self: &mut Self) -> Option<<Self as >::Item>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Enums
 
@@ -347,89 +269,41 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 
 #### Implementations
 
-- `fn as_slice(self: &Self) -> &[Utf8Range]`
-  Returns the underlying sequence of byte ranges as a slice.
+- `fn from_encoded_range(start: &[u8], end: &[u8]) -> Self`
+
+- `fn as_slice(self: &Self) -> &[Utf8Range]` — [`Utf8Range`](../../utf8/index.md)
 
 - `fn len(self: &Self) -> usize`
-  Returns the number of byte ranges in this sequence.
 
 - `fn reverse(self: &mut Self)`
-  Reverses the ranges in this sequence.
 
 - `fn matches(self: &Self, bytes: &[u8]) -> bool`
-  Returns true if and only if a prefix of `bytes` matches this sequence
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Utf8Sequence`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Utf8Sequence` — [`Utf8Sequence`](../../utf8/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &Utf8Sequence) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &Utf8Sequence) -> $crate::cmp::Ordering` — [`Utf8Sequence`](../../utf8/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Utf8Sequence) -> bool`
+- `fn eq(self: &Self, other: &Utf8Sequence) -> bool` — [`Utf8Sequence`](../../utf8/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Utf8Sequence) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &Utf8Sequence) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Sequence`](../../utf8/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

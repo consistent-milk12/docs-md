@@ -204,7 +204,7 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 
 ```rust
 struct AtomicBool {
-    // [REDACTED: Private Fields]
+    v: core::cell::UnsafeCell<u8>,
 }
 ```
 
@@ -221,115 +221,52 @@ assembly.
 #### Implementations
 
 - `const fn new(v: bool) -> Self`
-  Creates a new `AtomicBool`.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut bool) -> &'a Self`
-  Creates a new `AtomicBool` from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut bool`
-  Returns a mutable reference to the underlying [`bool`].
 
 - `const fn into_inner(self: Self) -> bool`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> bool`
-  Loads a value from the bool.
 
 - `fn store(self: &Self, val: bool, order: Ordering)`
-  Stores a value into the bool.
 
 - `fn swap(self: &Self, val: bool, order: Ordering) -> bool`
-  Stores a value into the bool, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>`
-  Stores a value into the [`bool`] if the current value is the same as the `current` value.
 
 - `fn compare_exchange_weak(self: &Self, current: bool, new: bool, success: Ordering, failure: Ordering) -> Result<bool, bool>`
-  Stores a value into the [`bool`] if the current value is the same as the `current` value.
 
 - `fn fetch_and(self: &Self, val: bool, order: Ordering) -> bool`
-  Logical "and" with a boolean value.
 
 - `fn and(self: &Self, val: bool, order: Ordering)`
-  Logical "and" with a boolean value.
 
 - `fn fetch_nand(self: &Self, val: bool, order: Ordering) -> bool`
-  Logical "nand" with a boolean value.
 
 - `fn fetch_or(self: &Self, val: bool, order: Ordering) -> bool`
-  Logical "or" with a boolean value.
 
 - `fn or(self: &Self, val: bool, order: Ordering)`
-  Logical "or" with a boolean value.
 
 - `fn fetch_xor(self: &Self, val: bool, order: Ordering) -> bool`
-  Logical "xor" with a boolean value.
 
 - `fn xor(self: &Self, val: bool, order: Ordering)`
-  Logical "xor" with a boolean value.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> bool`
-  Logical "not" with a boolean value.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical "not" with a boolean value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<bool, bool>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `const fn as_ptr(self: &Self) -> *mut bool`
-  Returns a mutable pointer to the underlying [`bool`].
+
+- `fn as_atomic_u8(self: &Self) -> &self::core_atomic::AtomicU8` — [`AtomicU8`](../imp/core_atomic/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(b: bool) -> Self`
-  Converts a `bool` into an `AtomicBool`.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl Sync`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -338,13 +275,16 @@ assembly.
 ##### `impl Default`
 
 - `fn default() -> Self`
-  Creates an `AtomicBool` initialized to `false`.
+
+##### `impl RefUnwindSafe`
+
+##### `impl Sync`
 
 ### `AtomicPtr<T>`
 
 ```rust
 struct AtomicPtr<T> {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicPtr<T>,
 }
 ```
 
@@ -361,119 +301,54 @@ assembly.
 #### Implementations
 
 - `const fn new(p: *mut T) -> Self`
-  Creates a new `AtomicPtr`.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut *mut T) -> &'a Self`
-  Creates a new `AtomicPtr` from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut *mut T`
-  Returns a mutable reference to the underlying pointer.
 
 - `const fn into_inner(self: Self) -> *mut T`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> *mut T`
-  Loads a value from the pointer.
 
 - `fn store(self: &Self, ptr: *mut T, order: Ordering)`
-  Stores a value into the pointer.
 
 - `fn swap(self: &Self, ptr: *mut T, order: Ordering) -> *mut T`
-  Stores a value into the pointer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>`
-  Stores a value into the pointer if the current value is the same as the `current` value.
 
 - `fn compare_exchange_weak(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>`
-  Stores a value into the pointer if the current value is the same as the `current` value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<*mut T, *mut T>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_ptr_add(self: &Self, val: usize, order: Ordering) -> *mut T`
-  Offsets the pointer's address by adding `val` (in units of `T`),
 
 - `fn fetch_ptr_sub(self: &Self, val: usize, order: Ordering) -> *mut T`
-  Offsets the pointer's address by subtracting `val` (in units of `T`),
 
 - `fn fetch_byte_add(self: &Self, val: usize, order: Ordering) -> *mut T`
-  Offsets the pointer's address by adding `val` *bytes*, returning the
 
 - `fn fetch_byte_sub(self: &Self, val: usize, order: Ordering) -> *mut T`
-  Offsets the pointer's address by subtracting `val` *bytes*, returning the
 
 - `fn fetch_or(self: &Self, val: usize, order: Ordering) -> *mut T`
-  Performs a bitwise "or" operation on the address of the current pointer,
 
 - `fn fetch_and(self: &Self, val: usize, order: Ordering) -> *mut T`
-  Performs a bitwise "and" operation on the address of the current
 
 - `fn fetch_xor(self: &Self, val: usize, order: Ordering) -> *mut T`
-  Performs a bitwise "xor" operation on the address of the current
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
+
+- `fn as_atomic_usize(self: &Self) -> &AtomicUsize` — [`AtomicUsize`](../index.md)
 
 - `const fn as_ptr(self: &Self) -> *mut *mut T`
-  Returns a mutable pointer to the underlying pointer.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From<T>`
-
-- `fn from(p: *mut T) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Pointer<T>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl RefUnwindSafe<T>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<T>`
 
@@ -482,13 +357,18 @@ assembly.
 ##### `impl Default<T>`
 
 - `fn default() -> Self`
-  Creates a null `AtomicPtr<T>`.
+
+##### `impl Pointer<T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl RefUnwindSafe<T>`
 
 ### `AtomicIsize`
 
 ```rust
 struct AtomicIsize {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicIsize,
 }
 ```
 
@@ -505,145 +385,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: isize) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut isize) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut isize`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> isize`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> isize`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: isize, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: isize, order: Ordering) -> isize`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: isize, new: isize, success: Ordering, failure: Ordering) -> Result<isize, isize>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: isize, order: Ordering) -> isize`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: isize, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: isize, order: Ordering) -> isize`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: isize, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: isize, order: Ordering) -> isize`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: isize, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: isize, order: Ordering) -> isize`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: isize, order: Ordering) -> isize`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: isize, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: isize, order: Ordering) -> isize`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: isize, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<isize, isize>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: isize, order: Ordering) -> isize`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: isize, order: Ordering) -> isize`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> isize`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> isize`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut isize`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(v: isize) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -653,11 +460,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicUsize`
 
 ```rust
 struct AtomicUsize {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicUsize,
 }
 ```
 
@@ -674,145 +483,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: usize) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut usize) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut usize`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> usize`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> usize`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: usize, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: usize, order: Ordering) -> usize`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: usize, new: usize, success: Ordering, failure: Ordering) -> Result<usize, usize>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: usize, order: Ordering) -> usize`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: usize, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: usize, order: Ordering) -> usize`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: usize, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: usize, order: Ordering) -> usize`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: usize, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: usize, order: Ordering) -> usize`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: usize, order: Ordering) -> usize`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: usize, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: usize, order: Ordering) -> usize`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: usize, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<usize, usize>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: usize, order: Ordering) -> usize`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: usize, order: Ordering) -> usize`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> usize`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> usize`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut usize`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: usize) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -822,11 +558,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicI8`
 
 ```rust
 struct AtomicI8 {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicI8,
 }
 ```
 
@@ -843,145 +581,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: i8) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut i8) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut i8`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> i8`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> i8`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: i8, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: i8, order: Ordering) -> i8`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: i8, new: i8, success: Ordering, failure: Ordering) -> Result<i8, i8>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: i8, order: Ordering) -> i8`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: i8, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: i8, order: Ordering) -> i8`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: i8, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: i8, order: Ordering) -> i8`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: i8, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: i8, order: Ordering) -> i8`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: i8, order: Ordering) -> i8`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: i8, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: i8, order: Ordering) -> i8`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: i8, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i8, i8>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: i8, order: Ordering) -> i8`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: i8, order: Ordering) -> i8`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> i8`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> i8`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut i8`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(v: i8) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -991,11 +656,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicU8`
 
 ```rust
 struct AtomicU8 {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicU8,
 }
 ```
 
@@ -1012,145 +679,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: u8) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut u8) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut u8`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> u8`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> u8`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: u8, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: u8, order: Ordering) -> u8`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: u8, order: Ordering) -> u8`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: u8, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: u8, order: Ordering) -> u8`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: u8, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: u8, order: Ordering) -> u8`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: u8, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: u8, order: Ordering) -> u8`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: u8, order: Ordering) -> u8`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: u8, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: u8, order: Ordering) -> u8`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: u8, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u8, u8>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: u8, order: Ordering) -> u8`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: u8, order: Ordering) -> u8`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> u8`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> u8`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut u8`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(v: u8) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1160,11 +754,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicI16`
 
 ```rust
 struct AtomicI16 {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicI16,
 }
 ```
 
@@ -1181,145 +777,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: i16) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut i16) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut i16`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> i16`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> i16`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: i16, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: i16, order: Ordering) -> i16`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: i16, new: i16, success: Ordering, failure: Ordering) -> Result<i16, i16>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: i16, order: Ordering) -> i16`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: i16, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: i16, order: Ordering) -> i16`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: i16, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: i16, order: Ordering) -> i16`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: i16, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: i16, order: Ordering) -> i16`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: i16, order: Ordering) -> i16`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: i16, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: i16, order: Ordering) -> i16`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: i16, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i16, i16>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: i16, order: Ordering) -> i16`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: i16, order: Ordering) -> i16`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> i16`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> i16`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut i16`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i16) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1329,11 +852,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicU16`
 
 ```rust
 struct AtomicU16 {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicU16,
 }
 ```
 
@@ -1350,145 +875,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: u16) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut u16) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut u16`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> u16`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> u16`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: u16, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: u16, order: Ordering) -> u16`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: u16, new: u16, success: Ordering, failure: Ordering) -> Result<u16, u16>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: u16, order: Ordering) -> u16`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: u16, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: u16, order: Ordering) -> u16`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: u16, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: u16, order: Ordering) -> u16`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: u16, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: u16, order: Ordering) -> u16`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: u16, order: Ordering) -> u16`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: u16, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: u16, order: Ordering) -> u16`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: u16, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u16, u16>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: u16, order: Ordering) -> u16`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: u16, order: Ordering) -> u16`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> u16`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> u16`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut u16`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: u16) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1498,11 +950,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicI32`
 
 ```rust
 struct AtomicI32 {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicI32,
 }
 ```
 
@@ -1519,145 +973,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: i32) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut i32) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut i32`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> i32`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> i32`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: i32, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: i32, order: Ordering) -> i32`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: i32, new: i32, success: Ordering, failure: Ordering) -> Result<i32, i32>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: i32, order: Ordering) -> i32`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: i32, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: i32, order: Ordering) -> i32`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: i32, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: i32, order: Ordering) -> i32`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: i32, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: i32, order: Ordering) -> i32`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: i32, order: Ordering) -> i32`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: i32, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: i32, order: Ordering) -> i32`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: i32, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i32, i32>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: i32, order: Ordering) -> i32`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: i32, order: Ordering) -> i32`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> i32`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> i32`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut i32`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(v: i32) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1667,11 +1048,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicU32`
 
 ```rust
 struct AtomicU32 {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicU32,
 }
 ```
 
@@ -1688,145 +1071,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: u32) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut u32) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut u32`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> u32`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> u32`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: u32, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: u32, order: Ordering) -> u32`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: u32, order: Ordering) -> u32`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: u32, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: u32, order: Ordering) -> u32`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: u32, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: u32, order: Ordering) -> u32`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: u32, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: u32, order: Ordering) -> u32`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: u32, order: Ordering) -> u32`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: u32, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: u32, order: Ordering) -> u32`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: u32, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u32, u32>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: u32, order: Ordering) -> u32`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: u32, order: Ordering) -> u32`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> u32`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> u32`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut u32`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(v: u32) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1836,11 +1146,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicI64`
 
 ```rust
 struct AtomicI64 {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicI64,
 }
 ```
 
@@ -1857,145 +1169,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: i64) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut i64) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut i64`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> i64`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> i64`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: i64, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: i64, order: Ordering) -> i64`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: i64, new: i64, success: Ordering, failure: Ordering) -> Result<i64, i64>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: i64, order: Ordering) -> i64`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: i64, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: i64, order: Ordering) -> i64`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: i64, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: i64, order: Ordering) -> i64`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: i64, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: i64, order: Ordering) -> i64`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: i64, order: Ordering) -> i64`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: i64, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: i64, order: Ordering) -> i64`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: i64, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i64, i64>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: i64, order: Ordering) -> i64`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: i64, order: Ordering) -> i64`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> i64`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> i64`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut i64`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i64) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -2005,11 +1244,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicU64`
 
 ```rust
 struct AtomicU64 {
-    // [REDACTED: Private Fields]
+    inner: self::core_atomic::AtomicU64,
 }
 ```
 
@@ -2026,145 +1267,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: u64) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut u64) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut u64`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> u64`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> u64`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: u64, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: u64, order: Ordering) -> u64`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: u64, new: u64, success: Ordering, failure: Ordering) -> Result<u64, u64>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: u64, order: Ordering) -> u64`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: u64, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: u64, order: Ordering) -> u64`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: u64, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: u64, order: Ordering) -> u64`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: u64, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: u64, order: Ordering) -> u64`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: u64, order: Ordering) -> u64`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: u64, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: u64, order: Ordering) -> u64`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: u64, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u64, u64>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: u64, order: Ordering) -> u64`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: u64, order: Ordering) -> u64`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> u64`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> u64`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut u64`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: u64) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -2174,11 +1342,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicI128`
 
 ```rust
 struct AtomicI128 {
-    // [REDACTED: Private Fields]
+    inner: self::atomic128::x86_64::AtomicI128,
 }
 ```
 
@@ -2195,145 +1365,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: i128) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut i128) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut i128`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> i128`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> i128`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: i128, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: i128, order: Ordering) -> i128`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: i128, order: Ordering) -> i128`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: i128, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: i128, order: Ordering) -> i128`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: i128, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: i128, order: Ordering) -> i128`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: i128, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: i128, order: Ordering) -> i128`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: i128, order: Ordering) -> i128`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: i128, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: i128, order: Ordering) -> i128`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: i128, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<i128, i128>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: i128, order: Ordering) -> i128`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: i128, order: Ordering) -> i128`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> i128`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> i128`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut i128`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(v: i128) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -2343,11 +1440,13 @@ atomic instructions or locks will be used.
 
 - `fn default() -> Self`
 
+##### `impl RefUnwindSafe`
+
 ### `AtomicU128`
 
 ```rust
 struct AtomicU128 {
-    // [REDACTED: Private Fields]
+    inner: self::atomic128::x86_64::AtomicU128,
 }
 ```
 
@@ -2364,145 +1463,72 @@ atomic instructions or locks will be used.
 #### Implementations
 
 - `const fn new(v: u128) -> Self`
-  Creates a new atomic integer.
 
 - `const unsafe fn from_ptr<'a>(ptr: *mut u128) -> &'a Self`
-  Creates a new reference to an atomic integer from a pointer.
 
 - `fn is_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn is_always_lock_free() -> bool`
-  Returns `true` if operations on values of this type are lock-free.
 
 - `const fn get_mut(self: &mut Self) -> &mut u128`
-  Returns a mutable reference to the underlying integer.
 
 - `const fn into_inner(self: Self) -> u128`
-  Consumes the atomic and returns the contained value.
 
 - `fn load(self: &Self, order: Ordering) -> u128`
-  Loads a value from the atomic integer.
 
 - `fn store(self: &Self, val: u128, order: Ordering)`
-  Stores a value into the atomic integer.
 
 - `fn swap(self: &Self, val: u128, order: Ordering) -> u128`
-  Stores a value into the atomic integer, returning the previous value.
 
 - `fn compare_exchange(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn compare_exchange_weak(self: &Self, current: u128, new: u128, success: Ordering, failure: Ordering) -> Result<u128, u128>`
-  Stores a value into the atomic integer if the current value is the same as
 
 - `fn fetch_add(self: &Self, val: u128, order: Ordering) -> u128`
-  Adds to the current value, returning the previous value.
 
 - `fn add(self: &Self, val: u128, order: Ordering)`
-  Adds to the current value.
 
 - `fn fetch_sub(self: &Self, val: u128, order: Ordering) -> u128`
-  Subtracts from the current value, returning the previous value.
 
 - `fn sub(self: &Self, val: u128, order: Ordering)`
-  Subtracts from the current value.
 
 - `fn fetch_and(self: &Self, val: u128, order: Ordering) -> u128`
-  Bitwise "and" with the current value.
 
 - `fn and(self: &Self, val: u128, order: Ordering)`
-  Bitwise "and" with the current value.
 
 - `fn fetch_nand(self: &Self, val: u128, order: Ordering) -> u128`
-  Bitwise "nand" with the current value.
 
 - `fn fetch_or(self: &Self, val: u128, order: Ordering) -> u128`
-  Bitwise "or" with the current value.
 
 - `fn or(self: &Self, val: u128, order: Ordering)`
-  Bitwise "or" with the current value.
 
 - `fn fetch_xor(self: &Self, val: u128, order: Ordering) -> u128`
-  Bitwise "xor" with the current value.
 
 - `fn xor(self: &Self, val: u128, order: Ordering)`
-  Bitwise "xor" with the current value.
 
 - `fn fetch_update<F>(self: &Self, set_order: Ordering, fetch_order: Ordering, f: F) -> Result<u128, u128>`
-  Fetches the value, and applies a function to it that returns an optional
 
 - `fn fetch_max(self: &Self, val: u128, order: Ordering) -> u128`
-  Maximum with the current value.
 
 - `fn fetch_min(self: &Self, val: u128, order: Ordering) -> u128`
-  Minimum with the current value.
 
 - `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool`
-  Sets the bit at the specified bit-position to 1.
 
 - `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool`
-  Clears the bit at the specified bit-position to 1.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
-  Toggles the bit at the specified bit-position.
 
 - `fn fetch_not(self: &Self, order: Ordering) -> u128`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn not(self: &Self, order: Ordering)`
-  Logical negates the current value, and sets the new value to the result.
 
 - `fn fetch_neg(self: &Self, order: Ordering) -> u128`
-  Negates the current value, and sets the new value to the result.
 
 - `fn neg(self: &Self, order: Ordering)`
-  Negates the current value, and sets the new value to the result.
 
 - `const fn as_ptr(self: &Self) -> *mut u128`
-  Returns a mutable pointer to the underlying integer.
 
 #### Trait Implementations
-
-##### `impl From`
-
-- `fn from(v: u128) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl RefUnwindSafe`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -2511,6 +1537,8 @@ atomic instructions or locks will be used.
 ##### `impl Default`
 
 - `fn default() -> Self`
+
+##### `impl RefUnwindSafe`
 
 ## Functions
 

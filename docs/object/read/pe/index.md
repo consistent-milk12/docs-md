@@ -7,18 +7,18 @@
 Support for reading PE files.
 
 Traits are used to abstract over the difference between PE32 and PE32+.
-The primary trait for this is [`ImageNtHeaders`](../../index.md).
+The primary trait for this is [`ImageNtHeaders`](file/index.md).
 
 ## High level API
 
-[`PeFile`](../../index.md) implements the [`Object`](crate::read::Object) trait for
-PE files. [`PeFile`](../../index.md) is parameterised by [`ImageNtHeaders`](../../index.md) to allow
+[`PeFile`](file/index.md) implements the [`Object`](crate::read::Object) trait for
+PE files. [`PeFile`](file/index.md) is parameterised by [`ImageNtHeaders`](file/index.md) to allow
 reading both PE32 and PE32+. There are type aliases for these parameters
-([`PeFile32`](../../index.md) and [`PeFile64`](../../index.md)).
+([`PeFile32`](file/index.md) and [`PeFile64`](file/index.md)).
 
 ## Low level API
 
-The [`ImageNtHeaders`](../../index.md) trait can be directly used to parse both
+The [`ImageNtHeaders`](file/index.md) trait can be directly used to parse both
 `pe::ImageNtHeaders32` and `pe::ImageNtHeaders64`.
 
 ### Example for low level API
@@ -51,7 +51,7 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ```rust
 struct SectionTable<'data> {
-    // [REDACTED: Private Fields]
+    sections: &'data [pe::ImageSectionHeader],
 }
 ```
 
@@ -62,95 +62,29 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
-  Return the file offset of the given virtual address, and the size up
+- `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../../read/index.md)
 
-- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
-  Return the data starting at the given virtual address, up to the end of the
+- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../../pe/index.md)
 
-- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
-  Return the data of the section that contains the given virtual address in a PE file.
-
-- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>`
-  Return the section that contains a given virtual address.
-
-- `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>`
-  Parse the section table.
-
-- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageSectionHeader>`
-  Iterate over the section headers.
-
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>`
-  Iterate over the section headers and their indices.
+- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../../read/index.md), [`ImageSectionHeader`](../../../pe/index.md)
 
 - `fn is_empty(self: &Self) -> bool`
-  Return true if the section table is empty.
 
 - `fn len(self: &Self) -> usize`
-  The number of section headers.
 
-- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>`
-  Return the section header at the given index.
+- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../../read/index.md), [`Result`](../../../read/index.md), [`ImageSectionHeader`](../../../pe/index.md)
 
-- `fn section_by_name<R: ReadRef<'data>>(self: &Self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>`
-  Return the section header with the given name.
+- `fn section_by_name<R: ReadRef<'data>>(self: &Self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../../../read/util/index.md), [`SectionIndex`](../../../read/index.md), [`ImageSectionHeader`](../../../pe/index.md)
 
 - `fn max_section_file_offset(self: &Self) -> u64`
-  Compute the maximum file offset used by sections.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> SectionTable<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SectionTable<'data>` — [`SectionTable`](../../../read/coff/section/index.md)
 
 ##### `impl Copy<'data>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data>`
 
@@ -158,7 +92,7 @@ Returned by `CoffHeader::sections` and
 
 ##### `impl Default<'data>`
 
-- `fn default() -> SectionTable<'data>`
+- `fn default() -> SectionTable<'data>` — [`SectionTable`](../../../read/coff/section/index.md)
 
 ### `SymbolTable<'data, R, Coff>`
 
@@ -167,7 +101,8 @@ struct SymbolTable<'data, R, Coff>
 where
     R: ReadRef<'data>,
     Coff: CoffHeader {
-    // [REDACTED: Private Fields]
+    symbols: &'data [<Coff as >::ImageSymbolBytes],
+    strings: crate::read::util::StringTable<'data, R>,
 }
 ```
 
@@ -180,77 +115,31 @@ Returned by `CoffHeader::symbols` and
 
 #### Implementations
 
-- `fn parse(header: &Coff, data: R) -> Result<Self>`
-  Read the symbol table.
+- `fn parse(header: &Coff, data: R) -> Result<Self>` — [`Result`](../../../read/index.md)
 
-- `fn strings(self: &Self) -> StringTable<'data, R>`
-  Return the string table used for the symbol names.
+- `fn strings(self: &Self) -> StringTable<'data, R>` — [`StringTable`](../../../read/util/index.md)
 
 - `fn is_empty(self: &Self) -> bool`
-  Return true if the symbol table is empty.
 
 - `fn len(self: &Self) -> usize`
-  The number of symbol table entries.
 
-- `fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, R, Coff>`
-  Iterate over the symbols.
+- `fn iter<'table>(self: &'table Self) -> SymbolIterator<'data, 'table, R, Coff>` — [`SymbolIterator`](../../../read/coff/symbol/index.md)
 
-- `fn symbol(self: &Self, index: SymbolIndex) -> Result<&'data <Coff as >::ImageSymbol>`
-  Return the symbol table entry at the given index.
+- `fn symbol(self: &Self, index: SymbolIndex) -> Result<&'data <Coff as >::ImageSymbol>` — [`SymbolIndex`](../../../read/index.md), [`Result`](../../../read/index.md), [`CoffHeader`](../../../read/coff/file/index.md)
 
-- `fn aux_function(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolFunction>`
-  Return the auxiliary function symbol for the symbol table entry at the given index.
+- `fn aux_function(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolFunction>` — [`SymbolIndex`](../../../read/index.md), [`Result`](../../../read/index.md), [`ImageAuxSymbolFunction`](../../../pe/index.md)
 
-- `fn aux_section(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolSection>`
-  Return the auxiliary section symbol for the symbol table entry at the given index.
+- `fn aux_section(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolSection>` — [`SymbolIndex`](../../../read/index.md), [`Result`](../../../read/index.md), [`ImageAuxSymbolSection`](../../../pe/index.md)
 
-- `fn aux_weak_external(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolWeak>`
-  Return the auxiliary weak external symbol for the symbol table entry at the given index.
+- `fn aux_weak_external(self: &Self, index: SymbolIndex) -> Result<&'data pe::ImageAuxSymbolWeak>` — [`SymbolIndex`](../../../read/index.md), [`Result`](../../../read/index.md), [`ImageAuxSymbolWeak`](../../../pe/index.md)
 
-- `fn aux_file_name(self: &Self, index: SymbolIndex, aux_count: u8) -> Result<&'data [u8]>`
-  Return the auxiliary file name for the symbol table entry at the given index.
+- `fn aux_file_name(self: &Self, index: SymbolIndex, aux_count: u8) -> Result<&'data [u8]>` — [`SymbolIndex`](../../../read/index.md), [`Result`](../../../read/index.md)
 
-- `fn get<T: Pod>(self: &Self, index: SymbolIndex, offset: usize) -> Result<&'data T>`
-  Return the symbol table entry or auxiliary record at the given index and offset.
+- `fn get<T: Pod>(self: &Self, index: SymbolIndex, offset: usize) -> Result<&'data T>` — [`SymbolIndex`](../../../read/index.md), [`Result`](../../../read/index.md)
 
-- `fn map<Entry: SymbolMapEntry, F: Fn(&'data <Coff as >::ImageSymbol) -> Option<Entry>>(self: &Self, f: F) -> SymbolMap<Entry>`
-  Construct a map from addresses to a user-defined map entry.
+- `fn map<Entry: SymbolMapEntry, F: Fn(&'data <Coff as >::ImageSymbol) -> Option<Entry>>(self: &Self, f: F) -> SymbolMap<Entry>` — [`SymbolMap`](../../../read/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data, R, Coff>`
 

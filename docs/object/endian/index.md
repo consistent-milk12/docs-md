@@ -18,37 +18,19 @@ Compile-time little endian byte order.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> LittleEndian`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LittleEndian` — [`LittleEndian`](../../endian/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> LittleEndian` — [`LittleEndian`](../../endian/index.md)
 
 ##### `impl Endian`
 
@@ -64,37 +46,9 @@ Compile-time little endian byte order.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LittleEndian) -> bool`
+- `fn eq(self: &Self, other: &LittleEndian) -> bool` — [`LittleEndian`](../../endian/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> LittleEndian`
 
 ### `BigEndian`
 
@@ -106,37 +60,19 @@ Compile-time big endian byte order.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BigEndian`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> BigEndian` — [`BigEndian`](../../endian/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> BigEndian` — [`BigEndian`](../../endian/index.md)
 
 ##### `impl Endian`
 
@@ -152,42 +88,14 @@ Compile-time big endian byte order.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &BigEndian) -> bool`
+- `fn eq(self: &Self, other: &BigEndian) -> bool` — [`BigEndian`](../../endian/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> BigEndian`
 
 ### `U16Bytes<E: Endian>`
 
 ```rust
-struct U16Bytes<E: Endian>();
+struct U16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
 An unaligned `u16` value with an externally specified endianness of type `E`.
@@ -195,50 +103,28 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 #### Implementations
 
 - `const fn from_bytes(n: [u8; 2]) -> Self`
-  Construct a new value given bytes that already have the required endianness.
 
 - `fn new(e: E, n: u16) -> Self`
-  Construct a new value given a native endian value.
 
 - `fn get(self: Self, e: E) -> u16`
-  Return the value as a native endian value.
 
 - `fn set(self: &mut Self, e: E, n: u16)`
-  Set the value given a native endian value.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> U16Bytes<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> U16Bytes<E>` — [`U16Bytes`](../../endian/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: Endian>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default<E: $crate::default::Default + Endian>`
+
+- `fn default() -> U16Bytes<E>` — [`U16Bytes`](../../endian/index.md)
 
 ##### `impl Eq<E: $crate::cmp::Eq + Endian>`
 
@@ -248,52 +134,24 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 
 ##### `impl Ord<E: $crate::cmp::Ord + Endian>`
 
-- `fn cmp(self: &Self, other: &U16Bytes<E>) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &U16Bytes<E>) -> $crate::cmp::Ordering` — [`U16Bytes`](../../endian/index.md)
 
 ##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
 
-- `fn eq(self: &Self, other: &U16Bytes<E>) -> bool`
+- `fn eq(self: &Self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../../endian/index.md)
 
 ##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
 
-- `fn partial_cmp(self: &Self, other: &U16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &U16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U16Bytes`](../../endian/index.md)
 
 ##### `impl Pod<E: Endian>`
 
 ##### `impl StructuralPartialEq<E: Endian>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: Endian>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Default<E: $crate::default::Default + Endian>`
-
-- `fn default() -> U16Bytes<E>`
-
 ### `U32Bytes<E: Endian>`
 
 ```rust
-struct U32Bytes<E: Endian>();
+struct U32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
 An unaligned `u32` value with an externally specified endianness of type `E`.
@@ -301,50 +159,28 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 #### Implementations
 
 - `const fn from_bytes(n: [u8; 4]) -> Self`
-  Construct a new value given bytes that already have the required endianness.
 
 - `fn new(e: E, n: u32) -> Self`
-  Construct a new value given a native endian value.
 
 - `fn get(self: Self, e: E) -> u32`
-  Return the value as a native endian value.
 
 - `fn set(self: &mut Self, e: E, n: u32)`
-  Set the value given a native endian value.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> U32Bytes<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> U32Bytes<E>` — [`U32Bytes`](../../endian/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: Endian>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default<E: $crate::default::Default + Endian>`
+
+- `fn default() -> U32Bytes<E>` — [`U32Bytes`](../../endian/index.md)
 
 ##### `impl Eq<E: $crate::cmp::Eq + Endian>`
 
@@ -354,52 +190,24 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 
 ##### `impl Ord<E: $crate::cmp::Ord + Endian>`
 
-- `fn cmp(self: &Self, other: &U32Bytes<E>) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &U32Bytes<E>) -> $crate::cmp::Ordering` — [`U32Bytes`](../../endian/index.md)
 
 ##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
 
-- `fn eq(self: &Self, other: &U32Bytes<E>) -> bool`
+- `fn eq(self: &Self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../../endian/index.md)
 
 ##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
 
-- `fn partial_cmp(self: &Self, other: &U32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &U32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U32Bytes`](../../endian/index.md)
 
 ##### `impl Pod<E: Endian>`
 
 ##### `impl StructuralPartialEq<E: Endian>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: Endian>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Default<E: $crate::default::Default + Endian>`
-
-- `fn default() -> U32Bytes<E>`
-
 ### `U64Bytes<E: Endian>`
 
 ```rust
-struct U64Bytes<E: Endian>();
+struct U64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
 An unaligned `u64` value with an externally specified endianness of type `E`.
@@ -407,50 +215,28 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 #### Implementations
 
 - `const fn from_bytes(n: [u8; 8]) -> Self`
-  Construct a new value given bytes that already have the required endianness.
 
 - `fn new(e: E, n: u64) -> Self`
-  Construct a new value given a native endian value.
 
 - `fn get(self: Self, e: E) -> u64`
-  Return the value as a native endian value.
 
 - `fn set(self: &mut Self, e: E, n: u64)`
-  Set the value given a native endian value.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> U64Bytes<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> U64Bytes<E>` — [`U64Bytes`](../../endian/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: Endian>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default<E: $crate::default::Default + Endian>`
+
+- `fn default() -> U64Bytes<E>` — [`U64Bytes`](../../endian/index.md)
 
 ##### `impl Eq<E: $crate::cmp::Eq + Endian>`
 
@@ -460,52 +246,24 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 
 ##### `impl Ord<E: $crate::cmp::Ord + Endian>`
 
-- `fn cmp(self: &Self, other: &U64Bytes<E>) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &U64Bytes<E>) -> $crate::cmp::Ordering` — [`U64Bytes`](../../endian/index.md)
 
 ##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
 
-- `fn eq(self: &Self, other: &U64Bytes<E>) -> bool`
+- `fn eq(self: &Self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../../endian/index.md)
 
 ##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
 
-- `fn partial_cmp(self: &Self, other: &U64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &U64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U64Bytes`](../../endian/index.md)
 
 ##### `impl Pod<E: Endian>`
 
 ##### `impl StructuralPartialEq<E: Endian>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: Endian>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Default<E: $crate::default::Default + Endian>`
-
-- `fn default() -> U64Bytes<E>`
-
 ### `I16Bytes<E: Endian>`
 
 ```rust
-struct I16Bytes<E: Endian>();
+struct I16Bytes<E: Endian>([u8; 2], core::marker::PhantomData<E>);
 ```
 
 An unaligned `i16` value with an externally specified endianness of type `E`.
@@ -513,50 +271,28 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 #### Implementations
 
 - `const fn from_bytes(n: [u8; 2]) -> Self`
-  Construct a new value given bytes that already have the required endianness.
 
 - `fn new(e: E, n: i16) -> Self`
-  Construct a new value given a native endian value.
 
 - `fn get(self: Self, e: E) -> i16`
-  Return the value as a native endian value.
 
 - `fn set(self: &mut Self, e: E, n: i16)`
-  Set the value given a native endian value.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> I16Bytes<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> I16Bytes<E>` — [`I16Bytes`](../../endian/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: Endian>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default<E: $crate::default::Default + Endian>`
+
+- `fn default() -> I16Bytes<E>` — [`I16Bytes`](../../endian/index.md)
 
 ##### `impl Eq<E: $crate::cmp::Eq + Endian>`
 
@@ -566,52 +302,24 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 
 ##### `impl Ord<E: $crate::cmp::Ord + Endian>`
 
-- `fn cmp(self: &Self, other: &I16Bytes<E>) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &I16Bytes<E>) -> $crate::cmp::Ordering` — [`I16Bytes`](../../endian/index.md)
 
 ##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
 
-- `fn eq(self: &Self, other: &I16Bytes<E>) -> bool`
+- `fn eq(self: &Self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../../endian/index.md)
 
 ##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
 
-- `fn partial_cmp(self: &Self, other: &I16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &I16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I16Bytes`](../../endian/index.md)
 
 ##### `impl Pod<E: Endian>`
 
 ##### `impl StructuralPartialEq<E: Endian>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: Endian>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Default<E: $crate::default::Default + Endian>`
-
-- `fn default() -> I16Bytes<E>`
-
 ### `I32Bytes<E: Endian>`
 
 ```rust
-struct I32Bytes<E: Endian>();
+struct I32Bytes<E: Endian>([u8; 4], core::marker::PhantomData<E>);
 ```
 
 An unaligned `i32` value with an externally specified endianness of type `E`.
@@ -619,50 +327,28 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 #### Implementations
 
 - `const fn from_bytes(n: [u8; 4]) -> Self`
-  Construct a new value given bytes that already have the required endianness.
 
 - `fn new(e: E, n: i32) -> Self`
-  Construct a new value given a native endian value.
 
 - `fn get(self: Self, e: E) -> i32`
-  Return the value as a native endian value.
 
 - `fn set(self: &mut Self, e: E, n: i32)`
-  Set the value given a native endian value.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> I32Bytes<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> I32Bytes<E>` — [`I32Bytes`](../../endian/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: Endian>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default<E: $crate::default::Default + Endian>`
+
+- `fn default() -> I32Bytes<E>` — [`I32Bytes`](../../endian/index.md)
 
 ##### `impl Eq<E: $crate::cmp::Eq + Endian>`
 
@@ -672,52 +358,24 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 
 ##### `impl Ord<E: $crate::cmp::Ord + Endian>`
 
-- `fn cmp(self: &Self, other: &I32Bytes<E>) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &I32Bytes<E>) -> $crate::cmp::Ordering` — [`I32Bytes`](../../endian/index.md)
 
 ##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
 
-- `fn eq(self: &Self, other: &I32Bytes<E>) -> bool`
+- `fn eq(self: &Self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../../endian/index.md)
 
 ##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
 
-- `fn partial_cmp(self: &Self, other: &I32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &I32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I32Bytes`](../../endian/index.md)
 
 ##### `impl Pod<E: Endian>`
 
 ##### `impl StructuralPartialEq<E: Endian>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: Endian>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Default<E: $crate::default::Default + Endian>`
-
-- `fn default() -> I32Bytes<E>`
-
 ### `I64Bytes<E: Endian>`
 
 ```rust
-struct I64Bytes<E: Endian>();
+struct I64Bytes<E: Endian>([u8; 8], core::marker::PhantomData<E>);
 ```
 
 An unaligned `i64` value with an externally specified endianness of type `E`.
@@ -725,50 +383,28 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 #### Implementations
 
 - `const fn from_bytes(n: [u8; 8]) -> Self`
-  Construct a new value given bytes that already have the required endianness.
 
 - `fn new(e: E, n: i64) -> Self`
-  Construct a new value given a native endian value.
 
 - `fn get(self: Self, e: E) -> i64`
-  Return the value as a native endian value.
 
 - `fn set(self: &mut Self, e: E, n: i64)`
-  Set the value given a native endian value.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> I64Bytes<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> I64Bytes<E>` — [`I64Bytes`](../../endian/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: Endian>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Default<E: $crate::default::Default + Endian>`
+
+- `fn default() -> I64Bytes<E>` — [`I64Bytes`](../../endian/index.md)
 
 ##### `impl Eq<E: $crate::cmp::Eq + Endian>`
 
@@ -778,47 +414,19 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 
 ##### `impl Ord<E: $crate::cmp::Ord + Endian>`
 
-- `fn cmp(self: &Self, other: &I64Bytes<E>) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &I64Bytes<E>) -> $crate::cmp::Ordering` — [`I64Bytes`](../../endian/index.md)
 
 ##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
 
-- `fn eq(self: &Self, other: &I64Bytes<E>) -> bool`
+- `fn eq(self: &Self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../../endian/index.md)
 
 ##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
 
-- `fn partial_cmp(self: &Self, other: &I64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &I64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I64Bytes`](../../endian/index.md)
 
 ##### `impl Pod<E: Endian>`
 
 ##### `impl StructuralPartialEq<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: Endian>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Default<E: $crate::default::Default + Endian>`
-
-- `fn default() -> I64Bytes<E>`
 
 ## Enums
 
@@ -845,37 +453,19 @@ An endianness that is selectable at run-time.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Endianness`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Endianness` — [`Endianness`](../../endian/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> Endianness` — [`Endianness`](../../endian/index.md)
 
 ##### `impl Endian`
 
@@ -891,37 +481,9 @@ An endianness that is selectable at run-time.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Endianness) -> bool`
+- `fn eq(self: &Self, other: &Endianness) -> bool` — [`Endianness`](../../endian/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> Endianness`
 
 ## Traits
 

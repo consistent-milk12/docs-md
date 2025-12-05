@@ -7,7 +7,7 @@
 An NFA backed bounded backtracker for executing regex searches with capturing
 groups.
 
-This module provides a [`BoundedBacktracker`](#boundedbacktracker) that works by simulating an NFA
+This module provides a [`BoundedBacktracker`](../../../meta/wrappers/index.md) that works by simulating an NFA
 using the classical backtracking algorithm with a twist: it avoids redoing
 work that it has done before and thereby avoids worst case exponential time.
 In exchange, it can only be used on "short" haystacks. Its advantage is that
@@ -20,7 +20,8 @@ because it does less book-keeping.
 
 ```rust
 struct Config {
-    // [REDACTED: Private Fields]
+    pre: Option<Option<crate::util::prefilter::Prefilter>>,
+    visited_capacity: Option<usize>,
 }
 ```
 
@@ -31,72 +32,23 @@ typically used with `Builder::configure`.
 
 #### Implementations
 
-- `fn new() -> Config`
-  Return a new default regex configuration.
+- `fn new() -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config`
-  Set a prefilter to be used whenever a start state is entered.
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../../util/prefilter/index.md), [`Config`](../../../../nfa/thompson/backtrack/index.md)
 
-- `fn visited_capacity(self: Self, capacity: usize) -> Config`
-  Set the visited capacity used to bound backtracking.
+- `fn visited_capacity(self: Self, capacity: usize) -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>`
-  Returns the prefilter set in this configuration, if one at all.
+- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../../util/prefilter/index.md)
 
 - `fn get_visited_capacity(self: &Self) -> usize`
-  Returns the configured visited capacity.
+
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Config`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
 
 ##### `impl Debug`
 
@@ -104,13 +56,14 @@ typically used with `Builder::configure`.
 
 ##### `impl Default`
 
-- `fn default() -> Config`
+- `fn default() -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
 
 ### `Builder`
 
 ```rust
 struct Builder {
-    // [REDACTED: Private Fields]
+    config: Config,
+    thompson: thompson::Compiler,
 }
 ```
 
@@ -170,78 +123,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder`
-  Create a new BoundedBacktracker builder with its default configuration.
+- `fn new() -> Builder` — [`Builder`](../../../../nfa/thompson/backtrack/index.md)
 
-- `fn build(self: &Self, pattern: &str) -> Result<BoundedBacktracker, BuildError>`
-  Build a `BoundedBacktracker` from the given pattern.
+- `fn build(self: &Self, pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>`
-  Build a `BoundedBacktracker` from the given patterns.
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>`
-  Build a `BoundedBacktracker` directly from its NFA.
+- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../../../../nfa/thompson/nfa/index.md), [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder`
-  Apply the given `BoundedBacktracker` configuration options to this
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../../../nfa/thompson/backtrack/index.md), [`Builder`](../../../../nfa/thompson/backtrack/index.md)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder`
-  Set the syntax configuration for this builder using
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../../util/syntax/index.md), [`Builder`](../../../../nfa/thompson/backtrack/index.md)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder`
-  Set the Thompson NFA configuration for this builder using
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../../nfa/thompson/compiler/index.md), [`Builder`](../../../../nfa/thompson/backtrack/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Builder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../../nfa/thompson/backtrack/index.md)
 
 ##### `impl Debug`
 
@@ -251,7 +151,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct BoundedBacktracker {
-    // [REDACTED: Private Fields]
+    config: Config,
+    nfa: crate::nfa::thompson::NFA,
 }
 ```
 
@@ -338,120 +239,23 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<BoundedBacktracker, BuildError>`
-  Parse the given regular expression using the default configuration and
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`Captures`](../../../../util/captures/index.md), [`MatchError`](../../../../util/search/index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<BoundedBacktracker, BuildError>`
-  Like `new`, but parses multiple patterns into a single "multi regex."
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`PatternID`](../../../../util/primitives/index.md), [`MatchError`](../../../../util/search/index.md)
 
-- `fn new_from_nfa(nfa: NFA) -> Result<BoundedBacktracker, BuildError>`
-  # Example
+- `fn try_search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md), [`MatchError`](../../../../util/search/index.md)
 
-- `fn always_match() -> Result<BoundedBacktracker, BuildError>`
-  Create a new `BoundedBacktracker` that matches every input.
+- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md), [`MatchError`](../../../../util/search/index.md)
 
-- `fn never_match() -> Result<BoundedBacktracker, BuildError>`
-  Create a new `BoundedBacktracker` that never matches any input.
+- `fn backtrack(self: &Self, cache: &mut Cache, input: &Input<'_>, at: usize, start_id: StateID, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`StateID`](../../../../util/primitives/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md)
 
-- `fn config() -> Config`
-  Return a default configuration for a `BoundedBacktracker`.
-
-- `fn builder() -> Builder`
-  Return a builder for configuring the construction of a
-
-- `fn create_cache(self: &Self) -> Cache`
-  Create a new cache for this regex.
-
-- `fn create_captures(self: &Self) -> Captures`
-  Create a new empty set of capturing groups that is guaranteed to be
-
-- `fn reset_cache(self: &Self, cache: &mut Cache)`
-  Reset the given cache such that it can be used for searching with the
-
-- `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns compiled into this
-
-- `fn get_config(self: &Self) -> &Config`
-  Return the config for this `BoundedBacktracker`.
-
-- `fn get_nfa(self: &Self) -> &NFA`
-  Returns a reference to the underlying NFA.
-
-- `fn max_haystack_len(self: &Self) -> usize`
-  Returns the maximum haystack length supported by this backtracker.
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn try_is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Result<bool, MatchError>`
-  Returns true if and only if this regex matches the given haystack.
-
-- `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Result<Option<Match>, MatchError>`
-  Executes a leftmost forward search and returns a `Match` if one exists.
-
-- `fn try_captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn try_find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryFindMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping leftmost matches in the
-
-- `fn try_captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> TryCapturesMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping `Captures` values. If no
+- `fn step(self: &Self, cache: &mut Cache, input: &Input<'_>, sid: StateID, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`StateID`](../../../../util/primitives/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BoundedBacktracker`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> BoundedBacktracker` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md)
 
 ##### `impl Debug`
 
@@ -461,7 +265,10 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct TryFindMatches<'r, 'c, 'h> {
-    // [REDACTED: Private Fields]
+    re: &'r BoundedBacktracker,
+    cache: &'c mut Cache,
+    caps: crate::util::captures::Captures,
+    it: iter::Searcher<'h>,
 }
 ```
 
@@ -481,15 +288,9 @@ method.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'r, 'c, 'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -499,45 +300,20 @@ method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'r, 'c, 'h>`
 
 - `type Item = Result<Match, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Match, MatchError>>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'r, 'c, 'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Result<Match, MatchError>>` — [`Match`](../../../../util/search/index.md), [`MatchError`](../../../../util/search/index.md)
 
 ### `TryCapturesMatches<'r, 'c, 'h>`
 
 ```rust
 struct TryCapturesMatches<'r, 'c, 'h> {
-    // [REDACTED: Private Fields]
+    re: &'r BoundedBacktracker,
+    cache: &'c mut Cache,
+    caps: crate::util::captures::Captures,
+    it: iter::Searcher<'h>,
 }
 ```
 
@@ -558,15 +334,9 @@ This iterator can be created with the
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'r, 'c, 'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -576,124 +346,66 @@ This iterator can be created with the
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'r, 'c, 'h>`
 
 - `type Item = Result<Captures, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Captures, MatchError>>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'r, 'c, 'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../../../../util/captures/index.md), [`MatchError`](../../../../util/search/index.md)
 
 ### `Cache`
 
 ```rust
 struct Cache {
-    // [REDACTED: Private Fields]
+    stack: alloc::vec::Vec<Frame>,
+    visited: Visited,
 }
 ```
 
-A cache represents mutable state that a [`BoundedBacktracker`](#boundedbacktracker) requires
+A cache represents mutable state that a [`BoundedBacktracker`](../../../meta/wrappers/index.md) requires
 during a search.
 
-For a given [`BoundedBacktracker`](#boundedbacktracker), its corresponding cache may be created
+For a given [`BoundedBacktracker`](../../../meta/wrappers/index.md), its corresponding cache may be created
 either via `BoundedBacktracker::create_cache`, or via `Cache::new`.
 They are equivalent in every way, except the former does not require
 explicitly importing `Cache`.
 
-A particular `Cache` is coupled with the [`BoundedBacktracker`](#boundedbacktracker) from which
+A particular `Cache` is coupled with the [`BoundedBacktracker`](../../../meta/wrappers/index.md) from which
 it was created. It may only be used with that `BoundedBacktracker`. A cache
 and its allocations may be re-purposed via `Cache::reset`, in which case,
 it can only be used with the new `BoundedBacktracker` (and not the old
 one).
 
+#### Fields
+
+- **`stack`**: `alloc::vec::Vec<Frame>`
+
+  Stack used on the heap for doing backtracking instead of the
+  traditional recursive approach. We don't want recursion because then
+  we're likely to hit a stack overflow for bigger regexes.
+
+- **`visited`**: `Visited`
+
+  The set of (StateID, HaystackOffset) pairs that have been visited
+  by the backtracker within a single search. If such a pair has been
+  visited, then we avoid doing the work for that pair again. This is
+  what "bounds" the backtracking and prevents it from having worst case
+  exponential time.
+
 #### Implementations
 
-- `fn new(re: &BoundedBacktracker) -> Cache`
-  Create a new [`BoundedBacktracker`] cache.
+- `fn new(re: &BoundedBacktracker) -> Cache` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`Cache`](../../../../nfa/thompson/backtrack/index.md)
 
-- `fn reset(self: &mut Self, re: &BoundedBacktracker)`
-  Reset this cache such that it can be used for searching with different
+- `fn reset(self: &mut Self, re: &BoundedBacktracker)` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the heap memory usage, in bytes, of this cache.
+
+- `fn setup_search(self: &mut Self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`MatchError`](../../../../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Cache`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../../nfa/thompson/backtrack/index.md)
 
 ##### `impl Debug`
 
@@ -711,7 +423,7 @@ Returns the minimum visited capacity for the given haystack.
 
 This function can be used as the argument to `Config::visited_capacity`
 in order to guarantee that a backtracking search for the given `input`
-won't return an error when using a [`BoundedBacktracker`](#boundedbacktracker) built from the
+won't return an error when using a [`BoundedBacktracker`](../../../meta/wrappers/index.md) built from the
 given `NFA`.
 
 This routine exists primarily as a way to test that the bounded backtracker

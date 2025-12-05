@@ -16,7 +16,8 @@ This implementation features:
 
 ```rust
 struct Adler32 {
-    // [REDACTED: Private Fields]
+    a: u16,
+    b: u16,
 }
 ```
 
@@ -80,68 +81,20 @@ if cfg!(target_endian = "big") {
 #### Implementations
 
 - `fn new() -> Self`
-  Creates a new Adler-32 instance with default state.
 
 - `const fn from_checksum(sum: u32) -> Self`
-  Creates an `Adler32` instance from a precomputed Adler-32 checksum.
 
 - `fn checksum(self: &Self) -> u32`
-  Returns the calculated checksum at this point in time.
 
 - `fn write_slice(self: &mut Self, bytes: &[u8])`
-  Adds `bytes` to the checksum calculation.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Adler32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Adler32` — [`Adler32`](../index.md)
 
 ##### `impl Copy`
-
-##### `impl Hasher`
-
-- `fn finish(self: &Self) -> u64`
-
-- `fn write(self: &mut Self, bytes: &[u8])`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -150,6 +103,12 @@ if cfg!(target_endian = "big") {
 ##### `impl Default`
 
 - `fn default() -> Self`
+
+##### `impl Hasher`
+
+- `fn finish(self: &Self) -> u64`
+
+- `fn write(self: &mut Self, bytes: &[u8])`
 
 ## Functions
 

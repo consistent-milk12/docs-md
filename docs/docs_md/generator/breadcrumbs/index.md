@@ -15,7 +15,8 @@ links showing the path from crate root to the current module.
 
 ```rust
 struct BreadcrumbGenerator<'a> {
-    // [REDACTED: Private Fields]
+    module_path: &'a [String],
+    crate_name: &'a str,
 }
 ```
 
@@ -24,49 +25,39 @@ Generates breadcrumb navigation for nested module pages.
 Creates a navigation line showing the path from the crate root to
 the current module, with each segment being a clickable link.
 
+#### Fields
+
+- **`module_path`**: `&'a [String]`
+
+  The module path segments (e.g., `["error", "types"]`).
+
+- **`crate_name`**: `&'a str`
+
+  The name of the crate for the root link.
+
 #### Implementations
 
-- `fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
-  Create a new breadcrumb generator.
+- `const fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
 
 - `fn generate(self: &Self) -> String`
-  Generate breadcrumb navigation markdown.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 

@@ -92,5 +92,4 @@ for Serde by the community.
 [Hjson]: https://github.com/Canop/deser-hjson
 [CSV]: https://docs.rs/csv
 
-## Functions
-
+*This crate has no public items to document.*

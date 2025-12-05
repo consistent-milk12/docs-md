@@ -51,11 +51,11 @@ Ok(())
 ```
 
 rustix's APIs perform the following tasks:
- - Error values are translated to [`Result`](#result)s.
+ - Error values are translated to [`Result`](io/errno/index.md)s.
  - Buffers are passed as Rust slices.
  - Out-parameters are presented as return values.
  - Path arguments use [`Arg`](#arg), so they accept any string type.
- - File descriptors are passed and returned via [`AsFd`](#asfd) and [`OwnedFd`](#ownedfd)
+ - File descriptors are passed and returned via [`AsFd`](maybe_polyfill/os/fd/index.md) and [`OwnedFd`](maybe_polyfill/os/fd/index.md)
    instead of bare integers, ensuring I/O safety.
  - Constants use `enum`s and [`bitflags`](#bitflags) types, and enable [support for
    externally defined flags].

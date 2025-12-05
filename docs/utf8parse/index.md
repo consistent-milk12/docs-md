@@ -12,7 +12,8 @@ on the `Action` returned from unpacking a transition.
 
 ```rust
 struct Parser {
-    // [REDACTED: Private Fields]
+    point: u32,
+    state: types::State,
 }
 ```
 
@@ -22,63 +23,17 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 
 #### Implementations
 
-- `fn new() -> Parser`
-  Create a new Parser
+- `fn new() -> Parser` — [`Parser`](../index.md)
 
 - `fn advance<R>(self: &mut Self, receiver: &mut R, byte: u8)`
-  Advance the parser
+
+- `fn perform_action<R>(self: &mut Self, receiver: &mut R, byte: u8, action: Action)` — [`Action`](../types/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Parser`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Parser) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Parser` — [`Parser`](../index.md)
 
 ##### `impl Debug`
 
@@ -86,7 +41,15 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 
 ##### `impl Default`
 
-- `fn default() -> Parser`
+- `fn default() -> Parser` — [`Parser`](../index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Parser) -> bool` — [`Parser`](../index.md)
+
+##### `impl StructuralPartialEq`
 
 ## Traits
 

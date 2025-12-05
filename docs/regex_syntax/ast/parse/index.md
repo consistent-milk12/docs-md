@@ -12,7 +12,10 @@ This module provides a regular expression parser.
 
 ```rust
 struct ParserBuilder {
-    // [REDACTED: Private Fields]
+    ignore_whitespace: bool,
+    nest_limit: u32,
+    octal: bool,
+    empty_min_range: bool,
 }
 ```
 
@@ -22,75 +25,23 @@ This builder permits modifying configuration options for the parser.
 
 #### Implementations
 
-- `fn new() -> ParserBuilder`
-  Create a new parser builder with a default configuration.
+- `fn new() -> ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
 
-- `fn build(self: &Self) -> Parser`
-  Build a parser from this configuration with the given pattern.
+- `fn build(self: &Self) -> Parser` — [`Parser`](../../../ast/parse/index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder`
-  Set the nesting limit for this parser.
+- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Whether to support octal syntax or not.
+- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Enable verbose mode in the regular expression.
+- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
 
-- `fn empty_min_range(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Allow using `{,n}` as an equivalent to `{0,n}`.
+- `fn empty_min_range(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ParserBuilder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
 
 ##### `impl Debug`
 
@@ -98,13 +49,24 @@ This builder permits modifying configuration options for the parser.
 
 ##### `impl Default`
 
-- `fn default() -> ParserBuilder`
+- `fn default() -> ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
 
 ### `Parser`
 
 ```rust
 struct Parser {
-    // [REDACTED: Private Fields]
+    pos: core::cell::Cell<crate::ast::Position>,
+    capture_index: core::cell::Cell<u32>,
+    nest_limit: u32,
+    octal: bool,
+    initial_ignore_whitespace: bool,
+    empty_min_range: bool,
+    ignore_whitespace: core::cell::Cell<bool>,
+    comments: core::cell::RefCell<alloc::vec::Vec<ast::Comment>>,
+    stack_group: core::cell::RefCell<alloc::vec::Vec<GroupState>>,
+    stack_class: core::cell::RefCell<alloc::vec::Vec<ClassState>>,
+    capture_names: core::cell::RefCell<alloc::vec::Vec<ast::CaptureName>>,
+    scratch: core::cell::RefCell<alloc::string::String>,
 }
 ```
 
@@ -116,68 +78,80 @@ of the regular expression pattern.
 
 A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuilder).
 
+#### Fields
+
+- **`pos`**: `core::cell::Cell<crate::ast::Position>`
+
+  The current position of the parser.
+
+- **`capture_index`**: `core::cell::Cell<u32>`
+
+  The current capture index.
+
+- **`nest_limit`**: `u32`
+
+  The maximum number of open parens/brackets allowed. If the parser
+  exceeds this number, then an error is returned.
+
+- **`octal`**: `bool`
+
+  Whether to support octal syntax or not. When `false`, the parser will
+  return an error helpfully pointing out that backreferences are not
+  supported.
+
+- **`initial_ignore_whitespace`**: `bool`
+
+  The initial setting for `ignore_whitespace` as provided by
+  `ParserBuilder`. It is used when resetting the parser's state.
+
+- **`empty_min_range`**: `bool`
+
+  Whether the parser supports `{,n}` repetitions as an equivalent to
+  `{0,n}.`
+
+- **`ignore_whitespace`**: `core::cell::Cell<bool>`
+
+  Whether whitespace should be ignored. When enabled, comments are
+  also permitted.
+
+- **`comments`**: `core::cell::RefCell<alloc::vec::Vec<ast::Comment>>`
+
+  A list of comments, in order of appearance.
+
+- **`stack_group`**: `core::cell::RefCell<alloc::vec::Vec<GroupState>>`
+
+  A stack of grouped sub-expressions, including alternations.
+
+- **`stack_class`**: `core::cell::RefCell<alloc::vec::Vec<ClassState>>`
+
+  A stack of nested character classes. This is only non-empty when
+  parsing a class.
+
+- **`capture_names`**: `core::cell::RefCell<alloc::vec::Vec<ast::CaptureName>>`
+
+  A sorted sequence of capture names. This is used to detect duplicate
+  capture names and report an error if one is detected.
+
+- **`scratch`**: `core::cell::RefCell<alloc::string::String>`
+
+  A scratch buffer used in various places. Mostly this is used to
+  accumulate relevant characters from parts of a pattern.
+
 #### Implementations
 
-- `fn new() -> Parser`
-  Create a new parser with a default configuration.
+- `fn new() -> Parser` — [`Parser`](../../../ast/parse/index.md)
 
-- `fn parse(self: &mut Self, pattern: &str) -> core::result::Result<Ast, ast::Error>`
-  Parse the regular expression into an abstract syntax tree.
+- `fn parse(self: &mut Self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../../../ast/index.md), [`Error`](../../../ast/index.md)
 
-- `fn parse_with_comments(self: &mut Self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>`
-  Parse the regular expression and return an abstract syntax tree with
+- `fn parse_with_comments(self: &mut Self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../../../ast/index.md), [`Error`](../../../ast/index.md)
+
+- `fn reset(self: &Self)`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Parser`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Parser` — [`Parser`](../../../ast/parse/index.md)
 
 ##### `impl Debug`
 

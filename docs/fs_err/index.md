@@ -114,7 +114,7 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 ### `OpenOptions`
 
 ```rust
-struct OpenOptions();
+struct OpenOptions(fs::OpenOptions);
 ```
 
 Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.OpenOptions.html)
@@ -122,69 +122,30 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 #### Implementations
 
 - `fn new() -> Self`
-  Creates a blank new set of options ready for configuration.
 
 - `fn read(self: &mut Self, read: bool) -> &mut Self`
-  Sets the option for read access.
 
 - `fn write(self: &mut Self, write: bool) -> &mut Self`
-  Sets the option for write access.
 
 - `fn append(self: &mut Self, append: bool) -> &mut Self`
-  Sets the option for the append mode.
 
 - `fn truncate(self: &mut Self, truncate: bool) -> &mut Self`
-  Sets the option for truncating a previous file.
 
 - `fn create(self: &mut Self, create: bool) -> &mut Self`
-  Sets the option to create a new file, or open it if it already exists.
 
 - `fn create_new(self: &mut Self, create_new: bool) -> &mut Self`
-  Sets the option to create a new file, failing if it already exists.
 
-- `fn open<P>(self: &Self, path: P) -> io::Result<crate::File>`
-  Opens a file at `path` with the options specified by `self`.
-
-- `fn from_options(options: fs::OpenOptions) -> Self`
-  Constructs `Self` from [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html)
-
-- `fn options(self: &Self) -> &fs::OpenOptions`
-  Returns a reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
-
-- `fn options_mut(self: &mut Self) -> &mut fs::OpenOptions`
-  Returns a mutable reference to the underlying [`std::fs::OpenOptions`](https://doc.rust-lang.org/stable/std/fs/struct.OpenOptions.html).
+- `fn open<P>(self: &Self, path: P) -> io::Result<crate::File>` — [`File`](../file/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> OpenOptions`
+- `fn clone(self: &Self) -> OpenOptions` — [`OpenOptions`](../open_options/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl OpenOptionsExt`
 
@@ -192,29 +153,7 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 
 - `fn custom_flags(self: &mut Self, flags: i32) -> &mut Self`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+##### `impl Sealed`
 
 ## Traits
 

@@ -11,7 +11,7 @@ Thread-safe, blocking version of `OnceCell`.
 ### `OnceCell<T>`
 
 ```rust
-struct OnceCell<T>();
+struct OnceCell<T>(super::imp::OnceCell<T>);
 ```
 
 A thread-safe cell which can be written to only once.
@@ -45,109 +45,37 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 #### Implementations
 
-- `const fn new() -> OnceCell<T>`
-  Creates a new empty cell.
+- `const fn new() -> OnceCell<T>` — [`OnceCell`](../../sync/index.md)
 
-- `const fn with_value(value: T) -> OnceCell<T>`
-  Creates a new initialized cell.
+- `const fn with_value(value: T) -> OnceCell<T>` — [`OnceCell`](../../sync/index.md)
 
 - `fn get(self: &Self) -> Option<&T>`
-  Gets the reference to the underlying value.
 
 - `fn wait(self: &Self) -> &T`
-  Gets the reference to the underlying value, blocking the current
 
 - `fn get_mut(self: &mut Self) -> Option<&mut T>`
-  Gets the mutable reference to the underlying value.
 
 - `unsafe fn get_unchecked(self: &Self) -> &T`
-  Get the reference to the underlying value, without checking if the
 
 - `fn set(self: &Self, value: T) -> Result<(), T>`
-  Sets the contents of this cell to `value`.
 
 - `fn try_insert(self: &Self, value: T) -> Result<&T, (&T, T)>`
-  Like [`set`](Self::set), but also returns a reference to the final cell value.
 
 - `fn get_or_init<F>(self: &Self, f: F) -> &T`
-  Gets the contents of the cell, initializing it with `f` if the cell
 
 - `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<&T, E>`
-  Gets the contents of the cell, initializing it with `f` if
 
 - `fn take(self: &mut Self) -> Option<T>`
-  Takes the value out of this `OnceCell`, moving it back to an uninitialized state.
 
 - `fn into_inner(self: Self) -> Option<T>`
-  Consumes the `OnceCell`, returning the wrapped value. Returns
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: never) -> T`
-
-##### `impl From<T>`
-
-- `fn from(value: T) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<T: Clone>`
 
-- `fn clone(self: &Self) -> OnceCell<T>`
+- `fn clone(self: &Self) -> OnceCell<T>` — [`OnceCell`](../../sync/index.md)
 
 - `fn clone_from(self: &mut Self, source: &Self)`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq<T: Eq>`
-
-##### `impl PartialEq<T: PartialEq>`
-
-- `fn eq(self: &Self, other: &OnceCell<T>) -> bool`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<T: fmt::Debug>`
 
@@ -155,13 +83,20 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 ##### `impl Default<T>`
 
-- `fn default() -> OnceCell<T>`
+- `fn default() -> OnceCell<T>` — [`OnceCell`](../../sync/index.md)
+
+##### `impl Eq<T: Eq>`
+
+##### `impl PartialEq<T: PartialEq>`
+
+- `fn eq(self: &Self, other: &OnceCell<T>) -> bool` — [`OnceCell`](../../sync/index.md)
 
 ### `Lazy<T, F>`
 
 ```rust
 struct Lazy<T, F> {
-    // [REDACTED: Private Fields]
+    cell: OnceCell<T>,
+    init: core::cell::Cell<Option<F>>,
 }
 ```
 
@@ -201,67 +136,11 @@ fn main() {
 
 #### Implementations
 
-- `const fn new(f: F) -> Lazy<T, F>`
-  Creates a new lazy value with the given initializing
+- `const fn new(f: F) -> Lazy<T, F>` — [`Lazy`](../../sync/index.md)
 
-- `fn into_value(this: Lazy<T, F>) -> Result<T, F>`
-  Consumes this `Lazy` returning the stored value.
-
-- `fn force(this: &Lazy<T, F>) -> &T`
-  Forces the evaluation of this lazy value and
-
-- `fn force_mut(this: &mut Lazy<T, F>) -> &mut T`
-  Forces the evaluation of this lazy value and
-
-- `fn get(this: &Lazy<T, F>) -> Option<&T>`
-  Gets the reference to the result of this lazy value if
-
-- `fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>`
-  Gets the reference to the result of this lazy value if
+- `fn into_value(this: Lazy<T, F>) -> Result<T, F>` — [`Lazy`](../../sync/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl RefUnwindSafe<T, F: RefUnwindSafe>`
-
-##### `impl Sync<T, F: Send>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<T: fmt::Debug, F>`
 
@@ -269,8 +148,7 @@ fn main() {
 
 ##### `impl Default<T: Default>`
 
-- `fn default() -> Lazy<T>`
-  Creates a new lazy value using `Default` as the initializing function.
+- `fn default() -> Lazy<T>` — [`Lazy`](../../sync/index.md)
 
 ##### `impl Deref<T, F: FnOnce() -> T>`
 
@@ -281,4 +159,12 @@ fn main() {
 ##### `impl DerefMut<T, F: FnOnce() -> T>`
 
 - `fn deref_mut(self: &mut Self) -> &mut T`
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl RefUnwindSafe<T, F: RefUnwindSafe>`
+
+##### `impl Sync<T, F: Send>`
 

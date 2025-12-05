@@ -6,37 +6,24 @@
 
 Utilities related to FFI bindings.
 
-## Modules
-
-- [`c_ushort`](c_ushort/index.md) - 
-
 ## Structs
 
-### `c_uint<'a, A, R>`
+### `c_void`
 
 ```rust
-struct c_uint<'a, A, R> {
-    // [REDACTED: Private Fields]
+struct c_void {
 }
 ```
 
-An iterator that reports matches in a stream.
+A non-empty collection of non-empty patterns to search for.
 
-This iterator yields elements of type `io::Result<Match>`, where an error
-is reported if there was a problem reading from the underlying stream.
-The iterator terminates only when the underlying stream reaches `EOF`.
+This collection of patterns is what is passed around to both execute
+searches and to construct the searchers themselves. Namely, this permits
+searches to avoid copying all of the patterns, and allows us to keep only
+one copy throughout all packed searchers.
 
-This iterator is constructed via the `Automaton::try_stream_find_iter`
-method.
-
-The type variable `A` refers to the implementation of the [`Automaton`](#automaton)
-trait used to execute the search.
-
-The type variable `R` refers to the `io::Read` stream that is being read
-from.
-
-The lifetime `'a` refers to the lifetime of the [`Automaton`](#automaton)
-implementation.
+Note that this collection is not a set. The same pattern can appear more
+than once.
 
 ## Functions
 

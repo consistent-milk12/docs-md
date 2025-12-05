@@ -50,7 +50,7 @@ but it could be potentially very wasteful.
 ### `Unit`
 
 ```rust
-struct Unit();
+struct Unit(UnitKind);
 ```
 
 Unit represents a single unit of haystack for DFA based regex engines.
@@ -86,108 +86,54 @@ singleton equivalence class.
 
 #### Implementations
 
-- `fn u8(byte: u8) -> Unit`
-  Create a new haystack unit from a byte value.
+- `fn u8(byte: u8) -> Unit` — [`Unit`](../../../util/alphabet/index.md)
 
-- `fn eoi(num_byte_equiv_classes: usize) -> Unit`
-  Create a new "end of input" haystack unit.
+- `fn eoi(num_byte_equiv_classes: usize) -> Unit` — [`Unit`](../../../util/alphabet/index.md)
 
 - `fn as_u8(self: Self) -> Option<u8>`
-  If this unit is not an "end of input" sentinel, then returns its
 
 - `fn as_eoi(self: Self) -> Option<u16>`
-  If this unit is an "end of input" sentinel, then return the underlying
 
 - `fn as_usize(self: Self) -> usize`
-  Return this unit as a `usize`, regardless of whether it is a byte value
 
 - `fn is_byte(self: Self, byte: u8) -> bool`
-  Returns true if and only of this unit is a byte value equivalent to the
 
 - `fn is_eoi(self: Self) -> bool`
-  Returns true when this unit represents an "end of input" sentinel.
 
 - `fn is_word_byte(self: Self) -> bool`
-  Returns true when this unit corresponds to an ASCII word byte.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Unit`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Unit` — [`Unit`](../../../util/alphabet/index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl Ord`
-
-- `fn cmp(self: &Self, other: &Unit) -> $crate::cmp::Ordering`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Unit) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Unit) -> $crate::option::Option<$crate::cmp::Ordering>`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
+##### `impl Eq`
+
+##### `impl Ord`
+
+- `fn cmp(self: &Self, other: &Unit) -> $crate::cmp::Ordering` — [`Unit`](../../../util/alphabet/index.md)
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Unit) -> bool` — [`Unit`](../../../util/alphabet/index.md)
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Unit) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Unit`](../../../util/alphabet/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `ByteClasses`
 
 ```rust
-struct ByteClasses();
+struct ByteClasses([u8; 256]);
 ```
 
 A representation of byte oriented equivalence classes.
@@ -222,95 +168,45 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn empty() -> ByteClasses`
-  Creates a new set of equivalence classes where all bytes are mapped to
+- `fn empty() -> ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
 
-- `fn singletons() -> ByteClasses`
-  Creates a new set of equivalence classes where each byte belongs to
+- `fn singletons() -> ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
+
+- `fn from_bytes(slice: &[u8]) -> Result<(ByteClasses, usize), DeserializeError>` — [`ByteClasses`](../../../util/alphabet/index.md), [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn write_to(self: &Self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../../../util/wire/index.md)
+
+- `fn write_to_len(self: &Self) -> usize`
 
 - `fn set(self: &mut Self, byte: u8, class: u8)`
-  Set the equivalence class for the given byte.
 
 - `fn get(self: &Self, byte: u8) -> u8`
-  Get the equivalence class for the given byte.
 
-- `fn get_by_unit(self: &Self, unit: Unit) -> usize`
-  Get the equivalence class for the given haystack unit and return the
+- `fn get_by_unit(self: &Self, unit: Unit) -> usize` — [`Unit`](../../../util/alphabet/index.md)
 
-- `fn eoi(self: &Self) -> Unit`
-  Create a unit that represents the "end of input" sentinel based on the
+- `fn eoi(self: &Self) -> Unit` — [`Unit`](../../../util/alphabet/index.md)
 
 - `fn alphabet_len(self: &Self) -> usize`
-  Return the total number of elements in the alphabet represented by
 
 - `fn stride2(self: &Self) -> usize`
-  Returns the stride, as a base-2 exponent, required for these
 
 - `fn is_singleton(self: &Self) -> bool`
-  Returns true if and only if every byte in this class maps to its own
 
-- `fn iter(self: &Self) -> ByteClassIter<'_>`
-  Returns an iterator over all equivalence classes in this set.
+- `fn iter(self: &Self) -> ByteClassIter<'_>` — [`ByteClassIter`](../../../util/alphabet/index.md)
 
-- `fn representatives<R: core::ops::RangeBounds<u8>>(self: &Self, range: R) -> ByteClassRepresentatives<'_>`
-  Returns an iterator over a sequence of representative bytes from each
+- `fn representatives<R: core::ops::RangeBounds<u8>>(self: &Self, range: R) -> ByteClassRepresentatives<'_>` — [`ByteClassRepresentatives`](../../../util/alphabet/index.md)
 
-- `fn elements(self: &Self, class: Unit) -> ByteClassElements<'_>`
-  Returns an iterator of the bytes in the given equivalence class.
+- `fn elements(self: &Self, class: Unit) -> ByteClassElements<'_>` — [`Unit`](../../../util/alphabet/index.md), [`ByteClassElements`](../../../util/alphabet/index.md)
+
+- `fn element_ranges(self: &Self, class: Unit) -> ByteClassElementRanges<'_>` — [`Unit`](../../../util/alphabet/index.md), [`ByteClassElementRanges`](../../../util/alphabet/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ByteClasses`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -318,13 +214,14 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default`
 
-- `fn default() -> ByteClasses`
+- `fn default() -> ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
 
 ### `ByteClassIter<'a>`
 
 ```rust
 struct ByteClassIter<'a> {
-    // [REDACTED: Private Fields]
+    classes: &'a ByteClasses,
+    i: usize,
 }
 ```
 
@@ -339,15 +236,9 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -357,45 +248,20 @@ iterator was created from.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](../../../util/alphabet/index.md)
 
 ### `ByteClassRepresentatives<'a>`
 
 ```rust
 struct ByteClassRepresentatives<'a> {
-    // [REDACTED: Private Fields]
+    classes: &'a ByteClasses,
+    cur_byte: usize,
+    end_byte: Option<usize>,
+    last_class: Option<u8>,
 }
 ```
 
@@ -408,15 +274,9 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -426,45 +286,19 @@ iterator was created from.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](../../../util/alphabet/index.md)
 
 ### `ByteClassElements<'a>`
 
 ```rust
 struct ByteClassElements<'a> {
-    // [REDACTED: Private Fields]
+    classes: &'a ByteClasses,
+    class: Unit,
+    byte: usize,
 }
 ```
 
@@ -477,15 +311,9 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -495,37 +323,9 @@ iterator was created from.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](../../../util/alphabet/index.md)
 

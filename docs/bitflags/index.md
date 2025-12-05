@@ -148,7 +148,7 @@ let b = ab - Flags::A;
 let c = !ab;
 ```
 
-See the docs for the [`Flags`](#flags) trait for more details on operators and how they behave.
+See the docs for the [`Flags`](traits/index.md) trait for more details on operators and how they behave.
 
 # Formatting and parsing
 
@@ -248,7 +248,8 @@ The result of `Flags::A ^ Flags::B` is `0b0000_0010`, which doesn't correspond t
 
 ```rust
 struct Flag<B> {
-    // [REDACTED: Private Fields]
+    name: &'static str,
+    value: B,
 }
 ```
 
@@ -257,55 +258,16 @@ A defined flags value that may be named or unnamed.
 #### Implementations
 
 - `const fn new(name: &'static str, value: B) -> Self`
-  Define a flag.
 
 - `const fn name(self: &Self) -> &'static str`
-  Get the name of this flag.
 
 - `const fn value(self: &Self) -> &B`
-  Get the flags value of this flag.
 
 - `const fn is_named(self: &Self) -> bool`
-  Whether the flag is named.
 
 - `const fn is_unnamed(self: &Self) -> bool`
-  Whether the flag is unnamed.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<B: $crate::fmt::Debug>`
 

@@ -92,7 +92,7 @@ notation.
 
 ```rust
 struct Buffer {
-    // [REDACTED: Private Fields]
+    bytes: [core::mem::MaybeUninit<u8>; 24],
 }
 ```
 
@@ -109,59 +109,18 @@ assert_eq!(printed, "1.234");
 #### Implementations
 
 - `fn new() -> Self`
-  This is a cheap operation; you don't need to worry about reusing buffers
 
 - `fn format<F: Float>(self: &mut Self, f: F) -> &str`
-  Print a floating point number into this buffer and return a reference to
 
 - `fn format_finite<F: Float>(self: &mut Self, f: F) -> &str`
-  Print a floating point number into this buffer and return a reference to
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 

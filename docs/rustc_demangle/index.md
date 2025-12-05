@@ -31,7 +31,9 @@ assert_eq!(format!("{:#}", demangle("_ZN3foo17h05af221e174051e9E")), "foo");
 
 ```rust
 struct Demangle<'a> {
-    // [REDACTED: Private Fields]
+    style: Option<DemangleStyle<'a>>,
+    original: &'a str,
+    suffix: &'a str,
 }
 ```
 
@@ -40,49 +42,14 @@ Representation of a demangled symbol name.
 #### Implementations
 
 - `fn as_str(self: &Self) -> &'a str`
-  Returns the underlying string that's being demangled.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Display<'a>`
+##### `impl Debug<'a>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
+##### `impl Display<'a>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -90,7 +57,7 @@ Representation of a demangled symbol name.
 
 ```rust
 struct TryDemangleError {
-    // [REDACTED: Private Fields]
+    _priv: (),
 }
 ```
 
@@ -98,47 +65,9 @@ Error returned from the `try_demangle` function below when demangling fails.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TryDemangleError`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TryDemangleError` — [`TryDemangleError`](../index.md)
 
 ##### `impl Debug`
 

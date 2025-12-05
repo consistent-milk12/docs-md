@@ -40,6 +40,11 @@ pub trait RenderContext {
     /// Whether private items should be included.
     fn include_private(&self) -> bool;
 
+    /// Whether blanket trait implementations should be included.
+    ///
+    /// When `false` (default), impls like `From`, `Into`, `Any`, `Borrow` are filtered.
+    fn include_blanket_impls(&self) -> bool;
+
     /// Get the crate version for display in headers.
     fn crate_version(&self) -> Option<&str>;
 
@@ -77,7 +82,6 @@ pub trait RenderContext {
 ///
 /// This struct is passed to all rendering components and provides:
 /// - Access to the parsed crate data
-/// - Path mapping for "defined in" information
 /// - Impl block lookup for rendering implementations
 /// - Link registry for cross-references
 /// - CLI configuration options
@@ -87,12 +91,6 @@ pub struct GeneratorContext<'a> {
 
     /// The crate name (extracted from root module).
     crate_name: String,
-
-    /// Maps item IDs to their full module paths.
-    ///
-    /// Used for generating "defined in" information.
-    /// For `std::collections::HashMap`, the path would be `["std", "collections", "HashMap"]`.
-    pub path_map: HashMap<Id, Vec<String>>,
 
     /// Maps type IDs to all impl blocks for that type.
     ///
@@ -126,7 +124,6 @@ impl<'a> GeneratorContext<'a> {
             .and_then(|item| item.name.clone())
             .unwrap_or_else(|| "unnamed".to_string());
 
-        let path_map = Self::build_path_map(krate);
         let impl_map = Self::build_impl_map(krate);
         let is_flat = matches!(args.format, CliOutputFormat::Flat);
         let link_registry = LinkRegistry::build(krate, is_flat);
@@ -134,23 +131,10 @@ impl<'a> GeneratorContext<'a> {
         Self {
             krate,
             crate_name,
-            path_map,
             impl_map,
             link_registry,
             args,
         }
-    }
-
-    /// Build a map from item ID to its full module path.
-    ///
-    /// The rustdoc JSON `paths` field contains this information for all
-    /// items that can be linked to. We copy it into a `HashMap` for fast lookup.
-    fn build_path_map(krate: &Crate) -> HashMap<Id, Vec<String>> {
-        krate
-            .paths
-            .iter()
-            .map(|(id, path_info)| (*id, path_info.path.clone()))
-            .collect()
     }
 
     /// Build a map from type ID to all impl blocks for that type.
@@ -253,6 +237,10 @@ impl RenderContext for GeneratorContext<'_> {
 
     fn include_private(&self) -> bool {
         self.args.include_private
+    }
+
+    fn include_blanket_impls(&self) -> bool {
+        self.args.include_blanket_impls
     }
 
     fn crate_version(&self) -> Option<&str> {

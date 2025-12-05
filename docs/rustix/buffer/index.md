@@ -11,7 +11,7 @@ Utilities for functions that return data via buffers.
 ### `SpareCapacity<'a, T>`
 
 ```rust
-struct SpareCapacity<'a, T>();
+struct SpareCapacity<'a, T>(&'a mut alloc::vec::Vec<T>);
 ```
 
 A type that implements [`Buffer`](#buffer) by appending to a `Vec`, up to its
@@ -24,41 +24,15 @@ have some non-empty spare capacity.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Buffer<'a, T>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Sealed<'a, T>`
 
-- `type Error = Infallible`
+- `type Output = usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn parts_mut(self: &mut Self) -> (*mut T, usize)`
 
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn assume_init(self: Self, len: usize) -> <Self as >::Output` — [`Sealed`](../../buffer/private/index.md)
 
 ## Traits
 

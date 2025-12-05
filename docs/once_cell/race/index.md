@@ -31,7 +31,7 @@ architectures versus `Relaxed`.
 
 ```rust
 struct OnceNonZeroUsize {
-    // [REDACTED: Private Fields]
+    inner: atomic::AtomicUsize,
 }
 ```
 
@@ -40,58 +40,22 @@ A thread-safe cell which can be written to only once.
 #### Implementations
 
 - `const fn new() -> Self`
-  Creates a new empty cell.
 
 - `fn get(self: &Self) -> Option<NonZeroUsize>`
-  Gets the underlying value.
 
 - `unsafe fn get_unchecked(self: &Self) -> NonZeroUsize`
-  Get the reference to the underlying value, without checking if the cell
 
 - `fn set(self: &Self, value: NonZeroUsize) -> Result<(), ()>`
-  Sets the contents of this cell to `value`.
 
 - `fn get_or_init<F>(self: &Self, f: F) -> NonZeroUsize`
-  Gets the contents of the cell, initializing it with `f` if the cell was
 
 - `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<NonZeroUsize, E>`
-  Gets the contents of the cell, initializing it with `f` if
+
+- `fn init<E>(self: &Self, f: impl FnOnce() -> Result<NonZeroUsize, E>) -> Result<NonZeroUsize, E>`
+
+- `fn compare_exchange(self: &Self, val: NonZeroUsize) -> Result<usize, usize>`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -99,13 +63,13 @@ A thread-safe cell which can be written to only once.
 
 ##### `impl Default`
 
-- `fn default() -> OnceNonZeroUsize`
+- `fn default() -> OnceNonZeroUsize` — [`OnceNonZeroUsize`](../../race/index.md)
 
 ### `OnceBool`
 
 ```rust
 struct OnceBool {
-    // [REDACTED: Private Fields]
+    inner: OnceNonZeroUsize,
 }
 ```
 
@@ -114,55 +78,20 @@ A thread-safe cell which can be written to only once.
 #### Implementations
 
 - `const fn new() -> Self`
-  Creates a new empty cell.
 
 - `fn get(self: &Self) -> Option<bool>`
-  Gets the underlying value.
 
 - `fn set(self: &Self, value: bool) -> Result<(), ()>`
-  Sets the contents of this cell to `value`.
 
 - `fn get_or_init<F>(self: &Self, f: F) -> bool`
-  Gets the contents of the cell, initializing it with `f` if the cell was
 
 - `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<bool, E>`
-  Gets the contents of the cell, initializing it with `f` if
+
+- `fn from_usize(value: NonZeroUsize) -> bool`
+
+- `fn to_usize(value: bool) -> NonZeroUsize`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -170,13 +99,14 @@ A thread-safe cell which can be written to only once.
 
 ##### `impl Default`
 
-- `fn default() -> OnceBool`
+- `fn default() -> OnceBool` — [`OnceBool`](../../race/index.md)
 
 ### `OnceRef<'a, T>`
 
 ```rust
 struct OnceRef<'a, T> {
-    // [REDACTED: Private Fields]
+    inner: atomic::AtomicPtr<T>,
+    ghost: core::marker::PhantomData<core::cell::UnsafeCell<&'a T>>,
 }
 ```
 
@@ -185,57 +115,22 @@ A thread-safe cell which can be written to only once.
 #### Implementations
 
 - `const fn new() -> Self`
-  Creates a new empty cell.
 
 - `fn get(self: &Self) -> Option<&'a T>`
-  Gets a reference to the underlying value.
 
 - `fn set(self: &Self, value: &'a T) -> Result<(), ()>`
-  Sets the contents of this cell to `value`.
 
 - `fn get_or_init<F>(self: &Self, f: F) -> &'a T`
-  Gets the contents of the cell, initializing it with `f` if the cell was
 
 - `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<&'a T, E>`
-  Gets the contents of the cell, initializing it with `f` if
+
+- `fn init<E>(self: &Self, f: impl FnOnce() -> Result<&'a T, E>) -> Result<&'a T, E>`
+
+- `fn compare_exchange(self: &Self, value: &'a T) -> Result<(), *const T>`
+
+- `fn _dummy()`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Sync<'a, T: Sync>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'a, T>`
 
@@ -245,11 +140,14 @@ A thread-safe cell which can be written to only once.
 
 - `fn default() -> Self`
 
+##### `impl Sync<'a, T: Sync>`
+
 ### `OnceBox<T>`
 
 ```rust
 struct OnceBox<T> {
-    // [REDACTED: Private Fields]
+    inner: super::atomic::AtomicPtr<T>,
+    ghost: core::marker::PhantomData<Option<alloc::boxed::Box<T>>>,
 }
 ```
 
@@ -258,80 +156,24 @@ A thread-safe cell which can be written to only once.
 #### Implementations
 
 - `const fn new() -> Self`
-  Creates a new empty cell.
 
 - `fn with_value(value: Box<T>) -> Self`
-  Creates a new cell with the given value.
 
 - `fn get(self: &Self) -> Option<&T>`
-  Gets a reference to the underlying value.
 
 - `fn set(self: &Self, value: Box<T>) -> Result<(), Box<T>>`
-  Sets the contents of this cell to `value`.
 
 - `fn get_or_init<F>(self: &Self, f: F) -> &T`
-  Gets the contents of the cell, initializing it with `f` if the cell was
 
 - `fn get_or_try_init<F, E>(self: &Self, f: F) -> Result<&T, E>`
-  Gets the contents of the cell, initializing it with `f` if
+
+- `fn init<E>(self: &Self, f: impl FnOnce() -> Result<Box<T>, E>) -> Result<&T, E>`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone<T: Clone>`
 
 - `fn clone(self: &Self) -> Self`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Drop<T>`
-
-- `fn drop(self: &mut Self)`
-
-##### `impl Sync<T: Sync + Send>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<T>`
 
@@ -340,4 +182,10 @@ A thread-safe cell which can be written to only once.
 ##### `impl Default<T>`
 
 - `fn default() -> Self`
+
+##### `impl Drop<T>`
+
+- `fn drop(self: &mut Self)`
+
+##### `impl Sync<T: Sync + Send>`
 

@@ -58,7 +58,7 @@ assert_eq!(None, it.next());
 It may be possible for the overhead of constructing a substring searcher to be
 measurable in some workloads. In cases where the same needle is used to search
 many haystacks, it is possible to do construction once and thus to avoid it for
-subsequent searches. This can be done with a [`Finder`](../arch/all/packedpair/index.md) (or a [`FinderRev`](#finderrev) for
+subsequent searches. This can be done with a [`Finder`](../arch/all/rabinkarp/index.md) (or a [`FinderRev`](../arch/all/twoway/index.md) for
 reverse searches).
 
 ```rust
@@ -76,7 +76,10 @@ assert_eq!(None, finder.find(b"quux baz bar"));
 
 ```rust
 struct FindIter<'h, 'n> {
-    // [REDACTED: Private Fields]
+    haystack: &'h [u8],
+    prestate: crate::memmem::searcher::PrefilterState,
+    finder: Finder<'n>,
+    pos: usize,
 }
 ```
 
@@ -89,20 +92,19 @@ needle.
 
 #### Implementations
 
-- `fn into_owned(self: Self) -> FindIter<'h, 'static>`
-  Convert this iterator into its owned variant, such that it no longer
+- `fn new(haystack: &'h [u8], finder: Finder<'n>) -> FindIter<'h, 'n>` — [`Finder`](../../memmem/index.md), [`FindIter`](../../memmem/index.md)
+
+- `fn into_owned(self: Self) -> FindIter<'h, 'static>` — [`FindIter`](../../memmem/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'h, 'n>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> FindIter<'h, 'n>` — [`FindIter`](../../memmem/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'h, 'n>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -112,26 +114,6 @@ needle.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'h, 'n>`
-
-- `fn clone(self: &Self) -> FindIter<'h, 'n>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Iterator<'h, 'n>`
 
 - `type Item = usize`
@@ -140,35 +122,13 @@ needle.
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'h, 'n>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `FindRevIter<'h, 'n>`
 
 ```rust
 struct FindRevIter<'h, 'n> {
-    // [REDACTED: Private Fields]
+    haystack: &'h [u8],
+    finder: FinderRev<'n>,
+    pos: Option<usize>,
 }
 ```
 
@@ -179,22 +139,28 @@ Matches are reported by the byte offset at which they begin.
 `'h` is the lifetime of the haystack while `'n` is the lifetime of the
 needle.
 
+#### Fields
+
+- **`pos`**: `Option<usize>`
+
+  When searching with an empty needle, this gets set to `None` after
+  we've yielded the last element at `0`.
+
 #### Implementations
 
-- `fn into_owned(self: Self) -> FindRevIter<'h, 'static>`
-  Convert this iterator into its owned variant, such that it no longer
+- `fn new(haystack: &'h [u8], finder: FinderRev<'n>) -> FindRevIter<'h, 'n>` — [`FinderRev`](../../memmem/index.md), [`FindRevIter`](../../memmem/index.md)
+
+- `fn into_owned(self: Self) -> FindRevIter<'h, 'static>` — [`FindRevIter`](../../memmem/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'h, 'n>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> FindRevIter<'h, 'n>` — [`FindRevIter`](../../memmem/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'h, 'n>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -204,61 +170,18 @@ needle.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'h, 'n>`
-
-- `fn clone(self: &Self) -> FindRevIter<'h, 'n>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Iterator<'h, 'n>`
 
 - `type Item = usize`
 
 - `fn next(self: &mut Self) -> Option<usize>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'h, 'n>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `Finder<'n>`
 
 ```rust
 struct Finder<'n> {
-    // [REDACTED: Private Fields]
+    needle: crate::cow::CowBytes<'n>,
+    searcher: crate::memmem::searcher::Searcher,
 }
 ```
 
@@ -278,75 +201,23 @@ the lifetime of its needle.
 
 #### Implementations
 
-- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> Finder<'n>`
-  Create a new finder for the given needle.
+- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> Finder<'n>` — [`Finder`](../../memmem/index.md)
 
 - `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Returns the index of the first occurrence of this needle in the given
 
-- `fn find_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindIter<'h, 'a>`
-  Returns an iterator over all occurrences of a substring in a haystack.
+- `fn find_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindIter<'h, 'a>` — [`FindIter`](../../memmem/index.md)
 
-- `fn into_owned(self: Self) -> Finder<'static>`
-  Convert this finder into its owned variant, such that it no longer
+- `fn into_owned(self: Self) -> Finder<'static>` — [`Finder`](../../memmem/index.md)
 
-- `fn as_ref(self: &Self) -> Finder<'_>`
-  Convert this finder into its borrowed variant.
+- `fn as_ref(self: &Self) -> Finder<'_>` — [`Finder`](../../memmem/index.md)
 
 - `fn needle(self: &Self) -> &[u8]`
-  Returns the needle that this finder searches for.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'n>`
 
-- `fn clone(self: &Self) -> Finder<'n>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Finder<'n>` — [`Finder`](../../memmem/index.md)
 
 ##### `impl Debug<'n>`
 
@@ -356,7 +227,8 @@ the lifetime of its needle.
 
 ```rust
 struct FinderRev<'n> {
-    // [REDACTED: Private Fields]
+    needle: crate::cow::CowBytes<'n>,
+    searcher: crate::memmem::searcher::SearcherRev,
 }
 ```
 
@@ -376,75 +248,23 @@ the lifetime of its needle.
 
 #### Implementations
 
-- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> FinderRev<'n>`
-  Create a new reverse finder for the given needle.
+- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](../../memmem/index.md)
 
 - `fn rfind<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<usize>`
-  Returns the index of the last occurrence of this needle in the given
 
-- `fn rfind_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindRevIter<'h, 'a>`
-  Returns a reverse iterator over all occurrences of a substring in a
+- `fn rfind_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindRevIter<'h, 'a>` — [`FindRevIter`](../../memmem/index.md)
 
-- `fn into_owned(self: Self) -> FinderRev<'static>`
-  Convert this finder into its owned variant, such that it no longer
+- `fn into_owned(self: Self) -> FinderRev<'static>` — [`FinderRev`](../../memmem/index.md)
 
-- `fn as_ref(self: &Self) -> FinderRev<'_>`
-  Convert this finder into its borrowed variant.
+- `fn as_ref(self: &Self) -> FinderRev<'_>` — [`FinderRev`](../../memmem/index.md)
 
 - `fn needle(self: &Self) -> &[u8]`
-  Returns the needle that this finder searches for.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'n>`
 
-- `fn clone(self: &Self) -> FinderRev<'n>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> FinderRev<'n>` — [`FinderRev`](../../memmem/index.md)
 
 ##### `impl Debug<'n>`
 
@@ -454,7 +274,7 @@ the lifetime of its needle.
 
 ```rust
 struct FinderBuilder {
-    // [REDACTED: Private Fields]
+    prefilter: Prefilter,
 }
 ```
 
@@ -466,72 +286,21 @@ heuristic prefilters used to speed up certain searches.
 
 #### Implementations
 
-- `fn new() -> FinderBuilder`
-  Create a new finder builder with default settings.
+- `fn new() -> FinderBuilder` — [`FinderBuilder`](../../memmem/index.md)
 
-- `fn build_forward<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> Finder<'n>`
-  Build a forward finder using the given needle from the current
+- `fn build_forward<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> Finder<'n>` — [`Finder`](../../memmem/index.md)
 
-- `fn build_forward_with_ranker<'n, R: HeuristicFrequencyRank, B: ?Sized + AsRef<[u8]>>(self: &Self, ranker: R, needle: &'n B) -> Finder<'n>`
-  Build a forward finder using the given needle and a custom heuristic for
+- `fn build_forward_with_ranker<'n, R: HeuristicFrequencyRank, B: ?Sized + AsRef<[u8]>>(self: &Self, ranker: R, needle: &'n B) -> Finder<'n>` — [`Finder`](../../memmem/index.md)
 
-- `fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> FinderRev<'n>`
-  Build a reverse finder using the given needle from the current
+- `fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](../../memmem/index.md)
 
-- `fn prefilter(self: &mut Self, prefilter: Prefilter) -> &mut FinderBuilder`
-  Configure the prefilter setting for the finder.
+- `fn prefilter(self: &mut Self, prefilter: Prefilter) -> &mut FinderBuilder` — [`PrefilterConfig`](../../memmem/searcher/index.md), [`FinderBuilder`](../../memmem/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FinderBuilder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> FinderBuilder` — [`FinderBuilder`](../../memmem/index.md)
 
 ##### `impl Debug`
 
@@ -539,7 +308,7 @@ heuristic prefilters used to speed up certain searches.
 
 ##### `impl Default`
 
-- `fn default() -> FinderBuilder`
+- `fn default() -> FinderBuilder` — [`FinderBuilder`](../../memmem/index.md)
 
 ## Enums
 
@@ -590,59 +359,17 @@ useful.
   it is used, then heuristics will be used to dynamically disable the
   prefilter if it is believed to not be carrying its weight.
 
+#### Implementations
+
+- `fn is_none(self: &Self) -> bool`
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PrefilterConfig`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> PrefilterConfig` — [`PrefilterConfig`](../../memmem/searcher/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -650,7 +377,7 @@ useful.
 
 ##### `impl Default`
 
-- `fn default() -> PrefilterConfig`
+- `fn default() -> PrefilterConfig` — [`PrefilterConfig`](../../memmem/searcher/index.md)
 
 ## Functions
 
@@ -729,7 +456,7 @@ fn find(haystack: &[u8], needle: &[u8]) -> Option<usize>
 Returns the index of the first occurrence of the given needle.
 
 Note that if you're are searching for the same needle in many different
-small haystacks, it may be faster to initialize a [`Finder`](../arch/all/packedpair/index.md) once,
+small haystacks, it may be faster to initialize a [`Finder`](../arch/all/rabinkarp/index.md) once,
 and reuse it for each search.
 
 # Complexity
@@ -763,7 +490,7 @@ fn rfind(haystack: &[u8], needle: &[u8]) -> Option<usize>
 Returns the index of the last occurrence of the given needle.
 
 Note that if you're are searching for the same needle in many different
-small haystacks, it may be faster to initialize a [`FinderRev`](#finderrev) once,
+small haystacks, it may be faster to initialize a [`FinderRev`](../arch/all/twoway/index.md) once,
 and reuse it for each search.
 
 # Complexity

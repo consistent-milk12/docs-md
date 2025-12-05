@@ -5,24 +5,9 @@ DEFLATE/zlib encoder/decoder.
 Used a rust back-end for the
 [flate2](https://github.com/alexcrichton/flate2-rs) crate.
 
-# Usage
-## Simple compression/decompression:
-``` rust
-
-use miniz_oxide::inflate::decompress_to_vec;
-use miniz_oxide::deflate::compress_to_vec;
-
-fn roundtrip(data: &[u8]) {
-    let compressed = compress_to_vec(data, 6);
-    let decompressed = decompress_to_vec(compressed.as_slice()).expect("Failed to decompress!");
-  let _ = decompressed;
-}
-
-roundtrip(b"Test_data test data lalalal blabla");
 
 ## Modules
 
-- [`deflate`](deflate/index.md) - This module contains functionality for compression.
 - [`inflate`](inflate/index.md) - This module contains functionality for decompression.
 
 ## Structs
@@ -55,41 +40,19 @@ A structure containing the result of a call to the inflate or deflate streaming 
 
 #### Implementations
 
-- `const fn error(error: MZError) -> StreamResult`
+- `const fn error(error: MZError) -> StreamResult` — [`MZError`](../index.md), [`StreamResult`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StreamResult`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> StreamResult` — [`StreamResult`](../index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -99,33 +62,9 @@ A structure containing the result of a call to the inflate or deflate streaming 
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &StreamResult) -> bool`
+- `fn eq(self: &Self, other: &StreamResult) -> bool` — [`StreamResult`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Enums
 
@@ -180,42 +119,19 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 
 #### Implementations
 
-- `fn new(flush: i32) -> Result<Self, MZError>`
-  Create an MZFlush value from an integer value.
+- `fn new(flush: i32) -> Result<Self, MZError>` — [`MZError`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> MZFlush`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> MZFlush` — [`MZFlush`](../index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -225,33 +141,9 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &MZFlush) -> bool`
+- `fn eq(self: &Self, other: &MZFlush) -> bool` — [`MZFlush`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `MZStatus`
 
@@ -291,37 +183,15 @@ These are emitted as the [`Ok`](#ok) side of a [`MZResult`](#mzresult) in the [`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> MZStatus`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> MZStatus` — [`MZStatus`](../index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -331,33 +201,9 @@ These are emitted as the [`Ok`](#ok) side of a [`MZResult`](#mzresult) in the [`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &MZStatus) -> bool`
+- `fn eq(self: &Self, other: &MZStatus) -> bool` — [`MZStatus`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `MZError`
 
@@ -423,37 +269,15 @@ These are emitted as the [`Err`](#err) side of a [`MZResult`](#mzresult) in the 
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> MZError`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> MZError` — [`MZError`](../index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -463,33 +287,9 @@ These are emitted as the [`Err`](#err) side of a [`MZResult`](#mzresult) in the 
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &MZError) -> bool`
+- `fn eq(self: &Self, other: &MZError) -> bool` — [`MZError`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DataFormat`
 
@@ -520,43 +320,21 @@ How compressed data is wrapped.
 
 #### Implementations
 
-- `fn from_window_bits(window_bits: i32) -> DataFormat`
+- `fn from_window_bits(window_bits: i32) -> DataFormat` — [`DataFormat`](../index.md)
 
 - `fn to_window_bits(self: Self) -> i32`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DataFormat`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DataFormat` — [`DataFormat`](../index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -566,33 +344,9 @@ How compressed data is wrapped.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &DataFormat) -> bool`
+- `fn eq(self: &Self, other: &DataFormat) -> bool` — [`DataFormat`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Type Aliases
 

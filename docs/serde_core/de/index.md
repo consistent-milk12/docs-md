@@ -236,103 +236,11 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> IgnoredAny`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](../../de/ignored_any/index.md)
 
 ##### `impl Copy`
-
-##### `impl Expected<'de, T>`
-
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &IgnoredAny) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Visitor<'de>`
-
-- `type Value = IgnoredAny`
-
-- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-- `fn visit_bool<E>(self: Self, x: bool) -> Result<<Self as >::Value, E>`
-
-- `fn visit_i64<E>(self: Self, x: i64) -> Result<<Self as >::Value, E>`
-
-- `fn visit_i128<E>(self: Self, x: i128) -> Result<<Self as >::Value, E>`
-
-- `fn visit_u64<E>(self: Self, x: u64) -> Result<<Self as >::Value, E>`
-
-- `fn visit_u128<E>(self: Self, x: u128) -> Result<<Self as >::Value, E>`
-
-- `fn visit_f64<E>(self: Self, x: f64) -> Result<<Self as >::Value, E>`
-
-- `fn visit_str<E>(self: Self, s: &str) -> Result<<Self as >::Value, E>`
-
-- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>`
-
-- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
-
-- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>`
-
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>`
-
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>`
-
-- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>`
-
-- `fn visit_bytes<E>(self: Self, bytes: &[u8]) -> Result<<Self as >::Value, E>`
-
-- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>`
 
 ##### `impl Debug`
 
@@ -340,13 +248,59 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 ##### `impl Default`
 
-- `fn default() -> IgnoredAny`
+- `fn default() -> IgnoredAny` — [`IgnoredAny`](../../de/ignored_any/index.md)
 
 ##### `impl Deserialize<'de>`
 
-- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>`
+- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](../../de/ignored_any/index.md), [`Deserializer`](../../de/index.md)
 
 ##### `impl DeserializeOwned<T>`
+
+##### `impl Expected<'de, T>`
+
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](../../de/ignored_any/index.md)
+
+##### `impl StructuralPartialEq`
+
+##### `impl Visitor<'de>`
+
+- `type Value = IgnoredAny`
+
+- `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+- `fn visit_bool<E>(self: Self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_i64<E>(self: Self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_i128<E>(self: Self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_u64<E>(self: Self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_u128<E>(self: Self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_f64<E>(self: Self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_str<E>(self: Self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_bytes<E>(self: Self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+
+- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../de/index.md)
 
 ## Enums
 
@@ -487,37 +441,15 @@ where
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a>`
 
-- `fn clone(self: &Self) -> Unexpected<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Unexpected<'a>` — [`Unexpected`](../../de/index.md)
 
 ##### `impl Copy<'a>`
+
+##### `impl Debug<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display<'a>`
 
@@ -525,37 +457,13 @@ where
 
 ##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &Unexpected<'a>) -> bool`
+- `fn eq(self: &Self, other: &Unexpected<'a>) -> bool` — [`Unexpected`](../../de/index.md)
 
 ##### `impl StructuralPartialEq<'a>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 
@@ -1588,6 +1496,4 @@ impl FromStr for Setting {
 - `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
 
   Convert this value into a deserializer.
-
-## Functions
 

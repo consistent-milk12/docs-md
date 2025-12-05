@@ -26,7 +26,8 @@ beefier algorithm (like Two-Way) even starts.
 
 ```rust
 struct Finder {
-    // [REDACTED: Private Fields]
+    hash: Hash,
+    hash_2pow: u32,
 }
 ```
 
@@ -41,68 +42,32 @@ more precise control over where and how many times a needle is stored.
 For example, in cases where Rabin-Karp is just one of several possible
 substring search algorithms.
 
+#### Fields
+
+- **`hash`**: `Hash`
+
+  The actual hash.
+
+- **`hash_2pow`**: `u32`
+
+  The factor needed to multiply a byte by in order to subtract it from
+  the hash. It is defined to be 2^(n-1) (using wrapping exponentiation),
+  where n is the length of the needle. This is how we "remove" a byte
+  from the hash once the hash window rolls past it.
+
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Finder`
-  Create a new Rabin-Karp forward searcher for the given `needle`.
+- `fn new(needle: &[u8]) -> Finder` — [`Finder`](../../../../arch/all/rabinkarp/index.md)
 
 - `fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
-  Return the first occurrence of the `needle` in the `haystack`
 
 - `unsafe fn find_raw(self: &Self, hstart: *const u8, hend: *const u8, nstart: *const u8, nend: *const u8) -> Option<*const u8>`
-  Like `find`, but accepts and returns raw pointers.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Finder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Finder` — [`Finder`](../../../../arch/all/rabinkarp/index.md)
 
 ##### `impl Debug`
 
@@ -111,73 +76,24 @@ substring search algorithms.
 ### `FinderRev`
 
 ```rust
-struct FinderRev();
+struct FinderRev(Finder);
 ```
 
 A reverse substring searcher using the Rabin-Karp algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> FinderRev`
-  Create a new Rabin-Karp reverse searcher for the given `needle`.
+- `fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](../../../../arch/all/rabinkarp/index.md)
 
 - `fn rfind(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
-  Return the last occurrence of the `needle` in the `haystack`
 
 - `unsafe fn rfind_raw(self: &Self, hstart: *const u8, hend: *const u8, nstart: *const u8, nend: *const u8) -> Option<*const u8>`
-  Like `rfind`, but accepts and returns raw pointers.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FinderRev`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> FinderRev` — [`FinderRev`](../../../../arch/all/rabinkarp/index.md)
 
 ##### `impl Debug`
 

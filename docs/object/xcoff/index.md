@@ -61,37 +61,15 @@ The header at the start of every 32-bit XCOFF file.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FileHeader32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FileHeader32` — [`FileHeader32`](../../xcoff/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FileHeader`
 
@@ -117,7 +95,7 @@ The header at the start of every 32-bit XCOFF file.
 
 - `fn f_timdat(self: &Self) -> u32`
 
-- `fn f_symptr(self: &Self) -> <Self as >::Word`
+- `fn f_symptr(self: &Self) -> <Self as >::Word` — [`FileHeader`](../../read/xcoff/file/index.md)
 
 - `fn f_nsyms(self: &Self) -> u32`
 
@@ -126,30 +104,6 @@ The header at the start of every 32-bit XCOFF file.
 - `fn f_flags(self: &Self) -> u16`
 
 ##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `FileHeader64`
 
@@ -199,37 +153,15 @@ The header at the start of every 64-bit XCOFF file.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FileHeader64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FileHeader64` — [`FileHeader64`](../../xcoff/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FileHeader`
 
@@ -255,7 +187,7 @@ The header at the start of every 64-bit XCOFF file.
 
 - `fn f_timdat(self: &Self) -> u32`
 
-- `fn f_symptr(self: &Self) -> <Self as >::Word`
+- `fn f_symptr(self: &Self) -> <Self as >::Word` — [`FileHeader`](../../read/xcoff/file/index.md)
 
 - `fn f_nsyms(self: &Self) -> u32`
 
@@ -264,30 +196,6 @@ The header at the start of every 64-bit XCOFF file.
 - `fn f_flags(self: &Self) -> u16`
 
 ##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `AuxHeader32`
 
@@ -448,20 +356,6 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
 ##### `impl AuxHeader`
 
 - `type Word = u32`
@@ -470,19 +364,19 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_vstamp(self: &Self) -> u16`
 
-- `fn o_tsize(self: &Self) -> <Self as >::Word`
+- `fn o_tsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_dsize(self: &Self) -> <Self as >::Word`
+- `fn o_dsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_bsize(self: &Self) -> <Self as >::Word`
+- `fn o_bsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_entry(self: &Self) -> <Self as >::Word`
+- `fn o_entry(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_text_start(self: &Self) -> <Self as >::Word`
+- `fn o_text_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_data_start(self: &Self) -> <Self as >::Word`
+- `fn o_data_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_toc(self: &Self) -> <Self as >::Word`
+- `fn o_toc(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
 - `fn o_snentry(self: &Self) -> u16`
 
@@ -506,9 +400,9 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_cputype(self: &Self) -> u8`
 
-- `fn o_maxstack(self: &Self) -> <Self as >::Word`
+- `fn o_maxstack(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_maxdata(self: &Self) -> <Self as >::Word`
+- `fn o_maxdata(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
 - `fn o_debugger(self: &Self) -> u32`
 
@@ -526,49 +420,17 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_x64flags(self: &Self) -> Option<u16>`
 
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> AuxHeader32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> AuxHeader32` — [`AuxHeader32`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `AuxHeader64`
 
@@ -744,20 +606,6 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
 ##### `impl AuxHeader`
 
 - `type Word = u64`
@@ -766,19 +614,19 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_vstamp(self: &Self) -> u16`
 
-- `fn o_tsize(self: &Self) -> <Self as >::Word`
+- `fn o_tsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_dsize(self: &Self) -> <Self as >::Word`
+- `fn o_dsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_bsize(self: &Self) -> <Self as >::Word`
+- `fn o_bsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_entry(self: &Self) -> <Self as >::Word`
+- `fn o_entry(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_text_start(self: &Self) -> <Self as >::Word`
+- `fn o_text_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_data_start(self: &Self) -> <Self as >::Word`
+- `fn o_data_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_toc(self: &Self) -> <Self as >::Word`
+- `fn o_toc(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
 - `fn o_snentry(self: &Self) -> u16`
 
@@ -802,9 +650,9 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_cputype(self: &Self) -> u8`
 
-- `fn o_maxstack(self: &Self) -> <Self as >::Word`
+- `fn o_maxstack(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
-- `fn o_maxdata(self: &Self) -> <Self as >::Word`
+- `fn o_maxdata(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
 
 - `fn o_debugger(self: &Self) -> u32`
 
@@ -822,49 +670,17 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_x64flags(self: &Self) -> Option<u16>`
 
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> AuxHeader64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> AuxHeader64` — [`AuxHeader64`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `SectionHeader32`
 
@@ -929,63 +745,17 @@ Section header.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SectionHeader32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SectionHeader32` — [`SectionHeader32`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ##### `impl SectionHeader`
 
@@ -999,26 +769,25 @@ Section header.
 
 - `fn s_name(self: &Self) -> &[u8; 8]`
 
-- `fn s_paddr(self: &Self) -> <Self as >::Word`
+- `fn s_paddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_vaddr(self: &Self) -> <Self as >::Word`
+- `fn s_vaddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_size(self: &Self) -> <Self as >::Word`
+- `fn s_size(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_scnptr(self: &Self) -> <Self as >::Word`
+- `fn s_scnptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_relptr(self: &Self) -> <Self as >::Word`
+- `fn s_relptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_lnnoptr(self: &Self) -> <Self as >::Word`
+- `fn s_lnnoptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord`
+- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord`
+- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
 - `fn s_flags(self: &Self) -> u32`
 
-- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
-  Read the relocations in a XCOFF32 file.
+- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../../read/index.md), [`SectionHeader`](../../read/xcoff/section/index.md)
 
 ### `SectionHeader64`
 
@@ -1088,63 +857,17 @@ Section header.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SectionHeader64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SectionHeader64` — [`SectionHeader64`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ##### `impl SectionHeader`
 
@@ -1158,26 +881,25 @@ Section header.
 
 - `fn s_name(self: &Self) -> &[u8; 8]`
 
-- `fn s_paddr(self: &Self) -> <Self as >::Word`
+- `fn s_paddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_vaddr(self: &Self) -> <Self as >::Word`
+- `fn s_vaddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_size(self: &Self) -> <Self as >::Word`
+- `fn s_size(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_scnptr(self: &Self) -> <Self as >::Word`
+- `fn s_scnptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_relptr(self: &Self) -> <Self as >::Word`
+- `fn s_relptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_lnnoptr(self: &Self) -> <Self as >::Word`
+- `fn s_lnnoptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord`
+- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
-- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord`
+- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../../read/xcoff/section/index.md)
 
 - `fn s_flags(self: &Self) -> u32`
 
-- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>`
-  Read the relocations in a XCOFF64 file.
+- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../../read/index.md), [`SectionHeader`](../../read/xcoff/section/index.md)
 
 ### `SymbolBytes`
 
@@ -1187,63 +909,17 @@ struct SymbolBytes([u8; 18]);
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SymbolBytes`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SymbolBytes` — [`SymbolBytes`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `Symbol32`
 
@@ -1290,37 +966,15 @@ Symbol table entry.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Symbol32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Symbol32` — [`Symbol32`](../../xcoff/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod`
 
@@ -1328,7 +982,7 @@ Symbol table entry.
 
 - `type Word = u32`
 
-- `fn n_value(self: &Self) -> <Self as >::Word`
+- `fn n_value(self: &Self) -> <Self as >::Word` — [`Symbol`](../../read/xcoff/symbol/index.md)
 
 - `fn n_scnum(self: &Self) -> i16`
 
@@ -1340,32 +994,7 @@ Symbol table entry.
 
 - `fn name_offset(self: &Self) -> Option<u32>`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
-  Parse the symbol name for XCOFF32.
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
 
 ### `Symbol64`
 
@@ -1410,37 +1039,15 @@ Symbol table entry.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Symbol64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Symbol64` — [`Symbol64`](../../xcoff/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod`
 
@@ -1448,7 +1055,7 @@ Symbol table entry.
 
 - `type Word = u64`
 
-- `fn n_value(self: &Self) -> <Self as >::Word`
+- `fn n_value(self: &Self) -> <Self as >::Word` — [`Symbol`](../../read/xcoff/symbol/index.md)
 
 - `fn n_scnum(self: &Self) -> i16`
 
@@ -1460,32 +1067,7 @@ Symbol table entry.
 
 - `fn name_offset(self: &Self) -> Option<u32>`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
-  Parse the symbol name for XCOFF64.
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
 
 ### `FileAux32`
 
@@ -1522,37 +1104,15 @@ File Auxiliary Entry for C_FILE Symbols.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FileAux32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FileAux32` — [`FileAux32`](../../xcoff/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FileAux`
 
@@ -1563,30 +1123,6 @@ File Auxiliary Entry for C_FILE Symbols.
 - `fn x_auxtype(self: &Self) -> Option<u8>`
 
 ##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `FileAux64`
 
@@ -1628,37 +1164,15 @@ File Auxiliary Entry for C_FILE Symbols.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FileAux64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FileAux64` — [`FileAux64`](../../xcoff/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FileAux`
 
@@ -1669,30 +1183,6 @@ File Auxiliary Entry for C_FILE Symbols.
 - `fn x_auxtype(self: &Self) -> Option<u8>`
 
 ##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `CsectAux32`
 
@@ -1742,35 +1232,9 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> CsectAux32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CsectAux32` — [`CsectAux32`](../../xcoff/index.md)
 
 ##### `impl Copy`
 
@@ -1792,31 +1256,11 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 - `fn x_auxtype(self: &Self) -> Option<u8>`
 
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `CsectAux64`
 
@@ -1871,35 +1315,9 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> CsectAux64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CsectAux64` — [`CsectAux64`](../../xcoff/index.md)
 
 ##### `impl Copy`
 
@@ -1921,31 +1339,11 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 - `fn x_auxtype(self: &Self) -> Option<u8>`
 
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `FunAux32`
 
@@ -1985,63 +1383,17 @@ Function auxiliary entry.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FunAux32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FunAux32` — [`FunAux32`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `FunAux64`
 
@@ -2081,63 +1433,17 @@ Function auxiliary entry.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FunAux64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FunAux64` — [`FunAux64`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `ExpAux`
 
@@ -2177,63 +1483,17 @@ Exception auxiliary entry. (XCOFF64 only)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ExpAux`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ExpAux` — [`ExpAux`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `BlockAux32`
 
@@ -2268,63 +1528,17 @@ Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BlockAux32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> BlockAux32` — [`BlockAux32`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `BlockAux64`
 
@@ -2354,63 +1568,17 @@ Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BlockAux64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> BlockAux64` — [`BlockAux64`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `StatAux`
 
@@ -2445,63 +1613,17 @@ Section auxiliary entry for the C_STAT Symbol. (XCOFF32 Only)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StatAux`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> StatAux` — [`StatAux`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `DwarfAux32`
 
@@ -2536,63 +1658,17 @@ Section auxiliary entry Format for C_DWARF symbols.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwarfAux32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwarfAux32` — [`DwarfAux32`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `DwarfAux64`
 
@@ -2627,63 +1703,17 @@ Section auxiliary entry Format for C_DWARF symbols.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DwarfAux64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DwarfAux64` — [`DwarfAux64`](../../xcoff/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `Rel32`
 
@@ -2718,37 +1748,15 @@ Relocation table entry
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Rel32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Rel32` — [`Rel32`](../../xcoff/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod`
 
@@ -2756,37 +1764,13 @@ Relocation table entry
 
 - `type Word = u32`
 
-- `fn r_vaddr(self: &Self) -> <Self as >::Word`
+- `fn r_vaddr(self: &Self) -> <Self as >::Word` — [`Rel`](../../read/xcoff/relocation/index.md)
 
 - `fn r_symndx(self: &Self) -> u32`
 
 - `fn r_rsize(self: &Self) -> u8`
 
 - `fn r_rtype(self: &Self) -> u8`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Rel64`
 
@@ -2821,37 +1805,15 @@ Relocation table entry
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Rel64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Rel64` — [`Rel64`](../../xcoff/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod`
 
@@ -2859,37 +1821,13 @@ Relocation table entry
 
 - `type Word = u64`
 
-- `fn r_vaddr(self: &Self) -> <Self as >::Word`
+- `fn r_vaddr(self: &Self) -> <Self as >::Word` — [`Rel`](../../read/xcoff/relocation/index.md)
 
 - `fn r_symndx(self: &Self) -> u32`
 
 - `fn r_rsize(self: &Self) -> u8`
 
 - `fn r_rtype(self: &Self) -> u8`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Constants
 

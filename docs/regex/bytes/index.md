@@ -6,7 +6,7 @@
 
 Search for regex matches in `&[u8]` haystacks.
 
-This module provides a nearly identical API via [`Regex`](../index.md) to the one found in
+This module provides a nearly identical API via [`Regex`](../regex/string/index.md) to the one found in
 the top-level of this crate. There are two important differences:
 
 1. Matching is done on `&[u8]` instead of `&str`. Additionally, `Vec<u8>`

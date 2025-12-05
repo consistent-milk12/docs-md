@@ -136,6 +136,14 @@ pub struct Args {
     /// to also include `pub(crate)`, `pub(super)`, and private items.
     #[arg(long, default_value_t = false)]
     pub include_private: bool,
+
+    /// Include blanket trait implementations in the output.
+    ///
+    /// By default, blanket impls like `From`, `Into`, `TryFrom`, `TryInto`,
+    /// `Any`, `Borrow`, `BorrowMut`, and `ToOwned` are filtered out to reduce
+    /// noise. Enable this to include them in the documentation.
+    #[arg(long, default_value_t = false)]
+    pub include_blanket_impls: bool,
 }
 
 /// CLI-compatible output format enum (for clap `ValueEnum` derive).

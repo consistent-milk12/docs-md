@@ -68,7 +68,15 @@ seen as a sequence of instructions for how to match a regex.
 
 ```rust
 struct Builder {
-    // [REDACTED: Private Fields]
+    pattern_id: Option<crate::util::primitives::PatternID>,
+    states: alloc::vec::Vec<State>,
+    start_pattern: alloc::vec::Vec<crate::util::primitives::StateID>,
+    captures: alloc::vec::Vec<alloc::vec::Vec<Option<alloc::sync::Arc<str>>>>,
+    memory_states: usize,
+    utf8: bool,
+    reverse: bool,
+    look_matcher: crate::util::look::LookMatcher,
+    size_limit: Option<usize>,
 }
 ```
 
@@ -214,140 +222,134 @@ assert_eq!(expected, caps.get_match());
 Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
+#### Fields
+
+- **`pattern_id`**: `Option<crate::util::primitives::PatternID>`
+
+  The ID of the pattern that we're currently building.
+  
+  Callers are required to set (and unset) this by calling
+  {start,finish}_pattern. Otherwise, most methods will panic.
+
+- **`states`**: `alloc::vec::Vec<State>`
+
+  A sequence of intermediate NFA states. Once a state is added to this
+  sequence, it is assigned a state ID equivalent to its index. Once a
+  state is added, it is still expected to be mutated, e.g., to set its
+  transition to a state that didn't exist at the time it was added.
+
+- **`start_pattern`**: `alloc::vec::Vec<crate::util::primitives::StateID>`
+
+  The starting states for each individual pattern. Starting at any
+  of these states will result in only an anchored search for the
+  corresponding pattern. The vec is indexed by pattern ID. When the NFA
+  contains a single regex, then `start_pattern[0]` and `start_anchored`
+  are always equivalent.
+
+- **`captures`**: `alloc::vec::Vec<alloc::vec::Vec<Option<alloc::sync::Arc<str>>>>`
+
+  A map from pattern ID to capture group index to name. (If no name
+  exists, then a None entry is present. Thus, all capturing groups are
+  present in this mapping.)
+  
+  The outer vec is indexed by pattern ID, while the inner vec is indexed
+  by capture index offset for the corresponding pattern.
+  
+  The first capture group for each pattern is always unnamed and is thus
+  always None.
+
+- **`memory_states`**: `usize`
+
+  The combined memory used by each of the 'State's in 'states'. This
+  only includes heap usage by each state, and not the size of the state
+  itself. In other words, this tracks heap memory used that isn't
+  captured via `size_of::<State>() * states.len()`.
+
+- **`utf8`**: `bool`
+
+  Whether this NFA only matches UTF-8 and whether regex engines using
+  this NFA for searching should report empty matches that split a
+  codepoint.
+
+- **`reverse`**: `bool`
+
+  Whether this NFA should be matched in reverse or not.
+
+- **`look_matcher`**: `crate::util::look::LookMatcher`
+
+  The matcher to use for look-around assertions.
+
+- **`size_limit`**: `Option<usize>`
+
+  A size limit to respect when building an NFA. If the total heap memory
+  of the intermediate NFA states exceeds (or would exceed) this amount,
+  then an error is returned.
+
 #### Implementations
 
-- `fn new() -> Builder`
-  Create a new builder for hand-assembling NFAs.
+- `fn new() -> Builder` — [`Builder`](../../../nfa/thompson/builder/index.md)
 
 - `fn clear(self: &mut Self)`
-  Clear this builder.
 
-- `fn build(self: &Self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>`
-  Assemble a [`NFA`] from the states added so far.
+- `fn build(self: &Self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn start_pattern(self: &mut Self) -> Result<PatternID, BuildError>`
-  Start the assembly of a pattern in this NFA.
+- `fn start_pattern(self: &mut Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn finish_pattern(self: &mut Self, start_id: StateID) -> Result<PatternID, BuildError>`
-  Finish the assembly of a pattern in this NFA.
+- `fn finish_pattern(self: &mut Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn current_pattern_id(self: &Self) -> PatternID`
-  Returns the pattern identifier of the current pattern.
+- `fn current_pattern_id(self: &Self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
-  Returns the number of patterns added to this builder so far.
 
-- `fn add_empty(self: &mut Self) -> Result<StateID, BuildError>`
-  Add an "empty" NFA state.
+- `fn add_empty(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_union(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>`
-  Add a "union" NFA state.
+- `fn add_union(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_union_reverse(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>`
-  Add a "reverse union" NFA state.
+- `fn add_union_reverse(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_range(self: &mut Self, trans: Transition) -> Result<StateID, BuildError>`
-  Add a "range" NFA state.
+- `fn add_range(self: &mut Self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](../../../nfa/thompson/nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_sparse(self: &mut Self, transitions: Vec<Transition>) -> Result<StateID, BuildError>`
-  Add a "sparse" NFA state.
+- `fn add_sparse(self: &mut Self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../../../nfa/thompson/nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_look(self: &mut Self, next: StateID, look: Look) -> Result<StateID, BuildError>`
-  Add a "look" NFA state.
+- `fn add_look(self: &mut Self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`Look`](../../../util/look/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_capture_start(self: &mut Self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>`
-  Add a "start capture" NFA state.
+- `fn add_capture_start(self: &mut Self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_capture_end(self: &mut Self, next: StateID, group_index: u32) -> Result<StateID, BuildError>`
-  Add a "end capture" NFA state.
+- `fn add_capture_end(self: &mut Self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_fail(self: &mut Self) -> Result<StateID, BuildError>`
-  Adds a "fail" NFA state.
+- `fn add_fail(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn add_match(self: &mut Self) -> Result<StateID, BuildError>`
-  Adds a "match" NFA state.
+- `fn add_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn patch(self: &mut Self, from: StateID, to: StateID) -> Result<(), BuildError>`
-  Add a transition from one state to another.
+- `fn add(self: &mut Self, state: State) -> Result<StateID, BuildError>` — [`State`](../../../nfa/thompson/builder/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn patch(self: &mut Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
 - `fn set_utf8(self: &mut Self, yes: bool)`
-  Set whether the NFA produced by this builder should only match UTF-8.
 
 - `fn get_utf8(self: &Self) -> bool`
-  Returns whether UTF-8 mode is enabled for this builder.
 
 - `fn set_reverse(self: &mut Self, yes: bool)`
-  Sets whether the NFA produced by this builder should be matched in
 
 - `fn get_reverse(self: &Self) -> bool`
-  Returns whether reverse mode is enabled for this builder.
 
-- `fn set_look_matcher(self: &mut Self, m: LookMatcher)`
-  Sets the look-around matcher that should be used for the resulting NFA.
+- `fn set_look_matcher(self: &mut Self, m: LookMatcher)` — [`LookMatcher`](../../../util/look/index.md)
 
-- `fn get_look_matcher(self: &Self) -> &LookMatcher`
-  Returns the look-around matcher used for this builder.
+- `fn get_look_matcher(self: &Self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
-- `fn set_size_limit(self: &mut Self, limit: Option<usize>) -> Result<(), BuildError>`
-  Set the size limit on this builder.
+- `fn set_size_limit(self: &mut Self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](../../../nfa/thompson/error/index.md)
 
 - `fn get_size_limit(self: &Self) -> Option<usize>`
-  Return the currently configured size limit.
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the heap memory usage, in bytes, used by the NFA states added
+
+- `fn check_size_limit(self: &Self) -> Result<(), BuildError>` — [`BuildError`](../../../nfa/thompson/error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Builder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../nfa/thompson/builder/index.md)
 
 ##### `impl Debug`
 
@@ -355,13 +357,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default`
 
-- `fn default() -> Builder`
+- `fn default() -> Builder` — [`Builder`](../../../nfa/thompson/builder/index.md)
 
 ### `BuildError`
 
 ```rust
 struct BuildError {
-    // [REDACTED: Private Fields]
+    kind: BuildErrorKind,
 }
 ```
 
@@ -383,39 +385,34 @@ building the NFA will fail.
 #### Implementations
 
 - `fn size_limit(self: &Self) -> Option<usize>`
-  If this error occurred because the NFA exceeded the configured size
+
+- `fn kind(self: &Self) -> &BuildErrorKind` — [`BuildErrorKind`](../../../nfa/thompson/error/index.md)
+
+- `fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../../util/captures/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn too_many_states(given: usize) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn unsupported_captures() -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BuildError`
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -425,33 +422,9 @@ building the NFA will fail.
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DenseTransitions`
 
@@ -481,81 +454,38 @@ usually requires (much) more heap memory.
 
 #### Implementations
 
-- `fn matches(self: &Self, haystack: &[u8], at: usize) -> Option<StateID>`
-  This follows the matching transition for a particular byte.
+- `fn matches(self: &Self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>`
-  This follows the matching transition for a particular byte.
+- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../../util/alphabet/index.md), [`StateID`](../../../util/primitives/index.md)
+
+- `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+
+- `fn iter(self: &Self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](../../../nfa/thompson/nfa/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DenseTransitions`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &DenseTransitions) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> DenseTransitions` — [`DenseTransitions`](../../../nfa/thompson/nfa/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](../../../nfa/thompson/nfa/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `PatternIter<'a>`
 
 ```rust
 struct PatternIter<'a> {
-    // [REDACTED: Private Fields]
+    it: crate::util::primitives::PatternIDIter,
+    _marker: core::marker::PhantomData<&'a ()>,
 }
 ```
 
@@ -566,17 +496,21 @@ This iterator is created by `NFA::patterns`.
 The lifetime parameter `'a` refers to the lifetime of the NFA from which
 this pattern iterator was created.
 
+#### Fields
+
+- **`_marker`**: `core::marker::PhantomData<&'a ()>`
+
+  We explicitly associate a lifetime with this iterator even though we
+  don't actually borrow anything from the NFA. We do this for backward
+  compatibility purposes. If we ever do need to borrow something from
+  the NFA, then we can and just get rid of this marker without breaking
+  the public API.
+
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -586,39 +520,11 @@ this pattern iterator was created.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = PatternID`
 
-- `fn next(self: &mut Self) -> Option<PatternID>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../../util/primitives/index.md)
 
 ### `SparseTransitions`
 
@@ -644,75 +550,29 @@ corresponding transition.
 
 #### Implementations
 
-- `fn matches(self: &Self, haystack: &[u8], at: usize) -> Option<StateID>`
-  This follows the matching transition for a particular byte.
+- `fn matches(self: &Self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>`
-  This follows the matching transition for a particular byte.
+- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../../util/alphabet/index.md), [`StateID`](../../../util/primitives/index.md)
+
+- `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SparseTransitions`
+- `fn clone(self: &Self) -> SparseTransitions` — [`SparseTransitions`](../../../nfa/thompson/nfa/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &SparseTransitions) -> bool`
+- `fn eq(self: &Self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](../../../nfa/thompson/nfa/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Transition`
 
@@ -746,47 +606,22 @@ falls in the inclusive range of bytes specified.
 #### Implementations
 
 - `fn matches(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true if the position `at` in `haystack` falls in this
 
-- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> bool`
-  Returns true if the given alphabet unit falls in this transition's
+- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> bool` — [`Unit`](../../../util/alphabet/index.md)
 
 - `fn matches_byte(self: &Self, byte: u8) -> bool`
-  Returns true if the given byte falls in this transition's range of
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Transition`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Transition` — [`Transition`](../../../nfa/thompson/nfa/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq`
 
@@ -796,38 +631,14 @@ falls in the inclusive range of bytes specified.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Transition) -> bool`
+- `fn eq(self: &Self, other: &Transition) -> bool` — [`Transition`](../../../nfa/thompson/nfa/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `NFA`
 
 ```rust
-struct NFA();
+struct NFA(alloc::sync::Arc<Inner>);
 ```
 
 A byte oriented Thompson non-deterministic finite automaton (NFA).
@@ -999,129 +810,61 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<NFA, BuildError>`
-  Parse the given regular expression using a default configuration and
+- `fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>`
-  Parse the given regular expressions using a default configuration and
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn always_match() -> NFA`
-  Returns an NFA with a single regex pattern that always matches at every
+- `fn always_match() -> NFA` — [`NFA`](../../../nfa/thompson/nfa/index.md)
 
-- `fn never_match() -> NFA`
-  Returns an NFA that never matches at any position.
+- `fn never_match() -> NFA` — [`NFA`](../../../nfa/thompson/nfa/index.md)
 
-- `fn config() -> Config`
-  Return a default configuration for an `NFA`.
+- `fn config() -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
-- `fn compiler() -> Compiler`
-  Return a compiler for configuring the construction of an `NFA`.
+- `fn compiler() -> Compiler` — [`Compiler`](../../../nfa/thompson/compiler/index.md)
 
-- `fn patterns(self: &Self) -> PatternIter<'_>`
-  Returns an iterator over all pattern identifiers in this NFA.
+- `fn patterns(self: &Self) -> PatternIter<'_>` — [`PatternIter`](../../../nfa/thompson/nfa/index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of regex patterns in this NFA.
 
-- `fn start_anchored(self: &Self) -> StateID`
-  Return the state identifier of the initial anchored state of this NFA.
+- `fn start_anchored(self: &Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn start_unanchored(self: &Self) -> StateID`
-  Return the state identifier of the initial unanchored state of this
+- `fn start_unanchored(self: &Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn start_pattern(self: &Self, pid: PatternID) -> Option<StateID>`
-  Return the state identifier of the initial anchored state for the given
+- `fn start_pattern(self: &Self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../../util/primitives/index.md), [`StateID`](../../../util/primitives/index.md)
 
-- `fn byte_classes(self: &Self) -> &ByteClasses`
-  Get the byte classes for this NFA.
+- `fn byte_class_set(self: &Self) -> &ByteClassSet` — [`ByteClassSet`](../../../util/alphabet/index.md)
 
-- `fn state(self: &Self, id: StateID) -> &State`
-  Return a reference to the NFA state corresponding to the given ID.
+- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
 
-- `fn states(self: &Self) -> &[State]`
-  Returns a slice of all states in this NFA.
+- `fn state(self: &Self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](../../../nfa/thompson/nfa/index.md)
 
-- `fn group_info(self: &Self) -> &GroupInfo`
-  Returns the capturing group info for this NFA.
+- `fn states(self: &Self) -> &[State]` — [`State`](../../../nfa/thompson/nfa/index.md)
+
+- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
 - `fn has_capture(self: &Self) -> bool`
-  Returns true if and only if this NFA has at least one
 
 - `fn has_empty(self: &Self) -> bool`
-  Returns true if and only if this NFA can match the empty string.
 
 - `fn is_utf8(self: &Self) -> bool`
-  Whether UTF-8 mode is enabled for this NFA or not.
 
 - `fn is_reverse(self: &Self) -> bool`
-  Returns true when this NFA is meant to be matched in reverse.
 
 - `fn is_always_start_anchored(self: &Self) -> bool`
-  Returns true if and only if all starting states for this NFA correspond
 
-- `fn look_matcher(self: &Self) -> &LookMatcher`
-  Returns the look-around matcher associated with this NFA.
+- `fn look_matcher(self: &Self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
-- `fn look_set_any(self: &Self) -> LookSet`
-  Returns the union of all look-around assertions used throughout this
+- `fn look_set_any(self: &Self) -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
-- `fn look_set_prefix_any(self: &Self) -> LookSet`
-  Returns the union of all prefix look-around assertions for every
+- `fn look_set_prefix_any(self: &Self) -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the memory usage, in bytes, of this NFA.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> NFA`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> NFA` — [`NFA`](../../../nfa/thompson/nfa/index.md)
 
 ##### `impl Debug`
 
@@ -1131,7 +874,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct Compiler {
-    // [REDACTED: Private Fields]
+    parser: regex_syntax::ParserBuilder,
+    config: Config,
+    builder: core::cell::RefCell<crate::nfa::thompson::builder::Builder>,
+    utf8_state: core::cell::RefCell<Utf8State>,
+    trie_state: core::cell::RefCell<crate::nfa::thompson::range_trie::RangeTrie>,
+    utf8_suffix: core::cell::RefCell<crate::nfa::thompson::map::Utf8SuffixMap>,
 }
 ```
 
@@ -1206,80 +954,110 @@ assert_eq!(expected, caps.get_match());
 Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
+#### Fields
+
+- **`parser`**: `regex_syntax::ParserBuilder`
+
+  A regex parser, used when compiling an NFA directly from a pattern
+  string.
+
+- **`config`**: `Config`
+
+  The compiler configuration.
+
+- **`builder`**: `core::cell::RefCell<crate::nfa::thompson::builder::Builder>`
+
+  The builder for actually constructing an NFA. This provides a
+  convenient abstraction for writing a compiler.
+
+- **`utf8_state`**: `core::cell::RefCell<Utf8State>`
+
+  State used for compiling character classes to UTF-8 byte automata.
+  State is not retained between character class compilations. This just
+  serves to amortize allocation to the extent possible.
+
+- **`trie_state`**: `core::cell::RefCell<crate::nfa::thompson::range_trie::RangeTrie>`
+
+  State used for arranging character classes in reverse into a trie.
+
+- **`utf8_suffix`**: `core::cell::RefCell<crate::nfa::thompson::map::Utf8SuffixMap>`
+
+  State used for caching common suffixes when compiling reverse UTF-8
+  automata (for Unicode character classes).
+
 #### Implementations
 
-- `fn new() -> Compiler`
-  Create a new NFA builder with its default configuration.
+- `fn compile<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn build(self: &Self, pattern: &str) -> Result<NFA, BuildError>`
-  Compile the given regular expression pattern into an NFA.
+- `fn c(self: &Self, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<NFA, BuildError>`
-  Compile the given regular expression patterns into a single NFA.
+- `fn c_concat<I>(self: &Self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn build_from_hir(self: &Self, expr: &Hir) -> Result<NFA, BuildError>`
-  Compile the given high level intermediate representation of a regular
+- `fn c_alt_slice(self: &Self, exprs: &[Hir]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>`
-  Compile the given high level intermediate representations of regular
+- `fn c_alt_iter<I>(self: &Self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Compiler`
-  Apply the given NFA configuration options to this builder.
+- `fn c_cap(self: &Self, index: u32, name: Option<&str>, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Compiler`
-  Set the syntax configuration for this builder using
+- `fn c_repetition(self: &Self, rep: &hir::Repetition) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_bounded(self: &Self, expr: &Hir, greedy: bool, min: u32, max: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_at_least(self: &Self, expr: &Hir, greedy: bool, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_zero_or_one(self: &Self, expr: &Hir, greedy: bool) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_exactly(self: &Self, expr: &Hir, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_byte_class(self: &Self, cls: &hir::ClassBytes) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_unicode_class(self: &Self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_unicode_class_reverse_with_suffix(self: &Self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_look(self: &Self, anchor: &hir::Look) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_literal(self: &Self, bytes: &[u8]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_range(self: &Self, start: u8, end: u8) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_empty(self: &Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn c_fail(self: &Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn patch(self: &Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn start_pattern(self: &Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn finish_pattern(self: &Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_empty(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_range(self: &Self, start: u8, end: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_sparse(self: &Self, ranges: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../../../nfa/thompson/nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_look(self: &Self, look: Look) -> Result<StateID, BuildError>` — [`Look`](../../../util/look/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_union(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_union_reverse(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_capture_start(self: &Self, capture_index: u32, name: Option<&str>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_capture_end(self: &Self, capture_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_fail(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn add_match(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn is_reverse(self: &Self) -> bool`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Compiler`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Compiler` — [`Compiler`](../../../nfa/thompson/compiler/index.md)
 
 ##### `impl Debug`
 
@@ -1289,7 +1067,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct Config {
-    // [REDACTED: Private Fields]
+    utf8: Option<bool>,
+    reverse: Option<bool>,
+    nfa_size_limit: Option<Option<usize>>,
+    shrink: Option<bool>,
+    which_captures: Option<WhichCaptures>,
+    look_matcher: Option<crate::util::look::LookMatcher>,
 }
 ```
 
@@ -1297,102 +1080,45 @@ The configuration used for a Thompson NFA compiler.
 
 #### Implementations
 
-- `fn new() -> Config`
-  Return a new default Thompson NFA compiler configuration.
+- `fn new() -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
-- `fn utf8(self: Self, yes: bool) -> Config`
-  Whether to enable UTF-8 mode during search or not.
+- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
-- `fn reverse(self: Self, yes: bool) -> Config`
-  Reverse the NFA.
+- `fn reverse(self: Self, yes: bool) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
-- `fn nfa_size_limit(self: Self, bytes: Option<usize>) -> Config`
-  Sets an approximate size limit on the total heap used by the NFA being
+- `fn nfa_size_limit(self: Self, bytes: Option<usize>) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
-- `fn shrink(self: Self, yes: bool) -> Config`
-  Apply best effort heuristics to shrink the NFA at the expense of more
+- `fn shrink(self: Self, yes: bool) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
-- `fn captures(self: Self, yes: bool) -> Config`
-  Whether to include 'Capture' states in the NFA.
+- `fn captures(self: Self, yes: bool) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
-- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config`
-  Configures what kinds of capture groups are compiled into
+- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../../../nfa/thompson/compiler/index.md), [`Config`](../../../nfa/thompson/compiler/index.md)
 
-- `fn look_matcher(self: Self, m: LookMatcher) -> Config`
-  Sets the look-around matcher that should be used with this NFA.
+- `fn look_matcher(self: Self, m: LookMatcher) -> Config` — [`LookMatcher`](../../../util/look/index.md), [`Config`](../../../nfa/thompson/compiler/index.md)
 
 - `fn get_utf8(self: &Self) -> bool`
-  Returns whether this configuration has enabled UTF-8 mode.
 
 - `fn get_reverse(self: &Self) -> bool`
-  Returns whether this configuration has enabled reverse NFA compilation.
 
 - `fn get_nfa_size_limit(self: &Self) -> Option<usize>`
-  Return the configured NFA size limit, if it exists, in the number of
 
 - `fn get_shrink(self: &Self) -> bool`
-  Return whether NFA shrinking is enabled.
 
 - `fn get_captures(self: &Self) -> bool`
-  Return whether NFA compilation is configured to produce capture states.
 
-- `fn get_which_captures(self: &Self) -> WhichCaptures`
-  Return what kinds of capture states will be compiled into an NFA.
+- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../../../nfa/thompson/compiler/index.md)
 
-- `fn get_look_matcher(self: &Self) -> LookMatcher`
-  Return the look-around matcher for this NFA.
+- `fn get_look_matcher(self: &Self) -> LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
+
+- `fn get_unanchored_prefix(self: &Self) -> bool`
+
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Config`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
 ##### `impl Debug`
 
@@ -1400,7 +1126,7 @@ The configuration used for a Thompson NFA compiler.
 
 ##### `impl Default`
 
-- `fn default() -> Config`
+- `fn default() -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
 
 ## Enums
 
@@ -1545,71 +1271,28 @@ need to do some kind of analysis on the NFA.
 #### Implementations
 
 - `fn is_epsilon(self: &Self) -> bool`
-  Returns true if and only if this state contains one or more epsilon
+
+- `fn memory_usage(self: &Self) -> usize`
+
+- `fn remap(self: &mut Self, remap: &[StateID])` — [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> State`
+- `fn clone(self: &Self) -> State` — [`State`](../../../nfa/thompson/nfa/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &State) -> bool`
+- `fn eq(self: &Self, other: &State) -> bool` — [`State`](../../../nfa/thompson/nfa/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `WhichCaptures`
 
@@ -1681,64 +1364,16 @@ The default configuration is `WhichCaptures::All`.
 #### Implementations
 
 - `fn is_none(self: &Self) -> bool`
-  Returns true if this configuration indicates that no capture states
 
 - `fn is_any(self: &Self) -> bool`
-  Returns true if this configuration indicates that some capture states
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> WhichCaptures`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../../../nfa/thompson/compiler/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1746,5 +1381,5 @@ The default configuration is `WhichCaptures::All`.
 
 ##### `impl Default`
 
-- `fn default() -> WhichCaptures`
+- `fn default() -> WhichCaptures` — [`WhichCaptures`](../../../nfa/thompson/compiler/index.md)
 

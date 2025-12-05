@@ -6,7 +6,7 @@
 
 An NFA backed Pike VM for executing regex searches with capturing groups.
 
-This module provides a [`PikeVM`](#pikevm) that works by simulating an NFA and
+This module provides a [`PikeVM`](../../../meta/wrappers/index.md) that works by simulating an NFA and
 resolving all spans of capturing groups that participate in a match.
 
 ## Structs
@@ -15,11 +15,12 @@ resolving all spans of capturing groups that participate in a match.
 
 ```rust
 struct Config {
-    // [REDACTED: Private Fields]
+    match_kind: Option<crate::util::search::MatchKind>,
+    pre: Option<Option<crate::util::prefilter::Prefilter>>,
 }
 ```
 
-The configuration used for building a [`PikeVM`](#pikevm).
+The configuration used for building a [`PikeVM`](../../../meta/wrappers/index.md).
 
 A PikeVM configuration is a simple data object that is typically used with
 `Builder::configure`. It can be cheaply cloned.
@@ -29,72 +30,23 @@ perhaps more conveniently, with `PikeVM::config`.
 
 #### Implementations
 
-- `fn new() -> Config`
-  Return a new default PikeVM configuration.
+- `fn new() -> Config` — [`Config`](../../../../nfa/thompson/pikevm/index.md)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config`
-  Set the desired match semantics.
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../../../util/search/index.md), [`Config`](../../../../nfa/thompson/pikevm/index.md)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config`
-  Set a prefilter to be used whenever a start state is entered.
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../../util/prefilter/index.md), [`Config`](../../../../nfa/thompson/pikevm/index.md)
 
-- `fn get_match_kind(self: &Self) -> MatchKind`
-  Returns the match semantics set in this configuration.
+- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../../util/search/index.md)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>`
-  Returns the prefilter set in this configuration, if one at all.
+- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../../util/prefilter/index.md)
+
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../../nfa/thompson/pikevm/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Config`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Config` — [`Config`](../../../../nfa/thompson/pikevm/index.md)
 
 ##### `impl Debug`
 
@@ -102,13 +54,14 @@ perhaps more conveniently, with `PikeVM::config`.
 
 ##### `impl Default`
 
-- `fn default() -> Config`
+- `fn default() -> Config` — [`Config`](../../../../nfa/thompson/pikevm/index.md)
 
 ### `Builder`
 
 ```rust
 struct Builder {
-    // [REDACTED: Private Fields]
+    config: Config,
+    thompson: thompson::Compiler,
 }
 ```
 
@@ -167,78 +120,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder`
-  Create a new PikeVM builder with its default configuration.
+- `fn new() -> Builder` — [`Builder`](../../../../nfa/thompson/pikevm/index.md)
 
-- `fn build(self: &Self, pattern: &str) -> Result<PikeVM, BuildError>`
-  Build a `PikeVM` from the given pattern.
+- `fn build(self: &Self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<PikeVM, BuildError>`
-  Build a `PikeVM` from the given patterns.
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<PikeVM, BuildError>`
-  Build a `PikeVM` directly from its NFA.
+- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../../../../nfa/thompson/nfa/index.md), [`PikeVM`](../../../../nfa/thompson/pikevm/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder`
-  Apply the given `PikeVM` configuration options to this builder.
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../../../nfa/thompson/pikevm/index.md), [`Builder`](../../../../nfa/thompson/pikevm/index.md)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder`
-  Set the syntax configuration for this builder using
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../../util/syntax/index.md), [`Builder`](../../../../nfa/thompson/pikevm/index.md)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder`
-  Set the Thompson NFA configuration for this builder using
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../../nfa/thompson/compiler/index.md), [`Builder`](../../../../nfa/thompson/pikevm/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Builder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../../nfa/thompson/pikevm/index.md)
 
 ##### `impl Debug`
 
@@ -248,7 +148,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct PikeVM {
-    // [REDACTED: Private Fields]
+    config: Config,
+    nfa: crate::nfa::thompson::NFA,
 }
 ```
 
@@ -257,7 +158,7 @@ A virtual machine for executing regex searches with capturing groups.
 # Infallible APIs
 
 Unlike most other regex engines in this crate, a `PikeVM` never returns an
-error at search time. It supports all [`Anchored`](../../../index.md) configurations, never
+error at search time. It supports all [`Anchored`](../../../util/search/index.md) configurations, never
 quits and works on haystacks of arbitrary length.
 
 There are two caveats to mention though:
@@ -265,7 +166,7 @@ There are two caveats to mention though:
 * If an invalid pattern ID is given to a search via `Anchored::Pattern`,
 then the PikeVM will report "no match." This is consistent with all other
 regex engines in this crate.
-* When using `PikeVM::which_overlapping_matches` with a [`PatternSet`](../../../index.md)
+* When using `PikeVM::which_overlapping_matches` with a [`PatternSet`](../../../util/search/index.md)
 that has insufficient capacity to store all valid pattern IDs, then if a
 match occurs for a `PatternID` that cannot be inserted, it is silently
 dropped as if it did not match.
@@ -319,120 +220,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<PikeVM, BuildError>`
-  Parse the given regular expression using the default configuration and
+- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)` — [`Cache`](../../../../nfa/thompson/pikevm/index.md), [`Input`](../../../../util/search/index.md), [`Captures`](../../../../util/captures/index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<PikeVM, BuildError>`
-  Like `new`, but parses multiple patterns into a single "multi regex."
+- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../../../../nfa/thompson/pikevm/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`PatternID`](../../../../util/primitives/index.md)
 
-- `fn new_from_nfa(nfa: NFA) -> Result<PikeVM, BuildError>`
-  Like `new`, but builds a PikeVM directly from an NFA. This is useful
+- `fn search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](../../../../nfa/thompson/pikevm/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md)
 
-- `fn always_match() -> Result<PikeVM, BuildError>`
-  Create a new `PikeVM` that matches every input.
-
-- `fn never_match() -> Result<PikeVM, BuildError>`
-  Create a new `PikeVM` that never matches any input.
-
-- `fn config() -> Config`
-  Return a default configuration for a `PikeVM`.
-
-- `fn builder() -> Builder`
-  Return a builder for configuring the construction of a `PikeVM`.
-
-- `fn create_captures(self: &Self) -> Captures`
-  Create a new empty set of capturing groups that is guaranteed to be
-
-- `fn create_cache(self: &Self) -> Cache`
-  Create a new cache for this `PikeVM`.
-
-- `fn reset_cache(self: &Self, cache: &mut Cache)`
-  Reset the given cache such that it can be used for searching with the
-
-- `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns compiled into this `PikeVM`.
-
-- `fn get_config(self: &Self) -> &Config`
-  Return the config for this `PikeVM`.
-
-- `fn get_nfa(self: &Self) -> &NFA`
-  Returns a reference to the underlying NFA.
-
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Returns true if and only if this `PikeVM` matches the given haystack.
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Executes a leftmost forward search and returns a `Match` if one exists.
-
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping leftmost matches in the
-
-- `fn captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> CapturesMatches<'r, 'c, 'h>`
-  Returns an iterator over all non-overlapping `Captures` values. If no
-
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>`
-  Executes a leftmost forward search and writes the spans of capturing
-
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)`
-  Writes the set of patterns that match anywhere in the given search
+- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../../../../nfa/thompson/pikevm/index.md), [`Input`](../../../../util/search/index.md), [`PatternSet`](../../../../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PikeVM`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> PikeVM` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md)
 
 ##### `impl Debug`
 
@@ -442,7 +242,10 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct FindMatches<'r, 'c, 'h> {
-    // [REDACTED: Private Fields]
+    re: &'r PikeVM,
+    cache: &'c mut Cache,
+    caps: crate::util::captures::Captures,
+    it: iter::Searcher<'h>,
 }
 ```
 
@@ -460,15 +263,9 @@ This iterator can be created with the `PikeVM::find_iter` method.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'r, 'c, 'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -478,52 +275,27 @@ This iterator can be created with the `PikeVM::find_iter` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'r, 'c, 'h>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'r, 'c, 'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../../../util/search/index.md)
 
 ### `CapturesMatches<'r, 'c, 'h>`
 
 ```rust
 struct CapturesMatches<'r, 'c, 'h> {
-    // [REDACTED: Private Fields]
+    re: &'r PikeVM,
+    cache: &'c mut Cache,
+    caps: crate::util::captures::Captures,
+    it: iter::Searcher<'h>,
 }
 ```
 
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a particular search.
 
-The iterator yields a [`Captures`](../../../util/captures/index.md) value until no more matches could be
+The iterator yields a [`Captures`](../../../index.md) value until no more matches could be
 found.
 
 The lifetime parameters are as follows:
@@ -536,15 +308,9 @@ This iterator can be created with the `PikeVM::captures_iter` method.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'r, 'c, 'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -554,122 +320,67 @@ This iterator can be created with the `PikeVM::captures_iter` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'r, 'c, 'h>`
 
 - `type Item = Captures`
 
-- `fn next(self: &mut Self) -> Option<Captures>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'r, 'c, 'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../../../../util/captures/index.md)
 
 ### `Cache`
 
 ```rust
 struct Cache {
-    // [REDACTED: Private Fields]
+    stack: alloc::vec::Vec<FollowEpsilon>,
+    curr: ActiveStates,
+    next: ActiveStates,
 }
 ```
 
-A cache represents mutable state that a [`PikeVM`](#pikevm) requires during a
+A cache represents mutable state that a [`PikeVM`](../../../meta/wrappers/index.md) requires during a
 search.
 
-For a given [`PikeVM`](#pikevm), its corresponding cache may be created either via
+For a given [`PikeVM`](../../../meta/wrappers/index.md), its corresponding cache may be created either via
 `PikeVM::create_cache`, or via `Cache::new`. They are equivalent in
 every way, except the former does not require explicitly importing `Cache`.
 
-A particular `Cache` is coupled with the [`PikeVM`](#pikevm) from which it
+A particular `Cache` is coupled with the [`PikeVM`](../../../meta/wrappers/index.md) from which it
 was created. It may only be used with that `PikeVM`. A cache and its
 allocations may be re-purposed via `Cache::reset`, in which case, it can
 only be used with the new `PikeVM` (and not the old one).
 
+#### Fields
+
+- **`stack`**: `alloc::vec::Vec<FollowEpsilon>`
+
+  Stack used while computing epsilon closure. This effectively lets us
+  move what is more naturally expressed through recursion to a stack
+  on the heap.
+
+- **`curr`**: `ActiveStates`
+
+  The current active states being explored for the current byte in the
+  haystack.
+
+- **`next`**: `ActiveStates`
+
+  The next set of states we're building that will be explored for the
+  next byte in the haystack.
+
 #### Implementations
 
-- `fn new(re: &PikeVM) -> Cache`
-  Create a new [`PikeVM`] cache.
+- `fn new(re: &PikeVM) -> Cache` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md), [`Cache`](../../../../nfa/thompson/pikevm/index.md)
 
-- `fn reset(self: &mut Self, re: &PikeVM)`
-  Reset this cache such that it can be used for searching with a
+- `fn reset(self: &mut Self, re: &PikeVM)` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the heap memory usage, in bytes, of this cache.
+
+- `fn setup_search(self: &mut Self, captures_slot_len: usize)`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Cache`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../../nfa/thompson/pikevm/index.md)
 
 ##### `impl Debug`
 

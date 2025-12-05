@@ -1,0 +1,30 @@
+# Rust-analyzer configuration
+# Enables LSP support for all features, not just default ones
+# See: https://rust-analyzer.github.io/manual.html#configuration
+
+[cargo]
+# Enable all features for better code completion and diagnostics
+# This ensures simd-json and other optional features are analyzed
+features = "all"
+
+# Build scripts and proc-macros
+buildScripts.enable = true
+
+[check]
+# Use clippy instead of cargo check for better diagnostics
+command = "clippy"
+# Include all features when checking
+features = "all"
+
+[diagnostics]
+# Enable all diagnostics
+disabled = []
+
+[procMacro]
+# Enable proc-macro support
+enable = true
+
+[inlayHints]
+# Show inlay hints for types, parameters, etc.
+closureReturnTypeHints.enable = true
+lifetimeElisionHints.enable = "skip_trivial"

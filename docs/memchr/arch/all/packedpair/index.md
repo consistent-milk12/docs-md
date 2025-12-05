@@ -22,7 +22,9 @@ however can be good enough in many circumstances.
 
 ```rust
 struct Finder {
-    // [REDACTED: Private Fields]
+    pair: Pair,
+    byte1: u8,
+    byte2: u8,
 }
 ```
 
@@ -44,71 +46,21 @@ architecture independent routines are unavailable.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Finder>`
-  Create a new prefilter that reports possible locations where the given
+- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](../../../../arch/all/packedpair/index.md)
 
-- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>`
-  Create a new prefilter using the pair given.
+- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../../arch/all/packedpair/index.md), [`Finder`](../../../../arch/all/packedpair/index.md)
 
 - `fn find_prefilter(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Run this finder on the given haystack as a prefilter.
 
-- `fn pair(self: &Self) -> &Pair`
-  Returns the pair of offsets (into the needle) used to check as a
+- `fn pair(self: &Self) -> &Pair` — [`Pair`](../../../../arch/all/packedpair/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Finder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Finder` — [`Finder`](../../../../arch/all/packedpair/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -118,7 +70,8 @@ architecture independent routines are unavailable.
 
 ```rust
 struct Pair {
-    // [REDACTED: Private Fields]
+    index1: u8,
+    index2: u8,
 }
 ```
 
@@ -147,74 +100,23 @@ needles with length at least 2.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Pair>`
-  Create a new pair of offsets from the given needle.
+- `fn new(needle: &[u8]) -> Option<Pair>` — [`Pair`](../../../../arch/all/packedpair/index.md)
 
-- `fn with_ranker<R: HeuristicFrequencyRank>(needle: &[u8], ranker: R) -> Option<Pair>`
-  Create a new pair of offsets from the given needle and ranker.
+- `fn with_ranker<R: HeuristicFrequencyRank>(needle: &[u8], ranker: R) -> Option<Pair>` — [`Pair`](../../../../arch/all/packedpair/index.md)
 
-- `fn with_indices(needle: &[u8], index1: u8, index2: u8) -> Option<Pair>`
-  Create a new pair using the offsets given for the needle given.
+- `fn with_indices(needle: &[u8], index1: u8, index2: u8) -> Option<Pair>` — [`Pair`](../../../../arch/all/packedpair/index.md)
 
 - `fn index1(self: &Self) -> u8`
-  Returns the first offset of the pair.
 
 - `fn index2(self: &Self) -> u8`
-  Returns the second offset of the pair.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Pair`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Pair` — [`Pair`](../../../../arch/all/packedpair/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -233,7 +135,7 @@ relative frequency of a given byte in the dataset being searched.
 
 The use of this trait can have a dramatic impact on performance depending
 on the type of data being searched. The details of why are explained in the
-docs of `crate::memmem::Prefilter`. To summarize, the core algorithm uses
+docs of [`crate::memmem::Prefilter`](../../../memmem/searcher/index.md). To summarize, the core algorithm uses
 a prefilter to quickly identify candidate matches that are later verified
 more slowly. This prefilter is implemented in terms of trying to find
 `rare` bytes at specific offsets that will occur less frequently in the

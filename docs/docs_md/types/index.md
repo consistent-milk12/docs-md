@@ -32,13 +32,19 @@ let generics = renderer.render_generics(&generic_params);
 | `Type::BorrowedRef { lifetime: Some("'a"), is_mutable: true, type_: ... }` | `"&'a mut T"` |
 | `Type::ResolvedPath { path: "Vec", args: ... }` | `"Vec<T>"` |
 
+# Performance
+
+Uses `Cow<str>` to avoid allocations for simple types like primitives,
+generics, and inferred types. Complex types that require string building
+return owned strings.
+
 ## Structs
 
 ### `TypeRenderer<'a>`
 
 ```rust
 struct TypeRenderer<'a> {
-    // [REDACTED: Private Fields]
+    krate: &'a rustdoc_types::Crate,
 }
 ```
 
@@ -63,80 +69,71 @@ let type_str = renderer.render_type(&some_type);
 let generics = renderer.render_generics(&params);
 ```
 
+#### Fields
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  Reference to the crate for looking up type information.
+  
+  Reserved for future use (e.g., resolving paths, getting item metadata).
+
 #### Implementations
 
-- `fn new(krate: &'a Crate) -> Self`
-  Create a new type renderer with the given crate context.
+- `const fn new(krate: &'a Crate) -> Self`
 
-- `fn render_type(self: &Self, ty: &Type) -> String`
-  Render a rustdoc `Type` to its Rust syntax string representation.
+- `fn render_type<'t>(self: &Self, ty: &'t Type) -> Cow<'t, str>`
 
-- `fn render_generic_bound(self: &Self, bound: &GenericBound) -> String`
-  Render a generic bound (trait bound or lifetime bound).
+- `fn render_generic_args(self: &Self, args: &GenericArgs) -> String`
+
+- `fn render_generic_arg<'t>(self: &Self, arg: &'t GenericArg) -> Cow<'t, str>`
+
+- `fn render_assoc_item_constraint(self: &Self, constraint: &AssocItemConstraint) -> String`
+
+- `fn render_term<'t>(self: &Self, term: &'t Term) -> Cow<'t, str>`
+
+- `fn render_generic_bound<'t>(self: &Self, bound: &'t GenericBound) -> Cow<'t, str>`
 
 - `fn render_generics(self: &Self, generics: &[GenericParamDef]) -> String`
-  Render a list of generic parameter definitions.
+
+- `fn render_generic_param_def(self: &Self, param: &GenericParamDef) -> Option<String>`
 
 - `fn render_where_clause(self: &Self, where_predicates: &[rustdoc_types::WherePredicate]) -> String`
-  Render where clause predicates.
+
+- `fn render_where_predicate(self: &Self, pred: &rustdoc_types::WherePredicate) -> String`
+
+- `fn collect_linkable_types(self: &Self, ty: &Type) -> Vec<(String, rustdoc_types::Id)>`
+
+- `fn collect_types_recursive(self: &Self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>)`
+
+- `fn collect_from_generic_args(self: &Self, args: &GenericArgs, result: &mut Vec<(String, rustdoc_types::Id)>)`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a>`
 
-- `fn clone(self: &Self) -> TypeRenderer<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> TypeRenderer<'a>` — [`TypeRenderer`](../../types/index.md)
 
 ##### `impl Copy<'a>`
-
-##### `impl OwoColorize<D>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 

@@ -129,7 +129,7 @@ These features are enabled by default:
   This feature can be disabled if you are happy to find words
   separated by ASCII space characters only. People wrapping text
   with emojis or East-Asian characters will want most likely want
-  to enable this feature. See [`WordSeparator`](#wordseparator) for details.
+  to enable this feature. See [`WordSeparator`](word_separators/index.md) for details.
 
 * `unicode-width`: enables correct width computation of non-ASCII
   characters via the [unicode-width] crate. Without this feature,
@@ -253,7 +253,7 @@ Holds configuration options for wrapping and filling text.
 
 - **`word_separator`**: `crate::WordSeparator`
 
-  The line breaking algorithm to use, see the [`WordSeparator`](#wordseparator)
+  The line breaking algorithm to use, see the [`WordSeparator`](word_separators/index.md)
   trait for an overview and possible implementations.
 
 - **`word_splitter`**: `crate::WordSplitter`
@@ -265,91 +265,28 @@ Holds configuration options for wrapping and filling text.
 #### Implementations
 
 - `const fn new(width: usize) -> Self`
-  Creates a new [`Options`] with the specified width.
 
-- `fn line_ending(self: Self, line_ending: LineEnding) -> Self`
-  Change [`self.line_ending`]. This specifies which of the
+- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](../line_ending/index.md)
 
 - `fn width(self: Self, width: usize) -> Self`
-  Set [`self.width`] to the given value.
 
 - `fn initial_indent(self: Self, initial_indent: &'a str) -> Self`
-  Change [`self.initial_indent`]. The initial indentation is
 
 - `fn subsequent_indent(self: Self, subsequent_indent: &'a str) -> Self`
-  Change [`self.subsequent_indent`]. The subsequent indentation
 
 - `fn break_words(self: Self, break_words: bool) -> Self`
-  Change [`self.break_words`]. This controls if words longer
 
-- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>`
-  Change [`self.word_separator`].
+- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](../word_separators/index.md), [`Options`](../options/index.md)
 
-- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>`
-  Change [`self.wrap_algorithm`].
+- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](../wrap_algorithms/index.md), [`Options`](../options/index.md)
 
-- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>`
-  Change [`self.word_splitter`]. The [`WordSplitter`] is used to
+- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](../word_splitters/index.md), [`Options`](../options/index.md)
 
 #### Trait Implementations
 
-##### `impl From<'a>`
-
-- `fn from(options: &'a Options<'a>) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(width: usize) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a>`
 
-- `fn clone(self: &Self) -> Options<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Options<'a>` — [`Options`](../options/index.md)
 
 ##### `impl Debug<'a>`
 
@@ -385,73 +322,26 @@ endings are supported: `\r\n` and `\n`
 #### Implementations
 
 - `const fn as_str(self: &Self) -> &'static str`
-  Turns this [`LineEnding`] value into its ASCII representation.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> LineEnding`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](../line_ending/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LineEnding) -> bool`
+- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](../line_ending/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `WordSeparator`
 
@@ -572,73 +462,24 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 #### Implementations
 
 - `const fn new() -> Self`
-  Create a new word separator.
 
-- `fn find_words<'a>(self: &Self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>`
-  Find all words in `line`.
+- `fn find_words<'a>(self: &Self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](../core/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> WordSeparator`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](../word_separators/index.md)
 
 ##### `impl Copy`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Self) -> bool`
-  Compare two word separators.
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Self) -> bool`
 
 ### `WordSplitter`
 
@@ -737,67 +578,20 @@ details.
 #### Implementations
 
 - `fn split_points(self: &Self, word: &str) -> Vec<usize>`
-  Return all possible indices where `word` can be split.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> WordSplitter`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &WordSplitter) -> bool`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](../word_splitters/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](../word_splitters/index.md)
 
 ### `WrapAlgorithm`
 
@@ -863,69 +657,16 @@ an entire paragraph at a time in order to find optimal line breaks
 #### Implementations
 
 - `const fn new() -> Self`
-  Create new wrap algorithm.
 
-- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>`
-  Wrap words according to line widths.
+- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> WrapAlgorithm`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](../wrap_algorithms/index.md)
 
 ##### `impl Copy`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Self) -> bool`
-  Compare two wrap algorithms.
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -934,6 +675,10 @@ an entire paragraph at a time in order to find optimal line breaks
 ##### `impl Default`
 
 - `fn default() -> Self`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Self) -> bool`
 
 ## Functions
 

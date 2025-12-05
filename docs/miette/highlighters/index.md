@@ -10,7 +10,7 @@ sequences when rendering with the [`GraphicalReportHighlighter`](crate::Graphica
 
 It also provides built-in highlighter implementations that you can use out of the box.
 By default, there are no syntax highlighters exported by miette
-(except for the no-op [`BlankHighlighter`](../index.md)).
+(except for the no-op [`BlankHighlighter`](blank/index.md)).
 To enable support for specific highlighters, you should enable their associated feature flag.
 
 Currently supported syntax highlighters and their feature flags:

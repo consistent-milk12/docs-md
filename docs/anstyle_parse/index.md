@@ -41,80 +41,57 @@ Just type `:q` to exit.
 
 ```rust
 struct Params {
-    // [REDACTED: Private Fields]
+    subparams: [u8; 32],
+    params: [u16; 32],
+    current_subparams: u8,
+    len: usize,
 }
 ```
+
+#### Fields
+
+- **`subparams`**: `[u8; 32]`
+
+  Number of subparameters for each parameter.
+  
+  For each entry in the `params` slice, this stores the length of the param as number of
+  subparams at the same index as the param in the `params` slice.
+  
+  At the subparam positions the length will always be `0`.
+
+- **`params`**: `[u16; 32]`
+
+  All parameters and subparameters.
+
+- **`current_subparams`**: `u8`
+
+  Number of suparameters in the current parameter.
+
+- **`len`**: `usize`
+
+  Total number of parameters and subparameters.
 
 #### Implementations
 
 - `fn len(self: &Self) -> usize`
-  Returns the number of parameters.
 
 - `fn is_empty(self: &Self) -> bool`
-  Returns `true` if there are no parameters present.
 
-- `fn iter(self: &Self) -> ParamsIter<'_>`
-  Returns an iterator over all parameters and subparameters.
+- `fn iter(self: &Self) -> ParamsIter<'_>` — [`ParamsIter`](../params/index.md)
+
+- `fn is_full(self: &Self) -> bool`
+
+- `fn clear(self: &mut Self)`
+
+- `fn push(self: &mut Self, item: u16)`
+
+- `fn extend(self: &mut Self, item: u16)`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Params`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Params) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Params` — [`Params`](../params/index.md)
 
 ##### `impl Debug`
 
@@ -122,29 +99,32 @@ struct Params {
 
 ##### `impl Default`
 
-- `fn default() -> Params`
+- `fn default() -> Params` — [`Params`](../params/index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Params) -> bool` — [`Params`](../params/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `ParamsIter<'a>`
 
 ```rust
 struct ParamsIter<'a> {
-    // [REDACTED: Private Fields]
+    params: &'a Params,
+    index: usize,
 }
 ```
 
 Immutable subparameter iterator.
 
+#### Implementations
+
+- `fn new(params: &'a Params) -> Self` — [`Params`](../params/index.md)
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
 
 ##### `impl IntoIterator<I>`
 
@@ -154,18 +134,6 @@ Immutable subparameter iterator.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = &'a [u16]`
@@ -174,23 +142,20 @@ Immutable subparameter iterator.
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ### `Parser<C>`
 
 ```rust
 struct Parser<C> {
-    // [REDACTED: Private Fields]
+    state: state::State,
+    intermediates: [u8; 2],
+    intermediate_idx: usize,
+    params: Params,
+    param: u16,
+    osc_raw: alloc::vec::Vec<u8>,
+    osc_params: [(usize, usize); 16],
+    osc_num_params: usize,
+    ignoring: bool,
+    utf8_parser: C,
 }
 ```
 
@@ -198,71 +163,27 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 #### Implementations
 
-- `fn new() -> Parser`
-  Create a new Parser
+- `fn new() -> Parser` — [`Parser`](../index.md)
+
+- `fn params(self: &Self) -> &Params` — [`Params`](../params/index.md)
+
+- `fn intermediates(self: &Self) -> &[u8]`
 
 - `fn advance<P: Perform>(self: &mut Self, performer: &mut P, byte: u8)`
-  Advance the parser state
+
+- `fn process_utf8<P>(self: &mut Self, performer: &mut P, byte: u8)`
+
+- `fn perform_state_change<P>(self: &mut Self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](../state/definitions/index.md), [`Action`](../state/definitions/index.md)
+
+- `fn osc_dispatch<P: Perform>(self: &Self, performer: &mut P, byte: u8)`
+
+- `fn perform_action<P: Perform>(self: &mut Self, performer: &mut P, action: Action, byte: u8)` — [`Action`](../state/definitions/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<C: $crate::clone::Clone>`
 
-- `fn clone(self: &Self) -> Parser<C>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq<C: $crate::cmp::Eq>`
-
-##### `impl PartialEq<C: $crate::cmp::PartialEq>`
-
-- `fn eq(self: &Self, other: &Parser<C>) -> bool`
-
-##### `impl StructuralPartialEq<C>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Parser<C>` — [`Parser`](../index.md)
 
 ##### `impl Debug<C: $crate::fmt::Debug>`
 
@@ -270,7 +191,15 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 ##### `impl Default<C: $crate::default::Default>`
 
-- `fn default() -> Parser<C>`
+- `fn default() -> Parser<C>` — [`Parser`](../index.md)
+
+##### `impl Eq<C: $crate::cmp::Eq>`
+
+##### `impl PartialEq<C: $crate::cmp::PartialEq>`
+
+- `fn eq(self: &Self, other: &Parser<C>) -> bool` — [`Parser`](../index.md)
+
+##### `impl StructuralPartialEq<C>`
 
 ### `AsciiParser`
 
@@ -282,67 +211,13 @@ Only allow parsing 7-bit ASCII
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl CharAccumulator`
 
 - `fn add(self: &mut Self, _byte: u8) -> Option<char>`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> AsciiParser`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &AsciiParser) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> AsciiParser` — [`AsciiParser`](../index.md)
 
 ##### `impl Debug`
 
@@ -350,13 +225,21 @@ Only allow parsing 7-bit ASCII
 
 ##### `impl Default`
 
-- `fn default() -> AsciiParser`
+- `fn default() -> AsciiParser` — [`AsciiParser`](../index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &AsciiParser) -> bool` — [`AsciiParser`](../index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `Utf8Parser`
 
 ```rust
 struct Utf8Parser {
-    // [REDACTED: Private Fields]
+    utf8_parser: utf8::Parser,
 }
 ```
 
@@ -364,67 +247,13 @@ Allow parsing UTF-8
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl CharAccumulator`
 
 - `fn add(self: &mut Self, byte: u8) -> Option<char>`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Utf8Parser`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Utf8Parser) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Utf8Parser` — [`Utf8Parser`](../index.md)
 
 ##### `impl Debug`
 
@@ -432,7 +261,15 @@ Allow parsing UTF-8
 
 ##### `impl Default`
 
-- `fn default() -> Utf8Parser`
+- `fn default() -> Utf8Parser` — [`Utf8Parser`](../index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](../index.md)
+
+##### `impl StructuralPartialEq`
 
 ## Traits
 

@@ -19,7 +19,7 @@ being quite expensive.
 ### `Pool<T, F>`
 
 ```rust
-struct Pool<T, F>();
+struct Pool<T, F>(alloc::boxed::Box<inner::Pool<T, F>>);
 ```
 
 A thread safe pool that works in an `alloc`-only context.
@@ -89,47 +89,9 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn get(self: &Self) -> PoolGuard<'_, T, F>`
-  Get a value from the pool. The caller is guaranteed to have
-
-- `fn new(create: F) -> Pool<T, F>`
-  Create a new pool. The given closure is used to create values in
+- `fn get(self: &Self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](../../../util/pool/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<T: core::fmt::Debug, F>`
 
@@ -138,7 +100,7 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 ### `PoolGuard<'a, T: Send, F: Fn() -> T>`
 
 ```rust
-struct PoolGuard<'a, T: Send, F: Fn() -> T>();
+struct PoolGuard<'a, T: Send, F: Fn() -> T>(inner::PoolGuard<'a, T, F>);
 ```
 
 A guard that is returned when a caller requests a value from the pool.
@@ -148,48 +110,9 @@ back in the pool once it's dropped.
 
 #### Implementations
 
-- `fn put(this: PoolGuard<'_, T, F>)`
-  Consumes this guard and puts it back into the pool.
+- `fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](../../../util/pool/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'a, T: Send + core::fmt::Debug, F: Fn() -> T>`
 
@@ -204,4 +127,8 @@ back in the pool once it's dropped.
 ##### `impl DerefMut<'a, T: Send, F: Fn() -> T>`
 
 - `fn deref_mut(self: &mut Self) -> &mut T`
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
 

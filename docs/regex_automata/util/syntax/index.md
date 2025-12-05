@@ -6,7 +6,7 @@
 
 Utilities for dealing with the syntax of a regular expression.
 
-This module currently only exposes a [`Config`](../../hybrid/dfa/index.md) type that
+This module currently only exposes a [`Config`](../../dfa/onepass/index.md) type that
 itself represents a wrapper around the configuration for a
 [`regex-syntax::ParserBuilder`](regex_syntax::ParserBuilder). The purpose of
 this wrapper is to make configuring syntax options very similar to how other
@@ -21,7 +21,17 @@ composed.
 
 ```rust
 struct Config {
-    // [REDACTED: Private Fields]
+    case_insensitive: bool,
+    multi_line: bool,
+    dot_matches_new_line: bool,
+    crlf: bool,
+    line_terminator: u8,
+    swap_greed: bool,
+    ignore_whitespace: bool,
+    unicode: bool,
+    utf8: bool,
+    nest_limit: u32,
+    octal: bool,
 }
 ```
 
@@ -41,128 +51,65 @@ are instead provided here as one cohesive unit.
 
 #### Implementations
 
-- `fn new() -> Config`
-  Return a new default syntax configuration.
+- `fn new() -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn case_insensitive(self: Self, yes: bool) -> Config`
-  Enable or disable the case insensitive flag by default.
+- `fn case_insensitive(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn multi_line(self: Self, yes: bool) -> Config`
-  Enable or disable the multi-line matching flag by default.
+- `fn multi_line(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn dot_matches_new_line(self: Self, yes: bool) -> Config`
-  Enable or disable the "dot matches any character" flag by default.
+- `fn dot_matches_new_line(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn crlf(self: Self, yes: bool) -> Config`
-  Enable or disable the "CRLF mode" flag by default.
+- `fn crlf(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn line_terminator(self: Self, byte: u8) -> Config`
-  Sets the line terminator for use with `(?u-s:.)` and `(?-us:.)`.
+- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn swap_greed(self: Self, yes: bool) -> Config`
-  Enable or disable the "swap greed" flag by default.
+- `fn swap_greed(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn ignore_whitespace(self: Self, yes: bool) -> Config`
-  Enable verbose mode in the regular expression.
+- `fn ignore_whitespace(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn unicode(self: Self, yes: bool) -> Config`
-  Enable or disable the Unicode flag (`u`) by default.
+- `fn unicode(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn utf8(self: Self, yes: bool) -> Config`
-  When disabled, the builder will permit the construction of a regular
+- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn nest_limit(self: Self, limit: u32) -> Config`
-  Set the nesting limit used for the regular expression parser.
+- `fn nest_limit(self: Self, limit: u32) -> Config` — [`Config`](../../../util/syntax/index.md)
 
-- `fn octal(self: Self, yes: bool) -> Config`
-  Whether to support octal syntax or not.
+- `fn octal(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
 
 - `fn get_unicode(self: &Self) -> bool`
-  Returns whether "unicode" mode is enabled.
 
 - `fn get_case_insensitive(self: &Self) -> bool`
-  Returns whether "case insensitive" mode is enabled.
 
 - `fn get_multi_line(self: &Self) -> bool`
-  Returns whether "multi line" mode is enabled.
 
 - `fn get_dot_matches_new_line(self: &Self) -> bool`
-  Returns whether "dot matches new line" mode is enabled.
 
 - `fn get_crlf(self: &Self) -> bool`
-  Returns whether "CRLF" mode is enabled.
 
 - `fn get_line_terminator(self: &Self) -> u8`
-  Returns the line terminator in this syntax configuration.
 
 - `fn get_swap_greed(self: &Self) -> bool`
-  Returns whether "swap greed" mode is enabled.
 
 - `fn get_ignore_whitespace(self: &Self) -> bool`
-  Returns whether "ignore whitespace" mode is enabled.
 
 - `fn get_utf8(self: &Self) -> bool`
-  Returns whether UTF-8 mode is enabled.
 
 - `fn get_nest_limit(self: &Self) -> u32`
-  Returns the "nest limit" setting.
 
 - `fn get_octal(self: &Self) -> bool`
-  Returns whether "octal" mode is enabled.
+
+- `fn apply(self: &Self, builder: &mut ParserBuilder)`
+
+- `fn apply_ast(self: &Self, builder: &mut ast::parse::ParserBuilder)`
+
+- `fn apply_hir(self: &Self, builder: &mut hir::translate::TranslatorBuilder)`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Config`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Config` — [`Config`](../../../util/syntax/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -170,7 +117,7 @@ are instead provided here as one cohesive unit.
 
 ##### `impl Default`
 
-- `fn default() -> Config`
+- `fn default() -> Config` — [`Config`](../../../util/syntax/index.md)
 
 ## Functions
 

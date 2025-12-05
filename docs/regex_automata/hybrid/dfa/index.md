@@ -17,7 +17,13 @@ This module also contains a [`hybrid::dfa::Builder`](Builder) and a
 
 ```rust
 struct DFA {
-    // [REDACTED: Private Fields]
+    config: Config,
+    nfa: thompson::NFA,
+    stride2: usize,
+    start_map: crate::util::start::StartByteMap,
+    classes: crate::util::alphabet::ByteClasses,
+    quitset: crate::util::alphabet::ByteSet,
+    cache_capacity: usize,
 }
 ```
 
@@ -89,138 +95,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<DFA, BuildError>`
-  Parse the given regular expression using a default configuration and
+- `fn try_search_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`HalfMatch`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>`
-  Parse the given regular expressions using a default configuration and
+- `fn try_search_rev(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`HalfMatch`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
 
-- `fn always_match() -> Result<DFA, BuildError>`
-  Create a new lazy DFA that matches every input.
+- `fn try_search_overlapping_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`OverlappingState`](../../../hybrid/dfa/index.md), [`MatchError`](../../../util/search/index.md)
 
-- `fn never_match() -> Result<DFA, BuildError>`
-  Create a new lazy DFA that never matches any input.
+- `fn try_search_overlapping_rev(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`OverlappingState`](../../../hybrid/dfa/index.md), [`MatchError`](../../../util/search/index.md)
 
-- `fn config() -> Config`
-  Return a default configuration for a `DFA`.
-
-- `fn builder() -> Builder`
-  Return a builder for configuring the construction of a `Regex`.
-
-- `fn create_cache(self: &Self) -> Cache`
-  Create a new cache for this lazy DFA.
-
-- `fn reset_cache(self: &Self, cache: &mut Cache)`
-  Reset the given cache such that it can be used for searching with the
-
-- `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns compiled into this lazy DFA.
-
-- `fn byte_classes(self: &Self) -> &ByteClasses`
-  Returns the equivalence classes that make up the alphabet for this DFA.
-
-- `fn get_config(self: &Self) -> &Config`
-  Returns this lazy DFA's configuration.
-
-- `fn get_nfa(self: &Self) -> &thompson::NFA`
-  Returns a reference to the underlying NFA.
-
-- `fn memory_usage(self: &Self) -> usize`
-  Returns the memory usage, in bytes, of this lazy DFA.
-
-- `fn try_search_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>`
-  Executes a forward search and returns the end position of the leftmost
-
-- `fn try_search_rev(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>`
-  Executes a reverse search and returns the start of the position of the
-
-- `fn try_search_overlapping_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
-  Executes an overlapping forward search and returns the end position of
-
-- `fn try_search_overlapping_rev(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>`
-  Executes a reverse overlapping search and returns the start of the
-
-- `fn try_which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), MatchError>`
-  Writes the set of patterns that match anywhere in the given search
-
-- `fn next_state(self: &Self, cache: &mut Cache, current: LazyStateID, input: u8) -> Result<LazyStateID, CacheError>`
-  Transitions from the current state to the next state, given the next
-
-- `fn next_state_untagged(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
-  Transitions from the current state to the next state, given the next
-
-- `unsafe fn next_state_untagged_unchecked(self: &Self, cache: &Cache, current: LazyStateID, input: u8) -> LazyStateID`
-  Transitions from the current state to the next state, eliding bounds
-
-- `fn next_eoi_state(self: &Self, cache: &mut Cache, current: LazyStateID) -> Result<LazyStateID, CacheError>`
-  Transitions from the current state to the next state for the special
-
-- `fn start_state(self: &Self, cache: &mut Cache, config: &start::Config) -> Result<LazyStateID, StartError>`
-  Return the ID of the start state for this lazy DFA for the given
-
-- `fn start_state_forward(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
-  Return the ID of the start state for this lazy DFA when executing a
-
-- `fn start_state_reverse(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<LazyStateID, MatchError>`
-  Return the ID of the start state for this lazy DFA when executing a
-
-- `fn match_len(self: &Self, cache: &Cache, id: LazyStateID) -> usize`
-  Returns the total number of patterns that match in this state.
-
-- `fn match_pattern(self: &Self, cache: &Cache, id: LazyStateID, match_index: usize) -> PatternID`
-  Returns the pattern ID corresponding to the given match index in the
+- `fn try_which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`PatternSet`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DFA`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> DFA` — [`DFA`](../../../hybrid/dfa/index.md)
 
 ##### `impl Debug`
 
@@ -230,7 +119,18 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct Cache {
-    // [REDACTED: Private Fields]
+    trans: alloc::vec::Vec<crate::hybrid::id::LazyStateID>,
+    starts: alloc::vec::Vec<crate::hybrid::id::LazyStateID>,
+    states: alloc::vec::Vec<self::state::State>,
+    states_to_id: std::collections::HashMap<self::state::State, crate::hybrid::id::LazyStateID>,
+    sparses: crate::util::sparse_set::SparseSets,
+    stack: alloc::vec::Vec<crate::util::primitives::StateID>,
+    scratch_state_builder: self::state::StateBuilderEmpty,
+    state_saver: StateSaver,
+    memory_usage_state: usize,
+    clear_count: usize,
+    bytes_searched: usize,
+    progress: Option<SearchProgress>,
 }
 ```
 
@@ -242,7 +142,7 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`DFA`](../../dfa/onepass/index.md).
+a [`DFA`](../../meta/wrappers/index.md).
 
 Caches can be created from their corresponding DFA via
 `DFA::create_cache`. A cache can only be used with either the DFA that
@@ -250,83 +150,141 @@ created it, or the DFA that was most recently used to reset it with
 `Cache::reset`. Using a cache with any other DFA may result in panics
 or incorrect results.
 
+#### Fields
+
+- **`trans`**: `alloc::vec::Vec<crate::hybrid::id::LazyStateID>`
+
+  The transition table.
+  
+  Given a `current` LazyStateID and an `input` byte, the next state can
+  be computed via `trans[untagged(current) + equiv_class(input)]`. Notice
+  that no multiplication is used. That's because state identifiers are
+  "premultiplied."
+  
+  Note that the next state may be the "unknown" state. In this case, the
+  next state is not known and determinization for `current` on `input`
+  must be performed.
+
+- **`starts`**: `alloc::vec::Vec<crate::hybrid::id::LazyStateID>`
+
+  The starting states for this DFA.
+  
+  These are computed lazily. Initially, these are all set to "unknown"
+  lazy state IDs.
+  
+  When 'starts_for_each_pattern' is disabled (the default), then the size
+  of this is constrained to the possible starting configurations based
+  on the search parameters. (At time of writing, that's 4.) However,
+  when starting states for each pattern is enabled, then there are N
+  additional groups of starting states, where each group reflects the
+  different possible configurations and N is the number of patterns.
+
+- **`states`**: `alloc::vec::Vec<self::state::State>`
+
+  A sequence of NFA/DFA powerset states that have been computed for this
+  lazy DFA. This sequence is indexable by untagged LazyStateIDs. (Every
+  tagged LazyStateID can be used to index this sequence by converting it
+  to its untagged form.)
+
+- **`states_to_id`**: `std::collections::HashMap<self::state::State, crate::hybrid::id::LazyStateID>`
+
+  A map from states to their corresponding IDs. This map may be accessed
+  via the raw byte representation of a state, which means that a `State`
+  does not need to be allocated to determine whether it already exists
+  in this map. Indeed, the existence of such a state is what determines
+  whether we allocate a new `State` or not.
+  
+  The higher level idea here is that we do just enough determinization
+  for a state to check whether we've already computed it. If we have,
+  then we can save a little (albeit not much) work. The real savings is
+  in memory usage. If we never checked for trivially duplicate states,
+  then our memory usage would explode to unreasonable levels.
+
+- **`sparses`**: `crate::util::sparse_set::SparseSets`
+
+  Sparse sets used to track which NFA states have been visited during
+  various traversals.
+
+- **`stack`**: `alloc::vec::Vec<crate::util::primitives::StateID>`
+
+  Scratch space for traversing the NFA graph. (We use space on the heap
+  instead of the call stack.)
+
+- **`scratch_state_builder`**: `self::state::StateBuilderEmpty`
+
+  Scratch space for building a NFA/DFA powerset state. This is used to
+  help amortize allocation since not every powerset state generated is
+  added to the cache. In particular, if it already exists in the cache,
+  then there is no need to allocate a new `State` for it.
+
+- **`state_saver`**: `StateSaver`
+
+  A simple abstraction for handling the saving of at most a single state
+  across a cache clearing. This is required for correctness. Namely, if
+  adding a new state after clearing the cache fails, then the caller
+  must retain the ability to continue using the state ID given. The
+  state corresponding to the state ID is what we preserve across cache
+  clearings.
+
+- **`memory_usage_state`**: `usize`
+
+  The memory usage, in bytes, used by 'states' and 'states_to_id'. We
+  track this as new states are added since states use a variable amount
+  of heap. Tracking this as we add states makes it possible to compute
+  the total amount of memory used by the determinizer in constant time.
+
+- **`clear_count`**: `usize`
+
+  The number of times the cache has been cleared. When a minimum cache
+  clear count is set, then the cache will return an error instead of
+  clearing the cache if the count has been exceeded.
+
+- **`bytes_searched`**: `usize`
+
+  The total number of bytes searched since the last time this cache was
+  cleared, not including the current search.
+  
+  This can be added to the length of the current search to get the true
+  total number of bytes searched.
+  
+  This is generally only non-zero when the
+  `Cache::search_{start,update,finish}` APIs are used to track search
+  progress.
+
+- **`progress`**: `Option<SearchProgress>`
+
+  The progress of the current search.
+  
+  This is only non-`None` when callers utilize the `Cache::search_start`,
+  `Cache::search_update` and `Cache::search_finish` APIs.
+  
+  The purpose of recording search progress is to be able to make a
+  determination about the efficiency of the cache. Namely, by keeping
+  track of the
+
 #### Implementations
 
-- `fn new(dfa: &DFA) -> Cache`
-  Create a new cache for the given lazy DFA.
+- `fn new(dfa: &DFA) -> Cache` — [`DFA`](../../../hybrid/dfa/index.md), [`Cache`](../../../hybrid/dfa/index.md)
 
-- `fn reset(self: &mut Self, dfa: &DFA)`
-  Reset this cache such that it can be used for searching with the given
+- `fn reset(self: &mut Self, dfa: &DFA)` — [`DFA`](../../../hybrid/dfa/index.md)
 
 - `fn search_start(self: &mut Self, at: usize)`
-  Initializes a new search starting at the given position.
 
 - `fn search_update(self: &mut Self, at: usize)`
-  Updates the current search to indicate that it has search to the
 
 - `fn search_finish(self: &mut Self, at: usize)`
-  Indicates that a search has finished at the given position.
 
 - `fn search_total_len(self: &Self) -> usize`
-  Returns the total number of bytes that have been searched since this
 
 - `fn clear_count(self: &Self) -> usize`
-  Returns the total number of times this cache has been cleared since it
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the heap memory usage, in bytes, of this cache.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Cache`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../hybrid/dfa/index.md)
 
 ##### `impl Debug`
 
@@ -336,7 +294,17 @@ or incorrect results.
 
 ```rust
 struct Config {
-    // [REDACTED: Private Fields]
+    match_kind: Option<crate::util::search::MatchKind>,
+    pre: Option<Option<crate::util::prefilter::Prefilter>>,
+    starts_for_each_pattern: Option<bool>,
+    byte_classes: Option<bool>,
+    unicode_word_boundary: Option<bool>,
+    quitset: Option<crate::util::alphabet::ByteSet>,
+    specialize_start_states: Option<bool>,
+    cache_capacity: Option<usize>,
+    skip_cache_capacity_check: Option<bool>,
+    minimum_cache_clear_count: Option<Option<usize>>,
+    minimum_bytes_per_state: Option<Option<usize>>,
 }
 ```
 
@@ -352,133 +320,69 @@ with `Builder::configure`.
 The default configuration guarantees that a search will never return a
 "gave up" or "quit" error, although it is possible for a search to fail
 if `Config::starts_for_each_pattern` wasn't enabled (which it is not by
-default) and an `Anchored::Pattern` mode is requested via [`Input`](../../index.md).
+default) and an `Anchored::Pattern` mode is requested via [`Input`](../../util/search/index.md).
 
 #### Implementations
 
-- `fn new() -> Config`
-  Return a new default lazy DFA builder configuration.
+- `fn new() -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config`
-  Set the desired match semantics.
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../../util/search/index.md), [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config`
-  Set a prefilter to be used whenever a start state is entered.
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config`
-  Whether to compile a separate start state for each pattern in the
+- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config`
-  Whether to attempt to shrink the size of the lazy DFA's alphabet or
+- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn unicode_word_boundary(self: Self, yes: bool) -> Config`
-  Heuristically enable Unicode word boundaries.
+- `fn unicode_word_boundary(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn quit(self: Self, byte: u8, yes: bool) -> Config`
-  Add a "quit" byte to the lazy DFA.
+- `fn quit(self: Self, byte: u8, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn specialize_start_states(self: Self, yes: bool) -> Config`
-  Enable specializing start states in the lazy DFA.
+- `fn specialize_start_states(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn cache_capacity(self: Self, bytes: usize) -> Config`
-  Sets the maximum amount of heap memory, in bytes, to allocate to the
+- `fn cache_capacity(self: Self, bytes: usize) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn skip_cache_capacity_check(self: Self, yes: bool) -> Config`
-  Configures construction of a lazy DFA to use the minimum cache capacity
+- `fn skip_cache_capacity_check(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn minimum_cache_clear_count(self: Self, min: Option<usize>) -> Config`
-  Configure a lazy DFA search to quit after a certain number of cache
+- `fn minimum_cache_clear_count(self: Self, min: Option<usize>) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn minimum_bytes_per_state(self: Self, min: Option<usize>) -> Config`
-  Configure a lazy DFA search to quit only when its efficiency drops
+- `fn minimum_bytes_per_state(self: Self, min: Option<usize>) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
-- `fn get_match_kind(self: &Self) -> MatchKind`
-  Returns the match semantics set in this configuration.
+- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../util/search/index.md)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>`
-  Returns the prefilter set in this configuration, if one at all.
+- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
 
 - `fn get_starts_for_each_pattern(self: &Self) -> bool`
-  Returns whether this configuration has enabled anchored starting states
 
 - `fn get_byte_classes(self: &Self) -> bool`
-  Returns whether this configuration has enabled byte classes or not.
 
 - `fn get_unicode_word_boundary(self: &Self) -> bool`
-  Returns whether this configuration has enabled heuristic Unicode word
 
 - `fn get_quit(self: &Self, byte: u8) -> bool`
-  Returns whether this configuration will instruct the lazy DFA to enter
 
 - `fn get_specialize_start_states(self: &Self) -> bool`
-  Returns whether this configuration will instruct the lazy DFA to
 
 - `fn get_cache_capacity(self: &Self) -> usize`
-  Returns the cache capacity set on this configuration.
 
 - `fn get_skip_cache_capacity_check(self: &Self) -> bool`
-  Returns whether the cache capacity check should be skipped.
 
 - `fn get_minimum_cache_clear_count(self: &Self) -> Option<usize>`
-  Returns, if set, the minimum number of times the cache must be cleared
 
 - `fn get_minimum_bytes_per_state(self: &Self) -> Option<usize>`
-  Returns, if set, the minimum number of bytes per state that need to be
 
-- `fn get_minimum_cache_capacity(self: &Self, nfa: &thompson::NFA) -> Result<usize, BuildError>`
-  Returns the minimum lazy DFA cache capacity required for the given NFA.
+- `fn get_minimum_cache_capacity(self: &Self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../hybrid/error/index.md)
+
+- `fn byte_classes_from_nfa(self: &Self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`ByteSet`](../../../util/alphabet/index.md), [`ByteClasses`](../../../util/alphabet/index.md)
+
+- `fn quit_set_from_nfa(self: &Self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`ByteSet`](../../../util/alphabet/index.md), [`BuildError`](../../../hybrid/error/index.md)
+
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Config`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
 ##### `impl Debug`
 
@@ -486,13 +390,14 @@ default) and an `Anchored::Pattern` mode is requested via [`Input`](../../index.
 
 ##### `impl Default`
 
-- `fn default() -> Config`
+- `fn default() -> Config` — [`Config`](../../../hybrid/dfa/index.md)
 
 ### `Builder`
 
 ```rust
 struct Builder {
-    // [REDACTED: Private Fields]
+    config: Config,
+    thompson: thompson::Compiler,
 }
 ```
 
@@ -511,7 +416,7 @@ a DFA from different kinds of inputs. The most convenient is
 most flexible is `Builder::build_from_nfa`, which builds a DFA straight
 from an NFA.
 2. The builder permits configuring a number of things.
-`Builder::configure` is used with [`Config`](#config) to configure aspects of
+`Builder::configure` is used with [`Config`](../../dfa/onepass/index.md) to configure aspects of
 the DFA and the construction process itself. `Builder::syntax` and
 `Builder::thompson` permit configuring the regex parser and Thompson NFA
 construction, respectively. The syntax and thompson configurations only
@@ -564,78 +469,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder`
-  Create a new lazy DFA builder with the default configuration.
+- `fn new() -> Builder` — [`Builder`](../../../hybrid/dfa/index.md)
 
-- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>`
-  Build a lazy DFA from the given pattern.
+- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](../../../hybrid/dfa/index.md), [`BuildError`](../../../hybrid/error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>`
-  Build a lazy DFA from the given patterns.
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](../../../hybrid/dfa/index.md), [`BuildError`](../../../hybrid/error/index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: thompson::NFA) -> Result<DFA, BuildError>`
-  Build a DFA from the given NFA.
+- `fn build_from_nfa(self: &Self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`DFA`](../../../hybrid/dfa/index.md), [`BuildError`](../../../hybrid/error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder`
-  Apply the given lazy DFA configuration options to this builder.
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../../hybrid/dfa/index.md), [`Builder`](../../../hybrid/dfa/index.md)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder`
-  Set the syntax configuration for this builder using
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](../../../hybrid/dfa/index.md)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder`
-  Set the Thompson NFA configuration for this builder using
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../nfa/thompson/compiler/index.md), [`Builder`](../../../hybrid/dfa/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Builder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../hybrid/dfa/index.md)
 
 ##### `impl Debug`
 
@@ -645,7 +497,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct OverlappingState {
-    // [REDACTED: Private Fields]
+    mat: Option<crate::util::search::HalfMatch>,
+    id: Option<crate::hybrid::id::LazyStateID>,
+    at: usize,
+    next_match_index: Option<usize>,
+    rev_eoi: bool,
 }
 ```
 
@@ -666,75 +522,77 @@ Callers should always provide a fresh state constructed via
 `OverlappingState::start` when starting a new search. Reusing state from
 a previous search may result in incorrect results.
 
+#### Fields
+
+- **`mat`**: `Option<crate::util::search::HalfMatch>`
+
+  The match reported by the most recent overlapping search to use this
+  state.
+  
+  If a search does not find any matches, then it is expected to clear
+  this value.
+
+- **`id`**: `Option<crate::hybrid::id::LazyStateID>`
+
+  The state ID of the state at which the search was in when the call
+  terminated. When this is a match state, `last_match` must be set to a
+  non-None value.
+  
+  A `None` value indicates the start state of the corresponding
+  automaton. We cannot use the actual ID, since any one automaton may
+  have many start states, and which one is in use depends on several
+  search-time factors.
+
+- **`at`**: `usize`
+
+  The position of the search.
+  
+  When `id` is None (i.e., we are starting a search), this is set to
+  the beginning of the search as given by the caller regardless of its
+  current value. Subsequent calls to an overlapping search pick up at
+  this offset.
+
+- **`next_match_index`**: `Option<usize>`
+
+  The index into the matching patterns of the next match to report if the
+  current state is a match state. Note that this may be 1 greater than
+  the total number of matches to report for the current match state. (In
+  which case, no more matches should be reported at the current position
+  and the search should advance to the next position.)
+
+- **`rev_eoi`**: `bool`
+
+  This is set to true when a reverse overlapping search has entered its
+  EOI transitions.
+  
+  This isn't used in a forward search because it knows to stop once the
+  position exceeds the end of the search range. In a reverse search,
+  since we use unsigned offsets, we don't "know" once we've gone past
+  `0`. So the only way to detect it is with this extra flag. The reverse
+  overlapping search knows to terminate specifically after it has
+  reported all matches after following the EOI transition.
+
 #### Implementations
 
-- `fn start() -> OverlappingState`
-  Create a new overlapping state that begins at the start state of any
+- `fn start() -> OverlappingState` — [`OverlappingState`](../../../hybrid/dfa/index.md)
 
-- `fn get_match(self: &Self) -> Option<HalfMatch>`
-  Return the match result of the most recent search to execute with this
+- `fn get_match(self: &Self) -> Option<HalfMatch>` — [`HalfMatch`](../../../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> OverlappingState`
+- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](../../../hybrid/dfa/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &OverlappingState) -> bool`
+- `fn eq(self: &Self, other: &OverlappingState) -> bool` — [`OverlappingState`](../../../hybrid/dfa/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

@@ -61,7 +61,12 @@ fn main() -> Result<()> {
         eprintln!(
             "Found {} crates: {}",
             crates.len(),
-            crates.names().join(", ")
+            crates
+                .names()
+                .iter()
+                .map(|s| s.as_str())
+                .collect::<Vec<_>>()
+                .join(", ")
         );
 
         // Generate documentation for all crates

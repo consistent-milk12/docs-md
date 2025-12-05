@@ -180,7 +180,8 @@ Originally, this crate was literally just a safe wrapper function around the
 
 ```rust
 struct Memchr<'h> {
-    // [REDACTED: Private Fields]
+    needle1: u8,
+    it: crate::arch::generic::memchr::Iter<'h>,
 }
 ```
 
@@ -189,7 +190,7 @@ An iterator over all occurrences of a single byte in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr_iter`](#memchr-iter) or `[memrchr_iter`]
+This iterator is created by the [`memchr_iter`](memchr/index.md) or `[memrchr_iter`]
 functions. It can also be created with the `Memchr::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -197,20 +198,23 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>`
-  Returns an iterator over all occurrences of the needle byte in the
+- `fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](../memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> Memchr<'h>` — [`Memchr`](../memchr/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'h>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DoubleEndedIterator<'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'h>`
 
 ##### `impl IntoIterator<I>`
 
@@ -219,32 +223,6 @@ searched.
 - `type IntoIter = I`
 
 - `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'h>`
-
-- `fn clone(self: &Self) -> Memchr<'h>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'h>`
-
-- `fn next_back(self: &mut Self) -> Option<usize>`
-
-##### `impl FusedIterator<'h>`
 
 ##### `impl Iterator<'h>`
 
@@ -256,35 +234,13 @@ searched.
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `Memchr2<'h>`
 
 ```rust
 struct Memchr2<'h> {
-    // [REDACTED: Private Fields]
+    needle1: u8,
+    needle2: u8,
+    it: crate::arch::generic::memchr::Iter<'h>,
 }
 ```
 
@@ -293,7 +249,7 @@ An iterator over all occurrences of two possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](memchr/index.md) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr2::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -301,20 +257,23 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>`
-  Returns an iterator over all occurrences of the needle bytes in the
+- `fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](../memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> Memchr2<'h>` — [`Memchr2`](../memchr/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'h>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DoubleEndedIterator<'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'h>`
 
 ##### `impl IntoIterator<I>`
 
@@ -324,32 +283,6 @@ searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'h>`
-
-- `fn clone(self: &Self) -> Memchr2<'h>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'h>`
-
-- `fn next_back(self: &mut Self) -> Option<usize>`
-
-##### `impl FusedIterator<'h>`
-
 ##### `impl Iterator<'h>`
 
 - `type Item = usize`
@@ -358,35 +291,14 @@ searched.
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `Memchr3<'h>`
 
 ```rust
 struct Memchr3<'h> {
-    // [REDACTED: Private Fields]
+    needle1: u8,
+    needle2: u8,
+    needle3: u8,
+    it: crate::arch::generic::memchr::Iter<'h>,
 }
 ```
 
@@ -395,7 +307,7 @@ An iterator over all occurrences of three possible bytes in a haystack.
 This iterator implements `DoubleEndedIterator`, which means it can also be
 used to find occurrences in reverse order.
 
-This iterator is created by the [`memchr2_iter`](#memchr2-iter) or `[memrchr2_iter`]
+This iterator is created by the [`memchr2_iter`](memchr/index.md) or `[memrchr2_iter`]
 functions. It can also be created with the `Memchr3::new` method.
 
 The lifetime parameter `'h` refers to the lifetime of the haystack being
@@ -403,20 +315,23 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>`
-  Returns an iterator over all occurrences of the needle bytes in the
+- `fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](../memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> Memchr3<'h>` — [`Memchr3`](../memchr/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'h>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DoubleEndedIterator<'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'h>`
 
 ##### `impl IntoIterator<I>`
 
@@ -426,32 +341,6 @@ searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'h>`
-
-- `fn clone(self: &Self) -> Memchr3<'h>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'h>`
-
-- `fn next_back(self: &mut Self) -> Option<usize>`
-
-##### `impl FusedIterator<'h>`
-
 ##### `impl Iterator<'h>`
 
 - `type Item = usize`
@@ -459,30 +348,6 @@ searched.
 - `fn next(self: &mut Self) -> Option<usize>`
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Functions
 

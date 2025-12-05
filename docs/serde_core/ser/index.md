@@ -119,7 +119,9 @@ website][data formats].
 
 ```rust
 struct Impossible<Ok, Error> {
-    // [REDACTED: Private Fields]
+    void: Void,
+    ok: PhantomData<Ok>,
+    error: PhantomData<Error>,
 }
 ```
 
@@ -174,40 +176,6 @@ impl Serializer for MySerializer {
 
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl SerializeMap<Ok, Error>`
 
@@ -1071,6 +1039,4 @@ implementation of `SerializeStructVariant` for a basic JSON data format.
 - `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a struct variant.
-
-## Functions
 

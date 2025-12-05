@@ -114,11 +114,18 @@ println!("{args:?}");
 
 ## Structs
 
+### `SeekFrom<R: gimli::Reader>`
+
+```rust
+struct SeekFrom<R: gimli::Reader> {
+}
+```
+
 ### `RawArgs`
 
 ```rust
 struct RawArgs {
-    // [REDACTED: Private Fields]
+    items: Vec<std::ffi::OsString>,
 }
 ```
 
@@ -127,101 +134,32 @@ Command-line arguments
 #### Implementations
 
 - `fn from_args() -> Self`
-  
 
 - `fn new(iter: impl IntoIterator<Item = impl Into<OsString>>) -> Self`
-  
 
-- `fn cursor(self: &Self) -> ArgCursor`
-  Create a cursor for walking the arguments
+- `fn cursor(self: &Self) -> ArgCursor` — [`ArgCursor`](../index.md)
 
-- `fn next(self: &Self, cursor: &mut ArgCursor) -> Option<ParsedArg<'_>>`
-  Advance the cursor, returning the next [`ParsedArg`]
+- `fn next(self: &Self, cursor: &mut ArgCursor) -> Option<ParsedArg<'_>>` — [`ArgCursor`](../index.md), [`ParsedArg`](../index.md)
 
-- `fn next_os(self: &Self, cursor: &mut ArgCursor) -> Option<&OsStr>`
-  Advance the cursor, returning a raw argument value.
+- `fn next_os(self: &Self, cursor: &mut ArgCursor) -> Option<&OsStr>` — [`ArgCursor`](../index.md)
 
-- `fn peek(self: &Self, cursor: &ArgCursor) -> Option<ParsedArg<'_>>`
-  Return the next [`ParsedArg`]
+- `fn peek(self: &Self, cursor: &ArgCursor) -> Option<ParsedArg<'_>>` — [`ArgCursor`](../index.md), [`ParsedArg`](../index.md)
 
-- `fn peek_os(self: &Self, cursor: &ArgCursor) -> Option<&OsStr>`
-  Return a raw argument value.
+- `fn peek_os(self: &Self, cursor: &ArgCursor) -> Option<&OsStr>` — [`ArgCursor`](../index.md)
 
-- `fn remaining(self: &Self, cursor: &mut ArgCursor) -> impl Iterator<Item = &OsStr>`
-  Return all remaining raw arguments, advancing the cursor to the end
+- `fn remaining(self: &Self, cursor: &mut ArgCursor) -> impl Iterator<Item = &OsStr>` — [`ArgCursor`](../index.md)
 
-- `fn seek(self: &Self, cursor: &mut ArgCursor, pos: SeekFrom)`
-  Adjust the cursor's position
+- `fn seek(self: &Self, cursor: &mut ArgCursor, pos: SeekFrom)` — [`ArgCursor`](../index.md)
 
-- `fn insert(self: &mut Self, cursor: &ArgCursor, insert_items: impl IntoIterator<Item = impl Into<OsString>>)`
-  Inject arguments before the [`RawArgs::next`]
+- `fn insert(self: &mut Self, cursor: &ArgCursor, insert_items: impl IntoIterator<Item = impl Into<OsString>>)` — [`ArgCursor`](../index.md)
 
-- `fn is_end(self: &Self, cursor: &ArgCursor) -> bool`
-  Any remaining args?
+- `fn is_end(self: &Self, cursor: &ArgCursor) -> bool` — [`ArgCursor`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From<I, T>`
-
-- `fn from(val: I) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> RawArgs`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &RawArgs) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> RawArgs` — [`RawArgs`](../index.md)
 
 ##### `impl Debug`
 
@@ -229,95 +167,61 @@ Command-line arguments
 
 ##### `impl Default`
 
-- `fn default() -> RawArgs`
+- `fn default() -> RawArgs` — [`RawArgs`](../index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &RawArgs) -> bool` — [`RawArgs`](../index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `ArgCursor`
 
 ```rust
 struct ArgCursor {
-    // [REDACTED: Private Fields]
+    cursor: usize,
 }
 ```
 
 Position within [`RawArgs`](#rawargs)
 
+#### Implementations
+
+- `fn new() -> Self`
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ArgCursor`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Ord`
-
-- `fn cmp(self: &Self, other: &ArgCursor) -> $crate::cmp::Ordering`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ArgCursor) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &ArgCursor) -> $crate::option::Option<$crate::cmp::Ordering>`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ArgCursor` — [`ArgCursor`](../index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq`
+
+##### `impl Ord`
+
+- `fn cmp(self: &Self, other: &ArgCursor) -> $crate::cmp::Ordering` — [`ArgCursor`](../index.md)
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ArgCursor) -> bool` — [`ArgCursor`](../index.md)
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &ArgCursor) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ArgCursor`](../index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `ParsedArg<'s>`
 
 ```rust
 struct ParsedArg<'s> {
-    // [REDACTED: Private Fields]
+    inner: &'s std::ffi::OsStr,
 }
 ```
 
@@ -325,70 +229,39 @@ Command-line Argument
 
 #### Implementations
 
+- `fn new(inner: &'s OsStr) -> Self`
+
 - `fn is_empty(self: &Self) -> bool`
-  Argument is length of 0
 
 - `fn is_stdio(self: &Self) -> bool`
-  Does the argument look like a stdio argument (`-`)
 
 - `fn is_escape(self: &Self) -> bool`
-  Does the argument look like an argument escape (`--`)
 
 - `fn is_negative_number(self: &Self) -> bool`
-  Does the argument look like a negative number?
 
 - `fn to_long(self: &Self) -> Option<(Result<&str, &OsStr>, Option<&OsStr>)>`
-  Treat as a long-flag
 
 - `fn is_long(self: &Self) -> bool`
-  Can treat as a long-flag
 
-- `fn to_short(self: &Self) -> Option<ShortFlags<'_>>`
-  Treat as a short-flag
+- `fn to_short(self: &Self) -> Option<ShortFlags<'_>>` — [`ShortFlags`](../index.md)
 
 - `fn is_short(self: &Self) -> bool`
-  Can treat as a short-flag
 
 - `fn to_value_os(self: &Self) -> &OsStr`
-  Treat as a value
 
 - `fn to_value(self: &Self) -> Result<&str, &OsStr>`
-  Treat as a value
 
 - `fn display(self: &Self) -> impl std::fmt::Display + '_`
-  Safely print an argument that may contain non-UTF8 content
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'s>`
 
-- `fn clone(self: &Self) -> ParsedArg<'s>`
+- `fn clone(self: &Self) -> ParsedArg<'s>` — [`ParsedArg`](../index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug<'s>`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq<'s>`
 
@@ -398,47 +271,25 @@ Command-line Argument
 
 ##### `impl Ord<'s>`
 
-- `fn cmp(self: &Self, other: &ParsedArg<'s>) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &ParsedArg<'s>) -> $crate::cmp::Ordering` — [`ParsedArg`](../index.md)
 
 ##### `impl PartialEq<'s>`
 
-- `fn eq(self: &Self, other: &ParsedArg<'s>) -> bool`
+- `fn eq(self: &Self, other: &ParsedArg<'s>) -> bool` — [`ParsedArg`](../index.md)
 
 ##### `impl PartialOrd<'s>`
 
-- `fn partial_cmp(self: &Self, other: &ParsedArg<'s>) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &ParsedArg<'s>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ParsedArg`](../index.md)
 
 ##### `impl StructuralPartialEq<'s>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'s>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `ShortFlags<'s>`
 
 ```rust
 struct ShortFlags<'s> {
-    // [REDACTED: Private Fields]
+    inner: &'s std::ffi::OsStr,
+    utf8_prefix: std::str::CharIndices<'s>,
+    invalid_suffix: Option<&'s std::ffi::OsStr>,
 }
 ```
 
@@ -446,32 +297,27 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 
 #### Implementations
 
+- `fn new(inner: &'s OsStr) -> Self`
+
 - `fn advance_by(self: &mut Self, n: usize) -> Result<(), usize>`
-  Move the iterator forward by `n` short flags
 
 - `fn is_empty(self: &Self) -> bool`
-  No short flags left
 
 - `fn is_negative_number(self: &Self) -> bool`
-  Does the short flag look like a number
 
 - `fn next_flag(self: &mut Self) -> Option<Result<char, &'s OsStr>>`
-  Advance the iterator, returning the next short flag on success
 
 - `fn next_value_os(self: &mut Self) -> Option<&'s OsStr>`
-  Advance the iterator, returning everything left as a value
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'s>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> ShortFlags<'s>` — [`ShortFlags`](../index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'s>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -481,57 +327,11 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'s>`
-
-- `fn clone(self: &Self) -> ShortFlags<'s>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Iterator<'s>`
 
 - `type Item = Result<char, &'s OsStr>`
 
 - `fn next(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'s>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ## Traits
-
-## Functions
 

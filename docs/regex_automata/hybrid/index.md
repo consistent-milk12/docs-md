@@ -20,7 +20,7 @@ If you're looking for fully compiled DFAs, then please see the top-level
 
 This section gives a brief overview of the primary types in this module:
 
-* A [`Regex`](regex/index.md) provides a way to search for matches of a regular
+* A [`regex::Regex`](regex/index.md) provides a way to search for matches of a regular
 expression using lazy DFAs. This includes iterating over matches with both the
 start and end positions of each match.
 * A `dfa::DFA` provides direct low level access to a lazy DFA.
@@ -147,7 +147,7 @@ compiled DFAs.
 
 ```rust
 struct BuildError {
-    // [REDACTED: Private Fields]
+    kind: BuildErrorKind,
 }
 ```
 
@@ -171,37 +171,25 @@ directly from a pattern string.
 When the `std` feature is enabled, this implements the `std::error::Error`
 trait.
 
+#### Implementations
+
+- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
+
+- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](../../hybrid/error/index.md)
+
+- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](../../hybrid/id/index.md), [`BuildError`](../../hybrid/error/index.md)
+
+- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](../../hybrid/error/index.md)
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BuildError`
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../hybrid/error/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -211,38 +199,14 @@ trait.
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `CacheError`
 
 ```rust
-struct CacheError();
+struct CacheError(());
 ```
 
 An error that occurs when cache usage has become inefficient.
@@ -263,37 +227,21 @@ and
 When the `std` feature is enabled, this implements the `std::error::Error`
 trait.
 
+#### Implementations
+
+- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](../../hybrid/error/index.md)
+
+- `fn bad_efficiency() -> CacheError` — [`CacheError`](../../hybrid/error/index.md)
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> CacheError`
+- `fn clone(self: &Self) -> CacheError` — [`CacheError`](../../hybrid/error/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -301,38 +249,14 @@ trait.
 
 ##### `impl Error`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `LazyStateID`
 
 ```rust
-struct LazyStateID();
+struct LazyStateID(u32);
 ```
 
 A state identifier specifically tailored for lazy DFAs.
@@ -503,57 +427,65 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
+- `const MAX_BIT: usize`
+
+- `const MASK_UNKNOWN: usize`
+
+- `const MASK_DEAD: usize`
+
+- `const MASK_QUIT: usize`
+
+- `const MASK_START: usize`
+
+- `const MASK_MATCH: usize`
+
+- `const MAX: usize`
+
+- `fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](../../hybrid/id/index.md), [`LazyStateIDError`](../../hybrid/id/index.md)
+
+- `const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+
+- `fn as_usize_untagged(self: &Self) -> usize`
+
+- `const fn as_usize_unchecked(self: &Self) -> usize`
+
+- `const fn to_unknown(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+
+- `const fn to_dead(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+
+- `const fn to_quit(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+
+- `const fn to_start(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+
+- `const fn to_match(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+
 - `const fn is_tagged(self: &Self) -> bool`
-  Return true if and only if this lazy state ID is tagged.
 
 - `const fn is_unknown(self: &Self) -> bool`
-  Return true if and only if this represents a lazy state ID that is
 
 - `const fn is_dead(self: &Self) -> bool`
-  Return true if and only if this represents a dead state. A dead state
 
 - `const fn is_quit(self: &Self) -> bool`
-  Return true if and only if this represents a quit state. A quit state
 
 - `const fn is_start(self: &Self) -> bool`
-  Return true if and only if this lazy state ID has been tagged as a
 
 - `const fn is_match(self: &Self) -> bool`
-  Return true if and only if this lazy state ID has been tagged as a
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> LazyStateID`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
 
 ##### `impl Eq`
 
@@ -563,45 +495,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering` — [`LazyStateID`](../../hybrid/id/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &LazyStateID) -> bool`
+- `fn eq(self: &Self, other: &LazyStateID) -> bool` — [`LazyStateID`](../../hybrid/id/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LazyStateID`](../../hybrid/id/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> LazyStateID`
 
 ## Enums
 
@@ -657,37 +561,23 @@ semver compatible release.
   An error that occurs when the caller requests an anchored mode that
   isn't supported by the DFA.
 
+#### Implementations
+
+- `fn cache(err: CacheError) -> StartError` — [`CacheError`](../../hybrid/error/index.md), [`StartError`](../../hybrid/error/index.md)
+
+- `fn quit(byte: u8) -> StartError` — [`StartError`](../../hybrid/error/index.md)
+
+- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../../util/search/index.md), [`StartError`](../../hybrid/error/index.md)
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StartError`
+- `fn clone(self: &Self) -> StartError` — [`StartError`](../../hybrid/error/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -697,31 +587,7 @@ semver compatible release.
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

@@ -12,7 +12,9 @@ Defines a translator that converts an `Ast` to an `Hir`.
 
 ```rust
 struct TranslatorBuilder {
-    // [REDACTED: Private Fields]
+    utf8: bool,
+    line_terminator: u8,
+    flags: Flags,
 }
 ```
 
@@ -20,87 +22,31 @@ A builder for constructing an AST->HIR translator.
 
 #### Implementations
 
-- `fn new() -> TranslatorBuilder`
-  Create a new translator builder with a default configuration.
+- `fn new() -> TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
-- `fn build(self: &Self) -> Translator`
-  Build a translator using the current configuration.
+- `fn build(self: &Self) -> Translator` — [`Translator`](../../../hir/translate/index.md)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut TranslatorBuilder`
-  When disabled, translation will permit the construction of a regular
+- `fn utf8(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut TranslatorBuilder`
-  Sets the line terminator for use with `(?u-s:.)` and `(?-us:.)`.
+- `fn line_terminator(self: &mut Self, byte: u8) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut TranslatorBuilder`
-  Enable or disable the case insensitive flag (`i`) by default.
+- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder`
-  Enable or disable the multi-line matching flag (`m`) by default.
+- `fn multi_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder`
-  Enable or disable the "dot matches any character" flag (`s`) by
+- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut TranslatorBuilder`
-  Enable or disable the CRLF mode flag (`R`) by default.
+- `fn crlf(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut TranslatorBuilder`
-  Enable or disable the "swap greed" flag (`U`) by default.
+- `fn swap_greed(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut TranslatorBuilder`
-  Enable or disable the Unicode flag (`u`) by default.
+- `fn unicode(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TranslatorBuilder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
 ##### `impl Debug`
 
@@ -108,13 +54,16 @@ A builder for constructing an AST->HIR translator.
 
 ##### `impl Default`
 
-- `fn default() -> TranslatorBuilder`
+- `fn default() -> TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
 
 ### `Translator`
 
 ```rust
 struct Translator {
-    // [REDACTED: Private Fields]
+    stack: core::cell::RefCell<alloc::vec::Vec<HirFrame>>,
+    flags: core::cell::Cell<Flags>,
+    utf8: bool,
+    line_terminator: u8,
 }
 ```
 
@@ -127,65 +76,35 @@ many abstract syntax trees.
 A `Translator` can be configured in more detail via a
 [`TranslatorBuilder`](#translatorbuilder).
 
+#### Fields
+
+- **`stack`**: `core::cell::RefCell<alloc::vec::Vec<HirFrame>>`
+
+  Our call stack, but on the heap.
+
+- **`flags`**: `core::cell::Cell<Flags>`
+
+  The current flag settings.
+
+- **`utf8`**: `bool`
+
+  Whether we're allowed to produce HIR that can match arbitrary bytes.
+
+- **`line_terminator`**: `u8`
+
+  The line terminator to use for `.`.
+
 #### Implementations
 
-- `fn new() -> Translator`
-  Create a new translator using the default configuration.
+- `fn new() -> Translator` — [`Translator`](../../../hir/translate/index.md)
 
-- `fn translate(self: &mut Self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>`
-  Translate the given abstract syntax tree (AST) into a high level
+- `fn translate(self: &mut Self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>` — [`Ast`](../../../ast/index.md), [`Hir`](../../../hir/index.md), [`Error`](../../../hir/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Translator`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Translator` — [`Translator`](../../../hir/translate/index.md)
 
 ##### `impl Debug`
 

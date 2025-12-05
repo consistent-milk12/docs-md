@@ -7,18 +7,18 @@
 Support for reading AIX XCOFF files.
 
 Traits are used to abstract over the difference between 32-bit and 64-bit XCOFF.
-The primary trait for this is [`FileHeader`](../../index.md).
+The primary trait for this is [`FileHeader`](../elf/file/index.md).
 
 ## High level API
 
-[`XcoffFile`](../../index.md) implements the [`Object`](crate::read::Object) trait for XCOFF files.
-[`XcoffFile`](../../index.md) is parameterised by [`FileHeader`](../../index.md) to allow reading both 32-bit and
-64-bit XCOFF. There are type aliases for these parameters ([`XcoffFile32`](../../index.md) and
-[`XcoffFile64`](../../index.md)).
+[`XcoffFile`](file/index.md) implements the [`Object`](crate::read::Object) trait for XCOFF files.
+[`XcoffFile`](file/index.md) is parameterised by [`FileHeader`](../elf/file/index.md) to allow reading both 32-bit and
+64-bit XCOFF. There are type aliases for these parameters ([`XcoffFile32`](file/index.md) and
+[`XcoffFile64`](file/index.md)).
 
 ## Low level API
 
-The [`FileHeader`](../../index.md) trait can be directly used to parse both `xcoff::FileHeader32`
+The [`FileHeader`](../elf/file/index.md) trait can be directly used to parse both `xcoff::FileHeader32`
 and `xcoff::FileHeader64`.
 
 ### Example for low level API

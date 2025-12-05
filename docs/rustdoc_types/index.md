@@ -78,63 +78,9 @@ tools to find or link to them.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Crate`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Crate) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Crate` — [`Crate`](../index.md)
 
 ##### `impl Debug`
 
@@ -146,9 +92,17 @@ tools to find or link to them.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Crate) -> bool` — [`Crate`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Target`
 
@@ -174,63 +128,9 @@ Information about a target
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Target`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Target) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Target` — [`Target`](../index.md)
 
 ##### `impl Debug`
 
@@ -242,9 +142,17 @@ Information about a target
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Target) -> bool` — [`Target`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `TargetFeature`
 
@@ -310,63 +218,9 @@ context.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TargetFeature`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &TargetFeature) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TargetFeature` — [`TargetFeature`](../index.md)
 
 ##### `impl Debug`
 
@@ -378,9 +232,17 @@ context.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &TargetFeature) -> bool` — [`TargetFeature`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `ExternalCrate`
 
@@ -420,67 +282,9 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ExternalCrate`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ExternalCrate) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ExternalCrate` — [`ExternalCrate`](../index.md)
 
 ##### `impl Debug`
 
@@ -492,9 +296,21 @@ Metadata of a crate, either the same crate on which `rustdoc` was invoked, or it
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ExternalCrate) -> bool` — [`ExternalCrate`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `ItemSummary`
 
@@ -536,67 +352,9 @@ the actual item definition with all the relevant info.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ItemSummary`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ItemSummary) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ItemSummary` — [`ItemSummary`](../index.md)
 
 ##### `impl Debug`
 
@@ -608,9 +366,21 @@ the actual item definition with all the relevant info.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ItemSummary) -> bool` — [`ItemSummary`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Item`
 
@@ -692,63 +462,9 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Item`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Item) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Item` — [`Item`](../index.md)
 
 ##### `impl Debug`
 
@@ -760,9 +476,17 @@ and leaves kind-specific details (like function args or enum variants) to the `i
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Item) -> bool` — [`Item`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `AttributeRepr`
 
@@ -801,63 +525,9 @@ Used in `Attribute::Repr`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> AttributeRepr`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &AttributeRepr) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> AttributeRepr` — [`AttributeRepr`](../index.md)
 
 ##### `impl Debug`
 
@@ -869,9 +539,17 @@ Used in `Attribute::Repr`.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &AttributeRepr) -> bool` — [`AttributeRepr`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Span`
 
@@ -901,67 +579,9 @@ A range of source code.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Span`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Span) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Span` — [`Span`](../index.md)
 
 ##### `impl Debug`
 
@@ -973,9 +593,21 @@ A range of source code.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Deprecation`
 
@@ -1000,67 +632,9 @@ Information about the deprecation of an [`Item`](#item).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Deprecation`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Deprecation) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Deprecation` — [`Deprecation`](../index.md)
 
 ##### `impl Debug`
 
@@ -1072,9 +646,21 @@ Information about the deprecation of an [`Item`](#item).
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Deprecation) -> bool` — [`Deprecation`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `DynTrait`
 
@@ -1105,67 +691,9 @@ Dynamic trait object type (`dyn Trait`).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DynTrait`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &DynTrait) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> DynTrait` — [`DynTrait`](../index.md)
 
 ##### `impl Debug`
 
@@ -1177,9 +705,21 @@ Dynamic trait object type (`dyn Trait`).
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &DynTrait) -> bool` — [`DynTrait`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `PolyTrait`
 
@@ -1208,67 +748,9 @@ A trait and potential HRTBs
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PolyTrait`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &PolyTrait) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> PolyTrait` — [`PolyTrait`](../index.md)
 
 ##### `impl Debug`
 
@@ -1280,9 +762,21 @@ A trait and potential HRTBs
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &PolyTrait) -> bool` — [`PolyTrait`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Constant`
 
@@ -1314,67 +808,9 @@ A constant.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Constant`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Constant) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Constant` — [`Constant`](../index.md)
 
 ##### `impl Debug`
 
@@ -1386,9 +822,21 @@ A constant.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Constant) -> bool` — [`Constant`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `AssocItemConstraint`
 
@@ -1424,67 +872,9 @@ IntoIterator<Item = u32, IntoIter: Clone>
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> AssocItemConstraint`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &AssocItemConstraint) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> AssocItemConstraint` — [`AssocItemConstraint`](../index.md)
 
 ##### `impl Debug`
 
@@ -1496,9 +886,21 @@ IntoIterator<Item = u32, IntoIter: Clone>
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &AssocItemConstraint) -> bool` — [`AssocItemConstraint`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Id`
 
@@ -1520,77 +922,11 @@ to parse them, or otherwise depend on any implementation details.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Id`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Id` — [`Id`](../index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl Ord`
-
-- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Id) -> bool`
-
-##### `impl PartialOrd`
-
-- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1602,9 +938,29 @@ to parse them, or otherwise depend on any implementation details.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl Ord`
+
+- `fn cmp(self: &Self, other: &Id) -> $crate::cmp::Ordering` — [`Id`](../index.md)
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Id) -> bool` — [`Id`](../index.md)
+
+##### `impl PartialOrd`
+
+- `fn partial_cmp(self: &Self, other: &Id) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Id`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Module`
 
@@ -1638,67 +994,9 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Module`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Module) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Module` — [`Module`](../index.md)
 
 ##### `impl Debug`
 
@@ -1710,9 +1008,21 @@ A module declaration, e.g. `mod foo;` or `mod foo {}`.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Module) -> bool` — [`Module`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Union`
 
@@ -1751,67 +1061,9 @@ A `union`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Union`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Union) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Union` — [`Union`](../index.md)
 
 ##### `impl Debug`
 
@@ -1823,9 +1075,21 @@ A `union`.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Union) -> bool` — [`Union`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Struct`
 
@@ -1857,67 +1121,9 @@ A `struct`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Struct`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Struct) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Struct` — [`Struct`](../index.md)
 
 ##### `impl Debug`
 
@@ -1929,9 +1135,21 @@ A `struct`.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Struct) -> bool` — [`Struct`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Enum`
 
@@ -1968,67 +1186,9 @@ An `enum`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Enum`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Enum) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Enum` — [`Enum`](../index.md)
 
 ##### `impl Debug`
 
@@ -2040,9 +1200,21 @@ An `enum`.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Enum) -> bool` — [`Enum`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Variant`
 
@@ -2067,67 +1239,9 @@ A variant of an enum.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Variant`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Variant) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Variant` — [`Variant`](../index.md)
 
 ##### `impl Debug`
 
@@ -2139,9 +1253,21 @@ A variant of an enum.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Variant) -> bool` — [`Variant`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Discriminant`
 
@@ -2175,67 +1301,9 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Discriminant`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Discriminant) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Discriminant` — [`Discriminant`](../index.md)
 
 ##### `impl Debug`
 
@@ -2247,9 +1315,21 @@ The value that distinguishes a variant in an [`Enum`](#enum) from other variants
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Discriminant) -> bool` — [`Discriminant`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `FunctionHeader`
 
@@ -2284,67 +1364,9 @@ A set of fundamental properties of a function.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FunctionHeader`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &FunctionHeader) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> FunctionHeader` — [`FunctionHeader`](../index.md)
 
 ##### `impl Debug`
 
@@ -2356,9 +1378,21 @@ A set of fundamental properties of a function.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &FunctionHeader) -> bool` — [`FunctionHeader`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Function`
 
@@ -2393,67 +1427,9 @@ A function declaration (including methods and other associated functions).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Function`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Function) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Function` — [`Function`](../index.md)
 
 ##### `impl Debug`
 
@@ -2465,9 +1441,21 @@ A function declaration (including methods and other associated functions).
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Function) -> bool` — [`Function`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Generics`
 
@@ -2492,67 +1480,9 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Generics`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Generics) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Generics` — [`Generics`](../index.md)
 
 ##### `impl Debug`
 
@@ -2564,9 +1494,21 @@ Generic parameters accepted by an item and `where` clauses imposed on it and the
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Generics) -> bool` — [`Generics`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `GenericParamDef`
 
@@ -2596,67 +1538,9 @@ One generic parameter accepted by an item.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> GenericParamDef`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &GenericParamDef) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> GenericParamDef` — [`GenericParamDef`](../index.md)
 
 ##### `impl Debug`
 
@@ -2668,9 +1552,21 @@ One generic parameter accepted by an item.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &GenericParamDef) -> bool` — [`GenericParamDef`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Path`
 
@@ -2715,67 +1611,9 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Path`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Path) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Path` — [`Path`](../index.md)
 
 ##### `impl Debug`
 
@@ -2787,9 +1625,21 @@ A type that has a simple path to it. This is the kind of type of structs, unions
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Path) -> bool` — [`Path`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `FunctionPointer`
 
@@ -2824,67 +1674,9 @@ A type that is a function pointer.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FunctionPointer`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &FunctionPointer) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> FunctionPointer` — [`FunctionPointer`](../index.md)
 
 ##### `impl Debug`
 
@@ -2896,9 +1688,21 @@ A type that is a function pointer.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &FunctionPointer) -> bool` — [`FunctionPointer`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `FunctionSignature`
 
@@ -2935,67 +1739,9 @@ The signature of a function.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FunctionSignature`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &FunctionSignature) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> FunctionSignature` — [`FunctionSignature`](../index.md)
 
 ##### `impl Debug`
 
@@ -3007,9 +1753,21 @@ The signature of a function.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &FunctionSignature) -> bool` — [`FunctionSignature`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Trait`
 
@@ -3062,67 +1820,9 @@ A `trait` declaration.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Trait`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Trait) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Trait` — [`Trait`](../index.md)
 
 ##### `impl Debug`
 
@@ -3134,9 +1834,21 @@ A `trait` declaration.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Trait) -> bool` — [`Trait`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `TraitAlias`
 
@@ -3163,67 +1875,9 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TraitAlias`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &TraitAlias) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TraitAlias` — [`TraitAlias`](../index.md)
 
 ##### `impl Debug`
 
@@ -3235,9 +1889,21 @@ See [the tracking issue](https://github.com/rust-lang/rust/issues/41517)
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &TraitAlias) -> bool` — [`TraitAlias`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Impl`
 
@@ -3306,67 +1972,9 @@ An `impl` block.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Impl`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Impl) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Impl` — [`Impl`](../index.md)
 
 ##### `impl Debug`
 
@@ -3378,9 +1986,21 @@ An `impl` block.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Impl) -> bool` — [`Impl`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Use`
 
@@ -3419,67 +2039,9 @@ A `use` statement.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Use`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Use) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Use` — [`Use`](../index.md)
 
 ##### `impl Debug`
 
@@ -3491,9 +2053,21 @@ A `use` statement.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Use) -> bool` — [`Use`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `ProcMacro`
 
@@ -3532,67 +2106,9 @@ A procedural macro.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ProcMacro`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ProcMacro) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ProcMacro` — [`ProcMacro`](../index.md)
 
 ##### `impl Debug`
 
@@ -3604,9 +2120,21 @@ A procedural macro.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ProcMacro) -> bool` — [`ProcMacro`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `TypeAlias`
 
@@ -3631,67 +2159,9 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TypeAlias`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &TypeAlias) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TypeAlias` — [`TypeAlias`](../index.md)
 
 ##### `impl Debug`
 
@@ -3703,9 +2173,21 @@ A type alias declaration, e.g. `type Pig = std::borrow::Cow<'static, str>;`
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &TypeAlias) -> bool` — [`TypeAlias`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Static`
 
@@ -3755,67 +2237,9 @@ A `static` declaration.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Static`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Static) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Static` — [`Static`](../index.md)
 
 ##### `impl Debug`
 
@@ -3827,9 +2251,21 @@ A `static` declaration.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Static) -> bool` — [`Static`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Primitive`
 
@@ -3854,67 +2290,9 @@ A primitive type declaration. Declarations of this kind can only come from the c
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Primitive`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Primitive) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Primitive` — [`Primitive`](../index.md)
 
 ##### `impl Debug`
 
@@ -3926,9 +2304,21 @@ A primitive type declaration. Declarations of this kind can only come from the c
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Primitive) -> bool` — [`Primitive`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ## Enums
 
@@ -4011,63 +2401,9 @@ This doesn't include:
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Attribute`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Attribute) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Attribute` — [`Attribute`](../index.md)
 
 ##### `impl Debug`
 
@@ -4079,9 +2415,17 @@ This doesn't include:
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Attribute) -> bool` — [`Attribute`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `ReprKind`
 
@@ -4120,63 +2464,9 @@ See [AttributeRepr::kind]`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ReprKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ReprKind) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ReprKind` — [`ReprKind`](../index.md)
 
 ##### `impl Debug`
 
@@ -4188,9 +2478,17 @@ See [AttributeRepr::kind]`.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ReprKind) -> bool` — [`ReprKind`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Visibility`
 
@@ -4229,67 +2527,9 @@ Visibility of an [`Item`](#item).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Visibility`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Visibility) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Visibility` — [`Visibility`](../index.md)
 
 ##### `impl Debug`
 
@@ -4301,9 +2541,21 @@ Visibility of an [`Item`](#item).
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Visibility) -> bool` — [`Visibility`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `GenericArgs`
 
@@ -4344,67 +2596,9 @@ std::option::Option<u32>
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> GenericArgs`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &GenericArgs) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> GenericArgs` — [`GenericArgs`](../index.md)
 
 ##### `impl Debug`
 
@@ -4416,9 +2610,21 @@ std::option::Option<u32>
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &GenericArgs) -> bool` — [`GenericArgs`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `GenericArg`
 
@@ -4471,67 +2677,9 @@ Part of [`GenericArgs`](#genericargs).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> GenericArg`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &GenericArg) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> GenericArg` — [`GenericArg`](../index.md)
 
 ##### `impl Debug`
 
@@ -4543,9 +2691,21 @@ Part of [`GenericArgs`](#genericargs).
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &GenericArg) -> bool` — [`GenericArg`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `AssocItemConstraintKind`
 
@@ -4578,67 +2738,9 @@ The way in which an associate type/constant is bound.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> AssocItemConstraintKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &AssocItemConstraintKind) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> AssocItemConstraintKind` — [`AssocItemConstraintKind`](../index.md)
 
 ##### `impl Debug`
 
@@ -4650,9 +2752,21 @@ The way in which an associate type/constant is bound.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &AssocItemConstraintKind) -> bool` — [`AssocItemConstraintKind`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `ItemKind`
 
@@ -4808,69 +2922,11 @@ Part of [`ItemSummary`](#itemsummary).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ItemKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ItemKind` — [`ItemKind`](../index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ItemKind) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -4882,9 +2938,21 @@ Part of [`ItemSummary`](#itemsummary).
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ItemKind) -> bool` — [`ItemKind`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `ItemEnum`
 
@@ -5026,67 +3094,9 @@ Part of [`Item`](#item).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ItemEnum`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ItemEnum) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ItemEnum` — [`ItemEnum`](../index.md)
 
 ##### `impl Debug`
 
@@ -5098,9 +3108,21 @@ Part of [`Item`](#item).
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ItemEnum) -> bool` — [`ItemEnum`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `StructKind`
 
@@ -5151,67 +3173,9 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StructKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &StructKind) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> StructKind` — [`StructKind`](../index.md)
 
 ##### `impl Debug`
 
@@ -5223,9 +3187,21 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &StructKind) -> bool` — [`StructKind`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `VariantKind`
 
@@ -5283,67 +3259,9 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> VariantKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &VariantKind) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> VariantKind` — [`VariantKind`](../index.md)
 
 ##### `impl Debug`
 
@@ -5355,9 +3273,21 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &VariantKind) -> bool` — [`VariantKind`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Abi`
 
@@ -5445,67 +3375,9 @@ on unwinding for more info.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Abi`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Abi) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Abi` — [`Abi`](../index.md)
 
 ##### `impl Debug`
 
@@ -5517,9 +3389,21 @@ on unwinding for more info.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Abi) -> bool` — [`Abi`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `GenericParamDefKind`
 
@@ -5558,67 +3442,9 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> GenericParamDefKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &GenericParamDefKind) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> GenericParamDefKind` — [`GenericParamDefKind`](../index.md)
 
 ##### `impl Debug`
 
@@ -5630,9 +3456,21 @@ The kind of a [`GenericParamDef`](#genericparamdef).
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &GenericParamDefKind) -> bool` — [`GenericParamDefKind`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `WherePredicate`
 
@@ -5676,67 +3514,9 @@ fn default<T>() -> T where T: Default { T::default() }
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> WherePredicate`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &WherePredicate) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> WherePredicate` — [`WherePredicate`](../index.md)
 
 ##### `impl Debug`
 
@@ -5748,9 +3528,21 @@ fn default<T>() -> T where T: Default { T::default() }
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &WherePredicate) -> bool` — [`WherePredicate`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `GenericBound`
 
@@ -5788,67 +3580,9 @@ Either a trait bound or a lifetime bound.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> GenericBound`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &GenericBound) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> GenericBound` — [`GenericBound`](../index.md)
 
 ##### `impl Debug`
 
@@ -5860,9 +3594,21 @@ Either a trait bound or a lifetime bound.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &GenericBound) -> bool` — [`GenericBound`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `TraitBoundModifier`
 
@@ -5895,69 +3641,11 @@ A set of modifiers applied to a trait.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TraitBoundModifier`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> TraitBoundModifier` — [`TraitBoundModifier`](../index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &TraitBoundModifier) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -5969,9 +3657,21 @@ A set of modifiers applied to a trait.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &TraitBoundModifier) -> bool` — [`TraitBoundModifier`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `PreciseCapturingArg`
 
@@ -6002,67 +3702,9 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PreciseCapturingArg`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &PreciseCapturingArg) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> PreciseCapturingArg` — [`PreciseCapturingArg`](../index.md)
 
 ##### `impl Debug`
 
@@ -6074,9 +3716,21 @@ One precise capturing argument. See [the rust reference](https://doc.rust-lang.o
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &PreciseCapturingArg) -> bool` — [`PreciseCapturingArg`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Term`
 
@@ -6116,67 +3770,9 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Term`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Term) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Term` — [`Term`](../index.md)
 
 ##### `impl Debug`
 
@@ -6188,9 +3784,21 @@ Either a type or a constant, usually stored as the right-hand side of an equatio
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Term) -> bool` — [`Term`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `Type`
 
@@ -6295,67 +3903,9 @@ A type.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Type`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Type) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Type` — [`Type`](../index.md)
 
 ##### `impl Debug`
 
@@ -6367,9 +3917,21 @@ A type.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Type) -> bool` — [`Type`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ### `MacroKind`
 
@@ -6399,69 +3961,11 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> MacroKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> MacroKind` — [`MacroKind`](../index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &MacroKind) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -6473,9 +3977,21 @@ The way a [`ProcMacro`](#procmacro) is declared to be used.
 
 ##### `impl DeserializeOwned<T>`
 
+##### `impl Eq`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &MacroKind) -> bool` — [`MacroKind`](../index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl StructuralPartialEq`
 
 ## Constants
 

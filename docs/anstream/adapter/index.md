@@ -12,7 +12,8 @@ Gracefully degrade styled output
 
 ```rust
 struct StripBytes {
-    // [REDACTED: Private Fields]
+    state: anstyle_parse::state::State,
+    utf8parser: Utf8Parser,
 }
 ```
 
@@ -21,70 +22,14 @@ Incrementally strip non-contiguous data
 #### Implementations
 
 - `fn new() -> Self`
-  Initial state
 
-- `fn strip_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> StripBytesIter<'s>`
-  Strip the next segment of data
+- `fn strip_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> StripBytesIter<'s>` — [`StripBytesIter`](../../adapter/strip/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StripBytes`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &StripBytes) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> StripBytes` — [`StripBytes`](../../adapter/strip/index.md)
 
 ##### `impl Debug`
 
@@ -92,29 +37,35 @@ Incrementally strip non-contiguous data
 
 ##### `impl Default`
 
-- `fn default() -> StripBytes`
+- `fn default() -> StripBytes` — [`StripBytes`](../../adapter/strip/index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &StripBytes) -> bool` — [`StripBytes`](../../adapter/strip/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `StripBytesIter<'s>`
 
 ```rust
 struct StripBytesIter<'s> {
-    // [REDACTED: Private Fields]
+    bytes: &'s [u8],
+    state: &'s mut anstyle_parse::state::State,
+    utf8parser: &'s mut Utf8Parser,
 }
 ```
 
-See [`StripBytes`](../index.md)
+See [`StripBytes`](strip/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'s>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl Eq<'s>`
 
 ##### `impl IntoIterator<I>`
 
@@ -124,20 +75,6 @@ See [`StripBytes`](../index.md)
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Eq<'s>`
-
 ##### `impl Iterator<'s>`
 
 - `type Item = &'s [u8]`
@@ -146,31 +83,15 @@ See [`StripBytes`](../index.md)
 
 ##### `impl PartialEq<'s>`
 
-- `fn eq(self: &Self, other: &StripBytesIter<'s>) -> bool`
+- `fn eq(self: &Self, other: &StripBytesIter<'s>) -> bool` — [`StripBytesIter`](../../adapter/strip/index.md)
 
 ##### `impl StructuralPartialEq<'s>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'s>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `StripStr`
 
 ```rust
 struct StripStr {
-    // [REDACTED: Private Fields]
+    state: anstyle_parse::state::State,
 }
 ```
 
@@ -179,70 +100,14 @@ Incrementally strip non-contiguous data
 #### Implementations
 
 - `fn new() -> Self`
-  Initial state
 
-- `fn strip_next<'s>(self: &'s mut Self, data: &'s str) -> StripStrIter<'s>`
-  Strip the next segment of data
+- `fn strip_next<'s>(self: &'s mut Self, data: &'s str) -> StripStrIter<'s>` — [`StripStrIter`](../../adapter/strip/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StripStr`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &StripStr) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> StripStr` — [`StripStr`](../../adapter/strip/index.md)
 
 ##### `impl Debug`
 
@@ -250,29 +115,34 @@ Incrementally strip non-contiguous data
 
 ##### `impl Default`
 
-- `fn default() -> StripStr`
+- `fn default() -> StripStr` — [`StripStr`](../../adapter/strip/index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &StripStr) -> bool` — [`StripStr`](../../adapter/strip/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `StripStrIter<'s>`
 
 ```rust
 struct StripStrIter<'s> {
-    // [REDACTED: Private Fields]
+    bytes: &'s [u8],
+    state: &'s mut anstyle_parse::state::State,
 }
 ```
 
-See [`StripStr`](../index.md)
+See [`StripStr`](strip/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'s>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl Eq<'s>`
 
 ##### `impl IntoIterator<I>`
 
@@ -281,20 +151,6 @@ See [`StripStr`](../index.md)
 - `type IntoIter = I`
 
 - `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Eq<'s>`
 
 ##### `impl Iterator<'s>`
 
@@ -304,61 +160,47 @@ See [`StripStr`](../index.md)
 
 ##### `impl PartialEq<'s>`
 
-- `fn eq(self: &Self, other: &StripStrIter<'s>) -> bool`
+- `fn eq(self: &Self, other: &StripStrIter<'s>) -> bool` — [`StripStrIter`](../../adapter/strip/index.md)
 
 ##### `impl StructuralPartialEq<'s>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'s>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `StrippedBytes<'s>`
 
 ```rust
 struct StrippedBytes<'s> {
-    // [REDACTED: Private Fields]
+    bytes: &'s [u8],
+    state: anstyle_parse::state::State,
+    utf8parser: Utf8Parser,
 }
 ```
 
-See [`strip_bytes`](../index.md)
+See [`strip_bytes`](strip/index.md)
 
 #### Implementations
 
 - `fn new(bytes: &'s [u8]) -> Self`
-  See [`strip_bytes`]
 
 - `fn extend(self: &mut Self, bytes: &'s [u8])`
-  Strip the next slice of bytes
 
 - `fn is_empty(self: &Self) -> bool`
-  Report the bytes has been exhausted
 
 - `fn into_vec(self: Self) -> Vec<u8>`
-  Create a [`Vec`] of the printable content
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'s>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> StrippedBytes<'s>` — [`StrippedBytes`](../../adapter/strip/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'s>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default<'s>`
+
+- `fn default() -> StrippedBytes<'s>` — [`StrippedBytes`](../../adapter/strip/index.md)
+
+##### `impl Eq<'s>`
 
 ##### `impl IntoIterator<I>`
 
@@ -367,28 +209,6 @@ See [`strip_bytes`](../index.md)
 - `type IntoIter = I`
 
 - `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'s>`
-
-- `fn clone(self: &Self) -> StrippedBytes<'s>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq<'s>`
 
 ##### `impl Iterator<'s>`
 
@@ -398,29 +218,32 @@ See [`strip_bytes`](../index.md)
 
 ##### `impl PartialEq<'s>`
 
-- `fn eq(self: &Self, other: &StrippedBytes<'s>) -> bool`
+- `fn eq(self: &Self, other: &StrippedBytes<'s>) -> bool` — [`StrippedBytes`](../../adapter/strip/index.md)
 
 ##### `impl StructuralPartialEq<'s>`
 
-##### `impl ToOwned<T>`
+### `StrippedStr<'s>`
 
-- `type Owned = T`
+```rust
+struct StrippedStr<'s> {
+    bytes: &'s [u8],
+    state: anstyle_parse::state::State,
+}
+```
 
-- `fn to_owned(self: &Self) -> T`
+See [`strip_str`](strip/index.md)
 
-- `fn clone_into(self: &Self, target: &mut T)`
+#### Implementations
 
-##### `impl TryFrom<T, U>`
+- `fn new(data: &'s str) -> Self`
 
-- `type Error = Infallible`
+- `fn to_string(self: &Self) -> String`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+#### Trait Implementations
 
-##### `impl TryInto<T, U>`
+##### `impl Clone<'s>`
 
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> StrippedStr<'s>` — [`StrippedStr`](../../adapter/strip/index.md)
 
 ##### `impl Debug<'s>`
 
@@ -428,34 +251,13 @@ See [`strip_bytes`](../index.md)
 
 ##### `impl Default<'s>`
 
-- `fn default() -> StrippedBytes<'s>`
+- `fn default() -> StrippedStr<'s>` — [`StrippedStr`](../../adapter/strip/index.md)
 
-### `StrippedStr<'s>`
+##### `impl Display`
 
-```rust
-struct StrippedStr<'s> {
-    // [REDACTED: Private Fields]
-}
-```
+- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-See [`strip_str`](../index.md)
-
-#### Implementations
-
-- `fn to_string(self: &Self) -> String`
-  Create a [`String`] of the printable content
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl Eq<'s>`
 
 ##### `impl IntoIterator<I>`
 
@@ -465,33 +267,6 @@ See [`strip_str`](../index.md)
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'s>`
-
-- `fn clone(self: &Self) -> StrippedStr<'s>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
-  **Note:** this does *not* exhaust the [`Iterator`]
-
-##### `impl Eq<'s>`
-
 ##### `impl Iterator<'s>`
 
 - `type Item = &'s str`
@@ -500,47 +275,20 @@ See [`strip_str`](../index.md)
 
 ##### `impl PartialEq<'s>`
 
-- `fn eq(self: &Self, other: &StrippedStr<'s>) -> bool`
+- `fn eq(self: &Self, other: &StrippedStr<'s>) -> bool` — [`StrippedStr`](../../adapter/strip/index.md)
 
 ##### `impl StructuralPartialEq<'s>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'s>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default<'s>`
-
-- `fn default() -> StrippedStr<'s>`
-
 ### `WinconBytes`
 
 ```rust
 struct WinconBytes {
-    // [REDACTED: Private Fields]
+    parser: anstyle_parse::Parser,
+    capture: WinconCapture,
 }
 ```
 
@@ -549,70 +297,14 @@ Incrementally convert to wincon calls for non-contiguous data
 #### Implementations
 
 - `fn new() -> Self`
-  Initial state
 
-- `fn extract_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> WinconBytesIter<'s>`
-  Strip the next segment of data
+- `fn extract_next<'s>(self: &'s mut Self, bytes: &'s [u8]) -> WinconBytesIter<'s>` — [`WinconBytesIter`](../../adapter/wincon/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> WinconBytes`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &WinconBytes) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> WinconBytes` — [`WinconBytes`](../../adapter/wincon/index.md)
 
 ##### `impl Debug`
 
@@ -620,29 +312,35 @@ Incrementally convert to wincon calls for non-contiguous data
 
 ##### `impl Default`
 
-- `fn default() -> WinconBytes`
+- `fn default() -> WinconBytes` — [`WinconBytes`](../../adapter/wincon/index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &WinconBytes) -> bool` — [`WinconBytes`](../../adapter/wincon/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `WinconBytesIter<'s>`
 
 ```rust
 struct WinconBytesIter<'s> {
-    // [REDACTED: Private Fields]
+    bytes: &'s [u8],
+    parser: &'s mut anstyle_parse::Parser,
+    capture: &'s mut WinconCapture,
 }
 ```
 
-See [`WinconBytes`](../index.md)
+See [`WinconBytes`](wincon/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'s>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl Eq<'s>`
 
 ##### `impl IntoIterator<I>`
 
@@ -651,20 +349,6 @@ See [`WinconBytes`](../index.md)
 - `type IntoIter = I`
 
 - `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Eq<'s>`
 
 ##### `impl Iterator`
 
@@ -674,25 +358,9 @@ See [`WinconBytes`](../index.md)
 
 ##### `impl PartialEq<'s>`
 
-- `fn eq(self: &Self, other: &WinconBytesIter<'s>) -> bool`
+- `fn eq(self: &Self, other: &WinconBytesIter<'s>) -> bool` — [`WinconBytesIter`](../../adapter/wincon/index.md)
 
 ##### `impl StructuralPartialEq<'s>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'s>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Functions
 

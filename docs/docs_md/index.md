@@ -21,7 +21,9 @@ generation capabilities programmatically.
 
 ```rust
 struct Generator<'a> {
-    // [REDACTED: Private Fields]
+    ctx: GeneratorContext<'a>,
+    args: &'a crate::Args,
+    root_item: &'a rustdoc_types::Item,
 }
 ```
 
@@ -38,136 +40,98 @@ let generator = Generator::new(&krate, &args)?;
 generator.generate()?;
 ```
 
+#### Fields
+
+- **`ctx`**: `GeneratorContext<'a>`
+
+  Shared context containing crate data, maps, and configuration.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments containing output path and format options.
+
+- **`root_item`**: `&'a rustdoc_types::Item`
+
+  The root module item of the crate.
+
 #### Implementations
 
-- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>`
-  Create a new generator for the given crate and arguments.
+- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
 
-- `fn generate(self: &Self) -> Result<(), Error>`
-  Generate markdown documentation.
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../error/index.md)
 
-- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>`
-  Generate documentation to memory instead of disk.
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
 
-- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>`
-  Convenience method to generate documentation in one call.
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](../generator/capture/index.md), [`Error`](../error/index.md)
+
+- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../generator/context/index.md), [`MarkdownCapture`](../generator/capture/index.md), [`Error`](../error/index.md)
+
+- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../generator/context/index.md), [`MarkdownCapture`](../generator/capture/index.md), [`Error`](../error/index.md)
+
+- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../generator/context/index.md), [`MarkdownCapture`](../generator/capture/index.md), [`Error`](../error/index.md)
+
+- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `MarkdownCapture`
 
 ```rust
 struct MarkdownCapture {
-    // [REDACTED: Private Fields]
+    files: std::collections::HashMap<String, String>,
 }
 ```
 
 Captures generated markdown in memory for testing.
 
 Instead of writing files to disk, this struct stores all generated
-markdown content in a HashMap, keyed by relative file path. This
+markdown content in a `HashMap`, keyed by relative file path. This
 enables snapshot testing and verification of output without filesystem
 side effects.
+
+#### Fields
+
+- **`files`**: `std::collections::HashMap<String, String>`
+
+  Maps file paths (relative to output directory) to their generated content.
 
 #### Implementations
 
 - `fn new() -> Self`
-  Create a new empty capture.
 
 - `fn insert(self: &mut Self, path: String, content: String)`
-  Add a file to the capture.
 
 - `fn get(self: &Self, path: &str) -> Option<&String>`
-  Get the content of a specific file.
 
 - `fn paths(self: &Self) -> Vec<&String>`
-  Get all file paths in sorted order.
 
 - `fn len(self: &Self) -> usize`
-  Get the number of captured files.
 
 - `fn is_empty(self: &Self) -> bool`
-  Check if the capture is empty.
 
 - `fn to_snapshot_string(self: &Self) -> String`
-  Convert all captured files to a single string for snapshot testing.
 
 - `fn into_inner(self: Self) -> HashMap<String, String>`
-  Consume self and return the underlying HashMap.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl OwoColorize<D>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -175,13 +139,32 @@ side effects.
 
 ##### `impl Default`
 
-- `fn default() -> MarkdownCapture`
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](../generator/capture/index.md)
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `LinkRegistry`
 
 ```rust
 struct LinkRegistry {
-    // [REDACTED: Private Fields]
+    item_paths: std::collections::HashMap<rustdoc_types::Id, String>,
+    item_names: std::collections::HashMap<rustdoc_types::Id, String>,
 }
 ```
 
@@ -191,60 +174,37 @@ This is the central data structure for cross-reference resolution.
 It's built once during generation and queried whenever we need to
 create links between items.
 
+#### Fields
+
+- **`item_paths`**: `std::collections::HashMap<rustdoc_types::Id, String>`
+
+  Maps each item's ID to the markdown file path where it's documented.
+  
+  Paths are relative to the output directory root.
+  Examples: `"index.md"`, `"span.md"`, `"span/index.md"`
+
+- **`item_names`**: `std::collections::HashMap<rustdoc_types::Id, String>`
+
+  Maps each item's ID to its display name.
+  
+  Used to generate the link text (e.g., `[`name`](path)`).
+  This is typically the item's identifier without the full path.
+
 #### Implementations
 
 - `fn build(krate: &Crate, flat_format: bool) -> Self`
-  Build a link registry by traversing all items in the crate.
+
+- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool)`
 
 - `fn get_path(self: &Self, id: Id) -> Option<&String>`
-  Get the file path where an item is documented.
 
 - `fn get_name(self: &Self, id: Id) -> Option<&String>`
-  Get the display name for an item.
 
 - `fn create_link(self: &Self, id: Id, from_path: &str) -> Option<String>`
-  Create a markdown link to an item from a given source file.
 
 - `fn compute_relative_path(from: &str, to: &str) -> String`
-  Compute the relative path from one file to another.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl OwoColorize<D>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -252,20 +212,41 @@ create links between items.
 
 ##### `impl Default`
 
-- `fn default() -> LinkRegistry`
+- `fn default() -> LinkRegistry` — [`LinkRegistry`](../linker/index.md)
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `CrateCollection`
 
 ```rust
 struct CrateCollection {
-    // [REDACTED: Private Fields]
+    crates: std::collections::HashMap<String, rustdoc_types::Crate>,
 }
 ```
 
 Collection of parsed crates ready for documentation generation.
 
-Maintains crates in a deterministic processing order for reproducible
-output. The order is typically alphabetical by crate name.
+Uses `HashMap` for O(1) lookups and sorts keys on-demand when iteration
+is needed. This is optimal for our use case where:
+- All crates are inserted first (parsing phase)
+- Sorted iteration happens later (generation phase)
+- Collection size is small (typically 10-50 crates)
 
 # Example
 
@@ -279,69 +260,34 @@ for (name, krate) in collection.iter() {
 }
 ```
 
+#### Fields
+
+- **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
+
+  Map from crate name to parsed Crate data.
+  HashMap provides O(1) lookups; sorting done on-demand.
+
 #### Implementations
 
 - `fn new() -> Self`
-  Create an empty crate collection.
 
 - `fn insert(self: &mut Self, name: String, krate: Crate) -> Option<Crate>`
-  Insert a crate into the collection.
 
 - `fn get(self: &Self, name: &str) -> Option<&Crate>`
-  Get a crate by name.
+
+- `fn get_with_name(self: &Self, name: &str) -> Option<(&str, &Crate)>`
 
 - `fn contains(self: &Self, name: &str) -> bool`
-  Check if a crate exists in the collection.
 
 - `fn iter(self: &Self) -> impl Iterator<Item = (&String, &Crate)>`
-  Iterate over crates in processing order.
 
 - `fn len(self: &Self) -> usize`
-  Get the number of crates in the collection.
 
 - `fn is_empty(self: &Self) -> bool`
-  Check if the collection is empty.
 
-- `fn names(self: &Self) -> &[String]`
-  Get crate names in processing order.
+- `fn names(self: &Self) -> Vec<&String>`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl OwoColorize<D>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -349,86 +295,111 @@ for (name, krate) in collection.iter() {
 
 ##### `impl Default`
 
-- `fn default() -> CrateCollection`
+- `fn default() -> CrateCollection` — [`CrateCollection`](../multi_crate/collection/index.md)
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `MultiCrateContext<'a>`
 
 ```rust
 struct MultiCrateContext<'a> {
-    // [REDACTED: Private Fields]
+    crates: &'a crate::multi_crate::CrateCollection,
+    registry: crate::multi_crate::UnifiedLinkRegistry,
+    args: &'a crate::Args,
+    cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
 }
 ```
 
 Shared context for multi-crate documentation generation.
 
 Holds references to all crates, the unified link registry, and
-CLI configuration. Used by [`MultiCrateGenerator`](#multicrategenerator) to coordinate
+CLI configuration. Used by [`MultiCrateGenerator`](multi_crate/generator/index.md) to coordinate
 generation across crates.
 
 
+#### Fields
+
+- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+
+  All crates being documented.
+
+- **`registry`**: `crate::multi_crate::UnifiedLinkRegistry`
+
+  Unified link registry for cross-crate resolution.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+- **`cross_crate_impls`**: `std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
+
+  Pre-computed cross-crate impl blocks.
+  
+  Maps target crate name -> type name -> impl blocks from other crates.
+  This is computed once during construction rather than per-view.
+
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self`
-  Create a new multi-crate context.
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../multi_crate/collection/index.md), [`Args`](../index.md)
 
-- `fn crates(self: &Self) -> &CrateCollection`
-  Get the crate collection.
+- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../multi_crate/collection/index.md)
 
-- `fn registry(self: &Self) -> &UnifiedLinkRegistry`
-  Get the unified link registry.
+- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](../multi_crate/collection/index.md)
 
-- `fn args(self: &Self) -> &Args`
-  Get CLI arguments.
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../multi_crate/registry/index.md)
 
-- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>`
-  Create a single-crate view for rendering one crate.
+- `const fn args(self: &Self) -> &Args` — [`Args`](../index.md)
+
+- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](../multi_crate/context/index.md)
 
 - `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
-  Find an item across all crates by ID.
+
+- `fn get_cross_crate_impls(self: &Self, target_crate: &str) -> Option<&HashMap<String, Vec<&'a Impl>>>`
+
+- `fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `MultiCrateGenerator<'a>`
 
 ```rust
 struct MultiCrateGenerator<'a> {
-    // [REDACTED: Private Fields]
+    ctx: crate::multi_crate::MultiCrateContext<'a>,
+    args: &'a crate::Args,
 }
 ```
 
@@ -452,51 +423,47 @@ output/
 └── SUMMARY.md        # If --mdbook enabled
 ```
 
+#### Fields
+
+- **`ctx`**: `crate::multi_crate::MultiCrateContext<'a>`
+
+  Multi-crate context with unified registry.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self`
-  Create a new multi-crate generator.
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../multi_crate/collection/index.md), [`Args`](../index.md)
 
-- `fn generate(self: &Self) -> Result<(), Error>`
-  Generate documentation for all crates.
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../error/index.md)
+
+- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../multi_crate/context/index.md), [`Error`](../error/index.md)
+
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../multi_crate/context/index.md), [`Error`](../error/index.md)
+
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `MultiCrateParser`
 
@@ -518,46 +485,29 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>`
-  Parse all rustdoc JSON files in a directory.
+- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../multi_crate/collection/index.md), [`Error`](../error/index.md)
+
+- `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `SearchIndex`
 
@@ -579,45 +529,27 @@ Serialized to `search_index.json` for client-side consumption.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl OwoColorize<D>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ##### `impl Serialize`
 
@@ -627,77 +559,79 @@ Serialized to `search_index.json` for client-side consumption.
 
 ```rust
 struct SearchIndexGenerator<'a> {
-    // [REDACTED: Private Fields]
+    crates: &'a crate::multi_crate::CrateCollection,
+    include_private: bool,
 }
 ```
 
 Generator for multi-crate search indices.
 
-Traverses all crates in a [`CrateCollection`](#cratecollection) and builds a comprehensive
-search index of all public items.
+Traverses all crates in a [`CrateCollection`](multi_crate/collection/index.md) and builds a comprehensive
+search index of all public items (or all items if `include_private` is set).
 
 # Example
 
 ```ignore
 let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
-let generator = SearchIndexGenerator::new(&crates);
+let generator = SearchIndexGenerator::new(&crates, false);
 generator.write(Path::new("docs/"))?;
 ```
 
+#### Fields
+
+- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+
+  Collection of crates to index.
+
+- **`include_private`**: `bool`
+
+  Whether to include private items in the search index.
+  
+  When false (default), only public items are indexed.
+  When true, all items regardless of visibility are indexed.
+
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection) -> Self`
-  Create a new search index generator.
+- `const fn new(crates: &'a CrateCollection, include_private: bool) -> Self` — [`CrateCollection`](../multi_crate/collection/index.md)
 
-- `fn generate(self: &Self) -> SearchIndex`
-  Generate the complete search index.
+- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](../multi_crate/search/index.md)
 
 - `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
-  Write the search index to `search_index.json` in the output directory.
+
+- `fn index_crate(self: &Self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](../multi_crate/search/index.md)
+
+- `fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
+
+- `fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `UnifiedLinkRegistry`
 
 ```rust
 struct UnifiedLinkRegistry {
-    // [REDACTED: Private Fields]
+    item_paths: hashbrown::HashMap<(String, rustdoc_types::Id), String>,
+    item_names: hashbrown::HashMap<(String, rustdoc_types::Id), String>,
+    name_index: std::collections::HashMap<String, Vec<(String, rustdoc_types::Id)>>,
+    primary_crate: Option<String>,
 }
 ```
 
@@ -723,75 +657,65 @@ When resolving ambiguous names:
 2. Items in the primary crate (if specified via `--primary-crate`)
 3. Items with the shortest qualified path
 
+# Performance
+
+Uses `hashbrown` with raw entry API for zero-allocation lookups.
+This avoids allocating a `String` for the crate name on every lookup.
+
+#### Fields
+
+- **`item_paths`**: `hashbrown::HashMap<(String, rustdoc_types::Id), String>`
+
+  Maps `(crate_name, item_id)` to the file path within output.
+  Uses hashbrown for raw_entry API (zero-alloc lookups).
+
+- **`item_names`**: `hashbrown::HashMap<(String, rustdoc_types::Id), String>`
+
+  Maps `(crate_name, item_id)` to the item's display name.
+  Uses hashbrown for raw_entry API (zero-alloc lookups).
+
+- **`name_index`**: `std::collections::HashMap<String, Vec<(String, rustdoc_types::Id)>>`
+
+  Maps short names to all `(crate_name, item_id)` pairs.
+  Used for disambiguating links like `Span` that exist in multiple crates.
+
+- **`primary_crate`**: `Option<String>`
+
+  The primary crate name for preferential resolution.
+
 #### Implementations
 
-- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self`
-  Build a unified registry from a collection of crates.
+- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../multi_crate/collection/index.md)
+
+- `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
+
+- `fn register_from_paths(self: &mut Self, crate_name: &str, krate: &Crate)`
+
+- `fn register_item_recursive(self: &mut Self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
+
+- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str)`
 
 - `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&String>`
-  Get the file path for an item in a specific crate.
 
 - `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&String>`
-  Get the display name for an item.
 
 - `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(String, Id)>`
-  Resolve an item name to its crate and ID.
+
+- `fn resolve_path(self: &Self, path: &str) -> Option<(String, Id)>`
 
 - `fn create_link(self: &Self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
-  Create a markdown link from one file to another across crates.
 
 - `fn compute_cross_crate_path(from: &str, to: &str) -> String`
-  Compute relative path between files potentially in different crates.
 
 - `fn get_anchor(self: &Self, crate_name: &str, id: Id) -> Option<String>`
-  Get an anchor string for an item within its page.
 
 - `fn contains(self: &Self, crate_name: &str, id: Id) -> bool`
-  Check if an item exists in the registry.
 
 - `fn len(self: &Self) -> usize`
-  Get the number of registered items.
 
 - `fn is_empty(self: &Self) -> bool`
-  Check if the registry is empty.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl OwoColorize<D>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -799,22 +723,39 @@ When resolving ambiguous names:
 
 ##### `impl Default`
 
-- `fn default() -> UnifiedLinkRegistry`
+- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../multi_crate/registry/index.md)
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `Args`
 
 ```rust
 struct Args {
     pub path: Option<std::path::PathBuf>,
-    pub crate_name: Option<String>,
     pub dir: Option<std::path::PathBuf>,
     pub mdbook: bool,
     pub search_index: bool,
     pub primary_crate: Option<String>,
-    pub crate_version: Option<String>,
     pub output: std::path::PathBuf,
     pub format: CliOutputFormat,
     pub include_private: bool,
+    pub include_blanket_impls: bool,
 }
 ```
 
@@ -834,16 +775,7 @@ The tool accepts input from two mutually exclusive sources:
   Generate this file with: `cargo doc --output-format json`
   The JSON file will be in `target/doc/{crate_name}.json`
   
-  Mutually exclusive with `--crate-name` and `--dir`.
-
-- **`crate_name`**: `Option<String>`
-
-  Crate name to fetch from docs.rs (experimental).
-  
-  **Note**: This feature is currently non-functional because docs.rs
-  doesn't expose rustdoc JSON files publicly. Use `--path` instead.
-  
-  Mutually exclusive with `--path` and `--dir`.
+  Mutually exclusive with `--dir`.
 
 - **`dir`**: `Option<std::path::PathBuf>`
 
@@ -856,7 +788,7 @@ The tool accepts input from two mutually exclusive sources:
   Generate JSON files with:
   `RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc`
   
-  Mutually exclusive with `--path` and `--crate-name`.
+  Mutually exclusive with `--path`.
 
 - **`mdbook`**: `bool`
 
@@ -868,12 +800,12 @@ The tool accepts input from two mutually exclusive sources:
 
 - **`search_index`**: `bool`
 
-  Generate search_index.json for client-side search.
+  Generate `search_index.json` for client-side search.
   
   Only valid with `--dir` for multi-crate documentation.
   Creates a `search_index.json` file containing all documented items,
   which can be used with client-side search libraries like Fuse.js,
-  Lunr.js, or FlexSearch.
+  Lunr.js, or `FlexSearch`.
 
 - **`primary_crate`**: `Option<String>`
 
@@ -883,12 +815,6 @@ The tool accepts input from two mutually exclusive sources:
   precedence over items with the same name in dependencies.
   This helps resolve ambiguous links like `exit` to the intended
   crate rather than `std::process::exit`.
-
-- **`crate_version`**: `Option<String>`
-
-  Specific version to fetch from docs.rs.
-  
-  Only used with `--crate-name`. Defaults to "latest" if not specified.
 
 - **`output`**: `std::path::PathBuf`
 
@@ -911,12 +837,33 @@ The tool accepts input from two mutually exclusive sources:
   By default, only public items are documented. Enable this
   to also include `pub(crate)`, `pub(super)`, and private items.
 
+- **`include_blanket_impls`**: `bool`
+
+  Include blanket trait implementations in the output.
+  
+  By default, blanket impls like `From`, `Into`, `TryFrom`, `TryInto`,
+  `Any`, `Borrow`, `BorrowMut`, and `ToOwned` are filtered out to reduce
+  noise. Enable this to include them in the documentation.
+
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Args`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn group_id() -> Option<clap::Id>`
+
+- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+##### `impl CommandFactory`
+
+- `fn command<'b>() -> clap::Command`
+
+- `fn command_for_update<'b>() -> clap::Command`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FromArgMatches`
 
@@ -928,56 +875,25 @@ The tool accepts input from two mutually exclusive sources:
 
 - `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Args`
-
-- `fn group_id() -> Option<clap::Id>`
-
-- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
-
-- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl CommandFactory`
-
-- `fn command<'b>() -> clap::Command`
-
-- `fn command_for_update<'b>() -> clap::Command`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
 ##### `impl Parser`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `unsafe fn drop(ptr: usize)`
 
 ## Enums
 
@@ -1012,69 +928,11 @@ Controls how module files are organized in the output directory.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(cli: CliOutputFormat) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> OutputFormat`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> OutputFormat` — [`OutputFormat`](../index.md)
 
 ##### `impl Copy`
-
-##### `impl OwoColorize<D>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl ValueEnum`
-
-- `fn value_variants<'a>() -> &'a [Self]`
-
-- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
 ##### `impl Debug`
 
@@ -1082,7 +940,31 @@ Controls how module files are organized in the output directory.
 
 ##### `impl Default`
 
-- `fn default() -> OutputFormat`
+- `fn default() -> OutputFormat` — [`OutputFormat`](../index.md)
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl ValueEnum`
+
+- `fn value_variants<'a>() -> &'a [Self]`
+
+- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
 ### `CliOutputFormat`
 
@@ -1107,65 +989,11 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> CliOutputFormat`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CliOutputFormat` — [`CliOutputFormat`](../index.md)
 
 ##### `impl Copy`
-
-##### `impl OwoColorize<D>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl ValueEnum`
-
-- `fn value_variants<'a>() -> &'a [Self]`
-
-- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
 ##### `impl Debug`
 
@@ -1173,5 +1001,31 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 ##### `impl Default`
 
-- `fn default() -> CliOutputFormat`
+- `fn default() -> CliOutputFormat` — [`CliOutputFormat`](../index.md)
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl ValueEnum`
+
+- `fn value_variants<'a>() -> &'a [Self]`
+
+- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+
+## Functions
 

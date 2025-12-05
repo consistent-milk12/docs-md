@@ -108,37 +108,15 @@ The header at the start of every 32-bit ELF file.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> FileHeader32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FileHeader32<E>` — [`FileHeader32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FileHeader<Endian: endian::Endian>`
 
@@ -170,59 +148,35 @@ The header at the start of every 32-bit ELF file.
 
 - `fn is_type_64_sized() -> bool`
 
-- `fn e_ident(self: &Self) -> &elf::Ident`
+- `fn e_ident(self: &Self) -> &elf::Ident` — [`Ident`](../../elf/index.md)
 
-- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `FileHeader64<E: Endian>`
 
@@ -319,37 +273,15 @@ The header at the start of every 64-bit ELF file.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> FileHeader64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FileHeader64<E>` — [`FileHeader64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FileHeader<Endian: endian::Endian>`
 
@@ -381,59 +313,35 @@ The header at the start of every 64-bit ELF file.
 
 - `fn is_type_64_sized() -> bool`
 
-- `fn e_ident(self: &Self) -> &elf::Ident`
+- `fn e_ident(self: &Self) -> &elf::Ident` — [`Ident`](../../elf/index.md)
 
-- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
-- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Ident`
 
@@ -487,57 +395,11 @@ Contained in the file header.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Ident`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Ident` — [`Ident`](../../elf/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -612,63 +474,17 @@ Section header.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SectionHeader32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SectionHeader32<E>` — [`SectionHeader32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ##### `impl SectionHeader<Endian: endian::Endian>`
 
@@ -678,25 +494,25 @@ Section header.
 
 - `type Endian = Endian`
 
-- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
 ### `SectionHeader64<E: Endian>`
 
@@ -767,63 +583,17 @@ Section header.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SectionHeader64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SectionHeader64<E>` — [`SectionHeader64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ##### `impl SectionHeader<Endian: endian::Endian>`
 
@@ -833,25 +603,25 @@ Section header.
 
 - `type Elf = FileHeader64<Endian>`
 
-- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
-- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
 
 ### `CompressionHeader32<E: Endian>`
 
@@ -886,35 +656,9 @@ changed in a future version.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> CompressionHeader32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CompressionHeader32<E>` — [`CompressionHeader32`](../../elf/index.md)
 
 ##### `impl CompressionHeader<Endian: endian::Endian>`
 
@@ -922,35 +666,13 @@ changed in a future version.
 
 - `type Endian = Endian`
 
-- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../../read/elf/compression/index.md)
 
-- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../../read/elf/compression/index.md)
 
-- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../../read/elf/compression/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
@@ -958,7 +680,9 @@ changed in a future version.
 
 ##### `impl Default<E: $crate::default::Default + Endian>`
 
-- `fn default() -> CompressionHeader32<E>`
+- `fn default() -> CompressionHeader32<E>` — [`CompressionHeader32`](../../elf/index.md)
+
+##### `impl Pod<E: Endian>`
 
 ### `CompressionHeader64<E: Endian>`
 
@@ -998,35 +722,9 @@ changed in a future version.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> CompressionHeader64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CompressionHeader64<E>` — [`CompressionHeader64`](../../elf/index.md)
 
 ##### `impl CompressionHeader<Endian: endian::Endian>`
 
@@ -1034,35 +732,13 @@ changed in a future version.
 
 - `type Endian = Endian`
 
-- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../../read/elf/compression/index.md)
 
-- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../../read/elf/compression/index.md)
 
-- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../../read/elf/compression/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
@@ -1070,7 +746,9 @@ changed in a future version.
 
 ##### `impl Default<E: $crate::default::Default + Endian>`
 
-- `fn default() -> CompressionHeader64<E>`
+- `fn default() -> CompressionHeader64<E>` — [`CompressionHeader64`](../../elf/index.md)
+
+##### `impl Pod<E: Endian>`
 
 ### `Sym32<E: Endian>`
 
@@ -1122,50 +800,28 @@ Symbol table entry.
 #### Implementations
 
 - `fn st_bind(self: &Self) -> u8`
-  Get the `st_bind` component of the `st_info` field.
 
 - `fn st_type(self: &Self) -> u8`
-  Get the `st_type` component of the `st_info` field.
 
 - `fn set_st_info(self: &mut Self, st_bind: u8, st_type: u8)`
-  Set the `st_info` field given the `st_bind` and `st_type` components.
 
 - `fn st_visibility(self: &Self) -> u8`
-  Get the `st_visibility` component of the `st_info` field.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Sym32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Sym32<E>` — [`Sym32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default<E: $crate::default::Default + Endian>`
+
+- `fn default() -> Sym32<E>` — [`Sym32`](../../elf/index.md)
 
 ##### `impl Pod<E: Endian>`
 
@@ -1175,7 +831,7 @@ Symbol table entry.
 
 - `type Endian = Endian`
 
-- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`Sym`](../../read/elf/symbol/index.md)
 
 - `fn st_info(self: &Self) -> u8`
 
@@ -1187,39 +843,11 @@ Symbol table entry.
 
 - `fn st_visibility(self: &Self) -> u8`
 
-- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`Sym`](../../read/elf/symbol/index.md)
 
-- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../../read/elf/symbol/index.md)
 
-- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default<E: $crate::default::Default + Endian>`
-
-- `fn default() -> Sym32<E>`
+- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../../read/elf/symbol/index.md)
 
 ### `Sym64<E: Endian>`
 
@@ -1271,50 +899,28 @@ Symbol table entry.
 #### Implementations
 
 - `fn st_bind(self: &Self) -> u8`
-  Get the `st_bind` component of the `st_info` field.
 
 - `fn st_type(self: &Self) -> u8`
-  Get the `st_type` component of the `st_info` field.
 
 - `fn set_st_info(self: &mut Self, st_bind: u8, st_type: u8)`
-  Set the `st_info` field given the `st_bind` and `st_type` components.
 
 - `fn st_visibility(self: &Self) -> u8`
-  Get the `st_visibility` component of the `st_info` field.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Sym64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Sym64<E>` — [`Sym64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default<E: $crate::default::Default + Endian>`
+
+- `fn default() -> Sym64<E>` — [`Sym64`](../../elf/index.md)
 
 ##### `impl Pod<E: Endian>`
 
@@ -1324,7 +930,7 @@ Symbol table entry.
 
 - `type Endian = Endian`
 
-- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`Sym`](../../read/elf/symbol/index.md)
 
 - `fn st_info(self: &Self) -> u8`
 
@@ -1336,39 +942,11 @@ Symbol table entry.
 
 - `fn st_visibility(self: &Self) -> u8`
 
-- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`Sym`](../../read/elf/symbol/index.md)
 
-- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../../read/elf/symbol/index.md)
 
-- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default<E: $crate::default::Default + Endian>`
-
-- `fn default() -> Sym64<E>`
+- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../../read/elf/symbol/index.md)
 
 ### `Syminfo32<E: Endian>`
 
@@ -1393,63 +971,17 @@ Additional information about a `Sym32`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Syminfo32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Syminfo32<E>` — [`Syminfo32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `Syminfo64<E: Endian>`
 
@@ -1474,63 +1006,17 @@ Additional information about a `Sym64`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Syminfo64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Syminfo64<E>` — [`Syminfo64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `Rel32<E: Endian>`
 
@@ -1556,50 +1042,24 @@ Relocation table entry without explicit addend.
 #### Implementations
 
 - `fn r_sym(self: &Self, endian: E) -> u32`
-  Get the `r_sym` component of the `r_info` field.
 
 - `fn r_type(self: &Self, endian: E) -> u32`
-  Get the `r_type` component of the `r_info` field.
 
-- `fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>`
-  Calculate the `r_info` field given the `r_sym` and `r_type` components.
+- `fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../../endian/index.md)
 
 - `fn set_r_info(self: &mut Self, endian: E, r_sym: u32, r_type: u8)`
-  Set the `r_info` field given the `r_sym` and `r_type` components.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Rel32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Rel32<E>` — [`Rel32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod<E: Endian>`
 
@@ -1611,37 +1071,13 @@ Relocation table entry without explicit addend.
 
 - `type Endian = Endian`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../../read/elf/relocation/index.md)
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../../read/elf/relocation/index.md)
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../../read/elf/relocation/index.md)
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../../read/elf/relocation/index.md)
 
 ### `Rela32<E: Endian>`
 
@@ -1672,54 +1108,24 @@ Relocation table entry with explicit addend.
 #### Implementations
 
 - `fn r_sym(self: &Self, endian: E) -> u32`
-  Get the `r_sym` component of the `r_info` field.
 
 - `fn r_type(self: &Self, endian: E) -> u32`
-  Get the `r_type` component of the `r_info` field.
 
-- `fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>`
-  Calculate the `r_info` field given the `r_sym` and `r_type` components.
+- `fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../../endian/index.md)
 
 - `fn set_r_info(self: &mut Self, endian: E, r_sym: u32, r_type: u8)`
-  Set the `r_info` field given the `r_sym` and `r_type` components.
 
 #### Trait Implementations
 
-##### `impl From<E: Endian>`
-
-- `fn from(rel: Rel32<E>) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Rela32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Rela32<E>` — [`Rela32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod<E: Endian>`
 
@@ -1731,39 +1137,15 @@ Relocation table entry with explicit addend.
 
 - `type Endian = Endian`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../../read/elf/relocation/index.md)
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> <Self as >::Word`
+- `fn r_info(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../../read/elf/relocation/index.md)
 
-- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword`
+- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../../read/elf/relocation/index.md)
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32`
+- `fn r_sym(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../../read/elf/relocation/index.md)
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn r_type(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../../read/elf/relocation/index.md)
 
 ### `Rel64<E: Endian>`
 
@@ -1789,50 +1171,24 @@ Relocation table entry without explicit addend.
 #### Implementations
 
 - `fn r_sym(self: &Self, endian: E) -> u32`
-  Get the `r_sym` component of the `r_info` field.
 
 - `fn r_type(self: &Self, endian: E) -> u32`
-  Get the `r_type` component of the `r_info` field.
 
-- `fn r_info(endian: E, r_sym: u32, r_type: u32) -> U64<E>`
-  Calculate the `r_info` field given the `r_sym` and `r_type` components.
+- `fn r_info(endian: E, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../../endian/index.md)
 
 - `fn set_r_info(self: &mut Self, endian: E, r_sym: u32, r_type: u32)`
-  Set the `r_info` field given the `r_sym` and `r_type` components.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Rel64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Rel64<E>` — [`Rel64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod<E: Endian>`
 
@@ -1844,37 +1200,13 @@ Relocation table entry without explicit addend.
 
 - `type Endian = Endian`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../../read/elf/relocation/index.md)
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../../read/elf/relocation/index.md)
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../../read/elf/relocation/index.md)
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../../read/elf/relocation/index.md)
 
 ### `Rela64<E: Endian>`
 
@@ -1904,55 +1236,27 @@ Relocation table entry with explicit addend.
 
 #### Implementations
 
+- `fn get_r_info(self: &Self, endian: E, is_mips64el: bool) -> u64`
+
 - `fn r_sym(self: &Self, endian: E, is_mips64el: bool) -> u32`
-  Get the `r_sym` component of the `r_info` field.
 
 - `fn r_type(self: &Self, endian: E, is_mips64el: bool) -> u32`
-  Get the `r_type` component of the `r_info` field.
 
-- `fn r_info(endian: E, is_mips64el: bool, r_sym: u32, r_type: u32) -> U64<E>`
-  Calculate the `r_info` field given the `r_sym` and `r_type` components.
+- `fn r_info(endian: E, is_mips64el: bool, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../../endian/index.md)
 
 - `fn set_r_info(self: &mut Self, endian: E, is_mips64el: bool, r_sym: u32, r_type: u32)`
-  Set the `r_info` field given the `r_sym` and `r_type` components.
 
 #### Trait Implementations
 
-##### `impl From<E: Endian>`
-
-- `fn from(rel: Rel64<E>) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Rela64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Rela64<E>` — [`Rela64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod<E: Endian>`
 
@@ -1964,39 +1268,15 @@ Relocation table entry with explicit addend.
 
 - `type Endian = Endian`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../../read/elf/relocation/index.md)
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word`
+- `fn r_info(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../../read/elf/relocation/index.md)
 
-- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword`
+- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../../read/elf/relocation/index.md)
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
+- `fn r_sym(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../../read/elf/relocation/index.md)
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn r_type(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../../read/elf/relocation/index.md)
 
 ### `Relr32<E: Endian>`
 
@@ -2008,37 +1288,15 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Relr32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Relr32<E>` — [`Relr32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod<E: Endian>`
 
@@ -2050,33 +1308,9 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 
 - `const COUNT: u8`
 
-- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../../read/elf/relocation/index.md)
 
-- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../../read/elf/relocation/index.md)
 
 ### `Relr64<E: Endian>`
 
@@ -2088,37 +1322,15 @@ struct Relr64<E: Endian>(crate::endian::U64<E>);
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Relr64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Relr64<E>` — [`Relr64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod<E: Endian>`
 
@@ -2130,33 +1342,9 @@ struct Relr64<E: Endian>(crate::endian::U64<E>);
 
 - `const COUNT: u8`
 
-- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../../read/elf/relocation/index.md)
 
-- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../../read/elf/relocation/index.md)
 
 ### `ProgramHeader32<E: Endian>`
 
@@ -2211,37 +1399,15 @@ Program segment header.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> ProgramHeader32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ProgramHeader32<E>` — [`ProgramHeader32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod<E: Endian>`
 
@@ -2253,45 +1419,21 @@ Program segment header.
 
 - `type Elf = FileHeader32<Endian>`
 
-- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
 ### `ProgramHeader64<E: Endian>`
 
@@ -2346,37 +1488,15 @@ Program segment header.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> ProgramHeader64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ProgramHeader64<E>` — [`ProgramHeader64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Pod<E: Endian>`
 
@@ -2388,45 +1508,21 @@ Program segment header.
 
 - `type Elf = FileHeader64<Endian>`
 
-- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
-- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
 
 ### `Dyn32<E: Endian>`
 
@@ -2451,37 +1547,15 @@ Dynamic section entry.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Dyn32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Dyn32<E>` — [`Dyn32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Dyn<Endian: endian::Endian>`
 
@@ -2489,35 +1563,11 @@ Dynamic section entry.
 
 - `type Endian = Endian`
 
-- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../../read/elf/dynamic/index.md)
 
-- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../../read/elf/dynamic/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Dyn64<E: Endian>`
 
@@ -2542,37 +1592,15 @@ Dynamic section entry.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Dyn64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Dyn64<E>` — [`Dyn64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Dyn<Endian: endian::Endian>`
 
@@ -2580,35 +1608,11 @@ Dynamic section entry.
 
 - `type Endian = Endian`
 
-- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../../read/elf/dynamic/index.md)
 
-- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../../read/elf/dynamic/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Versym<E: Endian>`
 
@@ -2620,63 +1624,17 @@ Version symbol information
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Versym<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Versym<E>` — [`Versym`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `Verdef<E: Endian>`
 
@@ -2726,63 +1684,17 @@ Version definition sections
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Verdef<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Verdef<E>` — [`Verdef`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `Verdaux<E: Endian>`
 
@@ -2807,68 +1719,21 @@ Auxiliary version information.
 
 #### Implementations
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
-  Parse the version name from the string table.
+- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Verdaux<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Verdaux<E>` — [`Verdaux`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `Verneed<E: Endian>`
 
@@ -2908,68 +1773,21 @@ Version dependency.
 
 #### Implementations
 
-- `fn file<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
-  Parse the file from the string table.
+- `fn file<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Verneed<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Verneed<E>` — [`Verneed`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `Vernaux<E: Endian>`
 
@@ -3009,68 +1827,21 @@ Auxiliary needed version information.
 
 #### Implementations
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>`
-  Parse the version name from the string table.
+- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Vernaux<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Vernaux<E>` — [`Vernaux`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `NoteHeader32<E: Endian>`
 
@@ -3109,73 +1880,27 @@ A note consists of a header followed by a variable length name and descriptor.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> NoteHeader32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> NoteHeader32<E>` — [`NoteHeader32`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl NoteHeader<Endian: endian::Endian>`
 
 - `type Endian = Endian`
 
-- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
 
-- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
 
-- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `NoteHeader64<E: Endian>`
 
@@ -3212,73 +1937,27 @@ Note section entry header.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> NoteHeader64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> NoteHeader64<E>` — [`NoteHeader64`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl NoteHeader<Endian: endian::Endian>`
 
 - `type Endian = Endian`
 
-- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
 
-- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
 
-- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `HashHeader<E: Endian>`
 
@@ -3303,63 +1982,17 @@ Header of `SHT_HASH` section.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> HashHeader<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> HashHeader<E>` — [`HashHeader`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `GnuHashHeader<E: Endian>`
 
@@ -3396,63 +2029,17 @@ Header of `SHT_GNU_HASH` section.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> GnuHashHeader<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> GnuHashHeader<E>` — [`GnuHashHeader`](../../elf/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ## Functions
 

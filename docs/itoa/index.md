@@ -36,7 +36,7 @@ fn main() {
 
 ```rust
 struct Buffer {
-    // [REDACTED: Private Fields]
+    bytes: [core::mem::MaybeUninit<u8>; 40],
 }
 ```
 
@@ -53,61 +53,21 @@ assert_eq!(printed, "1234");
 
 #### Implementations
 
-- `fn new() -> Buffer`
-  This is a cheap operation; you don't need to worry about reusing buffers
+- `fn new() -> Buffer` — [`Buffer`](../index.md)
 
 - `fn format<I: Integer>(self: &mut Self, i: I) -> &str`
-  Print an integer into this buffer and return a reference to its string
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
-- `fn default() -> Buffer`
+- `fn default() -> Buffer` — [`Buffer`](../index.md)
 
 ## Traits
 

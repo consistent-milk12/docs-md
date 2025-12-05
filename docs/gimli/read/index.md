@@ -193,48 +193,19 @@ An offset into the current compilation or type unit.
 
 #### Implementations
 
-- `fn to_debug_info_offset<R>(self: &Self, unit: &UnitHeader<R>) -> Option<DebugInfoOffset<T>>`
-  Convert an offset to be relative to the start of the .debug_info section,
-
-- `fn to_debug_types_offset<R>(self: &Self, unit: &UnitHeader<R>) -> Option<DebugTypesOffset<T>>`
-  Convert an offset to be relative to the start of the .debug_types section,
-
-- `fn to_unit_section_offset<R>(self: &Self, unit: &Unit<R>) -> UnitSectionOffset<T>`
-  Convert an offset to be relative to the start of the .debug_info section,
+- `fn to_unit_section_offset<R>(self: &Self, unit: &Unit<R>) -> UnitSectionOffset<T>` — [`Unit`](../../read/dwarf/index.md), [`UnitSectionOffset`](../../common/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<T: $crate::clone::Clone>`
 
-- `fn clone(self: &Self) -> UnitOffset<T>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> UnitOffset<T>` — [`UnitOffset`](../../read/index.md)
 
 ##### `impl Copy<T: $crate::marker::Copy>`
+
+##### `impl Debug<T: $crate::fmt::Debug>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq<T: $crate::cmp::Eq>`
 
@@ -244,41 +215,17 @@ An offset into the current compilation or type unit.
 
 ##### `impl Ord<T: $crate::cmp::Ord>`
 
-- `fn cmp(self: &Self, other: &UnitOffset<T>) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &UnitOffset<T>) -> $crate::cmp::Ordering` — [`UnitOffset`](../../read/index.md)
 
 ##### `impl PartialEq<T: $crate::cmp::PartialEq>`
 
-- `fn eq(self: &Self, other: &UnitOffset<T>) -> bool`
+- `fn eq(self: &Self, other: &UnitOffset<T>) -> bool` — [`UnitOffset`](../../read/index.md)
 
 ##### `impl PartialOrd<T: $crate::cmp::PartialOrd>`
 
-- `fn partial_cmp(self: &Self, other: &UnitOffset<T>) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &UnitOffset<T>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`UnitOffset`](../../read/index.md)
 
 ##### `impl StructuralPartialEq<T>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<T: $crate::fmt::Debug>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `StoreOnHeap`
 
@@ -290,37 +237,15 @@ Indicates that storage should be allocated on heap.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StoreOnHeap`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> StoreOnHeap` — [`StoreOnHeap`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -334,39 +259,15 @@ Indicates that storage should be allocated on heap.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &StoreOnHeap) -> bool`
+- `fn eq(self: &Self, other: &StoreOnHeap) -> bool` — [`StoreOnHeap`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UnwindContextStorage<T: ReaderOffset>`
 
 - `type Rules = [(Register, RegisterRule<T>); 192]`
 
 - `type Stack = Box<[UnwindTableRow<T>; 4]>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Enums
 
@@ -809,41 +710,18 @@ An error that occurred when parsing.
 #### Implementations
 
 - `fn description(self: &Self) -> &str`
-  A short description of the error.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Error`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Error` — [`Error`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -853,37 +731,13 @@ An error that occurred when parsing.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Error) -> bool`
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 

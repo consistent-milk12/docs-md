@@ -6,7 +6,7 @@
 
 An implementation of the [Two-Way substring search algorithm][two-way].
 
-[`Finder`](../packedpair/index.md) can be built for forward searches, while [`FinderRev`](../../../memmem/index.md) can be built
+[`Finder`](../rabinkarp/index.md) can be built for forward searches, while [`FinderRev`](#finderrev) can be built
 for reverse searches.
 
 Two-Way makes for a nice general purpose substring search algorithm because of
@@ -34,72 +34,30 @@ Two-Way can be found in the `memmem` implementations in at least [GNU libc] and
 ### `Finder`
 
 ```rust
-struct Finder();
+struct Finder(TwoWay);
 ```
 
 A forward substring searcher that uses the Two-Way algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Finder`
-  Create a searcher that finds occurrences of the given `needle`.
+- `fn new(needle: &[u8]) -> Finder` — [`Finder`](../../../../arch/all/twoway/index.md)
 
 - `fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
-  Returns the first occurrence of `needle` in the given `haystack`, or
+
+- `fn find_with_prefilter(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`Pre`](../../../../memmem/searcher/index.md)
+
+- `fn find_small_imp(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>` — [`Pre`](../../../../memmem/searcher/index.md)
+
+- `fn find_large_imp(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], shift: usize) -> Option<usize>` — [`Pre`](../../../../memmem/searcher/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Finder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Finder` — [`Finder`](../../../../arch/all/twoway/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -108,72 +66,28 @@ A forward substring searcher that uses the Two-Way algorithm.
 ### `FinderRev`
 
 ```rust
-struct FinderRev();
+struct FinderRev(TwoWay);
 ```
 
 A reverse substring searcher that uses the Two-Way algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> FinderRev`
-  Create a searcher that finds occurrences of the given `needle`.
+- `fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](../../../../arch/all/twoway/index.md)
 
 - `fn rfind(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
-  Returns the last occurrence of `needle` in the given `haystack`, or
+
+- `fn rfind_small_imp(self: &Self, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>`
+
+- `fn rfind_large_imp(self: &Self, haystack: &[u8], needle: &[u8], shift: usize) -> Option<usize>`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FinderRev`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FinderRev` — [`FinderRev`](../../../../arch/all/twoway/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 

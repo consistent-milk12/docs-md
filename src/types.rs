@@ -25,6 +25,14 @@
 //! | `Type::Primitive("u32")` | `"u32"` |
 //! | `Type::BorrowedRef { lifetime: Some("'a"), is_mutable: true, type_: ... }` | `"&'a mut T"` |
 //! | `Type::ResolvedPath { path: "Vec", args: ... }` | `"Vec<T>"` |
+//!
+//! # Performance
+//!
+//! Uses `Cow<str>` to avoid allocations for simple types like primitives,
+//! generics, and inferred types. Complex types that require string building
+//! return owned strings.
+
+use std::borrow::Cow;
 
 use rustdoc_types::{
     AssocItemConstraint, AssocItemConstraintKind, Crate, GenericArg, GenericArgs, GenericBound,
@@ -82,7 +90,8 @@ impl<'a> TypeRenderer<'a> {
     ///
     /// # Returns
     ///
-    /// A string representing the type in Rust syntax.
+    /// A `Cow<str>` representing the type in Rust syntax. Simple types like
+    /// primitives and generics return borrowed strings to avoid allocation.
     ///
     /// # Supported Type Variants
     ///
@@ -97,42 +106,51 @@ impl<'a> TypeRenderer<'a> {
     /// - Impl trait: `impl Iterator<Item = T>`
     /// - Qualified paths: `<T as Trait>::Item`
     #[must_use]
-    pub fn render_type(&self, ty: &Type) -> String {
+    pub fn render_type<'t>(&self, ty: &'t Type) -> Cow<'t, str> {
         match ty {
             // Named type path like `Vec<T>` or `std::collections::HashMap<K, V>`
             Type::ResolvedPath(path) => {
+                // If no generic args, borrow the path directly
+                if path.args.is_none() {
+                    return Cow::Borrowed(&path.path);
+                }
                 let mut result = path.path.clone();
                 // Append generic arguments if present
                 if let Some(args) = &path.args {
                     result.push_str(&self.render_generic_args(args));
                 }
-                result
+                Cow::Owned(result)
             },
 
             // Trait object: `dyn Trait + OtherTrait`
             Type::DynTrait(dyn_trait) => {
-                let traits: Vec<String> = dyn_trait
+                let traits: Vec<Cow<str>> = dyn_trait
                     .traits
                     .iter()
                     .map(|pt| {
-                        let mut s = pt.trait_.path.clone();
-                        if let Some(args) = &pt.trait_.args {
-                            s.push_str(&self.render_generic_args(args));
+                        if pt.trait_.args.is_none() {
+                            Cow::Borrowed(pt.trait_.path.as_str())
+                        } else {
+                            let mut s = pt.trait_.path.clone();
+                            if let Some(args) = &pt.trait_.args {
+                                s.push_str(&self.render_generic_args(args));
+                            }
+                            Cow::Owned(s)
                         }
-                        s
                     })
                     .collect();
-                format!("dyn {}", traits.join(" + "))
+                Cow::Owned(format!("dyn {}", traits.join(" + ")))
             },
 
             // Generic type parameter: `T`, `U`, etc.
             // Primitive type: `u32`, `bool`, `str`, etc.
-            Type::Generic(name) | Type::Primitive(name) => name.clone(),
+            // Zero allocation - borrow from input
+            Type::Generic(name) | Type::Primitive(name) => Cow::Borrowed(name),
 
             // Function pointer: `fn(A, B) -> C`
             Type::FunctionPointer(fp) => {
                 // Render parameter types (we ignore parameter names for brevity)
-                let params: Vec<String> = fp
+                let params: Vec<Cow<str>> = fp
                     .sig
                     .inputs
                     .iter()
@@ -142,40 +160,46 @@ impl<'a> TypeRenderer<'a> {
                 let ret = fp.sig.output.as_ref().map_or_else(String::new, |output| {
                     format!(" -> {}", self.render_type(output))
                 });
-                format!("fn({}){}", params.join(", "), ret)
+                Cow::Owned(format!("fn({}){}", params.join(", "), ret))
             },
 
             // Tuple type: `(A, B, C)` or unit `()`
             Type::Tuple(types) => {
-                let inner: Vec<String> = types.iter().map(|t| self.render_type(t)).collect();
-                format!("({})", inner.join(", "))
+                if types.is_empty() {
+                    return Cow::Borrowed("()");
+                }
+                let inner: Vec<Cow<str>> = types.iter().map(|t| self.render_type(t)).collect();
+                Cow::Owned(format!("({})", inner.join(", ")))
             },
 
             // Slice type: `[T]`
-            Type::Slice(inner) => format!("[{}]", self.render_type(inner)),
+            Type::Slice(inner) => Cow::Owned(format!("[{}]", self.render_type(inner))),
 
             // Array type: `[T; N]` where N is a const expression
-            Type::Array { type_, len } => format!("[{}; {len}]", self.render_type(type_)),
+            Type::Array { type_, len } => {
+                Cow::Owned(format!("[{}; {len}]", self.render_type(type_)))
+            },
 
             // Pattern type (rare): just render the underlying type
             Type::Pat { type_, .. } => self.render_type(type_),
 
             // Impl trait in return position: `impl Iterator<Item = T>`
             Type::ImplTrait(bounds) => {
-                let bound_strs: Vec<String> = bounds
+                let bound_strs: Vec<Cow<str>> = bounds
                     .iter()
                     .map(|b| self.render_generic_bound(b))
                     .collect();
-                format!("impl {}", bound_strs.join(" + "))
+                Cow::Owned(format!("impl {}", bound_strs.join(" + ")))
             },
 
             // Inferred type: `_` (placeholder in turbofish)
-            Type::Infer => "_".to_string(),
+            // Zero allocation - static string
+            Type::Infer => Cow::Borrowed("_"),
 
             // Raw pointer: `*const T` or `*mut T`
             Type::RawPointer { is_mutable, type_ } => {
                 let mutability = if *is_mutable { "mut" } else { "const" };
-                format!("*{mutability} {}", self.render_type(type_))
+                Cow::Owned(format!("*{mutability} {}", self.render_type(type_)))
             },
 
             // Reference: `&T`, `&mut T`, `&'a T`, `&'a mut T`
@@ -191,7 +215,7 @@ impl<'a> TypeRenderer<'a> {
                     .unwrap_or_default();
                 // Optional mut keyword
                 let mutability = if *is_mutable { "mut " } else { "" };
-                format!("&{lt}{mutability}{}", self.render_type(type_))
+                Cow::Owned(format!("&{lt}{mutability}{}", self.render_type(type_)))
             },
 
             // Qualified path: `<T as Trait>::Item` or `T::Item`
@@ -202,10 +226,10 @@ impl<'a> TypeRenderer<'a> {
                 ..
             } => {
                 let self_ty = self.render_type(self_type);
-                trait_.as_ref().map_or_else(
+                Cow::Owned(trait_.as_ref().map_or_else(
                     || format!("{self_ty}::{name}"),
                     |trait_path| format!("<{self_ty} as {}>::{name}", trait_path.path),
-                )
+                ))
             },
         }
     }
@@ -216,19 +240,19 @@ impl<'a> TypeRenderer<'a> {
     /// - Angle brackets: `<T, U, Item = V>` (most common)
     /// - Parenthesized: `(A, B) -> C` (for Fn traits)
     /// - Return type notation: `(..)` (experimental)
-    fn render_generic_args(self, args: &GenericArgs) -> String {
+    fn render_generic_args(&self, args: &GenericArgs) -> String {
         match args {
             // Standard angle bracket syntax: `<T, U, Item = V>`
             GenericArgs::AngleBracketed { args, constraints } => {
                 // Collect all generic arguments (types, lifetimes, consts)
-                let mut parts: Vec<String> =
+                let mut parts: Vec<Cow<str>> =
                     args.iter().map(|a| self.render_generic_arg(a)).collect();
 
                 // Add associated type constraints (e.g., `Item = u32`)
                 parts.extend(
                     constraints
                         .iter()
-                        .map(|c| self.render_assoc_item_constraint(c)),
+                        .map(|c| Cow::Owned(self.render_assoc_item_constraint(c))),
                 );
 
                 if parts.is_empty() {
@@ -240,7 +264,8 @@ impl<'a> TypeRenderer<'a> {
 
             // Parenthesized syntax for Fn traits: `Fn(A, B) -> C`
             GenericArgs::Parenthesized { inputs, output } => {
-                let input_strs: Vec<String> = inputs.iter().map(|t| self.render_type(t)).collect();
+                let input_strs: Vec<Cow<str>> =
+                    inputs.iter().map(|t| self.render_type(t)).collect();
                 let ret = output
                     .as_ref()
                     .map(|t| format!(" -> {}", self.render_type(t)))
@@ -261,16 +286,21 @@ impl<'a> TypeRenderer<'a> {
     /// - Types: `T`, `Vec<u32>`
     /// - Const values: `N`, `{expr}`
     /// - Inferred: `_`
-    fn render_generic_arg(self, arg: &GenericArg) -> String {
+    fn render_generic_arg<'t>(&self, arg: &'t GenericArg) -> Cow<'t, str> {
         match arg {
-            GenericArg::Lifetime(lt) => lt.clone(),
+            // Zero allocation - borrow from input
+            GenericArg::Lifetime(lt) => Cow::Borrowed(lt),
 
             GenericArg::Type(ty) => self.render_type(ty),
 
             // For consts, prefer the computed value; fall back to the expression
-            GenericArg::Const(c) => c.value.clone().unwrap_or_else(|| c.expr.clone()),
+            // These are already owned strings in rustdoc_types
+            GenericArg::Const(c) => {
+                Cow::Borrowed(c.value.as_deref().unwrap_or(&c.expr))
+            },
 
-            GenericArg::Infer => "_".to_string(),
+            // Zero allocation - static string
+            GenericArg::Infer => Cow::Borrowed("_"),
         }
     }
 
@@ -279,7 +309,7 @@ impl<'a> TypeRenderer<'a> {
     /// These appear in generic bounds:
     /// - Equality: `Item = u32`
     /// - Bound: `Item: Display`
-    fn render_assoc_item_constraint(self, constraint: &AssocItemConstraint) -> String {
+    fn render_assoc_item_constraint(&self, constraint: &AssocItemConstraint) -> String {
         // The constraint may have its own generic args (rare)
         let args = constraint
             .args
@@ -295,7 +325,7 @@ impl<'a> TypeRenderer<'a> {
 
             // Bound constraint: `Item: SomeTrait + OtherTrait`
             AssocItemConstraintKind::Constraint(bounds) => {
-                let bound_strs: Vec<String> = bounds
+                let bound_strs: Vec<Cow<str>> = bounds
                     .iter()
                     .map(|b| self.render_generic_bound(b))
                     .collect();
@@ -308,12 +338,12 @@ impl<'a> TypeRenderer<'a> {
     /// Render a term, which is either a type or a constant.
     ///
     /// Used in associated type constraints like `Item = u32`.
-    fn render_term(self, term: &Term) -> String {
+    fn render_term<'t>(&self, term: &'t Term) -> Cow<'t, str> {
         match term {
             Term::Type(ty) => self.render_type(ty),
 
             // For consts, prefer the computed value; fall back to the expression
-            Term::Constant(c) => c.value.clone().unwrap_or_else(|| c.expr.clone()),
+            Term::Constant(c) => Cow::Borrowed(c.value.as_deref().unwrap_or(&c.expr)),
         }
     }
 
@@ -325,18 +355,21 @@ impl<'a> TypeRenderer<'a> {
     /// - Modified bound: `?Sized`, `~const Drop`
     /// - Lifetime bound: `'static`, `'a`
     #[must_use]
-    pub fn render_generic_bound(&self, bound: &GenericBound) -> String {
+    pub fn render_generic_bound<'t>(&self, bound: &'t GenericBound) -> Cow<'t, str> {
         match bound {
             // Trait bound: `Clone`, `?Sized`, `~const Drop`
             GenericBound::TraitBound {
                 trait_, modifier, ..
             } => {
+                // Simple case: no modifier and no generic args - borrow directly
+                if matches!(modifier, TraitBoundModifier::None) && trait_.args.is_none() {
+                    return Cow::Borrowed(&trait_.path);
+                }
+
                 // Handle bound modifiers
                 let modifier_str = match modifier {
                     TraitBoundModifier::None => "",
-
                     TraitBoundModifier::Maybe => "?", // ?Sized
-
                     TraitBoundModifier::MaybeConst => "~const ", // ~const Trait
                 };
 
@@ -347,14 +380,15 @@ impl<'a> TypeRenderer<'a> {
                     result.push_str(&self.render_generic_args(args));
                 }
 
-                result
+                Cow::Owned(result)
             },
 
             // Lifetime bound: `'static`, `'a`
-            GenericBound::Outlives(lt) => lt.clone(),
+            // Zero allocation - borrow from input
+            GenericBound::Outlives(lt) => Cow::Borrowed(lt),
 
             // Use bound (experimental) - typically empty in output
-            GenericBound::Use(_) => String::new(),
+            GenericBound::Use(_) => Cow::Borrowed(""),
         }
     }
 
@@ -402,7 +436,7 @@ impl<'a> TypeRenderer<'a> {
     /// - Lifetime: `'a`, `'a: 'b + 'c`
     /// - Type: `T`, `T: Clone + Send`
     /// - Const: `const N: usize`
-    fn render_generic_param_def(self, param: &GenericParamDef) -> Option<String> {
+    fn render_generic_param_def(&self, param: &GenericParamDef) -> Option<String> {
         match &param.kind {
             // Lifetime parameter: `'a` or `'a: 'b + 'c`
             GenericParamDefKind::Lifetime { outlives } => {
@@ -432,7 +466,7 @@ impl<'a> TypeRenderer<'a> {
 
                 // Add trait bounds if present
                 if !bounds.is_empty() {
-                    let bound_strs: Vec<String> = bounds
+                    let bound_strs: Vec<Cow<str>> = bounds
                         .iter()
                         .map(|b| self.render_generic_bound(b))
                         .collect();
@@ -494,11 +528,11 @@ impl<'a> TypeRenderer<'a> {
     /// - Bound: `T: Clone + Send`
     /// - Lifetime: `'a: 'b + 'c`
     /// - Equality: `<T as Iterator>::Item = u32`
-    fn render_where_predicate(self, pred: &rustdoc_types::WherePredicate) -> String {
+    fn render_where_predicate(&self, pred: &rustdoc_types::WherePredicate) -> String {
         match pred {
             // Type bound predicate: `T: Clone + Send`
             rustdoc_types::WherePredicate::BoundPredicate { type_, bounds, .. } => {
-                let bound_strs: Vec<String> = bounds
+                let bound_strs: Vec<Cow<str>> = bounds
                     .iter()
                     .map(|b| self.render_generic_bound(b))
                     .collect();
@@ -515,6 +549,132 @@ impl<'a> TypeRenderer<'a> {
             rustdoc_types::WherePredicate::EqPredicate { lhs, rhs } => {
                 format!("{} = {}", self.render_type(lhs), self.render_term(rhs))
             },
+        }
+    }
+
+    /// Collect all linkable type names from a type.
+    ///
+    /// This extracts type names that could potentially be linked to their definitions.
+    /// Returns a set of (type_name, type_id) pairs for `ResolvedPath` types.
+    ///
+    /// # Linkable Types
+    ///
+    /// - `ResolvedPath` types (e.g., `Vec`, `HashMap`, `MyStruct`)
+    /// - Nested types within generics, references, slices, etc.
+    ///
+    /// # Excluded
+    ///
+    /// - Primitives (e.g., `u32`, `bool`)
+    /// - Generic parameters (e.g., `T`, `U`)
+    /// - Inferred types (`_`)
+    pub fn collect_linkable_types(&self, ty: &Type) -> Vec<(String, rustdoc_types::Id)> {
+        let mut result = Vec::new();
+        self.collect_types_recursive(ty, &mut result);
+        result
+    }
+
+    /// Recursively collect linkable types from a type tree.
+    fn collect_types_recursive(&self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>) {
+        match ty {
+            Type::ResolvedPath(path) => {
+                // Extract the simple name (last segment of the path)
+                let name = path.path.split("::").last().unwrap_or(&path.path);
+                result.push((name.to_string(), path.id));
+
+                // Also collect from generic arguments
+                if let Some(args) = &path.args {
+                    self.collect_from_generic_args(args, result);
+                }
+            },
+
+            Type::DynTrait(dyn_trait) => {
+                for pt in &dyn_trait.traits {
+                    let name = pt.trait_.path.split("::").last().unwrap_or(&pt.trait_.path);
+                    result.push((name.to_string(), pt.trait_.id));
+
+                    if let Some(args) = &pt.trait_.args {
+                        self.collect_from_generic_args(args, result);
+                    }
+                }
+            },
+
+            Type::BorrowedRef { type_, .. } | Type::RawPointer { type_, .. } => {
+                self.collect_types_recursive(type_, result);
+            },
+
+            Type::Slice(inner) | Type::Array { type_: inner, .. } | Type::Pat { type_: inner, .. } => {
+                self.collect_types_recursive(inner, result);
+            },
+
+            Type::Tuple(types) => {
+                for inner in types {
+                    self.collect_types_recursive(inner, result);
+                }
+            },
+
+            Type::FunctionPointer(fp) => {
+                for (_, input_ty) in &fp.sig.inputs {
+                    self.collect_types_recursive(input_ty, result);
+                }
+                if let Some(output) = &fp.sig.output {
+                    self.collect_types_recursive(output, result);
+                }
+            },
+
+            Type::ImplTrait(bounds) => {
+                for bound in bounds {
+                    if let GenericBound::TraitBound { trait_, .. } = bound {
+                        let name = trait_.path.split("::").last().unwrap_or(&trait_.path);
+                        result.push((name.to_string(), trait_.id));
+
+                        if let Some(args) = &trait_.args {
+                            self.collect_from_generic_args(args, result);
+                        }
+                    }
+                }
+            },
+
+            Type::QualifiedPath { self_type, trait_, .. } => {
+                self.collect_types_recursive(self_type, result);
+                if let Some(t) = trait_ {
+                    let name = t.path.split("::").last().unwrap_or(&t.path);
+                    result.push((name.to_string(), t.id));
+                }
+            },
+
+            // Primitives, generics, and inferred types are not linkable
+            Type::Primitive(_) | Type::Generic(_) | Type::Infer => {},
+        }
+    }
+
+    /// Collect types from generic arguments.
+    fn collect_from_generic_args(
+        &self,
+        args: &GenericArgs,
+        result: &mut Vec<(String, rustdoc_types::Id)>,
+    ) {
+        match args {
+            GenericArgs::AngleBracketed { args, constraints } => {
+                for arg in args {
+                    if let GenericArg::Type(ty) = arg {
+                        self.collect_types_recursive(ty, result);
+                    }
+                }
+                for constraint in constraints {
+                    if let AssocItemConstraintKind::Equality(Term::Type(ty)) = &constraint.binding {
+                        self.collect_types_recursive(ty, result);
+                    }
+                }
+            },
+            GenericArgs::Parenthesized { inputs, output } => {
+                for input in inputs {
+                    self.collect_types_recursive(input, result);
+                }
+                if let Some(output) = output {
+                    self.collect_types_recursive(output, result);
+                }
+            },
+            GenericArgs::ReturnTypeNotation => {},
         }
     }
 }

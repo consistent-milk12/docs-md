@@ -4,7 +4,7 @@
 
 *A portmanteau of "ansi stream"*
 
-[`AutoStream`](#autostream) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
+[`AutoStream`](auto/index.md) always accepts [ANSI escape codes](https://en.wikipedia.org/wiki/ANSI_escape_code),
 [adapting to the user's terminal's capabilities][AutoStream].
 
 Benefits
@@ -44,7 +44,7 @@ And this will correctly handle piping to a file, etc
 
 ```rust
 struct AutoStream<S: RawStream> {
-    // [REDACTED: Private Fields]
+    inner: StreamInner<S>,
 }
 ```
 
@@ -61,77 +61,13 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>`
-  Get exclusive access to the `AutoStream`
-
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `AutoStream`
-
-- `fn new(raw: S, choice: ColorChoice) -> Self`
-  Runtime control over styling behavior
-
-- `fn auto(raw: S) -> Self`
-  Auto-adapt for the stream's capabilities
-
-- `fn choice(raw: &S) -> ColorChoice`
-  Report the desired choice for the given stream
-
-- `fn always_ansi(raw: S) -> Self`
-  Force ANSI escape codes to be passed through as-is, no matter what the inner `Write`
-
-- `fn always(raw: S) -> Self`
-  Force color, no matter what the inner `Write` supports.
-
-- `fn never(raw: S) -> Self`
-  Only pass printable data to the inner `Write`.
-
-- `fn into_inner(self: Self) -> S`
-  Get the wrapped [`RawStream`]
-
-- `fn as_inner(self: &Self) -> &S`
-  Get the wrapped [`RawStream`]
-
-- `fn is_terminal(self: &Self) -> bool`
-  Returns `true` if the descriptor/handle refers to a terminal/tty.
-
-- `fn current_choice(self: &Self) -> ColorChoice`
-  Prefer [`AutoStream::choice`]
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](../auto/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<S: $crate::fmt::Debug + RawStream>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Write<S>`
 
@@ -145,17 +81,14 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 - `fn write_fmt(self: &mut Self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
 
-##### `impl Debug<S: $crate::fmt::Debug + RawStream>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `StripStream<S>`
 
 ```rust
 struct StripStream<S>
 where
     S: std::io::Write {
-    // [REDACTED: Private Fields]
+    raw: S,
+    state: crate::adapter::StripBytes,
 }
 ```
 
@@ -164,58 +97,16 @@ Only pass printable data to the inner `Write`
 #### Implementations
 
 - `fn new(raw: S) -> Self`
-  Only pass printable data to the inner `Write`
 
 - `fn into_inner(self: Self) -> S`
-  Get the wrapped [`std::io::Write`]
 
 - `fn as_inner(self: &Self) -> &S`
-  Get the wrapped [`std::io::Write`]
-
-- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>`
-  Get exclusive access to the `StripStream`
-
-- `fn lock(self: Self) -> StripStream<std::io::StdoutLock<'static>>`
-  Get exclusive access to the `StripStream`
-
-- `fn is_terminal(self: &Self) -> bool`
-  Returns `true` if the descriptor/handle refers to a terminal/tty.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<S>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Write<S>`
 
@@ -228,10 +119,6 @@ Only pass printable data to the inner `Write`
 - `fn write_all(self: &mut Self, buf: &[u8]) -> std::io::Result<()>`
 
 - `fn write_fmt(self: &mut Self, args: std::fmt::Arguments<'_>) -> std::io::Result<()>`
-
-##### `impl Debug<S>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Functions
 

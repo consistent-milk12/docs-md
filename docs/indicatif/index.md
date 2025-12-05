@@ -30,12 +30,12 @@ Best paired with other libraries in the family:
 
 # Progress Bars and Spinners
 
-indicatif comes with a [`ProgressBar`](#progressbar) type that supports both bounded
+indicatif comes with a [`ProgressBar`](progress_bar/index.md) type that supports both bounded
 progress bar uses as well as unbounded "spinner" type progress reports.
 Progress bars are [`Sync`](#sync) and [`Send`](#send) objects which means that they are
 internally locked and can be passed from thread to thread.
 
-Additionally a [`MultiProgress`](#multiprogress) utility is provided that can manage
+Additionally a [`MultiProgress`](multi/index.md) utility is provided that can manage
 rendering multiple progress bars at once (eg: from multiple threads).
 
 To whet your appetite, this is what this can look like:
@@ -253,7 +253,7 @@ assert_eq!("33,857,009.1235", HumanFloatCount(33857009.123456).to_string());
 
 ```rust
 struct ProgressDrawTarget {
-    // [REDACTED: Private Fields]
+    kind: TargetKind,
 }
 ```
 
@@ -268,67 +268,42 @@ device.
 #### Implementations
 
 - `fn stdout() -> Self`
-  Draw to a buffered stdout terminal at a max of 20 times a second.
 
 - `fn stderr() -> Self`
-  Draw to a buffered stderr terminal at a max of 20 times a second.
 
 - `fn stdout_with_hz(refresh_rate: u8) -> Self`
-  Draw to a buffered stdout terminal at a max of `refresh_rate` times a second.
 
 - `fn stderr_with_hz(refresh_rate: u8) -> Self`
-  Draw to a buffered stderr terminal at a max of `refresh_rate` times a second.
+
+- `fn new_remote(state: Arc<RwLock<MultiState>>, idx: usize) -> Self` — [`MultiState`](../multi/index.md)
 
 - `fn term(term: Term, refresh_rate: u8) -> Self`
-  Draw to a terminal, with a specific refresh rate.
 
-- `fn term_like(term_like: Box<dyn TermLike>) -> Self`
-  Draw to a boxed object that implements the [`TermLike`] trait.
+- `fn term_like(term_like: Box<dyn TermLike>) -> Self` — [`TermLike`](../term_like/index.md)
 
-- `fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self`
-  Draw to a boxed object that implements the [`TermLike`] trait,
+- `fn term_like_with_hz(term_like: Box<dyn TermLike>, refresh_rate: u8) -> Self` — [`TermLike`](../term_like/index.md)
 
 - `fn hidden() -> Self`
-  A hidden draw target.
 
 - `fn is_hidden(self: &Self) -> bool`
-  Returns true if the draw target is hidden.
+
+- `fn is_stderr(self: &Self) -> bool`
+
+- `fn width(self: &Self) -> Option<u16>`
+
+- `fn mark_zombie(self: &Self)`
+
+- `fn set_move_cursor(self: &mut Self, move_cursor: bool)`
+
+- `fn drawable(self: &mut Self, force_draw: bool, now: Instant) -> Option<Drawable<'_>>` — [`Drawable`](../draw_target/index.md)
+
+- `fn disconnect(self: &Self, now: Instant)`
+
+- `fn remote(self: &Self) -> Option<(&Arc<RwLock<MultiState>>, usize)>` — [`MultiState`](../multi/index.md)
+
+- `fn adjust_last_line_count(self: &mut Self, adjust: LineAdjust)` — [`LineAdjust`](../draw_target/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -355,27 +330,9 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -384,22 +341,6 @@ assert_eq!("1.33 PiB", format!("{}", BinaryBytes(1_500_000_000_000_000)));
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DecimalBytes`
 
@@ -422,27 +363,9 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -451,22 +374,6 @@ assert_eq!("1.50 PB", format!("{}", DecimalBytes(1_500_000_000_000_000)));
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `FormattedDuration`
 
@@ -478,27 +385,9 @@ Wraps an std duration for human basic formatting.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -507,22 +396,6 @@ Wraps an std duration for human basic formatting.
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `HumanBytes`
 
@@ -545,27 +418,9 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -574,22 +429,6 @@ assert_eq!("1.33 PiB", format!("{}", HumanBytes(1_500_000_000_000_000)));
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `HumanCount`
 
@@ -601,27 +440,9 @@ Formats counts for human readability using commas
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -630,22 +451,6 @@ Formats counts for human readability using commas
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `HumanDuration`
 
@@ -657,27 +462,9 @@ Wraps an std duration for human readable formatting.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -686,22 +473,6 @@ Wraps an std duration for human readable formatting.
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `HumanFloatCount`
 
@@ -713,27 +484,9 @@ Formats counts for human readability using commas for floats
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -743,28 +496,12 @@ Formats counts for human readability using commas for floats
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `ProgressBarIter<T>`
 
 ```rust
 struct ProgressBarIter<T> {
+    it: T,
     pub progress: crate::progress_bar::ProgressBar,
-    // [REDACTED: Private Fields]
 }
 ```
 
@@ -772,61 +509,29 @@ Wraps an iterator to display its progress.
 
 #### Implementations
 
-- `fn with_style(self: Self, style: ProgressStyle) -> Self`
-  Builder-like function for setting underlying progress bar's style.
+- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md)
 
 - `fn with_prefix(self: Self, prefix: impl Into<Cow<'static, str>>) -> Self`
-  Builder-like function for setting underlying progress bar's prefix.
 
 - `fn with_message(self: Self, message: impl Into<Cow<'static, str>>) -> Self`
-  Builder-like function for setting underlying progress bar's message.
 
 - `fn with_position(self: Self, position: u64) -> Self`
-  Builder-like function for setting underlying progress bar's position.
 
 - `fn with_elapsed(self: Self, elapsed: Duration) -> Self`
-  Builder-like function for setting underlying progress bar's elapsed time.
 
-- `fn with_finish(self: Self, finish: ProgressFinish) -> Self`
-  Builder-like function for setting underlying progress bar's finish behavior.
+- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoIterator<I>`
-
-- `type Item = <I as Iterator>::Item`
-
-- `type IntoIter = I`
-
-- `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl BufRead<R: io::BufRead>`
 
 - `fn fill_buf(self: &mut Self) -> io::Result<&[u8]>`
 
 - `fn consume(self: &mut Self, amt: usize)`
+
+##### `impl Debug<T: $crate::fmt::Debug>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl DoubleEndedIterator<T: DoubleEndedIterator>`
 
@@ -838,6 +543,14 @@ Wraps an iterator to display its progress.
 
 ##### `impl FusedIterator<T: FusedIterator>`
 
+##### `impl IntoIterator<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
 ##### `impl Iterator<S, T: Iterator<Item = S>>`
 
 - `type Item = S`
@@ -846,7 +559,7 @@ Wraps an iterator to display its progress.
 
 ##### `impl ProgressIterator<S, T>`
 
-- `fn progress_with(self: Self, progress: ProgressBar) -> ProgressBarIter<T>`
+- `fn progress_with(self: Self, progress: ProgressBar) -> ProgressBarIter<T>` — [`ProgressBar`](../progress_bar/index.md), [`ProgressBarIter`](../iter/index.md)
 
 ##### `impl Read<R: io::Read>`
 
@@ -858,17 +571,11 @@ Wraps an iterator to display its progress.
 
 - `fn read_exact(self: &mut Self, buf: &mut [u8]) -> io::Result<()>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Seek<S: io::Seek>`
 
-- `type Error = Infallible`
+- `fn seek(self: &mut Self, f: io::SeekFrom) -> io::Result<u64>`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn stream_position(self: &mut Self) -> io::Result<u64>`
 
 ##### `impl Write<W: io::Write>`
 
@@ -878,21 +585,11 @@ Wraps an iterator to display its progress.
 
 - `fn flush(self: &mut Self) -> io::Result<()>`
 
-##### `impl Debug<T: $crate::fmt::Debug>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Seek<S: io::Seek>`
-
-- `fn seek(self: &mut Self, f: io::SeekFrom) -> io::Result<u64>`
-
-- `fn stream_position(self: &mut Self) -> io::Result<u64>`
-
 ### `MultiProgress`
 
 ```rust
 struct MultiProgress {
-    // [REDACTED: Private Fields]
+    state: std::sync::Arc<std::sync::RwLock<MultiState>>,
 }
 ```
 
@@ -901,43 +598,32 @@ Manages multiple progress bars from different threads
 #### Implementations
 
 - `fn new() -> Self`
-  Creates a new multi progress object.
 
-- `fn with_draw_target(draw_target: ProgressDrawTarget) -> Self`
-  Creates a new multi progress object with the given draw target.
+- `fn with_draw_target(draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
 
-- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)`
-  Sets a different draw target for the multiprogress bar.
+- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md)
 
 - `fn set_move_cursor(self: &Self, move_cursor: bool)`
-  Set whether we should try to move the cursor when possible instead of clearing lines.
 
-- `fn set_alignment(self: &Self, alignment: MultiProgressAlignment)`
-  Set alignment flag
+- `fn set_alignment(self: &Self, alignment: MultiProgressAlignment)` — [`MultiProgressAlignment`](../multi/index.md)
 
-- `fn add(self: &Self, pb: ProgressBar) -> ProgressBar`
-  Adds a progress bar.
+- `fn add(self: &Self, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- `fn insert(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar`
-  Inserts a progress bar.
+- `fn insert(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- `fn insert_from_back(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar`
-  Inserts a progress bar from the back.
+- `fn insert_from_back(self: &Self, index: usize, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- `fn insert_before(self: &Self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar`
-  Inserts a progress bar before an existing one.
+- `fn insert_before(self: &Self, before: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- `fn insert_after(self: &Self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar`
-  Inserts a progress bar after an existing one.
+- `fn insert_after(self: &Self, after: &ProgressBar, pb: ProgressBar) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
-- `fn remove(self: &Self, pb: &ProgressBar)`
-  Removes a progress bar.
+- `fn remove(self: &Self, pb: &ProgressBar)` — [`ProgressBar`](../progress_bar/index.md)
+
+- `fn internalize(self: &Self, location: InsertLocation, pb: ProgressBar) -> ProgressBar` — [`InsertLocation`](../multi/index.md), [`ProgressBar`](../progress_bar/index.md)
 
 - `fn println<I: AsRef<str>>(self: &Self, msg: I) -> io::Result<()>`
-  Print a log line above all progress bars in the [`MultiProgress`]
 
 - `fn suspend<F: FnOnce() -> R, R>(self: &Self, f: F) -> R`
-  Hide all progress bars temporarily, execute `f`, then redraw the [`MultiProgress`]
 
 - `fn clear(self: &Self) -> io::Result<()>`
 
@@ -945,55 +631,9 @@ Manages multiple progress bars from different threads
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> MultiProgress`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> MultiProgress` — [`MultiProgress`](../multi/index.md)
 
 ##### `impl Debug`
 
@@ -1007,7 +647,9 @@ Manages multiple progress bars from different threads
 
 ```rust
 struct ProgressBar {
-    // [REDACTED: Private Fields]
+    state: std::sync::Arc<std::sync::Mutex<crate::state::BarState>>,
+    pos: std::sync::Arc<crate::state::AtomicPosition>,
+    ticker: std::sync::Arc<std::sync::Mutex<Option<Ticker>>>,
 }
 ```
 
@@ -1019,224 +661,130 @@ just increments the refcount (so the original and its clone share the same state
 #### Implementations
 
 - `fn new(len: u64) -> Self`
-  Creates a new progress bar with a given length
 
 - `fn no_length() -> Self`
-  Creates a new progress bar without a specified length
 
 - `fn hidden() -> Self`
-  Creates a completely hidden progress bar
 
-- `fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self`
-  Creates a new progress bar with a given length and draw target
+- `fn with_draw_target(len: Option<u64>, draw_target: ProgressDrawTarget) -> Self` — [`ProgressDrawTarget`](../draw_target/index.md)
 
-- `fn style(self: &Self) -> ProgressStyle`
-  Get a clone of the current progress bar style.
+- `fn style(self: &Self) -> ProgressStyle` — [`ProgressStyle`](../style/index.md)
 
-- `fn with_style(self: Self, style: ProgressStyle) -> Self`
-  A convenience builder-like function for a progress bar with a given style
+- `fn with_style(self: Self, style: ProgressStyle) -> Self` — [`ProgressStyle`](../style/index.md)
 
 - `fn with_tab_width(self: Self, tab_width: usize) -> Self`
-  A convenience builder-like function for a progress bar with a given tab width
 
 - `fn with_prefix(self: Self, prefix: impl Into<Cow<'static, str>>) -> Self`
-  A convenience builder-like function for a progress bar with a given prefix
 
 - `fn with_message(self: Self, message: impl Into<Cow<'static, str>>) -> Self`
-  A convenience builder-like function for a progress bar with a given message
 
 - `fn with_position(self: Self, pos: u64) -> Self`
-  A convenience builder-like function for a progress bar with a given position
 
 - `fn with_elapsed(self: Self, elapsed: Duration) -> Self`
-  A convenience builder-like function for a progress bar with a given elapsed time
 
-- `fn with_finish(self: Self, finish: ProgressFinish) -> Self`
-  Sets the finish behavior for the progress bar
+- `fn with_finish(self: Self, finish: ProgressFinish) -> Self` — [`ProgressFinish`](../state/index.md)
 
 - `fn new_spinner() -> Self`
-  Creates a new spinner
 
-- `fn set_style(self: &Self, style: ProgressStyle)`
-  Overrides the stored style
+- `fn set_style(self: &Self, style: ProgressStyle)` — [`ProgressStyle`](../style/index.md)
 
 - `fn set_tab_width(self: &Self, tab_width: usize)`
-  Sets the tab width (default: 8). All tabs will be expanded to this many spaces.
 
 - `fn enable_steady_tick(self: &Self, interval: Duration)`
-  Spawns a background thread to tick the progress bar
 
 - `fn disable_steady_tick(self: &Self)`
-  Undoes [`ProgressBar::enable_steady_tick()`]
+
+- `fn stop_and_replace_ticker(self: &Self, interval: Option<Duration>)`
 
 - `fn tick(self: &Self)`
-  Manually ticks the spinner or progress bar
+
+- `fn tick_inner(self: &Self, now: Instant)`
 
 - `fn inc(self: &Self, delta: u64)`
-  Advances the position of the progress bar by `delta`
 
 - `fn dec(self: &Self, delta: u64)`
-  Decrease the position of the progress bar by `delta`
 
 - `fn is_hidden(self: &Self) -> bool`
-  A quick convenience check if the progress bar is hidden
 
 - `fn is_finished(self: &Self) -> bool`
-  Indicates that the progress bar finished
 
 - `fn println<I: AsRef<str>>(self: &Self, msg: I)`
-  Print a log line above the progress bar
 
-- `fn update(self: &Self, f: impl FnOnce(&mut ProgressState))`
-  Update the `ProgressBar`'s inner [`ProgressState`]
+- `fn update(self: &Self, f: impl FnOnce(&mut ProgressState))` — [`ProgressState`](../state/index.md)
 
 - `fn set_position(self: &Self, pos: u64)`
-  Sets the position of the progress bar
 
 - `fn unset_length(self: &Self)`
-  Sets the length of the progress bar to `None`
 
 - `fn set_length(self: &Self, len: u64)`
-  Sets the length of the progress bar
 
 - `fn inc_length(self: &Self, delta: u64)`
-  Increase the length of the progress bar
 
 - `fn dec_length(self: &Self, delta: u64)`
-  Decrease the length of the progress bar
 
 - `fn set_prefix(self: &Self, prefix: impl Into<Cow<'static, str>>)`
-  Sets the current prefix of the progress bar
 
 - `fn set_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
-  Sets the current message of the progress bar
 
 - `fn set_elapsed(self: &Self, elapsed: Duration)`
-  Sets the elapsed time for the progress bar
 
-- `fn downgrade(self: &Self) -> WeakProgressBar`
-  Creates a new weak reference to this [`ProgressBar`]
+- `fn downgrade(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](../progress_bar/index.md)
 
 - `fn reset_eta(self: &Self)`
-  Resets the ETA calculation
 
 - `fn reset_elapsed(self: &Self)`
-  Resets elapsed time and the ETA calculation
 
 - `fn reset(self: &Self)`
-  Resets all of the progress bar state
 
 - `fn finish(self: &Self)`
-  Finishes the progress bar and leaves the current message
 
 - `fn finish_with_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
-  Finishes the progress bar and sets a message
 
 - `fn finish_and_clear(self: &Self)`
-  Finishes the progress bar and completely clears it
 
 - `fn abandon(self: &Self)`
-  Finishes the progress bar and leaves the current message and progress
 
 - `fn abandon_with_message(self: &Self, msg: impl Into<Cow<'static, str>>)`
-  Finishes the progress bar and sets a message, and leaves the current progress
 
 - `fn finish_using_style(self: &Self)`
-  Finishes the progress bar using the behavior stored in the [`ProgressStyle`]
 
-- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)`
-  Sets a different draw target for the progress bar
+- `fn set_draw_target(self: &Self, target: ProgressDrawTarget)` — [`ProgressDrawTarget`](../draw_target/index.md)
 
 - `fn force_draw(self: &Self)`
-  Force a redraw of the progress bar to be in sync with its state
 
 - `fn suspend<F: FnOnce() -> R, R>(self: &Self, f: F) -> R`
-  Hide the progress bar temporarily, execute `f`, then redraw the progress bar
 
-- `fn wrap_iter<It: Iterator>(self: &Self, it: It) -> ProgressBarIter<It>`
-  Wraps an [`Iterator`] with the progress bar
+- `fn wrap_iter<It: Iterator>(self: &Self, it: It) -> ProgressBarIter<It>` — [`ProgressBarIter`](../iter/index.md)
 
-- `fn wrap_read<R: io::Read>(self: &Self, read: R) -> ProgressBarIter<R>`
-  Wraps an [`io::Read`] with the progress bar
+- `fn wrap_read<R: io::Read>(self: &Self, read: R) -> ProgressBarIter<R>` — [`ProgressBarIter`](../iter/index.md)
 
-- `fn wrap_write<W: io::Write>(self: &Self, write: W) -> ProgressBarIter<W>`
-  Wraps an [`io::Write`] with the progress bar
+- `fn wrap_write<W: io::Write>(self: &Self, write: W) -> ProgressBarIter<W>` — [`ProgressBarIter`](../iter/index.md)
 
 - `fn position(self: &Self) -> u64`
-  Returns the current position
 
 - `fn length(self: &Self) -> Option<u64>`
-  Returns the current length
 
 - `fn eta(self: &Self) -> Duration`
-  Returns the current ETA
 
 - `fn per_sec(self: &Self) -> f64`
-  Returns the current rate of progress
 
 - `fn duration(self: &Self) -> Duration`
-  Returns the current expected duration
 
 - `fn elapsed(self: &Self) -> Duration`
-  Returns the current elapsed time
+
+- `fn index(self: &Self) -> Option<usize>`
 
 - `fn message(self: &Self) -> String`
-  Current message
 
 - `fn prefix(self: &Self) -> String`
-  Current prefix
+
+- `fn state(self: &Self) -> MutexGuard<'_, BarState>` — [`BarState`](../state/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ProgressBar`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ProgressBar` — [`ProgressBar`](../progress_bar/index.md)
 
 ##### `impl Debug`
 
@@ -1246,83 +794,44 @@ just increments the refcount (so the original and its clone share the same state
 
 ```rust
 struct WeakProgressBar {
-    // [REDACTED: Private Fields]
+    state: std::sync::Weak<std::sync::Mutex<crate::state::BarState>>,
+    pos: std::sync::Weak<crate::state::AtomicPosition>,
+    ticker: std::sync::Weak<std::sync::Mutex<Option<Ticker>>>,
 }
 ```
 
-A weak reference to a [`ProgressBar`](#progressbar).
+A weak reference to a [`ProgressBar`](progress_bar/index.md).
 
 Useful for creating custom steady tick implementations
 
 #### Implementations
 
 - `fn new() -> Self`
-  Create a new [`WeakProgressBar`] that returns `None` when [`upgrade()`] is called.
 
-- `fn upgrade(self: &Self) -> Option<ProgressBar>`
-  Attempts to upgrade the Weak pointer to a [`ProgressBar`], delaying dropping of the inner
+- `fn upgrade(self: &Self) -> Option<ProgressBar>` — [`ProgressBar`](../progress_bar/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> WeakProgressBar`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> WeakProgressBar` — [`WeakProgressBar`](../progress_bar/index.md)
 
 ##### `impl Default`
 
-- `fn default() -> WeakProgressBar`
+- `fn default() -> WeakProgressBar` — [`WeakProgressBar`](../progress_bar/index.md)
 
 ### `ProgressState`
 
 ```rust
 struct ProgressState {
-    // [REDACTED: Private Fields]
+    pos: std::sync::Arc<AtomicPosition>,
+    len: Option<u64>,
+    tick: u64,
+    started: std::time::Instant,
+    status: Status,
+    est: Estimator,
+    message: TabExpandedString,
+    prefix: TabExpandedString,
 }
 ```
 
@@ -1330,20 +839,17 @@ The state of a progress bar at a moment in time.
 
 #### Implementations
 
+- `fn new(len: Option<u64>, pos: Arc<AtomicPosition>) -> Self` — [`AtomicPosition`](../state/index.md)
+
 - `fn is_finished(self: &Self) -> bool`
-  Indicates that the progress bar finished.
 
 - `fn fraction(self: &Self) -> f32`
-  Returns the completion as a floating-point number between 0 and 1
 
 - `fn eta(self: &Self) -> Duration`
-  The expected ETA
 
 - `fn duration(self: &Self) -> Duration`
-  The expected total duration (that is, elapsed time + expected ETA)
 
 - `fn per_sec(self: &Self) -> f64`
-  The number of steps per second
 
 - `fn elapsed(self: &Self) -> Duration`
 
@@ -1355,133 +861,60 @@ The state of a progress bar at a moment in time.
 
 - `fn set_len(self: &mut Self, len: u64)`
 
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ### `ProgressStyle`
 
 ```rust
 struct ProgressStyle {
-    // [REDACTED: Private Fields]
+    tick_strings: Vec<Box<str>>,
+    progress_chars: Vec<Box<str>>,
+    template: Template,
+    char_width: usize,
+    tab_width: usize,
+    format_map: std::collections::HashMap<&'static str, Box<dyn ProgressTracker>>,
 }
 ```
 
 #### Implementations
 
 - `fn default_bar() -> Self`
-  Returns the default progress bar style for bars
 
 - `fn default_spinner() -> Self`
-  Returns the default progress bar style for spinners
 
-- `fn with_template(template: &str) -> Result<Self, TemplateError>`
-  Sets the template string for the progress bar
+- `fn with_template(template: &str) -> Result<Self, TemplateError>` — [`TemplateError`](../style/index.md)
+
+- `fn set_tab_width(self: &mut Self, new_tab_width: usize)`
+
+- `fn set_for_stderr(self: &mut Self)`
+
+- `fn new(template: Template) -> Self` — [`Template`](../style/index.md)
 
 - `fn tick_chars(self: Self, s: &str) -> Self`
-  Sets the tick character sequence for spinners
 
 - `fn tick_strings(self: Self, s: &[&str]) -> Self`
-  Sets the tick string sequence for spinners
 
 - `fn progress_chars(self: Self, s: &str) -> Self`
-  Sets the progress characters `(filled, current, to do)`
 
 - `fn with_key<S: ProgressTracker + 'static>(self: Self, key: &'static str, f: S) -> Self`
-  Adds a custom key that owns a [`ProgressTracker`] to the template
 
-- `fn template(self: Self, s: &str) -> Result<Self, TemplateError>`
-  Sets the template string for the progress bar
+- `fn template(self: Self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](../style/index.md)
+
+- `fn current_tick_str(self: &Self, state: &ProgressState) -> &str` — [`ProgressState`](../state/index.md)
 
 - `fn get_tick_str(self: &Self, idx: u64) -> &str`
-  Returns the tick string for a given number
 
 - `fn get_final_tick_str(self: &Self) -> &str`
-  Returns the tick string for the finished state
+
+- `fn format_bar(self: &Self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](../style/index.md)
+
+- `fn format_state(self: &Self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](../state/index.md), [`LineType`](../draw_target/index.md)
+
+- `fn push_line(self: &Self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../draw_target/index.md), [`ProgressState`](../state/index.md), [`WideElement`](../style/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ProgressStyle`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ProgressStyle` — [`ProgressStyle`](../style/index.md)
 
 ## Enums
 
@@ -1513,57 +946,11 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> MultiProgressAlignment`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> MultiProgressAlignment` — [`MultiProgressAlignment`](../multi/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1571,7 +958,7 @@ E.g. [`Top`](MultiProgressAlignment::Top) alignment (default), when _progress ba
 
 ##### `impl Default`
 
-- `fn default() -> MultiProgressAlignment`
+- `fn default() -> MultiProgressAlignment` — [`MultiProgressAlignment`](../multi/index.md)
 
 ### `ProgressFinish`
 
@@ -1587,7 +974,7 @@ enum ProgressFinish {
 
 Behavior of a progress bar when it is finished
 
-This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#progressbariter) completes and
+This is invoked when a [`ProgressBar`](progress_bar/index.md) or [`ProgressBarIter`](iter/index.md) completes and
 `ProgressBar::is_finished` is false.
 
 
@@ -1627,55 +1014,9 @@ This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#pro
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ProgressFinish`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ProgressFinish` — [`ProgressFinish`](../state/index.md)
 
 ##### `impl Debug`
 
@@ -1683,7 +1024,7 @@ This is invoked when a [`ProgressBar`](#progressbar) or [`ProgressBarIter`](#pro
 
 ##### `impl Default`
 
-- `fn default() -> ProgressFinish`
+- `fn default() -> ProgressFinish` — [`ProgressFinish`](../state/index.md)
 
 ## Traits
 

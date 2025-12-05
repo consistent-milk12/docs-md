@@ -517,7 +517,7 @@ impl<'a> DocLinkProcessor<'a> {
         let s = self.process_backtick_links(&s, item_links);
         let s = self.process_plain_links(&s, item_links);
 
-        Self::process_html_links(&s)
+        self.process_html_links_with_context(&s, item_links)
     }
 
     /// Process reference-style links `[display text][`Span`]`.
@@ -608,18 +608,117 @@ impl<'a> DocLinkProcessor<'a> {
         })
     }
 
-    /// Process HTML-style rustdoc links.
-    fn process_html_links(text: &str) -> String {
+    /// Process HTML-style rustdoc links with context awareness.
+    ///
+    /// Instead of blindly converting all HTML links to local anchors,
+    /// this method checks if the item actually exists on the current page.
+    /// If not, it tries to resolve to docs.rs or removes the broken link.
+    fn process_html_links_with_context(
+        &self,
+        text: &str,
+        item_links: &HashMap<String, Id>,
+    ) -> String {
         replace_with_regex(text, &HTML_LINK_RE, |caps| {
+            let item_kind = &caps[1]; // struct, enum, trait, etc.
             let item_name = &caps[2];
 
             // If there's a method/variant anchor part, remove the link entirely
+            // since methods don't have individual headings
             if caps.get(4).is_some() {
-                String::new()
-            } else {
-                format!("(#{})", item_name.to_lowercase())
+                return String::new();
             }
+
+            // Try to find this item in our link resolution
+            if let Some(url) = self.resolve_html_link_to_url(item_name, item_kind, item_links) {
+                return format!("({url})");
+            }
+
+            // Fallback: remove the link part entirely (keep just the display text)
+            // This is better than creating a broken #anchor
+            String::new()
         })
+    }
+
+    /// Try to resolve an HTML-style link to a proper URL.
+    ///
+    /// Returns a URL if the item can be resolved (either locally or to docs.rs),
+    /// or None if the item cannot be found.
+    fn resolve_html_link_to_url(
+        &self,
+        item_name: &str,
+        item_kind: &str,
+        item_links: &HashMap<String, Id>,
+    ) -> Option<String> {
+        // Strategy 1: Check if item is in item_links
+        if let Some(id) = item_links.get(item_name) {
+            // Check if it's on the current page
+            if let Some(path) = self.link_registry.get_path(*id) {
+                if path == self.current_file {
+                    // Item is on this page - use anchor
+                    return Some(format!("#{}", item_name.to_lowercase()));
+                }
+                // Item is in another file
+                let relative = LinkRegistry::compute_relative_path(self.current_file, path);
+                return Some(relative);
+            }
+
+            // Try docs.rs for external crates
+            if let Some(path_info) = self.krate.paths.get(id)
+                && path_info.crate_id != 0
+            {
+                return Self::get_docs_rs_url(path_info);
+            }
+        }
+
+        // Strategy 2: Search path_name_index for the item name
+        if let Some(ids) = self.path_name_index.get(item_name) {
+            for id in ids {
+                if let Some(path) = self.link_registry.get_path(*id) {
+                    if path == self.current_file {
+                        return Some(format!("#{}", item_name.to_lowercase()));
+                    }
+                    let relative = LinkRegistry::compute_relative_path(self.current_file, path);
+                    return Some(relative);
+                }
+
+                // Try docs.rs
+                if let Some(path_info) = self.krate.paths.get(id)
+                    && path_info.crate_id != 0
+                {
+                    return Self::get_docs_rs_url(path_info);
+                }
+            }
+        }
+
+        // Strategy 3: Search krate.paths for external items by name
+        for (_id, path_info) in &self.krate.paths {
+            if path_info.crate_id != 0 {
+                // External crate
+                if let Some(name) = path_info.path.last()
+                    && name == item_name
+                    && Self::kind_matches(item_kind, path_info.kind)
+                {
+                    return Self::get_docs_rs_url(path_info);
+                }
+            }
+        }
+
+        None
+    }
+
+    /// Check if the HTML link kind matches the rustdoc item kind.
+    fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool {
+        match html_kind {
+            "struct" => item_kind == ItemKind::Struct,
+            "enum" => item_kind == ItemKind::Enum,
+            "trait" => item_kind == ItemKind::Trait,
+            "fn" => item_kind == ItemKind::Function,
+            "type" => item_kind == ItemKind::TypeAlias,
+            "macro" => item_kind == ItemKind::Macro,
+            "constant" => item_kind == ItemKind::Constant,
+            "mod" => item_kind == ItemKind::Module,
+            _ => false,
+        }
     }
 
     /// Clean up multiple consecutive blank lines.

@@ -231,9 +231,6 @@ pub struct SingleCrateView<'a> {
     /// Reference to the parent multi-crate context for cross-crate lookups.
     ctx: &'a MultiCrateContext<'a>,
 
-    /// Map from item ID to module path components.
-    path_map: HashMap<Id, Vec<String>>,
-
     /// Map from type ID to impl blocks (local crate only).
     impl_map: HashMap<Id, Vec<&'a Impl>>,
 
@@ -263,54 +260,15 @@ impl<'a> SingleCrateView<'a> {
             registry,
             args,
             ctx,
-            path_map: HashMap::new(),
             impl_map: HashMap::new(),
             cross_crate_impls,
             type_name_to_id: HashMap::new(),
         };
 
-        view.build_path_map();
         view.build_impl_map();
         view.build_type_name_map();
 
         view
-    }
-
-    /// Build the path map for all items.
-    fn build_path_map(&mut self) {
-        self.path_map.clear();
-
-        let Some(root) = self.krate.index.get(&self.krate.root) else {
-            return;
-        };
-
-        if let ItemEnum::Module(module) = &root.inner {
-            for item_id in &module.items {
-                self.register_item_path(*item_id, vec![]);
-            }
-        }
-    }
-
-    /// Recursively register item paths.
-    fn register_item_path(&mut self, id: Id, parent_path: Vec<String>) {
-        let Some(item) = self.krate.index.get(&id) else {
-            return;
-        };
-
-        let name = item.name.clone().unwrap_or_default();
-
-        if let ItemEnum::Module(module) = &item.inner {
-            let mut path = parent_path;
-            path.push(name);
-
-            self.path_map.insert(id, path.clone());
-
-            for child_id in &module.items {
-                self.register_item_path(*child_id, path.clone());
-            }
-        } else {
-            self.path_map.insert(id, parent_path);
-        }
     }
 
     /// Build the impl map for all types.
@@ -328,6 +286,8 @@ impl<'a> SingleCrateView<'a> {
         // Sort impl blocks for deterministic output
         for impls in self.impl_map.values_mut() {
             impls.sort_by_key(|i| Self::impl_sort_key(i));
+            // Deduplicate impls with the same sort key
+            impls.dedup_by(|a, b| Self::impl_sort_key(a) == Self::impl_sort_key(b));
         }
     }
 
@@ -405,12 +365,6 @@ impl<'a> SingleCrateView<'a> {
     #[must_use]
     pub const fn args(&self) -> &Args {
         self.args
-    }
-
-    /// Get module path for an item.
-    #[must_use]
-    pub fn get_path(&self, id: Id) -> Option<&Vec<String>> {
-        self.path_map.get(&id)
     }
 
     /// Get impl blocks for a type (local crate only).
@@ -1189,6 +1143,10 @@ impl RenderContext for SingleCrateView<'_> {
 
     fn include_private(&self) -> bool {
         self.args.include_private
+    }
+
+    fn include_blanket_impls(&self) -> bool {
+        self.args.include_blanket_impls
     }
 
     fn crate_version(&self) -> Option<&str> {

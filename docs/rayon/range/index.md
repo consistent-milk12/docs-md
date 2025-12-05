@@ -1,0 +1,106 @@
+*[rayon](../index.md) / [range](index.md)*
+
+---
+
+# Module `range`
+
+Parallel iterator types for [ranges](#ranges),
+the type for values created by `a..b` expressions
+
+You will rarely need to interact with this module directly unless you have
+need to name one of the iterator types.
+
+```rust
+use rayon::prelude::*;
+
+let r = (0..100u64).into_par_iter()
+                   .sum();
+
+// compare result with sequential calculation
+assert_eq!((0..100).sum::<u64>(), r);
+```
+
+[ranges](#ranges): std::ops::Range
+
+## Structs
+
+### `Iter<T>`
+
+```rust
+struct Iter<T> {
+    range: std::ops::Range<T>,
+}
+```
+
+Parallel iterator over a range, implemented for all integer types and `char`.
+
+**Note:** The `zip` operation requires `IndexedParallelIterator`
+which is not implemented for `u64`, `i64`, `u128`, or `i128`.
+
+```rust
+use rayon::prelude::*;
+
+let p = (0..25usize).into_par_iter()
+                  .zip(0..25usize)
+                  .filter(|&(x, y)| x % 5 == 0 || y % 5 == 0)
+                  .map(|(x, y)| x * y)
+                  .sum::<usize>();
+
+let s = (0..25usize).zip(0..25)
+                  .filter(|&(x, y)| x % 5 == 0 || y % 5 == 0)
+                  .map(|(x, y)| x * y)
+                  .sum();
+
+assert_eq!(p, s);
+```
+
+#### Trait Implementations
+
+##### `impl Clone<T: $crate::clone::Clone>`
+
+- `fn clone(self: &Self) -> Iter<T>` — [`Iter`](../../range/index.md)
+
+##### `impl Debug<T: $crate::fmt::Debug>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl IndexedParallelIterator<T: IndexedRangeInteger>`
+
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+
+- `fn len(self: &Self) -> usize`
+
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+
+##### `impl IntoEither<T>`
+
+##### `impl IntoParallelIterator<T>`
+
+- `type Iter = T`
+
+- `type Item = <T as ParallelIterator>::Item`
+
+- `fn into_par_iter(self: Self) -> T`
+
+##### `impl ParallelIterator`
+
+- `type Item = char`
+
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+
+- `fn opt_len(self: &Self) -> Option<usize>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+

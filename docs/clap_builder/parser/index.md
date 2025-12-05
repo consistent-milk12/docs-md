@@ -12,11 +12,11 @@
 
 ```rust
 struct IdsRef<'a> {
-    // [REDACTED: Private Fields]
+    iter: std::slice::Iter<'a, crate::util::Id>,
 }
 ```
 
-Iterate over `Arg` and `ArgGroup` [`Id`](../index.md)s via `ArgMatches::ids`.
+Iterate over `Arg` and `ArgGroup` [`Id`](../util/id/index.md)s via `ArgMatches::ids`.
 
 # Examples
 
@@ -40,15 +40,19 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> IdsRef<'a>` — [`IdsRef`](../../parser/matches/arg_matches/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'a>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DoubleEndedIterator<'a>`
+
+- `fn next_back(self: &mut Self) -> Option<&'a Id>` — [`Id`](../../util/id/index.md)
+
+##### `impl ExactSizeIterator`
 
 ##### `impl IntoIterator<I>`
 
@@ -58,69 +62,20 @@ assert_eq!(
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'a>`
-
-- `fn clone(self: &Self) -> IdsRef<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'a>`
-
-- `fn next_back(self: &mut Self) -> Option<&'a Id>`
-
-##### `impl ExactSizeIterator`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = &'a Id`
 
-- `fn next(self: &mut Self) -> Option<&'a Id>`
+- `fn next(self: &mut Self) -> Option<&'a Id>` — [`Id`](../../util/id/index.md)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `RawValues<'a>`
 
 ```rust
 struct RawValues<'a> {
-    // [REDACTED: Private Fields]
+    iter: std::iter::Map<std::iter::Flatten<std::slice::Iter<'a, Vec<std::ffi::OsString>>>, fn(&std::ffi::OsString) -> &std::ffi::OsStr>,
+    len: usize,
 }
 ```
 
@@ -153,77 +108,9 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoIterator<I>`
-
-- `type Item = <I as Iterator>::Item`
-
-- `type IntoIter = I`
-
-- `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a>`
 
-- `fn clone(self: &Self) -> RawValues<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'a>`
-
-- `fn next_back(self: &mut Self) -> Option<&'a OsStr>`
-
-##### `impl ExactSizeIterator`
-
-##### `impl Iterator<'a>`
-
-- `type Item = &'a OsStr`
-
-- `fn next(self: &mut Self) -> Option<&'a OsStr>`
-
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> RawValues<'a>` — [`RawValues`](../../parser/matches/arg_matches/index.md)
 
 ##### `impl Debug<'a>`
 
@@ -233,11 +120,34 @@ assert_eq!(
 
 - `fn default() -> Self`
 
+##### `impl DoubleEndedIterator<'a>`
+
+- `fn next_back(self: &mut Self) -> Option<&'a OsStr>`
+
+##### `impl ExactSizeIterator`
+
+##### `impl IntoIterator<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator<'a>`
+
+- `type Item = &'a OsStr`
+
+- `fn next(self: &mut Self) -> Option<&'a OsStr>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
 ### `Values<T>`
 
 ```rust
 struct Values<T> {
-    // [REDACTED: Private Fields]
+    iter: std::iter::Map<std::iter::Flatten<std::vec::IntoIter<Vec<self::any_value::AnyValue>>>, fn(self::any_value::AnyValue) -> T>,
+    len: usize,
 }
 ```
 
@@ -264,77 +174,9 @@ assert_eq!(values.next(), None);
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoIterator<I>`
-
-- `type Item = <I as Iterator>::Item`
-
-- `type IntoIter = I`
-
-- `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<T: $crate::clone::Clone>`
 
-- `fn clone(self: &Self) -> Values<T>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<T>`
-
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
-
-##### `impl ExactSizeIterator<T>`
-
-##### `impl Iterator<T>`
-
-- `type Item = T`
-
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
-
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Values<T>` — [`Values`](../../parser/matches/arg_matches/index.md)
 
 ##### `impl Debug<T: $crate::fmt::Debug>`
 
@@ -344,11 +186,34 @@ assert_eq!(values.next(), None);
 
 - `fn default() -> Self`
 
+##### `impl DoubleEndedIterator<T>`
+
+- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+
+##### `impl ExactSizeIterator<T>`
+
+##### `impl IntoIterator<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator<T>`
+
+- `type Item = T`
+
+- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
 ### `ValuesRef<'a, T>`
 
 ```rust
 struct ValuesRef<'a, T> {
-    // [REDACTED: Private Fields]
+    iter: std::iter::Map<std::iter::Flatten<std::slice::Iter<'a, Vec<self::any_value::AnyValue>>>, fn(&self::any_value::AnyValue) -> &T>,
+    len: usize,
 }
 ```
 
@@ -376,77 +241,9 @@ assert_eq!(values.next(), None);
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoIterator<I>`
-
-- `type Item = <I as Iterator>::Item`
-
-- `type IntoIter = I`
-
-- `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a, T: $crate::clone::Clone>`
 
-- `fn clone(self: &Self) -> ValuesRef<'a, T>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'a, T: 'a>`
-
-- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
-
-##### `impl ExactSizeIterator<'a, T: 'a>`
-
-##### `impl Iterator<'a, T: 'a>`
-
-- `type Item = &'a T`
-
-- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
-
-- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ValuesRef<'a, T>` — [`ValuesRef`](../../parser/matches/arg_matches/index.md)
 
 ##### `impl Debug<'a, T: $crate::fmt::Debug>`
 
@@ -456,11 +253,36 @@ assert_eq!(values.next(), None);
 
 - `fn default() -> Self`
 
+##### `impl DoubleEndedIterator<'a, T: 'a>`
+
+- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+
+##### `impl ExactSizeIterator<'a, T: 'a>`
+
+##### `impl IntoIterator<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator<'a, T: 'a>`
+
+- `type Item = &'a T`
+
+- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
 ### `ArgMatches`
 
 ```rust
 struct ArgMatches {
-    // [REDACTED: Private Fields]
+    valid_args: Vec<crate::util::Id>,
+    valid_subcommands: Vec<crate::builder::Str>,
+    args: self::flat_map::FlatMap<crate::util::Id, matched_arg::MatchedArg>,
+    subcommand: Option<Box<SubCommand>>,
 }
 ```
 
@@ -514,154 +336,42 @@ if matches.contains_id("out") {
 #### Implementations
 
 - `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
-  Gets the value of a specific option or positional argument.
 
 - `fn get_count(self: &Self, id: &str) -> u8`
-  Gets the value of a specific [`ArgAction::Count`][crate::ArgAction::Count] flag
 
 - `fn get_flag(self: &Self, id: &str) -> bool`
-  Gets the value of a specific [`ArgAction::SetTrue`][crate::ArgAction::SetTrue] or [`ArgAction::SetFalse`][crate::ArgAction::SetFalse] flag
 
-- `fn get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<ValuesRef<'_, T>>`
-  Iterate over values of a specific option or positional argument.
+- `fn get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](../../parser/matches/arg_matches/index.md)
 
-- `fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<OccurrencesRef<'_, T>>`
-  Iterate over the values passed to each occurrence of an option.
+- `fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](../../parser/matches/arg_matches/index.md)
 
-- `fn get_raw(self: &Self, id: &str) -> Option<RawValues<'_>>`
-  Iterate over the original argument values.
+- `fn get_raw(self: &Self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](../../parser/matches/arg_matches/index.md)
 
-- `fn get_raw_occurrences(self: &Self, id: &str) -> Option<RawOccurrences<'_>>`
-  Iterate over the original values for each occurrence of an option.
+- `fn get_raw_occurrences(self: &Self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](../../parser/matches/arg_matches/index.md)
 
 - `fn remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<T>`
-  Returns the value of a specific option or positional argument.
 
-- `fn remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Values<T>>`
-  Return values of a specific option or positional argument.
+- `fn remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Values<T>>` — [`Values`](../../parser/matches/arg_matches/index.md)
 
-- `fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Occurrences<T>>`
-  Return values for each occurrence of an option.
+- `fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](../../parser/matches/arg_matches/index.md)
 
 - `fn contains_id(self: &Self, id: &str) -> bool`
-  Check if values are present for the argument or group id
 
-- `fn ids(self: &Self) -> IdsRef<'_>`
-  Iterate over [`Arg`][crate::Arg] and [`ArgGroup`][crate::ArgGroup] [`Id`]s via [`ArgMatches::ids`].
+- `fn ids(self: &Self) -> IdsRef<'_>` — [`IdsRef`](../../parser/matches/arg_matches/index.md)
 
 - `fn args_present(self: &Self) -> bool`
-  Check if any [`Arg`][crate::Arg]s were present on the command line
 
-- `fn value_source(self: &Self, id: &str) -> Option<ValueSource>`
-  Report where argument value came from
+- `fn value_source(self: &Self, id: &str) -> Option<ValueSource>` — [`ValueSource`](../../parser/matches/value_source/index.md)
 
 - `fn index_of(self: &Self, id: &str) -> Option<usize>`
-  The first index of that an argument showed up.
 
-- `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>`
-  All indices an argument appeared at when parsing.
-
-- `fn subcommand(self: &Self) -> Option<(&str, &ArgMatches)>`
-  The name and `ArgMatches` of the current [subcommand].
-
-- `fn remove_subcommand(self: &mut Self) -> Option<(String, ArgMatches)>`
-  Return the name and `ArgMatches` of the current [subcommand].
-
-- `fn subcommand_matches(self: &Self, name: &str) -> Option<&ArgMatches>`
-  The `ArgMatches` for the current [subcommand].
-
-- `fn subcommand_name(self: &Self) -> Option<&str>`
-  The name of the current [subcommand].
-
-- `fn try_get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<&T>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_one`]
-
-- `fn try_get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<ValuesRef<'_, T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_many`]
-
-- `fn try_get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Result<Option<OccurrencesRef<'_, T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_occurrences`]
-
-- `fn try_get_raw(self: &Self, id: &str) -> Result<Option<RawValues<'_>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_raw`]
-
-- `fn try_get_raw_occurrences(self: &Self, id: &str) -> Result<Option<RawOccurrences<'_>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::get_raw_occurrences`]
-
-- `fn try_remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<T>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_one`]
-
-- `fn try_remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Values<T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_many`]
-
-- `fn try_remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Result<Option<Occurrences<T>>, MatchesError>`
-  Non-panicking version of [`ArgMatches::remove_occurrences`]
-
-- `fn try_contains_id(self: &Self, id: &str) -> Result<bool, MatchesError>`
-  Non-panicking version of [`ArgMatches::contains_id`]
-
-- `fn try_clear_id(self: &mut Self, id: &str) -> Result<bool, MatchesError>`
-  Clears the values for the given `id`
+- `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>` — [`Indices`](../../parser/matches/arg_matches/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ArgMatches`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &ArgMatches) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
 
 ##### `impl Debug`
 
@@ -669,13 +379,22 @@ if matches.contains_id("out") {
 
 ##### `impl Default`
 
-- `fn default() -> ArgMatches`
+- `fn default() -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &ArgMatches) -> bool` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `Indices<'a>`
 
 ```rust
 struct Indices<'a> {
-    // [REDACTED: Private Fields]
+    iter: std::iter::Cloned<std::slice::Iter<'a, usize>>,
+    len: usize,
 }
 ```
 
@@ -703,15 +422,23 @@ assert_eq!(indices.next(), None);
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> Indices<'a>` — [`Indices`](../../parser/matches/arg_matches/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'a>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> Self`
+
+##### `impl DoubleEndedIterator`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl ExactSizeIterator`
 
 ##### `impl IntoIterator<I>`
 
@@ -721,32 +448,6 @@ assert_eq!(indices.next(), None);
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'a>`
-
-- `fn clone(self: &Self) -> Indices<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator`
-
-- `fn next_back(self: &mut Self) -> Option<usize>`
-
-##### `impl ExactSizeIterator`
-
 ##### `impl Iterator`
 
 - `type Item = usize`
@@ -754,34 +455,6 @@ assert_eq!(indices.next(), None);
 - `fn next(self: &mut Self) -> Option<usize>`
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ## Enums
 
@@ -811,79 +484,37 @@ Origin of the argument's value
 
   Value was passed in on the command-line
 
+#### Implementations
+
+- `fn is_explicit(self: Self) -> bool`
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ValueSource`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](../../parser/matches/value_source/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](../../parser/matches/value_source/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &ValueSource) -> bool`
+- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](../../parser/matches/value_source/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](../../parser/matches/value_source/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `MatchesError`
 
@@ -910,37 +541,19 @@ Violation of `ArgMatches` assumptions
 
   Argument not defined in `Command`
 
+#### Implementations
+
+- `fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](../../parser/error/index.md)
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> MatchesError`
+- `fn clone(self: &Self) -> MatchesError` — [`MatchesError`](../../parser/error/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -948,31 +561,7 @@ Violation of `ArgMatches` assumptions
 
 ##### `impl Error`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

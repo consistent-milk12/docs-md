@@ -14,7 +14,7 @@ values that are shared safely across multiple threads simultaneously.
 ### `Lazy<T, F>`
 
 ```rust
-struct Lazy<T, F>();
+struct Lazy<T, F>(lazy::Lazy<T, F>);
 ```
 
 A lazily initialized value that implements `Deref` for `T`.
@@ -62,51 +62,9 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `const fn new(create: F) -> Lazy<T, F>`
-  Create a new `Lazy` value that is initialized via the given function.
-
-- `fn get(this: &Lazy<T, F>) -> &T`
-  Return a reference to the lazily initialized value.
+- `fn get(this: &Lazy<T, F>) -> &T` — [`Lazy`](../../../util/lazy/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<T: fmt::Debug, F: Fn() -> T>`
 
@@ -117,4 +75,8 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 - `type Target = T`
 
 - `fn deref(self: &Self) -> &T`
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
 

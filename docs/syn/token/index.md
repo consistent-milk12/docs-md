@@ -12,7 +12,7 @@ expands to the token type of the given token.
 
 # Example
 
-The [`ItemStatic`](../index.md) syntax tree node is defined like this.
+The [`ItemStatic`](../item/index.md) syntax tree node is defined like this.
 
 ```rust
 use syn::{Attribute, Expr, Ident, Token, Type, Visibility};
@@ -109,75 +109,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -192,6 +128,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Group`
 
@@ -209,63 +165,19 @@ None-delimited group
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
 - `fn default() -> Self`
+
+##### `impl Sealed`
+
+##### `impl Token`
 
 ### `Abstract`
 
@@ -283,75 +195,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `As`
 
@@ -369,75 +237,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Async`
 
@@ -455,75 +279,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Auto`
 
@@ -541,75 +321,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Await`
 
@@ -627,75 +363,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Become`
 
@@ -713,75 +405,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Box`
 
@@ -799,75 +447,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Break`
 
@@ -885,75 +489,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Const`
 
@@ -971,75 +531,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Continue`
 
@@ -1057,75 +573,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Crate`
 
@@ -1143,75 +615,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Default`
 
@@ -1229,75 +657,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Do`
 
@@ -1315,75 +699,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Dyn`
 
@@ -1401,75 +741,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Else`
 
@@ -1487,75 +783,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Enum`
 
@@ -1573,75 +825,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Extern`
 
@@ -1659,75 +867,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Final`
 
@@ -1745,75 +909,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Fn`
 
@@ -1831,75 +951,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `For`
 
@@ -1917,75 +993,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `If`
 
@@ -2003,75 +1035,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Impl`
 
@@ -2089,75 +1077,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `In`
 
@@ -2175,75 +1119,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Let`
 
@@ -2261,75 +1161,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Loop`
 
@@ -2347,75 +1203,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Macro`
 
@@ -2433,75 +1245,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Match`
 
@@ -2519,75 +1287,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Mod`
 
@@ -2605,75 +1329,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Move`
 
@@ -2691,75 +1371,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Mut`
 
@@ -2777,75 +1413,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Override`
 
@@ -2863,75 +1455,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Priv`
 
@@ -2949,75 +1497,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Pub`
 
@@ -3035,75 +1539,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Raw`
 
@@ -3121,75 +1581,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Ref`
 
@@ -3207,75 +1623,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Return`
 
@@ -3293,75 +1665,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `SelfType`
 
@@ -3379,75 +1707,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `SelfValue`
 
@@ -3465,75 +1749,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Static`
 
@@ -3551,75 +1791,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Struct`
 
@@ -3637,75 +1833,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Super`
 
@@ -3723,75 +1875,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Trait`
 
@@ -3809,75 +1917,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Try`
 
@@ -3895,75 +1959,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Type`
 
@@ -3981,75 +2001,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Typeof`
 
@@ -4067,75 +2043,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Union`
 
@@ -4153,75 +2085,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Unsafe`
 
@@ -4239,75 +2127,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Unsized`
 
@@ -4325,75 +2169,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Use`
 
@@ -4411,75 +2211,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Virtual`
 
@@ -4497,75 +2253,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Where`
 
@@ -4583,75 +2295,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `While`
 
@@ -4669,75 +2337,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Yield`
 
@@ -4755,75 +2379,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `And`
 
@@ -4844,75 +2424,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -4927,6 +2443,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `AndAnd`
 
@@ -4947,75 +2483,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `AndEq`
 
@@ -5036,75 +2528,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `At`
 
@@ -5125,75 +2573,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -5208,6 +2592,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Caret`
 
@@ -5228,75 +2632,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -5311,6 +2651,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `CaretEq`
 
@@ -5331,75 +2691,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Colon`
 
@@ -5420,75 +2736,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -5503,6 +2755,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Comma`
 
@@ -5523,75 +2795,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -5606,6 +2814,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Dollar`
 
@@ -5626,75 +2854,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -5709,6 +2873,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Dot`
 
@@ -5729,75 +2913,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -5812,6 +2932,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `DotDot`
 
@@ -5832,75 +2972,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `DotDotDot`
 
@@ -5921,75 +3017,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `DotDotEq`
 
@@ -6010,75 +3062,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Eq`
 
@@ -6099,75 +3107,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -6182,6 +3126,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `EqEq`
 
@@ -6202,75 +3166,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `FatArrow`
 
@@ -6291,75 +3211,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Ge`
 
@@ -6380,75 +3256,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Gt`
 
@@ -6469,75 +3301,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -6552,6 +3320,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `LArrow`
 
@@ -6572,75 +3360,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Le`
 
@@ -6661,75 +3405,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Lt`
 
@@ -6750,75 +3450,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -6833,6 +3469,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Minus`
 
@@ -6853,75 +3509,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -6936,6 +3528,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `MinusEq`
 
@@ -6956,75 +3568,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Ne`
 
@@ -7045,75 +3613,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Not`
 
@@ -7134,75 +3658,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -7217,6 +3677,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Or`
 
@@ -7237,75 +3717,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -7320,6 +3736,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `OrEq`
 
@@ -7340,75 +3776,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `OrOr`
 
@@ -7429,75 +3821,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `PathSep`
 
@@ -7518,75 +3866,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Percent`
 
@@ -7607,75 +3911,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -7690,6 +3930,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `PercentEq`
 
@@ -7710,75 +3970,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Plus`
 
@@ -7799,75 +4015,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -7882,6 +4034,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `PlusEq`
 
@@ -7902,75 +4074,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Pound`
 
@@ -7991,75 +4119,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -8074,6 +4138,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Question`
 
@@ -8094,75 +4178,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -8177,6 +4197,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `RArrow`
 
@@ -8197,75 +4237,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Semi`
 
@@ -8286,75 +4282,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -8369,6 +4301,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Shl`
 
@@ -8389,75 +4341,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `ShlEq`
 
@@ -8478,75 +4386,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Shr`
 
@@ -8567,75 +4431,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `ShrEq`
 
@@ -8656,75 +4476,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Slash`
 
@@ -8745,75 +4521,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -8828,6 +4540,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed<T>`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `SlashEq`
 
@@ -8848,75 +4580,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Star`
 
@@ -8937,75 +4625,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -9020,6 +4644,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `StarEq`
 
@@ -9040,75 +4684,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
+
+##### `impl Default`
+
+- `fn default() -> Self`
 
 ##### `impl Parse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
 ##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Default`
-
-- `fn default() -> Self`
 
 ### `Tilde`
 
@@ -9129,75 +4729,11 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl Parse`
-
-- `fn parse(input: ParseStream<'_>) -> Result<Self>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl Spanned<T>`
-
-- `fn span(self: &Self) -> Span`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToTokens`
-
-- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
@@ -9212,6 +4748,26 @@ Don't try to remember the name of this type &mdash; use the
 ##### `impl DerefMut`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
+
+##### `impl Parse`
+
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
+
+##### `impl Sealed`
+
+##### `impl Spanned<T>`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens`
+
+- `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+##### `impl Token`
 
 ### `Brace`
 
@@ -9229,63 +4785,19 @@ struct Brace {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
 - `fn default() -> Self`
+
+##### `impl Sealed`
+
+##### `impl Token`
 
 ### `Bracket`
 
@@ -9303,63 +4815,19 @@ struct Bracket {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
 - `fn default() -> Self`
+
+##### `impl Sealed`
+
+##### `impl Token`
 
 ### `Paren`
 
@@ -9377,63 +4845,19 @@ struct Paren {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl Token`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Default`
 
 - `fn default() -> Self`
+
+##### `impl Sealed`
+
+##### `impl Token`
 
 ## Traits
 

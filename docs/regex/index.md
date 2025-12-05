@@ -10,7 +10,7 @@ and `n` is proportional to the size of the string being searched.
 
 [regular expression]: https://en.wikipedia.org/wiki/Regular_expression
 
-If you just want API documentation, then skip to the [`Regex`](#regex) type. Otherwise,
+If you just want API documentation, then skip to the [`Regex`](regex/string/index.md) type. Otherwise,
 here's a quick example showing one way of parsing the output of a grep-like
 program:
 
@@ -38,21 +38,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 # Overview
 
-The primary type in this crate is a [`Regex`](#regex). Its most important methods are
+The primary type in this crate is a [`Regex`](regex/string/index.md). Its most important methods are
 as follows:
 
 * `Regex::new` compiles a regex using the default configuration. A
-[`RegexBuilder`](#regexbuilder) permits setting a non-default configuration. (For example,
+[`RegexBuilder`](builders/bytes/index.md) permits setting a non-default configuration. (For example,
 case insensitive matching, verbose mode and others.)
 * `Regex::is_match` reports whether a match exists in a particular haystack.
 * `Regex::find` reports the byte offsets of a match in a haystack, if one
 exists. `Regex::find_iter` returns an iterator over all such matches.
-* `Regex::captures` returns a [`Captures`](#captures), which reports both the byte
+* `Regex::captures` returns a [`Captures`](regex/string/index.md), which reports both the byte
 offsets of a match in a haystack and the byte offsets of each matching capture
 group from the regex in the haystack.
 `Regex::captures_iter` returns an iterator over all such matches.
 
-There is also a [`RegexSet`](#regexset), which permits searching for multiple regex
+There is also a [`RegexSet`](regexset/string/index.md), which permits searching for multiple regex
 patterns simultaneously in a single search. However, it currently only reports
 which patterns match and *not* the byte offsets of a match.
 
@@ -266,7 +266,7 @@ assert_eq!(dates, vec![
 ]);
 ```
 
-We can also iterate over [`Captures`](#captures) values instead of [`Match`](#match) values, and
+We can also iterate over [`Captures`](regex/string/index.md) values instead of [`Match`](regex/string/index.md) values, and
 that in turn permits accessing each component of the date via capturing groups:
 
 ```rust
@@ -376,7 +376,7 @@ the `x` flag, e.g., `(?-x: )`.
 
 ### Example: match multiple regular expressions simultaneously
 
-This demonstrates how to use a [`RegexSet`](#regexset) to match multiple (possibly
+This demonstrates how to use a [`RegexSet`](regexset/string/index.md) to match multiple (possibly
 overlapping) regexes in a single scan of a haystack:
 
 ```rust
@@ -528,7 +528,7 @@ specified by the [Unicode Technical Standard #18][UTS18]. The full details
 of what is supported are documented in [UNICODE.md] in the root of the regex
 crate repository. There is virtually no support for "Extended Unicode Support"
 (Level 2) from UTS#18.
-* The top-level [`Regex`](#regex) runs searches *as if* iterating over each of the
+* The top-level [`Regex`](regex/string/index.md) runs searches *as if* iterating over each of the
 codepoints in the haystack. That is, the fundamental atom of matching is a
 single codepoint.
 * `bytes::Regex`, in contrast, permits disabling Unicode mode for part of all
@@ -738,7 +738,7 @@ $               the end of a haystack (or end-of-line with multi-line mode)
 
 The empty regex is valid and matches the empty string. For example, the
 empty regex matches `abc` at positions `0`, `1`, `2` and `3`. When using the
-top-level [`Regex`](#regex) on `&str` haystacks, an empty match that splits a codepoint
+top-level [`Regex`](regex/string/index.md) on `&str` haystacks, an empty match that splits a codepoint
 is guaranteed to never be returned. However, such matches are permitted when
 using a `bytes::Regex`. For example:
 
@@ -1359,37 +1359,19 @@ An error that occurred during parsing or compiling a regular expression.
   approaches may be appropriate. Instead, you'll have to determine just
   how big of a regex you want to allow.
 
+#### Implementations
+
+- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](../error/index.md)
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Error`
+- `fn clone(self: &Self) -> Error` — [`Error`](../error/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Display`
 
@@ -1401,37 +1383,13 @@ An error that occurred during parsing or compiling a regular expression.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Error) -> bool`
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../error/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ## Functions
 

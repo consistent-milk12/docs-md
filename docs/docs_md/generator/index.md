@@ -20,12 +20,12 @@ The generation process follows these steps:
 
 # Module Structure
 
-- [`context`](#context) - Shared state for generation (crate data, maps, config)
+- [`context`](context/index.md) - Shared state for generation (crate data, maps, config)
 - [`module`](module/index.md) - Module-level markdown rendering
-- [`items`](#items) - Individual item rendering (structs, enums, traits, etc.)
-- [`impls`](#impls) - Implementation block rendering
-- [`flat`](#flat) - Flat output format generator
-- [`nested`](#nested) - Nested output format generator
+- [`items`](items/index.md) - Individual item rendering (structs, enums, traits, etc.)
+- [`impls`](impls/index.md) - Implementation block rendering
+- [`flat`](flat/index.md) - Flat output format generator
+- [`nested`](nested/index.md) - Nested output format generator
 
 # Output Formats
 
@@ -46,7 +46,10 @@ generator.generate()?;
 ## Modules
 
 - [`breadcrumbs`](breadcrumbs/index.md) - Breadcrumb navigation generation for nested module pages.
+- [`doc_links`](doc_links/index.md) - Intra-doc link processing for documentation generation.
+- [`impls`](impls/index.md) - Implementation block rendering for documentation generation.
 - [`module`](module/index.md) - Module markdown rendering for documentation generation.
+- [`render_shared`](render_shared/index.md) - Shared rendering functions for documentation generation.
 
 ## Structs
 
@@ -54,7 +57,8 @@ generator.generate()?;
 
 ```rust
 struct BreadcrumbGenerator<'a> {
-    // [REDACTED: Private Fields]
+    module_path: &'a [String],
+    crate_name: &'a str,
 }
 ```
 
@@ -63,130 +67,82 @@ Generates breadcrumb navigation for nested module pages.
 Creates a navigation line showing the path from the crate root to
 the current module, with each segment being a clickable link.
 
+#### Fields
+
+- **`module_path`**: `&'a [String]`
+
+  The module path segments (e.g., `["error", "types"]`).
+
+- **`crate_name`**: `&'a str`
+
+  The name of the crate for the root link.
+
 #### Implementations
 
-- `fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
-  Create a new breadcrumb generator.
+- `const fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
 
 - `fn generate(self: &Self) -> String`
-  Generate breadcrumb navigation markdown.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `MarkdownCapture`
 
 ```rust
 struct MarkdownCapture {
-    // [REDACTED: Private Fields]
+    files: std::collections::HashMap<String, String>,
 }
 ```
 
 Captures generated markdown in memory for testing.
 
 Instead of writing files to disk, this struct stores all generated
-markdown content in a HashMap, keyed by relative file path. This
+markdown content in a `HashMap`, keyed by relative file path. This
 enables snapshot testing and verification of output without filesystem
 side effects.
+
+#### Fields
+
+- **`files`**: `std::collections::HashMap<String, String>`
+
+  Maps file paths (relative to output directory) to their generated content.
 
 #### Implementations
 
 - `fn new() -> Self`
-  Create a new empty capture.
 
 - `fn insert(self: &mut Self, path: String, content: String)`
-  Add a file to the capture.
 
 - `fn get(self: &Self, path: &str) -> Option<&String>`
-  Get the content of a specific file.
 
 - `fn paths(self: &Self) -> Vec<&String>`
-  Get all file paths in sorted order.
 
 - `fn len(self: &Self) -> usize`
-  Get the number of captured files.
 
 - `fn is_empty(self: &Self) -> bool`
-  Check if the capture is empty.
 
 - `fn to_snapshot_string(self: &Self) -> String`
-  Convert all captured files to a single string for snapshot testing.
 
 - `fn into_inner(self: Self) -> HashMap<String, String>`
-  Consume self and return the underlying HashMap.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl OwoColorize<D>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -194,14 +150,32 @@ side effects.
 
 ##### `impl Default`
 
-- `fn default() -> MarkdownCapture`
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](../../generator/capture/index.md)
+
+##### `impl IntoEither<T>`
+
+##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `GeneratorContext<'a>`
 
 ```rust
 struct GeneratorContext<'a> {
     pub krate: &'a rustdoc_types::Crate,
-    pub path_map: std::collections::HashMap<rustdoc_types::Id, Vec<String>>,
+    crate_name: String,
     pub impl_map: std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>,
     pub link_registry: crate::linker::LinkRegistry,
     pub args: &'a crate::Args,
@@ -212,7 +186,6 @@ Shared context containing all data needed for documentation generation.
 
 This struct is passed to all rendering components and provides:
 - Access to the parsed crate data
-- Path mapping for "defined in" information
 - Impl block lookup for rendering implementations
 - Link registry for cross-references
 - CLI configuration options
@@ -223,12 +196,9 @@ This struct is passed to all rendering components and provides:
 
   The parsed rustdoc JSON crate.
 
-- **`path_map`**: `std::collections::HashMap<rustdoc_types::Id, Vec<String>>`
+- **`crate_name`**: `String`
 
-  Maps item IDs to their full module paths.
-  
-  Used for generating "defined in" information.
-  For `std::collections::HashMap`, the path would be `["std", "collections", "HashMap"]`.
+  The crate name (extracted from root module).
 
 - **`impl_map`**: `std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>`
 
@@ -246,58 +216,68 @@ This struct is passed to all rendering components and provides:
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, args: &'a Args) -> Self`
-  Create a new generator context from crate data and CLI arguments.
+- `fn new(krate: &'a Crate, args: &'a Args) -> Self` — [`Args`](../../index.md)
 
-- `fn should_include_item(self: &Self, item: &Item) -> bool`
-  Check if an item should be included based on visibility settings.
+- `fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
+
+- `const fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id>`
+
+- `const fn should_include_item(self: &Self, item: &Item) -> bool`
 
 - `fn count_modules(self: &Self, item: &Item) -> usize`
-  Count the total number of modules that will be generated.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl RenderContext`
+
+- `fn krate(self: &Self) -> &Crate`
+
+- `fn crate_name(self: &Self) -> &str`
+
+- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
+
+- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
+
+- `fn should_include_item(self: &Self, item: &Item) -> bool`
+
+- `fn include_private(self: &Self) -> bool`
+
+- `fn include_blanket_impls(self: &Self) -> bool`
+
+- `fn crate_version(self: &Self) -> Option<&str>`
+
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md)
+
+- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
+
+- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
 
 ### `DocLinkProcessor<'a>`
 
 ```rust
 struct DocLinkProcessor<'a> {
-    // [REDACTED: Private Fields]
+    krate: &'a rustdoc_types::Crate,
+    link_registry: &'a crate::linker::LinkRegistry,
+    current_file: &'a str,
+    path_name_index: std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>,
 }
 ```
 
@@ -311,62 +291,107 @@ link text to item IDs. This processor uses that map along with the
 
 - `` [`Name`](#name) `` - Backtick code links (most common)
 - `` `path::to::Item` `` - Qualified path links
+- `` `Type::method` `` - Method/associated item links
+- `[name]` - Plain identifier links
+- `[text][`ref`](#ref)` - Reference-style links
+- ``text`` - Path reference links
 
 # External Crate Links
 
 Items from external crates are linked to docs.rs when possible.
 
+# Code Block Protection
+
+Links inside fenced code blocks are not processed.
+
+#### Fields
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  The crate being documented (for looking up items).
+
+- **`link_registry`**: `&'a crate::linker::LinkRegistry`
+
+  Registry mapping IDs to file paths.
+
+- **`current_file`**: `&'a str`
+
+  The current file path (for relative link calculation).
+
+- **`path_name_index`**: `std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>`
+
+  Index mapping item names to their IDs for fast lookup.
+  Built from `krate.paths` at construction time.
+
 #### Implementations
 
-- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self`
-  Create a new processor for the given context.
+- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../linker/index.md)
 
 - `fn process(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
-  Process a doc string and resolve all intra-doc links.
+
+- `fn process_links_protected(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn process_line(self: &Self, line: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn process_method_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn process_backtick_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn process_plain_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn process_html_links_with_context(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn resolve_html_link_to_url(self: &Self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+- `fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
+
+- `fn clean_blank_lines(docs: &str) -> String`
+
+- `fn resolve_to_url(self: &Self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+- `fn get_url_for_id(self: &Self, id: Id) -> Option<String>`
+
+- `fn get_docs_rs_url(path_info: &rustdoc_types::ItemSummary) -> Option<String>`
+
+- `fn resolve_method_link(self: &Self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+- `fn resolve_link(self: &Self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
+
+- `fn create_link_for_id(self: &Self, id: Id, display_name: &str) -> Option<String>`
+
+- `fn create_docs_rs_link(path_info: &rustdoc_types::ItemSummary, display_name: &str) -> Option<String>`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `ModuleRenderer<'a>`
 
 ```rust
 struct ModuleRenderer<'a> {
-    // [REDACTED: Private Fields]
+    ctx: &'a dyn RenderContext,
+    current_file: &'a str,
+    is_root: bool,
 }
 ```
 
@@ -378,57 +403,78 @@ including:
 - Module-level documentation
 - Sections for each item type (Modules, Structs, Enums, etc.)
 
+The renderer is generic over [`RenderContext`](context/index.md), allowing it to work with
+both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
+
+#### Fields
+
+- **`ctx`**: `&'a dyn RenderContext`
+
+  Reference to the render context (either single-crate or multi-crate).
+
+- **`current_file`**: `&'a str`
+
+  Path of the current file being generated (for relative link calculation).
+
+- **`is_root`**: `bool`
+
+  Whether this is the crate root module.
+
 #### Implementations
 
-- `fn new(ctx: &'a GeneratorContext<'a>, current_file: &'a str, is_root: bool) -> Self`
-  Create a new module renderer.
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../../generator/context/index.md)
+
+- `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 
 - `fn render(self: &Self, item: &Item) -> String`
-  Generate the complete markdown content for a module.
+
+- `fn categorize_items(self: &Self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](../../generator/module/index.md)
+
+- `fn render_all_sections(self: &Self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](../../generator/module/index.md)
+
+- `fn render_modules_section(self: &Self, md: &mut String, modules: &[(&Id, &Item)])`
+
+- `fn render_structs_section(self: &Self, md: &mut String, structs: &[(&Id, &Item)])`
+
+- `fn render_enums_section(self: &Self, md: &mut String, enums: &[(&Id, &Item)])`
+
+- `fn render_traits_section(self: &Self, md: &mut String, traits: &[(&Id, &Item)])`
+
+- `fn render_functions_section(self: &Self, md: &mut String, functions: &[&Item])`
+
+- `fn render_macros_section(self: &Self, md: &mut String, macros: &[&Item])`
+
+- `fn render_constants_section(self: &Self, md: &mut String, constants: &[&Item])`
+
+- `fn render_type_aliases_section(self: &Self, md: &mut String, type_aliases: &[&Item])`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `Generator<'a>`
 
 ```rust
 struct Generator<'a> {
-    // [REDACTED: Private Fields]
+    ctx: GeneratorContext<'a>,
+    args: &'a crate::Args,
+    root_item: &'a rustdoc_types::Item,
 }
 ```
 
@@ -445,57 +491,59 @@ let generator = Generator::new(&krate, &args)?;
 generator.generate()?;
 ```
 
+#### Fields
+
+- **`ctx`**: `GeneratorContext<'a>`
+
+  Shared context containing crate data, maps, and configuration.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments containing output path and format options.
+
+- **`root_item`**: `&'a rustdoc_types::Item`
+
+  The root module item of the crate.
+
 #### Implementations
 
-- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>`
-  Create a new generator for the given crate and arguments.
+- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](../../index.md), [`Error`](../../error/index.md)
 
-- `fn generate(self: &Self) -> Result<(), Error>`
-  Generate markdown documentation.
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../../error/index.md)
 
-- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>`
-  Generate documentation to memory instead of disk.
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../../error/index.md)
 
-- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>`
-  Convenience method to generate documentation in one call.
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../../index.md), [`MarkdownCapture`](../../generator/capture/index.md), [`Error`](../../error/index.md)
+
+- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../../generator/context/index.md), [`MarkdownCapture`](../../generator/capture/index.md), [`Error`](../../error/index.md)
+
+- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../../generator/context/index.md), [`MarkdownCapture`](../../generator/capture/index.md), [`Error`](../../error/index.md)
+
+- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../../generator/context/index.md), [`MarkdownCapture`](../../generator/capture/index.md), [`Error`](../../error/index.md)
+
+- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../../index.md), [`Error`](../../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+## Traits
 
 ## Functions
 

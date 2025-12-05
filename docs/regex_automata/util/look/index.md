@@ -45,151 +45,69 @@ that return `LookSet`s.
 
 #### Implementations
 
-- `fn empty() -> LookSet`
-  Create an empty set of look-around assertions.
+- `fn empty() -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
-- `fn full() -> LookSet`
-  Create a full set of look-around assertions.
+- `fn full() -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
-- `fn singleton(look: Look) -> LookSet`
-  Create a look-around set containing the look-around assertion given.
+- `fn singleton(look: Look) -> LookSet` — [`Look`](../../../util/look/index.md), [`LookSet`](../../../util/look/index.md)
 
 - `fn len(self: Self) -> usize`
-  Returns the total number of look-around assertions in this set.
 
 - `fn is_empty(self: Self) -> bool`
-  Returns true if and only if this set is empty.
 
-- `fn contains(self: Self, look: Look) -> bool`
-  Returns true if and only if the given look-around assertion is in this
+- `fn contains(self: Self, look: Look) -> bool` — [`Look`](../../../util/look/index.md)
 
 - `fn contains_anchor(self: &Self) -> bool`
-  Returns true if and only if this set contains any anchor assertions.
 
 - `fn contains_anchor_haystack(self: &Self) -> bool`
-  Returns true if and only if this set contains any "start/end of
 
 - `fn contains_anchor_line(self: &Self) -> bool`
-  Returns true if and only if this set contains any "start/end of line"
 
 - `fn contains_anchor_lf(self: &Self) -> bool`
-  Returns true if and only if this set contains any "start/end of line"
 
 - `fn contains_anchor_crlf(self: &Self) -> bool`
-  Returns true if and only if this set contains any "start/end of line"
 
 - `fn contains_word(self: Self) -> bool`
-  Returns true if and only if this set contains any word boundary or
 
 - `fn contains_word_unicode(self: Self) -> bool`
-  Returns true if and only if this set contains any Unicode word boundary
 
 - `fn contains_word_ascii(self: Self) -> bool`
-  Returns true if and only if this set contains any ASCII word boundary
 
-- `fn iter(self: Self) -> LookSetIter`
-  Returns an iterator over all of the look-around assertions in this set.
+- `fn iter(self: Self) -> LookSetIter` — [`LookSetIter`](../../../util/look/index.md)
 
-- `fn insert(self: Self, look: Look) -> LookSet`
-  Return a new set that is equivalent to the original, but with the given
+- `fn insert(self: Self, look: Look) -> LookSet` — [`Look`](../../../util/look/index.md), [`LookSet`](../../../util/look/index.md)
 
-- `fn set_insert(self: &mut Self, look: Look)`
-  Updates this set in place with the result of inserting the given
+- `fn set_insert(self: &mut Self, look: Look)` — [`Look`](../../../util/look/index.md)
 
-- `fn remove(self: Self, look: Look) -> LookSet`
-  Return a new set that is equivalent to the original, but with the given
+- `fn remove(self: Self, look: Look) -> LookSet` — [`Look`](../../../util/look/index.md), [`LookSet`](../../../util/look/index.md)
 
-- `fn set_remove(self: &mut Self, look: Look)`
-  Updates this set in place with the result of removing the given
+- `fn set_remove(self: &mut Self, look: Look)` — [`Look`](../../../util/look/index.md)
 
-- `fn subtract(self: Self, other: LookSet) -> LookSet`
-  Returns a new set that is the result of subtracting the given set from
+- `fn subtract(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
-- `fn set_subtract(self: &mut Self, other: LookSet)`
-  Updates this set in place with the result of subtracting the given set
+- `fn set_subtract(self: &mut Self, other: LookSet)` — [`LookSet`](../../../util/look/index.md)
 
-- `fn union(self: Self, other: LookSet) -> LookSet`
-  Returns a new set that is the union of this and the one given.
+- `fn union(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
-- `fn set_union(self: &mut Self, other: LookSet)`
-  Updates this set in place with the result of unioning it with the one
+- `fn set_union(self: &mut Self, other: LookSet)` — [`LookSet`](../../../util/look/index.md)
 
-- `fn intersect(self: Self, other: LookSet) -> LookSet`
-  Returns a new set that is the intersection of this and the one given.
+- `fn intersect(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
-- `fn set_intersect(self: &mut Self, other: LookSet)`
-  Updates this set in place with the result of intersecting it with the
+- `fn set_intersect(self: &mut Self, other: LookSet)` — [`LookSet`](../../../util/look/index.md)
 
-- `fn read_repr(slice: &[u8]) -> LookSet`
-  Return a `LookSet` from the slice given as a native endian 32-bit
+- `fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
 - `fn write_repr(self: Self, slice: &mut [u8])`
-  Write a `LookSet` as a native endian 32-bit integer to the beginning
 
-- `fn available(self: Self) -> Result<(), UnicodeWordBoundaryError>`
-  Checks that all assertions in this set can be matched.
+- `fn available(self: Self) -> Result<(), UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> LookSet`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LookSet` — [`LookSet`](../../../util/look/index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &LookSet) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -197,13 +115,21 @@ that return `LookSet`s.
 
 ##### `impl Default`
 
-- `fn default() -> LookSet`
+- `fn default() -> LookSet` — [`LookSet`](../../../util/look/index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &LookSet) -> bool` — [`LookSet`](../../../util/look/index.md)
+
+##### `impl StructuralPartialEq`
 
 ### `LookSetIter`
 
 ```rust
 struct LookSetIter {
-    // [REDACTED: Private Fields]
+    set: LookSet,
 }
 ```
 
@@ -213,15 +139,13 @@ This iterator is created by `LookSet::iter`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> LookSetIter` — [`LookSetIter`](../../../util/look/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -231,61 +155,17 @@ This iterator is created by `LookSet::iter`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone`
-
-- `fn clone(self: &Self) -> LookSetIter`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Iterator`
 
 - `type Item = Look`
 
-- `fn next(self: &mut Self) -> Option<Look>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Look>` — [`Look`](../../../util/look/index.md)
 
 ### `LookMatcher`
 
 ```rust
 struct LookMatcher {
-    // [REDACTED: Private Fields]
+    lineterm: crate::util::escape::DebugByte,
 }
 ```
 
@@ -330,126 +210,63 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> LookMatcher`
-  Creates a new default matcher for look-around assertions.
+- `fn new() -> LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
-- `fn set_line_terminator(self: &mut Self, byte: u8) -> &mut LookMatcher`
-  Sets the line terminator for use with `(?m:^)` and `(?m:$)`.
+- `fn set_line_terminator(self: &mut Self, byte: u8) -> &mut LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
 - `fn get_line_terminator(self: &Self) -> u8`
-  Returns the line terminator that was configured for this matcher.
 
-- `fn matches(self: &Self, look: Look, haystack: &[u8], at: usize) -> bool`
-  Returns true when the position `at` in `haystack` satisfies the given
+- `fn matches(self: &Self, look: Look, haystack: &[u8], at: usize) -> bool` — [`Look`](../../../util/look/index.md)
 
-- `fn matches_set(self: &Self, set: LookSet, haystack: &[u8], at: usize) -> bool`
-  Returns true when _all_ of the assertions in the given set match at the
+- `fn matches_inline(self: &Self, look: Look, haystack: &[u8], at: usize) -> bool` — [`Look`](../../../util/look/index.md)
+
+- `fn matches_set(self: &Self, set: LookSet, haystack: &[u8], at: usize) -> bool` — [`LookSet`](../../../util/look/index.md)
+
+- `fn matches_set_inline(self: &Self, set: LookSet, haystack: &[u8], at: usize) -> bool` — [`LookSet`](../../../util/look/index.md)
+
+- `fn add_to_byteset(self: &Self, look: Look, set: &mut crate::util::alphabet::ByteClassSet)` — [`Look`](../../../util/look/index.md), [`ByteClassSet`](../../../util/alphabet/index.md)
 
 - `fn is_start(self: &Self, _haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::Start`] is satisfied `at` the given position
 
 - `fn is_end(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::End`] is satisfied `at` the given position in
 
 - `fn is_start_lf(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::StartLF`] is satisfied `at` the given
 
 - `fn is_end_lf(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::EndLF`] is satisfied `at` the given position
 
 - `fn is_start_crlf(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::StartCRLF`] is satisfied `at` the given
 
 - `fn is_end_crlf(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::EndCRLF`] is satisfied `at` the given
 
 - `fn is_word_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::WordAscii`] is satisfied `at` the given
 
 - `fn is_word_ascii_negate(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::WordAsciiNegate`] is satisfied `at` the given
 
-- `fn is_word_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>`
-  Returns true when [`Look::WordUnicode`] is satisfied `at` the given
+- `fn is_word_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
-- `fn is_word_unicode_negate(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>`
-  Returns true when [`Look::WordUnicodeNegate`] is satisfied `at` the
+- `fn is_word_unicode_negate(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
 - `fn is_word_start_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::WordStartAscii`] is satisfied `at` the given
 
 - `fn is_word_end_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::WordEndAscii`] is satisfied `at` the given
 
-- `fn is_word_start_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>`
-  Returns true when [`Look::WordStartUnicode`] is satisfied `at` the
+- `fn is_word_start_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
-- `fn is_word_end_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>`
-  Returns true when [`Look::WordEndUnicode`] is satisfied `at` the
+- `fn is_word_end_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
 - `fn is_word_start_half_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::WordStartHalfAscii`] is satisfied `at` the
 
 - `fn is_word_end_half_ascii(self: &Self, haystack: &[u8], at: usize) -> bool`
-  Returns true when [`Look::WordEndHalfAscii`] is satisfied `at` the
 
-- `fn is_word_start_half_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>`
-  Returns true when [`Look::WordStartHalfUnicode`] is satisfied `at` the
+- `fn is_word_start_half_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
-- `fn is_word_end_half_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>`
-  Returns true when [`Look::WordEndHalfUnicode`] is satisfied `at` the
+- `fn is_word_end_half_unicode(self: &Self, haystack: &[u8], at: usize) -> Result<bool, UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> LookMatcher`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
 ##### `impl Debug`
 
@@ -457,12 +274,12 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default`
 
-- `fn default() -> LookMatcher`
+- `fn default() -> LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
 
 ### `UnicodeWordBoundaryError`
 
 ```rust
-struct UnicodeWordBoundaryError();
+struct UnicodeWordBoundaryError(());
 ```
 
 An error that occurs when the Unicode-aware `\w` class is unavailable.
@@ -478,40 +295,17 @@ disabled.
 
 #### Implementations
 
-- `fn check() -> Result<(), UnicodeWordBoundaryError>`
-  Returns an error if and only if Unicode word boundary data is
+- `fn check() -> Result<(), UnicodeWordBoundaryError>` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> UnicodeWordBoundaryError`
+- `fn clone(self: &Self) -> UnicodeWordBoundaryError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -519,33 +313,9 @@ disabled.
 
 ##### `impl Error`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Enums
 
@@ -723,81 +493,31 @@ without an assertion.
 
 #### Implementations
 
-- `const fn reversed(self: Self) -> Look`
-  Flip the look-around assertion to its equivalent for reverse searches.
+- `const fn reversed(self: Self) -> Look` — [`Look`](../../../util/look/index.md)
 
 - `const fn as_repr(self: Self) -> u32`
-  Return the underlying representation of this look-around enumeration
 
-- `const fn from_repr(repr: u32) -> Option<Look>`
-  Given the underlying representation of a `Look` value, return the
+- `const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](../../../util/look/index.md)
 
 - `const fn as_char(self: Self) -> char`
-  Returns a convenient single codepoint representation of this
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Look`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Look` — [`Look`](../../../util/look/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Look) -> bool`
+- `fn eq(self: &Self, other: &Look) -> bool` — [`Look`](../../../util/look/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

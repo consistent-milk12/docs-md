@@ -63,12 +63,12 @@ diagnostic error code: ruget::api::bad_json
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
 - Replacements for [`anyhow`](https://docs.rs/anyhow)/[`eyre`](https://docs.rs/eyre)
-  types [`Result`](#result), [`Report`](#report) and the [`miette!`](#miette) macro for the
+  types [`Result`](eyreish/index.md), [`Report`](eyreish/index.md) and the [`miette!`](#miette) macro for the
   `anyhow!`/`eyre!` macros.
-- Generic support for arbitrary [`SourceCode`](#sourcecode)s for snippet data, with
+- Generic support for arbitrary [`SourceCode`](protocol/index.md)s for snippet data, with
   default support for `String`s included.
 
-The `miette` crate also comes bundled with a default [`ReportHandler`](#reporthandler) with
+The `miette` crate also comes bundled with a default [`ReportHandler`](eyreish/index.md) with
 the following features:
 
 - Fancy graphical [diagnostic output](#about), using ANSI/Unicode text
@@ -222,7 +222,7 @@ pub struct AnotherError {
 
 Then, return this error type from all your fallible public APIs. It's a best
 practice to wrap any "external" error types in your error `enum` instead of
-using something like [`Report`](#report) in a library.
+using something like [`Report`](eyreish/index.md) in a library.
 
 ### ... in application code
 
@@ -230,10 +230,10 @@ Application code tends to work a little differently than libraries. You
 don't always need or care to define dedicated error wrappers for errors
 coming from external libraries and tools.
 
-For this situation, `miette` includes two tools: [`Report`](#report) and
-[`IntoDiagnostic`](#intodiagnostic). They work in tandem to make it easy to convert regular
+For this situation, `miette` includes two tools: [`Report`](eyreish/index.md) and
+[`IntoDiagnostic`](eyreish/into_diagnostic/index.md). They work in tandem to make it easy to convert regular
 `std::error::Error`s into [`Diagnostic`](#diagnostic)s. Additionally, there's a
-[`Result`](#result) type alias that you can use to be more terse.
+[`Result`](eyreish/index.md) type alias that you can use to be more terse.
 
 When dealing with non-`Diagnostic` types, you'll want to
 `.into_diagnostic()` them:
@@ -388,8 +388,8 @@ includes facilities for adding error spans/annotations/labels to your
 output. This can be very useful when an error is syntax-related, but you can
 even use it to print out sections of your own source code!
 
-To achieve this, `miette` defines its own lightweight [`SourceSpan`](#sourcespan) type.
-This is a basic byte-offset and length into an associated [`SourceCode`](#sourcecode)
+To achieve this, `miette` defines its own lightweight [`SourceSpan`](protocol/index.md) type.
+This is a basic byte-offset and length into an associated [`SourceCode`](protocol/index.md)
 and, along with the latter, gives `miette` all the information it needs to
 pretty-print some snippets! You can also use your own `Into<SourceSpan>`
 types as label spans.
@@ -616,8 +616,8 @@ struct OtherError;
 
 ### ... handler options
 
-[`MietteHandler`](#miettehandler) is the default handler, and is very customizable. In
-most cases, you can simply use [`MietteHandlerOpts`](#miettehandleropts) to tweak its behavior
+[`MietteHandler`](handler/index.md) is the default handler, and is very customizable. In
+most cases, you can simply use [`MietteHandlerOpts`](handler/index.md) to tweak its behavior
 instead of falling back to your own custom handler.
 
 Usage is like so:
@@ -637,7 +637,7 @@ miette::set_hook(Box::new(|_| {
 
 ```
 
-See the docs for [`MietteHandlerOpts`](#miettehandleropts) for more details on what you can
+See the docs for [`MietteHandlerOpts`](handler/index.md) for more details on what you can
 customize!
 
 ### ... dynamic diagnostics
@@ -646,7 +646,7 @@ If you...
 - ...don't know all the possible errors upfront
 - ...need to serialize/deserialize errors
   then you may want to use [`miette!`](#miette), [`diagnostic!`](#diagnostic) macros or
-  [`MietteDiagnostic`](#miettediagnostic) directly to create diagnostic on the fly.
+  [`MietteDiagnostic`](miette_diagnostic/index.md) directly to create diagnostic on the fly.
 
 ```rust,ignore
 use miette::{miette, LabeledSpan, Report};
@@ -673,11 +673,11 @@ To use the built-in highlighting functionality, you must enable the
 automatically use the [`syntect`](#syntect) crate to highlight the `#[source_code]`
 field of your [`Diagnostic`](#diagnostic).
 
-Syntax detection with [`syntect`](#syntect) is handled by checking 2 methods on the [`SpanContents`](#spancontents) trait, in order:
+Syntax detection with [`syntect`](#syntect) is handled by checking 2 methods on the [`SpanContents`](protocol/index.md) trait, in order:
 * [`language()`](SpanContents::language) - Provides the name of the language
   as a string. For example `"Rust"` will indicate Rust syntax highlighting.
-  You can set the language of the [`SpanContents`](#spancontents) produced by a
-  [`NamedSource`](#namedsource) via the [`with_language`](NamedSource::with_language)
+  You can set the language of the [`SpanContents`](protocol/index.md) produced by a
+  [`NamedSource`](named_source/index.md) via the [`with_language`](NamedSource::with_language)
   method.
 * [`name()`](SpanContents::name) - In the absence of an explicitly set
   language, the name is assumed to contain a file name or file path.
@@ -686,7 +686,7 @@ Syntax detection with [`syntect`](#syntect) is handled by checking 2 methods on 
 
 If you want to use a custom highlighter, you can provide a custom
 implementation of the [`Highlighter`](highlighters::Highlighter)
-trait to [`MietteHandlerOpts`](#miettehandleropts) by calling the
+trait to [`MietteHandlerOpts`](handler/index.md) by calling the
 [`with_syntax_highlighting`](MietteHandlerOpts::with_syntax_highlighting)
 method. See the [`highlighters`](highlighters/index.md) module docs for more details.
 
@@ -939,7 +939,7 @@ fn divide(x: f64, y: f64) -> Result<f64> {
 
 ### `miette!`
 
-Construct an ad-hoc [`Report`](#report).
+Construct an ad-hoc [`Report`](eyreish/index.md).
 
 # Examples
 
@@ -984,7 +984,7 @@ You can just replace `use`s of the `anyhow!`/`eyre!` macros with `miette!`.
 
 ### `diagnostic!`
 
-Construct a [`MietteDiagnostic`](#miettediagnostic) in more user-friendly way.
+Construct a [`MietteDiagnostic`](miette_diagnostic/index.md) in more user-friendly way.
 
 # Examples
 ```rust

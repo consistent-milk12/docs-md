@@ -84,7 +84,9 @@ By default all features are enabled.  The following features exist:
 
 ```rust
 struct Term {
-    // [REDACTED: Private Fields]
+    inner: alloc::sync::Arc<TermInner>,
+    is_msys_tty: bool,
+    is_tty: bool,
 }
 ```
 
@@ -95,163 +97,97 @@ clones which means it largely acts as a handle.
 
 #### Implementations
 
-- `fn stdout() -> Term`
-  Return a new unbuffered terminal.
+- `fn with_inner(inner: TermInner) -> Term` — [`TermInner`](../term/index.md), [`Term`](../term/index.md)
 
-- `fn stderr() -> Term`
-  Return a new unbuffered terminal to stderr.
+- `fn stdout() -> Term` — [`Term`](../term/index.md)
 
-- `fn buffered_stdout() -> Term`
-  Return a new buffered terminal.
+- `fn stderr() -> Term` — [`Term`](../term/index.md)
 
-- `fn buffered_stderr() -> Term`
-  Return a new buffered terminal to stderr.
+- `fn buffered_stdout() -> Term` — [`Term`](../term/index.md)
 
-- `fn read_write_pair<R, W>(read: R, write: W) -> Term`
-  Return a terminal for the given Read/Write pair styled like stderr.
+- `fn buffered_stderr() -> Term` — [`Term`](../term/index.md)
 
-- `fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term`
-  Return a terminal for the given Read/Write pair.
+- `fn read_write_pair<R, W>(read: R, write: W) -> Term` — [`Term`](../term/index.md)
 
-- `fn style(self: &Self) -> Style`
-  Return the style for this terminal.
+- `fn read_write_pair_with_style<R, W>(read: R, write: W, style: Style) -> Term` — [`Style`](../utils/index.md), [`Term`](../term/index.md)
 
-- `fn target(self: &Self) -> TermTarget`
-  Return the target of this terminal.
+- `fn style(self: &Self) -> Style` — [`Style`](../utils/index.md)
+
+- `fn target(self: &Self) -> TermTarget` — [`TermTarget`](../term/index.md)
 
 - `fn write_line(self: &Self, s: &str) -> io::Result<()>`
-  Write a string to the terminal and add a newline.
 
 - `fn read_char(self: &Self) -> io::Result<char>`
-  Read a single character from the terminal.
 
-- `fn read_key(self: &Self) -> io::Result<Key>`
-  Read a single key from the terminal.
+- `fn read_key(self: &Self) -> io::Result<Key>` — [`Key`](../kb/index.md)
 
-- `fn read_key_raw(self: &Self) -> io::Result<Key>`
+- `fn read_key_raw(self: &Self) -> io::Result<Key>` — [`Key`](../kb/index.md)
 
 - `fn read_line(self: &Self) -> io::Result<String>`
-  Read one line of input.
 
 - `fn read_line_initial_text(self: &Self, initial: &str) -> io::Result<String>`
-  Read one line of input with initial text.
 
 - `fn read_secure_line(self: &Self) -> io::Result<String>`
-  Read a line of input securely.
 
 - `fn flush(self: &Self) -> io::Result<()>`
-  Flush internal buffers.
 
 - `fn is_term(self: &Self) -> bool`
-  Check if the terminal is indeed a terminal.
 
-- `fn features(self: &Self) -> TermFeatures<'_>`
-  Check for common terminal features.
+- `fn features(self: &Self) -> TermFeatures<'_>` — [`TermFeatures`](../term/index.md)
 
 - `fn size(self: &Self) -> (u16, u16)`
-  Return the terminal size in rows and columns or gets sensible defaults.
 
 - `fn size_checked(self: &Self) -> Option<(u16, u16)>`
-  Return the terminal size in rows and columns.
 
 - `fn move_cursor_to(self: &Self, x: usize, y: usize) -> io::Result<()>`
-  Move the cursor to row `x` and column `y`. Values are 0-based.
 
 - `fn move_cursor_up(self: &Self, n: usize) -> io::Result<()>`
-  Move the cursor up by `n` lines, if possible.
 
 - `fn move_cursor_down(self: &Self, n: usize) -> io::Result<()>`
-  Move the cursor down by `n` lines, if possible.
 
 - `fn move_cursor_left(self: &Self, n: usize) -> io::Result<()>`
-  Move the cursor `n` characters to the left, if possible.
 
 - `fn move_cursor_right(self: &Self, n: usize) -> io::Result<()>`
-  Move the cursor `n` characters to the right.
 
 - `fn clear_line(self: &Self) -> io::Result<()>`
-  Clear the current line.
 
 - `fn clear_last_lines(self: &Self, n: usize) -> io::Result<()>`
-  Clear the last `n` lines before the current line.
 
 - `fn clear_screen(self: &Self) -> io::Result<()>`
-  Clear the entire screen.
 
 - `fn clear_to_end_of_screen(self: &Self) -> io::Result<()>`
-  Clear everything from the current cursor position to the end of the screen.
 
 - `fn clear_chars(self: &Self, n: usize) -> io::Result<()>`
-  Clear the last `n` characters of the current line.
 
 - `fn set_title<T: Display>(self: &Self, title: T)`
-  Set the terminal title.
 
 - `fn show_cursor(self: &Self) -> io::Result<()>`
-  Make the cursor visible again.
 
 - `fn hide_cursor(self: &Self) -> io::Result<()>`
-  Hide the cursor.
+
+- `fn write_through(self: &Self, bytes: &[u8]) -> io::Result<()>`
+
+- `fn write_through_common(self: &Self, bytes: &[u8]) -> io::Result<()>`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl AsRawFd`
 
 - `fn as_raw_fd(self: &Self) -> RawFd`
 
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Term`
+- `fn clone(self: &Self) -> Term` — [`Term`](../term/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Read`
 
 - `fn read(self: &mut Self, buf: &mut [u8]) -> io::Result<usize>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+##### `impl TermLike`
 
 ##### `impl Write`
 
@@ -259,16 +195,10 @@ clones which means it largely acts as a handle.
 
 - `fn flush(self: &mut Self) -> io::Result<()>`
 
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl TermLike`
-
 ### `TermFeatures<'a>`
 
 ```rust
-struct TermFeatures<'a>();
+struct TermFeatures<'a>(&'a Term);
 ```
 
 Gives access to the terminal features.
@@ -276,71 +206,20 @@ Gives access to the terminal features.
 #### Implementations
 
 - `fn is_attended(self: &Self) -> bool`
-  Check if this is a real user attended terminal (`isatty`)
 
 - `fn colors_supported(self: &Self) -> bool`
-  Check if colors are supported by this terminal.
 
 - `fn is_msys_tty(self: &Self) -> bool`
-  Check if this terminal is an msys terminal.
 
 - `fn wants_emoji(self: &Self) -> bool`
-  Check if this terminal wants emojis.
 
-- `fn family(self: &Self) -> TermFamily`
-  Return the family of the terminal.
+- `fn family(self: &Self) -> TermFamily` — [`TermFamily`](../term/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a>`
 
-- `fn clone(self: &Self) -> TermFeatures<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TermFeatures<'a>` — [`TermFeatures`](../term/index.md)
 
 ##### `impl Debug<'a>`
 
@@ -367,39 +246,13 @@ println!("[4/4] {} Done!", Emoji("✨", ":-)"));
 
 #### Implementations
 
-- `fn new(emoji: &'a str, fallback: &'b str) -> Emoji<'a, 'b>`
+- `fn new(emoji: &'a str, fallback: &'b str) -> Emoji<'a, 'b>` — [`Emoji`](../utils/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a, 'b>`
 
-- `fn clone(self: &Self) -> Emoji<'a, 'b>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Emoji<'a, 'b>` — [`Emoji`](../utils/index.md)
 
 ##### `impl Copy<'a, 'b>`
 
@@ -407,35 +260,21 @@ println!("[4/4] {} Done!", Emoji("✨", ":-)"));
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Style`
 
 ```rust
 struct Style {
-    // [REDACTED: Private Fields]
+    fg: Option<Color>,
+    bg: Option<Color>,
+    fg_bright: bool,
+    bg_bright: bool,
+    attrs: Attributes,
+    force: Option<bool>,
+    for_stderr: bool,
 }
 ```
 
@@ -444,31 +283,22 @@ A stored style that can be applied.
 #### Implementations
 
 - `const fn new() -> Self`
-  Returns an empty default style.
 
 - `fn from_dotted_str(s: &str) -> Self`
-  Creates a style from a dotted string.
 
-- `fn apply_to<D>(self: &Self, val: D) -> StyledObject<D>`
-  Apply the style to something that can be displayed.
+- `fn apply_to<D>(self: &Self, val: D) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
 - `const fn force_styling(self: Self, value: bool) -> Self`
-  Forces styling on or off.
 
 - `const fn for_stderr(self: Self) -> Self`
-  Specifies that style is applying to something being written on stderr.
 
 - `const fn for_stdout(self: Self) -> Self`
-  Specifies that style is applying to something being written on stdout.
 
-- `const fn fg(self: Self, color: Color) -> Self`
-  Sets a foreground color.
+- `const fn fg(self: Self, color: Color) -> Self` — [`Color`](../utils/index.md)
 
-- `const fn bg(self: Self, color: Color) -> Self`
-  Sets a background color.
+- `const fn bg(self: Self, color: Color) -> Self` — [`Color`](../utils/index.md)
 
-- `const fn attr(self: Self, attr: Attribute) -> Self`
-  Adds a attr.
+- `const fn attr(self: Self, attr: Attribute) -> Self` — [`Attribute`](../utils/index.md)
 
 - `const fn black(self: Self) -> Self`
 
@@ -530,63 +360,9 @@ A stored style that can be applied.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Style`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Style) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Style` — [`Style`](../utils/index.md)
 
 ##### `impl Debug`
 
@@ -596,11 +372,20 @@ A stored style that can be applied.
 
 - `fn default() -> Self`
 
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](../utils/index.md)
+
+##### `impl StructuralPartialEq`
+
 ### `StyledObject<D>`
 
 ```rust
 struct StyledObject<D> {
-    // [REDACTED: Private Fields]
+    style: Style,
+    val: D,
 }
 ```
 
@@ -608,117 +393,89 @@ A formatting wrapper that can be styled for a terminal.
 
 #### Implementations
 
-- `fn force_styling(self: Self, value: bool) -> StyledObject<D>`
-  Forces styling on or off.
+- `fn force_styling(self: Self, value: bool) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `fn for_stderr(self: Self) -> StyledObject<D>`
-  Specifies that style is applying to something being written on stderr
+- `fn for_stderr(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn for_stdout(self: Self) -> StyledObject<D>`
-  Specifies that style is applying to something being written on stdout
+- `const fn for_stdout(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn fg(self: Self, color: Color) -> StyledObject<D>`
-  Sets a foreground color.
+- `const fn fg(self: Self, color: Color) -> StyledObject<D>` — [`Color`](../utils/index.md), [`StyledObject`](../utils/index.md)
 
-- `const fn bg(self: Self, color: Color) -> StyledObject<D>`
-  Sets a background color.
+- `const fn bg(self: Self, color: Color) -> StyledObject<D>` — [`Color`](../utils/index.md), [`StyledObject`](../utils/index.md)
 
-- `const fn attr(self: Self, attr: Attribute) -> StyledObject<D>`
-  Adds a attr.
+- `const fn attr(self: Self, attr: Attribute) -> StyledObject<D>` — [`Attribute`](../utils/index.md), [`StyledObject`](../utils/index.md)
 
-- `const fn black(self: Self) -> StyledObject<D>`
+- `const fn black(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn red(self: Self) -> StyledObject<D>`
+- `const fn red(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn green(self: Self) -> StyledObject<D>`
+- `const fn green(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn yellow(self: Self) -> StyledObject<D>`
+- `const fn yellow(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn blue(self: Self) -> StyledObject<D>`
+- `const fn blue(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn magenta(self: Self) -> StyledObject<D>`
+- `const fn magenta(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn cyan(self: Self) -> StyledObject<D>`
+- `const fn cyan(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn white(self: Self) -> StyledObject<D>`
+- `const fn white(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn color256(self: Self, color: u8) -> StyledObject<D>`
+- `const fn color256(self: Self, color: u8) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn bright(self: Self) -> StyledObject<D>`
+- `const fn bright(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_black(self: Self) -> StyledObject<D>`
+- `const fn on_black(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_red(self: Self) -> StyledObject<D>`
+- `const fn on_red(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_green(self: Self) -> StyledObject<D>`
+- `const fn on_green(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_yellow(self: Self) -> StyledObject<D>`
+- `const fn on_yellow(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_blue(self: Self) -> StyledObject<D>`
+- `const fn on_blue(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_magenta(self: Self) -> StyledObject<D>`
+- `const fn on_magenta(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_cyan(self: Self) -> StyledObject<D>`
+- `const fn on_cyan(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_white(self: Self) -> StyledObject<D>`
+- `const fn on_white(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_color256(self: Self, color: u8) -> StyledObject<D>`
+- `const fn on_color256(self: Self, color: u8) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn on_bright(self: Self) -> StyledObject<D>`
+- `const fn on_bright(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn bold(self: Self) -> StyledObject<D>`
+- `const fn bold(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn dim(self: Self) -> StyledObject<D>`
+- `const fn dim(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn italic(self: Self) -> StyledObject<D>`
+- `const fn italic(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn underlined(self: Self) -> StyledObject<D>`
+- `const fn underlined(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn blink(self: Self) -> StyledObject<D>`
+- `const fn blink(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn blink_fast(self: Self) -> StyledObject<D>`
+- `const fn blink_fast(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn reverse(self: Self) -> StyledObject<D>`
+- `const fn reverse(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn hidden(self: Self) -> StyledObject<D>`
+- `const fn hidden(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-- `const fn strikethrough(self: Self) -> StyledObject<D>`
+- `const fn strikethrough(self: Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<D: fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<D: $crate::clone::Clone>`
 
-- `fn clone(self: &Self) -> StyledObject<D>`
+- `fn clone(self: &Self) -> StyledObject<D>` — [`StyledObject`](../utils/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug<D: fmt::Debug>`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<D: fmt::Display>`
 
@@ -740,29 +497,9 @@ A formatting wrapper that can be styled for a terminal.
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl UpperExp<D: fmt::UpperExp>`
 
@@ -772,15 +509,15 @@ A formatting wrapper that can be styled for a terminal.
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<D: fmt::Debug>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
 ### `AnsiCodeIterator<'a>`
 
 ```rust
 struct AnsiCodeIterator<'a> {
-    // [REDACTED: Private Fields]
+    s: &'a str,
+    pending_item: Option<(&'a str, bool)>,
+    last_idx: usize,
+    cur_idx: usize,
+    iter: Matches<'a>,
 }
 ```
 
@@ -793,26 +530,15 @@ ansi codes or string values.
 
 #### Implementations
 
-- `fn new(s: &'a str) -> AnsiCodeIterator<'a>`
-  Creates a new ansi code iterator.
+- `fn new(s: &'a str) -> AnsiCodeIterator<'a>` — [`AnsiCodeIterator`](../ansi/index.md)
 
 - `fn current_slice(self: &Self) -> &str`
-  Returns the string slice up to the current match.
 
 - `fn rest_slice(self: &Self) -> &str`
-  Returns the string slice from the current match to the end.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl FusedIterator`
 
 ##### `impl IntoIterator<I>`
 
@@ -822,43 +548,17 @@ ansi codes or string values.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl FusedIterator`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = (&'a str, bool)`
 
 - `fn next(self: &mut Self) -> Option<(&'a str, bool)>`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ### `WithoutAnsi<'a>`
 
 ```rust
 struct WithoutAnsi<'a> {
-    // [REDACTED: Private Fields]
+    str: &'a str,
 }
 ```
 
@@ -870,28 +570,6 @@ A wrapper struct that implements `core::fmt::Display`, only displaying non-ansi 
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Display`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
@@ -899,18 +577,6 @@ A wrapper struct that implements `core::fmt::Display`, only displaying non-ansi 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Enums
 
@@ -955,35 +621,13 @@ from the keyboard.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Key`
+- `fn clone(self: &Self) -> Key` — [`Key`](../kb/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -993,33 +637,9 @@ from the keyboard.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Key) -> bool`
+- `fn eq(self: &Self, other: &Key) -> bool` — [`Key`](../kb/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `TermFamily`
 
@@ -1054,69 +674,23 @@ The family of the terminal.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TermFamily`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> TermFamily` — [`TermFamily`](../term/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &TermFamily) -> bool`
+- `fn eq(self: &Self, other: &TermFamily) -> bool` — [`TermFamily`](../term/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `TermTarget`
 
@@ -1132,55 +706,9 @@ Where the term is writing.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TermTarget`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TermTarget` — [`TermTarget`](../term/index.md)
 
 ##### `impl Debug`
 
@@ -1200,69 +728,23 @@ Defines the alignment for padding operations.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Alignment`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Alignment` — [`Alignment`](../utils/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Alignment) -> bool`
+- `fn eq(self: &Self, other: &Alignment) -> bool` — [`Alignment`](../utils/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Attribute`
 
@@ -1282,79 +764,37 @@ enum Attribute {
 
 A terminal style attribute.
 
+#### Implementations
+
+- `const MAP: [Attribute; 9]`
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Attribute`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Attribute` — [`Attribute`](../utils/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &Attribute) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &Attribute) -> $crate::cmp::Ordering` — [`Attribute`](../utils/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Attribute) -> bool`
+- `fn eq(self: &Self, other: &Attribute) -> bool` — [`Attribute`](../utils/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Attribute) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &Attribute) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Attribute`](../utils/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Color`
 
@@ -1374,71 +814,31 @@ enum Color {
 
 A terminal color.
 
+#### Implementations
+
+- `fn ansi_num(self: Self) -> usize`
+
+- `fn is_color256(self: Self) -> bool`
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Color`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Color` — [`Color`](../utils/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Color) -> bool`
+- `fn eq(self: &Self, other: &Color) -> bool` — [`Color`](../utils/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Functions
 

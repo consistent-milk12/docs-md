@@ -19,11 +19,11 @@ searcher directly.
 
 The primary types in this sub-module are:
 
-* [`Searcher`](../index.md) executes the actual search algorithm to report matches in a
+* [`Searcher`](teddy/builder/index.md) executes the actual search algorithm to report matches in a
 haystack.
-* [`Builder`](../nfa/noncontiguous/index.md) accumulates patterns incrementally and can construct a
+* [`Builder`](../dfa/index.md) accumulates patterns incrementally and can construct a
 `Searcher`.
-* [`Config`](../index.md) permits tuning the searcher, and itself will produce a `Builder`
+* [`Config`](api/index.md) permits tuning the searcher, and itself will produce a `Builder`
 (which can then be used to build a `Searcher`). Currently, the only tuneable
 knob are the match semantics, but this may be expanded in the future.
 
@@ -31,7 +31,7 @@ knob are the match semantics, but this may be expanded in the future.
 
 This example shows how to create a searcher from an iterator of patterns.
 By default, leftmost-first match semantics are used. (See the top-level
-[`MatchKind`](../index.md) type for more details about match semantics, which apply
+[`MatchKind`](../util/search/index.md) type for more details about match semantics, which apply
 similarly to packed substring search.)
 
 ```rust
@@ -54,7 +54,7 @@ if cfg!(all(feature = "std", any(
 }
 ```
 
-This example shows how to use [`Config`](../index.md) to change the match semantics to
+This example shows how to use [`Config`](api/index.md) to change the match semantics to
 leftmost-longest:
 
 ```rust
@@ -118,7 +118,9 @@ implementation detail, here are some common reasons:
 
 ```rust
 struct Builder {
-    // [REDACTED: Private Fields]
+    config: Config,
+    inert: bool,
+    patterns: crate::packed::pattern::Patterns,
 }
 ```
 
@@ -152,77 +154,43 @@ if cfg!(all(feature = "std", any(
 }
 ```
 
+#### Fields
+
+- **`config`**: `Config`
+
+  The configuration of this builder and subsequent matcher.
+
+- **`inert`**: `bool`
+
+  Set to true if the builder detects that a matcher cannot be built.
+
+- **`patterns`**: `crate::packed::pattern::Patterns`
+
+  The patterns provided by the caller.
+
 #### Implementations
 
-- `fn new() -> Builder`
-  Create a new builder for constructing a multi-pattern searcher. This
+- `fn new() -> Builder` — [`Builder`](../../packed/api/index.md)
 
-- `fn build(self: &Self) -> Option<Searcher>`
-  Build a searcher from the patterns added to this builder so far.
+- `fn from_config(config: Config) -> Builder` — [`Config`](../../packed/api/index.md), [`Builder`](../../packed/api/index.md)
 
-- `fn add<P: AsRef<[u8]>>(self: &mut Self, pattern: P) -> &mut Builder`
-  Add the given pattern to this set to match.
+- `fn build(self: &Self) -> Option<Searcher>` — [`Searcher`](../../packed/api/index.md)
 
-- `fn extend<I, P>(self: &mut Self, patterns: I) -> &mut Builder`
-  Add the given iterator of patterns to this set to match.
+- `fn build_teddy(self: &Self, patterns: Arc<Patterns>) -> Option<self::builder::Searcher>` — [`Patterns`](../../packed/pattern/index.md), [`Searcher`](../../packed/teddy/builder/index.md)
+
+- `fn add<P: AsRef<[u8]>>(self: &mut Self, pattern: P) -> &mut Builder` — [`Builder`](../../packed/api/index.md)
+
+- `fn extend<I, P>(self: &mut Self, patterns: I) -> &mut Builder` — [`Builder`](../../packed/api/index.md)
 
 - `fn len(self: &Self) -> usize`
-  Returns the number of patterns added to this builder.
 
 - `fn minimum_len(self: &Self) -> usize`
-  Returns the length, in bytes, of the shortest pattern added.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Builder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../../packed/api/index.md)
 
 ##### `impl Debug`
 
@@ -230,13 +198,17 @@ if cfg!(all(feature = "std", any(
 
 ##### `impl Default`
 
-- `fn default() -> Builder`
+- `fn default() -> Builder` — [`Builder`](../../packed/api/index.md)
 
 ### `Config`
 
 ```rust
 struct Config {
-    // [REDACTED: Private Fields]
+    kind: MatchKind,
+    force: Option<ForceAlgorithm>,
+    only_teddy_fat: Option<bool>,
+    only_teddy_256bit: Option<bool>,
+    heuristic_pattern_limits: bool,
 }
 ```
 
@@ -281,69 +253,19 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new() -> Config`
-  Create a new default configuration. A default configuration uses
+- `fn new() -> Config` — [`Config`](../../packed/api/index.md)
 
-- `fn builder(self: &Self) -> Builder`
-  Create a packed builder from this configuration. The builder can be
+- `fn builder(self: &Self) -> Builder` — [`Builder`](../../packed/api/index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Config`
-  Set the match semantics for this configuration.
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Config` — [`MatchKind`](../../packed/api/index.md), [`Config`](../../packed/api/index.md)
 
-- `fn heuristic_pattern_limits(self: &mut Self, yes: bool) -> &mut Config`
-  Request that heuristic limitations on the number of patterns be
+- `fn heuristic_pattern_limits(self: &mut Self, yes: bool) -> &mut Config` — [`Config`](../../packed/api/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Config`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Config` — [`Config`](../../packed/api/index.md)
 
 ##### `impl Debug`
 
@@ -351,33 +273,29 @@ if cfg!(all(feature = "std", any(
 
 ##### `impl Default`
 
-- `fn default() -> Config`
+- `fn default() -> Config` — [`Config`](../../packed/api/index.md)
 
 ### `FindIter<'s, 'h>`
 
 ```rust
 struct FindIter<'s, 'h> {
-    // [REDACTED: Private Fields]
+    searcher: &'s Searcher,
+    haystack: &'h [u8],
+    span: crate::util::search::Span,
 }
 ```
 
 An iterator over non-overlapping matches from a packed searcher.
 
-The lifetime `'s` refers to the lifetime of the underlying [`Searcher`](../index.md),
+The lifetime `'s` refers to the lifetime of the underlying [`Searcher`](teddy/builder/index.md),
 while the lifetime `'h` refers to the lifetime of the haystack being
 searched.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'s, 'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -387,45 +305,20 @@ searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'s, 'h>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'s, 'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
 
 ### `Searcher`
 
 ```rust
 struct Searcher {
-    // [REDACTED: Private Fields]
+    patterns: alloc::sync::Arc<crate::packed::pattern::Patterns>,
+    rabinkarp: crate::packed::rabinkarp::RabinKarp,
+    search_kind: SearchKind,
+    minimum_len: usize,
 }
 ```
 
@@ -433,7 +326,7 @@ A packed searcher for quickly finding occurrences of multiple patterns.
 
 If callers need more flexible construction, or if one wants to change the
 match semantics (either leftmost-first or leftmost-longest), then one can
-use the [`Config`](../index.md) and/or [`Builder`](../nfa/noncontiguous/index.md) types for more fine grained control.
+use the [`Config`](api/index.md) and/or [`Builder`](../dfa/index.md) types for more fine grained control.
 
 # Example
 
@@ -462,84 +355,31 @@ if cfg!(all(feature = "std", any(
 
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Option<Searcher>`
-  A convenience function for constructing a searcher from an iterator
+- `fn new<I, P>(patterns: I) -> Option<Searcher>` — [`Searcher`](../../packed/api/index.md)
 
-- `fn config() -> Config`
-  A convenience function for calling `Config::new()`.
+- `fn config() -> Config` — [`Config`](../../packed/api/index.md)
 
-- `fn builder() -> Builder`
-  A convenience function for calling `Builder::new()`.
+- `fn builder() -> Builder` — [`Builder`](../../packed/api/index.md)
 
-- `fn find<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<Match>`
-  Return the first occurrence of any of the patterns in this searcher,
+- `fn find<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<Match>` — [`Match`](../../util/search/index.md)
 
-- `fn find_in<B: AsRef<[u8]>>(self: &Self, haystack: B, span: Span) -> Option<Match>`
-  Return the first occurrence of any of the patterns in this searcher,
+- `fn find_in<B: AsRef<[u8]>>(self: &Self, haystack: B, span: Span) -> Option<Match>` — [`Span`](../../util/search/index.md), [`Match`](../../util/search/index.md)
 
-- `fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>`
-  Return an iterator of non-overlapping occurrences of the patterns in
+- `fn find_iter<'a, 'b, B: ?Sized + AsRef<[u8]>>(self: &'a Self, haystack: &'b B) -> FindIter<'a, 'b>` — [`FindIter`](../../packed/api/index.md)
 
-- `fn match_kind(self: &Self) -> &MatchKind`
-  Returns the match kind used by this packed searcher.
+- `fn match_kind(self: &Self) -> &MatchKind` — [`MatchKind`](../../packed/api/index.md)
 
 - `fn minimum_len(self: &Self) -> usize`
-  Returns the minimum length of a haystack that is required in order for
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the approximate total amount of heap used by this searcher, in
+
+- `fn find_in_slow(self: &Self, haystack: &[u8], span: Span) -> Option<Match>` — [`Span`](../../util/search/index.md), [`Match`](../../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Searcher`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Searcher` — [`Searcher`](../../packed/api/index.md)
 
 ##### `impl Debug`
 
@@ -589,65 +429,11 @@ type are leftmost-first.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> MatchKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](../../packed/api/index.md)
 
 ##### `impl Copy`
-
-##### `impl Eq`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &MatchKind) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -655,5 +441,13 @@ type are leftmost-first.
 
 ##### `impl Default`
 
-- `fn default() -> MatchKind`
+- `fn default() -> MatchKind` — [`MatchKind`](../../packed/api/index.md)
+
+##### `impl Eq`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](../../packed/api/index.md)
+
+##### `impl StructuralPartialEq`
 

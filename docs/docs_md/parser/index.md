@@ -31,6 +31,12 @@ The parsed `Crate` contains:
 - `paths`: `HashMap` mapping IDs to their full module paths
 - `crate_version`: Optional version string
 
+# Performance
+
+When the `simd-json` feature is enabled, parsing uses SIMD-accelerated
+JSON parsing which is significantly faster for large rustdoc JSON files
+(10-50MB+). This requires AVX2/SSE4.2 on x86 platforms.
+
 ## Structs
 
 ### `Parser`
@@ -46,47 +52,27 @@ into the `rustdoc_types::Crate` structure.
 
 #### Implementations
 
-- `fn parse_json(path: &Path) -> Result<Crate, Error>`
-  Parse a rustdoc JSON file from disk into a `Crate` structure.
+- `fn parse_json(path: &Path) -> Result<Crate, Error>` — [`Error`](../../error/index.md)
 
-- `fn parse_json_string(content: &str) -> Result<Crate, Error>`
-  Parse a rustdoc JSON string into a `Crate` structure.
+- `fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 

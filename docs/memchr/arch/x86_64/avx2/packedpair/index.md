@@ -18,7 +18,8 @@ frequencies to heuristically select the pair of bytes to search for.
 
 ```rust
 struct Finder {
-    // [REDACTED: Private Fields]
+    sse2: packedpair::Finder<core::arch::x86_64::__m128i>,
+    avx2: packedpair::Finder<core::arch::x86_64::__m256i>,
 }
 ```
 
@@ -32,80 +33,33 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Finder>`
-  Create a new pair searcher. The searcher returned can either report
+- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](../../../../../arch/x86_64/avx2/packedpair/index.md)
 
-- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>`
-  Create a new "packed pair" finder using the pair of bytes given.
+- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../../../arch/all/packedpair/index.md), [`Finder`](../../../../../arch/x86_64/avx2/packedpair/index.md)
+
+- `unsafe fn with_pair_impl(needle: &[u8], pair: Pair) -> Finder` — [`Pair`](../../../../../arch/all/packedpair/index.md), [`Finder`](../../../../../arch/x86_64/avx2/packedpair/index.md)
 
 - `fn is_available() -> bool`
-  Returns true when this implementation is available in the current
 
 - `fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
-  Execute a search using AVX2 vectors and routines.
 
 - `fn find_prefilter(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Run this finder on the given haystack as a prefilter.
 
-- `fn pair(self: &Self) -> &Pair`
-  Returns the pair of offsets (into the needle) used to check as a
+- `unsafe fn find_impl(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
+
+- `unsafe fn find_prefilter_impl(self: &Self, haystack: &[u8]) -> Option<usize>`
+
+- `fn pair(self: &Self) -> &Pair` — [`Pair`](../../../../../arch/all/packedpair/index.md)
 
 - `fn min_haystack_len(self: &Self) -> usize`
-  Returns the minimum haystack length that this `Finder` can search.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Finder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Finder` — [`Finder`](../../../../../arch/x86_64/avx2/packedpair/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 

@@ -54,6 +54,17 @@ pub enum Error {
     )]
     JsonParse(#[source] SJSON::Error),
 
+    /// Failed to parse the rustdoc JSON file using SIMD-accelerated parser.
+    ///
+    /// This variant is used when the `simd-json` feature is enabled.
+    #[cfg(feature = "simd-json")]
+    #[error("Failed to parse rustdoc JSON (simd-json)")]
+    #[diagnostic(
+        code(docs_md::parse::simd_json),
+        help("Ensure the file is valid rustdoc JSON output (generated with --output-format json)")
+    )]
+    SimdJsonParse(#[source] simd_json::Error),
+
     /// Failed to create the output directory.
     ///
     /// This typically occurs when:
@@ -135,4 +146,16 @@ pub enum Error {
         help("Ensure the file is valid rustdoc JSON with a root module item")
     )]
     NoCrateName(PathBuf),
+
+    /// Failed to create a progress bar with the given template.
+    ///
+    /// This indicates an invalid progress bar template string.
+    /// Since templates are compile-time constants, this error
+    /// typically indicates a programming error.
+    #[error("Invalid progress bar template")]
+    #[diagnostic(
+        code(docs_md::ui::progress_template),
+        help("Check the progress bar template syntax")
+    )]
+    ProgressBarTemplate(#[source] indicatif::style::TemplateError),
 }

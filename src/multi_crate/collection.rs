@@ -9,8 +9,11 @@ use rustdoc_types::Crate;
 
 /// Collection of parsed crates ready for documentation generation.
 ///
-/// Maintains crates in a deterministic processing order for reproducible
-/// output. The order is typically alphabetical by crate name.
+/// Uses `HashMap` for O(1) lookups and sorts keys on-demand when iteration
+/// is needed. This is optimal for our use case where:
+/// - All crates are inserted first (parsing phase)
+/// - Sorted iteration happens later (generation phase)
+/// - Collection size is small (typically 10-50 crates)
 ///
 /// # Example
 ///
@@ -26,10 +29,8 @@ use rustdoc_types::Crate;
 #[derive(Debug, Default)]
 pub struct CrateCollection {
     /// Map from crate name to parsed Crate data.
+    /// HashMap provides O(1) lookups; sorting done on-demand.
     crates: HashMap<String, Crate>,
-
-    /// Crate names in processing order (alphabetical for determinism).
-    processing_order: Vec<String>,
 }
 
 impl CrateCollection {
@@ -44,15 +45,7 @@ impl CrateCollection {
     /// If a crate with the same name already exists, it is replaced
     /// and `Some(old_crate)` is returned.
     pub fn insert(&mut self, name: String, krate: Crate) -> Option<Crate> {
-        let existing = self.crates.insert(name.clone(), krate);
-
-        if existing.is_none() {
-            // New crate - add to processing order and re-sort
-            self.processing_order.push(name);
-            self.processing_order.sort();
-        }
-
-        existing
+        self.crates.insert(name, krate)
     }
 
     /// Get a crate by name.
@@ -78,14 +71,16 @@ impl CrateCollection {
         self.crates.contains_key(name)
     }
 
-    /// Iterate over crates in processing order.
+    /// Iterate over crates in alphabetical order.
     ///
-    /// Returns tuples of `(crate_name, Crate)` in alphabetical order
+    /// Returns tuples of `(&crate_name, &Crate)` sorted alphabetically
     /// by crate name for deterministic output.
+    ///
+    /// Sorting is done on-demand since collection size is small (10-50 crates).
     pub fn iter(&self) -> impl Iterator<Item = (&String, &Crate)> {
-        self.processing_order
-            .iter()
-            .filter_map(|name| self.crates.get(name).map(|k| (name, k)))
+        let mut entries: Vec<_> = self.crates.iter().collect();
+        entries.sort_by_key(|(name, _)| *name);
+        entries.into_iter()
     }
 
     /// Get the number of crates in the collection.
@@ -100,10 +95,15 @@ impl CrateCollection {
         self.crates.is_empty()
     }
 
-    /// Get crate names in processing order.
+    /// Get crate names in alphabetical order.
+    ///
+    /// Returns a sorted `Vec` of crate names for deterministic processing.
+    /// Sorting is done on-demand since collection size is small.
     #[must_use]
-    pub fn names(&self) -> &[String] {
-        &self.processing_order
+    pub fn names(&self) -> Vec<&String> {
+        let mut names: Vec<_> = self.crates.keys().collect();
+        names.sort();
+        names
     }
 }
 
@@ -122,9 +122,12 @@ mod tests {
     }
 
     #[test]
-    fn test_processing_order_is_alphabetical() {
+    fn test_names_returns_sorted() {
         let collection = CrateCollection::new();
         // Order should be maintained alphabetically
-        assert!(collection.names().is_sorted());
+        let names = collection.names();
+        let mut sorted = names.clone();
+        sorted.sort();
+        assert_eq!(names, sorted);
     }
 }

@@ -313,7 +313,9 @@ For JSON support in Serde without a memory allocator, please see the
 
 ```rust
 struct Deserializer<R> {
-    // [REDACTED: Private Fields]
+    read: R,
+    scratch: alloc::vec::Vec<u8>,
+    remaining_depth: u8,
 }
 ```
 
@@ -321,65 +323,83 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn end(self: &mut Self) -> Result<()>`
-  The `Deserializer::end` method should be called after a value has been fully deserialized.
+- `fn end(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
 
-- `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>`
-  Turn a JSON deserializer into an iterator over values of type T.
+- `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>` — [`StreamDeserializer`](../de/index.md)
 
-- `fn from_slice(bytes: &'a [u8]) -> Self`
-  Creates a JSON deserializer from a `&[u8]`.
+- `fn peek(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../error/index.md)
 
-- `fn from_reader(reader: R) -> Self`
-  Creates a JSON deserializer from an `io::Read`.
+- `fn peek_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../error/index.md)
 
-- `fn new(read: R) -> Self`
-  Create a JSON deserializer from one of the possible serde_json input
+- `fn eat_char(self: &mut Self)`
 
-- `fn from_str(s: &'a str) -> Self`
-  Creates a JSON deserializer from a `&str`.
+- `fn next_char(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../error/index.md)
 
-#### Trait Implementations
+- `fn next_char_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../error/index.md)
 
-##### `impl From<T>`
+- `fn error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../error/index.md), [`Error`](../error/index.md)
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn peek_error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../error/index.md), [`Error`](../error/index.md)
 
-##### `impl Into<T, U>`
+- `fn parse_whitespace(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../error/index.md)
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn peek_invalid_type(self: &mut Self, exp: &dyn Expected) -> Error` — [`Error`](../error/index.md)
 
-##### `impl Any<T>`
+- `fn deserialize_number<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md)
 
-- `fn type_id(self: &Self) -> TypeId`
+- `fn do_deserialize_i128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md)
 
-##### `impl Borrow<T>`
+- `fn do_deserialize_u128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../error/index.md)
 
-- `fn borrow(self: &Self) -> &T`
+- `fn scan_integer128(self: &mut Self, buf: &mut String) -> Result<()>` — [`Result`](../error/index.md)
 
-##### `impl BorrowMut<T>`
+- `fn fix_position(self: &Self, err: Error) -> Error` — [`Error`](../error/index.md)
 
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn parse_ident(self: &mut Self, ident: &[u8]) -> Result<()>` — [`Result`](../error/index.md)
 
-##### `impl TryFrom<T, U>`
+- `fn parse_integer(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../error/index.md), [`ParserNumber`](../de/index.md)
 
-- `type Error = Infallible`
+- `fn parse_number(self: &mut Self, positive: bool, significand: u64) -> Result<ParserNumber>` — [`Result`](../error/index.md), [`ParserNumber`](../de/index.md)
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn parse_decimal(self: &mut Self, positive: bool, significand: u64, exponent_before_decimal_point: i32) -> Result<f64>` — [`Result`](../error/index.md)
 
-##### `impl TryInto<T, U>`
+- `fn parse_exponent(self: &mut Self, positive: bool, significand: u64, starting_exp: i32) -> Result<f64>` — [`Result`](../error/index.md)
 
-- `type Error = <U as TryFrom>::Error`
+- `fn f64_from_parts(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../error/index.md)
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn parse_long_integer(self: &mut Self, positive: bool, significand: u64) -> Result<f64>` — [`Result`](../error/index.md)
+
+- `fn parse_decimal_overflow(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../error/index.md)
+
+- `fn parse_exponent_overflow(self: &mut Self, positive: bool, zero_significand: bool, positive_exp: bool) -> Result<f64>` — [`Result`](../error/index.md)
+
+- `fn parse_any_signed_number(self: &mut Self) -> Result<ParserNumber>` — [`Result`](../error/index.md), [`ParserNumber`](../de/index.md)
+
+- `fn parse_any_number(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../error/index.md), [`ParserNumber`](../de/index.md)
+
+- `fn parse_object_colon(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn end_seq(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn end_map(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn ignore_value(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn ignore_integer(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn ignore_decimal(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn ignore_exponent(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
 
 ### `StreamDeserializer<'de, R, T>`
 
 ```rust
 struct StreamDeserializer<'de, R, T> {
-    // [REDACTED: Private Fields]
+    de: Deserializer<R>,
+    offset: usize,
+    failed: bool,
+    output: core::marker::PhantomData<T>,
+    lifetime: core::marker::PhantomData<&'de ()>,
 }
 ```
 
@@ -408,22 +428,14 @@ fn main() {
 #### Implementations
 
 - `fn new(read: R) -> Self`
-  Create a JSON stream deserializer from one of the possible serde_json
 
 - `fn byte_offset(self: &Self) -> usize`
-  Returns the number of bytes so far deserialized into a successful `T`.
+
+- `fn peek_end_of_value(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl FusedIterator<'de, R, T>`
 
 ##### `impl IntoIterator<I>`
 
@@ -433,98 +445,54 @@ fn main() {
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl FusedIterator<'de, R, T>`
-
 ##### `impl Iterator<'de, R, T>`
 
 - `type Item = Result<T, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<T>>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn next(self: &mut Self) -> Option<Result<T>>` — [`Result`](../error/index.md)
 
 ### `Error`
 
 ```rust
 struct Error {
-    // [REDACTED: Private Fields]
+    err: alloc::boxed::Box<ErrorImpl>,
 }
 ```
 
 This type represents all possible errors that can occur when serializing or
 deserializing JSON data.
 
+#### Fields
+
+- **`err`**: `alloc::boxed::Box<ErrorImpl>`
+
+  This `Box` allows us to keep the size of `Error` as small as possible. A
+  larger `Error` type was substantially slower due to all the functions
+  that pass around `Result<T, Error>`.
+
 #### Implementations
 
 - `fn line(self: &Self) -> usize`
-  One-based line number at which the error was detected.
 
 - `fn column(self: &Self) -> usize`
-  One-based column number at which the error was detected.
 
-- `fn classify(self: &Self) -> Category`
-  Categorizes the cause of this error.
+- `fn classify(self: &Self) -> Category` — [`Category`](../error/index.md)
 
 - `fn is_io(self: &Self) -> bool`
-  Returns true if this error was caused by a failure to read or write
 
 - `fn is_syntax(self: &Self) -> bool`
-  Returns true if this error was caused by input that was not
 
 - `fn is_data(self: &Self) -> bool`
-  Returns true if this error was caused by input data that was
 
 - `fn is_eof(self: &Self) -> bool`
-  Returns true if this error was caused by prematurely reaching the end of
 
 - `fn io_error_kind(self: &Self) -> Option<ErrorKind>`
-  The kind reported by the underlying standard library I/O error, if this
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display`
 
@@ -532,45 +500,18 @@ deserializing JSON data.
 
 ##### `impl Error`
 
-- `fn custom<T: Display>(msg: T) -> Error`
-
-##### `impl Error`
-
-- `fn custom<T: Display>(msg: T) -> Error`
-
-- `fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
-
-- `fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
-
-##### `impl Error`
-
-- `fn source(self: &Self) -> Option<&dyn error::Error>`
+- `fn custom<T: Display>(msg: T) -> Error` — [`Error`](../error/index.md)
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
 ### `Serializer<W, F>`
 
 ```rust
 struct Serializer<W, F> {
-    // [REDACTED: Private Fields]
+    writer: W,
+    formatter: F,
 }
 ```
 
@@ -578,59 +519,13 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- `fn with_formatter(writer: W, formatter: F) -> Self`
-  Creates a new JSON visitor whose output will be written to the writer
-
-- `fn into_inner(self: Self) -> W`
-  Unwrap the `Writer` from the `Serializer`.
-
-- `fn new(writer: W) -> Self`
-  Creates a new JSON serializer.
-
 - `fn pretty(writer: W) -> Self`
-  Creates a new JSON pretty print serializer.
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Map<K, V>`
 
 ```rust
 struct Map<K, V> {
-    // [REDACTED: Private Fields]
+    map: alloc::collections::BTreeMap<K, V>,
 }
 ```
 
@@ -639,172 +534,56 @@ Represents a JSON key/value type.
 #### Implementations
 
 - `fn new() -> Self`
-  Makes a new empty Map.
 
 - `fn with_capacity(capacity: usize) -> Self`
-  Makes a new empty Map with the given initial capacity.
 
 - `fn clear(self: &mut Self)`
-  Clears the map, removing all values.
 
-- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>`
-  Returns a reference to the value corresponding to the key.
+- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>` — [`Value`](../value/index.md)
 
 - `fn contains_key<Q>(self: &Self, key: &Q) -> bool`
-  Returns true if the map contains a value for the specified key.
 
-- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>`
-  Returns a mutable reference to the value corresponding to the key.
+- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>` — [`Value`](../value/index.md)
 
-- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>`
-  Returns the key-value pair matching the given key.
+- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../value/index.md)
 
-- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>`
-  Inserts a key-value pair into the map.
+- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>` — [`Value`](../value/index.md)
 
-- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>`
-  Removes a key from the map, returning the value at the key if the key
+- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>` — [`Value`](../value/index.md)
 
-- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>`
-  Removes a key from the map, returning the stored key and value if the
+- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>` — [`Value`](../value/index.md)
 
 - `fn append(self: &mut Self, other: &mut Self)`
-  Moves all elements from other into self, leaving other empty.
 
-- `fn entry<S>(self: &mut Self, key: S) -> Entry<'_>`
-  Gets the given key's corresponding entry in the map for in-place
+- `fn entry<S>(self: &mut Self, key: S) -> Entry<'_>` — [`Entry`](../map/index.md)
 
 - `fn len(self: &Self) -> usize`
-  Returns the number of elements in the map.
 
 - `fn is_empty(self: &Self) -> bool`
-  Returns true if the map contains no elements.
 
-- `fn iter(self: &Self) -> Iter<'_>`
-  Gets an iterator over the entries of the map.
+- `fn iter(self: &Self) -> Iter<'_>` — [`Iter`](../map/index.md)
 
-- `fn iter_mut(self: &mut Self) -> IterMut<'_>`
-  Gets a mutable iterator over the entries of the map.
+- `fn iter_mut(self: &mut Self) -> IterMut<'_>` — [`IterMut`](../map/index.md)
 
-- `fn keys(self: &Self) -> Keys<'_>`
-  Gets an iterator over the keys of the map.
+- `fn keys(self: &Self) -> Keys<'_>` — [`Keys`](../map/index.md)
 
-- `fn values(self: &Self) -> Values<'_>`
-  Gets an iterator over the values of the map.
+- `fn values(self: &Self) -> Values<'_>` — [`Values`](../map/index.md)
 
-- `fn values_mut(self: &mut Self) -> ValuesMut<'_>`
-  Gets an iterator over mutable values of the map.
+- `fn values_mut(self: &mut Self) -> ValuesMut<'_>` — [`ValuesMut`](../map/index.md)
 
-- `fn into_values(self: Self) -> IntoValues`
-  Gets an iterator over the values of the map.
+- `fn into_values(self: Self) -> IntoValues` — [`IntoValues`](../map/index.md)
 
 - `fn retain<F>(self: &mut Self, f: F)`
-  Retains only the elements specified by the predicate.
 
 - `fn sort_keys(self: &mut Self)`
-  Sorts this map's entries in-place using `str`'s usual ordering.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl FromIterator`
-
-- `fn from_iter<T>(iter: T) -> Self`
-
-##### `impl FromStr`
-
-- `type Err = Error`
-
-- `fn from_str(s: &str) -> Result<Self, Error>`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoDeserializer<'de>`
-
-- `type Deserializer = Map<String, Value>`
-
-- `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
-
-##### `impl IntoIterator`
-
-- `type Item = (String, Value)`
-
-- `type IntoIter = IntoIter`
-
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
 - `fn clone_from(self: &mut Self, source: &Self)`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq`
-
-##### `impl Extend`
-
-- `fn extend<T>(self: &mut Self, iter: T)`
-
-##### `impl Hash`
-
-- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
-
-##### `impl Index<Q>`
-
-- `type Output = Value`
-
-- `fn index(self: &Self, index: &Q) -> &Value`
-
-##### `impl IndexMut<Q>`
-
-- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Self) -> bool`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -886,6 +665,54 @@ Represents a JSON key/value type.
 
 - `fn deserialize_identifier<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
+##### `impl Eq`
+
+##### `impl Extend`
+
+- `fn extend<T>(self: &mut Self, iter: T)`
+
+##### `impl FromIterator`
+
+- `fn from_iter<T>(iter: T) -> Self`
+
+##### `impl FromStr`
+
+- `type Err = Error`
+
+- `fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md)
+
+##### `impl Hash`
+
+- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+
+##### `impl Index<Q>`
+
+- `type Output = Value`
+
+- `fn index(self: &Self, index: &Q) -> &Value` — [`Value`](../value/index.md)
+
+##### `impl IndexMut<Q>`
+
+- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value` — [`Value`](../value/index.md)
+
+##### `impl IntoDeserializer<'de>`
+
+- `type Deserializer = Map<String, Value>`
+
+- `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
+
+##### `impl IntoIterator`
+
+- `type Item = (String, Value)`
+
+- `type IntoIter = IntoIter`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Self) -> bool`
+
 ##### `impl Serialize`
 
 - `fn serialize<S>(self: &Self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
@@ -894,7 +721,7 @@ Represents a JSON key/value type.
 
 ```rust
 struct Number {
-    // [REDACTED: Private Fields]
+    n: N,
 }
 ```
 
@@ -902,156 +729,13 @@ Represents a JSON number, whether integer or floating point.
 
 #### Implementations
 
-- `fn is_i64(self: &Self) -> bool`
-  Returns true if the `Number` is an integer between `i64::MIN` and
-
-- `fn is_u64(self: &Self) -> bool`
-  Returns true if the `Number` is an integer between zero and `u64::MAX`.
-
-- `fn is_f64(self: &Self) -> bool`
-  Returns true if the `Number` can be represented by f64.
-
-- `fn as_i64(self: &Self) -> Option<i64>`
-  If the `Number` is an integer, represent it as i64 if possible. Returns
-
-- `fn as_u64(self: &Self) -> Option<u64>`
-  If the `Number` is an integer, represent it as u64 if possible. Returns
-
-- `fn as_f64(self: &Self) -> Option<f64>`
-  Represents the number as f64 if possible. Returns None otherwise.
-
-- `fn from_f64(f: f64) -> Option<Number>`
-  Converts a finite `f64` to a `Number`. Infinite or NaN values are not JSON
-
-- `fn as_i128(self: &Self) -> Option<i128>`
-  If the `Number` is an integer, represent it as i128 if possible. Returns
-
-- `fn as_u128(self: &Self) -> Option<u128>`
-  If the `Number` is an integer, represent it as u128 if possible. Returns
-
-- `fn from_i128(i: i128) -> Option<Number>`
-  Converts an `i128` to a `Number`. Numbers smaller than i64::MIN or
-
-- `fn from_u128(i: u128) -> Option<Number>`
-  Converts a `u128` to a `Number`. Numbers greater than u64::MAX can only
+- `fn unexpected(self: &Self) -> Unexpected<'_>`
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(i: i8) -> Self`
-
-##### `impl From`
-
-- `fn from(u: u16) -> Self`
-
-##### `impl From`
-
-- `fn from(u: usize) -> Self`
-
-##### `impl From`
-
-- `fn from(i: i16) -> Self`
-
-##### `impl From`
-
-- `fn from(u: u64) -> Self`
-
-##### `impl From`
-
-- `fn from(i: i32) -> Self`
-
-##### `impl From`
-
-- `fn from(i: isize) -> Self`
-
-##### `impl From`
-
-- `fn from(i: i64) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(u: u32) -> Self`
-
-##### `impl From`
-
-- `fn from(u: u8) -> Self`
-
-##### `impl FromStr`
-
-- `type Err = Error`
-
-- `fn from_str(s: &str) -> result::Result<Self, <Self as >::Err>`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Number`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Eq`
-
-##### `impl Hash`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Number) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Number` — [`Number`](../number/index.md)
 
 ##### `impl Debug`
 
@@ -1059,7 +743,7 @@ Represents a JSON number, whether integer or floating point.
 
 ##### `impl Deserialize<'de>`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Number, <D as >::Error>`
+- `fn deserialize<D>(deserializer: D) -> Result<Number, <D as >::Error>` — [`Number`](../number/index.md)
 
 ##### `impl DeserializeOwned<T>`
 
@@ -1067,31 +751,31 @@ Represents a JSON number, whether integer or floating point.
 
 - `type Error = Error`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
 - `fn deserialize_bool<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
@@ -1129,9 +813,35 @@ Represents a JSON number, whether integer or floating point.
 
 - `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
+##### `impl Display`
+
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Eq`
+
+##### `impl FromStr`
+
+- `type Err = Error`
+
+- `fn from_str(s: &str) -> result::Result<Self, <Self as >::Err>`
+
+##### `impl Hash`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Number) -> bool` — [`Number`](../number/index.md)
+
 ##### `impl Serialize`
 
 - `fn serialize<S>(self: &Self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
+
+##### `impl StructuralPartialEq`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
 
 ## Enums
 
@@ -1222,247 +932,111 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 #### Implementations
 
-- `fn get<I: Index>(self: &Self, index: I) -> Option<&Value>`
-  Index into a JSON array or map. A string index can be used to access a
+- `fn invalid_type<E>(self: &Self, exp: &dyn Expected) -> E`
 
-- `fn get_mut<I: Index>(self: &mut Self, index: I) -> Option<&mut Value>`
-  Mutably index into a JSON array or map. A string index can be used to
-
-- `fn is_object(self: &Self) -> bool`
-  Returns true if the `Value` is an Object. Returns false otherwise.
-
-- `fn as_object(self: &Self) -> Option<&Map<String, Value>>`
-  If the `Value` is an Object, returns the associated Map. Returns None
-
-- `fn as_object_mut(self: &mut Self) -> Option<&mut Map<String, Value>>`
-  If the `Value` is an Object, returns the associated mutable Map.
-
-- `fn is_array(self: &Self) -> bool`
-  Returns true if the `Value` is an Array. Returns false otherwise.
-
-- `fn as_array(self: &Self) -> Option<&Vec<Value>>`
-  If the `Value` is an Array, returns the associated vector. Returns None
-
-- `fn as_array_mut(self: &mut Self) -> Option<&mut Vec<Value>>`
-  If the `Value` is an Array, returns the associated mutable vector.
-
-- `fn is_string(self: &Self) -> bool`
-  Returns true if the `Value` is a String. Returns false otherwise.
-
-- `fn as_str(self: &Self) -> Option<&str>`
-  If the `Value` is a String, returns the associated str. Returns None
-
-- `fn is_number(self: &Self) -> bool`
-  Returns true if the `Value` is a Number. Returns false otherwise.
-
-- `fn as_number(self: &Self) -> Option<&Number>`
-  If the `Value` is a Number, returns the associated [`Number`]. Returns
-
-- `fn is_i64(self: &Self) -> bool`
-  Returns true if the `Value` is an integer between `i64::MIN` and
-
-- `fn is_u64(self: &Self) -> bool`
-  Returns true if the `Value` is an integer between zero and `u64::MAX`.
-
-- `fn is_f64(self: &Self) -> bool`
-  Returns true if the `Value` is a number that can be represented by f64.
-
-- `fn as_i64(self: &Self) -> Option<i64>`
-  If the `Value` is an integer, represent it as i64 if possible. Returns
-
-- `fn as_u64(self: &Self) -> Option<u64>`
-  If the `Value` is an integer, represent it as u64 if possible. Returns
-
-- `fn as_f64(self: &Self) -> Option<f64>`
-  If the `Value` is a number, represent it as f64 if possible. Returns
-
-- `fn is_boolean(self: &Self) -> bool`
-  Returns true if the `Value` is a Boolean. Returns false otherwise.
-
-- `fn as_bool(self: &Self) -> Option<bool>`
-  If the `Value` is a Boolean, returns the associated bool. Returns None
-
-- `fn is_null(self: &Self) -> bool`
-  Returns true if the `Value` is a Null. Returns false otherwise.
-
-- `fn as_null(self: &Self) -> Option<()>`
-  If the `Value` is a Null, returns (). Returns None otherwise.
-
-- `fn pointer(self: &Self, pointer: &str) -> Option<&Value>`
-  Looks up a value by a JSON Pointer.
-
-- `fn pointer_mut(self: &mut Self, pointer: &str) -> Option<&mut Value>`
-  Looks up a value by a JSON Pointer and returns a mutable reference to
-
-- `fn take(self: &mut Self) -> Value`
-  Takes the value out of the `Value`, leaving a `Null` in its place.
-
-- `fn sort_all_objects(self: &mut Self)`
-  Reorders the entries of all `Value::Object` nested within this JSON
+- `fn unexpected(self: &Self) -> Unexpected<'_>`
 
 #### Trait Implementations
 
-##### `impl From`
+##### `impl Clone`
 
-- `fn from(n: i64) -> Self`
+- `fn clone(self: &Self) -> Value` — [`Value`](../value/index.md)
 
-##### `impl From`
+##### `impl Debug`
 
-- `fn from(n: i8) -> Self`
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl From<T>`
+##### `impl Default`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn default() -> Value` — [`Value`](../value/index.md)
 
-##### `impl From`
+##### `impl Deserialize<'de>`
 
-- `fn from(n: u16) -> Self`
+- `fn deserialize<D>(deserializer: D) -> Result<Value, <D as >::Error>` — [`Value`](../value/index.md)
 
-##### `impl From`
+##### `impl DeserializeOwned<T>`
 
-- `fn from(f: Map<String, Value>) -> Self`
-  Convert map (with string keys) to `Value::Object`.
+##### `impl Deserializer<'de>`
 
-##### `impl From`
+- `type Error = Error`
 
-- `fn from(n: u32) -> Self`
+- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From<T: Into<super::Value>, const N: usize>`
+- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(array: [T; N]) -> Self`
+- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(n: i16) -> Self`
+- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from((): ()) -> Self`
-  Convert `()` to `Value::Null`.
+- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(f: f32) -> Self`
-  Convert 32-bit floating point number to `Value::Number`, or
+- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(f: bool) -> Self`
-  Convert boolean to `Value::Bool`.
+- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(n: i32) -> Self`
+- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(n: usize) -> Self`
+- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(f: f64) -> Self`
-  Convert 64-bit floating point number to `Value::Number`, or
+- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_char<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(f: &str) -> Self`
-  Convert string slice to `Value::String`.
+- `fn deserialize_str<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_string<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(n: u64) -> Self`
+- `fn deserialize_bytes<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From<T: Into<super::Value>>`
+- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(f: Vec<T>) -> Self`
-  Convert a `Vec` to `Value::Array`.
+- `fn deserialize_unit<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_unit_struct<V>(self: Self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(f: Number) -> Self`
-  Convert `Number` to `Value::Number`.
+- `fn deserialize_seq<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From`
+- `fn deserialize_tuple<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(f: String) -> Self`
-  Convert `String` to `Value::String`.
+- `fn deserialize_tuple_struct<V>(self: Self, _name: &'static str, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From<T>`
+- `fn deserialize_map<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(opt: Option<T>) -> Self`
+- `fn deserialize_struct<V>(self: Self, _name: &'static str, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From<T: Clone + Into<super::Value>>`
+- `fn deserialize_identifier<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn from(f: &[T]) -> Self`
-  Convert a slice to `Value::Array`.
+- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl From<'a>`
+##### `impl Display`
 
-- `fn from(f: Cow<'a, str>) -> Self`
-  Convert copy-on-write string to `Value::String`.
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl From`
-
-- `fn from(n: u8) -> Self`
-
-##### `impl From`
-
-- `fn from(n: isize) -> Self`
+##### `impl Eq`
 
 ##### `impl FromIterator<K: Into<alloc::string::String>, V: Into<super::Value>>`
 
 - `fn from_iter<I: IntoIterator<Item = (K, V)>>(iter: I) -> Self`
-  Create a `Value::Object` by collecting an iterator of key-value pairs.
-
-##### `impl FromIterator<T: Into<super::Value>>`
-
-- `fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
-  Create a `Value::Array` by collecting an iterator of array elements.
 
 ##### `impl FromStr`
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Value, Error>`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoDeserializer<'de>`
-
-- `type Deserializer = Value`
-
-- `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone`
-
-- `fn clone(self: &Self) -> Value`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-  Display a JSON value as a string.
-
-##### `impl Eq`
+- `fn from_str(s: &str) -> Result<Value, Error>` — [`Value`](../value/index.md), [`Error`](../error/index.md)
 
 ##### `impl Hash`
 
@@ -1472,191 +1046,31 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 - `type Output = Value`
 
-- `fn index(self: &Self, index: I) -> &Value`
-  Index into a `serde_json::Value` using the syntax `value[0]` or
+- `fn index(self: &Self, index: I) -> &Value` — [`Value`](../value/index.md)
 
 ##### `impl IndexMut<I>`
 
-- `fn index_mut(self: &mut Self, index: I) -> &mut Value`
-  Write into a `serde_json::Value` using the syntax `value[0] = ...` or
+- `fn index_mut(self: &mut Self, index: I) -> &mut Value` — [`Value`](../value/index.md)
+
+##### `impl IntoDeserializer<'de>`
+
+- `type Deserializer = Value`
+
+- `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &i32) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &bool) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &&str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &isize) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &f32) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &String) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Value) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &u16) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &u64) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &i8) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &u8) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &i64) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &usize) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &i16) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &u32) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &str) -> bool`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &f64) -> bool`
-
-##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> Value`
-
-##### `impl Deserialize<'de>`
-
-- `fn deserialize<D>(deserializer: D) -> Result<Value, <D as >::Error>`
-
-##### `impl DeserializeOwned<T>`
-
-##### `impl Deserializer<'de>`
-
-- `type Error = Error`
-
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_char<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_str<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_string<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_bytes<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_unit<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_unit_struct<V>(self: Self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_seq<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_tuple<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_tuple_struct<V>(self: Self, _name: &'static str, _len: usize, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_map<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_struct<V>(self: Self, _name: &'static str, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_identifier<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
-
-- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>`
+- `fn eq(self: &Self, other: &Value) -> bool` — [`Value`](../value/index.md)
 
 ##### `impl Serialize`
 
 - `fn serialize<S>(self: &Self, serializer: S) -> result::Result<<S as >::Ok, <S as >::Error>`
+
+##### `impl StructuralPartialEq`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
 
 ## Functions
 

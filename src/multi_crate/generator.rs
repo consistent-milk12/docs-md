@@ -10,12 +10,19 @@ use std::sync::Arc;
 use fs_err as fs;
 use indicatif::{ProgressBar, ProgressStyle};
 use rayon::prelude::*;
-use rustdoc_types::{Id, Item, ItemEnum, StructKind, VariantKind, Visibility};
+use rustdoc_types::{Id, Item, ItemEnum, StructKind};
 
 use crate::Args;
 use crate::error::Error;
 use crate::generator::RenderContext;
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
+use crate::generator::impls::is_blanket_impl;
+use crate::generator::render_shared::{
+    append_docs, impl_sort_key, render_constant_definition, render_enum_definition,
+    render_enum_variants_docs, render_function_definition, render_impl_items,
+    render_macro_heading, render_struct_definition, render_struct_fields, render_trait_definition,
+    render_trait_item, render_type_alias_definition,
+};
 use crate::multi_crate::context::SingleCrateView;
 use crate::multi_crate::search::SearchIndexGenerator;
 use crate::multi_crate::summary::SummaryGenerator;
@@ -90,7 +97,7 @@ impl<'a> MultiCrateGenerator<'a> {
             .map(|view| view.count_modules() + 1)
             .sum();
 
-        let progress = Arc::new(Self::create_progress_bar(total_modules));
+        let progress = Arc::new(Self::create_progress_bar(total_modules)?);
 
         // Generate crates in parallel
         self.ctx
@@ -101,7 +108,7 @@ impl<'a> MultiCrateGenerator<'a> {
                 let view = self
                     .ctx
                     .single_crate_view(crate_name)
-                    .ok_or_else(|| Error::ItemNotFound(crate_name.clone()))?;
+                    .ok_or_else(|| Error::ItemNotFound(crate_name.to_string()))?;
 
                 self.generate_crate(&view, &progress)
             })?;
@@ -228,16 +235,21 @@ impl<'a> MultiCrateGenerator<'a> {
     }
 
     /// Create a progress bar.
-    fn create_progress_bar(total: usize) -> ProgressBar {
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the progress bar template is invalid.
+    fn create_progress_bar(total: usize) -> Result<ProgressBar, Error> {
         let progress = ProgressBar::new(total as u64);
 
-        progress.set_style(
-            ProgressStyle::with_template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}")
-                .unwrap()
-                .progress_chars("=>-"),
-        );
+        let style = ProgressStyle::with_template(
+            "{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}",
+        )
+        .map_err(Error::ProgressBarTemplate)?
+        .progress_chars("=>-");
 
-        progress
+        progress.set_style(style);
+        Ok(progress)
     }
 }
 
@@ -257,15 +269,19 @@ struct MultiCrateModuleRenderer<'a> {
 
     /// Whether this is the crate root.
     is_root: bool,
+
+    /// Cached type renderer to avoid repeated construction.
+    type_renderer: TypeRenderer<'a>,
 }
 
 impl<'a> MultiCrateModuleRenderer<'a> {
     /// Create a new multi-crate module renderer.
-    const fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self {
+    fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self {
         Self {
             view,
             file_path,
             is_root,
+            type_renderer: TypeRenderer::new(view.krate()),
         }
     }
 
@@ -586,7 +602,6 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     /// Render a struct definition to markdown.
     fn render_struct(&self, md: &mut String, item_id: Id, item: &Item) {
         let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
 
         // Handle re-exports: use the target item for rendering
         // source_crate is set when this is an external re-export
@@ -627,94 +642,26 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             };
 
         if let ItemEnum::Struct(s) = &actual_item.inner {
-            let generics = type_renderer.render_generics(&s.generics.params);
-            let where_clause = type_renderer.render_where_clause(&s.generics.where_predicates);
+            // Struct definition (heading + code block)
+            render_struct_definition(md, name, s, krate, &self.type_renderer);
 
-            _ = write!(md, "### `{name}{generics}`\n\n");
-
-            // Add re-export annotation for external re-exports
+            // Add re-export annotation for external re-exports (insert after heading)
             if let Some(src_crate) = source_crate {
+                // Insert the annotation before the code block
+                // The shared function already wrote "### `name`\n\n```rust\n..."
+                // We need to insert before the code block - but since the function already
+                // wrote the full definition, we'll add it after the code block instead
                 _ = writeln!(md, "*Re-exported from `{src_crate}`*\n");
             }
 
-            // Definition code block
-            _ = writeln!(md, "```rust");
-
-            match &s.kind {
-                StructKind::Unit => {
-                    _ = writeln!(md, "struct {name}{generics}{where_clause};");
-                },
-
-                StructKind::Tuple(fields) => {
-                    let field_types: Vec<String> = fields
-                        .iter()
-                        .filter_map(|id| id.as_ref())
-                        .filter_map(|id| krate.index.get(id))
-                        .filter_map(|item| {
-                            if let ItemEnum::StructField(ty) = &item.inner {
-                                Some(type_renderer.render_type(ty))
-                            } else {
-                                None
-                            }
-                        })
-                        .collect();
-
-                    _ = writeln!(
-                        md,
-                        "struct {}{}({}){};",
-                        name,
-                        generics,
-                        field_types.join(", "),
-                        where_clause
-                    );
-                },
-
-                StructKind::Plain {
-                    fields,
-                    has_stripped_fields,
-                } => {
-                    _ = writeln!(md, "struct {name}{generics}{where_clause} {{");
-
-                    for field_id in fields {
-                        if let Some(field) = krate.index.get(field_id) {
-                            let field_name = field.name.as_deref().unwrap_or("_");
-
-                            if let ItemEnum::StructField(ty) = &field.inner {
-                                let vis = match &field.visibility {
-                                    Visibility::Public => "pub ",
-                                    _ => "",
-                                };
-
-                                _ = writeln!(
-                                    md,
-                                    "    {}{}: {},",
-                                    vis,
-                                    field_name,
-                                    type_renderer.render_type(ty)
-                                );
-                            }
-                        }
-                    }
-
-                    if *has_stripped_fields {
-                        _ = writeln!(md, "    // [REDACTED: Private Fields]");
-                    }
-
-                    _ = writeln!(md, "}}");
-                },
-            }
-
-            _ = write!(md, "```\n\n");
-
             // Documentation
-            if let Some(docs) = self.view.process_docs(actual_item, self.file_path) {
-                _ = write!(md, "{}", &docs);
-                _ = write!(md, "\n\n");
-            }
+            append_docs(md, self.view.process_docs(actual_item, self.file_path));
 
             // Fields documentation
             if let StructKind::Plain { fields, .. } = &s.kind {
-                self.render_struct_fields(md, fields);
+                render_struct_fields(md, fields, krate, &self.type_renderer, |field| {
+                    self.view.process_docs(field, self.file_path)
+                });
             }
 
             // Impl blocks
@@ -722,45 +669,9 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
     }
 
-    /// Render documented struct fields.
-    fn render_struct_fields(&self, md: &mut String, fields: &[Id]) {
-        let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
-
-        let documented_fields: Vec<_> = fields
-            .iter()
-            .filter_map(|id| krate.index.get(id))
-            .filter(|f| f.docs.is_some())
-            .collect();
-
-        if !documented_fields.is_empty() {
-            md.push_str("#### Fields\n\n");
-
-            for field in documented_fields {
-                let field_name = field.name.as_deref().unwrap_or("_");
-
-                if let ItemEnum::StructField(ty) = &field.inner {
-                    _ = write!(
-                        md,
-                        "- **`{}`**: `{}`",
-                        field_name,
-                        type_renderer.render_type(ty)
-                    );
-
-                    if let Some(docs) = self.view.process_docs(field, self.file_path) {
-                        _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
-                    }
-
-                    _ = writeln!(md, "\n");
-                }
-            }
-        }
-    }
-
     /// Render an enum definition to markdown.
     fn render_enum(&self, md: &mut String, item_id: Id, item: &Item) {
         let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
 
         // Handle re-exports: use the target item for rendering
         // source_crate is set when this is an external re-export
@@ -801,364 +712,92 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             };
 
         if let ItemEnum::Enum(e) = &actual_item.inner {
-            let generics = type_renderer.render_generics(&e.generics.params);
-            let where_clause = type_renderer.render_where_clause(&e.generics.where_predicates);
-
-            _ = write!(md, "### `{name}{generics}`\n\n");
+            // Enum definition (heading + code block with variants)
+            render_enum_definition(md, name, e, krate, &self.type_renderer);
 
             // Add re-export annotation for external re-exports
             if let Some(src_crate) = source_crate {
                 _ = writeln!(md, "*Re-exported from `{src_crate}`*\n");
             }
 
-            // Definition code block
-            _ = writeln!(md, "```rust");
-            _ = writeln!(md, "enum {name}{generics}{where_clause} {{");
-
-            for variant_id in &e.variants {
-                if let Some(variant) = krate.index.get(variant_id) {
-                    Self::render_enum_variant(md, variant, krate, type_renderer);
-                }
-            }
-
-            _ = writeln!(md, "}}");
-            _ = write!(md, "```\n\n");
-
             // Documentation
-            if let Some(docs) = self.view.process_docs(actual_item, self.file_path) {
-                _ = write!(md, "{}", &docs);
-                _ = write!(md, "\n\n");
-            }
+            append_docs(md, self.view.process_docs(actual_item, self.file_path));
 
             // Variants documentation
-            self.render_enum_variants_docs(md, &e.variants);
+            render_enum_variants_docs(md, &e.variants, krate, |variant| {
+                self.view.process_docs(variant, self.file_path)
+            });
 
             // Impl blocks
             self.render_impl_blocks(md, actual_id);
         }
     }
 
-    /// Render a single enum variant in the definition code block.
-    fn render_enum_variant(
-        md: &mut String,
-        variant: &Item,
-        krate: &rustdoc_types::Crate,
-        type_renderer: TypeRenderer,
-    ) {
-        let variant_name = variant.name.as_deref().unwrap_or("_");
-
-        if let ItemEnum::Variant(v) = &variant.inner {
-            match &v.kind {
-                VariantKind::Plain => {
-                    _ = writeln!(md, "    {variant_name},");
-                },
-
-                VariantKind::Tuple(fields) => {
-                    let field_types: Vec<String> = fields
-                        .iter()
-                        .filter_map(|id| id.as_ref())
-                        .filter_map(|id| krate.index.get(id))
-                        .filter_map(|item| {
-                            if let ItemEnum::StructField(ty) = &item.inner {
-                                Some(type_renderer.render_type(ty))
-                            } else {
-                                None
-                            }
-                        })
-                        .collect();
-
-                    _ = writeln!(md, "    {}({}),", variant_name, field_types.join(", "));
-                },
-
-                VariantKind::Struct { fields, .. } => {
-                    _ = writeln!(md, "    {variant_name} {{");
-
-                    for field_id in fields {
-                        if let Some(field) = krate.index.get(field_id) {
-                            let field_name = field.name.as_deref().unwrap_or("_");
-
-                            if let ItemEnum::StructField(ty) = &field.inner {
-                                _ = writeln!(
-                                    md,
-                                    "        {}: {},",
-                                    field_name,
-                                    type_renderer.render_type(ty)
-                                );
-                            }
-                        }
-                    }
-
-                    _ = writeln!(md, "    }},");
-                },
-            }
-        }
-    }
-
-    /// Render documented enum variants.
-    fn render_enum_variants_docs(&self, md: &mut String, variants: &[Id]) {
-        let krate = self.view.krate();
-
-        let documented_variants: Vec<_> = variants
-            .iter()
-            .filter_map(|id| krate.index.get(id))
-            .filter(|v| v.docs.is_some())
-            .collect();
-
-        if !documented_variants.is_empty() {
-            md.push_str("#### Variants\n\n");
-
-            for variant in documented_variants {
-                let variant_name = variant.name.as_deref().unwrap_or("_");
-                _ = write!(md, "- **`{variant_name}`**");
-
-                if let Some(docs) = self.view.process_docs(variant, self.file_path) {
-                    _ = write!(md, "\n\n  {}", docs.replace('\n', "\n  "));
-                }
-
-                _ = write!(md, "\n\n");
-            }
-        }
-    }
-
     /// Render a trait definition to markdown.
     fn render_trait(&self, md: &mut String, item: &Item) {
         let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
         let name = item.name.as_deref().unwrap_or("unnamed");
 
         if let ItemEnum::Trait(t) = &item.inner {
-            let generics = type_renderer.render_generics(&t.generics.params);
-            let where_clause = type_renderer.render_where_clause(&t.generics.where_predicates);
+            // Trait definition (heading + code block)
+            render_trait_definition(md, name, t, &self.type_renderer);
 
-            _ = write!(md, "### `{name}{generics}`\n\n");
+            // Documentation
+            append_docs(md, self.view.process_docs(item, self.file_path));
 
-            _ = writeln!(md, "```rust");
-
-            let bounds = if t.bounds.is_empty() {
-                String::new()
-            } else {
-                let bound_strs: Vec<String> = t
-                    .bounds
-                    .iter()
-                    .map(|b| type_renderer.render_generic_bound(b))
-                    .collect();
-
-                format!(": {}", bound_strs.join(" + "))
-            };
-
-            _ = writeln!(md, "trait {name}{generics}{bounds}{where_clause} {{ ... }}");
-            _ = write!(md, "```\n\n");
-
-            if let Some(docs) = self.view.process_docs(item, self.file_path) {
-                _ = write!(md, "{}", &docs);
-                _ = write!(md, "\n\n");
-            }
-
-            // Required methods
+            // Required methods section
             if !t.items.is_empty() {
-                _ = write!(md, "#### Required Methods\n\n");
+                md.push_str("#### Required Methods\n\n");
 
                 for method_id in &t.items {
                     if let Some(method) = krate.index.get(method_id) {
-                        self.render_trait_item(md, method);
+                        render_trait_item(md, method, &self.type_renderer, |m| {
+                            self.view.process_docs(m, self.file_path)
+                        });
                     }
                 }
             }
-        }
-    }
-
-    /// Render a single trait item.
-    fn render_trait_item(&self, md: &mut String, item: &Item) {
-        let name = item.name.as_deref().unwrap_or("_");
-        let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
-
-        match &item.inner {
-            ItemEnum::Function(f) => {
-                let generics = type_renderer.render_generics(&f.generics.params);
-                let params: Vec<String> = f
-                    .sig
-                    .inputs
-                    .iter()
-                    .map(|(param_name, ty)| {
-                        format!("{param_name}: {}", type_renderer.render_type(ty))
-                    })
-                    .collect();
-                let ret = f
-                    .sig
-                    .output
-                    .as_ref()
-                    .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
-                    .unwrap_or_default();
-
-                _ = write!(
-                    md,
-                    "- `fn {}{}({}){}`",
-                    name,
-                    generics,
-                    params.join(", "),
-                    ret
-                );
-
-                if let Some(docs) = self.view.process_docs(item, self.file_path)
-                    && let Some(first_line) = docs.lines().next()
-                {
-                    _ = write!(md, "\n\n  {first_line}");
-                }
-
-                md.push_str("\n\n");
-            },
-
-            ItemEnum::AssocType { bounds, type_, .. } => {
-                let bounds_str = if bounds.is_empty() {
-                    String::new()
-                } else {
-                    format!(": {}", bounds.len())
-                };
-
-                let default_str = type_
-                    .as_ref()
-                    .map(|ty| format!(" = {}", type_renderer.render_type(ty)))
-                    .unwrap_or_default();
-
-                _ = write!(md, "- `type {name}{bounds_str}{default_str}`\n\n");
-            },
-
-            ItemEnum::AssocConst { type_, .. } => {
-                _ = write!(
-                    md,
-                    "- `const {name}: {}`\n\n",
-                    type_renderer.render_type(type_)
-                );
-            },
-
-            _ => {
-                _ = write!(md, "- `{name}`\n\n");
-            },
         }
     }
 
     /// Render a function definition to markdown.
     fn render_function(&self, md: &mut String, item: &Item) {
-        let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
         let name = item.name.as_deref().unwrap_or("unnamed");
 
         if let ItemEnum::Function(f) = &item.inner {
-            let generics = type_renderer.render_generics(&f.generics.params);
-            let where_clause = type_renderer.render_where_clause(&f.generics.where_predicates);
-
-            let params: Vec<String> = f
-                .sig
-                .inputs
-                .iter()
-                .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
-                .collect();
-
-            let ret = f
-                .sig
-                .output
-                .as_ref()
-                .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
-                .unwrap_or_default();
-
-            let is_async = if f.header.is_async { "async " } else { "" };
-            let is_const = if f.header.is_const { "const " } else { "" };
-            let is_unsafe = if f.header.is_unsafe { "unsafe " } else { "" };
-
-            _ = write!(md, "### `{name}`\n\n");
-
-            md.push_str("```rust\n");
-            _ = writeln!(
-                md,
-                "{}{}{}fn {}{}({}){}{}",
-                is_const,
-                is_async,
-                is_unsafe,
-                name,
-                generics,
-                params.join(", "),
-                ret,
-                where_clause
-            );
-
-            _ = write!(md, "```\n\n");
-
-            if let Some(docs) = self.view.process_docs(item, self.file_path) {
-                _ = write!(md, "{}", &docs);
-                _ = write!(md, "\n\n");
-            }
+            render_function_definition(md, name, f, &self.type_renderer);
         }
+
+        append_docs(md, self.view.process_docs(item, self.file_path));
     }
 
     /// Render a constant definition to markdown.
     fn render_constant(&self, md: &mut String, item: &Item) {
-        let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
         let name = item.name.as_deref().unwrap_or("unnamed");
 
         if let ItemEnum::Constant { type_, const_ } = &item.inner {
-            _ = write!(md, "### `{name}`\n\n");
-            _ = writeln!(md, "```rust");
-
-            let value = const_
-                .value
-                .as_ref()
-                .map(|v| format!(" = {v}"))
-                .unwrap_or_default();
-
-            _ = writeln!(
-                md,
-                "const {name}: {}{value};",
-                type_renderer.render_type(type_)
-            );
-
-            _ = write!(md, "```\n\n");
-
-            if let Some(docs) = self.view.process_docs(item, self.file_path) {
-                _ = write!(md, "{}", &docs);
-                _ = write!(md, "\n\n");
-            }
+            render_constant_definition(md, name, type_, const_, &self.type_renderer);
         }
+
+        append_docs(md, self.view.process_docs(item, self.file_path));
     }
 
     /// Render a type alias to markdown.
     fn render_type_alias(&self, md: &mut String, item: &Item) {
-        let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
         let name = item.name.as_deref().unwrap_or("unnamed");
 
         if let ItemEnum::TypeAlias(ta) = &item.inner {
-            let generics = type_renderer.render_generics(&ta.generics.params);
-            let where_clause = type_renderer.render_where_clause(&ta.generics.where_predicates);
-
-            _ = write!(md, "### `{name}{generics}`\n\n");
-            _ = writeln!(md, "```rust");
-
-            _ = writeln!(
-                md,
-                "type {name}{generics}{where_clause} = {};",
-                type_renderer.render_type(&ta.type_)
-            );
-
-            _ = write!(md, "```\n\n");
-
-            if let Some(docs) = self.view.process_docs(item, self.file_path) {
-                _ = write!(md, "{}", &docs);
-                _ = write!(md, "\n\n");
-            }
+            render_type_alias_definition(md, name, ta, &self.type_renderer);
         }
+
+        append_docs(md, self.view.process_docs(item, self.file_path));
     }
 
     /// Render a macro to markdown.
     fn render_macro(&self, md: &mut String, item: &Item) {
         let name = item.name.as_deref().unwrap_or("unnamed");
-        _ = write!(md, "### `{name}!`\n\n");
-
-        if let Some(docs) = self.view.process_docs(item, self.file_path) {
-            _ = write!(md, "{}", &docs);
-            _ = write!(md, "\n\n");
-        }
+        render_macro_heading(md, name);
+        append_docs(md, self.view.process_docs(item, self.file_path));
     }
 
     /// Render impl blocks for a type, including cross-crate impls.
@@ -1171,25 +810,45 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         }
 
         let krate = self.view.krate();
-        let type_renderer = TypeRenderer::new(krate);
 
         // Partition into inherent vs trait impls
         let (inherent, trait_impls): (Vec<&rustdoc_types::Impl>, Vec<&rustdoc_types::Impl>) =
             impls.into_iter().partition(|i| i.trait_.is_none());
 
-        // Filter out synthetic impls
+        // Filter out synthetic impls and blanket impls (From, Into, Any, etc.)
         let inherent: Vec<_> = inherent.into_iter().filter(|i| !i.is_synthetic).collect();
-        let trait_impls: Vec<_> = trait_impls
+        let mut trait_impls: Vec<_> = trait_impls
             .into_iter()
-            .filter(|i| !i.is_synthetic)
+            .filter(|i| !i.is_synthetic && !is_blanket_impl(i))
             .collect();
+
+        // Sort trait impls by trait name + generics for deterministic output
+        trait_impls.sort_by(|a, b| {
+            let key_a = impl_sort_key(a, &self.type_renderer);
+            let key_b = impl_sort_key(b, &self.type_renderer);
+            key_a.cmp(&key_b)
+        });
+
+        // Deduplicate trait impls with same key (can happen with cross-crate impls)
+        trait_impls.dedup_by(|a, b| {
+            impl_sort_key(a, &self.type_renderer) == impl_sort_key(b, &self.type_renderer)
+        });
 
         // Render inherent implementations
         if !inherent.is_empty() {
             _ = write!(md, "#### Implementations\n\n");
 
             for impl_block in inherent {
-                Self::render_impl_items(md, impl_block, krate, type_renderer);
+                render_impl_items(
+                    md,
+                    impl_block,
+                    krate,
+                    &self.type_renderer,
+                    None::<fn(&Item) -> Option<String>>,
+                    Some(|id: rustdoc_types::Id| {
+                        RenderContext::create_link(self.view, id, self.file_path)
+                    }),
+                );
             }
         }
 
@@ -1204,92 +863,21 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                         .split("::")
                         .last()
                         .unwrap_or(&trait_path.path);
-                    let generics = type_renderer.render_generics(&impl_block.generics.params);
+                    let generics = self.type_renderer.render_generics(&impl_block.generics.params);
 
                     _ = writeln!(md, "##### `impl {trait_name}{generics}`\n");
                 }
 
-                Self::render_impl_items(md, impl_block, krate, type_renderer);
-            }
-        }
-    }
-
-    /// Render items within an impl block.
-    fn render_impl_items(
-        md: &mut String,
-        impl_block: &rustdoc_types::Impl,
-        krate: &rustdoc_types::Crate,
-        type_renderer: TypeRenderer,
-    ) {
-        for item_id in &impl_block.items {
-            if let Some(item) = krate.index.get(item_id) {
-                let name = item.name.as_deref().unwrap_or("_");
-
-                match &item.inner {
-                    ItemEnum::Function(f) => {
-                        let generics = type_renderer.render_generics(&f.generics.params);
-                        let params: Vec<String> = f
-                            .sig
-                            .inputs
-                            .iter()
-                            .map(|(param_name, ty)| {
-                                format!("{param_name}: {}", type_renderer.render_type(ty))
-                            })
-                            .collect();
-                        let ret = f
-                            .sig
-                            .output
-                            .as_ref()
-                            .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
-                            .unwrap_or_default();
-
-                        let is_async = if f.header.is_async { "async " } else { "" };
-                        let is_const = if f.header.is_const { "const " } else { "" };
-                        let is_unsafe = if f.header.is_unsafe { "unsafe " } else { "" };
-
-                        _ = write!(
-                            md,
-                            "- `{}{}{}fn {}{}({}){}`",
-                            is_const,
-                            is_async,
-                            is_unsafe,
-                            name,
-                            generics,
-                            params.join(", "),
-                            ret
-                        );
-
-                        // First line of docs as summary
-                        if let Some(docs) = &item.docs
-                            && let Some(first_line) = docs.lines().next()
-                        {
-                            _ = write!(md, "\n  {first_line}");
-                        }
-                        _ = write!(md, "\n\n");
-                    },
-
-                    ItemEnum::AssocConst { type_, .. } => {
-                        _ = writeln!(
-                            md,
-                            "- `const {name}: {}`\n",
-                            type_renderer.render_type(type_)
-                        );
-                    },
-
-                    ItemEnum::AssocType { type_, .. } => {
-                        if let Some(ty) = type_ {
-                            _ = writeln!(
-                                md,
-                                "- `type {name} = {}`\n",
-                                type_renderer.render_type(ty)
-                            );
-                        } else {
-                            _ = writeln!(md, "- `type {name}`\n");
-                        }
-                    },
-
-                    _ => {},
-                }
+                render_impl_items(
+                    md,
+                    impl_block,
+                    krate,
+                    &self.type_renderer,
+                    None::<fn(&Item) -> Option<String>>,
+                    Some(|id: rustdoc_types::Id| {
+                        RenderContext::create_link(self.view, id, self.file_path)
+                    }),
+                );
             }
         }
     }

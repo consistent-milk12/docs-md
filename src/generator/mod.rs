@@ -42,10 +42,11 @@ mod capture;
 mod context;
 pub mod doc_links;
 mod flat;
-mod impls;
+pub mod impls;
 mod items;
 pub mod module;
 mod nested;
+pub mod render_shared;
 
 pub use breadcrumbs::BreadcrumbGenerator;
 pub use capture::MarkdownCapture;
@@ -135,7 +136,7 @@ impl<'a> Generator<'a> {
 
         // Set up progress bar
         let total_modules = self.ctx.count_modules(self.root_item) + 1;
-        let progress = Self::create_progress_bar(total_modules);
+        let progress = Self::create_progress_bar(total_modules)?;
 
         // Dispatch to format-specific generator
         match self.args.format {
@@ -154,16 +155,19 @@ impl<'a> Generator<'a> {
     }
 
     /// Create a progress bar for user feedback.
-    fn create_progress_bar(total: usize) -> ProgressBar {
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if the progress bar template is invalid.
+    fn create_progress_bar(total: usize) -> Result<ProgressBar, Error> {
         let progress = ProgressBar::new(total as u64);
-        progress.set_style(
-            ProgressStyle::with_template(
-                "{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} modules",
-            )
-            .unwrap()
-            .progress_chars("=>-"),
-        );
-        progress
+        let style = ProgressStyle::with_template(
+            "{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} modules",
+        )
+        .map_err(Error::ProgressBarTemplate)?
+        .progress_chars("=>-");
+        progress.set_style(style);
+        Ok(progress)
     }
 
     /// Generate documentation to memory instead of disk.
@@ -200,6 +204,7 @@ impl<'a> Generator<'a> {
             output: std::path::PathBuf::new(),
             format,
             include_private,
+            include_blanket_impls: false,
         };
 
         let root_item = krate

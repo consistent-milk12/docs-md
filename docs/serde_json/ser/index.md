@@ -12,7 +12,8 @@ Serialize a Rust data structure into JSON data.
 
 ```rust
 struct Serializer<W, F> {
-    // [REDACTED: Private Fields]
+    writer: W,
+    formatter: F,
 }
 ```
 
@@ -20,53 +21,7 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- `fn with_formatter(writer: W, formatter: F) -> Self`
-  Creates a new JSON visitor whose output will be written to the writer
-
-- `fn into_inner(self: Self) -> W`
-  Unwrap the `Writer` from the `Serializer`.
-
-- `fn new(writer: W) -> Self`
-  Creates a new JSON serializer.
-
 - `fn pretty(writer: W) -> Self`
-  Creates a new JSON pretty print serializer.
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `CompactFormatter`
 
@@ -78,57 +33,9 @@ This structure compacts a JSON value with no extra whitespace.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> CompactFormatter`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Formatter`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> CompactFormatter` — [`CompactFormatter`](../../ser/index.md)
 
 ##### `impl Debug`
 
@@ -136,13 +43,17 @@ This structure compacts a JSON value with no extra whitespace.
 
 ##### `impl Default`
 
-- `fn default() -> CompactFormatter`
+- `fn default() -> CompactFormatter` — [`CompactFormatter`](../../ser/index.md)
+
+##### `impl Formatter`
 
 ### `PrettyFormatter<'a>`
 
 ```rust
 struct PrettyFormatter<'a> {
-    // [REDACTED: Private Fields]
+    current_indent: usize,
+    has_value: bool,
+    indent: &'a [u8],
 }
 ```
 
@@ -151,42 +62,22 @@ This structure pretty prints a JSON value to make it human readable.
 #### Implementations
 
 - `fn new() -> Self`
-  Construct a pretty printer formatter that defaults to using two spaces for indentation.
 
 - `fn with_indent(indent: &'a [u8]) -> Self`
-  Construct a pretty printer formatter that uses the `indent` string for indentation.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a>`
 
-- `fn clone(self: &Self) -> PrettyFormatter<'a>`
+- `fn clone(self: &Self) -> PrettyFormatter<'a>` — [`PrettyFormatter`](../../ser/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug<'a>`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default<'a>`
+
+- `fn default() -> Self`
 
 ##### `impl Formatter<'a>`
 
@@ -207,34 +98,6 @@ This structure pretty prints a JSON value to make it human readable.
 - `fn begin_object_value<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
 
 - `fn end_object_value<W>(self: &mut Self, _writer: &mut W) -> io::Result<()>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default<'a>`
-
-- `fn default() -> Self`
 
 ## Enums
 
@@ -294,42 +157,6 @@ Represents a character escape code in a type-safe manner.
 
   An escaped ASCII plane control character (usually escaped as
   `\u00XX` where `XX` are two hex characters)
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

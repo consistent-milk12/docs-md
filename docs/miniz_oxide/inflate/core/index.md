@@ -16,83 +16,117 @@ Streaming decompression functionality.
 
 ```rust
 struct DecompressorOxide {
-    // [REDACTED: Private Fields]
+    state: core::State,
+    num_bits: u32,
+    z_header0: u32,
+    z_header1: u32,
+    z_adler32: u32,
+    finish: u8,
+    block_type: u8,
+    check_adler32: u32,
+    dist: u32,
+    counter: u32,
+    num_extra: u8,
+    table_sizes: [u16; 3],
+    bit_buf: u64,
+    tables: [HuffmanTable; 3],
+    code_size_literal: [u8; 288],
+    code_size_dist: [u8; 32],
+    code_size_huffman: [u8; 19],
+    raw_header: [u8; 4],
+    len_codes: [u8; 512],
 }
 ```
 
 Main decompression struct.
 
 
+#### Fields
+
+- **`state`**: `core::State`
+
+  Current state of the decompressor.
+
+- **`num_bits`**: `u32`
+
+  Number of bits in the bit buffer.
+
+- **`z_header0`**: `u32`
+
+  Zlib CMF
+
+- **`z_header1`**: `u32`
+
+  Zlib FLG
+
+- **`z_adler32`**: `u32`
+
+  Adler32 checksum from the zlib header.
+
+- **`finish`**: `u8`
+
+  1 if the current block is the last block, 0 otherwise.
+
+- **`block_type`**: `u8`
+
+  The type of the current block.
+  or if in a dynamic block, which huffman table we are currently
+
+- **`check_adler32`**: `u32`
+
+  1 if the adler32 value should be checked.
+
+- **`dist`**: `u32`
+
+  Last match distance.
+
+- **`counter`**: `u32`
+
+  Variable used for match length, symbols, and a number of other things.
+
+- **`num_extra`**: `u8`
+
+  Number of extra bits for the last length or distance code.
+
+- **`table_sizes`**: `[u16; 3]`
+
+  Number of entries in each huffman table.
+
+- **`bit_buf`**: `u64`
+
+  Buffer of input data.
+
+- **`tables`**: `[HuffmanTable; 3]`
+
+  Huffman tables.
+
+- **`raw_header`**: `[u8; 4]`
+
+  Raw block header.
+
+- **`len_codes`**: `[u8; 512]`
+
+  Huffman length codes.
+
 #### Implementations
 
-- `fn new() -> DecompressorOxide`
-  Create a new tinfl_decompressor with all fields set to 0.
+- `fn new() -> DecompressorOxide` — [`DecompressorOxide`](../../../inflate/core/index.md)
 
 - `fn init(self: &mut Self)`
-  Set the current state to `Start`.
 
 - `fn adler32(self: &Self) -> Option<u32>`
-  Returns the adler32 checksum of the currently decompressed data.
 
 - `fn adler32_header(self: &Self) -> Option<u32>`
-  Returns the adler32 that was read from the zlib header if it exists.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DecompressorOxide`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> DecompressorOxide` — [`DecompressorOxide`](../../../inflate/core/index.md)
 
 ##### `impl Default`
 
 - `fn default() -> Self`
-  Create a new tinfl_decompressor with all fields set to 0.
 
 ## Functions
 

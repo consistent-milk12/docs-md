@@ -60,37 +60,15 @@ kernel, and `Write` means the kernel writing data to userspace.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Direction`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Direction` — [`Direction`](../../ioctl/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -100,41 +78,17 @@ kernel, and `Write` means the kernel writing data to userspace.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &Direction) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &Direction) -> $crate::cmp::Ordering` — [`Direction`](../../ioctl/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Direction) -> bool`
+- `fn eq(self: &Self, other: &Direction) -> bool` — [`Direction`](../../ioctl/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Direction) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &Direction) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Direction`](../../ioctl/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 
@@ -206,7 +160,7 @@ generic file descriptors, many drivers expose their own `ioctl` calls for
 controlling their behavior, some of which are proprietary.
 
 This crate exposes many other `ioctl` interfaces with safe and idiomatic
-wrappers, like [`ioctl_fionbio`](../index.md) and [`ioctl_fionread`](../index.md). It is recommended
+wrappers, like [`ioctl_fionbio`](../io/ioctl/index.md) and [`ioctl_fionread`](../io/ioctl/index.md). It is recommended
 to use those instead of this function, as they are safer and more
 idiomatic. For other cases, implement the [`Ioctl`](#ioctl) API and pass it to this
 function.

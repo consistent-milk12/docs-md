@@ -3,12 +3,54 @@
 //! This module provides the [`ImplRenderer`] struct which handles rendering
 //! impl blocks (both inherent and trait implementations) to markdown format.
 
+use std::borrow::Cow;
 use std::fmt::Write;
 
-use rustdoc_types::{Id, Impl, Item, ItemEnum};
+use rustdoc_types::{Id, Impl, Item};
 
 use crate::generator::context::RenderContext;
+use crate::generator::render_shared::{impl_sort_key, render_impl_items};
 use crate::types::TypeRenderer;
+
+/// Blanket trait implementations to filter from output.
+///
+/// These are automatically derived by the compiler and add noise to documentation
+/// without providing useful information. Users who want them can use `--include-blanket-impls`.
+const BLANKET_TRAITS: &[&str] = &[
+    // Identity/conversion traits (blanket impls)
+    "From",
+    "Into",
+    "TryFrom",
+    "TryInto",
+    // Reflection
+    "Any",
+    // Borrowing (trivial impls)
+    "Borrow",
+    "BorrowMut",
+    // Ownership
+    "ToOwned",
+    "CloneToUninit",
+];
+
+/// Check if an impl block is for a blanket trait that should be filtered.
+///
+/// Returns `true` if the impl is for one of the commonly auto-derived traits
+/// that add noise to documentation (From, Into, Any, Borrow, etc.).
+#[must_use]
+pub fn is_blanket_impl(impl_block: &Impl) -> bool {
+    let Some(trait_ref) = &impl_block.trait_ else {
+        return false;
+    };
+
+    // Extract the trait name (last segment of the path)
+    let trait_name = trait_ref
+        .path
+        .split("::")
+        .last()
+        .unwrap_or(&trait_ref.path);
+
+    BLANKET_TRAITS.contains(&trait_name)
+}
 
 /// Renders impl blocks to markdown.
 ///
@@ -26,6 +68,9 @@ pub struct ImplRenderer<'a> {
 
     /// Path of the current file being generated (for relative link calculation).
     current_file: &'a str,
+
+    /// Cached type renderer to avoid repeated construction.
+    type_renderer: TypeRenderer<'a>,
 }
 
 impl<'a> ImplRenderer<'a> {
@@ -36,7 +81,12 @@ impl<'a> ImplRenderer<'a> {
     /// * `ctx` - Render context (implements `RenderContext` trait)
     /// * `current_file` - Path of the current file (for relative link calculation)
     pub fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self {
-        Self { ctx, current_file }
+        let type_renderer = TypeRenderer::new(ctx.krate());
+        Self {
+            ctx,
+            current_file,
+            type_renderer,
+        }
     }
 
     /// Process documentation string to resolve intra-doc links.
@@ -70,11 +120,15 @@ impl<'a> ImplRenderer<'a> {
             impls.iter().partition(|i| i.trait_.is_some());
 
         // Sort trait impls by trait name + generics for deterministic output
-        let type_renderer = TypeRenderer::new(self.ctx.krate());
         trait_impls.sort_by(|a: &&&Impl, b: &&&Impl| {
-            let key_a = Self::impl_sort_key(a, type_renderer);
-            let key_b = Self::impl_sort_key(b, type_renderer);
+            let key_a = impl_sort_key(a, &self.type_renderer);
+            let key_b = impl_sort_key(b, &self.type_renderer);
             key_a.cmp(&key_b)
+        });
+
+        // Deduplicate trait impls with the same signature
+        trait_impls.dedup_by(|a, b| {
+            impl_sort_key(a, &self.type_renderer) == impl_sort_key(b, &self.type_renderer)
         });
 
         // === Inherent Implementations ===
@@ -86,33 +140,26 @@ impl<'a> ImplRenderer<'a> {
         }
 
         // === Trait Implementations ===
-        if !trait_impls.is_empty() {
+        // Filter out blanket impls (From, Into, Any, etc.) unless explicitly included
+        let filtered_trait_impls: Vec<_> = if self.ctx.include_blanket_impls() {
+            trait_impls
+        } else {
+            trait_impls
+                .into_iter()
+                .filter(|i| !is_blanket_impl(i))
+                .collect()
+        };
+
+        if !filtered_trait_impls.is_empty() {
             md.push_str("#### Trait Implementations\n\n");
-            for impl_block in trait_impls {
+            for impl_block in filtered_trait_impls {
                 self.render_trait_impl(md, impl_block);
             }
         }
     }
 
-    /// Generate a sort key for an impl block for deterministic ordering.
-    ///
-    /// Combines trait name, generic params, and for-type to create a unique key.
-    fn impl_sort_key(impl_block: &Impl, type_renderer: TypeRenderer) -> String {
-        let trait_name = impl_block
-            .trait_
-            .as_ref()
-            .map(|t| t.path.clone())
-            .unwrap_or_default();
-        let for_type = type_renderer.render_type(&impl_block.for_);
-        let generics = type_renderer.render_generics(&impl_block.generics.params);
-        format!("{trait_name}{generics}::{for_type}")
-    }
-
     /// Render a single trait implementation block.
     fn render_trait_impl(&self, md: &mut String, impl_block: &Impl) {
-        let krate = self.ctx.krate();
-        let type_renderer = TypeRenderer::new(krate);
-
         // Skip synthetic impls (auto-traits like Send, Sync, Unpin)
         if impl_block.is_synthetic {
             return;
@@ -131,8 +178,10 @@ impl<'a> ImplRenderer<'a> {
             })
             .unwrap_or_default();
 
-        let generics = type_renderer.render_generics(&impl_block.generics.params);
-        let for_type = type_renderer.render_type(&impl_block.for_);
+        let generics = self
+            .type_renderer
+            .render_generics(&impl_block.generics.params);
+        let for_type = self.type_renderer.render_type(&impl_block.for_);
 
         let unsafe_str = if impl_block.is_unsafe { "unsafe " } else { "" };
         let negative_str = if impl_block.is_negative { "!" } else { "" };
@@ -153,95 +202,17 @@ impl<'a> ImplRenderer<'a> {
     /// - **Associated Types**: `type Name = Type`
     ///
     /// For methods, the first line of documentation is included as a brief summary.
+    /// Type links are added for resolvable types in method signatures.
     fn render_impl_methods(&self, md: &mut String, impl_block: &Impl) {
         let krate = self.ctx.krate();
-        let type_renderer = TypeRenderer::new(krate);
-
-        for item_id in &impl_block.items {
-            if let Some(item) = krate.index.get(item_id) {
-                match &item.inner {
-                    ItemEnum::Function(f) => {
-                        self.render_impl_function(md, item, f);
-                    },
-
-                    ItemEnum::AssocConst { type_, .. } => {
-                        let name = item.name.as_deref().unwrap_or("_");
-                        _ = write!(
-                            md,
-                            "- `const {name}: {}`\n\n",
-                            type_renderer.render_type(type_)
-                        );
-                    },
-
-                    ItemEnum::AssocType { type_, .. } => {
-                        let name = item.name.as_deref().unwrap_or("_");
-
-                        if let Some(ty) = type_ {
-                            _ = write!(
-                                md,
-                                "- `type {name} = {}`\n\n",
-                                type_renderer.render_type(ty)
-                            );
-                        } else {
-                            _ = write!(md, "- `type {name}`\n\n");
-                        }
-                    },
-
-                    _ => {},
-                }
-            }
-        }
-    }
-
-    /// Render a function/method within an impl block.
-    fn render_impl_function(
-        &self,
-        md: &mut String,
-        item: &rustdoc_types::Item,
-        f: &rustdoc_types::Function,
-    ) {
-        let krate = self.ctx.krate();
-        let type_renderer = TypeRenderer::new(krate);
-        let name = item.name.as_deref().unwrap_or("_");
-        let generics = type_renderer.render_generics(&f.generics.params);
-
-        let params: Vec<String> = f
-            .sig
-            .inputs
-            .iter()
-            .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
-            .collect();
-
-        let ret = f
-            .sig
-            .output
-            .as_ref()
-            .map(|ty| format!(" -> {}", type_renderer.render_type(ty)))
-            .unwrap_or_default();
-
-        let is_async = if f.header.is_async { "async " } else { "" };
-        let is_const = if f.header.is_const { "const " } else { "" };
-        let is_unsafe = if f.header.is_unsafe { "unsafe " } else { "" };
-
-        _ = write!(
+        render_impl_items(
             md,
-            "- `{}{}{}fn {}{}({}){}`",
-            is_const,
-            is_async,
-            is_unsafe,
-            name,
-            generics,
-            params.join(", "),
-            ret
+            impl_block,
+            krate,
+            &self.type_renderer,
+            Some(|item: &Item| self.process_docs(item)),
+            Some(|id: rustdoc_types::Id| self.ctx.create_link(id, self.current_file)),
         );
-
-        if let Some(docs) = self.process_docs(item)
-            && let Some(first_line) = docs.lines().next()
-        {
-            _ = write!(md, "\n\n  {first_line}");
-        }
-
-        md.push_str("\n\n");
     }
 
     /// Render generic arguments for impl block signatures.
@@ -251,20 +222,17 @@ impl<'a> ImplRenderer<'a> {
     /// - **Parenthesized**: `(A, B) -> C` (for Fn traits)
     /// - **Return type notation**: `(..)` (experimental)
     fn render_generic_args_for_impl(&self, args: &rustdoc_types::GenericArgs) -> String {
-        let krate = self.ctx.krate();
-        let type_renderer = TypeRenderer::new(krate);
-
         match args {
             rustdoc_types::GenericArgs::AngleBracketed { args, constraints } => {
-                let mut parts: Vec<String> = args
+                let mut parts: Vec<Cow<str>> = args
                     .iter()
                     .map(|a| match a {
-                        rustdoc_types::GenericArg::Lifetime(lt) => lt.clone(),
-                        rustdoc_types::GenericArg::Type(ty) => type_renderer.render_type(ty),
-                        rustdoc_types::GenericArg::Const(c) => {
-                            c.value.clone().unwrap_or_else(|| c.expr.clone())
-                        },
-                        rustdoc_types::GenericArg::Infer => "_".to_string(),
+                        rustdoc_types::GenericArg::Lifetime(lt) => Cow::Borrowed(lt.as_str()),
+                        rustdoc_types::GenericArg::Type(ty) => self.type_renderer.render_type(ty),
+                        rustdoc_types::GenericArg::Const(c) => Cow::Borrowed(
+                            c.value.as_deref().unwrap_or(&c.expr),
+                        ),
+                        rustdoc_types::GenericArg::Infer => Cow::Borrowed("_"),
                     })
                     .collect();
 
@@ -278,19 +246,25 @@ impl<'a> ImplRenderer<'a> {
                     match &c.binding {
                         rustdoc_types::AssocItemConstraintKind::Equality(term) => {
                             let term_str = match term {
-                                rustdoc_types::Term::Type(ty) => type_renderer.render_type(ty),
-                                rustdoc_types::Term::Constant(c) => {
-                                    c.value.clone().unwrap_or_else(|| c.expr.clone())
+                                rustdoc_types::Term::Type(ty) => {
+                                    self.type_renderer.render_type(ty)
                                 },
+                                rustdoc_types::Term::Constant(c) => Cow::Borrowed(
+                                    c.value.as_deref().unwrap_or(&c.expr),
+                                ),
                             };
-                            format!("{}{constraint_args} = {term_str}", c.name)
+                            Cow::Owned(format!("{}{constraint_args} = {term_str}", c.name))
                         },
                         rustdoc_types::AssocItemConstraintKind::Constraint(bounds) => {
-                            let bound_strs: Vec<String> = bounds
+                            let bound_strs: Vec<Cow<str>> = bounds
                                 .iter()
-                                .map(|b| type_renderer.render_generic_bound(b))
+                                .map(|b| self.type_renderer.render_generic_bound(b))
                                 .collect();
-                            format!("{}{constraint_args}: {}", c.name, bound_strs.join(" + "))
+                            Cow::Owned(format!(
+                                "{}{constraint_args}: {}",
+                                c.name,
+                                bound_strs.iter().map(|s| s.as_ref()).collect::<Vec<_>>().join(" + ")
+                            ))
                         },
                     }
                 }));
@@ -298,20 +272,26 @@ impl<'a> ImplRenderer<'a> {
                 if parts.is_empty() {
                     String::new()
                 } else {
-                    format!("<{}>", parts.join(", "))
+                    format!(
+                        "<{}>",
+                        parts.iter().map(|s| s.as_ref()).collect::<Vec<_>>().join(", ")
+                    )
                 }
             },
 
             rustdoc_types::GenericArgs::Parenthesized { inputs, output } => {
-                let input_strs: Vec<String> = inputs
+                let input_strs: Vec<Cow<str>> = inputs
                     .iter()
-                    .map(|t| type_renderer.render_type(t))
+                    .map(|t| self.type_renderer.render_type(t))
                     .collect();
                 let ret = output
                     .as_ref()
-                    .map(|t| format!(" -> {}", type_renderer.render_type(t)))
+                    .map(|t| format!(" -> {}", self.type_renderer.render_type(t)))
                     .unwrap_or_default();
-                format!("({}){ret}", input_strs.join(", "))
+                format!(
+                    "({}){ret}",
+                    input_strs.iter().map(|s| s.as_ref()).collect::<Vec<_>>().join(", ")
+                )
             },
 
             rustdoc_types::GenericArgs::ReturnTypeNotation => " (..)".to_string(),

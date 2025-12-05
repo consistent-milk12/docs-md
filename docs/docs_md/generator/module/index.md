@@ -16,7 +16,9 @@ organized by type.
 
 ```rust
 struct ModuleRenderer<'a> {
-    // [REDACTED: Private Fields]
+    ctx: &'a dyn RenderContext,
+    current_file: &'a str,
+    is_root: bool,
 }
 ```
 
@@ -28,49 +30,68 @@ including:
 - Module-level documentation
 - Sections for each item type (Modules, Structs, Enums, etc.)
 
+The renderer is generic over [`RenderContext`](../context/index.md), allowing it to work with
+both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
+
+#### Fields
+
+- **`ctx`**: `&'a dyn RenderContext`
+
+  Reference to the render context (either single-crate or multi-crate).
+
+- **`current_file`**: `&'a str`
+
+  Path of the current file being generated (for relative link calculation).
+
+- **`is_root`**: `bool`
+
+  Whether this is the crate root module.
+
 #### Implementations
 
-- `fn new(ctx: &'a GeneratorContext<'a>, current_file: &'a str, is_root: bool) -> Self`
-  Create a new module renderer.
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../../../generator/context/index.md)
+
+- `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 
 - `fn render(self: &Self, item: &Item) -> String`
-  Generate the complete markdown content for a module.
+
+- `fn categorize_items(self: &Self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](../../../generator/module/index.md)
+
+- `fn render_all_sections(self: &Self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](../../../generator/module/index.md)
+
+- `fn render_modules_section(self: &Self, md: &mut String, modules: &[(&Id, &Item)])`
+
+- `fn render_structs_section(self: &Self, md: &mut String, structs: &[(&Id, &Item)])`
+
+- `fn render_enums_section(self: &Self, md: &mut String, enums: &[(&Id, &Item)])`
+
+- `fn render_traits_section(self: &Self, md: &mut String, traits: &[(&Id, &Item)])`
+
+- `fn render_functions_section(self: &Self, md: &mut String, functions: &[&Item])`
+
+- `fn render_macros_section(self: &Self, md: &mut String, macros: &[&Item])`
+
+- `fn render_constants_section(self: &Self, md: &mut String, constants: &[&Item])`
+
+- `fn render_type_aliases_section(self: &Self, md: &mut String, type_aliases: &[&Item])`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl IntoEither<T>`
 
 ##### `impl OwoColorize<D>`
 
-##### `impl TryFrom<T, U>`
+##### `impl Pointable<T>`
 
-- `type Error = Infallible`
+- `const ALIGN: usize`
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `type Init = T`
 
-##### `impl TryInto<T, U>`
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
 
-- `type Error = <U as TryFrom>::Error`
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 

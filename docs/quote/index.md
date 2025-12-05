@@ -108,7 +108,7 @@ named arguments.
 Only a limited set of formatting traits are supported. The current mapping
 of format types to traits is:
 
-* `{}` ⇒ [`IdentFragment`](#identfragment)
+* `{}` ⇒ [`IdentFragment`](ident_fragment/index.md)
 * `{:o}` ⇒ [`Octal`](std::fmt::Octal)
 * `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
 * `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
@@ -120,7 +120,7 @@ See `std::fmt` for more information.
 
 # IdentFragment
 
-Unlike `format!`, this macro uses the [`IdentFragment`](#identfragment) formatting trait by
+Unlike `format!`, this macro uses the [`IdentFragment`](ident_fragment/index.md) formatting trait by
 default. This trait is like `Display`, with a few differences:
 
 * `IdentFragment` is only implemented for a limited set of types, such as
@@ -219,7 +219,7 @@ Note: for returning tokens to the compiler in a procedural macro, use
 Variable interpolation is done with `#var` (similar to `$var` in
 `macro_rules!` macros). This grabs the `var` variable that is currently in
 scope and inserts it in that location in the output tokens. Any type
-implementing the [`ToTokens`](#totokens) trait can be interpolated. This includes most
+implementing the [`ToTokens`](to_tokens/index.md) trait can be interpolated. This includes most
 Rust primitive types as well as most of the syntax tree types from the [Syn]
 crate.
 

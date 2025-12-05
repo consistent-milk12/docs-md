@@ -49,7 +49,7 @@ struct Word<'a> {
     pub word: &'a str,
     pub whitespace: &'a str,
     pub penalty: &'a str,
-    // [REDACTED: Private Fields]
+    width: usize,
 }
 ```
 
@@ -74,45 +74,27 @@ trailing whitespace, and potentially a penalty item.
 
 #### Implementations
 
-- `fn from(word: &str) -> Word<'_>`
-  Construct a `Word` from a string.
+- `fn from(word: &str) -> Word<'_>` — [`Word`](../../core/index.md)
 
-- `fn break_apart<'b>(self: &'b Self, line_width: usize) -> impl Iterator<Item = Word<'a>> + 'b`
-  Break this word into smaller words with a width of at most
+- `fn break_apart<'b>(self: &'b Self, line_width: usize) -> impl Iterator<Item = Word<'a>> + 'b` — [`Word`](../../core/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'a>`
 
-- `fn clone(self: &Self) -> Word<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Word<'a>` — [`Word`](../../core/index.md)
 
 ##### `impl Copy<'a>`
+
+##### `impl Debug<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Deref`
+
+- `type Target = str`
+
+- `fn deref(self: &Self) -> &<Self as >::Target`
 
 ##### `impl Eq<'a>`
 
@@ -126,43 +108,13 @@ trailing whitespace, and potentially a penalty item.
 
 ##### `impl PartialEq<'a>`
 
-- `fn eq(self: &Self, other: &Word<'a>) -> bool`
+- `fn eq(self: &Self, other: &Word<'a>) -> bool` — [`Word`](../../core/index.md)
 
 ##### `impl Receiver<P, T>`
 
 - `type Target = T`
 
 ##### `impl StructuralPartialEq<'a>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Deref`
-
-- `type Target = str`
-
-- `fn deref(self: &Self) -> &<Self as >::Target`
 
 ## Traits
 

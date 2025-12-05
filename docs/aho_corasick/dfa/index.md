@@ -17,7 +17,19 @@ when one needs access to the [`Automaton`](../automaton/index.md) trait implemen
 
 ```rust
 struct DFA {
-    // [REDACTED: Private Fields]
+    trans: alloc::vec::Vec<crate::util::primitives::StateID>,
+    matches: alloc::vec::Vec<alloc::vec::Vec<crate::util::primitives::PatternID>>,
+    matches_memory_usage: usize,
+    pattern_lens: alloc::vec::Vec<crate::util::primitives::SmallIndex>,
+    prefilter: Option<crate::util::prefilter::Prefilter>,
+    match_kind: crate::util::search::MatchKind,
+    state_len: usize,
+    alphabet_len: usize,
+    stride2: usize,
+    byte_classes: crate::util::alphabet::ByteClasses,
+    min_pattern_len: usize,
+    max_pattern_len: usize,
+    special: crate::util::special::Special,
 }
 ```
 
@@ -84,107 +96,131 @@ assert_eq!(
 It is also possible to implement your own version of `try_find`. See the
 [`Automaton`](../automaton/index.md) documentation for an example.
 
+#### Fields
+
+- **`trans`**: `alloc::vec::Vec<crate::util::primitives::StateID>`
+
+  The DFA transition table. IDs in this table are pre-multiplied. So
+  instead of the IDs being 0, 1, 2, 3, ..., they are 0*stride, 1*stride,
+  2*stride, 3*stride, ...
+
+- **`matches`**: `alloc::vec::Vec<alloc::vec::Vec<crate::util::primitives::PatternID>>`
+
+  The matches for every match state in this DFA. This is first indexed by
+  state index (so that's `sid >> stride2`) and then by order in which the
+  matches are meant to occur.
+
+- **`matches_memory_usage`**: `usize`
+
+  The amount of heap memory used, in bytes, by the inner Vecs of
+  'matches'.
+
+- **`pattern_lens`**: `alloc::vec::Vec<crate::util::primitives::SmallIndex>`
+
+  The length of each pattern. This is used to compute the start offset
+  of a match.
+
+- **`prefilter`**: `Option<crate::util::prefilter::Prefilter>`
+
+  A prefilter for accelerating searches, if one exists.
+
+- **`match_kind`**: `crate::util::search::MatchKind`
+
+  The match semantics built into this DFA.
+
+- **`state_len`**: `usize`
+
+  The total number of states in this DFA.
+
+- **`alphabet_len`**: `usize`
+
+  The alphabet size, or total number of equivalence classes, for this
+  DFA. Note that the actual number of transitions in each state is
+  stride=2^stride2, where stride is the smallest power of 2 greater than
+  or equal to alphabet_len. We do things this way so that we can use
+  bitshifting to go from a state ID to an index into 'matches'.
+
+- **`stride2`**: `usize`
+
+  The exponent with a base 2, such that stride=2^stride2. Given a state
+  index 'i', its state identifier is 'i << stride2'. Given a state
+  identifier 'sid', its state index is 'sid >> stride2'.
+
+- **`byte_classes`**: `crate::util::alphabet::ByteClasses`
+
+  The equivalence classes for this DFA. All transitions are defined on
+  equivalence classes and not on the 256 distinct byte values.
+
+- **`min_pattern_len`**: `usize`
+
+  The length of the shortest pattern in this automaton.
+
+- **`max_pattern_len`**: `usize`
+
+  The length of the longest pattern in this automaton.
+
+- **`special`**: `crate::util::special::Special`
+
+  The information required to deduce which states are "special" in this
+  DFA.
+
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Result<DFA, BuildError>`
-  Create a new Aho-Corasick DFA using the default configuration.
+- `const DEAD: StateID`
 
-- `fn builder() -> Builder`
-  A convenience method for returning a new Aho-Corasick DFA builder.
+- `fn set_matches(self: &mut Self, sid: StateID, pids: impl Iterator<Item = PatternID>)` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
 ##### `impl Automaton`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>`
+- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../util/error/index.md)
 
-- `fn next_state(self: &Self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID`
+- `fn next_state(self: &Self, _anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md)
 
-- `fn is_special(self: &Self, sid: StateID) -> bool`
+- `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool`
+- `fn is_dead(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_match(self: &Self, sid: StateID) -> bool`
+- `fn is_match(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_start(self: &Self, sid: StateID) -> bool`
+- `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind`
+- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../util/search/index.md)
 
 - `fn patterns_len(self: &Self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize`
+- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../util/primitives/index.md)
 
 - `fn min_pattern_len(self: &Self) -> usize`
 
 - `fn max_pattern_len(self: &Self) -> usize`
 
-- `fn match_len(self: &Self, sid: StateID) -> usize`
+- `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID`
+- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DFA`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> DFA` — [`DFA`](../../dfa/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
+##### `impl Sealed`
+
 ### `Builder`
 
 ```rust
 struct Builder {
-    // [REDACTED: Private Fields]
+    noncontiguous: noncontiguous::Builder,
+    start_kind: crate::util::search::StartKind,
+    byte_classes: bool,
 }
 ```
 
@@ -196,81 +232,31 @@ their behavior is identical.
 
 #### Implementations
 
-- `fn new() -> Builder`
-  Create a new builder for configuring an Aho-Corasick DFA.
+- `fn new() -> Builder` — [`Builder`](../../dfa/index.md)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<DFA, BuildError>`
-  Build an Aho-Corasick DFA from the given iterator of patterns.
+- `fn build<I, P>(self: &Self, patterns: I) -> Result<DFA, BuildError>` — [`DFA`](../../dfa/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn build_from_noncontiguous(self: &Self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>`
-  Build an Aho-Corasick DFA from the given noncontiguous NFA.
+- `fn build_from_noncontiguous(self: &Self, nnfa: &noncontiguous::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/noncontiguous/index.md), [`DFA`](../../dfa/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder`
-  Set the desired match semantics.
+- `fn finish_build_one_start(self: &Self, anchored: Anchored, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`Anchored`](../../util/search/index.md), [`NFA`](../../nfa/noncontiguous/index.md), [`DFA`](../../dfa/index.md)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder`
-  Enable ASCII-aware case insensitive matching.
+- `fn finish_build_both_starts(self: &Self, nnfa: &noncontiguous::NFA, dfa: &mut DFA)` — [`NFA`](../../nfa/noncontiguous/index.md), [`DFA`](../../dfa/index.md)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder`
-  Enable heuristic prefilter optimizations.
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md), [`Builder`](../../dfa/index.md)
 
-- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut Builder`
-  Sets the starting state configuration for the automaton.
+- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](../../dfa/index.md)
 
-- `fn byte_classes(self: &mut Self, yes: bool) -> &mut Builder`
-  A debug setting for whether to attempt to shrink the size of the
+- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](../../dfa/index.md)
+
+- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut Builder` — [`StartKind`](../../util/search/index.md), [`Builder`](../../dfa/index.md)
+
+- `fn byte_classes(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](../../dfa/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Builder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../../dfa/index.md)
 
 ##### `impl Debug`
 
@@ -278,5 +264,5 @@ their behavior is identical.
 
 ##### `impl Default`
 
-- `fn default() -> Builder`
+- `fn default() -> Builder` — [`Builder`](../../dfa/index.md)
 

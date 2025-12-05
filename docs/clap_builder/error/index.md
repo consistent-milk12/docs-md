@@ -14,56 +14,22 @@ Error reporting
 struct KindFormatter;
 ```
 
-Report [`ErrorKind`](../index.md)
+Report [`ErrorKind`](kind/index.md)
 
 No context is included.
 
 <div class="warning">
 
 **NOTE:** Consider removing the `error-context` default feature if using this to remove all
-overhead for [`RichFormatter`](../index.md).
+overhead for [`RichFormatter`](format/index.md).
 
 </div>
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl ErrorFormatter`
 
-- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../../error/index.md), [`StyledStr`](../../builder/styled_str/index.md)
 
 ### `RichFormatter`
 
@@ -77,43 +43,9 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl ErrorFormatter`
 
-- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../../error/index.md), [`StyledStr`](../../builder/styled_str/index.md)
 
 ### `DefaultFormatter`
 
@@ -127,49 +59,16 @@ This follows the [rustc diagnostic style guide](https://rustc-dev-guide.rust-lan
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl ErrorFormatter`
 
-- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn format_error(error: &crate::error::Error<Self>) -> StyledStr` — [`Error`](../../error/index.md), [`StyledStr`](../../builder/styled_str/index.md)
 
 ### `Error<F: ErrorFormatter>`
 
 ```rust
 struct Error<F: ErrorFormatter> {
-    // [REDACTED: Private Fields]
+    inner: Box<ErrorInner>,
+    phantom: std::marker::PhantomData<F>,
 }
 ```
 
@@ -180,82 +79,101 @@ See `Command::error` to create an error.
 
 #### Implementations
 
-- `fn raw(kind: ErrorKind, message: impl Display) -> Self`
-  Create an unformatted error
+- `fn raw(kind: ErrorKind, message: impl Display) -> Self` — [`ErrorKind`](../../error/kind/index.md)
 
-- `fn format(self: Self, cmd: &mut Command) -> Self`
-  Format the existing message with the Command's context
+- `fn format(self: Self, cmd: &mut Command) -> Self` — [`Command`](../../builder/command/index.md)
 
-- `fn new(kind: ErrorKind) -> Self`
-  Create an error with a pre-defined message
+- `fn new(kind: ErrorKind) -> Self` — [`ErrorKind`](../../error/kind/index.md)
 
-- `fn with_cmd(self: Self, cmd: &Command) -> Self`
-  Apply [`Command`]'s formatting to the error
+- `fn with_cmd(self: Self, cmd: &Command) -> Self` — [`Command`](../../builder/command/index.md)
 
-- `fn apply<EF: ErrorFormatter>(self: Self) -> Error<EF>`
-  Apply an alternative formatter to the error
+- `fn apply<EF: ErrorFormatter>(self: Self) -> Error<EF>` — [`Error`](../../error/index.md)
 
-- `fn kind(self: &Self) -> ErrorKind`
-  Type of error for programmatic processing
+- `fn kind(self: &Self) -> ErrorKind` — [`ErrorKind`](../../error/kind/index.md)
 
-- `fn context(self: &Self) -> impl Iterator<Item = (ContextKind, &ContextValue)>`
-  Additional information to further qualify the error
+- `fn context(self: &Self) -> impl Iterator<Item = (ContextKind, &ContextValue)>` — [`ContextKind`](../../error/context/index.md), [`ContextValue`](../../error/context/index.md)
 
-- `fn get(self: &Self, kind: ContextKind) -> Option<&ContextValue>`
-  Lookup a piece of context
+- `fn get(self: &Self, kind: ContextKind) -> Option<&ContextValue>` — [`ContextKind`](../../error/context/index.md), [`ContextValue`](../../error/context/index.md)
 
-- `fn insert(self: &mut Self, kind: ContextKind, value: ContextValue) -> Option<ContextValue>`
-  Insert a piece of context
+- `fn insert(self: &mut Self, kind: ContextKind, value: ContextValue) -> Option<ContextValue>` — [`ContextKind`](../../error/context/index.md), [`ContextValue`](../../error/context/index.md)
 
-- `fn remove(self: &mut Self, kind: ContextKind) -> Option<ContextValue>`
-  Remove a piece of context, return the old value if any
+- `fn remove(self: &mut Self, kind: ContextKind) -> Option<ContextValue>` — [`ContextKind`](../../error/context/index.md), [`ContextValue`](../../error/context/index.md)
 
 - `fn use_stderr(self: &Self) -> bool`
-  Should the message be written to `stdout` or not?
+
+- `fn stream(self: &Self) -> Stream` — [`Stream`](../../output/fmt/index.md)
 
 - `fn exit_code(self: &Self) -> i32`
-  Returns the exit code that `.exit` will exit the process with.
 
 - `fn exit(self: &Self) -> never`
-  Prints the error and exits.
 
 - `fn print(self: &Self) -> io::Result<()>`
-  Prints formatted and colored error to `stdout` or `stderr` according to its error kind
 
-- `fn render(self: &Self) -> StyledStr`
-  Render the error message to a [`StyledStr`].
+- `fn render(self: &Self) -> StyledStr` — [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn for_app(kind: ErrorKind, cmd: &Command, styled: StyledStr) -> Self` — [`ErrorKind`](../../error/kind/index.md), [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn set_message(self: Self, message: impl Into<Message>) -> Self` — [`Message`](../../error/index.md)
+
+- `fn set_source(self: Self, source: Box<dyn error::Error + Send + Sync>) -> Self`
+
+- `fn set_styles(self: Self, styles: Styles) -> Self` — [`Styles`](../../builder/styling/index.md)
+
+- `fn set_color(self: Self, color_when: ColorChoice) -> Self` — [`ColorChoice`](../../util/color/index.md)
+
+- `fn set_colored_help(self: Self, color_help_when: ColorChoice) -> Self` — [`ColorChoice`](../../util/color/index.md)
+
+- `fn set_help_flag(self: Self, help_flag: Option<Cow<'static, str>>) -> Self`
+
+- `fn insert_context_unchecked(self: Self, kind: ContextKind, value: ContextValue) -> Self` — [`ContextKind`](../../error/context/index.md), [`ContextValue`](../../error/context/index.md)
+
+- `fn extend_context_unchecked<const N: usize>(self: Self, context: [(ContextKind, ContextValue); N]) -> Self` — [`ContextKind`](../../error/context/index.md), [`ContextValue`](../../error/context/index.md)
+
+- `fn display_help(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn display_help_error(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn display_version(cmd: &Command, styled: StyledStr) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn argument_conflict(cmd: &Command, arg: String, others: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn subcommand_conflict(cmd: &Command, sub: String, others: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn empty_value(cmd: &Command, good_vals: &[String], arg: String) -> Self` — [`Command`](../../builder/command/index.md)
+
+- `fn no_equals(cmd: &Command, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn invalid_value(cmd: &Command, bad_val: String, good_vals: &[String], arg: String) -> Self` — [`Command`](../../builder/command/index.md)
+
+- `fn invalid_subcommand(cmd: &Command, subcmd: String, did_you_mean: Vec<String>, name: String, suggested_trailing_arg: bool, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn unrecognized_subcommand(cmd: &Command, subcmd: String, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn missing_required_argument(cmd: &Command, required: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn missing_subcommand(cmd: &Command, parent: String, available: Vec<String>, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn invalid_utf8(cmd: &Command, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn too_many_values(cmd: &Command, val: String, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn too_few_values(cmd: &Command, arg: String, min_vals: usize, curr_vals: usize, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn value_validation(arg: String, val: String, err: Box<dyn error::Error + Send + Sync>) -> Self`
+
+- `fn wrong_number_of_values(cmd: &Command, arg: String, num_vals: usize, curr_vals: usize, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn unknown_argument(cmd: &Command, arg: String, did_you_mean: Option<(String, Option<String>)>, suggested_trailing_arg: bool, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn unnecessary_double_dash(cmd: &Command, arg: String, usage: Option<StyledStr>) -> Self` — [`Command`](../../builder/command/index.md), [`StyledStr`](../../builder/styled_str/index.md)
+
+- `fn formatted(self: &Self) -> Cow<'_, StyledStr>` — [`StyledStr`](../../builder/styled_str/index.md)
 
 #### Trait Implementations
 
-##### `impl From<F: ErrorFormatter>`
+##### `impl Debug<F: ErrorFormatter>`
 
-- `fn from(e: io::Error) -> Self`
-
-##### `impl From<F: ErrorFormatter>`
-
-- `fn from(e: fmt::Error) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> Result<(), fmt::Error>` — [`Result`](../../error/index.md)
 
 ##### `impl Display<F: ErrorFormatter>`
 
@@ -268,22 +186,6 @@ See `Command::error` to create an error.
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<F: ErrorFormatter>`
-
-- `fn fmt(self: &Self, f: &mut Formatter<'_>) -> Result<(), fmt::Error>`
 
 ## Enums
 
@@ -351,7 +253,7 @@ Command line argument parser kind of error
 
 - **`InvalidSubcommand`**
 
-  Occurs when the user provides an unrecognized [`Subcommand`](../index.md) which meets the threshold for
+  Occurs when the user provides an unrecognized [`Subcommand`](../derive/index.md) which meets the threshold for
   being similar enough to an existing subcommand.
   If it doesn't meet the threshold, or the 'suggestions' feature is disabled,
   the more general [`UnknownArgument`](../index.md) error is returned.
@@ -599,7 +501,7 @@ Command line argument parser kind of error
 
 - **`DisplayHelpOnMissingArgumentOrSubcommand`**
 
-  Occurs when either an argument or a [`Subcommand`](../index.md) is required, as defined by
+  Occurs when either an argument or a [`Subcommand`](../derive/index.md) is required, as defined by
   `Command::arg_required_else_help` , but the user did not provide
   one.
   
@@ -655,41 +557,18 @@ Command line argument parser kind of error
 #### Implementations
 
 - `fn as_str(self: Self) -> Option<&'static str>`
-  End-user description of the error case, where relevant
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ErrorKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](../../error/kind/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -703,37 +582,13 @@ Command line argument parser kind of error
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &ErrorKind) -> bool`
+- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](../../error/kind/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `ContextKind`
 
@@ -834,41 +689,18 @@ Semantics for a piece of error information
 #### Implementations
 
 - `fn as_str(self: Self) -> Option<&'static str>`
-  End-user description of the error case, where relevant
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ContextKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ContextKind` — [`ContextKind`](../../error/context/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -882,37 +714,13 @@ Semantics for a piece of error information
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &ContextKind) -> bool`
+- `fn eq(self: &Self, other: &ContextKind) -> bool` — [`ContextKind`](../../error/context/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `ContextValue`
 
@@ -934,7 +742,7 @@ A piece of error information
 
 - **`None`**
 
-  [`ContextKind`](../index.md) is self-sufficient, no additional information needed
+  [`ContextKind`](context/index.md) is self-sufficient, no additional information needed
 
 - **`Bool`**
 
@@ -962,35 +770,13 @@ A piece of error information
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ContextValue`
+- `fn clone(self: &Self) -> ContextValue` — [`ContextValue`](../../error/context/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -1000,37 +786,13 @@ A piece of error information
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &ContextValue) -> bool`
+- `fn eq(self: &Self, other: &ContextValue) -> bool` — [`ContextValue`](../../error/context/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 

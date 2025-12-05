@@ -43,7 +43,9 @@ running the full regex engine.
 
 ```rust
 struct Prefilter {
-    // [REDACTED: Private Fields]
+    pre: alloc::sync::Arc<dyn PrefilterI>,
+    is_fast: bool,
+    max_needle_len: usize,
 }
 ```
 
@@ -127,81 +129,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>`
-  Create a new prefilter from a sequence of needles and a corresponding
+- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>` — [`MatchKind`](../../../util/search/index.md), [`Prefilter`](../../../util/prefilter/index.md)
 
-- `fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>`
-  This attempts to extract prefixes from the given `Hir` expression for
+- `fn from_choice(choice: Choice, max_needle_len: usize) -> Option<Prefilter>` — [`Choice`](../../../util/prefilter/index.md), [`Prefilter`](../../../util/prefilter/index.md)
 
-- `fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>`
-  This attempts to extract prefixes from the given `Hir` expressions for
+- `fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>` — [`MatchKind`](../../../util/search/index.md), [`Prefilter`](../../../util/prefilter/index.md)
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>`
-  Run this prefilter on `haystack[span.start..end]` and return a matching
+- `fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>` — [`MatchKind`](../../../util/search/index.md), [`Prefilter`](../../../util/prefilter/index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>`
-  Returns the span of a prefix of `haystack[span.start..span.end]` if
+- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../util/search/index.md)
+
+- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../util/search/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the heap memory, in bytes, used by the underlying prefilter.
 
 - `fn max_needle_len(self: &Self) -> usize`
-  Return the length of the longest needle
 
 - `fn is_fast(self: &Self) -> bool`
-  Implementations might return true here if they believe themselves to
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Prefilter`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](../../../util/prefilter/index.md)
 
 ##### `impl Debug`
 

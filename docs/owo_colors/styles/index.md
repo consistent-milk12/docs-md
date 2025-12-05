@@ -20,36 +20,17 @@ with the addition of boldening it. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -73,27 +54,11 @@ with the addition of boldening it. Recommended to be constructed using
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -109,36 +74,17 @@ with the addition of dimming it. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -162,27 +108,11 @@ with the addition of dimming it. Recommended to be constructed using
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -198,36 +128,17 @@ with the addition of italics. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -251,27 +162,11 @@ with the addition of italics. Recommended to be constructed using
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -287,36 +182,17 @@ while underlining it. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -340,27 +216,11 @@ while underlining it. Recommended to be constructed using
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -376,36 +236,17 @@ while blinking. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -429,27 +270,11 @@ while blinking. Recommended to be constructed using
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -464,36 +289,17 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -517,27 +323,11 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -552,36 +342,17 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -605,27 +376,11 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -640,36 +395,17 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -693,27 +429,11 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -729,36 +449,17 @@ crossed out. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>`
-  Convert self to a generic [`Styled`].
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
 
 ##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a, T: ?Sized + fmt::Display>`
 
@@ -782,27 +483,11 @@ crossed out. Recommended to be constructed using
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

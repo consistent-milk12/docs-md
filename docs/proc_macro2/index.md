@@ -94,7 +94,8 @@ a different thread.
 
 ```rust
 struct TokenStream {
-    // [REDACTED: Private Fields]
+    inner: imp::TokenStream,
+    _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
 
@@ -108,109 +109,19 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Implementations
 
+- `fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](../imp/index.md)
+
+- `fn _new_fallback(inner: fallback::TokenStream) -> Self`
+
 - `fn new() -> Self`
-  Returns an empty `TokenStream` containing no token trees.
 
 - `fn is_empty(self: &Self) -> bool`
-  Checks if this `TokenStream` is empty.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(token: TokenTree) -> Self`
-
-##### `impl From`
-
-- `fn from(inner: proc_macro::TokenStream) -> Self`
-
-##### `impl FromIterator`
-
-- `fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
-
-##### `impl FromIterator`
-
-- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
-
-##### `impl FromStr`
-
-- `type Err = LexError`
-
-- `fn from_str(src: &str) -> Result<TokenStream, LexError>`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoIterator`
-
-- `type Item = TokenTree`
-
-- `type IntoIter = IntoIter`
-
-- `fn into_iter(self: Self) -> IntoIter`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TokenStream`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Extend`
-
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
-
-##### `impl Extend`
-
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TokenStream` — [`TokenStream`](../index.md)
 
 ##### `impl Debug`
 
@@ -220,17 +131,56 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 - `fn default() -> Self`
 
-##### `impl TokenStreamExt`
+##### `impl Display`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Extend`
+
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+
+##### `impl FromIterator`
+
+- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
+
+##### `impl FromStr`
+
+- `type Err = LexError`
+
+- `fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../index.md), [`LexError`](../index.md)
+
+##### `impl IntoIterator`
+
+- `type Item = TokenTree`
+
+- `type IntoIter = IntoIter`
+
+- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](../token_stream/index.md)
+
+##### `impl Parse`
+
+##### `impl Sealed`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
+- `fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+
+- `fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+
+##### `impl TokenStreamExt`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ### `LexError`
 
 ```rust
 struct LexError {
-    // [REDACTED: Private Fields]
+    inner: imp::LexError,
+    _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
 
@@ -238,31 +188,13 @@ Error returned from `TokenStream::from_str`.
 
 #### Implementations
 
-- `fn span(self: &Self) -> Span`
+- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display`
 
@@ -274,27 +206,12 @@ Error returned from `TokenStream::from_str`.
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
 ### `Span`
 
 ```rust
 struct Span {
-    // [REDACTED: Private Fields]
+    inner: imp::Span,
+    _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
 
@@ -302,94 +219,43 @@ A region of source code, along with macro expansion information.
 
 #### Implementations
 
+- `fn _new(inner: imp::Span) -> Self` — [`Span`](../imp/index.md)
+
+- `fn _new_fallback(inner: fallback::Span) -> Self`
+
 - `fn call_site() -> Self`
-  The span of the invocation of the current procedural macro.
 
 - `fn mixed_site() -> Self`
-  The span located at the invocation of the procedural macro, but with
 
-- `fn resolved_at(self: &Self, other: Span) -> Span`
-  Creates a new span with the same line/column information as `self` but
+- `fn resolved_at(self: &Self, other: Span) -> Span` — [`Span`](../index.md)
 
-- `fn located_at(self: &Self, other: Span) -> Span`
-  Creates a new span with the same name resolution behavior as `self` but
+- `fn located_at(self: &Self, other: Span) -> Span` — [`Span`](../index.md)
 
 - `fn unwrap(self: Self) -> proc_macro::Span`
-  Convert `proc_macro2::Span` to `proc_macro::Span`.
 
-- `fn join(self: &Self, other: Span) -> Option<Span>`
-  Create a new span encompassing `self` and `other`.
+- `fn join(self: &Self, other: Span) -> Option<Span>` — [`Span`](../index.md)
 
 - `fn source_text(self: &Self) -> Option<String>`
-  Returns the source text behind a span. This preserves the original
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(proc_span: proc_macro::Span) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Span`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Span` — [`Span`](../index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+##### `impl SpanError`
+
 ### `Group`
 
 ```rust
 struct Group {
-    // [REDACTED: Private Fields]
+    inner: imp::Group,
 }
 ```
 
@@ -400,99 +266,51 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 #### Implementations
 
-- `fn new(delimiter: Delimiter, stream: TokenStream) -> Self`
-  Creates a new `Group` with the given delimiter and token stream.
+- `fn _new(inner: imp::Group) -> Self` — [`Group`](../imp/index.md)
 
-- `fn delimiter(self: &Self) -> Delimiter`
-  Returns the punctuation used as the delimiter for this group: a set of
+- `fn _new_fallback(inner: fallback::Group) -> Self`
 
-- `fn stream(self: &Self) -> TokenStream`
-  Returns the `TokenStream` of tokens that are delimited in this `Group`.
+- `fn new(delimiter: Delimiter, stream: TokenStream) -> Self` — [`Delimiter`](../index.md), [`TokenStream`](../index.md)
 
-- `fn span(self: &Self) -> Span`
-  Returns the span for the delimiters of this token stream, spanning the
+- `fn delimiter(self: &Self) -> Delimiter` — [`Delimiter`](../index.md)
 
-- `fn span_open(self: &Self) -> Span`
-  Returns the span pointing to the opening delimiter of this group.
+- `fn stream(self: &Self) -> TokenStream` — [`TokenStream`](../index.md)
 
-- `fn span_close(self: &Self) -> Span`
-  Returns the span pointing to the closing delimiter of this group.
+- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
 
-- `fn delim_span(self: &Self) -> DelimSpan`
-  Returns an object that holds this group's `span_open()` and
+- `fn span_open(self: &Self) -> Span` — [`Span`](../index.md)
 
-- `fn set_span(self: &mut Self, span: Span)`
-  Configures the span for this `Group`'s delimiters, but not its internal
+- `fn span_close(self: &Self) -> Span` — [`Span`](../index.md)
+
+- `fn delim_span(self: &Self) -> DelimSpan` — [`DelimSpan`](../extra/index.md)
+
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Group`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Group` — [`Group`](../index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToTokens`
+##### `impl Display`
 
-- `fn clone(self: &Self) -> DelimSpan`
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse`
+
+##### `impl Sealed`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
+
+##### `impl ToTokens`
+
+- `fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](../parse/index.md), [`TokenTree`](../index.md), [`Reject`](../parse/index.md)
 
 ##### `impl Token`
 
@@ -500,7 +318,9 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 ```rust
 struct Punct {
-    // [REDACTED: Private Fields]
+    ch: char,
+    spacing: Spacing,
+    span: Span,
 }
 ```
 
@@ -511,96 +331,52 @@ Multicharacter operators like `+=` are represented as two instances of
 
 #### Implementations
 
-- `fn new(ch: char, spacing: Spacing) -> Self`
-  Creates a new `Punct` from the given character and spacing.
+- `fn new(ch: char, spacing: Spacing) -> Self` — [`Spacing`](../index.md)
 
 - `fn as_char(self: &Self) -> char`
-  Returns the value of this punctuation character as `char`.
 
-- `fn spacing(self: &Self) -> Spacing`
-  Returns the spacing of this punctuation character, indicating whether
+- `fn spacing(self: &Self) -> Spacing` — [`Spacing`](../index.md)
 
-- `fn span(self: &Self) -> Span`
-  Returns the span for this punctuation character.
+- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
 
-- `fn set_span(self: &mut Self, span: Span)`
-  Configure the span for this punctuation character.
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Punct`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Punct` — [`Punct`](../index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToTokens`
+##### `impl Display`
 
-##### `impl Token`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse`
+
+##### `impl PunctExt`
+
+##### `impl Sealed`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
+
+##### `impl ToTokens`
+
+- `fn ident_not_raw(input: Cursor<'_>) -> Result<(Cursor<'_>, &str), Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+
+##### `impl Token`
 
 ### `Ident`
 
 ```rust
 struct Ident {
-    // [REDACTED: Private Fields]
+    inner: imp::Ident,
+    _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
 
@@ -669,49 +445,27 @@ if ident_string.len() > 60 {
 
 #### Implementations
 
-- `fn new(string: &str, span: Span) -> Self`
-  Creates a new `Ident` with the given `string` as well as the specified
+- `fn _new(inner: imp::Ident) -> Self` — [`Ident`](../imp/index.md)
 
-- `fn new_raw(string: &str, span: Span) -> Self`
-  Same as `Ident::new`, but creates a raw identifier (`r#ident`). The
+- `fn _new_fallback(inner: fallback::Ident) -> Self`
 
-- `fn span(self: &Self) -> Span`
-  Returns the span of this `Ident`.
+- `fn new(string: &str, span: Span) -> Self` — [`Span`](../index.md)
 
-- `fn set_span(self: &mut Self, span: Span)`
-  Configures the span of this `Ident`, possibly changing its hygiene
+- `fn new_raw(string: &str, span: Span) -> Self` — [`Span`](../index.md)
+
+- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Ident`
+- `fn clone(self: &Self) -> Ident` — [`Ident`](../index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display`
 
@@ -723,65 +477,42 @@ if ident_string.len() > 60 {
 
 - `fn hash<H: Hasher>(self: &Self, hasher: &mut H)`
 
+##### `impl IdentExt`
+
+##### `impl IdentFragment`
+
+- `type Error = Infallible`
+
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &Ident) -> Ordering`
+- `fn cmp(self: &Self, other: &Ident) -> Ordering` — [`Ident`](../index.md)
+
+##### `impl Parse`
 
 ##### `impl PartialEq<T>`
 
 - `fn eq(self: &Self, other: &T) -> bool`
 
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Ident) -> bool`
-
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &Ident) -> Option<Ordering>`
+- `fn partial_cmp(self: &Self, other: &Ident) -> Option<Ordering>` — [`Ident`](../index.md)
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
+##### `impl Sealed`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
 ##### `impl ToTokens`
 
-##### `impl IdentFragment`
-
-##### `impl Parse`
-
 ##### `impl Token`
-
-##### `impl IdentExt`
 
 ### `Literal`
 
 ```rust
 struct Literal {
-    // [REDACTED: Private Fields]
+    inner: imp::Literal,
+    _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
 
@@ -794,189 +525,115 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 #### Implementations
 
-- `fn u8_suffixed(n: u8) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn _new(inner: imp::Literal) -> Self` — [`Literal`](../imp/index.md)
 
-- `fn u16_suffixed(n: u16) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn _new_fallback(inner: fallback::Literal) -> Self`
 
-- `fn u32_suffixed(n: u32) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn u8_suffixed(n: u8) -> Literal` — [`Literal`](../index.md)
 
-- `fn u64_suffixed(n: u64) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn u16_suffixed(n: u16) -> Literal` — [`Literal`](../index.md)
 
-- `fn u128_suffixed(n: u128) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn u32_suffixed(n: u32) -> Literal` — [`Literal`](../index.md)
 
-- `fn usize_suffixed(n: usize) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn u64_suffixed(n: u64) -> Literal` — [`Literal`](../index.md)
 
-- `fn i8_suffixed(n: i8) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn u128_suffixed(n: u128) -> Literal` — [`Literal`](../index.md)
 
-- `fn i16_suffixed(n: i16) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn usize_suffixed(n: usize) -> Literal` — [`Literal`](../index.md)
 
-- `fn i32_suffixed(n: i32) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn i8_suffixed(n: i8) -> Literal` — [`Literal`](../index.md)
 
-- `fn i64_suffixed(n: i64) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn i16_suffixed(n: i16) -> Literal` — [`Literal`](../index.md)
 
-- `fn i128_suffixed(n: i128) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn i32_suffixed(n: i32) -> Literal` — [`Literal`](../index.md)
 
-- `fn isize_suffixed(n: isize) -> Literal`
-  Creates a new suffixed integer literal with the specified value.
+- `fn i64_suffixed(n: i64) -> Literal` — [`Literal`](../index.md)
 
-- `fn u8_unsuffixed(n: u8) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn i128_suffixed(n: i128) -> Literal` — [`Literal`](../index.md)
 
-- `fn u16_unsuffixed(n: u16) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn isize_suffixed(n: isize) -> Literal` — [`Literal`](../index.md)
 
-- `fn u32_unsuffixed(n: u32) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn u8_unsuffixed(n: u8) -> Literal` — [`Literal`](../index.md)
 
-- `fn u64_unsuffixed(n: u64) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn u16_unsuffixed(n: u16) -> Literal` — [`Literal`](../index.md)
 
-- `fn u128_unsuffixed(n: u128) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn u32_unsuffixed(n: u32) -> Literal` — [`Literal`](../index.md)
 
-- `fn usize_unsuffixed(n: usize) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn u64_unsuffixed(n: u64) -> Literal` — [`Literal`](../index.md)
 
-- `fn i8_unsuffixed(n: i8) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn u128_unsuffixed(n: u128) -> Literal` — [`Literal`](../index.md)
 
-- `fn i16_unsuffixed(n: i16) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn usize_unsuffixed(n: usize) -> Literal` — [`Literal`](../index.md)
 
-- `fn i32_unsuffixed(n: i32) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn i8_unsuffixed(n: i8) -> Literal` — [`Literal`](../index.md)
 
-- `fn i64_unsuffixed(n: i64) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn i16_unsuffixed(n: i16) -> Literal` — [`Literal`](../index.md)
 
-- `fn i128_unsuffixed(n: i128) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn i32_unsuffixed(n: i32) -> Literal` — [`Literal`](../index.md)
 
-- `fn isize_unsuffixed(n: isize) -> Literal`
-  Creates a new unsuffixed integer literal with the specified value.
+- `fn i64_unsuffixed(n: i64) -> Literal` — [`Literal`](../index.md)
 
-- `fn f64_unsuffixed(f: f64) -> Literal`
-  Creates a new unsuffixed floating-point literal.
+- `fn i128_unsuffixed(n: i128) -> Literal` — [`Literal`](../index.md)
 
-- `fn f64_suffixed(f: f64) -> Literal`
-  Creates a new suffixed floating-point literal.
+- `fn isize_unsuffixed(n: isize) -> Literal` — [`Literal`](../index.md)
 
-- `fn f32_unsuffixed(f: f32) -> Literal`
-  Creates a new unsuffixed floating-point literal.
+- `fn f64_unsuffixed(f: f64) -> Literal` — [`Literal`](../index.md)
 
-- `fn f32_suffixed(f: f32) -> Literal`
-  Creates a new suffixed floating-point literal.
+- `fn f64_suffixed(f: f64) -> Literal` — [`Literal`](../index.md)
 
-- `fn string(string: &str) -> Literal`
-  String literal.
+- `fn f32_unsuffixed(f: f32) -> Literal` — [`Literal`](../index.md)
 
-- `fn character(ch: char) -> Literal`
-  Character literal.
+- `fn f32_suffixed(f: f32) -> Literal` — [`Literal`](../index.md)
 
-- `fn byte_character(byte: u8) -> Literal`
-  Byte character literal.
+- `fn string(string: &str) -> Literal` — [`Literal`](../index.md)
 
-- `fn byte_string(bytes: &[u8]) -> Literal`
-  Byte string literal.
+- `fn character(ch: char) -> Literal` — [`Literal`](../index.md)
 
-- `fn c_string(string: &CStr) -> Literal`
-  C string literal.
+- `fn byte_character(byte: u8) -> Literal` — [`Literal`](../index.md)
 
-- `fn span(self: &Self) -> Span`
-  Returns the span encompassing this literal.
+- `fn byte_string(bytes: &[u8]) -> Literal` — [`Literal`](../index.md)
 
-- `fn set_span(self: &mut Self, span: Span)`
-  Configures the span associated for this literal.
+- `fn c_string(string: &CStr) -> Literal` — [`Literal`](../index.md)
 
-- `fn subspan<R: RangeBounds<usize>>(self: &Self, range: R) -> Option<Span>`
-  Returns a `Span` that is a subset of `self.span()` containing only
+- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
+
+- `fn subspan<R: RangeBounds<usize>>(self: &Self, range: R) -> Option<Span>` — [`Span`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl FromStr`
-
-- `type Err = LexError`
-
-- `fn from_str(repr: &str) -> Result<Self, LexError>`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Literal`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Literal` — [`Literal`](../index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToTokens`
+##### `impl Display`
 
-##### `impl Token`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl FromStr`
+
+- `type Err = LexError`
+
+- `fn from_str(repr: &str) -> Result<Self, LexError>` — [`LexError`](../index.md)
 
 ##### `impl Parse`
+
+##### `impl Sealed`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
+
+##### `impl ToTokens`
+
+- `fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+
+##### `impl Token`
 
 ## Enums
 
@@ -1013,95 +670,35 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 #### Implementations
 
-- `fn span(self: &Self) -> Span`
-  Returns the span of this tree, delegating to the `span` method of
+- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
 
-- `fn set_span(self: &mut Self, span: Span)`
-  Configures the span for *only this token*.
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(g: Punct) -> Self`
-
-##### `impl From`
-
-- `fn from(g: Ident) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(g: Literal) -> Self`
-
-##### `impl From`
-
-- `fn from(g: Group) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TokenTree`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TokenTree` — [`TokenTree`](../index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToTokens`
+##### `impl Display`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Parse`
+
+##### `impl Sealed`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
+
+##### `impl ToTokens`
+
+- `fn cooked_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
 
 ##### `impl Token`
 
@@ -1156,69 +753,23 @@ Describes how a sequence of token trees is delimited.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Delimiter`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Delimiter` — [`Delimiter`](../index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Delimiter) -> bool`
+- `fn eq(self: &Self, other: &Delimiter) -> bool` — [`Delimiter`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Spacing`
 
@@ -1247,67 +798,21 @@ another token or whitespace.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Spacing`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Spacing` — [`Spacing`](../index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Spacing) -> bool`
+- `fn eq(self: &Self, other: &Spacing) -> bool` — [`Spacing`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

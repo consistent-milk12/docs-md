@@ -10,125 +10,71 @@
 
 ```rust
 struct ProgressStyle {
-    // [REDACTED: Private Fields]
+    tick_strings: Vec<Box<str>>,
+    progress_chars: Vec<Box<str>>,
+    template: Template,
+    char_width: usize,
+    tab_width: usize,
+    format_map: std::collections::HashMap<&'static str, Box<dyn ProgressTracker>>,
 }
 ```
 
 #### Implementations
 
 - `fn default_bar() -> Self`
-  Returns the default progress bar style for bars
 
 - `fn default_spinner() -> Self`
-  Returns the default progress bar style for spinners
 
-- `fn with_template(template: &str) -> Result<Self, TemplateError>`
-  Sets the template string for the progress bar
+- `fn with_template(template: &str) -> Result<Self, TemplateError>` — [`TemplateError`](../../style/index.md)
+
+- `fn set_tab_width(self: &mut Self, new_tab_width: usize)`
+
+- `fn set_for_stderr(self: &mut Self)`
+
+- `fn new(template: Template) -> Self` — [`Template`](../../style/index.md)
 
 - `fn tick_chars(self: Self, s: &str) -> Self`
-  Sets the tick character sequence for spinners
 
 - `fn tick_strings(self: Self, s: &[&str]) -> Self`
-  Sets the tick string sequence for spinners
 
 - `fn progress_chars(self: Self, s: &str) -> Self`
-  Sets the progress characters `(filled, current, to do)`
 
 - `fn with_key<S: ProgressTracker + 'static>(self: Self, key: &'static str, f: S) -> Self`
-  Adds a custom key that owns a [`ProgressTracker`] to the template
 
-- `fn template(self: Self, s: &str) -> Result<Self, TemplateError>`
-  Sets the template string for the progress bar
+- `fn template(self: Self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](../../style/index.md)
+
+- `fn current_tick_str(self: &Self, state: &ProgressState) -> &str` — [`ProgressState`](../../state/index.md)
 
 - `fn get_tick_str(self: &Self, idx: u64) -> &str`
-  Returns the tick string for a given number
 
 - `fn get_final_tick_str(self: &Self) -> &str`
-  Returns the tick string for the finished state
+
+- `fn format_bar(self: &Self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](../../style/index.md)
+
+- `fn format_state(self: &Self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](../../state/index.md), [`LineType`](../../draw_target/index.md)
+
+- `fn push_line(self: &Self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../../draw_target/index.md), [`ProgressState`](../../state/index.md), [`WideElement`](../../style/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ProgressStyle`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ProgressStyle` — [`ProgressStyle`](../../style/index.md)
 
 ### `TemplateError`
 
 ```rust
 struct TemplateError {
-    // [REDACTED: Private Fields]
+    state: State,
+    next: char,
 }
 ```
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -139,22 +85,6 @@ struct TemplateError {
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 

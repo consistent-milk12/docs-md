@@ -31,7 +31,7 @@ These two types come with conversion routines:
 As a convenience, the above two conversion routines are combined into one via
 the top-level [`Parser`](ast/parse/index.md) type. This `Parser` will first convert your pattern to
 an `Ast` and then convert the `Ast` to an `Hir`. It's also exposed as top-level
-[`parse`](#parse) free function.
+[`parse`](parser/index.md) free function.
 
 
 # Example
@@ -176,7 +176,8 @@ The following features are available:
 
 ```rust
 struct Parser {
-    // [REDACTED: Private Fields]
+    ast: ast::parse::Parser,
+    hir: hir::translate::Translator,
 }
 ```
 
@@ -196,63 +197,15 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](ast/parse/in
 
 #### Implementations
 
-- `fn new() -> Parser`
-  Create a new parser with a default configuration.
+- `fn new() -> Parser` — [`Parser`](../parser/index.md)
 
-- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>`
-  Parse the regular expression into a high level intermediate
+- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Parser`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Parser` — [`Parser`](../parser/index.md)
 
 ##### `impl Debug`
 
@@ -262,7 +215,8 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](ast/parse/in
 
 ```rust
 struct ParserBuilder {
-    // [REDACTED: Private Fields]
+    ast: ast::parse::ParserBuilder,
+    hir: hir::translate::TranslatorBuilder,
 }
 ```
 
@@ -276,96 +230,37 @@ This type combines the builder options for both the [AST
 
 #### Implementations
 
-- `fn new() -> ParserBuilder`
-  Create a new parser builder with a default configuration.
+- `fn new() -> ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn build(self: &Self) -> Parser`
-  Build a parser from this configuration with the given pattern.
+- `fn build(self: &Self) -> Parser` — [`Parser`](../parser/index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder`
-  Set the nesting limit for this parser.
+- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Whether to support octal syntax or not.
+- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  When disabled, translation will permit the construction of a regular
+- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Enable verbose mode in the regular expression.
+- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Enable or disable the case insensitive flag by default.
+- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Enable or disable the multi-line matching flag by default.
+- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Enable or disable the "dot matches any character" flag by default.
+- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Enable or disable the CRLF mode flag by default.
+- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder`
-  Sets the line terminator for use with `(?u-s:.)` and `(?-us:.)`.
+- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Enable or disable the "swap greed" flag by default.
+- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder`
-  Enable or disable the Unicode flag (`u`) by default.
+- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ParserBuilder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
 ##### `impl Debug`
 
@@ -373,12 +268,12 @@ This type combines the builder options for both the [AST
 
 ##### `impl Default`
 
-- `fn default() -> ParserBuilder`
+- `fn default() -> ParserBuilder` — [`ParserBuilder`](../parser/index.md)
 
 ### `UnicodeWordError`
 
 ```rust
-struct UnicodeWordError();
+struct UnicodeWordError(());
 ```
 
 An error that occurs when the Unicode-aware `\w` class is unavailable.
@@ -389,27 +284,9 @@ Perl character class `\w` are unavailable. This only occurs when the
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -420,22 +297,6 @@ Perl character class `\w` are unavailable. This only occurs when the
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Enums
 
@@ -467,43 +328,13 @@ new variant is not considered a breaking change.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(err: hir::Error) -> Error`
-
-##### `impl From`
-
-- `fn from(err: ast::Error) -> Error`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Error`
+- `fn clone(self: &Self) -> Error` — [`Error`](../error/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -515,37 +346,13 @@ new variant is not considered a breaking change.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Error) -> bool`
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../error/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Functions
 

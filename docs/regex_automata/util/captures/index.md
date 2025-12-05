@@ -24,7 +24,7 @@ Other regex implementations might call capturing groups "submatches."
 
 The main types in this module are:
 
-* [`Captures`](#captures) records the capturing group offsets found during a search. It
+* [`Captures`](../../index.md) records the capturing group offsets found during a search. It
 provides convenience routines for looking up capturing group offsets by either
 index or name.
 * [`GroupInfo`](#groupinfo) records the mapping between capturing groups and "slots,"
@@ -42,7 +42,9 @@ underlying `GroupInfo`.
 
 ```rust
 struct Captures {
-    // [REDACTED: Private Fields]
+    group_info: GroupInfo,
+    pid: Option<crate::util::primitives::PatternID>,
+    slots: alloc::vec::Vec<Option<crate::util::primitives::NonMaxUsize>>,
 }
 ```
 
@@ -51,7 +53,7 @@ The span offsets of capturing groups after a match has been found.
 This type represents the output of regex engines that can report the
 offsets at which capturing groups matches or "submatches" occur. For
 example, the [`PikeVM`](crate::nfa::thompson::pikevm::PikeVM). When a match
-occurs, it will at minimum contain the [`PatternID`](../primitives/index.md) of the pattern that
+occurs, it will at minimum contain the [`PatternID`](../../index.md) of the pattern that
 matched. Depending upon how it was constructed, it may also contain the
 start/end offsets of the entire match of the pattern and the start/end
 offsets of each capturing group that participated in the match.
@@ -131,122 +133,97 @@ assert_eq!(Some(Span::from(8..10)), caps.get_group_by_name("d"));
 Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
+#### Fields
+
+- **`group_info`**: `GroupInfo`
+
+  The group info that these capture groups are coupled to. This is what
+  gives the "convenience" of the `Captures` API. Namely, it provides the
+  slot mapping and the name|-->index mapping for capture lookups by name.
+
+- **`pid`**: `Option<crate::util::primitives::PatternID>`
+
+  The ID of the pattern that matched. Regex engines must set this to
+  None when no match occurs.
+
+- **`slots`**: `alloc::vec::Vec<Option<crate::util::primitives::NonMaxUsize>>`
+
+  The slot values, i.e., submatch offsets.
+  
+  In theory, the smallest sequence of slots would be something like
+  `max(groups(pattern) for pattern in regex) * 2`, but instead, we use
+  `sum(groups(pattern) for pattern in regex) * 2`. Why?
+  
+  Well, the former could be used in theory, because we don't generally
+  have any overlapping APIs that involve capturing groups. Therefore,
+  there's technically never any need to have slots set for multiple
+  patterns. However, this might change some day, in which case, we would
+  need to have slots available.
+  
+  The other reason is that during the execution of some regex engines,
+  there exists a point in time where multiple slots for different
+  patterns may be written to before knowing which pattern has matched.
+  Therefore, the regex engines themselves, in order to support multiple
+  patterns correctly, must have all slots available. If `Captures`
+  doesn't have all slots available, then regex engines can't write
+  directly into the caller provided `Captures` and must instead write
+  into some other storage and then copy the slots involved in the match
+  at the end of the search.
+  
+  So overall, at least as of the time of writing, it seems like the path
+  of least resistance is to just require allocating all possible slots
+  instead of the conceptual minimum. Another way to justify this is that
+  the most common case is a single pattern, in which case, there is no
+  inefficiency here since the 'max' and 'sum' calculations above are
+  equivalent in that case.
+  
+  N.B. The mapping from group index to slot is maintained by `GroupInfo`
+  and is considered an API guarantee. See `GroupInfo` for more details on
+  that mapping.
+  
+  N.B. `Option<NonMaxUsize>` has the same size as a `usize`.
+
 #### Implementations
 
-- `fn clear(self: &mut Self)`
-  Clear this `Captures` value.
+- `fn all(group_info: GroupInfo) -> Captures` — [`GroupInfo`](../../../util/captures/index.md), [`Captures`](../../../util/captures/index.md)
 
-- `fn set_pattern(self: &mut Self, pid: Option<PatternID>)`
-  Set the pattern on this `Captures` value.
+- `fn matches(group_info: GroupInfo) -> Captures` — [`GroupInfo`](../../../util/captures/index.md), [`Captures`](../../../util/captures/index.md)
 
-- `fn slots(self: &Self) -> &[Option<NonMaxUsize>]`
-  Returns the underlying slots, where each slot stores a single offset.
-
-- `fn slots_mut(self: &mut Self) -> &mut [Option<NonMaxUsize>]`
-  Returns the underlying slots as a mutable slice, where each slot stores
-
-- `fn all(group_info: GroupInfo) -> Captures`
-  Create new storage for the offsets of all matching capturing groups.
-
-- `fn matches(group_info: GroupInfo) -> Captures`
-  Create new storage for only the full match spans of a pattern. This
-
-- `fn empty(group_info: GroupInfo) -> Captures`
-  Create new storage for only tracking which pattern matched. No offsets
+- `fn empty(group_info: GroupInfo) -> Captures` — [`GroupInfo`](../../../util/captures/index.md), [`Captures`](../../../util/captures/index.md)
 
 - `fn is_match(self: &Self) -> bool`
-  Returns true if and only if this capturing group represents a match.
 
-- `fn pattern(self: &Self) -> Option<PatternID>`
-  Returns the identifier of the pattern that matched when this
+- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../../util/primitives/index.md)
 
-- `fn get_match(self: &Self) -> Option<Match>`
-  Returns the pattern ID and the span of the match, if one occurred.
+- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../../../util/search/index.md)
 
-- `fn get_group(self: &Self, index: usize) -> Option<Span>`
-  Returns the span of a capturing group match corresponding to the group
+- `fn get_group(self: &Self, index: usize) -> Option<Span>` — [`Span`](../../../util/search/index.md)
 
-- `fn get_group_by_name(self: &Self, name: &str) -> Option<Span>`
-  Returns the span of a capturing group match corresponding to the group
+- `fn get_group_by_name(self: &Self, name: &str) -> Option<Span>` — [`Span`](../../../util/search/index.md)
 
-- `fn iter(self: &Self) -> CapturesPatternIter<'_>`
-  Returns an iterator of possible spans for every capturing group in the
+- `fn iter(self: &Self) -> CapturesPatternIter<'_>` — [`CapturesPatternIter`](../../../util/captures/index.md)
 
 - `fn group_len(self: &Self) -> usize`
-  Return the total number of capturing groups for the matching pattern.
 
-- `fn group_info(self: &Self) -> &GroupInfo`
-  Returns a reference to the underlying group info on which these
+- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
 - `fn interpolate_string(self: &Self, haystack: &str, replacement: &str) -> String`
-  Interpolates the capture references in `replacement` with the
 
 - `fn interpolate_string_into(self: &Self, haystack: &str, replacement: &str, dst: &mut String)`
-  Interpolates the capture references in `replacement` with the
 
 - `fn interpolate_bytes(self: &Self, haystack: &[u8], replacement: &[u8]) -> Vec<u8>`
-  Interpolates the capture references in `replacement` with the
 
 - `fn interpolate_bytes_into(self: &Self, haystack: &[u8], replacement: &[u8], dst: &mut Vec<u8>)`
-  Interpolates the capture references in `replacement` with the
 
 - `fn extract<'h, const N: usize>(self: &Self, haystack: &'h str) -> (&'h str, [&'h str; N])`
-  This is a convenience routine for extracting the substrings
 
 - `fn extract_bytes<'h, const N: usize>(self: &Self, haystack: &'h [u8]) -> (&'h [u8], [&'h [u8]; N])`
-  This is a convenience routine for extracting the substrings
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Captures`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Captures` — [`Captures`](../../../util/captures/index.md)
 
 ##### `impl Debug`
 
@@ -256,7 +233,8 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct CapturesPatternIter<'a> {
-    // [REDACTED: Private Fields]
+    caps: &'a Captures,
+    names: core::iter::Enumerate<GroupInfoPatternNames<'a>>,
 }
 ```
 
@@ -271,15 +249,17 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> CapturesPatternIter<'a>` — [`CapturesPatternIter`](../../../util/captures/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'a>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl ExactSizeIterator<'a>`
+
+##### `impl FusedIterator<'a>`
 
 ##### `impl IntoIterator<I>`
 
@@ -289,68 +269,20 @@ The lifetime parameter `'a` refers to the lifetime of the underlying
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'a>`
-
-- `fn clone(self: &Self) -> CapturesPatternIter<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ExactSizeIterator<'a>`
-
-##### `impl FusedIterator<'a>`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = Option<Span>`
 
-- `fn next(self: &mut Self) -> Option<Option<Span>>`
+- `fn next(self: &mut Self) -> Option<Option<Span>>` — [`Span`](../../../util/search/index.md)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
 - `fn count(self: Self) -> usize`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `GroupInfo`
 
 ```rust
-struct GroupInfo();
+struct GroupInfo(alloc::sync::Arc<GroupInfoInner>);
 ```
 
 Represents information about capturing groups in a compiled regex.
@@ -389,7 +321,7 @@ NFA state includes the slot index. When a regex engine transitions through
 this state, it will likely use the slot index to write the current haystack
 offset to some region of memory. When a match is found, those slots are
 then reported to the caller, typically via a convenient abstraction like a
-[`Captures`](#captures) value.
+[`Captures`](../../index.md) value.
 
 Because this crate provides first class support for multi-pattern regexes,
 and because of some performance related reasons, the mapping between
@@ -523,102 +455,41 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new<P, G, N>(pattern_groups: P) -> Result<GroupInfo, GroupInfoError>`
-  Creates a new group info from a sequence of patterns, where each
+- `fn new<P, G, N>(pattern_groups: P) -> Result<GroupInfo, GroupInfoError>` — [`GroupInfo`](../../../util/captures/index.md), [`GroupInfoError`](../../../util/captures/index.md)
 
-- `fn empty() -> GroupInfo`
-  This creates an empty `GroupInfo`.
+- `fn empty() -> GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
-- `fn to_index(self: &Self, pid: PatternID, name: &str) -> Option<usize>`
-  Return the capture group index corresponding to the given name in the
+- `fn to_index(self: &Self, pid: PatternID, name: &str) -> Option<usize>` — [`PatternID`](../../../util/primitives/index.md)
 
-- `fn to_name(self: &Self, pid: PatternID, group_index: usize) -> Option<&str>`
-  Return the capture name for the given index and given pattern. If the
+- `fn to_name(self: &Self, pid: PatternID, group_index: usize) -> Option<&str>` — [`PatternID`](../../../util/primitives/index.md)
 
-- `fn pattern_names(self: &Self, pid: PatternID) -> GroupInfoPatternNames<'_>`
-  Return an iterator of all capture groups and their names (if present)
+- `fn pattern_names(self: &Self, pid: PatternID) -> GroupInfoPatternNames<'_>` — [`PatternID`](../../../util/primitives/index.md), [`GroupInfoPatternNames`](../../../util/captures/index.md)
 
-- `fn all_names(self: &Self) -> GroupInfoAllNames<'_>`
-  Return an iterator of all capture groups for all patterns supported by
+- `fn all_names(self: &Self) -> GroupInfoAllNames<'_>` — [`GroupInfoAllNames`](../../../util/captures/index.md)
 
-- `fn slots(self: &Self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>`
-  Returns the starting and ending slot corresponding to the given
+- `fn slots(self: &Self, pid: PatternID, group_index: usize) -> Option<(usize, usize)>` — [`PatternID`](../../../util/primitives/index.md)
 
-- `fn slot(self: &Self, pid: PatternID, group_index: usize) -> Option<usize>`
-  Returns the starting slot corresponding to the given capturing group
+- `fn slot(self: &Self, pid: PatternID, group_index: usize) -> Option<usize>` — [`PatternID`](../../../util/primitives/index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns in this `GroupInfo`.
 
-- `fn group_len(self: &Self, pid: PatternID) -> usize`
-  Return the number of capture groups in a pattern.
+- `fn group_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../../util/primitives/index.md)
 
 - `fn all_group_len(self: &Self) -> usize`
-  Return the total number of capture groups across all patterns.
 
 - `fn slot_len(self: &Self) -> usize`
-  Returns the total number of slots in this `GroupInfo` across all
 
 - `fn implicit_slot_len(self: &Self) -> usize`
-  Returns the total number of slots for implicit capturing groups.
 
 - `fn explicit_slot_len(self: &Self) -> usize`
-  Returns the total number of slots for explicit capturing groups.
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the memory usage, in bytes, of this `GroupInfo`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> GroupInfo`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
 ##### `impl Debug`
 
@@ -626,13 +497,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ##### `impl Default`
 
-- `fn default() -> GroupInfo`
+- `fn default() -> GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
 
 ### `GroupInfoError`
 
 ```rust
 struct GroupInfoError {
-    // [REDACTED: Private Fields]
+    kind: GroupInfoErrorKind,
 }
 ```
 
@@ -643,37 +514,27 @@ capturing groups satisfy a number of invariants. This includes, but is not
 limited to, ensuring that the first capturing group is unnamed and that
 there are no duplicate capture groups for a specific pattern.
 
+#### Implementations
+
+- `fn too_many_patterns(err: PatternIDError) -> GroupInfoError` — [`PatternIDError`](../../../util/primitives/index.md), [`GroupInfoError`](../../../util/captures/index.md)
+
+- `fn too_many_groups(pattern: PatternID, minimum: usize) -> GroupInfoError` — [`PatternID`](../../../util/primitives/index.md), [`GroupInfoError`](../../../util/captures/index.md)
+
+- `fn missing_groups(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../../util/primitives/index.md), [`GroupInfoError`](../../../util/captures/index.md)
+
+- `fn first_must_be_unnamed(pattern: PatternID) -> GroupInfoError` — [`PatternID`](../../../util/primitives/index.md), [`GroupInfoError`](../../../util/captures/index.md)
+
+- `fn duplicate(pattern: PatternID, name: &str) -> GroupInfoError` — [`PatternID`](../../../util/primitives/index.md), [`GroupInfoError`](../../../util/captures/index.md)
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> GroupInfoError`
+- `fn clone(self: &Self) -> GroupInfoError` — [`GroupInfoError`](../../../util/captures/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -683,39 +544,15 @@ there are no duplicate capture groups for a specific pattern.
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `GroupInfoPatternNames<'a>`
 
 ```rust
 struct GroupInfoPatternNames<'a> {
-    // [REDACTED: Private Fields]
+    it: core::slice::Iter<'a, Option<alloc::sync::Arc<str>>>,
 }
 ```
 
@@ -726,17 +563,23 @@ This iterator is created by `GroupInfo::pattern_names`.
 The lifetime parameter `'a` refers to the lifetime of the `GroupInfo`
 from which this iterator was created.
 
+#### Implementations
+
+- `fn empty() -> GroupInfoPatternNames<'static>` — [`GroupInfoPatternNames`](../../../util/captures/index.md)
+
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> GroupInfoPatternNames<'a>` — [`GroupInfoPatternNames`](../../../util/captures/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'a>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl ExactSizeIterator<'a>`
+
+##### `impl FusedIterator<'a>`
 
 ##### `impl IntoIterator<I>`
 
@@ -745,30 +588,6 @@ from which this iterator was created.
 - `type IntoIter = I`
 
 - `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'a>`
-
-- `fn clone(self: &Self) -> GroupInfoPatternNames<'a>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ExactSizeIterator<'a>`
-
-##### `impl FusedIterator<'a>`
 
 ##### `impl Iterator<'a>`
 
@@ -780,35 +599,14 @@ from which this iterator was created.
 
 - `fn count(self: Self) -> usize`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `GroupInfoAllNames<'a>`
 
 ```rust
 struct GroupInfoAllNames<'a> {
-    // [REDACTED: Private Fields]
+    group_info: &'a GroupInfo,
+    pids: crate::util::primitives::PatternIDIter,
+    current_pid: Option<crate::util::primitives::PatternID>,
+    names: Option<core::iter::Enumerate<GroupInfoPatternNames<'a>>>,
 }
 ```
 
@@ -821,15 +619,9 @@ from which this iterator was created.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -839,37 +631,9 @@ from which this iterator was created.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a>`
 
 - `type Item = (PatternID, usize, Option<&'a str>)`
 
-- `fn next(self: &mut Self) -> Option<(PatternID, usize, Option<&'a str>)>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../../../util/primitives/index.md)
 

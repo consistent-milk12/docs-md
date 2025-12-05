@@ -17,7 +17,16 @@ necessary when one needs access to the [`Automaton`](../../automaton/index.md) t
 
 ```rust
 struct NFA {
-    // [REDACTED: Private Fields]
+    repr: alloc::vec::Vec<u32>,
+    pattern_lens: alloc::vec::Vec<crate::util::primitives::SmallIndex>,
+    state_len: usize,
+    prefilter: Option<crate::util::prefilter::Prefilter>,
+    match_kind: crate::util::search::MatchKind,
+    alphabet_len: usize,
+    byte_classes: crate::util::alphabet::ByteClasses,
+    min_pattern_len: usize,
+    max_pattern_len: usize,
+    special: crate::util::special::Special,
 }
 ```
 
@@ -84,107 +93,113 @@ assert_eq!(
 It is also possible to implement your own version of `try_find`. See the
 [`Automaton`](../../automaton/index.md) documentation for an example.
 
+#### Fields
+
+- **`repr`**: `alloc::vec::Vec<u32>`
+
+  The raw NFA representation. Each state is packed with a header
+  (containing the format of the state, the failure transition and, for
+  a sparse state, the number of transitions), its transitions and any
+  matching pattern IDs for match states.
+
+- **`pattern_lens`**: `alloc::vec::Vec<crate::util::primitives::SmallIndex>`
+
+  The length of each pattern. This is used to compute the start offset
+  of a match.
+
+- **`state_len`**: `usize`
+
+  The total number of states in this NFA.
+
+- **`prefilter`**: `Option<crate::util::prefilter::Prefilter>`
+
+  A prefilter for accelerating searches, if one exists.
+
+- **`match_kind`**: `crate::util::search::MatchKind`
+
+  The match semantics built into this NFA.
+
+- **`alphabet_len`**: `usize`
+
+  The alphabet size, or total number of equivalence classes, for this
+  NFA. Dense states always have this many transitions.
+
+- **`byte_classes`**: `crate::util::alphabet::ByteClasses`
+
+  The equivalence classes for this NFA. All transitions, dense and
+  sparse, are defined on equivalence classes and not on the 256 distinct
+  byte values.
+
+- **`min_pattern_len`**: `usize`
+
+  The length of the shortest pattern in this automaton.
+
+- **`max_pattern_len`**: `usize`
+
+  The length of the longest pattern in this automaton.
+
+- **`special`**: `crate::util::special::Special`
+
+  The information required to deduce which states are "special" in this
+  NFA.
+
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Result<NFA, BuildError>`
-  Create a new Aho-Corasick contiguous NFA using the default
+- `fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/contiguous/index.md), [`BuildError`](../../../util/error/index.md)
 
-- `fn builder() -> Builder`
-  A convenience method for returning a new Aho-Corasick contiguous NFA
+- `fn builder() -> Builder` — [`Builder`](../../../nfa/contiguous/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
 ##### `impl Automaton`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>`
+- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../../util/search/index.md), [`StateID`](../../../util/primitives/index.md), [`MatchError`](../../../util/error/index.md)
 
-- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID`
+- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../../util/search/index.md), [`StateID`](../../../util/primitives/index.md)
 
-- `fn is_special(self: &Self, sid: StateID) -> bool`
+- `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool`
+- `fn is_dead(self: &Self, sid: StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn is_match(self: &Self, sid: StateID) -> bool`
+- `fn is_match(self: &Self, sid: StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn is_start(self: &Self, sid: StateID) -> bool`
+- `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind`
+- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../util/search/index.md)
 
 - `fn patterns_len(self: &Self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize`
+- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../../util/primitives/index.md)
 
 - `fn min_pattern_len(self: &Self) -> usize`
 
 - `fn max_pattern_len(self: &Self) -> usize`
 
-- `fn match_len(self: &Self, sid: StateID) -> usize`
+- `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID`
+- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> NFA`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> NFA` — [`NFA`](../../../nfa/contiguous/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
+##### `impl Sealed`
+
 ### `Builder`
 
 ```rust
 struct Builder {
-    // [REDACTED: Private Fields]
+    noncontiguous: noncontiguous::Builder,
+    dense_depth: usize,
+    byte_classes: bool,
 }
 ```
 
@@ -196,81 +211,27 @@ their behavior is identical.
 
 #### Implementations
 
-- `fn new() -> Builder`
-  Create a new builder for configuring an Aho-Corasick contiguous NFA.
+- `fn new() -> Builder` — [`Builder`](../../../nfa/contiguous/index.md)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<NFA, BuildError>`
-  Build an Aho-Corasick contiguous NFA from the given iterator of
+- `fn build<I, P>(self: &Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/contiguous/index.md), [`BuildError`](../../../util/error/index.md)
 
-- `fn build_from_noncontiguous(self: &Self, nnfa: &noncontiguous::NFA) -> Result<NFA, BuildError>`
-  Build an Aho-Corasick contiguous NFA from the given noncontiguous NFA.
+- `fn build_from_noncontiguous(self: &Self, nnfa: &noncontiguous::NFA) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/noncontiguous/index.md), [`BuildError`](../../../util/error/index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder`
-  Set the desired match semantics.
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../../util/search/index.md), [`Builder`](../../../nfa/contiguous/index.md)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder`
-  Enable ASCII-aware case insensitive matching.
+- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](../../../nfa/contiguous/index.md)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder`
-  Enable heuristic prefilter optimizations.
+- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](../../../nfa/contiguous/index.md)
 
-- `fn dense_depth(self: &mut Self, depth: usize) -> &mut Builder`
-  Set the limit on how many states use a dense representation for their
+- `fn dense_depth(self: &mut Self, depth: usize) -> &mut Builder` — [`Builder`](../../../nfa/contiguous/index.md)
 
-- `fn byte_classes(self: &mut Self, yes: bool) -> &mut Builder`
-  A debug setting for whether to attempt to shrink the size of the
+- `fn byte_classes(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](../../../nfa/contiguous/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Builder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../nfa/contiguous/index.md)
 
 ##### `impl Debug`
 
@@ -278,5 +239,5 @@ their behavior is identical.
 
 ##### `impl Default`
 
-- `fn default() -> Builder`
+- `fn default() -> Builder` — [`Builder`](../../../nfa/contiguous/index.md)
 

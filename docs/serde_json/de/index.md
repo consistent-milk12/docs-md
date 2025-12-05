@@ -12,60 +12,44 @@ Deserialize JSON data to a Rust data structure.
 
 ```rust
 struct SliceRead<'a> {
-    // [REDACTED: Private Fields]
+    slice: &'a [u8],
+    index: usize,
 }
 ```
 
 JSON input source that reads from a slice of bytes.
 
+#### Fields
+
+- **`index`**: `usize`
+
+  Index of the *next* byte that will be returned by next() or peek().
+
 #### Implementations
 
 - `fn new(slice: &'a [u8]) -> Self`
-  Create a JSON input source to read from a slice of bytes.
+
+- `fn position_of_index(self: &Self, i: usize) -> Position` — [`Position`](../../read/index.md)
+
+- `fn skip_to_escape(self: &mut Self, forbid_control_characters: bool)`
+
+- `fn skip_to_escape_slow(self: &mut Self)`
+
+- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../../error/index.md), [`Reference`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl Fused<'a>`
 
 ##### `impl Read<'a>`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+##### `impl Sealed<'a>`
 
 ### `StrRead<'a>`
 
 ```rust
 struct StrRead<'a> {
-    // [REDACTED: Private Fields]
+    delegate: SliceRead<'a>,
 }
 ```
 
@@ -74,45 +58,14 @@ JSON input source that reads from a UTF-8 string.
 #### Implementations
 
 - `fn new(s: &'a str) -> Self`
-  Create a JSON input source to read from a UTF-8 string.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+##### `impl Fused<'a>`
 
 ##### `impl Read<'a>`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+##### `impl Sealed<'a>`
 
 ### `IoRead<R>`
 
@@ -120,60 +73,36 @@ JSON input source that reads from a UTF-8 string.
 struct IoRead<R>
 where
     R: io::Read {
-    // [REDACTED: Private Fields]
+    iter: crate::iter::LineColIterator<io::Bytes<R>>,
+    ch: Option<u8>,
 }
 ```
 
 JSON input source that reads from a std::io input stream.
 
+#### Fields
+
+- **`ch`**: `Option<u8>`
+
+  Temporary storage of peeked byte.
+
 #### Implementations
 
 - `fn new(reader: R) -> Self`
-  Create a JSON input source to read from a std::io input stream.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Read<'de, R>`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+##### `impl Sealed<R>`
 
 ### `Deserializer<R>`
 
 ```rust
 struct Deserializer<R> {
-    // [REDACTED: Private Fields]
+    read: R,
+    scratch: alloc::vec::Vec<u8>,
+    remaining_depth: u8,
 }
 ```
 
@@ -181,65 +110,83 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn end(self: &mut Self) -> Result<()>`
-  The `Deserializer::end` method should be called after a value has been fully deserialized.
+- `fn end(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
 
-- `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>`
-  Turn a JSON deserializer into an iterator over values of type T.
+- `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>` — [`StreamDeserializer`](../../de/index.md)
 
-- `fn from_slice(bytes: &'a [u8]) -> Self`
-  Creates a JSON deserializer from a `&[u8]`.
+- `fn peek(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../../error/index.md)
 
-- `fn from_reader(reader: R) -> Self`
-  Creates a JSON deserializer from an `io::Read`.
+- `fn peek_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../../error/index.md)
 
-- `fn new(read: R) -> Self`
-  Create a JSON deserializer from one of the possible serde_json input
+- `fn eat_char(self: &mut Self)`
 
-- `fn from_str(s: &'a str) -> Self`
-  Creates a JSON deserializer from a `&str`.
+- `fn next_char(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../../error/index.md)
 
-#### Trait Implementations
+- `fn next_char_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../../error/index.md)
 
-##### `impl From<T>`
+- `fn error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../../error/index.md), [`Error`](../../error/index.md)
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn peek_error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../../error/index.md), [`Error`](../../error/index.md)
 
-##### `impl Into<T, U>`
+- `fn parse_whitespace(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../../error/index.md)
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn peek_invalid_type(self: &mut Self, exp: &dyn Expected) -> Error` — [`Error`](../../error/index.md)
 
-##### `impl Any<T>`
+- `fn deserialize_number<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../../error/index.md)
 
-- `fn type_id(self: &Self) -> TypeId`
+- `fn do_deserialize_i128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../../error/index.md)
 
-##### `impl Borrow<T>`
+- `fn do_deserialize_u128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../../error/index.md)
 
-- `fn borrow(self: &Self) -> &T`
+- `fn scan_integer128(self: &mut Self, buf: &mut String) -> Result<()>` — [`Result`](../../error/index.md)
 
-##### `impl BorrowMut<T>`
+- `fn fix_position(self: &Self, err: Error) -> Error` — [`Error`](../../error/index.md)
 
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn parse_ident(self: &mut Self, ident: &[u8]) -> Result<()>` — [`Result`](../../error/index.md)
 
-##### `impl TryFrom<T, U>`
+- `fn parse_integer(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../../error/index.md), [`ParserNumber`](../../de/index.md)
 
-- `type Error = Infallible`
+- `fn parse_number(self: &mut Self, positive: bool, significand: u64) -> Result<ParserNumber>` — [`Result`](../../error/index.md), [`ParserNumber`](../../de/index.md)
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn parse_decimal(self: &mut Self, positive: bool, significand: u64, exponent_before_decimal_point: i32) -> Result<f64>` — [`Result`](../../error/index.md)
 
-##### `impl TryInto<T, U>`
+- `fn parse_exponent(self: &mut Self, positive: bool, significand: u64, starting_exp: i32) -> Result<f64>` — [`Result`](../../error/index.md)
 
-- `type Error = <U as TryFrom>::Error`
+- `fn f64_from_parts(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../../error/index.md)
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn parse_long_integer(self: &mut Self, positive: bool, significand: u64) -> Result<f64>` — [`Result`](../../error/index.md)
+
+- `fn parse_decimal_overflow(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../../error/index.md)
+
+- `fn parse_exponent_overflow(self: &mut Self, positive: bool, zero_significand: bool, positive_exp: bool) -> Result<f64>` — [`Result`](../../error/index.md)
+
+- `fn parse_any_signed_number(self: &mut Self) -> Result<ParserNumber>` — [`Result`](../../error/index.md), [`ParserNumber`](../../de/index.md)
+
+- `fn parse_any_number(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../../error/index.md), [`ParserNumber`](../../de/index.md)
+
+- `fn parse_object_colon(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
+
+- `fn end_seq(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
+
+- `fn end_map(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
+
+- `fn ignore_value(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
+
+- `fn ignore_integer(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
+
+- `fn ignore_decimal(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
+
+- `fn ignore_exponent(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
 
 ### `StreamDeserializer<'de, R, T>`
 
 ```rust
 struct StreamDeserializer<'de, R, T> {
-    // [REDACTED: Private Fields]
+    de: Deserializer<R>,
+    offset: usize,
+    failed: bool,
+    output: core::marker::PhantomData<T>,
+    lifetime: core::marker::PhantomData<&'de ()>,
 }
 ```
 
@@ -268,22 +215,14 @@ fn main() {
 #### Implementations
 
 - `fn new(read: R) -> Self`
-  Create a JSON stream deserializer from one of the possible serde_json
 
 - `fn byte_offset(self: &Self) -> usize`
-  Returns the number of bytes so far deserialized into a successful `T`.
+
+- `fn peek_end_of_value(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl FusedIterator<'de, R, T>`
 
 ##### `impl IntoIterator<I>`
 
@@ -293,37 +232,11 @@ fn main() {
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl FusedIterator<'de, R, T>`
-
 ##### `impl Iterator<'de, R, T>`
 
 - `type Item = Result<T, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<T>>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn next(self: &mut Self) -> Option<Result<T>>` — [`Result`](../../error/index.md)
 
 ## Traits
 

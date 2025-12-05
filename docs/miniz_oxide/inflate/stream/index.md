@@ -22,43 +22,9 @@ Note that not zeroing buffer can lead to security issues when dealing with untru
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl ResetPolicy`
 
-- `fn reset(self: &Self, state: &mut InflateState)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](../../../inflate/stream/index.md)
 
 ### `ZeroReset`
 
@@ -70,43 +36,9 @@ Resets state and zero memory, continuing to use the same data format.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl ResetPolicy`
 
-- `fn reset(self: &Self, state: &mut InflateState)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](../../../inflate/stream/index.md)
 
 ### `FullReset`
 
@@ -120,129 +52,72 @@ Requires to provide new data format.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl ResetPolicy`
 
-- `fn reset(self: &Self, state: &mut InflateState)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](../../../inflate/stream/index.md)
 
 ### `InflateState`
 
 ```rust
 struct InflateState {
-    // [REDACTED: Private Fields]
+    decomp: crate::inflate::core::DecompressorOxide,
+    dict: [u8; 32768],
+    dict_ofs: usize,
+    dict_avail: usize,
+    first_call: bool,
+    has_flushed: bool,
+    data_format: crate::DataFormat,
+    last_status: crate::inflate::TINFLStatus,
 }
 ```
 
 A struct that compbines a decompressor with extra data for streaming decompression.
 
 
+#### Fields
+
+- **`decomp`**: `crate::inflate::core::DecompressorOxide`
+
+  Inner decompressor struct
+
+- **`dict`**: `[u8; 32768]`
+
+  Buffer of input bytes for matches.
+  TODO: Could probably do this a bit cleaner with some
+  Cursor-like class.
+  We may also look into whether we need to keep a buffer here, or just one in the
+  decompressor struct.
+
+- **`dict_ofs`**: `usize`
+
+  Where in the buffer are we currently at?
+
+- **`dict_avail`**: `usize`
+
+  How many bytes of data to be flushed is there currently in the buffer?
+
+- **`data_format`**: `crate::DataFormat`
+
+  Whether the input data is wrapped in a zlib header and checksum.
+  TODO: This should be stored in the decompressor.
+
 #### Implementations
 
-- `fn new(data_format: DataFormat) -> InflateState`
-  Create a new state.
+- `fn new(data_format: DataFormat) -> InflateState` — [`DataFormat`](../../../index.md), [`InflateState`](../../../inflate/stream/index.md)
 
-- `fn new_boxed(data_format: DataFormat) -> Box<InflateState>`
-  Create a new state on the heap.
+- `fn decompressor(self: &mut Self) -> &mut DecompressorOxide` — [`DecompressorOxide`](../../../inflate/core/index.md)
 
-- `fn decompressor(self: &mut Self) -> &mut DecompressorOxide`
-  Access the innner decompressor.
+- `const fn last_status(self: &Self) -> TINFLStatus` — [`TINFLStatus`](../../../inflate/index.md)
 
-- `const fn last_status(self: &Self) -> TINFLStatus`
-  Return the status of the last call to `inflate` with this `InflateState`.
-
-- `fn new_boxed_with_window_bits(window_bits: i32) -> Box<InflateState>`
-  Create a new state using miniz/zlib style window bits parameter.
-
-- `fn reset(self: &mut Self, data_format: DataFormat)`
-  Reset the decompressor without re-allocating memory, using the given
+- `fn reset(self: &mut Self, data_format: DataFormat)` — [`DataFormat`](../../../index.md)
 
 - `fn reset_as<T: ResetPolicy>(self: &mut Self, policy: T)`
-  Resets the state according to specified policy.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> InflateState`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> InflateState` — [`InflateState`](../../../inflate/stream/index.md)
 
 ##### `impl Default`
 

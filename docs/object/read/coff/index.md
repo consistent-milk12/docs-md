@@ -7,21 +7,21 @@
 Support for reading Windows COFF files.
 
 Traits are used to abstract over the difference between COFF object files
-and COFF bigobj files. The primary trait for this is [`CoffHeader`](../../index.md).
+and COFF bigobj files. The primary trait for this is [`CoffHeader`](file/index.md).
 
 ## High level API
 
-[`CoffFile`](../../index.md) implements the [`Object`](crate::read::Object) trait for
-COFF files. [`CoffFile`](../../index.md) is parameterised by [`CoffHeader`](../../index.md).
+[`CoffFile`](file/index.md) implements the [`Object`](crate::read::Object) trait for
+COFF files. [`CoffFile`](file/index.md) is parameterised by [`CoffHeader`](file/index.md).
 The default parameter allows reading regular COFF object files,
-while the type alias [`CoffBigFile`](../../index.md) allows reading COFF bigobj files.
+while the type alias [`CoffBigFile`](file/index.md) allows reading COFF bigobj files.
 
-[`ImportFile`](../../index.md) allows reading COFF short imports that are used in import
+[`ImportFile`](import/index.md) allows reading COFF short imports that are used in import
 libraries. Currently these are not integrated with the unified read API.
 
 ## Low level API
 
-The [`CoffHeader`](../../index.md) trait can be directly used to parse both COFF
+The [`CoffHeader`](file/index.md) trait can be directly used to parse both COFF
 object files (which start with `pe::ImageFileHeader`) and COFF bigobj
 files (which start with `pe::AnonObjectHeaderBigobj`).
 

@@ -12,7 +12,8 @@ Public implementation details for the `TokenStream` type, such as iterators.
 
 ```rust
 struct TokenStream {
-    // [REDACTED: Private Fields]
+    inner: imp::TokenStream,
+    _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
 
@@ -26,109 +27,19 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Implementations
 
+- `fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](../../imp/index.md)
+
+- `fn _new_fallback(inner: fallback::TokenStream) -> Self`
+
 - `fn new() -> Self`
-  Returns an empty `TokenStream` containing no token trees.
 
 - `fn is_empty(self: &Self) -> bool`
-  Checks if this `TokenStream` is empty.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(token: TokenTree) -> Self`
-
-##### `impl From`
-
-- `fn from(inner: proc_macro::TokenStream) -> Self`
-
-##### `impl FromIterator`
-
-- `fn from_iter<I: IntoIterator<Item = TokenTree>>(streams: I) -> Self`
-
-##### `impl FromIterator`
-
-- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
-
-##### `impl FromStr`
-
-- `type Err = LexError`
-
-- `fn from_str(src: &str) -> Result<TokenStream, LexError>`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoIterator`
-
-- `type Item = TokenTree`
-
-- `type IntoIter = IntoIter`
-
-- `fn into_iter(self: Self) -> IntoIter`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TokenStream`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Extend`
-
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
-
-##### `impl Extend`
-
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> TokenStream` — [`TokenStream`](../../index.md)
 
 ##### `impl Debug`
 
@@ -138,17 +49,56 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 - `fn default() -> Self`
 
-##### `impl TokenStreamExt`
+##### `impl Display`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Extend`
+
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+
+##### `impl FromIterator`
+
+- `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
+
+##### `impl FromStr`
+
+- `type Err = LexError`
+
+- `fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../../index.md), [`LexError`](../../index.md)
+
+##### `impl IntoIterator`
+
+- `type Item = TokenTree`
+
+- `type IntoIter = IntoIter`
+
+- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](../../token_stream/index.md)
+
+##### `impl Parse`
+
+##### `impl Sealed`
+
+##### `impl ToString<T>`
+
+- `fn to_string(self: &Self) -> String`
 
 ##### `impl ToTokens`
 
-##### `impl Parse`
+- `fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../../parse/index.md), [`Reject`](../../parse/index.md)
+
+- `fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../../parse/index.md), [`Reject`](../../parse/index.md)
+
+##### `impl TokenStreamExt`
+
+- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ### `IntoIter`
 
 ```rust
 struct IntoIter {
-    // [REDACTED: Private Fields]
+    inner: imp::TokenTreeIter,
+    _marker: crate::marker::ProcMacroAutoTraits,
 }
 ```
 
@@ -159,15 +109,13 @@ delimited groups, and returns whole groups as token trees.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> IntoIter` — [`IntoIter`](../../token_stream/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -177,55 +125,11 @@ delimited groups, and returns whole groups as token trees.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone`
-
-- `fn clone(self: &Self) -> IntoIter`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Iterator`
 
 - `type Item = TokenTree`
 
-- `fn next(self: &mut Self) -> Option<TokenTree>`
+- `fn next(self: &mut Self) -> Option<TokenTree>` — [`TokenTree`](../../index.md)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

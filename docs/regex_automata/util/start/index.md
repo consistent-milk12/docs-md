@@ -12,7 +12,8 @@ Provides helpers for dealing with start state configurations in DFAs.
 
 ```rust
 struct Config {
-    // [REDACTED: Private Fields]
+    look_behind: Option<u8>,
+    anchored: crate::util::search::Anchored,
 }
 ```
 
@@ -39,7 +40,7 @@ perform while the `Config::look_behind` method provides a way to set
 the byte that occurs immediately before the start of the search.
 
 Generally speaking, this type is only useful when you want to run searches
-without using an [`Input`](../../index.md). In particular, an `Input` wants a haystack
+without using an [`Input`](../search/index.md). In particular, an `Input` wants a haystack
 slice, but callers may not have a contiguous sequence of bytes as a
 haystack in all cases. This type provides a lower level of control such
 that callers can provide their own anchored configuration and look-behind
@@ -128,78 +129,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Config`
-  Create a new default start configuration.
+- `fn new() -> Config` — [`Config`](../../../util/start/index.md)
 
-- `fn from_input_forward(input: &Input<'_>) -> Config`
-  A convenience routine for building a start configuration from an
+- `fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../../util/search/index.md), [`Config`](../../../util/start/index.md)
 
-- `fn from_input_reverse(input: &Input<'_>) -> Config`
-  A convenience routine for building a start configuration from an
+- `fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../../util/search/index.md), [`Config`](../../../util/start/index.md)
 
-- `fn look_behind(self: Self, byte: Option<u8>) -> Config`
-  Set the look-behind byte at the start of a search.
+- `fn look_behind(self: Self, byte: Option<u8>) -> Config` — [`Config`](../../../util/start/index.md)
 
-- `fn anchored(self: Self, mode: Anchored) -> Config`
-  Set the anchored mode of a search.
+- `fn anchored(self: Self, mode: Anchored) -> Config` — [`Anchored`](../../../util/search/index.md), [`Config`](../../../util/start/index.md)
 
 - `fn get_look_behind(self: &Self) -> Option<u8>`
-  Return the look-behind byte in this configuration, if one exists.
 
-- `fn get_anchored(self: &Self) -> Anchored`
-  Return the anchored mode in this configuration.
+- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](../../../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Config`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Config` — [`Config`](../../../util/start/index.md)
 
 ##### `impl Debug`
 

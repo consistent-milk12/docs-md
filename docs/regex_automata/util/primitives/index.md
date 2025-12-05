@@ -11,10 +11,10 @@ Lower level primitive types that are useful in a variety of circumstances.
 This list represents the principle types in this module and briefly describes
 when you might want to use them.
 
-* [`PatternID`](#patternid) - A type that represents the identifier of a regex pattern.
+* [`PatternID`](../../index.md) - A type that represents the identifier of a regex pattern.
 This is probably the most widely used type in this module (which is why it's
 also re-exported in the crate root).
-* [`StateID`](#stateid) - A type the represents the identifier of a finite automaton
+* [`StateID`](../../index.md) - A type the represents the identifier of a finite automaton
 state. This is used for both NFAs and DFAs, with the notable exception of
 the hybrid NFA/DFA. (The hybrid NFA/DFA uses a special purpose "lazy" state
 identifier.)
@@ -38,7 +38,7 @@ guarantees that slices never have a length that exceeds `isize::MAX`.
 ### `NonMaxUsize`
 
 ```rust
-struct NonMaxUsize();
+struct NonMaxUsize(core::num::NonZeroUsize);
 ```
 
 A `usize` that can never be `usize::MAX`.
@@ -59,45 +59,21 @@ This type is defined to be `repr(transparent)` for
 
 #### Implementations
 
-- `fn new(value: usize) -> Option<NonMaxUsize>`
-  Create a new `NonMaxUsize` from the given value.
+- `fn new(value: usize) -> Option<NonMaxUsize>` — [`NonMaxUsize`](../../../util/primitives/index.md)
 
 - `fn get(self: Self) -> usize`
-  Return the underlying `usize` value. The returned value is guaranteed
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> NonMaxUsize`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> NonMaxUsize` — [`NonMaxUsize`](../../../util/primitives/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Eq`
 
@@ -107,46 +83,22 @@ This type is defined to be `repr(transparent)` for
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &NonMaxUsize) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &NonMaxUsize) -> $crate::cmp::Ordering` — [`NonMaxUsize`](../../../util/primitives/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &NonMaxUsize) -> bool`
+- `fn eq(self: &Self, other: &NonMaxUsize) -> bool` — [`NonMaxUsize`](../../../util/primitives/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &NonMaxUsize) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &NonMaxUsize) -> $crate::option::Option<$crate::cmp::Ordering>` — [`NonMaxUsize`](../../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `SmallIndex`
 
 ```rust
-struct SmallIndex();
+struct SmallIndex(u32);
 ```
 
 A type that represents a "small" index.
@@ -184,8 +136,8 @@ for delta encoding.
 
 The following types wrap `SmallIndex` to provide a more focused use case:
 
-* [`PatternID`](#patternid) is for representing the identifiers of patterns.
-* [`StateID`](#stateid) is for representing the identifiers of states in finite
+* [`PatternID`](../../index.md) is for representing the identifiers of patterns.
+* [`StateID`](../../index.md) is for representing the identifiers of states in finite
 automata. It is used for both NFAs and DFAs.
 
 # Representation
@@ -217,76 +169,43 @@ in panics or silent logical errors.
 
 - `const SIZE: usize`
 
-- `fn new(index: usize) -> Result<SmallIndex, SmallIndexError>`
-  Create a new small index.
+- `fn new(index: usize) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](../../../util/primitives/index.md), [`SmallIndexError`](../../../util/primitives/index.md)
 
-- `const fn new_unchecked(index: usize) -> SmallIndex`
-  Create a new small index without checking whether the given value
+- `const fn new_unchecked(index: usize) -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
 
-- `fn must(index: usize) -> SmallIndex`
-  Like [`SmallIndex::new`], but panics if the given index is not valid.
+- `fn must(index: usize) -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
 
 - `const fn as_usize(self: &Self) -> usize`
-  Return this small index as a `usize`. This is guaranteed to never
 
 - `const fn as_u64(self: &Self) -> u64`
-  Return this small index as a `u64`. This is guaranteed to never
 
 - `const fn as_u32(self: &Self) -> u32`
-  Return the internal `u32` of this small index. This is guaranteed to
 
 - `const fn as_i32(self: &Self) -> i32`
-  Return the internal `u32` of this small index represented as an `i32`.
 
 - `fn one_more(self: &Self) -> usize`
-  Returns one more than this small index as a usize.
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<SmallIndex, SmallIndexError>`
-  Decode this small index from the bytes given using the native endian
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](../../../util/primitives/index.md), [`SmallIndexError`](../../../util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> SmallIndex`
-  Decode this small index from the bytes given using the native endian
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
-  Return the underlying small index integer as raw bytes in native endian
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(index: u8) -> SmallIndex`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SmallIndex`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
 
 ##### `impl Eq`
 
@@ -296,75 +215,23 @@ in panics or silent logical errors.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &SmallIndex) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &SmallIndex) -> $crate::cmp::Ordering` — [`SmallIndex`](../../../util/primitives/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &SmallIndex) -> bool`
+- `fn eq(self: &Self, other: &SmallIndex) -> bool` — [`SmallIndex`](../../../util/primitives/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &SmallIndex) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &SmallIndex) -> $crate::option::Option<$crate::cmp::Ordering>` — [`SmallIndex`](../../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = SmallIndexError`
-
-- `fn try_from(index: usize) -> Result<SmallIndex, SmallIndexError>`
-
-##### `impl TryFrom`
-
-- `type Error = SmallIndexError`
-
-- `fn try_from(index: u16) -> Result<SmallIndex, SmallIndexError>`
-
-##### `impl TryFrom`
-
-- `type Error = SmallIndexError`
-
-- `fn try_from(index: u64) -> Result<SmallIndex, SmallIndexError>`
-
-##### `impl TryFrom`
-
-- `type Error = SmallIndexError`
-
-- `fn try_from(index: u32) -> Result<SmallIndex, SmallIndexError>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> SmallIndex`
 
 ### `SmallIndexError`
 
 ```rust
 struct SmallIndexError {
-    // [REDACTED: Private Fields]
+    attempted: u64,
 }
 ```
 
@@ -377,39 +244,16 @@ When the `std` feature is enabled, this implements the `Error` trait.
 #### Implementations
 
 - `fn attempted(self: &Self) -> u64`
-  Returns the value that could not be converted to a small index.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SmallIndexError`
+- `fn clone(self: &Self) -> SmallIndexError` — [`SmallIndexError`](../../../util/primitives/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -421,42 +265,18 @@ When the `std` feature is enabled, this implements the `Error` trait.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &SmallIndexError) -> bool`
+- `fn eq(self: &Self, other: &SmallIndexError) -> bool` — [`SmallIndexError`](../../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `PatternID`
 
 ```rust
-struct PatternID();
+struct PatternID(SmallIndex);
 ```
 
 The identifier of a regex pattern, represented by a [`SmallIndex`](#smallindex).
@@ -485,76 +305,45 @@ re-exported at the crate root due to how common it is.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<PatternID, PatternIDError>`
-  Create a new value that is represented by a "small index."
+- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](../../../util/primitives/index.md), [`PatternIDError`](../../../util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> PatternID`
-  Create a new value without checking whether the given argument
+- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
-- `fn must(value: usize) -> PatternID`
-  Like `new`, but panics if the given value is not valid.
+- `fn must(value: usize) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
 - `const fn as_usize(self: &Self) -> usize`
-  Return the internal value as a `usize`. This is guaranteed to
 
 - `const fn as_u64(self: &Self) -> u64`
-  Return the internal value as a `u64`. This is guaranteed to
 
 - `const fn as_u32(self: &Self) -> u32`
-  Return the internal value as a `u32`. This is guaranteed to
 
 - `const fn as_i32(self: &Self) -> i32`
-  Return the internal value as a i32`. This is guaranteed to
 
 - `fn one_more(self: &Self) -> usize`
-  Returns one more than this value as a usize.
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>`
-  Decode this value from the bytes given using the native endian
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](../../../util/primitives/index.md), [`PatternIDError`](../../../util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID`
-  Decode this value from the bytes given using the native endian
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
-  Return the underlying integer as raw bytes in native endian
+
+- `fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: u8) -> PatternID`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PatternID`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
 
 ##### `impl Eq`
 
@@ -564,74 +353,22 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](../../../util/primitives/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &PatternID) -> bool`
+- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](../../../util/primitives/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](../../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> PatternID`
 
 ### `StateID`
 
 ```rust
-struct StateID();
+struct StateID(SmallIndex);
 ```
 
 The identifier of a finite automaton state, represented by a
@@ -656,76 +393,45 @@ a state ID to be a "small index."
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<StateID, StateIDError>`
-  Create a new value that is represented by a "small index."
+- `fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../../../util/primitives/index.md), [`StateIDError`](../../../util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> StateID`
-  Create a new value without checking whether the given argument
+- `const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
-- `fn must(value: usize) -> StateID`
-  Like `new`, but panics if the given value is not valid.
+- `fn must(value: usize) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
 - `const fn as_usize(self: &Self) -> usize`
-  Return the internal value as a `usize`. This is guaranteed to
 
 - `const fn as_u64(self: &Self) -> u64`
-  Return the internal value as a `u64`. This is guaranteed to
 
 - `const fn as_u32(self: &Self) -> u32`
-  Return the internal value as a `u32`. This is guaranteed to
 
 - `const fn as_i32(self: &Self) -> i32`
-  Return the internal value as a i32`. This is guaranteed to
 
 - `fn one_more(self: &Self) -> usize`
-  Returns one more than this value as a usize.
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>`
-  Decode this value from the bytes given using the native endian
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../../../util/primitives/index.md), [`StateIDError`](../../../util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID`
-  Decode this value from the bytes given using the native endian
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
-  Return the underlying integer as raw bytes in native endian
+
+- `fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: u8) -> StateID`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StateID`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> StateID` — [`StateID`](../../../util/primitives/index.md)
 
 ##### `impl Eq`
 
@@ -735,74 +441,22 @@ a state ID to be a "small index."
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering` — [`StateID`](../../../util/primitives/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &StateID) -> bool`
+- `fn eq(self: &Self, other: &StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StateID`](../../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u64) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: usize) -> Result<StateID, StateIDError>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> StateID`
 
 ### `PatternIDError`
 
 ```rust
-struct PatternIDError();
+struct PatternIDError(SmallIndexError);
 ```
 
 This error occurs when a value could not be constructed.
@@ -816,39 +470,16 @@ trait.
 #### Implementations
 
 - `fn attempted(self: &Self) -> u64`
-  Returns the value that could not be converted to an ID.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PatternIDError`
+- `fn clone(self: &Self) -> PatternIDError` — [`PatternIDError`](../../../util/primitives/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -860,42 +491,18 @@ trait.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &PatternIDError) -> bool`
+- `fn eq(self: &Self, other: &PatternIDError) -> bool` — [`PatternIDError`](../../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `StateIDError`
 
 ```rust
-struct StateIDError();
+struct StateIDError(SmallIndexError);
 ```
 
 This error occurs when a value could not be constructed.
@@ -909,39 +516,16 @@ trait.
 #### Implementations
 
 - `fn attempted(self: &Self) -> u64`
-  Returns the value that could not be converted to an ID.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StateIDError`
+- `fn clone(self: &Self) -> StateIDError` — [`StateIDError`](../../../util/primitives/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -953,35 +537,11 @@ trait.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &StateIDError) -> bool`
+- `fn eq(self: &Self, other: &StateIDError) -> bool` — [`StateIDError`](../../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

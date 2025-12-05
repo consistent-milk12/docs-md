@@ -89,69 +89,16 @@ an entire paragraph at a time in order to find optimal line breaks
 #### Implementations
 
 - `const fn new() -> Self`
-  Create new wrap algorithm.
 
-- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>`
-  Wrap words according to line widths.
+- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../../core/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> WrapAlgorithm`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](../../wrap_algorithms/index.md)
 
 ##### `impl Copy`
-
-##### `impl PartialEq`
-
-- `fn eq(self: &Self, other: &Self) -> bool`
-  Compare two wrap algorithms.
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -160,6 +107,10 @@ an entire paragraph at a time in order to find optimal line breaks
 ##### `impl Default`
 
 - `fn default() -> Self`
+
+##### `impl PartialEq`
+
+- `fn eq(self: &Self, other: &Self) -> bool`
 
 ## Functions
 

@@ -115,7 +115,7 @@ The [`parse_quote!`](#parse-quote) macro also uses this approach.
 # The `Parser` trait
 
 Some types can be parsed in several ways depending on context. For example
-an [`Attribute`](../index.md) can be either "outer" like `#[...]` or "inner" like
+an [`Attribute`](../attr/index.md) can be either "outer" like `#[...]` or "inner" like
 `#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
@@ -185,7 +185,7 @@ fn call_some_parser_methods(input: TokenStream) -> Result<()> {
 
 ```rust
 struct Error {
-    // [REDACTED: Private Fields]
+    messages: Vec<ErrorMessage>,
 }
 ```
 
@@ -271,66 +271,26 @@ mod expand {
 #### Implementations
 
 - `fn new<T: Display>(span: Span, message: T) -> Self`
-  Usually the [`ParseStream::error`] method will be used instead, which
 
 - `fn new_spanned<T: ToTokens, U: Display>(tokens: T, message: U) -> Self`
-  Creates an error with the specified message spanning the given syntax
 
 - `fn span(self: &Self) -> Span`
-  The source location of the error.
 
 - `fn to_compile_error(self: &Self) -> TokenStream`
-  Render the error as an invocation of [`compile_error!`].
 
 - `fn into_compile_error(self: Self) -> TokenStream`
-  Render the error as an invocation of [`compile_error!`].
 
-- `fn combine(self: &mut Self, another: Error)`
-  Add another error message to self such that when `to_compile_error()` is
+- `fn combine(self: &mut Self, another: Error)` — [`Error`](../../error/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(err: LexError) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl IntoIterator`
-
-- `type Item = Error`
-
-- `type IntoIter = IntoIter`
-
-- `fn into_iter(self: Self) -> <Self as >::IntoIter`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display`
 
@@ -342,33 +302,17 @@ mod expand {
 
 - `fn extend<T: IntoIterator<Item = Error>>(self: &mut Self, iter: T)`
 
-##### `impl ToOwned<T>`
+##### `impl IntoIterator`
 
-- `type Owned = T`
+- `type Item = Error`
 
-- `fn to_owned(self: &Self) -> T`
+- `type IntoIter = IntoIter`
 
-- `fn clone_into(self: &Self, target: &mut T)`
+- `fn into_iter(self: Self) -> <Self as >::IntoIter`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `End`
 
@@ -509,71 +453,29 @@ Ok(())
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
 
 ##### `impl Copy`
 
 ##### `impl Peek`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
+##### `impl Sealed`
 
 ##### `impl Token<T>`
 
-- `fn peek(cursor: Cursor<'_>) -> bool`
+- `fn peek(cursor: Cursor<'_>) -> bool` — [`Cursor`](../../buffer/index.md)
 
 - `fn display() -> &'static str`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `Lookahead1<'a>`
 
 ```rust
 struct Lookahead1<'a> {
-    // [REDACTED: Private Fields]
+    scope: proc_macro2::Span,
+    cursor: crate::buffer::Cursor<'a>,
+    comparisons: std::cell::RefCell<Vec<&'static str>>,
 }
 ```
 
@@ -632,52 +534,17 @@ impl Parse for GenericParam {
 #### Implementations
 
 - `fn peek<T: Peek>(self: &Self, token: T) -> bool`
-  Looks at the next token in the parse stream to determine whether it
 
-- `fn error(self: Self) -> Error`
-  Triggers an error at the current position of the parse stream.
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn error(self: Self) -> Error` — [`Error`](../../error/index.md)
 
 ### `ParseBuffer<'a>`
 
 ```rust
 struct ParseBuffer<'a> {
-    // [REDACTED: Private Fields]
+    scope: proc_macro2::Span,
+    cell: std::cell::Cell<crate::buffer::Cursor<'static>>,
+    marker: std::marker::PhantomData<crate::buffer::Cursor<'a>>,
+    unexpected: std::cell::Cell<Option<std::rc::Rc<std::cell::Cell<Unexpected>>>>,
 }
 ```
 
@@ -703,72 +570,43 @@ you will need to go through one of the public parsing entry points.
 
 #### Implementations
 
-- `fn parse<T: Parse>(self: &Self) -> Result<T>`
-  Parses a syntax tree node of type `T`, advancing the position of our
+- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../../error/index.md)
 
-- `fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>`
-  Calls the given parser function to parse a syntax tree node of type `T`
+- `fn call<T>(self: &'a Self, function: fn(ParseStream<'a>) -> Result<T>) -> Result<T>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
 
 - `fn peek<T: Peek>(self: &Self, token: T) -> bool`
-  Looks at the next token in the parse stream to determine whether it
 
 - `fn peek2<T: Peek>(self: &Self, token: T) -> bool`
-  Looks at the second-next token in the parse stream.
 
 - `fn peek3<T: Peek>(self: &Self, token: T) -> bool`
-  Looks at the third-next token in the parse stream.
 
-- `fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>`
-  Parses zero or more occurrences of `T` separated by punctuation of type
+- `fn parse_terminated<T, P>(self: &'a Self, parser: fn(ParseStream<'a>) -> Result<T>, separator: P) -> Result<Punctuated<T, <P as >::Token>>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md), [`Punctuated`](../../punctuated/index.md), [`Peek`](../../lookahead/index.md)
 
 - `fn is_empty(self: &Self) -> bool`
-  Returns whether there are no more tokens remaining to be parsed from
 
-- `fn lookahead1(self: &Self) -> Lookahead1<'a>`
-  Constructs a helper for peeking at the next token in this stream and
+- `fn lookahead1(self: &Self) -> Lookahead1<'a>` — [`Lookahead1`](../../lookahead/index.md)
 
 - `fn fork(self: &Self) -> Self`
-  Forks a parse stream so that parsing tokens out of either the original
 
-- `fn error<T: Display>(self: &Self, message: T) -> Error`
-  Triggers an error at the current position of the parse stream.
+- `fn error<T: Display>(self: &Self, message: T) -> Error` — [`Error`](../../error/index.md)
 
-- `fn step<F, R>(self: &Self, function: F) -> Result<R>`
-  Speculatively parses tokens from this parse stream, advancing the
+- `fn step<F, R>(self: &Self, function: F) -> Result<R>` — [`Result`](../../error/index.md)
 
 - `fn span(self: &Self) -> Span`
-  Returns the `Span` of the next token in the parse stream, or
 
-- `fn cursor(self: &Self) -> Cursor<'a>`
-  Provides low-level access to the token representation underlying this
+- `fn cursor(self: &Self) -> Cursor<'a>` — [`Cursor`](../../buffer/index.md)
+
+- `fn check_unexpected(self: &Self) -> Result<()>` — [`Result`](../../error/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
 ##### `impl AnyDelimiter<'a>`
 
-- `fn parse_any_delimiter(self: &Self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>`
+- `fn parse_any_delimiter(self: &Self) -> Result<(Delimiter, DelimSpan, ParseBuffer<'_>)>` — [`Result`](../../error/index.md), [`ParseBuffer`](../../parse/index.md)
 
-##### `impl Borrow<T>`
+##### `impl Debug<'a>`
 
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a>`
 
@@ -788,29 +626,15 @@ you will need to go through one of the public parsing entry points.
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl UnwindSafe<'a>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `StepCursor<'c, 'a>`
 
 ```rust
 struct StepCursor<'c, 'a> {
-    // [REDACTED: Private Fields]
+    scope: proc_macro2::Span,
+    cursor: crate::buffer::Cursor<'c>,
+    marker: std::marker::PhantomData<fn(crate::buffer::Cursor<'c>) -> crate::buffer::Cursor<'a>>,
 }
 ```
 
@@ -859,72 +683,25 @@ assert_eq!(remainder.to_string(), "b c");
 
 #### Implementations
 
-- `fn error<T: Display>(self: Self, message: T) -> Error`
-  Triggers an error at the current position of the parse stream.
+- `fn error<T: Display>(self: Self, message: T) -> Error` — [`Error`](../../error/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone<'c, 'a>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Copy<'c, 'a>`
-
-##### `impl Receiver<P, T>`
-
-- `type Target = T`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Deref<'c, 'a>`
 
 - `type Target = Cursor<'c>`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
+
+##### `impl Receiver<P, T>`
+
+- `type Target = T`
 
 ### `Nothing`
 
@@ -965,69 +742,25 @@ error: unexpected token
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
 - `fn clone(self: &Self) -> Self`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
 
 ##### `impl Copy`
 
 ##### `impl Parse`
 
-- `fn parse(_input: ParseStream<'_>) -> Result<Self>`
+- `fn parse(_input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+
+##### `impl Sealed<T>`
 
 ##### `impl Spanned<T>`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToTokens`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Traits
 

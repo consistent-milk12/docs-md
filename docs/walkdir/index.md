@@ -16,8 +16,8 @@ walkdir = "2"
 
 # From the top
 
-The [`WalkDir`](#walkdir) type builds iterators. The [`DirEntry`](#direntry) type describes values
-yielded by the iterator. Finally, the [`Error`](#error) type is a small wrapper around
+The [`WalkDir`](#walkdir) type builds iterators. The [`DirEntry`](dent/index.md) type describes values
+yielded by the iterator. Finally, the [`Error`](error/index.md) type is a small wrapper around
 `std::io::Error` with additional information, such as if a loop was detected
 while following symbolic links (not enabled by default).
 
@@ -102,7 +102,11 @@ Ok(())
 
 ```rust
 struct DirEntry {
-    // [REDACTED: Private Fields]
+    path: std::path::PathBuf,
+    ty: std::fs::FileType,
+    follow_link: bool,
+    depth: usize,
+    ino: u64,
 }
 ```
 
@@ -111,7 +115,7 @@ A directory entry.
 This is the type of value that is yielded from the iterators defined in
 this crate.
 
-On Unix systems, this type implements the [`DirEntryExt`](#direntryext) trait, which
+On Unix systems, this type implements the [`DirEntryExt`](dent/index.md) trait, which
 provides efficient access to the inode number of the directory entry.
 
 # Differences with `std::fs::DirEntry`
@@ -132,95 +136,75 @@ operations operate on the symbolic link.
 
 
 
+#### Fields
+
+- **`path`**: `std::path::PathBuf`
+
+  The path as reported by the `fs::ReadDir` iterator (even if it's a
+  symbolic link).
+  
+
+- **`ty`**: `std::fs::FileType`
+
+  The file type. Necessary for recursive iteration, so store it.
+
+- **`follow_link`**: `bool`
+
+  Is set when this entry was created from a symbolic link and the user
+  expects the iterator to follow symbolic links.
+
+- **`depth`**: `usize`
+
+  The depth at which this entry was generated relative to the root.
+
+- **`ino`**: `u64`
+
+  The underlying inode number (Unix only).
+
 #### Implementations
 
 - `fn path(self: &Self) -> &Path`
-  The full path that this entry represents.
 
 - `fn into_path(self: Self) -> PathBuf`
-  The full path that this entry represents.
 
 - `fn path_is_symlink(self: &Self) -> bool`
-  Returns `true` if and only if this entry was created from a symbolic
 
-- `fn metadata(self: &Self) -> Result<fs::Metadata>`
-  Return the metadata for the file that this entry points to.
+- `fn metadata(self: &Self) -> Result<fs::Metadata>` — [`Result`](../index.md)
+
+- `fn metadata_internal(self: &Self) -> Result<fs::Metadata>` — [`Result`](../index.md)
 
 - `fn file_type(self: &Self) -> fs::FileType`
-  Return the file type for the file that this entry points to.
 
 - `fn file_name(self: &Self) -> &OsStr`
-  Return the file name of this entry.
 
 - `fn depth(self: &Self) -> usize`
-  Returns the depth at which this entry was created relative to the root.
+
+- `fn is_dir(self: &Self) -> bool`
+
+- `fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](../index.md)
+
+- `fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](../index.md), [`DirEntry`](../dent/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DirEntry`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DirEntryExt`
-
-- `fn ino(self: &Self) -> u64`
-  Returns the underlying `d_ino` field in the contained `dirent`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> DirEntry` — [`DirEntry`](../dent/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+##### `impl DirEntryExt`
+
+- `fn ino(self: &Self) -> u64`
+
 ### `Error`
 
 ```rust
 struct Error {
-    // [REDACTED: Private Fields]
+    depth: usize,
+    inner: ErrorInner,
 }
 ```
 
@@ -246,43 +230,28 @@ accessing the underlying error data in a structured form.
 #### Implementations
 
 - `fn path(self: &Self) -> Option<&Path>`
-  Returns the path associated with this error if one exists.
 
 - `fn loop_ancestor(self: &Self) -> Option<&Path>`
-  Returns the path at which a cycle was detected.
 
 - `fn depth(self: &Self) -> usize`
-  Returns the depth at which this error occurred relative to the root.
 
 - `fn io_error(self: &Self) -> Option<&io::Error>`
-  Inspect the original [`io::Error`] if there is one.
 
 - `fn into_io_error(self: Self) -> Option<io::Error>`
-  Similar to [`io_error`] except consumes self to convert to the original
+
+- `fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
+
+- `fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](../dent/index.md)
+
+- `fn from_io(depth: usize, err: io::Error) -> Self`
+
+- `fn from_loop(depth: usize, ancestor: &Path, child: &Path) -> Self`
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -300,27 +269,12 @@ accessing the underlying error data in a structured form.
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `WalkDir`
 
 ```rust
 struct WalkDir {
-    // [REDACTED: Private Fields]
+    opts: WalkDirOptions,
+    root: std::path::PathBuf,
 }
 ```
 
@@ -396,49 +350,32 @@ error is reported.
 #### Implementations
 
 - `fn new<P: AsRef<Path>>(root: P) -> Self`
-  Create a builder for a recursive directory iterator starting at the
 
 - `fn min_depth(self: Self, depth: usize) -> Self`
-  Set the minimum depth of entries yielded by the iterator.
 
 - `fn max_depth(self: Self, depth: usize) -> Self`
-  Set the maximum depth of entries yield by the iterator.
 
 - `fn follow_links(self: Self, yes: bool) -> Self`
-  Follow symbolic links. By default, this is disabled.
 
 - `fn follow_root_links(self: Self, yes: bool) -> Self`
-  Follow symbolic links if these are the root of the traversal.
 
 - `fn max_open(self: Self, n: usize) -> Self`
-  Set the maximum number of simultaneously open file descriptors used
 
 - `fn sort_by<F>(self: Self, cmp: F) -> Self`
-  Set a function for sorting directory entries with a comparator
 
 - `fn sort_by_key<K, F>(self: Self, cmp: F) -> Self`
-  Set a function for sorting directory entries with a key extraction
 
 - `fn sort_by_file_name(self: Self) -> Self`
-  Sort directory entries by file name, to ensure a deterministic order.
 
 - `fn contents_first(self: Self, yes: bool) -> Self`
-  Yield a directory's contents before the directory itself. By default,
 
 - `fn same_file_system(self: Self, yes: bool) -> Self`
-  Do not cross file system boundaries.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator`
 
@@ -446,41 +383,20 @@ error is reported.
 
 - `type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> IntoIter`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](../index.md)
 
 ### `IntoIter`
 
 ```rust
 struct IntoIter {
-    // [REDACTED: Private Fields]
+    opts: WalkDirOptions,
+    start: Option<std::path::PathBuf>,
+    stack_list: Vec<DirList>,
+    stack_path: Vec<Ancestor>,
+    oldest_opened: usize,
+    depth: usize,
+    deferred_dirs: Vec<DirEntry>,
+    root_device: Option<u64>,
 }
 ```
 
@@ -495,25 +411,90 @@ The order of elements yielded by this iterator is unspecified.
 
 
 
+#### Fields
+
+- **`opts`**: `WalkDirOptions`
+
+  Options specified in the builder. Depths, max fds, etc.
+
+- **`start`**: `Option<std::path::PathBuf>`
+
+  The start path.
+  
+  This is only `Some(...)` at the beginning. After the first iteration,
+  this is always `None`.
+
+- **`stack_list`**: `Vec<DirList>`
+
+  A stack of open (up to max fd) or closed handles to directories.
+  An open handle is a plain `fs::ReadDir` while a closed handle is
+  a `Vec<fs::DirEntry>` corresponding to the as-of-yet consumed entries.
+  
+
+- **`stack_path`**: `Vec<Ancestor>`
+
+  A stack of file paths.
+  
+  This is *only* used when [`follow_links`](#follow-links) is enabled. In all other
+  cases this stack is empty.
+  
+
+- **`oldest_opened`**: `usize`
+
+  An index into `stack_list` that points to the oldest open directory
+  handle. If the maximum fd limit is reached and a new directory needs to
+  be read, the handle at this index is closed before the new directory is
+  opened.
+
+- **`depth`**: `usize`
+
+  The current depth of iteration (the length of the stack at the
+  beginning of each iteration).
+
+- **`deferred_dirs`**: `Vec<DirEntry>`
+
+  A list of DirEntries corresponding to directories, that are
+  yielded after their contents has been fully yielded. This is only
+  used when `contents_first` is enabled.
+
+- **`root_device`**: `Option<u64>`
+
+  The device of the root file path when the first call to `next` was
+  made.
+  
+  If the `same_file_system` option isn't enabled, then this is always
+  `None`. Conversely, if it is enabled, this is always `Some(...)` after
+  handling the root path.
+
 #### Implementations
 
 - `fn skip_current_dir(self: &mut Self)`
-  Skips the current directory.
 
-- `fn filter_entry<P>(self: Self, predicate: P) -> FilterEntry<Self, P>`
-  Yields only entries which satisfy the given predicate and skips
+- `fn filter_entry<P>(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](../index.md)
+
+- `fn handle_entry(self: &mut Self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](../dent/index.md), [`Result`](../index.md)
+
+- `fn get_deferred_dir(self: &mut Self) -> Option<DirEntry>` — [`DirEntry`](../dent/index.md)
+
+- `fn push(self: &mut Self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](../dent/index.md), [`Result`](../index.md)
+
+- `fn pop(self: &mut Self)`
+
+- `fn follow(self: &Self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](../dent/index.md), [`Result`](../index.md)
+
+- `fn check_loop<P: AsRef<Path>>(self: &Self, child: P) -> Result<()>` — [`Result`](../index.md)
+
+- `fn is_same_file_system(self: &mut Self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](../dent/index.md), [`Result`](../index.md)
+
+- `fn skippable(self: &Self) -> bool`
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl FusedIterator`
 
 ##### `impl IntoIterator<I>`
 
@@ -523,48 +504,18 @@ The order of elements yielded by this iterator is unspecified.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl FusedIterator`
-
 ##### `impl Iterator`
 
 - `type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<DirEntry>>`
-  Advances the iterator and returns the next value.
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](../index.md), [`DirEntry`](../dent/index.md)
 
 ### `FilterEntry<I, P>`
 
 ```rust
 struct FilterEntry<I, P> {
-    // [REDACTED: Private Fields]
+    it: I,
+    predicate: P,
 }
 ```
 
@@ -591,23 +542,17 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 #### Implementations
 
-- `fn filter_entry(self: Self, predicate: P) -> FilterEntry<Self, P>`
-  Yields only entries which satisfy the given predicate and skips
+- `fn filter_entry(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](../index.md)
 
 - `fn skip_current_dir(self: &mut Self)`
-  Skips the current directory.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<I: $crate::fmt::Debug, P: $crate::fmt::Debug>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+##### `impl FusedIterator<P>`
 
 ##### `impl IntoIterator<I>`
 
@@ -617,42 +562,11 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl FusedIterator<P>`
-
 ##### `impl Iterator<P>`
 
 - `type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<DirEntry>>`
-  Advances the iterator and returns the next value.
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<I: $crate::fmt::Debug, P: $crate::fmt::Debug>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](../index.md), [`DirEntry`](../dent/index.md)
 
 ## Traits
 

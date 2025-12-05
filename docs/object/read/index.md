@@ -8,9 +8,9 @@ Interface for reading object files.
 
 ## Unified read API
 
-The [`Object`](../index.md) trait provides a unified read API for accessing common features of
+The [`Object`](traits/index.md) trait provides a unified read API for accessing common features of
 object files, such as sections and symbols. There is an implementation of this
-trait for [`File`](../index.md), which allows reading any file format, as well as implementations
+trait for [`File`](any/index.md), which allows reading any file format, as well as implementations
 for each file format:
 [`ElfFile`](elf::ElfFile), [`MachOFile`](macho::MachOFile), [`CoffFile`](coff::CoffFile),
 [`PeFile`](pe::PeFile), [`WasmFile`](wasm::WasmFile), [`XcoffFile`](xcoff::XcoffFile).
@@ -61,44 +61,22 @@ fn main() -> Result<(), Box<dyn Error>> {
 ### `Error`
 
 ```rust
-struct Error();
+struct Error(&'static str);
 ```
 
 The error type used within the read module.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Error`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Error` — [`Error`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -110,37 +88,13 @@ The error type used within the read module.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Error) -> bool`
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `SectionIndex`
 
@@ -152,37 +106,15 @@ The index used to identify a section in a file.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SectionIndex`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SectionIndex` — [`SectionIndex`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -196,37 +128,13 @@ The index used to identify a section in a file.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &SectionIndex) -> bool`
+- `fn eq(self: &Self, other: &SectionIndex) -> bool` — [`SectionIndex`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `SymbolIndex`
 
@@ -238,37 +146,15 @@ The index used to identify a symbol in a symbol table.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SymbolIndex`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -282,43 +168,19 @@ The index used to identify a symbol in a symbol table.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &SymbolIndex) -> bool`
+- `fn eq(self: &Self, other: &SymbolIndex) -> bool` — [`SymbolIndex`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `SymbolMap<T: SymbolMapEntry>`
 
 ```rust
 struct SymbolMap<T: SymbolMapEntry> {
-    // [REDACTED: Private Fields]
+    symbols: alloc::vec::Vec<T>,
 }
 ```
 
@@ -331,65 +193,16 @@ Returned by `Object::symbol_map`.
 #### Implementations
 
 - `fn new(symbols: Vec<T>) -> Self`
-  Construct a new symbol map.
 
 - `fn get(self: &Self, address: u64) -> Option<&T>`
-  Get the symbol before the given address.
 
 - `fn symbols(self: &Self) -> &[T]`
-  Get all symbols in the map.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<T: $crate::clone::Clone + SymbolMapEntry>`
 
-- `fn clone(self: &Self) -> SymbolMap<T>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> SymbolMap<T>` — [`SymbolMap`](../../read/index.md)
 
 ##### `impl Debug<T: $crate::fmt::Debug + SymbolMapEntry>`
 
@@ -397,13 +210,14 @@ Returned by `Object::symbol_map`.
 
 ##### `impl Default<T: $crate::default::Default + SymbolMapEntry>`
 
-- `fn default() -> SymbolMap<T>`
+- `fn default() -> SymbolMap<T>` — [`SymbolMap`](../../read/index.md)
 
 ### `SymbolMapName<'data>`
 
 ```rust
 struct SymbolMapName<'data> {
-    // [REDACTED: Private Fields]
+    address: u64,
+    name: &'data str,
 }
 ```
 
@@ -412,47 +226,22 @@ The type used for entries in a [`SymbolMap`](#symbolmap) that maps from addresse
 #### Implementations
 
 - `fn new(address: u64, name: &'data str) -> Self`
-  Construct a `SymbolMapName`.
 
 - `fn address(self: &Self) -> u64`
-  The symbol address.
 
 - `fn name(self: &Self) -> &'data str`
-  The symbol name.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> SymbolMapName<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SymbolMapName<'data>` — [`SymbolMapName`](../../read/index.md)
 
 ##### `impl Copy<'data>`
+
+##### `impl Debug<'data>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq<'data>`
 
@@ -462,7 +251,7 @@ The type used for entries in a [`SymbolMap`](#symbolmap) that maps from addresse
 
 ##### `impl PartialEq<'data>`
 
-- `fn eq(self: &Self, other: &SymbolMapName<'data>) -> bool`
+- `fn eq(self: &Self, other: &SymbolMapName<'data>) -> bool` — [`SymbolMapName`](../../read/index.md)
 
 ##### `impl StructuralPartialEq<'data>`
 
@@ -470,35 +259,12 @@ The type used for entries in a [`SymbolMap`](#symbolmap) that maps from addresse
 
 - `fn address(self: &Self) -> u64`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'data>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `ObjectMap<'data>`
 
 ```rust
 struct ObjectMap<'data> {
-    // [REDACTED: Private Fields]
+    symbols: SymbolMap<ObjectMapEntry<'data>>,
+    objects: alloc::vec::Vec<ObjectMapFile<'data>>,
 }
 ```
 
@@ -510,66 +276,17 @@ Returned by `Object::object_map`.
 
 #### Implementations
 
-- `fn get(self: &Self, address: u64) -> Option<&ObjectMapEntry<'data>>`
-  Get the entry containing the given address.
+- `fn get(self: &Self, address: u64) -> Option<&ObjectMapEntry<'data>>` — [`ObjectMapEntry`](../../read/index.md)
 
-- `fn symbols(self: &Self) -> &[ObjectMapEntry<'data>]`
-  Get all symbols in the map.
+- `fn symbols(self: &Self) -> &[ObjectMapEntry<'data>]` — [`ObjectMapEntry`](../../read/index.md)
 
-- `fn objects(self: &Self) -> &[ObjectMapFile<'data>]`
-  Get all objects in the map.
+- `fn objects(self: &Self) -> &[ObjectMapFile<'data>]` — [`ObjectMapFile`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> ObjectMap<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> ObjectMap<'data>` — [`ObjectMap`](../../read/index.md)
 
 ##### `impl Debug<'data>`
 
@@ -577,13 +294,16 @@ Returned by `Object::object_map`.
 
 ##### `impl Default<'data>`
 
-- `fn default() -> ObjectMap<'data>`
+- `fn default() -> ObjectMap<'data>` — [`ObjectMap`](../../read/index.md)
 
 ### `ObjectMapEntry<'data>`
 
 ```rust
 struct ObjectMapEntry<'data> {
-    // [REDACTED: Private Fields]
+    address: u64,
+    size: u64,
+    name: &'data [u8],
+    object: usize,
 }
 ```
 
@@ -592,89 +312,22 @@ A symbol in an [`ObjectMap`](#objectmap).
 #### Implementations
 
 - `fn address(self: &Self) -> u64`
-  Get the symbol address.
 
 - `fn size(self: &Self) -> u64`
-  Get the symbol size.
 
 - `fn name(self: &Self) -> &'data [u8]`
-  Get the symbol name.
 
 - `fn object_index(self: &Self) -> usize`
-  Get the index of the object file name.
 
-- `fn object<'a>(self: &Self, map: &'a ObjectMap<'data>) -> &'a ObjectMapFile<'data>`
-  Get the object file name.
+- `fn object<'a>(self: &Self, map: &'a ObjectMap<'data>) -> &'a ObjectMapFile<'data>` — [`ObjectMap`](../../read/index.md), [`ObjectMapFile`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> ObjectMapEntry<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](../../read/index.md)
 
 ##### `impl Copy<'data>`
-
-##### `impl Eq<'data>`
-
-##### `impl Hash<'data>`
-
-- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
-
-##### `impl PartialEq<'data>`
-
-- `fn eq(self: &Self, other: &ObjectMapEntry<'data>) -> bool`
-
-##### `impl StructuralPartialEq<'data>`
-
-##### `impl SymbolMapEntry<'data>`
-
-- `fn address(self: &Self) -> u64`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data>`
 
@@ -682,59 +335,7 @@ A symbol in an [`ObjectMap`](#objectmap).
 
 ##### `impl Default<'data>`
 
-- `fn default() -> ObjectMapEntry<'data>`
-
-### `ObjectMapFile<'data>`
-
-```rust
-struct ObjectMapFile<'data> {
-    // [REDACTED: Private Fields]
-}
-```
-
-An object file name in an [`ObjectMap`](#objectmap).
-
-#### Implementations
-
-- `fn path(self: &Self) -> &'data [u8]`
-  Get the path to the file containing the object.
-
-- `fn member(self: &Self) -> Option<&'data [u8]>`
-  If the file is an archive, get the name of the member containing the object.
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'data>`
-
-- `fn clone(self: &Self) -> ObjectMapFile<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Copy<'data>`
+- `fn default() -> ObjectMapEntry<'data>` — [`ObjectMapEntry`](../../read/index.md)
 
 ##### `impl Eq<'data>`
 
@@ -744,39 +345,63 @@ An object file name in an [`ObjectMap`](#objectmap).
 
 ##### `impl PartialEq<'data>`
 
-- `fn eq(self: &Self, other: &ObjectMapFile<'data>) -> bool`
+- `fn eq(self: &Self, other: &ObjectMapEntry<'data>) -> bool` — [`ObjectMapEntry`](../../read/index.md)
 
 ##### `impl StructuralPartialEq<'data>`
 
-##### `impl ToOwned<T>`
+##### `impl SymbolMapEntry<'data>`
 
-- `type Owned = T`
+- `fn address(self: &Self) -> u64`
 
-- `fn to_owned(self: &Self) -> T`
+### `ObjectMapFile<'data>`
 
-- `fn clone_into(self: &Self, target: &mut T)`
+```rust
+struct ObjectMapFile<'data> {
+    path: &'data [u8],
+    member: Option<&'data [u8]>,
+}
+```
 
-##### `impl TryFrom<T, U>`
+An object file name in an [`ObjectMap`](#objectmap).
 
-- `type Error = Infallible`
+#### Implementations
 
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
+- `fn new(path: &'data [u8], member: Option<&'data [u8]>) -> Self`
 
-##### `impl TryInto<T, U>`
+- `fn path(self: &Self) -> &'data [u8]`
 
-- `type Error = <U as TryFrom>::Error`
+- `fn member(self: &Self) -> Option<&'data [u8]>`
 
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+#### Trait Implementations
+
+##### `impl Clone<'data>`
+
+- `fn clone(self: &Self) -> ObjectMapFile<'data>` — [`ObjectMapFile`](../../read/index.md)
+
+##### `impl Copy<'data>`
 
 ##### `impl Debug<'data>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq<'data>`
+
+##### `impl Hash<'data>`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq<'data>`
+
+- `fn eq(self: &Self, other: &ObjectMapFile<'data>) -> bool` — [`ObjectMapFile`](../../read/index.md)
+
+##### `impl StructuralPartialEq<'data>`
+
 ### `Import<'data>`
 
 ```rust
 struct Import<'data> {
-    // [REDACTED: Private Fields]
+    library: ByteString<'data>,
+    name: ByteString<'data>,
 }
 ```
 
@@ -787,82 +412,35 @@ Returned by `Object::imports`.
 #### Implementations
 
 - `fn name(self: &Self) -> &'data [u8]`
-  The symbol name.
 
 - `fn library(self: &Self) -> &'data [u8]`
-  The name of the library to import the symbol from.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> Import<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Import<'data>` — [`Import`](../../read/index.md)
 
 ##### `impl Copy<'data>`
-
-##### `impl Eq<'data>`
-
-##### `impl PartialEq<'data>`
-
-- `fn eq(self: &Self, other: &Import<'data>) -> bool`
-
-##### `impl StructuralPartialEq<'data>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq<'data>`
+
+##### `impl PartialEq<'data>`
+
+- `fn eq(self: &Self, other: &Import<'data>) -> bool` — [`Import`](../../read/index.md)
+
+##### `impl StructuralPartialEq<'data>`
+
 ### `Export<'data>`
 
 ```rust
 struct Export<'data> {
-    // [REDACTED: Private Fields]
+    name: ByteString<'data>,
+    address: u64,
 }
 ```
 
@@ -873,82 +451,36 @@ Returned by `Object::exports`.
 #### Implementations
 
 - `fn name(self: &Self) -> &'data [u8]`
-  The symbol name.
 
 - `fn address(self: &Self) -> u64`
-  The virtual address of the symbol.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> Export<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Export<'data>` — [`Export`](../../read/index.md)
 
 ##### `impl Copy<'data>`
-
-##### `impl Eq<'data>`
-
-##### `impl PartialEq<'data>`
-
-- `fn eq(self: &Self, other: &Export<'data>) -> bool`
-
-##### `impl StructuralPartialEq<'data>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq<'data>`
+
+##### `impl PartialEq<'data>`
+
+- `fn eq(self: &Self, other: &Export<'data>) -> bool` — [`Export`](../../read/index.md)
+
+##### `impl StructuralPartialEq<'data>`
+
 ### `CodeView<'data>`
 
 ```rust
 struct CodeView<'data> {
-    // [REDACTED: Private Fields]
+    guid: [u8; 16],
+    path: ByteString<'data>,
+    age: u32,
 }
 ```
 
@@ -957,85 +489,42 @@ PDB information from the debug directory in a PE file.
 #### Implementations
 
 - `fn path(self: &Self) -> &'data [u8]`
-  The path to the PDB as stored in CodeView.
 
 - `fn age(self: &Self) -> u32`
-  The age of the PDB.
 
 - `fn guid(self: &Self) -> [u8; 16]`
-  The GUID of the PDB.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> CodeView<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CodeView<'data>` — [`CodeView`](../../read/index.md)
 
 ##### `impl Copy<'data>`
-
-##### `impl Eq<'data>`
-
-##### `impl PartialEq<'data>`
-
-- `fn eq(self: &Self, other: &CodeView<'data>) -> bool`
-
-##### `impl StructuralPartialEq<'data>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl Eq<'data>`
+
+##### `impl PartialEq<'data>`
+
+- `fn eq(self: &Self, other: &CodeView<'data>) -> bool` — [`CodeView`](../../read/index.md)
+
+##### `impl StructuralPartialEq<'data>`
+
 ### `Relocation`
 
 ```rust
 struct Relocation {
-    // [REDACTED: Private Fields]
+    kind: RelocationKind,
+    encoding: RelocationEncoding,
+    size: u8,
+    target: RelocationTarget,
+    addend: i64,
+    implicit_addend: bool,
+    flags: RelocationFlags,
 }
 ```
 
@@ -1045,65 +534,23 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 
 #### Implementations
 
-- `fn kind(self: &Self) -> RelocationKind`
-  The operation used to calculate the result of the relocation.
+- `fn kind(self: &Self) -> RelocationKind` — [`RelocationKind`](../../common/index.md)
 
-- `fn encoding(self: &Self) -> RelocationEncoding`
-  Information about how the result of the relocation operation is encoded in the place.
+- `fn encoding(self: &Self) -> RelocationEncoding` — [`RelocationEncoding`](../../common/index.md)
 
 - `fn size(self: &Self) -> u8`
-  The size in bits of the place of the relocation.
 
-- `fn target(self: &Self) -> RelocationTarget`
-  The target of the relocation.
+- `fn target(self: &Self) -> RelocationTarget` — [`RelocationTarget`](../../read/index.md)
 
 - `fn addend(self: &Self) -> i64`
-  The addend to use in the relocation calculation.
 
 - `fn set_addend(self: &mut Self, addend: i64)`
-  Set the addend to use in the relocation calculation.
 
 - `fn has_implicit_addend(self: &Self) -> bool`
-  Returns true if there is an implicit addend stored in the data at the offset
 
-- `fn flags(self: &Self) -> RelocationFlags`
-  Relocation flags that are specific to each file format.
+- `fn flags(self: &Self) -> RelocationFlags` — [`RelocationFlags`](../../common/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1112,7 +559,7 @@ Returned by `Object::dynamic_relocations` or `ObjectSection::relocations`.
 ### `RelocationMap`
 
 ```rust
-struct RelocationMap();
+struct RelocationMap(alloc::collections::btree_map::BTreeMap<u64, RelocationMapEntry>);
 ```
 
 A map from section offsets to relocation information.
@@ -1125,50 +572,13 @@ Returned by `ObjectSection::relocation_map`.
 
 #### Implementations
 
-- `fn new<'data, 'file, T>(file: &'file T, section: &<T as >::Section) -> Result<Self>`
-  Construct a new relocation map for a section.
+- `fn new<'data, 'file, T>(file: &'file T, section: &<T as >::Section) -> Result<Self>` — [`Object`](../../read/traits/index.md), [`Result`](../../read/index.md)
 
-- `fn add<'data: 'file, 'file, T>(self: &mut Self, file: &'file T, offset: u64, relocation: Relocation) -> Result<()>`
-  Add a single relocation to the map.
+- `fn add<'data: 'file, 'file, T>(self: &mut Self, file: &'file T, offset: u64, relocation: Relocation) -> Result<()>` — [`Relocation`](../../read/index.md), [`Result`](../../read/index.md)
 
 - `fn relocate(self: &Self, offset: u64, value: u64) -> u64`
-  Relocate a value that was read from the section at the given offset.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1176,7 +586,7 @@ Returned by `ObjectSection::relocation_map`.
 
 ##### `impl Default`
 
-- `fn default() -> RelocationMap`
+- `fn default() -> RelocationMap` — [`RelocationMap`](../../read/index.md)
 
 ### `CompressedFileRange`
 
@@ -1214,44 +624,20 @@ Returned by `ObjectSection::compressed_file_range`.
 #### Implementations
 
 - `fn none(range: Option<(u64, u64)>) -> Self`
-  Data that is uncompressed.
 
-- `fn data<'data, R: ReadRef<'data>>(self: Self, file: R) -> Result<CompressedData<'data>>`
-  Convert to [`CompressedData`] by reading from the file.
+- `fn data<'data, R: ReadRef<'data>>(self: Self, file: R) -> Result<CompressedData<'data>>` — [`Result`](../../read/index.md), [`CompressedData`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> CompressedFileRange`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CompressedFileRange` — [`CompressedFileRange`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -1261,33 +647,9 @@ Returned by `ObjectSection::compressed_file_range`.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &CompressedFileRange) -> bool`
+- `fn eq(self: &Self, other: &CompressedFileRange) -> bool` — [`CompressedFileRange`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `CompressedData<'data>`
 
@@ -1320,44 +682,20 @@ Returned by `ObjectSection::compressed_data`.
 #### Implementations
 
 - `fn none(data: &'data [u8]) -> Self`
-  Data that is uncompressed.
 
-- `fn decompress(self: Self) -> Result<Cow<'data, [u8]>>`
-  Return the uncompressed data.
+- `fn decompress(self: Self) -> Result<Cow<'data, [u8]>>` — [`Result`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> CompressedData<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CompressedData<'data>` — [`CompressedData`](../../read/index.md)
 
 ##### `impl Copy<'data>`
+
+##### `impl Debug<'data>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq<'data>`
 
@@ -1367,33 +705,9 @@ Returned by `ObjectSection::compressed_data`.
 
 ##### `impl PartialEq<'data>`
 
-- `fn eq(self: &Self, other: &CompressedData<'data>) -> bool`
+- `fn eq(self: &Self, other: &CompressedData<'data>) -> bool` — [`CompressedData`](../../read/index.md)
 
 ##### `impl StructuralPartialEq<'data>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'data>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Enums
 
@@ -1517,45 +831,21 @@ A file format kind.
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<FileKind>`
-  Determine a file kind by parsing the start of the file.
+- `fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<FileKind>` — [`Result`](../../read/index.md), [`FileKind`](../../read/index.md)
 
-- `fn parse_at<'data, R: ReadRef<'data>>(data: R, offset: u64) -> Result<FileKind>`
-  Determine a file kind by parsing at the given offset.
+- `fn parse_at<'data, R: ReadRef<'data>>(data: R, offset: u64) -> Result<FileKind>` — [`Result`](../../read/index.md), [`FileKind`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FileKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FileKind` — [`FileKind`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -1565,33 +855,9 @@ A file format kind.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &FileKind) -> bool`
+- `fn eq(self: &Self, other: &FileKind) -> bool` — [`FileKind`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `ObjectKind`
 
@@ -1633,37 +899,15 @@ Returned by `Object::kind`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ObjectKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ObjectKind` — [`ObjectKind`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -1673,33 +917,9 @@ Returned by `Object::kind`.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &ObjectKind) -> bool`
+- `fn eq(self: &Self, other: &ObjectKind) -> bool` — [`ObjectKind`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `SymbolSection`
 
@@ -1714,7 +934,7 @@ enum SymbolSection {
 }
 ```
 
-The section where an [`ObjectSymbol`](../index.md) is defined.
+The section where an [`ObjectSymbol`](traits/index.md) is defined.
 
 #### Variants
 
@@ -1744,42 +964,19 @@ The section where an [`ObjectSymbol`](../index.md) is defined.
 
 #### Implementations
 
-- `fn index(self: Self) -> Option<SectionIndex>`
-  Returns the section index for the section where the symbol is defined.
+- `fn index(self: Self) -> Option<SectionIndex>` — [`SectionIndex`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> SymbolSection`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SymbolSection` — [`SymbolSection`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -1789,33 +986,9 @@ The section where an [`ObjectSymbol`](../index.md) is defined.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &SymbolSection) -> bool`
+- `fn eq(self: &Self, other: &SymbolSection) -> bool` — [`SymbolSection`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `RelocationTarget`
 
@@ -1845,37 +1018,15 @@ The target referenced by a [`Relocation`](../macho/index.md).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> RelocationTarget`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> RelocationTarget` — [`RelocationTarget`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -1885,33 +1036,9 @@ The target referenced by a [`Relocation`](../macho/index.md).
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &RelocationTarget) -> bool`
+- `fn eq(self: &Self, other: &RelocationTarget) -> bool` — [`RelocationTarget`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `CompressionFormat`
 
@@ -1950,37 +1077,15 @@ A data compression format.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> CompressionFormat`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> CompressionFormat` — [`CompressionFormat`](../../read/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -1990,33 +1095,9 @@ A data compression format.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &CompressionFormat) -> bool`
+- `fn eq(self: &Self, other: &CompressionFormat) -> bool` — [`CompressionFormat`](../../read/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 

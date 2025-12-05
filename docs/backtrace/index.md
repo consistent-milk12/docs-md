@@ -92,7 +92,7 @@ unwinding-based backtraces!
 
 ```rust
 struct Frame {
-    // [REDACTED: Private Fields]
+    inner: self::libunwind::Frame,
 }
 ```
 
@@ -106,68 +106,18 @@ until runtime.
 #### Implementations
 
 - `fn ip(self: &Self) -> *mut c_void`
-  Returns the current instruction pointer of this frame.
 
 - `fn sp(self: &Self) -> *mut c_void`
-  Returns the current stack pointer of this frame.
 
 - `fn symbol_address(self: &Self) -> *mut c_void`
-  Returns the starting symbol address of the frame of this function.
 
 - `fn module_base_address(self: &Self) -> Option<*mut c_void>`
-  Returns the base address of the module to which the frame belongs.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Frame`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Frame` — [`Frame`](../backtrace/index.md)
 
 ##### `impl Debug`
 
@@ -177,7 +127,7 @@ until runtime.
 
 ```rust
 struct Symbol {
-    // [REDACTED: Private Fields]
+    inner: imp::Symbol<'static>,
 }
 ```
 
@@ -193,59 +143,19 @@ always available in a symbol, however, so all methods return an `Option`.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>`
-  Returns the name of this function.
+- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md)
 
 - `fn addr(self: &Self) -> Option<*mut c_void>`
-  Returns the starting address of this function.
 
-- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>`
-  Returns the raw filename as a slice. This is mainly useful for `no_std`
+- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../types/index.md)
 
 - `fn colno(self: &Self) -> Option<u32>`
-  Returns the column number for where this symbol is currently executing.
 
 - `fn lineno(self: &Self) -> Option<u32>`
-  Returns the line number for where this symbol is currently executing.
 
 - `fn filename(self: &Self) -> Option<&Path>`
-  Returns the file name where this function was defined.
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -255,7 +165,8 @@ always available in a symbol, however, so all methods return an `Option`.
 
 ```rust
 struct SymbolName<'a> {
-    // [REDACTED: Private Fields]
+    bytes: &'a [u8],
+    demangled: Option<rustc_demangle::Demangle<'a>>,
 }
 ```
 
@@ -264,38 +175,17 @@ demangled name, the raw bytes, the raw string, etc.
 
 #### Implementations
 
-- `fn new(bytes: &'a [u8]) -> SymbolName<'a>`
-  Creates a new symbol name from the raw underlying bytes.
+- `fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](../symbolize/index.md)
 
 - `fn as_str(self: &Self) -> Option<&'a str>`
-  Returns the raw (mangled) symbol name as a `str` if the symbol is valid utf-8.
 
 - `fn as_bytes(self: &Self) -> &'a [u8]`
-  Returns the raw symbol name as a list of bytes
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display<'a>`
 
@@ -305,27 +195,14 @@ demangled name, the raw bytes, the raw string, etc.
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
 ### `BacktraceFmt<'a, 'b>`
 
 ```rust
 struct BacktraceFmt<'a, 'b> {
-    // [REDACTED: Private Fields]
+    fmt: &'a mut fmt::Formatter<'b>,
+    frame_index: usize,
+    format: PrintFmt,
+    print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, super::BytesOrWideString<'_>) -> fmt::Result,
 }
 ```
 
@@ -337,65 +214,24 @@ implementation already uses this printing format.
 
 #### Implementations
 
-- `fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self`
-  Create a new `BacktraceFmt` which will write output to the provided
+- `fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](../print/index.md), [`BytesOrWideString`](../types/index.md)
 
 - `fn add_context(self: &mut Self) -> fmt::Result`
-  Prints a preamble for the backtrace about to be printed.
 
-- `fn frame(self: &mut Self) -> BacktraceFrameFmt<'_, 'a, 'b>`
-  Adds a frame to the backtrace output.
+- `fn frame(self: &mut Self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](../print/index.md)
 
 - `fn finish(self: &mut Self) -> fmt::Result`
-  Completes the backtrace output.
 
 - `fn message(self: &mut Self, msg: &str) -> fmt::Result`
-  Inserts a message in the backtrace output.
 
 - `fn formatter(self: &mut Self) -> &mut fmt::Formatter<'b>`
-  Return the inner formatter.
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ### `BacktraceFrameFmt<'fmt, 'a, 'b>`
 
 ```rust
 struct BacktraceFrameFmt<'fmt, 'a, 'b> {
-    // [REDACTED: Private Fields]
+    fmt: &'fmt mut BacktraceFmt<'a, 'b>,
+    symbol_index: usize,
 }
 ```
 
@@ -405,66 +241,33 @@ This type is created by the `BacktraceFmt::frame` function.
 
 #### Implementations
 
-- `fn backtrace_frame(self: &mut Self, frame: &BacktraceFrame) -> fmt::Result`
-  Prints a `BacktraceFrame` with this frame formatter.
+- `fn backtrace_frame(self: &mut Self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](../capture/index.md)
 
-- `fn backtrace_symbol(self: &mut Self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result`
-  Prints a `BacktraceSymbol` within a `BacktraceFrame`.
+- `fn backtrace_symbol(self: &mut Self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](../capture/index.md), [`BacktraceSymbol`](../capture/index.md)
 
-- `fn symbol(self: &mut Self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result`
-  Prints a raw traced `Frame` and `Symbol`, typically from within the raw
+- `fn symbol(self: &mut Self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](../backtrace/index.md), [`Symbol`](../symbolize/index.md)
 
-- `fn print_raw(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result`
-  Adds a raw frame to the backtrace output.
+- `fn print_raw(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
 
-- `fn print_raw_with_column(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result`
-  Adds a raw frame to the backtrace output, including column information.
+- `fn print_raw_with_column(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
+
+- `fn print_raw_generic(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
+
+- `fn print_fileline(self: &mut Self, file: BytesOrWideString<'_>, line: u32, colno: Option<u32>) -> fmt::Result` — [`BytesOrWideString`](../types/index.md)
+
+- `fn print_raw_fuchsia(self: &mut Self, frame_ip: *mut c_void) -> fmt::Result`
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Drop`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ### `Backtrace`
 
 ```rust
 struct Backtrace {
-    // [REDACTED: Private Fields]
+    frames: Box<[BacktraceFrame]>,
 }
 ```
 
@@ -483,77 +286,21 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn new() -> Backtrace`
-  Captures a backtrace at the callsite of this function, returning an
+- `fn new() -> Backtrace` — [`Backtrace`](../capture/index.md)
 
-- `fn new_unresolved() -> Backtrace`
-  Similar to `new` except that this does not resolve any symbols, this
+- `fn new_unresolved() -> Backtrace` — [`Backtrace`](../capture/index.md)
 
-- `fn frames(self: &Self) -> &[BacktraceFrame]`
-  Returns the frames from when this backtrace was captured.
+- `fn create(ip: usize) -> Backtrace` — [`Backtrace`](../capture/index.md)
+
+- `fn frames(self: &Self) -> &[BacktraceFrame]` — [`BacktraceFrame`](../capture/index.md)
 
 - `fn resolve(self: &mut Self)`
-  If this backtrace was created from `new_unresolved` then this function
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(frames: Vec<BacktraceFrame>) -> Self`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Into`
-
-- `fn into(self: Self) -> Vec<BacktraceFrame>`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Backtrace`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Backtrace` — [`Backtrace`](../capture/index.md)
 
 ##### `impl Debug`
 
@@ -561,13 +308,14 @@ enabled, and the `std` feature is enabled by default.
 
 ##### `impl Default`
 
-- `fn default() -> Backtrace`
+- `fn default() -> Backtrace` — [`Backtrace`](../capture/index.md)
 
 ### `BacktraceFrame`
 
 ```rust
 struct BacktraceFrame {
-    // [REDACTED: Private Fields]
+    frame: Frame,
+    symbols: Option<Box<[BacktraceSymbol]>>,
 }
 ```
 
@@ -584,75 +332,20 @@ enabled, and the `std` feature is enabled by default.
 #### Implementations
 
 - `fn ip(self: &Self) -> *mut c_void`
-  Same as `Frame::ip`
 
 - `fn symbol_address(self: &Self) -> *mut c_void`
-  Same as `Frame::symbol_address`
 
 - `fn module_base_address(self: &Self) -> Option<*mut c_void>`
-  Same as `Frame::module_base_address`
 
-- `fn symbols(self: &Self) -> &[BacktraceSymbol]`
-  Returns the list of symbols that this frame corresponds to.
+- `fn symbols(self: &Self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](../capture/index.md)
 
 - `fn resolve(self: &mut Self)`
-  Resolve all addresses in this frame to their symbolic names.
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(frame: crate::Frame) -> Self`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BacktraceFrame`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> BacktraceFrame` — [`BacktraceFrame`](../capture/index.md)
 
 ##### `impl Debug`
 
@@ -662,7 +355,11 @@ enabled, and the `std` feature is enabled by default.
 
 ```rust
 struct BacktraceSymbol {
-    // [REDACTED: Private Fields]
+    name: Option<Box<[u8]>>,
+    addr: Option<TracePtr>,
+    filename: Option<std::path::PathBuf>,
+    lineno: Option<u32>,
+    colno: Option<u32>,
 }
 ```
 
@@ -678,72 +375,21 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>`
-  Same as `Symbol::name`
+- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md)
 
 - `fn addr(self: &Self) -> Option<*mut c_void>`
-  Same as `Symbol::addr`
 
 - `fn filename(self: &Self) -> Option<&Path>`
-  Same as `Symbol::filename`
 
 - `fn lineno(self: &Self) -> Option<u32>`
-  Same as `Symbol::lineno`
 
 - `fn colno(self: &Self) -> Option<u32>`
-  Same as `Symbol::colno`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BacktraceSymbol`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> BacktraceSymbol` — [`BacktraceSymbol`](../capture/index.md)
 
 ##### `impl Debug`
 
@@ -777,34 +423,14 @@ conversions to `std` types.
 #### Implementations
 
 - `fn to_str_lossy(self: &Self) -> Cow<'a, str>`
-  Lossy converts to a `Cow<str>`, will allocate if `Bytes` is not valid
 
 - `fn into_path_buf(self: Self) -> PathBuf`
-  Provides a `Path` representation of `BytesOrWideString`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display<'a>`
 
@@ -813,22 +439,6 @@ conversions to `std` types.
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `PrintFmt`
 
@@ -853,35 +463,9 @@ The styles of printing that we can print
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PrintFmt`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> PrintFmt` — [`PrintFmt`](../print/index.md)
 
 ##### `impl Copy`
 
@@ -889,29 +473,9 @@ The styles of printing that we can print
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &PrintFmt) -> bool`
+- `fn eq(self: &Self, other: &PrintFmt) -> bool` — [`PrintFmt`](../print/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ## Functions
 

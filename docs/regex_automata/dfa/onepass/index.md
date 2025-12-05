@@ -8,7 +8,7 @@ A DFA that can return spans for matching capturing groups.
 
 This module is the home of a [one-pass DFA](DFA).
 
-This module also contains a [`Builder`](../../nfa/thompson/backtrack/index.md) and a [`Config`](../../hybrid/dfa/index.md) for building and
+This module also contains a [`Builder`](../../nfa/thompson/backtrack/index.md) and a [`Config`](#config) for building and
 configuring a one-pass DFA.
 
 ## Structs
@@ -17,7 +17,10 @@ configuring a one-pass DFA.
 
 ```rust
 struct Config {
-    // [REDACTED: Private Fields]
+    match_kind: Option<crate::util::search::MatchKind>,
+    starts_for_each_pattern: Option<bool>,
+    byte_classes: Option<bool>,
+    size_limit: Option<Option<usize>>,
 }
 ```
 
@@ -31,84 +34,31 @@ perhaps more conveniently, with `DFA::config`.
 
 #### Implementations
 
-- `fn new() -> Config`
-  Return a new default one-pass DFA configuration.
+- `fn new() -> Config` — [`Config`](../../../dfa/onepass/index.md)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config`
-  Set the desired match semantics.
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../../util/search/index.md), [`Config`](../../../dfa/onepass/index.md)
 
-- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config`
-  Whether to compile a separate start state for each pattern in the
+- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config` — [`Config`](../../../dfa/onepass/index.md)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config`
-  Whether to attempt to shrink the size of the DFA's alphabet or not.
+- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](../../../dfa/onepass/index.md)
 
-- `fn size_limit(self: Self, limit: Option<usize>) -> Config`
-  Set a size limit on the total heap used by a one-pass DFA.
+- `fn size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../../../dfa/onepass/index.md)
 
-- `fn get_match_kind(self: &Self) -> MatchKind`
-  Returns the match semantics set in this configuration.
+- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../util/search/index.md)
 
 - `fn get_starts_for_each_pattern(self: &Self) -> bool`
-  Returns whether this configuration has enabled anchored starting states
 
 - `fn get_byte_classes(self: &Self) -> bool`
-  Returns whether this configuration has enabled byte classes or not.
 
 - `fn get_size_limit(self: &Self) -> Option<usize>`
-  Returns the DFA size limit of this configuration if one was set.
+
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../dfa/onepass/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Config`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Config` — [`Config`](../../../dfa/onepass/index.md)
 
 ##### `impl Debug`
 
@@ -116,13 +66,14 @@ perhaps more conveniently, with `DFA::config`.
 
 ##### `impl Default`
 
-- `fn default() -> Config`
+- `fn default() -> Config` — [`Config`](../../../dfa/onepass/index.md)
 
 ### `Builder`
 
 ```rust
 struct Builder {
-    // [REDACTED: Private Fields]
+    config: Config,
+    thompson: thompson::Compiler,
 }
 ```
 
@@ -181,78 +132,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder`
-  Create a new one-pass DFA builder with the default configuration.
+- `fn new() -> Builder` — [`Builder`](../../../dfa/onepass/index.md)
 
-- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>`
-  Build a one-pass DFA from the given pattern.
+- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>`
-  Build a one-pass DFA from the given patterns.
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<DFA, BuildError>`
-  Build a DFA from the given NFA.
+- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder`
-  Apply the given one-pass DFA configuration options to this builder.
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../../dfa/onepass/index.md), [`Builder`](../../../dfa/onepass/index.md)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder`
-  Set the syntax configuration for this builder using
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](../../../dfa/onepass/index.md)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder`
-  Set the Thompson NFA configuration for this builder using
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../nfa/thompson/compiler/index.md), [`Builder`](../../../dfa/onepass/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Builder`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../dfa/onepass/index.md)
 
 ##### `impl Debug`
 
@@ -262,7 +160,16 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 ```rust
 struct DFA {
-    // [REDACTED: Private Fields]
+    config: Config,
+    nfa: crate::nfa::thompson::NFA,
+    table: alloc::vec::Vec<Transition>,
+    starts: alloc::vec::Vec<crate::util::primitives::StateID>,
+    min_match_id: crate::util::primitives::StateID,
+    classes: crate::util::alphabet::ByteClasses,
+    alphabet_len: usize,
+    stride2: usize,
+    pateps_offset: usize,
+    explicit_slot_start: usize,
 }
 ```
 
@@ -302,8 +209,8 @@ do anchored searches.
 * Since iterators are most useful in the context of unanchored searches,
 there is no `DFA::captures_iter` method.
 * For lower level routines like `DFA::try_search`, an error will be
-returned if the given [`Input`](../../index.md) is configured to do an unanchored search or
-search for an invalid pattern ID. (Note that an [`Input`](../../index.md) is configured to
+returned if the given [`Input`](../../util/search/index.md) is configured to do an unanchored search or
+search for an invalid pattern ID. (Note that an [`Input`](../../util/search/index.md) is configured to
 do an unanchored search by default, so just giving a `Input::new` is
 guaranteed to return an error.)
 
@@ -417,142 +324,164 @@ assert_eq!(Some(Span::from(1..2)), caps0.get_group(1));
 Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
+#### Fields
+
+- **`config`**: `Config`
+
+  The configuration provided by the caller.
+
+- **`nfa`**: `crate::nfa::thompson::NFA`
+
+  The NFA used to build this DFA.
+  
+  NOTE: We probably don't need to store the NFA here, but we use enough
+  bits from it that it's convenient to do so. And there really isn't much
+  cost to doing so either, since an NFA is reference counted internally.
+
+- **`table`**: `alloc::vec::Vec<Transition>`
+
+  The transition table. Given a state ID 's' and a byte of haystack 'b',
+  the next state is `table[sid + classes[byte]]`.
+  
+  The stride of this table (i.e., the number of columns) is always
+  a power of 2, even if the alphabet length is smaller. This makes
+  converting between state IDs and state indices very cheap.
+  
+  Note that the stride always includes room for one extra "transition"
+  that isn't actually a transition. It is a 'PatternEpsilons' that is
+  used for match states only. Because of this, the maximum number of
+  active columns in the transition table is 257, which means the maximum
+  stride is 512 (the next power of 2 greater than or equal to 257).
+
+- **`starts`**: `alloc::vec::Vec<crate::util::primitives::StateID>`
+
+  The DFA state IDs of the starting states.
+  
+  `starts[0]` is always present and corresponds to the starting state
+  when searching for matches of any pattern in the DFA.
+  
+  `starts[i]` where i>0 corresponds to the starting state for the pattern
+  ID 'i-1'. These starting states are optional.
+
+- **`min_match_id`**: `crate::util::primitives::StateID`
+
+  Every state ID >= this value corresponds to a match state.
+  
+  This is what a search uses to detect whether a state is a match state
+  or not. It requires only a simple comparison instead of bit-unpacking
+  the PatternEpsilons from every state.
+
+- **`classes`**: `crate::util::alphabet::ByteClasses`
+
+  The alphabet of this DFA, split into equivalence classes. Bytes in the
+  same equivalence class can never discriminate between a match and a
+  non-match.
+
+- **`alphabet_len`**: `usize`
+
+  The number of elements in each state in the transition table. This may
+  be less than the stride, since the stride is always a power of 2 and
+  the alphabet length can be anything up to and including 256.
+
+- **`stride2`**: `usize`
+
+  The number of columns in the transition table, expressed as a power of
+  2.
+
+- **`pateps_offset`**: `usize`
+
+  The offset at which the PatternEpsilons for a match state is stored in
+  the transition table.
+  
+  PERF: One wonders whether it would be better to put this in a separate
+  allocation, since only match states have a non-empty PatternEpsilons
+  and the number of match states tends be dwarfed by the number of
+  non-match states. So this would save '8*len(non_match_states)' for each
+  DFA. The question is whether moving this to a different allocation will
+  lead to a perf hit during searches. You might think dealing with match
+  states is rare, but some regexes spend a lot of time in match states
+  gobbling up input. But... match state handling is already somewhat
+  expensive, so maybe this wouldn't do much? Either way, it's worth
+  experimenting.
+
+- **`explicit_slot_start`**: `usize`
+
+  The first explicit slot index. This refers to the first slot appearing
+  immediately after the last implicit slot. It is always 'patterns.len()
+  * 2'.
+  
+  We record this because we only store the explicit slots in our DFA
+  transition table that need to be saved. Implicit slots are handled
+  automatically as part of the search.
+
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<DFA, BuildError>`
-  Parse the given regular expression using the default configuration and
+- `fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>`
-  Like `new`, but parses multiple patterns into a single "multi regex."
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
 
-- `fn new_from_nfa(nfa: NFA) -> Result<DFA, BuildError>`
-  Like `new`, but builds a one-pass DFA directly from an NFA. This is
+- `fn new_from_nfa(nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
 
-- `fn always_match() -> Result<DFA, BuildError>`
-  Create a new one-pass DFA that matches every input.
+- `fn always_match() -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
 
-- `fn never_match() -> Result<DFA, BuildError>`
-  Create a new one-pass DFA that never matches any input.
+- `fn never_match() -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
 
-- `fn config() -> Config`
-  Return a default configuration for a DFA.
+- `fn config() -> Config` — [`Config`](../../../dfa/onepass/index.md)
 
-- `fn builder() -> Builder`
-  Return a builder for configuring the construction of a DFA.
+- `fn builder() -> Builder` — [`Builder`](../../../dfa/onepass/index.md)
 
-- `fn create_captures(self: &Self) -> Captures`
-  Create a new empty set of capturing groups that is guaranteed to be
+- `fn create_captures(self: &Self) -> Captures` — [`Captures`](../../../util/captures/index.md)
 
-- `fn create_cache(self: &Self) -> Cache`
-  Create a new cache for this DFA.
+- `fn create_cache(self: &Self) -> Cache` — [`Cache`](../../../dfa/onepass/index.md)
 
-- `fn reset_cache(self: &Self, cache: &mut Cache)`
-  Reset the given cache such that it can be used for searching with the
+- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](../../../dfa/onepass/index.md)
 
-- `fn get_config(self: &Self) -> &Config`
-  Return the config for this one-pass DFA.
+- `fn get_config(self: &Self) -> &Config` — [`Config`](../../../dfa/onepass/index.md)
 
-- `fn get_nfa(self: &Self) -> &NFA`
-  Returns a reference to the underlying NFA.
+- `fn get_nfa(self: &Self) -> &NFA` — [`NFA`](../../../nfa/thompson/nfa/index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
-  Returns the total number of patterns compiled into this DFA.
 
 - `fn state_len(self: &Self) -> usize`
-  Returns the total number of states in this one-pass DFA.
 
 - `fn alphabet_len(self: &Self) -> usize`
-  Returns the total number of elements in the alphabet for this DFA.
 
 - `fn stride2(self: &Self) -> usize`
-  Returns the total stride for every state in this DFA, expressed as the
 
 - `fn stride(self: &Self) -> usize`
-  Returns the total stride for every state in this DFA. This corresponds
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the memory usage, in bytes, of this DFA.
-
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool`
-  Executes an anchored leftmost forward search, and returns true if and
-
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>`
-  Executes an anchored leftmost forward search, and returns a `Match` if
-
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)`
-  Executes an anchored leftmost forward search and writes the spans
-
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>`
-  Executes an anchored leftmost forward search and writes the spans
-
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>`
-  Executes an anchored leftmost forward search and writes the spans
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DFA`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> DFA` — [`DFA`](../../../dfa/onepass/index.md)
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
+##### `impl Remappable`
+
+- `fn state_len(self: &Self) -> usize`
+
+- `fn stride2(self: &Self) -> usize`
+
+- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../../util/primitives/index.md)
+
+- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../../util/primitives/index.md)
+
 ### `Cache`
 
 ```rust
 struct Cache {
-    // [REDACTED: Private Fields]
+    explicit_slots: alloc::vec::Vec<Option<crate::util::primitives::NonMaxUsize>>,
+    explicit_slot_len: usize,
 }
 ```
 
-A cache represents mutable state that a one-pass [`DFA`](#dfa) requires during a
+A cache represents mutable state that a one-pass [`DFA`](../../meta/wrappers/index.md) requires during a
 search.
 
 For a given one-pass DFA, its corresponding cache may be created either via
@@ -564,68 +493,40 @@ created. It may only be used with that one-pass DFA. A cache and its
 allocations may be re-purposed via `Cache::reset`, in which case, it can
 only be used with the new one-pass DFA (and not the old one).
 
+#### Fields
+
+- **`explicit_slots`**: `alloc::vec::Vec<Option<crate::util::primitives::NonMaxUsize>>`
+
+  Scratch space used to store slots during a search. Basically, we use
+  the caller provided slots to store slots known when a match occurs.
+  But after a match occurs, we might continue a search but ultimately
+  fail to extend the match. When continuing the search, we need some
+  place to store candidate capture offsets without overwriting the slot
+  offsets recorded for the most recently seen match.
+
+- **`explicit_slot_len`**: `usize`
+
+  The number of slots in the caller-provided 'Captures' value for the
+  current search. This is always at most 'explicit_slots.len()', but
+  might be less than it, if the caller provided fewer slots to fill.
+
 #### Implementations
 
-- `fn new(re: &DFA) -> Cache`
-  Create a new [`onepass::DFA`](DFA) cache.
+- `fn new(re: &DFA) -> Cache` — [`DFA`](../../../dfa/onepass/index.md), [`Cache`](../../../dfa/onepass/index.md)
 
-- `fn reset(self: &mut Self, re: &DFA)`
-  Reset this cache such that it can be used for searching with a
+- `fn reset(self: &mut Self, re: &DFA)` — [`DFA`](../../../dfa/onepass/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
-  Returns the heap memory usage, in bytes, of this cache.
+
+- `fn explicit_slots(self: &mut Self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../../util/primitives/index.md)
+
+- `fn setup_search(self: &mut Self, explicit_slot_len: usize)`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Cache`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../dfa/onepass/index.md)
 
 ##### `impl Debug`
 
@@ -635,7 +536,7 @@ only be used with the new one-pass DFA (and not the old one).
 
 ```rust
 struct BuildError {
-    // [REDACTED: Private Fields]
+    kind: BuildErrorKind,
 }
 ```
 
@@ -653,37 +554,31 @@ string.
 When the `std` feature is enabled, this implements the `std::error::Error`
 trait.
 
+#### Implementations
+
+- `fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+
+- `fn word(err: UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](../../../dfa/onepass/index.md)
+
+- `fn too_many_states(limit: u64) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+
+- `fn too_many_patterns(limit: u64) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+
+- `fn unsupported_look(look: Look) -> BuildError` — [`Look`](../../../util/look/index.md), [`BuildError`](../../../dfa/onepass/index.md)
+
+- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+
+- `fn not_one_pass(msg: &'static str) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
 
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> BuildError`
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -693,31 +588,7 @@ trait.
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

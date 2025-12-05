@@ -6,7 +6,7 @@
 
 This module defines 128-bit vector implementations of `memchr` and friends.
 
-The main types in this module are [`One`](#one), [`Two`](#two) and [`Three`](#three). They are for
+The main types in this module are [`One`](../../../generic/memchr/index.md), [`Two`](../../../all/memchr/index.md) and [`Three`](../../../generic/memchr/index.md). They are for
 searching for one, two or three distinct bytes, respectively, in a haystack.
 Each type also has corresponding double ended iterators. These searchers are
 typically much faster than scalar routines accomplishing the same task.
@@ -29,96 +29,46 @@ expected match frequency.
 ### `One`
 
 ```rust
-struct One();
+struct One(generic::One<core::arch::x86_64::__m128i>);
 ```
 
 Finds all occurrences of a single byte in a haystack.
 
 #### Implementations
 
-- `fn new(needle: u8) -> Option<One>`
-  Create a new searcher that finds occurrences of the needle byte given.
+- `fn new(needle: u8) -> Option<One>` — [`One`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
-- `unsafe fn new_unchecked(needle: u8) -> One`
-  Create a new finder specific to SSE2 vectors and routines without
+- `unsafe fn new_unchecked(needle: u8) -> One` — [`One`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 - `fn is_available() -> bool`
-  Returns true when this implementation is available in the current
 
 - `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Return the first occurrence of one of the needle bytes in the given
 
 - `fn rfind(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Return the last occurrence of one of the needle bytes in the given
 
 - `fn count(self: &Self, haystack: &[u8]) -> usize`
-  Counts all occurrences of this byte in the given haystack.
 
 - `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
-  Like `find`, but accepts and returns raw pointers.
 
 - `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
-  Like `rfind`, but accepts and returns raw pointers.
 
 - `unsafe fn count_raw(self: &Self, start: *const u8, end: *const u8) -> usize`
-  Counts all occurrences of this byte in the given haystack represented
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> OneIter<'a, 'h>`
-  Returns an iterator over all occurrences of the needle byte in the
+- `unsafe fn find_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+- `unsafe fn rfind_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+- `unsafe fn count_raw_impl(self: &Self, start: *const u8, end: *const u8) -> usize`
+
+- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> OneIter<'a, 'h>` — [`OneIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> One`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> One` — [`One`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -128,7 +78,8 @@ Finds all occurrences of a single byte in a haystack.
 
 ```rust
 struct OneIter<'a, 'h> {
-    // [REDACTED: Private Fields]
+    searcher: &'a One,
+    it: generic::Iter<'h>,
 }
 ```
 
@@ -141,20 +92,24 @@ This iterator is created by the `One::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`One`](#one) searcher.
+* `'a` refers to the lifetime of the underlying [`One`](../../../generic/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'a, 'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> OneIter<'a, 'h>` — [`OneIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'a, 'h>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DoubleEndedIterator<'a, 'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'a, 'h>`
 
 ##### `impl IntoIterator<I>`
 
@@ -163,32 +118,6 @@ The lifetime parameters are as follows:
 - `type IntoIter = I`
 
 - `fn into_iter(self: Self) -> I`
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'a, 'h>`
-
-- `fn clone(self: &Self) -> OneIter<'a, 'h>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'a, 'h>`
-
-- `fn next_back(self: &mut Self) -> Option<usize>`
-
-##### `impl FusedIterator<'a, 'h>`
 
 ##### `impl Iterator<'a, 'h>`
 
@@ -200,34 +129,10 @@ The lifetime parameters are as follows:
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a, 'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `Two`
 
 ```rust
-struct Two();
+struct Two(generic::Two<core::arch::x86_64::__m128i>);
 ```
 
 Finds all occurrences of two bytes in a haystack.
@@ -238,83 +143,33 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8) -> Option<Two>`
-  Create a new searcher that finds occurrences of the needle bytes given.
+- `fn new(needle1: u8, needle2: u8) -> Option<Two>` — [`Two`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
-- `unsafe fn new_unchecked(needle1: u8, needle2: u8) -> Two`
-  Create a new finder specific to SSE2 vectors and routines without
+- `unsafe fn new_unchecked(needle1: u8, needle2: u8) -> Two` — [`Two`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 - `fn is_available() -> bool`
-  Returns true when this implementation is available in the current
 
 - `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Return the first occurrence of one of the needle bytes in the given
 
 - `fn rfind(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Return the last occurrence of one of the needle bytes in the given
 
 - `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
-  Like `find`, but accepts and returns raw pointers.
 
 - `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
-  Like `rfind`, but accepts and returns raw pointers.
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> TwoIter<'a, 'h>`
-  Returns an iterator over all occurrences of the needle bytes in the
+- `unsafe fn find_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+- `unsafe fn rfind_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> TwoIter<'a, 'h>` — [`TwoIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Two`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Two` — [`Two`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -324,7 +179,8 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 ```rust
 struct TwoIter<'a, 'h> {
-    // [REDACTED: Private Fields]
+    searcher: &'a Two,
+    it: generic::Iter<'h>,
 }
 ```
 
@@ -337,20 +193,24 @@ This iterator is created by the `Two::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Two`](#two) searcher.
+* `'a` refers to the lifetime of the underlying [`Two`](../../../all/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'a, 'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> TwoIter<'a, 'h>` — [`TwoIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'a, 'h>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DoubleEndedIterator<'a, 'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'a, 'h>`
 
 ##### `impl IntoIterator<I>`
 
@@ -360,32 +220,6 @@ The lifetime parameters are as follows:
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'a, 'h>`
-
-- `fn clone(self: &Self) -> TwoIter<'a, 'h>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'a, 'h>`
-
-- `fn next_back(self: &mut Self) -> Option<usize>`
-
-##### `impl FusedIterator<'a, 'h>`
-
 ##### `impl Iterator<'a, 'h>`
 
 - `type Item = usize`
@@ -394,34 +228,10 @@ The lifetime parameters are as follows:
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a, 'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `Three`
 
 ```rust
-struct Three();
+struct Three(generic::Three<core::arch::x86_64::__m128i>);
 ```
 
 Finds all occurrences of three bytes in a haystack.
@@ -432,83 +242,33 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, needle3: u8) -> Option<Three>`
-  Create a new searcher that finds occurrences of the needle bytes given.
+- `fn new(needle1: u8, needle2: u8, needle3: u8) -> Option<Three>` — [`Three`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
-- `unsafe fn new_unchecked(needle1: u8, needle2: u8, needle3: u8) -> Three`
-  Create a new finder specific to SSE2 vectors and routines without
+- `unsafe fn new_unchecked(needle1: u8, needle2: u8, needle3: u8) -> Three` — [`Three`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 - `fn is_available() -> bool`
-  Returns true when this implementation is available in the current
 
 - `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Return the first occurrence of one of the needle bytes in the given
 
 - `fn rfind(self: &Self, haystack: &[u8]) -> Option<usize>`
-  Return the last occurrence of one of the needle bytes in the given
 
 - `unsafe fn find_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
-  Like `find`, but accepts and returns raw pointers.
 
 - `unsafe fn rfind_raw(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
-  Like `rfind`, but accepts and returns raw pointers.
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> ThreeIter<'a, 'h>`
-  Returns an iterator over all occurrences of the needle byte in the
+- `unsafe fn find_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+- `unsafe fn rfind_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
+
+- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> ThreeIter<'a, 'h>` — [`ThreeIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Three`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Three` — [`Three`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -518,7 +278,8 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
 ```rust
 struct ThreeIter<'a, 'h> {
-    // [REDACTED: Private Fields]
+    searcher: &'a Three,
+    it: generic::Iter<'h>,
 }
 ```
 
@@ -531,20 +292,24 @@ This iterator is created by the `Three::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Three`](#three) searcher.
+* `'a` refers to the lifetime of the underlying [`Three`](../../../generic/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'a, 'h>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> ThreeIter<'a, 'h>` — [`ThreeIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'a, 'h>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DoubleEndedIterator<'a, 'h>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator<'a, 'h>`
 
 ##### `impl IntoIterator<I>`
 
@@ -554,32 +319,6 @@ The lifetime parameters are as follows:
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'a, 'h>`
-
-- `fn clone(self: &Self) -> ThreeIter<'a, 'h>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl DoubleEndedIterator<'a, 'h>`
-
-- `fn next_back(self: &mut Self) -> Option<usize>`
-
-##### `impl FusedIterator<'a, 'h>`
-
 ##### `impl Iterator<'a, 'h>`
 
 - `type Item = usize`
@@ -587,28 +326,4 @@ The lifetime parameters are as follows:
 - `fn next(self: &mut Self) -> Option<usize>`
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a, 'h>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

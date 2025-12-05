@@ -16,7 +16,8 @@ permit walking the state transitions of an Aho-Corasick automaton manually.
 
 ```rust
 struct Prefilter {
-    // [REDACTED: Private Fields]
+    finder: alloc::sync::Arc<dyn PrefilterI>,
+    memory_usage: usize,
 }
 ```
 
@@ -37,60 +38,15 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 #### Implementations
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate`
-  Execute a search in the haystack within the span given. If a match or
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../util/search/index.md), [`Candidate`](../../util/prefilter/index.md)
+
+- `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Prefilter`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](../../util/prefilter/index.md)
 
 ##### `impl Debug`
 
@@ -99,7 +55,7 @@ much else. If you have a use case for more APIs, please submit an issue.
 ### `StateID`
 
 ```rust
-struct StateID();
+struct StateID(SmallIndex);
 ```
 
 The identifier of a finite automaton state.
@@ -130,79 +86,47 @@ panics or silent logical errors.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<StateID, StateIDError>`
-  Create a new value that is represented by a "small index."
+- `fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../../util/primitives/index.md), [`StateIDError`](../../util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> StateID`
-  Create a new value without checking whether the given argument
+- `const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `const fn from_u32_unchecked(index: u32) -> StateID`
-  Create a new value from a `u32` without checking whether the
+- `const fn from_u32_unchecked(index: u32) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn must(value: usize) -> StateID`
-  Like `new`, but panics if the given value is not valid.
+- `fn must(value: usize) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
 - `const fn as_usize(self: &Self) -> usize`
-  Return the internal value as a `usize`. This is guaranteed to
 
 - `const fn as_u64(self: &Self) -> u64`
-  Return the internal value as a `u64`. This is guaranteed to
 
 - `const fn as_u32(self: &Self) -> u32`
-  Return the internal value as a `u32`. This is guaranteed to
 
 - `const fn as_i32(self: &Self) -> i32`
-  Return the internal value as a `i32`. This is guaranteed to
 
 - `fn one_more(self: &Self) -> usize`
-  Returns one more than this value as a usize.
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>`
-  Decode this value from the bytes given using the native endian
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../../util/primitives/index.md), [`StateIDError`](../../util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID`
-  Decode this value from the bytes given using the native endian
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
-  Return the underlying integer as raw bytes in native endian
+
+- `fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl From`
-
-- `fn from(value: u8) -> StateID`
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StateID`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> StateID` — [`StateID`](../../util/primitives/index.md)
 
 ##### `impl Eq`
 
@@ -212,74 +136,22 @@ panics or silent logical errors.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering` — [`StateID`](../../util/primitives/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &StateID) -> bool`
+- `fn eq(self: &Self, other: &StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StateID`](../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u32) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: usize) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u64) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = StateIDError`
-
-- `fn try_from(value: u16) -> Result<StateID, StateIDError>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> StateID`
 
 ### `StateIDError`
 
 ```rust
-struct StateIDError();
+struct StateIDError(SmallIndexError);
 ```
 
 This error occurs when an ID could not be constructed.
@@ -293,39 +165,16 @@ trait.
 #### Implementations
 
 - `fn attempted(self: &Self) -> u64`
-  Returns the value that could not be converted to an ID.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> StateIDError`
+- `fn clone(self: &Self) -> StateIDError` — [`StateIDError`](../../util/primitives/index.md)
 
-##### `impl CloneToUninit<T>`
+##### `impl Debug`
 
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -337,43 +186,22 @@ trait.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &StateIDError) -> bool`
+- `fn eq(self: &Self, other: &StateIDError) -> bool` — [`StateIDError`](../../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `OverlappingState`
 
 ```rust
 struct OverlappingState {
-    // [REDACTED: Private Fields]
+    mat: Option<crate::util::search::Match>,
+    id: Option<StateID>,
+    at: usize,
+    next_match_index: Option<usize>,
 }
 ```
 
@@ -436,65 +264,55 @@ let expected = vec![
 assert_eq!(expected, matches);
 ```
 
+#### Fields
+
+- **`mat`**: `Option<crate::util::search::Match>`
+
+  The match reported by the most recent overlapping search to use this
+  state.
+  
+  If a search does not find any matches, then it is expected to clear
+  this value.
+
+- **`id`**: `Option<StateID>`
+
+  The state ID of the state at which the search was in when the call
+  terminated. When this is a match state, `last_match` must be set to a
+  non-None value.
+  
+  A `None` value indicates the start state of the corresponding
+  automaton. We cannot use the actual ID, since any one automaton may
+  have many start states, and which one is in use depends on search-time
+  factors (such as whether the search is anchored or not).
+
+- **`at`**: `usize`
+
+  The position of the search.
+  
+  When `id` is None (i.e., we are starting a search), this is set to
+  the beginning of the search as given by the caller regardless of its
+  current value. Subsequent calls to an overlapping search pick up at
+  this offset.
+
+- **`next_match_index`**: `Option<usize>`
+
+  The index into the matching patterns of the next match to report if the
+  current state is a match state. Note that this may be 1 greater than
+  the total number of matches to report for the current match state. (In
+  which case, no more matches should be reported at the current position
+  and the search should advance to the next position.)
+
 #### Implementations
 
-- `fn start() -> OverlappingState`
-  Create a new overlapping state that begins at the start state.
+- `fn start() -> OverlappingState` — [`OverlappingState`](../../automaton/index.md)
 
-- `fn get_match(self: &Self) -> Option<Match>`
-  Return the match result of the most recent search to execute with this
+- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> OverlappingState`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](../../automaton/index.md)
 
 ##### `impl Debug`
 
@@ -504,13 +322,15 @@ assert_eq!(expected, matches);
 
 ```rust
 struct FindIter<'a, 'h, A> {
-    // [REDACTED: Private Fields]
+    aut: &'a A,
+    input: crate::util::search::Input<'h>,
+    last_match_end: Option<usize>,
 }
 ```
 
 An iterator of non-overlapping matches in a particular haystack.
 
-This iterator yields matches according to the [`MatchKind`](../index.md) used by this
+This iterator yields matches according to the [`MatchKind`](../util/search/index.md) used by this
 automaton.
 
 This iterator is constructed via the `Automaton::try_find_iter` method.
@@ -523,17 +343,37 @@ implementation.
 
 The lifetime `'h` refers to the lifetime of the haystack being searched.
 
+#### Fields
+
+- **`aut`**: `&'a A`
+
+  The automaton used to drive the search.
+
+- **`input`**: `crate::util::search::Input<'h>`
+
+  The input parameters to give to each search call.
+  
+  The start position of the search is mutated during iteration.
+
+- **`last_match_end`**: `Option<usize>`
+
+  Records the end offset of the most recent match. This is necessary to
+  handle a corner case for preventing empty matches from overlapping with
+  the ending bounds of a prior match.
+
+#### Implementations
+
+- `fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../../util/search/index.md), [`FindIter`](../../automaton/index.md), [`MatchError`](../../util/error/index.md)
+
+- `fn search(self: &Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
+
+- `fn handle_overlapping_empty_match(self: &mut Self, m: Match) -> Option<Match>` — [`Match`](../../util/search/index.md)
+
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a, 'h, A: $crate::fmt::Debug>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -543,45 +383,19 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a, 'h, A: Automaton>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a, 'h, A: $crate::fmt::Debug>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
 
 ### `FindOverlappingIter<'a, 'h, A>`
 
 ```rust
 struct FindOverlappingIter<'a, 'h, A> {
-    // [REDACTED: Private Fields]
+    aut: &'a A,
+    input: crate::util::search::Input<'h>,
+    state: OverlappingState,
 }
 ```
 
@@ -603,15 +417,9 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a, 'h, A: $crate::fmt::Debug>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -621,45 +429,17 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a, 'h, A: Automaton>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a, 'h, A: $crate::fmt::Debug>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
 
 ### `StreamFindIter<'a, A, R>`
 
 ```rust
 struct StreamFindIter<'a, A, R> {
-    // [REDACTED: Private Fields]
+    it: StreamChunkIter<'a, A, R>,
 }
 ```
 
@@ -683,15 +463,9 @@ implementation.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'a, A: $crate::fmt::Debug, R: $crate::fmt::Debug>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -701,39 +475,11 @@ implementation.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'a, A: Automaton, R: std::io::Read>`
 
 - `type Item = Result<Match, Error>`
 
-- `fn next(self: &mut Self) -> Option<std::io::Result<Match>>`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'a, A: $crate::fmt::Debug, R: $crate::fmt::Debug>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+- `fn next(self: &mut Self) -> Option<std::io::Result<Match>>` — [`Match`](../../util/search/index.md)
 
 ## Enums
 
@@ -782,59 +528,12 @@ implementations are permitted to return false positives.
 #### Implementations
 
 - `fn into_option(self: Self) -> Option<usize>`
-  Convert this candidate into an option. This is useful when callers
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Candidate`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
+- `fn clone(self: &Self) -> Candidate` — [`Candidate`](../../util/prefilter/index.md)
 
 ##### `impl Debug`
 
@@ -887,7 +586,7 @@ on a dead state lead back to itself. The dead state is meant to be treated
 as a sentinel indicating that the search should stop and return a match if
 one has been found, and nothing otherwise.
 * A match state is a state that indicates one or more patterns have
-matched. Depending on the [`MatchKind`](../index.md) of the automaton, a search may
+matched. Depending on the [`MatchKind`](../util/search/index.md) of the automaton, a search may
 stop once a match is seen, or it may continue looking for matches until
 it enters a dead state or sees the end of the haystack.
 * A start state is a state that a search begins in. It is useful to know
@@ -941,7 +640,7 @@ _possible_ to do in the future.
 This example shows how one might implement a basic but correct search
 routine. We keep things simple by not using prefilters or worrying about
 anchored searches, but do make sure our search is correct for all possible
-[`MatchKind`](../index.md) semantics. (The comments in the code below note the parts
+[`MatchKind`](../util/search/index.md) semantics. (The comments in the code below note the parts
 that are needed to support certain `MatchKind` semantics.)
 
 ```rust

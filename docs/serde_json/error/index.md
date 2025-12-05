@@ -12,62 +12,44 @@ When serializing or deserializing JSON goes wrong.
 
 ```rust
 struct Error {
-    // [REDACTED: Private Fields]
+    err: alloc::boxed::Box<ErrorImpl>,
 }
 ```
 
 This type represents all possible errors that can occur when serializing or
 deserializing JSON data.
 
+#### Fields
+
+- **`err`**: `alloc::boxed::Box<ErrorImpl>`
+
+  This `Box` allows us to keep the size of `Error` as small as possible. A
+  larger `Error` type was substantially slower due to all the functions
+  that pass around `Result<T, Error>`.
+
 #### Implementations
 
 - `fn line(self: &Self) -> usize`
-  One-based line number at which the error was detected.
 
 - `fn column(self: &Self) -> usize`
-  One-based column number at which the error was detected.
 
-- `fn classify(self: &Self) -> Category`
-  Categorizes the cause of this error.
+- `fn classify(self: &Self) -> Category` — [`Category`](../../error/index.md)
 
 - `fn is_io(self: &Self) -> bool`
-  Returns true if this error was caused by a failure to read or write
 
 - `fn is_syntax(self: &Self) -> bool`
-  Returns true if this error was caused by input that was not
 
 - `fn is_data(self: &Self) -> bool`
-  Returns true if this error was caused by input data that was
 
 - `fn is_eof(self: &Self) -> bool`
-  Returns true if this error was caused by prematurely reaching the end of
 
 - `fn io_error_kind(self: &Self) -> Option<ErrorKind>`
-  The kind reported by the underlying standard library I/O error, if this
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Display`
 
@@ -75,39 +57,11 @@ deserializing JSON data.
 
 ##### `impl Error`
 
-- `fn custom<T: Display>(msg: T) -> Error`
-
-##### `impl Error`
-
-- `fn custom<T: Display>(msg: T) -> Error`
-
-- `fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
-
-- `fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
-
-##### `impl Error`
-
-- `fn source(self: &Self) -> Option<&dyn error::Error>`
+- `fn custom<T: Display>(msg: T) -> Error` — [`Error`](../../error/index.md)
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Enums
 
@@ -151,69 +105,23 @@ Categorizes the cause of a `serde_json::Error`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Category`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Category` — [`Category`](../../error/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Category) -> bool`
+- `fn eq(self: &Self, other: &Category) -> bool` — [`Category`](../../error/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Type Aliases
 

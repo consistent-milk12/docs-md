@@ -32,7 +32,12 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ```rust
 struct ArchiveFile<'data, R: ReadRef<'data>> {
-    // [REDACTED: Private Fields]
+    data: R,
+    kind: ArchiveKind,
+    members: Members<'data>,
+    symbols: (u64, u64),
+    names: &'data [u8],
+    thin: bool,
 }
 ```
 
@@ -40,77 +45,27 @@ A partially parsed archive file.
 
 #### Implementations
 
-- `fn parse(data: R) -> read::Result<Self>`
-  Parse the archive header and special members.
+- `fn parse(data: R) -> read::Result<Self>` — [`Result`](../../../read/index.md)
 
-- `fn kind(self: &Self) -> ArchiveKind`
-  Return the archive format.
+- `fn parse_aixbig(data: R) -> read::Result<Self>` — [`Result`](../../../read/index.md)
+
+- `fn kind(self: &Self) -> ArchiveKind` — [`ArchiveKind`](../../../read/archive/index.md)
 
 - `fn is_thin(self: &Self) -> bool`
-  Return true if the archive is a thin archive.
 
-- `fn members(self: &Self) -> ArchiveMemberIterator<'data, R>`
-  Iterate over the members of the archive.
+- `fn members(self: &Self) -> ArchiveMemberIterator<'data, R>` — [`ArchiveMemberIterator`](../../../read/archive/index.md)
 
-- `fn member(self: &Self, member: ArchiveOffset) -> read::Result<ArchiveMember<'data>>`
-  Return the member at the given offset.
+- `fn member(self: &Self, member: ArchiveOffset) -> read::Result<ArchiveMember<'data>>` — [`ArchiveOffset`](../../../read/archive/index.md), [`Result`](../../../read/index.md), [`ArchiveMember`](../../../read/archive/index.md)
 
-- `fn symbols(self: &Self) -> read::Result<Option<ArchiveSymbolIterator<'data>>>`
-  Iterate over the symbols in the archive.
+- `fn symbols(self: &Self) -> read::Result<Option<ArchiveSymbolIterator<'data>>>` — [`Result`](../../../read/index.md), [`ArchiveSymbolIterator`](../../../read/archive/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data, R: $crate::clone::Clone + ReadRef<'data>>`
 
-- `fn clone(self: &Self) -> ArchiveFile<'data, R>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ArchiveFile<'data, R>` — [`ArchiveFile`](../../../read/archive/index.md)
 
 ##### `impl Copy<'data, R: $crate::marker::Copy + ReadRef<'data>>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data, R: $crate::fmt::Debug + ReadRef<'data>>`
 
@@ -120,7 +75,10 @@ A partially parsed archive file.
 
 ```rust
 struct ArchiveMemberIterator<'data, R: ReadRef<'data>> {
-    // [REDACTED: Private Fields]
+    data: R,
+    members: Members<'data>,
+    names: &'data [u8],
+    thin: bool,
 }
 ```
 
@@ -128,15 +86,9 @@ An iterator over the members of an archive.
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug<'data, R: $crate::fmt::Debug + ReadRef<'data>>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -146,45 +98,20 @@ An iterator over the members of an archive.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Iterator<'data, R: ReadRef<'data>>`
 
 - `type Item = Result<ArchiveMember<'data>, Error>`
 
 - `fn next(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'data, R: $crate::fmt::Debug + ReadRef<'data>>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `ArchiveMember<'data>`
 
 ```rust
 struct ArchiveMember<'data> {
-    // [REDACTED: Private Fields]
+    header: MemberHeader<'data>,
+    name: &'data [u8],
+    offset: u64,
+    size: u64,
 }
 ```
 
@@ -192,74 +119,35 @@ A partially parsed archive member.
 
 #### Implementations
 
-- `fn header(self: &Self) -> Option<&'data archive::Header>`
-  Return the raw header that is common to many archive formats.
+- `fn parse<R: ReadRef<'data>>(data: R, offset: &mut u64, names: &'data [u8], thin: bool) -> read::Result<Self>` — [`Result`](../../../read/index.md)
 
-- `fn aix_header(self: &Self) -> Option<&'data archive::AixHeader>`
-  Return the raw header for AIX big archives.
+- `fn parse_aixbig_index<R: ReadRef<'data>>(data: R, index: &archive::AixMemberOffset) -> read::Result<Self>` — [`AixMemberOffset`](../../../archive/index.md), [`Result`](../../../read/index.md)
+
+- `fn parse_aixbig<R: ReadRef<'data>>(data: R, offset: u64) -> read::Result<Self>` — [`Result`](../../../read/index.md)
+
+- `fn header(self: &Self) -> Option<&'data archive::Header>` — [`Header`](../../../archive/index.md)
+
+- `fn aix_header(self: &Self) -> Option<&'data archive::AixHeader>` — [`AixHeader`](../../../archive/index.md)
 
 - `fn name(self: &Self) -> &'data [u8]`
-  Return the parsed file name.
 
 - `fn date(self: &Self) -> Option<u64>`
-  Parse the file modification timestamp from the header.
 
 - `fn uid(self: &Self) -> Option<u64>`
-  Parse the user ID from the header.
 
 - `fn gid(self: &Self) -> Option<u64>`
-  Parse the group ID from the header.
 
 - `fn mode(self: &Self) -> Option<u64>`
-  Parse the file mode from the header.
 
 - `fn size(self: &Self) -> u64`
-  Return the size of the file data.
 
 - `fn file_range(self: &Self) -> (u64, u64)`
-  Return the offset and size of the file data.
 
 - `fn is_thin(self: &Self) -> bool`
-  Return true if the member is a thin member.
 
-- `fn data<R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [u8]>`
-  Return the file data.
+- `fn data<R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [u8]>` — [`Result`](../../../read/index.md)
 
 #### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data>`
 
@@ -275,57 +163,11 @@ An offset of a member in an archive.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ArchiveOffset`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ArchiveOffset` — [`ArchiveOffset`](../../../read/archive/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -334,22 +176,24 @@ An offset of a member in an archive.
 ### `ArchiveSymbolIterator<'data>`
 
 ```rust
-struct ArchiveSymbolIterator<'data>();
+struct ArchiveSymbolIterator<'data>(SymbolIteratorInternal<'data>);
 ```
 
 An iterator over the symbols in the archive symbol table.
 
+#### Implementations
+
+- `fn new<R: ReadRef<'data>>(kind: ArchiveKind, data: R, offset: u64, size: u64) -> Result<Self, ()>` — [`ArchiveKind`](../../../read/archive/index.md)
+
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<'data>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> ArchiveSymbolIterator<'data>` — [`ArchiveSymbolIterator`](../../../read/archive/index.md)
 
-##### `impl Into<T, U>`
+##### `impl Debug<'data>`
 
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl IntoIterator<I>`
 
@@ -359,26 +203,6 @@ An iterator over the symbols in the archive symbol table.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<'data>`
-
-- `fn clone(self: &Self) -> ArchiveSymbolIterator<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
 ##### `impl Iterator<'data>`
 
 - `type Item = Result<ArchiveSymbol<'data>, Error>`
@@ -387,35 +211,12 @@ An iterator over the symbols in the archive symbol table.
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<'data>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `ArchiveSymbol<'data>`
 
 ```rust
 struct ArchiveSymbol<'data> {
-    // [REDACTED: Private Fields]
+    name: &'data [u8],
+    offset: ArchiveOffset,
 }
 ```
 
@@ -426,64 +227,16 @@ This is used to find the member containing the symbol.
 #### Implementations
 
 - `fn name(self: &Self) -> &'data [u8]`
-  Return the symbol name.
 
-- `fn offset(self: &Self) -> ArchiveOffset`
-  Return the offset of the header for the member containing the symbol.
+- `fn offset(self: &Self) -> ArchiveOffset` — [`ArchiveOffset`](../../../read/archive/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<'data>`
 
-- `fn clone(self: &Self) -> ArchiveSymbol<'data>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ArchiveSymbol<'data>` — [`ArchiveSymbol`](../../../read/archive/index.md)
 
 ##### `impl Copy<'data>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<'data>`
 
@@ -541,37 +294,15 @@ The kind of archive format.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ArchiveKind`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ArchiveKind` — [`ArchiveKind`](../../../read/archive/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -581,31 +312,7 @@ The kind of archive format.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &ArchiveKind) -> bool`
+- `fn eq(self: &Self, other: &ArchiveKind) -> bool` — [`ArchiveKind`](../../../read/archive/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

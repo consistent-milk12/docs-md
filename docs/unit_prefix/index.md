@@ -261,50 +261,24 @@ A numeric prefix, either binary or decimal.
 #### Implementations
 
 - `fn upper(self: Self) -> &'static str`
-  Returns the name in uppercase, such as “KILO”.
 
 - `fn caps(self: Self) -> &'static str`
-  Returns the name with the first letter capitalised, such as “Mega”.
 
 - `fn lower(self: Self) -> &'static str`
-  Returns the name in lowercase, such as “giga”.
 
 - `fn symbol(self: Self) -> &'static str`
-  Returns the short-hand symbol, such as “T” (for “tera”).
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> Prefix`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Prefix` — [`Prefix`](../index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -314,37 +288,13 @@ A numeric prefix, either binary or decimal.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &Prefix) -> bool`
+- `fn eq(self: &Self, other: &Prefix) -> bool` — [`Prefix`](../index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `NumberPrefix<F>`
 
@@ -373,17 +323,22 @@ The result of trying to apply a prefix to a floating-point value.
 #### Implementations
 
 - `fn decimal(amount: F) -> Self`
-  Formats the given floating-point number using **decimal** prefixes.
 
 - `fn binary(amount: F) -> Self`
-  Formats the given floating-point number using **binary** prefixes.
+
+- `fn format_number(amount: F, kilo: F, prefixes: [Prefix; 8]) -> Self` — [`Prefix`](../index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Clone<F: $crate::clone::Clone>`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
+- `fn clone(self: &Self) -> NumberPrefix<F>` — [`NumberPrefix`](../index.md)
+
+##### `impl Debug<F: $crate::fmt::Debug>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq<F: $crate::cmp::Eq>`
 
 ##### `impl FromStr<T: str::FromStr>`
 
@@ -391,62 +346,11 @@ The result of trying to apply a prefix to a floating-point value.
 
 - `fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Clone<F: $crate::clone::Clone>`
-
-- `fn clone(self: &Self) -> NumberPrefix<F>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
-
-##### `impl Eq<F: $crate::cmp::Eq>`
-
 ##### `impl PartialEq<F: $crate::cmp::PartialEq>`
 
-- `fn eq(self: &Self, other: &NumberPrefix<F>) -> bool`
+- `fn eq(self: &Self, other: &NumberPrefix<F>) -> bool` — [`NumberPrefix`](../index.md)
 
 ##### `impl StructuralPartialEq<F>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<F: $crate::fmt::Debug>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 

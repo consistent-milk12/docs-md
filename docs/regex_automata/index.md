@@ -269,7 +269,7 @@ Most search routines in this crate accept anything that implements
 means that things like `engine.search("foo")` will work as you would expect.
 
 By virtue of accepting an `Into<Input>` though, callers can provide more than
-just a haystack. Indeed, the [`Input`](#input) type has more details, but briefly,
+just a haystack. Indeed, the [`Input`](util/search/index.md) type has more details, but briefly,
 callers can use it to configure various aspects of the search:
 
 * The span of the haystack to search via `Input::span` or `Input::range`,
@@ -292,7 +292,7 @@ Most, but not all, regex engines in this crate can fail to execute a search.
 When a search fails, callers cannot determine whether or not a match exists.
 That is, the result is indeterminate.
 
-Search failure, in all cases in this crate, is represented by a [`MatchError`](#matcherror).
+Search failure, in all cases in this crate, is represented by a [`MatchError`](util/search/index.md).
 Routines that can fail start with the `try_` prefix in their name. For example,
 `hybrid::regex::Regex::try_search` can fail for a number of reasons.
 Conversely, routines that either can't fail or can panic on failure lack the
@@ -371,7 +371,7 @@ case insensitively.
 configuring construction of a [Thompson NFA](nfa::thompson::NFA). For example,
 whether to build an NFA that matches the reverse language described by the
 regex.
-* `hybrid::regex::Builder::dfa` accept a [`Config`](hybrid/dfa/index.md) for
+* `hybrid::regex::Builder::dfa` accept a [`hybrid::dfa::Config`](hybrid/dfa/index.md) for
 configuring construction of the pair of underlying lazy DFAs that make up the
 lazy DFA regex engine. For example, changing the capacity of the cache used to
 store the transition table.
@@ -553,7 +553,7 @@ enables `alloc` and `nfa-thompson`.
 ### `PatternID`
 
 ```rust
-struct PatternID();
+struct PatternID(SmallIndex);
 ```
 
 The identifier of a regex pattern, represented by a [`SmallIndex`](util/primitives/index.md).
@@ -582,76 +582,45 @@ re-exported at the crate root due to how common it is.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<PatternID, PatternIDError>`
-  Create a new value that is represented by a "small index."
+- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](../util/primitives/index.md), [`PatternIDError`](../util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> PatternID`
-  Create a new value without checking whether the given argument
+- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](../util/primitives/index.md)
 
-- `fn must(value: usize) -> PatternID`
-  Like `new`, but panics if the given value is not valid.
+- `fn must(value: usize) -> PatternID` — [`PatternID`](../util/primitives/index.md)
 
 - `const fn as_usize(self: &Self) -> usize`
-  Return the internal value as a `usize`. This is guaranteed to
 
 - `const fn as_u64(self: &Self) -> u64`
-  Return the internal value as a `u64`. This is guaranteed to
 
 - `const fn as_u32(self: &Self) -> u32`
-  Return the internal value as a `u32`. This is guaranteed to
 
 - `const fn as_i32(self: &Self) -> i32`
-  Return the internal value as a i32`. This is guaranteed to
 
 - `fn one_more(self: &Self) -> usize`
-  Returns one more than this value as a usize.
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>`
-  Decode this value from the bytes given using the native endian
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](../util/primitives/index.md), [`PatternIDError`](../util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID`
-  Decode this value from the bytes given using the native endian
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](../util/primitives/index.md)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
-  Return the underlying integer as raw bytes in native endian
+
+- `fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl From`
-
-- `fn from(value: u8) -> PatternID`
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PatternID`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> PatternID` — [`PatternID`](../util/primitives/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Default`
+
+- `fn default() -> PatternID` — [`PatternID`](../util/primitives/index.md)
 
 ##### `impl Eq`
 
@@ -661,67 +630,15 @@ re-exported at the crate root due to how common it is.
 
 ##### `impl Ord`
 
-- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering`
+- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](../util/primitives/index.md)
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &PatternID) -> bool`
+- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](../util/primitives/index.md)
 
 ##### `impl PartialOrd`
 
-- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>`
+- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](../util/primitives/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: usize) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u32) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u64) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryFrom`
-
-- `type Error = PatternIDError`
-
-- `fn try_from(value: u16) -> Result<PatternID, PatternIDError>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
-
-##### `impl Default`
-
-- `fn default() -> PatternID`
 

@@ -33,6 +33,7 @@ enum Error {
     NoJsonFiles(std::path::PathBuf),
     DuplicateCrate(String),
     NoCrateName(std::path::PathBuf),
+    ProgressBarTemplate(indicatif::style::TemplateError),
 }
 ```
 
@@ -124,29 +125,19 @@ Each variant includes:
   The rustdoc JSON format should include a root item with
   the crate name. This error indicates a malformed file.
 
+- **`ProgressBarTemplate`**
+
+  Failed to create a progress bar with the given template.
+  
+  This indicates an invalid progress bar template string.
+  Since templates are compile-time constants, this error
+  typically indicates a programming error.
+
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Diagnostic`
 
@@ -162,25 +153,25 @@ Each variant includes:
 
 - `fn source(self: &Self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
 
+##### `impl IntoEither<T>`
+
 ##### `impl OwoColorize<D>`
+
+##### `impl Pointable<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

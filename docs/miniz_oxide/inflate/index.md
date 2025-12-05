@@ -11,77 +11,6 @@ This module contains functionality for decompression.
 - [`core`](core/index.md) - Streaming decompression functionality.
 - [`stream`](stream/index.md) - Extra streaming decompression functionality.
 
-## Structs
-
-### `DecompressError`
-
-```rust
-struct DecompressError {
-    pub status: TINFLStatus,
-    pub output: crate::alloc::vec::Vec<u8>,
-}
-```
-
-Struct return when decompress_to_vec functions fail.
-
-#### Fields
-
-- **`status`**: `TINFLStatus`
-
-  Decompressor status on failure. See [TINFLStatus] for details.
-
-- **`output`**: `crate::alloc::vec::Vec<u8>`
-
-  The currently decompressed data if any.
-
-#### Trait Implementations
-
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl Display`
-
-- `fn fmt(self: &Self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
-
-##### `impl ToString<T>`
-
-- `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ## Enums
 
 ### `TINFLStatus`
@@ -149,41 +78,19 @@ Return status codes.
 
 #### Implementations
 
-- `fn from_i32(value: i32) -> Option<TINFLStatus>`
+- `fn from_i32(value: i32) -> Option<TINFLStatus>` — [`TINFLStatus`](../../inflate/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> TINFLStatus`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> TINFLStatus` — [`TINFLStatus`](../../inflate/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
@@ -193,94 +100,11 @@ Return status codes.
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &TINFLStatus) -> bool`
+- `fn eq(self: &Self, other: &TINFLStatus) -> bool` — [`TINFLStatus`](../../inflate/index.md)
 
 ##### `impl StructuralPartialEq`
 
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ## Functions
-
-### `decompress_to_vec`
-
-```rust
-fn decompress_to_vec(input: &[u8]) -> Result<crate::alloc::vec::Vec<u8>, DecompressError>
-```
-
-Decompress the deflate-encoded data in `input` to a vector.
-
-NOTE: This function will not bound the output, so if the output is large enough it can result in an out of memory error.
-It is therefore suggested to not use this for anything other than test programs, use the functions with a specified limit, or
-ideally streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
-
-Returns a [`Result`](#result) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
-
-### `decompress_to_vec_zlib`
-
-```rust
-fn decompress_to_vec_zlib(input: &[u8]) -> Result<crate::alloc::vec::Vec<u8>, DecompressError>
-```
-
-Decompress the deflate-encoded data (with a zlib wrapper) in `input` to a vector.
-
-NOTE: This function will not bound the output, so if the output is large enough it can result in an out of memory error.
-It is therefore suggested to not use this for anything other than test programs, use the functions with a specified limit, or
-ideally streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
-
-Returns a [`Result`](#result) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] containing the status and so far decompressed data if any on failure.
-
-### `decompress_to_vec_with_limit`
-
-```rust
-fn decompress_to_vec_with_limit(input: &[u8], max_size: usize) -> Result<crate::alloc::vec::Vec<u8>, DecompressError>
-```
-
-Decompress the deflate-encoded data in `input` to a vector.
-
-The vector is grown to at most `max_size` bytes; if the data does not fit in that size,
-the error [struct][DecompressError] will contain the status `TINFLStatus::HasMoreOutput` and the data that was decompressed on failure.
-
-As this function tries to decompress everything in one go, it's not ideal for general use outside of tests or where the output size is expected to be small.
-It is suggested to use streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
-
-Returns a [`Result`](#result) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
-
-### `decompress_to_vec_zlib_with_limit`
-
-```rust
-fn decompress_to_vec_zlib_with_limit(input: &[u8], max_size: usize) -> Result<crate::alloc::vec::Vec<u8>, DecompressError>
-```
-
-Decompress the deflate-encoded data (with a zlib wrapper) in `input` to a vector.
-The vector is grown to at most `max_size` bytes; if the data does not fit in that size,
-the error [struct][DecompressError] will contain the status `TINFLStatus::HasMoreOutput` and the data that was decompressed on failure.
-
-As this function tries to decompress everything in one go, it's not ideal for general use outside of tests or where the output size is expected to be small.
-It is suggested to use streaming decompression via the [flate2](https://github.com/alexcrichton/flate2-rs) library instead.
-
-Returns a [`Result`](#result) containing the [`Vec`](#vec) of decompressed data on success, and a [struct][DecompressError] on failure.
 
 ### `decompress_slice_iter_to_slice`
 

@@ -7,7 +7,6 @@
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 
-use hashbrown::DefaultHashBuilder;
 use rustdoc_types::{Crate, Id, ItemEnum};
 
 use crate::linker::{LinkRegistry, slugify_anchor};
@@ -453,6 +452,7 @@ impl UnifiedLinkRegistry {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use hashbrown::DefaultHashBuilder;
 
     #[test]
     fn test_cross_crate_path_same_crate() {

@@ -68,6 +68,7 @@ struct DyldCacheHeader<E: Endian> {
     pub os_version: crate::endian::U32<E>,
     pub alt_platform: crate::endian::U32<E>,
     pub alt_os_version: crate::endian::U32<E>,
+    reserved1: [u8; 4],
     pub swift_opts_offset: crate::endian::U64<E>,
     pub swift_opts_size: crate::endian::U64<E>,
     pub sub_cache_array_offset: crate::endian::U32<E>,
@@ -86,7 +87,6 @@ struct DyldCacheHeader<E: Endian> {
     pub cache_atlas_size: crate::endian::U64<E>,
     pub dynamic_data_offset: crate::endian::U64<E>,
     pub dynamic_data_max_size: crate::endian::U64<E>,
-    // [REDACTED: Private Fields]
 }
 ```
 
@@ -373,83 +373,31 @@ right after the theader.
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>`
-  Read the dyld cache header.
+- `fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>` — [`Result`](../../read/index.md)
 
-- `fn parse_magic(self: &Self) -> Result<(Architecture, E)>`
-  Returns (arch, endian) based on the magic string.
+- `fn parse_magic(self: &Self) -> Result<(Architecture, E)>` — [`Result`](../../read/index.md), [`Architecture`](../../common/index.md)
 
-- `fn mappings<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>`
-  Return the mapping information table.
+- `fn mappings<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>` — [`Result`](../../read/index.md), [`DyldCacheMappingSlice`](../../read/macho/dyld_cache/index.md)
 
-- `fn subcaches<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>`
-  Return the information about subcaches, if present.
+- `fn subcaches<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>` — [`Result`](../../read/index.md), [`DyldSubCacheSlice`](../../read/macho/dyld_cache/index.md)
 
 - `fn symbols_subcache_uuid(self: &Self, endian: E) -> Option<[u8; 16]>`
-  Return the UUID for the .symbols subcache, if present.
 
-- `fn images<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>`
-  Return the image information table.
+- `fn images<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>` — [`Result`](../../read/index.md), [`DyldCacheImageInfo`](../../macho/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldCacheHeader<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheHeader<E>` — [`DyldCacheHeader`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldCacheMappingInfo<E: Endian>`
 
@@ -467,63 +415,17 @@ Corresponds to struct dyld_cache_mapping_info from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldCacheMappingInfo<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheMappingInfo<E>` — [`DyldCacheMappingInfo`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldCacheMappingAndSlideInfo<E: Endian>`
 
@@ -544,68 +446,21 @@ Corresponds to struct dyld_cache_mapping_and_slide_info from dyld_cache_format.h
 
 #### Implementations
 
-- `fn slide<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>`
-  Return the (optional) array of slide information structs
+- `fn slide<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>` — [`Result`](../../read/index.md), [`DyldCacheSlideInfo`](../../read/macho/dyld_cache/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldCacheMappingAndSlideInfo<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheMappingAndSlideInfo<E>` — [`DyldCacheMappingAndSlideInfo`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldCacheImageInfo<E: Endian>`
 
@@ -623,68 +478,21 @@ Corresponds to struct dyld_cache_image_info from dyld_cache_format.h.
 
 #### Implementations
 
-- `fn path<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [u8]>`
-  The file system path of this image.
+- `fn path<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [u8]>` — [`Result`](../../read/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldCacheImageInfo<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldCacheSlideInfo2<E: Endian>`
 
@@ -705,63 +513,17 @@ Corresponds to struct dyld_cache_slide_info2 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo2<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheSlideInfo2<E>` — [`DyldCacheSlideInfo2`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldCacheSlideInfo3<E: Endian>`
 
@@ -770,8 +532,8 @@ struct DyldCacheSlideInfo3<E: Endian> {
     pub version: crate::endian::U32<E>,
     pub page_size: crate::endian::U32<E>,
     pub page_starts_count: crate::endian::U32<E>,
+    reserved1: [u8; 4],
     pub auth_value_add: crate::endian::U64<E>,
-    // [REDACTED: Private Fields]
 }
 ```
 
@@ -779,63 +541,17 @@ Corresponds to struct dyld_cache_slide_info3 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo3<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheSlideInfo3<E>` — [`DyldCacheSlideInfo3`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldCacheSlidePointer3`
 
@@ -848,82 +564,28 @@ Corresponds to union dyld_cache_slide_pointer3 from dyld_cache_format.h.
 #### Implementations
 
 - `fn is_auth(self: &Self) -> bool`
-  Whether the pointer is authenticated.
 
 - `fn target(self: &Self) -> u64`
-  The target of the pointer.
 
 - `fn high8(self: &Self) -> u64`
-  The high 8 bits of the pointer.
 
 - `fn runtime_offset(self: &Self) -> u64`
-  The target of the pointer as an offset from the start of the shared cache.
 
 - `fn diversity(self: &Self) -> u16`
-  The diversity value for authentication.
 
 - `fn addr_div(self: &Self) -> bool`
-  Whether to use address diversity for authentication.
 
 - `fn key(self: &Self) -> u8`
-  The key for authentication.
 
 - `fn next(self: &Self) -> u64`
-  The offset to the next slide pointer in 8-byte units.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DyldCacheSlidePointer3`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheSlidePointer3` — [`DyldCacheSlidePointer3`](../../macho/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -936,8 +598,8 @@ struct DyldCacheSlideInfo5<E: Endian> {
     pub version: crate::endian::U32<E>,
     pub page_size: crate::endian::U32<E>,
     pub page_starts_count: crate::endian::U32<E>,
+    reserved1: [u8; 4],
     pub value_add: crate::endian::U64<E>,
-    // [REDACTED: Private Fields]
 }
 ```
 
@@ -945,63 +607,17 @@ Corresponds to struct dyld_cache_slide_info5 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo5<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheSlideInfo5<E>` — [`DyldCacheSlideInfo5`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldCacheSlidePointer5`
 
@@ -1014,79 +630,26 @@ Corresponds to struct dyld_cache_slide_pointer5 from dyld_cache_format.h.
 #### Implementations
 
 - `fn is_auth(self: &Self) -> bool`
-  Whether the pointer is authenticated.
 
 - `fn runtime_offset(self: &Self) -> u64`
-  The target of the pointer as an offset from the start of the shared cache.
 
 - `fn high8(self: &Self) -> u64`
-  The high 8 bits of the pointer.
 
 - `fn diversity(self: &Self) -> u16`
-  The diversity value for authentication.
 
 - `fn addr_div(self: &Self) -> bool`
-  Whether to use address diversity for authentication.
 
 - `fn key_is_data(self: &Self) -> bool`
-  Whether the key is IA or DA.
 
 - `fn next(self: &Self) -> u64`
-  The offset to the next slide pointer in 8-byte units.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> DyldCacheSlidePointer5`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldCacheSlidePointer5` — [`DyldCacheSlidePointer5`](../../macho/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -1117,63 +680,17 @@ in dyld-1042.1.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldSubCacheEntryV1<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldSubCacheEntryV1<E>` — [`DyldSubCacheEntryV1`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldSubCacheEntryV2<E: Endian>`
 
@@ -1204,63 +721,17 @@ Called `dyld_subcache_entry` as of dyld-1042.1.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldSubCacheEntryV2<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldSubCacheEntryV2<E>` — [`DyldSubCacheEntryV2`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `FatHeader`
 
@@ -1283,63 +754,17 @@ struct FatHeader {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FatHeader`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FatHeader` — [`FatHeader`](../../macho/index.md)
 
 ##### `impl Copy`
-
-##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod`
 
 ### `FatArch32`
 
@@ -1377,37 +802,15 @@ struct FatArch32 {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FatArch32`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FatArch32` — [`FatArch32`](../../macho/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FatArch`
 
@@ -1419,37 +822,13 @@ struct FatArch32 {
 
 - `fn cpusubtype(self: &Self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word`
+- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../../read/macho/fat/index.md)
 
-- `fn size(self: &Self) -> <Self as >::Word`
+- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../../read/macho/fat/index.md)
 
 - `fn align(self: &Self) -> u32`
 
 ##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `FatArch64`
 
@@ -1492,37 +871,15 @@ struct FatArch64 {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> FatArch64`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FatArch64` — [`FatArch64`](../../macho/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl FatArch`
 
@@ -1534,37 +891,13 @@ struct FatArch64 {
 
 - `fn cpusubtype(self: &Self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word`
+- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../../read/macho/fat/index.md)
 
-- `fn size(self: &Self) -> <Self as >::Word`
+- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../../read/macho/fat/index.md)
 
 - `fn align(self: &Self) -> u32`
 
 ##### `impl Pod`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `MachHeader32<E: Endian>`
 
@@ -1616,37 +949,15 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> MachHeader32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> MachHeader32<E>` — [`MachHeader32`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl MachHeader<Endian: endian::Endian>`
 
@@ -1668,43 +979,19 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 - `fn magic(self: &Self) -> u32`
 
-- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `MachHeader64<E: Endian>`
 
@@ -1761,37 +1048,15 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> MachHeader64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> MachHeader64<E>` — [`MachHeader64`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl MachHeader<Endian: endian::Endian>`
 
@@ -1813,43 +1078,19 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 - `fn magic(self: &Self) -> u32`
 
-- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `LoadCommand<E: Endian>`
 
@@ -1892,63 +1133,17 @@ padding zeroed like objects will compare byte for byte.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> LoadCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LoadCommand<E>` — [`LoadCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `LcStr<E: Endian>`
 
@@ -1974,63 +1169,17 @@ of 4 bytes must be zero.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> LcStr<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LcStr<E>` — [`LcStr`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `SegmentCommand32<E: Endian>`
 
@@ -2111,63 +1260,17 @@ reflected in `cmdsize`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SegmentCommand32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SegmentCommand32<E>` — [`SegmentCommand32`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ##### `impl Segment<Endian: endian::Endian>`
 
@@ -2177,29 +1280,29 @@ reflected in `cmdsize`.
 
 - `type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
 
-- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
+- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../../read/macho/load_command/index.md), [`Segment`](../../read/macho/segment/index.md), [`Result`](../../read/index.md)
 
-- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
 - `fn segname(self: &Self) -> &[u8; 16]`
 
-- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
 ### `SegmentCommand64<E: Endian>`
 
@@ -2274,63 +1377,17 @@ command and their size is reflected in `cmdsize`.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SegmentCommand64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SegmentCommand64<E>` — [`SegmentCommand64`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ##### `impl Segment<Endian: endian::Endian>`
 
@@ -2340,29 +1397,29 @@ command and their size is reflected in `cmdsize`.
 
 - `type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
 
-- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>`
+- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../../read/macho/load_command/index.md), [`Segment`](../../read/macho/segment/index.md), [`Result`](../../read/index.md)
 
-- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
 - `fn segname(self: &Self) -> &[u8; 16]`
 
-- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
 
 ### `Section32<E: Endian>`
 
@@ -2432,63 +1489,17 @@ struct Section32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Section32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Section32<E>` — [`Section32`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ##### `impl Section<Endian: endian::Endian>`
 
@@ -2500,19 +1511,19 @@ struct Section32<E: Endian> {
 
 - `fn segname(self: &Self) -> &[u8; 16]`
 
-- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../../read/macho/section/index.md)
 
-- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../../read/macho/section/index.md)
 
-- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
-- `fn align(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn align(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
-- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
-- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
 ### `Section64<E: Endian>`
 
@@ -2587,63 +1598,17 @@ struct Section64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Section64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Section64<E>` — [`Section64`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ##### `impl Section<Endian: endian::Endian>`
 
@@ -2655,19 +1620,19 @@ struct Section64<E: Endian> {
 
 - `fn segname(self: &Self) -> &[u8; 16]`
 
-- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../../read/macho/section/index.md)
 
-- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../../read/macho/section/index.md)
 
-- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
-- `fn align(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn align(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
-- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
-- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
 
 ### `Fvmlib<E: Endian>`
 
@@ -2695,63 +1660,17 @@ struct Fvmlib<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Fvmlib<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Fvmlib<E>` — [`Fvmlib`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `FvmlibCommand<E: Endian>`
 
@@ -2779,63 +1698,17 @@ struct FvmlibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> FvmlibCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FvmlibCommand<E>` — [`FvmlibCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `Dylib<E: Endian>`
 
@@ -2868,63 +1741,17 @@ struct Dylib<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Dylib<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Dylib<E>` — [`Dylib`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DylibCommand<E: Endian>`
 
@@ -2952,63 +1779,17 @@ struct DylibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DylibCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DylibCommand<E>` — [`DylibCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `SubFrameworkCommand<E: Endian>`
 
@@ -3036,63 +1817,17 @@ struct SubFrameworkCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SubFrameworkCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SubFrameworkCommand<E>` — [`SubFrameworkCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `SubClientCommand<E: Endian>`
 
@@ -3120,63 +1855,17 @@ struct SubClientCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SubClientCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SubClientCommand<E>` — [`SubClientCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `SubUmbrellaCommand<E: Endian>`
 
@@ -3204,63 +1893,17 @@ struct SubUmbrellaCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SubUmbrellaCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SubUmbrellaCommand<E>` — [`SubUmbrellaCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `SubLibraryCommand<E: Endian>`
 
@@ -3288,63 +1931,17 @@ struct SubLibraryCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SubLibraryCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SubLibraryCommand<E>` — [`SubLibraryCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `PreboundDylibCommand<E: Endian>`
 
@@ -3382,63 +1979,17 @@ struct PreboundDylibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> PreboundDylibCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> PreboundDylibCommand<E>` — [`PreboundDylibCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DylinkerCommand<E: Endian>`
 
@@ -3466,63 +2017,17 @@ struct DylinkerCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DylinkerCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DylinkerCommand<E>` — [`DylinkerCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `ThreadCommand<E: Endian>`
 
@@ -3545,63 +2050,17 @@ struct ThreadCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> ThreadCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ThreadCommand<E>` — [`ThreadCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `RoutinesCommand32<E: Endian>`
 
@@ -3640,63 +2099,17 @@ struct RoutinesCommand32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> RoutinesCommand32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> RoutinesCommand32<E>` — [`RoutinesCommand32`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `RoutinesCommand64<E: Endian>`
 
@@ -3735,63 +2148,17 @@ struct RoutinesCommand64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> RoutinesCommand64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> RoutinesCommand64<E>` — [`RoutinesCommand64`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `SymtabCommand<E: Endian>`
 
@@ -3834,68 +2201,21 @@ struct SymtabCommand<E: Endian> {
 
 #### Implementations
 
-- `fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>`
-  Return the symbol table that this command references.
+- `fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>` — [`Result`](../../read/index.md), [`SymbolTable`](../../read/macho/symbol/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SymtabCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SymtabCommand<E>` — [`SymtabCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DysymtabCommand<E: Endian>`
 
@@ -4008,63 +2328,17 @@ struct DysymtabCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DysymtabCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DysymtabCommand<E>` — [`DysymtabCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DylibTableOfContents<E: Endian>`
 
@@ -4087,63 +2361,17 @@ struct DylibTableOfContents<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DylibTableOfContents<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DylibTableOfContents<E>` — [`DylibTableOfContents`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DylibModule32<E: Endian>`
 
@@ -4221,63 +2449,17 @@ struct DylibModule32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DylibModule32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DylibModule32<E>` — [`DylibModule32`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DylibModule64<E: Endian>`
 
@@ -4355,63 +2537,17 @@ struct DylibModule64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DylibModule64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DylibModule64<E>` — [`DylibModule64`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DylibReference<E: Endian>`
 
@@ -4423,63 +2559,17 @@ struct DylibReference<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DylibReference<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DylibReference<E>` — [`DylibReference`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `TwolevelHintsCommand<E: Endian>`
 
@@ -4512,63 +2602,17 @@ struct TwolevelHintsCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> TwolevelHintsCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> TwolevelHintsCommand<E>` — [`TwolevelHintsCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `TwolevelHint<E: Endian>`
 
@@ -4580,63 +2624,17 @@ struct TwolevelHint<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> TwolevelHint<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> TwolevelHint<E>` — [`TwolevelHint`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `PrebindCksumCommand<E: Endian>`
 
@@ -4664,63 +2662,17 @@ struct PrebindCksumCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> PrebindCksumCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> PrebindCksumCommand<E>` — [`PrebindCksumCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `UuidCommand<E: Endian>`
 
@@ -4748,63 +2700,17 @@ struct UuidCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> UuidCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> UuidCommand<E>` — [`UuidCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `RpathCommand<E: Endian>`
 
@@ -4832,63 +2738,17 @@ struct RpathCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> RpathCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> RpathCommand<E>` — [`RpathCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `LinkeditDataCommand<E: Endian>`
 
@@ -4923,63 +2783,17 @@ struct LinkeditDataCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> LinkeditDataCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LinkeditDataCommand<E>` — [`LinkeditDataCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `FilesetEntryCommand<E: Endian>`
 
@@ -5018,63 +2832,17 @@ struct FilesetEntryCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> FilesetEntryCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FilesetEntryCommand<E>` — [`FilesetEntryCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `EncryptionInfoCommand32<E: Endian>`
 
@@ -5112,63 +2880,17 @@ struct EncryptionInfoCommand32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> EncryptionInfoCommand32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> EncryptionInfoCommand32<E>` — [`EncryptionInfoCommand32`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `EncryptionInfoCommand64<E: Endian>`
 
@@ -5211,63 +2933,17 @@ struct EncryptionInfoCommand64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> EncryptionInfoCommand64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> EncryptionInfoCommand64<E>` — [`EncryptionInfoCommand64`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `VersionMinCommand<E: Endian>`
 
@@ -5300,63 +2976,17 @@ struct VersionMinCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> VersionMinCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> VersionMinCommand<E>` — [`VersionMinCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `BuildVersionCommand<E: Endian>`
 
@@ -5399,63 +3029,17 @@ struct BuildVersionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> BuildVersionCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> BuildVersionCommand<E>` — [`BuildVersionCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `BuildToolVersion<E: Endian>`
 
@@ -5478,63 +3062,17 @@ struct BuildToolVersion<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> BuildToolVersion<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> BuildToolVersion<E>` — [`BuildToolVersion`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DyldInfoCommand<E: Endian>`
 
@@ -5607,63 +3145,17 @@ struct DyldInfoCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DyldInfoCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DyldInfoCommand<E>` — [`DyldInfoCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `LinkerOptionCommand<E: Endian>`
 
@@ -5687,63 +3179,17 @@ struct LinkerOptionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> LinkerOptionCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> LinkerOptionCommand<E>` — [`LinkerOptionCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `SymsegCommand<E: Endian>`
 
@@ -5776,63 +3222,17 @@ struct SymsegCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SymsegCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SymsegCommand<E>` — [`SymsegCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `IdentCommand<E: Endian>`
 
@@ -5855,63 +3255,17 @@ struct IdentCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> IdentCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> IdentCommand<E>` — [`IdentCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `FvmfileCommand<E: Endian>`
 
@@ -5944,63 +3298,17 @@ struct FvmfileCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> FvmfileCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> FvmfileCommand<E>` — [`FvmfileCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `EntryPointCommand<E: Endian>`
 
@@ -6033,63 +3341,17 @@ struct EntryPointCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> EntryPointCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> EntryPointCommand<E>` — [`EntryPointCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `SourceVersionCommand<E: Endian>`
 
@@ -6117,63 +3379,17 @@ struct SourceVersionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> SourceVersionCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> SourceVersionCommand<E>` — [`SourceVersionCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `DataInCodeEntry<E: Endian>`
 
@@ -6201,63 +3417,17 @@ struct DataInCodeEntry<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> DataInCodeEntry<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> DataInCodeEntry<E>` — [`DataInCodeEntry`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `NoteCommand<E: Endian>`
 
@@ -6295,63 +3465,17 @@ struct NoteCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> NoteCommand<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> NoteCommand<E>` — [`NoteCommand`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `Nlist32<E: Endian>`
 
@@ -6389,37 +3513,15 @@ struct Nlist32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Nlist32<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Nlist32<E>` — [`Nlist32`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Nlist<Endian: endian::Endian>`
 
@@ -6427,41 +3529,17 @@ struct Nlist32<E: Endian> {
 
 - `type Endian = Endian`
 
-- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../../read/macho/symbol/index.md)
 
 - `fn n_type(self: &Self) -> u8`
 
 - `fn n_sect(self: &Self) -> u8`
 
-- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../../read/macho/symbol/index.md)
 
-- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../../read/macho/symbol/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Nlist64<E: Endian>`
 
@@ -6499,37 +3577,15 @@ struct Nlist64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Nlist64<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Nlist64<E>` — [`Nlist64`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
+
+##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Nlist<Endian: endian::Endian>`
 
@@ -6537,41 +3593,17 @@ struct Nlist64<E: Endian> {
 
 - `type Endian = Endian`
 
-- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32`
+- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../../read/macho/symbol/index.md)
 
 - `fn n_type(self: &Self) -> u8`
 
 - `fn n_sect(self: &Self) -> u8`
 
-- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16`
+- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../../read/macho/symbol/index.md)
 
-- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word`
+- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../../read/macho/symbol/index.md)
 
 ##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `Relocation<E: Endian>`
 
@@ -6593,73 +3625,24 @@ is scattered, and for accessing the fields of each variant.
 #### Implementations
 
 - `fn r_scattered(self: Self, endian: E, cputype: u32) -> bool`
-  Determine whether this is a scattered relocation.
 
-- `fn info(self: Self, endian: E) -> RelocationInfo`
-  Return the fields of a plain relocation.
+- `fn info(self: Self, endian: E) -> RelocationInfo` — [`RelocationInfo`](../../macho/index.md)
 
-- `fn scattered_info(self: Self, endian: E) -> ScatteredRelocationInfo`
-  Return the fields of a scattered relocation.
+- `fn scattered_info(self: Self, endian: E) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](../../macho/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone<E: $crate::clone::Clone + Endian>`
 
-- `fn clone(self: &Self) -> Relocation<E>`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> Relocation<E>` — [`Relocation`](../../macho/index.md)
 
 ##### `impl Copy<E: $crate::marker::Copy + Endian>`
-
-##### `impl Pod<E: Endian>`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug<E: $crate::fmt::Debug + Endian>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Pod<E: Endian>`
 
 ### `RelocationInfo`
 
@@ -6702,62 +3685,15 @@ struct RelocationInfo {
 
 #### Implementations
 
-- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>`
-  Combine the fields into a `Relocation`.
+- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>` — [`Relocation`](../../macho/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> RelocationInfo`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> RelocationInfo` — [`RelocationInfo`](../../macho/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -6799,62 +3735,15 @@ struct ScatteredRelocationInfo {
 
 #### Implementations
 
-- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>`
-  Combine the fields into a `Relocation`.
+- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>` — [`Relocation`](../../macho/index.md)
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> ScatteredRelocationInfo`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](../../macho/index.md)
 
 ##### `impl Copy`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
 
 ##### `impl Debug`
 
@@ -6898,69 +3787,23 @@ The variant values correspond to the values used in the
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
 ##### `impl Clone`
 
-- `fn clone(self: &Self) -> PtrauthKey`
-
-##### `impl CloneToUninit<T>`
-
-- `unsafe fn clone_to_uninit(self: &Self, dest: *mut u8)`
+- `fn clone(self: &Self) -> PtrauthKey` — [`PtrauthKey`](../../macho/index.md)
 
 ##### `impl Copy`
+
+##### `impl Debug`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Eq`
 
 ##### `impl PartialEq`
 
-- `fn eq(self: &Self, other: &PtrauthKey) -> bool`
+- `fn eq(self: &Self, other: &PtrauthKey) -> bool` — [`PtrauthKey`](../../macho/index.md)
 
 ##### `impl StructuralPartialEq`
-
-##### `impl ToOwned<T>`
-
-- `type Owned = T`
-
-- `fn to_owned(self: &Self) -> T`
-
-- `fn clone_into(self: &Self, target: &mut T)`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Functions
 

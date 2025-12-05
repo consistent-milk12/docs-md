@@ -43,40 +43,6 @@ example of how to use this type.
 
 #### Trait Implementations
 
-##### `impl From<T>`
-
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
 ##### `impl Debug<B: $crate::fmt::Debug + ?Sized, T: $crate::fmt::Debug>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
@@ -85,7 +51,7 @@ example of how to use this type.
 
 ```rust
 struct SerializeError {
-    // [REDACTED: Private Fields]
+    what: &'static str,
 }
 ```
 
@@ -104,29 +70,35 @@ This error type implements the `std::error::Error` trait only when the
 `std` feature is enabled. Otherwise, this type is defined in all
 configurations.
 
+#### Fields
+
+- **`what`**: `&'static str`
+
+  The name of the thing that a buffer is too small for.
+  
+  Currently, the only kind of serialization error is one that is
+  committed by a caller: providing a destination buffer that is too
+  small to fit the serialized object. This makes sense conceptually,
+  since every valid inhabitant of a type should be serializable.
+  
+  This is somewhat exposed in the public API of this crate. For example,
+  the `to_bytes_{big,little}_endian` APIs return a `Vec<u8>` and are
+  guaranteed to never panic or error. This is only possible because the
+  implementation guarantees that it will allocate a `Vec<u8>` that is
+  big enough.
+  
+  In summary, if a new serialization error kind needs to be added, then
+  it will need careful consideration.
+
+#### Implementations
+
+- `fn buffer_too_small(what: &'static str) -> SerializeError` — [`SerializeError`](../../../util/wire/index.md)
+
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -138,26 +110,10 @@ configurations.
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
 ### `DeserializeError`
 
 ```rust
-struct DeserializeError();
+struct DeserializeError(DeserializeErrorKind);
 ```
 
 An error that occurs when deserializing an object defined in this crate.
@@ -176,29 +132,33 @@ This error type implements the `std::error::Error` trait only when the
 `std` feature is enabled. Otherwise, this type is defined in all
 configurations.
 
+#### Implementations
+
+- `fn generic(msg: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn buffer_too_small(what: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn invalid_usize(what: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn version_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn endian_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn alignment_mismatch(alignment: usize, address: usize) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn label_mismatch(expected: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn arithmetic_overflow(what: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn pattern_id_error(err: PatternIDError, what: &'static str) -> DeserializeError` — [`PatternIDError`](../../../util/primitives/index.md), [`DeserializeError`](../../../util/wire/index.md)
+
+- `fn state_id_error(err: StateIDError, what: &'static str) -> DeserializeError` — [`StateIDError`](../../../util/primitives/index.md), [`DeserializeError`](../../../util/wire/index.md)
+
 #### Trait Implementations
 
-##### `impl From<T>`
+##### `impl Debug`
 
-- `fn from(t: T) -> T`
-  Returns the argument unchanged.
-
-##### `impl Into<T, U>`
-
-- `fn into(self: Self) -> U`
-  Calls `U::from(self)`.
-
-##### `impl Any<T>`
-
-- `fn type_id(self: &Self) -> TypeId`
-
-##### `impl Borrow<T>`
-
-- `fn borrow(self: &Self) -> &T`
-
-##### `impl BorrowMut<T>`
-
-- `fn borrow_mut(self: &mut Self) -> &mut T`
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ##### `impl Display`
 
@@ -209,20 +169,4 @@ configurations.
 ##### `impl ToString<T>`
 
 - `fn to_string(self: &Self) -> String`
-
-##### `impl TryFrom<T, U>`
-
-- `type Error = Infallible`
-
-- `fn try_from(value: U) -> Result<T, <T as TryFrom>::Error>`
-
-##### `impl TryInto<T, U>`
-
-- `type Error = <U as TryFrom>::Error`
-
-- `fn try_into(self: Self) -> Result<U, <U as TryFrom>::Error>`
-
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
