@@ -7,27 +7,33 @@
 use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 
+use compact_str::CompactString;
 use rustdoc_types::{Crate, Id, ItemEnum};
 
+use super::{CrateCollection, RUST_PATH_SEP};
 use crate::linker::{LinkRegistry, slugify_anchor};
-use crate::multi_crate::CrateCollection;
+
+/// Compact string type for memory-efficient storage.
+/// Strings ≤24 bytes are stored inline (no heap allocation).
+/// Most crate names, item names, and short paths fit inline.
+type Str = CompactString;
 
 /// Key type for registry lookups: (crate_name, item_id).
 ///
-/// Uses owned strings for storage but can be looked up with borrowed strings
-/// via the raw entry API to avoid allocation on every lookup.
-type RegistryKey = (String, Id);
+/// Uses `CompactString` for memory efficiency - most crate names are short
+/// and stored inline without heap allocation.
+type RegistryKey = (Str, Id);
 
 /// Borrowed key for zero-allocation lookups.
 ///
-/// Must hash identically to `RegistryKey` (tuple of String, Id).
+/// Must hash identically to `RegistryKey` (tuple of CompactString, Id).
 #[derive(PartialEq, Eq)]
 struct BorrowedKey<'a>(&'a str, Id);
 
 impl Hash for BorrowedKey<'_> {
     fn hash<H: Hasher>(&self, state: &mut H) {
-        // Hash exactly like a tuple (String, Id) would:
-        // String hashes as its byte content, same as &str
+        // Hash exactly like a tuple (CompactString, Id) would:
+        // CompactString hashes as its byte content, same as &str
         self.0.hash(state);
         self.1.hash(state);
     }
@@ -69,18 +75,18 @@ fn keys_match(stored: &RegistryKey, borrowed: &BorrowedKey<'_>) -> bool {
 pub struct UnifiedLinkRegistry {
     /// Maps `(crate_name, item_id)` to the file path within output.
     /// Uses hashbrown for raw_entry API (zero-alloc lookups).
-    item_paths: hashbrown::HashMap<RegistryKey, String>,
+    item_paths: hashbrown::HashMap<RegistryKey, Str>,
 
     /// Maps `(crate_name, item_id)` to the item's display name.
     /// Uses hashbrown for raw_entry API (zero-alloc lookups).
-    item_names: hashbrown::HashMap<RegistryKey, String>,
+    item_names: hashbrown::HashMap<RegistryKey, Str>,
 
     /// Maps short names to all `(crate_name, item_id)` pairs.
     /// Used for disambiguating links like `Span` that exist in multiple crates.
-    name_index: HashMap<String, Vec<(String, Id)>>,
+    name_index: HashMap<Str, Vec<(Str, Id)>>,
 
     /// The primary crate name for preferential resolution.
-    primary_crate: Option<String>,
+    primary_crate: Option<Str>,
 }
 
 impl UnifiedLinkRegistry {
@@ -97,7 +103,7 @@ impl UnifiedLinkRegistry {
     #[must_use]
     pub fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self {
         let mut registry = Self {
-            primary_crate: primary_crate.map(ToString::to_string),
+            primary_crate: primary_crate.map(Str::from),
             ..Default::default()
         };
 
@@ -239,23 +245,23 @@ impl UnifiedLinkRegistry {
 
     /// Register a single item in the registry.
     fn register_item(&mut self, crate_name: &str, id: Id, name: &str, path: &str) {
-        let key = (crate_name.to_string(), id);
+        let key = (Str::from(crate_name), id);
 
-        self.item_paths.insert(key.clone(), path.to_string());
-        self.item_names.insert(key, name.to_string());
+        self.item_paths.insert(key.clone(), Str::from(path));
+        self.item_names.insert(key, Str::from(name));
 
         // Add to name index for disambiguation
         self.name_index
-            .entry(name.to_string())
+            .entry(Str::from(name))
             .or_default()
-            .push((crate_name.to_string(), id));
+            .push((Str::from(crate_name), id));
     }
 
     /// Get the file path for an item in a specific crate.
     ///
     /// Uses raw entry API for zero-allocation lookup.
     #[must_use]
-    pub fn get_path(&self, crate_name: &str, id: Id) -> Option<&String> {
+    pub fn get_path(&self, crate_name: &str, id: Id) -> Option<&Str> {
         use std::hash::BuildHasher;
         let borrowed = BorrowedKey(crate_name, id);
         let hash = self.item_paths.hasher().hash_one(&borrowed);
@@ -269,7 +275,7 @@ impl UnifiedLinkRegistry {
     ///
     /// Uses raw entry API for zero-allocation lookup.
     #[must_use]
-    pub fn get_name(&self, crate_name: &str, id: Id) -> Option<&String> {
+    pub fn get_name(&self, crate_name: &str, id: Id) -> Option<&Str> {
         use std::hash::BuildHasher;
         let borrowed = BorrowedKey(crate_name, id);
         let hash = self.item_names.hasher().hash_one(&borrowed);
@@ -286,7 +292,7 @@ impl UnifiedLinkRegistry {
     /// 2. Primary crate (if set)
     /// 3. First match alphabetically
     #[must_use]
-    pub fn resolve_name(&self, name: &str, current_crate: &str) -> Option<(String, Id)> {
+    pub fn resolve_name(&self, name: &str, current_crate: &str) -> Option<(Str, Id)> {
         let candidates = self.name_index.get(name)?;
 
         if candidates.is_empty() {
@@ -326,8 +332,8 @@ impl UnifiedLinkRegistry {
     ///
     /// The (`crate_name`, `item_id`) if found in the registry.
     #[must_use]
-    pub fn resolve_path(&self, path: &str) -> Option<(String, Id)> {
-        let segments: Vec<&str> = path.split("::").collect();
+    pub fn resolve_path(&self, path: &str) -> Option<(Str, Id)> {
+        let segments: Vec<&str> = path.split(RUST_PATH_SEP).collect();
 
         if segments.is_empty() {
             return None;
@@ -497,7 +503,7 @@ mod tests {
         let id = Id(42);
 
         // Create owned key (how it's stored in the HashMap)
-        let owned: RegistryKey = ("test_crate".to_string(), id);
+        let owned: RegistryKey = (Str::from("test_crate"), id);
 
         // Create borrowed key (how we look up)
         let borrowed = BorrowedKey("test_crate", id);
@@ -526,11 +532,11 @@ mod tests {
         assert!(registry.contains("my_crate", id));
         assert_eq!(
             registry.get_path("my_crate", id),
-            Some(&"module/index.md".to_string())
+            Some(&Str::from("module/index.md"))
         );
         assert_eq!(
             registry.get_name("my_crate", id),
-            Some(&"MyType".to_string())
+            Some(&Str::from("MyType"))
         );
 
         // Non-existent lookups

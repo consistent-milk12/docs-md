@@ -36,7 +36,7 @@ use std::path::Path;
 use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
 use serde::Serialize;
 
-use crate::multi_crate::CrateCollection;
+use super::{CrateCollection, RUST_PATH_SEP};
 
 /// A single searchable item in the index.
 ///
@@ -249,11 +249,12 @@ impl<'a> SearchIndexGenerator<'a> {
             format!("{crate_name}/index.md")
         } else if kind == "mod" {
             // Module gets its own directory
-            let path = module_path.replace("::", "/");
+            // Convert Rust path separators (::) to file path separators (/)
+            let path = module_path.replace(RUST_PATH_SEP, "/");
             format!("{crate_name}/{path}/index.md")
         } else {
             // Item within a module - link to the module's index
-            let path = module_path.replace("::", "/");
+            let path = module_path.replace(RUST_PATH_SEP, "/");
             format!("{crate_name}/{path}/index.md")
         }
     }

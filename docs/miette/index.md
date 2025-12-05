@@ -267,6 +267,7 @@ pub fn some_tool() -> Result<Version> {
 ```
 
 To construct your own simple adhoc error use the [`miette!`](#miette) macro:
+
 ```rust
 // my_app/lib/my_internal_file.rs
 use miette::{miette, Result};
@@ -279,6 +280,7 @@ pub fn some_tool() -> Result<Version> {
         .map_err(|_| miette!("Invalid version {}", version))
 }
 ```
+
 There are also similar [bail!] and [ensure!] macros.
 
 ### ... in `main()`
@@ -288,7 +290,7 @@ There are also similar [bail!] and [ensure!] macros.
 automatically.
 
 > **NOTE:** You must enable the `"fancy"` crate feature to get fancy report
-> output like in the screenshots here.** You should only do this in your
+> output like in the screenshots here.\*\* You should only do this in your
 > toplevel crate, as the fancy feature pulls in a number of dependencies that
 > libraries and such might not want.
 
@@ -430,6 +432,7 @@ pub struct MyErrorType {
 ```
 
 ### ... help text
+
 `miette` provides two facilities for supplying help text for your errors:
 
 The first is the `#[help()]` format attribute that applies to structs or
@@ -466,6 +469,7 @@ let err = Foo {
 ```
 
 ### ... severity level
+
 `miette` provides a way to set the severity level of a diagnostic.
 
 ```rust
@@ -643,6 +647,7 @@ customize!
 ### ... dynamic diagnostics
 
 If you...
+
 - ...don't know all the possible errors upfront
 - ...need to serialize/deserialize errors
   then you may want to use [`miette!`](#miette), [`diagnostic!`](#diagnostic) macros or
@@ -674,12 +679,13 @@ automatically use the [`syntect`](#syntect) crate to highlight the `#[source_cod
 field of your [`Diagnostic`](#diagnostic).
 
 Syntax detection with [`syntect`](#syntect) is handled by checking 2 methods on the [`SpanContents`](protocol/index.md) trait, in order:
-* [`language()`](SpanContents::language) - Provides the name of the language
+
+- [`language()`](SpanContents::language) - Provides the name of the language
   as a string. For example `"Rust"` will indicate Rust syntax highlighting.
   You can set the language of the [`SpanContents`](protocol/index.md) produced by a
   [`NamedSource`](named_source/index.md) via the [`with_language`](NamedSource::with_language)
   method.
-* [`name()`](SpanContents::name) - In the absence of an explicitly set
+- [`name()`](SpanContents::name) - In the absence of an explicitly set
   language, the name is assumed to contain a file name or file path.
   The highlighter will check for a file extension at the end of the name and
   try to guess the syntax from that.
@@ -944,6 +950,7 @@ Construct an ad-hoc [`Report`](eyreish/index.md).
 # Examples
 
 With string literal and interpolation:
+
 ```rust
 use miette::miette;
 let x = 1;
@@ -958,6 +965,7 @@ assert_eq!(report.to_string().as_str(), "1 + 2 = 3");
 ```
 
 With [`diagnostic!`](#diagnostic)-like arguments:
+
 ```rust
 use miette::{miette, LabeledSpan, Severity};
 
@@ -980,13 +988,12 @@ let report = miette!(
 
 You can just replace `use`s of the `anyhow!`/`eyre!` macros with `miette!`.
 
-
-
 ### `diagnostic!`
 
 Construct a [`MietteDiagnostic`](miette_diagnostic/index.md) in more user-friendly way.
 
 # Examples
+
 ```rust
 use miette::{diagnostic, LabeledSpan, Severity};
 
@@ -1003,7 +1010,9 @@ let diag = diagnostic!(
     "expected closing ')'",
 );
 ```
+
 Diagnostic without any fields:
+
 ```rust
 use miette::diagnostic;
 let x = 1;
@@ -1016,5 +1025,3 @@ let z = x + y;
 let diag = diagnostic!("{x} + {y} = {z}");
 assert_eq!(diag.message, "1 + 2 = 3");
 ```
-
-

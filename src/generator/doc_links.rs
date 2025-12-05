@@ -136,8 +136,14 @@ static REFERENCE_LINK_RE: LazyLock<Regex> =
 /// # Note
 /// This pattern doesn't capture groups because it's used with `replace_all`
 /// to remove entire lines.
-static REFERENCE_DEF_RE: LazyLock<Regex> =
-    LazyLock::new(|| Regex::new(r"(?m)^\s*\[`[^`]+`\]:\s*\S+\s*$").unwrap());
+///
+/// Matches various reference definition formats:
+/// - `[`Foo`]: crate::Foo` (backtick style)
+/// - `[name]: crate::path` (plain style)
+/// - `[name](#anchor): crate::path` (with anchor)
+static REFERENCE_DEF_RE: LazyLock<Regex> = LazyLock::new(|| {
+    Regex::new(r"(?m)^\s*\[[^\]]+\](?:\([^)]*\))?:\s*\S+\s*$").unwrap()
+});
 
 /// Regex for plain identifier links.
 ///
@@ -251,8 +257,17 @@ pub fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str {
         return docs;
     };
 
-    // Normalize names for comparison (handle crate-name vs crate_name)
-    let normalized_title = title.trim().replace('-', "_").to_lowercase();
+    // Normalize the title:
+    // - Remove backticks (e.g., `clap_builder` -> clap_builder)
+    // - Replace spaces with underscores (e.g., "Serde JSON" -> "serde_json")
+    // - Replace hyphens with underscores (e.g., "my-crate" -> "my_crate")
+    // - Lowercase for comparison
+    let normalized_title = title
+        .trim()
+        .replace('`', "")
+        .replace(['-', ' '], "_")
+        .to_lowercase();
+
     let normalized_name = item_name.replace('-', "_").to_lowercase();
 
     if normalized_title == normalized_name {
@@ -1023,14 +1038,50 @@ mod tests {
         // Different title - keep it
         let docs2 = "# Introduction\n\nThis is the description.";
         assert_eq!(strip_duplicate_title(docs2, "my_crate"), docs2);
+
+        // Backticks around title (e.g., # `clap_builder`)
+        let docs3 = "# `clap_builder`\n\nBuilder implementation.";
+        assert_eq!(
+            strip_duplicate_title(docs3, "clap_builder"),
+            "Builder implementation."
+        );
+
+        // Spaced title (e.g., # Serde JSON -> serde_json)
+        let docs4 = "# Serde JSON\n\nJSON serialization.";
+        assert_eq!(
+            strip_duplicate_title(docs4, "serde_json"),
+            "JSON serialization."
+        );
+
+        // Hyphenated name
+        let docs5 = "# my-crate\n\nDescription.";
+        assert_eq!(strip_duplicate_title(docs5, "my_crate"), "Description.");
     }
 
     #[test]
     fn test_strip_reference_definitions() {
+        // Backtick-style reference definitions
         let docs = "See [`Foo`] for details.\n\n[`Foo`]: crate::Foo";
         let result = strip_reference_definitions(docs);
         assert!(result.contains("See [`Foo`]"));
         assert!(!result.contains("[`Foo`]: crate::Foo"));
+
+        // Plain reference definitions (no backticks)
+        let docs2 = "Use [value] here.\n\n[value]: crate::value::Value";
+        let result2 = strip_reference_definitions(docs2);
+        assert!(result2.contains("Use [value]"));
+        assert!(!result2.contains("[value]: crate::value::Value"));
+
+        // Reference definitions with anchors
+        let docs3 = "See [from_str](#from-str) docs.\n\n[from_str](#from-str): crate::de::from_str";
+        let result3 = strip_reference_definitions(docs3);
+        assert!(result3.contains("See [from_str](#from-str)"));
+        assert!(!result3.contains("[from_str](#from-str): crate::de::from_str"));
+
+        // Multiple reference definitions
+        let docs4 = "Content.\n\n[a]: path::a\n[b]: path::b\n[`c`]: path::c";
+        let result4 = strip_reference_definitions(docs4);
+        assert_eq!(result4.trim(), "Content.");
     }
 
     #[test]

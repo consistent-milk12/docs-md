@@ -12,7 +12,7 @@ use regex::Regex;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 
 use crate::Args;
-use crate::generator::RenderContext;
+use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
 use crate::generator::doc_links::{
     convert_html_links, convert_path_reference_links, strip_duplicate_title,
     strip_reference_definitions, unhide_code_lines,
@@ -428,7 +428,9 @@ impl<'a> SingleCrateView<'a> {
     /// Resolve a name to a crate and ID.
     #[must_use]
     pub fn resolve_name(&self, name: &str) -> Option<(String, Id)> {
-        self.registry.resolve_name(name, self.crate_name)
+        self.registry
+            .resolve_name(name, self.crate_name)
+            .map(|(s, id)| (s.to_string(), id))
     }
 
     /// Look up an item across all crates by ID.
@@ -1117,7 +1119,7 @@ impl<'a> SingleCrateView<'a> {
     }
 }
 
-impl RenderContext for SingleCrateView<'_> {
+impl ItemAccess for SingleCrateView<'_> {
     fn krate(&self) -> &Crate {
         self.krate
     }
@@ -1134,6 +1136,12 @@ impl RenderContext for SingleCrateView<'_> {
         self.impl_map.get(id).map(Vec::as_slice)
     }
 
+    fn crate_version(&self) -> Option<&str> {
+        self.krate.crate_version.as_deref()
+    }
+}
+
+impl ItemFilter for SingleCrateView<'_> {
     fn should_include_item(&self, item: &Item) -> bool {
         match &item.visibility {
             Visibility::Public => true,
@@ -1148,11 +1156,9 @@ impl RenderContext for SingleCrateView<'_> {
     fn include_blanket_impls(&self) -> bool {
         self.args.include_blanket_impls
     }
+}
 
-    fn crate_version(&self) -> Option<&str> {
-        self.krate.crate_version.as_deref()
-    }
-
+impl LinkResolver for SingleCrateView<'_> {
     fn link_registry(&self) -> Option<&LinkRegistry> {
         // Multi-crate mode uses UnifiedLinkRegistry instead
         None
@@ -1193,14 +1199,14 @@ impl RenderContext for SingleCrateView<'_> {
         let display_name = self
             .registry
             .get_name(self.crate_name, id)
-            .cloned()
-            .unwrap_or_else(|| "item".to_string());
+            .map(|s| s.as_str())
+            .unwrap_or("item");
 
         // Compute relative path from current file
         let from_depth = current_file.matches('/').count();
 
         let relative_path = if from_depth == 0 {
-            path.clone()
+            path.to_string()
         } else {
             // Go up to crate root, then down to target
             let prefix = "../".repeat(from_depth);
@@ -1211,6 +1217,8 @@ impl RenderContext for SingleCrateView<'_> {
         Some(format!("[`{display_name}`]({relative_path})"))
     }
 }
+
+// SingleCrateView automatically implements RenderContext via blanket impl
 
 #[cfg(test)]
 mod tests {

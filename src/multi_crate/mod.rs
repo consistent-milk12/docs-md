@@ -25,6 +25,12 @@
 //! generator.generate()?;
 //! ```
 
+/// Rust module path separator (e.g., `serde_json::de::from_str`).
+pub const RUST_PATH_SEP: &str = "::";
+
+/// File system path separator for generated documentation.
+pub const FILE_PATH_SEP: char = '/';
+
 mod collection;
 mod context;
 mod generator;

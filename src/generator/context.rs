@@ -4,8 +4,17 @@
 //! state needed during markdown generation, including the crate data, lookup
 //! maps, and configuration options.
 //!
-//! The [`RenderContext`] trait defines the interface that renderers use,
-//! enabling both single-crate and multi-crate contexts to share rendering code.
+//! # Trait Hierarchy
+//!
+//! The rendering context is split into focused traits for better abstraction:
+//!
+//! - [`ItemAccess`] - Core data access (crate, items, impls)
+//! - [`ItemFilter`] - Visibility and filtering logic
+//! - [`LinkResolver`] - Link creation and documentation processing
+//! - [`RenderContext`] - Combined super-trait for convenience
+//!
+//! This allows components to depend only on the traits they need, improving
+//! testability and reducing coupling.
 
 use std::collections::HashMap;
 
@@ -15,13 +24,14 @@ use crate::Args;
 use crate::generator::doc_links::{DocLinkProcessor, strip_duplicate_title};
 use crate::linker::LinkRegistry;
 
-/// Trait defining the interface for rendering context.
+// =============================================================================
+// Focused Traits
+// =============================================================================
+
+/// Core data access for crate documentation.
 ///
-/// This trait abstracts over [`GeneratorContext`] (single-crate) and
-/// [`SingleCrateView`](crate::multi_crate::SingleCrateView) (multi-crate),
-/// allowing renderers like [`ModuleRenderer`](super::module::ModuleRenderer)
-/// to work with both contexts.
-pub trait RenderContext {
+/// Provides read-only access to the crate structure, items, and impl blocks.
+pub trait ItemAccess {
     /// Get the crate being documented.
     fn krate(&self) -> &Crate;
 
@@ -34,6 +44,14 @@ pub trait RenderContext {
     /// Get impl blocks for a type.
     fn get_impls(&self, id: &Id) -> Option<&[&Impl]>;
 
+    /// Get the crate version for display in headers.
+    fn crate_version(&self) -> Option<&str>;
+}
+
+/// Item visibility and filtering logic.
+///
+/// Determines which items should be included in the generated documentation.
+pub trait ItemFilter {
     /// Check if an item should be included based on visibility.
     fn should_include_item(&self, item: &Item) -> bool;
 
@@ -44,10 +62,12 @@ pub trait RenderContext {
     ///
     /// When `false` (default), impls like `From`, `Into`, `Any`, `Borrow` are filtered.
     fn include_blanket_impls(&self) -> bool;
+}
 
-    /// Get the crate version for display in headers.
-    fn crate_version(&self) -> Option<&str>;
-
+/// Link creation and documentation processing.
+///
+/// Handles intra-doc link resolution and markdown link generation.
+pub trait LinkResolver {
     /// Get the link registry for single-crate mode.
     ///
     /// Returns `None` in multi-crate mode where `UnifiedLinkRegistry` is used instead.
@@ -77,6 +97,19 @@ pub trait RenderContext {
     /// cannot be linked.
     fn create_link(&self, id: Id, current_file: &str) -> Option<String>;
 }
+
+// =============================================================================
+// Combined Trait
+// =============================================================================
+
+/// Combined rendering context trait.
+///
+/// This trait combines [`ItemAccess`], [`ItemFilter`], and [`LinkResolver`]
+/// for components that need full access to the rendering context.
+///
+/// Most renderers should use this trait for convenience, but components
+/// with limited requirements can depend on individual sub-traits.
+pub trait RenderContext: ItemAccess + ItemFilter + LinkResolver {}
 
 /// Shared context containing all data needed for documentation generation.
 ///
@@ -211,7 +244,7 @@ impl<'a> GeneratorContext<'a> {
     }
 }
 
-impl RenderContext for GeneratorContext<'_> {
+impl ItemAccess for GeneratorContext<'_> {
     fn krate(&self) -> &Crate {
         self.krate
     }
@@ -228,6 +261,12 @@ impl RenderContext for GeneratorContext<'_> {
         self.impl_map.get(id).map(Vec::as_slice)
     }
 
+    fn crate_version(&self) -> Option<&str> {
+        self.krate.crate_version.as_deref()
+    }
+}
+
+impl ItemFilter for GeneratorContext<'_> {
     fn should_include_item(&self, item: &Item) -> bool {
         match &item.visibility {
             Visibility::Public => true,
@@ -242,11 +281,9 @@ impl RenderContext for GeneratorContext<'_> {
     fn include_blanket_impls(&self) -> bool {
         self.args.include_blanket_impls
     }
+}
 
-    fn crate_version(&self) -> Option<&str> {
-        self.krate.crate_version.as_deref()
-    }
-
+impl LinkResolver for GeneratorContext<'_> {
     fn link_registry(&self) -> Option<&LinkRegistry> {
         Some(&self.link_registry)
     }
@@ -266,3 +303,7 @@ impl RenderContext for GeneratorContext<'_> {
         self.link_registry.create_link(id, current_file)
     }
 }
+
+// Blanket implementation: any type that implements all three sub-traits
+// automatically implements RenderContext
+impl<T: ItemAccess + ItemFilter + LinkResolver> RenderContext for T {}

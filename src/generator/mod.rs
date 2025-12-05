@@ -50,7 +50,7 @@ pub mod render_shared;
 
 pub use breadcrumbs::BreadcrumbGenerator;
 pub use capture::MarkdownCapture;
-pub use context::{GeneratorContext, RenderContext};
+pub use context::{GeneratorContext, ItemAccess, ItemFilter, LinkResolver, RenderContext};
 pub use doc_links::{
     DocLinkProcessor, convert_html_links, convert_path_reference_links, strip_duplicate_title,
     strip_reference_definitions,

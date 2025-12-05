@@ -1,8 +1,9 @@
 ---
 source: tests/integration_tests.rs
+assertion_line: 77
 expression: capture.to_snapshot_string()
 ---
-=== error.md ===
+=== error/index.md ===
 # Module `error`
 
 Error types for docs-md.
@@ -177,151 +178,7 @@ Each variant includes:
 - `fn to_string(self: &Self) -> String`
 
 
-=== generator.md ===
-# Module `generator`
-
-Markdown documentation generator for rustdoc JSON.
-
-This is the core module that transforms rustdoc JSON data into markdown files.
-It handles the complete generation pipeline: traversing modules, rendering
-different item types, and creating cross-reference links.
-
-# Architecture
-
-The generation process follows these steps:
-
-1. **Setup**: Create output directory, build path and impl maps
-2. **Link Registry**: Build a registry mapping item IDs to file paths
-3. **Generation**: Recursively traverse modules and write markdown files
-
-# Module Structure
-
-- [`context`](generator__context.md) - Shared state for generation (crate data, maps, config)
-- [`module`](generator__module.md) - Module-level markdown rendering
-- [`items`](generator__items.md) - Individual item rendering (structs, enums, traits, etc.)
-- [`impls`](generator__impls.md) - Implementation block rendering
-- [`flat`](generator__flat.md) - Flat output format generator
-- [`nested`](generator__nested.md) - Nested output format generator
-
-# Output Formats
-
-Two output formats are supported:
-
-- **Flat**: All files in one directory (`module.md`, `parent__child.md`)
-- **Nested**: Directory hierarchy (`module/index.md`, `parent/child/index.md`)
-
-# Usage
-
-```ignore
-use docs_md::generator::Generator;
-
-let generator = Generator::new(&krate, &args)?;
-generator.generate()?;
-```
-
-## Modules
-
-- [`breadcrumbs`](generator__breadcrumbs.md) - Breadcrumb navigation generation for nested module pages.
-- [`doc_links`](generator__doc_links.md) - Intra-doc link processing for documentation generation.
-- [`impls`](generator__impls.md) - Implementation block rendering for documentation generation.
-- [`module`](generator__module.md) - Module markdown rendering for documentation generation.
-- [`render_shared`](generator__render_shared.md) - Shared rendering functions for documentation generation.
-
-## Structs
-
-### `Generator<'a>`
-
-```rust
-struct Generator<'a> {
-    ctx: GeneratorContext<'a>,
-    args: &'a crate::Args,
-    root_item: &'a rustdoc_types::Item,
-}
-```
-
-Main documentation generator.
-
-This struct orchestrates the entire documentation generation process,
-coordinating between the context, format-specific generators, and
-progress reporting.
-
-# Example
-
-```ignore
-let generator = Generator::new(&krate, &args)?;
-generator.generate()?;
-```
-
-#### Fields
-
-- **`ctx`**: `GeneratorContext<'a>`
-
-  Shared context containing crate data, maps, and configuration.
-
-- **`args`**: `&'a crate::Args`
-
-  CLI arguments containing output path and format options.
-
-- **`root_item`**: `&'a rustdoc_types::Item`
-
-  The root module item of the crate.
-
-#### Implementations
-
-- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](index.md), [`Error`](error.md)
-
-  Create a new generator for the given crate and arguments.
-
-- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error.md)
-
-  Generate markdown documentation.
-
-- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error.md)
-
-  Create a progress bar for user feedback.
-
-- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](index.md), [`MarkdownCapture`](generator__capture.md), [`Error`](error.md)
-
-  Generate documentation to memory instead of disk.
-
-- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator__context.md), [`MarkdownCapture`](generator__capture.md), [`Error`](error.md)
-
-  Generate flat structure to capture.
-
-- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator__context.md), [`MarkdownCapture`](generator__capture.md), [`Error`](error.md)
-
-  Recursive flat generation to capture.
-
-- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator__context.md), [`MarkdownCapture`](generator__capture.md), [`Error`](error.md)
-
-  Generate nested structure to capture.
-
-- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](index.md), [`Error`](error.md)
-
-  Convenience method to generate documentation in one call.
-
-#### Trait Implementations
-
-##### `impl<T> IntoEither for Generator<'a>`
-
-##### `impl<D> OwoColorize for Generator<'a>`
-
-##### `impl<T> Pointable for Generator<'a>`
-
-- `const ALIGN: usize`
-
-- `type Init = T`
-
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
-
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
-
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
-
-- `unsafe fn drop(ptr: usize)`
-
-
-=== generator__breadcrumbs.md ===
+=== generator/breadcrumbs/index.md ===
 # Module `breadcrumbs`
 
 Breadcrumb navigation generation for nested module pages.
@@ -386,7 +243,7 @@ the current module, with each segment being a clickable link.
 - `unsafe fn drop(ptr: usize)`
 
 
-=== generator__doc_links.md ===
+=== generator/doc_links/index.md ===
 # Module `doc_links`
 
 Intra-doc link processing for documentation generation.
@@ -430,7 +287,7 @@ link text to item IDs. This processor uses that map along with the
 # Supported Patterns
 
 - `` [`Name`] `` - Backtick code links (most common)
-- `` [`Item`](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html) `` - Qualified path links
+- `` [`Item`](https://docs.rs/core/latest/core/option/struct.Item.html) `` - Qualified path links
 - `` [`Type::method`] `` - Method/associated item links
 - `[name]` - Plain identifier links
 - `[text][`ref`]` - Reference-style links
@@ -465,7 +322,7 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](linker.md)
+- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../linker/index.md)
 
   Create a new processor for the given context.
 
@@ -487,7 +344,7 @@ Links inside fenced code blocks are not processed.
 
 - `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process path reference links `[text](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html)`.
+  Process path reference links `[text](https://docs.rs/core/latest/core/option/struct.Item.html)`.
 
 - `fn process_method_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -643,7 +500,7 @@ Without full link resolution context, we can't create valid anchors,
 so we preserve the display text as inline code.
 
 
-=== generator__impls.md ===
+=== generator/impls/index.md ===
 # Module `impls`
 
 Implementation block rendering for documentation generation.
@@ -671,7 +528,7 @@ This struct handles:
 - Method signatures within impl blocks
 - Associated types and constants
 
-The renderer is generic over [`RenderContext`](generator__context.md), allowing it to work with
+The renderer is generic over [`RenderContext`](../context/index.md), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -690,7 +547,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](generator__context.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../context/index.md)
 
   Create a new impl renderer with the given context.
 
@@ -748,7 +605,151 @@ Returns `true` if the impl is for one of the commonly auto-derived traits
 that add noise to documentation (From, Into, Any, Borrow, etc.).
 
 
-=== generator__module.md ===
+=== generator/index.md ===
+# Module `generator`
+
+Markdown documentation generator for rustdoc JSON.
+
+This is the core module that transforms rustdoc JSON data into markdown files.
+It handles the complete generation pipeline: traversing modules, rendering
+different item types, and creating cross-reference links.
+
+# Architecture
+
+The generation process follows these steps:
+
+1. **Setup**: Create output directory, build path and impl maps
+2. **Link Registry**: Build a registry mapping item IDs to file paths
+3. **Generation**: Recursively traverse modules and write markdown files
+
+# Module Structure
+
+- [`context`](../multi_crate/context/index.md) - Shared state for generation (crate data, maps, config)
+- [`module`](module/index.md) - Module-level markdown rendering
+- [`items`](items/index.md) - Individual item rendering (structs, enums, traits, etc.)
+- [`impls`](impls/index.md) - Implementation block rendering
+- [`flat`](flat/index.md) - Flat output format generator
+- [`nested`](nested/index.md) - Nested output format generator
+
+# Output Formats
+
+Two output formats are supported:
+
+- **Flat**: All files in one directory (`module.md`, `parent__child.md`)
+- **Nested**: Directory hierarchy (`module/index.md`, `parent/child/index.md`)
+
+# Usage
+
+```ignore
+use docs_md::generator::Generator;
+
+let generator = Generator::new(&krate, &args)?;
+generator.generate()?;
+```
+
+## Modules
+
+- [`breadcrumbs`](breadcrumbs/index.md) - Breadcrumb navigation generation for nested module pages.
+- [`doc_links`](doc_links/index.md) - Intra-doc link processing for documentation generation.
+- [`impls`](impls/index.md) - Implementation block rendering for documentation generation.
+- [`module`](module/index.md) - Module markdown rendering for documentation generation.
+- [`render_shared`](render_shared/index.md) - Shared rendering functions for documentation generation.
+
+## Structs
+
+### `Generator<'a>`
+
+```rust
+struct Generator<'a> {
+    ctx: GeneratorContext<'a>,
+    args: &'a crate::Args,
+    root_item: &'a rustdoc_types::Item,
+}
+```
+
+Main documentation generator.
+
+This struct orchestrates the entire documentation generation process,
+coordinating between the context, format-specific generators, and
+progress reporting.
+
+# Example
+
+```ignore
+let generator = Generator::new(&krate, &args)?;
+generator.generate()?;
+```
+
+#### Fields
+
+- **`ctx`**: `GeneratorContext<'a>`
+
+  Shared context containing crate data, maps, and configuration.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments containing output path and format options.
+
+- **`root_item`**: `&'a rustdoc_types::Item`
+
+  The root module item of the crate.
+
+#### Implementations
+
+- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
+
+  Create a new generator for the given crate and arguments.
+
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../error/index.md)
+
+  Generate markdown documentation.
+
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
+
+  Create a progress bar for user feedback.
+
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+
+  Generate documentation to memory instead of disk.
+
+- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+
+  Generate flat structure to capture.
+
+- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+
+  Recursive flat generation to capture.
+
+- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
+
+  Generate nested structure to capture.
+
+- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
+
+  Convenience method to generate documentation in one call.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for Generator<'a>`
+
+##### `impl<D> OwoColorize for Generator<'a>`
+
+##### `impl<T> Pointable for Generator<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+
+=== generator/module/index.md ===
 # Module `module`
 
 Module markdown rendering for documentation generation.
@@ -777,7 +778,7 @@ including:
 - Module-level documentation
 - Sections for each item type (Modules, Structs, Enums, etc.)
 
-The renderer is generic over [`RenderContext`](generator__context.md), allowing it to work with
+The renderer is generic over [`RenderContext`](../context/index.md), allowing it to work with
 both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
 
 #### Fields
@@ -796,7 +797,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](generator__context.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../context/index.md)
 
   Create a new module renderer.
 
@@ -869,7 +870,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - `unsafe fn drop(ptr: usize)`
 
 
-=== generator__render_shared.md ===
+=== generator/render_shared/index.md ===
 # Module `render_shared`
 
 Shared rendering functions for documentation generation.
@@ -907,7 +908,7 @@ This trait provides a unified way to process docs from different contexts.
 fn render_struct_definition(md: &mut String, name: &str, s: &rustdoc_types::Struct, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render a struct definition code block to markdown.
 
@@ -930,7 +931,7 @@ where
     F: Fn(&rustdoc_types::Item) -> Option<String>
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render documented struct fields to markdown.
 
@@ -951,7 +952,7 @@ showing the field name, type, and documentation.
 fn render_enum_definition(md: &mut String, name: &str, e: &rustdoc_types::Enum, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render an enum definition code block to markdown.
 
@@ -972,7 +973,7 @@ code block showing the enum definition with all variants.
 fn render_enum_variant(md: &mut String, variant: &rustdoc_types::Item, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render a single enum variant within the definition code block.
 
@@ -1003,7 +1004,7 @@ Produces a "Variants" section with each documented variant as a bullet point.
 fn render_trait_definition(md: &mut String, name: &str, t: &rustdoc_types::Trait, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render a trait definition code block to markdown.
 
@@ -1025,7 +1026,7 @@ where
     F: Fn(&rustdoc_types::Item) -> Option<String>
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render a single trait item (method, associated type, or constant).
 
@@ -1045,7 +1046,7 @@ For methods, the first line of documentation is included.
 fn render_function_definition(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render a function definition to markdown.
 
@@ -1065,7 +1066,7 @@ showing the full signature with modifiers (const, async, unsafe).
 fn render_constant_definition(md: &mut String, name: &str, type_: &rustdoc_types::Type, const_: &rustdoc_types::Constant, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render a constant definition to markdown.
 
@@ -1086,7 +1087,7 @@ showing `const NAME: Type = value;`.
 fn render_type_alias_definition(md: &mut String, name: &str, ta: &rustdoc_types::TypeAlias, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render a type alias definition to markdown.
 
@@ -1125,7 +1126,7 @@ where
     L: Fn(rustdoc_types::Id) -> Option<String>
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Render the items within an impl block.
 
@@ -1157,7 +1158,7 @@ Helper function to add documentation with consistent formatting.
 fn impl_sort_key(impl_block: &rustdoc_types::Impl, type_renderer: &crate::types::TypeRenderer<'_>) -> String
 ```
 
-**Types:** [`TypeRenderer`](types.md)
+**Types:** [`TypeRenderer`](../../types/index.md)
 
 Generate a sort key for an impl block for deterministic ordering.
 
@@ -1177,12 +1178,12 @@ generation capabilities programmatically.
 
 ## Modules
 
-- [`error`](error.md) - Error types for docs-md.
-- [`generator`](generator.md) - Markdown documentation generator for rustdoc JSON.
-- [`linker`](linker.md) - Cross-reference linking for markdown documentation.
-- [`multi_crate`](multi_crate.md) - Multi-crate documentation generation.
-- [`parser`](parser.md) - Rustdoc JSON parsing module.
-- [`types`](types.md) - Type rendering utilities for converting rustdoc types to string representations.
+- [`error`](error/index.md) - Error types for docs-md.
+- [`generator`](generator/index.md) - Markdown documentation generator for rustdoc JSON.
+- [`linker`](linker/index.md) - Cross-reference linking for markdown documentation.
+- [`multi_crate`](multi_crate/index.md) - Multi-crate documentation generation.
+- [`parser`](parser/index.md) - Rustdoc JSON parsing module.
+- [`types`](types/index.md) - Type rendering utilities for converting rustdoc types to string representations.
 
 ## Structs
 
@@ -1471,7 +1472,7 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 - `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
 
-=== linker.md ===
+=== linker/index.md ===
 # Module `linker`
 
 Cross-reference linking for markdown documentation.
@@ -1625,7 +1626,7 @@ assert_eq!(slugify_anchor("Größe"), "größe");
 ```
 
 
-=== multi_crate.md ===
+=== multi_crate/index.md ===
 # Module `multi_crate`
 
 Multi-crate documentation generation.
@@ -1638,12 +1639,12 @@ documentation for entire dependency trees.
 
 The multi-crate system uses these components:
 
-- [`CrateCollection`](multi_crate__collection.md): Container for parsed crates with processing order
-- [`MultiCrateParser`](multi_crate__parser.md): Scans directories and parses JSON files
-- [`UnifiedLinkRegistry`](multi_crate__registry.md): Cross-crate link resolution
-- [`MultiCrateContext`](multi_crate__context.md): Shared state during generation
-- [`MultiCrateGenerator`](multi_crate__generator.md): Orchestrates per-crate generation
-- [`SummaryGenerator`](multi_crate__summary.md): Creates mdBook-compatible SUMMARY.md
+- [`CrateCollection`](collection/index.md): Container for parsed crates with processing order
+- [`MultiCrateParser`](parser/index.md): Scans directories and parses JSON files
+- [`UnifiedLinkRegistry`](registry/index.md): Cross-crate link resolution
+- [`MultiCrateContext`](context/index.md): Shared state during generation
+- [`MultiCrateGenerator`](generator/index.md): Orchestrates per-crate generation
+- [`SummaryGenerator`](summary/index.md): Creates mdBook-compatible SUMMARY.md
 
 # Usage
 
@@ -1656,7 +1657,7 @@ generator.generate()?;
 ```
 
 
-=== parser.md ===
+=== parser/index.md ===
 # Module `parser`
 
 Rustdoc JSON parsing module.
@@ -1707,11 +1708,11 @@ into the `rustdoc_types::Crate` structure.
 
 #### Implementations
 
-- `fn parse_json(path: &Path) -> Result<Crate, Error>` — [`Error`](error.md)
+- `fn parse_json(path: &Path) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
   Parse a rustdoc JSON file from disk into a `Crate` structure.
 
-- `fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](error.md)
+- `fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
   Parse a rustdoc JSON string into a `Crate` structure.
 
@@ -1736,7 +1737,7 @@ into the `rustdoc_types::Crate` structure.
 - `unsafe fn drop(ptr: usize)`
 
 
-=== types.md ===
+=== types/index.md ===
 # Module `types`
 
 Type rendering utilities for converting rustdoc types to string representations.

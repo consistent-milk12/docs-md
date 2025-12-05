@@ -17,7 +17,7 @@ a stream of tokens to hand back to the compiler to compile into the caller's
 crate. Quasi-quoting is a solution to one piece of that &mdash; producing
 tokens to return to the compiler.
 
-The idea of quasi-quoting is that we write *code* that we treat as *data*.
+The idea of quasi-quoting is that we write _code_ that we treat as _data_.
 Within the `quote!` macro, we can write what looks like code to our text
 editor or IDE. We get all the benefits of the editor's brace matching,
 syntax highlighting, indentation, and maybe autocompletion. But rather than
@@ -108,11 +108,11 @@ named arguments.
 Only a limited set of formatting traits are supported. The current mapping
 of format types to traits is:
 
-* `{}` ⇒ [`IdentFragment`](ident_fragment/index.md)
-* `{:o}` ⇒ [`Octal`](std::fmt::Octal)
-* `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
-* `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
-* `{:b}` ⇒ [`Binary`](std::fmt::Binary)
+- `{}` ⇒ [`IdentFragment`](ident_fragment/index.md)
+- `{:o}` ⇒ [`Octal`](std::fmt::Octal)
+- `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
+- `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
+- `{:b}` ⇒ [`Binary`](std::fmt::Binary)
 
 See `std::fmt` for more information.
 
@@ -123,10 +123,9 @@ See `std::fmt` for more information.
 Unlike `format!`, this macro uses the [`IdentFragment`](ident_fragment/index.md) formatting trait by
 default. This trait is like `Display`, with a few differences:
 
-* `IdentFragment` is only implemented for a limited set of types, such as
+- `IdentFragment` is only implemented for a limited set of types, such as
   unsigned integers and strings.
-* [`Ident`](#ident) arguments will have their `r#` prefixes stripped, if present.
-
+- [`Ident`](#ident) arguments will have their `r#` prefixes stripped, if present.
 
 <br>
 
@@ -156,7 +155,6 @@ let my_span = proc_macro2::Span::call_site();
 format_ident!("MyIdent", span = my_span);
 ```
 
-
 <p><br></p>
 
 # Panics
@@ -169,6 +167,7 @@ identifier.
 # Examples
 
 Composing raw and non-raw identifiers:
+
 ```rust
 use quote::format_ident;
 let my_ident = format_ident!("My{}", "Ident");
@@ -182,6 +181,7 @@ assert_eq!(my_ident_raw, "MyIdentIsRaw");
 ```
 
 Integer formatting options:
+
 ```rust
 use quote::format_ident;
 let num: u32 = 10;
@@ -641,4 +641,3 @@ error[E0277]: the trait bound `*const (): std::marker::Sync` is not satisfied
 In this example it is important for the where-clause to be spanned with the
 line/column information of the user's input type so that error messages are
 placed appropriately by the compiler.
-

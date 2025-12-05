@@ -1,6 +1,5 @@
 ---
 source: tests/integration_tests.rs
-assertion_line: 77
 expression: capture.to_snapshot_string()
 ---
 === error/index.md ===
@@ -287,7 +286,7 @@ link text to item IDs. This processor uses that map along with the
 # Supported Patterns
 
 - `` [`Name`] `` - Backtick code links (most common)
-- `` [`Item`](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html) `` - Qualified path links
+- `` [`Item`](https://docs.rs/core/latest/core/option/struct.Item.html) `` - Qualified path links
 - `` [`Type::method`] `` - Method/associated item links
 - `[name]` - Plain identifier links
 - `[text][`ref`]` - Reference-style links
@@ -340,11 +339,11 @@ Links inside fenced code blocks are not processed.
 
 - `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process reference-style links `[display text](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Span.html)`.
+  Process reference-style links `[display text](https://docs.rs/regex_syntax/latest/regex_syntax/ast/struct.Span.html)`.
 
 - `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process path reference links `[text](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html)`.
+  Process path reference links `[text](https://docs.rs/core/latest/core/option/struct.Item.html)`.
 
 - `fn process_method_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -1120,9 +1119,10 @@ Note: We don't show macro rules since rustdoc JSON doesn't provide them.
 ### `render_impl_items`
 
 ```rust
-fn render_impl_items<F>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: Option<F>)
+fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: Option<F>, create_type_link: Option<L>)
 where
-    F: Fn(&rustdoc_types::Item) -> Option<String>
+    F: Fn(&rustdoc_types::Item) -> Option<String>,
+    L: Fn(rustdoc_types::Id) -> Option<String>
 ```
 
 **Types:** [`TypeRenderer`](../../types/index.md)
@@ -1139,6 +1139,7 @@ within an impl block as bullet points.
 * `krate` - The crate containing item definitions
 * `type_renderer` - Type renderer for types
 * `process_docs` - Optional closure to process documentation
+* `create_type_link` - Optional closure to create links for types (id -> Option<markdown_link>)
 
 ### `append_docs`
 

@@ -14,7 +14,7 @@ use rustdoc_types::{Id, Item, ItemEnum, StructKind};
 
 use crate::Args;
 use crate::error::Error;
-use crate::generator::RenderContext;
+use crate::generator::LinkResolver;
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
 use crate::generator::impls::is_blanket_impl;
 use crate::generator::render_shared::{
@@ -846,7 +846,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     &self.type_renderer,
                     None::<fn(&Item) -> Option<String>>,
                     Some(|id: rustdoc_types::Id| {
-                        RenderContext::create_link(self.view, id, self.file_path)
+                        LinkResolver::create_link(self.view, id, self.file_path)
                     }),
                 );
             }
@@ -875,7 +875,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     &self.type_renderer,
                     None::<fn(&Item) -> Option<String>>,
                     Some(|id: rustdoc_types::Id| {
-                        RenderContext::create_link(self.view, id, self.file_path)
+                        LinkResolver::create_link(self.view, id, self.file_path)
                     }),
                 );
             }
