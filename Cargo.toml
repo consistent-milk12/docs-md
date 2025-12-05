@@ -45,6 +45,13 @@ tracing = "0.1.43"
 # Snapshot testing
 insta = "1.44.3"
 
+# Benchmarking
+criterion = { version = "0.8.0", features = ["csv_output", "html_reports"] }
+
+[[bench]]
+name = "benchmarks"
+harness = false
+
 # =============================================================================
 # Build Profiles
 # =============================================================================

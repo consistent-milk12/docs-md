@@ -5,9 +5,11 @@
 
 use std::fmt::Write;
 use std::path::Path;
+use std::sync::Arc;
 
 use fs_err as fs;
 use indicatif::{ProgressBar, ProgressStyle};
+use rayon::prelude::*;
 use rustdoc_types::{Id, Item, ItemEnum, StructKind, VariantKind, Visibility};
 
 use crate::Args;
@@ -62,8 +64,9 @@ impl<'a> MultiCrateGenerator<'a> {
 
     /// Generate documentation for all crates.
     ///
-    /// Creates the output directory structure, generates docs for each crate,
-    /// and optionally generates SUMMARY.md for mdBook compatibility.
+    /// Creates the output directory structure, generates docs for each crate
+    /// in parallel using rayon, and optionally generates SUMMARY.md for
+    /// mdBook compatibility.
     ///
     /// # Errors
     ///
@@ -71,6 +74,12 @@ impl<'a> MultiCrateGenerator<'a> {
     pub fn generate(&self) -> Result<(), Error> {
         // Create output directory
         fs::create_dir_all(&self.args.output).map_err(Error::CreateDir)?;
+
+        // Pre-create crate directories to avoid race conditions in parallel generation
+        for crate_name in self.ctx.crates().names() {
+            let crate_dir = self.args.output.join(crate_name);
+            fs::create_dir_all(&crate_dir).map_err(Error::CreateDir)?;
+        }
 
         // Count total modules across all crates for progress bar
         let total_modules: usize = self
@@ -81,28 +90,30 @@ impl<'a> MultiCrateGenerator<'a> {
             .map(|view| view.count_modules() + 1)
             .sum();
 
-        let progress = Self::create_progress_bar(total_modules);
+        let progress = Arc::new(Self::create_progress_bar(total_modules));
 
-        // Generate each crate
-        for (crate_name, _krate) in self.ctx.crates().iter() {
-            progress.set_message(format!("Generating {crate_name}..."));
+        // Generate crates in parallel
+        self.ctx
+            .crates()
+            .names()
+            .par_iter()
+            .try_for_each(|crate_name| {
+                let view = self
+                    .ctx
+                    .single_crate_view(crate_name)
+                    .ok_or_else(|| Error::ItemNotFound(crate_name.clone()))?;
 
-            let view = self
-                .ctx
-                .single_crate_view(crate_name)
-                .ok_or_else(|| Error::ItemNotFound(crate_name.clone()))?;
+                self.generate_crate(&view, &progress)
+            })?;
 
-            self.generate_crate(&view, &progress)?;
-        }
-
-        // Generate SUMMARY.md if requested
+        // Generate SUMMARY.md if requested (sequential - single file)
         if self.args.mdbook {
             progress.set_message("Generating SUMMARY.md...");
             let summary_gen = SummaryGenerator::new(self.ctx.crates(), &self.args.output);
             summary_gen.generate()?;
         }
 
-        // Generate search index if requested
+        // Generate search index if requested (sequential - single file)
         if self.args.search_index {
             progress.set_message("Generating search_index.json...");
             let search_gen =
@@ -117,12 +128,15 @@ impl<'a> MultiCrateGenerator<'a> {
     }
 
     /// Generate documentation for a single crate.
-    fn generate_crate(&self, view: &SingleCrateView, progress: &ProgressBar) -> Result<(), Error> {
+    fn generate_crate(
+        &self,
+        view: &SingleCrateView,
+        progress: &Arc<ProgressBar>,
+    ) -> Result<(), Error> {
         let crate_name = view.crate_name();
         let crate_dir = self.args.output.join(crate_name);
 
-        // Create crate directory
-        fs::create_dir_all(&crate_dir).map_err(Error::CreateDir)?;
+        // Crate directory already created in generate() to avoid race conditions
 
         // Get root item
         let root_item = view
@@ -147,7 +161,7 @@ impl<'a> MultiCrateGenerator<'a> {
                     && let ItemEnum::Module(_) = &item.inner
                     && view.should_include_item(item)
                 {
-                    Self::generate_module(view, item, &crate_dir, vec![], progress)?;
+                    Self::generate_module(view, item, &crate_dir, vec![], Arc::clone(progress))?;
                 }
             }
         }
@@ -161,7 +175,7 @@ impl<'a> MultiCrateGenerator<'a> {
         item: &Item,
         parent_dir: &Path,
         module_path: Vec<String>,
-        progress: &ProgressBar,
+        progress: Arc<ProgressBar>,
     ) -> Result<(), Error> {
         let name = item.name.as_deref().unwrap_or("unnamed");
 
@@ -204,7 +218,7 @@ impl<'a> MultiCrateGenerator<'a> {
                         sub_item,
                         &module_dir,
                         current_path.clone(),
-                        progress,
+                        Arc::clone(&progress),
                     )?;
                 }
             }

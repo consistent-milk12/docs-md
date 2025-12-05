@@ -31,6 +31,7 @@ use std::collections::HashMap;
 use std::path::Path;
 
 use rustdoc_types::{Crate, Id, ItemEnum};
+use unicode_normalization::UnicodeNormalization;
 
 /// Convert a name to a GitHub-style markdown anchor slug.
 ///
@@ -39,13 +40,14 @@ use rustdoc_types::{Crate, Id, ItemEnum};
 ///
 /// # Rules Applied
 ///
-/// 1. Convert to lowercase
-/// 2. Remove backticks (markdown code formatting)
-/// 3. Remove generics (`<T>`, `<K, V>`) by stripping `<...>` content
-/// 4. Replace spaces and underscores with hyphens
-/// 5. Remove non-alphanumeric characters (except hyphens)
-/// 6. Collapse consecutive hyphens
-/// 7. Trim leading/trailing hyphens
+/// 1. Apply Unicode NFC normalization (canonical composition)
+/// 2. Convert to lowercase (full Unicode, not just ASCII)
+/// 3. Remove backticks (markdown code formatting)
+/// 4. Remove generics (`<T>`, `<K, V>`) by stripping `<...>` content
+/// 5. Replace spaces and underscores with hyphens
+/// 6. Remove non-alphanumeric characters (except hyphens)
+/// 7. Collapse consecutive hyphens
+/// 8. Trim leading/trailing hyphens
 ///
 /// # Examples
 ///
@@ -54,47 +56,91 @@ use rustdoc_types::{Crate, Id, ItemEnum};
 /// assert_eq!(slugify_anchor("HashMap<K, V>"), "hashmap");
 /// assert_eq!(slugify_anchor("my_function"), "my-function");
 /// assert_eq!(slugify_anchor("Into<T>"), "into");
+/// assert_eq!(slugify_anchor("Größe"), "größe");
 /// ```
 #[must_use]
 pub fn slugify_anchor(name: &str) -> String {
+    // Fast path: pure ASCII strings (common for Rust identifiers)
+    // Skip NFC normalization overhead when not needed
+    if name.is_ascii() {
+        return slugify_anchor_ascii(name);
+    }
+
+    // Slow path: Apply NFC normalization for Unicode strings
+    // Handles composed vs decomposed forms (e.g., "é" vs "e\u{0301}")
+    let normalized: String = name.nfc().collect();
+    slugify_anchor_impl(&normalized)
+}
+
+/// Fast ASCII-only slugification (no allocation for normalization).
+fn slugify_anchor_ascii(name: &str) -> String {
     let mut result = String::with_capacity(name.len());
     let mut in_generics = 0;
-    let mut last_was_hyphen = true; // Prevent leading hyphen
+    let mut last_was_hyphen = true;
 
     for ch in name.chars() {
         match ch {
-            // Skip backticks
             '`' => {},
-
-            // Track generic depth
             '<' => in_generics += 1,
             '>' => {
                 if in_generics > 0 {
                     in_generics -= 1;
                 }
             },
-
-            // Process characters outside of generics
             _ if in_generics == 0 => {
                 if ch.is_alphanumeric() {
                     result.push(ch.to_ascii_lowercase());
                     last_was_hyphen = false;
                 } else if ch == ' ' || ch == '_' || ch == '-' {
-                    // Convert spaces/underscores to hyphens, collapse consecutive
                     if !last_was_hyphen {
                         result.push('-');
                         last_was_hyphen = true;
                     }
                 }
-                // Other characters (punctuation) are stripped
             },
-
-            // Characters inside generics are skipped
             _ => {},
         }
     }
 
-    // Trim trailing hyphen
+    if result.ends_with('-') {
+        result.pop();
+    }
+
+    result
+}
+
+/// Unicode-aware slugification with full lowercase support.
+fn slugify_anchor_impl(name: &str) -> String {
+    let mut result = String::with_capacity(name.len());
+    let mut in_generics = 0;
+    let mut last_was_hyphen = true;
+
+    for ch in name.chars() {
+        match ch {
+            '`' => {},
+            '<' => in_generics += 1,
+            '>' => {
+                if in_generics > 0 {
+                    in_generics -= 1;
+                }
+            },
+            _ if in_generics == 0 => {
+                if ch.is_alphanumeric() {
+                    for lower_ch in ch.to_lowercase() {
+                        result.push(lower_ch);
+                    }
+                    last_was_hyphen = false;
+                } else if ch == ' ' || ch == '_' || ch == '-' {
+                    if !last_was_hyphen {
+                        result.push('-');
+                        last_was_hyphen = true;
+                    }
+                }
+            },
+            _ => {},
+        }
+    }
+
     if result.ends_with('-') {
         result.pop();
     }
@@ -502,5 +548,39 @@ mod tests {
     fn test_slugify_consecutive_hyphens() {
         assert_eq!(slugify_anchor("a__b"), "a-b");
         assert_eq!(slugify_anchor("a - b"), "a-b");
+    }
+
+    /// Test: Unicode characters are preserved and lowercased.
+    #[test]
+    fn test_slugify_unicode() {
+        // German
+        assert_eq!(slugify_anchor("Größe"), "größe");
+        // French
+        assert_eq!(slugify_anchor("café"), "café");
+        // Mixed unicode with underscores
+        assert_eq!(slugify_anchor("naïve_string"), "naïve-string");
+    }
+
+    /// Test: Unicode normalization (composed vs decomposed).
+    #[test]
+    fn test_slugify_unicode_normalization() {
+        // "é" can be represented as:
+        // - U+00E9 (LATIN SMALL LETTER E WITH ACUTE) - composed
+        // - U+0065 U+0301 (e + COMBINING ACUTE ACCENT) - decomposed
+        let composed = "caf\u{00E9}"; // café with composed é
+        let decomposed = "cafe\u{0301}"; // café with decomposed é
+
+        // Both should produce the same result after NFC normalization
+        assert_eq!(slugify_anchor(composed), slugify_anchor(decomposed));
+        assert_eq!(slugify_anchor(composed), "café");
+    }
+
+    /// Test: Unicode uppercase conversion (beyond ASCII).
+    #[test]
+    fn test_slugify_unicode_uppercase() {
+        // German sharp S: ẞ (U+1E9E) lowercases to ß (U+00DF)
+        assert_eq!(slugify_anchor("GROẞE"), "große");
+        // Greek
+        assert_eq!(slugify_anchor("ΩMEGA"), "ωmega");
     }
 }

@@ -5,11 +5,40 @@
 //! linking in the generated markdown.
 
 use std::collections::HashMap;
+use std::hash::{Hash, Hasher};
 
+use hashbrown::DefaultHashBuilder;
 use rustdoc_types::{Crate, Id, ItemEnum};
 
 use crate::linker::{LinkRegistry, slugify_anchor};
 use crate::multi_crate::CrateCollection;
+
+/// Key type for registry lookups: (crate_name, item_id).
+///
+/// Uses owned strings for storage but can be looked up with borrowed strings
+/// via the raw entry API to avoid allocation on every lookup.
+type RegistryKey = (String, Id);
+
+/// Borrowed key for zero-allocation lookups.
+///
+/// Must hash identically to `RegistryKey` (tuple of String, Id).
+#[derive(PartialEq, Eq)]
+struct BorrowedKey<'a>(&'a str, Id);
+
+impl Hash for BorrowedKey<'_> {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        // Hash exactly like a tuple (String, Id) would:
+        // String hashes as its byte content, same as &str
+        self.0.hash(state);
+        self.1.hash(state);
+    }
+}
+
+
+/// Allow comparing `BorrowedKey` with `RegistryKey`.
+fn keys_match(stored: &RegistryKey, borrowed: &BorrowedKey<'_>) -> bool {
+    stored.0 == borrowed.0 && stored.1 == borrowed.1
+}
 
 /// Registry mapping item IDs to documentation paths across multiple crates.
 ///
@@ -32,13 +61,20 @@ use crate::multi_crate::CrateCollection;
 /// 1. Items in the current crate (where the link appears)
 /// 2. Items in the primary crate (if specified via `--primary-crate`)
 /// 3. Items with the shortest qualified path
+///
+/// # Performance
+///
+/// Uses `hashbrown` with raw entry API for zero-allocation lookups.
+/// This avoids allocating a `String` for the crate name on every lookup.
 #[derive(Debug, Default)]
 pub struct UnifiedLinkRegistry {
     /// Maps `(crate_name, item_id)` to the file path within output.
-    item_paths: HashMap<(String, Id), String>,
+    /// Uses hashbrown for raw_entry API (zero-alloc lookups).
+    item_paths: hashbrown::HashMap<RegistryKey, String>,
 
     /// Maps `(crate_name, item_id)` to the item's display name.
-    item_names: HashMap<(String, Id), String>,
+    /// Uses hashbrown for raw_entry API (zero-alloc lookups).
+    item_names: hashbrown::HashMap<RegistryKey, String>,
 
     /// Maps short names to all `(crate_name, item_id)` pairs.
     /// Used for disambiguating links like `Span` that exist in multiple crates.
@@ -217,15 +253,31 @@ impl UnifiedLinkRegistry {
     }
 
     /// Get the file path for an item in a specific crate.
+    ///
+    /// Uses raw entry API for zero-allocation lookup.
     #[must_use]
     pub fn get_path(&self, crate_name: &str, id: Id) -> Option<&String> {
-        self.item_paths.get(&(crate_name.to_string(), id))
+        use std::hash::BuildHasher;
+        let borrowed = BorrowedKey(crate_name, id);
+        let hash = self.item_paths.hasher().hash_one(&borrowed);
+        self.item_paths
+            .raw_entry()
+            .from_hash(hash, |k| keys_match(k, &borrowed))
+            .map(|(_, v)| v)
     }
 
     /// Get the display name for an item.
+    ///
+    /// Uses raw entry API for zero-allocation lookup.
     #[must_use]
     pub fn get_name(&self, crate_name: &str, id: Id) -> Option<&String> {
-        self.item_names.get(&(crate_name.to_string(), id))
+        use std::hash::BuildHasher;
+        let borrowed = BorrowedKey(crate_name, id);
+        let hash = self.item_names.hasher().hash_one(&borrowed);
+        self.item_names
+            .raw_entry()
+            .from_hash(hash, |k| keys_match(k, &borrowed))
+            .map(|(_, v)| v)
     }
 
     /// Resolve an item name to its crate and ID.
@@ -372,9 +424,17 @@ impl UnifiedLinkRegistry {
     }
 
     /// Check if an item exists in the registry.
+    ///
+    /// Uses raw entry API for zero-allocation lookup.
     #[must_use]
     pub fn contains(&self, crate_name: &str, id: Id) -> bool {
-        self.item_paths.contains_key(&(crate_name.to_string(), id))
+        use std::hash::BuildHasher;
+        let borrowed = BorrowedKey(crate_name, id);
+        let hash = self.item_paths.hasher().hash_one(&borrowed);
+        self.item_paths
+            .raw_entry()
+            .from_hash(hash, |k| keys_match(k, &borrowed))
+            .is_some()
     }
 
     /// Get the number of registered items.
@@ -425,5 +485,56 @@ mod tests {
             ),
             "../../index.md"
         );
+    }
+
+    /// Verify that `BorrowedKey` and `RegistryKey` hash identically.
+    #[test]
+    fn test_borrowed_key_hash_compatibility() {
+        use std::hash::BuildHasher;
+
+        // Use a fixed hasher (same instance for both)
+        let hasher = DefaultHashBuilder::default();
+        let id = Id(42);
+
+        // Create owned key (how it's stored in the HashMap)
+        let owned: RegistryKey = ("test_crate".to_string(), id);
+
+        // Create borrowed key (how we look up)
+        let borrowed = BorrowedKey("test_crate", id);
+
+        // Hashes must be equal for raw_entry lookup to work
+        // Using the SAME hasher instance is critical
+        let owned_hash = hasher.hash_one(&owned);
+        let borrowed_hash = hasher.hash_one(&borrowed);
+
+        assert_eq!(
+            owned_hash, borrowed_hash,
+            "BorrowedKey hash must equal RegistryKey hash"
+        );
+    }
+
+    /// Test that raw_entry lookup works correctly.
+    #[test]
+    fn test_raw_entry_lookup() {
+        let mut registry = UnifiedLinkRegistry::default();
+        let id = Id(123);
+
+        // Insert using owned key
+        registry.register_item("my_crate", id, "MyType", "module/index.md");
+
+        // Lookup using borrowed key (zero-allocation)
+        assert!(registry.contains("my_crate", id));
+        assert_eq!(
+            registry.get_path("my_crate", id),
+            Some(&"module/index.md".to_string())
+        );
+        assert_eq!(
+            registry.get_name("my_crate", id),
+            Some(&"MyType".to_string())
+        );
+
+        // Non-existent lookups
+        assert!(!registry.contains("other_crate", id));
+        assert!(registry.get_path("other_crate", id).is_none());
     }
 }
