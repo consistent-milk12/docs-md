@@ -1,7 +1,10 @@
 # Benchmark Results
 
+**THIS DOCUMENT IS AI GENERATED**
+
 Captured: 2025-12-06
 Benchmark framework: **divan 0.1.21**
+Model: Claude Opus 4.5
 
 This document records performance measurements for `docs-md` critical operations.
 
