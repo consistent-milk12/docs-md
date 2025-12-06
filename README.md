@@ -36,9 +36,28 @@ Or just run it directly with `cargo run --`.
 
 ## Usage
 
-### Step 1: Generate rustdoc JSON
+### Quick Start (One Command)
 
-This requires nightly Rust because JSON output is still unstable:
+The easiest way to generate docs—builds rustdoc JSON and generates markdown in one step:
+
+```bash
+# Generate docs for your project and all dependencies
+docs_md docs
+
+# With options
+docs_md docs --primary-crate my_crate    # Prioritize your crate for links
+docs_md docs --clean                      # Full rebuild (cargo clean first)
+docs_md docs --include-private            # Include private items
+docs_md docs -- --all-features            # Pass args to cargo doc
+```
+
+This requires the nightly toolchain (`rustup toolchain install nightly`).
+
+### Manual Two-Step Process
+
+If you need more control, you can run the steps separately:
+
+**Step 1: Generate rustdoc JSON**
 
 ```bash
 RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc
@@ -46,9 +65,9 @@ RUSTDOCFLAGS='-Z unstable-options --output-format json' cargo +nightly doc
 
 This creates JSON files in `target/doc/`. Each crate gets its own `{crate_name}.json` file.
 
-### Step 2: Generate Markdown
+**Step 2: Generate Markdown**
 
-**Single crate:**
+_Single crate:_
 
 ```bash
 # Flat format (all files in one directory)
@@ -61,7 +80,7 @@ docs_md --path target/doc/my_crate.json -o docs/ --format nested
 docs_md --path target/doc/my_crate.json -o docs/ --include-private
 ```
 
-**Multiple crates (workspace or with dependencies):**
+_Multiple crates (workspace or with dependencies):_
 
 Multi-crate mode always uses a nested structure (one directory per crate), regardless of `--format`.
 
@@ -166,6 +185,8 @@ This design eliminates code duplication and ensures consistent output regardless
 
 ### Performance
 
+Actually, I need help with this. I have tried the tricks that I know of, please let me know if you have better ideas. Especially related to improving parsing and generating the markdown content.
+
 - **Parallel generation** - Multi-crate mode uses rayon for 2-4x speedup on multi-core systems
 - **Zero-allocation lookups** - Registry queries use hashbrown's raw_entry API (~4x faster than standard HashMap)
 - **ASCII fast path** - Anchor slugification skips unicode normalization for pure ASCII names (~18x faster)
@@ -173,15 +194,18 @@ This design eliminates code duplication and ensures consistent output regardless
 
 ## Current Limitations
 
-Being honest about what doesn't work yet:
+To be honest, it's currently good enough for my use cases. There are some
+formatting issues here and there. I haven't tested it out on any EXTREMELY LARGE
+repo yet - should probably be fine though.
 
-- **External re-exports** - If a crate re-exports something from a dependency that isn't in your JSON files, we can't link to it. You'll see the re-export but not the full documentation.
-- **Duplicate headings** - Some crates start their docs with `# Crate Name`, which duplicates our generated heading.
-- **No incremental builds** - Regenerates everything every time. Fine for most crates, slow for huge workspaces.
+- **External re-exports** - If a crate re-exports something from a dependency that isn't in your JSON files, we can't link to it. You'll see the re-export but not the full documentation. Workaround: include all dependency JSON files in `--dir`.
+- **Duplicate headings** - Some crates start their docs with `# Crate Name`, which duplicates our generated heading. Basic mitigation exists for exact matches, but edge cases remain.
+- **No incremental builds** - Regenerates everything every time. Fine for most crates, slow for huge workspaces. Use `just quick` to skip cargo clean.
+- **Reference link conversion** - Markdown reference links like `[text][ref]` may get incorrectly processed in rare cases.
+- **Cross-crate impl lookup** - When rendering re-exported types, impl blocks from the source crate might not be found in edge cases.
 
 ## What's In Development
 
-- **Duplicate title stripping** - Detect and remove redundant `# Title` lines from crate docs
 - **Crate graph visualization** - Show dependency relationships between crates
 - Cargo subcommand (`cargo docs-md`)
 - Incremental generation
@@ -203,12 +227,10 @@ The heavy lifting is done by:
 
 ## Contributing
 
-Issues and PRs welcome. The codebase is reasonably documented—each module has a `//!` header explaining what it does, and public functions have doc comments.
+Issues and PRs welcome. The codebase should FULLY DOCUMENTED (should not build if not, due to the `#![deny(missing_docs)]` lint in root lib.rs) each module has a `//!` header explaining what it does, and public functions have doc comments.
 
 ## License
 
 MIT or Apache-2.0, pick whichever works for you.
-
----
 
 _This was mostly developed for personal use. If it's useful to you too, that's great. If you find bugs or have ideas, let me know._

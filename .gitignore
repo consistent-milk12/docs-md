@@ -7,3 +7,4 @@
 !docs/**
 
 SourceCode/
+!source_docs/**

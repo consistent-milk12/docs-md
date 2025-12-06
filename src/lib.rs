@@ -10,7 +10,7 @@
 
 use std::path::PathBuf;
 
-use clap::{Parser, ValueEnum};
+use clap::{Parser, Subcommand, ValueEnum};
 
 pub mod error;
 pub mod generator;
@@ -45,20 +45,90 @@ pub enum OutputFormat {
     Nested,
 }
 
-/// Command-line arguments for docs-md.
-///
-/// The tool accepts input from two mutually exclusive sources:
-/// 1. A local rustdoc JSON file (`--path`)
-/// 2. A crate name to fetch from docs.rs (`--crate-name`) - Note: currently non-functional
-///    as docs.rs doesn't serve rustdoc JSON files publicly.
+/// Top-level CLI for docs-md.
 #[derive(Parser, Debug)]
 #[command(name = "docs-md")]
 #[command(
     author,
     version,
-    about = "Generate per-module markdown from rustdoc JSON"
+    about = "Generate per-module markdown from rustdoc JSON",
+    args_conflicts_with_subcommands = true
 )]
-pub struct Args {
+pub struct Cli {
+    #[command(subcommand)]
+    /// Subcommand to run
+    pub command: Option<Command>,
+
+    #[command(flatten)]
+    /// Generation options (used when no subcommand is specified)
+    pub args: GenerateArgs,
+}
+
+/// Available subcommands
+#[derive(Subcommand, Debug)]
+pub enum Command {
+    /// Build rustdoc JSON and generate markdown in one step.
+    ///
+    /// This runs `cargo +nightly doc` with JSON output, then generates
+    /// markdown documentation from the result. Requires nightly toolchain.
+    ///
+    /// Example: `docs-md docs --primary-crate my_crate`
+    Docs(DocsArgs),
+}
+
+/// Arguments for the `docs` subcommand (build + generate).
+#[derive(Parser, Debug)]
+pub struct DocsArgs {
+    /// Output directory for generated markdown files.
+    ///
+    /// Defaults to `docs/` in the current directory.
+    #[arg(short, long, default_value = "docs")]
+    pub output: PathBuf,
+
+    /// Output format (flat or nested).
+    #[arg(short, long, value_enum, default_value_t = CliOutputFormat::Nested)]
+    pub format: CliOutputFormat,
+
+    /// Primary crate name for preferential link resolution.
+    ///
+    /// If not specified, attempts to detect from Cargo.toml.
+    #[arg(long)]
+    pub primary_crate: Option<String>,
+
+    /// Include private (non-public) items in the output.
+    #[arg(long, default_value_t = false)]
+    pub include_private: bool,
+
+    /// Include blanket trait implementations in the output.
+    #[arg(long, default_value_t = false)]
+    pub include_blanket_impls: bool,
+
+    /// Skip generating mdBook SUMMARY.md file.
+    #[arg(long, default_value_t = false)]
+    pub no_mdbook: bool,
+
+    /// Skip generating search_index.json file.
+    #[arg(long, default_value_t = false)]
+    pub no_search_index: bool,
+
+    /// Run cargo clean before building (full rebuild).
+    #[arg(long, default_value_t = false)]
+    pub clean: bool,
+
+    /// Additional arguments to pass to cargo doc.
+    ///
+    /// Example: `docs-md docs -- --all-features`
+    #[arg(last = true)]
+    pub cargo_args: Vec<String>,
+}
+
+/// Command-line arguments for direct generation (no subcommand).
+///
+/// The tool accepts input from two mutually exclusive sources:
+/// 1. A local rustdoc JSON file (`--path`)
+/// 2. A directory of rustdoc JSON files (`--dir`)
+#[derive(Parser, Debug, Default)]
+pub struct GenerateArgs {
     /// Path to a local rustdoc JSON file.
     ///
     /// Generate this file with: `cargo doc --output-format json`
@@ -145,6 +215,9 @@ pub struct Args {
     #[arg(long, default_value_t = false)]
     pub include_blanket_impls: bool,
 }
+
+/// Backwards-compatible type alias for existing code.
+pub type Args = GenerateArgs;
 
 /// CLI-compatible output format enum (for clap `ValueEnum` derive).
 #[derive(Clone, Copy, Debug, Default, ValueEnum)]

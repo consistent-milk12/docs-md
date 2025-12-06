@@ -21,9 +21,6 @@ yielded by the iterator. Finally, the [`Error`](error/index.md) type is a small 
 `std::io::Error` with additional information, such as if a loop was detected
 while following symbolic links (not enabled by default).
 
-
-
-
 # Example
 
 The following code recursively iterates over the directory given and prints
@@ -95,7 +92,6 @@ Ok(())
 }
 ```
 
-
 ## Structs
 
 ### `DirEntry`
@@ -123,18 +119,13 @@ provides efficient access to the inode number of the directory entry.
 This type mostly mirrors the type by the same name in `std::fs`. There
 are some differences however:
 
-* All recursive directory iterators must inspect the entry's type.
-Therefore, the value is stored and its access is guaranteed to be cheap and
-successful.
-* [`path`](#path) and [`file_name`](#file-name) return borrowed variants.
-* If [`follow_links`](#follow-links) was enabled on the originating iterator, then all
-operations except for [`path`](#path) operate on the link target. Otherwise, all
-operations operate on the symbolic link.
-
-
-
-
-
+- All recursive directory iterators must inspect the entry's type.
+  Therefore, the value is stored and its access is guaranteed to be cheap and
+  successful.
+- [`path`](#path) and [`file_name`](#file-name) return borrowed variants.
+- If [`follow_links`](#follow-links) was enabled on the originating iterator, then all
+  operations except for [`path`](#path) operate on the link target. Otherwise, all
+  operations operate on the symbolic link.
 
 #### Fields
 
@@ -142,7 +133,6 @@ operations operate on the symbolic link.
 
   The path as reported by the `fs::ReadDir` iterator (even if it's a
   symbolic link).
-  
 
 - **`ty`**: `std::fs::FileType`
 
@@ -213,19 +203,16 @@ An error produced by recursively walking a directory.
 This error type is a light wrapper around `std::io::Error`. In
 particular, it adds the following information:
 
-* The depth at which the error occurred in the file tree, relative to the
-root.
-* The path, if any, associated with the IO error.
-* An indication that a loop occurred when following symbolic links. In this
-case, there is no underlying IO error.
+- The depth at which the error occurred in the file tree, relative to the
+  root.
+- The path, if any, associated with the IO error.
+- An indication that a loop occurred when following symbolic links. In this
+  case, there is no underlying IO error.
 
 To maintain good ergonomics, this type has a
 [`impl From<Error> for std::io::Error`][impl](#impl) defined which preserves the original context.
 This allows you to use an `io::Result` with methods in this crate if you don't care about
 accessing the underlying error data in a structured form.
-
-
-
 
 #### Implementations
 
@@ -293,7 +280,6 @@ is not descended into (but the error is still yielded by the iterator).
 Iteration may be stopped at any time. When the iterator is destroyed, all
 resources associated with it are freed.
 
-
 # Usage
 
 This type implements [`IntoIterator`](#intoiterator) so that it may be used as the subject
@@ -315,8 +301,6 @@ for entry in WalkDir::new("foo").min_depth(1).max_depth(3) {
 Ok(())
 }
 ```
-
-
 
 Note that the iterator by default includes the top-most directory. Since
 this is the only directory yielded with depth `0`, it is easy to ignore it
@@ -340,7 +324,7 @@ itself.
 # Loops
 
 This iterator (like most/all recursive directory iterators) assumes that
-no loops can be made with *hard* links on your file system. In particular,
+no loops can be made with _hard_ links on your file system. In particular,
 this would require creating a hard link to a directory such that it creates
 a loop. On most platforms, this operation is illegal.
 
@@ -409,8 +393,6 @@ constructing a `WalkDir`, call [`.into_iter()`](#into-iter) at the end of the ch
 
 The order of elements yielded by this iterator is unspecified.
 
-
-
 #### Fields
 
 - **`opts`**: `WalkDirOptions`
@@ -420,7 +402,7 @@ The order of elements yielded by this iterator is unspecified.
 - **`start`**: `Option<std::path::PathBuf>`
 
   The start path.
-  
+
   This is only `Some(...)` at the beginning. After the first iteration,
   this is always `None`.
 
@@ -429,15 +411,13 @@ The order of elements yielded by this iterator is unspecified.
   A stack of open (up to max fd) or closed handles to directories.
   An open handle is a plain `fs::ReadDir` while a closed handle is
   a `Vec<fs::DirEntry>` corresponding to the as-of-yet consumed entries.
-  
 
 - **`stack_path`**: `Vec<Ancestor>`
 
   A stack of file paths.
-  
-  This is *only* used when [`follow_links`](#follow-links) is enabled. In all other
+
+  This is _only_ used when [`follow_links`](#follow-links) is enabled. In all other
   cases this stack is empty.
-  
 
 - **`oldest_opened`**: `usize`
 
@@ -461,7 +441,7 @@ The order of elements yielded by this iterator is unspecified.
 
   The device of the root file path when the first call to `next` was
   made.
-  
+
   If the `same_file_system` option isn't enabled, then this is always
   `None`. Conversely, if it is enabled, this is always `Some(...)` after
   handling the root path.
@@ -536,10 +516,6 @@ and no corresponding call to the predicate is made.
 Type parameter `I` refers to the underlying iterator and `P` refers to the
 predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
-
-
-
-
 #### Implementations
 
 - `fn filter_entry(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
@@ -586,6 +562,3 @@ the error (such as the path associated with the error or whether a loop
 was dectected). If you want things to Just Work, then you can use
 `io::Result` instead since the error type in this package will
 automatically convert to an `io::Result` when using the [`try!`](#try) macro.
-
-
-
