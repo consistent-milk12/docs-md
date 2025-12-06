@@ -30,31 +30,31 @@ perhaps more conveniently, with `PikeVM::config`.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../../../../nfa/thompson/pikevm/index.md)
+- `fn new() -> Config` — [`Config`](#config)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../../../util/search/index.md), [`Config`](../../../../nfa/thompson/pikevm/index.md)
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../../index.md), [`Config`](#config)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../../util/prefilter/index.md), [`Config`](../../../../nfa/thompson/pikevm/index.md)
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](#config)
 
-- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../../util/search/index.md)
+- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../index.md)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../../util/prefilter/index.md)
+- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../../nfa/thompson/pikevm/index.md)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../../../../nfa/thompson/pikevm/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](#config)
 
-##### `impl Debug`
+##### `impl Debug for Config`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../../../../nfa/thompson/pikevm/index.md)
+- `fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -120,27 +120,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../../../../nfa/thompson/pikevm/index.md)
+- `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<PikeVM, BuildError>` — [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../../../../nfa/thompson/nfa/index.md), [`PikeVM`](../../../../nfa/thompson/pikevm/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
+- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<PikeVM, BuildError>` — [`NFA`](../nfa/index.md), [`PikeVM`](#pikevm), [`BuildError`](../error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../../../nfa/thompson/pikevm/index.md), [`Builder`](../../../../nfa/thompson/pikevm/index.md)
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../../util/syntax/index.md), [`Builder`](../../../../nfa/thompson/pikevm/index.md)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../../nfa/thompson/compiler/index.md), [`Builder`](../../../../nfa/thompson/pikevm/index.md)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../compiler/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../../nfa/thompson/pikevm/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
-##### `impl Debug`
+##### `impl Debug for Builder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -158,7 +158,7 @@ A virtual machine for executing regex searches with capturing groups.
 # Infallible APIs
 
 Unlike most other regex engines in this crate, a `PikeVM` never returns an
-error at search time. It supports all [`Anchored`](../../../util/search/index.md) configurations, never
+error at search time. It supports all [`Anchored`](../../../index.md) configurations, never
 quits and works on haystacks of arbitrary length.
 
 There are two caveats to mention though:
@@ -166,7 +166,7 @@ There are two caveats to mention though:
 * If an invalid pattern ID is given to a search via `Anchored::Pattern`,
 then the PikeVM will report "no match." This is consistent with all other
 regex engines in this crate.
-* When using `PikeVM::which_overlapping_matches` with a [`PatternSet`](../../../util/search/index.md)
+* When using `PikeVM::which_overlapping_matches` with a [`PatternSet`](../../../index.md)
 that has insufficient capacity to store all valid pattern IDs, then if a
 match occurs for a `PatternID` that cannot be inserted, it is silently
 dropped as if it did not match.
@@ -220,21 +220,23 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)` — [`Cache`](../../../../nfa/thompson/pikevm/index.md), [`Input`](../../../../util/search/index.md), [`Captures`](../../../../util/captures/index.md)
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
 
-- `fn search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](../../../../nfa/thompson/pikevm/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`PatternID`](../../../../util/primitives/index.md)
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../../index.md)
 
-- `fn search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](../../../../nfa/thompson/pikevm/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md)
+- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)` — [`Cache`](#cache), [`Captures`](../../../util/captures/index.md)
 
-- `fn which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](../../../../nfa/thompson/pikevm/index.md), [`Input`](../../../../util/search/index.md), [`PatternSet`](../../../../util/search/index.md)
+- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>` — [`Cache`](#cache), [`FindMatches`](#findmatches)
+
+- `fn captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> CapturesMatches<'r, 'c, 'h>` — [`Cache`](#cache), [`CapturesMatches`](#capturesmatches)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PikeVM`
 
-- `fn clone(self: &Self) -> PikeVM` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md)
+- `fn clone(self: &Self) -> PikeVM` — [`PikeVM`](#pikevm)
 
-##### `impl Debug`
+##### `impl Debug for PikeVM`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -263,11 +265,11 @@ This iterator can be created with the `PikeVM::find_iter` method.
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Debug for FindMatches<'r, 'c, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindMatches<'r, 'c, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -275,11 +277,11 @@ This iterator can be created with the `PikeVM::find_iter` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Iterator for FindMatches<'r, 'c, 'h>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../../index.md)
 
 ### `CapturesMatches<'r, 'c, 'h>`
 
@@ -308,11 +310,11 @@ This iterator can be created with the `PikeVM::captures_iter` method.
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Debug for CapturesMatches<'r, 'c, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for CapturesMatches<'r, 'c, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -320,11 +322,11 @@ This iterator can be created with the `PikeVM::captures_iter` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Iterator for CapturesMatches<'r, 'c, 'h>`
 
 - `type Item = Captures`
 
-- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../../../../util/captures/index.md)
+- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../../../util/captures/index.md)
 
 ### `Cache`
 
@@ -368,9 +370,9 @@ only be used with the new `PikeVM` (and not the old one).
 
 #### Implementations
 
-- `fn new(re: &PikeVM) -> Cache` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md), [`Cache`](../../../../nfa/thompson/pikevm/index.md)
+- `fn new(re: &PikeVM) -> Cache` — [`PikeVM`](#pikevm), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, re: &PikeVM)` — [`PikeVM`](../../../../nfa/thompson/pikevm/index.md)
+- `fn reset(self: &mut Self, re: &PikeVM)` — [`PikeVM`](#pikevm)
 
 - `fn memory_usage(self: &Self) -> usize`
 
@@ -378,11 +380,11 @@ only be used with the new `PikeVM` (and not the old one).
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../../nfa/thompson/pikevm/index.md)
+- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
 
-##### `impl Debug`
+##### `impl Debug for Cache`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

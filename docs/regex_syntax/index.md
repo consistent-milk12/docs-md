@@ -197,17 +197,17 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](ast/parse/in
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](../parser/index.md)
+- `fn new() -> Parser` — [`Parser`](parser/index.md)
 
-- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](../hir/index.md), [`Error`](../error/index.md)
+- `fn parse(self: &mut Self, pattern: &str) -> Result<hir::Hir, Error>` — [`Hir`](hir/index.md), [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](../parser/index.md)
+- `fn clone(self: &Self) -> Parser` — [`Parser`](parser/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Parser`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -230,45 +230,45 @@ This type combines the builder options for both the [AST
 
 #### Implementations
 
-- `fn new() -> ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn new() -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn build(self: &Self) -> Parser` — [`Parser`](../parser/index.md)
+- `fn build(self: &Self) -> Parser` — [`Parser`](parser/index.md)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn utf8(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn multi_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn crlf(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn line_terminator(self: &mut Self, byte: u8) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn swap_greed(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn unicode(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ParserBuilder`
 
-- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
-##### `impl Debug`
+##### `impl Debug for ParserBuilder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ParserBuilder`
 
-- `fn default() -> ParserBuilder` — [`ParserBuilder`](../parser/index.md)
+- `fn default() -> ParserBuilder` — [`ParserBuilder`](parser/index.md)
 
 ### `UnicodeWordError`
 
@@ -284,17 +284,17 @@ Perl character class `\w` are unavailable. This only occurs when the
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for UnicodeWordError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for UnicodeWordError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for UnicodeWordError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for UnicodeWordError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -328,29 +328,29 @@ new variant is not considered a breaking change.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](../error/index.md)
+- `fn clone(self: &Self) -> Error` — [`Error`](error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Error`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Error`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Error`
 
-##### `impl Error`
+##### `impl Error for Error`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../error/index.md)
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](error/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Error`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
 

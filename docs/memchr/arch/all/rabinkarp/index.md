@@ -18,7 +18,6 @@ quickly with very little memory. This makes it especially useful when searching
 for small needles in small haystacks, as it might finish its search before a
 beefier algorithm (like Two-Way) even starts.
 
-[rabinkarp](#rabinkarp): https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm
 
 ## Structs
 
@@ -57,7 +56,7 @@ substring search algorithms.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Finder` — [`Finder`](../../../../arch/all/rabinkarp/index.md)
+- `fn new(needle: &[u8]) -> Finder` — [`Finder`](#finder)
 
 - `fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
@@ -65,11 +64,11 @@ substring search algorithms.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Finder`
 
-- `fn clone(self: &Self) -> Finder` — [`Finder`](../../../../arch/all/rabinkarp/index.md)
+- `fn clone(self: &Self) -> Finder` — [`Finder`](#finder)
 
-##### `impl Debug`
+##### `impl Debug for Finder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -83,7 +82,7 @@ A reverse substring searcher using the Rabin-Karp algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](../../../../arch/all/rabinkarp/index.md)
+- `fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](#finderrev)
 
 - `fn rfind(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
@@ -91,11 +90,11 @@ A reverse substring searcher using the Rabin-Karp algorithm.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FinderRev`
 
-- `fn clone(self: &Self) -> FinderRev` — [`FinderRev`](../../../../arch/all/rabinkarp/index.md)
+- `fn clone(self: &Self) -> FinderRev` — [`FinderRev`](#finderrev)
 
-##### `impl Debug`
+##### `impl Debug for FinderRev`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

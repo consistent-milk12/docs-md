@@ -65,31 +65,30 @@ for Serde by the community.
   editing. *(deserialization only)*
 - [CSV], Comma-separated values is a tabular text file format.
 
-[JSON]: https://github.com/serde-rs/json
-[Postcard]: https://github.com/jamesmunns/postcard
-[CBOR]: https://github.com/enarx/ciborium
-[YAML]: https://github.com/dtolnay/serde-yaml
-[MessagePack]: https://github.com/3Hren/msgpack-rust
-[TOML]: https://docs.rs/toml
-[Pickle]: https://github.com/birkenfeld/serde-pickle
-[RON]: https://github.com/ron-rs/ron
-[BSON]: https://github.com/mongodb/bson-rust
-[Avro]: https://docs.rs/apache-avro
-[JSON5]: https://github.com/callum-oakley/json5-rs
-[URL]: https://docs.rs/serde_qs
-[Starlark]: https://github.com/dtolnay/serde-starlark
-[Envy]: https://github.com/softprops/envy
-[Envy Store]: https://github.com/softprops/envy-store
-[Cargo]: https://doc.rust-lang.org/cargo/reference/manifest.html
-[AWS Parameter Store]: https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html
-[S-expressions]: https://github.com/rotty/lexpr-rs
-[D-Bus]: https://docs.rs/zvariant
-[FlexBuffers]: https://github.com/google/flatbuffers/tree/master/rust/flexbuffers
-[Bencode]: https://github.com/P3KI/bendy
-[Token streams]: https://github.com/oxidecomputer/serde_tokenstream
-[DynamoDB Items]: https://docs.rs/serde_dynamo
-[rusoto_dynamodb](#rusoto-dynamodb): https://docs.rs/rusoto_dynamodb
-[Hjson]: https://github.com/Canop/deser-hjson
-[CSV]: https://docs.rs/csv
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 *This crate has no public items to document.*

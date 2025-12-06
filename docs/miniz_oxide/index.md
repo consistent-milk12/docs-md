@@ -40,31 +40,31 @@ A structure containing the result of a call to the inflate or deflate streaming 
 
 #### Implementations
 
-- `const fn error(error: MZError) -> StreamResult` — [`MZError`](../index.md), [`StreamResult`](../index.md)
+- `const fn error(error: MZError) -> StreamResult` — [`MZError`](#mzerror), [`StreamResult`](#streamresult)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StreamResult`
 
-- `fn clone(self: &Self) -> StreamResult` — [`StreamResult`](../index.md)
+- `fn clone(self: &Self) -> StreamResult` — [`StreamResult`](#streamresult)
 
-##### `impl Copy`
+##### `impl Copy for StreamResult`
 
-##### `impl Debug`
+##### `impl Debug for StreamResult`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for StreamResult`
 
-##### `impl Hash`
+##### `impl Hash for StreamResult`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for StreamResult`
 
-- `fn eq(self: &Self, other: &StreamResult) -> bool` — [`StreamResult`](../index.md)
+- `fn eq(self: &Self, other: &StreamResult) -> bool` — [`StreamResult`](#streamresult)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for StreamResult`
 
 ## Enums
 
@@ -119,31 +119,31 @@ See <http://www.bolet.org/~pornin/deflate-flush.html> for more in-depth info.
 
 #### Implementations
 
-- `fn new(flush: i32) -> Result<Self, MZError>` — [`MZError`](../index.md)
+- `fn new(flush: i32) -> Result<Self, MZError>` — [`MZError`](#mzerror)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MZFlush`
 
-- `fn clone(self: &Self) -> MZFlush` — [`MZFlush`](../index.md)
+- `fn clone(self: &Self) -> MZFlush` — [`MZFlush`](#mzflush)
 
-##### `impl Copy`
+##### `impl Copy for MZFlush`
 
-##### `impl Debug`
+##### `impl Debug for MZFlush`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for MZFlush`
 
-##### `impl Hash`
+##### `impl Hash for MZFlush`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for MZFlush`
 
-- `fn eq(self: &Self, other: &MZFlush) -> bool` — [`MZFlush`](../index.md)
+- `fn eq(self: &Self, other: &MZFlush) -> bool` — [`MZFlush`](#mzflush)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for MZFlush`
 
 ### `MZStatus`
 
@@ -183,27 +183,27 @@ These are emitted as the [`Ok`](#ok) side of a [`MZResult`](#mzresult) in the [`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MZStatus`
 
-- `fn clone(self: &Self) -> MZStatus` — [`MZStatus`](../index.md)
+- `fn clone(self: &Self) -> MZStatus` — [`MZStatus`](#mzstatus)
 
-##### `impl Copy`
+##### `impl Copy for MZStatus`
 
-##### `impl Debug`
+##### `impl Debug for MZStatus`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for MZStatus`
 
-##### `impl Hash`
+##### `impl Hash for MZStatus`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for MZStatus`
 
-- `fn eq(self: &Self, other: &MZStatus) -> bool` — [`MZStatus`](../index.md)
+- `fn eq(self: &Self, other: &MZStatus) -> bool` — [`MZStatus`](#mzstatus)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for MZStatus`
 
 ### `MZError`
 
@@ -269,27 +269,27 @@ These are emitted as the [`Err`](#err) side of a [`MZResult`](#mzresult) in the 
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MZError`
 
-- `fn clone(self: &Self) -> MZError` — [`MZError`](../index.md)
+- `fn clone(self: &Self) -> MZError` — [`MZError`](#mzerror)
 
-##### `impl Copy`
+##### `impl Copy for MZError`
 
-##### `impl Debug`
+##### `impl Debug for MZError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for MZError`
 
-##### `impl Hash`
+##### `impl Hash for MZError`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for MZError`
 
-- `fn eq(self: &Self, other: &MZError) -> bool` — [`MZError`](../index.md)
+- `fn eq(self: &Self, other: &MZError) -> bool` — [`MZError`](#mzerror)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for MZError`
 
 ### `DataFormat`
 
@@ -320,33 +320,33 @@ How compressed data is wrapped.
 
 #### Implementations
 
-- `fn from_window_bits(window_bits: i32) -> DataFormat` — [`DataFormat`](../index.md)
+- `fn from_window_bits(window_bits: i32) -> DataFormat` — [`DataFormat`](#dataformat)
 
 - `fn to_window_bits(self: Self) -> i32`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DataFormat`
 
-- `fn clone(self: &Self) -> DataFormat` — [`DataFormat`](../index.md)
+- `fn clone(self: &Self) -> DataFormat` — [`DataFormat`](#dataformat)
 
-##### `impl Copy`
+##### `impl Copy for DataFormat`
 
-##### `impl Debug`
+##### `impl Debug for DataFormat`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for DataFormat`
 
-##### `impl Hash`
+##### `impl Hash for DataFormat`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for DataFormat`
 
-- `fn eq(self: &Self, other: &DataFormat) -> bool` — [`DataFormat`](../index.md)
+- `fn eq(self: &Self, other: &DataFormat) -> bool` — [`DataFormat`](#dataformat)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DataFormat`
 
 ## Type Aliases
 

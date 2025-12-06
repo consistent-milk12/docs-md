@@ -173,33 +173,33 @@ trait.
 
 #### Implementations
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
+- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/error/index.md)
 
-- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](../../hybrid/error/index.md)
+- `fn insufficient_cache_capacity(minimum: usize, given: usize) -> BuildError` — [`BuildError`](error/index.md)
 
-- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](../../hybrid/id/index.md), [`BuildError`](../../hybrid/error/index.md)
+- `fn insufficient_state_id_capacity(err: LazyStateIDError) -> BuildError` — [`LazyStateIDError`](id/index.md), [`BuildError`](error/index.md)
 
-- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](../../hybrid/error/index.md)
+- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../hybrid/error/index.md)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for BuildError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for BuildError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for BuildError`
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for BuildError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -229,27 +229,27 @@ trait.
 
 #### Implementations
 
-- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](../../hybrid/error/index.md)
+- `fn too_many_cache_clears() -> CacheError` — [`CacheError`](error/index.md)
 
-- `fn bad_efficiency() -> CacheError` — [`CacheError`](../../hybrid/error/index.md)
+- `fn bad_efficiency() -> CacheError` — [`CacheError`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for CacheError`
 
-- `fn clone(self: &Self) -> CacheError` — [`CacheError`](../../hybrid/error/index.md)
+- `fn clone(self: &Self) -> CacheError` — [`CacheError`](error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for CacheError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for CacheError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for CacheError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for CacheError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -441,23 +441,23 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `const MAX: usize`
 
-- `fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](../../hybrid/id/index.md), [`LazyStateIDError`](../../hybrid/id/index.md)
+- `fn new(id: usize) -> Result<LazyStateID, LazyStateIDError>` — [`LazyStateID`](id/index.md), [`LazyStateIDError`](id/index.md)
 
-- `const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+- `const fn new_unchecked(id: usize) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
 - `fn as_usize_untagged(self: &Self) -> usize`
 
 - `const fn as_usize_unchecked(self: &Self) -> usize`
 
-- `const fn to_unknown(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+- `const fn to_unknown(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn to_dead(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+- `const fn to_dead(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn to_quit(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+- `const fn to_quit(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn to_start(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+- `const fn to_start(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-- `const fn to_match(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+- `const fn to_match(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
 - `const fn is_tagged(self: &Self) -> bool`
 
@@ -473,39 +473,39 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LazyStateID`
 
-- `fn clone(self: &Self) -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+- `fn clone(self: &Self) -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-##### `impl Copy`
+##### `impl Copy for LazyStateID`
 
-##### `impl Debug`
+##### `impl Debug for LazyStateID`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for LazyStateID`
 
-- `fn default() -> LazyStateID` — [`LazyStateID`](../../hybrid/id/index.md)
+- `fn default() -> LazyStateID` — [`LazyStateID`](id/index.md)
 
-##### `impl Eq`
+##### `impl Eq for LazyStateID`
 
-##### `impl Hash`
+##### `impl Hash for LazyStateID`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for LazyStateID`
 
-- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering` — [`LazyStateID`](../../hybrid/id/index.md)
+- `fn cmp(self: &Self, other: &LazyStateID) -> $crate::cmp::Ordering` — [`LazyStateID`](id/index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for LazyStateID`
 
-- `fn eq(self: &Self, other: &LazyStateID) -> bool` — [`LazyStateID`](../../hybrid/id/index.md)
+- `fn eq(self: &Self, other: &LazyStateID) -> bool` — [`LazyStateID`](id/index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for LazyStateID`
 
-- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LazyStateID`](../../hybrid/id/index.md)
+- `fn partial_cmp(self: &Self, other: &LazyStateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LazyStateID`](id/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for LazyStateID`
 
 ## Enums
 
@@ -563,31 +563,31 @@ semver compatible release.
 
 #### Implementations
 
-- `fn cache(err: CacheError) -> StartError` — [`CacheError`](../../hybrid/error/index.md), [`StartError`](../../hybrid/error/index.md)
+- `fn cache(err: CacheError) -> StartError` — [`CacheError`](error/index.md), [`StartError`](error/index.md)
 
-- `fn quit(byte: u8) -> StartError` — [`StartError`](../../hybrid/error/index.md)
+- `fn quit(byte: u8) -> StartError` — [`StartError`](error/index.md)
 
-- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../../util/search/index.md), [`StartError`](../../hybrid/error/index.md)
+- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../index.md), [`StartError`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StartError`
 
-- `fn clone(self: &Self) -> StartError` — [`StartError`](../../hybrid/error/index.md)
+- `fn clone(self: &Self) -> StartError` — [`StartError`](error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for StartError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for StartError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for StartError`
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for StartError`
 
 - `fn to_string(self: &Self) -> String`
 

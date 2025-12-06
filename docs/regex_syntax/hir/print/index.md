@@ -35,13 +35,13 @@ specific HIR representation.)
 
 #### Implementations
 
-- `fn new() -> Printer` — [`Printer`](../../../hir/print/index.md)
+- `fn new() -> Printer` — [`Printer`](#printer)
 
-- `fn print<W: fmt::Write>(self: &mut Self, hir: &Hir, wtr: W) -> fmt::Result` — [`Hir`](../../../hir/index.md)
+- `fn print<W: fmt::Write>(self: &mut Self, hir: &Hir, wtr: W) -> fmt::Result` — [`Hir`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Printer`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

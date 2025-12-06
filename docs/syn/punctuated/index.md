@@ -40,7 +40,6 @@ punctuation of type `P`.**
 
 Refer to the [module documentation] for details about punctuated sequences.
 
-[module documentation]: self
 
 #### Implementations
 
@@ -62,21 +61,21 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn get_mut(self: &mut Self, index: usize) -> Option<&mut T>`
 
-- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](../../punctuated/index.md)
+- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](#iter)
 
-- `fn iter_mut(self: &mut Self) -> IterMut<'_, T>` — [`IterMut`](../../punctuated/index.md)
+- `fn iter_mut(self: &mut Self) -> IterMut<'_, T>` — [`IterMut`](#itermut)
 
-- `fn pairs(self: &Self) -> Pairs<'_, T, P>` — [`Pairs`](../../punctuated/index.md)
+- `fn pairs(self: &Self) -> Pairs<'_, T, P>` — [`Pairs`](#pairs)
 
-- `fn pairs_mut(self: &mut Self) -> PairsMut<'_, T, P>` — [`PairsMut`](../../punctuated/index.md)
+- `fn pairs_mut(self: &mut Self) -> PairsMut<'_, T, P>` — [`PairsMut`](#pairsmut)
 
-- `fn into_pairs(self: Self) -> IntoPairs<T, P>` — [`IntoPairs`](../../punctuated/index.md)
+- `fn into_pairs(self: Self) -> IntoPairs<T, P>` — [`IntoPairs`](#intopairs)
 
 - `fn push_value(self: &mut Self, value: T)`
 
 - `fn push_punct(self: &mut Self, punctuation: P)`
 
-- `fn pop(self: &mut Self) -> Option<Pair<T, P>>` — [`Pair`](../../punctuated/index.md)
+- `fn pop(self: &mut Self) -> Option<Pair<T, P>>` — [`Pair`](#pair)
 
 - `fn pop_punct(self: &mut Self) -> Option<P>`
 
@@ -90,45 +89,45 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn clear(self: &mut Self)`
 
-- `fn parse_terminated(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse_terminated(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- `fn parse_terminated_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse_terminated_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- `fn parse_separated_nonempty(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse_separated_nonempty(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-- `fn parse_separated_nonempty_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse_separated_nonempty_with<'a>(input: ParseStream<'a>, parser: fn(ParseStream<'a>) -> Result<T>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<T, P>`
+##### `impl<T, P> Clone for Punctuated<T, P>`
 
 - `fn clone(self: &Self) -> Self`
 
 - `fn clone_from(self: &mut Self, other: &Self)`
 
-##### `impl Default<T, P>`
+##### `impl<T, P> Default for Punctuated<T, P>`
 
 - `fn default() -> Self`
 
-##### `impl Extend<T, P>`
+##### `impl<T, P> Extend for Punctuated<T, P>`
 
 - `fn extend<I: IntoIterator<Item = Pair<T, P>>>(self: &mut Self, i: I)`
 
-##### `impl FromIterator<T, P>`
+##### `impl<T, P> FromIterator for Punctuated<T, P>`
 
-- `fn from_iter<I: IntoIterator<Item = Pair<T, P>>>(i: I) -> Self`
+- `fn from_iter<I: IntoIterator<Item = T>>(i: I) -> Self`
 
-##### `impl Index<T, P>`
+##### `impl<T, P> Index for Punctuated<T, P>`
 
 - `type Output = T`
 
 - `fn index(self: &Self, index: usize) -> &<Self as >::Output`
 
-##### `impl IndexMut<T, P>`
+##### `impl<T, P> IndexMut for Punctuated<T, P>`
 
 - `fn index_mut(self: &mut Self, index: usize) -> &mut <Self as >::Output`
 
-##### `impl IntoIterator<T, P>`
+##### `impl<T, P> IntoIterator for Punctuated<T, P>`
 
 - `type Item = T`
 
@@ -136,13 +135,13 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_iter(self: Self) -> <Self as >::IntoIter`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Punctuated<T, P>`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Punctuated<T, P>`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens<T, P>`
+##### `impl<T, P> ToTokens for crate::punctuated::Punctuated<T, P>`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -159,23 +158,22 @@ An iterator over borrowed pairs of type `Pair<&T, &P>`.
 
 Refer to the [module documentation] for details about punctuated sequences.
 
-[module documentation]: self
 
 #### Trait Implementations
 
-##### `impl Clone<'a, T, P>`
+##### `impl<'a, T, P> Clone for Pairs<'a, T, P>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl DoubleEndedIterator<'a, T, P>`
+##### `impl<'a, T, P> DoubleEndedIterator for Pairs<'a, T, P>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a, T, P>`
+##### `impl<'a, T, P> ExactSizeIterator for Pairs<'a, T, P>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Pairs<'a, T, P>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -183,7 +181,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, T, P>`
+##### `impl<'a, T, P> Iterator for Pairs<'a, T, P>`
 
 - `type Item = Pair<&'a T, &'a P>`
 
@@ -204,19 +202,18 @@ An iterator over mutably borrowed pairs of type `Pair<&mut T, &mut P>`.
 
 Refer to the [module documentation] for details about punctuated sequences.
 
-[module documentation]: self
 
 #### Trait Implementations
 
-##### `impl DoubleEndedIterator<'a, T, P>`
+##### `impl<'a, T, P> DoubleEndedIterator for PairsMut<'a, T, P>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a, T, P>`
+##### `impl<'a, T, P> ExactSizeIterator for PairsMut<'a, T, P>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for PairsMut<'a, T, P>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -224,7 +221,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, T, P>`
+##### `impl<'a, T, P> Iterator for PairsMut<'a, T, P>`
 
 - `type Item = Pair<&'a mut T, &'a mut P>`
 
@@ -245,23 +242,22 @@ An iterator over owned pairs of type `Pair<T, P>`.
 
 Refer to the [module documentation] for details about punctuated sequences.
 
-[module documentation]: self
 
 #### Trait Implementations
 
-##### `impl Clone<T, P>`
+##### `impl<T, P> Clone for IntoPairs<T, P>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl DoubleEndedIterator<T, P>`
+##### `impl<T, P> DoubleEndedIterator for IntoPairs<T, P>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<T, P>`
+##### `impl<T, P> ExactSizeIterator for IntoPairs<T, P>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IntoPairs<T, P>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -269,7 +265,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<T, P>`
+##### `impl<T, P> Iterator for IntoPairs<T, P>`
 
 - `type Item = Pair<T, P>`
 
@@ -289,23 +285,22 @@ An iterator over owned values of type `T`.
 
 Refer to the [module documentation] for details about punctuated sequences.
 
-[module documentation]: self
 
 #### Trait Implementations
 
-##### `impl Clone<T>`
+##### `impl<T> Clone for IntoIter<T>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl DoubleEndedIterator<T>`
+##### `impl<T> DoubleEndedIterator for IntoIter<T>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<T>`
+##### `impl<T> ExactSizeIterator for IntoIter<T>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IntoIter<T>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -313,7 +308,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<T>`
+##### `impl<T> Iterator for IntoIter<T>`
 
 - `type Item = T`
 
@@ -333,23 +328,22 @@ An iterator over borrowed values of type `&T`.
 
 Refer to the [module documentation] for details about punctuated sequences.
 
-[module documentation]: self
 
 #### Trait Implementations
 
-##### `impl Clone<'a, T>`
+##### `impl<'a, T> Clone for Iter<'a, T>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl DoubleEndedIterator<'a, T>`
+##### `impl<'a, T> DoubleEndedIterator for Iter<'a, T>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a, T>`
+##### `impl<'a, T> ExactSizeIterator for Iter<'a, T>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Iter<'a, T>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -357,7 +351,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, T>`
+##### `impl<'a, T> Iterator for Iter<'a, T>`
 
 - `type Item = &'a T`
 
@@ -377,19 +371,18 @@ An iterator over mutably borrowed values of type `&mut T`.
 
 Refer to the [module documentation] for details about punctuated sequences.
 
-[module documentation]: self
 
 #### Trait Implementations
 
-##### `impl DoubleEndedIterator<'a, T>`
+##### `impl<'a, T> DoubleEndedIterator for IterMut<'a, T>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a, T>`
+##### `impl<'a, T> ExactSizeIterator for IterMut<'a, T>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IterMut<'a, T>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -397,7 +390,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, T>`
+##### `impl<'a, T> Iterator for IterMut<'a, T>`
 
 - `type Item = &'a mut T`
 
@@ -421,39 +414,26 @@ of type `P` if any.
 
 Refer to the [module documentation] for details about punctuated sequences.
 
-[module documentation]: self
 
 #### Implementations
 
-- `fn into_value(self: Self) -> T`
-
-- `fn value(self: &Self) -> &T`
-
-- `fn value_mut(self: &mut Self) -> &mut T`
-
-- `fn punct(self: &Self) -> Option<&P>`
-
-- `fn punct_mut(self: &mut Self) -> Option<&mut P>`
-
-- `fn new(t: T, p: Option<P>) -> Self`
-
-- `fn into_tuple(self: Self) -> (T, Option<P>)`
+- `fn cloned(self: Self) -> Pair<T, P>` — [`Pair`](#pair)
 
 #### Trait Implementations
 
-##### `impl Clone<T, P>`
+##### `impl<T, P> Clone for Pair<T, P>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy<T, P>`
+##### `impl<T, P> Copy for Pair<T, P>`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Pair<T, P>`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Pair<T, P>`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens<T, P>`
+##### `impl<T, P> ToTokens for crate::punctuated::Pair<T, P>`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 

@@ -248,11 +248,39 @@ impl LinkRegistry {
                         },
 
                         // Re-exports (pub use) are registered with their alias name
-                        // Skip glob re-exports (pub use foo::*) as they don't have specific names
-                        ItemEnum::Use(use_item) if !use_item.is_glob => {
-                            let name = &use_item.name;
-                            registry.item_paths.insert(*item_id, "index.md".to_string());
-                            registry.item_names.insert(*item_id, name.clone());
+                        ItemEnum::Use(use_item) => {
+                            if use_item.is_glob {
+                                // Register items from glob re-export target
+                                if let Some(target_id) = &use_item.id
+                                    && let Some(target_module) = krate.index.get(target_id)
+                                    && let ItemEnum::Module(module) = &target_module.inner
+                                {
+                                    for child_id in &module.items {
+                                        if registry.item_paths.contains_key(child_id) {
+                                            continue; // Already registered
+                                        }
+                                        if let Some(child) = krate.index.get(child_id) {
+                                            if !include_private
+                                                && !matches!(child.visibility, Visibility::Public)
+                                            {
+                                                continue;
+                                            }
+                                            let name = child.name.as_deref().unwrap_or("unnamed");
+                                            registry
+                                                .item_paths
+                                                .insert(*child_id, "index.md".to_string());
+                                            registry
+                                                .item_names
+                                                .insert(*child_id, name.to_string());
+                                        }
+                                    }
+                                }
+                            } else {
+                                // Specific re-export
+                                let name = &use_item.name;
+                                registry.item_paths.insert(*item_id, "index.md".to_string());
+                                registry.item_names.insert(*item_id, name.clone());
+                            }
                         },
 
                         // Other items (primitives, etc.) don't need registration
@@ -320,10 +348,15 @@ impl LinkRegistry {
                         },
 
                         // Re-exports (pub use) are registered with their alias name
-                        // Skip glob re-exports (pub use foo::*) as they don't have specific names
-                        ItemEnum::Use(use_item) if !use_item.is_glob => {
-                            self.item_paths.insert(*item_id, path.to_string());
-                            self.item_names.insert(*item_id, use_item.name.clone());
+                        ItemEnum::Use(use_item) => {
+                            if use_item.is_glob {
+                                // Register items from glob re-export target
+                                self.register_glob_items(krate, use_item, path, include_private);
+                            } else {
+                                // Specific re-export
+                                self.item_paths.insert(*item_id, path.to_string());
+                                self.item_names.insert(*item_id, use_item.name.clone());
+                            }
                         },
 
                         // Nested modules get their own files - recurse into them
@@ -361,6 +394,37 @@ impl LinkRegistry {
                     }
                 }
             }
+        }
+    }
+
+    /// Register items from a glob re-export target module.
+    fn register_glob_items(
+        &mut self,
+        krate: &Crate,
+        use_item: &rustdoc_types::Use,
+        path: &str,
+        include_private: bool,
+    ) {
+        let Some(target_id) = &use_item.id else { return };
+        let Some(target_module) = krate.index.get(target_id) else { return };
+        let ItemEnum::Module(module) = &target_module.inner else { return };
+
+        for child_id in &module.items {
+            // Skip if already registered
+            if self.item_paths.contains_key(child_id) {
+                continue;
+            }
+
+            let Some(child) = krate.index.get(child_id) else { continue };
+
+            // Visibility filter
+            if !include_private && !matches!(child.visibility, Visibility::Public) {
+                continue;
+            }
+
+            let name = child.name.as_deref().unwrap_or("unnamed");
+            self.item_paths.insert(*child_id, path.to_string());
+            self.item_names.insert(*child_id, name.to_string());
         }
     }
 

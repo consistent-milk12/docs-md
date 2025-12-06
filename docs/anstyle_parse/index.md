@@ -29,7 +29,6 @@ Just type `:q` to exit.
 * Only supports 7-bit codes. Some 8-bit codes are still supported, but they no longer work in
   all states.
 
-[Paul Williams' ANSI parser state machine]: https://vt100.net/emu/dec_ansi_parser
 
 ## Modules
 
@@ -77,7 +76,7 @@ struct Params {
 
 - `fn is_empty(self: &Self) -> bool`
 
-- `fn iter(self: &Self) -> ParamsIter<'_>` — [`ParamsIter`](../params/index.md)
+- `fn iter(self: &Self) -> ParamsIter<'_>` — [`ParamsIter`](params/index.md)
 
 - `fn is_full(self: &Self) -> bool`
 
@@ -89,25 +88,25 @@ struct Params {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Params`
 
-- `fn clone(self: &Self) -> Params` — [`Params`](../params/index.md)
+- `fn clone(self: &Self) -> Params` — [`Params`](params/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Params`
 
 - `fn fmt(self: &Self, f: &mut Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Params`
 
-- `fn default() -> Params` — [`Params`](../params/index.md)
+- `fn default() -> Params` — [`Params`](params/index.md)
 
-##### `impl Eq`
+##### `impl Eq for Params`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Params`
 
-- `fn eq(self: &Self, other: &Params) -> bool` — [`Params`](../params/index.md)
+- `fn eq(self: &Self, other: &Params) -> bool` — [`Params`](params/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Params`
 
 ### `ParamsIter<'a>`
 
@@ -122,11 +121,11 @@ Immutable subparameter iterator.
 
 #### Implementations
 
-- `fn new(params: &'a Params) -> Self` — [`Params`](../params/index.md)
+- `fn new(params: &'a Params) -> Self` — [`Params`](params/index.md)
 
 #### Trait Implementations
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ParamsIter<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -134,7 +133,7 @@ Immutable subparameter iterator.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for ParamsIter<'a>`
 
 - `type Item = &'a [u16]`
 
@@ -163,9 +162,9 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](../index.md)
+- `fn new() -> Parser` — [`Parser`](#parser)
 
-- `fn params(self: &Self) -> &Params` — [`Params`](../params/index.md)
+- `fn params(self: &Self) -> &Params` — [`Params`](params/index.md)
 
 - `fn intermediates(self: &Self) -> &[u8]`
 
@@ -173,33 +172,33 @@ Parser for raw _VTE_ protocol which delegates actions to a [`Perform`](#perform)
 
 - `fn process_utf8<P>(self: &mut Self, performer: &mut P, byte: u8)`
 
-- `fn perform_state_change<P>(self: &mut Self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](../state/definitions/index.md), [`Action`](../state/definitions/index.md)
+- `fn perform_state_change<P>(self: &mut Self, performer: &mut P, state: State, action: Action, byte: u8)` — [`State`](state/definitions/index.md), [`Action`](state/definitions/index.md)
 
 - `fn osc_dispatch<P: Perform>(self: &Self, performer: &mut P, byte: u8)`
 
-- `fn perform_action<P: Perform>(self: &mut Self, performer: &mut P, action: Action, byte: u8)` — [`Action`](../state/definitions/index.md)
+- `fn perform_action<P: Perform>(self: &mut Self, performer: &mut P, action: Action, byte: u8)` — [`Action`](state/definitions/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<C: $crate::clone::Clone>`
+##### `impl<C: $crate::clone::Clone> Clone for Parser<C>`
 
-- `fn clone(self: &Self) -> Parser<C>` — [`Parser`](../index.md)
+- `fn clone(self: &Self) -> Parser<C>` — [`Parser`](#parser)
 
-##### `impl Debug<C: $crate::fmt::Debug>`
+##### `impl<C: $crate::fmt::Debug> Debug for Parser<C>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<C: $crate::default::Default>`
+##### `impl<C: $crate::default::Default> Default for Parser<C>`
 
-- `fn default() -> Parser<C>` — [`Parser`](../index.md)
+- `fn default() -> Parser<C>` — [`Parser`](#parser)
 
-##### `impl Eq<C: $crate::cmp::Eq>`
+##### `impl<C: $crate::cmp::Eq> Eq for Parser<C>`
 
-##### `impl PartialEq<C: $crate::cmp::PartialEq>`
+##### `impl<C: $crate::cmp::PartialEq> PartialEq for Parser<C>`
 
-- `fn eq(self: &Self, other: &Parser<C>) -> bool` — [`Parser`](../index.md)
+- `fn eq(self: &Self, other: &Parser<C>) -> bool` — [`Parser`](#parser)
 
-##### `impl StructuralPartialEq<C>`
+##### `impl<C> StructuralPartialEq for Parser<C>`
 
 ### `AsciiParser`
 
@@ -211,29 +210,29 @@ Only allow parsing 7-bit ASCII
 
 #### Trait Implementations
 
-##### `impl CharAccumulator`
+##### `impl CharAccumulator for AsciiParser`
 
 - `fn add(self: &mut Self, _byte: u8) -> Option<char>`
 
-##### `impl Clone`
+##### `impl Clone for AsciiParser`
 
-- `fn clone(self: &Self) -> AsciiParser` — [`AsciiParser`](../index.md)
+- `fn clone(self: &Self) -> AsciiParser` — [`AsciiParser`](#asciiparser)
 
-##### `impl Debug`
+##### `impl Debug for AsciiParser`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AsciiParser`
 
-- `fn default() -> AsciiParser` — [`AsciiParser`](../index.md)
+- `fn default() -> AsciiParser` — [`AsciiParser`](#asciiparser)
 
-##### `impl Eq`
+##### `impl Eq for AsciiParser`
 
-##### `impl PartialEq`
+##### `impl PartialEq for AsciiParser`
 
-- `fn eq(self: &Self, other: &AsciiParser) -> bool` — [`AsciiParser`](../index.md)
+- `fn eq(self: &Self, other: &AsciiParser) -> bool` — [`AsciiParser`](#asciiparser)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for AsciiParser`
 
 ### `Utf8Parser`
 
@@ -247,29 +246,29 @@ Allow parsing UTF-8
 
 #### Trait Implementations
 
-##### `impl CharAccumulator`
+##### `impl CharAccumulator for Utf8Parser`
 
 - `fn add(self: &mut Self, byte: u8) -> Option<char>`
 
-##### `impl Clone`
+##### `impl Clone for Utf8Parser`
 
-- `fn clone(self: &Self) -> Utf8Parser` — [`Utf8Parser`](../index.md)
+- `fn clone(self: &Self) -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
 
-##### `impl Debug`
+##### `impl Debug for Utf8Parser`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Utf8Parser`
 
-- `fn default() -> Utf8Parser` — [`Utf8Parser`](../index.md)
+- `fn default() -> Utf8Parser` — [`Utf8Parser`](#utf8parser)
 
-##### `impl Eq`
+##### `impl Eq for Utf8Parser`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Utf8Parser`
 
-- `fn eq(self: &Self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](../index.md)
+- `fn eq(self: &Self, other: &Utf8Parser) -> bool` — [`Utf8Parser`](#utf8parser)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Utf8Parser`
 
 ## Traits
 

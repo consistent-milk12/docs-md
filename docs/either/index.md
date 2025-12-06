@@ -30,19 +30,19 @@ and `factor_iter_mut` methods.
 
 #### Implementations
 
-- `fn new(inner: Either<L, R>) -> Self` — [`Either`](../index.md)
+- `fn new(inner: Either<L, R>) -> Self` — [`Either`](#either)
 
 #### Trait Implementations
 
-##### `impl Clone<L: $crate::clone::Clone, R: $crate::clone::Clone>`
+##### `impl<L: $crate::clone::Clone, R: $crate::clone::Clone> Clone for IterEither<L, R>`
 
-- `fn clone(self: &Self) -> IterEither<L, R>` — [`IterEither`](../iterator/index.md)
+- `fn clone(self: &Self) -> IterEither<L, R>` — [`IterEither`](iterator/index.md)
 
-##### `impl Debug<L: $crate::fmt::Debug, R: $crate::fmt::Debug>`
+##### `impl<L: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for IterEither<L, R>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<L, R>`
+##### `impl<L, R> DoubleEndedIterator for IterEither<L, R>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
@@ -52,15 +52,15 @@ and `factor_iter_mut` methods.
 
 - `fn rfind<P>(self: &mut Self, predicate: P) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<L, R>`
+##### `impl<L, R> ExactSizeIterator for IterEither<L, R>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl FusedIterator<L, R>`
+##### `impl<L, R> FusedIterator for IterEither<L, R>`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for IterEither<L, R>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IterEither<L, R>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -68,7 +68,7 @@ and `factor_iter_mut` methods.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<L, R>`
+##### `impl<L, R> Iterator for IterEither<L, R>`
 
 - `type Item = Either<<L as Iterator>::Item, <R as Iterator>::Item>`
 
@@ -130,47 +130,45 @@ preference.
 
 #### Implementations
 
-- `fn into_inner(self: Self) -> T`
-
-- `fn map<F, M>(self: Self, f: F) -> Either<M, M>` — [`Either`](../index.md)
+- `fn factor_err(self: Self) -> Result<Either<L, R>, E>` — [`Either`](#either)
 
 #### Trait Implementations
 
-##### `impl AsMut<L, R, Target>`
+##### `impl<L, R, Target> AsMut for Either<L, R>`
 
-- `fn as_mut(self: &mut Self) -> &mut [Target]`
+- `fn as_mut(self: &mut Self) -> &mut Target`
 
-##### `impl AsRef<L, R>`
+##### `impl<L, R> AsRef for Either<L, R>`
 
 - `fn as_ref(self: &Self) -> &str`
 
-##### `impl Clone<L: Clone, R: Clone>`
+##### `impl<L: Clone, R: Clone> Clone for Either<L, R>`
 
 - `fn clone(self: &Self) -> Self`
 
 - `fn clone_from(self: &mut Self, source: &Self)`
 
-##### `impl Copy<L: $crate::marker::Copy, R: $crate::marker::Copy>`
+##### `impl<L: $crate::marker::Copy, R: $crate::marker::Copy> Copy for Either<L, R>`
 
-##### `impl Debug<L: $crate::fmt::Debug, R: $crate::fmt::Debug>`
+##### `impl<L: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for Either<L, R>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Deref<L, R>`
+##### `impl<L, R> Deref for Either<L, R>`
 
 - `type Target = <L as Deref>::Target`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut<L, R>`
+##### `impl<L, R> DerefMut for Either<L, R>`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Display<L, R>`
+##### `impl<L, R> Display for Either<L, R>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl DoubleEndedIterator<L, R>`
+##### `impl<L, R> DoubleEndedIterator for super::Either<L, R>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
@@ -180,31 +178,31 @@ preference.
 
 - `fn rfind<P>(self: &mut Self, predicate: P) -> Option<<Self as >::Item>`
 
-##### `impl Eq<L: $crate::cmp::Eq, R: $crate::cmp::Eq>`
+##### `impl<L: $crate::cmp::Eq, R: $crate::cmp::Eq> Eq for Either<L, R>`
 
-##### `impl ExactSizeIterator<L, R>`
+##### `impl<L, R> ExactSizeIterator for super::Either<L, R>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl Extend<L, R, A>`
+##### `impl<L, R, A> Extend for super::Either<L, R>`
 
 - `fn extend<T>(self: &mut Self, iter: T)`
 
-##### `impl FusedIterator<L, R>`
+##### `impl<L, R> FusedIterator for super::Either<L, R>`
 
-##### `impl Future<L, R>`
+##### `impl<L, R> Future for Either<L, R>`
 
 - `type Output = <L as Future>::Output`
 
 - `fn poll(self: Pin<&mut Self>, cx: &mut core::task::Context<'_>) -> core::task::Poll<<Self as >::Output>`
 
-##### `impl Hash<L: $crate::hash::Hash, R: $crate::hash::Hash>`
+##### `impl<L: $crate::hash::Hash, R: $crate::hash::Hash> Hash for Either<L, R>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Either<L, R>`
 
-##### `impl IntoFuture<F>`
+##### `impl<F> IntoFuture for Either<L, R>`
 
 - `type Output = <F as Future>::Output`
 
@@ -212,7 +210,7 @@ preference.
 
 - `fn into_future(self: Self) -> <F as IntoFuture>::IntoFuture`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Either<L, R>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -220,7 +218,7 @@ preference.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<L, R>`
+##### `impl<L, R> Iterator for super::Either<L, R>`
 
 - `type Item = <L as Iterator>::Item`
 
@@ -252,25 +250,25 @@ preference.
 
 - `fn position<P>(self: &mut Self, predicate: P) -> Option<usize>`
 
-##### `impl Ord<L: $crate::cmp::Ord, R: $crate::cmp::Ord>`
+##### `impl<L: $crate::cmp::Ord, R: $crate::cmp::Ord> Ord for Either<L, R>`
 
-- `fn cmp(self: &Self, other: &Either<L, R>) -> $crate::cmp::Ordering` — [`Either`](../index.md)
+- `fn cmp(self: &Self, other: &Either<L, R>) -> $crate::cmp::Ordering` — [`Either`](#either)
 
-##### `impl PartialEq<L: $crate::cmp::PartialEq, R: $crate::cmp::PartialEq>`
+##### `impl<L: $crate::cmp::PartialEq, R: $crate::cmp::PartialEq> PartialEq for Either<L, R>`
 
-- `fn eq(self: &Self, other: &Either<L, R>) -> bool` — [`Either`](../index.md)
+- `fn eq(self: &Self, other: &Either<L, R>) -> bool` — [`Either`](#either)
 
-##### `impl PartialOrd<L: $crate::cmp::PartialOrd, R: $crate::cmp::PartialOrd>`
+##### `impl<L: $crate::cmp::PartialOrd, R: $crate::cmp::PartialOrd> PartialOrd for Either<L, R>`
 
-- `fn partial_cmp(self: &Self, other: &Either<L, R>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Either`](../index.md)
+- `fn partial_cmp(self: &Self, other: &Either<L, R>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Either`](#either)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Either<L, R>`
 
 - `type Target = T`
 
-##### `impl StructuralPartialEq<L, R>`
+##### `impl<L, R> StructuralPartialEq for Either<L, R>`
 
-##### `impl Write<L, R>`
+##### `impl<L, R> Write for Either<L, R>`
 
 - `fn write_str(self: &mut Self, s: &str) -> fmt::Result`
 

@@ -29,21 +29,21 @@ JSON input source that reads from a slice of bytes.
 
 - `fn new(slice: &'a [u8]) -> Self`
 
-- `fn position_of_index(self: &Self, i: usize) -> Position` — [`Position`](../../read/index.md)
+- `fn position_of_index(self: &Self, i: usize) -> Position` — [`Position`](../read/index.md)
 
 - `fn skip_to_escape(self: &mut Self, forbid_control_characters: bool)`
 
 - `fn skip_to_escape_slow(self: &mut Self)`
 
-- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../../error/index.md), [`Reference`](../../read/index.md)
+- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<Reference<'a, 's, T>>` — [`Result`](../error/index.md), [`Reference`](../read/index.md)
 
 #### Trait Implementations
 
-##### `impl Fused<'a>`
+##### `impl<'a> Fused for SliceRead<'a>`
 
-##### `impl Read<'a>`
+##### `impl<'a> Read for SliceRead<'a>`
 
-##### `impl Sealed<'a>`
+##### `impl<'a> Sealed for SliceRead<'a>`
 
 ### `StrRead<'a>`
 
@@ -61,11 +61,11 @@ JSON input source that reads from a UTF-8 string.
 
 #### Trait Implementations
 
-##### `impl Fused<'a>`
+##### `impl<'a> Fused for StrRead<'a>`
 
-##### `impl Read<'a>`
+##### `impl<'a> Read for StrRead<'a>`
 
-##### `impl Sealed<'a>`
+##### `impl<'a> Sealed for StrRead<'a>`
 
 ### `IoRead<R>`
 
@@ -88,13 +88,13 @@ JSON input source that reads from a std::io input stream.
 
 #### Implementations
 
-- `fn new(reader: R) -> Self`
+- `fn parse_str_bytes<'s, T, F>(self: &'s mut Self, scratch: &'s mut Vec<u8>, validate: bool, result: F) -> Result<T>` — [`Result`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl Read<'de, R>`
+##### `impl<'de, R> Read for IoRead<R>`
 
-##### `impl Sealed<R>`
+##### `impl<R> Sealed for IoRead<R>`
 
 ### `Deserializer<R>`
 
@@ -110,73 +110,7 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn end(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>` — [`StreamDeserializer`](../../de/index.md)
-
-- `fn peek(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../../error/index.md)
-
-- `fn peek_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../../error/index.md)
-
-- `fn eat_char(self: &mut Self)`
-
-- `fn next_char(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../../error/index.md)
-
-- `fn next_char_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../../error/index.md)
-
-- `fn error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../../error/index.md), [`Error`](../../error/index.md)
-
-- `fn peek_error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../../error/index.md), [`Error`](../../error/index.md)
-
-- `fn parse_whitespace(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../../error/index.md)
-
-- `fn peek_invalid_type(self: &mut Self, exp: &dyn Expected) -> Error` — [`Error`](../../error/index.md)
-
-- `fn deserialize_number<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../../error/index.md)
-
-- `fn do_deserialize_i128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../../error/index.md)
-
-- `fn do_deserialize_u128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../../error/index.md)
-
-- `fn scan_integer128(self: &mut Self, buf: &mut String) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn fix_position(self: &Self, err: Error) -> Error` — [`Error`](../../error/index.md)
-
-- `fn parse_ident(self: &mut Self, ident: &[u8]) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn parse_integer(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../../error/index.md), [`ParserNumber`](../../de/index.md)
-
-- `fn parse_number(self: &mut Self, positive: bool, significand: u64) -> Result<ParserNumber>` — [`Result`](../../error/index.md), [`ParserNumber`](../../de/index.md)
-
-- `fn parse_decimal(self: &mut Self, positive: bool, significand: u64, exponent_before_decimal_point: i32) -> Result<f64>` — [`Result`](../../error/index.md)
-
-- `fn parse_exponent(self: &mut Self, positive: bool, significand: u64, starting_exp: i32) -> Result<f64>` — [`Result`](../../error/index.md)
-
-- `fn f64_from_parts(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../../error/index.md)
-
-- `fn parse_long_integer(self: &mut Self, positive: bool, significand: u64) -> Result<f64>` — [`Result`](../../error/index.md)
-
-- `fn parse_decimal_overflow(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../../error/index.md)
-
-- `fn parse_exponent_overflow(self: &mut Self, positive: bool, zero_significand: bool, positive_exp: bool) -> Result<f64>` — [`Result`](../../error/index.md)
-
-- `fn parse_any_signed_number(self: &mut Self) -> Result<ParserNumber>` — [`Result`](../../error/index.md), [`ParserNumber`](../../de/index.md)
-
-- `fn parse_any_number(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../../error/index.md), [`ParserNumber`](../../de/index.md)
-
-- `fn parse_object_colon(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn end_seq(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn end_map(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn ignore_value(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn ignore_integer(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn ignore_decimal(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
-
-- `fn ignore_exponent(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn from_reader(reader: R) -> Self`
 
 ### `StreamDeserializer<'de, R, T>`
 
@@ -218,13 +152,13 @@ fn main() {
 
 - `fn byte_offset(self: &Self) -> usize`
 
-- `fn peek_end_of_value(self: &mut Self) -> Result<()>` — [`Result`](../../error/index.md)
+- `fn peek_end_of_value(self: &mut Self) -> Result<()>` — [`Result`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl FusedIterator<'de, R, T>`
+##### `impl<'de, R, T> FusedIterator for StreamDeserializer<'de, R, T>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for StreamDeserializer<'de, R, T>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -232,11 +166,11 @@ fn main() {
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'de, R, T>`
+##### `impl<'de, R, T> Iterator for StreamDeserializer<'de, R, T>`
 
 - `type Item = Result<T, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<T>>` — [`Result`](../../error/index.md)
+- `fn next(self: &mut Self) -> Option<Result<T>>` — [`Result`](../error/index.md)
 
 ## Traits
 
@@ -269,7 +203,6 @@ Note that counter to intuition, this function is usually slower than
 reading a file completely into memory and then applying [`from_str`](#from-str)
 or [`from_slice`](#from-slice) on it. See [issue #160].
 
-[issue #160]: https://github.com/serde-rs/json/issues/160
 
 # Example
 

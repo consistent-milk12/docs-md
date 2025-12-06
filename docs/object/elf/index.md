@@ -108,17 +108,17 @@ The header at the start of every 32-bit ELF file.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for FileHeader32<E>`
 
-- `fn clone(self: &Self) -> FileHeader32<E>` — [`FileHeader32`](../../elf/index.md)
+- `fn clone(self: &Self) -> FileHeader32<E>` — [`FileHeader32`](#fileheader32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for FileHeader32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for FileHeader32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FileHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> FileHeader for elf::FileHeader32<Endian>`
 
 - `type Word = u32`
 
@@ -148,35 +148,35 @@ The header at the start of every 32-bit ELF file.
 
 - `fn is_type_64_sized() -> bool`
 
-- `fn e_ident(self: &Self) -> &elf::Ident` — [`Ident`](../../elf/index.md)
+- `fn e_ident(self: &Self) -> &elf::Ident` — [`Ident`](#ident)
 
-- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for FileHeader32<E>`
 
 ### `FileHeader64<E: Endian>`
 
@@ -273,17 +273,17 @@ The header at the start of every 64-bit ELF file.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for FileHeader64<E>`
 
-- `fn clone(self: &Self) -> FileHeader64<E>` — [`FileHeader64`](../../elf/index.md)
+- `fn clone(self: &Self) -> FileHeader64<E>` — [`FileHeader64`](#fileheader64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for FileHeader64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for FileHeader64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FileHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> FileHeader for elf::FileHeader64<Endian>`
 
 - `type Word = u64`
 
@@ -313,35 +313,35 @@ The header at the start of every 64-bit ELF file.
 
 - `fn is_type_64_sized() -> bool`
 
-- `fn e_ident(self: &Self) -> &elf::Ident` — [`Ident`](../../elf/index.md)
+- `fn e_ident(self: &Self) -> &elf::Ident` — [`Ident`](#ident)
 
-- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_type(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_machine(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_version(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_entry(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_phoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_shoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_ehsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_phentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_phnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_shentsize(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_shnum(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../../read/elf/file/index.md)
+- `fn e_shstrndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`FileHeader`](../read/elf/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for FileHeader64<E>`
 
 ### `Ident`
 
@@ -395,13 +395,13 @@ Contained in the file header.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Ident`
 
-- `fn clone(self: &Self) -> Ident` — [`Ident`](../../elf/index.md)
+- `fn clone(self: &Self) -> Ident` — [`Ident`](#ident)
 
-##### `impl Copy`
+##### `impl Copy for Ident`
 
-##### `impl Debug`
+##### `impl Debug for Ident`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -474,19 +474,19 @@ Section header.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SectionHeader32<E>`
 
-- `fn clone(self: &Self) -> SectionHeader32<E>` — [`SectionHeader32`](../../elf/index.md)
+- `fn clone(self: &Self) -> SectionHeader32<E>` — [`SectionHeader32`](#sectionheader32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SectionHeader32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SectionHeader32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SectionHeader32<E>`
 
-##### `impl SectionHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> SectionHeader for elf::SectionHeader32<Endian>`
 
 - `type Elf = FileHeader32<Endian>`
 
@@ -494,25 +494,25 @@ Section header.
 
 - `type Endian = Endian`
 
-- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
 ### `SectionHeader64<E: Endian>`
 
@@ -583,19 +583,19 @@ Section header.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SectionHeader64<E>`
 
-- `fn clone(self: &Self) -> SectionHeader64<E>` — [`SectionHeader64`](../../elf/index.md)
+- `fn clone(self: &Self) -> SectionHeader64<E>` — [`SectionHeader64`](#sectionheader64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SectionHeader64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SectionHeader64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SectionHeader64<E>`
 
-##### `impl SectionHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> SectionHeader for elf::SectionHeader64<Endian>`
 
 - `type Word = u64`
 
@@ -603,25 +603,25 @@ Section header.
 
 - `type Elf = FileHeader64<Endian>`
 
-- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_flags(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_link(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_info(self: &Self, endian: <Self as >::Endian) -> u32` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
-- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../../read/elf/section/index.md)
+- `fn sh_entsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`SectionHeader`](../read/elf/index.md)
 
 ### `CompressionHeader32<E: Endian>`
 
@@ -656,33 +656,33 @@ changed in a future version.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for CompressionHeader32<E>`
 
-- `fn clone(self: &Self) -> CompressionHeader32<E>` — [`CompressionHeader32`](../../elf/index.md)
+- `fn clone(self: &Self) -> CompressionHeader32<E>` — [`CompressionHeader32`](#compressionheader32)
 
-##### `impl CompressionHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> CompressionHeader for elf::CompressionHeader32<Endian>`
 
 - `type Word = u32`
 
 - `type Endian = Endian`
 
-- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../../read/elf/compression/index.md)
+- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md)
 
-- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../../read/elf/compression/index.md)
+- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md)
 
-- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../../read/elf/compression/index.md)
+- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for CompressionHeader32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for CompressionHeader32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for CompressionHeader32<E>`
 
-- `fn default() -> CompressionHeader32<E>` — [`CompressionHeader32`](../../elf/index.md)
+- `fn default() -> CompressionHeader32<E>` — [`CompressionHeader32`](#compressionheader32)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for CompressionHeader32<E>`
 
 ### `CompressionHeader64<E: Endian>`
 
@@ -722,33 +722,33 @@ changed in a future version.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for CompressionHeader64<E>`
 
-- `fn clone(self: &Self) -> CompressionHeader64<E>` — [`CompressionHeader64`](../../elf/index.md)
+- `fn clone(self: &Self) -> CompressionHeader64<E>` — [`CompressionHeader64`](#compressionheader64)
 
-##### `impl CompressionHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> CompressionHeader for elf::CompressionHeader64<Endian>`
 
 - `type Word = u64`
 
 - `type Endian = Endian`
 
-- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../../read/elf/compression/index.md)
+- `fn ch_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`CompressionHeader`](../read/elf/index.md)
 
-- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../../read/elf/compression/index.md)
+- `fn ch_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md)
 
-- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../../read/elf/compression/index.md)
+- `fn ch_addralign(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`CompressionHeader`](../read/elf/index.md)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for CompressionHeader64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for CompressionHeader64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for CompressionHeader64<E>`
 
-- `fn default() -> CompressionHeader64<E>` — [`CompressionHeader64`](../../elf/index.md)
+- `fn default() -> CompressionHeader64<E>` — [`CompressionHeader64`](#compressionheader64)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for CompressionHeader64<E>`
 
 ### `Sym32<E: Endian>`
 
@@ -809,29 +809,29 @@ Symbol table entry.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Sym32<E>`
 
-- `fn clone(self: &Self) -> Sym32<E>` — [`Sym32`](../../elf/index.md)
+- `fn clone(self: &Self) -> Sym32<E>` — [`Sym32`](#sym32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Sym32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Sym32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for Sym32<E>`
 
-- `fn default() -> Sym32<E>` — [`Sym32`](../../elf/index.md)
+- `fn default() -> Sym32<E>` — [`Sym32`](#sym32)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Sym32<E>`
 
-##### `impl Sym<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Sym for elf::Sym32<Endian>`
 
 - `type Word = u32`
 
 - `type Endian = Endian`
 
-- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`Sym`](../../read/elf/symbol/index.md)
+- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md)
 
 - `fn st_info(self: &Self) -> u8`
 
@@ -843,11 +843,11 @@ Symbol table entry.
 
 - `fn st_visibility(self: &Self) -> u8`
 
-- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`Sym`](../../read/elf/symbol/index.md)
+- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md)
 
-- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../../read/elf/symbol/index.md)
+- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md)
 
-- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../../read/elf/symbol/index.md)
+- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md)
 
 ### `Sym64<E: Endian>`
 
@@ -908,29 +908,29 @@ Symbol table entry.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Sym64<E>`
 
-- `fn clone(self: &Self) -> Sym64<E>` — [`Sym64`](../../elf/index.md)
+- `fn clone(self: &Self) -> Sym64<E>` — [`Sym64`](#sym64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Sym64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Sym64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for Sym64<E>`
 
-- `fn default() -> Sym64<E>` — [`Sym64`](../../elf/index.md)
+- `fn default() -> Sym64<E>` — [`Sym64`](#sym64)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Sym64<E>`
 
-##### `impl Sym<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Sym for elf::Sym64<Endian>`
 
 - `type Word = u64`
 
 - `type Endian = Endian`
 
-- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`Sym`](../../read/elf/symbol/index.md)
+- `fn st_name(self: &Self, endian: <Self as >::Endian) -> u32` — [`Sym`](../read/elf/index.md)
 
 - `fn st_info(self: &Self) -> u8`
 
@@ -942,11 +942,11 @@ Symbol table entry.
 
 - `fn st_visibility(self: &Self) -> u8`
 
-- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`Sym`](../../read/elf/symbol/index.md)
+- `fn st_shndx(self: &Self, endian: <Self as >::Endian) -> u16` — [`Sym`](../read/elf/index.md)
 
-- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../../read/elf/symbol/index.md)
+- `fn st_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md)
 
-- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../../read/elf/symbol/index.md)
+- `fn st_size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Sym`](../read/elf/index.md)
 
 ### `Syminfo32<E: Endian>`
 
@@ -971,17 +971,17 @@ Additional information about a `Sym32`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Syminfo32<E>`
 
-- `fn clone(self: &Self) -> Syminfo32<E>` — [`Syminfo32`](../../elf/index.md)
+- `fn clone(self: &Self) -> Syminfo32<E>` — [`Syminfo32`](#syminfo32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Syminfo32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Syminfo32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Syminfo32<E>`
 
 ### `Syminfo64<E: Endian>`
 
@@ -1006,17 +1006,17 @@ Additional information about a `Sym64`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Syminfo64<E>`
 
-- `fn clone(self: &Self) -> Syminfo64<E>` — [`Syminfo64`](../../elf/index.md)
+- `fn clone(self: &Self) -> Syminfo64<E>` — [`Syminfo64`](#syminfo64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Syminfo64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Syminfo64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Syminfo64<E>`
 
 ### `Rel32<E: Endian>`
 
@@ -1045,25 +1045,25 @@ Relocation table entry without explicit addend.
 
 - `fn r_type(self: &Self, endian: E) -> u32`
 
-- `fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../../endian/index.md)
+- `fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../index.md)
 
 - `fn set_r_info(self: &mut Self, endian: E, r_sym: u32, r_type: u8)`
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Rel32<E>`
 
-- `fn clone(self: &Self) -> Rel32<E>` — [`Rel32`](../../elf/index.md)
+- `fn clone(self: &Self) -> Rel32<E>` — [`Rel32`](#rel32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Rel32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Rel32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Rel32<E>`
 
-##### `impl Rel<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Rel for elf::Rel32<Endian>`
 
 - `type Word = u32`
 
@@ -1071,13 +1071,13 @@ Relocation table entry without explicit addend.
 
 - `type Endian = Endian`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../../read/elf/relocation/index.md)
+- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../../read/elf/relocation/index.md)
+- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../../read/elf/relocation/index.md)
+- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md)
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../../read/elf/relocation/index.md)
+- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md)
 
 ### `Rela32<E: Endian>`
 
@@ -1111,25 +1111,25 @@ Relocation table entry with explicit addend.
 
 - `fn r_type(self: &Self, endian: E) -> u32`
 
-- `fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../../endian/index.md)
+- `fn r_info(endian: E, r_sym: u32, r_type: u8) -> U32<E>` — [`U32`](../index.md)
 
 - `fn set_r_info(self: &mut Self, endian: E, r_sym: u32, r_type: u8)`
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Rela32<E>`
 
-- `fn clone(self: &Self) -> Rela32<E>` — [`Rela32`](../../elf/index.md)
+- `fn clone(self: &Self) -> Rela32<E>` — [`Rela32`](#rela32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Rela32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Rela32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Rela32<E>`
 
-##### `impl Rela<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Rela for elf::Rela32<Endian>`
 
 - `type Word = u32`
 
@@ -1137,15 +1137,15 @@ Relocation table entry with explicit addend.
 
 - `type Endian = Endian`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_info(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
 
-- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md)
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_sym(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md)
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_type(self: &Self, endian: <Self as >::Endian, _is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md)
 
 ### `Rel64<E: Endian>`
 
@@ -1174,25 +1174,25 @@ Relocation table entry without explicit addend.
 
 - `fn r_type(self: &Self, endian: E) -> u32`
 
-- `fn r_info(endian: E, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../../endian/index.md)
+- `fn r_info(endian: E, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../index.md)
 
 - `fn set_r_info(self: &mut Self, endian: E, r_sym: u32, r_type: u32)`
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Rel64<E>`
 
-- `fn clone(self: &Self) -> Rel64<E>` — [`Rel64`](../../elf/index.md)
+- `fn clone(self: &Self) -> Rel64<E>` — [`Rel64`](#rel64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Rel64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Rel64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Rel64<E>`
 
-##### `impl Rel<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Rel for elf::Rel64<Endian>`
 
 - `type Word = u64`
 
@@ -1200,13 +1200,13 @@ Relocation table entry without explicit addend.
 
 - `type Endian = Endian`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../../read/elf/relocation/index.md)
+- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../../read/elf/relocation/index.md)
+- `fn r_info(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rel`](../read/elf/index.md)
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../../read/elf/relocation/index.md)
+- `fn r_sym(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md)
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../../read/elf/relocation/index.md)
+- `fn r_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`Rel`](../read/elf/index.md)
 
 ### `Rela64<E: Endian>`
 
@@ -1242,25 +1242,25 @@ Relocation table entry with explicit addend.
 
 - `fn r_type(self: &Self, endian: E, is_mips64el: bool) -> u32`
 
-- `fn r_info(endian: E, is_mips64el: bool, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../../endian/index.md)
+- `fn r_info(endian: E, is_mips64el: bool, r_sym: u32, r_type: u32) -> U64<E>` — [`U64`](../index.md)
 
 - `fn set_r_info(self: &mut Self, endian: E, is_mips64el: bool, r_sym: u32, r_type: u32)`
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Rela64<E>`
 
-- `fn clone(self: &Self) -> Rela64<E>` — [`Rela64`](../../elf/index.md)
+- `fn clone(self: &Self) -> Rela64<E>` — [`Rela64`](#rela64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Rela64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Rela64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Rela64<E>`
 
-##### `impl Rela<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Rela for elf::Rela64<Endian>`
 
 - `type Word = u64`
 
@@ -1268,15 +1268,15 @@ Relocation table entry with explicit addend.
 
 - `type Endian = Endian`
 
-- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
 
-- `fn r_info(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_info(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> <Self as >::Word` — [`Rela`](../read/elf/index.md)
 
-- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_addend(self: &Self, endian: <Self as >::Endian) -> <Self as >::Sword` — [`Rela`](../read/elf/index.md)
 
-- `fn r_sym(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_sym(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md)
 
-- `fn r_type(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../../read/elf/relocation/index.md)
+- `fn r_type(self: &Self, endian: <Self as >::Endian, is_mips64el: bool) -> u32` — [`Rela`](../read/elf/index.md)
 
 ### `Relr32<E: Endian>`
 
@@ -1288,19 +1288,19 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Relr32<E>`
 
-- `fn clone(self: &Self) -> Relr32<E>` — [`Relr32`](../../elf/index.md)
+- `fn clone(self: &Self) -> Relr32<E>` — [`Relr32`](#relr32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Relr32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Relr32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Relr32<E>`
 
-##### `impl Relr<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Relr for elf::Relr32<Endian>`
 
 - `type Word = u32`
 
@@ -1308,9 +1308,9 @@ struct Relr32<E: Endian>(crate::endian::U32<E>);
 
 - `const COUNT: u8`
 
-- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../../read/elf/relocation/index.md)
+- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md)
 
-- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../../read/elf/relocation/index.md)
+- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md)
 
 ### `Relr64<E: Endian>`
 
@@ -1322,19 +1322,19 @@ struct Relr64<E: Endian>(crate::endian::U64<E>);
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Relr64<E>`
 
-- `fn clone(self: &Self) -> Relr64<E>` — [`Relr64`](../../elf/index.md)
+- `fn clone(self: &Self) -> Relr64<E>` — [`Relr64`](#relr64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Relr64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Relr64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Relr64<E>`
 
-##### `impl Relr<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Relr for elf::Relr64<Endian>`
 
 - `type Word = u64`
 
@@ -1342,9 +1342,9 @@ struct Relr64<E: Endian>(crate::endian::U64<E>);
 
 - `const COUNT: u8`
 
-- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../../read/elf/relocation/index.md)
+- `fn get(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Relr`](../read/elf/index.md)
 
-- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../../read/elf/relocation/index.md)
+- `fn next(offset: &mut <Self as >::Word, bits: &mut <Self as >::Word) -> Option<<Self as >::Word>` — [`Relr`](../read/elf/index.md)
 
 ### `ProgramHeader32<E: Endian>`
 
@@ -1399,19 +1399,19 @@ Program segment header.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for ProgramHeader32<E>`
 
-- `fn clone(self: &Self) -> ProgramHeader32<E>` — [`ProgramHeader32`](../../elf/index.md)
+- `fn clone(self: &Self) -> ProgramHeader32<E>` — [`ProgramHeader32`](#programheader32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for ProgramHeader32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for ProgramHeader32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for ProgramHeader32<E>`
 
-##### `impl ProgramHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> ProgramHeader for elf::ProgramHeader32<Endian>`
 
 - `type Word = u32`
 
@@ -1419,21 +1419,21 @@ Program segment header.
 
 - `type Elf = FileHeader32<Endian>`
 
-- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
 ### `ProgramHeader64<E: Endian>`
 
@@ -1488,19 +1488,19 @@ Program segment header.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for ProgramHeader64<E>`
 
-- `fn clone(self: &Self) -> ProgramHeader64<E>` — [`ProgramHeader64`](../../elf/index.md)
+- `fn clone(self: &Self) -> ProgramHeader64<E>` — [`ProgramHeader64`](#programheader64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for ProgramHeader64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for ProgramHeader64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for ProgramHeader64<E>`
 
-##### `impl ProgramHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> ProgramHeader for elf::ProgramHeader64<Endian>`
 
 - `type Word = u64`
 
@@ -1508,21 +1508,21 @@ Program segment header.
 
 - `type Elf = FileHeader64<Endian>`
 
-- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_offset(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_vaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_paddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_filesz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_memsz(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
-- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../../read/elf/segment/index.md)
+- `fn p_align(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`ProgramHeader`](../read/elf/index.md)
 
 ### `Dyn32<E: Endian>`
 
@@ -1547,27 +1547,27 @@ Dynamic section entry.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Dyn32<E>`
 
-- `fn clone(self: &Self) -> Dyn32<E>` — [`Dyn32`](../../elf/index.md)
+- `fn clone(self: &Self) -> Dyn32<E>` — [`Dyn32`](#dyn32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Dyn32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Dyn32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Dyn<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Dyn for elf::Dyn32<Endian>`
 
 - `type Word = u32`
 
 - `type Endian = Endian`
 
-- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../../read/elf/dynamic/index.md)
+- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
 
-- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../../read/elf/dynamic/index.md)
+- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Dyn32<E>`
 
 ### `Dyn64<E: Endian>`
 
@@ -1592,27 +1592,27 @@ Dynamic section entry.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Dyn64<E>`
 
-- `fn clone(self: &Self) -> Dyn64<E>` — [`Dyn64`](../../elf/index.md)
+- `fn clone(self: &Self) -> Dyn64<E>` — [`Dyn64`](#dyn64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Dyn64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Dyn64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Dyn<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Dyn for elf::Dyn64<Endian>`
 
 - `type Word = u64`
 
 - `type Endian = Endian`
 
-- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../../read/elf/dynamic/index.md)
+- `fn d_tag(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
 
-- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../../read/elf/dynamic/index.md)
+- `fn d_val(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Dyn`](../read/elf/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Dyn64<E>`
 
 ### `Versym<E: Endian>`
 
@@ -1624,17 +1624,17 @@ Version symbol information
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Versym<E>`
 
-- `fn clone(self: &Self) -> Versym<E>` — [`Versym`](../../elf/index.md)
+- `fn clone(self: &Self) -> Versym<E>` — [`Versym`](#versym)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Versym<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Versym<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Versym<E>`
 
 ### `Verdef<E: Endian>`
 
@@ -1684,17 +1684,17 @@ Version definition sections
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Verdef<E>`
 
-- `fn clone(self: &Self) -> Verdef<E>` — [`Verdef`](../../elf/index.md)
+- `fn clone(self: &Self) -> Verdef<E>` — [`Verdef`](#verdef)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Verdef<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Verdef<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Verdef<E>`
 
 ### `Verdaux<E: Endian>`
 
@@ -1719,21 +1719,21 @@ Auxiliary version information.
 
 #### Implementations
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
+- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Verdaux<E>`
 
-- `fn clone(self: &Self) -> Verdaux<E>` — [`Verdaux`](../../elf/index.md)
+- `fn clone(self: &Self) -> Verdaux<E>` — [`Verdaux`](#verdaux)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Verdaux<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Verdaux<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Verdaux<E>`
 
 ### `Verneed<E: Endian>`
 
@@ -1773,21 +1773,21 @@ Version dependency.
 
 #### Implementations
 
-- `fn file<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
+- `fn file<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Verneed<E>`
 
-- `fn clone(self: &Self) -> Verneed<E>` — [`Verneed`](../../elf/index.md)
+- `fn clone(self: &Self) -> Verneed<E>` — [`Verneed`](#verneed)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Verneed<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Verneed<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Verneed<E>`
 
 ### `Vernaux<E: Endian>`
 
@@ -1827,21 +1827,21 @@ Auxiliary needed version information.
 
 #### Implementations
 
-- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
+- `fn name<'data, R: ReadRef<'data>>(self: &Self, endian: Endian, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Vernaux<E>`
 
-- `fn clone(self: &Self) -> Vernaux<E>` — [`Vernaux`](../../elf/index.md)
+- `fn clone(self: &Self) -> Vernaux<E>` — [`Vernaux`](#vernaux)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Vernaux<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Vernaux<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Vernaux<E>`
 
 ### `NoteHeader32<E: Endian>`
 
@@ -1880,27 +1880,27 @@ A note consists of a header followed by a variable length name and descriptor.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for NoteHeader32<E>`
 
-- `fn clone(self: &Self) -> NoteHeader32<E>` — [`NoteHeader32`](../../elf/index.md)
+- `fn clone(self: &Self) -> NoteHeader32<E>` — [`NoteHeader32`](#noteheader32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for NoteHeader32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for NoteHeader32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl NoteHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> NoteHeader for elf::NoteHeader32<Endian>`
 
 - `type Endian = Endian`
 
-- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
+- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
 
-- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
+- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
 
-- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
+- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for NoteHeader32<E>`
 
 ### `NoteHeader64<E: Endian>`
 
@@ -1937,27 +1937,27 @@ Note section entry header.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for NoteHeader64<E>`
 
-- `fn clone(self: &Self) -> NoteHeader64<E>` — [`NoteHeader64`](../../elf/index.md)
+- `fn clone(self: &Self) -> NoteHeader64<E>` — [`NoteHeader64`](#noteheader64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for NoteHeader64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for NoteHeader64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl NoteHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> NoteHeader for elf::NoteHeader64<Endian>`
 
 - `type Endian = Endian`
 
-- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
+- `fn n_namesz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
 
-- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
+- `fn n_descsz(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
 
-- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../../read/elf/note/index.md)
+- `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32` — [`NoteHeader`](../read/elf/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for NoteHeader64<E>`
 
 ### `HashHeader<E: Endian>`
 
@@ -1982,17 +1982,17 @@ Header of `SHT_HASH` section.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for HashHeader<E>`
 
-- `fn clone(self: &Self) -> HashHeader<E>` — [`HashHeader`](../../elf/index.md)
+- `fn clone(self: &Self) -> HashHeader<E>` — [`HashHeader`](#hashheader)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for HashHeader<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for HashHeader<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for HashHeader<E>`
 
 ### `GnuHashHeader<E: Endian>`
 
@@ -2029,17 +2029,17 @@ Header of `SHT_GNU_HASH` section.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for GnuHashHeader<E>`
 
-- `fn clone(self: &Self) -> GnuHashHeader<E>` — [`GnuHashHeader`](../../elf/index.md)
+- `fn clone(self: &Self) -> GnuHashHeader<E>` — [`GnuHashHeader`](#gnuhashheader)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for GnuHashHeader<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for GnuHashHeader<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for GnuHashHeader<E>`
 
 ## Functions
 

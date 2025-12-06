@@ -2,16 +2,12 @@
 
 [![github](#github)](https://github.com/dtolnay/unicode-ident)&ensp;[![crates-io]](https://crates.io/crates/unicode-ident)&ensp;[![docs-rs]](https://docs.rs/unicode-ident)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
-[crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
-[docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
+
 
 <br>
 
 Implementation of [Unicode Standard Annex #31][tr31](#tr31) for determining which
 `char` values are valid in programming language identifiers.
-
-[tr31](#tr31): https://www.unicode.org/reports/tr31/
 
 This crate is a better optimized implementation of the older `unicode-xid`
 crate. This crate uses less static storage, and is able to classify both
@@ -109,8 +105,6 @@ Their data structure is a compressed trie set specifically tailored for
 Unicode codepoints. The design is credited to Raph Levien in
 [rust-lang/rust#33098].
 
-[rust-lang/rust#33098]: https://github.com/rust-lang/rust/pull/33098
-
 ```rust
 pub struct TrieSet {
     tree1_level1: &'static [u64; 32],
@@ -156,8 +150,6 @@ Uses a [finite state transducer][fst](#fst). This representation is built into
 representation. In particular `ucd-trie` is optimized for storing Unicode
 properties while `fst` is not.
 
-[fst](#fst): https://github.com/BurntSushi/fst
-[ucd-generate]: https://github.com/BurntSushi/ucd-generate
 
 As far as I can tell, the main thing that causes `fst` to have large size
 and slow lookups for this use case relative to `ucd-trie` is that it does
@@ -169,8 +161,6 @@ that could never possibly be used.
 
 This crate is a pure-Rust implementation of [Roaring Bitmap], a data
 structure designed for storing sets of 32-bit unsigned integers.
-
-[Roaring Bitmap]: https://roaringbitmap.org/about/
 
 Roaring bitmaps are compressed bitmaps which tend to outperform conventional
 compressed bitmaps such as WAH, EWAH or Concise. In some instances, they can

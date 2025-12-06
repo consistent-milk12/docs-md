@@ -49,7 +49,7 @@ word boundary support, although neither are enabled by default. It might
 also fail if the underlying DFA determines it isn't making effective use of
 the cache (which also never happens by default). Or it might fail because
 an invalid `Input` configuration is given, for example, with an unsupported
-[`Anchored`](../../util/search/index.md) mode.
+[`Anchored`](../../index.md) mode.
 
 If you need to handle these error cases instead of allowing them to trigger
 a panic, then the lower level `Regex::try_search` provides a fallible API
@@ -103,13 +103,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>` — [`Cache`](../../../hybrid/regex/index.md), [`Input`](../../../util/search/index.md), [`Match`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
 
-- `fn is_anchored(self: &Self, input: &Input<'_>) -> bool` — [`Input`](../../../util/search/index.md)
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+
+- `fn builder() -> Builder` — [`Builder`](#builder)
+
+- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
+
+- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Regex`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -138,11 +144,11 @@ This iterator can be created with the `Regex::find_iter` method.
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Debug for FindMatches<'r, 'c, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindMatches<'r, 'c, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -150,11 +156,11 @@ This iterator can be created with the `Regex::find_iter` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Iterator for FindMatches<'r, 'c, 'h>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../index.md)
 
 ### `Cache`
 
@@ -183,31 +189,31 @@ panics or incorrect results.
 
 #### Implementations
 
-- `fn new(re: &Regex) -> Cache` — [`Regex`](../../../hybrid/regex/index.md), [`Cache`](../../../hybrid/regex/index.md)
+- `fn new(re: &Regex) -> Cache` — [`Regex`](#regex), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, re: &Regex)` — [`Regex`](../../../hybrid/regex/index.md)
+- `fn reset(self: &mut Self, re: &Regex)` — [`Regex`](#regex)
 
-- `fn forward(self: &mut Self) -> &dfa::Cache` — [`Cache`](../../../hybrid/dfa/index.md)
+- `fn forward(self: &mut Self) -> &dfa::Cache` — [`Cache`](../dfa/index.md)
 
-- `fn reverse(self: &mut Self) -> &dfa::Cache` — [`Cache`](../../../hybrid/dfa/index.md)
+- `fn reverse(self: &mut Self) -> &dfa::Cache` — [`Cache`](../dfa/index.md)
 
-- `fn forward_mut(self: &mut Self) -> &mut dfa::Cache` — [`Cache`](../../../hybrid/dfa/index.md)
+- `fn forward_mut(self: &mut Self) -> &mut dfa::Cache` — [`Cache`](../dfa/index.md)
 
-- `fn reverse_mut(self: &mut Self) -> &mut dfa::Cache` — [`Cache`](../../../hybrid/dfa/index.md)
+- `fn reverse_mut(self: &mut Self) -> &mut dfa::Cache` — [`Cache`](../dfa/index.md)
 
-- `fn as_parts(self: &Self) -> (&dfa::Cache, &dfa::Cache)` — [`Cache`](../../../hybrid/dfa/index.md)
+- `fn as_parts(self: &Self) -> (&dfa::Cache, &dfa::Cache)` — [`Cache`](../dfa/index.md)
 
-- `fn as_parts_mut(self: &mut Self) -> (&mut dfa::Cache, &mut dfa::Cache)` — [`Cache`](../../../hybrid/dfa/index.md)
+- `fn as_parts_mut(self: &mut Self) -> (&mut dfa::Cache, &mut dfa::Cache)` — [`Cache`](../dfa/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../hybrid/regex/index.md)
+- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
 
-##### `impl Debug`
+##### `impl Debug for Cache`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -277,31 +283,31 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../../../hybrid/regex/index.md)
+- `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](../../../hybrid/regex/index.md), [`BuildError`](../../../hybrid/error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](../../../hybrid/regex/index.md), [`BuildError`](../../../hybrid/error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
 
-- `fn build_from_dfas(self: &Self, forward: DFA, reverse: DFA) -> Regex` — [`DFA`](../../../hybrid/dfa/index.md), [`Regex`](../../../hybrid/regex/index.md)
+- `fn build_from_dfas(self: &Self, forward: DFA, reverse: DFA) -> Regex` — [`DFA`](../dfa/index.md), [`Regex`](#regex)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](../../../hybrid/regex/index.md)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../nfa/thompson/compiler/index.md), [`Builder`](../../../hybrid/regex/index.md)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
 
-- `fn dfa(self: &mut Self, config: dfa::Config) -> &mut Builder` — [`Config`](../../../hybrid/dfa/index.md), [`Builder`](../../../hybrid/regex/index.md)
+- `fn dfa(self: &mut Self, config: dfa::Config) -> &mut Builder` — [`Config`](../dfa/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../hybrid/regex/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
-##### `impl Debug`
+##### `impl Debug for Builder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](../../../hybrid/regex/index.md)
+- `fn default() -> Builder` — [`Builder`](#builder)
 

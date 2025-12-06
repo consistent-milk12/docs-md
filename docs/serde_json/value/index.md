@@ -91,10 +91,9 @@ fn untyped_example() -> Result<(), Error> {
 untyped_example().unwrap();
 ```
 
-[macro](#macro): crate::json
-[from_str](#from-str): crate::de::from_str
-[from_slice](#from-slice): crate::de::from_slice
-[from_reader](#from-reader): crate::de::from_reader
+
+
+
 
 ## Structs
 
@@ -127,7 +126,7 @@ where
 
 #### Trait Implementations
 
-##### `impl Serializer`
+##### `impl Serializer for Serializer`
 
 - `type Ok = Value`
 
@@ -147,67 +146,67 @@ where
 
 - `type SerializeStructVariant = SerializeStructVariant`
 
-- `fn serialize_bool(self: Self, value: bool) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_bool(self: Self, value: bool) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_i8(self: Self, value: i8) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_i8(self: Self, value: i8) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_i16(self: Self, value: i16) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_i16(self: Self, value: i16) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_i32(self: Self, value: i32) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_i32(self: Self, value: i32) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_i64(self: Self, value: i64) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_i64(self: Self, value: i64) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_i128(self: Self, value: i128) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_i128(self: Self, value: i128) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_u8(self: Self, value: u8) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_u8(self: Self, value: u8) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_u16(self: Self, value: u16) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_u16(self: Self, value: u16) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_u32(self: Self, value: u32) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_u32(self: Self, value: u32) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_u64(self: Self, value: u64) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_u64(self: Self, value: u64) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_u128(self: Self, value: u128) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_u128(self: Self, value: u128) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_f32(self: Self, float: f32) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_f32(self: Self, float: f32) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_f64(self: Self, float: f64) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_f64(self: Self, float: f64) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_char(self: Self, value: char) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_char(self: Self, value: char) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_str(self: Self, value: &str) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_str(self: Self, value: &str) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_bytes(self: Self, value: &[u8]) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_bytes(self: Self, value: &[u8]) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_unit(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_unit(self: Self) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_unit_struct(self: Self, _name: &'static str) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_unit_struct(self: Self, _name: &'static str) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_unit_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_unit_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_newtype_struct<T>(self: Self, _name: &'static str, value: &T) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_newtype_struct<T>(self: Self, _name: &'static str, value: &T) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_newtype_variant<T>(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, value: &T) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_newtype_variant<T>(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, value: &T) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_none(self: Self) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_none(self: Self) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_some<T>(self: Self, value: &T) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn serialize_some<T>(self: Self, value: &T) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
-- `fn serialize_seq(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../../error/index.md)
+- `fn serialize_seq(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../error/index.md)
 
-- `fn serialize_tuple(self: Self, len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple(self: Self, len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../error/index.md)
 
-- `fn serialize_tuple_struct(self: Self, _name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple_struct(self: Self, _name: &'static str, len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../error/index.md)
 
-- `fn serialize_tuple_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../../error/index.md)
+- `fn serialize_tuple_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../error/index.md)
 
-- `fn serialize_map(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../../error/index.md)
+- `fn serialize_map(self: Self, len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../error/index.md)
 
-- `fn serialize_struct(self: Self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../../error/index.md)
+- `fn serialize_struct(self: Self, name: &'static str, len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../error/index.md)
 
-- `fn serialize_struct_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../../error/index.md)
+- `fn serialize_struct_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../error/index.md)
 
-- `fn collect_str<T>(self: Self, value: &T) -> Result<Value>` — [`Result`](../../error/index.md), [`Value`](../../value/index.md)
+- `fn collect_str<T>(self: Self, value: &T) -> Result<Value>` — [`Result`](../error/index.md), [`Value`](#value)
 
 ### `Map<K, V>`
 
@@ -227,39 +226,39 @@ Represents a JSON key/value type.
 
 - `fn clear(self: &mut Self)`
 
-- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>` — [`Value`](../../value/index.md)
+- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>` — [`Value`](#value)
 
 - `fn contains_key<Q>(self: &Self, key: &Q) -> bool`
 
-- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>` — [`Value`](../../value/index.md)
+- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>` — [`Value`](#value)
 
-- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../../value/index.md)
+- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](#value)
 
-- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>` — [`Value`](../../value/index.md)
+- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>` — [`Value`](#value)
 
-- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>` — [`Value`](../../value/index.md)
+- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>` — [`Value`](#value)
 
-- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>` — [`Value`](../../value/index.md)
+- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>` — [`Value`](#value)
 
 - `fn append(self: &mut Self, other: &mut Self)`
 
-- `fn entry<S>(self: &mut Self, key: S) -> Entry<'_>` — [`Entry`](../../map/index.md)
+- `fn entry<S>(self: &mut Self, key: S) -> Entry<'_>` — [`Entry`](../map/index.md)
 
 - `fn len(self: &Self) -> usize`
 
 - `fn is_empty(self: &Self) -> bool`
 
-- `fn iter(self: &Self) -> Iter<'_>` — [`Iter`](../../map/index.md)
+- `fn iter(self: &Self) -> Iter<'_>` — [`Iter`](../map/index.md)
 
-- `fn iter_mut(self: &mut Self) -> IterMut<'_>` — [`IterMut`](../../map/index.md)
+- `fn iter_mut(self: &mut Self) -> IterMut<'_>` — [`IterMut`](../map/index.md)
 
-- `fn keys(self: &Self) -> Keys<'_>` — [`Keys`](../../map/index.md)
+- `fn keys(self: &Self) -> Keys<'_>` — [`Keys`](../map/index.md)
 
-- `fn values(self: &Self) -> Values<'_>` — [`Values`](../../map/index.md)
+- `fn values(self: &Self) -> Values<'_>` — [`Values`](../map/index.md)
 
-- `fn values_mut(self: &mut Self) -> ValuesMut<'_>` — [`ValuesMut`](../../map/index.md)
+- `fn values_mut(self: &mut Self) -> ValuesMut<'_>` — [`ValuesMut`](../map/index.md)
 
-- `fn into_values(self: Self) -> IntoValues` — [`IntoValues`](../../map/index.md)
+- `fn into_values(self: Self) -> IntoValues` — [`IntoValues`](../map/index.md)
 
 - `fn retain<F>(self: &mut Self, f: F)`
 
@@ -267,27 +266,27 @@ Represents a JSON key/value type.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Map<alloc::string::String, crate::value::Value>`
 
 - `fn clone(self: &Self) -> Self`
 
 - `fn clone_from(self: &mut Self, source: &Self)`
 
-##### `impl Debug`
+##### `impl Debug for Map<alloc::string::String, crate::value::Value>`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Default`
+##### `impl Default for Map<alloc::string::String, crate::value::Value>`
 
 - `fn default() -> Self`
 
-##### `impl Deserialize<'de>`
+##### `impl<'de> Deserialize for Map<alloc::string::String, crate::value::Value>`
 
 - `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
-##### `impl DeserializeOwned<T>`
+##### `impl<T> DeserializeOwned for Map<K, V>`
 
-##### `impl Deserializer<'de>`
+##### `impl<'de> Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
 
 - `type Error = Error`
 
@@ -353,43 +352,43 @@ Represents a JSON key/value type.
 
 - `fn deserialize_identifier<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
-##### `impl Eq`
+##### `impl Eq for Map<alloc::string::String, crate::value::Value>`
 
-##### `impl Extend`
+##### `impl Extend for Map<alloc::string::String, crate::value::Value>`
 
 - `fn extend<T>(self: &mut Self, iter: T)`
 
-##### `impl FromIterator`
+##### `impl FromIterator for Map<alloc::string::String, crate::value::Value>`
 
 - `fn from_iter<T>(iter: T) -> Self`
 
-##### `impl FromStr`
+##### `impl FromStr for crate::map::Map<alloc::string::String, crate::value::Value>`
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../../error/index.md)
+- `fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md)
 
-##### `impl Hash`
+##### `impl Hash for Map<alloc::string::String, crate::value::Value>`
 
 - `fn hash<H: Hasher>(self: &Self, state: &mut H)`
 
-##### `impl Index<Q>`
+##### `impl<Q> Index for Map<alloc::string::String, crate::value::Value>`
 
 - `type Output = Value`
 
-- `fn index(self: &Self, index: &Q) -> &Value` — [`Value`](../../value/index.md)
+- `fn index(self: &Self, index: &Q) -> &Value` — [`Value`](#value)
 
-##### `impl IndexMut<Q>`
+##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
 
-- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value` — [`Value`](../../value/index.md)
+- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value` — [`Value`](#value)
 
-##### `impl IntoDeserializer<'de>`
+##### `impl<'de> IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
 - `type Deserializer = Map<String, Value>`
 
 - `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
 
-##### `impl IntoIterator`
+##### `impl IntoIterator for Map<alloc::string::String, crate::value::Value>`
 
 - `type Item = (String, Value)`
 
@@ -397,11 +396,11 @@ Represents a JSON key/value type.
 
 - `fn into_iter(self: Self) -> <Self as >::IntoIter`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Map<alloc::string::String, crate::value::Value>`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Serialize`
+##### `impl Serialize for Map<alloc::string::String, crate::value::Value>`
 
 - `fn serialize<S>(self: &Self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
 
@@ -417,53 +416,77 @@ Represents a JSON number, whether integer or floating point.
 
 #### Implementations
 
-- `fn unexpected(self: &Self) -> Unexpected<'_>`
+- `fn is_i64(self: &Self) -> bool`
+
+- `fn is_u64(self: &Self) -> bool`
+
+- `fn is_f64(self: &Self) -> bool`
+
+- `fn as_i64(self: &Self) -> Option<i64>`
+
+- `fn as_u64(self: &Self) -> Option<u64>`
+
+- `fn as_f64(self: &Self) -> Option<f64>`
+
+- `fn from_f64(f: f64) -> Option<Number>` — [`Number`](../number/index.md)
+
+- `fn as_i128(self: &Self) -> Option<i128>`
+
+- `fn as_u128(self: &Self) -> Option<u128>`
+
+- `fn from_i128(i: i128) -> Option<Number>` — [`Number`](../number/index.md)
+
+- `fn from_u128(i: u128) -> Option<Number>` — [`Number`](../number/index.md)
+
+- `fn as_f32(self: &Self) -> Option<f32>`
+
+- `fn from_f32(f: f32) -> Option<Number>` — [`Number`](../number/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Number`
 
-- `fn clone(self: &Self) -> Number` — [`Number`](../../number/index.md)
+- `fn clone(self: &Self) -> Number` — [`Number`](../number/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Number`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Deserialize<'de>`
+##### `impl<'de> Deserialize for Number`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Number, <D as >::Error>` — [`Number`](../../number/index.md)
+- `fn deserialize<D>(deserializer: D) -> Result<Number, <D as >::Error>` — [`Number`](../number/index.md)
 
-##### `impl DeserializeOwned<T>`
+##### `impl<T> DeserializeOwned for Number`
 
-##### `impl Deserializer<'de>`
+##### `impl<'de> Deserializer for Number`
 
 - `type Error = Error`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
 - `fn deserialize_bool<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
@@ -501,33 +524,33 @@ Represents a JSON number, whether integer or floating point.
 
 - `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
-##### `impl Display`
+##### `impl Display for Number`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Number`
 
-##### `impl FromStr`
+##### `impl FromStr for crate::number::Number`
 
 - `type Err = Error`
 
 - `fn from_str(s: &str) -> result::Result<Self, <Self as >::Err>`
 
-##### `impl Hash`
+##### `impl Hash for Number`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Number`
 
-- `fn eq(self: &Self, other: &Number) -> bool` — [`Number`](../../number/index.md)
+- `fn eq(self: &Self, other: &Number) -> bool` — [`Number`](../number/index.md)
 
-##### `impl Serialize`
+##### `impl Serialize for Number`
 
 - `fn serialize<S>(self: &Self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Number`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Number`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -626,137 +649,137 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Value`
 
-- `fn clone(self: &Self) -> Value` — [`Value`](../../value/index.md)
+- `fn clone(self: &Self) -> Value` — [`Value`](#value)
 
-##### `impl Debug`
+##### `impl Debug for Value`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Value`
 
-- `fn default() -> Value` — [`Value`](../../value/index.md)
+- `fn default() -> Value` — [`Value`](#value)
 
-##### `impl Deserialize<'de>`
+##### `impl<'de> Deserialize for crate::value::Value`
 
-- `fn deserialize<D>(deserializer: D) -> Result<Value, <D as >::Error>` — [`Value`](../../value/index.md)
+- `fn deserialize<D>(deserializer: D) -> Result<Value, <D as >::Error>` — [`Value`](#value)
 
-##### `impl DeserializeOwned<T>`
+##### `impl<T> DeserializeOwned for Value`
 
-##### `impl Deserializer<'de>`
+##### `impl<'de> Deserializer for crate::value::Value`
 
 - `type Error = Error`
 
-- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_i128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u8<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u16<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_u128<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_f32<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_f64<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_option<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_bool<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_char<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_char<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_str<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_str<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_string<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_string<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_bytes<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_bytes<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_unit<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_unit<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_unit_struct<V>(self: Self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_unit_struct<V>(self: Self, _name: &'static str, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_seq<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_seq<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_tuple<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_tuple<V>(self: Self, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_tuple_struct<V>(self: Self, _name: &'static str, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_tuple_struct<V>(self: Self, _name: &'static str, _len: usize, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_map<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_map<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_struct<V>(self: Self, _name: &'static str, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_struct<V>(self: Self, _name: &'static str, _fields: &'static [&'static str], visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_identifier<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_identifier<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../../error/index.md)
+- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, Error>` — [`Error`](../error/index.md)
 
-##### `impl Display`
+##### `impl Display for Value`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Value`
 
-##### `impl FromIterator<K: Into<alloc::string::String>, V: Into<super::Value>>`
+##### `impl<T: Into<super::Value>> FromIterator for super::Value`
 
-- `fn from_iter<I: IntoIterator<Item = (K, V)>>(iter: I) -> Self`
+- `fn from_iter<I: IntoIterator<Item = T>>(iter: I) -> Self`
 
-##### `impl FromStr`
+##### `impl FromStr for crate::value::Value`
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Value, Error>` — [`Value`](../../value/index.md), [`Error`](../../error/index.md)
+- `fn from_str(s: &str) -> Result<Value, Error>` — [`Value`](#value), [`Error`](../error/index.md)
 
-##### `impl Hash`
+##### `impl Hash for Value`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Index<I>`
+##### `impl<I> Index for super::Value`
 
 - `type Output = Value`
 
-- `fn index(self: &Self, index: I) -> &Value` — [`Value`](../../value/index.md)
+- `fn index(self: &Self, index: I) -> &Value` — [`Value`](#value)
 
-##### `impl IndexMut<I>`
+##### `impl<I> IndexMut for super::Value`
 
-- `fn index_mut(self: &mut Self, index: I) -> &mut Value` — [`Value`](../../value/index.md)
+- `fn index_mut(self: &mut Self, index: I) -> &mut Value` — [`Value`](#value)
 
-##### `impl IntoDeserializer<'de>`
+##### `impl<'de> IntoDeserializer for crate::value::Value`
 
 - `type Deserializer = Value`
 
 - `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Value`
 
-- `fn eq(self: &Self, other: &Value) -> bool` — [`Value`](../../value/index.md)
+- `fn eq(self: &Self, other: &bool) -> bool`
 
-##### `impl Serialize`
+##### `impl Serialize for crate::value::Value`
 
 - `fn serialize<S>(self: &Self, serializer: S) -> result::Result<<S as >::Ok, <S as >::Error>`
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Value`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Value`
 
 - `fn to_string(self: &Self) -> String`
 

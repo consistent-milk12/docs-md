@@ -9,7 +9,6 @@ Parallel iterator types for [vectors](#vectors) (`Vec<T>`)
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
 
-[vectors](#vectors): mod@std::vec
 
 ## Structs
 
@@ -25,25 +24,25 @@ Parallel iterator that moves out of a vector.
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for IntoIter<T>`
 
-- `fn clone(self: &Self) -> IntoIter<T>` — [`IntoIter`](../../vec/index.md)
+- `fn clone(self: &Self) -> IntoIter<T>` — [`IntoIter`](#intoiter)
 
-##### `impl Debug<T: $crate::fmt::Debug>`
+##### `impl<T: $crate::fmt::Debug> Debug for IntoIter<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<T: Send>`
+##### `impl<T: Send> IndexedParallelIterator for IntoIter<T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for IntoIter<T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
 - `type Iter = T`
 
@@ -51,15 +50,15 @@ Parallel iterator that moves out of a vector.
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<T: Send>`
+##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for IntoIter<T>`
 
 - `const ALIGN: usize`
 
@@ -87,25 +86,25 @@ Draining parallel iterator that moves a range out of a vector, but keeps the tot
 
 #### Trait Implementations
 
-##### `impl Debug<'data, T: $crate::fmt::Debug + Send>`
+##### `impl<'data, T: $crate::fmt::Debug + Send> Debug for Drain<'data, T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Drop<'data, T: Send>`
+##### `impl<'data, T: Send> Drop for Drain<'data, T>`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl IndexedParallelIterator<'data, T: Send>`
+##### `impl<'data, T: Send> IndexedParallelIterator for Drain<'data, T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Drain<'data, T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Drain<'data, T>`
 
 - `type Iter = T`
 
@@ -113,15 +112,15 @@ Draining parallel iterator that moves a range out of a vector, but keeps the tot
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'data, T: Send>`
+##### `impl<'data, T: Send> ParallelIterator for Drain<'data, T>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Drain<'data, T>`
 
 - `const ALIGN: usize`
 

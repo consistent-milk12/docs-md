@@ -33,27 +33,27 @@ enum Action {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Action`
 
-- `fn clone(self: &Self) -> Action` — [`Action`](../../state/definitions/index.md)
+- `fn clone(self: &Self) -> Action` — [`Action`](definitions/index.md)
 
-##### `impl Copy`
+##### `impl Copy for Action`
 
-##### `impl Debug`
+##### `impl Debug for Action`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Action`
 
-- `fn default() -> Action` — [`Action`](../../state/definitions/index.md)
+- `fn default() -> Action` — [`Action`](definitions/index.md)
 
-##### `impl Eq`
+##### `impl Eq for Action`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Action`
 
-- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](../../state/definitions/index.md)
+- `fn eq(self: &Self, other: &Action) -> bool` — [`Action`](definitions/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Action`
 
 ### `State`
 
@@ -80,27 +80,27 @@ enum State {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](../../state/definitions/index.md)
+- `fn clone(self: &Self) -> State` — [`State`](definitions/index.md)
 
-##### `impl Copy`
+##### `impl Copy for State`
 
-##### `impl Debug`
+##### `impl Debug for State`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for State`
 
-- `fn default() -> State` — [`State`](../../state/definitions/index.md)
+- `fn default() -> State` — [`State`](definitions/index.md)
 
-##### `impl Eq`
+##### `impl Eq for State`
 
-##### `impl PartialEq`
+##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](../../state/definitions/index.md)
+- `fn eq(self: &Self, other: &State) -> bool` — [`State`](definitions/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for State`
 
 ## Functions
 

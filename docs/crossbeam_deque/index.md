@@ -130,19 +130,19 @@ assert_eq!(q.steal(), Steal::Empty);
 
 #### Implementations
 
-- `fn new() -> Injector<T>` — [`Injector`](../deque/index.md)
+- `fn new() -> Injector<T>` — [`Injector`](deque/index.md)
 
 - `fn push(self: &Self, task: T)`
 
-- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](../deque/index.md)
+- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](deque/index.md)
 
-- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](../deque/index.md), [`Steal`](../deque/index.md)
+- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](../deque/index.md), [`Steal`](../deque/index.md)
+- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](../deque/index.md), [`Steal`](../deque/index.md)
+- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](../deque/index.md), [`Steal`](../deque/index.md)
+- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
 - `fn is_empty(self: &Self) -> bool`
 
@@ -150,19 +150,19 @@ assert_eq!(q.steal(), Steal::Empty);
 
 #### Trait Implementations
 
-##### `impl Debug<T>`
+##### `impl<T> Debug for Injector<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<T>`
+##### `impl<T> Default for Injector<T>`
 
 - `fn default() -> Self`
 
-##### `impl Drop<T>`
+##### `impl<T> Drop for Injector<T>`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Injector<T>`
 
 - `const ALIGN: usize`
 
@@ -176,9 +176,9 @@ assert_eq!(q.steal(), Steal::Empty);
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Send<T: Send>`
+##### `impl<T: Send> Send for Injector<T>`
 
-##### `impl Sync<T: Send>`
+##### `impl<T: Send> Sync for Injector<T>`
 
 ### `Stealer<T>`
 
@@ -226,27 +226,27 @@ assert_eq!(s.steal(), Steal::Empty);
 
 - `fn len(self: &Self) -> usize`
 
-- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](../deque/index.md)
+- `fn steal(self: &Self) -> Steal<T>` — [`Steal`](deque/index.md)
 
-- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](../deque/index.md), [`Steal`](../deque/index.md)
+- `fn steal_batch(self: &Self, dest: &Worker<T>) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](../deque/index.md), [`Steal`](../deque/index.md)
+- `fn steal_batch_with_limit(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<()>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](../deque/index.md), [`Steal`](../deque/index.md)
+- `fn steal_batch_and_pop(self: &Self, dest: &Worker<T>) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
-- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](../deque/index.md), [`Steal`](../deque/index.md)
+- `fn steal_batch_with_limit_and_pop(self: &Self, dest: &Worker<T>, limit: usize) -> Steal<T>` — [`Worker`](deque/index.md), [`Steal`](deque/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<T>`
+##### `impl<T> Clone for Stealer<T>`
 
-- `fn clone(self: &Self) -> Stealer<T>` — [`Stealer`](../deque/index.md)
+- `fn clone(self: &Self) -> Stealer<T>` — [`Stealer`](deque/index.md)
 
-##### `impl Debug<T>`
+##### `impl<T> Debug for Stealer<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Stealer<T>`
 
 - `const ALIGN: usize`
 
@@ -260,9 +260,9 @@ assert_eq!(s.steal(), Steal::Empty);
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Send<T: Send>`
+##### `impl<T: Send> Send for Stealer<T>`
 
-##### `impl Sync<T: Send>`
+##### `impl<T: Send> Sync for Stealer<T>`
 
 ### `Worker<T>`
 
@@ -336,11 +336,11 @@ assert_eq!(w.pop(), Some(2));
 
 #### Implementations
 
-- `fn new_fifo() -> Worker<T>` — [`Worker`](../deque/index.md)
+- `fn new_fifo() -> Worker<T>` — [`Worker`](deque/index.md)
 
-- `fn new_lifo() -> Worker<T>` — [`Worker`](../deque/index.md)
+- `fn new_lifo() -> Worker<T>` — [`Worker`](deque/index.md)
 
-- `fn stealer(self: &Self) -> Stealer<T>` — [`Stealer`](../deque/index.md)
+- `fn stealer(self: &Self) -> Stealer<T>` — [`Stealer`](deque/index.md)
 
 - `unsafe fn resize(self: &Self, new_cap: usize)`
 
@@ -356,11 +356,11 @@ assert_eq!(w.pop(), Some(2));
 
 #### Trait Implementations
 
-##### `impl Debug<T>`
+##### `impl<T> Debug for Worker<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Worker<T>`
 
 - `const ALIGN: usize`
 
@@ -374,7 +374,7 @@ assert_eq!(w.pop(), Some(2));
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Send<T: Send>`
+##### `impl<T: Send> Send for Worker<T>`
 
 ## Enums
 
@@ -431,31 +431,31 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 - `fn success(self: Self) -> Option<T>`
 
-- `fn or_else<F>(self: Self, f: F) -> Steal<T>` — [`Steal`](../deque/index.md)
+- `fn or_else<F>(self: Self, f: F) -> Steal<T>` — [`Steal`](deque/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for Steal<T>`
 
-- `fn clone(self: &Self) -> Steal<T>` — [`Steal`](../deque/index.md)
+- `fn clone(self: &Self) -> Steal<T>` — [`Steal`](deque/index.md)
 
-##### `impl Copy<T: $crate::marker::Copy>`
+##### `impl<T: $crate::marker::Copy> Copy for Steal<T>`
 
-##### `impl Debug<T>`
+##### `impl<T> Debug for Steal<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq<T: $crate::cmp::Eq>`
+##### `impl<T: $crate::cmp::Eq> Eq for Steal<T>`
 
-##### `impl FromIterator<T>`
+##### `impl<T> FromIterator for Steal<T>`
 
-- `fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](../deque/index.md)
+- `fn from_iter<I>(iter: I) -> Steal<T>` — [`Steal`](deque/index.md)
 
-##### `impl PartialEq<T: $crate::cmp::PartialEq>`
+##### `impl<T: $crate::cmp::PartialEq> PartialEq for Steal<T>`
 
-- `fn eq(self: &Self, other: &Steal<T>) -> bool` — [`Steal`](../deque/index.md)
+- `fn eq(self: &Self, other: &Steal<T>) -> bool` — [`Steal`](deque/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Steal<T>`
 
 - `const ALIGN: usize`
 
@@ -469,5 +469,5 @@ assert_eq!(collect(vec![Retry, Empty]).or_else(|| Success(1)), Success(1));
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl StructuralPartialEq<T>`
+##### `impl<T> StructuralPartialEq for Steal<T>`
 

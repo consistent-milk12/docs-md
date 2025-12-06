@@ -61,15 +61,15 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](../auto/index.md)
+- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>` — [`AutoStream`](auto/index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<S: $crate::fmt::Debug + RawStream>`
+##### `impl<S: $crate::fmt::Debug + RawStream> Debug for AutoStream<S>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Write<S>`
+##### `impl<S> Write for AutoStream<S>`
 
 - `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
 
@@ -104,11 +104,11 @@ Only pass printable data to the inner `Write`
 
 #### Trait Implementations
 
-##### `impl Debug<S>`
+##### `impl<S> Debug for StripStream<S>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Write<S>`
+##### `impl<S> Write for StripStream<S>`
 
 - `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
 
@@ -392,13 +392,12 @@ the help of the `Error` trait.
 For more detailed information about error handling check out the [book](#book) or the
 `std::result` module docs.
 
-[ounwrap](#ounwrap): Option::unwrap
-[runwrap](#runwrap): Result::unwrap
 
 
 
 
-[book](#book): ../book/ch09-00-error-handling.html
+
+
 
 # Current implementation
 

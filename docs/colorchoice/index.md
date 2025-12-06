@@ -46,25 +46,25 @@ Selection for overriding color output
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ColorChoice`
 
-- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](../index.md)
+- `fn clone(self: &Self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
 
-##### `impl Copy`
+##### `impl Copy for ColorChoice`
 
-##### `impl Debug`
+##### `impl Debug for ColorChoice`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ColorChoice`
 
 - `fn default() -> Self`
 
-##### `impl Eq`
+##### `impl Eq for ColorChoice`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ColorChoice`
 
-- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](../index.md)
+- `fn eq(self: &Self, other: &ColorChoice) -> bool` — [`ColorChoice`](#colorchoice)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ColorChoice`
 

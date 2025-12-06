@@ -158,53 +158,53 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Extractor` — [`Extractor`](../../../hir/literal/index.md)
+- `fn new() -> Extractor` — [`Extractor`](#extractor)
 
-- `fn extract(self: &Self, hir: &Hir) -> Seq` — [`Hir`](../../../hir/index.md), [`Seq`](../../../hir/literal/index.md)
+- `fn extract(self: &Self, hir: &Hir) -> Seq` — [`Hir`](../index.md), [`Seq`](#seq)
 
-- `fn kind(self: &mut Self, kind: ExtractKind) -> &mut Extractor` — [`ExtractKind`](../../../hir/literal/index.md), [`Extractor`](../../../hir/literal/index.md)
+- `fn kind(self: &mut Self, kind: ExtractKind) -> &mut Extractor` — [`ExtractKind`](#extractkind), [`Extractor`](#extractor)
 
-- `fn limit_class(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](../../../hir/literal/index.md)
+- `fn limit_class(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](#extractor)
 
-- `fn limit_repeat(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](../../../hir/literal/index.md)
+- `fn limit_repeat(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](#extractor)
 
-- `fn limit_literal_len(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](../../../hir/literal/index.md)
+- `fn limit_literal_len(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](#extractor)
 
-- `fn limit_total(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](../../../hir/literal/index.md)
+- `fn limit_total(self: &mut Self, limit: usize) -> &mut Extractor` — [`Extractor`](#extractor)
 
-- `fn extract_concat<'a, I: Iterator<Item = &'a Hir>>(self: &Self, it: I) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn extract_concat<'a, I: Iterator<Item = &'a Hir>>(self: &Self, it: I) -> Seq` — [`Seq`](#seq)
 
-- `fn extract_alternation<'a, I: Iterator<Item = &'a Hir>>(self: &Self, it: I) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn extract_alternation<'a, I: Iterator<Item = &'a Hir>>(self: &Self, it: I) -> Seq` — [`Seq`](#seq)
 
-- `fn extract_repetition(self: &Self, rep: &hir::Repetition) -> Seq` — [`Repetition`](../../../hir/index.md), [`Seq`](../../../hir/literal/index.md)
+- `fn extract_repetition(self: &Self, rep: &hir::Repetition) -> Seq` — [`Repetition`](../index.md), [`Seq`](#seq)
 
-- `fn extract_class_unicode(self: &Self, cls: &hir::ClassUnicode) -> Seq` — [`ClassUnicode`](../../../hir/index.md), [`Seq`](../../../hir/literal/index.md)
+- `fn extract_class_unicode(self: &Self, cls: &hir::ClassUnicode) -> Seq` — [`ClassUnicode`](../index.md), [`Seq`](#seq)
 
-- `fn extract_class_bytes(self: &Self, cls: &hir::ClassBytes) -> Seq` — [`ClassBytes`](../../../hir/index.md), [`Seq`](../../../hir/literal/index.md)
+- `fn extract_class_bytes(self: &Self, cls: &hir::ClassBytes) -> Seq` — [`ClassBytes`](../index.md), [`Seq`](#seq)
 
-- `fn class_over_limit_unicode(self: &Self, cls: &hir::ClassUnicode) -> bool` — [`ClassUnicode`](../../../hir/index.md)
+- `fn class_over_limit_unicode(self: &Self, cls: &hir::ClassUnicode) -> bool` — [`ClassUnicode`](../index.md)
 
-- `fn class_over_limit_bytes(self: &Self, cls: &hir::ClassBytes) -> bool` — [`ClassBytes`](../../../hir/index.md)
+- `fn class_over_limit_bytes(self: &Self, cls: &hir::ClassBytes) -> bool` — [`ClassBytes`](../index.md)
 
-- `fn cross(self: &Self, seq1: Seq, seq2: &mut Seq) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn cross(self: &Self, seq1: Seq, seq2: &mut Seq) -> Seq` — [`Seq`](#seq)
 
-- `fn union(self: &Self, seq1: Seq, seq2: &mut Seq) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn union(self: &Self, seq1: Seq, seq2: &mut Seq) -> Seq` — [`Seq`](#seq)
 
-- `fn enforce_literal_len(self: &Self, seq: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
+- `fn enforce_literal_len(self: &Self, seq: &mut Seq)` — [`Seq`](#seq)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Extractor`
 
-- `fn clone(self: &Self) -> Extractor` — [`Extractor`](../../../hir/literal/index.md)
+- `fn clone(self: &Self) -> Extractor` — [`Extractor`](#extractor)
 
-##### `impl Debug`
+##### `impl Debug for Extractor`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Extractor`
 
-- `fn default() -> Extractor` — [`Extractor`](../../../hir/literal/index.md)
+- `fn default() -> Extractor` — [`Extractor`](#extractor)
 
 ### `Seq`
 
@@ -295,31 +295,31 @@ assert_eq!(expected, seq);
 
 #### Implementations
 
-- `fn empty() -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn empty() -> Seq` — [`Seq`](#seq)
 
-- `fn infinite() -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn infinite() -> Seq` — [`Seq`](#seq)
 
-- `fn singleton(lit: Literal) -> Seq` — [`Literal`](../../../hir/literal/index.md), [`Seq`](../../../hir/literal/index.md)
+- `fn singleton(lit: Literal) -> Seq` — [`Literal`](#literal), [`Seq`](#seq)
 
-- `fn new<I, B>(it: I) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn new<I, B>(it: I) -> Seq` — [`Seq`](#seq)
 
-- `fn literals(self: &Self) -> Option<&[Literal]>` — [`Literal`](../../../hir/literal/index.md)
+- `fn literals(self: &Self) -> Option<&[Literal]>` — [`Literal`](#literal)
 
-- `fn push(self: &mut Self, lit: Literal)` — [`Literal`](../../../hir/literal/index.md)
+- `fn push(self: &mut Self, lit: Literal)` — [`Literal`](#literal)
 
 - `fn make_inexact(self: &mut Self)`
 
 - `fn make_infinite(self: &mut Self)`
 
-- `fn cross_forward(self: &mut Self, other: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
+- `fn cross_forward(self: &mut Self, other: &mut Seq)` — [`Seq`](#seq)
 
-- `fn cross_reverse(self: &mut Self, other: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
+- `fn cross_reverse(self: &mut Self, other: &mut Seq)` — [`Seq`](#seq)
 
-- `fn cross_preamble<'a>(self: &'a mut Self, other: &'a mut Seq) -> Option<(&'a mut Vec<Literal>, &'a mut Vec<Literal>)>` — [`Seq`](../../../hir/literal/index.md), [`Literal`](../../../hir/literal/index.md)
+- `fn cross_preamble<'a>(self: &'a mut Self, other: &'a mut Seq) -> Option<(&'a mut Vec<Literal>, &'a mut Vec<Literal>)>` — [`Seq`](#seq), [`Literal`](#literal)
 
-- `fn union(self: &mut Self, other: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
+- `fn union(self: &mut Self, other: &mut Seq)` — [`Seq`](#seq)
 
-- `fn union_into_empty(self: &mut Self, other: &mut Seq)` — [`Seq`](../../../hir/literal/index.md)
+- `fn union_into_empty(self: &mut Self, other: &mut Seq)` — [`Seq`](#seq)
 
 - `fn dedup(self: &mut Self)`
 
@@ -343,9 +343,9 @@ assert_eq!(expected, seq);
 
 - `fn is_inexact(self: &Self) -> bool`
 
-- `fn max_union_len(self: &Self, other: &Seq) -> Option<usize>` — [`Seq`](../../../hir/literal/index.md)
+- `fn max_union_len(self: &Self, other: &Seq) -> Option<usize>` — [`Seq`](#seq)
 
-- `fn max_cross_len(self: &Self, other: &Seq) -> Option<usize>` — [`Seq`](../../../hir/literal/index.md)
+- `fn max_cross_len(self: &Self, other: &Seq) -> Option<usize>` — [`Seq`](#seq)
 
 - `fn min_literal_len(self: &Self) -> Option<usize>`
 
@@ -363,25 +363,25 @@ assert_eq!(expected, seq);
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Seq`
 
-- `fn clone(self: &Self) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn clone(self: &Self) -> Seq` — [`Seq`](#seq)
 
-##### `impl Debug`
+##### `impl Debug for Seq`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Seq`
 
-##### `impl FromIterator`
+##### `impl FromIterator for Seq`
 
-- `fn from_iter<T: IntoIterator<Item = Literal>>(it: T) -> Seq` — [`Seq`](../../../hir/literal/index.md)
+- `fn from_iter<T: IntoIterator<Item = Literal>>(it: T) -> Seq` — [`Seq`](#seq)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Seq`
 
-- `fn eq(self: &Self, other: &Seq) -> bool` — [`Seq`](../../../hir/literal/index.md)
+- `fn eq(self: &Self, other: &Seq) -> bool` — [`Seq`](#seq)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Seq`
 
 ### `Literal`
 
@@ -409,9 +409,9 @@ literal extraction ignores look-around assertions.)
 
 #### Implementations
 
-- `fn exact<B: Into<Vec<u8>>>(bytes: B) -> Literal` — [`Literal`](../../../hir/literal/index.md)
+- `fn exact<B: Into<Vec<u8>>>(bytes: B) -> Literal` — [`Literal`](#literal)
 
-- `fn inexact<B: Into<Vec<u8>>>(bytes: B) -> Literal` — [`Literal`](../../../hir/literal/index.md)
+- `fn inexact<B: Into<Vec<u8>>>(bytes: B) -> Literal` — [`Literal`](#literal)
 
 - `fn as_bytes(self: &Self) -> &[u8]`
 
@@ -427,7 +427,7 @@ literal extraction ignores look-around assertions.)
 
 - `fn reverse(self: &mut Self)`
 
-- `fn extend(self: &mut Self, lit: &Literal)` — [`Literal`](../../../hir/literal/index.md)
+- `fn extend(self: &mut Self, lit: &Literal)` — [`Literal`](#literal)
 
 - `fn keep_first_bytes(self: &mut Self, len: usize)`
 
@@ -437,33 +437,33 @@ literal extraction ignores look-around assertions.)
 
 #### Trait Implementations
 
-##### `impl AsRef`
+##### `impl AsRef for Literal`
 
 - `fn as_ref(self: &Self) -> &[u8]`
 
-##### `impl Clone`
+##### `impl Clone for Literal`
 
-- `fn clone(self: &Self) -> Literal` — [`Literal`](../../../hir/literal/index.md)
+- `fn clone(self: &Self) -> Literal` — [`Literal`](#literal)
 
-##### `impl Debug`
+##### `impl Debug for Literal`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Literal`
 
-##### `impl Ord`
+##### `impl Ord for Literal`
 
-- `fn cmp(self: &Self, other: &Literal) -> $crate::cmp::Ordering` — [`Literal`](../../../hir/literal/index.md)
+- `fn cmp(self: &Self, other: &Literal) -> $crate::cmp::Ordering` — [`Literal`](#literal)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Literal`
 
-- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](../../../hir/literal/index.md)
+- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](#literal)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Literal`
 
-- `fn partial_cmp(self: &Self, other: &Literal) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Literal`](../../../hir/literal/index.md)
+- `fn partial_cmp(self: &Self, other: &Literal) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Literal`](#literal)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Literal`
 
 ## Enums
 
@@ -502,17 +502,17 @@ The default extraction kind is `Prefix`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ExtractKind`
 
-- `fn clone(self: &Self) -> ExtractKind` — [`ExtractKind`](../../../hir/literal/index.md)
+- `fn clone(self: &Self) -> ExtractKind` — [`ExtractKind`](#extractkind)
 
-##### `impl Debug`
+##### `impl Debug for ExtractKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ExtractKind`
 
-- `fn default() -> ExtractKind` — [`ExtractKind`](../../../hir/literal/index.md)
+- `fn default() -> ExtractKind` — [`ExtractKind`](#extractkind)
 
 ## Functions
 

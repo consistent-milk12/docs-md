@@ -14,9 +14,8 @@ There are several allocator implementations for Rust; one of them is
 [dlmalloc](#dlmalloc). For a rustix-based implementation, see [rustix-dlmalloc].
 Another allocator implementation is [talc](#talc).
 
-[dlmalloc](#dlmalloc): https://crates.io/crates/dlmalloc
-[talc](#talc): https://crates.io/crates/talc
-[rustix-dlmalloc]: https://crates.io/crates/rustix-dlmalloc
+
+
 
 ## Functions
 

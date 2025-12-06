@@ -129,17 +129,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>` — [`MatchKind`](../../../util/search/index.md), [`Prefilter`](../../../util/prefilter/index.md)
+- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
 
-- `fn from_choice(choice: Choice, max_needle_len: usize) -> Option<Prefilter>` — [`Choice`](../../../util/prefilter/index.md), [`Prefilter`](../../../util/prefilter/index.md)
+- `fn from_choice(choice: Choice, max_needle_len: usize) -> Option<Prefilter>` — [`Choice`](#choice), [`Prefilter`](#prefilter)
 
-- `fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>` — [`MatchKind`](../../../util/search/index.md), [`Prefilter`](../../../util/prefilter/index.md)
+- `fn from_hir_prefix(kind: MatchKind, hir: &Hir) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
 
-- `fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>` — [`MatchKind`](../../../util/search/index.md), [`Prefilter`](../../../util/prefilter/index.md)
+- `fn from_hirs_prefix<H: Borrow<Hir>>(kind: MatchKind, hirs: &[H]) -> Option<Prefilter>` — [`MatchKind`](../../index.md), [`Prefilter`](#prefilter)
 
-- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../util/search/index.md)
+- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md)
 
-- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../../util/search/index.md)
+- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>` — [`Span`](../../index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
@@ -149,11 +149,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Prefilter`
 
-- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](../../../util/prefilter/index.md)
+- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](#prefilter)
 
-##### `impl Debug`
+##### `impl Debug for Prefilter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

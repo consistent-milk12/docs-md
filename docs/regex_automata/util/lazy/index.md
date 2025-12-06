@@ -44,8 +44,6 @@ may used a spin lock internally. This can have subtle effects that may
 be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm) for a more
 thorough treatment of this topic.
 
-[spinharm](#spinharm): https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
-
 # Example
 
 This type is useful for creating regexes once, and then using them from
@@ -62,21 +60,21 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn get(this: &Lazy<T, F>) -> &T` — [`Lazy`](../../../util/lazy/index.md)
+- `fn get(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 
-##### `impl Debug<T: fmt::Debug, F: Fn() -> T>`
+##### `impl<T: fmt::Debug, F: Fn() -> T> Debug for Lazy<T, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Deref<T, F: Fn() -> T>`
+##### `impl<T, F: Fn() -> T> Deref for Lazy<T, F>`
 
 - `type Target = T`
 
 - `fn deref(self: &Self) -> &T`
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Lazy<T, F>`
 
 - `type Target = T`
 

@@ -52,17 +52,17 @@ An error encountered while parsing flags from text.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for ParseError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for ParseError`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for ParseError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for ParseError`
 
 - `fn to_string(self: &Self) -> String`
 

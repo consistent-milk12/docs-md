@@ -115,11 +115,11 @@ until runtime.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Frame`
 
-- `fn clone(self: &Self) -> Frame` — [`Frame`](../backtrace/index.md)
+- `fn clone(self: &Self) -> Frame` — [`Frame`](backtrace/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Frame`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -143,11 +143,11 @@ always available in a symbol, however, so all methods return an `Option`.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md)
+- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](symbolize/index.md)
 
 - `fn addr(self: &Self) -> Option<*mut c_void>`
 
-- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](../types/index.md)
+- `fn filename_raw(self: &Self) -> Option<BytesOrWideString<'_>>` — [`BytesOrWideString`](types/index.md)
 
 - `fn colno(self: &Self) -> Option<u32>`
 
@@ -157,7 +157,7 @@ always available in a symbol, however, so all methods return an `Option`.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Symbol`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -175,7 +175,7 @@ demangled name, the raw bytes, the raw string, etc.
 
 #### Implementations
 
-- `fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](../symbolize/index.md)
+- `fn new(bytes: &'a [u8]) -> SymbolName<'a>` — [`SymbolName`](symbolize/index.md)
 
 - `fn as_str(self: &Self) -> Option<&'a str>`
 
@@ -183,15 +183,15 @@ demangled name, the raw bytes, the raw string, etc.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for SymbolName<'a>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a>`
+##### `impl<'a> Display for SymbolName<'a>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for SymbolName<'a>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -214,11 +214,11 @@ implementation already uses this printing format.
 
 #### Implementations
 
-- `fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](../print/index.md), [`BytesOrWideString`](../types/index.md)
+- `fn new(fmt: &'a mut fmt::Formatter<'b>, format: PrintFmt, print_path: &'a mut dyn FnMut(&mut fmt::Formatter<'_>, BytesOrWideString<'_>) -> fmt::Result) -> Self` — [`PrintFmt`](print/index.md), [`BytesOrWideString`](types/index.md)
 
 - `fn add_context(self: &mut Self) -> fmt::Result`
 
-- `fn frame(self: &mut Self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](../print/index.md)
+- `fn frame(self: &mut Self) -> BacktraceFrameFmt<'_, 'a, 'b>` — [`BacktraceFrameFmt`](print/index.md)
 
 - `fn finish(self: &mut Self) -> fmt::Result`
 
@@ -241,25 +241,25 @@ This type is created by the `BacktraceFmt::frame` function.
 
 #### Implementations
 
-- `fn backtrace_frame(self: &mut Self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](../capture/index.md)
+- `fn backtrace_frame(self: &mut Self, frame: &BacktraceFrame) -> fmt::Result` — [`BacktraceFrame`](capture/index.md)
 
-- `fn backtrace_symbol(self: &mut Self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](../capture/index.md), [`BacktraceSymbol`](../capture/index.md)
+- `fn backtrace_symbol(self: &mut Self, frame: &BacktraceFrame, symbol: &BacktraceSymbol) -> fmt::Result` — [`BacktraceFrame`](capture/index.md), [`BacktraceSymbol`](capture/index.md)
 
-- `fn symbol(self: &mut Self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](../backtrace/index.md), [`Symbol`](../symbolize/index.md)
+- `fn symbol(self: &mut Self, frame: &Frame, symbol: &super::Symbol) -> fmt::Result` — [`Frame`](backtrace/index.md), [`Symbol`](symbolize/index.md)
 
-- `fn print_raw(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
+- `fn print_raw(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md), [`BytesOrWideString`](types/index.md)
 
-- `fn print_raw_with_column(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
+- `fn print_raw_with_column(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md), [`BytesOrWideString`](types/index.md)
 
-- `fn print_raw_generic(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](../symbolize/index.md), [`BytesOrWideString`](../types/index.md)
+- `fn print_raw_generic(self: &mut Self, frame_ip: *mut c_void, symbol_name: Option<SymbolName<'_>>, filename: Option<BytesOrWideString<'_>>, lineno: Option<u32>, colno: Option<u32>) -> fmt::Result` — [`SymbolName`](symbolize/index.md), [`BytesOrWideString`](types/index.md)
 
-- `fn print_fileline(self: &mut Self, file: BytesOrWideString<'_>, line: u32, colno: Option<u32>) -> fmt::Result` — [`BytesOrWideString`](../types/index.md)
+- `fn print_fileline(self: &mut Self, file: BytesOrWideString<'_>, line: u32, colno: Option<u32>) -> fmt::Result` — [`BytesOrWideString`](types/index.md)
 
 - `fn print_raw_fuchsia(self: &mut Self, frame_ip: *mut c_void) -> fmt::Result`
 
 #### Trait Implementations
 
-##### `impl Drop`
+##### `impl Drop for BacktraceFrameFmt<'_, '_, '_>`
 
 - `fn drop(self: &mut Self)`
 
@@ -286,29 +286,29 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn new() -> Backtrace` — [`Backtrace`](../capture/index.md)
+- `fn new() -> Backtrace` — [`Backtrace`](capture/index.md)
 
-- `fn new_unresolved() -> Backtrace` — [`Backtrace`](../capture/index.md)
+- `fn new_unresolved() -> Backtrace` — [`Backtrace`](capture/index.md)
 
-- `fn create(ip: usize) -> Backtrace` — [`Backtrace`](../capture/index.md)
+- `fn create(ip: usize) -> Backtrace` — [`Backtrace`](capture/index.md)
 
-- `fn frames(self: &Self) -> &[BacktraceFrame]` — [`BacktraceFrame`](../capture/index.md)
+- `fn frames(self: &Self) -> &[BacktraceFrame]` — [`BacktraceFrame`](capture/index.md)
 
 - `fn resolve(self: &mut Self)`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Backtrace`
 
-- `fn clone(self: &Self) -> Backtrace` — [`Backtrace`](../capture/index.md)
+- `fn clone(self: &Self) -> Backtrace` — [`Backtrace`](capture/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Backtrace`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Backtrace`
 
-- `fn default() -> Backtrace` — [`Backtrace`](../capture/index.md)
+- `fn default() -> Backtrace` — [`Backtrace`](capture/index.md)
 
 ### `BacktraceFrame`
 
@@ -337,17 +337,17 @@ enabled, and the `std` feature is enabled by default.
 
 - `fn module_base_address(self: &Self) -> Option<*mut c_void>`
 
-- `fn symbols(self: &Self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](../capture/index.md)
+- `fn symbols(self: &Self) -> &[BacktraceSymbol]` — [`BacktraceSymbol`](capture/index.md)
 
 - `fn resolve(self: &mut Self)`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BacktraceFrame`
 
-- `fn clone(self: &Self) -> BacktraceFrame` — [`BacktraceFrame`](../capture/index.md)
+- `fn clone(self: &Self) -> BacktraceFrame` — [`BacktraceFrame`](capture/index.md)
 
-##### `impl Debug`
+##### `impl Debug for BacktraceFrame`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -375,7 +375,7 @@ enabled, and the `std` feature is enabled by default.
 
 #### Implementations
 
-- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](../symbolize/index.md)
+- `fn name(self: &Self) -> Option<SymbolName<'_>>` — [`SymbolName`](symbolize/index.md)
 
 - `fn addr(self: &Self) -> Option<*mut c_void>`
 
@@ -387,11 +387,11 @@ enabled, and the `std` feature is enabled by default.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BacktraceSymbol`
 
-- `fn clone(self: &Self) -> BacktraceSymbol` — [`BacktraceSymbol`](../capture/index.md)
+- `fn clone(self: &Self) -> BacktraceSymbol` — [`BacktraceSymbol`](capture/index.md)
 
-##### `impl Debug`
+##### `impl Debug for BacktraceSymbol`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -428,15 +428,15 @@ conversions to `std` types.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for BytesOrWideString<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display<'a>`
+##### `impl<'a> Display for BytesOrWideString<'a>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for BytesOrWideString<'a>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -463,19 +463,19 @@ The styles of printing that we can print
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PrintFmt`
 
-- `fn clone(self: &Self) -> PrintFmt` — [`PrintFmt`](../print/index.md)
+- `fn clone(self: &Self) -> PrintFmt` — [`PrintFmt`](print/index.md)
 
-##### `impl Copy`
+##### `impl Copy for PrintFmt`
 
-##### `impl Eq`
+##### `impl Eq for PrintFmt`
 
-##### `impl PartialEq`
+##### `impl PartialEq for PrintFmt`
 
-- `fn eq(self: &Self, other: &PrintFmt) -> bool` — [`PrintFmt`](../print/index.md)
+- `fn eq(self: &Self, other: &PrintFmt) -> bool` — [`PrintFmt`](print/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for PrintFmt`
 
 ## Functions
 

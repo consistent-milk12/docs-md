@@ -11,10 +11,10 @@ Lower level primitive types that are useful in a variety of circumstances.
 This list represents the principle types in this module and briefly describes
 when you might want to use them.
 
-* [`PatternID`](../../index.md) - A type that represents the identifier of a regex pattern.
+* [`PatternID`](#patternid) - A type that represents the identifier of a regex pattern.
 This is probably the most widely used type in this module (which is why it's
 also re-exported in the crate root).
-* [`StateID`](../../index.md) - A type the represents the identifier of a finite automaton
+* [`StateID`](#stateid) - A type the represents the identifier of a finite automaton
 state. This is used for both NFAs and DFAs, with the notable exception of
 the hybrid NFA/DFA. (The hybrid NFA/DFA uses a special purpose "lazy" state
 identifier.)
@@ -59,41 +59,41 @@ This type is defined to be `repr(transparent)` for
 
 #### Implementations
 
-- `fn new(value: usize) -> Option<NonMaxUsize>` — [`NonMaxUsize`](../../../util/primitives/index.md)
+- `fn new(value: usize) -> Option<NonMaxUsize>` — [`NonMaxUsize`](#nonmaxusize)
 
 - `fn get(self: Self) -> usize`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for NonMaxUsize`
 
-- `fn clone(self: &Self) -> NonMaxUsize` — [`NonMaxUsize`](../../../util/primitives/index.md)
+- `fn clone(self: &Self) -> NonMaxUsize` — [`NonMaxUsize`](#nonmaxusize)
 
-##### `impl Copy`
+##### `impl Copy for NonMaxUsize`
 
-##### `impl Debug`
+##### `impl Debug for NonMaxUsize`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for NonMaxUsize`
 
-##### `impl Hash`
+##### `impl Hash for NonMaxUsize`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for NonMaxUsize`
 
-- `fn cmp(self: &Self, other: &NonMaxUsize) -> $crate::cmp::Ordering` — [`NonMaxUsize`](../../../util/primitives/index.md)
+- `fn cmp(self: &Self, other: &NonMaxUsize) -> $crate::cmp::Ordering` — [`NonMaxUsize`](#nonmaxusize)
 
-##### `impl PartialEq`
+##### `impl PartialEq for NonMaxUsize`
 
-- `fn eq(self: &Self, other: &NonMaxUsize) -> bool` — [`NonMaxUsize`](../../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &NonMaxUsize) -> bool` — [`NonMaxUsize`](#nonmaxusize)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for NonMaxUsize`
 
-- `fn partial_cmp(self: &Self, other: &NonMaxUsize) -> $crate::option::Option<$crate::cmp::Ordering>` — [`NonMaxUsize`](../../../util/primitives/index.md)
+- `fn partial_cmp(self: &Self, other: &NonMaxUsize) -> $crate::option::Option<$crate::cmp::Ordering>` — [`NonMaxUsize`](#nonmaxusize)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for NonMaxUsize`
 
 ### `SmallIndex`
 
@@ -136,8 +136,8 @@ for delta encoding.
 
 The following types wrap `SmallIndex` to provide a more focused use case:
 
-* [`PatternID`](../../index.md) is for representing the identifiers of patterns.
-* [`StateID`](../../index.md) is for representing the identifiers of states in finite
+* [`PatternID`](#patternid) is for representing the identifiers of patterns.
+* [`StateID`](#stateid) is for representing the identifiers of states in finite
 automata. It is used for both NFAs and DFAs.
 
 # Representation
@@ -169,11 +169,11 @@ in panics or silent logical errors.
 
 - `const SIZE: usize`
 
-- `fn new(index: usize) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](../../../util/primitives/index.md), [`SmallIndexError`](../../../util/primitives/index.md)
+- `fn new(index: usize) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](#smallindex), [`SmallIndexError`](#smallindexerror)
 
-- `const fn new_unchecked(index: usize) -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
+- `const fn new_unchecked(index: usize) -> SmallIndex` — [`SmallIndex`](#smallindex)
 
-- `fn must(index: usize) -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
+- `fn must(index: usize) -> SmallIndex` — [`SmallIndex`](#smallindex)
 
 - `const fn as_usize(self: &Self) -> usize`
 
@@ -185,47 +185,47 @@ in panics or silent logical errors.
 
 - `fn one_more(self: &Self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](../../../util/primitives/index.md), [`SmallIndexError`](../../../util/primitives/index.md)
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<SmallIndex, SmallIndexError>` — [`SmallIndex`](#smallindex), [`SmallIndexError`](#smallindexerror)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> SmallIndex` — [`SmallIndex`](#smallindex)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SmallIndex`
 
-- `fn clone(self: &Self) -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
+- `fn clone(self: &Self) -> SmallIndex` — [`SmallIndex`](#smallindex)
 
-##### `impl Copy`
+##### `impl Copy for SmallIndex`
 
-##### `impl Debug`
+##### `impl Debug for SmallIndex`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for SmallIndex`
 
-- `fn default() -> SmallIndex` — [`SmallIndex`](../../../util/primitives/index.md)
+- `fn default() -> SmallIndex` — [`SmallIndex`](#smallindex)
 
-##### `impl Eq`
+##### `impl Eq for SmallIndex`
 
-##### `impl Hash`
+##### `impl Hash for SmallIndex`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for SmallIndex`
 
-- `fn cmp(self: &Self, other: &SmallIndex) -> $crate::cmp::Ordering` — [`SmallIndex`](../../../util/primitives/index.md)
+- `fn cmp(self: &Self, other: &SmallIndex) -> $crate::cmp::Ordering` — [`SmallIndex`](#smallindex)
 
-##### `impl PartialEq`
+##### `impl PartialEq for SmallIndex`
 
-- `fn eq(self: &Self, other: &SmallIndex) -> bool` — [`SmallIndex`](../../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &SmallIndex) -> bool` — [`SmallIndex`](#smallindex)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for SmallIndex`
 
-- `fn partial_cmp(self: &Self, other: &SmallIndex) -> $crate::option::Option<$crate::cmp::Ordering>` — [`SmallIndex`](../../../util/primitives/index.md)
+- `fn partial_cmp(self: &Self, other: &SmallIndex) -> $crate::option::Option<$crate::cmp::Ordering>` — [`SmallIndex`](#smallindex)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for SmallIndex`
 
 ### `SmallIndexError`
 
@@ -247,29 +247,29 @@ When the `std` feature is enabled, this implements the `Error` trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SmallIndexError`
 
-- `fn clone(self: &Self) -> SmallIndexError` — [`SmallIndexError`](../../../util/primitives/index.md)
+- `fn clone(self: &Self) -> SmallIndexError` — [`SmallIndexError`](#smallindexerror)
 
-##### `impl Debug`
+##### `impl Debug for SmallIndexError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for SmallIndexError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for SmallIndexError`
 
-##### `impl Error`
+##### `impl Error for SmallIndexError`
 
-##### `impl PartialEq`
+##### `impl PartialEq for SmallIndexError`
 
-- `fn eq(self: &Self, other: &SmallIndexError) -> bool` — [`SmallIndexError`](../../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &SmallIndexError) -> bool` — [`SmallIndexError`](#smallindexerror)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for SmallIndexError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for SmallIndexError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -305,11 +305,11 @@ re-exported at the crate root due to how common it is.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](../../../util/primitives/index.md), [`PatternIDError`](../../../util/primitives/index.md)
+- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
 
-- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
-- `fn must(value: usize) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- `fn must(value: usize) -> PatternID` — [`PatternID`](#patternid)
 
 - `const fn as_usize(self: &Self) -> usize`
 
@@ -321,49 +321,49 @@ re-exported at the crate root due to how common it is.
 
 - `fn one_more(self: &Self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](../../../util/primitives/index.md), [`PatternIDError`](../../../util/primitives/index.md)
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](#patternid), [`PatternIDError`](#patterniderror)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](#patternid)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
 
-- `fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](../../../util/primitives/index.md)
+- `fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](#patterniditer)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PatternID`
 
-- `fn clone(self: &Self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- `fn clone(self: &Self) -> PatternID` — [`PatternID`](#patternid)
 
-##### `impl Copy`
+##### `impl Copy for PatternID`
 
-##### `impl Debug`
+##### `impl Debug for PatternID`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for PatternID`
 
-- `fn default() -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- `fn default() -> PatternID` — [`PatternID`](#patternid)
 
-##### `impl Eq`
+##### `impl Eq for PatternID`
 
-##### `impl Hash`
+##### `impl Hash for PatternID`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for PatternID`
 
-- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](../../../util/primitives/index.md)
+- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](#patternid)
 
-##### `impl PartialEq`
+##### `impl PartialEq for PatternID`
 
-- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](../../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](#patternid)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for PatternID`
 
-- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](../../../util/primitives/index.md)
+- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](#patternid)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for PatternID`
 
 ### `StateID`
 
@@ -393,11 +393,11 @@ a state ID to be a "small index."
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../../../util/primitives/index.md), [`StateIDError`](../../../util/primitives/index.md)
+- `fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](#stateid), [`StateIDError`](#stateiderror)
 
-- `const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `const fn new_unchecked(value: usize) -> StateID` — [`StateID`](#stateid)
 
-- `fn must(value: usize) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `fn must(value: usize) -> StateID` — [`StateID`](#stateid)
 
 - `const fn as_usize(self: &Self) -> usize`
 
@@ -409,49 +409,49 @@ a state ID to be a "small index."
 
 - `fn one_more(self: &Self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../../../util/primitives/index.md), [`StateIDError`](../../../util/primitives/index.md)
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](#stateid), [`StateIDError`](#stateiderror)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](#stateid)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
 
-- `fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../../../util/primitives/index.md)
+- `fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](#stateiditer)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StateID`
 
-- `fn clone(self: &Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `fn clone(self: &Self) -> StateID` — [`StateID`](#stateid)
 
-##### `impl Copy`
+##### `impl Copy for StateID`
 
-##### `impl Debug`
+##### `impl Debug for StateID`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for StateID`
 
-- `fn default() -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `fn default() -> StateID` — [`StateID`](#stateid)
 
-##### `impl Eq`
+##### `impl Eq for StateID`
 
-##### `impl Hash`
+##### `impl Hash for StateID`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for StateID`
 
-- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering` — [`StateID`](../../../util/primitives/index.md)
+- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering` — [`StateID`](#stateid)
 
-##### `impl PartialEq`
+##### `impl PartialEq for StateID`
 
-- `fn eq(self: &Self, other: &StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &StateID) -> bool` — [`StateID`](#stateid)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for StateID`
 
-- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StateID`](../../../util/primitives/index.md)
+- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StateID`](#stateid)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for StateID`
 
 ### `PatternIDError`
 
@@ -473,29 +473,29 @@ trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PatternIDError`
 
-- `fn clone(self: &Self) -> PatternIDError` — [`PatternIDError`](../../../util/primitives/index.md)
+- `fn clone(self: &Self) -> PatternIDError` — [`PatternIDError`](#patterniderror)
 
-##### `impl Debug`
+##### `impl Debug for PatternIDError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for PatternIDError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for PatternIDError`
 
-##### `impl Error`
+##### `impl Error for PatternIDError`
 
-##### `impl PartialEq`
+##### `impl PartialEq for PatternIDError`
 
-- `fn eq(self: &Self, other: &PatternIDError) -> bool` — [`PatternIDError`](../../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &PatternIDError) -> bool` — [`PatternIDError`](#patterniderror)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for PatternIDError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for PatternIDError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -519,29 +519,29 @@ trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StateIDError`
 
-- `fn clone(self: &Self) -> StateIDError` — [`StateIDError`](../../../util/primitives/index.md)
+- `fn clone(self: &Self) -> StateIDError` — [`StateIDError`](#stateiderror)
 
-##### `impl Debug`
+##### `impl Debug for StateIDError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for StateIDError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for StateIDError`
 
-##### `impl Error`
+##### `impl Error for StateIDError`
 
-##### `impl PartialEq`
+##### `impl PartialEq for StateIDError`
 
-- `fn eq(self: &Self, other: &StateIDError) -> bool` — [`StateIDError`](../../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &StateIDError) -> bool` — [`StateIDError`](#stateiderror)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for StateIDError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for StateIDError`
 
 - `fn to_string(self: &Self) -> String`
 

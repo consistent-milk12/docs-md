@@ -18,7 +18,6 @@ assert!(linebreaks(text).eq([
 ]));
 ```
 
-[UAX14]: https://www.unicode.org/reports/tr14/
 
 ## Enums
 
@@ -250,27 +249,27 @@ Unicode line breaking class.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BreakClass`
 
-- `fn clone(self: &Self) -> BreakClass` — [`BreakClass`](../index.md)
+- `fn clone(self: &Self) -> BreakClass` — [`BreakClass`](#breakclass)
 
-##### `impl Copy`
+##### `impl Copy for BreakClass`
 
-##### `impl Debug`
+##### `impl Debug for BreakClass`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for BreakClass`
 
-##### `impl Hash`
+##### `impl Hash for BreakClass`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for BreakClass`
 
-- `fn eq(self: &Self, other: &BreakClass) -> bool` — [`BreakClass`](../index.md)
+- `fn eq(self: &Self, other: &BreakClass) -> bool` — [`BreakClass`](#breakclass)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for BreakClass`
 
 ### `BreakOpportunity`
 
@@ -295,23 +294,23 @@ Break opportunity type.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BreakOpportunity`
 
-- `fn clone(self: &Self) -> BreakOpportunity` — [`BreakOpportunity`](../index.md)
+- `fn clone(self: &Self) -> BreakOpportunity` — [`BreakOpportunity`](#breakopportunity)
 
-##### `impl Copy`
+##### `impl Copy for BreakOpportunity`
 
-##### `impl Debug`
+##### `impl Debug for BreakOpportunity`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for BreakOpportunity`
 
-##### `impl PartialEq`
+##### `impl PartialEq for BreakOpportunity`
 
-- `fn eq(self: &Self, other: &BreakOpportunity) -> bool` — [`BreakOpportunity`](../index.md)
+- `fn eq(self: &Self, other: &BreakOpportunity) -> bool` — [`BreakOpportunity`](#breakopportunity)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for BreakOpportunity`
 
 ## Functions
 

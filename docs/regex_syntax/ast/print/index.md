@@ -28,13 +28,13 @@ are ignored.
 
 #### Implementations
 
-- `fn new() -> Printer` — [`Printer`](../../../ast/print/index.md)
+- `fn new() -> Printer` — [`Printer`](#printer)
 
-- `fn print<W: fmt::Write>(self: &mut Self, ast: &Ast, wtr: W) -> fmt::Result` — [`Ast`](../../../ast/index.md)
+- `fn print<W: fmt::Write>(self: &mut Self, ast: &Ast, wtr: W) -> fmt::Result` — [`Ast`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Printer`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

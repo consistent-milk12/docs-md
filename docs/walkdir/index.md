@@ -169,9 +169,9 @@ operations operate on the symbolic link.
 
 - `fn path_is_symlink(self: &Self) -> bool`
 
-- `fn metadata(self: &Self) -> Result<fs::Metadata>` — [`Result`](../index.md)
+- `fn metadata(self: &Self) -> Result<fs::Metadata>` — [`Result`](#result)
 
-- `fn metadata_internal(self: &Self) -> Result<fs::Metadata>` — [`Result`](../index.md)
+- `fn metadata_internal(self: &Self) -> Result<fs::Metadata>` — [`Result`](#result)
 
 - `fn file_type(self: &Self) -> fs::FileType`
 
@@ -181,21 +181,21 @@ operations operate on the symbolic link.
 
 - `fn is_dir(self: &Self) -> bool`
 
-- `fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](../index.md)
+- `fn from_entry(depth: usize, ent: &fs::DirEntry) -> Result<DirEntry>` — [`Result`](#result)
 
-- `fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](../index.md), [`DirEntry`](../dent/index.md)
+- `fn from_path(depth: usize, pb: PathBuf, follow: bool) -> Result<DirEntry>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DirEntry`
 
-- `fn clone(self: &Self) -> DirEntry` — [`DirEntry`](../dent/index.md)
+- `fn clone(self: &Self) -> DirEntry` — [`DirEntry`](dent/index.md)
 
-##### `impl Debug`
+##### `impl Debug for DirEntry`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl DirEntryExt`
+##### `impl DirEntryExt for DirEntry`
 
 - `fn ino(self: &Self) -> u64`
 
@@ -225,7 +225,7 @@ This allows you to use an `io::Result` with methods in this crate if you don't c
 accessing the underlying error data in a structured form.
 
 
-[impl](#impl): struct.Error.html#impl-From%3CError%3E
+
 
 #### Implementations
 
@@ -241,7 +241,7 @@ accessing the underlying error data in a structured form.
 
 - `fn from_path(depth: usize, pb: PathBuf, err: io::Error) -> Self`
 
-- `fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](../dent/index.md)
+- `fn from_entry(dent: &DirEntry, err: io::Error) -> Self` — [`DirEntry`](dent/index.md)
 
 - `fn from_io(depth: usize, err: io::Error) -> Self`
 
@@ -249,15 +249,15 @@ accessing the underlying error data in a structured form.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Error`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Error`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for Error`
 
 - `fn description(self: &Self) -> &str`
 
@@ -265,7 +265,7 @@ accessing the underlying error data in a structured form.
 
 - `fn source(self: &Self) -> Option<&dyn error::Error>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -373,17 +373,17 @@ error is reported.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for WalkDir`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator`
+##### `impl IntoIterator for WalkDir`
 
 - `type Item = Result<DirEntry, Error>`
 
 - `type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](../index.md)
+- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](#intoiter)
 
 ### `IntoIter`
 
@@ -470,33 +470,33 @@ The order of elements yielded by this iterator is unspecified.
 
 - `fn skip_current_dir(self: &mut Self)`
 
-- `fn filter_entry<P>(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](../index.md)
+- `fn filter_entry<P>(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
 
-- `fn handle_entry(self: &mut Self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](../dent/index.md), [`Result`](../index.md)
+- `fn handle_entry(self: &mut Self, dent: DirEntry) -> Option<Result<DirEntry>>` — [`DirEntry`](dent/index.md), [`Result`](#result)
 
-- `fn get_deferred_dir(self: &mut Self) -> Option<DirEntry>` — [`DirEntry`](../dent/index.md)
+- `fn get_deferred_dir(self: &mut Self) -> Option<DirEntry>` — [`DirEntry`](dent/index.md)
 
-- `fn push(self: &mut Self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](../dent/index.md), [`Result`](../index.md)
+- `fn push(self: &mut Self, dent: &DirEntry) -> Result<()>` — [`DirEntry`](dent/index.md), [`Result`](#result)
 
 - `fn pop(self: &mut Self)`
 
-- `fn follow(self: &Self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](../dent/index.md), [`Result`](../index.md)
+- `fn follow(self: &Self, dent: DirEntry) -> Result<DirEntry>` — [`DirEntry`](dent/index.md), [`Result`](#result)
 
-- `fn check_loop<P: AsRef<Path>>(self: &Self, child: P) -> Result<()>` — [`Result`](../index.md)
+- `fn check_loop<P: AsRef<Path>>(self: &Self, child: P) -> Result<()>` — [`Result`](#result)
 
-- `fn is_same_file_system(self: &mut Self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](../dent/index.md), [`Result`](../index.md)
+- `fn is_same_file_system(self: &mut Self, dent: &DirEntry) -> Result<bool>` — [`DirEntry`](dent/index.md), [`Result`](#result)
 
 - `fn skippable(self: &Self) -> bool`
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for IntoIter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FusedIterator`
+##### `impl FusedIterator for IntoIter`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IntoIter`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -504,11 +504,11 @@ The order of elements yielded by this iterator is unspecified.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator`
+##### `impl Iterator for IntoIter`
 
 - `type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](../index.md), [`DirEntry`](../dent/index.md)
+- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
 ### `FilterEntry<I, P>`
 
@@ -542,19 +542,19 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 #### Implementations
 
-- `fn filter_entry(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](../index.md)
+- `fn filter_entry(self: Self, predicate: P) -> FilterEntry<Self, P>` — [`FilterEntry`](#filterentry)
 
 - `fn skip_current_dir(self: &mut Self)`
 
 #### Trait Implementations
 
-##### `impl Debug<I: $crate::fmt::Debug, P: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug, P: $crate::fmt::Debug> Debug for FilterEntry<I, P>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FusedIterator<P>`
+##### `impl<P> FusedIterator for FilterEntry<IntoIter, P>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FilterEntry<I, P>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -562,11 +562,11 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<P>`
+##### `impl<P> Iterator for FilterEntry<IntoIter, P>`
 
 - `type Item = Result<DirEntry, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](../index.md), [`DirEntry`](../dent/index.md)
+- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
 ## Traits
 

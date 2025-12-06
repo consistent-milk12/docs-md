@@ -4,6 +4,7 @@
 //! a Rust module's documentation to markdown format, including all its items
 //! organized by type.
 
+use std::collections::HashSet;
 use std::fmt::Write;
 
 use rustdoc_types::{Id, Item, ItemEnum};
@@ -109,8 +110,14 @@ impl<'a> ModuleRenderer<'a> {
     /// Categorize module items by type for organized rendering.
     fn categorize_items(&self, item_ids: &'a [Id]) -> CategorizedItems<'a> {
         let mut items = CategorizedItems::default();
+        let mut seen_items: HashSet<&Id> = HashSet::new();
 
         for item_id in item_ids {
+            // Skip if already processed (from glob expansion)
+            if !seen_items.insert(item_id) {
+                continue;
+            }
+
             if let Some(child) = self.ctx.get_item(item_id) {
                 if !self.ctx.should_include_item(child) {
                     continue;
@@ -126,24 +133,25 @@ impl<'a> ModuleRenderer<'a> {
                     ItemEnum::Constant { .. } => items.constants.push(child),
                     ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
 
-                    // Handle re-exports: pub use other::Item;
-                    // Skip glob re-exports (pub use foo::*) as they create duplicates
-                    ItemEnum::Use(use_item) if !use_item.is_glob => {
-                        // Try to resolve target item by ID
-                        if let Some(target_id) = &use_item.id {
-                            if let Some(target_item) = self.ctx.get_item(target_id) {
-                                // Categorize based on target type, but store the original Use item
-                                match &target_item.inner {
-                                    ItemEnum::Module(_) => items.modules.push((item_id, child)),
-                                    ItemEnum::Struct(_) => items.structs.push((item_id, child)),
-                                    ItemEnum::Enum(_) => items.enums.push((item_id, child)),
-                                    ItemEnum::Trait(_) => items.traits.push((item_id, child)),
-                                    ItemEnum::Function(_) => items.functions.push(child),
-                                    ItemEnum::Macro(_) => items.macros.push(child),
-                                    ItemEnum::Constant { .. } => items.constants.push(child),
-                                    ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
-                                    _ => {},
-                                }
+                    // Handle re-exports
+                    ItemEnum::Use(use_item) => {
+                        if use_item.is_glob {
+                            // Glob re-export: expand target module's items
+                            self.expand_glob_reexport(&mut items, use_item, &mut seen_items);
+                        } else if let Some(target_id) = &use_item.id
+                            && let Some(target_item) = self.ctx.get_item(target_id)
+                        {
+                            // Specific re-export: categorize by target type
+                            match &target_item.inner {
+                                ItemEnum::Module(_) => items.modules.push((item_id, child)),
+                                ItemEnum::Struct(_) => items.structs.push((item_id, child)),
+                                ItemEnum::Enum(_) => items.enums.push((item_id, child)),
+                                ItemEnum::Trait(_) => items.traits.push((item_id, child)),
+                                ItemEnum::Function(_) => items.functions.push(child),
+                                ItemEnum::Macro(_) => items.macros.push(child),
+                                ItemEnum::Constant { .. } => items.constants.push(child),
+                                ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+                                _ => {},
                             }
                         }
                     },
@@ -153,6 +161,51 @@ impl<'a> ModuleRenderer<'a> {
         }
 
         items
+    }
+
+    /// Expand a glob re-export by adding all public items from the target module.
+    fn expand_glob_reexport(
+        &self,
+        items: &mut CategorizedItems<'a>,
+        use_item: &rustdoc_types::Use,
+        seen_items: &mut HashSet<&'a Id>,
+    ) {
+        // Get target module ID
+        let Some(target_id) = &use_item.id else { return };
+
+        // Look up target module
+        let Some(target_module) = self.ctx.get_item(target_id) else { return };
+
+        // Must be a module
+        let ItemEnum::Module(module) = &target_module.inner else { return };
+
+        // Add each public item from the target module
+        for child_id in &module.items {
+            // Skip if already seen (handles explicit + glob overlap)
+            if !seen_items.insert(child_id) {
+                continue;
+            }
+
+            let Some(child) = self.ctx.get_item(child_id) else { continue };
+
+            // Respect visibility settings
+            if !self.ctx.should_include_item(child) {
+                continue;
+            }
+
+            // Categorize based on item type
+            match &child.inner {
+                ItemEnum::Module(_) => items.modules.push((child_id, child)),
+                ItemEnum::Struct(_) => items.structs.push((child_id, child)),
+                ItemEnum::Enum(_) => items.enums.push((child_id, child)),
+                ItemEnum::Trait(_) => items.traits.push((child_id, child)),
+                ItemEnum::Function(_) => items.functions.push(child),
+                ItemEnum::Macro(_) => items.macros.push(child),
+                ItemEnum::Constant { .. } => items.constants.push(child),
+                ItemEnum::TypeAlias(_) => items.type_aliases.push(child),
+                _ => {},
+            }
+        }
     }
 
     /// Render all item sections in the standard order.

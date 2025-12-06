@@ -271,7 +271,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - `fn new<T: AsRef<str>>(text: T) -> Self`
 
-- `fn try_new<T: AsRef<str>>(text: T) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md)
+- `fn try_new<T: AsRef<str>>(text: T) -> Result<Self, ReserveError>` — [`ReserveError`](#reserveerror)
 
 - `const fn const_new(text: &'static str) -> Self`
 
@@ -279,13 +279,13 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - `fn with_capacity(capacity: usize) -> Self`
 
-- `fn try_with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](../index.md)
+- `fn try_with_capacity(capacity: usize) -> Result<Self, ReserveError>` — [`ReserveError`](#reserveerror)
 
 - `fn from_utf8<B: AsRef<[u8]>>(buf: B) -> Result<Self, Utf8Error>`
 
 - `unsafe fn from_utf8_unchecked<B: AsRef<[u8]>>(buf: B) -> Self`
 
-- `fn from_utf16<B: AsRef<[u16]>>(buf: B) -> Result<Self, Utf16Error>` — [`Utf16Error`](../index.md)
+- `fn from_utf16<B: AsRef<[u16]>>(buf: B) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
 - `fn from_utf16_lossy<B: AsRef<[u16]>>(buf: B) -> Self`
 
@@ -297,7 +297,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - `fn reserve(self: &mut Self, additional: usize)`
 
-- `fn try_reserve(self: &mut Self, additional: usize) -> Result<(), ReserveError>` — [`ReserveError`](../index.md)
+- `fn try_reserve(self: &mut Self, additional: usize) -> Result<(), ReserveError>` — [`ReserveError`](#reserveerror)
 
 - `fn as_str(self: &Self) -> &str`
 
@@ -347,7 +347,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - `fn split_off(self: &mut Self, at: usize) -> Self`
 
-- `fn drain(self: &mut Self, range: impl RangeBounds<usize>) -> Drain<'_>` — [`Drain`](../index.md)
+- `fn drain(self: &mut Self, range: impl RangeBounds<usize>) -> Drain<'_>` — [`Drain`](#drain)
 
 - `fn shrink_to(self: &mut Self, min_capacity: usize)`
 
@@ -357,13 +357,13 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 - `fn from_utf8_lossy(v: &[u8]) -> Self`
 
-- `fn from_utf16x(v: &[u8], from_int: impl Fn(u16) -> u16, from_bytes: impl Fn([u8; 2]) -> u16) -> Result<Self, Utf16Error>` — [`Utf16Error`](../index.md)
+- `fn from_utf16x(v: &[u8], from_int: impl Fn(u16) -> u16, from_bytes: impl Fn([u8; 2]) -> u16) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
 - `fn from_utf16x_lossy(v: &[u8], from_int: impl Fn(u16) -> u16, from_bytes: impl Fn([u8; 2]) -> u16) -> Self`
 
-- `fn from_utf16le(v: impl AsRef<[u8]>) -> Result<Self, Utf16Error>` — [`Utf16Error`](../index.md)
+- `fn from_utf16le(v: impl AsRef<[u8]>) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
-- `fn from_utf16be(v: impl AsRef<[u8]>) -> Result<Self, Utf16Error>` — [`Utf16Error`](../index.md)
+- `fn from_utf16be(v: impl AsRef<[u8]>) -> Result<Self, Utf16Error>` — [`Utf16Error`](#utf16error)
 
 - `fn from_utf16le_lossy(v: impl AsRef<[u8]>) -> Self`
 
@@ -387,95 +387,95 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 #### Trait Implementations
 
-##### `impl Add`
+##### `impl Add for CompactString`
 
 - `type Output = CompactString`
 
 - `fn add(self: Self, rhs: &str) -> <Self as >::Output`
 
-##### `impl AddAssign`
+##### `impl AddAssign for CompactString`
 
 - `fn add_assign(self: &mut Self, rhs: &str)`
 
-##### `impl AsRef`
+##### `impl AsRef for CompactString`
 
-- `fn as_ref(self: &Self) -> &OsStr`
+- `fn as_ref(self: &Self) -> &[u8]`
 
-##### `impl Clone`
+##### `impl Clone for CompactString`
 
 - `fn clone(self: &Self) -> Self`
 
 - `fn clone_from(self: &mut Self, source: &Self)`
 
-##### `impl Debug`
+##### `impl Debug for CompactString`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for CompactString`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for CompactString`
 
 - `type Target = str`
 
 - `fn deref(self: &Self) -> &str`
 
-##### `impl DerefMut`
+##### `impl DerefMut for CompactString`
 
 - `fn deref_mut(self: &mut Self) -> &mut str`
 
-##### `impl Display`
+##### `impl Display for CompactString`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for CompactString`
 
-##### `impl Extend`
+##### `impl<'a> Extend for CompactString`
 
-- `fn extend<T: IntoIterator<Item = String>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = Cow<'a, str>>>(self: &mut Self, iter: T)`
 
-##### `impl FromIterator`
+##### `impl<'a> FromIterator for CompactString`
 
-- `fn from_iter<T: IntoIterator<Item = CompactString>>(iter: T) -> Self`
+- `fn from_iter<T: IntoIterator<Item = &'a str>>(iter: T) -> Self`
 
-##### `impl FromStr`
+##### `impl FromStr for CompactString`
 
 - `type Err = Infallible`
 
-- `fn from_str(s: &str) -> Result<CompactString, <Self as >::Err>` — [`CompactString`](../index.md)
+- `fn from_str(s: &str) -> Result<CompactString, <Self as >::Err>` — [`CompactString`](#compactstring)
 
-##### `impl Hash`
+##### `impl Hash for CompactString`
 
 - `fn hash<H: Hasher>(self: &Self, state: &mut H)`
 
-##### `impl LifetimeFree`
+##### `impl LifetimeFree for crate::CompactString`
 
-##### `impl Ord`
+##### `impl Ord for CompactString`
 
 - `fn cmp(self: &Self, other: &Self) -> Ordering`
 
-##### `impl PartialEq<T: AsRef<str> + ?Sized>`
+##### `impl<T: AsRef<str> + ?Sized> PartialEq for CompactString`
 
 - `fn eq(self: &Self, other: &T) -> bool`
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for CompactString`
 
 - `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for CompactString`
 
 - `type Target = T`
 
-##### `impl ToCompactString<T>`
+##### `impl<T> ToCompactString for CompactString`
 
-- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](../index.md), [`ToCompactStringError`](../index.md)
+- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for CompactString`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl Write`
+##### `impl Write for CompactString`
 
 - `fn write_str(self: &mut Self, s: &str) -> fmt::Result`
 
@@ -506,25 +506,25 @@ assert!(CompactString::from_utf16(v).is_err());
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Utf16Error`
 
-- `fn clone(self: &Self) -> Utf16Error` — [`Utf16Error`](../index.md)
+- `fn clone(self: &Self) -> Utf16Error` — [`Utf16Error`](#utf16error)
 
-##### `impl Copy`
+##### `impl Copy for Utf16Error`
 
-##### `impl Debug`
+##### `impl Debug for Utf16Error`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Utf16Error`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToCompactString<T>`
+##### `impl<T> ToCompactString for Utf16Error`
 
-- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](../index.md), [`ToCompactStringError`](../index.md)
+- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Utf16Error`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -547,31 +547,31 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Drain<'_>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Deref`
+##### `impl Deref for Drain<'_>`
 
 - `type Target = str`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl Display`
+##### `impl Display for Drain<'_>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl DoubleEndedIterator`
+##### `impl DoubleEndedIterator for Drain<'_>`
 
 - `fn next_back(self: &mut Self) -> Option<char>`
 
-##### `impl Drop`
+##### `impl Drop for Drain<'_>`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl FusedIterator`
+##### `impl FusedIterator for Drain<'_>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Drain<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -579,7 +579,7 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator`
+##### `impl Iterator for Drain<'_>`
 
 - `type Item = char`
 
@@ -591,19 +591,19 @@ An iterator over the exacted data by `CompactString::drain()`.
 
 - `fn last(self: Self) -> Option<char>`
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Drain<'a>`
 
 - `type Target = T`
 
-##### `impl Send`
+##### `impl Send for Drain<'_>`
 
-##### `impl Sync`
+##### `impl Sync for Drain<'_>`
 
-##### `impl ToCompactString<T>`
+##### `impl<T> ToCompactString for Drain<'a>`
 
-- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](../index.md), [`ToCompactStringError`](../index.md)
+- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Drain<'a>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -617,33 +617,33 @@ A possible error value if allocating or resizing a [`CompactString`](#compactstr
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ReserveError`
 
-- `fn clone(self: &Self) -> ReserveError` — [`ReserveError`](../index.md)
+- `fn clone(self: &Self) -> ReserveError` — [`ReserveError`](#reserveerror)
 
-##### `impl Copy`
+##### `impl Copy for ReserveError`
 
-##### `impl Debug`
+##### `impl Debug for ReserveError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for ReserveError`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for ReserveError`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ReserveError`
 
-- `fn eq(self: &Self, other: &ReserveError) -> bool` — [`ReserveError`](../index.md)
+- `fn eq(self: &Self, other: &ReserveError) -> bool` — [`ReserveError`](#reserveerror)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ReserveError`
 
-##### `impl ToCompactString<T>`
+##### `impl<T> ToCompactString for ReserveError`
 
-- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](../index.md), [`ToCompactStringError`](../index.md)
+- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for ReserveError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -672,35 +672,35 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ToCompactStringError`
 
-- `fn clone(self: &Self) -> ToCompactStringError` — [`ToCompactStringError`](../index.md)
+- `fn clone(self: &Self) -> ToCompactStringError` — [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl Copy`
+##### `impl Copy for ToCompactStringError`
 
-##### `impl Debug`
+##### `impl Debug for ToCompactStringError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for ToCompactStringError`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for ToCompactStringError`
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ToCompactStringError`
 
-- `fn eq(self: &Self, other: &ToCompactStringError) -> bool` — [`ToCompactStringError`](../index.md)
+- `fn eq(self: &Self, other: &ToCompactStringError) -> bool` — [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ToCompactStringError`
 
-##### `impl ToCompactString<T>`
+##### `impl<T> ToCompactString for ToCompactStringError`
 
-- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](../index.md), [`ToCompactStringError`](../index.md)
+- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>` — [`CompactString`](#compactstring), [`ToCompactStringError`](#tocompactstringerror)
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for ToCompactStringError`
 
 - `fn to_string(self: &Self) -> String`
 

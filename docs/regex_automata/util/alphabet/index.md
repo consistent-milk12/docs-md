@@ -86,9 +86,9 @@ singleton equivalence class.
 
 #### Implementations
 
-- `fn u8(byte: u8) -> Unit` — [`Unit`](../../../util/alphabet/index.md)
+- `fn u8(byte: u8) -> Unit` — [`Unit`](#unit)
 
-- `fn eoi(num_byte_equiv_classes: usize) -> Unit` — [`Unit`](../../../util/alphabet/index.md)
+- `fn eoi(num_byte_equiv_classes: usize) -> Unit` — [`Unit`](#unit)
 
 - `fn as_u8(self: Self) -> Option<u8>`
 
@@ -104,31 +104,31 @@ singleton equivalence class.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Unit`
 
-- `fn clone(self: &Self) -> Unit` — [`Unit`](../../../util/alphabet/index.md)
+- `fn clone(self: &Self) -> Unit` — [`Unit`](#unit)
 
-##### `impl Copy`
+##### `impl Copy for Unit`
 
-##### `impl Debug`
+##### `impl Debug for Unit`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Unit`
 
-##### `impl Ord`
+##### `impl Ord for Unit`
 
-- `fn cmp(self: &Self, other: &Unit) -> $crate::cmp::Ordering` — [`Unit`](../../../util/alphabet/index.md)
+- `fn cmp(self: &Self, other: &Unit) -> $crate::cmp::Ordering` — [`Unit`](#unit)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Unit`
 
-- `fn eq(self: &Self, other: &Unit) -> bool` — [`Unit`](../../../util/alphabet/index.md)
+- `fn eq(self: &Self, other: &Unit) -> bool` — [`Unit`](#unit)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Unit`
 
-- `fn partial_cmp(self: &Self, other: &Unit) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Unit`](../../../util/alphabet/index.md)
+- `fn partial_cmp(self: &Self, other: &Unit) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Unit`](#unit)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Unit`
 
 ### `ByteClasses`
 
@@ -168,13 +168,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn empty() -> ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
+- `fn empty() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
-- `fn singletons() -> ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
+- `fn singletons() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
-- `fn from_bytes(slice: &[u8]) -> Result<(ByteClasses, usize), DeserializeError>` — [`ByteClasses`](../../../util/alphabet/index.md), [`DeserializeError`](../../../util/wire/index.md)
+- `fn from_bytes(slice: &[u8]) -> Result<(ByteClasses, usize), DeserializeError>` — [`ByteClasses`](#byteclasses), [`DeserializeError`](../wire/index.md)
 
-- `fn write_to(self: &Self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../../../util/wire/index.md)
+- `fn write_to(self: &Self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
 
 - `fn write_to_len(self: &Self) -> usize`
 
@@ -182,9 +182,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get(self: &Self, byte: u8) -> u8`
 
-- `fn get_by_unit(self: &Self, unit: Unit) -> usize` — [`Unit`](../../../util/alphabet/index.md)
+- `fn get_by_unit(self: &Self, unit: Unit) -> usize` — [`Unit`](#unit)
 
-- `fn eoi(self: &Self) -> Unit` — [`Unit`](../../../util/alphabet/index.md)
+- `fn eoi(self: &Self) -> Unit` — [`Unit`](#unit)
 
 - `fn alphabet_len(self: &Self) -> usize`
 
@@ -192,29 +192,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn is_singleton(self: &Self) -> bool`
 
-- `fn iter(self: &Self) -> ByteClassIter<'_>` — [`ByteClassIter`](../../../util/alphabet/index.md)
+- `fn iter(self: &Self) -> ByteClassIter<'_>` — [`ByteClassIter`](#byteclassiter)
 
-- `fn representatives<R: core::ops::RangeBounds<u8>>(self: &Self, range: R) -> ByteClassRepresentatives<'_>` — [`ByteClassRepresentatives`](../../../util/alphabet/index.md)
+- `fn representatives<R: core::ops::RangeBounds<u8>>(self: &Self, range: R) -> ByteClassRepresentatives<'_>` — [`ByteClassRepresentatives`](#byteclassrepresentatives)
 
-- `fn elements(self: &Self, class: Unit) -> ByteClassElements<'_>` — [`Unit`](../../../util/alphabet/index.md), [`ByteClassElements`](../../../util/alphabet/index.md)
+- `fn elements(self: &Self, class: Unit) -> ByteClassElements<'_>` — [`Unit`](#unit), [`ByteClassElements`](#byteclasselements)
 
-- `fn element_ranges(self: &Self, class: Unit) -> ByteClassElementRanges<'_>` — [`Unit`](../../../util/alphabet/index.md), [`ByteClassElementRanges`](../../../util/alphabet/index.md)
+- `fn element_ranges(self: &Self, class: Unit) -> ByteClassElementRanges<'_>` — [`Unit`](#unit), [`ByteClassElementRanges`](#byteclasselementranges)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ByteClasses`
 
-- `fn clone(self: &Self) -> ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
+- `fn clone(self: &Self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
-##### `impl Copy`
+##### `impl Copy for ByteClasses`
 
-##### `impl Debug`
+##### `impl Debug for ByteClasses`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ByteClasses`
 
-- `fn default() -> ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
+- `fn default() -> ByteClasses` — [`ByteClasses`](#byteclasses)
 
 ### `ByteClassIter<'a>`
 
@@ -236,11 +236,11 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for ByteClassIter<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ByteClassIter<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -248,11 +248,11 @@ iterator was created from.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for ByteClassIter<'a>`
 
 - `type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](../../../util/alphabet/index.md)
+- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](#unit)
 
 ### `ByteClassRepresentatives<'a>`
 
@@ -274,11 +274,11 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for ByteClassRepresentatives<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ByteClassRepresentatives<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -286,11 +286,11 @@ iterator was created from.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for ByteClassRepresentatives<'a>`
 
 - `type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](../../../util/alphabet/index.md)
+- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](#unit)
 
 ### `ByteClassElements<'a>`
 
@@ -311,11 +311,11 @@ iterator was created from.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for ByteClassElements<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ByteClassElements<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -323,9 +323,9 @@ iterator was created from.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for ByteClassElements<'a>`
 
 - `type Item = Unit`
 
-- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](../../../util/alphabet/index.md)
+- `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](#unit)
 

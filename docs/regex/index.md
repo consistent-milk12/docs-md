@@ -8,9 +8,7 @@ backreferences. In exchange, all regex searches in this crate have worst case
 `O(m * n)` time complexity, where `m` is proportional to the size of the regex
 and `n` is proportional to the size of the string being searched.
 
-[regular expression]: https://en.wikipedia.org/wiki/Regular_expression
-
-If you just want API documentation, then skip to the [`Regex`](regex/string/index.md) type. Otherwise,
+If you just want API documentation, then skip to the [`Regex`](#regex) type. Otherwise,
 here's a quick example showing one way of parsing the output of a grep-like
 program:
 
@@ -38,21 +36,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 # Overview
 
-The primary type in this crate is a [`Regex`](regex/string/index.md). Its most important methods are
+The primary type in this crate is a [`Regex`](#regex). Its most important methods are
 as follows:
 
 * `Regex::new` compiles a regex using the default configuration. A
-[`RegexBuilder`](builders/bytes/index.md) permits setting a non-default configuration. (For example,
+[`RegexBuilder`](bytes/index.md) permits setting a non-default configuration. (For example,
 case insensitive matching, verbose mode and others.)
 * `Regex::is_match` reports whether a match exists in a particular haystack.
 * `Regex::find` reports the byte offsets of a match in a haystack, if one
 exists. `Regex::find_iter` returns an iterator over all such matches.
-* `Regex::captures` returns a [`Captures`](regex/string/index.md), which reports both the byte
+* `Regex::captures` returns a [`Captures`](#captures), which reports both the byte
 offsets of a match in a haystack and the byte offsets of each matching capture
 group from the regex in the haystack.
 `Regex::captures_iter` returns an iterator over all such matches.
 
-There is also a [`RegexSet`](regexset/string/index.md), which permits searching for multiple regex
+There is also a [`RegexSet`](regexset/bytes/index.md), which permits searching for multiple regex
 patterns simultaneously in a single search. However, it currently only reports
 which patterns match and *not* the byte offsets of a match.
 
@@ -182,8 +180,6 @@ special meaning that says, "make whatever part of the haystack matches within
 these parentheses available as a capturing group." After finding a match, we
 access this capture group with `&caps[1]`.
 
-[raw strings]: https://doc.rust-lang.org/stable/reference/tokens.html#raw-string-literals
-
 Otherwise, we execute a search using `re.captures(hay)` and return from our
 function if no match occurred. We then reference the middle initial by asking
 for the part of the haystack that matched the capture group indexed at `1`.
@@ -266,7 +262,7 @@ assert_eq!(dates, vec![
 ]);
 ```
 
-We can also iterate over [`Captures`](regex/string/index.md) values instead of [`Match`](regex/string/index.md) values, and
+We can also iterate over [`Captures`](#captures) values instead of [`Match`](#match) values, and
 that in turn permits accessing each component of the date via capturing groups:
 
 ```rust
@@ -376,7 +372,7 @@ the `x` flag, e.g., `(?-x: )`.
 
 ### Example: match multiple regular expressions simultaneously
 
-This demonstrates how to use a [`RegexSet`](regexset/string/index.md) to match multiple (possibly
+This demonstrates how to use a [`RegexSet`](regexset/bytes/index.md) to match multiple (possibly
 overlapping) regexes in a single scan of a haystack:
 
 ```rust
@@ -528,7 +524,7 @@ specified by the [Unicode Technical Standard #18][UTS18]. The full details
 of what is supported are documented in [UNICODE.md] in the root of the regex
 crate repository. There is virtually no support for "Extended Unicode Support"
 (Level 2) from UTS#18.
-* The top-level [`Regex`](regex/string/index.md) runs searches *as if* iterating over each of the
+* The top-level [`Regex`](#regex) runs searches *as if* iterating over each of the
 codepoints in the haystack. That is, the fundamental atom of matching is a
 single codepoint.
 * `bytes::Regex`, in contrast, permits disabling Unicode mode for part of all
@@ -556,8 +552,6 @@ by default via the `\p{property name}` syntax.
 UTF-8 code unit offsets. This permits constant time indexing and slicing of the
 haystack.
 
-[UTS18]: https://unicode.org/reports/tr18/
-[UNICODE.md]: https://github.com/rust-lang/regex/blob/master/UNICODE.md
 
 Patterns themselves are **only** interpreted as a sequence of Unicode scalar
 values. This means you can use Unicode characters directly in your pattern:
@@ -738,7 +732,7 @@ $               the end of a haystack (or end-of-line with multi-line mode)
 
 The empty regex is valid and matches the empty string. For example, the
 empty regex matches `abc` at positions `0`, `1`, `2` and `3`. When using the
-top-level [`Regex`](regex/string/index.md) on `&str` haystacks, an empty match that splits a codepoint
+top-level [`Regex`](#regex) on `&str` haystacks, an empty match that splits a codepoint
 is guaranteed to never be returned. However, such matches are permitted when
 using a `bytes::Regex`. For example:
 
@@ -931,8 +925,6 @@ This crate is meant to be able to run regex searches on untrusted haystacks
 without fear of [ReDoS]. This crate also, to a certain extent, supports
 untrusted patterns.
 
-[ReDoS]: https://en.wikipedia.org/wiki/ReDoS
-
 This crate differs from most (but not all) other regex engines in that it
 doesn't use unbounded backtracking to run a regex search. In those cases,
 one generally cannot use untrusted patterns *or* untrusted haystacks because
@@ -967,7 +959,6 @@ occurs, your program might continue as if nothing bad has happened, but it also
 might mean your program is open to the worst kinds of exploits. In contrast,
 the worst thing a panic can do is a denial of service.
 
-[OSS-fuzz project]: https://android.googlesource.com/platform/external/oss-fuzz/+/refs/tags/android-t-preview-1/projects/rust-regex/
 
 ### Untrusted patterns
 
@@ -1014,8 +1005,6 @@ an HIR can be reasonably limited by limiting the length of the pattern string.
 something like `\w{5}` is rewritten to `\w\w\w\w\w`. Thus, this is the stage
 at which `RegexBuilder::size_limit` is enforced. If the NFA exceeds the
 configured size, then this stage will fail.
-
-[Thompson NFA]: https://en.wikipedia.org/wiki/Thompson%27s_construction
 
 The size limit helps avoid two different kinds of exorbitant resource usage:
 
@@ -1317,6 +1306,1207 @@ this for literal optimizations.
 
 - [`bytes`](bytes/index.md) - Search for regex matches in `&[u8]` haystacks.
 
+## Structs
+
+### `RegexBuilder`
+
+```rust
+struct RegexBuilder {
+    builder: super::Builder,
+}
+```
+
+A configurable builder for a [`Regex`](#regex).
+
+This builder can be used to programmatically set flags such as `i`
+(case insensitive) and `x` (for verbose mode). This builder can also be
+used to configure things like the line terminator and a size limit on
+the compiled regular expression.
+
+#### Implementations
+
+- `fn new(pattern: &str) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn build(self: &Self) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+
+- `fn unicode(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn multi_line(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn crlf(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn line_terminator(self: &mut Self, byte: u8) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn swap_greed(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn octal(self: &mut Self, yes: bool) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn size_limit(self: &mut Self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn dfa_size_limit(self: &mut Self, bytes: usize) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+- `fn nest_limit(self: &mut Self, limit: u32) -> &mut RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+#### Trait Implementations
+
+##### `impl Clone for RegexBuilder`
+
+- `fn clone(self: &Self) -> RegexBuilder` — [`RegexBuilder`](#regexbuilder)
+
+##### `impl Debug for RegexBuilder`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `RegexSetBuilder`
+
+```rust
+struct RegexSetBuilder {
+    builder: super::Builder,
+}
+```
+
+A configurable builder for a [`RegexSet`](regexset/bytes/index.md).
+
+This builder can be used to programmatically set flags such as
+`i` (case insensitive) and `x` (for verbose mode). This builder
+can also be used to configure things like the line terminator
+and a size limit on the compiled regular expression.
+
+#### Implementations
+
+- `fn new<I, S>(patterns: I) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn build(self: &Self) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md)
+
+- `fn unicode(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn multi_line(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn crlf(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn line_terminator(self: &mut Self, byte: u8) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn swap_greed(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn octal(self: &mut Self, yes: bool) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn size_limit(self: &mut Self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn dfa_size_limit(self: &mut Self, bytes: usize) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+- `fn nest_limit(self: &mut Self, limit: u32) -> &mut RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+#### Trait Implementations
+
+##### `impl Clone for RegexSetBuilder`
+
+- `fn clone(self: &Self) -> RegexSetBuilder` — [`RegexSetBuilder`](#regexsetbuilder)
+
+##### `impl Debug for RegexSetBuilder`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `Regex`
+
+```rust
+struct Regex {
+    meta: meta::Regex,
+    pattern: alloc::sync::Arc<str>,
+}
+```
+
+A compiled regular expression for searching Unicode haystacks.
+
+A `Regex` can be used to search haystacks, split haystacks into substrings
+or replace substrings in a haystack with a different substring. All
+searching is done with an implicit `(?s:.)*?` at the beginning and end of
+an pattern. To force an expression to match the whole string (or a prefix
+or a suffix), you must use an anchor like `^` or `$` (or `\A` and `\z`).
+
+While this crate will handle Unicode strings (whether in the regular
+expression or in the haystack), all positions returned are **byte
+offsets**. Every byte offset is guaranteed to be at a Unicode code point
+boundary. That is, all offsets returned by the `Regex` API are guaranteed
+to be ranges that can slice a `&str` without panicking. If you want to
+relax this requirement, then you must search `&[u8]` haystacks with a
+[`bytes::Regex`](crate::bytes::Regex).
+
+The only methods that allocate new strings are the string replacement
+methods. All other methods (searching and splitting) return borrowed
+references into the haystack given.
+
+# Example
+
+Find the offsets of a US phone number:
+
+```rust
+use regex::Regex;
+
+let re = Regex::new("[0-9]{3}-[0-9]{3}-[0-9]{4}").unwrap();
+let m = re.find("phone: 111-222-3333").unwrap();
+assert_eq!(7..19, m.range());
+```
+
+# Example: extracting capture groups
+
+A common way to use regexes is with capture groups. That is, instead of
+just looking for matches of an entire regex, parentheses are used to create
+groups that represent part of the match.
+
+For example, consider a haystack with multiple lines, and each line has
+three whitespace delimited fields where the second field is expected to be
+a number and the third field a boolean. To make this convenient, we use
+the `Captures::extract` API to put the strings that match each group
+into a fixed size array:
+
+```rust
+use regex::Regex;
+
+let hay = "
+rabbit         54 true
+groundhog 2 true
+does not match
+fox   109    false
+";
+let re = Regex::new(r"(?m)^\s*(\S+)\s+([0-9]+)\s+(true|false)\s*$").unwrap();
+let mut fields: Vec<(&str, i64, bool)> = vec![];
+for (_, [f1, f2, f3]) in re.captures_iter(hay).map(|caps| caps.extract()) {
+    fields.push((f1, f2.parse()?, f3.parse()?));
+}
+assert_eq!(fields, vec![
+    ("rabbit", 54, true),
+    ("groundhog", 2, true),
+    ("fox", 109, false),
+]);
+
+Ok::<(), Box<dyn std::error::Error>>(())
+```
+
+# Example: searching with the `Pattern` trait
+
+**Note**: This section requires that this crate is compiled with the
+`pattern` Cargo feature enabled, which **requires nightly Rust**.
+
+Since `Regex` implements `Pattern` from the standard library, one can
+use regexes with methods defined on `&str`. For example, `is_match`,
+`find`, `find_iter` and `split` can, in some cases, be replaced with
+`str::contains`, `str::find`, `str::match_indices` and `str::split`.
+
+Here are some examples:
+
+```ignore
+use regex::Regex;
+
+let re = Regex::new(r"\d+").unwrap();
+let hay = "a111b222c";
+
+assert!(hay.contains(&re));
+assert_eq!(hay.find(&re), Some(1));
+assert_eq!(hay.match_indices(&re).collect::<Vec<_>>(), vec![
+    (1, "111"),
+    (5, "222"),
+]);
+assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
+```
+
+#### Implementations
+
+- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+
+- `fn is_match(self: &Self, haystack: &str) -> bool`
+
+- `fn find<'h>(self: &Self, haystack: &'h str) -> Option<Match<'h>>` — [`Match`](#match)
+
+- `fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> Matches<'r, 'h>` — [`Matches`](#matches)
+
+- `fn captures<'h>(self: &Self, haystack: &'h str) -> Option<Captures<'h>>` — [`Captures`](#captures)
+
+- `fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](#capturematches)
+
+- `fn split<'r, 'h>(self: &'r Self, haystack: &'h str) -> Split<'r, 'h>` — [`Split`](#split)
+
+- `fn splitn<'r, 'h>(self: &'r Self, haystack: &'h str, limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](#splitn)
+
+- `fn replace<'h, R: Replacer>(self: &Self, haystack: &'h str, rep: R) -> Cow<'h, str>`
+
+- `fn replace_all<'h, R: Replacer>(self: &Self, haystack: &'h str, rep: R) -> Cow<'h, str>`
+
+- `fn replacen<'h, R: Replacer>(self: &Self, haystack: &'h str, limit: usize, rep: R) -> Cow<'h, str>`
+
+#### Trait Implementations
+
+##### `impl Clone for Regex`
+
+- `fn clone(self: &Self) -> Regex` — [`Regex`](#regex)
+
+##### `impl Debug for Regex`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Display for Regex`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl FromStr for Regex`
+
+- `type Err = Error`
+
+- `fn from_str(s: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
+
+##### `impl<T> ToString for Regex`
+
+- `fn to_string(self: &Self) -> String`
+
+### `Match<'h>`
+
+```rust
+struct Match<'h> {
+    haystack: &'h str,
+    start: usize,
+    end: usize,
+}
+```
+
+Represents a single match of a regex in a haystack.
+
+A `Match` contains both the start and end byte offsets of the match and the
+actual substring corresponding to the range of those byte offsets. It is
+guaranteed that `start <= end`. When `start == end`, the match is empty.
+
+Since this `Match` can only be produced by the top-level `Regex` APIs
+that only support searching UTF-8 encoded strings, the byte offsets for a
+`Match` are guaranteed to fall on valid UTF-8 codepoint boundaries. That
+is, slicing a `&str` with `Match::range` is guaranteed to never panic.
+
+Values with this type are created by `Regex::find` or
+`Regex::find_iter`. Other APIs can create `Match` values too. For
+example, `Captures::get`.
+
+The lifetime parameter `'h` refers to the lifetime of the matched of the
+haystack that this match was produced from.
+
+# Numbering
+
+The byte offsets in a `Match` form a half-open interval. That is, the
+start of the range is inclusive and the end of the range is exclusive.
+For example, given a haystack `abcFOOxyz` and a match of `FOO`, its byte
+offset range starts at `3` and ends at `6`. `3` corresponds to `F` and
+`6` corresponds to `x`, which is one past the end of the match. This
+corresponds to the same kind of slicing that Rust uses.
+
+For more on why this was chosen over other schemes (aside from being
+consistent with how Rust the language works), see [this discussion] and
+[Dijkstra's note on a related topic][note](#note).
+
+
+# Example
+
+This example shows the value of each of the methods on `Match` for a
+particular search.
+
+```rust
+use regex::Regex;
+
+let re = Regex::new(r"\p{Greek}+").unwrap();
+let hay = "Greek: αβγδ";
+let m = re.find(hay).unwrap();
+assert_eq!(7, m.start());
+assert_eq!(15, m.end());
+assert!(!m.is_empty());
+assert_eq!(8, m.len());
+assert_eq!(7..15, m.range());
+assert_eq!("αβγδ", m.as_str());
+```
+
+#### Implementations
+
+- `fn start(self: &Self) -> usize`
+
+- `fn end(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn len(self: &Self) -> usize`
+
+- `fn range(self: &Self) -> core::ops::Range<usize>`
+
+- `fn as_str(self: &Self) -> &'h str`
+
+- `fn new(haystack: &'h str, start: usize, end: usize) -> Match<'h>` — [`Match`](#match)
+
+#### Trait Implementations
+
+##### `impl<'h> Clone for Match<'h>`
+
+- `fn clone(self: &Self) -> Match<'h>` — [`Match`](#match)
+
+##### `impl<'h> Copy for Match<'h>`
+
+##### `impl<'h> Debug for Match<'h>`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<'h> Eq for Match<'h>`
+
+##### `impl<'h> PartialEq for Match<'h>`
+
+- `fn eq(self: &Self, other: &Match<'h>) -> bool` — [`Match`](#match)
+
+##### `impl<'h> StructuralPartialEq for Match<'h>`
+
+### `Captures<'h>`
+
+```rust
+struct Captures<'h> {
+    haystack: &'h str,
+    caps: captures::Captures,
+    static_captures_len: Option<usize>,
+}
+```
+
+Represents the capture groups for a single match.
+
+Capture groups refer to parts of a regex enclosed in parentheses. They
+can be optionally named. The purpose of capture groups is to be able to
+reference different parts of a match based on the original pattern. In
+essence, a `Captures` is a container of [`Match`](#match) values for each group
+that participated in a regex match. Each `Match` can be looked up by either
+its capture group index or name (if it has one).
+
+For example, say you want to match the individual letters in a 5-letter
+word:
+
+```text
+(?<first>\w)(\w)(?:\w)\w(?<last>\w)
+```
+
+This regex has 4 capture groups:
+
+* The group at index `0` corresponds to the overall match. It is always
+present in every match and never has a name.
+* The group at index `1` with name `first` corresponding to the first
+letter.
+* The group at index `2` with no name corresponding to the second letter.
+* The group at index `3` with name `last` corresponding to the fifth and
+last letter.
+
+Notice that `(?:\w)` was not listed above as a capture group despite it
+being enclosed in parentheses. That's because `(?:pattern)` is a special
+syntax that permits grouping but *without* capturing. The reason for not
+treating it as a capture is that tracking and reporting capture groups
+requires additional state that may lead to slower searches. So using as few
+capture groups as possible can help performance. (Although the difference
+in performance of a couple of capture groups is likely immaterial.)
+
+Values with this type are created by `Regex::captures` or
+`Regex::captures_iter`.
+
+`'h` is the lifetime of the haystack that these captures were matched from.
+
+# Example
+
+```rust
+use regex::Regex;
+
+let re = Regex::new(r"(?<first>\w)(\w)(?:\w)\w(?<last>\w)").unwrap();
+let caps = re.captures("toady").unwrap();
+assert_eq!("toady", &caps[0]);
+assert_eq!("t", &caps["first"]);
+assert_eq!("o", &caps[2]);
+assert_eq!("y", &caps["last"]);
+```
+
+#### Implementations
+
+- `fn get(self: &Self, i: usize) -> Option<Match<'h>>` — [`Match`](#match)
+
+- `fn get_match(self: &Self) -> Match<'h>` — [`Match`](#match)
+
+- `fn name(self: &Self, name: &str) -> Option<Match<'h>>` — [`Match`](#match)
+
+- `fn extract<const N: usize>(self: &Self) -> (&'h str, [&'h str; N])`
+
+- `fn expand(self: &Self, replacement: &str, dst: &mut String)`
+
+- `fn iter<'c>(self: &'c Self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](#subcapturematches)
+
+- `fn len(self: &Self) -> usize`
+
+#### Trait Implementations
+
+##### `impl<'h> Debug for Captures<'h>`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<'h, 'n> Index for Captures<'h>`
+
+- `type Output = str`
+
+- `fn index<'a>(self: &'a Self, name: &'n str) -> &'a str`
+
+### `CaptureLocations`
+
+```rust
+struct CaptureLocations(captures::Captures);
+```
+
+A low level representation of the byte offsets of each capture group.
+
+You can think of this as a lower level [`Captures`](#captures), where this type does
+not support named capturing groups directly and it does not borrow the
+haystack that these offsets were matched on.
+
+Primarily, this type is useful when using the lower level `Regex` APIs such
+as `Regex::captures_read`, which permits amortizing the allocation in
+which capture match offsets are stored.
+
+In order to build a value of this type, you'll need to call the
+`Regex::capture_locations` method. The value returned can then be reused
+in subsequent searches for that regex. Using it for other regexes may
+result in a panic or otherwise incorrect results.
+
+# Example
+
+This example shows how to create and use `CaptureLocations` in a search.
+
+```rust
+use regex::Regex;
+
+let re = Regex::new(r"(?<first>\w+)\s+(?<last>\w+)").unwrap();
+let mut locs = re.capture_locations();
+let m = re.captures_read(&mut locs, "Bruce Springsteen").unwrap();
+assert_eq!(0..17, m.range());
+assert_eq!(Some((0, 17)), locs.get(0));
+assert_eq!(Some((0, 5)), locs.get(1));
+assert_eq!(Some((6, 17)), locs.get(2));
+
+// Asking for an invalid capture group always returns None.
+assert_eq!(None, locs.get(3));
+// literals are too big for 32-bit usize: #1041
+#[cfg(target_pointer_width = "64")]
+assert_eq!(None, locs.get(34973498648));
+#[cfg(target_pointer_width = "64")]
+assert_eq!(None, locs.get(9944060567225171988));
+```
+
+#### Implementations
+
+- `fn get(self: &Self, i: usize) -> Option<(usize, usize)>`
+
+- `fn len(self: &Self) -> usize`
+
+#### Trait Implementations
+
+##### `impl Clone for CaptureLocations`
+
+- `fn clone(self: &Self) -> CaptureLocations` — [`CaptureLocations`](#capturelocations)
+
+##### `impl Debug for CaptureLocations`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `Matches<'r, 'h>`
+
+```rust
+struct Matches<'r, 'h> {
+    haystack: &'h str,
+    it: meta::FindMatches<'r, 'h>,
+}
+```
+
+An iterator over all non-overlapping matches in a haystack.
+
+This iterator yields [`Match`](#match) values. The iterator stops when no more
+matches can be found.
+
+`'r` is the lifetime of the compiled regular expression and `'h` is the
+lifetime of the haystack.
+
+This iterator is created by `Regex::find_iter`.
+
+# Time complexity
+
+Note that since an iterator runs potentially many searches on the haystack
+and since each search has worst case `O(m * n)` time complexity, the
+overall worst case time complexity for iteration is `O(m * n^2)`.
+
+#### Trait Implementations
+
+##### `impl<'r, 'h> Debug for Matches<'r, 'h>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'r, 'h> FusedIterator for Matches<'r, 'h>`
+
+##### `impl<I> IntoIterator for Matches<'r, 'h>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'r, 'h> Iterator for Matches<'r, 'h>`
+
+- `type Item = Match<'h>`
+
+- `fn next(self: &mut Self) -> Option<Match<'h>>` — [`Match`](#match)
+
+- `fn count(self: Self) -> usize`
+
+### `CaptureMatches<'r, 'h>`
+
+```rust
+struct CaptureMatches<'r, 'h> {
+    haystack: &'h str,
+    it: meta::CapturesMatches<'r, 'h>,
+}
+```
+
+An iterator over all non-overlapping capture matches in a haystack.
+
+This iterator yields [`Captures`](#captures) values. The iterator stops when no more
+matches can be found.
+
+`'r` is the lifetime of the compiled regular expression and `'h` is the
+lifetime of the matched string.
+
+This iterator is created by `Regex::captures_iter`.
+
+# Time complexity
+
+Note that since an iterator runs potentially many searches on the haystack
+and since each search has worst case `O(m * n)` time complexity, the
+overall worst case time complexity for iteration is `O(m * n^2)`.
+
+#### Trait Implementations
+
+##### `impl<'r, 'h> Debug for CaptureMatches<'r, 'h>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'r, 'h> FusedIterator for CaptureMatches<'r, 'h>`
+
+##### `impl<I> IntoIterator for CaptureMatches<'r, 'h>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'r, 'h> Iterator for CaptureMatches<'r, 'h>`
+
+- `type Item = Captures<'h>`
+
+- `fn next(self: &mut Self) -> Option<Captures<'h>>` — [`Captures`](#captures)
+
+- `fn count(self: Self) -> usize`
+
+### `Split<'r, 'h>`
+
+```rust
+struct Split<'r, 'h> {
+    haystack: &'h str,
+    it: meta::Split<'r, 'h>,
+}
+```
+
+An iterator over all substrings delimited by a regex match.
+
+`'r` is the lifetime of the compiled regular expression and `'h` is the
+lifetime of the byte string being split.
+
+This iterator is created by `Regex::split`.
+
+# Time complexity
+
+Note that since an iterator runs potentially many searches on the haystack
+and since each search has worst case `O(m * n)` time complexity, the
+overall worst case time complexity for iteration is `O(m * n^2)`.
+
+#### Trait Implementations
+
+##### `impl<'r, 'h> Debug for Split<'r, 'h>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'r, 'h> FusedIterator for Split<'r, 'h>`
+
+##### `impl<I> IntoIterator for Split<'r, 'h>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'r, 'h> Iterator for Split<'r, 'h>`
+
+- `type Item = &'h str`
+
+- `fn next(self: &mut Self) -> Option<&'h str>`
+
+### `SplitN<'r, 'h>`
+
+```rust
+struct SplitN<'r, 'h> {
+    haystack: &'h str,
+    it: meta::SplitN<'r, 'h>,
+}
+```
+
+An iterator over at most `N` substrings delimited by a regex match.
+
+The last substring yielded by this iterator will be whatever remains after
+`N-1` splits.
+
+`'r` is the lifetime of the compiled regular expression and `'h` is the
+lifetime of the byte string being split.
+
+This iterator is created by `Regex::splitn`.
+
+# Time complexity
+
+Note that since an iterator runs potentially many searches on the haystack
+and since each search has worst case `O(m * n)` time complexity, the
+overall worst case time complexity for iteration is `O(m * n^2)`.
+
+Although note that the worst case time here has an upper bound given
+by the `limit` parameter to `Regex::splitn`.
+
+#### Trait Implementations
+
+##### `impl<'r, 'h> Debug for SplitN<'r, 'h>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'r, 'h> FusedIterator for SplitN<'r, 'h>`
+
+##### `impl<I> IntoIterator for SplitN<'r, 'h>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'r, 'h> Iterator for SplitN<'r, 'h>`
+
+- `type Item = &'h str`
+
+- `fn next(self: &mut Self) -> Option<&'h str>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+### `CaptureNames<'r>`
+
+```rust
+struct CaptureNames<'r>(captures::GroupInfoPatternNames<'r>);
+```
+
+An iterator over the names of all capture groups in a regex.
+
+This iterator yields values of type `Option<&str>` in order of the opening
+capture group parenthesis in the regex pattern. `None` is yielded for
+groups with no name. The first element always corresponds to the implicit
+and unnamed group for the overall match.
+
+`'r` is the lifetime of the compiled regular expression.
+
+This iterator is created by `Regex::capture_names`.
+
+#### Trait Implementations
+
+##### `impl<'r> Clone for CaptureNames<'r>`
+
+- `fn clone(self: &Self) -> CaptureNames<'r>` — [`CaptureNames`](#capturenames)
+
+##### `impl<'r> Debug for CaptureNames<'r>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'r> ExactSizeIterator for CaptureNames<'r>`
+
+##### `impl<'r> FusedIterator for CaptureNames<'r>`
+
+##### `impl<I> IntoIterator for CaptureNames<'r>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'r> Iterator for CaptureNames<'r>`
+
+- `type Item = Option<&'r str>`
+
+- `fn next(self: &mut Self) -> Option<Option<&'r str>>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+- `fn count(self: Self) -> usize`
+
+### `SubCaptureMatches<'c, 'h>`
+
+```rust
+struct SubCaptureMatches<'c, 'h> {
+    haystack: &'h str,
+    it: captures::CapturesPatternIter<'c>,
+}
+```
+
+An iterator over all group matches in a [`Captures`](#captures) value.
+
+This iterator yields values of type `Option<Match<'h>>`, where `'h` is the
+lifetime of the haystack that the matches are for. The order of elements
+yielded corresponds to the order of the opening parenthesis for the group
+in the regex pattern. `None` is yielded for groups that did not participate
+in the match.
+
+The first element always corresponds to the implicit group for the overall
+match. Since this iterator is created by a [`Captures`](#captures) value, and a
+`Captures` value is only created when a match occurs, it follows that the
+first element yielded by this iterator is guaranteed to be non-`None`.
+
+The lifetime `'c` corresponds to the lifetime of the `Captures` value that
+created this iterator, and the lifetime `'h` corresponds to the originally
+matched haystack.
+
+#### Trait Implementations
+
+##### `impl<'c, 'h> Clone for SubCaptureMatches<'c, 'h>`
+
+- `fn clone(self: &Self) -> SubCaptureMatches<'c, 'h>` — [`SubCaptureMatches`](#subcapturematches)
+
+##### `impl<'c, 'h> Debug for SubCaptureMatches<'c, 'h>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'c, 'h> ExactSizeIterator for SubCaptureMatches<'c, 'h>`
+
+##### `impl<'c, 'h> FusedIterator for SubCaptureMatches<'c, 'h>`
+
+##### `impl<I> IntoIterator for SubCaptureMatches<'c, 'h>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'c, 'h> Iterator for SubCaptureMatches<'c, 'h>`
+
+- `type Item = Option<Match<'h>>`
+
+- `fn next(self: &mut Self) -> Option<Option<Match<'h>>>` — [`Match`](#match)
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+- `fn count(self: Self) -> usize`
+
+### `ReplacerRef<'a, R: ?Sized>`
+
+```rust
+struct ReplacerRef<'a, R: ?Sized>(&'a mut R);
+```
+
+A by-reference adaptor for a [`Replacer`](regex/bytes/index.md).
+
+This permits reusing the same `Replacer` value in multiple calls to a
+replacement routine like `Regex::replace_all`.
+
+This type is created by `Replacer::by_ref`.
+
+#### Trait Implementations
+
+##### `impl<'a, R: $crate::fmt::Debug + ?Sized> Debug for ReplacerRef<'a, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'a, R: Replacer + ?Sized + 'a> Replacer for ReplacerRef<'a, R>`
+
+- `fn replace_append(self: &mut Self, caps: &Captures<'_>, dst: &mut String)` — [`Captures`](#captures)
+
+- `fn no_expansion(self: &mut Self) -> Option<Cow<'_, str>>`
+
+### `NoExpand<'s>`
+
+```rust
+struct NoExpand<'s>(&'s str);
+```
+
+A helper type for forcing literal string replacement.
+
+It can be used with routines like `Regex::replace` and
+`Regex::replace_all` to do a literal string replacement without expanding
+`$name` to their corresponding capture groups. This can be both convenient
+(to avoid escaping `$`, for example) and faster (since capture groups
+don't need to be found).
+
+`'s` is the lifetime of the literal string to use.
+
+# Example
+
+```rust
+use regex::{NoExpand, Regex};
+
+let re = Regex::new(r"(?<last>[^,\s]+),\s+(\S+)").unwrap();
+let result = re.replace("Springsteen, Bruce", NoExpand("$2 $last"));
+assert_eq!(result, "$2 $last");
+```
+
+#### Trait Implementations
+
+##### `impl<'s> Clone for NoExpand<'s>`
+
+- `fn clone(self: &Self) -> NoExpand<'s>` — [`NoExpand`](#noexpand)
+
+##### `impl<'s> Debug for NoExpand<'s>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'s> Replacer for NoExpand<'s>`
+
+- `fn replace_append(self: &mut Self, _: &Captures<'_>, dst: &mut String)` — [`Captures`](#captures)
+
+- `fn no_expansion(self: &mut Self) -> Option<Cow<'_, str>>`
+
+### `RegexSet`
+
+```rust
+struct RegexSet {
+    meta: meta::Regex,
+    patterns: alloc::sync::Arc<[alloc::string::String]>,
+}
+```
+
+Match multiple, possibly overlapping, regexes in a single search.
+
+A regex set corresponds to the union of zero or more regular expressions.
+That is, a regex set will match a haystack when at least one of its
+constituent regexes matches. A regex set as its formulated here provides a
+touch more power: it will also report *which* regular expressions in the
+set match. Indeed, this is the key difference between regex sets and a
+single `Regex` with many alternates, since only one alternate can match at
+a time.
+
+For example, consider regular expressions to match email addresses and
+domains: `[a-z]+@[a-z]+\.(com|org|net)` and `[a-z]+\.(com|org|net)`. If a
+regex set is constructed from those regexes, then searching the haystack
+`foo@example.com` will report both regexes as matching. Of course, one
+could accomplish this by compiling each regex on its own and doing two
+searches over the haystack. The key advantage of using a regex set is
+that it will report the matching regexes using a *single pass through the
+haystack*. If one has hundreds or thousands of regexes to match repeatedly
+(like a URL router for a complex web application or a user agent matcher),
+then a regex set *can* realize huge performance gains.
+
+# Limitations
+
+Regex sets are limited to answering the following two questions:
+
+1. Does any regex in the set match?
+2. If so, which regexes in the set match?
+
+As with the main `Regex` type, it is cheaper to ask (1)
+instead of (2) since the matching engines can stop after the first match
+is found.
+
+You cannot directly extract `Match` or
+`Captures` objects from a regex set. If you need these
+operations, the recommended approach is to compile each pattern in the set
+independently and scan the exact same haystack a second time with those
+independently compiled patterns:
+
+```rust
+use regex::{Regex, RegexSet};
+
+let patterns = ["foo", "bar"];
+// Both patterns will match different ranges of this string.
+let hay = "barfoo";
+
+// Compile a set matching any of our patterns.
+let set = RegexSet::new(patterns).unwrap();
+// Compile each pattern independently.
+let regexes: Vec<_> = set
+    .patterns()
+    .iter()
+    .map(|pat| Regex::new(pat).unwrap())
+    .collect();
+
+// Match against the whole set first and identify the individual
+// matching patterns.
+let matches: Vec<&str> = set
+    .matches(hay)
+    .into_iter()
+    // Dereference the match index to get the corresponding
+    // compiled pattern.
+    .map(|index| &regexes[index])
+    // To get match locations or any other info, we then have to search the
+    // exact same haystack again, using our separately-compiled pattern.
+    .map(|re| re.find(hay).unwrap().as_str())
+    .collect();
+
+// Matches arrive in the order the constituent patterns were declared,
+// not the order they appear in the haystack.
+assert_eq!(vec!["foo", "bar"], matches);
+```
+
+# Performance
+
+A `RegexSet` has the same performance characteristics as `Regex`. Namely,
+search takes `O(m * n)` time, where `m` is proportional to the size of the
+regex set and `n` is proportional to the length of the haystack.
+
+# Trait implementations
+
+The `Default` trait is implemented for `RegexSet`. The default value
+is an empty set. An empty set can also be explicitly constructed via
+`RegexSet::empty`.
+
+# Example
+
+This shows how the above two regexes (for matching email addresses and
+domains) might work:
+
+```rust
+use regex::RegexSet;
+
+let set = RegexSet::new(&[
+    r"[a-z]+@[a-z]+\.(com|org|net)",
+    r"[a-z]+\.(com|org|net)",
+]).unwrap();
+
+// Ask whether any regexes in the set match.
+assert!(set.is_match("foo@example.com"));
+
+// Identify which regexes in the set match.
+let matches: Vec<_> = set.matches("foo@example.com").into_iter().collect();
+assert_eq!(vec![0, 1], matches);
+
+// Try again, but with a haystack that only matches one of the regexes.
+let matches: Vec<_> = set.matches("example.com").into_iter().collect();
+assert_eq!(vec![1], matches);
+
+// Try again, but with a haystack that doesn't match any regex in the set.
+let matches: Vec<_> = set.matches("example").into_iter().collect();
+assert!(matches.is_empty());
+```
+
+Note that it would be possible to adapt the above example to using `Regex`
+with an expression like:
+
+```text
+(?P<email>[a-z]+@(?P<email_domain>[a-z]+[.](com|org|net)))|(?P<domain>[a-z]+[.](com|org|net))
+```
+
+After a match, one could then inspect the capture groups to figure out
+which alternates matched. The problem is that it is hard to make this
+approach scale when there are many regexes since the overlap between each
+alternate isn't always obvious to reason about.
+
+#### Implementations
+
+- `fn new<I, S>(exprs: I) -> Result<RegexSet, Error>` — [`RegexSet`](#regexset), [`Error`](error/index.md)
+
+- `fn empty() -> RegexSet` — [`RegexSet`](#regexset)
+
+- `fn is_match(self: &Self, haystack: &str) -> bool`
+
+- `fn is_match_at(self: &Self, haystack: &str, start: usize) -> bool`
+
+- `fn matches(self: &Self, haystack: &str) -> SetMatches` — [`SetMatches`](#setmatches)
+
+- `fn matches_at(self: &Self, haystack: &str, start: usize) -> SetMatches` — [`SetMatches`](#setmatches)
+
+- `fn len(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn patterns(self: &Self) -> &[String]`
+
+#### Trait Implementations
+
+##### `impl Clone for RegexSet`
+
+- `fn clone(self: &Self) -> RegexSet` — [`RegexSet`](#regexset)
+
+##### `impl Debug for RegexSet`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Default for RegexSet`
+
+- `fn default() -> Self`
+
+### `SetMatches`
+
+```rust
+struct SetMatches(regex_automata::PatternSet);
+```
+
+A set of matches returned by a regex set.
+
+Values of this type are constructed by `RegexSet::matches`.
+
+#### Implementations
+
+- `fn matched_any(self: &Self) -> bool`
+
+- `fn matched_all(self: &Self) -> bool`
+
+- `fn matched(self: &Self, index: usize) -> bool`
+
+- `fn len(self: &Self) -> usize`
+
+- `fn iter(self: &Self) -> SetMatchesIter<'_>` — [`SetMatchesIter`](#setmatchesiter)
+
+#### Trait Implementations
+
+##### `impl Clone for SetMatches`
+
+- `fn clone(self: &Self) -> SetMatches` — [`SetMatches`](#setmatches)
+
+##### `impl Debug for SetMatches`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl IntoIterator for SetMatches`
+
+- `type IntoIter = SetMatchesIntoIter`
+
+- `type Item = usize`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+
+### `SetMatchesIntoIter`
+
+```rust
+struct SetMatchesIntoIter {
+    patset: regex_automata::PatternSet,
+    it: core::ops::Range<usize>,
+}
+```
+
+An owned iterator over the set of matches from a regex set.
+
+This will always produces matches in ascending order of index, where the
+index corresponds to the index of the regex that matched with respect to
+its position when initially building the set.
+
+This iterator is created by calling `SetMatches::into_iter` via the
+`IntoIterator` trait. This is automatically done in `for` loops.
+
+# Example
+
+```rust
+use regex::RegexSet;
+
+let set = RegexSet::new([
+    r"[0-9]",
+    r"[a-z]",
+    r"[A-Z]",
+    r"\p{Greek}",
+]).unwrap();
+let hay = "βa1";
+let mut matches = vec![];
+for index in set.matches(hay) {
+    matches.push(index);
+}
+assert_eq!(matches, vec![0, 1, 3]);
+```
+
+#### Trait Implementations
+
+##### `impl Debug for SetMatchesIntoIter`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DoubleEndedIterator for SetMatchesIntoIter`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl FusedIterator for SetMatchesIntoIter`
+
+##### `impl<I> IntoIterator for SetMatchesIntoIter`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator for SetMatchesIntoIter`
+
+- `type Item = usize`
+
+- `fn next(self: &mut Self) -> Option<usize>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+### `SetMatchesIter<'a>`
+
+```rust
+struct SetMatchesIter<'a>(regex_automata::PatternSetIter<'a>);
+```
+
+A borrowed iterator over the set of matches from a regex set.
+
+The lifetime `'a` refers to the lifetime of the [`SetMatches`](#setmatches) value that
+created this iterator.
+
+This will always produces matches in ascending order, where the index
+corresponds to the index of the regex that matched with respect to its
+position when initially building the set.
+
+This iterator is created by the `SetMatches::iter` method.
+
+#### Trait Implementations
+
+##### `impl<'a> Clone for SetMatchesIter<'a>`
+
+- `fn clone(self: &Self) -> SetMatchesIter<'a>` — [`SetMatchesIter`](#setmatchesiter)
+
+##### `impl<'a> Debug for SetMatchesIter<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'a> DoubleEndedIterator for SetMatchesIter<'a>`
+
+- `fn next_back(self: &mut Self) -> Option<usize>`
+
+##### `impl<'a> FusedIterator for SetMatchesIter<'a>`
+
+##### `impl<I> IntoIterator for SetMatchesIter<'a>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'a> Iterator for SetMatchesIter<'a>`
+
+- `type Item = usize`
+
+- `fn next(self: &mut Self) -> Option<usize>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
 ## Enums
 
 ### `Error`
@@ -1361,35 +2551,90 @@ An error that occurred during parsing or compiling a regular expression.
 
 #### Implementations
 
-- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](../error/index.md)
+- `fn from_meta_build_error(err: meta::BuildError) -> Error` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](../error/index.md)
+- `fn clone(self: &Self) -> Error` — [`Error`](error/index.md)
 
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
-
-##### `impl Display`
+##### `impl Debug for Error`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Display for Error`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Error for Error`
 
 - `fn description(self: &Self) -> &str`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../error/index.md)
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](error/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Error`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
+
+## Traits
+
+### `Replacer`
+
+```rust
+trait Replacer { ... }
+```
+
+A trait for types that can be used to replace matches in a haystack.
+
+In general, users of this crate shouldn't need to implement this trait,
+since implementations are already provided for `&str` along with other
+variants of string types, as well as `FnMut(&Captures) -> String` (or any
+`FnMut(&Captures) -> T` where `T: AsRef<str>`). Those cover most use cases,
+but callers can implement this trait directly if necessary.
+
+# Example
+
+This example shows a basic implementation of  the `Replacer` trait. This
+can be done much more simply using the replacement string interpolation
+support (e.g., `$first $last`), but this approach avoids needing to parse
+the replacement string at all.
+
+```rust
+use regex::{Captures, Regex, Replacer};
+
+struct NameSwapper;
+
+impl Replacer for NameSwapper {
+    fn replace_append(&mut self, caps: &Captures<'_>, dst: &mut String) {
+        dst.push_str(&caps["first"]);
+        dst.push_str(" ");
+        dst.push_str(&caps["last"]);
+    }
+}
+
+let re = Regex::new(r"(?<last>[^,\s]+),\s+(?<first>\S+)").unwrap();
+let result = re.replace("Springsteen, Bruce", NameSwapper);
+assert_eq!(result, "Bruce Springsteen");
+```
+
+#### Required Methods
+
+- `fn replace_append(self: &mut Self, caps: &Captures<'_>, dst: &mut String)`
+
+  Appends possibly empty data to `dst` to replace the current match.
+
+- `fn no_expansion<'r>(self: &'r mut Self) -> Option<Cow<'r, str>>`
+
+  Return a fixed unchanging replacement string.
+
+- `fn by_ref<'r>(self: &'r mut Self) -> ReplacerRef<'r, Self>`
+
+  Returns a type that implements `Replacer`, but that borrows and wraps
 
 ## Functions
 

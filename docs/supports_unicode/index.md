@@ -39,13 +39,13 @@ possible stream sources
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Stream`
 
-- `fn clone(self: &Self) -> Stream` — [`Stream`](../index.md)
+- `fn clone(self: &Self) -> Stream` — [`Stream`](#stream)
 
-##### `impl Copy`
+##### `impl Copy for Stream`
 
-##### `impl Debug`
+##### `impl Debug for Stream`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

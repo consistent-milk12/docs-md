@@ -16,7 +16,7 @@ struct UserBlack;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBlack`
 
 - `const ANSI_FG: &'static str`
 
@@ -26,7 +26,7 @@ struct UserBlack;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBlack`
 
 ### `UserRed`
 
@@ -36,7 +36,7 @@ struct UserRed;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserRed`
 
 - `const ANSI_FG: &'static str`
 
@@ -46,7 +46,7 @@ struct UserRed;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserRed`
 
 ### `UserGreen`
 
@@ -56,7 +56,7 @@ struct UserGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -66,7 +66,7 @@ struct UserGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserGreen`
 
 ### `UserYellow`
 
@@ -76,7 +76,7 @@ struct UserYellow;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserYellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -86,7 +86,7 @@ struct UserYellow;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserYellow`
 
 ### `UserBlue`
 
@@ -96,7 +96,7 @@ struct UserBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -106,7 +106,7 @@ struct UserBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBlue`
 
 ### `UserMagenta`
 
@@ -116,7 +116,7 @@ struct UserMagenta;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserMagenta`
 
 - `const ANSI_FG: &'static str`
 
@@ -126,7 +126,7 @@ struct UserMagenta;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserMagenta`
 
 ### `UserCyan`
 
@@ -136,7 +136,7 @@ struct UserCyan;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserCyan`
 
 - `const ANSI_FG: &'static str`
 
@@ -146,7 +146,7 @@ struct UserCyan;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserCyan`
 
 ### `UserWhite`
 
@@ -156,7 +156,7 @@ struct UserWhite;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserWhite`
 
 - `const ANSI_FG: &'static str`
 
@@ -166,7 +166,7 @@ struct UserWhite;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserWhite`
 
 ### `UserBrightBlack`
 
@@ -176,7 +176,7 @@ struct UserBrightBlack;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBrightBlack`
 
 - `const ANSI_FG: &'static str`
 
@@ -186,7 +186,7 @@ struct UserBrightBlack;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBrightBlack`
 
 ### `UserBrightRed`
 
@@ -196,7 +196,7 @@ struct UserBrightRed;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBrightRed`
 
 - `const ANSI_FG: &'static str`
 
@@ -206,7 +206,7 @@ struct UserBrightRed;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBrightRed`
 
 ### `UserBrightGreen`
 
@@ -216,7 +216,7 @@ struct UserBrightGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBrightGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -226,7 +226,7 @@ struct UserBrightGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBrightGreen`
 
 ### `UserBrightYellow`
 
@@ -236,7 +236,7 @@ struct UserBrightYellow;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBrightYellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -246,7 +246,7 @@ struct UserBrightYellow;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBrightYellow`
 
 ### `UserBrightBlue`
 
@@ -256,7 +256,7 @@ struct UserBrightBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBrightBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -266,7 +266,7 @@ struct UserBrightBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBrightBlue`
 
 ### `UserBrightMagenta`
 
@@ -276,7 +276,7 @@ struct UserBrightMagenta;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBrightMagenta`
 
 - `const ANSI_FG: &'static str`
 
@@ -286,7 +286,7 @@ struct UserBrightMagenta;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBrightMagenta`
 
 ### `UserBrightCyan`
 
@@ -296,7 +296,7 @@ struct UserBrightCyan;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBrightCyan`
 
 - `const ANSI_FG: &'static str`
 
@@ -306,7 +306,7 @@ struct UserBrightCyan;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBrightCyan`
 
 ### `UserBrightWhite`
 
@@ -316,7 +316,7 @@ struct UserBrightWhite;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for UserBrightWhite`
 
 - `const ANSI_FG: &'static str`
 
@@ -326,7 +326,7 @@ struct UserBrightWhite;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UserBrightWhite`
 
 ### `Black`
 
@@ -336,7 +336,7 @@ struct Black;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Black`
 
 - `const ANSI_FG: &'static str`
 
@@ -346,7 +346,7 @@ struct Black;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Black`
 
 ### `StratosBlue`
 
@@ -356,7 +356,7 @@ struct StratosBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for StratosBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -366,7 +366,7 @@ struct StratosBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for StratosBlue`
 
 ### `NavyBlue`
 
@@ -376,7 +376,7 @@ struct NavyBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for NavyBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -386,7 +386,7 @@ struct NavyBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for NavyBlue`
 
 ### `MidnightBlue`
 
@@ -396,7 +396,7 @@ struct MidnightBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MidnightBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -406,7 +406,7 @@ struct MidnightBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MidnightBlue`
 
 ### `DarkBlue`
 
@@ -416,7 +416,7 @@ struct DarkBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -426,7 +426,7 @@ struct DarkBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkBlue`
 
 ### `Blue`
 
@@ -436,7 +436,7 @@ struct Blue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Blue`
 
 - `const ANSI_FG: &'static str`
 
@@ -446,7 +446,7 @@ struct Blue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Blue`
 
 ### `CamaroneGreen`
 
@@ -456,7 +456,7 @@ struct CamaroneGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CamaroneGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -466,7 +466,7 @@ struct CamaroneGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CamaroneGreen`
 
 ### `BlueStone`
 
@@ -476,7 +476,7 @@ struct BlueStone;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BlueStone`
 
 - `const ANSI_FG: &'static str`
 
@@ -486,7 +486,7 @@ struct BlueStone;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BlueStone`
 
 ### `OrientBlue`
 
@@ -496,7 +496,7 @@ struct OrientBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for OrientBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -506,7 +506,7 @@ struct OrientBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for OrientBlue`
 
 ### `EndeavourBlue`
 
@@ -516,7 +516,7 @@ struct EndeavourBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for EndeavourBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -526,7 +526,7 @@ struct EndeavourBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for EndeavourBlue`
 
 ### `ScienceBlue`
 
@@ -536,7 +536,7 @@ struct ScienceBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ScienceBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -546,7 +546,7 @@ struct ScienceBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ScienceBlue`
 
 ### `BlueRibbon`
 
@@ -556,7 +556,7 @@ struct BlueRibbon;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BlueRibbon`
 
 - `const ANSI_FG: &'static str`
 
@@ -566,7 +566,7 @@ struct BlueRibbon;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BlueRibbon`
 
 ### `JapaneseLaurel`
 
@@ -576,7 +576,7 @@ struct JapaneseLaurel;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for JapaneseLaurel`
 
 - `const ANSI_FG: &'static str`
 
@@ -586,7 +586,7 @@ struct JapaneseLaurel;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for JapaneseLaurel`
 
 ### `DeepSeaGreen`
 
@@ -596,7 +596,7 @@ struct DeepSeaGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DeepSeaGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -606,7 +606,7 @@ struct DeepSeaGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DeepSeaGreen`
 
 ### `Teal`
 
@@ -616,7 +616,7 @@ struct Teal;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Teal`
 
 - `const ANSI_FG: &'static str`
 
@@ -626,7 +626,7 @@ struct Teal;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Teal`
 
 ### `DeepCerulean`
 
@@ -636,7 +636,7 @@ struct DeepCerulean;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DeepCerulean`
 
 - `const ANSI_FG: &'static str`
 
@@ -646,7 +646,7 @@ struct DeepCerulean;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DeepCerulean`
 
 ### `LochmaraBlue`
 
@@ -656,7 +656,7 @@ struct LochmaraBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LochmaraBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -666,7 +666,7 @@ struct LochmaraBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LochmaraBlue`
 
 ### `AzureRadiance`
 
@@ -676,7 +676,7 @@ struct AzureRadiance;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for AzureRadiance`
 
 - `const ANSI_FG: &'static str`
 
@@ -686,7 +686,7 @@ struct AzureRadiance;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for AzureRadiance`
 
 ### `LightJapaneseLaurel`
 
@@ -696,7 +696,7 @@ struct LightJapaneseLaurel;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightJapaneseLaurel`
 
 - `const ANSI_FG: &'static str`
 
@@ -706,7 +706,7 @@ struct LightJapaneseLaurel;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightJapaneseLaurel`
 
 ### `Jade`
 
@@ -716,7 +716,7 @@ struct Jade;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Jade`
 
 - `const ANSI_FG: &'static str`
 
@@ -726,7 +726,7 @@ struct Jade;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Jade`
 
 ### `PersianGreen`
 
@@ -736,7 +736,7 @@ struct PersianGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PersianGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -746,7 +746,7 @@ struct PersianGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PersianGreen`
 
 ### `BondiBlue`
 
@@ -756,7 +756,7 @@ struct BondiBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BondiBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -766,7 +766,7 @@ struct BondiBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BondiBlue`
 
 ### `Cerulean`
 
@@ -776,7 +776,7 @@ struct Cerulean;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Cerulean`
 
 - `const ANSI_FG: &'static str`
 
@@ -786,7 +786,7 @@ struct Cerulean;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Cerulean`
 
 ### `LightAzureRadiance`
 
@@ -796,7 +796,7 @@ struct LightAzureRadiance;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightAzureRadiance`
 
 - `const ANSI_FG: &'static str`
 
@@ -806,7 +806,7 @@ struct LightAzureRadiance;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightAzureRadiance`
 
 ### `DarkGreen`
 
@@ -816,7 +816,7 @@ struct DarkGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -826,7 +826,7 @@ struct DarkGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkGreen`
 
 ### `Malachite`
 
@@ -836,7 +836,7 @@ struct Malachite;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Malachite`
 
 - `const ANSI_FG: &'static str`
 
@@ -846,7 +846,7 @@ struct Malachite;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Malachite`
 
 ### `CaribbeanGreen`
 
@@ -856,7 +856,7 @@ struct CaribbeanGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CaribbeanGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -866,7 +866,7 @@ struct CaribbeanGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CaribbeanGreen`
 
 ### `LightCaribbeanGreen`
 
@@ -876,7 +876,7 @@ struct LightCaribbeanGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightCaribbeanGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -886,7 +886,7 @@ struct LightCaribbeanGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightCaribbeanGreen`
 
 ### `RobinEggBlue`
 
@@ -896,7 +896,7 @@ struct RobinEggBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for RobinEggBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -906,7 +906,7 @@ struct RobinEggBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for RobinEggBlue`
 
 ### `Aqua`
 
@@ -916,7 +916,7 @@ struct Aqua;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Aqua`
 
 - `const ANSI_FG: &'static str`
 
@@ -926,7 +926,7 @@ struct Aqua;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Aqua`
 
 ### `Green`
 
@@ -936,7 +936,7 @@ struct Green;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Green`
 
 - `const ANSI_FG: &'static str`
 
@@ -946,7 +946,7 @@ struct Green;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Green`
 
 ### `DarkSpringGreen`
 
@@ -956,7 +956,7 @@ struct DarkSpringGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkSpringGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -966,7 +966,7 @@ struct DarkSpringGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkSpringGreen`
 
 ### `SpringGreen`
 
@@ -976,7 +976,7 @@ struct SpringGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for SpringGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -986,7 +986,7 @@ struct SpringGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for SpringGreen`
 
 ### `LightSpringGreen`
 
@@ -996,7 +996,7 @@ struct LightSpringGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightSpringGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1006,7 +1006,7 @@ struct LightSpringGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightSpringGreen`
 
 ### `BrightTurquoise`
 
@@ -1016,7 +1016,7 @@ struct BrightTurquoise;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightTurquoise`
 
 - `const ANSI_FG: &'static str`
 
@@ -1026,7 +1026,7 @@ struct BrightTurquoise;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightTurquoise`
 
 ### `Cyan`
 
@@ -1036,7 +1036,7 @@ struct Cyan;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Cyan`
 
 - `const ANSI_FG: &'static str`
 
@@ -1046,7 +1046,7 @@ struct Cyan;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Cyan`
 
 ### `Rosewood`
 
@@ -1056,7 +1056,7 @@ struct Rosewood;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Rosewood`
 
 - `const ANSI_FG: &'static str`
 
@@ -1066,7 +1066,7 @@ struct Rosewood;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Rosewood`
 
 ### `PompadourMagenta`
 
@@ -1076,7 +1076,7 @@ struct PompadourMagenta;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PompadourMagenta`
 
 - `const ANSI_FG: &'static str`
 
@@ -1086,7 +1086,7 @@ struct PompadourMagenta;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PompadourMagenta`
 
 ### `PigmentIndigo`
 
@@ -1096,7 +1096,7 @@ struct PigmentIndigo;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PigmentIndigo`
 
 - `const ANSI_FG: &'static str`
 
@@ -1106,7 +1106,7 @@ struct PigmentIndigo;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PigmentIndigo`
 
 ### `DarkPurple`
 
@@ -1116,7 +1116,7 @@ struct DarkPurple;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkPurple`
 
 - `const ANSI_FG: &'static str`
 
@@ -1126,7 +1126,7 @@ struct DarkPurple;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkPurple`
 
 ### `ElectricIndigo`
 
@@ -1136,7 +1136,7 @@ struct ElectricIndigo;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ElectricIndigo`
 
 - `const ANSI_FG: &'static str`
 
@@ -1146,7 +1146,7 @@ struct ElectricIndigo;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ElectricIndigo`
 
 ### `ElectricPurple`
 
@@ -1156,7 +1156,7 @@ struct ElectricPurple;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ElectricPurple`
 
 - `const ANSI_FG: &'static str`
 
@@ -1166,7 +1166,7 @@ struct ElectricPurple;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ElectricPurple`
 
 ### `VerdunGreen`
 
@@ -1176,7 +1176,7 @@ struct VerdunGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for VerdunGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1186,7 +1186,7 @@ struct VerdunGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for VerdunGreen`
 
 ### `ScorpionOlive`
 
@@ -1196,7 +1196,7 @@ struct ScorpionOlive;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ScorpionOlive`
 
 - `const ANSI_FG: &'static str`
 
@@ -1206,7 +1206,7 @@ struct ScorpionOlive;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ScorpionOlive`
 
 ### `Lilac`
 
@@ -1216,7 +1216,7 @@ struct Lilac;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Lilac`
 
 - `const ANSI_FG: &'static str`
 
@@ -1226,7 +1226,7 @@ struct Lilac;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Lilac`
 
 ### `ScampiIndigo`
 
@@ -1236,7 +1236,7 @@ struct ScampiIndigo;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ScampiIndigo`
 
 - `const ANSI_FG: &'static str`
 
@@ -1246,7 +1246,7 @@ struct ScampiIndigo;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ScampiIndigo`
 
 ### `Indigo`
 
@@ -1256,7 +1256,7 @@ struct Indigo;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Indigo`
 
 - `const ANSI_FG: &'static str`
 
@@ -1266,7 +1266,7 @@ struct Indigo;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Indigo`
 
 ### `DarkCornflowerBlue`
 
@@ -1276,7 +1276,7 @@ struct DarkCornflowerBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkCornflowerBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -1286,7 +1286,7 @@ struct DarkCornflowerBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkCornflowerBlue`
 
 ### `DarkLimeade`
 
@@ -1296,7 +1296,7 @@ struct DarkLimeade;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkLimeade`
 
 - `const ANSI_FG: &'static str`
 
@@ -1306,7 +1306,7 @@ struct DarkLimeade;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkLimeade`
 
 ### `GladeGreen`
 
@@ -1316,7 +1316,7 @@ struct GladeGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for GladeGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1326,7 +1326,7 @@ struct GladeGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for GladeGreen`
 
 ### `JuniperGreen`
 
@@ -1336,7 +1336,7 @@ struct JuniperGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for JuniperGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1346,7 +1346,7 @@ struct JuniperGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for JuniperGreen`
 
 ### `HippieBlue`
 
@@ -1356,7 +1356,7 @@ struct HippieBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for HippieBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -1366,7 +1366,7 @@ struct HippieBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for HippieBlue`
 
 ### `HavelockBlue`
 
@@ -1376,7 +1376,7 @@ struct HavelockBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for HavelockBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -1386,7 +1386,7 @@ struct HavelockBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for HavelockBlue`
 
 ### `CornflowerBlue`
 
@@ -1396,7 +1396,7 @@ struct CornflowerBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CornflowerBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -1406,7 +1406,7 @@ struct CornflowerBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CornflowerBlue`
 
 ### `Limeade`
 
@@ -1416,7 +1416,7 @@ struct Limeade;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Limeade`
 
 - `const ANSI_FG: &'static str`
 
@@ -1426,7 +1426,7 @@ struct Limeade;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Limeade`
 
 ### `FernGreen`
 
@@ -1436,7 +1436,7 @@ struct FernGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for FernGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1446,7 +1446,7 @@ struct FernGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for FernGreen`
 
 ### `SilverTree`
 
@@ -1456,7 +1456,7 @@ struct SilverTree;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for SilverTree`
 
 - `const ANSI_FG: &'static str`
 
@@ -1466,7 +1466,7 @@ struct SilverTree;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for SilverTree`
 
 ### `Tradewind`
 
@@ -1476,7 +1476,7 @@ struct Tradewind;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Tradewind`
 
 - `const ANSI_FG: &'static str`
 
@@ -1486,7 +1486,7 @@ struct Tradewind;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Tradewind`
 
 ### `ShakespeareBlue`
 
@@ -1496,7 +1496,7 @@ struct ShakespeareBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ShakespeareBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -1506,7 +1506,7 @@ struct ShakespeareBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ShakespeareBlue`
 
 ### `DarkMalibuBlue`
 
@@ -1516,7 +1516,7 @@ struct DarkMalibuBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkMalibuBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -1526,7 +1526,7 @@ struct DarkMalibuBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkMalibuBlue`
 
 ### `DarkBrightGreen`
 
@@ -1536,7 +1536,7 @@ struct DarkBrightGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkBrightGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1546,7 +1546,7 @@ struct DarkBrightGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkBrightGreen`
 
 ### `DarkPastelGreen`
 
@@ -1556,7 +1556,7 @@ struct DarkPastelGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkPastelGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1566,7 +1566,7 @@ struct DarkPastelGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkPastelGreen`
 
 ### `PastelGreen`
 
@@ -1576,7 +1576,7 @@ struct PastelGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PastelGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1586,7 +1586,7 @@ struct PastelGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PastelGreen`
 
 ### `DownyTeal`
 
@@ -1596,7 +1596,7 @@ struct DownyTeal;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DownyTeal`
 
 - `const ANSI_FG: &'static str`
 
@@ -1606,7 +1606,7 @@ struct DownyTeal;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DownyTeal`
 
 ### `Viking`
 
@@ -1616,7 +1616,7 @@ struct Viking;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Viking`
 
 - `const ANSI_FG: &'static str`
 
@@ -1626,7 +1626,7 @@ struct Viking;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Viking`
 
 ### `MalibuBlue`
 
@@ -1636,7 +1636,7 @@ struct MalibuBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MalibuBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -1646,7 +1646,7 @@ struct MalibuBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MalibuBlue`
 
 ### `BrightGreen`
 
@@ -1656,7 +1656,7 @@ struct BrightGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1666,7 +1666,7 @@ struct BrightGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightGreen`
 
 ### `DarkScreaminGreen`
 
@@ -1676,7 +1676,7 @@ struct DarkScreaminGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkScreaminGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1686,7 +1686,7 @@ struct DarkScreaminGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkScreaminGreen`
 
 ### `ScreaminGreen`
 
@@ -1696,7 +1696,7 @@ struct ScreaminGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ScreaminGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -1706,7 +1706,7 @@ struct ScreaminGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ScreaminGreen`
 
 ### `DarkAquamarine`
 
@@ -1716,7 +1716,7 @@ struct DarkAquamarine;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkAquamarine`
 
 - `const ANSI_FG: &'static str`
 
@@ -1726,7 +1726,7 @@ struct DarkAquamarine;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkAquamarine`
 
 ### `Aquamarine`
 
@@ -1736,7 +1736,7 @@ struct Aquamarine;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Aquamarine`
 
 - `const ANSI_FG: &'static str`
 
@@ -1746,7 +1746,7 @@ struct Aquamarine;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Aquamarine`
 
 ### `LightAquamarine`
 
@@ -1756,7 +1756,7 @@ struct LightAquamarine;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightAquamarine`
 
 - `const ANSI_FG: &'static str`
 
@@ -1766,7 +1766,7 @@ struct LightAquamarine;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightAquamarine`
 
 ### `Maroon`
 
@@ -1776,7 +1776,7 @@ struct Maroon;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Maroon`
 
 - `const ANSI_FG: &'static str`
 
@@ -1786,7 +1786,7 @@ struct Maroon;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Maroon`
 
 ### `DarkFreshEggplant`
 
@@ -1796,7 +1796,7 @@ struct DarkFreshEggplant;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkFreshEggplant`
 
 - `const ANSI_FG: &'static str`
 
@@ -1806,7 +1806,7 @@ struct DarkFreshEggplant;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkFreshEggplant`
 
 ### `LightFreshEggplant`
 
@@ -1816,7 +1816,7 @@ struct LightFreshEggplant;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightFreshEggplant`
 
 - `const ANSI_FG: &'static str`
 
@@ -1826,7 +1826,7 @@ struct LightFreshEggplant;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightFreshEggplant`
 
 ### `Purple`
 
@@ -1836,7 +1836,7 @@ struct Purple;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Purple`
 
 - `const ANSI_FG: &'static str`
 
@@ -1846,7 +1846,7 @@ struct Purple;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Purple`
 
 ### `ElectricViolet`
 
@@ -1856,7 +1856,7 @@ struct ElectricViolet;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ElectricViolet`
 
 - `const ANSI_FG: &'static str`
 
@@ -1866,7 +1866,7 @@ struct ElectricViolet;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ElectricViolet`
 
 ### `LightElectricViolet`
 
@@ -1876,7 +1876,7 @@ struct LightElectricViolet;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightElectricViolet`
 
 - `const ANSI_FG: &'static str`
 
@@ -1886,7 +1886,7 @@ struct LightElectricViolet;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightElectricViolet`
 
 ### `Brown`
 
@@ -1896,7 +1896,7 @@ struct Brown;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Brown`
 
 - `const ANSI_FG: &'static str`
 
@@ -1906,7 +1906,7 @@ struct Brown;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Brown`
 
 ### `CopperRose`
 
@@ -1916,7 +1916,7 @@ struct CopperRose;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CopperRose`
 
 - `const ANSI_FG: &'static str`
 
@@ -1926,7 +1926,7 @@ struct CopperRose;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CopperRose`
 
 ### `StrikemasterPurple`
 
@@ -1936,7 +1936,7 @@ struct StrikemasterPurple;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for StrikemasterPurple`
 
 - `const ANSI_FG: &'static str`
 
@@ -1946,7 +1946,7 @@ struct StrikemasterPurple;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for StrikemasterPurple`
 
 ### `DelugePurple`
 
@@ -1956,7 +1956,7 @@ struct DelugePurple;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DelugePurple`
 
 - `const ANSI_FG: &'static str`
 
@@ -1966,7 +1966,7 @@ struct DelugePurple;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DelugePurple`
 
 ### `DarkMediumPurple`
 
@@ -1976,7 +1976,7 @@ struct DarkMediumPurple;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkMediumPurple`
 
 - `const ANSI_FG: &'static str`
 
@@ -1986,7 +1986,7 @@ struct DarkMediumPurple;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkMediumPurple`
 
 ### `DarkHeliotropePurple`
 
@@ -1996,7 +1996,7 @@ struct DarkHeliotropePurple;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkHeliotropePurple`
 
 - `const ANSI_FG: &'static str`
 
@@ -2006,7 +2006,7 @@ struct DarkHeliotropePurple;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkHeliotropePurple`
 
 ### `Olive`
 
@@ -2016,7 +2016,7 @@ struct Olive;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Olive`
 
 - `const ANSI_FG: &'static str`
 
@@ -2026,7 +2026,7 @@ struct Olive;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Olive`
 
 ### `ClayCreekOlive`
 
@@ -2036,7 +2036,7 @@ struct ClayCreekOlive;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ClayCreekOlive`
 
 - `const ANSI_FG: &'static str`
 
@@ -2046,7 +2046,7 @@ struct ClayCreekOlive;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ClayCreekOlive`
 
 ### `DarkGray`
 
@@ -2056,7 +2056,7 @@ struct DarkGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -2066,7 +2066,7 @@ struct DarkGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkGray`
 
 ### `WildBlueYonder`
 
@@ -2076,7 +2076,7 @@ struct WildBlueYonder;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for WildBlueYonder`
 
 - `const ANSI_FG: &'static str`
 
@@ -2086,7 +2086,7 @@ struct WildBlueYonder;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for WildBlueYonder`
 
 ### `ChetwodeBlue`
 
@@ -2096,7 +2096,7 @@ struct ChetwodeBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ChetwodeBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -2106,7 +2106,7 @@ struct ChetwodeBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ChetwodeBlue`
 
 ### `SlateBlue`
 
@@ -2116,7 +2116,7 @@ struct SlateBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for SlateBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -2126,7 +2126,7 @@ struct SlateBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for SlateBlue`
 
 ### `LightLimeade`
 
@@ -2136,7 +2136,7 @@ struct LightLimeade;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightLimeade`
 
 - `const ANSI_FG: &'static str`
 
@@ -2146,7 +2146,7 @@ struct LightLimeade;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightLimeade`
 
 ### `ChelseaCucumber`
 
@@ -2156,7 +2156,7 @@ struct ChelseaCucumber;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ChelseaCucumber`
 
 - `const ANSI_FG: &'static str`
 
@@ -2166,7 +2166,7 @@ struct ChelseaCucumber;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ChelseaCucumber`
 
 ### `BayLeaf`
 
@@ -2176,7 +2176,7 @@ struct BayLeaf;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BayLeaf`
 
 - `const ANSI_FG: &'static str`
 
@@ -2186,7 +2186,7 @@ struct BayLeaf;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BayLeaf`
 
 ### `GulfStream`
 
@@ -2196,7 +2196,7 @@ struct GulfStream;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for GulfStream`
 
 - `const ANSI_FG: &'static str`
 
@@ -2206,7 +2206,7 @@ struct GulfStream;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for GulfStream`
 
 ### `PoloBlue`
 
@@ -2216,7 +2216,7 @@ struct PoloBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PoloBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -2226,7 +2226,7 @@ struct PoloBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PoloBlue`
 
 ### `LightMalibuBlue`
 
@@ -2236,7 +2236,7 @@ struct LightMalibuBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightMalibuBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -2246,7 +2246,7 @@ struct LightMalibuBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightMalibuBlue`
 
 ### `Pistachio`
 
@@ -2256,7 +2256,7 @@ struct Pistachio;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Pistachio`
 
 - `const ANSI_FG: &'static str`
 
@@ -2266,7 +2266,7 @@ struct Pistachio;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Pistachio`
 
 ### `LightPastelGreen`
 
@@ -2276,7 +2276,7 @@ struct LightPastelGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightPastelGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -2286,7 +2286,7 @@ struct LightPastelGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightPastelGreen`
 
 ### `DarkFeijoaGreen`
 
@@ -2296,7 +2296,7 @@ struct DarkFeijoaGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkFeijoaGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -2306,7 +2306,7 @@ struct DarkFeijoaGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkFeijoaGreen`
 
 ### `VistaBlue`
 
@@ -2316,7 +2316,7 @@ struct VistaBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for VistaBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -2326,7 +2326,7 @@ struct VistaBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for VistaBlue`
 
 ### `Bermuda`
 
@@ -2336,7 +2336,7 @@ struct Bermuda;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Bermuda`
 
 - `const ANSI_FG: &'static str`
 
@@ -2346,7 +2346,7 @@ struct Bermuda;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Bermuda`
 
 ### `DarkAnakiwaBlue`
 
@@ -2356,7 +2356,7 @@ struct DarkAnakiwaBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkAnakiwaBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -2366,7 +2366,7 @@ struct DarkAnakiwaBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkAnakiwaBlue`
 
 ### `ChartreuseGreen`
 
@@ -2376,7 +2376,7 @@ struct ChartreuseGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ChartreuseGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -2386,7 +2386,7 @@ struct ChartreuseGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ChartreuseGreen`
 
 ### `LightScreaminGreen`
 
@@ -2396,7 +2396,7 @@ struct LightScreaminGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightScreaminGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -2406,7 +2406,7 @@ struct LightScreaminGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightScreaminGreen`
 
 ### `DarkMintGreen`
 
@@ -2416,7 +2416,7 @@ struct DarkMintGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkMintGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -2426,7 +2426,7 @@ struct DarkMintGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkMintGreen`
 
 ### `MintGreen`
 
@@ -2436,7 +2436,7 @@ struct MintGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MintGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -2446,7 +2446,7 @@ struct MintGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MintGreen`
 
 ### `LighterAquamarine`
 
@@ -2456,7 +2456,7 @@ struct LighterAquamarine;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LighterAquamarine`
 
 - `const ANSI_FG: &'static str`
 
@@ -2466,7 +2466,7 @@ struct LighterAquamarine;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LighterAquamarine`
 
 ### `AnakiwaBlue`
 
@@ -2476,7 +2476,7 @@ struct AnakiwaBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for AnakiwaBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -2486,7 +2486,7 @@ struct AnakiwaBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for AnakiwaBlue`
 
 ### `BrightRed`
 
@@ -2496,7 +2496,7 @@ struct BrightRed;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightRed`
 
 - `const ANSI_FG: &'static str`
 
@@ -2506,7 +2506,7 @@ struct BrightRed;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightRed`
 
 ### `DarkFlirt`
 
@@ -2516,7 +2516,7 @@ struct DarkFlirt;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkFlirt`
 
 - `const ANSI_FG: &'static str`
 
@@ -2526,7 +2526,7 @@ struct DarkFlirt;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkFlirt`
 
 ### `Flirt`
 
@@ -2536,7 +2536,7 @@ struct Flirt;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Flirt`
 
 - `const ANSI_FG: &'static str`
 
@@ -2546,7 +2546,7 @@ struct Flirt;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Flirt`
 
 ### `LightFlirt`
 
@@ -2556,7 +2556,7 @@ struct LightFlirt;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightFlirt`
 
 - `const ANSI_FG: &'static str`
 
@@ -2566,7 +2566,7 @@ struct LightFlirt;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightFlirt`
 
 ### `DarkViolet`
 
@@ -2576,7 +2576,7 @@ struct DarkViolet;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkViolet`
 
 - `const ANSI_FG: &'static str`
 
@@ -2586,7 +2586,7 @@ struct DarkViolet;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkViolet`
 
 ### `BrightElectricViolet`
 
@@ -2596,7 +2596,7 @@ struct BrightElectricViolet;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightElectricViolet`
 
 - `const ANSI_FG: &'static str`
 
@@ -2606,7 +2606,7 @@ struct BrightElectricViolet;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightElectricViolet`
 
 ### `RoseofSharonOrange`
 
@@ -2616,7 +2616,7 @@ struct RoseofSharonOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for RoseofSharonOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -2626,7 +2626,7 @@ struct RoseofSharonOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for RoseofSharonOrange`
 
 ### `MatrixPink`
 
@@ -2636,7 +2636,7 @@ struct MatrixPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MatrixPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -2646,7 +2646,7 @@ struct MatrixPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MatrixPink`
 
 ### `TapestryPink`
 
@@ -2656,7 +2656,7 @@ struct TapestryPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for TapestryPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -2666,7 +2666,7 @@ struct TapestryPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for TapestryPink`
 
 ### `FuchsiaPink`
 
@@ -2676,7 +2676,7 @@ struct FuchsiaPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for FuchsiaPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -2686,7 +2686,7 @@ struct FuchsiaPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for FuchsiaPink`
 
 ### `MediumPurple`
 
@@ -2696,7 +2696,7 @@ struct MediumPurple;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MediumPurple`
 
 - `const ANSI_FG: &'static str`
 
@@ -2706,7 +2706,7 @@ struct MediumPurple;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MediumPurple`
 
 ### `Heliotrope`
 
@@ -2716,7 +2716,7 @@ struct Heliotrope;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Heliotrope`
 
 - `const ANSI_FG: &'static str`
 
@@ -2726,7 +2726,7 @@ struct Heliotrope;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Heliotrope`
 
 ### `PirateGold`
 
@@ -2736,7 +2736,7 @@ struct PirateGold;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PirateGold`
 
 - `const ANSI_FG: &'static str`
 
@@ -2746,7 +2746,7 @@ struct PirateGold;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PirateGold`
 
 ### `MuesliOrange`
 
@@ -2756,7 +2756,7 @@ struct MuesliOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MuesliOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -2766,7 +2766,7 @@ struct MuesliOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MuesliOrange`
 
 ### `PharlapPink`
 
@@ -2776,7 +2776,7 @@ struct PharlapPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PharlapPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -2786,7 +2786,7 @@ struct PharlapPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PharlapPink`
 
 ### `Bouquet`
 
@@ -2796,7 +2796,7 @@ struct Bouquet;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Bouquet`
 
 - `const ANSI_FG: &'static str`
 
@@ -2806,7 +2806,7 @@ struct Bouquet;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Bouquet`
 
 ### `Lavender`
 
@@ -2816,7 +2816,7 @@ struct Lavender;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Lavender`
 
 - `const ANSI_FG: &'static str`
 
@@ -2826,7 +2826,7 @@ struct Lavender;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Lavender`
 
 ### `LightHeliotrope`
 
@@ -2836,7 +2836,7 @@ struct LightHeliotrope;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightHeliotrope`
 
 - `const ANSI_FG: &'static str`
 
@@ -2846,7 +2846,7 @@ struct LightHeliotrope;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightHeliotrope`
 
 ### `BuddhaGold`
 
@@ -2856,7 +2856,7 @@ struct BuddhaGold;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BuddhaGold`
 
 - `const ANSI_FG: &'static str`
 
@@ -2866,7 +2866,7 @@ struct BuddhaGold;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BuddhaGold`
 
 ### `OliveGreen`
 
@@ -2876,7 +2876,7 @@ struct OliveGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for OliveGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -2886,7 +2886,7 @@ struct OliveGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for OliveGreen`
 
 ### `HillaryOlive`
 
@@ -2896,7 +2896,7 @@ struct HillaryOlive;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for HillaryOlive`
 
 - `const ANSI_FG: &'static str`
 
@@ -2906,7 +2906,7 @@ struct HillaryOlive;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for HillaryOlive`
 
 ### `SilverChalice`
 
@@ -2916,7 +2916,7 @@ struct SilverChalice;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for SilverChalice`
 
 - `const ANSI_FG: &'static str`
 
@@ -2926,7 +2926,7 @@ struct SilverChalice;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for SilverChalice`
 
 ### `WistfulLilac`
 
@@ -2936,7 +2936,7 @@ struct WistfulLilac;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for WistfulLilac`
 
 - `const ANSI_FG: &'static str`
 
@@ -2946,7 +2946,7 @@ struct WistfulLilac;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for WistfulLilac`
 
 ### `MelroseLilac`
 
@@ -2956,7 +2956,7 @@ struct MelroseLilac;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MelroseLilac`
 
 - `const ANSI_FG: &'static str`
 
@@ -2966,7 +2966,7 @@ struct MelroseLilac;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MelroseLilac`
 
 ### `RioGrandeGreen`
 
@@ -2976,7 +2976,7 @@ struct RioGrandeGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for RioGrandeGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -2986,7 +2986,7 @@ struct RioGrandeGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for RioGrandeGreen`
 
 ### `ConiferGreen`
 
@@ -2996,7 +2996,7 @@ struct ConiferGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ConiferGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -3006,7 +3006,7 @@ struct ConiferGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ConiferGreen`
 
 ### `Feijoa`
 
@@ -3016,7 +3016,7 @@ struct Feijoa;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Feijoa`
 
 - `const ANSI_FG: &'static str`
 
@@ -3026,7 +3026,7 @@ struct Feijoa;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Feijoa`
 
 ### `PixieGreen`
 
@@ -3036,7 +3036,7 @@ struct PixieGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PixieGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -3046,7 +3046,7 @@ struct PixieGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PixieGreen`
 
 ### `JungleMist`
 
@@ -3056,7 +3056,7 @@ struct JungleMist;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for JungleMist`
 
 - `const ANSI_FG: &'static str`
 
@@ -3066,7 +3066,7 @@ struct JungleMist;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for JungleMist`
 
 ### `LightAnakiwaBlue`
 
@@ -3076,7 +3076,7 @@ struct LightAnakiwaBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightAnakiwaBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -3086,7 +3086,7 @@ struct LightAnakiwaBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightAnakiwaBlue`
 
 ### `Lime`
 
@@ -3096,7 +3096,7 @@ struct Lime;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Lime`
 
 - `const ANSI_FG: &'static str`
 
@@ -3106,7 +3106,7 @@ struct Lime;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Lime`
 
 ### `GreenYellow`
 
@@ -3116,7 +3116,7 @@ struct GreenYellow;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for GreenYellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -3126,7 +3126,7 @@ struct GreenYellow;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for GreenYellow`
 
 ### `LightMintGreen`
 
@@ -3136,7 +3136,7 @@ struct LightMintGreen;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightMintGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -3146,7 +3146,7 @@ struct LightMintGreen;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightMintGreen`
 
 ### `Celadon`
 
@@ -3156,7 +3156,7 @@ struct Celadon;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Celadon`
 
 - `const ANSI_FG: &'static str`
 
@@ -3166,7 +3166,7 @@ struct Celadon;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Celadon`
 
 ### `AeroBlue`
 
@@ -3176,7 +3176,7 @@ struct AeroBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for AeroBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -3186,7 +3186,7 @@ struct AeroBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for AeroBlue`
 
 ### `FrenchPassLightBlue`
 
@@ -3196,7 +3196,7 @@ struct FrenchPassLightBlue;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for FrenchPassLightBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -3206,7 +3206,7 @@ struct FrenchPassLightBlue;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for FrenchPassLightBlue`
 
 ### `GuardsmanRed`
 
@@ -3216,7 +3216,7 @@ struct GuardsmanRed;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for GuardsmanRed`
 
 - `const ANSI_FG: &'static str`
 
@@ -3226,7 +3226,7 @@ struct GuardsmanRed;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for GuardsmanRed`
 
 ### `RazzmatazzCerise`
 
@@ -3236,7 +3236,7 @@ struct RazzmatazzCerise;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for RazzmatazzCerise`
 
 - `const ANSI_FG: &'static str`
 
@@ -3246,7 +3246,7 @@ struct RazzmatazzCerise;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for RazzmatazzCerise`
 
 ### `MediumVioletRed`
 
@@ -3256,7 +3256,7 @@ struct MediumVioletRed;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MediumVioletRed`
 
 - `const ANSI_FG: &'static str`
 
@@ -3266,7 +3266,7 @@ struct MediumVioletRed;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MediumVioletRed`
 
 ### `HollywoodCerise`
 
@@ -3276,7 +3276,7 @@ struct HollywoodCerise;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for HollywoodCerise`
 
 - `const ANSI_FG: &'static str`
 
@@ -3286,7 +3286,7 @@ struct HollywoodCerise;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for HollywoodCerise`
 
 ### `DarkPurplePizzazz`
 
@@ -3296,7 +3296,7 @@ struct DarkPurplePizzazz;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkPurplePizzazz`
 
 - `const ANSI_FG: &'static str`
 
@@ -3306,7 +3306,7 @@ struct DarkPurplePizzazz;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkPurplePizzazz`
 
 ### `BrighterElectricViolet`
 
@@ -3316,7 +3316,7 @@ struct BrighterElectricViolet;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrighterElectricViolet`
 
 - `const ANSI_FG: &'static str`
 
@@ -3326,7 +3326,7 @@ struct BrighterElectricViolet;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrighterElectricViolet`
 
 ### `TennOrange`
 
@@ -3336,7 +3336,7 @@ struct TennOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for TennOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -3346,7 +3346,7 @@ struct TennOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for TennOrange`
 
 ### `RomanOrange`
 
@@ -3356,7 +3356,7 @@ struct RomanOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for RomanOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -3366,7 +3366,7 @@ struct RomanOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for RomanOrange`
 
 ### `CranberryPink`
 
@@ -3376,7 +3376,7 @@ struct CranberryPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CranberryPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -3386,7 +3386,7 @@ struct CranberryPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CranberryPink`
 
 ### `HopbushPink`
 
@@ -3396,7 +3396,7 @@ struct HopbushPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for HopbushPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -3406,7 +3406,7 @@ struct HopbushPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for HopbushPink`
 
 ### `Orchid`
 
@@ -3416,7 +3416,7 @@ struct Orchid;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Orchid`
 
 - `const ANSI_FG: &'static str`
 
@@ -3426,7 +3426,7 @@ struct Orchid;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Orchid`
 
 ### `LighterHeliotrope`
 
@@ -3436,7 +3436,7 @@ struct LighterHeliotrope;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LighterHeliotrope`
 
 - `const ANSI_FG: &'static str`
 
@@ -3446,7 +3446,7 @@ struct LighterHeliotrope;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LighterHeliotrope`
 
 ### `MangoTango`
 
@@ -3456,7 +3456,7 @@ struct MangoTango;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MangoTango`
 
 - `const ANSI_FG: &'static str`
 
@@ -3466,7 +3466,7 @@ struct MangoTango;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MangoTango`
 
 ### `Copperfield`
 
@@ -3476,7 +3476,7 @@ struct Copperfield;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Copperfield`
 
 - `const ANSI_FG: &'static str`
 
@@ -3486,7 +3486,7 @@ struct Copperfield;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Copperfield`
 
 ### `SeaPink`
 
@@ -3496,7 +3496,7 @@ struct SeaPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for SeaPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -3506,7 +3506,7 @@ struct SeaPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for SeaPink`
 
 ### `CanCanPink`
 
@@ -3516,7 +3516,7 @@ struct CanCanPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CanCanPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -3526,7 +3526,7 @@ struct CanCanPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CanCanPink`
 
 ### `LightOrchid`
 
@@ -3536,7 +3536,7 @@ struct LightOrchid;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightOrchid`
 
 - `const ANSI_FG: &'static str`
 
@@ -3546,7 +3546,7 @@ struct LightOrchid;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightOrchid`
 
 ### `BrightHeliotrope`
 
@@ -3556,7 +3556,7 @@ struct BrightHeliotrope;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightHeliotrope`
 
 - `const ANSI_FG: &'static str`
 
@@ -3566,7 +3566,7 @@ struct BrightHeliotrope;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightHeliotrope`
 
 ### `DarkCorn`
 
@@ -3576,7 +3576,7 @@ struct DarkCorn;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkCorn`
 
 - `const ANSI_FG: &'static str`
 
@@ -3586,7 +3586,7 @@ struct DarkCorn;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkCorn`
 
 ### `DarkTachaOrange`
 
@@ -3596,7 +3596,7 @@ struct DarkTachaOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkTachaOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -3606,7 +3606,7 @@ struct DarkTachaOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkTachaOrange`
 
 ### `TanBeige`
 
@@ -3616,7 +3616,7 @@ struct TanBeige;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for TanBeige`
 
 - `const ANSI_FG: &'static str`
 
@@ -3626,7 +3626,7 @@ struct TanBeige;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for TanBeige`
 
 ### `ClamShell`
 
@@ -3636,7 +3636,7 @@ struct ClamShell;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ClamShell`
 
 - `const ANSI_FG: &'static str`
 
@@ -3646,7 +3646,7 @@ struct ClamShell;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ClamShell`
 
 ### `ThistlePink`
 
@@ -3656,7 +3656,7 @@ struct ThistlePink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ThistlePink`
 
 - `const ANSI_FG: &'static str`
 
@@ -3666,7 +3666,7 @@ struct ThistlePink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ThistlePink`
 
 ### `Mauve`
 
@@ -3676,7 +3676,7 @@ struct Mauve;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Mauve`
 
 - `const ANSI_FG: &'static str`
 
@@ -3686,7 +3686,7 @@ struct Mauve;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Mauve`
 
 ### `Corn`
 
@@ -3696,7 +3696,7 @@ struct Corn;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Corn`
 
 - `const ANSI_FG: &'static str`
 
@@ -3706,7 +3706,7 @@ struct Corn;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Corn`
 
 ### `TachaOrange`
 
@@ -3716,7 +3716,7 @@ struct TachaOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for TachaOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -3726,7 +3726,7 @@ struct TachaOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for TachaOrange`
 
 ### `DecoOrange`
 
@@ -3736,7 +3736,7 @@ struct DecoOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DecoOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -3746,7 +3746,7 @@ struct DecoOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DecoOrange`
 
 ### `PaleGoldenrod`
 
@@ -3756,7 +3756,7 @@ struct PaleGoldenrod;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PaleGoldenrod`
 
 - `const ANSI_FG: &'static str`
 
@@ -3766,7 +3766,7 @@ struct PaleGoldenrod;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PaleGoldenrod`
 
 ### `AltoBeige`
 
@@ -3776,7 +3776,7 @@ struct AltoBeige;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for AltoBeige`
 
 - `const ANSI_FG: &'static str`
 
@@ -3786,7 +3786,7 @@ struct AltoBeige;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for AltoBeige`
 
 ### `FogPink`
 
@@ -3796,7 +3796,7 @@ struct FogPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for FogPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -3806,7 +3806,7 @@ struct FogPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for FogPink`
 
 ### `ChartreuseYellow`
 
@@ -3816,7 +3816,7 @@ struct ChartreuseYellow;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ChartreuseYellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -3826,7 +3826,7 @@ struct ChartreuseYellow;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ChartreuseYellow`
 
 ### `Canary`
 
@@ -3836,7 +3836,7 @@ struct Canary;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Canary`
 
 - `const ANSI_FG: &'static str`
 
@@ -3846,7 +3846,7 @@ struct Canary;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Canary`
 
 ### `Honeysuckle`
 
@@ -3856,7 +3856,7 @@ struct Honeysuckle;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Honeysuckle`
 
 - `const ANSI_FG: &'static str`
 
@@ -3866,7 +3866,7 @@ struct Honeysuckle;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Honeysuckle`
 
 ### `ReefPaleYellow`
 
@@ -3876,7 +3876,7 @@ struct ReefPaleYellow;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ReefPaleYellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -3886,7 +3886,7 @@ struct ReefPaleYellow;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ReefPaleYellow`
 
 ### `SnowyMint`
 
@@ -3896,7 +3896,7 @@ struct SnowyMint;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for SnowyMint`
 
 - `const ANSI_FG: &'static str`
 
@@ -3906,7 +3906,7 @@ struct SnowyMint;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for SnowyMint`
 
 ### `OysterBay`
 
@@ -3916,7 +3916,7 @@ struct OysterBay;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for OysterBay`
 
 - `const ANSI_FG: &'static str`
 
@@ -3926,7 +3926,7 @@ struct OysterBay;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for OysterBay`
 
 ### `Red`
 
@@ -3936,7 +3936,7 @@ struct Red;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Red`
 
 - `const ANSI_FG: &'static str`
 
@@ -3946,7 +3946,7 @@ struct Red;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Red`
 
 ### `DarkRose`
 
@@ -3956,7 +3956,7 @@ struct DarkRose;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkRose`
 
 - `const ANSI_FG: &'static str`
 
@@ -3966,7 +3966,7 @@ struct DarkRose;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkRose`
 
 ### `Rose`
 
@@ -3976,7 +3976,7 @@ struct Rose;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Rose`
 
 - `const ANSI_FG: &'static str`
 
@@ -3986,7 +3986,7 @@ struct Rose;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Rose`
 
 ### `LightHollywoodCerise`
 
@@ -3996,7 +3996,7 @@ struct LightHollywoodCerise;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightHollywoodCerise`
 
 - `const ANSI_FG: &'static str`
 
@@ -4006,7 +4006,7 @@ struct LightHollywoodCerise;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightHollywoodCerise`
 
 ### `PurplePizzazz`
 
@@ -4016,7 +4016,7 @@ struct PurplePizzazz;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PurplePizzazz`
 
 - `const ANSI_FG: &'static str`
 
@@ -4026,7 +4026,7 @@ struct PurplePizzazz;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PurplePizzazz`
 
 ### `Fuchsia`
 
@@ -4036,7 +4036,7 @@ struct Fuchsia;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Fuchsia`
 
 - `const ANSI_FG: &'static str`
 
@@ -4046,7 +4046,7 @@ struct Fuchsia;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Fuchsia`
 
 ### `BlazeOrange`
 
@@ -4056,7 +4056,7 @@ struct BlazeOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BlazeOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -4066,7 +4066,7 @@ struct BlazeOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BlazeOrange`
 
 ### `BittersweetOrange`
 
@@ -4076,7 +4076,7 @@ struct BittersweetOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BittersweetOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -4086,7 +4086,7 @@ struct BittersweetOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BittersweetOrange`
 
 ### `WildWatermelon`
 
@@ -4096,7 +4096,7 @@ struct WildWatermelon;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for WildWatermelon`
 
 - `const ANSI_FG: &'static str`
 
@@ -4106,7 +4106,7 @@ struct WildWatermelon;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for WildWatermelon`
 
 ### `DarkHotPink`
 
@@ -4116,7 +4116,7 @@ struct DarkHotPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkHotPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -4126,7 +4126,7 @@ struct DarkHotPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkHotPink`
 
 ### `HotPink`
 
@@ -4136,7 +4136,7 @@ struct HotPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for HotPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -4146,7 +4146,7 @@ struct HotPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for HotPink`
 
 ### `PinkFlamingo`
 
@@ -4156,7 +4156,7 @@ struct PinkFlamingo;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PinkFlamingo`
 
 - `const ANSI_FG: &'static str`
 
@@ -4166,7 +4166,7 @@ struct PinkFlamingo;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PinkFlamingo`
 
 ### `FlushOrange`
 
@@ -4176,7 +4176,7 @@ struct FlushOrange;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for FlushOrange`
 
 - `const ANSI_FG: &'static str`
 
@@ -4186,7 +4186,7 @@ struct FlushOrange;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for FlushOrange`
 
 ### `Salmon`
 
@@ -4196,7 +4196,7 @@ struct Salmon;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Salmon`
 
 - `const ANSI_FG: &'static str`
 
@@ -4206,7 +4206,7 @@ struct Salmon;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Salmon`
 
 ### `VividTangerine`
 
@@ -4216,7 +4216,7 @@ struct VividTangerine;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for VividTangerine`
 
 - `const ANSI_FG: &'static str`
 
@@ -4226,7 +4226,7 @@ struct VividTangerine;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for VividTangerine`
 
 ### `PinkSalmon`
 
@@ -4236,7 +4236,7 @@ struct PinkSalmon;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PinkSalmon`
 
 - `const ANSI_FG: &'static str`
 
@@ -4246,7 +4246,7 @@ struct PinkSalmon;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PinkSalmon`
 
 ### `DarkLavenderRose`
 
@@ -4256,7 +4256,7 @@ struct DarkLavenderRose;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkLavenderRose`
 
 - `const ANSI_FG: &'static str`
 
@@ -4266,7 +4266,7 @@ struct DarkLavenderRose;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkLavenderRose`
 
 ### `BlushPink`
 
@@ -4276,7 +4276,7 @@ struct BlushPink;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BlushPink`
 
 - `const ANSI_FG: &'static str`
 
@@ -4286,7 +4286,7 @@ struct BlushPink;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BlushPink`
 
 ### `YellowSea`
 
@@ -4296,7 +4296,7 @@ struct YellowSea;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for YellowSea`
 
 - `const ANSI_FG: &'static str`
 
@@ -4306,7 +4306,7 @@ struct YellowSea;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for YellowSea`
 
 ### `TexasRose`
 
@@ -4316,7 +4316,7 @@ struct TexasRose;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for TexasRose`
 
 - `const ANSI_FG: &'static str`
 
@@ -4326,7 +4326,7 @@ struct TexasRose;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for TexasRose`
 
 ### `Tacao`
 
@@ -4336,7 +4336,7 @@ struct Tacao;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Tacao`
 
 - `const ANSI_FG: &'static str`
 
@@ -4346,7 +4346,7 @@ struct Tacao;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Tacao`
 
 ### `Sundown`
 
@@ -4356,7 +4356,7 @@ struct Sundown;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Sundown`
 
 - `const ANSI_FG: &'static str`
 
@@ -4366,7 +4366,7 @@ struct Sundown;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Sundown`
 
 ### `CottonCandy`
 
@@ -4376,7 +4376,7 @@ struct CottonCandy;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CottonCandy`
 
 - `const ANSI_FG: &'static str`
 
@@ -4386,7 +4386,7 @@ struct CottonCandy;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CottonCandy`
 
 ### `LavenderRose`
 
@@ -4396,7 +4396,7 @@ struct LavenderRose;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LavenderRose`
 
 - `const ANSI_FG: &'static str`
 
@@ -4406,7 +4406,7 @@ struct LavenderRose;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LavenderRose`
 
 ### `Gold`
 
@@ -4416,7 +4416,7 @@ struct Gold;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Gold`
 
 - `const ANSI_FG: &'static str`
 
@@ -4426,7 +4426,7 @@ struct Gold;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Gold`
 
 ### `Dandelion`
 
@@ -4436,7 +4436,7 @@ struct Dandelion;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Dandelion`
 
 - `const ANSI_FG: &'static str`
 
@@ -4446,7 +4446,7 @@ struct Dandelion;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Dandelion`
 
 ### `GrandisCaramel`
 
@@ -4456,7 +4456,7 @@ struct GrandisCaramel;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for GrandisCaramel`
 
 - `const ANSI_FG: &'static str`
 
@@ -4466,7 +4466,7 @@ struct GrandisCaramel;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for GrandisCaramel`
 
 ### `Caramel`
 
@@ -4476,7 +4476,7 @@ struct Caramel;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Caramel`
 
 - `const ANSI_FG: &'static str`
 
@@ -4486,7 +4486,7 @@ struct Caramel;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Caramel`
 
 ### `CosmosSalmon`
 
@@ -4496,7 +4496,7 @@ struct CosmosSalmon;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CosmosSalmon`
 
 - `const ANSI_FG: &'static str`
 
@@ -4506,7 +4506,7 @@ struct CosmosSalmon;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CosmosSalmon`
 
 ### `PinkLace`
 
@@ -4516,7 +4516,7 @@ struct PinkLace;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PinkLace`
 
 - `const ANSI_FG: &'static str`
 
@@ -4526,7 +4526,7 @@ struct PinkLace;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PinkLace`
 
 ### `Yellow`
 
@@ -4536,7 +4536,7 @@ struct Yellow;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Yellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -4546,7 +4546,7 @@ struct Yellow;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Yellow`
 
 ### `LaserLemon`
 
@@ -4556,7 +4556,7 @@ struct LaserLemon;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LaserLemon`
 
 - `const ANSI_FG: &'static str`
 
@@ -4566,7 +4566,7 @@ struct LaserLemon;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LaserLemon`
 
 ### `DollyYellow`
 
@@ -4576,7 +4576,7 @@ struct DollyYellow;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DollyYellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -4586,7 +4586,7 @@ struct DollyYellow;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DollyYellow`
 
 ### `PortafinoYellow`
 
@@ -4596,7 +4596,7 @@ struct PortafinoYellow;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for PortafinoYellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -4606,7 +4606,7 @@ struct PortafinoYellow;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for PortafinoYellow`
 
 ### `Cumulus`
 
@@ -4616,7 +4616,7 @@ struct Cumulus;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Cumulus`
 
 - `const ANSI_FG: &'static str`
 
@@ -4626,7 +4626,7 @@ struct Cumulus;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Cumulus`
 
 ### `White`
 
@@ -4636,7 +4636,7 @@ struct White;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for White`
 
 - `const ANSI_FG: &'static str`
 
@@ -4646,7 +4646,7 @@ struct White;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for White`
 
 ### `DarkCodGray`
 
@@ -4656,7 +4656,7 @@ struct DarkCodGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkCodGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4666,7 +4666,7 @@ struct DarkCodGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkCodGray`
 
 ### `CodGray`
 
@@ -4676,7 +4676,7 @@ struct CodGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for CodGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4686,7 +4686,7 @@ struct CodGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CodGray`
 
 ### `LightCodGray`
 
@@ -4696,7 +4696,7 @@ struct LightCodGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightCodGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4706,7 +4706,7 @@ struct LightCodGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightCodGray`
 
 ### `DarkMineShaft`
 
@@ -4716,7 +4716,7 @@ struct DarkMineShaft;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkMineShaft`
 
 - `const ANSI_FG: &'static str`
 
@@ -4726,7 +4726,7 @@ struct DarkMineShaft;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkMineShaft`
 
 ### `MineShaft`
 
@@ -4736,7 +4736,7 @@ struct MineShaft;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for MineShaft`
 
 - `const ANSI_FG: &'static str`
 
@@ -4746,7 +4746,7 @@ struct MineShaft;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MineShaft`
 
 ### `LightMineShaft`
 
@@ -4756,7 +4756,7 @@ struct LightMineShaft;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightMineShaft`
 
 - `const ANSI_FG: &'static str`
 
@@ -4766,7 +4766,7 @@ struct LightMineShaft;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightMineShaft`
 
 ### `DarkTundora`
 
@@ -4776,7 +4776,7 @@ struct DarkTundora;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkTundora`
 
 - `const ANSI_FG: &'static str`
 
@@ -4786,7 +4786,7 @@ struct DarkTundora;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkTundora`
 
 ### `Tundora`
 
@@ -4796,7 +4796,7 @@ struct Tundora;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Tundora`
 
 - `const ANSI_FG: &'static str`
 
@@ -4806,7 +4806,7 @@ struct Tundora;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Tundora`
 
 ### `ScorpionGray`
 
@@ -4816,7 +4816,7 @@ struct ScorpionGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for ScorpionGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4826,7 +4826,7 @@ struct ScorpionGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ScorpionGray`
 
 ### `DarkDoveGray`
 
@@ -4836,7 +4836,7 @@ struct DarkDoveGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkDoveGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4846,7 +4846,7 @@ struct DarkDoveGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkDoveGray`
 
 ### `DoveGray`
 
@@ -4856,7 +4856,7 @@ struct DoveGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DoveGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4866,7 +4866,7 @@ struct DoveGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DoveGray`
 
 ### `Boulder`
 
@@ -4876,7 +4876,7 @@ struct Boulder;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Boulder`
 
 - `const ANSI_FG: &'static str`
 
@@ -4886,7 +4886,7 @@ struct Boulder;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Boulder`
 
 ### `Gray`
 
@@ -4896,7 +4896,7 @@ struct Gray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Gray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4906,7 +4906,7 @@ struct Gray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Gray`
 
 ### `LightGray`
 
@@ -4916,7 +4916,7 @@ struct LightGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4926,7 +4926,7 @@ struct LightGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightGray`
 
 ### `DustyGray`
 
@@ -4936,7 +4936,7 @@ struct DustyGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DustyGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4946,7 +4946,7 @@ struct DustyGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DustyGray`
 
 ### `NobelGray`
 
@@ -4956,7 +4956,7 @@ struct NobelGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for NobelGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -4966,7 +4966,7 @@ struct NobelGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for NobelGray`
 
 ### `DarkSilverChalice`
 
@@ -4976,7 +4976,7 @@ struct DarkSilverChalice;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkSilverChalice`
 
 - `const ANSI_FG: &'static str`
 
@@ -4986,7 +4986,7 @@ struct DarkSilverChalice;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkSilverChalice`
 
 ### `LightSilverChalice`
 
@@ -4996,7 +4996,7 @@ struct LightSilverChalice;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for LightSilverChalice`
 
 - `const ANSI_FG: &'static str`
 
@@ -5006,7 +5006,7 @@ struct LightSilverChalice;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LightSilverChalice`
 
 ### `DarkSilver`
 
@@ -5016,7 +5016,7 @@ struct DarkSilver;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkSilver`
 
 - `const ANSI_FG: &'static str`
 
@@ -5026,7 +5026,7 @@ struct DarkSilver;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkSilver`
 
 ### `Silver`
 
@@ -5036,7 +5036,7 @@ struct Silver;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Silver`
 
 - `const ANSI_FG: &'static str`
 
@@ -5046,7 +5046,7 @@ struct Silver;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Silver`
 
 ### `DarkAlto`
 
@@ -5056,7 +5056,7 @@ struct DarkAlto;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for DarkAlto`
 
 - `const ANSI_FG: &'static str`
 
@@ -5066,7 +5066,7 @@ struct DarkAlto;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DarkAlto`
 
 ### `Alto`
 
@@ -5076,7 +5076,7 @@ struct Alto;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Alto`
 
 - `const ANSI_FG: &'static str`
 
@@ -5086,7 +5086,7 @@ struct Alto;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Alto`
 
 ### `Mercury`
 
@@ -5096,7 +5096,7 @@ struct Mercury;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Mercury`
 
 - `const ANSI_FG: &'static str`
 
@@ -5106,7 +5106,7 @@ struct Mercury;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Mercury`
 
 ### `GalleryGray`
 
@@ -5116,7 +5116,7 @@ struct GalleryGray;
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for GalleryGray`
 
 - `const ANSI_FG: &'static str`
 
@@ -5126,5 +5126,5 @@ struct GalleryGray;
 
 - `const RAW_ANSI_FG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for GalleryGray`
 

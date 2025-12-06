@@ -8,7 +8,7 @@ use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 
 use compact_str::CompactString;
-use rustdoc_types::{Crate, Id, ItemEnum};
+use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
 
 use super::{CrateCollection, RUST_PATH_SEP};
 use crate::linker::{LinkRegistry, slugify_anchor};
@@ -229,14 +229,41 @@ impl UnifiedLinkRegistry {
 
             // Re-exports (pub use) should be registered under this crate's namespace
             // This allows links to resolve within the current crate rather than cross-crate
-            ItemEnum::Use(use_item) if !use_item.is_glob => {
-                let export_name = &use_item.name;
+            ItemEnum::Use(use_item) => {
                 let file_path = if parent_path.is_empty() {
                     "index.md".to_string()
                 } else {
                     format!("{parent_path}/index.md")
                 };
-                self.register_item(crate_name, item_id, export_name, &file_path);
+
+                if use_item.is_glob {
+                    // Register items from glob re-export target
+                    if let Some(target_id) = &use_item.id {
+                        if let Some(target_module) = krate.index.get(target_id) {
+                            if let ItemEnum::Module(module) = &target_module.inner {
+                                for child_id in &module.items {
+                                    if let Some(child) = krate.index.get(child_id) {
+                                        // Check visibility
+                                        if !matches!(child.visibility, Visibility::Public) {
+                                            continue;
+                                        }
+                                        let child_name = child.name.as_deref().unwrap_or("unnamed");
+                                        self.register_item(
+                                            crate_name,
+                                            *child_id,
+                                            child_name,
+                                            &file_path,
+                                        );
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    // Specific re-export
+                    let export_name = &use_item.name;
+                    self.register_item(crate_name, item_id, export_name, &file_path);
+                }
             },
 
             _ => {},

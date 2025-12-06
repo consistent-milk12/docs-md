@@ -40,21 +40,21 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for IdsRef<'a>`
 
-- `fn clone(self: &Self) -> IdsRef<'a>` — [`IdsRef`](../../parser/matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> IdsRef<'a>` — [`IdsRef`](matches/arg_matches/index.md)
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for IdsRef<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a>`
+##### `impl<'a> DoubleEndedIterator for IdsRef<'a>`
 
-- `fn next_back(self: &mut Self) -> Option<&'a Id>` — [`Id`](../../util/id/index.md)
+- `fn next_back(self: &mut Self) -> Option<&'a Id>` — [`Id`](../util/id/index.md)
 
-##### `impl ExactSizeIterator`
+##### `impl ExactSizeIterator for IdsRef<'_>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IdsRef<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -62,11 +62,11 @@ assert_eq!(
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for IdsRef<'a>`
 
 - `type Item = &'a Id`
 
-- `fn next(self: &mut Self) -> Option<&'a Id>` — [`Id`](../../util/id/index.md)
+- `fn next(self: &mut Self) -> Option<&'a Id>` — [`Id`](../util/id/index.md)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
@@ -108,25 +108,25 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for RawValues<'a>`
 
-- `fn clone(self: &Self) -> RawValues<'a>` — [`RawValues`](../../parser/matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> RawValues<'a>` — [`RawValues`](matches/arg_matches/index.md)
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for RawValues<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for RawValues<'_>`
 
 - `fn default() -> Self`
 
-##### `impl DoubleEndedIterator<'a>`
+##### `impl<'a> DoubleEndedIterator for RawValues<'a>`
 
 - `fn next_back(self: &mut Self) -> Option<&'a OsStr>`
 
-##### `impl ExactSizeIterator`
+##### `impl ExactSizeIterator for RawValues<'_>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for RawValues<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -134,7 +134,7 @@ assert_eq!(
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for RawValues<'a>`
 
 - `type Item = &'a OsStr`
 
@@ -174,25 +174,25 @@ assert_eq!(values.next(), None);
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for Values<T>`
 
-- `fn clone(self: &Self) -> Values<T>` — [`Values`](../../parser/matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> Values<T>` — [`Values`](matches/arg_matches/index.md)
 
-##### `impl Debug<T: $crate::fmt::Debug>`
+##### `impl<T: $crate::fmt::Debug> Debug for Values<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<T>`
+##### `impl<T> Default for Values<T>`
 
 - `fn default() -> Self`
 
-##### `impl DoubleEndedIterator<T>`
+##### `impl<T> DoubleEndedIterator for Values<T>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<T>`
+##### `impl<T> ExactSizeIterator for Values<T>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Values<T>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -200,7 +200,7 @@ assert_eq!(values.next(), None);
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<T>`
+##### `impl<T> Iterator for Values<T>`
 
 - `type Item = T`
 
@@ -241,25 +241,25 @@ assert_eq!(values.next(), None);
 
 #### Trait Implementations
 
-##### `impl Clone<'a, T: $crate::clone::Clone>`
+##### `impl<'a, T: $crate::clone::Clone> Clone for ValuesRef<'a, T>`
 
-- `fn clone(self: &Self) -> ValuesRef<'a, T>` — [`ValuesRef`](../../parser/matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> ValuesRef<'a, T>` — [`ValuesRef`](matches/arg_matches/index.md)
 
-##### `impl Debug<'a, T: $crate::fmt::Debug>`
+##### `impl<'a, T: $crate::fmt::Debug> Debug for ValuesRef<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<'a, T: 'a>`
+##### `impl<'a, T: 'a> Default for ValuesRef<'a, T>`
 
 - `fn default() -> Self`
 
-##### `impl DoubleEndedIterator<'a, T: 'a>`
+##### `impl<'a, T: 'a> DoubleEndedIterator for ValuesRef<'a, T>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a, T: 'a>`
+##### `impl<'a, T: 'a> ExactSizeIterator for ValuesRef<'a, T>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ValuesRef<'a, T>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -267,7 +267,7 @@ assert_eq!(values.next(), None);
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, T: 'a>`
+##### `impl<'a, T: 'a> Iterator for ValuesRef<'a, T>`
 
 - `type Item = &'a T`
 
@@ -335,59 +335,41 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
+- `fn try_get_arg(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
 
-- `fn get_count(self: &Self, id: &str) -> u8`
+- `fn try_get_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
 
-- `fn get_flag(self: &Self, id: &str) -> bool`
+- `fn try_remove_arg_t<T: Any + Send + Sync + 'static>(self: &mut Self, arg: &str) -> Result<Option<MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
 
-- `fn get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](../../parser/matches/arg_matches/index.md)
+- `fn verify_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &MatchedArg) -> Result<(), MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
 
-- `fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](../../parser/matches/arg_matches/index.md)
+- `fn verify_arg(self: &Self, _arg: &str) -> Result<(), MatchesError>` — [`MatchesError`](error/index.md)
 
-- `fn get_raw(self: &Self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](../../parser/matches/arg_matches/index.md)
+- `fn get_arg<'s>(self: &'s Self, arg: &str) -> Option<&'s MatchedArg>` — [`MatchedArg`](matches/matched_arg/index.md)
 
-- `fn get_raw_occurrences(self: &Self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](../../parser/matches/arg_matches/index.md)
-
-- `fn remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<T>`
-
-- `fn remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Values<T>>` — [`Values`](../../parser/matches/arg_matches/index.md)
-
-- `fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](../../parser/matches/arg_matches/index.md)
-
-- `fn contains_id(self: &Self, id: &str) -> bool`
-
-- `fn ids(self: &Self) -> IdsRef<'_>` — [`IdsRef`](../../parser/matches/arg_matches/index.md)
-
-- `fn args_present(self: &Self) -> bool`
-
-- `fn value_source(self: &Self, id: &str) -> Option<ValueSource>` — [`ValueSource`](../../parser/matches/value_source/index.md)
-
-- `fn index_of(self: &Self, id: &str) -> Option<usize>`
-
-- `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>` — [`Indices`](../../parser/matches/arg_matches/index.md)
+- `fn get_subcommand(self: &Self, name: &str) -> Option<&SubCommand>` — [`SubCommand`](matches/arg_matches/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ArgMatches`
 
-- `fn clone(self: &Self) -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> ArgMatches` — [`ArgMatches`](matches/arg_matches/index.md)
 
-##### `impl Debug`
+##### `impl Debug for ArgMatches`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ArgMatches`
 
-- `fn default() -> ArgMatches` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- `fn default() -> ArgMatches` — [`ArgMatches`](matches/arg_matches/index.md)
 
-##### `impl Eq`
+##### `impl Eq for ArgMatches`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ArgMatches`
 
-- `fn eq(self: &Self, other: &ArgMatches) -> bool` — [`ArgMatches`](../../parser/matches/arg_matches/index.md)
+- `fn eq(self: &Self, other: &ArgMatches) -> bool` — [`ArgMatches`](matches/arg_matches/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ArgMatches`
 
 ### `Indices<'a>`
 
@@ -422,25 +404,25 @@ assert_eq!(indices.next(), None);
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Indices<'a>`
 
-- `fn clone(self: &Self) -> Indices<'a>` — [`Indices`](../../parser/matches/arg_matches/index.md)
+- `fn clone(self: &Self) -> Indices<'a>` — [`Indices`](matches/arg_matches/index.md)
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Indices<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Indices<'_>`
 
 - `fn default() -> Self`
 
-##### `impl DoubleEndedIterator`
+##### `impl DoubleEndedIterator for Indices<'_>`
 
 - `fn next_back(self: &mut Self) -> Option<usize>`
 
-##### `impl ExactSizeIterator`
+##### `impl ExactSizeIterator for Indices<'_>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Indices<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -448,7 +430,7 @@ assert_eq!(indices.next(), None);
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator`
+##### `impl Iterator for Indices<'_>`
 
 - `type Item = usize`
 
@@ -490,31 +472,31 @@ Origin of the argument's value
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ValueSource`
 
-- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](../../parser/matches/value_source/index.md)
+- `fn clone(self: &Self) -> ValueSource` — [`ValueSource`](matches/value_source/index.md)
 
-##### `impl Copy`
+##### `impl Copy for ValueSource`
 
-##### `impl Debug`
+##### `impl Debug for ValueSource`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ValueSource`
 
-##### `impl Ord`
+##### `impl Ord for ValueSource`
 
-- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](../../parser/matches/value_source/index.md)
+- `fn cmp(self: &Self, other: &ValueSource) -> $crate::cmp::Ordering` — [`ValueSource`](matches/value_source/index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for ValueSource`
 
-- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](../../parser/matches/value_source/index.md)
+- `fn eq(self: &Self, other: &ValueSource) -> bool` — [`ValueSource`](matches/value_source/index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for ValueSource`
 
-- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](../../parser/matches/value_source/index.md)
+- `fn partial_cmp(self: &Self, other: &ValueSource) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ValueSource`](matches/value_source/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ValueSource`
 
 ### `MatchesError`
 
@@ -543,25 +525,25 @@ Violation of `ArgMatches` assumptions
 
 #### Implementations
 
-- `fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](../../parser/error/index.md)
+- `fn unwrap<T>(id: &str, r: Result<T, MatchesError>) -> T` — [`MatchesError`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MatchesError`
 
-- `fn clone(self: &Self) -> MatchesError` — [`MatchesError`](../../parser/error/index.md)
+- `fn clone(self: &Self) -> MatchesError` — [`MatchesError`](error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for MatchesError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for MatchesError`
 
 - `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for MatchesError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for MatchesError`
 
 - `fn to_string(self: &Self) -> String`
 

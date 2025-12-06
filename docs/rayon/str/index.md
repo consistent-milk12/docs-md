@@ -15,7 +15,7 @@ This trait is intentionally kept private, for use only by Rayon itself.
 It is implemented for `char`, `&[char]`, `[char; N]`, `&[char; N]`,
 and any function or closure `F: Fn(char) -> bool + Sync + Send`.
 
-[strings](#strings): std::str
+
 
 ## Structs
 
@@ -31,17 +31,17 @@ Parallel iterator over the characters of a string
 
 #### Trait Implementations
 
-##### `impl Clone<'ch>`
+##### `impl<'ch> Clone for Chars<'ch>`
 
-- `fn clone(self: &Self) -> Chars<'ch>` — [`Chars`](../../str/index.md)
+- `fn clone(self: &Self) -> Chars<'ch>` — [`Chars`](#chars)
 
-##### `impl Debug<'ch>`
+##### `impl<'ch> Debug for Chars<'ch>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Chars<'ch>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Chars<'ch>`
 
 - `type Iter = T`
 
@@ -49,13 +49,13 @@ Parallel iterator over the characters of a string
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch>`
+##### `impl<'ch> ParallelIterator for Chars<'ch>`
 
 - `type Item = char`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Chars<'ch>`
 
 - `const ALIGN: usize`
 
@@ -81,17 +81,17 @@ Parallel iterator over the characters of a string, with their positions
 
 #### Trait Implementations
 
-##### `impl Clone<'ch>`
+##### `impl<'ch> Clone for CharIndices<'ch>`
 
-- `fn clone(self: &Self) -> CharIndices<'ch>` — [`CharIndices`](../../str/index.md)
+- `fn clone(self: &Self) -> CharIndices<'ch>` — [`CharIndices`](#charindices)
 
-##### `impl Debug<'ch>`
+##### `impl<'ch> Debug for CharIndices<'ch>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for CharIndices<'ch>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for CharIndices<'ch>`
 
 - `type Iter = T`
 
@@ -99,13 +99,13 @@ Parallel iterator over the characters of a string, with their positions
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch>`
+##### `impl<'ch> ParallelIterator for CharIndices<'ch>`
 
 - `type Item = (usize, char)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for CharIndices<'ch>`
 
 - `const ALIGN: usize`
 
@@ -131,17 +131,17 @@ Parallel iterator over the bytes of a string
 
 #### Trait Implementations
 
-##### `impl Clone<'ch>`
+##### `impl<'ch> Clone for Bytes<'ch>`
 
-- `fn clone(self: &Self) -> Bytes<'ch>` — [`Bytes`](../../str/index.md)
+- `fn clone(self: &Self) -> Bytes<'ch>` — [`Bytes`](#bytes)
 
-##### `impl Debug<'ch>`
+##### `impl<'ch> Debug for Bytes<'ch>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Bytes<'ch>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Bytes<'ch>`
 
 - `type Iter = T`
 
@@ -149,13 +149,13 @@ Parallel iterator over the bytes of a string
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch>`
+##### `impl<'ch> ParallelIterator for Bytes<'ch>`
 
 - `type Item = u8`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Bytes<'ch>`
 
 - `const ALIGN: usize`
 
@@ -181,17 +181,17 @@ Parallel iterator over a string encoded as UTF-16
 
 #### Trait Implementations
 
-##### `impl Clone<'ch>`
+##### `impl<'ch> Clone for EncodeUtf16<'ch>`
 
-- `fn clone(self: &Self) -> EncodeUtf16<'ch>` — [`EncodeUtf16`](../../str/index.md)
+- `fn clone(self: &Self) -> EncodeUtf16<'ch>` — [`EncodeUtf16`](#encodeutf16)
 
-##### `impl Debug<'ch>`
+##### `impl<'ch> Debug for EncodeUtf16<'ch>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for EncodeUtf16<'ch>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for EncodeUtf16<'ch>`
 
 - `type Iter = T`
 
@@ -199,13 +199,13 @@ Parallel iterator over a string encoded as UTF-16
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch>`
+##### `impl<'ch> ParallelIterator for EncodeUtf16<'ch>`
 
 - `type Item = u16`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for EncodeUtf16<'ch>`
 
 - `const ALIGN: usize`
 
@@ -236,17 +236,17 @@ Parallel iterator over substrings separated by a pattern
 
 #### Trait Implementations
 
-##### `impl Clone<'ch, P: $crate::clone::Clone + Pattern>`
+##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for Split<'ch, P>`
 
-- `fn clone(self: &Self) -> Split<'ch, P>` — [`Split`](../../str/index.md)
+- `fn clone(self: &Self) -> Split<'ch, P>` — [`Split`](#split)
 
-##### `impl Debug<'ch, P: $crate::fmt::Debug + Pattern>`
+##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for Split<'ch, P>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Split<'ch, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Split<'ch, P>`
 
 - `type Iter = T`
 
@@ -254,13 +254,13 @@ Parallel iterator over substrings separated by a pattern
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch, P: Pattern>`
+##### `impl<'ch, P: Pattern> ParallelIterator for Split<'ch, P>`
 
 - `type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Split<'ch, P>`
 
 - `const ALIGN: usize`
 
@@ -291,17 +291,17 @@ Parallel iterator over substrings separated by a pattern
 
 #### Trait Implementations
 
-##### `impl Clone<'ch, P: $crate::clone::Clone + Pattern>`
+##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for SplitInclusive<'ch, P>`
 
-- `fn clone(self: &Self) -> SplitInclusive<'ch, P>` — [`SplitInclusive`](../../str/index.md)
+- `fn clone(self: &Self) -> SplitInclusive<'ch, P>` — [`SplitInclusive`](#splitinclusive)
 
-##### `impl Debug<'ch, P: $crate::fmt::Debug + Pattern>`
+##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for SplitInclusive<'ch, P>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for SplitInclusive<'ch, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for SplitInclusive<'ch, P>`
 
 - `type Iter = T`
 
@@ -309,13 +309,13 @@ Parallel iterator over substrings separated by a pattern
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch, P: Pattern>`
+##### `impl<'ch, P: Pattern> ParallelIterator for SplitInclusive<'ch, P>`
 
 - `type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for SplitInclusive<'ch, P>`
 
 - `const ALIGN: usize`
 
@@ -346,17 +346,17 @@ Parallel iterator over substrings separated by a terminator pattern
 
 #### Trait Implementations
 
-##### `impl Clone<'ch, P: $crate::clone::Clone + Pattern>`
+##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for SplitTerminator<'ch, P>`
 
-- `fn clone(self: &Self) -> SplitTerminator<'ch, P>` — [`SplitTerminator`](../../str/index.md)
+- `fn clone(self: &Self) -> SplitTerminator<'ch, P>` — [`SplitTerminator`](#splitterminator)
 
-##### `impl Debug<'ch, P: $crate::fmt::Debug + Pattern>`
+##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for SplitTerminator<'ch, P>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for SplitTerminator<'ch, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for SplitTerminator<'ch, P>`
 
 - `type Iter = T`
 
@@ -364,13 +364,13 @@ Parallel iterator over substrings separated by a terminator pattern
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch, P: Pattern>`
+##### `impl<'ch, P: Pattern> ParallelIterator for SplitTerminator<'ch, P>`
 
 - `type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for SplitTerminator<'ch, P>`
 
 - `const ALIGN: usize`
 
@@ -394,17 +394,17 @@ Parallel iterator over lines in a string
 
 #### Trait Implementations
 
-##### `impl Clone<'ch>`
+##### `impl<'ch> Clone for Lines<'ch>`
 
-- `fn clone(self: &Self) -> Lines<'ch>` — [`Lines`](../../str/index.md)
+- `fn clone(self: &Self) -> Lines<'ch>` — [`Lines`](#lines)
 
-##### `impl Debug<'ch>`
+##### `impl<'ch> Debug for Lines<'ch>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Lines<'ch>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Lines<'ch>`
 
 - `type Iter = T`
 
@@ -412,13 +412,13 @@ Parallel iterator over lines in a string
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch>`
+##### `impl<'ch> ParallelIterator for Lines<'ch>`
 
 - `type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Lines<'ch>`
 
 - `const ALIGN: usize`
 
@@ -442,17 +442,17 @@ Parallel iterator over substrings separated by whitespace
 
 #### Trait Implementations
 
-##### `impl Clone<'ch>`
+##### `impl<'ch> Clone for SplitWhitespace<'ch>`
 
-- `fn clone(self: &Self) -> SplitWhitespace<'ch>` — [`SplitWhitespace`](../../str/index.md)
+- `fn clone(self: &Self) -> SplitWhitespace<'ch>` — [`SplitWhitespace`](#splitwhitespace)
 
-##### `impl Debug<'ch>`
+##### `impl<'ch> Debug for SplitWhitespace<'ch>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for SplitWhitespace<'ch>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for SplitWhitespace<'ch>`
 
 - `type Iter = T`
 
@@ -460,13 +460,13 @@ Parallel iterator over substrings separated by whitespace
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch>`
+##### `impl<'ch> ParallelIterator for SplitWhitespace<'ch>`
 
 - `type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for SplitWhitespace<'ch>`
 
 - `const ALIGN: usize`
 
@@ -490,17 +490,17 @@ Parallel iterator over substrings separated by ASCII whitespace
 
 #### Trait Implementations
 
-##### `impl Clone<'ch>`
+##### `impl<'ch> Clone for SplitAsciiWhitespace<'ch>`
 
-- `fn clone(self: &Self) -> SplitAsciiWhitespace<'ch>` — [`SplitAsciiWhitespace`](../../str/index.md)
+- `fn clone(self: &Self) -> SplitAsciiWhitespace<'ch>` — [`SplitAsciiWhitespace`](#splitasciiwhitespace)
 
-##### `impl Debug<'ch>`
+##### `impl<'ch> Debug for SplitAsciiWhitespace<'ch>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for SplitAsciiWhitespace<'ch>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for SplitAsciiWhitespace<'ch>`
 
 - `type Iter = T`
 
@@ -508,13 +508,13 @@ Parallel iterator over substrings separated by ASCII whitespace
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch>`
+##### `impl<'ch> ParallelIterator for SplitAsciiWhitespace<'ch>`
 
 - `type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for SplitAsciiWhitespace<'ch>`
 
 - `const ALIGN: usize`
 
@@ -541,17 +541,17 @@ Parallel iterator over substrings that match a pattern
 
 #### Trait Implementations
 
-##### `impl Clone<'ch, P: $crate::clone::Clone + Pattern>`
+##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for Matches<'ch, P>`
 
-- `fn clone(self: &Self) -> Matches<'ch, P>` — [`Matches`](../../str/index.md)
+- `fn clone(self: &Self) -> Matches<'ch, P>` — [`Matches`](#matches)
 
-##### `impl Debug<'ch, P: $crate::fmt::Debug + Pattern>`
+##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for Matches<'ch, P>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Matches<'ch, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Matches<'ch, P>`
 
 - `type Iter = T`
 
@@ -559,13 +559,13 @@ Parallel iterator over substrings that match a pattern
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch, P: Pattern>`
+##### `impl<'ch, P: Pattern> ParallelIterator for Matches<'ch, P>`
 
 - `type Item = &'ch str`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Matches<'ch, P>`
 
 - `const ALIGN: usize`
 
@@ -592,17 +592,17 @@ Parallel iterator over substrings that match a pattern, with their positions
 
 #### Trait Implementations
 
-##### `impl Clone<'ch, P: $crate::clone::Clone + Pattern>`
+##### `impl<'ch, P: $crate::clone::Clone + Pattern> Clone for MatchIndices<'ch, P>`
 
-- `fn clone(self: &Self) -> MatchIndices<'ch, P>` — [`MatchIndices`](../../str/index.md)
+- `fn clone(self: &Self) -> MatchIndices<'ch, P>` — [`MatchIndices`](#matchindices)
 
-##### `impl Debug<'ch, P: $crate::fmt::Debug + Pattern>`
+##### `impl<'ch, P: $crate::fmt::Debug + Pattern> Debug for MatchIndices<'ch, P>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MatchIndices<'ch, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for MatchIndices<'ch, P>`
 
 - `type Iter = T`
 
@@ -610,13 +610,13 @@ Parallel iterator over substrings that match a pattern, with their positions
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'ch, P: Pattern>`
+##### `impl<'ch, P: Pattern> ParallelIterator for MatchIndices<'ch, P>`
 
 - `type Item = (usize, &'ch str)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MatchIndices<'ch, P>`
 
 - `const ALIGN: usize`
 

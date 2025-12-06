@@ -58,7 +58,7 @@ assert_eq!(None, it.next());
 It may be possible for the overhead of constructing a substring searcher to be
 measurable in some workloads. In cases where the same needle is used to search
 many haystacks, it is possible to do construction once and thus to avoid it for
-subsequent searches. This can be done with a [`Finder`](../arch/all/rabinkarp/index.md) (or a [`FinderRev`](../arch/all/twoway/index.md) for
+subsequent searches. This can be done with a [`Finder`](../arch/all/rabinkarp/index.md) (or a [`FinderRev`](../arch/all/rabinkarp/index.md) for
 reverse searches).
 
 ```rust
@@ -92,21 +92,21 @@ needle.
 
 #### Implementations
 
-- `fn new(haystack: &'h [u8], finder: Finder<'n>) -> FindIter<'h, 'n>` — [`Finder`](../../memmem/index.md), [`FindIter`](../../memmem/index.md)
+- `fn new(haystack: &'h [u8], finder: Finder<'n>) -> FindIter<'h, 'n>` — [`Finder`](#finder), [`FindIter`](#finditer)
 
-- `fn into_owned(self: Self) -> FindIter<'h, 'static>` — [`FindIter`](../../memmem/index.md)
+- `fn into_owned(self: Self) -> FindIter<'h, 'static>` — [`FindIter`](#finditer)
 
 #### Trait Implementations
 
-##### `impl Clone<'h, 'n>`
+##### `impl<'h, 'n> Clone for FindIter<'h, 'n>`
 
-- `fn clone(self: &Self) -> FindIter<'h, 'n>` — [`FindIter`](../../memmem/index.md)
+- `fn clone(self: &Self) -> FindIter<'h, 'n>` — [`FindIter`](#finditer)
 
-##### `impl Debug<'h, 'n>`
+##### `impl<'h, 'n> Debug for FindIter<'h, 'n>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindIter<'h, 'n>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -114,7 +114,7 @@ needle.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h, 'n>`
+##### `impl<'h, 'n> Iterator for FindIter<'h, 'n>`
 
 - `type Item = usize`
 
@@ -148,21 +148,21 @@ needle.
 
 #### Implementations
 
-- `fn new(haystack: &'h [u8], finder: FinderRev<'n>) -> FindRevIter<'h, 'n>` — [`FinderRev`](../../memmem/index.md), [`FindRevIter`](../../memmem/index.md)
+- `fn new(haystack: &'h [u8], finder: FinderRev<'n>) -> FindRevIter<'h, 'n>` — [`FinderRev`](#finderrev), [`FindRevIter`](#findreviter)
 
-- `fn into_owned(self: Self) -> FindRevIter<'h, 'static>` — [`FindRevIter`](../../memmem/index.md)
+- `fn into_owned(self: Self) -> FindRevIter<'h, 'static>` — [`FindRevIter`](#findreviter)
 
 #### Trait Implementations
 
-##### `impl Clone<'h, 'n>`
+##### `impl<'h, 'n> Clone for FindRevIter<'h, 'n>`
 
-- `fn clone(self: &Self) -> FindRevIter<'h, 'n>` — [`FindRevIter`](../../memmem/index.md)
+- `fn clone(self: &Self) -> FindRevIter<'h, 'n>` — [`FindRevIter`](#findreviter)
 
-##### `impl Debug<'h, 'n>`
+##### `impl<'h, 'n> Debug for FindRevIter<'h, 'n>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindRevIter<'h, 'n>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -170,7 +170,7 @@ needle.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h, 'n>`
+##### `impl<'h, 'n> Iterator for FindRevIter<'h, 'n>`
 
 - `type Item = usize`
 
@@ -201,25 +201,25 @@ the lifetime of its needle.
 
 #### Implementations
 
-- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> Finder<'n>` — [`Finder`](../../memmem/index.md)
+- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
 
 - `fn find(self: &Self, haystack: &[u8]) -> Option<usize>`
 
-- `fn find_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindIter<'h, 'a>` — [`FindIter`](../../memmem/index.md)
+- `fn find_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindIter<'h, 'a>` — [`FindIter`](#finditer)
 
-- `fn into_owned(self: Self) -> Finder<'static>` — [`Finder`](../../memmem/index.md)
+- `fn into_owned(self: Self) -> Finder<'static>` — [`Finder`](#finder)
 
-- `fn as_ref(self: &Self) -> Finder<'_>` — [`Finder`](../../memmem/index.md)
+- `fn as_ref(self: &Self) -> Finder<'_>` — [`Finder`](#finder)
 
 - `fn needle(self: &Self) -> &[u8]`
 
 #### Trait Implementations
 
-##### `impl Clone<'n>`
+##### `impl<'n> Clone for Finder<'n>`
 
-- `fn clone(self: &Self) -> Finder<'n>` — [`Finder`](../../memmem/index.md)
+- `fn clone(self: &Self) -> Finder<'n>` — [`Finder`](#finder)
 
-##### `impl Debug<'n>`
+##### `impl<'n> Debug for Finder<'n>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -248,25 +248,25 @@ the lifetime of its needle.
 
 #### Implementations
 
-- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](../../memmem/index.md)
+- `fn new<B: ?Sized + AsRef<[u8]>>(needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
 - `fn rfind<B: AsRef<[u8]>>(self: &Self, haystack: B) -> Option<usize>`
 
-- `fn rfind_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindRevIter<'h, 'a>` — [`FindRevIter`](../../memmem/index.md)
+- `fn rfind_iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> FindRevIter<'h, 'a>` — [`FindRevIter`](#findreviter)
 
-- `fn into_owned(self: Self) -> FinderRev<'static>` — [`FinderRev`](../../memmem/index.md)
+- `fn into_owned(self: Self) -> FinderRev<'static>` — [`FinderRev`](#finderrev)
 
-- `fn as_ref(self: &Self) -> FinderRev<'_>` — [`FinderRev`](../../memmem/index.md)
+- `fn as_ref(self: &Self) -> FinderRev<'_>` — [`FinderRev`](#finderrev)
 
 - `fn needle(self: &Self) -> &[u8]`
 
 #### Trait Implementations
 
-##### `impl Clone<'n>`
+##### `impl<'n> Clone for FinderRev<'n>`
 
-- `fn clone(self: &Self) -> FinderRev<'n>` — [`FinderRev`](../../memmem/index.md)
+- `fn clone(self: &Self) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
-##### `impl Debug<'n>`
+##### `impl<'n> Debug for FinderRev<'n>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -286,29 +286,29 @@ heuristic prefilters used to speed up certain searches.
 
 #### Implementations
 
-- `fn new() -> FinderBuilder` — [`FinderBuilder`](../../memmem/index.md)
+- `fn new() -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
 
-- `fn build_forward<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> Finder<'n>` — [`Finder`](../../memmem/index.md)
+- `fn build_forward<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
 
-- `fn build_forward_with_ranker<'n, R: HeuristicFrequencyRank, B: ?Sized + AsRef<[u8]>>(self: &Self, ranker: R, needle: &'n B) -> Finder<'n>` — [`Finder`](../../memmem/index.md)
+- `fn build_forward_with_ranker<'n, R: HeuristicFrequencyRank, B: ?Sized + AsRef<[u8]>>(self: &Self, ranker: R, needle: &'n B) -> Finder<'n>` — [`Finder`](#finder)
 
-- `fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](../../memmem/index.md)
+- `fn build_reverse<'n, B: ?Sized + AsRef<[u8]>>(self: &Self, needle: &'n B) -> FinderRev<'n>` — [`FinderRev`](#finderrev)
 
-- `fn prefilter(self: &mut Self, prefilter: Prefilter) -> &mut FinderBuilder` — [`PrefilterConfig`](../../memmem/searcher/index.md), [`FinderBuilder`](../../memmem/index.md)
+- `fn prefilter(self: &mut Self, prefilter: Prefilter) -> &mut FinderBuilder` — [`PrefilterConfig`](searcher/index.md), [`FinderBuilder`](#finderbuilder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FinderBuilder`
 
-- `fn clone(self: &Self) -> FinderBuilder` — [`FinderBuilder`](../../memmem/index.md)
+- `fn clone(self: &Self) -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
 
-##### `impl Debug`
+##### `impl Debug for FinderBuilder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for FinderBuilder`
 
-- `fn default() -> FinderBuilder` — [`FinderBuilder`](../../memmem/index.md)
+- `fn default() -> FinderBuilder` — [`FinderBuilder`](#finderbuilder)
 
 ## Enums
 
@@ -365,19 +365,19 @@ useful.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PrefilterConfig`
 
-- `fn clone(self: &Self) -> PrefilterConfig` — [`PrefilterConfig`](../../memmem/searcher/index.md)
+- `fn clone(self: &Self) -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md)
 
-##### `impl Copy`
+##### `impl Copy for PrefilterConfig`
 
-##### `impl Debug`
+##### `impl Debug for PrefilterConfig`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for PrefilterConfig`
 
-- `fn default() -> PrefilterConfig` — [`PrefilterConfig`](../../memmem/searcher/index.md)
+- `fn default() -> PrefilterConfig` — [`PrefilterConfig`](searcher/index.md)
 
 ## Functions
 
@@ -490,7 +490,7 @@ fn rfind(haystack: &[u8], needle: &[u8]) -> Option<usize>
 Returns the index of the last occurrence of the given needle.
 
 Note that if you're are searching for the same needle in many different
-small haystacks, it may be faster to initialize a [`FinderRev`](../arch/all/twoway/index.md) once,
+small haystacks, it may be faster to initialize a [`FinderRev`](../arch/all/rabinkarp/index.md) once,
 and reuse it for each search.
 
 # Complexity

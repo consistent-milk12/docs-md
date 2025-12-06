@@ -80,31 +80,25 @@ if cfg!(target_endian = "big") {
 
 #### Implementations
 
-- `fn new() -> Self`
-
-- `const fn from_checksum(sum: u32) -> Self`
-
-- `fn checksum(self: &Self) -> u32`
-
-- `fn write_slice(self: &mut Self, bytes: &[u8])`
+- `fn compute(self: &mut Self, bytes: &[u8])`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Adler32`
 
-- `fn clone(self: &Self) -> Adler32` — [`Adler32`](../index.md)
+- `fn clone(self: &Self) -> Adler32` — [`Adler32`](#adler32)
 
-##### `impl Copy`
+##### `impl Copy for Adler32`
 
-##### `impl Debug`
+##### `impl Debug for Adler32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Adler32`
 
 - `fn default() -> Self`
 
-##### `impl Hasher`
+##### `impl Hasher for Adler32`
 
 - `fn finish(self: &Self) -> u64`
 

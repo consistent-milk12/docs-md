@@ -4,6 +4,13 @@
 allocator-api2 crate.
 
 
+## Modules
+
+- [`alloc`](alloc/index.md) - Memory allocation APIs
+- [`boxed`](boxed/index.md) - The `Box<T>` type for heap allocation.
+- [`vec`](vec/index.md) - A contiguous growable array type with heap-allocated contents, written
+- [`collections`](collections/index.md) - 
+
 ## Macros
 
 ### `vec!`

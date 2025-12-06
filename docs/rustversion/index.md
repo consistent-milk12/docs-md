@@ -2,9 +2,7 @@
 
 [![github](#github)](https://github.com/dtolnay/rustversion)&ensp;[![crates-io]](https://crates.io/crates/rustversion)&ensp;[![docs-rs]](https://docs.rs/rustversion)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
-[crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
-[docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
+
 
 <br>
 
@@ -12,8 +10,6 @@ This crate provides macros for conditional compilation according to rustc
 compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
 [`#[cfg_attr(...)]`][cfg_attr](#cfg-attr).
 
-[cfg](#cfg): https://doc.rust-lang.org/reference/conditional-compilation.html#the-cfg-attribute
-[cfg_attr](#cfg-attr): https://doc.rust-lang.org/reference/conditional-compilation.html#the-cfg_attr-attribute
 
 <br>
 
@@ -110,8 +106,6 @@ Providing additional trait impls as types are stabilized in the standard library
 without breaking compatibility with older compilers; in this case Pin\<P\>
 stabilized in [Rust 1.33][pin](#pin):
 
-[pin](#pin): https://blog.rust-lang.org/2019/02/28/Rust-1.33.0.html#pinning
-
 ```rust
 trait MyTrait {}
 
@@ -126,8 +120,6 @@ impl<P: MyTrait> MyTrait for Pin<P> {
 
 Similar but for language features; the ability to control alignment greater than
 1 of packed structs was stabilized in [Rust 1.33][packed](#packed).
-
-[packed](#packed): https://github.com/rust-lang/rust/blob/master/RELEASES.md#version-1330-2019-02-28
 
 ```rust
 #[rustversion::attr(before(1.33), repr(packed))]

@@ -118,8 +118,34 @@ println!("{args:?}");
 
 ```rust
 struct SeekFrom<R: gimli::Reader> {
+    dw_die_offset: gimli::UnitOffset<<R as >::Offset>,
+    name: Option<R>,
+    inlined_functions: alloc::boxed::Box<[InlinedFunction<R>]>,
+    inlined_addresses: alloc::boxed::Box<[InlinedFunctionAddress]>,
 }
 ```
+
+*Re-exported from `addr2line`*
+
+#### Fields
+
+- **`inlined_functions`**: `alloc::boxed::Box<[InlinedFunction<R>]>`
+
+  List of all `DW_TAG_inlined_subroutine` details in this function.
+
+- **`inlined_addresses`**: `alloc::boxed::Box<[InlinedFunctionAddress]>`
+
+  List of `DW_TAG_inlined_subroutine` address ranges in this function.
+
+#### Implementations
+
+- `fn parse(dw_die_offset: gimli::UnitOffset<<R as >::Offset>, file: DebugFile, unit: gimli::UnitRef<'_, R>, ctx: &Context<R>) -> Result<Self, gimli::Error>`
+
+- `fn parse_children(state: &mut InlinedState<'_, R>, depth: isize, inlined_depth: usize) -> Result<(), gimli::Error>`
+
+- `fn skip(entries: &mut gimli::EntriesRaw<'_, '_, R>, abbrev: &gimli::Abbreviation, depth: isize) -> Result<(), gimli::Error>`
+
+- `fn find_inlined_functions(self: &Self, probe: u64) -> alloc::vec::Vec<&InlinedFunction<R>>` — [`OsStrExt`](#osstrext)
 
 ### `RawArgs`
 
@@ -137,45 +163,45 @@ Command-line arguments
 
 - `fn new(iter: impl IntoIterator<Item = impl Into<OsString>>) -> Self`
 
-- `fn cursor(self: &Self) -> ArgCursor` — [`ArgCursor`](../index.md)
+- `fn cursor(self: &Self) -> ArgCursor` — [`ArgCursor`](#argcursor)
 
-- `fn next(self: &Self, cursor: &mut ArgCursor) -> Option<ParsedArg<'_>>` — [`ArgCursor`](../index.md), [`ParsedArg`](../index.md)
+- `fn next(self: &Self, cursor: &mut ArgCursor) -> Option<ParsedArg<'_>>` — [`ArgCursor`](#argcursor), [`ParsedArg`](#parsedarg)
 
-- `fn next_os(self: &Self, cursor: &mut ArgCursor) -> Option<&OsStr>` — [`ArgCursor`](../index.md)
+- `fn next_os(self: &Self, cursor: &mut ArgCursor) -> Option<&OsStr>` — [`ArgCursor`](#argcursor)
 
-- `fn peek(self: &Self, cursor: &ArgCursor) -> Option<ParsedArg<'_>>` — [`ArgCursor`](../index.md), [`ParsedArg`](../index.md)
+- `fn peek(self: &Self, cursor: &ArgCursor) -> Option<ParsedArg<'_>>` — [`ArgCursor`](#argcursor), [`ParsedArg`](#parsedarg)
 
-- `fn peek_os(self: &Self, cursor: &ArgCursor) -> Option<&OsStr>` — [`ArgCursor`](../index.md)
+- `fn peek_os(self: &Self, cursor: &ArgCursor) -> Option<&OsStr>` — [`ArgCursor`](#argcursor)
 
-- `fn remaining(self: &Self, cursor: &mut ArgCursor) -> impl Iterator<Item = &OsStr>` — [`ArgCursor`](../index.md)
+- `fn remaining(self: &Self, cursor: &mut ArgCursor) -> impl Iterator<Item = &OsStr>` — [`ArgCursor`](#argcursor)
 
-- `fn seek(self: &Self, cursor: &mut ArgCursor, pos: SeekFrom)` — [`ArgCursor`](../index.md)
+- `fn seek(self: &Self, cursor: &mut ArgCursor, pos: SeekFrom)` — [`ArgCursor`](#argcursor)
 
-- `fn insert(self: &mut Self, cursor: &ArgCursor, insert_items: impl IntoIterator<Item = impl Into<OsString>>)` — [`ArgCursor`](../index.md)
+- `fn insert(self: &mut Self, cursor: &ArgCursor, insert_items: impl IntoIterator<Item = impl Into<OsString>>)` — [`ArgCursor`](#argcursor)
 
-- `fn is_end(self: &Self, cursor: &ArgCursor) -> bool` — [`ArgCursor`](../index.md)
+- `fn is_end(self: &Self, cursor: &ArgCursor) -> bool` — [`ArgCursor`](#argcursor)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for RawArgs`
 
-- `fn clone(self: &Self) -> RawArgs` — [`RawArgs`](../index.md)
+- `fn clone(self: &Self) -> RawArgs` — [`RawArgs`](#rawargs)
 
-##### `impl Debug`
+##### `impl Debug for RawArgs`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for RawArgs`
 
-- `fn default() -> RawArgs` — [`RawArgs`](../index.md)
+- `fn default() -> RawArgs` — [`RawArgs`](#rawargs)
 
-##### `impl Eq`
+##### `impl Eq for RawArgs`
 
-##### `impl PartialEq`
+##### `impl PartialEq for RawArgs`
 
-- `fn eq(self: &Self, other: &RawArgs) -> bool` — [`RawArgs`](../index.md)
+- `fn eq(self: &Self, other: &RawArgs) -> bool` — [`RawArgs`](#rawargs)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for RawArgs`
 
 ### `ArgCursor`
 
@@ -193,29 +219,29 @@ Position within [`RawArgs`](#rawargs)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ArgCursor`
 
-- `fn clone(self: &Self) -> ArgCursor` — [`ArgCursor`](../index.md)
+- `fn clone(self: &Self) -> ArgCursor` — [`ArgCursor`](#argcursor)
 
-##### `impl Debug`
+##### `impl Debug for ArgCursor`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ArgCursor`
 
-##### `impl Ord`
+##### `impl Ord for ArgCursor`
 
-- `fn cmp(self: &Self, other: &ArgCursor) -> $crate::cmp::Ordering` — [`ArgCursor`](../index.md)
+- `fn cmp(self: &Self, other: &ArgCursor) -> $crate::cmp::Ordering` — [`ArgCursor`](#argcursor)
 
-##### `impl PartialEq`
+##### `impl PartialEq for ArgCursor`
 
-- `fn eq(self: &Self, other: &ArgCursor) -> bool` — [`ArgCursor`](../index.md)
+- `fn eq(self: &Self, other: &ArgCursor) -> bool` — [`ArgCursor`](#argcursor)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for ArgCursor`
 
-- `fn partial_cmp(self: &Self, other: &ArgCursor) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ArgCursor`](../index.md)
+- `fn partial_cmp(self: &Self, other: &ArgCursor) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ArgCursor`](#argcursor)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ArgCursor`
 
 ### `ParsedArg<'s>`
 
@@ -243,7 +269,7 @@ Command-line Argument
 
 - `fn is_long(self: &Self) -> bool`
 
-- `fn to_short(self: &Self) -> Option<ShortFlags<'_>>` — [`ShortFlags`](../index.md)
+- `fn to_short(self: &Self) -> Option<ShortFlags<'_>>` — [`ShortFlags`](#shortflags)
 
 - `fn is_short(self: &Self) -> bool`
 
@@ -255,33 +281,33 @@ Command-line Argument
 
 #### Trait Implementations
 
-##### `impl Clone<'s>`
+##### `impl<'s> Clone for ParsedArg<'s>`
 
-- `fn clone(self: &Self) -> ParsedArg<'s>` — [`ParsedArg`](../index.md)
+- `fn clone(self: &Self) -> ParsedArg<'s>` — [`ParsedArg`](#parsedarg)
 
-##### `impl Debug<'s>`
+##### `impl<'s> Debug for ParsedArg<'s>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq<'s>`
+##### `impl<'s> Eq for ParsedArg<'s>`
 
-##### `impl Hash<'s>`
+##### `impl<'s> Hash for ParsedArg<'s>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord<'s>`
+##### `impl<'s> Ord for ParsedArg<'s>`
 
-- `fn cmp(self: &Self, other: &ParsedArg<'s>) -> $crate::cmp::Ordering` — [`ParsedArg`](../index.md)
+- `fn cmp(self: &Self, other: &ParsedArg<'s>) -> $crate::cmp::Ordering` — [`ParsedArg`](#parsedarg)
 
-##### `impl PartialEq<'s>`
+##### `impl<'s> PartialEq for ParsedArg<'s>`
 
-- `fn eq(self: &Self, other: &ParsedArg<'s>) -> bool` — [`ParsedArg`](../index.md)
+- `fn eq(self: &Self, other: &ParsedArg<'s>) -> bool` — [`ParsedArg`](#parsedarg)
 
-##### `impl PartialOrd<'s>`
+##### `impl<'s> PartialOrd for ParsedArg<'s>`
 
-- `fn partial_cmp(self: &Self, other: &ParsedArg<'s>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ParsedArg`](../index.md)
+- `fn partial_cmp(self: &Self, other: &ParsedArg<'s>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ParsedArg`](#parsedarg)
 
-##### `impl StructuralPartialEq<'s>`
+##### `impl<'s> StructuralPartialEq for ParsedArg<'s>`
 
 ### `ShortFlags<'s>`
 
@@ -311,15 +337,15 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 
 #### Trait Implementations
 
-##### `impl Clone<'s>`
+##### `impl<'s> Clone for ShortFlags<'s>`
 
-- `fn clone(self: &Self) -> ShortFlags<'s>` — [`ShortFlags`](../index.md)
+- `fn clone(self: &Self) -> ShortFlags<'s>` — [`ShortFlags`](#shortflags)
 
-##### `impl Debug<'s>`
+##### `impl<'s> Debug for ShortFlags<'s>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ShortFlags<'s>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -327,7 +353,7 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'s>`
+##### `impl<'s> Iterator for ShortFlags<'s>`
 
 - `type Item = Result<char, &'s OsStr>`
 

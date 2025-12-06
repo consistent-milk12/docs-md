@@ -55,7 +55,7 @@ rustix's APIs perform the following tasks:
  - Buffers are passed as Rust slices.
  - Out-parameters are presented as return values.
  - Path arguments use [`Arg`](#arg), so they accept any string type.
- - File descriptors are passed and returned via [`AsFd`](maybe_polyfill/os/fd/index.md) and [`OwnedFd`](maybe_polyfill/os/fd/index.md)
+ - File descriptors are passed and returned via [`AsFd`](fd/index.md) and [`OwnedFd`](fd/index.md)
    instead of bare integers, ensuring I/O safety.
  - Constants use `enum`s and [`bitflags`](#bitflags) types, and enable [support for
    externally defined flags].
@@ -93,9 +93,9 @@ which does perform sandboxing and restricts ambient authorities.
 
 
 
-[I/O-safe]: https://github.com/rust-lang/rfcs/blob/master/text/3128-io-safety.md
 
-[support for externally defined flags]: bitflags#externally-defined-flags
+
+
 
 ## Modules
 
@@ -120,7 +120,6 @@ need to copy them into a separate buffer to NUL-terminate them.
 
 In Rust ≥ 1.77, users can use [C-string literals] instead of this macro.
 
-[C-string literals]: https://blog.rust-lang.org/2024/03/21/Rust-1.77.0.html#c-string-literals
 
 # Examples
 

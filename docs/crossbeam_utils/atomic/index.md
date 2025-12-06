@@ -53,43 +53,43 @@ Atomic loads use the [`Acquire`](#acquire) ordering and atomic stores use the [`
 
 #### Implementations
 
-- `fn fetch_add(self: &Self, val: u8) -> u8`
+- `fn fetch_add(self: &Self, val: usize) -> usize`
 
-- `fn fetch_sub(self: &Self, val: u8) -> u8`
+- `fn fetch_sub(self: &Self, val: usize) -> usize`
 
-- `fn fetch_and(self: &Self, val: u8) -> u8`
+- `fn fetch_and(self: &Self, val: usize) -> usize`
 
-- `fn fetch_nand(self: &Self, val: u8) -> u8`
+- `fn fetch_nand(self: &Self, val: usize) -> usize`
 
-- `fn fetch_or(self: &Self, val: u8) -> u8`
+- `fn fetch_or(self: &Self, val: usize) -> usize`
 
-- `fn fetch_xor(self: &Self, val: u8) -> u8`
+- `fn fetch_xor(self: &Self, val: usize) -> usize`
 
-- `fn fetch_max(self: &Self, val: u8) -> u8`
+- `fn fetch_max(self: &Self, val: usize) -> usize`
 
-- `fn fetch_min(self: &Self, val: u8) -> u8`
+- `fn fetch_min(self: &Self, val: usize) -> usize`
 
 #### Trait Implementations
 
-##### `impl Debug<T: Copy + fmt::Debug>`
+##### `impl<T: Copy + fmt::Debug> Debug for AtomicCell<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<T: Default>`
+##### `impl<T: Default> Default for AtomicCell<T>`
 
-- `fn default() -> AtomicCell<T>` — [`AtomicCell`](../../atomic/atomic_cell/index.md)
+- `fn default() -> AtomicCell<T>` — [`AtomicCell`](atomic_cell/index.md)
 
-##### `impl Drop<T>`
+##### `impl<T> Drop for AtomicCell<T>`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl RefUnwindSafe<T>`
+##### `impl<T> RefUnwindSafe for AtomicCell<T>`
 
-##### `impl Send<T: Send>`
+##### `impl<T: Send> Send for AtomicCell<T>`
 
-##### `impl Sync<T: Send>`
+##### `impl<T: Send> Sync for AtomicCell<T>`
 
-##### `impl UnwindSafe<T>`
+##### `impl<T> UnwindSafe for AtomicCell<T>`
 
 ## Traits
 

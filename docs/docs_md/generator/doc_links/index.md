@@ -80,7 +80,7 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../../linker/index.md)
+- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../linker/index.md)
 
 - `fn process(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -122,11 +122,11 @@ Links inside fenced code blocks are not processed.
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for DocLinkProcessor<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for DocLinkProcessor<'a>`
 
 - `const ALIGN: usize`
 

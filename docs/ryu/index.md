@@ -2,9 +2,7 @@
 
 [![github](#github)](https://github.com/dtolnay/ryu)&ensp;[![crates-io]](https://crates.io/crates/ryu)&ensp;[![docs-rs]](https://docs.rs/ryu)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
-[crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
-[docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
+
 
 <br>
 
@@ -18,8 +16,6 @@ available under the creative commons CC-BY-SA license.
 This Rust implementation is a line-by-line port of Ulf Adams' implementation
 in C, [https://github.com/ulfjack/ryu][upstream](#upstream).
 
-[paper](#paper): https://dl.acm.org/citation.cfm?id=3192369
-[upstream](#upstream): https://github.com/ulfjack/ryu
 
 # Example
 
@@ -116,13 +112,13 @@ assert_eq!(printed, "1.234");
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Buffer`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Buffer`
 
-##### `impl Default`
+##### `impl Default for Buffer`
 
 - `fn default() -> Self`
 

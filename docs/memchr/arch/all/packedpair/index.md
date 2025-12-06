@@ -14,7 +14,6 @@ this module provides an architecture independent version that doesn't do as
 good of a job keeping the search for candidates inside a SIMD hot path. It
 however can be good enough in many circumstances.
 
-[generic SIMD]: http://0x80.pl/articles/simd-strfind.html#first-and-last
 
 ## Structs
 
@@ -46,23 +45,23 @@ architecture independent routines are unavailable.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](../../../../arch/all/packedpair/index.md)
+- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
-- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../../arch/all/packedpair/index.md), [`Finder`](../../../../arch/all/packedpair/index.md)
+- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](#pair), [`Finder`](#finder)
 
 - `fn find_prefilter(self: &Self, haystack: &[u8]) -> Option<usize>`
 
-- `fn pair(self: &Self) -> &Pair` — [`Pair`](../../../../arch/all/packedpair/index.md)
+- `fn pair(self: &Self) -> &Pair` — [`Pair`](#pair)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Finder`
 
-- `fn clone(self: &Self) -> Finder` — [`Finder`](../../../../arch/all/packedpair/index.md)
+- `fn clone(self: &Self) -> Finder` — [`Finder`](#finder)
 
-##### `impl Copy`
+##### `impl Copy for Finder`
 
-##### `impl Debug`
+##### `impl Debug for Finder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -100,11 +99,11 @@ needles with length at least 2.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Pair>` — [`Pair`](../../../../arch/all/packedpair/index.md)
+- `fn new(needle: &[u8]) -> Option<Pair>` — [`Pair`](#pair)
 
-- `fn with_ranker<R: HeuristicFrequencyRank>(needle: &[u8], ranker: R) -> Option<Pair>` — [`Pair`](../../../../arch/all/packedpair/index.md)
+- `fn with_ranker<R: HeuristicFrequencyRank>(needle: &[u8], ranker: R) -> Option<Pair>` — [`Pair`](#pair)
 
-- `fn with_indices(needle: &[u8], index1: u8, index2: u8) -> Option<Pair>` — [`Pair`](../../../../arch/all/packedpair/index.md)
+- `fn with_indices(needle: &[u8], index1: u8, index2: u8) -> Option<Pair>` — [`Pair`](#pair)
 
 - `fn index1(self: &Self) -> u8`
 
@@ -112,13 +111,13 @@ needles with length at least 2.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Pair`
 
-- `fn clone(self: &Self) -> Pair` — [`Pair`](../../../../arch/all/packedpair/index.md)
+- `fn clone(self: &Self) -> Pair` — [`Pair`](#pair)
 
-##### `impl Copy`
+##### `impl Copy for Pair`
 
-##### `impl Debug`
+##### `impl Debug for Pair`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

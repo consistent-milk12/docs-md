@@ -204,95 +204,95 @@ It is also possible to implement your own version of `try_find`. See the
 
 - `const FAIL: StateID`
 
-- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
+- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
 
-- `fn pattern_lens_raw(self: &Self) -> &[SmallIndex]` — [`SmallIndex`](../../../util/primitives/index.md)
+- `fn pattern_lens_raw(self: &Self) -> &[SmallIndex]` — [`SmallIndex`](../../util/primitives/index.md)
 
-- `fn states(self: &Self) -> &[State]` — [`State`](../../../nfa/noncontiguous/index.md)
+- `fn states(self: &Self) -> &[State]` — [`State`](#state)
 
-- `fn special(self: &Self) -> &Special` — [`Special`](../../../util/special/index.md)
+- `fn special(self: &Self) -> &Special` — [`Special`](../../util/special/index.md)
 
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../../util/primitives/index.md)
+- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn iter_trans(self: &Self, sid: StateID) -> impl Iterator<Item = Transition> + '_` — [`StateID`](../../../util/primitives/index.md), [`Transition`](../../../nfa/noncontiguous/index.md)
+- `fn iter_trans(self: &Self, sid: StateID) -> impl Iterator<Item = Transition> + '_` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
 
-- `fn iter_matches(self: &Self, sid: StateID) -> impl Iterator<Item = PatternID> + '_` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md)
+- `fn iter_matches(self: &Self, sid: StateID) -> impl Iterator<Item = PatternID> + '_` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
-- `fn next_link(self: &Self, sid: StateID, prev: Option<StateID>) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- `fn next_link(self: &Self, sid: StateID, prev: Option<StateID>) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
 
-- `fn follow_transition(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `fn follow_transition(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn follow_transition_sparse(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `fn follow_transition_sparse(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn add_transition(self: &mut Self, prev: StateID, byte: u8, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn add_transition(self: &mut Self, prev: StateID, byte: u8, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn init_full_state(self: &mut Self, prev: StateID, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn init_full_state(self: &mut Self, prev: StateID, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn add_match(self: &mut Self, sid: StateID, pid: PatternID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn add_match(self: &mut Self, sid: StateID, pid: PatternID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn copy_matches(self: &mut Self, src: StateID, dst: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn copy_matches(self: &mut Self, src: StateID, dst: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn alloc_transition(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn alloc_transition(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn alloc_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn alloc_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn alloc_dense_state(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn alloc_dense_state(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
-- `fn alloc_state(self: &mut Self, depth: usize) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn alloc_state(self: &mut Self, depth: usize) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
 
 #### Trait Implementations
 
-##### `impl Automaton`
+##### `impl Automaton for NFA`
 
-- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../../util/search/index.md), [`StateID`](../../../util/primitives/index.md), [`MatchError`](../../../util/error/index.md)
+- `fn start_state(self: &Self, anchored: Anchored) -> Result<StateID, MatchError>` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../util/error/index.md)
 
-- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../../util/search/index.md), [`StateID`](../../../util/primitives/index.md)
+- `fn next_state(self: &Self, anchored: Anchored, sid: StateID, byte: u8) -> StateID` — [`Anchored`](../../util/search/index.md), [`StateID`](../../util/primitives/index.md)
 
-- `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
+- `fn is_special(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_dead(self: &Self, sid: StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
+- `fn is_dead(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_match(self: &Self, sid: StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
+- `fn is_match(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../../../util/primitives/index.md)
+- `fn is_start(self: &Self, sid: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../util/search/index.md)
+- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../util/search/index.md)
 
 - `fn patterns_len(self: &Self) -> usize`
 
-- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../../util/primitives/index.md)
+- `fn pattern_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../../util/primitives/index.md)
 
 - `fn min_pattern_len(self: &Self) -> usize`
 
 - `fn max_pattern_len(self: &Self) -> usize`
 
-- `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../../../util/primitives/index.md)
+- `fn match_len(self: &Self, sid: StateID) -> usize` — [`StateID`](../../util/primitives/index.md)
 
-- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md)
+- `fn match_pattern(self: &Self, sid: StateID, index: usize) -> PatternID` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
+- `fn prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
 
-##### `impl Clone`
+##### `impl Clone for NFA`
 
-- `fn clone(self: &Self) -> NFA` — [`NFA`](../../../nfa/noncontiguous/index.md)
+- `fn clone(self: &Self) -> NFA` — [`NFA`](#nfa)
 
-##### `impl Debug`
+##### `impl Debug for NFA`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Remappable`
+##### `impl Remappable for noncontiguous::NFA`
 
 - `fn state_len(self: &Self) -> usize`
 
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../../util/primitives/index.md)
+- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for crate::nfa::noncontiguous::NFA`
 
 ### `Builder`
 
@@ -313,29 +313,29 @@ their behavior is identical.
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../../../nfa/noncontiguous/index.md)
+- `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/noncontiguous/index.md), [`BuildError`](../../../util/error/index.md)
+- `fn build<I, P>(self: &Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../../util/search/index.md), [`Builder`](../../../nfa/noncontiguous/index.md)
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut Builder` — [`MatchKind`](../../util/search/index.md), [`Builder`](#builder)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](../../../nfa/noncontiguous/index.md)
+- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn dense_depth(self: &mut Self, depth: usize) -> &mut Builder` — [`Builder`](../../../nfa/noncontiguous/index.md)
+- `fn dense_depth(self: &mut Self, depth: usize) -> &mut Builder` — [`Builder`](#builder)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](../../../nfa/noncontiguous/index.md)
+- `fn prefilter(self: &mut Self, yes: bool) -> &mut Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../nfa/noncontiguous/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
-##### `impl Debug`
+##### `impl Debug for Builder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](../../../nfa/noncontiguous/index.md)
+- `fn default() -> Builder` — [`Builder`](#builder)
 

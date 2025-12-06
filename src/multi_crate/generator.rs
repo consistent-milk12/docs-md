@@ -15,7 +15,7 @@ use rustdoc_types::{Id, Item, ItemEnum, StructKind};
 
 use crate::Args;
 use crate::error::Error;
-use crate::generator::LinkResolver;
+use crate::generator::{ItemFilter, LinkResolver};
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
 use crate::generator::impls::is_blanket_impl;
 use crate::generator::render_shared::{
@@ -117,7 +117,11 @@ impl<'a> MultiCrateGenerator<'a> {
         // Generate SUMMARY.md if requested (sequential - single file)
         if self.args.mdbook {
             progress.set_message("Generating SUMMARY.md...");
-            let summary_gen = SummaryGenerator::new(self.ctx.crates(), &self.args.output);
+            let summary_gen = SummaryGenerator::new(
+                self.ctx.crates(),
+                &self.args.output,
+                self.args.include_private,
+            );
             summary_gen.generate()?;
         }
 
@@ -404,6 +408,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         _parent: &Item,
     ) {
         let krate = self.view.krate();
+        let mut seen_items: HashSet<Id> = HashSet::new();
 
         // Collect items by category (with IDs for impl block rendering)
         let mut modules: Vec<&Item> = Vec::new();
@@ -416,6 +421,11 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         let mut macros: Vec<&Item> = Vec::new();
 
         for item_id in &module.items {
+            // Skip if already processed (from glob expansion)
+            if !seen_items.insert(*item_id) {
+                continue;
+            }
+
             if let Some(item) = krate.index.get(item_id) {
                 if !self.view.should_include_item(item) {
                     continue;
@@ -438,46 +448,61 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
                     ItemEnum::Macro(_) => macros.push(item),
 
-                    // Handle re-exports: pub use other::Item;
-                    // Skip glob re-exports (pub use foo::*) as they create duplicates
-                    ItemEnum::Use(use_item) if !use_item.is_glob => {
-                        // Try to resolve target item: first by ID, then by path
-                        let target_item = use_item.id.as_ref().map_or_else(
-                            || {
-                                // No ID (external re-export) - resolve by path
-                                self.view
-                                    .resolve_external_path(&use_item.source)
-                                    .map(|(_, item, _)| item)
-                            },
-                            |target_id| {
-                                // Has ID - try local crate first, then search all crates
-                                krate.index.get(target_id).or_else(|| {
+                    // Handle re-exports
+                    ItemEnum::Use(use_item) => {
+                        if use_item.is_glob {
+                            // Glob re-export: expand target module's items
+                            self.expand_glob_reexport(
+                                &mut modules,
+                                &mut structs,
+                                &mut enums,
+                                &mut traits,
+                                &mut functions,
+                                &mut types,
+                                &mut constants,
+                                &mut macros,
+                                use_item,
+                                &mut seen_items,
+                            );
+                        } else {
+                            // Specific re-export: resolve target and categorize
+                            let target_item = use_item.id.as_ref().map_or_else(
+                                || {
+                                    // No ID (external re-export) - resolve by path
                                     self.view
-                                        .lookup_item_across_crates(target_id)
-                                        .map(|(_, item)| item)
-                                })
-                            },
-                        );
+                                        .resolve_external_path(&use_item.source)
+                                        .map(|(_, item, _)| item)
+                                },
+                                |target_id| {
+                                    // Has ID - try local crate first, then search all crates
+                                    krate.index.get(target_id).or_else(|| {
+                                        self.view
+                                            .lookup_item_across_crates(target_id)
+                                            .map(|(_, item)| item)
+                                    })
+                                },
+                            );
 
-                        if let Some(target_item) = target_item {
-                            match &target_item.inner {
-                                ItemEnum::Module(_) => modules.push(item),
+                            if let Some(target_item) = target_item {
+                                match &target_item.inner {
+                                    ItemEnum::Module(_) => modules.push(item),
 
-                                ItemEnum::Struct(_) => structs.push((item_id, item)),
+                                    ItemEnum::Struct(_) => structs.push((item_id, item)),
 
-                                ItemEnum::Enum(_) => enums.push((item_id, item)),
+                                    ItemEnum::Enum(_) => enums.push((item_id, item)),
 
-                                ItemEnum::Trait(_) => traits.push(item),
+                                    ItemEnum::Trait(_) => traits.push(item),
 
-                                ItemEnum::Function(_) => functions.push(item),
+                                    ItemEnum::Function(_) => functions.push(item),
 
-                                ItemEnum::TypeAlias(_) => types.push(item),
+                                    ItemEnum::TypeAlias(_) => types.push(item),
 
-                                ItemEnum::Constant { .. } => constants.push(item),
+                                    ItemEnum::Constant { .. } => constants.push(item),
 
-                                ItemEnum::Macro(_) => macros.push(item),
+                                    ItemEnum::Macro(_) => macros.push(item),
 
-                                _ => {},
+                                    _ => {},
+                                }
                             }
                         }
                     },
@@ -687,24 +712,25 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
     /// Render a struct definition to markdown.
     fn render_struct(&self, md: &mut String, item_id: Id, item: &Item) {
-        let krate = self.view.krate();
+        let current_krate = self.view.krate();
 
         // Handle re-exports: use the target item for rendering
-        // source_crate is set when this is an external re-export
-        let (name, actual_item, actual_id, source_crate): (&str, &Item, Id, Option<&str>) =
+        // source_crate_name is set when the target is from another crate
+        let (name, actual_item, actual_id, source_crate_name): (&str, &Item, Id, Option<&str>) =
             if let ItemEnum::Use(use_item) = &item.inner {
                 let name = use_item.name.as_str();
 
                 if let Some(ref target_id) = use_item.id {
                     // Has ID - try local crate first, then search all crates
-                    let target = krate.index.get(target_id).or_else(|| {
-                        self.view
-                            .lookup_item_across_crates(target_id)
-                            .map(|(_, item)| item)
-                    });
-
-                    if let Some(target) = target {
+                    if let Some(target) = current_krate.index.get(target_id) {
+                        // Found in local crate
                         (name, target, *target_id, None)
+                    } else if let Some((src_crate, target)) =
+                        self.view.lookup_item_across_crates(target_id)
+                    {
+                        // Found in another crate - capture the source crate name
+                        let is_external = src_crate != self.view.crate_name();
+                        (name, target, *target_id, if is_external { Some(src_crate) } else { None })
                     } else {
                         return;
                     }
@@ -728,53 +754,64 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             };
 
         if let ItemEnum::Struct(s) = &actual_item.inner {
-            // Struct definition (heading + code block)
-            render_struct_definition(md, name, s, krate, &self.type_renderer);
+            // Get the appropriate crate context for rendering
+            // Use source crate for field lookups if this is a cross-crate re-export
+            let render_krate = source_crate_name
+                .and_then(|name| self.view.get_crate(name))
+                .unwrap_or(current_krate);
 
-            // Add re-export annotation for external re-exports (insert after heading)
-            if let Some(src_crate) = source_crate {
-                // Insert the annotation before the code block
-                // The shared function already wrote "### `name`\n\n```rust\n..."
-                // We need to insert before the code block - but since the function already
-                // wrote the full definition, we'll add it after the code block instead
+            // Create TypeRenderer for the appropriate crate
+            let type_renderer = if source_crate_name.is_some() {
+                TypeRenderer::new(render_krate)
+            } else {
+                // Use cached renderer for local items
+                self.type_renderer.clone()
+            };
+
+            // Struct definition (heading + code block)
+            render_struct_definition(md, name, s, render_krate, &type_renderer);
+
+            // Add re-export annotation for external re-exports
+            if let Some(src_crate) = source_crate_name {
                 _ = writeln!(md, "*Re-exported from `{src_crate}`*\n");
             }
 
             // Documentation
             append_docs(md, self.view.process_docs(actual_item, self.file_path));
 
-            // Fields documentation
+            // Fields documentation - use source crate for field type lookups
             if let StructKind::Plain { fields, .. } = &s.kind {
-                render_struct_fields(md, fields, krate, &self.type_renderer, |field| {
+                render_struct_fields(md, fields, render_krate, &type_renderer, |field| {
                     self.view.process_docs(field, self.file_path)
                 });
             }
 
-            // Impl blocks
-            self.render_impl_blocks(md, actual_id);
+            // Impl blocks - pass source crate for cross-crate re-exports
+            self.render_impl_blocks(md, actual_id, source_crate_name);
         }
     }
 
     /// Render an enum definition to markdown.
     fn render_enum(&self, md: &mut String, item_id: Id, item: &Item) {
-        let krate = self.view.krate();
+        let current_krate = self.view.krate();
 
         // Handle re-exports: use the target item for rendering
-        // source_crate is set when this is an external re-export
-        let (name, actual_item, actual_id, source_crate): (&str, &Item, Id, Option<&str>) =
+        // source_crate_name is set when the target is from another crate
+        let (name, actual_item, actual_id, source_crate_name): (&str, &Item, Id, Option<&str>) =
             if let ItemEnum::Use(use_item) = &item.inner {
                 let name = use_item.name.as_str();
 
                 if let Some(ref target_id) = use_item.id {
                     // Has ID - try local crate first, then search all crates
-                    let target = krate.index.get(target_id).or_else(|| {
-                        self.view
-                            .lookup_item_across_crates(target_id)
-                            .map(|(_, item)| item)
-                    });
-
-                    if let Some(target) = target {
+                    if let Some(target) = current_krate.index.get(target_id) {
+                        // Found in local crate
                         (name, target, *target_id, None)
+                    } else if let Some((src_crate, target)) =
+                        self.view.lookup_item_across_crates(target_id)
+                    {
+                        // Found in another crate - capture the source crate name
+                        let is_external = src_crate != self.view.crate_name();
+                        (name, target, *target_id, if is_external { Some(src_crate) } else { None })
                     } else {
                         return;
                     }
@@ -798,24 +835,38 @@ impl<'a> MultiCrateModuleRenderer<'a> {
             };
 
         if let ItemEnum::Enum(e) = &actual_item.inner {
+            // Get the appropriate crate context for rendering
+            // Use source crate for variant lookups if this is a cross-crate re-export
+            let render_krate = source_crate_name
+                .and_then(|name| self.view.get_crate(name))
+                .unwrap_or(current_krate);
+
+            // Create TypeRenderer for the appropriate crate
+            let type_renderer = if source_crate_name.is_some() {
+                TypeRenderer::new(render_krate)
+            } else {
+                // Use cached renderer for local items
+                self.type_renderer.clone()
+            };
+
             // Enum definition (heading + code block with variants)
-            render_enum_definition(md, name, e, krate, &self.type_renderer);
+            render_enum_definition(md, name, e, render_krate, &type_renderer);
 
             // Add re-export annotation for external re-exports
-            if let Some(src_crate) = source_crate {
+            if let Some(src_crate) = source_crate_name {
                 _ = writeln!(md, "*Re-exported from `{src_crate}`*\n");
             }
 
             // Documentation
             append_docs(md, self.view.process_docs(actual_item, self.file_path));
 
-            // Variants documentation
-            render_enum_variants_docs(md, &e.variants, krate, |variant| {
+            // Variants documentation - use source crate for variant type lookups
+            render_enum_variants_docs(md, &e.variants, render_krate, |variant| {
                 self.view.process_docs(variant, self.file_path)
             });
 
-            // Impl blocks
-            self.render_impl_blocks(md, actual_id);
+            // Impl blocks - pass source crate for cross-crate re-exports
+            self.render_impl_blocks(md, actual_id, source_crate_name);
         }
     }
 
@@ -886,38 +937,116 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         append_docs(md, self.view.process_docs(item, self.file_path));
     }
 
+    /// Expand a glob re-export into the category vectors.
+    #[allow(clippy::too_many_arguments)]
+    fn expand_glob_reexport<'b>(
+        &self,
+        modules: &mut Vec<&'b Item>,
+        structs: &mut Vec<(&'b Id, &'b Item)>,
+        enums: &mut Vec<(&'b Id, &'b Item)>,
+        traits: &mut Vec<&'b Item>,
+        functions: &mut Vec<&'b Item>,
+        types: &mut Vec<&'b Item>,
+        constants: &mut Vec<&'b Item>,
+        macros: &mut Vec<&'b Item>,
+        use_item: &rustdoc_types::Use,
+        seen_items: &mut HashSet<Id>,
+    ) where
+        'a: 'b,
+    {
+        let krate = self.view.krate();
+
+        let Some(target_id) = &use_item.id else { return };
+        let Some(target_module) = krate.index.get(target_id) else { return };
+        let ItemEnum::Module(module) = &target_module.inner else { return };
+
+        for child_id in &module.items {
+            if !seen_items.insert(*child_id) {
+                continue; // Already processed
+            }
+
+            let Some(child) = krate.index.get(child_id) else { continue };
+
+            if !self.view.should_include_item(child) {
+                continue;
+            }
+
+            match &child.inner {
+                ItemEnum::Module(_) => modules.push(child),
+                ItemEnum::Struct(_) => structs.push((child_id, child)),
+                ItemEnum::Enum(_) => enums.push((child_id, child)),
+                ItemEnum::Trait(_) => traits.push(child),
+                ItemEnum::Function(_) => functions.push(child),
+                ItemEnum::TypeAlias(_) => types.push(child),
+                ItemEnum::Constant { .. } => constants.push(child),
+                ItemEnum::Macro(_) => macros.push(child),
+                _ => {},
+            }
+        }
+    }
+
     /// Render impl blocks for a type, including cross-crate impls.
-    fn render_impl_blocks(&self, md: &mut String, item_id: Id) {
-        // Get all impls including cross-crate ones
-        let impls = self.view.get_all_impls(item_id);
+    ///
+    /// # Arguments
+    ///
+    /// * `md` - The markdown output buffer
+    /// * `item_id` - The ID of the item to render impl blocks for
+    /// * `source_crate_name` - Optional source crate name for cross-crate re-exports.
+    ///   When provided, impls are looked up from the source crate.
+    fn render_impl_blocks(&self, md: &mut String, item_id: Id, source_crate_name: Option<&str>) {
+        let current_krate = self.view.krate();
+
+        // Get the appropriate crate for impl lookups
+        let render_krate = source_crate_name
+            .and_then(|name| self.view.get_crate(name))
+            .unwrap_or(current_krate);
+
+        // Create TypeRenderer for the appropriate crate
+        let type_renderer = if source_crate_name.is_some() {
+            TypeRenderer::new(render_krate)
+        } else {
+            self.type_renderer.clone()
+        };
+
+        // Get impls - for cross-crate items, look up from source crate
+        let impls = if source_crate_name.is_some() {
+            // For cross-crate re-exports, get impls from the source crate
+            self.view.get_impls_from_crate(item_id, render_krate)
+        } else {
+            // For local items, use the normal lookup
+            self.view.get_all_impls(item_id)
+        };
 
         if impls.is_empty() {
             return;
         }
 
-        let krate = self.view.krate();
-
         // Partition into inherent vs trait impls
         let (inherent, trait_impls): (Vec<&rustdoc_types::Impl>, Vec<&rustdoc_types::Impl>) =
             impls.into_iter().partition(|i| i.trait_.is_none());
 
-        // Filter out synthetic impls and blanket impls (From, Into, Any, etc.)
+        // Filter out synthetic impls
         let inherent: Vec<_> = inherent.into_iter().filter(|i| !i.is_synthetic).collect();
+
+        // Filter out synthetic impls and optionally blanket impls
+        // Respect the --include-blanket-impls flag
+        let include_blanket = self.view.include_blanket_impls();
         let mut trait_impls: Vec<_> = trait_impls
             .into_iter()
-            .filter(|i| !i.is_synthetic && !is_blanket_impl(i))
+            .filter(|i| !i.is_synthetic)
+            .filter(|i| include_blanket || !is_blanket_impl(i))
             .collect();
 
         // Sort trait impls by trait name + generics for deterministic output
         trait_impls.sort_by(|a, b| {
-            let key_a = impl_sort_key(a, &self.type_renderer);
-            let key_b = impl_sort_key(b, &self.type_renderer);
+            let key_a = impl_sort_key(a, &type_renderer);
+            let key_b = impl_sort_key(b, &type_renderer);
             key_a.cmp(&key_b)
         });
 
         // Deduplicate trait impls with same key (can happen with cross-crate impls)
         trait_impls.dedup_by(|a, b| {
-            impl_sort_key(a, &self.type_renderer) == impl_sort_key(b, &self.type_renderer)
+            impl_sort_key(a, &type_renderer) == impl_sort_key(b, &type_renderer)
         });
 
         // Render inherent implementations
@@ -928,8 +1057,8 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 render_impl_items(
                     md,
                     impl_block,
-                    krate,
-                    &self.type_renderer,
+                    render_krate,
+                    &type_renderer,
                     None::<fn(&Item) -> Option<String>>,
                     Some(|id: rustdoc_types::Id| {
                         LinkResolver::create_link(self.view, id, self.file_path)
@@ -944,21 +1073,31 @@ impl<'a> MultiCrateModuleRenderer<'a> {
 
             for impl_block in trait_impls {
                 if let Some(trait_path) = &impl_block.trait_ {
+                    // Build trait name with generic args
                     let trait_name = trait_path
                         .path
                         .split("::")
                         .last()
                         .unwrap_or(&trait_path.path);
-                    let generics = self.type_renderer.render_generics(&impl_block.generics.params);
 
-                    _ = writeln!(md, "##### `impl {trait_name}{generics}`\n");
+                    let generics = type_renderer.render_generics(&impl_block.generics.params);
+                    let for_type = type_renderer.render_type(&impl_block.for_);
+
+                    // Include unsafe/negative markers like single-crate mode
+                    let unsafe_str = if impl_block.is_unsafe { "unsafe " } else { "" };
+                    let negative_str = if impl_block.is_negative { "!" } else { "" };
+
+                    _ = writeln!(
+                        md,
+                        "##### `{unsafe_str}impl{generics} {negative_str}{trait_name} for {for_type}`\n"
+                    );
                 }
 
                 render_impl_items(
                     md,
                     impl_block,
-                    krate,
-                    &self.type_renderer,
+                    render_krate,
+                    &type_renderer,
                     None::<fn(&Item) -> Option<String>>,
                     Some(|id: rustdoc_types::Id| {
                         LinkResolver::create_link(self.view, id, self.file_path)

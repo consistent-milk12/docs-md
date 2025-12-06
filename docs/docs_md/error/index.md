@@ -135,29 +135,29 @@ Each variant includes:
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Error`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Diagnostic`
+##### `impl Diagnostic for Error`
 
 - `fn code(self: &Self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
 
 - `fn help(self: &Self) -> std::option::Option<std::boxed::Box<dyn std::fmt::Display>>`
 
-##### `impl Display`
+##### `impl Display for Error`
 
 - `fn fmt(self: &Self, __formatter: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for Error`
 
 - `fn source(self: &Self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Error`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Error`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Error`
 
 - `const ALIGN: usize`
 
@@ -171,7 +171,11 @@ Each variant includes:
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl ToString<T>`
+##### `impl<T> ToCompactString for Error`
+
+- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>`
+
+##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
 

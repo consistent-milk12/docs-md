@@ -50,23 +50,23 @@ External iterator for a string decomposition's characters.
 
 #### Implementations
 
-- `fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Decompositions<I>`
 
-- `fn clone(self: &Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn clone(self: &Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-##### `impl Display<I: Iterator<Item = char> + Clone>`
+##### `impl<I: Iterator<Item = char> + Clone> Display for Decompositions<I>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl FusedIterator<I: Iterator<Item = char> + FusedIterator>`
+##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Decompositions<I>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Decompositions<I>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -74,7 +74,7 @@ External iterator for a string decomposition's characters.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<I: Iterator<Item = char>>`
+##### `impl<I: Iterator<Item = char>> Iterator for Decompositions<I>`
 
 - `type Item = char`
 
@@ -82,23 +82,23 @@ External iterator for a string decomposition's characters.
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Decompositions<I>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl UnicodeNormalization<I>`
+##### `impl<I> UnicodeNormalization for Decompositions<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
+- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
 
 ### `Recompositions<I>`
 
@@ -122,17 +122,17 @@ External iterator for a string recomposition's characters.
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Recompositions<I>`
 
-- `fn clone(self: &Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn clone(self: &Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-##### `impl Display<I: Iterator<Item = char> + Clone>`
+##### `impl<I: Iterator<Item = char> + Clone> Display for Recompositions<I>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl FusedIterator<I: Iterator<Item = char> + FusedIterator>`
+##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Recompositions<I>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Recompositions<I>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -140,29 +140,29 @@ External iterator for a string recomposition's characters.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<I: Iterator<Item = char>>`
+##### `impl<I: Iterator<Item = char>> Iterator for Recompositions<I>`
 
 - `type Item = char`
 
 - `fn next(self: &mut Self) -> Option<char>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Recompositions<I>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl UnicodeNormalization<I>`
+##### `impl<I> UnicodeNormalization for Recompositions<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
+- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
 
 ### `Replacements<I>`
 
@@ -177,21 +177,21 @@ External iterator for replacements for a string's characters.
 
 #### Implementations
 
-- `fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn new_cjk_compat_variants(iter: I) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Replacements<I>`
 
-- `fn clone(self: &Self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn clone(self: &Self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-##### `impl Display<I: Iterator<Item = char> + Clone>`
+##### `impl<I: Iterator<Item = char> + Clone> Display for Replacements<I>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl FusedIterator<I: Iterator<Item = char> + FusedIterator>`
+##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for Replacements<I>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Replacements<I>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -199,7 +199,7 @@ External iterator for replacements for a string's characters.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<I: Iterator<Item = char>>`
+##### `impl<I: Iterator<Item = char>> Iterator for Replacements<I>`
 
 - `type Item = char`
 
@@ -207,23 +207,23 @@ External iterator for replacements for a string's characters.
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Replacements<I>`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl UnicodeNormalization<I>`
+##### `impl<I> UnicodeNormalization for Replacements<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
+- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
 
 ### `StreamSafe<I>`
 
@@ -239,7 +239,6 @@ struct StreamSafe<I> {
 since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 (U+034F) if the count exceeds 30.
 
-[UAX15-D4]: https://www.unicode.org/reports/tr15/#UAX15-D4
 
 #### Implementations
 
@@ -247,9 +246,9 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 #### Trait Implementations
 
-##### `impl FusedIterator<I: Iterator<Item = char> + FusedIterator>`
+##### `impl<I: Iterator<Item = char> + FusedIterator> FusedIterator for StreamSafe<I>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for StreamSafe<I>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -257,25 +256,25 @@ since the last starter in *NFKD* and will emit a Combining Grapheme Joiner
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<I: Iterator<Item = char>>`
+##### `impl<I: Iterator<Item = char>> Iterator for StreamSafe<I>`
 
 - `type Item = char`
 
 - `fn next(self: &mut Self) -> Option<char>`
 
-##### `impl UnicodeNormalization<I>`
+##### `impl<I> UnicodeNormalization for StreamSafe<I>`
 
-- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfd(self: Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](../decompose/index.md)
+- `fn nfkd(self: Self) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
 
-- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfc(self: Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](../recompose/index.md)
+- `fn nfkc(self: Self) -> Recompositions<I>` — [`Recompositions`](recompose/index.md)
 
-- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](../replace/index.md)
+- `fn cjk_compat_variants(self: Self) -> Replacements<I>` — [`Replacements`](replace/index.md)
 
-- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](../stream_safe/index.md)
+- `fn stream_safe(self: Self) -> StreamSafe<I>` — [`StreamSafe`](stream_safe/index.md)
 
 ## Enums
 
@@ -312,17 +311,17 @@ return `Maybe` when a full decomposition and recomposition is necessary.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for IsNormalized`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for IsNormalized`
 
-##### `impl PartialEq`
+##### `impl PartialEq for IsNormalized`
 
-- `fn eq(self: &Self, other: &IsNormalized) -> bool` — [`IsNormalized`](../quick_check/index.md)
+- `fn eq(self: &Self, other: &IsNormalized) -> bool` — [`IsNormalized`](quick_check/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for IsNormalized`
 
 ## Traits
 

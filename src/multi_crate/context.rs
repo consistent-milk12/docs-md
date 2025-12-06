@@ -398,6 +398,59 @@ impl<'a> SingleCrateView<'a> {
         result
     }
 
+    /// Get impl blocks for a type from a specific crate.
+    ///
+    /// This is used for cross-crate re-exports where we need to look up
+    /// impl blocks from the source crate rather than the current crate.
+    ///
+    /// # Arguments
+    ///
+    /// * `id` - The ID of the type to get impls for
+    /// * `source_krate` - The crate to look up impls from
+    ///
+    /// # Returns
+    ///
+    /// A vector of impl blocks found in the source crate for the given type ID.
+    #[must_use]
+    pub fn get_impls_from_crate(&self, id: Id, source_krate: &'a Crate) -> Vec<&'a Impl> {
+        let mut result = Vec::new();
+
+        // Scan the source crate for impl blocks targeting this ID
+        for item in source_krate.index.values() {
+            if let ItemEnum::Impl(impl_block) = &item.inner {
+                // Check if this impl targets our type using existing helper
+                if let Some(target_id) = Self::get_impl_target_id_from_type(&impl_block.for_) {
+                    if target_id == id {
+                        result.push(impl_block);
+                    }
+                }
+            }
+        }
+
+        // Also include cross-crate impls if this is our current crate
+        if std::ptr::eq(source_krate, self.krate) {
+            if let Some(item) = self.krate.index.get(&id)
+                && let Some(type_name) = &item.name
+                && let Some(cross_crate_map) = self.cross_crate_impls
+                && let Some(external_impls) = cross_crate_map.get(type_name)
+            {
+                result.extend(external_impls.iter().copied());
+            }
+        }
+
+        result
+    }
+
+    /// Extract the target ID from a Type (for impl block matching).
+    const fn get_impl_target_id_from_type(ty: &rustdoc_types::Type) -> Option<Id> {
+        use rustdoc_types::Type;
+
+        match ty {
+            Type::ResolvedPath(path) => Some(path.id),
+            _ => None,
+        }
+    }
+
     /// Check if an item should be included based on visibility.
     #[must_use]
     pub const fn should_include_item(&self, item: &rustdoc_types::Item) -> bool {
@@ -452,6 +505,19 @@ impl<'a> SingleCrateView<'a> {
 
         // Fall back to searching all crates
         self.ctx.find_item(id)
+    }
+
+    /// Get a crate by name from the collection.
+    ///
+    /// This is useful for getting the source crate context when rendering
+    /// re-exported items from other crates.
+    ///
+    /// # Returns
+    ///
+    /// The crate if found, or `None` if no crate with that name exists.
+    #[must_use]
+    pub fn get_crate(&self, name: &str) -> Option<&Crate> {
+        self.ctx.crates.get(name)
     }
 
     /// Resolve a path like `regex_automata::Regex` to an item.
@@ -1192,8 +1258,10 @@ impl LinkResolver for SingleCrateView<'_> {
     }
 
     fn create_link(&self, id: Id, current_file: &str) -> Option<String> {
-        // Look up path in the unified registry
-        let path = self.registry.get_path(self.crate_name, id)?;
+        use crate::linker::LinkRegistry;
+
+        // Look up path in the unified registry (crate-local, no prefix)
+        let target_path = self.registry.get_path(self.crate_name, id)?;
 
         // Get the item name for display
         let display_name = self
@@ -1202,16 +1270,17 @@ impl LinkResolver for SingleCrateView<'_> {
             .map(|s| s.as_str())
             .unwrap_or("item");
 
-        // Compute relative path from current file
-        let from_depth = current_file.matches('/').count();
+        // Strip crate prefix from current_file to get crate-local path
+        // "crate_name/module/index.md" -> "module/index.md"
+        let current_local = Self::strip_crate_prefix(current_file);
 
-        let relative_path = if from_depth == 0 {
-            path.to_string()
+        // Compute relative path using the same logic as build_markdown_link
+        let relative_path = if current_local == target_path.as_str() {
+            // Same file - just use anchor
+            format!("#{}", slugify_anchor(display_name))
         } else {
-            // Go up to crate root, then down to target
-            let prefix = "../".repeat(from_depth);
-
-            format!("{prefix}{path}")
+            // Different file - compute relative path within crate
+            LinkRegistry::compute_relative_path(current_local, target_path)
         };
 
         Some(format!("[`{display_name}`]({relative_path})"))

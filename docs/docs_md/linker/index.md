@@ -68,9 +68,11 @@ create links between items.
 
 #### Implementations
 
-- `fn build(krate: &Crate, flat_format: bool) -> Self`
+- `fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
 
-- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool)`
+- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
+
+- `fn register_glob_items(self: &mut Self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
 
 - `fn get_path(self: &Self, id: Id) -> Option<&String>`
 
@@ -82,19 +84,19 @@ create links between items.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for LinkRegistry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for LinkRegistry`
 
-- `fn default() -> LinkRegistry` — [`LinkRegistry`](../../linker/index.md)
+- `fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for LinkRegistry`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LinkRegistry`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for LinkRegistry`
 
 - `const ALIGN: usize`
 

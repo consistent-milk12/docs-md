@@ -21,7 +21,7 @@ fn main() {
 }
 ```
 
-Additionally, this crate provides a [`Handle`](#handle) type that permits a more efficient
+Additionally, this crate provides a [`Handle`](unix/index.md) type that permits a more efficient
 equality check depending on your access pattern. For example, if one wanted to
 check whether any path in a list of paths corresponded to the process' stdout
 handle, then one could build a handle once for stdout. The equality check for
@@ -86,19 +86,18 @@ platforms. Namely, two handles can compare equal even if the two handles
 *don't* point to the same file. Check the [source](#source) for specific
 implementation details.
 
-[source](#source): https://github.com/BurntSushi/same-file/tree/master/src
 
 #### Implementations
 
-- `fn from_path<P: AsRef<Path>>(p: P) -> io::Result<Handle>` — [`Handle`](../index.md)
+- `fn from_path<P: AsRef<Path>>(p: P) -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn from_file(file: File) -> io::Result<Handle>` — [`Handle`](../index.md)
+- `fn from_file(file: File) -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn stdin() -> io::Result<Handle>` — [`Handle`](../index.md)
+- `fn stdin() -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn stdout() -> io::Result<Handle>` — [`Handle`](../index.md)
+- `fn stdout() -> io::Result<Handle>` — [`Handle`](#handle)
 
-- `fn stderr() -> io::Result<Handle>` — [`Handle`](../index.md)
+- `fn stderr() -> io::Result<Handle>` — [`Handle`](#handle)
 
 - `fn as_file(self: &Self) -> &File`
 
@@ -110,29 +109,29 @@ implementation details.
 
 #### Trait Implementations
 
-##### `impl AsRawFd`
+##### `impl AsRawFd for crate::Handle`
 
 - `fn as_raw_fd(self: &Self) -> RawFd`
 
-##### `impl Debug`
+##### `impl Debug for Handle`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Handle`
 
-##### `impl Hash`
+##### `impl Hash for Handle`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl IntoRawFd`
+##### `impl IntoRawFd for crate::Handle`
 
 - `fn into_raw_fd(self: Self) -> RawFd`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Handle`
 
-- `fn eq(self: &Self, other: &Handle) -> bool` — [`Handle`](../index.md)
+- `fn eq(self: &Self, other: &Handle) -> bool` — [`Handle`](#handle)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Handle`
 
 ## Functions
 

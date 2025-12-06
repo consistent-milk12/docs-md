@@ -49,15 +49,17 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../../../generator/context/index.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../context/index.md)
 
 - `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 
 - `fn render(self: &Self, item: &Item) -> String`
 
-- `fn categorize_items(self: &Self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](../../../generator/module/index.md)
+- `fn categorize_items(self: &Self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](#categorizeditems)
 
-- `fn render_all_sections(self: &Self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](../../../generator/module/index.md)
+- `fn expand_glob_reexport(self: &Self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](#categorizeditems)
+
+- `fn render_all_sections(self: &Self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](#categorizeditems)
 
 - `fn render_modules_section(self: &Self, md: &mut String, modules: &[(&Id, &Item)])`
 
@@ -77,11 +79,11 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for ModuleRenderer<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ModuleRenderer<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ModuleRenderer<'a>`
 
 - `const ALIGN: usize`
 

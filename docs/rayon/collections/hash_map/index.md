@@ -22,13 +22,13 @@ Parallel iterator over a hash map
 
 #### Trait Implementations
 
-##### `impl Debug<K: $crate::fmt::Debug, V: $crate::fmt::Debug>`
+##### `impl<K: $crate::fmt::Debug, V: $crate::fmt::Debug> Debug for IntoIter<K, V>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for IntoIter<K, V>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for IntoIter<K, V>`
 
 - `type Iter = T`
 
@@ -36,15 +36,15 @@ Parallel iterator over a hash map
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<K: Send, V: Send>`
+##### `impl<K: Send, V: Send> ParallelIterator for IntoIter<K, V>`
 
 - `type Item = (K, V)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for IntoIter<K, V>`
 
 - `const ALIGN: usize`
 
@@ -70,17 +70,17 @@ Parallel iterator over an immutable reference to a hash map
 
 #### Trait Implementations
 
-##### `impl Clone<K, V>`
+##### `impl<K, V> Clone for Iter<'_, K, V>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Debug<'a, K: $crate::fmt::Debug, V: $crate::fmt::Debug>`
+##### `impl<'a, K: $crate::fmt::Debug, V: $crate::fmt::Debug> Debug for Iter<'a, K, V>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Iter<'a, K, V>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Iter<'a, K, V>`
 
 - `type Iter = T`
 
@@ -88,15 +88,15 @@ Parallel iterator over an immutable reference to a hash map
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'a, K: Sync, V: Sync>`
+##### `impl<'a, K: Sync, V: Sync> ParallelIterator for Iter<'a, K, V>`
 
 - `type Item = (&'a K, &'a V)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Iter<'a, K, V>`
 
 - `const ALIGN: usize`
 
@@ -122,13 +122,13 @@ Parallel iterator over a mutable reference to a hash map
 
 #### Trait Implementations
 
-##### `impl Debug<'a, K: $crate::fmt::Debug, V: $crate::fmt::Debug>`
+##### `impl<'a, K: $crate::fmt::Debug, V: $crate::fmt::Debug> Debug for IterMut<'a, K, V>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for IterMut<'a, K, V>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for IterMut<'a, K, V>`
 
 - `type Iter = T`
 
@@ -136,15 +136,15 @@ Parallel iterator over a mutable reference to a hash map
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'a, K: Sync, V: Send>`
+##### `impl<'a, K: Sync, V: Send> ParallelIterator for IterMut<'a, K, V>`
 
 - `type Item = (&'a K, &'a mut V)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for IterMut<'a, K, V>`
 
 - `const ALIGN: usize`
 
@@ -172,13 +172,13 @@ but keeps the total capacity.
 
 #### Trait Implementations
 
-##### `impl Debug<'a, K: $crate::fmt::Debug, V: $crate::fmt::Debug>`
+##### `impl<'a, K: $crate::fmt::Debug, V: $crate::fmt::Debug> Debug for Drain<'a, K, V>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Drain<'a, K, V>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Drain<'a, K, V>`
 
 - `type Iter = T`
 
@@ -186,15 +186,15 @@ but keeps the total capacity.
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<K: Send, V: Send>`
+##### `impl<K: Send, V: Send> ParallelIterator for Drain<'_, K, V>`
 
 - `type Item = (K, V)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Drain<'a, K, V>`
 
 - `const ALIGN: usize`
 

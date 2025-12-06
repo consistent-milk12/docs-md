@@ -12,7 +12,7 @@ types that implement `Iterator`. The documentation for `Searcher` explains a
 bit more about why these different APIs exist.
 
 Currently, this module supports iteration over any regex engine that works
-with the [`HalfMatch`](../search/index.md), [`Match`](../../index.md) or [`Captures`](../../index.md) types.
+with the [`HalfMatch`](../../index.md), [`Match`](../../index.md) or [`Captures`](../../index.md) types.
 
 ## Structs
 
@@ -59,7 +59,7 @@ provides various routines, like `Searcher::into_matches_iter`, that
 accept a closure (representing how a regex engine executes a search) and
 returns a conventional iterator.
 
-The lifetime parameters come from the [`Input`](../search/index.md) type passed to
+The lifetime parameters come from the [`Input`](../../index.md) type passed to
 `Searcher::new`:
 
 * `'h` is the lifetime of the underlying haystack.
@@ -171,35 +171,35 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(input: Input<'h>) -> Searcher<'h>` — [`Input`](../../../util/search/index.md), [`Searcher`](../../../util/iter/index.md)
+- `fn new(input: Input<'h>) -> Searcher<'h>` — [`Input`](../../index.md), [`Searcher`](#searcher)
 
-- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../../util/search/index.md)
+- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../index.md)
 
-- `fn advance_half<F>(self: &mut Self, finder: F) -> Option<HalfMatch>` — [`HalfMatch`](../../../util/search/index.md)
+- `fn advance_half<F>(self: &mut Self, finder: F) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
 
-- `fn advance<F>(self: &mut Self, finder: F) -> Option<Match>` — [`Match`](../../../util/search/index.md)
+- `fn advance<F>(self: &mut Self, finder: F) -> Option<Match>` — [`Match`](../../index.md)
 
-- `fn try_advance_half<F>(self: &mut Self, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn try_advance_half<F>(self: &mut Self, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn try_advance<F>(self: &mut Self, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn try_advance<F>(self: &mut Self, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn into_half_matches_iter<F>(self: Self, finder: F) -> TryHalfMatchesIter<'h, F>` — [`TryHalfMatchesIter`](../../../util/iter/index.md)
+- `fn into_half_matches_iter<F>(self: Self, finder: F) -> TryHalfMatchesIter<'h, F>` — [`TryHalfMatchesIter`](#tryhalfmatchesiter)
 
-- `fn into_matches_iter<F>(self: Self, finder: F) -> TryMatchesIter<'h, F>` — [`TryMatchesIter`](../../../util/iter/index.md)
+- `fn into_matches_iter<F>(self: Self, finder: F) -> TryMatchesIter<'h, F>` — [`TryMatchesIter`](#trymatchesiter)
 
-- `fn into_captures_iter<F>(self: Self, caps: Captures, finder: F) -> TryCapturesIter<'h, F>` — [`Captures`](../../../util/captures/index.md), [`TryCapturesIter`](../../../util/iter/index.md)
+- `fn into_captures_iter<F>(self: Self, caps: Captures, finder: F) -> TryCapturesIter<'h, F>` — [`Captures`](../captures/index.md), [`TryCapturesIter`](#trycapturesiter)
 
-- `fn handle_overlapping_empty_half_match<F>(self: &mut Self, _: HalfMatch, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn handle_overlapping_empty_half_match<F>(self: &mut Self, _: HalfMatch, finder: F) -> Result<Option<HalfMatch>, MatchError>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn handle_overlapping_empty_match<F>(self: &mut Self, m: Match, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn handle_overlapping_empty_match<F>(self: &mut Self, m: Match, finder: F) -> Result<Option<Match>, MatchError>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<'h>`
+##### `impl<'h> Clone for Searcher<'h>`
 
-- `fn clone(self: &Self) -> Searcher<'h>` — [`Searcher`](../../../util/iter/index.md)
+- `fn clone(self: &Self) -> Searcher<'h>` — [`Searcher`](#searcher)
 
-##### `impl Debug<'h>`
+##### `impl<'h> Debug for Searcher<'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -221,7 +221,7 @@ The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](../search/index.md) type:
+The lifetime parameters come from the [`Input`](../../index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -233,17 +233,17 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 
 #### Implementations
 
-- `fn infallible(self: Self) -> HalfMatchesIter<'h, F>` — [`HalfMatchesIter`](../../../util/iter/index.md)
+- `fn infallible(self: Self) -> HalfMatchesIter<'h, F>` — [`HalfMatchesIter`](#halfmatchesiter)
 
-- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../../util/search/index.md)
+- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'h, F>`
+##### `impl<'h, F> Debug for TryHalfMatchesIter<'h, F>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for TryHalfMatchesIter<'h, F>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -251,11 +251,11 @@ This iterator is created by `Searcher::into_half_matches_iter`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h, F>`
+##### `impl<'h, F> Iterator for TryHalfMatchesIter<'h, F>`
 
 - `type Item = Result<HalfMatch, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<HalfMatch, MatchError>>` — [`HalfMatch`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Result<HalfMatch, MatchError>>` — [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
 ### `HalfMatchesIter<'h, F>`
 
@@ -265,14 +265,14 @@ struct HalfMatchesIter<'h, F>(TryHalfMatchesIter<'h, F>);
 
 An iterator over all non-overlapping half matches for an infallible search.
 
-The iterator yields a [`HalfMatch`](../search/index.md) value until no more matches could be
+The iterator yields a [`HalfMatch`](../../index.md) value until no more matches could be
 found.
 
 The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](../search/index.md) type:
+The lifetime parameters come from the [`Input`](../../index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -285,15 +285,15 @@ then calling `TryHalfMatchesIter::infallible`.
 
 #### Implementations
 
-- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../../util/search/index.md)
+- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'h, F: $crate::fmt::Debug>`
+##### `impl<'h, F: $crate::fmt::Debug> Debug for HalfMatchesIter<'h, F>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for HalfMatchesIter<'h, F>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -301,11 +301,11 @@ then calling `TryHalfMatchesIter::infallible`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h, F>`
+##### `impl<'h, F> Iterator for HalfMatchesIter<'h, F>`
 
 - `type Item = HalfMatch`
 
-- `fn next(self: &mut Self) -> Option<HalfMatch>` — [`HalfMatch`](../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
 
 ### `TryMatchesIter<'h, F>`
 
@@ -325,7 +325,7 @@ The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](../search/index.md) type:
+The lifetime parameters come from the [`Input`](../../index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -337,17 +337,17 @@ This iterator is created by `Searcher::into_matches_iter`.
 
 #### Implementations
 
-- `fn infallible(self: Self) -> MatchesIter<'h, F>` — [`MatchesIter`](../../../util/iter/index.md)
+- `fn infallible(self: Self) -> MatchesIter<'h, F>` — [`MatchesIter`](#matchesiter)
 
-- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../../util/search/index.md)
+- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'h, F>`
+##### `impl<'h, F> Debug for TryMatchesIter<'h, F>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for TryMatchesIter<'h, F>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -355,11 +355,11 @@ This iterator is created by `Searcher::into_matches_iter`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h, F>`
+##### `impl<'h, F> Iterator for TryMatchesIter<'h, F>`
 
 - `type Item = Result<Match, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Match, MatchError>>` — [`Match`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Result<Match, MatchError>>` — [`Match`](../../index.md), [`MatchError`](../../index.md)
 
 ### `MatchesIter<'h, F>`
 
@@ -375,7 +375,7 @@ The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](../search/index.md) type:
+The lifetime parameters come from the [`Input`](../../index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -388,15 +388,15 @@ then calling `TryMatchesIter::infallible`.
 
 #### Implementations
 
-- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../../util/search/index.md)
+- `fn input<'i>(self: &'i Self) -> &'i Input<'h>` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'h, F: $crate::fmt::Debug>`
+##### `impl<'h, F: $crate::fmt::Debug> Debug for MatchesIter<'h, F>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for MatchesIter<'h, F>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -404,11 +404,11 @@ then calling `TryMatchesIter::infallible`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h, F>`
+##### `impl<'h, F> Iterator for MatchesIter<'h, F>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../index.md)
 
 ### `TryCapturesIter<'h, F>`
 
@@ -429,7 +429,7 @@ The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](../search/index.md) type:
+The lifetime parameters come from the [`Input`](../../index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -441,15 +441,15 @@ This iterator is created by `Searcher::into_captures_iter`.
 
 #### Implementations
 
-- `fn infallible(self: Self) -> CapturesIter<'h, F>` — [`CapturesIter`](../../../util/iter/index.md)
+- `fn infallible(self: Self) -> CapturesIter<'h, F>` — [`CapturesIter`](#capturesiter)
 
 #### Trait Implementations
 
-##### `impl Debug<'h, F>`
+##### `impl<'h, F> Debug for TryCapturesIter<'h, F>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for TryCapturesIter<'h, F>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -457,11 +457,11 @@ This iterator is created by `Searcher::into_captures_iter`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h, F>`
+##### `impl<'h, F> Iterator for TryCapturesIter<'h, F>`
 
 - `type Item = Result<Captures, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../captures/index.md), [`MatchError`](../../index.md)
 
 ### `CapturesIter<'h, F>`
 
@@ -478,7 +478,7 @@ The type parameters are as follows:
 
 * `F` represents the type of a closure that executes the search.
 
-The lifetime parameters come from the [`Input`](../search/index.md) type:
+The lifetime parameters come from the [`Input`](../../index.md) type:
 
 * `'h` is the lifetime of the underlying haystack.
 
@@ -491,11 +491,11 @@ calling `TryCapturesIter::infallible`.
 
 #### Trait Implementations
 
-##### `impl Debug<'h, F: $crate::fmt::Debug>`
+##### `impl<'h, F: $crate::fmt::Debug> Debug for CapturesIter<'h, F>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for CapturesIter<'h, F>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -503,9 +503,9 @@ calling `TryCapturesIter::infallible`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h, F>`
+##### `impl<'h, F> Iterator for CapturesIter<'h, F>`
 
 - `type Item = Captures`
 
-- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../../../util/captures/index.md)
+- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../captures/index.md)
 

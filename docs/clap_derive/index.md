@@ -1,7 +1,5 @@
 # Crate `clap_derive`
 
-# `clap_derive`
-
 Macro implementation for clap's derives.
 
 [docs.rs](https://docs.rs/clap)

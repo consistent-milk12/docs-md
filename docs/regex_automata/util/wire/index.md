@@ -43,7 +43,7 @@ example of how to use this type.
 
 #### Trait Implementations
 
-##### `impl Debug<B: $crate::fmt::Debug + ?Sized, T: $crate::fmt::Debug>`
+##### `impl<B: $crate::fmt::Debug + ?Sized, T: $crate::fmt::Debug> Debug for AlignAs<B, T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -92,21 +92,21 @@ configurations.
 
 #### Implementations
 
-- `fn buffer_too_small(what: &'static str) -> SerializeError` — [`SerializeError`](../../../util/wire/index.md)
+- `fn buffer_too_small(what: &'static str) -> SerializeError` — [`SerializeError`](#serializeerror)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for SerializeError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for SerializeError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for SerializeError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for SerializeError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -134,39 +134,39 @@ configurations.
 
 #### Implementations
 
-- `fn generic(msg: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+- `fn generic(msg: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn buffer_too_small(what: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+- `fn buffer_too_small(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn invalid_usize(what: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+- `fn invalid_usize(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn version_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+- `fn version_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn endian_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+- `fn endian_mismatch(expected: u32, found: u32) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn alignment_mismatch(alignment: usize, address: usize) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+- `fn alignment_mismatch(alignment: usize, address: usize) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn label_mismatch(expected: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+- `fn label_mismatch(expected: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn arithmetic_overflow(what: &'static str) -> DeserializeError` — [`DeserializeError`](../../../util/wire/index.md)
+- `fn arithmetic_overflow(what: &'static str) -> DeserializeError` — [`DeserializeError`](#deserializeerror)
 
-- `fn pattern_id_error(err: PatternIDError, what: &'static str) -> DeserializeError` — [`PatternIDError`](../../../util/primitives/index.md), [`DeserializeError`](../../../util/wire/index.md)
+- `fn pattern_id_error(err: PatternIDError, what: &'static str) -> DeserializeError` — [`PatternIDError`](../primitives/index.md), [`DeserializeError`](#deserializeerror)
 
-- `fn state_id_error(err: StateIDError, what: &'static str) -> DeserializeError` — [`StateIDError`](../../../util/primitives/index.md), [`DeserializeError`](../../../util/wire/index.md)
+- `fn state_id_error(err: StateIDError, what: &'static str) -> DeserializeError` — [`StateIDError`](../primitives/index.md), [`DeserializeError`](#deserializeerror)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for DeserializeError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DeserializeError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for DeserializeError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DeserializeError`
 
 - `fn to_string(self: &Self) -> String`
 

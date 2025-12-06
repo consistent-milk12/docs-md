@@ -9,7 +9,6 @@ Parallel iterator types for [standard collections]
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
 
-[standard collections]: std::collections
 
 ## Modules
 

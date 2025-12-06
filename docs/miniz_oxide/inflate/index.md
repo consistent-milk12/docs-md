@@ -78,31 +78,31 @@ Return status codes.
 
 #### Implementations
 
-- `fn from_i32(value: i32) -> Option<TINFLStatus>` — [`TINFLStatus`](../../inflate/index.md)
+- `fn from_i32(value: i32) -> Option<TINFLStatus>` — [`TINFLStatus`](#tinflstatus)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for TINFLStatus`
 
-- `fn clone(self: &Self) -> TINFLStatus` — [`TINFLStatus`](../../inflate/index.md)
+- `fn clone(self: &Self) -> TINFLStatus` — [`TINFLStatus`](#tinflstatus)
 
-##### `impl Copy`
+##### `impl Copy for TINFLStatus`
 
-##### `impl Debug`
+##### `impl Debug for TINFLStatus`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for TINFLStatus`
 
-##### `impl Hash`
+##### `impl Hash for TINFLStatus`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for TINFLStatus`
 
-- `fn eq(self: &Self, other: &TINFLStatus) -> bool` — [`TINFLStatus`](../../inflate/index.md)
+- `fn eq(self: &Self, other: &TINFLStatus) -> bool` — [`TINFLStatus`](#tinflstatus)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for TINFLStatus`
 
 ## Functions
 

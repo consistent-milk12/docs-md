@@ -25,7 +25,6 @@ See also:
   checking termcaps
 - [termbg](https://crates.io/crates/termbg) for detecting background color
 
-[CLICOLOR]: https://bixense.com/clicolors/
 
 ### `clicolor_force`
 
@@ -37,7 +36,6 @@ Check [CLICOLOR_FORCE] status
 
 ANSI colors should be enabled no matter what.
 
-[CLICOLOR_FORCE]: https://bixense.com/clicolors/
 
 ### `no_color`
 
@@ -54,7 +52,6 @@ User-level configuration files and per-instance command-line arguments should ov
 default, but configure a specific program in its configuration file to specifically enable
 color.
 
-[NO_COLOR]: https://no-color.org/
 
 ### `term_supports_color`
 
@@ -83,7 +80,6 @@ fn truecolor() -> bool
 
 Check [COLORTERM] for truecolor support
 
-[COLORTERM]: https://github.com/termstandard/colors
 
 ### `is_ci`
 

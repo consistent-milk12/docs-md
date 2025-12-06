@@ -8,7 +8,6 @@ Traits and functions used to implement parallel iteration.  These are
 low-level details -- users of parallel iterators should not need to
 interact with them directly.  See [the `plumbing` README][r](#r) for a general overview.
 
-[r](#r): https://github.com/rayon-rs/rayon/blob/main/src/iter/plumbing/README.md
 
 ## Traits
 
@@ -22,8 +21,7 @@ The `ProducerCallback` trait is a kind of generic closure,
 [analogous to `FnOnce`][FnOnce]. See [the corresponding section in
 the plumbing README][r](#r) for more details.
 
-[r](#r): https://github.com/rayon-rs/rayon/blob/main/src/iter/plumbing/README.md#producer-callback
-[FnOnce]: std::ops::FnOnce
+
 
 #### Required Methods
 
@@ -61,8 +59,7 @@ declaring the DoubleEndedIterator and ExactSizeIterator
 constraints on a required IntoIterator trait, so we inline
 IntoIterator here until that issue is fixed.
 
-[r](#r): https://github.com/rayon-rs/rayon/blob/main/src/iter/plumbing/README.md
-[20671]: https://github.com/rust-lang/rust/issues/20671
+
 
 #### Required Methods
 
@@ -106,8 +103,7 @@ items independently, and when they are done the reducer is used to
 combine their two results into one. See [the `plumbing`
 README][r](#r) for further details.
 
-[r](#r): https://github.com/rayon-rs/rayon/blob/main/src/iter/plumbing/README.md
-[fold](#fold): Iterator::fold()
+
 
 #### Required Methods
 
@@ -140,7 +136,6 @@ operation][fold](#fold).  It can be fed many items using the `consume`
 method. At the end, once all items have been consumed, it can then
 be converted (using `complete`) into a final value.
 
-[fold](#fold): Iterator::fold()
 
 #### Required Methods
 
@@ -174,7 +169,6 @@ fully processed, we are left with two results. The reducer is then
 used to combine those two results into one. See [the `plumbing`
 README][r](#r) for further details.
 
-[r](#r): https://github.com/rayon-rs/rayon/blob/main/src/iter/plumbing/README.md
 
 #### Required Methods
 

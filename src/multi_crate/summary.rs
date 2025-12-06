@@ -7,7 +7,7 @@ use std::fmt::Write;
 use std::path::Path;
 
 use fs_err as fs;
-use rustdoc_types::ItemEnum;
+use rustdoc_types::{ItemEnum, Visibility};
 
 use crate::error::Error;
 use crate::multi_crate::CrateCollection;
@@ -34,6 +34,9 @@ pub struct SummaryGenerator<'a> {
 
     /// Output directory for SUMMARY.md.
     output_dir: &'a Path,
+
+    /// Whether to include private items.
+    include_private: bool,
 }
 
 impl<'a> SummaryGenerator<'a> {
@@ -43,9 +46,18 @@ impl<'a> SummaryGenerator<'a> {
     ///
     /// * `crates` - Collection of parsed crates
     /// * `output_dir` - Directory to write SUMMARY.md
+    /// * `include_private` - Whether to include private modules
     #[must_use]
-    pub const fn new(crates: &'a CrateCollection, output_dir: &'a Path) -> Self {
-        Self { crates, output_dir }
+    pub const fn new(
+        crates: &'a CrateCollection,
+        output_dir: &'a Path,
+        include_private: bool,
+    ) -> Self {
+        Self {
+            crates,
+            output_dir,
+            include_private,
+        }
     }
 
     /// Generate the SUMMARY.md file.
@@ -64,7 +76,7 @@ impl<'a> SummaryGenerator<'a> {
             if let Some(root) = krate.index.get(&krate.root)
                 && let ItemEnum::Module(module) = &root.inner
             {
-                Self::add_modules(&mut content, krate, &module.items, crate_name, 1);
+                self.add_modules(&mut content, krate, &module.items, crate_name, 1);
             }
         }
 
@@ -76,17 +88,22 @@ impl<'a> SummaryGenerator<'a> {
 
     /// Add module entries recursively.
     fn add_modules(
+        &self,
         content: &mut String,
         krate: &rustdoc_types::Crate,
         items: &[rustdoc_types::Id],
         path_prefix: &str,
         indent: usize,
     ) {
-        // Collect and sort modules alphabetically
+        // Collect and sort modules alphabetically, filtering by visibility
         let mut modules: Vec<_> = items
             .iter()
             .filter_map(|id| krate.index.get(id))
             .filter(|item| matches!(&item.inner, ItemEnum::Module(_)))
+            .filter(|item| {
+                // Include item if include_private is true OR item is public
+                self.include_private || matches!(item.visibility, Visibility::Public)
+            })
             .collect();
 
         modules.sort_by_key(|item| item.name.as_deref().unwrap_or(""));
@@ -102,7 +119,7 @@ impl<'a> SummaryGenerator<'a> {
             if let ItemEnum::Module(module) = &item.inner {
                 let child_prefix = format!("{path_prefix}/{name}");
 
-                Self::add_modules(content, krate, &module.items, &child_prefix, indent + 1);
+                self.add_modules(content, krate, &module.items, &child_prefix, indent + 1);
             }
         }
     }
@@ -117,9 +134,22 @@ mod tests {
         // Basic test that the generator can be constructed
         let crates = CrateCollection::new();
         let temp_dir = std::env::temp_dir();
-        let generator = SummaryGenerator::new(&crates, &temp_dir);
+        let generator = SummaryGenerator::new(&crates, &temp_dir, false);
 
         // Empty crates should produce minimal output
         assert!(generator.crates.is_empty());
+    }
+
+    #[test]
+    fn test_summary_respects_include_private() {
+        // Verify the flag is stored correctly
+        let crates = CrateCollection::new();
+        let temp_dir = std::env::temp_dir();
+
+        let public_only = SummaryGenerator::new(&crates, &temp_dir, false);
+        assert!(!public_only.include_private);
+
+        let with_private = SummaryGenerator::new(&crates, &temp_dir, true);
+        assert!(with_private.include_private);
     }
 }

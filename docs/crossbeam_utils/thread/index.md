@@ -147,17 +147,17 @@ A scope for spawning threads.
 
 #### Implementations
 
-- `fn spawn<'scope, F, T>(self: &'scope Self, f: F) -> ScopedJoinHandle<'scope, T>` — [`ScopedJoinHandle`](../../thread/index.md)
+- `fn spawn<'scope, F, T>(self: &'scope Self, f: F) -> ScopedJoinHandle<'scope, T>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
-- `fn builder<'scope>(self: &'scope Self) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](../../thread/index.md)
+- `fn builder<'scope>(self: &'scope Self) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Scope<'_>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Sync`
+##### `impl Sync for Scope<'_>`
 
 ### `ScopedThreadBuilder<'scope, 'env>`
 
@@ -197,20 +197,20 @@ thread::scope(|s| {
 
 
 
-[naming-threads]: std::thread#naming-threads
-[stack-size]: std::thread#stack-size
+
+
 
 #### Implementations
 
-- `fn name(self: Self, name: String) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](../../thread/index.md)
+- `fn name(self: Self, name: String) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
-- `fn stack_size(self: Self, size: usize) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](../../thread/index.md)
+- `fn stack_size(self: Self, size: usize) -> ScopedThreadBuilder<'scope, 'env>` — [`ScopedThreadBuilder`](#scopedthreadbuilder)
 
-- `fn spawn<F, T>(self: Self, f: F) -> io::Result<ScopedJoinHandle<'scope, T>>` — [`ScopedJoinHandle`](../../thread/index.md)
+- `fn spawn<F, T>(self: Self, f: F) -> io::Result<ScopedJoinHandle<'scope, T>>` — [`ScopedJoinHandle`](#scopedjoinhandle)
 
 #### Trait Implementations
 
-##### `impl Debug<'scope, 'env>`
+##### `impl<'scope, 'env> Debug for ScopedThreadBuilder<'scope, 'env>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -256,19 +256,19 @@ This struct is created by the `Scope::spawn` method and the
 
 #### Trait Implementations
 
-##### `impl Debug<T>`
+##### `impl<T> Debug for ScopedJoinHandle<'_, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl JoinHandleExt<T>`
+##### `impl<T> JoinHandleExt for super::ScopedJoinHandle<'_, T>`
 
 - `fn as_pthread_t(self: &Self) -> RawPthread`
 
 - `fn into_pthread_t(self: Self) -> RawPthread`
 
-##### `impl Send<T>`
+##### `impl<T> Send for ScopedJoinHandle<'_, T>`
 
-##### `impl Sync<T>`
+##### `impl<T> Sync for ScopedJoinHandle<'_, T>`
 
 ## Functions
 

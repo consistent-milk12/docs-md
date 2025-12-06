@@ -85,11 +85,11 @@ the current module, with each segment being a clickable link.
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for BreadcrumbGenerator<'a>`
 
 - `const ALIGN: usize`
 
@@ -144,19 +144,19 @@ side effects.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for MarkdownCapture`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for MarkdownCapture`
 
-- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](../../generator/capture/index.md)
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](capture/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MarkdownCapture`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MarkdownCapture`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MarkdownCapture`
 
 - `const ALIGN: usize`
 
@@ -216,7 +216,7 @@ This struct is passed to all rendering components and provides:
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, args: &'a Args) -> Self` — [`Args`](../../index.md)
+- `fn new(krate: &'a Crate, args: &'a Args) -> Self` — [`Args`](../index.md)
 
 - `fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
 
@@ -228,11 +228,39 @@ This struct is passed to all rendering components and provides:
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for GeneratorContext<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl ItemAccess for GeneratorContext<'_>`
 
-##### `impl Pointable<T>`
+- `fn krate(self: &Self) -> &Crate`
+
+- `fn crate_name(self: &Self) -> &str`
+
+- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
+
+- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
+
+- `fn crate_version(self: &Self) -> Option<&str>`
+
+##### `impl ItemFilter for GeneratorContext<'_>`
+
+- `fn should_include_item(self: &Self, item: &Item) -> bool`
+
+- `fn include_private(self: &Self) -> bool`
+
+- `fn include_blanket_impls(self: &Self) -> bool`
+
+##### `impl LinkResolver for GeneratorContext<'_>`
+
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../linker/index.md)
+
+- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
+
+- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+
+##### `impl<D> OwoColorize for GeneratorContext<'a>`
+
+##### `impl<T> Pointable for GeneratorContext<'a>`
 
 - `const ALIGN: usize`
 
@@ -246,29 +274,7 @@ This struct is passed to all rendering components and provides:
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl RenderContext`
-
-- `fn krate(self: &Self) -> &Crate`
-
-- `fn crate_name(self: &Self) -> &str`
-
-- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
-
-- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
-
-- `fn should_include_item(self: &Self, item: &Item) -> bool`
-
-- `fn include_private(self: &Self) -> bool`
-
-- `fn include_blanket_impls(self: &Self) -> bool`
-
-- `fn crate_version(self: &Self) -> Option<&str>`
-
-- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](../../linker/index.md)
-
-- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
-
-- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+##### `impl<T> RenderContext for GeneratorContext<'a>`
 
 ### `DocLinkProcessor<'a>`
 
@@ -325,7 +331,7 @@ Links inside fenced code blocks are not processed.
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../../linker/index.md)
+- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](../linker/index.md)
 
 - `fn process(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -367,11 +373,11 @@ Links inside fenced code blocks are not processed.
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for DocLinkProcessor<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for DocLinkProcessor<'a>`
 
 - `const ALIGN: usize`
 
@@ -422,15 +428,17 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](../../generator/context/index.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](context/index.md)
 
 - `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 
 - `fn render(self: &Self, item: &Item) -> String`
 
-- `fn categorize_items(self: &Self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](../../generator/module/index.md)
+- `fn categorize_items(self: &Self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](module/index.md)
 
-- `fn render_all_sections(self: &Self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](../../generator/module/index.md)
+- `fn expand_glob_reexport(self: &Self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](module/index.md)
+
+- `fn render_all_sections(self: &Self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](module/index.md)
 
 - `fn render_modules_section(self: &Self, md: &mut String, modules: &[(&Id, &Item)])`
 
@@ -450,11 +458,11 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for ModuleRenderer<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ModuleRenderer<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ModuleRenderer<'a>`
 
 - `const ALIGN: usize`
 
@@ -507,29 +515,29 @@ generator.generate()?;
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](../../index.md), [`Error`](../../error/index.md)
+- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
 
-- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../../error/index.md)
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../error/index.md)
 
-- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../../error/index.md)
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
 
-- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../../index.md), [`MarkdownCapture`](../../generator/capture/index.md), [`Error`](../../error/index.md)
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
-- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../../generator/context/index.md), [`MarkdownCapture`](../../generator/capture/index.md), [`Error`](../../error/index.md)
+- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
-- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../../generator/context/index.md), [`MarkdownCapture`](../../generator/capture/index.md), [`Error`](../../error/index.md)
+- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
-- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../../generator/context/index.md), [`MarkdownCapture`](../../generator/capture/index.md), [`Error`](../../error/index.md)
+- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](context/index.md), [`MarkdownCapture`](capture/index.md), [`Error`](../error/index.md)
 
-- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../../index.md), [`Error`](../../error/index.md)
+- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Generator<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Generator<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Generator<'a>`
 
 - `const ALIGN: usize`
 

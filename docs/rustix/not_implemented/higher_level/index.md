@@ -210,6 +210,6 @@ See `std::io::IsTerminal`.
 For Rust < 1.70, see [is-terminal]. For a rustix-based implementation,
 see [rustix-is-terminal].
 
-[is-terminal]: https://crates.io/crates/is-terminal
-[rustix-is-terminal]: https://crates.io/crates/rustix-is-terminal
+
+
 

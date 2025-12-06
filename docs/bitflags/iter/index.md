@@ -28,7 +28,7 @@ as a final flags value.
 
 #### Trait Implementations
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Iter<B>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -36,7 +36,7 @@ as a final flags value.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<B: Flags>`
+##### `impl<B: Flags> Iterator for Iter<B>`
 
 - `type Item = B`
 
@@ -64,7 +64,7 @@ won't be yielded, but can be found with the `IterNames::remaining` method.
 
 #### Trait Implementations
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IterNames<B>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -72,7 +72,7 @@ won't be yielded, but can be found with the `IterNames::remaining` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<B: Flags>`
+##### `impl<B: Flags> Iterator for IterNames<B>`
 
 - `type Item = (&'static str, B)`
 
@@ -98,7 +98,7 @@ whether they are contained in a particular flags value.
 
 #### Trait Implementations
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IterDefinedNames<B>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -106,7 +106,7 @@ whether they are contained in a particular flags value.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<B: Flags>`
+##### `impl<B: Flags> Iterator for IterDefinedNames<B>`
 
 - `type Item = (&'static str, B)`
 

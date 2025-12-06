@@ -110,7 +110,7 @@ Main decompression struct.
 
 #### Implementations
 
-- `fn new() -> DecompressorOxide` — [`DecompressorOxide`](../../../inflate/core/index.md)
+- `fn new() -> DecompressorOxide` — [`DecompressorOxide`](#decompressoroxide)
 
 - `fn init(self: &mut Self)`
 
@@ -120,11 +120,11 @@ Main decompression struct.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DecompressorOxide`
 
-- `fn clone(self: &Self) -> DecompressorOxide` — [`DecompressorOxide`](../../../inflate/core/index.md)
+- `fn clone(self: &Self) -> DecompressorOxide` — [`DecompressorOxide`](#decompressoroxide)
 
-##### `impl Default`
+##### `impl Default for DecompressorOxide`
 
 - `fn default() -> Self`
 

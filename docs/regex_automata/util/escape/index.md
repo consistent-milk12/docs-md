@@ -28,13 +28,13 @@ escape sequence.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DebugByte`
 
-- `fn clone(self: &Self) -> DebugByte` — [`DebugByte`](../../../util/escape/index.md)
+- `fn clone(self: &Self) -> DebugByte` — [`DebugByte`](#debugbyte)
 
-##### `impl Copy`
+##### `impl Copy for DebugByte`
 
-##### `impl Debug`
+##### `impl Debug for DebugByte`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -52,7 +52,7 @@ emitted as hex escape sequences.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for DebugHaystack<'a>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 

@@ -102,61 +102,61 @@ struct Queue<T> {
 
 #### Implementations
 
-- `const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](../cache_padded/index.md)
+- `const fn new(t: T) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
 
 - `fn into_inner(self: Self) -> T`
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for CachePadded<T>`
 
-- `fn clone(self: &Self) -> CachePadded<T>` — [`CachePadded`](../cache_padded/index.md)
+- `fn clone(self: &Self) -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
 
-##### `impl Copy<T: $crate::marker::Copy>`
+##### `impl<T: $crate::marker::Copy> Copy for CachePadded<T>`
 
-##### `impl Debug<T: fmt::Debug>`
+##### `impl<T: fmt::Debug> Debug for CachePadded<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<T: $crate::default::Default>`
+##### `impl<T: $crate::default::Default> Default for CachePadded<T>`
 
-- `fn default() -> CachePadded<T>` — [`CachePadded`](../cache_padded/index.md)
+- `fn default() -> CachePadded<T>` — [`CachePadded`](cache_padded/index.md)
 
-##### `impl Deref<T>`
+##### `impl<T> Deref for CachePadded<T>`
 
 - `type Target = T`
 
 - `fn deref(self: &Self) -> &T`
 
-##### `impl DerefMut<T>`
+##### `impl<T> DerefMut for CachePadded<T>`
 
 - `fn deref_mut(self: &mut Self) -> &mut T`
 
-##### `impl Display<T: fmt::Display>`
+##### `impl<T: fmt::Display> Display for CachePadded<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq<T: $crate::cmp::Eq>`
+##### `impl<T: $crate::cmp::Eq> Eq for CachePadded<T>`
 
-##### `impl Hash<T: $crate::hash::Hash>`
+##### `impl<T: $crate::hash::Hash> Hash for CachePadded<T>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq<T: $crate::cmp::PartialEq>`
+##### `impl<T: $crate::cmp::PartialEq> PartialEq for CachePadded<T>`
 
-- `fn eq(self: &Self, other: &CachePadded<T>) -> bool` — [`CachePadded`](../cache_padded/index.md)
+- `fn eq(self: &Self, other: &CachePadded<T>) -> bool` — [`CachePadded`](cache_padded/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for CachePadded<T>`
 
 - `type Target = T`
 
-##### `impl Send<T: Send>`
+##### `impl<T: Send> Send for CachePadded<T>`
 
-##### `impl StructuralPartialEq<T>`
+##### `impl<T> StructuralPartialEq for CachePadded<T>`
 
-##### `impl Sync<T: Sync>`
+##### `impl<T: Sync> Sync for CachePadded<T>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for CachePadded<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -252,11 +252,11 @@ fn blocking_wait(ready: &AtomicBool) {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Backoff`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Backoff`
 
-- `fn default() -> Backoff` — [`Backoff`](../backoff/index.md)
+- `fn default() -> Backoff` — [`Backoff`](backoff/index.md)
 

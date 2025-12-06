@@ -6,7 +6,7 @@
 
 An implementation of the [Two-Way substring search algorithm][two-way].
 
-[`Finder`](../rabinkarp/index.md) can be built for forward searches, while [`FinderRev`](#finderrev) can be built
+[`Finder`](../rabinkarp/index.md) can be built for forward searches, while [`FinderRev`](../rabinkarp/index.md) can be built
 for reverse searches.
 
 Two-Way makes for a nice general purpose substring search algorithm because of
@@ -25,9 +25,8 @@ simply may not exist yet.
 Two-Way can be found in the `memmem` implementations in at least [GNU libc] and
 [musl](#musl).
 
-[two-way]: https://en.wikipedia.org/wiki/Two-way_string-matching_algorithm
-[GNU libc]: https://www.gnu.org/software/libc/
-[musl](#musl): https://www.musl-libc.org/
+
+
 
 ## Structs
 
@@ -41,25 +40,25 @@ A forward substring searcher that uses the Two-Way algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Finder` — [`Finder`](../../../../arch/all/twoway/index.md)
+- `fn new(needle: &[u8]) -> Finder` — [`Finder`](#finder)
 
 - `fn find(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
-- `fn find_with_prefilter(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`Pre`](../../../../memmem/searcher/index.md)
+- `fn find_with_prefilter(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8]) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
 
-- `fn find_small_imp(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>` — [`Pre`](../../../../memmem/searcher/index.md)
+- `fn find_small_imp(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], period: usize) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
 
-- `fn find_large_imp(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], shift: usize) -> Option<usize>` — [`Pre`](../../../../memmem/searcher/index.md)
+- `fn find_large_imp(self: &Self, pre: Option<Pre<'_>>, haystack: &[u8], needle: &[u8], shift: usize) -> Option<usize>` — [`Pre`](../../../memmem/searcher/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Finder`
 
-- `fn clone(self: &Self) -> Finder` — [`Finder`](../../../../arch/all/twoway/index.md)
+- `fn clone(self: &Self) -> Finder` — [`Finder`](#finder)
 
-##### `impl Copy`
+##### `impl Copy for Finder`
 
-##### `impl Debug`
+##### `impl Debug for Finder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -73,7 +72,7 @@ A reverse substring searcher that uses the Two-Way algorithm.
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](../../../../arch/all/twoway/index.md)
+- `fn new(needle: &[u8]) -> FinderRev` — [`FinderRev`](#finderrev)
 
 - `fn rfind(self: &Self, haystack: &[u8], needle: &[u8]) -> Option<usize>`
 
@@ -83,13 +82,13 @@ A reverse substring searcher that uses the Two-Way algorithm.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FinderRev`
 
-- `fn clone(self: &Self) -> FinderRev` — [`FinderRev`](../../../../arch/all/twoway/index.md)
+- `fn clone(self: &Self) -> FinderRev` — [`FinderRev`](#finderrev)
 
-##### `impl Copy`
+##### `impl Copy for FinderRev`
 
-##### `impl Debug`
+##### `impl Debug for FinderRev`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

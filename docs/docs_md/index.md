@@ -56,29 +56,29 @@ generator.generate()?;
 
 #### Implementations
 
-- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
+- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](#args), [`Error`](error/index.md)
 
-- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../error/index.md)
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error/index.md)
 
-- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
-- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](../index.md), [`MarkdownCapture`](../generator/capture/index.md), [`Error`](../error/index.md)
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
-- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../generator/context/index.md), [`MarkdownCapture`](../generator/capture/index.md), [`Error`](../error/index.md)
+- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
-- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../generator/context/index.md), [`MarkdownCapture`](../generator/capture/index.md), [`Error`](../error/index.md)
+- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
-- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](../generator/context/index.md), [`MarkdownCapture`](../generator/capture/index.md), [`Error`](../error/index.md)
+- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator/context/index.md), [`MarkdownCapture`](generator/capture/index.md), [`Error`](error/index.md)
 
-- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](../index.md), [`Error`](../error/index.md)
+- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](#args), [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Generator<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Generator<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Generator<'a>`
 
 - `const ALIGN: usize`
 
@@ -133,19 +133,19 @@ side effects.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for MarkdownCapture`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for MarkdownCapture`
 
-- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](../generator/capture/index.md)
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](generator/capture/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MarkdownCapture`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MarkdownCapture`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MarkdownCapture`
 
 - `const ALIGN: usize`
 
@@ -192,9 +192,11 @@ create links between items.
 
 #### Implementations
 
-- `fn build(krate: &Crate, flat_format: bool) -> Self`
+- `fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
 
-- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool)`
+- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
+
+- `fn register_glob_items(self: &mut Self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
 
 - `fn get_path(self: &Self, id: Id) -> Option<&String>`
 
@@ -206,19 +208,19 @@ create links between items.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for LinkRegistry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for LinkRegistry`
 
-- `fn default() -> LinkRegistry` — [`LinkRegistry`](../linker/index.md)
+- `fn default() -> LinkRegistry` — [`LinkRegistry`](linker/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for LinkRegistry`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for LinkRegistry`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for LinkRegistry`
 
 - `const ALIGN: usize`
 
@@ -289,19 +291,19 @@ for (name, krate) in collection.iter() {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for CrateCollection`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for CrateCollection`
 
-- `fn default() -> CrateCollection` — [`CrateCollection`](../multi_crate/collection/index.md)
+- `fn default() -> CrateCollection` — [`CrateCollection`](multi_crate/collection/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for CrateCollection`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CrateCollection`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for CrateCollection`
 
 - `const ALIGN: usize`
 
@@ -356,17 +358,17 @@ generation across crates.
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../multi_crate/collection/index.md), [`Args`](../index.md)
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](multi_crate/collection/index.md), [`Args`](#args)
 
-- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](../multi_crate/collection/index.md)
+- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](multi_crate/collection/index.md)
 
-- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](../multi_crate/collection/index.md)
+- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](multi_crate/collection/index.md)
 
-- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../multi_crate/registry/index.md)
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/registry/index.md)
 
-- `const fn args(self: &Self) -> &Args` — [`Args`](../index.md)
+- `const fn args(self: &Self) -> &Args` — [`Args`](#args)
 
-- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](../multi_crate/context/index.md)
+- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate/context/index.md)
 
 - `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
 
@@ -376,11 +378,11 @@ generation across crates.
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MultiCrateContext<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MultiCrateContext<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MultiCrateContext<'a>`
 
 - `const ALIGN: usize`
 
@@ -435,23 +437,29 @@ output/
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](../multi_crate/collection/index.md), [`Args`](../index.md)
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](multi_crate/collection/index.md), [`Args`](#args)
 
-- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](../error/index.md)
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error/index.md)
 
-- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../multi_crate/context/index.md), [`Error`](../error/index.md)
+- `fn collect_rendered_items(self: &Self) -> HashMap<String, HashSet<Id>>`
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](../multi_crate/context/index.md), [`Error`](../error/index.md)
+- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/context/index.md)
 
-- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
+- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate/context/index.md)
+
+- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
+
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
+
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MultiCrateGenerator<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MultiCrateGenerator<'a>`
 
 - `const ALIGN: usize`
 
@@ -485,17 +493,17 @@ println!("Found {} crates", crates.len());
 
 #### Implementations
 
-- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](../multi_crate/collection/index.md), [`Error`](../error/index.md)
+- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](multi_crate/collection/index.md), [`Error`](error/index.md)
 
-- `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](../error/index.md)
+- `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MultiCrateParser`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for MultiCrateParser`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MultiCrateParser`
 
 - `const ALIGN: usize`
 
@@ -529,15 +537,15 @@ Serialized to `search_index.json` for client-side consumption.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for SearchIndex`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for SearchIndex`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for SearchIndex`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for SearchIndex`
 
 - `const ALIGN: usize`
 
@@ -551,7 +559,7 @@ Serialized to `search_index.json` for client-side consumption.
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Serialize`
+##### `impl Serialize for SearchIndex`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
 
@@ -559,8 +567,9 @@ Serialized to `search_index.json` for client-side consumption.
 
 ```rust
 struct SearchIndexGenerator<'a> {
-    crates: &'a crate::multi_crate::CrateCollection,
+    crates: &'a super::CrateCollection,
     include_private: bool,
+    rendered_items: std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>,
 }
 ```
 
@@ -573,13 +582,14 @@ search index of all public items (or all items if `include_private` is set).
 
 ```ignore
 let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
-let generator = SearchIndexGenerator::new(&crates, false);
+let rendered_items = generator.generate();  // Returns HashMap<String, HashSet<Id>>
+let generator = SearchIndexGenerator::new(&crates, false, rendered_items);
 generator.write(Path::new("docs/"))?;
 ```
 
 #### Fields
 
-- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+- **`crates`**: `&'a super::CrateCollection`
 
   Collection of crates to index.
 
@@ -590,15 +600,22 @@ generator.write(Path::new("docs/"))?;
   When false (default), only public items are indexed.
   When true, all items regardless of visibility are indexed.
 
+- **`rendered_items`**: `std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>`
+
+  Set of item IDs that were actually rendered per crate.
+  
+  Only items in this set will appear in the search index.
+  This ensures the search index matches the generated documentation.
+
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, include_private: bool) -> Self` — [`CrateCollection`](../multi_crate/collection/index.md)
+- `fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md)
 
-- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](../multi_crate/search/index.md)
+- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](multi_crate/search/index.md)
 
 - `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
 
-- `fn index_crate(self: &Self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](../multi_crate/search/index.md)
+- `fn index_crate(self: &Self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](multi_crate/search/index.md)
 
 - `fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
 
@@ -606,11 +623,11 @@ generator.write(Path::new("docs/"))?;
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for SearchIndexGenerator<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for SearchIndexGenerator<'a>`
 
 - `const ALIGN: usize`
 
@@ -628,10 +645,10 @@ generator.write(Path::new("docs/"))?;
 
 ```rust
 struct UnifiedLinkRegistry {
-    item_paths: hashbrown::HashMap<(String, rustdoc_types::Id), String>,
-    item_names: hashbrown::HashMap<(String, rustdoc_types::Id), String>,
-    name_index: std::collections::HashMap<String, Vec<(String, rustdoc_types::Id)>>,
-    primary_crate: Option<String>,
+    item_paths: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    item_names: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>,
+    primary_crate: Option<compact_str::CompactString>,
 }
 ```
 
@@ -664,28 +681,28 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Fields
 
-- **`item_paths`**: `hashbrown::HashMap<(String, rustdoc_types::Id), String>`
+- **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the file path within output.
   Uses hashbrown for raw_entry API (zero-alloc lookups).
 
-- **`item_names`**: `hashbrown::HashMap<(String, rustdoc_types::Id), String>`
+- **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the item's display name.
   Uses hashbrown for raw_entry API (zero-alloc lookups).
 
-- **`name_index`**: `std::collections::HashMap<String, Vec<(String, rustdoc_types::Id)>>`
+- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
 
   Maps short names to all `(crate_name, item_id)` pairs.
   Used for disambiguating links like `Span` that exist in multiple crates.
 
-- **`primary_crate`**: `Option<String>`
+- **`primary_crate`**: `Option<compact_str::CompactString>`
 
   The primary crate name for preferential resolution.
 
 #### Implementations
 
-- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](../multi_crate/collection/index.md)
+- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md)
 
 - `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
 
@@ -695,13 +712,13 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str)`
 
-- `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&String>`
+- `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
-- `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&String>`
+- `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
-- `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(String, Id)>`
+- `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
 
-- `fn resolve_path(self: &Self, path: &str) -> Option<(String, Id)>`
+- `fn resolve_path(self: &Self, path: &str) -> Option<(compact_str::CompactString, Id)>`
 
 - `fn create_link(self: &Self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
 
@@ -717,19 +734,19 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for UnifiedLinkRegistry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for UnifiedLinkRegistry`
 
-- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](../multi_crate/registry/index.md)
+- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/registry/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for UnifiedLinkRegistry`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UnifiedLinkRegistry`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for UnifiedLinkRegistry`
 
 - `const ALIGN: usize`
 
@@ -847,7 +864,7 @@ The tool accepts input from two mutually exclusive sources:
 
 #### Trait Implementations
 
-##### `impl Args`
+##### `impl Args for Args`
 
 - `fn group_id() -> Option<clap::Id>`
 
@@ -855,17 +872,17 @@ The tool accepts input from two mutually exclusive sources:
 
 - `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
 
-##### `impl CommandFactory`
+##### `impl CommandFactory for Args`
 
 - `fn command<'b>() -> clap::Command`
 
 - `fn command_for_update<'b>() -> clap::Command`
 
-##### `impl Debug`
+##### `impl Debug for Args`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FromArgMatches`
+##### `impl FromArgMatches for Args`
 
 - `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
@@ -875,13 +892,13 @@ The tool accepts input from two mutually exclusive sources:
 
 - `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Args`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Args`
 
-##### `impl Parser`
+##### `impl Parser for Args`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Args`
 
 - `const ALIGN: usize`
 
@@ -928,25 +945,25 @@ Controls how module files are organized in the output directory.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for OutputFormat`
 
-- `fn clone(self: &Self) -> OutputFormat` — [`OutputFormat`](../index.md)
+- `fn clone(self: &Self) -> OutputFormat` — [`OutputFormat`](#outputformat)
 
-##### `impl Copy`
+##### `impl Copy for OutputFormat`
 
-##### `impl Debug`
+##### `impl Debug for OutputFormat`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for OutputFormat`
 
-- `fn default() -> OutputFormat` — [`OutputFormat`](../index.md)
+- `fn default() -> OutputFormat` — [`OutputFormat`](#outputformat)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for OutputFormat`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for OutputFormat`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for OutputFormat`
 
 - `const ALIGN: usize`
 
@@ -960,7 +977,7 @@ Controls how module files are organized in the output directory.
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl ValueEnum`
+##### `impl ValueEnum for OutputFormat`
 
 - `fn value_variants<'a>() -> &'a [Self]`
 
@@ -989,25 +1006,25 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for CliOutputFormat`
 
-- `fn clone(self: &Self) -> CliOutputFormat` — [`CliOutputFormat`](../index.md)
+- `fn clone(self: &Self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
 
-##### `impl Copy`
+##### `impl Copy for CliOutputFormat`
 
-##### `impl Debug`
+##### `impl Debug for CliOutputFormat`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for CliOutputFormat`
 
-- `fn default() -> CliOutputFormat` — [`CliOutputFormat`](../index.md)
+- `fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for CliOutputFormat`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CliOutputFormat`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for CliOutputFormat`
 
 - `const ALIGN: usize`
 
@@ -1021,7 +1038,7 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl ValueEnum`
+##### `impl ValueEnum for CliOutputFormat`
 
 - `fn value_variants<'a>() -> &'a [Self]`
 

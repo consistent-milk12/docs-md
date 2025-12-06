@@ -31,41 +31,41 @@ See Section 7.3.5.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwSect`
 
-- `fn clone(self: &Self) -> DwSect` — [`DwSect`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwSect` — [`DwSect`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwSect`
 
-##### `impl Debug`
+##### `impl Debug for DwSect`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwSect`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwSect`
 
-##### `impl Hash`
+##### `impl Hash for DwSect`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwSect`
 
-- `fn cmp(self: &Self, other: &DwSect) -> $crate::cmp::Ordering` — [`DwSect`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwSect) -> $crate::cmp::Ordering` — [`DwSect`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwSect`
 
-- `fn eq(self: &Self, other: &DwSect) -> bool` — [`DwSect`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwSect) -> bool` — [`DwSect`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwSect`
 
-- `fn partial_cmp(self: &Self, other: &DwSect) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSect`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwSect) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSect`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwSect`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwSect`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -83,41 +83,41 @@ The section type field in a `.dwp` unit index with version 2.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwSectV2`
 
-- `fn clone(self: &Self) -> DwSectV2` — [`DwSectV2`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwSectV2` — [`DwSectV2`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwSectV2`
 
-##### `impl Debug`
+##### `impl Debug for DwSectV2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwSectV2`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwSectV2`
 
-##### `impl Hash`
+##### `impl Hash for DwSectV2`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwSectV2`
 
-- `fn cmp(self: &Self, other: &DwSectV2) -> $crate::cmp::Ordering` — [`DwSectV2`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwSectV2) -> $crate::cmp::Ordering` — [`DwSectV2`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwSectV2`
 
-- `fn eq(self: &Self, other: &DwSectV2) -> bool` — [`DwSectV2`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwSectV2) -> bool` — [`DwSectV2`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwSectV2`
 
-- `fn partial_cmp(self: &Self, other: &DwSectV2) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSectV2`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwSectV2) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwSectV2`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwSectV2`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwSectV2`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -137,41 +137,41 @@ See Section 7.5.1, Table 7.2.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwUt`
 
-- `fn clone(self: &Self) -> DwUt` — [`DwUt`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwUt` — [`DwUt`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwUt`
 
-##### `impl Debug`
+##### `impl Debug for DwUt`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwUt`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwUt`
 
-##### `impl Hash`
+##### `impl Hash for DwUt`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwUt`
 
-- `fn cmp(self: &Self, other: &DwUt) -> $crate::cmp::Ordering` — [`DwUt`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwUt) -> $crate::cmp::Ordering` — [`DwUt`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwUt`
 
-- `fn eq(self: &Self, other: &DwUt) -> bool` — [`DwUt`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwUt) -> bool` — [`DwUt`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwUt`
 
-- `fn partial_cmp(self: &Self, other: &DwUt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwUt`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwUt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwUt`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwUt`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwUt`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -195,41 +195,41 @@ Section 7.24:
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwCfa`
 
-- `fn clone(self: &Self) -> DwCfa` — [`DwCfa`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwCfa` — [`DwCfa`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwCfa`
 
-##### `impl Debug`
+##### `impl Debug for DwCfa`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwCfa`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwCfa`
 
-##### `impl Hash`
+##### `impl Hash for DwCfa`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwCfa`
 
-- `fn cmp(self: &Self, other: &DwCfa) -> $crate::cmp::Ordering` — [`DwCfa`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwCfa) -> $crate::cmp::Ordering` — [`DwCfa`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwCfa`
 
-- `fn eq(self: &Self, other: &DwCfa) -> bool` — [`DwCfa`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwCfa) -> bool` — [`DwCfa`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwCfa`
 
-- `fn partial_cmp(self: &Self, other: &DwCfa) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCfa`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwCfa) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCfa`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwCfa`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwCfa`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -249,41 +249,41 @@ See Section 7.5.3, Table 7.4.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwChildren`
 
-- `fn clone(self: &Self) -> DwChildren` — [`DwChildren`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwChildren` — [`DwChildren`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwChildren`
 
-##### `impl Debug`
+##### `impl Debug for DwChildren`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwChildren`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwChildren`
 
-##### `impl Hash`
+##### `impl Hash for DwChildren`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwChildren`
 
-- `fn cmp(self: &Self, other: &DwChildren) -> $crate::cmp::Ordering` — [`DwChildren`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwChildren) -> $crate::cmp::Ordering` — [`DwChildren`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwChildren`
 
-- `fn eq(self: &Self, other: &DwChildren) -> bool` — [`DwChildren`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwChildren) -> bool` — [`DwChildren`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwChildren`
 
-- `fn partial_cmp(self: &Self, other: &DwChildren) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwChildren`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwChildren) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwChildren`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwChildren`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwChildren`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -303,41 +303,41 @@ See Section 7.5.3, Table 7.3.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwTag`
 
-- `fn clone(self: &Self) -> DwTag` — [`DwTag`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwTag` — [`DwTag`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwTag`
 
-##### `impl Debug`
+##### `impl Debug for DwTag`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwTag`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwTag`
 
-##### `impl Hash`
+##### `impl Hash for DwTag`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwTag`
 
-- `fn cmp(self: &Self, other: &DwTag) -> $crate::cmp::Ordering` — [`DwTag`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwTag) -> $crate::cmp::Ordering` — [`DwTag`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwTag`
 
-- `fn eq(self: &Self, other: &DwTag) -> bool` — [`DwTag`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwTag) -> bool` — [`DwTag`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwTag`
 
-- `fn partial_cmp(self: &Self, other: &DwTag) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwTag`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwTag) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwTag`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwTag`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwTag`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -357,41 +357,41 @@ See Section 7.5.4, Table 7.5.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwAt`
 
-- `fn clone(self: &Self) -> DwAt` — [`DwAt`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwAt` — [`DwAt`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwAt`
 
-##### `impl Debug`
+##### `impl Debug for DwAt`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwAt`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwAt`
 
-##### `impl Hash`
+##### `impl Hash for DwAt`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwAt`
 
-- `fn cmp(self: &Self, other: &DwAt) -> $crate::cmp::Ordering` — [`DwAt`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwAt) -> $crate::cmp::Ordering` — [`DwAt`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwAt`
 
-- `fn eq(self: &Self, other: &DwAt) -> bool` — [`DwAt`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwAt) -> bool` — [`DwAt`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwAt`
 
-- `fn partial_cmp(self: &Self, other: &DwAt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAt`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwAt) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAt`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwAt`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwAt`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -411,41 +411,41 @@ See Section 7.5.6, Table 7.6.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwForm`
 
-- `fn clone(self: &Self) -> DwForm` — [`DwForm`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwForm` — [`DwForm`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwForm`
 
-##### `impl Debug`
+##### `impl Debug for DwForm`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwForm`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwForm`
 
-##### `impl Hash`
+##### `impl Hash for DwForm`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwForm`
 
-- `fn cmp(self: &Self, other: &DwForm) -> $crate::cmp::Ordering` — [`DwForm`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwForm) -> $crate::cmp::Ordering` — [`DwForm`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwForm`
 
-- `fn eq(self: &Self, other: &DwForm) -> bool` — [`DwForm`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwForm) -> bool` — [`DwForm`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwForm`
 
-- `fn partial_cmp(self: &Self, other: &DwForm) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwForm`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwForm) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwForm`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwForm`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwForm`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -465,41 +465,41 @@ See Section 7.8, Table 7.11.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwAte`
 
-- `fn clone(self: &Self) -> DwAte` — [`DwAte`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwAte` — [`DwAte`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwAte`
 
-##### `impl Debug`
+##### `impl Debug for DwAte`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwAte`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwAte`
 
-##### `impl Hash`
+##### `impl Hash for DwAte`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwAte`
 
-- `fn cmp(self: &Self, other: &DwAte) -> $crate::cmp::Ordering` — [`DwAte`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwAte) -> $crate::cmp::Ordering` — [`DwAte`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwAte`
 
-- `fn eq(self: &Self, other: &DwAte) -> bool` — [`DwAte`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwAte) -> bool` — [`DwAte`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwAte`
 
-- `fn partial_cmp(self: &Self, other: &DwAte) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAte`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwAte) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAte`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwAte`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwAte`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -519,41 +519,41 @@ See Section 7.7.3, Table 7.10.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwLle`
 
-- `fn clone(self: &Self) -> DwLle` — [`DwLle`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwLle` — [`DwLle`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwLle`
 
-##### `impl Debug`
+##### `impl Debug for DwLle`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwLle`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwLle`
 
-##### `impl Hash`
+##### `impl Hash for DwLle`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwLle`
 
-- `fn cmp(self: &Self, other: &DwLle) -> $crate::cmp::Ordering` — [`DwLle`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwLle) -> $crate::cmp::Ordering` — [`DwLle`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwLle`
 
-- `fn eq(self: &Self, other: &DwLle) -> bool` — [`DwLle`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwLle) -> bool` — [`DwLle`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwLle`
 
-- `fn partial_cmp(self: &Self, other: &DwLle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLle`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwLle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLle`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwLle`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwLle`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -573,41 +573,41 @@ See Section 7.8, Table 7.12.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwDs`
 
-- `fn clone(self: &Self) -> DwDs` — [`DwDs`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwDs` — [`DwDs`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwDs`
 
-##### `impl Debug`
+##### `impl Debug for DwDs`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwDs`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwDs`
 
-##### `impl Hash`
+##### `impl Hash for DwDs`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwDs`
 
-- `fn cmp(self: &Self, other: &DwDs) -> $crate::cmp::Ordering` — [`DwDs`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwDs) -> $crate::cmp::Ordering` — [`DwDs`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwDs`
 
-- `fn eq(self: &Self, other: &DwDs) -> bool` — [`DwDs`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwDs) -> bool` — [`DwDs`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwDs`
 
-- `fn partial_cmp(self: &Self, other: &DwDs) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDs`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwDs) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDs`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwDs`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwDs`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -627,41 +627,41 @@ See Section 7.8, Table 7.13.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwEnd`
 
-- `fn clone(self: &Self) -> DwEnd` — [`DwEnd`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwEnd` — [`DwEnd`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwEnd`
 
-##### `impl Debug`
+##### `impl Debug for DwEnd`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwEnd`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwEnd`
 
-##### `impl Hash`
+##### `impl Hash for DwEnd`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwEnd`
 
-- `fn cmp(self: &Self, other: &DwEnd) -> $crate::cmp::Ordering` — [`DwEnd`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwEnd) -> $crate::cmp::Ordering` — [`DwEnd`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwEnd`
 
-- `fn eq(self: &Self, other: &DwEnd) -> bool` — [`DwEnd`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwEnd) -> bool` — [`DwEnd`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwEnd`
 
-- `fn partial_cmp(self: &Self, other: &DwEnd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEnd`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwEnd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEnd`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwEnd`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwEnd`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -681,41 +681,41 @@ See Section 7.9, Table 7.14.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwAccess`
 
-- `fn clone(self: &Self) -> DwAccess` — [`DwAccess`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwAccess` — [`DwAccess`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwAccess`
 
-##### `impl Debug`
+##### `impl Debug for DwAccess`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwAccess`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwAccess`
 
-##### `impl Hash`
+##### `impl Hash for DwAccess`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwAccess`
 
-- `fn cmp(self: &Self, other: &DwAccess) -> $crate::cmp::Ordering` — [`DwAccess`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwAccess) -> $crate::cmp::Ordering` — [`DwAccess`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwAccess`
 
-- `fn eq(self: &Self, other: &DwAccess) -> bool` — [`DwAccess`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwAccess) -> bool` — [`DwAccess`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwAccess`
 
-- `fn partial_cmp(self: &Self, other: &DwAccess) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAccess`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwAccess) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAccess`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwAccess`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwAccess`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -735,41 +735,41 @@ See Section 7.10, Table 7.15.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwVis`
 
-- `fn clone(self: &Self) -> DwVis` — [`DwVis`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwVis` — [`DwVis`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwVis`
 
-##### `impl Debug`
+##### `impl Debug for DwVis`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwVis`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwVis`
 
-##### `impl Hash`
+##### `impl Hash for DwVis`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwVis`
 
-- `fn cmp(self: &Self, other: &DwVis) -> $crate::cmp::Ordering` — [`DwVis`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwVis) -> $crate::cmp::Ordering` — [`DwVis`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwVis`
 
-- `fn eq(self: &Self, other: &DwVis) -> bool` — [`DwVis`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwVis) -> bool` — [`DwVis`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwVis`
 
-- `fn partial_cmp(self: &Self, other: &DwVis) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVis`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwVis) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVis`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwVis`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwVis`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -789,41 +789,41 @@ See Section 7.11, Table 7.16.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwVirtuality`
 
-- `fn clone(self: &Self) -> DwVirtuality` — [`DwVirtuality`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwVirtuality` — [`DwVirtuality`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwVirtuality`
 
-##### `impl Debug`
+##### `impl Debug for DwVirtuality`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwVirtuality`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwVirtuality`
 
-##### `impl Hash`
+##### `impl Hash for DwVirtuality`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwVirtuality`
 
-- `fn cmp(self: &Self, other: &DwVirtuality) -> $crate::cmp::Ordering` — [`DwVirtuality`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwVirtuality) -> $crate::cmp::Ordering` — [`DwVirtuality`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwVirtuality`
 
-- `fn eq(self: &Self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwVirtuality) -> bool` — [`DwVirtuality`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwVirtuality`
 
-- `fn partial_cmp(self: &Self, other: &DwVirtuality) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVirtuality`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwVirtuality) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwVirtuality`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwVirtuality`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwVirtuality`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -839,45 +839,45 @@ See Section 7.12, Table 7.17.
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- `fn default_lower_bound(self: Self) -> Option<usize>`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwLang`
 
-- `fn clone(self: &Self) -> DwLang` — [`DwLang`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwLang` — [`DwLang`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwLang`
 
-##### `impl Debug`
+##### `impl Debug for DwLang`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwLang`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwLang`
 
-##### `impl Hash`
+##### `impl Hash for DwLang`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwLang`
 
-- `fn cmp(self: &Self, other: &DwLang) -> $crate::cmp::Ordering` — [`DwLang`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwLang) -> $crate::cmp::Ordering` — [`DwLang`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwLang`
 
-- `fn eq(self: &Self, other: &DwLang) -> bool` — [`DwLang`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwLang) -> bool` — [`DwLang`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwLang`
 
-- `fn partial_cmp(self: &Self, other: &DwLang) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLang`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwLang) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLang`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwLang`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwLang`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -898,41 +898,41 @@ See Section 7.13.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwAddr`
 
-- `fn clone(self: &Self) -> DwAddr` — [`DwAddr`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwAddr` — [`DwAddr`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwAddr`
 
-##### `impl Debug`
+##### `impl Debug for DwAddr`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwAddr`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwAddr`
 
-##### `impl Hash`
+##### `impl Hash for DwAddr`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwAddr`
 
-- `fn cmp(self: &Self, other: &DwAddr) -> $crate::cmp::Ordering` — [`DwAddr`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwAddr) -> $crate::cmp::Ordering` — [`DwAddr`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwAddr`
 
-- `fn eq(self: &Self, other: &DwAddr) -> bool` — [`DwAddr`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwAddr) -> bool` — [`DwAddr`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwAddr`
 
-- `fn partial_cmp(self: &Self, other: &DwAddr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAddr`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwAddr) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwAddr`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwAddr`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwAddr`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -952,41 +952,41 @@ See Section 7.14, Table 7.18.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwId`
 
-- `fn clone(self: &Self) -> DwId` — [`DwId`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwId` — [`DwId`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwId`
 
-##### `impl Debug`
+##### `impl Debug for DwId`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwId`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwId`
 
-##### `impl Hash`
+##### `impl Hash for DwId`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwId`
 
-- `fn cmp(self: &Self, other: &DwId) -> $crate::cmp::Ordering` — [`DwId`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwId) -> $crate::cmp::Ordering` — [`DwId`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwId`
 
-- `fn eq(self: &Self, other: &DwId) -> bool` — [`DwId`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwId) -> bool` — [`DwId`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwId`
 
-- `fn partial_cmp(self: &Self, other: &DwId) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwId`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwId) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwId`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwId`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwId`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1006,41 +1006,41 @@ See Section 7.15, Table 7.19.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwCc`
 
-- `fn clone(self: &Self) -> DwCc` — [`DwCc`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwCc` — [`DwCc`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwCc`
 
-##### `impl Debug`
+##### `impl Debug for DwCc`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwCc`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwCc`
 
-##### `impl Hash`
+##### `impl Hash for DwCc`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwCc`
 
-- `fn cmp(self: &Self, other: &DwCc) -> $crate::cmp::Ordering` — [`DwCc`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwCc) -> $crate::cmp::Ordering` — [`DwCc`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwCc`
 
-- `fn eq(self: &Self, other: &DwCc) -> bool` — [`DwCc`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwCc) -> bool` — [`DwCc`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwCc`
 
-- `fn partial_cmp(self: &Self, other: &DwCc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCc`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwCc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwCc`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwCc`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwCc`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1060,41 +1060,41 @@ See Section 7.16, Table 7.20.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwInl`
 
-- `fn clone(self: &Self) -> DwInl` — [`DwInl`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwInl` — [`DwInl`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwInl`
 
-##### `impl Debug`
+##### `impl Debug for DwInl`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwInl`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwInl`
 
-##### `impl Hash`
+##### `impl Hash for DwInl`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwInl`
 
-- `fn cmp(self: &Self, other: &DwInl) -> $crate::cmp::Ordering` — [`DwInl`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwInl) -> $crate::cmp::Ordering` — [`DwInl`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwInl`
 
-- `fn eq(self: &Self, other: &DwInl) -> bool` — [`DwInl`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwInl) -> bool` — [`DwInl`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwInl`
 
-- `fn partial_cmp(self: &Self, other: &DwInl) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwInl`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwInl) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwInl`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwInl`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwInl`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1114,41 +1114,41 @@ See Section 7.17, Table 7.17.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwOrd`
 
-- `fn clone(self: &Self) -> DwOrd` — [`DwOrd`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwOrd` — [`DwOrd`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwOrd`
 
-##### `impl Debug`
+##### `impl Debug for DwOrd`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwOrd`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwOrd`
 
-##### `impl Hash`
+##### `impl Hash for DwOrd`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwOrd`
 
-- `fn cmp(self: &Self, other: &DwOrd) -> $crate::cmp::Ordering` — [`DwOrd`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwOrd) -> $crate::cmp::Ordering` — [`DwOrd`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwOrd`
 
-- `fn eq(self: &Self, other: &DwOrd) -> bool` — [`DwOrd`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwOrd) -> bool` — [`DwOrd`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwOrd`
 
-- `fn partial_cmp(self: &Self, other: &DwOrd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOrd`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwOrd) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOrd`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwOrd`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwOrd`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1168,41 +1168,41 @@ See Section 7.18, Table 7.22.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwDsc`
 
-- `fn clone(self: &Self) -> DwDsc` — [`DwDsc`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwDsc` — [`DwDsc`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwDsc`
 
-##### `impl Debug`
+##### `impl Debug for DwDsc`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwDsc`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwDsc`
 
-##### `impl Hash`
+##### `impl Hash for DwDsc`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwDsc`
 
-- `fn cmp(self: &Self, other: &DwDsc) -> $crate::cmp::Ordering` — [`DwDsc`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwDsc) -> $crate::cmp::Ordering` — [`DwDsc`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwDsc`
 
-- `fn eq(self: &Self, other: &DwDsc) -> bool` — [`DwDsc`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwDsc) -> bool` — [`DwDsc`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwDsc`
 
-- `fn partial_cmp(self: &Self, other: &DwDsc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDsc`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwDsc) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDsc`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwDsc`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwDsc`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1222,41 +1222,41 @@ See Section 7.19, Table 7.23.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwIdx`
 
-- `fn clone(self: &Self) -> DwIdx` — [`DwIdx`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwIdx` — [`DwIdx`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwIdx`
 
-##### `impl Debug`
+##### `impl Debug for DwIdx`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwIdx`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwIdx`
 
-##### `impl Hash`
+##### `impl Hash for DwIdx`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwIdx`
 
-- `fn cmp(self: &Self, other: &DwIdx) -> $crate::cmp::Ordering` — [`DwIdx`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwIdx) -> $crate::cmp::Ordering` — [`DwIdx`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwIdx`
 
-- `fn eq(self: &Self, other: &DwIdx) -> bool` — [`DwIdx`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwIdx) -> bool` — [`DwIdx`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwIdx`
 
-- `fn partial_cmp(self: &Self, other: &DwIdx) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwIdx`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwIdx) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwIdx`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwIdx`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwIdx`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1276,41 +1276,41 @@ See Section 7.20, Table 7.24.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwDefaulted`
 
-- `fn clone(self: &Self) -> DwDefaulted` — [`DwDefaulted`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwDefaulted` — [`DwDefaulted`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwDefaulted`
 
-##### `impl Debug`
+##### `impl Debug for DwDefaulted`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwDefaulted`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwDefaulted`
 
-##### `impl Hash`
+##### `impl Hash for DwDefaulted`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwDefaulted`
 
-- `fn cmp(self: &Self, other: &DwDefaulted) -> $crate::cmp::Ordering` — [`DwDefaulted`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwDefaulted) -> $crate::cmp::Ordering` — [`DwDefaulted`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwDefaulted`
 
-- `fn eq(self: &Self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwDefaulted) -> bool` — [`DwDefaulted`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwDefaulted`
 
-- `fn partial_cmp(self: &Self, other: &DwDefaulted) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDefaulted`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwDefaulted) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwDefaulted`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwDefaulted`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwDefaulted`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1330,41 +1330,41 @@ See Section 7.22, Table 7.25.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwLns`
 
-- `fn clone(self: &Self) -> DwLns` — [`DwLns`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwLns` — [`DwLns`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwLns`
 
-##### `impl Debug`
+##### `impl Debug for DwLns`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwLns`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwLns`
 
-##### `impl Hash`
+##### `impl Hash for DwLns`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwLns`
 
-- `fn cmp(self: &Self, other: &DwLns) -> $crate::cmp::Ordering` — [`DwLns`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwLns) -> $crate::cmp::Ordering` — [`DwLns`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwLns`
 
-- `fn eq(self: &Self, other: &DwLns) -> bool` — [`DwLns`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwLns) -> bool` — [`DwLns`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwLns`
 
-- `fn partial_cmp(self: &Self, other: &DwLns) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLns`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwLns) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLns`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwLns`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwLns`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1384,41 +1384,41 @@ See Section 7.22, Table 7.26.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwLne`
 
-- `fn clone(self: &Self) -> DwLne` — [`DwLne`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwLne` — [`DwLne`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwLne`
 
-##### `impl Debug`
+##### `impl Debug for DwLne`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwLne`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwLne`
 
-##### `impl Hash`
+##### `impl Hash for DwLne`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwLne`
 
-- `fn cmp(self: &Self, other: &DwLne) -> $crate::cmp::Ordering` — [`DwLne`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwLne) -> $crate::cmp::Ordering` — [`DwLne`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwLne`
 
-- `fn eq(self: &Self, other: &DwLne) -> bool` — [`DwLne`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwLne) -> bool` — [`DwLne`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwLne`
 
-- `fn partial_cmp(self: &Self, other: &DwLne) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLne`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwLne) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLne`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwLne`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwLne`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1438,41 +1438,41 @@ See Section 7.22, Table 7.27.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwLnct`
 
-- `fn clone(self: &Self) -> DwLnct` — [`DwLnct`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwLnct` — [`DwLnct`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwLnct`
 
-##### `impl Debug`
+##### `impl Debug for DwLnct`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwLnct`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwLnct`
 
-##### `impl Hash`
+##### `impl Hash for DwLnct`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwLnct`
 
-- `fn cmp(self: &Self, other: &DwLnct) -> $crate::cmp::Ordering` — [`DwLnct`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwLnct) -> $crate::cmp::Ordering` — [`DwLnct`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwLnct`
 
-- `fn eq(self: &Self, other: &DwLnct) -> bool` — [`DwLnct`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwLnct) -> bool` — [`DwLnct`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwLnct`
 
-- `fn partial_cmp(self: &Self, other: &DwLnct) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLnct`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwLnct) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwLnct`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwLnct`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwLnct`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1492,41 +1492,41 @@ See Section 7.22, Figure 39 for DWARF 4.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwMacinfo`
 
-- `fn clone(self: &Self) -> DwMacinfo` — [`DwMacinfo`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwMacinfo` — [`DwMacinfo`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwMacinfo`
 
-##### `impl Debug`
+##### `impl Debug for DwMacinfo`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwMacinfo`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwMacinfo`
 
-##### `impl Hash`
+##### `impl Hash for DwMacinfo`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwMacinfo`
 
-- `fn cmp(self: &Self, other: &DwMacinfo) -> $crate::cmp::Ordering` — [`DwMacinfo`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwMacinfo) -> $crate::cmp::Ordering` — [`DwMacinfo`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwMacinfo`
 
-- `fn eq(self: &Self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwMacinfo) -> bool` — [`DwMacinfo`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwMacinfo`
 
-- `fn partial_cmp(self: &Self, other: &DwMacinfo) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacinfo`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwMacinfo) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacinfo`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwMacinfo`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwMacinfo`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1546,41 +1546,41 @@ See Section 7.23, Table 7.28 for DWARF 5.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwMacro`
 
-- `fn clone(self: &Self) -> DwMacro` — [`DwMacro`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwMacro` — [`DwMacro`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwMacro`
 
-##### `impl Debug`
+##### `impl Debug for DwMacro`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwMacro`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwMacro`
 
-##### `impl Hash`
+##### `impl Hash for DwMacro`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwMacro`
 
-- `fn cmp(self: &Self, other: &DwMacro) -> $crate::cmp::Ordering` — [`DwMacro`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwMacro) -> $crate::cmp::Ordering` — [`DwMacro`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwMacro`
 
-- `fn eq(self: &Self, other: &DwMacro) -> bool` — [`DwMacro`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwMacro) -> bool` — [`DwMacro`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwMacro`
 
-- `fn partial_cmp(self: &Self, other: &DwMacro) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacro`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwMacro) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwMacro`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwMacro`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwMacro`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1600,41 +1600,41 @@ See Section 7.25, Table 7.30.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwRle`
 
-- `fn clone(self: &Self) -> DwRle` — [`DwRle`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwRle` — [`DwRle`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwRle`
 
-##### `impl Debug`
+##### `impl Debug for DwRle`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwRle`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwRle`
 
-##### `impl Hash`
+##### `impl Hash for DwRle`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwRle`
 
-- `fn cmp(self: &Self, other: &DwRle) -> $crate::cmp::Ordering` — [`DwRle`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwRle) -> $crate::cmp::Ordering` — [`DwRle`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwRle`
 
-- `fn eq(self: &Self, other: &DwRle) -> bool` — [`DwRle`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwRle) -> bool` — [`DwRle`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwRle`
 
-- `fn partial_cmp(self: &Self, other: &DwRle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwRle`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwRle) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwRle`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwRle`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwRle`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1654,41 +1654,41 @@ See Section 7.7.1, Table 7.9.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwOp`
 
-- `fn clone(self: &Self) -> DwOp` — [`DwOp`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwOp` — [`DwOp`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwOp`
 
-##### `impl Debug`
+##### `impl Debug for DwOp`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwOp`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwOp`
 
-##### `impl Hash`
+##### `impl Hash for DwOp`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwOp`
 
-- `fn cmp(self: &Self, other: &DwOp) -> $crate::cmp::Ordering` — [`DwOp`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwOp) -> $crate::cmp::Ordering` — [`DwOp`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwOp`
 
-- `fn eq(self: &Self, other: &DwOp) -> bool` — [`DwOp`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwOp) -> bool` — [`DwOp`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwOp`
 
-- `fn partial_cmp(self: &Self, other: &DwOp) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOp`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwOp) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwOp`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwOp`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwOp`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1712,47 +1712,47 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Trait Implementations
 
-##### `impl BitOr`
+##### `impl BitOr for DwEhPe`
 
 - `type Output = DwEhPe`
 
-- `fn bitor(self: Self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](../../constants/index.md)
+- `fn bitor(self: Self, rhs: DwEhPe) -> DwEhPe` — [`DwEhPe`](../index.md)
 
-##### `impl Clone`
+##### `impl Clone for DwEhPe`
 
-- `fn clone(self: &Self) -> DwEhPe` — [`DwEhPe`](../../constants/index.md)
+- `fn clone(self: &Self) -> DwEhPe` — [`DwEhPe`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for DwEhPe`
 
-##### `impl Debug`
+##### `impl Debug for DwEhPe`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for DwEhPe`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Eq`
+##### `impl Eq for DwEhPe`
 
-##### `impl Hash`
+##### `impl Hash for DwEhPe`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for DwEhPe`
 
-- `fn cmp(self: &Self, other: &DwEhPe) -> $crate::cmp::Ordering` — [`DwEhPe`](../../constants/index.md)
+- `fn cmp(self: &Self, other: &DwEhPe) -> $crate::cmp::Ordering` — [`DwEhPe`](../index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for DwEhPe`
 
-- `fn eq(self: &Self, other: &DwEhPe) -> bool` — [`DwEhPe`](../../constants/index.md)
+- `fn eq(self: &Self, other: &DwEhPe) -> bool` — [`DwEhPe`](../index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for DwEhPe`
 
-- `fn partial_cmp(self: &Self, other: &DwEhPe) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEhPe`](../../constants/index.md)
+- `fn partial_cmp(self: &Self, other: &DwEhPe) -> $crate::option::Option<$crate::cmp::Ordering>` — [`DwEhPe`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DwEhPe`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for DwEhPe`
 
 - `fn to_string(self: &Self) -> String`
 

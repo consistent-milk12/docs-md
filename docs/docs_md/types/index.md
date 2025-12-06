@@ -109,21 +109,21 @@ let generics = renderer.render_generics(&params);
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for TypeRenderer<'a>`
 
-- `fn clone(self: &Self) -> TypeRenderer<'a>` — [`TypeRenderer`](../../types/index.md)
+- `fn clone(self: &Self) -> TypeRenderer<'a>` — [`TypeRenderer`](#typerenderer)
 
-##### `impl Copy<'a>`
+##### `impl<'a> Copy for TypeRenderer<'a>`
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for TypeRenderer<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for TypeRenderer<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for TypeRenderer<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for TypeRenderer<'a>`
 
 - `const ALIGN: usize`
 

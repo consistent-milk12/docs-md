@@ -101,7 +101,6 @@ website][data formats].
    - SocketAddrV4
    - SocketAddrV6
 
-[Implementing `Serialize`]: https://serde.rs/impl-serialize.html
 
 
 
@@ -110,8 +109,8 @@ website][data formats].
 
 
 
-[derive section of the manual]: https://serde.rs/derive.html
-[data formats]: https://serde.rs/#data-formats
+
+
 
 ## Structs
 
@@ -177,7 +176,7 @@ impl Serializer for MySerializer {
 
 #### Trait Implementations
 
-##### `impl SerializeMap<Ok, Error>`
+##### `impl<Ok, Error> SerializeMap for Impossible<Ok, Error>`
 
 - `type Ok = Ok`
 
@@ -189,7 +188,7 @@ impl Serializer for MySerializer {
 
 - `fn end(self: Self) -> Result<Ok, Error>`
 
-##### `impl SerializeSeq<Ok, Error>`
+##### `impl<Ok, Error> SerializeSeq for Impossible<Ok, Error>`
 
 - `type Ok = Ok`
 
@@ -199,7 +198,7 @@ impl Serializer for MySerializer {
 
 - `fn end(self: Self) -> Result<Ok, Error>`
 
-##### `impl SerializeStruct<Ok, Error>`
+##### `impl<Ok, Error> SerializeStruct for Impossible<Ok, Error>`
 
 - `type Ok = Ok`
 
@@ -209,7 +208,7 @@ impl Serializer for MySerializer {
 
 - `fn end(self: Self) -> Result<Ok, Error>`
 
-##### `impl SerializeStructVariant<Ok, Error>`
+##### `impl<Ok, Error> SerializeStructVariant for Impossible<Ok, Error>`
 
 - `type Ok = Ok`
 
@@ -219,7 +218,7 @@ impl Serializer for MySerializer {
 
 - `fn end(self: Self) -> Result<Ok, Error>`
 
-##### `impl SerializeTuple<Ok, Error>`
+##### `impl<Ok, Error> SerializeTuple for Impossible<Ok, Error>`
 
 - `type Ok = Ok`
 
@@ -229,7 +228,7 @@ impl Serializer for MySerializer {
 
 - `fn end(self: Self) -> Result<Ok, Error>`
 
-##### `impl SerializeTupleStruct<Ok, Error>`
+##### `impl<Ok, Error> SerializeTupleStruct for Impossible<Ok, Error>`
 
 - `type Ok = Ok`
 
@@ -239,7 +238,7 @@ impl Serializer for MySerializer {
 
 - `fn end(self: Self) -> Result<Ok, Error>`
 
-##### `impl SerializeTupleVariant<Ok, Error>`
+##### `impl<Ok, Error> SerializeTupleVariant for Impossible<Ok, Error>`
 
 - `type Ok = Ok`
 
@@ -266,7 +265,6 @@ currently running.
 The [example data format] presented on the website shows an error
 type appropriate for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -300,11 +298,10 @@ they expose. For example the [`linked-hash-map`](#linked-hash-map) crate provide
 [`LinkedHashMap<K, V>`](#linkedhashmap) type that is serializable by Serde because the crate
 provides an implementation of `Serialize` for it.
 
-[Implementing `Serialize`]: https://serde.rs/impl-serialize.html
 
 
 
-[derive section of the manual]: https://serde.rs/derive.html
+
 
 #### Required Methods
 
@@ -387,14 +384,11 @@ is the `serde_json::value::Serializer` (distinct from the main `serde_json`
 serializer) that produces a `serde_json::Value` data structure in memory as
 output.
 
-[Serde data model]: https://serde.rs/data-model.html
-
 # Example implementation
 
 The [example data format] presented on the website contains example code for
 a basic JSON `Serializer`.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -605,7 +599,6 @@ where
 The [example data format] presented on the website demonstrates an
 implementation of `SerializeSeq` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -710,7 +703,6 @@ where
 The [example data format] presented on the website demonstrates an
 implementation of `SerializeTuple` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -760,7 +752,6 @@ impl Serialize for Rgb {
 The [example data format] presented on the website demonstrates an
 implementation of `SerializeTupleStruct` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -823,7 +814,6 @@ impl Serialize for E {
 The [example data format] presented on the website demonstrates an
 implementation of `SerializeTupleVariant` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -894,7 +884,6 @@ where
 The [example data format] presented on the website demonstrates an
 implementation of `SerializeMap` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -956,7 +945,6 @@ impl Serialize for Rgb {
 The [example data format] presented on the website demonstrates an
 implementation of `SerializeStruct` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -1020,7 +1008,6 @@ impl Serialize for E {
 The [example data format] presented on the website demonstrates an
 implementation of `SerializeStructVariant` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 

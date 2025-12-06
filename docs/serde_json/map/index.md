@@ -31,39 +31,39 @@ Represents a JSON key/value type.
 
 - `fn clear(self: &mut Self)`
 
-- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>` — [`Value`](../../value/index.md)
+- `fn get<Q>(self: &Self, key: &Q) -> Option<&Value>` — [`Value`](../value/index.md)
 
 - `fn contains_key<Q>(self: &Self, key: &Q) -> bool`
 
-- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>` — [`Value`](../../value/index.md)
+- `fn get_mut<Q>(self: &mut Self, key: &Q) -> Option<&mut Value>` — [`Value`](../value/index.md)
 
-- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../../value/index.md)
+- `fn get_key_value<Q>(self: &Self, key: &Q) -> Option<(&String, &Value)>` — [`Value`](../value/index.md)
 
-- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>` — [`Value`](../../value/index.md)
+- `fn insert(self: &mut Self, k: String, v: Value) -> Option<Value>` — [`Value`](../value/index.md)
 
-- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>` — [`Value`](../../value/index.md)
+- `fn remove<Q>(self: &mut Self, key: &Q) -> Option<Value>` — [`Value`](../value/index.md)
 
-- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>` — [`Value`](../../value/index.md)
+- `fn remove_entry<Q>(self: &mut Self, key: &Q) -> Option<(String, Value)>` — [`Value`](../value/index.md)
 
 - `fn append(self: &mut Self, other: &mut Self)`
 
-- `fn entry<S>(self: &mut Self, key: S) -> Entry<'_>` — [`Entry`](../../map/index.md)
+- `fn entry<S>(self: &mut Self, key: S) -> Entry<'_>` — [`Entry`](#entry)
 
 - `fn len(self: &Self) -> usize`
 
 - `fn is_empty(self: &Self) -> bool`
 
-- `fn iter(self: &Self) -> Iter<'_>` — [`Iter`](../../map/index.md)
+- `fn iter(self: &Self) -> Iter<'_>` — [`Iter`](#iter)
 
-- `fn iter_mut(self: &mut Self) -> IterMut<'_>` — [`IterMut`](../../map/index.md)
+- `fn iter_mut(self: &mut Self) -> IterMut<'_>` — [`IterMut`](#itermut)
 
-- `fn keys(self: &Self) -> Keys<'_>` — [`Keys`](../../map/index.md)
+- `fn keys(self: &Self) -> Keys<'_>` — [`Keys`](#keys)
 
-- `fn values(self: &Self) -> Values<'_>` — [`Values`](../../map/index.md)
+- `fn values(self: &Self) -> Values<'_>` — [`Values`](#values)
 
-- `fn values_mut(self: &mut Self) -> ValuesMut<'_>` — [`ValuesMut`](../../map/index.md)
+- `fn values_mut(self: &mut Self) -> ValuesMut<'_>` — [`ValuesMut`](#valuesmut)
 
-- `fn into_values(self: Self) -> IntoValues` — [`IntoValues`](../../map/index.md)
+- `fn into_values(self: Self) -> IntoValues` — [`IntoValues`](#intovalues)
 
 - `fn retain<F>(self: &mut Self, f: F)`
 
@@ -71,27 +71,27 @@ Represents a JSON key/value type.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Map<alloc::string::String, crate::value::Value>`
 
 - `fn clone(self: &Self) -> Self`
 
 - `fn clone_from(self: &mut Self, source: &Self)`
 
-##### `impl Debug`
+##### `impl Debug for Map<alloc::string::String, crate::value::Value>`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Default`
+##### `impl Default for Map<alloc::string::String, crate::value::Value>`
 
 - `fn default() -> Self`
 
-##### `impl Deserialize<'de>`
+##### `impl<'de> Deserialize for Map<alloc::string::String, crate::value::Value>`
 
 - `fn deserialize<D>(deserializer: D) -> Result<Self, <D as >::Error>`
 
-##### `impl DeserializeOwned<T>`
+##### `impl<T> DeserializeOwned for Map<K, V>`
 
-##### `impl Deserializer<'de>`
+##### `impl<'de> Deserializer for crate::map::Map<alloc::string::String, crate::value::Value>`
 
 - `type Error = Error`
 
@@ -157,43 +157,43 @@ Represents a JSON key/value type.
 
 - `fn deserialize_identifier<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>`
 
-##### `impl Eq`
+##### `impl Eq for Map<alloc::string::String, crate::value::Value>`
 
-##### `impl Extend`
+##### `impl Extend for Map<alloc::string::String, crate::value::Value>`
 
 - `fn extend<T>(self: &mut Self, iter: T)`
 
-##### `impl FromIterator`
+##### `impl FromIterator for Map<alloc::string::String, crate::value::Value>`
 
 - `fn from_iter<T>(iter: T) -> Self`
 
-##### `impl FromStr`
+##### `impl FromStr for crate::map::Map<alloc::string::String, crate::value::Value>`
 
 - `type Err = Error`
 
-- `fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../../error/index.md)
+- `fn from_str(s: &str) -> Result<Self, Error>` — [`Error`](../error/index.md)
 
-##### `impl Hash`
+##### `impl Hash for Map<alloc::string::String, crate::value::Value>`
 
 - `fn hash<H: Hasher>(self: &Self, state: &mut H)`
 
-##### `impl Index<Q>`
+##### `impl<Q> Index for Map<alloc::string::String, crate::value::Value>`
 
 - `type Output = Value`
 
-- `fn index(self: &Self, index: &Q) -> &Value` — [`Value`](../../value/index.md)
+- `fn index(self: &Self, index: &Q) -> &Value` — [`Value`](../value/index.md)
 
-##### `impl IndexMut<Q>`
+##### `impl<Q> IndexMut for Map<alloc::string::String, crate::value::Value>`
 
-- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value` — [`Value`](../../value/index.md)
+- `fn index_mut(self: &mut Self, index: &Q) -> &mut Value` — [`Value`](../value/index.md)
 
-##### `impl IntoDeserializer<'de>`
+##### `impl<'de> IntoDeserializer for Map<alloc::string::String, crate::value::Value>`
 
 - `type Deserializer = Map<String, Value>`
 
 - `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
 
-##### `impl IntoIterator`
+##### `impl IntoIterator for Map<alloc::string::String, crate::value::Value>`
 
 - `type Item = (String, Value)`
 
@@ -201,11 +201,11 @@ Represents a JSON key/value type.
 
 - `fn into_iter(self: Self) -> <Self as >::IntoIter`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Map<alloc::string::String, crate::value::Value>`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Serialize`
+##### `impl Serialize for Map<alloc::string::String, crate::value::Value>`
 
 - `fn serialize<S>(self: &Self, serializer: S) -> Result<<S as >::Ok, <S as >::Error>`
 
@@ -223,7 +223,7 @@ A vacant Entry. It is part of the [`Entry`](#entry) enum.
 
 - `fn key(self: &Self) -> &String`
 
-- `fn insert(self: Self, value: Value) -> &'a mut Value` — [`Value`](../../value/index.md)
+- `fn insert(self: Self, value: Value) -> &'a mut Value` — [`Value`](../value/index.md)
 
 ### `OccupiedEntry<'a>`
 
@@ -239,17 +239,17 @@ An occupied Entry. It is part of the [`Entry`](#entry) enum.
 
 - `fn key(self: &Self) -> &String`
 
-- `fn get(self: &Self) -> &Value` — [`Value`](../../value/index.md)
+- `fn get(self: &Self) -> &Value` — [`Value`](../value/index.md)
 
-- `fn get_mut(self: &mut Self) -> &mut Value` — [`Value`](../../value/index.md)
+- `fn get_mut(self: &mut Self) -> &mut Value` — [`Value`](../value/index.md)
 
-- `fn into_mut(self: Self) -> &'a mut Value` — [`Value`](../../value/index.md)
+- `fn into_mut(self: Self) -> &'a mut Value` — [`Value`](../value/index.md)
 
-- `fn insert(self: &mut Self, value: Value) -> Value` — [`Value`](../../value/index.md)
+- `fn insert(self: &mut Self, value: Value) -> Value` — [`Value`](../value/index.md)
 
-- `fn remove(self: Self) -> Value` — [`Value`](../../value/index.md)
+- `fn remove(self: Self) -> Value` — [`Value`](../value/index.md)
 
-- `fn remove_entry(self: Self) -> (String, Value)` — [`Value`](../../value/index.md)
+- `fn remove_entry(self: Self) -> (String, Value)` — [`Value`](../value/index.md)
 
 ### `Iter<'a>`
 
@@ -263,25 +263,25 @@ An iterator over a serde_json::Map's entries.
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Iter<'a>`
 
-- `fn clone(self: &Self) -> Iter<'a>` — [`Iter`](../../map/index.md)
+- `fn clone(self: &Self) -> Iter<'a>` — [`Iter`](#iter)
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Iter<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a>`
+##### `impl<'a> DoubleEndedIterator for Iter<'a>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a>`
+##### `impl<'a> ExactSizeIterator for Iter<'a>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl FusedIterator<'a>`
+##### `impl<'a> FusedIterator for Iter<'a>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Iter<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -289,7 +289,7 @@ An iterator over a serde_json::Map's entries.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for Iter<'a>`
 
 - `type Item = (&'a String, &'a Value)`
 
@@ -309,21 +309,21 @@ A mutable iterator over a serde_json::Map's entries.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for IterMut<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a>`
+##### `impl<'a> DoubleEndedIterator for IterMut<'a>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a>`
+##### `impl<'a> ExactSizeIterator for IterMut<'a>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl FusedIterator<'a>`
+##### `impl<'a> FusedIterator for IterMut<'a>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IterMut<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -331,7 +331,7 @@ A mutable iterator over a serde_json::Map's entries.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for IterMut<'a>`
 
 - `type Item = (&'a String, &'a mut Value)`
 
@@ -351,21 +351,21 @@ An owning iterator over a serde_json::Map's entries.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for IntoIter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator`
+##### `impl DoubleEndedIterator for IntoIter`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator`
+##### `impl ExactSizeIterator for IntoIter`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl FusedIterator`
+##### `impl FusedIterator for IntoIter`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IntoIter`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -373,7 +373,7 @@ An owning iterator over a serde_json::Map's entries.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator`
+##### `impl Iterator for IntoIter`
 
 - `type Item = (String, Value)`
 
@@ -393,25 +393,25 @@ An iterator over a serde_json::Map's keys.
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Keys<'a>`
 
-- `fn clone(self: &Self) -> Keys<'a>` — [`Keys`](../../map/index.md)
+- `fn clone(self: &Self) -> Keys<'a>` — [`Keys`](#keys)
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Keys<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a>`
+##### `impl<'a> DoubleEndedIterator for Keys<'a>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a>`
+##### `impl<'a> ExactSizeIterator for Keys<'a>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl FusedIterator<'a>`
+##### `impl<'a> FusedIterator for Keys<'a>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Keys<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -419,7 +419,7 @@ An iterator over a serde_json::Map's keys.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for Keys<'a>`
 
 - `type Item = &'a String`
 
@@ -439,25 +439,25 @@ An iterator over a serde_json::Map's values.
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Values<'a>`
 
-- `fn clone(self: &Self) -> Values<'a>` — [`Values`](../../map/index.md)
+- `fn clone(self: &Self) -> Values<'a>` — [`Values`](#values)
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Values<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a>`
+##### `impl<'a> DoubleEndedIterator for Values<'a>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a>`
+##### `impl<'a> ExactSizeIterator for Values<'a>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl FusedIterator<'a>`
+##### `impl<'a> FusedIterator for Values<'a>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Values<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -465,7 +465,7 @@ An iterator over a serde_json::Map's values.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for Values<'a>`
 
 - `type Item = &'a Value`
 
@@ -485,21 +485,21 @@ A mutable iterator over a serde_json::Map's values.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for ValuesMut<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a>`
+##### `impl<'a> DoubleEndedIterator for ValuesMut<'a>`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator<'a>`
+##### `impl<'a> ExactSizeIterator for ValuesMut<'a>`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl FusedIterator<'a>`
+##### `impl<'a> FusedIterator for ValuesMut<'a>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ValuesMut<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -507,7 +507,7 @@ A mutable iterator over a serde_json::Map's values.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for ValuesMut<'a>`
 
 - `type Item = &'a mut Value`
 
@@ -527,21 +527,21 @@ An owning iterator over a serde_json::Map's values.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for IntoValues`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator`
+##### `impl DoubleEndedIterator for IntoValues`
 
 - `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
 
-##### `impl ExactSizeIterator`
+##### `impl ExactSizeIterator for IntoValues`
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl FusedIterator`
+##### `impl FusedIterator for IntoValues`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IntoValues`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -549,7 +549,7 @@ An owning iterator over a serde_json::Map's values.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator`
+##### `impl Iterator for IntoValues`
 
 - `type Item = Value`
 
@@ -586,9 +586,9 @@ This enum is constructed from the [`entry`](#entry) method on [`Map`](../index.m
 
 - `fn key(self: &Self) -> &String`
 
-- `fn or_insert(self: Self, default: Value) -> &'a mut Value` — [`Value`](../../value/index.md)
+- `fn or_insert(self: Self, default: Value) -> &'a mut Value` — [`Value`](../value/index.md)
 
-- `fn or_insert_with<F>(self: Self, default: F) -> &'a mut Value` — [`Value`](../../value/index.md)
+- `fn or_insert_with<F>(self: Self, default: F) -> &'a mut Value` — [`Value`](../value/index.md)
 
 - `fn and_modify<F>(self: Self, f: F) -> Self`
 

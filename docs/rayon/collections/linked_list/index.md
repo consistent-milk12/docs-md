@@ -22,17 +22,17 @@ Parallel iterator over a linked list
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for IntoIter<T>`
 
-- `fn clone(self: &Self) -> IntoIter<T>` — [`IntoIter`](../../../collections/linked_list/index.md)
+- `fn clone(self: &Self) -> IntoIter<T>` — [`IntoIter`](#intoiter)
 
-##### `impl Debug<T: $crate::fmt::Debug>`
+##### `impl<T: $crate::fmt::Debug> Debug for IntoIter<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for IntoIter<T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for IntoIter<T>`
 
 - `type Iter = T`
 
@@ -40,15 +40,15 @@ Parallel iterator over a linked list
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<T: Send>`
+##### `impl<T: Send> ParallelIterator for IntoIter<T>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for IntoIter<T>`
 
 - `const ALIGN: usize`
 
@@ -74,17 +74,17 @@ Parallel iterator over an immutable reference to a linked list
 
 #### Trait Implementations
 
-##### `impl Clone<T>`
+##### `impl<T> Clone for Iter<'_, T>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Debug<'a, T: $crate::fmt::Debug>`
+##### `impl<'a, T: $crate::fmt::Debug> Debug for Iter<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Iter<'a, T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Iter<'a, T>`
 
 - `type Iter = T`
 
@@ -92,15 +92,15 @@ Parallel iterator over an immutable reference to a linked list
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'a, T: Sync>`
+##### `impl<'a, T: Sync> ParallelIterator for Iter<'a, T>`
 
 - `type Item = &'a T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Iter<'a, T>`
 
 - `const ALIGN: usize`
 
@@ -126,13 +126,13 @@ Parallel iterator over a mutable reference to a linked list
 
 #### Trait Implementations
 
-##### `impl Debug<'a, T: $crate::fmt::Debug>`
+##### `impl<'a, T: $crate::fmt::Debug> Debug for IterMut<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for IterMut<'a, T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for IterMut<'a, T>`
 
 - `type Iter = T`
 
@@ -140,15 +140,15 @@ Parallel iterator over a mutable reference to a linked list
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'a, T: Send>`
+##### `impl<'a, T: Send> ParallelIterator for IterMut<'a, T>`
 
 - `type Item = &'a mut T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for IterMut<'a, T>`
 
 - `const ALIGN: usize`
 

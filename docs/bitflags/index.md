@@ -269,7 +269,7 @@ A defined flags value that may be named or unnamed.
 
 #### Trait Implementations
 
-##### `impl Debug<B: $crate::fmt::Debug>`
+##### `impl<B: $crate::fmt::Debug> Debug for Flag<B>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

@@ -45,9 +45,9 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 #### Implementations
 
-- `const fn new() -> OnceCell<T>` — [`OnceCell`](../../sync/index.md)
+- `const fn new() -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
-- `const fn with_value(value: T) -> OnceCell<T>` — [`OnceCell`](../../sync/index.md)
+- `const fn with_value(value: T) -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
 - `fn get(self: &Self) -> Option<&T>`
 
@@ -71,25 +71,25 @@ assert_eq!(value.unwrap().as_str(), "Hello, World!");
 
 #### Trait Implementations
 
-##### `impl Clone<T: Clone>`
+##### `impl<T: Clone> Clone for OnceCell<T>`
 
-- `fn clone(self: &Self) -> OnceCell<T>` — [`OnceCell`](../../sync/index.md)
+- `fn clone(self: &Self) -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
 - `fn clone_from(self: &mut Self, source: &Self)`
 
-##### `impl Debug<T: fmt::Debug>`
+##### `impl<T: fmt::Debug> Debug for OnceCell<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<T>`
+##### `impl<T> Default for OnceCell<T>`
 
-- `fn default() -> OnceCell<T>` — [`OnceCell`](../../sync/index.md)
+- `fn default() -> OnceCell<T>` — [`OnceCell`](#oncecell)
 
-##### `impl Eq<T: Eq>`
+##### `impl<T: Eq> Eq for OnceCell<T>`
 
-##### `impl PartialEq<T: PartialEq>`
+##### `impl<T: PartialEq> PartialEq for OnceCell<T>`
 
-- `fn eq(self: &Self, other: &OnceCell<T>) -> bool` — [`OnceCell`](../../sync/index.md)
+- `fn eq(self: &Self, other: &OnceCell<T>) -> bool` — [`OnceCell`](#oncecell)
 
 ### `Lazy<T, F>`
 
@@ -136,35 +136,39 @@ fn main() {
 
 #### Implementations
 
-- `const fn new(f: F) -> Lazy<T, F>` — [`Lazy`](../../sync/index.md)
+- `fn force(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
 
-- `fn into_value(this: Lazy<T, F>) -> Result<T, F>` — [`Lazy`](../../sync/index.md)
+- `fn force_mut(this: &mut Lazy<T, F>) -> &mut T` — [`Lazy`](#lazy)
+
+- `fn get(this: &Lazy<T, F>) -> Option<&T>` — [`Lazy`](#lazy)
+
+- `fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 
-##### `impl Debug<T: fmt::Debug, F>`
+##### `impl<T: fmt::Debug, F> Debug for Lazy<T, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<T: Default>`
+##### `impl<T: Default> Default for Lazy<T>`
 
-- `fn default() -> Lazy<T>` — [`Lazy`](../../sync/index.md)
+- `fn default() -> Lazy<T>` — [`Lazy`](#lazy)
 
-##### `impl Deref<T, F: FnOnce() -> T>`
+##### `impl<T, F: FnOnce() -> T> Deref for Lazy<T, F>`
 
 - `type Target = T`
 
 - `fn deref(self: &Self) -> &T`
 
-##### `impl DerefMut<T, F: FnOnce() -> T>`
+##### `impl<T, F: FnOnce() -> T> DerefMut for Lazy<T, F>`
 
 - `fn deref_mut(self: &mut Self) -> &mut T`
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Lazy<T, F>`
 
 - `type Target = T`
 
-##### `impl RefUnwindSafe<T, F: RefUnwindSafe>`
+##### `impl<T, F: RefUnwindSafe> RefUnwindSafe for Lazy<T, F>`
 
-##### `impl Sync<T, F: Send>`
+##### `impl<T, F: Send> Sync for Lazy<T, F>`
 

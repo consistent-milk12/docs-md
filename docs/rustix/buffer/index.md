@@ -24,15 +24,15 @@ have some non-empty spare capacity.
 
 #### Trait Implementations
 
-##### `impl Buffer<'a, T>`
+##### `impl<'a, T> Buffer for SpareCapacity<'a, T>`
 
-##### `impl Sealed<'a, T>`
+##### `impl<'a, T> Sealed for SpareCapacity<'a, T>`
 
 - `type Output = usize`
 
 - `fn parts_mut(self: &mut Self) -> (*mut T, usize)`
 
-- `unsafe fn assume_init(self: Self, len: usize) -> <Self as >::Output` — [`Sealed`](../../buffer/private/index.md)
+- `unsafe fn assume_init(self: Self, len: usize) -> <Self as >::Output` — [`Sealed`](private/index.md)
 
 ## Traits
 

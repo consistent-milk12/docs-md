@@ -106,7 +106,6 @@ One example is `OsStr`.
    - SocketAddrV4
    - SocketAddrV6
 
-[Implementing `Deserialize`]: https://serde.rs/impl-deserialize.html
 
 
 
@@ -115,8 +114,8 @@ One example is `OsStr`.
 
 
 
-[derive section of the manual]: https://serde.rs/derive.html
-[data formats]: https://serde.rs/#data-formats
+
+
 
 ## Modules
 
@@ -236,71 +235,71 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for IgnoredAny`
 
-- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](../../de/ignored_any/index.md)
+- `fn clone(self: &Self) -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
 
-##### `impl Copy`
+##### `impl Copy for IgnoredAny`
 
-##### `impl Debug`
+##### `impl Debug for IgnoredAny`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for IgnoredAny`
 
-- `fn default() -> IgnoredAny` — [`IgnoredAny`](../../de/ignored_any/index.md)
+- `fn default() -> IgnoredAny` — [`IgnoredAny`](ignored_any/index.md)
 
-##### `impl Deserialize<'de>`
+##### `impl<'de> Deserialize for IgnoredAny`
 
-- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](../../de/ignored_any/index.md), [`Deserializer`](../../de/index.md)
+- `fn deserialize<D>(deserializer: D) -> Result<IgnoredAny, <D as >::Error>` — [`IgnoredAny`](ignored_any/index.md), [`Deserializer`](#deserializer)
 
-##### `impl DeserializeOwned<T>`
+##### `impl<T> DeserializeOwned for IgnoredAny`
 
-##### `impl Expected<'de, T>`
+##### `impl<'de, T> Expected for IgnoredAny`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl PartialEq`
+##### `impl PartialEq for IgnoredAny`
 
-- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](../../de/ignored_any/index.md)
+- `fn eq(self: &Self, other: &IgnoredAny) -> bool` — [`IgnoredAny`](ignored_any/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for IgnoredAny`
 
-##### `impl Visitor<'de>`
+##### `impl<'de> Visitor for IgnoredAny`
 
 - `type Value = IgnoredAny`
 
 - `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-- `fn visit_bool<E>(self: Self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_bool<E>(self: Self, x: bool) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_i64<E>(self: Self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_i64<E>(self: Self, x: i64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_i128<E>(self: Self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_i128<E>(self: Self, x: i128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_u64<E>(self: Self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_u64<E>(self: Self, x: u64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_u128<E>(self: Self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_u128<E>(self: Self, x: u128) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_f64<E>(self: Self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_f64<E>(self: Self, x: f64) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_str<E>(self: Self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_str<E>(self: Self, s: &str) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_none<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../../de/index.md)
+- `fn visit_some<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](../../de/index.md)
+- `fn visit_newtype_struct<D>(self: Self, deserializer: D) -> Result<<Self as >::Value, <D as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_unit<E>(self: Self) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../de/index.md)
+- `fn visit_seq<A>(self: Self, seq: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../de/index.md)
+- `fn visit_map<A>(self: Self, map: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
-- `fn visit_bytes<E>(self: Self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](../../de/index.md)
+- `fn visit_bytes<E>(self: Self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
-- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](../../de/index.md)
+- `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
 
 ## Enums
 
@@ -441,27 +440,27 @@ where
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Unexpected<'a>`
 
-- `fn clone(self: &Self) -> Unexpected<'a>` — [`Unexpected`](../../de/index.md)
+- `fn clone(self: &Self) -> Unexpected<'a>` — [`Unexpected`](#unexpected)
 
-##### `impl Copy<'a>`
+##### `impl<'a> Copy for Unexpected<'a>`
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Unexpected<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display<'a>`
+##### `impl<'a> Display for Unexpected<'a>`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl PartialEq<'a>`
+##### `impl<'a> PartialEq for Unexpected<'a>`
 
-- `fn eq(self: &Self, other: &Unexpected<'a>) -> bool` — [`Unexpected`](../../de/index.md)
+- `fn eq(self: &Self, other: &Unexpected<'a>) -> bool` — [`Unexpected`](#unexpected)
 
-##### `impl StructuralPartialEq<'a>`
+##### `impl<'a> StructuralPartialEq for Unexpected<'a>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Unexpected<'a>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -492,7 +491,6 @@ and inherit the default behavior for the other methods.
 The [example data format] presented on the website shows an error
 type appropriate for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -619,8 +617,6 @@ they expose. For example the `linked-hash-map` crate provides a
 `LinkedHashMap<K, V>` type that is deserializable by Serde because the crate
 provides an implementation of `Deserialize` for it.
 
-[derive](#derive): https://serde.rs/derive.html
-[impl-deserialize]: https://serde.rs/impl-deserialize.html
 
 # Lifetime
 
@@ -628,7 +624,6 @@ The `'de` lifetime of this trait is the lifetime of data that may be
 borrowed by `Self` when deserialized. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
 
 #### Required Methods
 
@@ -672,7 +667,6 @@ The relationship between `Deserialize` and `DeserializeOwned` in trait
 bounds is explained in more detail on the page [Understanding deserializer
 lifetimes].
 
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
 
 ### `DeserializeSeed<'de>`
 
@@ -728,8 +722,6 @@ case of stateless deserialization.
 The `'de` lifetime of this trait is the lifetime of data that may be
 borrowed by `Self::Value` when deserialized. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
-
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
 
 # Example
 
@@ -949,22 +941,17 @@ Deserializer what type is in the input. Know that relying on
 deserialize from self-describing formats only, ruling out Postcard and many
 others.
 
-[Serde data model]: https://serde.rs/data-model.html
-
 # Lifetime
 
 The `'de` lifetime of this trait is the lifetime of data that may be
 borrowed from the input when deserializing. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
-
 # Example implementation
 
 The [example data format] presented on the website contains example code for
 a basic JSON `Deserializer`.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -1111,8 +1098,6 @@ This trait represents a visitor that walks through a deserializer.
 The `'de` lifetime of this trait is the requirement for lifetime of data
 that may be borrowed by `Self::Value`. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
-
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
 
 # Example
 
@@ -1279,14 +1264,11 @@ The `'de` lifetime of this trait is the lifetime of data that may be
 borrowed by deserialized sequence elements. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
-
 # Example implementation
 
 The [example data format] presented on the website demonstrates an
 implementation of `SeqAccess` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -1320,14 +1302,11 @@ The `'de` lifetime of this trait is the lifetime of data that may be
 borrowed by deserialized map entries. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
-
 # Example implementation
 
 The [example data format] presented on the website demonstrates an
 implementation of `MapAccess` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -1378,14 +1357,11 @@ The `'de` lifetime of this trait is the lifetime of data that may be
 borrowed by the deserialized enum variant. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
-
 # Example implementation
 
 The [example data format] presented on the website demonstrates an
 implementation of `EnumAccess` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -1417,14 +1393,11 @@ The `'de` lifetime of this trait is the lifetime of data that may be
 borrowed by the deserialized enum variant. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
 
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
-
 # Example implementation
 
 The [example data format] presented on the website demonstrates an
 implementation of `VariantAccess` for a basic JSON data format.
 
-[example data format]: https://serde.rs/data-format.html
 
 #### Required Methods
 
@@ -1464,8 +1437,6 @@ be deserialized.
 The `'de` lifetime of this trait is the lifetime of data that may be
 borrowed from the resulting `Deserializer`. See the page [Understanding
 deserializer lifetimes] for a more detailed explanation of these lifetimes.
-
-[Understanding deserializer lifetimes]: https://serde.rs/lifetimes.html
 
 # Example
 

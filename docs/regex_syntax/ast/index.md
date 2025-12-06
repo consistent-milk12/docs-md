@@ -48,39 +48,39 @@ translating an AST to the high-level intermediate representation (`HIR`).
 
 #### Implementations
 
-- `fn kind(self: &Self) -> &ErrorKind` — [`ErrorKind`](../../ast/index.md)
+- `fn kind(self: &Self) -> &ErrorKind` — [`ErrorKind`](#errorkind)
 
 - `fn pattern(self: &Self) -> &str`
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../../ast/index.md)
+- `fn span(self: &Self) -> &Span` — [`Span`](#span)
 
-- `fn auxiliary_span(self: &Self) -> Option<&Span>` — [`Span`](../../ast/index.md)
+- `fn auxiliary_span(self: &Self) -> Option<&Span>` — [`Span`](#span)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](../../ast/index.md)
+- `fn clone(self: &Self) -> Error` — [`Error`](#error)
 
-##### `impl Debug`
+##### `impl Debug for Error`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Error`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Error`
 
-##### `impl Error`
+##### `impl Error for Error`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Error`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -110,13 +110,13 @@ original regular expression that was parsed.
 
 #### Implementations
 
-- `fn new(start: Position, end: Position) -> Span` — [`Position`](../../ast/index.md), [`Span`](../../ast/index.md)
+- `fn new(start: Position, end: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
-- `fn splat(pos: Position) -> Span` — [`Position`](../../ast/index.md), [`Span`](../../ast/index.md)
+- `fn splat(pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
-- `fn with_start(self: Self, pos: Position) -> Span` — [`Position`](../../ast/index.md), [`Span`](../../ast/index.md)
+- `fn with_start(self: Self, pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
-- `fn with_end(self: Self, pos: Position) -> Span` — [`Position`](../../ast/index.md), [`Span`](../../ast/index.md)
+- `fn with_end(self: Self, pos: Position) -> Span` — [`Position`](#position), [`Span`](#span)
 
 - `fn is_one_line(self: &Self) -> bool`
 
@@ -124,31 +124,31 @@ original regular expression that was parsed.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](../../ast/index.md)
+- `fn clone(self: &Self) -> Span` — [`Span`](#span)
 
-##### `impl Copy`
+##### `impl Copy for Span`
 
-##### `impl Debug`
+##### `impl Debug for Span`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Span`
 
-##### `impl Ord`
+##### `impl Ord for Span`
 
-- `fn cmp(self: &Self, other: &Span) -> Ordering` — [`Span`](../../ast/index.md)
+- `fn cmp(self: &Self, other: &Span) -> Ordering` — [`Span`](#span)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](#span)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Span`
 
-- `fn partial_cmp(self: &Self, other: &Span) -> Option<Ordering>` — [`Span`](../../ast/index.md)
+- `fn partial_cmp(self: &Self, other: &Span) -> Option<Ordering>` — [`Span`](#span)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Span`
 
 ### `Position`
 
@@ -182,35 +182,35 @@ number and column number.
 
 #### Implementations
 
-- `fn new(offset: usize, line: usize, column: usize) -> Position` — [`Position`](../../ast/index.md)
+- `fn new(offset: usize, line: usize, column: usize) -> Position` — [`Position`](#position)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Position`
 
-- `fn clone(self: &Self) -> Position` — [`Position`](../../ast/index.md)
+- `fn clone(self: &Self) -> Position` — [`Position`](#position)
 
-##### `impl Copy`
+##### `impl Copy for Position`
 
-##### `impl Debug`
+##### `impl Debug for Position`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Position`
 
-##### `impl Ord`
+##### `impl Ord for Position`
 
-- `fn cmp(self: &Self, other: &Position) -> Ordering` — [`Position`](../../ast/index.md)
+- `fn cmp(self: &Self, other: &Position) -> Ordering` — [`Position`](#position)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Position`
 
-- `fn eq(self: &Self, other: &Position) -> bool` — [`Position`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Position) -> bool` — [`Position`](#position)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Position`
 
-- `fn partial_cmp(self: &Self, other: &Position) -> Option<Ordering>` — [`Position`](../../ast/index.md)
+- `fn partial_cmp(self: &Self, other: &Position) -> Option<Ordering>` — [`Position`](#position)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Position`
 
 ### `WithComments`
 
@@ -240,21 +240,21 @@ regular expression.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for WithComments`
 
-- `fn clone(self: &Self) -> WithComments` — [`WithComments`](../../ast/index.md)
+- `fn clone(self: &Self) -> WithComments` — [`WithComments`](#withcomments)
 
-##### `impl Debug`
+##### `impl Debug for WithComments`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for WithComments`
 
-##### `impl PartialEq`
+##### `impl PartialEq for WithComments`
 
-- `fn eq(self: &Self, other: &WithComments) -> bool` — [`WithComments`](../../ast/index.md)
+- `fn eq(self: &Self, other: &WithComments) -> bool` — [`WithComments`](#withcomments)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for WithComments`
 
 ### `Comment`
 
@@ -283,21 +283,21 @@ enabled.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Comment`
 
-- `fn clone(self: &Self) -> Comment` — [`Comment`](../../ast/index.md)
+- `fn clone(self: &Self) -> Comment` — [`Comment`](#comment)
 
-##### `impl Debug`
+##### `impl Debug for Comment`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Comment`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Comment`
 
-- `fn eq(self: &Self, other: &Comment) -> bool` — [`Comment`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Comment) -> bool` — [`Comment`](#comment)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Comment`
 
 ### `Alternation`
 
@@ -322,25 +322,25 @@ An alternation of regular expressions.
 
 #### Implementations
 
-- `fn into_ast(self: Self) -> Ast` — [`Ast`](../../ast/index.md)
+- `fn into_ast(self: Self) -> Ast` — [`Ast`](#ast)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Alternation`
 
-- `fn clone(self: &Self) -> Alternation` — [`Alternation`](../../ast/index.md)
+- `fn clone(self: &Self) -> Alternation` — [`Alternation`](#alternation)
 
-##### `impl Debug`
+##### `impl Debug for Alternation`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Alternation`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Alternation`
 
-- `fn eq(self: &Self, other: &Alternation) -> bool` — [`Alternation`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Alternation) -> bool` — [`Alternation`](#alternation)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Alternation`
 
 ### `Concat`
 
@@ -365,25 +365,25 @@ A concatenation of regular expressions.
 
 #### Implementations
 
-- `fn into_ast(self: Self) -> Ast` — [`Ast`](../../ast/index.md)
+- `fn into_ast(self: Self) -> Ast` — [`Ast`](#ast)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Concat`
 
-- `fn clone(self: &Self) -> Concat` — [`Concat`](../../ast/index.md)
+- `fn clone(self: &Self) -> Concat` — [`Concat`](#concat)
 
-##### `impl Debug`
+##### `impl Debug for Concat`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Concat`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Concat`
 
-- `fn eq(self: &Self, other: &Concat) -> bool` — [`Concat`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Concat) -> bool` — [`Concat`](#concat)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Concat`
 
 ### `Literal`
 
@@ -421,21 +421,21 @@ e.g., `\x61`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Literal`
 
-- `fn clone(self: &Self) -> Literal` — [`Literal`](../../ast/index.md)
+- `fn clone(self: &Self) -> Literal` — [`Literal`](#literal)
 
-##### `impl Debug`
+##### `impl Debug for Literal`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Literal`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Literal`
 
-- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](#literal)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Literal`
 
 ### `ClassPerl`
 
@@ -466,21 +466,21 @@ A Perl character class.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassPerl`
 
-- `fn clone(self: &Self) -> ClassPerl` — [`ClassPerl`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassPerl` — [`ClassPerl`](#classperl)
 
-##### `impl Debug`
+##### `impl Debug for ClassPerl`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassPerl`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassPerl`
 
-- `fn eq(self: &Self, other: &ClassPerl) -> bool` — [`ClassPerl`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassPerl) -> bool` — [`ClassPerl`](#classperl)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassPerl`
 
 ### `ClassAscii`
 
@@ -511,21 +511,21 @@ An ASCII character class.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassAscii`
 
-- `fn clone(self: &Self) -> ClassAscii` — [`ClassAscii`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassAscii` — [`ClassAscii`](#classascii)
 
-##### `impl Debug`
+##### `impl Debug for ClassAscii`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassAscii`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassAscii`
 
-- `fn eq(self: &Self, other: &ClassAscii) -> bool` — [`ClassAscii`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassAscii) -> bool` — [`ClassAscii`](#classascii)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassAscii`
 
 ### `ClassUnicode`
 
@@ -567,21 +567,21 @@ A Unicode character class.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassUnicode`
 
-- `fn clone(self: &Self) -> ClassUnicode` — [`ClassUnicode`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
-##### `impl Debug`
+##### `impl Debug for ClassUnicode`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassUnicode`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassUnicode`
 
-- `fn eq(self: &Self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](#classunicode)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassUnicode`
 
 ### `ClassBracketed`
 
@@ -613,21 +613,21 @@ A bracketed character class, e.g., `[a-z0-9]`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassBracketed`
 
-- `fn clone(self: &Self) -> ClassBracketed` — [`ClassBracketed`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassBracketed` — [`ClassBracketed`](#classbracketed)
 
-##### `impl Debug`
+##### `impl Debug for ClassBracketed`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassBracketed`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassBracketed`
 
-- `fn eq(self: &Self, other: &ClassBracketed) -> bool` — [`ClassBracketed`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassBracketed) -> bool` — [`ClassBracketed`](#classbracketed)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassBracketed`
 
 ### `ClassSetRange`
 
@@ -661,21 +661,21 @@ A single character class range in a set.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassSetRange`
 
-- `fn clone(self: &Self) -> ClassSetRange` — [`ClassSetRange`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassSetRange` — [`ClassSetRange`](#classsetrange)
 
-##### `impl Debug`
+##### `impl Debug for ClassSetRange`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassSetRange`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassSetRange`
 
-- `fn eq(self: &Self, other: &ClassSetRange) -> bool` — [`ClassSetRange`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassSetRange) -> bool` — [`ClassSetRange`](#classsetrange)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassSetRange`
 
 ### `ClassSetUnion`
 
@@ -701,27 +701,27 @@ A union of items inside a character class set.
 
 #### Implementations
 
-- `fn push(self: &mut Self, item: ClassSetItem)` — [`ClassSetItem`](../../ast/index.md)
+- `fn push(self: &mut Self, item: ClassSetItem)` — [`ClassSetItem`](#classsetitem)
 
-- `fn into_item(self: Self) -> ClassSetItem` — [`ClassSetItem`](../../ast/index.md)
+- `fn into_item(self: Self) -> ClassSetItem` — [`ClassSetItem`](#classsetitem)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassSetUnion`
 
-- `fn clone(self: &Self) -> ClassSetUnion` — [`ClassSetUnion`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassSetUnion` — [`ClassSetUnion`](#classsetunion)
 
-##### `impl Debug`
+##### `impl Debug for ClassSetUnion`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassSetUnion`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassSetUnion`
 
-- `fn eq(self: &Self, other: &ClassSetUnion) -> bool` — [`ClassSetUnion`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassSetUnion) -> bool` — [`ClassSetUnion`](#classsetunion)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassSetUnion`
 
 ### `ClassSetBinaryOp`
 
@@ -756,21 +756,21 @@ A Unicode character class set operation.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassSetBinaryOp`
 
-- `fn clone(self: &Self) -> ClassSetBinaryOp` — [`ClassSetBinaryOp`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassSetBinaryOp` — [`ClassSetBinaryOp`](#classsetbinaryop)
 
-##### `impl Debug`
+##### `impl Debug for ClassSetBinaryOp`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassSetBinaryOp`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassSetBinaryOp`
 
-- `fn eq(self: &Self, other: &ClassSetBinaryOp) -> bool` — [`ClassSetBinaryOp`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassSetBinaryOp) -> bool` — [`ClassSetBinaryOp`](#classsetbinaryop)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassSetBinaryOp`
 
 ### `Assertion`
 
@@ -795,21 +795,21 @@ A single zero-width assertion.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Assertion`
 
-- `fn clone(self: &Self) -> Assertion` — [`Assertion`](../../ast/index.md)
+- `fn clone(self: &Self) -> Assertion` — [`Assertion`](#assertion)
 
-##### `impl Debug`
+##### `impl Debug for Assertion`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Assertion`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Assertion`
 
-- `fn eq(self: &Self, other: &Assertion) -> bool` — [`Assertion`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Assertion) -> bool` — [`Assertion`](#assertion)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Assertion`
 
 ### `Repetition`
 
@@ -844,21 +844,21 @@ A repetition operation applied to a regular expression.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Repetition`
 
-- `fn clone(self: &Self) -> Repetition` — [`Repetition`](../../ast/index.md)
+- `fn clone(self: &Self) -> Repetition` — [`Repetition`](#repetition)
 
-##### `impl Debug`
+##### `impl Debug for Repetition`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Repetition`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Repetition`
 
-- `fn eq(self: &Self, other: &Repetition) -> bool` — [`Repetition`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Repetition) -> bool` — [`Repetition`](#repetition)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Repetition`
 
 ### `RepetitionOp`
 
@@ -884,21 +884,21 @@ The repetition operator itself.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for RepetitionOp`
 
-- `fn clone(self: &Self) -> RepetitionOp` — [`RepetitionOp`](../../ast/index.md)
+- `fn clone(self: &Self) -> RepetitionOp` — [`RepetitionOp`](#repetitionop)
 
-##### `impl Debug`
+##### `impl Debug for RepetitionOp`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for RepetitionOp`
 
-##### `impl PartialEq`
+##### `impl PartialEq for RepetitionOp`
 
-- `fn eq(self: &Self, other: &RepetitionOp) -> bool` — [`RepetitionOp`](../../ast/index.md)
+- `fn eq(self: &Self, other: &RepetitionOp) -> bool` — [`RepetitionOp`](#repetitionop)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for RepetitionOp`
 
 ### `Group`
 
@@ -933,7 +933,7 @@ contains a sub-expression, e.g., `(a)`, `(?P<name>a)`, `(?:a)` and
 
 #### Implementations
 
-- `fn flags(self: &Self) -> Option<&Flags>` — [`Flags`](../../ast/index.md)
+- `fn flags(self: &Self) -> Option<&Flags>` — [`Flags`](#flags)
 
 - `fn is_capturing(self: &Self) -> bool`
 
@@ -941,21 +941,21 @@ contains a sub-expression, e.g., `(a)`, `(?P<name>a)`, `(?:a)` and
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Group`
 
-- `fn clone(self: &Self) -> Group` — [`Group`](../../ast/index.md)
+- `fn clone(self: &Self) -> Group` — [`Group`](#group)
 
-##### `impl Debug`
+##### `impl Debug for Group`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Group`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Group`
 
-- `fn eq(self: &Self, other: &Group) -> bool` — [`Group`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Group) -> bool` — [`Group`](#group)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Group`
 
 ### `CaptureName`
 
@@ -988,21 +988,21 @@ This corresponds to the name itself between the angle brackets in, e.g.,
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for CaptureName`
 
-- `fn clone(self: &Self) -> CaptureName` — [`CaptureName`](../../ast/index.md)
+- `fn clone(self: &Self) -> CaptureName` — [`CaptureName`](#capturename)
 
-##### `impl Debug`
+##### `impl Debug for CaptureName`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for CaptureName`
 
-##### `impl PartialEq`
+##### `impl PartialEq for CaptureName`
 
-- `fn eq(self: &Self, other: &CaptureName) -> bool` — [`CaptureName`](../../ast/index.md)
+- `fn eq(self: &Self, other: &CaptureName) -> bool` — [`CaptureName`](#capturename)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for CaptureName`
 
 ### `SetFlags`
 
@@ -1027,21 +1027,21 @@ A group of flags that is not applied to a particular regular expression.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SetFlags`
 
-- `fn clone(self: &Self) -> SetFlags` — [`SetFlags`](../../ast/index.md)
+- `fn clone(self: &Self) -> SetFlags` — [`SetFlags`](#setflags)
 
-##### `impl Debug`
+##### `impl Debug for SetFlags`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for SetFlags`
 
-##### `impl PartialEq`
+##### `impl PartialEq for SetFlags`
 
-- `fn eq(self: &Self, other: &SetFlags) -> bool` — [`SetFlags`](../../ast/index.md)
+- `fn eq(self: &Self, other: &SetFlags) -> bool` — [`SetFlags`](#setflags)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for SetFlags`
 
 ### `Flags`
 
@@ -1069,27 +1069,27 @@ This corresponds only to the sequence of flags themselves, e.g., `is-u`.
 
 #### Implementations
 
-- `fn add_item(self: &mut Self, item: FlagsItem) -> Option<usize>` — [`FlagsItem`](../../ast/index.md)
+- `fn add_item(self: &mut Self, item: FlagsItem) -> Option<usize>` — [`FlagsItem`](#flagsitem)
 
-- `fn flag_state(self: &Self, flag: Flag) -> Option<bool>` — [`Flag`](../../ast/index.md)
+- `fn flag_state(self: &Self, flag: Flag) -> Option<bool>` — [`Flag`](#flag)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Flags`
 
-- `fn clone(self: &Self) -> Flags` — [`Flags`](../../ast/index.md)
+- `fn clone(self: &Self) -> Flags` — [`Flags`](#flags)
 
-##### `impl Debug`
+##### `impl Debug for Flags`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Flags`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Flags`
 
-- `fn eq(self: &Self, other: &Flags) -> bool` — [`Flags`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Flags) -> bool` — [`Flags`](#flags)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Flags`
 
 ### `FlagsItem`
 
@@ -1114,21 +1114,21 @@ A single item in a group of flags.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FlagsItem`
 
-- `fn clone(self: &Self) -> FlagsItem` — [`FlagsItem`](../../ast/index.md)
+- `fn clone(self: &Self) -> FlagsItem` — [`FlagsItem`](#flagsitem)
 
-##### `impl Debug`
+##### `impl Debug for FlagsItem`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for FlagsItem`
 
-##### `impl PartialEq`
+##### `impl PartialEq for FlagsItem`
 
-- `fn eq(self: &Self, other: &FlagsItem) -> bool` — [`FlagsItem`](../../ast/index.md)
+- `fn eq(self: &Self, other: &FlagsItem) -> bool` — [`FlagsItem`](#flagsitem)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for FlagsItem`
 
 ## Enums
 
@@ -1358,27 +1358,27 @@ new variant is not considered a breaking change.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
-##### `impl Debug`
+##### `impl Debug for ErrorKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for ErrorKind`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ErrorKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ErrorKind`
 
-- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ErrorKind`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for ErrorKind`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1463,31 +1463,31 @@ heap space proportional to the size of the `Ast`.
 
 #### Implementations
 
-- `fn empty(span: Span) -> Ast` — [`Span`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn empty(span: Span) -> Ast` — [`Span`](#span), [`Ast`](#ast)
 
-- `fn flags(e: SetFlags) -> Ast` — [`SetFlags`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn flags(e: SetFlags) -> Ast` — [`SetFlags`](#setflags), [`Ast`](#ast)
 
-- `fn literal(e: Literal) -> Ast` — [`Literal`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn literal(e: Literal) -> Ast` — [`Literal`](#literal), [`Ast`](#ast)
 
-- `fn dot(span: Span) -> Ast` — [`Span`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn dot(span: Span) -> Ast` — [`Span`](#span), [`Ast`](#ast)
 
-- `fn assertion(e: Assertion) -> Ast` — [`Assertion`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn assertion(e: Assertion) -> Ast` — [`Assertion`](#assertion), [`Ast`](#ast)
 
-- `fn class_unicode(e: ClassUnicode) -> Ast` — [`ClassUnicode`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn class_unicode(e: ClassUnicode) -> Ast` — [`ClassUnicode`](#classunicode), [`Ast`](#ast)
 
-- `fn class_perl(e: ClassPerl) -> Ast` — [`ClassPerl`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn class_perl(e: ClassPerl) -> Ast` — [`ClassPerl`](#classperl), [`Ast`](#ast)
 
-- `fn class_bracketed(e: ClassBracketed) -> Ast` — [`ClassBracketed`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn class_bracketed(e: ClassBracketed) -> Ast` — [`ClassBracketed`](#classbracketed), [`Ast`](#ast)
 
-- `fn repetition(e: Repetition) -> Ast` — [`Repetition`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn repetition(e: Repetition) -> Ast` — [`Repetition`](#repetition), [`Ast`](#ast)
 
-- `fn group(e: Group) -> Ast` — [`Group`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn group(e: Group) -> Ast` — [`Group`](#group), [`Ast`](#ast)
 
-- `fn alternation(e: Alternation) -> Ast` — [`Alternation`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn alternation(e: Alternation) -> Ast` — [`Alternation`](#alternation), [`Ast`](#ast)
 
-- `fn concat(e: Concat) -> Ast` — [`Concat`](../../ast/index.md), [`Ast`](../../ast/index.md)
+- `fn concat(e: Concat) -> Ast` — [`Concat`](#concat), [`Ast`](#ast)
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../../ast/index.md)
+- `fn span(self: &Self) -> &Span` — [`Span`](#span)
 
 - `fn is_empty(self: &Self) -> bool`
 
@@ -1495,31 +1495,31 @@ heap space proportional to the size of the `Ast`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Ast`
 
-- `fn clone(self: &Self) -> Ast` — [`Ast`](../../ast/index.md)
+- `fn clone(self: &Self) -> Ast` — [`Ast`](#ast)
 
-##### `impl Debug`
+##### `impl Debug for Ast`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Ast`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Drop`
+##### `impl Drop for Ast`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Eq`
+##### `impl Eq for Ast`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Ast`
 
-- `fn eq(self: &Self, other: &Ast) -> bool` — [`Ast`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Ast) -> bool` — [`Ast`](#ast)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Ast`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Ast`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1578,21 +1578,21 @@ The kind of a single literal expression.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LiteralKind`
 
-- `fn clone(self: &Self) -> LiteralKind` — [`LiteralKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> LiteralKind` — [`LiteralKind`](#literalkind)
 
-##### `impl Debug`
+##### `impl Debug for LiteralKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for LiteralKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for LiteralKind`
 
-- `fn eq(self: &Self, other: &LiteralKind) -> bool` — [`LiteralKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &LiteralKind) -> bool` — [`LiteralKind`](#literalkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for LiteralKind`
 
 ### `SpecialLiteralKind`
 
@@ -1646,21 +1646,21 @@ parser, e.g., `\f` or `\n`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SpecialLiteralKind`
 
-- `fn clone(self: &Self) -> SpecialLiteralKind` — [`SpecialLiteralKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> SpecialLiteralKind` — [`SpecialLiteralKind`](#specialliteralkind)
 
-##### `impl Debug`
+##### `impl Debug for SpecialLiteralKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for SpecialLiteralKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for SpecialLiteralKind`
 
-- `fn eq(self: &Self, other: &SpecialLiteralKind) -> bool` — [`SpecialLiteralKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &SpecialLiteralKind) -> bool` — [`SpecialLiteralKind`](#specialliteralkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for SpecialLiteralKind`
 
 ### `HexLiteralKind`
 
@@ -1701,21 +1701,21 @@ follow.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for HexLiteralKind`
 
-- `fn clone(self: &Self) -> HexLiteralKind` — [`HexLiteralKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> HexLiteralKind` — [`HexLiteralKind`](#hexliteralkind)
 
-##### `impl Debug`
+##### `impl Debug for HexLiteralKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for HexLiteralKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for HexLiteralKind`
 
-- `fn eq(self: &Self, other: &HexLiteralKind) -> bool` — [`HexLiteralKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &HexLiteralKind) -> bool` — [`HexLiteralKind`](#hexliteralkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for HexLiteralKind`
 
 ### `ClassPerlKind`
 
@@ -1745,21 +1745,21 @@ The available Perl character classes.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassPerlKind`
 
-- `fn clone(self: &Self) -> ClassPerlKind` — [`ClassPerlKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassPerlKind` — [`ClassPerlKind`](#classperlkind)
 
-##### `impl Debug`
+##### `impl Debug for ClassPerlKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassPerlKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassPerlKind`
 
-- `fn eq(self: &Self, other: &ClassPerlKind) -> bool` — [`ClassPerlKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassPerlKind) -> bool` — [`ClassPerlKind`](#classperlkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassPerlKind`
 
 ### `ClassAsciiKind`
 
@@ -1844,25 +1844,25 @@ The available ASCII character classes.
 
 #### Implementations
 
-- `fn from_name(name: &str) -> Option<ClassAsciiKind>` — [`ClassAsciiKind`](../../ast/index.md)
+- `fn from_name(name: &str) -> Option<ClassAsciiKind>` — [`ClassAsciiKind`](#classasciikind)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassAsciiKind`
 
-- `fn clone(self: &Self) -> ClassAsciiKind` — [`ClassAsciiKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassAsciiKind` — [`ClassAsciiKind`](#classasciikind)
 
-##### `impl Debug`
+##### `impl Debug for ClassAsciiKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassAsciiKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassAsciiKind`
 
-- `fn eq(self: &Self, other: &ClassAsciiKind) -> bool` — [`ClassAsciiKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassAsciiKind) -> bool` — [`ClassAsciiKind`](#classasciikind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassAsciiKind`
 
 ### `ClassUnicodeKind`
 
@@ -1897,21 +1897,21 @@ The available forms of Unicode character classes.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassUnicodeKind`
 
-- `fn clone(self: &Self) -> ClassUnicodeKind` — [`ClassUnicodeKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassUnicodeKind` — [`ClassUnicodeKind`](#classunicodekind)
 
-##### `impl Debug`
+##### `impl Debug for ClassUnicodeKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassUnicodeKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassUnicodeKind`
 
-- `fn eq(self: &Self, other: &ClassUnicodeKind) -> bool` — [`ClassUnicodeKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassUnicodeKind) -> bool` — [`ClassUnicodeKind`](#classunicodekind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassUnicodeKind`
 
 ### `ClassUnicodeOpKind`
 
@@ -1946,21 +1946,21 @@ The type of op used in a Unicode character class.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassUnicodeOpKind`
 
-- `fn clone(self: &Self) -> ClassUnicodeOpKind` — [`ClassUnicodeOpKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassUnicodeOpKind` — [`ClassUnicodeOpKind`](#classunicodeopkind)
 
-##### `impl Debug`
+##### `impl Debug for ClassUnicodeOpKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassUnicodeOpKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassUnicodeOpKind`
 
-- `fn eq(self: &Self, other: &ClassUnicodeOpKind) -> bool` — [`ClassUnicodeOpKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassUnicodeOpKind) -> bool` — [`ClassUnicodeOpKind`](#classunicodeopkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassUnicodeOpKind`
 
 ### `ClassSet`
 
@@ -1991,33 +1991,33 @@ operations.
 
 #### Implementations
 
-- `fn union(ast: ClassSetUnion) -> ClassSet` — [`ClassSetUnion`](../../ast/index.md), [`ClassSet`](../../ast/index.md)
+- `fn union(ast: ClassSetUnion) -> ClassSet` — [`ClassSetUnion`](#classsetunion), [`ClassSet`](#classset)
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../../ast/index.md)
+- `fn span(self: &Self) -> &Span` — [`Span`](#span)
 
 - `fn is_empty(self: &Self) -> bool`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassSet`
 
-- `fn clone(self: &Self) -> ClassSet` — [`ClassSet`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassSet` — [`ClassSet`](#classset)
 
-##### `impl Debug`
+##### `impl Debug for ClassSet`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Drop`
+##### `impl Drop for ClassSet`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Eq`
+##### `impl Eq for ClassSet`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassSet`
 
-- `fn eq(self: &Self, other: &ClassSet) -> bool` — [`ClassSet`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassSet) -> bool` — [`ClassSet`](#classset)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassSet`
 
 ### `ClassSetItem`
 
@@ -2078,25 +2078,25 @@ A single component of a character class set.
 
 #### Implementations
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../../ast/index.md)
+- `fn span(self: &Self) -> &Span` — [`Span`](#span)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassSetItem`
 
-- `fn clone(self: &Self) -> ClassSetItem` — [`ClassSetItem`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassSetItem` — [`ClassSetItem`](#classsetitem)
 
-##### `impl Debug`
+##### `impl Debug for ClassSetItem`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassSetItem`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassSetItem`
 
-- `fn eq(self: &Self, other: &ClassSetItem) -> bool` — [`ClassSetItem`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassSetItem) -> bool` — [`ClassSetItem`](#classsetitem)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassSetItem`
 
 ### `ClassSetBinaryOpKind`
 
@@ -2132,23 +2132,23 @@ to the union operation.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassSetBinaryOpKind`
 
-- `fn clone(self: &Self) -> ClassSetBinaryOpKind` — [`ClassSetBinaryOpKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> ClassSetBinaryOpKind` — [`ClassSetBinaryOpKind`](#classsetbinaryopkind)
 
-##### `impl Copy`
+##### `impl Copy for ClassSetBinaryOpKind`
 
-##### `impl Debug`
+##### `impl Debug for ClassSetBinaryOpKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassSetBinaryOpKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassSetBinaryOpKind`
 
-- `fn eq(self: &Self, other: &ClassSetBinaryOpKind) -> bool` — [`ClassSetBinaryOpKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &ClassSetBinaryOpKind) -> bool` — [`ClassSetBinaryOpKind`](#classsetbinaryopkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassSetBinaryOpKind`
 
 ### `AssertionKind`
 
@@ -2223,21 +2223,21 @@ An assertion kind.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AssertionKind`
 
-- `fn clone(self: &Self) -> AssertionKind` — [`AssertionKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> AssertionKind` — [`AssertionKind`](#assertionkind)
 
-##### `impl Debug`
+##### `impl Debug for AssertionKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for AssertionKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for AssertionKind`
 
-- `fn eq(self: &Self, other: &AssertionKind) -> bool` — [`AssertionKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &AssertionKind) -> bool` — [`AssertionKind`](#assertionkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for AssertionKind`
 
 ### `RepetitionKind`
 
@@ -2272,21 +2272,21 @@ The kind of a repetition operator.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for RepetitionKind`
 
-- `fn clone(self: &Self) -> RepetitionKind` — [`RepetitionKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> RepetitionKind` — [`RepetitionKind`](#repetitionkind)
 
-##### `impl Debug`
+##### `impl Debug for RepetitionKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for RepetitionKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for RepetitionKind`
 
-- `fn eq(self: &Self, other: &RepetitionKind) -> bool` — [`RepetitionKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &RepetitionKind) -> bool` — [`RepetitionKind`](#repetitionkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for RepetitionKind`
 
 ### `RepetitionRange`
 
@@ -2320,21 +2320,21 @@ A range repetition operator.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for RepetitionRange`
 
-- `fn clone(self: &Self) -> RepetitionRange` — [`RepetitionRange`](../../ast/index.md)
+- `fn clone(self: &Self) -> RepetitionRange` — [`RepetitionRange`](#repetitionrange)
 
-##### `impl Debug`
+##### `impl Debug for RepetitionRange`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for RepetitionRange`
 
-##### `impl PartialEq`
+##### `impl PartialEq for RepetitionRange`
 
-- `fn eq(self: &Self, other: &RepetitionRange) -> bool` — [`RepetitionRange`](../../ast/index.md)
+- `fn eq(self: &Self, other: &RepetitionRange) -> bool` — [`RepetitionRange`](#repetitionrange)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for RepetitionRange`
 
 ### `GroupKind`
 
@@ -2367,21 +2367,21 @@ The kind of a group.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for GroupKind`
 
-- `fn clone(self: &Self) -> GroupKind` — [`GroupKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> GroupKind` — [`GroupKind`](#groupkind)
 
-##### `impl Debug`
+##### `impl Debug for GroupKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for GroupKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for GroupKind`
 
-- `fn eq(self: &Self, other: &GroupKind) -> bool` — [`GroupKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &GroupKind) -> bool` — [`GroupKind`](#groupkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for GroupKind`
 
 ### `FlagsItemKind`
 
@@ -2411,21 +2411,21 @@ The kind of an item in a group of flags.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FlagsItemKind`
 
-- `fn clone(self: &Self) -> FlagsItemKind` — [`FlagsItemKind`](../../ast/index.md)
+- `fn clone(self: &Self) -> FlagsItemKind` — [`FlagsItemKind`](#flagsitemkind)
 
-##### `impl Debug`
+##### `impl Debug for FlagsItemKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for FlagsItemKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for FlagsItemKind`
 
-- `fn eq(self: &Self, other: &FlagsItemKind) -> bool` — [`FlagsItemKind`](../../ast/index.md)
+- `fn eq(self: &Self, other: &FlagsItemKind) -> bool` — [`FlagsItemKind`](#flagsitemkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for FlagsItemKind`
 
 ### `Flag`
 
@@ -2475,23 +2475,23 @@ A single flag.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Flag`
 
-- `fn clone(self: &Self) -> Flag` — [`Flag`](../../ast/index.md)
+- `fn clone(self: &Self) -> Flag` — [`Flag`](#flag)
 
-##### `impl Copy`
+##### `impl Copy for Flag`
 
-##### `impl Debug`
+##### `impl Debug for Flag`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Flag`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Flag`
 
-- `fn eq(self: &Self, other: &Flag) -> bool` — [`Flag`](../../ast/index.md)
+- `fn eq(self: &Self, other: &Flag) -> bool` — [`Flag`](#flag)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Flag`
 
 ## Traits
 

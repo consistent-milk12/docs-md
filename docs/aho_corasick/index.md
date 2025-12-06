@@ -25,7 +25,7 @@ This section gives a brief overview of the primary types in this crate:
 This is the type you use to execute searches.
 * [`AhoCorasickBuilder`](ahocorasick/index.md) can be used to build an Aho-Corasick automaton, and
 supports configuring a number of options.
-* [`Match`](nfa/noncontiguous/index.md) represents a single match reported by an Aho-Corasick automaton.
+* [`Match`](#match) represents a single match reported by an Aho-Corasick automaton.
 Each match has two pieces of information: the pattern that matched and the
 start and end byte offsets corresponding to the position in the haystack at
 which it matched.
@@ -257,11 +257,11 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 #### Trait Implementations
 
-##### `impl Debug<'a, R: $crate::fmt::Debug>`
+##### `impl<'a, R: $crate::fmt::Debug> Debug for StreamFindIter<'a, R>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for StreamFindIter<'a, R>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -269,11 +269,11 @@ The lifetime `'a` refers to the lifetime of the corresponding
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, R: std::io::Read>`
+##### `impl<'a, R: std::io::Read> Iterator for StreamFindIter<'a, R>`
 
 - `type Item = Result<Match, Error>`
 
-- `fn next(self: &mut Self) -> Option<Result<Match, std::io::Error>>` — [`Match`](../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Result<Match, std::io::Error>>` — [`Match`](util/search/index.md)
 
 ### `AhoCorasick`
 
@@ -488,27 +488,35 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn kind(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](../ahocorasick/index.md)
+- `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Result<Option<Match>, MatchError>` — [`Match`](util/search/index.md), [`MatchError`](util/error/index.md)
 
-- `fn start_kind(self: &Self) -> StartKind` — [`StartKind`](../util/search/index.md)
+- `fn try_find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState) -> Result<(), MatchError>` — [`OverlappingState`](automaton/index.md), [`MatchError`](util/error/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../util/search/index.md)
+- `fn try_find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> Result<FindIter<'a, 'h>, MatchError>` — [`FindIter`](ahocorasick/index.md), [`MatchError`](util/error/index.md)
 
-- `fn min_pattern_len(self: &Self) -> usize`
+- `fn try_find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> Result<FindOverlappingIter<'a, 'h>, MatchError>` — [`FindOverlappingIter`](ahocorasick/index.md), [`MatchError`](util/error/index.md)
 
-- `fn max_pattern_len(self: &Self) -> usize`
+- `fn try_replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> Result<String, MatchError>` — [`MatchError`](util/error/index.md)
 
-- `fn patterns_len(self: &Self) -> usize`
+- `fn try_replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Result<Vec<u8>, MatchError>` — [`MatchError`](util/error/index.md)
 
-- `fn memory_usage(self: &Self) -> usize`
+- `fn try_replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F) -> Result<(), MatchError>` — [`MatchError`](util/error/index.md)
+
+- `fn try_replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F) -> Result<(), MatchError>` — [`MatchError`](util/error/index.md)
+
+- `fn try_stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> Result<StreamFindIter<'a, R>, MatchError>` — [`StreamFindIter`](ahocorasick/index.md), [`MatchError`](util/error/index.md)
+
+- `fn try_stream_replace_all<R, W, B>(self: &Self, rdr: R, wtr: W, replace_with: &[B]) -> Result<(), std::io::Error>`
+
+- `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> Result<(), std::io::Error>`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AhoCorasick`
 
-- `fn clone(self: &Self) -> AhoCorasick` — [`AhoCorasick`](../ahocorasick/index.md)
+- `fn clone(self: &Self) -> AhoCorasick` — [`AhoCorasick`](ahocorasick/index.md)
 
-##### `impl Debug`
+##### `impl Debug for AhoCorasick`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -548,39 +556,39 @@ usage.
 
 #### Implementations
 
-- `fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn new() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn build<I, P>(self: &Self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](../ahocorasick/index.md), [`BuildError`](../util/error/index.md)
+- `fn build<I, P>(self: &Self, patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](ahocorasick/index.md), [`BuildError`](util/error/index.md)
 
-- `fn build_auto(self: &Self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](../nfa/noncontiguous/index.md), [`AcAutomaton`](../ahocorasick/index.md), [`AhoCorasickKind`](../ahocorasick/index.md)
+- `fn build_auto(self: &Self, nfa: noncontiguous::NFA) -> (Arc<dyn AcAutomaton>, AhoCorasickKind)` — [`NFA`](nfa/noncontiguous/index.md), [`AcAutomaton`](ahocorasick/index.md), [`AhoCorasickKind`](ahocorasick/index.md)
 
-- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](../util/search/index.md), [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn match_kind(self: &mut Self, kind: MatchKind) -> &mut AhoCorasickBuilder` — [`MatchKind`](util/search/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](../util/search/index.md), [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn start_kind(self: &mut Self, kind: StartKind) -> &mut AhoCorasickBuilder` — [`StartKind`](util/search/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn ascii_case_insensitive(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn kind(self: &mut Self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](../ahocorasick/index.md), [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn kind(self: &mut Self, kind: Option<AhoCorasickKind>) -> &mut AhoCorasickBuilder` — [`AhoCorasickKind`](ahocorasick/index.md), [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn prefilter(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn prefilter(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn dense_depth(self: &mut Self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn dense_depth(self: &mut Self, depth: usize) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-- `fn byte_classes(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn byte_classes(self: &mut Self, yes: bool) -> &mut AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AhoCorasickBuilder`
 
-- `fn clone(self: &Self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn clone(self: &Self) -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
-##### `impl Debug`
+##### `impl Debug for AhoCorasickBuilder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AhoCorasickBuilder`
 
-- `fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](../ahocorasick/index.md)
+- `fn default() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](ahocorasick/index.md)
 
 ### `FindIter<'a, 'h>`
 
@@ -602,11 +610,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl Debug<'a, 'h>`
+##### `impl<'a, 'h> Debug for FindIter<'a, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindIter<'a, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -614,11 +622,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, 'h>`
+##### `impl<'a, 'h> Iterator for FindIter<'a, 'h>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](util/search/index.md)
 
 ### `FindOverlappingIter<'a, 'h>`
 
@@ -640,11 +648,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl Debug<'a, 'h>`
+##### `impl<'a, 'h> Debug for FindOverlappingIter<'a, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindOverlappingIter<'a, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -652,11 +660,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, 'h>`
+##### `impl<'a, 'h> Iterator for FindOverlappingIter<'a, 'h>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](util/search/index.md)
 
 ### `BuildError`
 
@@ -679,29 +687,29 @@ trait.
 
 #### Implementations
 
-- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../util/error/index.md)
+- `fn state_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](util/error/index.md)
 
-- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](../util/error/index.md)
+- `fn pattern_id_overflow(max: u64, requested_max: u64) -> BuildError` — [`BuildError`](util/error/index.md)
 
-- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](../util/error/index.md)
+- `fn pattern_too_long(pattern: PatternID, len: usize) -> BuildError` — [`PatternID`](util/primitives/index.md), [`BuildError`](util/error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../util/error/index.md)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](util/error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for BuildError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for BuildError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for BuildError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for BuildError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -731,45 +739,45 @@ trait.
 
 #### Implementations
 
-- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](../util/error/index.md), [`MatchError`](../util/error/index.md)
+- `fn new(kind: MatchErrorKind) -> MatchError` — [`MatchErrorKind`](util/error/index.md), [`MatchError`](util/error/index.md)
 
-- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](../util/error/index.md)
+- `fn kind(self: &Self) -> &MatchErrorKind` — [`MatchErrorKind`](util/error/index.md)
 
-- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](../util/error/index.md)
+- `fn invalid_input_anchored() -> MatchError` — [`MatchError`](util/error/index.md)
 
-- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](../util/error/index.md)
+- `fn invalid_input_unanchored() -> MatchError` — [`MatchError`](util/error/index.md)
 
-- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](../util/search/index.md), [`MatchError`](../util/error/index.md)
+- `fn unsupported_stream(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md), [`MatchError`](util/error/index.md)
 
-- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](../util/search/index.md), [`MatchError`](../util/error/index.md)
+- `fn unsupported_overlapping(got: MatchKind) -> MatchError` — [`MatchKind`](util/search/index.md), [`MatchError`](util/error/index.md)
 
-- `fn unsupported_empty() -> MatchError` — [`MatchError`](../util/error/index.md)
+- `fn unsupported_empty() -> MatchError` — [`MatchError`](util/error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MatchError`
 
-- `fn clone(self: &Self) -> MatchError` — [`MatchError`](../util/error/index.md)
+- `fn clone(self: &Self) -> MatchError` — [`MatchError`](util/error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for MatchError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for MatchError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for MatchError`
 
-##### `impl Error`
+##### `impl Error for MatchError`
 
-##### `impl PartialEq`
+##### `impl PartialEq for MatchError`
 
-- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](../util/error/index.md)
+- `fn eq(self: &Self, other: &MatchError) -> bool` — [`MatchError`](util/error/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for MatchError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for MatchError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -807,13 +815,13 @@ panics or silent logical errors.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](../util/primitives/index.md), [`PatternIDError`](../util/primitives/index.md)
+- `fn new(value: usize) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](../util/primitives/index.md)
+- `const fn new_unchecked(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-- `const fn from_u32_unchecked(index: u32) -> PatternID` — [`PatternID`](../util/primitives/index.md)
+- `const fn from_u32_unchecked(index: u32) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-- `fn must(value: usize) -> PatternID` — [`PatternID`](../util/primitives/index.md)
+- `fn must(value: usize) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 - `const fn as_usize(self: &Self) -> usize`
 
@@ -825,49 +833,49 @@ panics or silent logical errors.
 
 - `fn one_more(self: &Self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](../util/primitives/index.md), [`PatternIDError`](../util/primitives/index.md)
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<PatternID, PatternIDError>` — [`PatternID`](util/primitives/index.md), [`PatternIDError`](util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](../util/primitives/index.md)
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
 
-- `fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](../util/primitives/index.md)
+- `fn iter(len: usize) -> PatternIDIter` — [`PatternIDIter`](util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PatternID`
 
-- `fn clone(self: &Self) -> PatternID` — [`PatternID`](../util/primitives/index.md)
+- `fn clone(self: &Self) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-##### `impl Copy`
+##### `impl Copy for PatternID`
 
-##### `impl Debug`
+##### `impl Debug for PatternID`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for PatternID`
 
-- `fn default() -> PatternID` — [`PatternID`](../util/primitives/index.md)
+- `fn default() -> PatternID` — [`PatternID`](util/primitives/index.md)
 
-##### `impl Eq`
+##### `impl Eq for PatternID`
 
-##### `impl Hash`
+##### `impl Hash for PatternID`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for PatternID`
 
-- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](../util/primitives/index.md)
+- `fn cmp(self: &Self, other: &PatternID) -> $crate::cmp::Ordering` — [`PatternID`](util/primitives/index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for PatternID`
 
-- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](../util/primitives/index.md)
+- `fn eq(self: &Self, other: &PatternID) -> bool` — [`PatternID`](util/primitives/index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for PatternID`
 
-- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](../util/primitives/index.md)
+- `fn partial_cmp(self: &Self, other: &PatternID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`PatternID`](util/primitives/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for PatternID`
 
 ### `PatternIDError`
 
@@ -889,29 +897,29 @@ trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PatternIDError`
 
-- `fn clone(self: &Self) -> PatternIDError` — [`PatternIDError`](../util/primitives/index.md)
+- `fn clone(self: &Self) -> PatternIDError` — [`PatternIDError`](util/primitives/index.md)
 
-##### `impl Debug`
+##### `impl Debug for PatternIDError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for PatternIDError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for PatternIDError`
 
-##### `impl Error`
+##### `impl Error for PatternIDError`
 
-##### `impl PartialEq`
+##### `impl PartialEq for PatternIDError`
 
-- `fn eq(self: &Self, other: &PatternIDError) -> bool` — [`PatternIDError`](../util/primitives/index.md)
+- `fn eq(self: &Self, other: &PatternIDError) -> bool` — [`PatternIDError`](util/primitives/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for PatternIDError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for PatternIDError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1006,15 +1014,15 @@ assert_eq!(
 
 #### Implementations
 
-- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](../util/search/index.md)
+- `fn new<H: ?Sized + AsRef<[u8]>>(haystack: &'h H) -> Input<'h>` — [`Input`](util/search/index.md)
 
-- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](../util/search/index.md)
+- `fn span<S: Into<Span>>(self: Self, span: S) -> Input<'h>` — [`Input`](util/search/index.md)
 
-- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](../util/search/index.md)
+- `fn range<R: RangeBounds<usize>>(self: Self, range: R) -> Input<'h>` — [`Input`](util/search/index.md)
 
-- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](../util/search/index.md), [`Input`](../util/search/index.md)
+- `fn anchored(self: Self, mode: Anchored) -> Input<'h>` — [`Anchored`](util/search/index.md), [`Input`](util/search/index.md)
 
-- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](../util/search/index.md)
+- `fn earliest(self: Self, yes: bool) -> Input<'h>` — [`Input`](util/search/index.md)
 
 - `fn set_span<S: Into<Span>>(self: &mut Self, span: S)`
 
@@ -1024,7 +1032,7 @@ assert_eq!(
 
 - `fn set_end(self: &mut Self, end: usize)`
 
-- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](../util/search/index.md)
+- `fn set_anchored(self: &mut Self, mode: Anchored)` — [`Anchored`](util/search/index.md)
 
 - `fn set_earliest(self: &mut Self, yes: bool)`
 
@@ -1034,11 +1042,11 @@ assert_eq!(
 
 - `fn end(self: &Self) -> usize`
 
-- `fn get_span(self: &Self) -> Span` — [`Span`](../util/search/index.md)
+- `fn get_span(self: &Self) -> Span` — [`Span`](util/search/index.md)
 
 - `fn get_range(self: &Self) -> Range<usize>`
 
-- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](../util/search/index.md)
+- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](util/search/index.md)
 
 - `fn get_earliest(self: &Self) -> bool`
 
@@ -1046,11 +1054,11 @@ assert_eq!(
 
 #### Trait Implementations
 
-##### `impl Clone<'h>`
+##### `impl<'h> Clone for Input<'h>`
 
-- `fn clone(self: &Self) -> Input<'h>` — [`Input`](../util/search/index.md)
+- `fn clone(self: &Self) -> Input<'h>` — [`Input`](util/search/index.md)
 
-##### `impl Debug<'h>`
+##### `impl<'h> Debug for Input<'h>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -1088,11 +1096,11 @@ offset as less than or equal to its end offset.
 
 #### Implementations
 
-- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](../util/primitives/index.md), [`Match`](../util/search/index.md)
+- `fn new<S: Into<Span>>(pattern: PatternID, span: S) -> Match` — [`PatternID`](util/primitives/index.md), [`Match`](util/search/index.md)
 
-- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](../util/search/index.md)
+- `fn must<S: Into<Span>>(pattern: usize, span: S) -> Match` — [`Match`](util/search/index.md)
 
-- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../util/primitives/index.md)
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](util/primitives/index.md)
 
 - `fn start(self: &Self) -> usize`
 
@@ -1100,37 +1108,37 @@ offset as less than or equal to its end offset.
 
 - `fn range(self: &Self) -> core::ops::Range<usize>`
 
-- `fn span(self: &Self) -> Span` — [`Span`](../util/search/index.md)
+- `fn span(self: &Self) -> Span` — [`Span`](util/search/index.md)
 
 - `fn is_empty(self: &Self) -> bool`
 
 - `fn len(self: &Self) -> usize`
 
-- `fn offset(self: &Self, offset: usize) -> Match` — [`Match`](../util/search/index.md)
+- `fn offset(self: &Self, offset: usize) -> Match` — [`Match`](util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Match`
 
-- `fn clone(self: &Self) -> Match` — [`Match`](../util/search/index.md)
+- `fn clone(self: &Self) -> Match` — [`Match`](util/search/index.md)
 
-##### `impl Copy`
+##### `impl Copy for Match`
 
-##### `impl Debug`
+##### `impl Debug for Match`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Match`
 
-##### `impl Hash`
+##### `impl Hash for Match`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Match`
 
-- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](../util/search/index.md)
+- `fn eq(self: &Self, other: &Match) -> bool` — [`Match`](util/search/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Match`
 
 ### `Span`
 
@@ -1181,31 +1189,31 @@ to create a span where `start > end`.
 
 - `fn contains(self: &Self, offset: usize) -> bool`
 
-- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](../util/search/index.md)
+- `fn offset(self: &Self, offset: usize) -> Span` — [`Span`](util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](../util/search/index.md)
+- `fn clone(self: &Self) -> Span` — [`Span`](util/search/index.md)
 
-##### `impl Copy`
+##### `impl Copy for Span`
 
-##### `impl Debug`
+##### `impl Debug for Span`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Span`
 
-##### `impl Hash`
+##### `impl Hash for Span`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](../util/search/index.md)
+- `fn eq(self: &Self, range: &Range<usize>) -> bool`
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Span`
 
 ## Enums
 
@@ -1242,23 +1250,23 @@ detail about each choice.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AhoCorasickKind`
 
-- `fn clone(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](../ahocorasick/index.md)
+- `fn clone(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](ahocorasick/index.md)
 
-##### `impl Copy`
+##### `impl Copy for AhoCorasickKind`
 
-##### `impl Debug`
+##### `impl Debug for AhoCorasickKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for AhoCorasickKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for AhoCorasickKind`
 
-- `fn eq(self: &Self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](../ahocorasick/index.md)
+- `fn eq(self: &Self, other: &AhoCorasickKind) -> bool` — [`AhoCorasickKind`](ahocorasick/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for AhoCorasickKind`
 
 ### `MatchErrorKind`
 
@@ -1310,21 +1318,21 @@ a semver-compatible release.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MatchErrorKind`
 
-- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](../util/error/index.md)
+- `fn clone(self: &Self) -> MatchErrorKind` — [`MatchErrorKind`](util/error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for MatchErrorKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for MatchErrorKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for MatchErrorKind`
 
-- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](../util/error/index.md)
+- `fn eq(self: &Self, other: &MatchErrorKind) -> bool` — [`MatchErrorKind`](util/error/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for MatchErrorKind`
 
 ### `Anchored`
 
@@ -1360,23 +1368,23 @@ fallible or an infallible routine was called.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Anchored`
 
-- `fn clone(self: &Self) -> Anchored` — [`Anchored`](../util/search/index.md)
+- `fn clone(self: &Self) -> Anchored` — [`Anchored`](util/search/index.md)
 
-##### `impl Copy`
+##### `impl Copy for Anchored`
 
-##### `impl Debug`
+##### `impl Debug for Anchored`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Anchored`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Anchored`
 
-- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](../util/search/index.md)
+- `fn eq(self: &Self, other: &Anchored) -> bool` — [`Anchored`](util/search/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Anchored`
 
 ### `MatchKind`
 
@@ -1510,31 +1518,31 @@ POSIX regex alternations.
 
 - `fn is_leftmost_first(self: &Self) -> bool`
 
-- `fn as_packed(self: &Self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](../packed/api/index.md)
+- `fn as_packed(self: &Self) -> Option<crate::packed::MatchKind>` — [`MatchKind`](packed/api/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MatchKind`
 
-- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](../util/search/index.md)
+- `fn clone(self: &Self) -> MatchKind` — [`MatchKind`](util/search/index.md)
 
-##### `impl Copy`
+##### `impl Copy for MatchKind`
 
-##### `impl Debug`
+##### `impl Debug for MatchKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for MatchKind`
 
-- `fn default() -> MatchKind` — [`MatchKind`](../util/search/index.md)
+- `fn default() -> MatchKind` — [`MatchKind`](util/search/index.md)
 
-##### `impl Eq`
+##### `impl Eq for MatchKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for MatchKind`
 
-- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](../util/search/index.md)
+- `fn eq(self: &Self, other: &MatchKind) -> bool` — [`MatchKind`](util/search/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for MatchKind`
 
 ### `StartKind`
 
@@ -1581,25 +1589,25 @@ depending on whether you're using infallible or fallibe APIs, respectively.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StartKind`
 
-- `fn clone(self: &Self) -> StartKind` — [`StartKind`](../util/search/index.md)
+- `fn clone(self: &Self) -> StartKind` — [`StartKind`](util/search/index.md)
 
-##### `impl Copy`
+##### `impl Copy for StartKind`
 
-##### `impl Debug`
+##### `impl Debug for StartKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for StartKind`
 
-- `fn default() -> StartKind` — [`StartKind`](../util/search/index.md)
+- `fn default() -> StartKind` — [`StartKind`](util/search/index.md)
 
-##### `impl Eq`
+##### `impl Eq for StartKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for StartKind`
 
-- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](../util/search/index.md)
+- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](util/search/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for StartKind`
 

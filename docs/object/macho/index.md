@@ -373,31 +373,31 @@ right after the theader.
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>` — [`Result`](../../read/index.md)
+- `fn parse<'data, R: ReadRef<'data>>(data: R) -> Result<&'data Self>` — [`Result`](../index.md)
 
-- `fn parse_magic(self: &Self) -> Result<(Architecture, E)>` — [`Result`](../../read/index.md), [`Architecture`](../../common/index.md)
+- `fn parse_magic(self: &Self) -> Result<(Architecture, E)>` — [`Result`](../index.md), [`Architecture`](../index.md)
 
-- `fn mappings<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>` — [`Result`](../../read/index.md), [`DyldCacheMappingSlice`](../../read/macho/dyld_cache/index.md)
+- `fn mappings<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheMappingSlice<'data, E>>` — [`Result`](../index.md), [`DyldCacheMappingSlice`](../read/macho/index.md)
 
-- `fn subcaches<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>` — [`Result`](../../read/index.md), [`DyldSubCacheSlice`](../../read/macho/dyld_cache/index.md)
+- `fn subcaches<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<Option<DyldSubCacheSlice<'data, E>>>` — [`Result`](../index.md), [`DyldSubCacheSlice`](../read/macho/index.md)
 
 - `fn symbols_subcache_uuid(self: &Self, endian: E) -> Option<[u8; 16]>`
 
-- `fn images<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>` — [`Result`](../../read/index.md), [`DyldCacheImageInfo`](../../macho/index.md)
+- `fn images<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [macho::DyldCacheImageInfo<E>]>` — [`Result`](../index.md), [`DyldCacheImageInfo`](#dyldcacheimageinfo)
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheHeader<E>`
 
-- `fn clone(self: &Self) -> DyldCacheHeader<E>` — [`DyldCacheHeader`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheHeader<E>` — [`DyldCacheHeader`](#dyldcacheheader)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheHeader<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheHeader<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldCacheHeader<E>`
 
 ### `DyldCacheMappingInfo<E: Endian>`
 
@@ -415,17 +415,17 @@ Corresponds to struct dyld_cache_mapping_info from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheMappingInfo<E>`
 
-- `fn clone(self: &Self) -> DyldCacheMappingInfo<E>` — [`DyldCacheMappingInfo`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheMappingInfo<E>` — [`DyldCacheMappingInfo`](#dyldcachemappinginfo)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheMappingInfo<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheMappingInfo<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldCacheMappingInfo<E>`
 
 ### `DyldCacheMappingAndSlideInfo<E: Endian>`
 
@@ -446,21 +446,21 @@ Corresponds to struct dyld_cache_mapping_and_slide_info from dyld_cache_format.h
 
 #### Implementations
 
-- `fn slide<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>` — [`Result`](../../read/index.md), [`DyldCacheSlideInfo`](../../read/macho/dyld_cache/index.md)
+- `fn slide<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<DyldCacheSlideInfo<'data, E>>` — [`Result`](../index.md), [`DyldCacheSlideInfo`](../read/macho/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheMappingAndSlideInfo<E>`
 
-- `fn clone(self: &Self) -> DyldCacheMappingAndSlideInfo<E>` — [`DyldCacheMappingAndSlideInfo`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheMappingAndSlideInfo<E>` — [`DyldCacheMappingAndSlideInfo`](#dyldcachemappingandslideinfo)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheMappingAndSlideInfo<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheMappingAndSlideInfo<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldCacheMappingAndSlideInfo<E>`
 
 ### `DyldCacheImageInfo<E: Endian>`
 
@@ -478,21 +478,21 @@ Corresponds to struct dyld_cache_image_info from dyld_cache_format.h.
 
 #### Implementations
 
-- `fn path<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [u8]>` — [`Result`](../../read/index.md)
+- `fn path<'data, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheImageInfo<E>`
 
-- `fn clone(self: &Self) -> DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheImageInfo<E>` — [`DyldCacheImageInfo`](#dyldcacheimageinfo)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheImageInfo<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheImageInfo<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldCacheImageInfo<E>`
 
 ### `DyldCacheSlideInfo2<E: Endian>`
 
@@ -513,17 +513,17 @@ Corresponds to struct dyld_cache_slide_info2 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheSlideInfo2<E>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo2<E>` — [`DyldCacheSlideInfo2`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheSlideInfo2<E>` — [`DyldCacheSlideInfo2`](#dyldcacheslideinfo2)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheSlideInfo2<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheSlideInfo2<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldCacheSlideInfo2<E>`
 
 ### `DyldCacheSlideInfo3<E: Endian>`
 
@@ -541,17 +541,17 @@ Corresponds to struct dyld_cache_slide_info3 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheSlideInfo3<E>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo3<E>` — [`DyldCacheSlideInfo3`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheSlideInfo3<E>` — [`DyldCacheSlideInfo3`](#dyldcacheslideinfo3)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheSlideInfo3<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheSlideInfo3<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldCacheSlideInfo3<E>`
 
 ### `DyldCacheSlidePointer3`
 
@@ -581,13 +581,13 @@ Corresponds to union dyld_cache_slide_pointer3 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DyldCacheSlidePointer3`
 
-- `fn clone(self: &Self) -> DyldCacheSlidePointer3` — [`DyldCacheSlidePointer3`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheSlidePointer3` — [`DyldCacheSlidePointer3`](#dyldcacheslidepointer3)
 
-##### `impl Copy`
+##### `impl Copy for DyldCacheSlidePointer3`
 
-##### `impl Debug`
+##### `impl Debug for DyldCacheSlidePointer3`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -607,17 +607,17 @@ Corresponds to struct dyld_cache_slide_info5 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldCacheSlideInfo5<E>`
 
-- `fn clone(self: &Self) -> DyldCacheSlideInfo5<E>` — [`DyldCacheSlideInfo5`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheSlideInfo5<E>` — [`DyldCacheSlideInfo5`](#dyldcacheslideinfo5)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldCacheSlideInfo5<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldCacheSlideInfo5<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldCacheSlideInfo5<E>`
 
 ### `DyldCacheSlidePointer5`
 
@@ -645,13 +645,13 @@ Corresponds to struct dyld_cache_slide_pointer5 from dyld_cache_format.h.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DyldCacheSlidePointer5`
 
-- `fn clone(self: &Self) -> DyldCacheSlidePointer5` — [`DyldCacheSlidePointer5`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldCacheSlidePointer5` — [`DyldCacheSlidePointer5`](#dyldcacheslidepointer5)
 
-##### `impl Copy`
+##### `impl Copy for DyldCacheSlidePointer5`
 
-##### `impl Debug`
+##### `impl Debug for DyldCacheSlidePointer5`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -680,17 +680,17 @@ in dyld-1042.1.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldSubCacheEntryV1<E>`
 
-- `fn clone(self: &Self) -> DyldSubCacheEntryV1<E>` — [`DyldSubCacheEntryV1`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldSubCacheEntryV1<E>` — [`DyldSubCacheEntryV1`](#dyldsubcacheentryv1)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldSubCacheEntryV1<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldSubCacheEntryV1<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldSubCacheEntryV1<E>`
 
 ### `DyldSubCacheEntryV2<E: Endian>`
 
@@ -721,17 +721,17 @@ Called `dyld_subcache_entry` as of dyld-1042.1.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldSubCacheEntryV2<E>`
 
-- `fn clone(self: &Self) -> DyldSubCacheEntryV2<E>` — [`DyldSubCacheEntryV2`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldSubCacheEntryV2<E>` — [`DyldSubCacheEntryV2`](#dyldsubcacheentryv2)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldSubCacheEntryV2<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldSubCacheEntryV2<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldSubCacheEntryV2<E>`
 
 ### `FatHeader`
 
@@ -754,17 +754,17 @@ struct FatHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FatHeader`
 
-- `fn clone(self: &Self) -> FatHeader` — [`FatHeader`](../../macho/index.md)
+- `fn clone(self: &Self) -> FatHeader` — [`FatHeader`](#fatheader)
 
-##### `impl Copy`
+##### `impl Copy for FatHeader`
 
-##### `impl Debug`
+##### `impl Debug for FatHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for FatHeader`
 
 ### `FatArch32`
 
@@ -802,17 +802,17 @@ struct FatArch32 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FatArch32`
 
-- `fn clone(self: &Self) -> FatArch32` — [`FatArch32`](../../macho/index.md)
+- `fn clone(self: &Self) -> FatArch32` — [`FatArch32`](#fatarch32)
 
-##### `impl Copy`
+##### `impl Copy for FatArch32`
 
-##### `impl Debug`
+##### `impl Debug for FatArch32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FatArch`
+##### `impl FatArch for FatArch32`
 
 - `type Word = u32`
 
@@ -822,13 +822,13 @@ struct FatArch32 {
 
 - `fn cpusubtype(self: &Self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../../read/macho/fat/index.md)
+- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
 
-- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../../read/macho/fat/index.md)
+- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
 
 - `fn align(self: &Self) -> u32`
 
-##### `impl Pod`
+##### `impl Pod for FatArch32`
 
 ### `FatArch64`
 
@@ -871,17 +871,17 @@ struct FatArch64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FatArch64`
 
-- `fn clone(self: &Self) -> FatArch64` — [`FatArch64`](../../macho/index.md)
+- `fn clone(self: &Self) -> FatArch64` — [`FatArch64`](#fatarch64)
 
-##### `impl Copy`
+##### `impl Copy for FatArch64`
 
-##### `impl Debug`
+##### `impl Debug for FatArch64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FatArch`
+##### `impl FatArch for FatArch64`
 
 - `type Word = u64`
 
@@ -891,13 +891,13 @@ struct FatArch64 {
 
 - `fn cpusubtype(self: &Self) -> u32`
 
-- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../../read/macho/fat/index.md)
+- `fn offset(self: &Self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
 
-- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../../read/macho/fat/index.md)
+- `fn size(self: &Self) -> <Self as >::Word` — [`FatArch`](../read/macho/index.md)
 
 - `fn align(self: &Self) -> u32`
 
-##### `impl Pod`
+##### `impl Pod for FatArch64`
 
 ### `MachHeader32<E: Endian>`
 
@@ -949,17 +949,17 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for MachHeader32<E>`
 
-- `fn clone(self: &Self) -> MachHeader32<E>` — [`MachHeader32`](../../macho/index.md)
+- `fn clone(self: &Self) -> MachHeader32<E>` — [`MachHeader32`](#machheader32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for MachHeader32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for MachHeader32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl MachHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader32<Endian>`
 
 - `type Word = u32`
 
@@ -979,19 +979,19 @@ Appears at the very beginning of the object file for 32-bit architectures.
 
 - `fn magic(self: &Self) -> u32`
 
-- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for MachHeader32<E>`
 
 ### `MachHeader64<E: Endian>`
 
@@ -1048,17 +1048,17 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for MachHeader64<E>`
 
-- `fn clone(self: &Self) -> MachHeader64<E>` — [`MachHeader64`](../../macho/index.md)
+- `fn clone(self: &Self) -> MachHeader64<E>` — [`MachHeader64`](#machheader64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for MachHeader64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for MachHeader64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl MachHeader<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> MachHeader for macho::MachHeader64<Endian>`
 
 - `type Word = u64`
 
@@ -1078,19 +1078,19 @@ Appears at the very beginning of object files for 64-bit architectures.
 
 - `fn magic(self: &Self) -> u32`
 
-- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn cputype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn cpusubtype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn filetype(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn ncmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn sizeofcmds(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../../read/macho/file/index.md)
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`MachHeader`](../read/macho/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for MachHeader64<E>`
 
 ### `LoadCommand<E: Endian>`
 
@@ -1133,17 +1133,17 @@ padding zeroed like objects will compare byte for byte.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for LoadCommand<E>`
 
-- `fn clone(self: &Self) -> LoadCommand<E>` — [`LoadCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> LoadCommand<E>` — [`LoadCommand`](#loadcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for LoadCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for LoadCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for LoadCommand<E>`
 
 ### `LcStr<E: Endian>`
 
@@ -1169,17 +1169,17 @@ of 4 bytes must be zero.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for LcStr<E>`
 
-- `fn clone(self: &Self) -> LcStr<E>` — [`LcStr`](../../macho/index.md)
+- `fn clone(self: &Self) -> LcStr<E>` — [`LcStr`](#lcstr)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for LcStr<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for LcStr<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for LcStr<E>`
 
 ### `SegmentCommand32<E: Endian>`
 
@@ -1260,19 +1260,19 @@ reflected in `cmdsize`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SegmentCommand32<E>`
 
-- `fn clone(self: &Self) -> SegmentCommand32<E>` — [`SegmentCommand32`](../../macho/index.md)
+- `fn clone(self: &Self) -> SegmentCommand32<E>` — [`SegmentCommand32`](#segmentcommand32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SegmentCommand32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SegmentCommand32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SegmentCommand32<E>`
 
-##### `impl Segment<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Segment for macho::SegmentCommand32<Endian>`
 
 - `type Word = u32`
 
@@ -1280,29 +1280,29 @@ reflected in `cmdsize`.
 
 - `type Section = Section32<<SegmentCommand32<Endian> as Segment>::Endian>`
 
-- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../../read/macho/load_command/index.md), [`Segment`](../../read/macho/segment/index.md), [`Result`](../../read/index.md)
+- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
 
-- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
 - `fn segname(self: &Self) -> &[u8; 16]`
 
-- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
+- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
+- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
+- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
+- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
 ### `SegmentCommand64<E: Endian>`
 
@@ -1377,19 +1377,19 @@ command and their size is reflected in `cmdsize`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SegmentCommand64<E>`
 
-- `fn clone(self: &Self) -> SegmentCommand64<E>` — [`SegmentCommand64`](../../macho/index.md)
+- `fn clone(self: &Self) -> SegmentCommand64<E>` — [`SegmentCommand64`](#segmentcommand64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SegmentCommand64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SegmentCommand64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SegmentCommand64<E>`
 
-##### `impl Segment<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Segment for macho::SegmentCommand64<Endian>`
 
 - `type Word = u64`
 
@@ -1397,29 +1397,29 @@ command and their size is reflected in `cmdsize`.
 
 - `type Section = Section64<<SegmentCommand64<Endian> as Segment>::Endian>`
 
-- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../../read/macho/load_command/index.md), [`Segment`](../../read/macho/segment/index.md), [`Result`](../../read/index.md)
+- `fn from_command(command: LoadCommandData<'_, <Self as >::Endian>) -> Result<Option<(&Self, &[u8])>>` — [`LoadCommandData`](../read/macho/index.md), [`Segment`](../read/macho/index.md), [`Result`](../index.md)
 
-- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn cmd(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn cmdsize(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
 - `fn segname(self: &Self) -> &[u8; 16]`
 
-- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
+- `fn vmaddr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
+- `fn vmsize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
+- `fn fileoff(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../../read/macho/segment/index.md)
+- `fn filesize(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Segment`](../read/macho/index.md)
 
-- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn maxprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn initprot(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn nsects(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../../read/macho/segment/index.md)
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Segment`](../read/macho/index.md)
 
 ### `Section32<E: Endian>`
 
@@ -1489,19 +1489,19 @@ struct Section32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Section32<E>`
 
-- `fn clone(self: &Self) -> Section32<E>` — [`Section32`](../../macho/index.md)
+- `fn clone(self: &Self) -> Section32<E>` — [`Section32`](#section32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Section32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Section32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Section32<E>`
 
-##### `impl Section<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Section for macho::Section32<Endian>`
 
 - `type Word = u32`
 
@@ -1511,19 +1511,19 @@ struct Section32<E: Endian> {
 
 - `fn segname(self: &Self) -> &[u8; 16]`
 
-- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../../read/macho/section/index.md)
+- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
 
-- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../../read/macho/section/index.md)
+- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
 
-- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn align(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn align(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
 ### `Section64<E: Endian>`
 
@@ -1598,19 +1598,19 @@ struct Section64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Section64<E>`
 
-- `fn clone(self: &Self) -> Section64<E>` — [`Section64`](../../macho/index.md)
+- `fn clone(self: &Self) -> Section64<E>` — [`Section64`](#section64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Section64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Section64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Section64<E>`
 
-##### `impl Section<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Section for macho::Section64<Endian>`
 
 - `type Word = u64`
 
@@ -1620,19 +1620,19 @@ struct Section64<E: Endian> {
 
 - `fn segname(self: &Self) -> &[u8; 16]`
 
-- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../../read/macho/section/index.md)
+- `fn addr(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
 
-- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../../read/macho/section/index.md)
+- `fn size(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Section`](../read/macho/index.md)
 
-- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn offset(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn align(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn align(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn reloff(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn nreloc(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
-- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../../read/macho/section/index.md)
+- `fn flags(self: &Self, endian: <Self as >::Endian) -> u32` — [`Section`](../read/macho/index.md)
 
 ### `Fvmlib<E: Endian>`
 
@@ -1660,17 +1660,17 @@ struct Fvmlib<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Fvmlib<E>`
 
-- `fn clone(self: &Self) -> Fvmlib<E>` — [`Fvmlib`](../../macho/index.md)
+- `fn clone(self: &Self) -> Fvmlib<E>` — [`Fvmlib`](#fvmlib)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Fvmlib<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Fvmlib<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Fvmlib<E>`
 
 ### `FvmlibCommand<E: Endian>`
 
@@ -1698,17 +1698,17 @@ struct FvmlibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for FvmlibCommand<E>`
 
-- `fn clone(self: &Self) -> FvmlibCommand<E>` — [`FvmlibCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> FvmlibCommand<E>` — [`FvmlibCommand`](#fvmlibcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for FvmlibCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for FvmlibCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for FvmlibCommand<E>`
 
 ### `Dylib<E: Endian>`
 
@@ -1741,17 +1741,17 @@ struct Dylib<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Dylib<E>`
 
-- `fn clone(self: &Self) -> Dylib<E>` — [`Dylib`](../../macho/index.md)
+- `fn clone(self: &Self) -> Dylib<E>` — [`Dylib`](#dylib)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Dylib<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Dylib<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Dylib<E>`
 
 ### `DylibCommand<E: Endian>`
 
@@ -1779,17 +1779,17 @@ struct DylibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibCommand<E>`
 
-- `fn clone(self: &Self) -> DylibCommand<E>` — [`DylibCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> DylibCommand<E>` — [`DylibCommand`](#dylibcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DylibCommand<E>`
 
 ### `SubFrameworkCommand<E: Endian>`
 
@@ -1817,17 +1817,17 @@ struct SubFrameworkCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SubFrameworkCommand<E>`
 
-- `fn clone(self: &Self) -> SubFrameworkCommand<E>` — [`SubFrameworkCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> SubFrameworkCommand<E>` — [`SubFrameworkCommand`](#subframeworkcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SubFrameworkCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SubFrameworkCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SubFrameworkCommand<E>`
 
 ### `SubClientCommand<E: Endian>`
 
@@ -1855,17 +1855,17 @@ struct SubClientCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SubClientCommand<E>`
 
-- `fn clone(self: &Self) -> SubClientCommand<E>` — [`SubClientCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> SubClientCommand<E>` — [`SubClientCommand`](#subclientcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SubClientCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SubClientCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SubClientCommand<E>`
 
 ### `SubUmbrellaCommand<E: Endian>`
 
@@ -1893,17 +1893,17 @@ struct SubUmbrellaCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SubUmbrellaCommand<E>`
 
-- `fn clone(self: &Self) -> SubUmbrellaCommand<E>` — [`SubUmbrellaCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> SubUmbrellaCommand<E>` — [`SubUmbrellaCommand`](#subumbrellacommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SubUmbrellaCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SubUmbrellaCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SubUmbrellaCommand<E>`
 
 ### `SubLibraryCommand<E: Endian>`
 
@@ -1931,17 +1931,17 @@ struct SubLibraryCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SubLibraryCommand<E>`
 
-- `fn clone(self: &Self) -> SubLibraryCommand<E>` — [`SubLibraryCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> SubLibraryCommand<E>` — [`SubLibraryCommand`](#sublibrarycommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SubLibraryCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SubLibraryCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SubLibraryCommand<E>`
 
 ### `PreboundDylibCommand<E: Endian>`
 
@@ -1979,17 +1979,17 @@ struct PreboundDylibCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for PreboundDylibCommand<E>`
 
-- `fn clone(self: &Self) -> PreboundDylibCommand<E>` — [`PreboundDylibCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> PreboundDylibCommand<E>` — [`PreboundDylibCommand`](#prebounddylibcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for PreboundDylibCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for PreboundDylibCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for PreboundDylibCommand<E>`
 
 ### `DylinkerCommand<E: Endian>`
 
@@ -2017,17 +2017,17 @@ struct DylinkerCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DylinkerCommand<E>`
 
-- `fn clone(self: &Self) -> DylinkerCommand<E>` — [`DylinkerCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> DylinkerCommand<E>` — [`DylinkerCommand`](#dylinkercommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DylinkerCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylinkerCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DylinkerCommand<E>`
 
 ### `ThreadCommand<E: Endian>`
 
@@ -2050,17 +2050,17 @@ struct ThreadCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for ThreadCommand<E>`
 
-- `fn clone(self: &Self) -> ThreadCommand<E>` — [`ThreadCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> ThreadCommand<E>` — [`ThreadCommand`](#threadcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for ThreadCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for ThreadCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for ThreadCommand<E>`
 
 ### `RoutinesCommand32<E: Endian>`
 
@@ -2099,17 +2099,17 @@ struct RoutinesCommand32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for RoutinesCommand32<E>`
 
-- `fn clone(self: &Self) -> RoutinesCommand32<E>` — [`RoutinesCommand32`](../../macho/index.md)
+- `fn clone(self: &Self) -> RoutinesCommand32<E>` — [`RoutinesCommand32`](#routinescommand32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for RoutinesCommand32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for RoutinesCommand32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for RoutinesCommand32<E>`
 
 ### `RoutinesCommand64<E: Endian>`
 
@@ -2148,17 +2148,17 @@ struct RoutinesCommand64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for RoutinesCommand64<E>`
 
-- `fn clone(self: &Self) -> RoutinesCommand64<E>` — [`RoutinesCommand64`](../../macho/index.md)
+- `fn clone(self: &Self) -> RoutinesCommand64<E>` — [`RoutinesCommand64`](#routinescommand64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for RoutinesCommand64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for RoutinesCommand64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for RoutinesCommand64<E>`
 
 ### `SymtabCommand<E: Endian>`
 
@@ -2201,21 +2201,21 @@ struct SymtabCommand<E: Endian> {
 
 #### Implementations
 
-- `fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>` — [`Result`](../../read/index.md), [`SymbolTable`](../../read/macho/symbol/index.md)
+- `fn symbols<'data, Mach: MachHeader<Endian = E>, R: ReadRef<'data>>(self: &Self, endian: E, data: R) -> Result<SymbolTable<'data, Mach, R>>` — [`Result`](../index.md), [`SymbolTable`](../read/macho/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SymtabCommand<E>`
 
-- `fn clone(self: &Self) -> SymtabCommand<E>` — [`SymtabCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> SymtabCommand<E>` — [`SymtabCommand`](#symtabcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SymtabCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SymtabCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SymtabCommand<E>`
 
 ### `DysymtabCommand<E: Endian>`
 
@@ -2328,17 +2328,17 @@ struct DysymtabCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DysymtabCommand<E>`
 
-- `fn clone(self: &Self) -> DysymtabCommand<E>` — [`DysymtabCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> DysymtabCommand<E>` — [`DysymtabCommand`](#dysymtabcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DysymtabCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DysymtabCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DysymtabCommand<E>`
 
 ### `DylibTableOfContents<E: Endian>`
 
@@ -2361,17 +2361,17 @@ struct DylibTableOfContents<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibTableOfContents<E>`
 
-- `fn clone(self: &Self) -> DylibTableOfContents<E>` — [`DylibTableOfContents`](../../macho/index.md)
+- `fn clone(self: &Self) -> DylibTableOfContents<E>` — [`DylibTableOfContents`](#dylibtableofcontents)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibTableOfContents<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibTableOfContents<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DylibTableOfContents<E>`
 
 ### `DylibModule32<E: Endian>`
 
@@ -2449,17 +2449,17 @@ struct DylibModule32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibModule32<E>`
 
-- `fn clone(self: &Self) -> DylibModule32<E>` — [`DylibModule32`](../../macho/index.md)
+- `fn clone(self: &Self) -> DylibModule32<E>` — [`DylibModule32`](#dylibmodule32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibModule32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibModule32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DylibModule32<E>`
 
 ### `DylibModule64<E: Endian>`
 
@@ -2537,17 +2537,17 @@ struct DylibModule64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibModule64<E>`
 
-- `fn clone(self: &Self) -> DylibModule64<E>` — [`DylibModule64`](../../macho/index.md)
+- `fn clone(self: &Self) -> DylibModule64<E>` — [`DylibModule64`](#dylibmodule64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibModule64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibModule64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DylibModule64<E>`
 
 ### `DylibReference<E: Endian>`
 
@@ -2559,17 +2559,17 @@ struct DylibReference<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DylibReference<E>`
 
-- `fn clone(self: &Self) -> DylibReference<E>` — [`DylibReference`](../../macho/index.md)
+- `fn clone(self: &Self) -> DylibReference<E>` — [`DylibReference`](#dylibreference)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DylibReference<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DylibReference<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DylibReference<E>`
 
 ### `TwolevelHintsCommand<E: Endian>`
 
@@ -2602,17 +2602,17 @@ struct TwolevelHintsCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for TwolevelHintsCommand<E>`
 
-- `fn clone(self: &Self) -> TwolevelHintsCommand<E>` — [`TwolevelHintsCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> TwolevelHintsCommand<E>` — [`TwolevelHintsCommand`](#twolevelhintscommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for TwolevelHintsCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for TwolevelHintsCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for TwolevelHintsCommand<E>`
 
 ### `TwolevelHint<E: Endian>`
 
@@ -2624,17 +2624,17 @@ struct TwolevelHint<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for TwolevelHint<E>`
 
-- `fn clone(self: &Self) -> TwolevelHint<E>` — [`TwolevelHint`](../../macho/index.md)
+- `fn clone(self: &Self) -> TwolevelHint<E>` — [`TwolevelHint`](#twolevelhint)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for TwolevelHint<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for TwolevelHint<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for TwolevelHint<E>`
 
 ### `PrebindCksumCommand<E: Endian>`
 
@@ -2662,17 +2662,17 @@ struct PrebindCksumCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for PrebindCksumCommand<E>`
 
-- `fn clone(self: &Self) -> PrebindCksumCommand<E>` — [`PrebindCksumCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> PrebindCksumCommand<E>` — [`PrebindCksumCommand`](#prebindcksumcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for PrebindCksumCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for PrebindCksumCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for PrebindCksumCommand<E>`
 
 ### `UuidCommand<E: Endian>`
 
@@ -2700,17 +2700,17 @@ struct UuidCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for UuidCommand<E>`
 
-- `fn clone(self: &Self) -> UuidCommand<E>` — [`UuidCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> UuidCommand<E>` — [`UuidCommand`](#uuidcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for UuidCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for UuidCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for UuidCommand<E>`
 
 ### `RpathCommand<E: Endian>`
 
@@ -2738,17 +2738,17 @@ struct RpathCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for RpathCommand<E>`
 
-- `fn clone(self: &Self) -> RpathCommand<E>` — [`RpathCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> RpathCommand<E>` — [`RpathCommand`](#rpathcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for RpathCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for RpathCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for RpathCommand<E>`
 
 ### `LinkeditDataCommand<E: Endian>`
 
@@ -2783,17 +2783,17 @@ struct LinkeditDataCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for LinkeditDataCommand<E>`
 
-- `fn clone(self: &Self) -> LinkeditDataCommand<E>` — [`LinkeditDataCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> LinkeditDataCommand<E>` — [`LinkeditDataCommand`](#linkeditdatacommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for LinkeditDataCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for LinkeditDataCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for LinkeditDataCommand<E>`
 
 ### `FilesetEntryCommand<E: Endian>`
 
@@ -2832,17 +2832,17 @@ struct FilesetEntryCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for FilesetEntryCommand<E>`
 
-- `fn clone(self: &Self) -> FilesetEntryCommand<E>` — [`FilesetEntryCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> FilesetEntryCommand<E>` — [`FilesetEntryCommand`](#filesetentrycommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for FilesetEntryCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for FilesetEntryCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for FilesetEntryCommand<E>`
 
 ### `EncryptionInfoCommand32<E: Endian>`
 
@@ -2880,17 +2880,17 @@ struct EncryptionInfoCommand32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for EncryptionInfoCommand32<E>`
 
-- `fn clone(self: &Self) -> EncryptionInfoCommand32<E>` — [`EncryptionInfoCommand32`](../../macho/index.md)
+- `fn clone(self: &Self) -> EncryptionInfoCommand32<E>` — [`EncryptionInfoCommand32`](#encryptioninfocommand32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for EncryptionInfoCommand32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for EncryptionInfoCommand32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for EncryptionInfoCommand32<E>`
 
 ### `EncryptionInfoCommand64<E: Endian>`
 
@@ -2933,17 +2933,17 @@ struct EncryptionInfoCommand64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for EncryptionInfoCommand64<E>`
 
-- `fn clone(self: &Self) -> EncryptionInfoCommand64<E>` — [`EncryptionInfoCommand64`](../../macho/index.md)
+- `fn clone(self: &Self) -> EncryptionInfoCommand64<E>` — [`EncryptionInfoCommand64`](#encryptioninfocommand64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for EncryptionInfoCommand64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for EncryptionInfoCommand64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for EncryptionInfoCommand64<E>`
 
 ### `VersionMinCommand<E: Endian>`
 
@@ -2976,17 +2976,17 @@ struct VersionMinCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for VersionMinCommand<E>`
 
-- `fn clone(self: &Self) -> VersionMinCommand<E>` — [`VersionMinCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> VersionMinCommand<E>` — [`VersionMinCommand`](#versionmincommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for VersionMinCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for VersionMinCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for VersionMinCommand<E>`
 
 ### `BuildVersionCommand<E: Endian>`
 
@@ -3029,17 +3029,17 @@ struct BuildVersionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for BuildVersionCommand<E>`
 
-- `fn clone(self: &Self) -> BuildVersionCommand<E>` — [`BuildVersionCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> BuildVersionCommand<E>` — [`BuildVersionCommand`](#buildversioncommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for BuildVersionCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for BuildVersionCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for BuildVersionCommand<E>`
 
 ### `BuildToolVersion<E: Endian>`
 
@@ -3062,17 +3062,17 @@ struct BuildToolVersion<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for BuildToolVersion<E>`
 
-- `fn clone(self: &Self) -> BuildToolVersion<E>` — [`BuildToolVersion`](../../macho/index.md)
+- `fn clone(self: &Self) -> BuildToolVersion<E>` — [`BuildToolVersion`](#buildtoolversion)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for BuildToolVersion<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for BuildToolVersion<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for BuildToolVersion<E>`
 
 ### `DyldInfoCommand<E: Endian>`
 
@@ -3145,17 +3145,17 @@ struct DyldInfoCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DyldInfoCommand<E>`
 
-- `fn clone(self: &Self) -> DyldInfoCommand<E>` — [`DyldInfoCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> DyldInfoCommand<E>` — [`DyldInfoCommand`](#dyldinfocommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DyldInfoCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DyldInfoCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DyldInfoCommand<E>`
 
 ### `LinkerOptionCommand<E: Endian>`
 
@@ -3179,17 +3179,17 @@ struct LinkerOptionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for LinkerOptionCommand<E>`
 
-- `fn clone(self: &Self) -> LinkerOptionCommand<E>` — [`LinkerOptionCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> LinkerOptionCommand<E>` — [`LinkerOptionCommand`](#linkeroptioncommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for LinkerOptionCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for LinkerOptionCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for LinkerOptionCommand<E>`
 
 ### `SymsegCommand<E: Endian>`
 
@@ -3222,17 +3222,17 @@ struct SymsegCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SymsegCommand<E>`
 
-- `fn clone(self: &Self) -> SymsegCommand<E>` — [`SymsegCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> SymsegCommand<E>` — [`SymsegCommand`](#symsegcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SymsegCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SymsegCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SymsegCommand<E>`
 
 ### `IdentCommand<E: Endian>`
 
@@ -3255,17 +3255,17 @@ struct IdentCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for IdentCommand<E>`
 
-- `fn clone(self: &Self) -> IdentCommand<E>` — [`IdentCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> IdentCommand<E>` — [`IdentCommand`](#identcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for IdentCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for IdentCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for IdentCommand<E>`
 
 ### `FvmfileCommand<E: Endian>`
 
@@ -3298,17 +3298,17 @@ struct FvmfileCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for FvmfileCommand<E>`
 
-- `fn clone(self: &Self) -> FvmfileCommand<E>` — [`FvmfileCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> FvmfileCommand<E>` — [`FvmfileCommand`](#fvmfilecommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for FvmfileCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for FvmfileCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for FvmfileCommand<E>`
 
 ### `EntryPointCommand<E: Endian>`
 
@@ -3341,17 +3341,17 @@ struct EntryPointCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for EntryPointCommand<E>`
 
-- `fn clone(self: &Self) -> EntryPointCommand<E>` — [`EntryPointCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> EntryPointCommand<E>` — [`EntryPointCommand`](#entrypointcommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for EntryPointCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for EntryPointCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for EntryPointCommand<E>`
 
 ### `SourceVersionCommand<E: Endian>`
 
@@ -3379,17 +3379,17 @@ struct SourceVersionCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for SourceVersionCommand<E>`
 
-- `fn clone(self: &Self) -> SourceVersionCommand<E>` — [`SourceVersionCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> SourceVersionCommand<E>` — [`SourceVersionCommand`](#sourceversioncommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for SourceVersionCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for SourceVersionCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for SourceVersionCommand<E>`
 
 ### `DataInCodeEntry<E: Endian>`
 
@@ -3417,17 +3417,17 @@ struct DataInCodeEntry<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for DataInCodeEntry<E>`
 
-- `fn clone(self: &Self) -> DataInCodeEntry<E>` — [`DataInCodeEntry`](../../macho/index.md)
+- `fn clone(self: &Self) -> DataInCodeEntry<E>` — [`DataInCodeEntry`](#dataincodeentry)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for DataInCodeEntry<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for DataInCodeEntry<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for DataInCodeEntry<E>`
 
 ### `NoteCommand<E: Endian>`
 
@@ -3465,17 +3465,17 @@ struct NoteCommand<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for NoteCommand<E>`
 
-- `fn clone(self: &Self) -> NoteCommand<E>` — [`NoteCommand`](../../macho/index.md)
+- `fn clone(self: &Self) -> NoteCommand<E>` — [`NoteCommand`](#notecommand)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for NoteCommand<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for NoteCommand<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for NoteCommand<E>`
 
 ### `Nlist32<E: Endian>`
 
@@ -3513,33 +3513,33 @@ struct Nlist32<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Nlist32<E>`
 
-- `fn clone(self: &Self) -> Nlist32<E>` — [`Nlist32`](../../macho/index.md)
+- `fn clone(self: &Self) -> Nlist32<E>` — [`Nlist32`](#nlist32)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Nlist32<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Nlist32<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Nlist<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Nlist for macho::Nlist32<Endian>`
 
 - `type Word = u32`
 
 - `type Endian = Endian`
 
-- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../../read/macho/symbol/index.md)
+- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
 
 - `fn n_type(self: &Self) -> u8`
 
 - `fn n_sect(self: &Self) -> u8`
 
-- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../../read/macho/symbol/index.md)
+- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md)
 
-- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../../read/macho/symbol/index.md)
+- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Nlist32<E>`
 
 ### `Nlist64<E: Endian>`
 
@@ -3577,33 +3577,33 @@ struct Nlist64<E: Endian> {
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Nlist64<E>`
 
-- `fn clone(self: &Self) -> Nlist64<E>` — [`Nlist64`](../../macho/index.md)
+- `fn clone(self: &Self) -> Nlist64<E>` — [`Nlist64`](#nlist64)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Nlist64<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Nlist64<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Nlist<Endian: endian::Endian>`
+##### `impl<Endian: endian::Endian> Nlist for macho::Nlist64<Endian>`
 
 - `type Word = u64`
 
 - `type Endian = Endian`
 
-- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../../read/macho/symbol/index.md)
+- `fn n_strx(self: &Self, endian: <Self as >::Endian) -> u32` — [`Nlist`](../read/macho/index.md)
 
 - `fn n_type(self: &Self) -> u8`
 
 - `fn n_sect(self: &Self) -> u8`
 
-- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../../read/macho/symbol/index.md)
+- `fn n_desc(self: &Self, endian: <Self as >::Endian) -> u16` — [`Nlist`](../read/macho/index.md)
 
-- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../../read/macho/symbol/index.md)
+- `fn n_value(self: &Self, endian: <Self as >::Endian) -> <Self as >::Word` — [`Nlist`](../read/macho/index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Nlist64<E>`
 
 ### `Relocation<E: Endian>`
 
@@ -3626,23 +3626,23 @@ is scattered, and for accessing the fields of each variant.
 
 - `fn r_scattered(self: Self, endian: E, cputype: u32) -> bool`
 
-- `fn info(self: Self, endian: E) -> RelocationInfo` — [`RelocationInfo`](../../macho/index.md)
+- `fn info(self: Self, endian: E) -> RelocationInfo` — [`RelocationInfo`](#relocationinfo)
 
-- `fn scattered_info(self: Self, endian: E) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](../../macho/index.md)
+- `fn scattered_info(self: Self, endian: E) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for Relocation<E>`
 
-- `fn clone(self: &Self) -> Relocation<E>` — [`Relocation`](../../macho/index.md)
+- `fn clone(self: &Self) -> Relocation<E>` — [`Relocation`](#relocation)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for Relocation<E>`
 
-##### `impl Debug<E: $crate::fmt::Debug + Endian>`
+##### `impl<E: $crate::fmt::Debug + Endian> Debug for Relocation<E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for Relocation<E>`
 
 ### `RelocationInfo`
 
@@ -3685,17 +3685,17 @@ struct RelocationInfo {
 
 #### Implementations
 
-- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>` — [`Relocation`](../../macho/index.md)
+- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>` — [`Relocation`](#relocation)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for RelocationInfo`
 
-- `fn clone(self: &Self) -> RelocationInfo` — [`RelocationInfo`](../../macho/index.md)
+- `fn clone(self: &Self) -> RelocationInfo` — [`RelocationInfo`](#relocationinfo)
 
-##### `impl Copy`
+##### `impl Copy for RelocationInfo`
 
-##### `impl Debug`
+##### `impl Debug for RelocationInfo`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -3735,17 +3735,17 @@ struct ScatteredRelocationInfo {
 
 #### Implementations
 
-- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>` — [`Relocation`](../../macho/index.md)
+- `fn relocation<E: Endian>(self: Self, endian: E) -> Relocation<E>` — [`Relocation`](#relocation)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ScatteredRelocationInfo`
 
-- `fn clone(self: &Self) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](../../macho/index.md)
+- `fn clone(self: &Self) -> ScatteredRelocationInfo` — [`ScatteredRelocationInfo`](#scatteredrelocationinfo)
 
-##### `impl Copy`
+##### `impl Copy for ScatteredRelocationInfo`
 
-##### `impl Debug`
+##### `impl Debug for ScatteredRelocationInfo`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -3787,23 +3787,23 @@ The variant values correspond to the values used in the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PtrauthKey`
 
-- `fn clone(self: &Self) -> PtrauthKey` — [`PtrauthKey`](../../macho/index.md)
+- `fn clone(self: &Self) -> PtrauthKey` — [`PtrauthKey`](#ptrauthkey)
 
-##### `impl Copy`
+##### `impl Copy for PtrauthKey`
 
-##### `impl Debug`
+##### `impl Debug for PtrauthKey`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for PtrauthKey`
 
-##### `impl PartialEq`
+##### `impl PartialEq for PtrauthKey`
 
-- `fn eq(self: &Self, other: &PtrauthKey) -> bool` — [`PtrauthKey`](../../macho/index.md)
+- `fn eq(self: &Self, other: &PtrauthKey) -> bool` — [`PtrauthKey`](#ptrauthkey)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for PtrauthKey`
 
 ## Functions
 

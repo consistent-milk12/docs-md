@@ -40,7 +40,7 @@ perform while the `Config::look_behind` method provides a way to set
 the byte that occurs immediately before the start of the search.
 
 Generally speaking, this type is only useful when you want to run searches
-without using an [`Input`](../search/index.md). In particular, an `Input` wants a haystack
+without using an [`Input`](../../index.md). In particular, an `Input` wants a haystack
 slice, but callers may not have a contiguous sequence of bytes as a
 haystack in all cases. This type provides a lower level of control such
 that callers can provide their own anchored configuration and look-behind
@@ -129,27 +129,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../../../util/start/index.md)
+- `fn new() -> Config` — [`Config`](#config)
 
-- `fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../../util/search/index.md), [`Config`](../../../util/start/index.md)
+- `fn from_input_forward(input: &Input<'_>) -> Config` — [`Input`](../../index.md), [`Config`](#config)
 
-- `fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../../util/search/index.md), [`Config`](../../../util/start/index.md)
+- `fn from_input_reverse(input: &Input<'_>) -> Config` — [`Input`](../../index.md), [`Config`](#config)
 
-- `fn look_behind(self: Self, byte: Option<u8>) -> Config` — [`Config`](../../../util/start/index.md)
+- `fn look_behind(self: Self, byte: Option<u8>) -> Config` — [`Config`](#config)
 
-- `fn anchored(self: Self, mode: Anchored) -> Config` — [`Anchored`](../../../util/search/index.md), [`Config`](../../../util/start/index.md)
+- `fn anchored(self: Self, mode: Anchored) -> Config` — [`Anchored`](../../index.md), [`Config`](#config)
 
 - `fn get_look_behind(self: &Self) -> Option<u8>`
 
-- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](../../../util/search/index.md)
+- `fn get_anchored(self: &Self) -> Anchored` — [`Anchored`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../../../util/start/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](#config)
 
-##### `impl Debug`
+##### `impl Debug for Config`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

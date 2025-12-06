@@ -30,31 +30,31 @@ struct Width(u16);
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Width`
 
-- `fn clone(self: &Self) -> Width` — [`Width`](../index.md)
+- `fn clone(self: &Self) -> Width` — [`Width`](#width)
 
-##### `impl Copy`
+##### `impl Copy for Width`
 
-##### `impl Debug`
+##### `impl Debug for Width`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Width`
 
-##### `impl Ord`
+##### `impl Ord for Width`
 
-- `fn cmp(self: &Self, other: &Width) -> $crate::cmp::Ordering` — [`Width`](../index.md)
+- `fn cmp(self: &Self, other: &Width) -> $crate::cmp::Ordering` — [`Width`](#width)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Width`
 
-- `fn eq(self: &Self, other: &Width) -> bool` — [`Width`](../index.md)
+- `fn eq(self: &Self, other: &Width) -> bool` — [`Width`](#width)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Width`
 
-- `fn partial_cmp(self: &Self, other: &Width) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Width`](../index.md)
+- `fn partial_cmp(self: &Self, other: &Width) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Width`](#width)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Width`
 
 ### `Height`
 
@@ -64,31 +64,31 @@ struct Height(u16);
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Height`
 
-- `fn clone(self: &Self) -> Height` — [`Height`](../index.md)
+- `fn clone(self: &Self) -> Height` — [`Height`](#height)
 
-##### `impl Copy`
+##### `impl Copy for Height`
 
-##### `impl Debug`
+##### `impl Debug for Height`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Height`
 
-##### `impl Ord`
+##### `impl Ord for Height`
 
-- `fn cmp(self: &Self, other: &Height) -> $crate::cmp::Ordering` — [`Height`](../index.md)
+- `fn cmp(self: &Self, other: &Height) -> $crate::cmp::Ordering` — [`Height`](#height)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Height`
 
-- `fn eq(self: &Self, other: &Height) -> bool` — [`Height`](../index.md)
+- `fn eq(self: &Self, other: &Height) -> bool` — [`Height`](#height)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Height`
 
-- `fn partial_cmp(self: &Self, other: &Height) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Height`](../index.md)
+- `fn partial_cmp(self: &Self, other: &Height) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Height`](#height)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Height`
 
 ## Functions
 

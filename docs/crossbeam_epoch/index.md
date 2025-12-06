@@ -73,29 +73,29 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 
 #### Implementations
 
-- `fn new(init: T) -> Atomic<T>` — [`Atomic`](../atomic/index.md)
+- `fn new(init: T) -> Atomic<T>` — [`Atomic`](atomic/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Clone for Atomic<T>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Debug<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Debug for Atomic<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Default for Atomic<T>`
 
 - `fn default() -> Self`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Atomic<T>`
 
 - `const ALIGN: usize`
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -103,13 +103,13 @@ Crossbeam supports dynamically sized types.  See [`Pointable`](atomic/index.md) 
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Pointer<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Pointer for Atomic<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Send<T: ?Sized + Pointable + Send + Sync>`
+##### `impl<T: ?Sized + Pointable + Send + Sync> Send for Atomic<T>`
 
-##### `impl Sync<T: ?Sized + Pointable + Send + Sync>`
+##### `impl<T: ?Sized + Pointable + Send + Sync> Sync for Atomic<T>`
 
 ### `CompareExchangeError<'g, T: ?Sized + Pointable, P: Pointer<T>>`
 
@@ -134,17 +134,17 @@ The error returned on failed compare-and-swap operation.
 
 #### Trait Implementations
 
-##### `impl Debug<T, P: Pointer<T> + fmt::Debug>`
+##### `impl<T, P: Pointer<T> + fmt::Debug> Debug for CompareExchangeError<'_, T, P>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for CompareExchangeError<'g, T, P>`
 
 - `const ALIGN: usize`
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -170,51 +170,53 @@ least significant bits of the address.
 
 #### Implementations
 
-- `unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](../atomic/index.md)
+- `fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](atomic/index.md), [`Owned`](atomic/index.md)
 
-- `fn into_box(self: Self) -> Box<T>`
+- `fn into_shared<'g>(self: Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](guard/index.md), [`Shared`](atomic/index.md)
 
-- `fn new(init: T) -> Owned<T>` — [`Owned`](../atomic/index.md)
+- `fn tag(self: &Self) -> usize`
+
+- `fn with_tag(self: Self, tag: usize) -> Owned<T>` — [`Owned`](atomic/index.md)
 
 #### Trait Implementations
 
-##### `impl AsMut<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> AsMut for Owned<T>`
 
 - `fn as_mut(self: &mut Self) -> &mut T`
 
-##### `impl AsRef<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> AsRef for Owned<T>`
 
 - `fn as_ref(self: &Self) -> &T`
 
-##### `impl Clone<T: Clone>`
+##### `impl<T: Clone> Clone for Owned<T>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Debug<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Debug for Owned<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Deref<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Deref for Owned<T>`
 
 - `type Target = T`
 
 - `fn deref(self: &Self) -> &T`
 
-##### `impl DerefMut<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> DerefMut for Owned<T>`
 
 - `fn deref_mut(self: &mut Self) -> &mut T`
 
-##### `impl Drop<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Drop for Owned<T>`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Owned<T>`
 
 - `const ALIGN: usize`
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -222,13 +224,13 @@ least significant bits of the address.
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Pointer<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Pointer for Owned<T>`
 
 - `fn into_usize(self: Self) -> usize`
 
 - `unsafe fn from_usize(data: usize) -> Self`
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Owned<T>`
 
 - `type Target = T`
 
@@ -250,7 +252,7 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn null() -> Shared<'g, T>` — [`Shared`](../atomic/index.md)
+- `fn null() -> Shared<'g, T>` — [`Shared`](atomic/index.md)
 
 - `fn is_null(self: &Self) -> bool`
 
@@ -260,51 +262,51 @@ least significant bits of the address.
 
 - `unsafe fn as_ref(self: &Self) -> Option<&'g T>`
 
-- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](../atomic/index.md)
+- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](atomic/index.md)
 
-- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](../atomic/index.md)
+- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](atomic/index.md)
 
 - `fn tag(self: &Self) -> usize`
 
-- `fn with_tag(self: &Self, tag: usize) -> Shared<'g, T>` — [`Shared`](../atomic/index.md)
+- `fn with_tag(self: &Self, tag: usize) -> Shared<'g, T>` — [`Shared`](atomic/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Clone for Shared<'_, T>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Copy for Shared<'_, T>`
 
-##### `impl Debug<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Debug for Shared<'_, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Default for Shared<'_, T>`
 
 - `fn default() -> Self`
 
-##### `impl Eq<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Eq for Shared<'_, T>`
 
-##### `impl Ord<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Ord for Shared<'_, T>`
 
 - `fn cmp(self: &Self, other: &Self) -> cmp::Ordering`
 
-##### `impl PartialEq<'g, T: ?Sized + Pointable>`
+##### `impl<'g, T: ?Sized + Pointable> PartialEq for Shared<'g, T>`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl PartialOrd<'g, T: ?Sized + Pointable>`
+##### `impl<'g, T: ?Sized + Pointable> PartialOrd for Shared<'g, T>`
 
 - `fn partial_cmp(self: &Self, other: &Self) -> Option<cmp::Ordering>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Shared<'g, T>`
 
 - `const ALIGN: usize`
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -312,7 +314,7 @@ least significant bits of the address.
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Pointer<T: ?Sized + Pointable>`
+##### `impl<T: ?Sized + Pointable> Pointer for Shared<'_, T>`
 
 - `fn into_usize(self: Self) -> usize`
 
@@ -332,35 +334,35 @@ An epoch-based garbage collector.
 
 - `fn new() -> Self`
 
-- `fn register(self: &Self) -> LocalHandle` — [`LocalHandle`](../collector/index.md)
+- `fn register(self: &Self) -> LocalHandle` — [`LocalHandle`](collector/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Collector`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Debug`
+##### `impl Debug for Collector`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Collector`
 
 - `fn default() -> Self`
 
-##### `impl Eq`
+##### `impl Eq for Collector`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Collector`
 
-- `fn eq(self: &Self, rhs: &Collector) -> bool` — [`Collector`](../collector/index.md)
+- `fn eq(self: &Self, rhs: &Collector) -> bool` — [`Collector`](collector/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Collector`
 
 - `const ALIGN: usize`
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -368,9 +370,9 @@ An epoch-based garbage collector.
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl Send`
+##### `impl Send for Collector`
 
-##### `impl Sync`
+##### `impl Sync for Collector`
 
 ### `LocalHandle`
 
@@ -384,29 +386,29 @@ A handle to a garbage collector.
 
 #### Implementations
 
-- `fn pin(self: &Self) -> Guard` — [`Guard`](../guard/index.md)
+- `fn pin(self: &Self) -> Guard` — [`Guard`](guard/index.md)
 
 - `fn is_pinned(self: &Self) -> bool`
 
-- `fn collector(self: &Self) -> &Collector` — [`Collector`](../collector/index.md)
+- `fn collector(self: &Self) -> &Collector` — [`Collector`](collector/index.md)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for LocalHandle`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Drop`
+##### `impl Drop for LocalHandle`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for LocalHandle`
 
 - `const ALIGN: usize`
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 
@@ -488,7 +490,7 @@ assert!(!epoch::is_pinned());
 
 - `unsafe fn defer_unchecked<F, R>(self: &Self, f: F)`
 
-- `unsafe fn defer_destroy<T>(self: &Self, ptr: Shared<'_, T>)` — [`Shared`](../atomic/index.md)
+- `unsafe fn defer_destroy<T>(self: &Self, ptr: Shared<'_, T>)` — [`Shared`](atomic/index.md)
 
 - `fn flush(self: &Self)`
 
@@ -496,25 +498,25 @@ assert!(!epoch::is_pinned());
 
 - `fn repin_after<F, R>(self: &mut Self, f: F) -> R`
 
-- `fn collector(self: &Self) -> Option<&Collector>` — [`Collector`](../collector/index.md)
+- `fn collector(self: &Self) -> Option<&Collector>` — [`Collector`](collector/index.md)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Guard`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Drop`
+##### `impl Drop for Guard`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Guard`
 
 - `const ALIGN: usize`
 
 - `type Init = T`
 
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](../atomic/index.md)
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize` — [`Pointable`](atomic/index.md)
 
 - `unsafe fn deref<'a>(ptr: usize) -> &'a T`
 

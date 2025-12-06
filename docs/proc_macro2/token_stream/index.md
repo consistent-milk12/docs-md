@@ -27,7 +27,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Implementations
 
-- `fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](../../imp/index.md)
+- `fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](../imp/index.md)
 
 - `fn _new_fallback(inner: fallback::TokenStream) -> Self`
 
@@ -37,59 +37,59 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for TokenStream`
 
-- `fn clone(self: &Self) -> TokenStream` — [`TokenStream`](../../index.md)
+- `fn clone(self: &Self) -> TokenStream` — [`TokenStream`](../index.md)
 
-##### `impl Debug`
+##### `impl Debug for TokenStream`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for TokenStream`
 
 - `fn default() -> Self`
 
-##### `impl Display`
+##### `impl Display for TokenStream`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Extend`
+##### `impl Extend for TokenStream`
 
 - `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
-##### `impl FromIterator`
+##### `impl FromIterator for TokenStream`
 
 - `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
 
-##### `impl FromStr`
+##### `impl FromStr for TokenStream`
 
 - `type Err = LexError`
 
-- `fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../../index.md), [`LexError`](../../index.md)
+- `fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../index.md), [`LexError`](../index.md)
 
-##### `impl IntoIterator`
+##### `impl IntoIterator for TokenStream`
 
 - `type Item = TokenTree`
 
 - `type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](../../token_stream/index.md)
+- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](#intoiter)
 
-##### `impl Parse`
+##### `impl Parse for proc_macro2::TokenStream`
 
-##### `impl Sealed`
+##### `impl Sealed for proc_macro2::TokenStream`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for TokenStream`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for proc_macro2::TokenStream`
 
-- `fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../../parse/index.md), [`Reject`](../../parse/index.md)
+- `fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
 
-- `fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../../parse/index.md), [`Reject`](../../parse/index.md)
+- `fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
 
-##### `impl TokenStreamExt`
+##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
 - `fn borrow_mut(self: &mut Self) -> &mut T`
 
@@ -109,15 +109,15 @@ delimited groups, and returns whole groups as token trees.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for IntoIter`
 
-- `fn clone(self: &Self) -> IntoIter` — [`IntoIter`](../../token_stream/index.md)
+- `fn clone(self: &Self) -> IntoIter` — [`IntoIter`](#intoiter)
 
-##### `impl Debug`
+##### `impl Debug for IntoIter`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for IntoIter`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -125,11 +125,11 @@ delimited groups, and returns whole groups as token trees.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator`
+##### `impl Iterator for IntoIter`
 
 - `type Item = TokenTree`
 
-- `fn next(self: &mut Self) -> Option<TokenTree>` — [`TokenTree`](../../index.md)
+- `fn next(self: &mut Self) -> Option<TokenTree>` — [`TokenTree`](../index.md)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 

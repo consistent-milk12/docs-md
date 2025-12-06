@@ -23,33 +23,33 @@ Repeatedly call `advance` with bytes to emit Utf8 characters
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](../index.md)
+- `fn new() -> Parser` — [`Parser`](#parser)
 
 - `fn advance<R>(self: &mut Self, receiver: &mut R, byte: u8)`
 
-- `fn perform_action<R>(self: &mut Self, receiver: &mut R, byte: u8, action: Action)` — [`Action`](../types/index.md)
+- `fn perform_action<R>(self: &mut Self, receiver: &mut R, byte: u8, action: Action)` — [`Action`](types/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](../index.md)
+- `fn clone(self: &Self) -> Parser` — [`Parser`](#parser)
 
-##### `impl Debug`
+##### `impl Debug for Parser`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Parser`
 
-- `fn default() -> Parser` — [`Parser`](../index.md)
+- `fn default() -> Parser` — [`Parser`](#parser)
 
-##### `impl Eq`
+##### `impl Eq for Parser`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Parser`
 
-- `fn eq(self: &Self, other: &Parser) -> bool` — [`Parser`](../index.md)
+- `fn eq(self: &Self, other: &Parser) -> bool` — [`Parser`](#parser)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Parser`
 
 ## Traits
 

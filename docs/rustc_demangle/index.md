@@ -45,11 +45,11 @@ Representation of a demangled symbol name.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Demangle<'a>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a>`
+##### `impl<'a> Display for Demangle<'a>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -65,11 +65,11 @@ Error returned from the `try_demangle` function below when demangling fails.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for TryDemangleError`
 
-- `fn clone(self: &Self) -> TryDemangleError` — [`TryDemangleError`](../index.md)
+- `fn clone(self: &Self) -> TryDemangleError` — [`TryDemangleError`](#trydemangleerror)
 
-##### `impl Debug`
+##### `impl Debug for TryDemangleError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

@@ -51,29 +51,29 @@ are instead provided here as one cohesive unit.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn new() -> Config` — [`Config`](#config)
 
-- `fn case_insensitive(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn case_insensitive(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn multi_line(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn multi_line(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn dot_matches_new_line(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn dot_matches_new_line(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn crlf(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn crlf(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](#config)
 
-- `fn swap_greed(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn swap_greed(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn ignore_whitespace(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn ignore_whitespace(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn unicode(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn unicode(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn nest_limit(self: Self, limit: u32) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn nest_limit(self: Self, limit: u32) -> Config` — [`Config`](#config)
 
-- `fn octal(self: Self, yes: bool) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn octal(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
 - `fn get_unicode(self: &Self) -> bool`
 
@@ -105,19 +105,19 @@ are instead provided here as one cohesive unit.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](#config)
 
-##### `impl Copy`
+##### `impl Copy for Config`
 
-##### `impl Debug`
+##### `impl Debug for Config`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../../../util/syntax/index.md)
+- `fn default() -> Config` — [`Config`](#config)
 
 ## Functions
 

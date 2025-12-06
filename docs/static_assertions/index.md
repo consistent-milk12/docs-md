@@ -72,10 +72,9 @@ and thousands of others.
     <img src="https://buymecoffee.intm.org/img/button-paypal-white.png" alt="Buy me a coffee" height="35">
 </a>
 
-[Rust 1.37]: https://blog.rust-lang.org/2019/08/15/Rust-1.37.0.html
-[2018]: https://blog.rust-lang.org/2018/12/06/Rust-1.31-and-rust-2018.html#rust-2018
-[crate](#crate): https://crates.io/crates/static_assertions
-[compile-time]: https://en.wikipedia.org/wiki/Compile_time
+
+
+
 
 
 ## Macros
@@ -155,7 +154,6 @@ struct i32x4([i32; 4]);
 assert_eq_align!(i32x4, [i32; 4]);
 ```
 
-[FFI]: https://en.wikipedia.org/wiki/Foreign_function_interface
 
 ### `assert_eq_size!`
 
@@ -396,7 +394,7 @@ assert_impl_all!(*const u8: Send);
 
 
 
-[blanket](#blanket): https://doc.rust-lang.org/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods
+
 
 ### `assert_impl_any!`
 
@@ -479,7 +477,7 @@ assert_not_impl_all!(Cell<u32>: Send);
 
 
 
-[blanket](#blanket): https://doc.rust-lang.org/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods
+
 
 ### `assert_not_impl_any!`
 
@@ -520,7 +518,7 @@ assert_not_impl_any!(u32: Into<u64>, Into<u16>);
 
 
 
-[blanket](#blanket): https://doc.rust-lang.org/book/ch10-02-traits.html#using-trait-bounds-to-conditionally-implement-methods
+
 
 ### `assert_obj_safe!`
 
@@ -592,7 +590,6 @@ trait MyUnsafeTrait {
 assert_obj_safe!(MyUnsafeTrait);
 ```
 
-[object](#object): https://doc.rust-lang.org/book/ch17-02-trait-objects.html#object-safety-is-required-for-trait-objects
 
 ### `assert_trait_sub_all!`
 
@@ -791,7 +788,6 @@ identity property:
 const_assert!(5 * 5 == 5);
 ```
 
-[static_assert](#static-assert): http://en.cppreference.com/w/cpp/language/static_assert
 
 ### `const_assert_eq!`
 

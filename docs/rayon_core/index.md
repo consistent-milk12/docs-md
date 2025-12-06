@@ -18,8 +18,6 @@ The scope will exist until all tasks spawned within the scope have been complete
 Tasks spawned within the pool (using [`install()`][tpinstall](#tpinstall), [`join()`][tpjoin](#tpjoin), etc.) will be added to a deque,
 where it becomes available for work stealing from other threads in the local thread pool.
 
-[tpinstall](#tpinstall): ThreadPool::install()
-[tpjoin](#tpjoin): ThreadPool::join()
 
 # Global fallback when threading is unsupported
 
@@ -77,7 +75,7 @@ Provides context to a closure called by `broadcast`.
 
 #### Implementations
 
-- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](../broadcast/index.md)
+- `fn with<R>(f: impl FnOnce(BroadcastContext<'_>) -> R) -> R` — [`BroadcastContext`](broadcast/index.md)
 
 - `fn index(self: &Self) -> usize`
 
@@ -85,11 +83,11 @@ Provides context to a closure called by `broadcast`.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for BroadcastContext<'a>`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for BroadcastContext<'a>`
 
 - `const ALIGN: usize`
 
@@ -130,11 +128,11 @@ Thread builder used for customization via `ThreadPoolBuilder::spawn_handler()`.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for ThreadBuilder`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ThreadBuilder`
 
 - `const ALIGN: usize`
 
@@ -161,7 +159,7 @@ See [`scope()`](#scope) for more information.
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
+- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
 
 - `fn spawn<BODY>(self: &Self, body: BODY)`
 
@@ -169,11 +167,11 @@ See [`scope()`](#scope) for more information.
 
 #### Trait Implementations
 
-##### `impl Debug<'scope>`
+##### `impl<'scope> Debug for Scope<'scope>`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Scope<'scope>`
 
 - `const ALIGN: usize`
 
@@ -202,7 +200,7 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 
 #### Implementations
 
-- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](../registry/index.md), [`Registry`](../registry/index.md)
+- `fn new(owner: Option<&WorkerThread>, registry: Option<&Arc<Registry>>) -> Self` — [`WorkerThread`](registry/index.md), [`Registry`](registry/index.md)
 
 - `fn spawn_fifo<BODY>(self: &Self, body: BODY)`
 
@@ -210,11 +208,11 @@ See [`scope_fifo()`](#scope-fifo) for more information.
 
 #### Trait Implementations
 
-##### `impl Debug<'scope>`
+##### `impl<'scope> Debug for ScopeFifo<'scope>`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ScopeFifo<'scope>`
 
 - `const ALIGN: usize`
 
@@ -261,15 +259,13 @@ they will complete executing any remaining work that you have spawned, and autom
 terminate.
 
 
-[thread pool]: https://en.wikipedia.org/wiki/Thread_pool
-
 
 
 #### Implementations
 
-- `fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](../index.md), [`ThreadPool`](../thread_pool/index.md)
+- `fn new(configuration: crate::Configuration) -> Result<ThreadPool, Box<dyn Error>>` — [`Configuration`](#configuration), [`ThreadPool`](thread_pool/index.md)
 
-- `fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](../index.md), [`ThreadPool`](../thread_pool/index.md), [`ThreadPoolBuildError`](../index.md)
+- `fn build<S>(builder: ThreadPoolBuilder<S>) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`ThreadPool`](thread_pool/index.md), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
 - `fn install<OP, R>(self: &Self, op: OP) -> R`
 
@@ -297,21 +293,21 @@ terminate.
 
 - `fn spawn_broadcast<OP>(self: &Self, op: OP)`
 
-- `fn yield_now(self: &Self) -> Option<Yield>` — [`Yield`](../thread_pool/index.md)
+- `fn yield_now(self: &Self) -> Option<Yield>` — [`Yield`](thread_pool/index.md)
 
-- `fn yield_local(self: &Self) -> Option<Yield>` — [`Yield`](../thread_pool/index.md)
+- `fn yield_local(self: &Self) -> Option<Yield>` — [`Yield`](thread_pool/index.md)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for ThreadPool`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Drop`
+##### `impl Drop for ThreadPool`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ThreadPool`
 
 - `const ALIGN: usize`
 
@@ -337,27 +333,27 @@ Error when initializing a thread pool.
 
 #### Implementations
 
-- `fn new(kind: ErrorKind) -> ThreadPoolBuildError` — [`ErrorKind`](../index.md), [`ThreadPoolBuildError`](../index.md)
+- `fn new(kind: ErrorKind) -> ThreadPoolBuildError` — [`ErrorKind`](#errorkind), [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
 - `fn is_unsupported(self: &Self) -> bool`
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for ThreadPoolBuildError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for ThreadPoolBuildError`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for ThreadPoolBuildError`
 
 - `fn description(self: &Self) -> &str`
 
 - `fn source(self: &Self) -> Option<&dyn Error>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ThreadPoolBuildError`
 
 - `const ALIGN: usize`
 
@@ -371,7 +367,7 @@ Error when initializing a thread pool.
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for ThreadPoolBuildError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -453,19 +449,21 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 #### Implementations
 
-- `fn build_scoped<W, F, R>(self: Self, wrapper: W, with_pool: F) -> Result<R, ThreadPoolBuildError>` — [`ThreadPoolBuildError`](../index.md)
+- `fn build(self: Self) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPool`](thread_pool/index.md), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+
+- `fn build_global(self: Self) -> Result<(), ThreadPoolBuildError>` — [`ThreadPoolBuildError`](#threadpoolbuilderror)
 
 #### Trait Implementations
 
-##### `impl Debug<S>`
+##### `impl<S> Debug for ThreadPoolBuilder<S>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ThreadPoolBuilder`
 
 - `fn default() -> Self`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ThreadPoolBuilder<S>`
 
 - `const ALIGN: usize`
 
@@ -491,37 +489,37 @@ Contains the rayon thread pool configuration. Use [`ThreadPoolBuilder`](#threadp
 
 #### Implementations
 
-- `fn new() -> Configuration` — [`Configuration`](../index.md)
+- `fn new() -> Configuration` — [`Configuration`](#configuration)
 
-- `fn build(self: Self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](../thread_pool/index.md)
+- `fn build(self: Self) -> Result<ThreadPool, Box<dyn Error>>` — [`ThreadPool`](thread_pool/index.md)
 
 - `fn thread_name<F>(self: Self, closure: F) -> Self`
 
-- `fn num_threads(self: Self, num_threads: usize) -> Configuration` — [`Configuration`](../index.md)
+- `fn num_threads(self: Self, num_threads: usize) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn panic_handler<H>(self: Self, panic_handler: H) -> Configuration` — [`Configuration`](../index.md)
+- `fn panic_handler<H>(self: Self, panic_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
 - `fn stack_size(self: Self, stack_size: usize) -> Self`
 
 - `fn breadth_first(self: Self) -> Self`
 
-- `fn start_handler<H>(self: Self, start_handler: H) -> Configuration` — [`Configuration`](../index.md)
+- `fn start_handler<H>(self: Self, start_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn exit_handler<H>(self: Self, exit_handler: H) -> Configuration` — [`Configuration`](../index.md)
+- `fn exit_handler<H>(self: Self, exit_handler: H) -> Configuration` — [`Configuration`](#configuration)
 
-- `fn into_builder(self: Self) -> ThreadPoolBuilder` — [`ThreadPoolBuilder`](../index.md)
+- `fn into_builder(self: Self) -> ThreadPoolBuilder` — [`ThreadPoolBuilder`](#threadpoolbuilder)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Configuration`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Configuration`
 
-- `fn default() -> Configuration` — [`Configuration`](../index.md)
+- `fn default() -> Configuration` — [`Configuration`](#configuration)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Configuration`
 
 - `const ALIGN: usize`
 
@@ -558,11 +556,11 @@ Provides the calling context to a closure called by `join_context`.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for FnContext`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for FnContext`
 
 - `const ALIGN: usize`
 
@@ -601,23 +599,23 @@ Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Yield`
 
-- `fn clone(self: &Self) -> Yield` — [`Yield`](../thread_pool/index.md)
+- `fn clone(self: &Self) -> Yield` — [`Yield`](thread_pool/index.md)
 
-##### `impl Copy`
+##### `impl Copy for Yield`
 
-##### `impl Debug`
+##### `impl Debug for Yield`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Yield`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Yield`
 
-- `fn eq(self: &Self, other: &Yield) -> bool` — [`Yield`](../thread_pool/index.md)
+- `fn eq(self: &Self, other: &Yield) -> bool` — [`Yield`](thread_pool/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Yield`
 
 - `const ALIGN: usize`
 
@@ -631,7 +629,7 @@ Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Yield`
 
 ## Functions
 
@@ -671,7 +669,6 @@ builder that specifies the number of threads, then this
 number may vary over time in future versions (see [the
 `num_threads()` method for details][snt](#snt)).
 
-[snt](#snt): ThreadPoolBuilder::num_threads
 
 ### `initialize`
 

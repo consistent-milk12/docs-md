@@ -14,23 +14,23 @@ enum StrSimError {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for StrSimError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for StrSimError`
 
 - `fn fmt(self: &Self, fmt: &mut Formatter<'_>) -> Result<(), fmt::Error>`
 
-##### `impl Error`
+##### `impl Error for StrSimError`
 
-##### `impl PartialEq`
+##### `impl PartialEq for StrSimError`
 
-- `fn eq(self: &Self, other: &StrSimError) -> bool` — [`StrSimError`](../index.md)
+- `fn eq(self: &Self, other: &StrSimError) -> bool` — [`StrSimError`](#strsimerror)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for StrSimError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for StrSimError`
 
 - `fn to_string(self: &Self) -> String`
 

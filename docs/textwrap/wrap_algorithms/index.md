@@ -90,25 +90,25 @@ an entire paragraph at a time in order to find optimal line breaks
 
 - `const fn new() -> Self`
 
-- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../../core/index.md)
+- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for WrapAlgorithm`
 
-- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](../../wrap_algorithms/index.md)
+- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](#wrapalgorithm)
 
-##### `impl Copy`
+##### `impl Copy for WrapAlgorithm`
 
-##### `impl Debug`
+##### `impl Debug for WrapAlgorithm`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for WrapAlgorithm`
 
 - `fn default() -> Self`
 
-##### `impl PartialEq`
+##### `impl PartialEq for WrapAlgorithm`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 

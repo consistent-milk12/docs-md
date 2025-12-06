@@ -83,9 +83,8 @@ Every keyword and punctuation token supports the following operations.
 
 - Field access to its span — `let sp = the_token.span`
 
-[Peeking]: crate::parse::ParseBuffer::peek()
-[Parsing]: crate::parse::ParseBuffer::parse()
-[Printing]: https://docs.rs/quote/1.0/quote/trait.ToTokens.html
+
+
 
 
 ## Structs
@@ -109,45 +108,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Underscore`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Underscore`
 
-##### `impl Default`
+##### `impl Default for Underscore`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Underscore`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Underscore`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Underscore`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Underscore`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Underscore`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Underscore`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Underscore`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Underscore`
 
 ### `Group`
 
@@ -165,19 +164,19 @@ None-delimited group
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Group`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Group`
 
-##### `impl Default`
+##### `impl Default for Group`
 
 - `fn default() -> Self`
 
-##### `impl Sealed`
+##### `impl Sealed for Group`
 
-##### `impl Token`
+##### `impl Token for Group`
 
 ### `Abstract`
 
@@ -195,31 +194,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Abstract`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Abstract`
 
-##### `impl Default`
+##### `impl Default for Abstract`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Abstract`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Abstract`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Abstract`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Abstract`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Abstract`
 
 ### `As`
 
@@ -237,31 +236,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for As`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for As`
 
-##### `impl Default`
+##### `impl Default for As`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for As`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for As`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for As`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for As`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for As`
 
 ### `Async`
 
@@ -279,31 +278,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Async`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Async`
 
-##### `impl Default`
+##### `impl Default for Async`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Async`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Async`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Async`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Async`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Async`
 
 ### `Auto`
 
@@ -321,31 +320,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Auto`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Auto`
 
-##### `impl Default`
+##### `impl Default for Auto`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Auto`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Auto`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Auto`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Auto`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Auto`
 
 ### `Await`
 
@@ -363,31 +362,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Await`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Await`
 
-##### `impl Default`
+##### `impl Default for Await`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Await`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Await`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Await`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Await`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Await`
 
 ### `Become`
 
@@ -405,31 +404,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Become`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Become`
 
-##### `impl Default`
+##### `impl Default for Become`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Become`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Become`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Become`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Become`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Become`
 
 ### `Box`
 
@@ -447,31 +446,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Box`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Box`
 
-##### `impl Default`
+##### `impl Default for Box`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Box`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Box`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Box`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Box`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Box`
 
 ### `Break`
 
@@ -489,31 +488,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Break`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Break`
 
-##### `impl Default`
+##### `impl Default for Break`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Break`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Break`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Break`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Break`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Break`
 
 ### `Const`
 
@@ -531,31 +530,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Const`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Const`
 
-##### `impl Default`
+##### `impl Default for Const`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Const`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Const`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Const`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Const`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Const`
 
 ### `Continue`
 
@@ -573,31 +572,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Continue`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Continue`
 
-##### `impl Default`
+##### `impl Default for Continue`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Continue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Continue`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Continue`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Continue`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Continue`
 
 ### `Crate`
 
@@ -615,31 +614,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Crate`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Crate`
 
-##### `impl Default`
+##### `impl Default for Crate`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Crate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Crate`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Crate`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Crate`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Crate`
 
 ### `Default`
 
@@ -657,31 +656,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Default`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Default`
 
-##### `impl Default`
+##### `impl Default for Default`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Default`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Default`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Default`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Default`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Default`
 
 ### `Do`
 
@@ -699,31 +698,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Do`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Do`
 
-##### `impl Default`
+##### `impl Default for Do`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Do`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Do`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Do`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Do`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Do`
 
 ### `Dyn`
 
@@ -741,31 +740,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Dyn`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Dyn`
 
-##### `impl Default`
+##### `impl Default for Dyn`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Dyn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Dyn`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Dyn`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Dyn`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Dyn`
 
 ### `Else`
 
@@ -783,31 +782,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Else`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Else`
 
-##### `impl Default`
+##### `impl Default for Else`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Else`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Else`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Else`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Else`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Else`
 
 ### `Enum`
 
@@ -825,31 +824,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Enum`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Enum`
 
-##### `impl Default`
+##### `impl Default for Enum`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Enum`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Enum`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Enum`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Enum`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Enum`
 
 ### `Extern`
 
@@ -867,31 +866,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Extern`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Extern`
 
-##### `impl Default`
+##### `impl Default for Extern`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Extern`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Extern`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Extern`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Extern`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Extern`
 
 ### `Final`
 
@@ -909,31 +908,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Final`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Final`
 
-##### `impl Default`
+##### `impl Default for Final`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Final`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Final`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Final`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Final`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Final`
 
 ### `Fn`
 
@@ -951,31 +950,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Fn`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Fn`
 
-##### `impl Default`
+##### `impl Default for Fn`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Fn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Fn`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Fn`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Fn`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Fn`
 
 ### `For`
 
@@ -993,31 +992,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for For`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for For`
 
-##### `impl Default`
+##### `impl Default for For`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for For`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for For`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for For`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for For`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for For`
 
 ### `If`
 
@@ -1035,31 +1034,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for If`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for If`
 
-##### `impl Default`
+##### `impl Default for If`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for If`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for If`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for If`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for If`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for If`
 
 ### `Impl`
 
@@ -1077,31 +1076,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Impl`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Impl`
 
-##### `impl Default`
+##### `impl Default for Impl`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Impl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Impl`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Impl`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Impl`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Impl`
 
 ### `In`
 
@@ -1119,31 +1118,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for In`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for In`
 
-##### `impl Default`
+##### `impl Default for In`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for In`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for In`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for In`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for In`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for In`
 
 ### `Let`
 
@@ -1161,31 +1160,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Let`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Let`
 
-##### `impl Default`
+##### `impl Default for Let`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Let`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Let`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Let`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Let`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Let`
 
 ### `Loop`
 
@@ -1203,31 +1202,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Loop`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Loop`
 
-##### `impl Default`
+##### `impl Default for Loop`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Loop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Loop`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Loop`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Loop`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Loop`
 
 ### `Macro`
 
@@ -1245,31 +1244,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Macro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Macro`
 
-##### `impl Default`
+##### `impl Default for Macro`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Macro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Macro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Macro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Macro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Macro`
 
 ### `Match`
 
@@ -1287,31 +1286,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Match`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Match`
 
-##### `impl Default`
+##### `impl Default for Match`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Match`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Match`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Match`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Match`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Match`
 
 ### `Mod`
 
@@ -1329,31 +1328,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Mod`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Mod`
 
-##### `impl Default`
+##### `impl Default for Mod`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Mod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Mod`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Mod`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Mod`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Mod`
 
 ### `Move`
 
@@ -1371,31 +1370,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Move`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Move`
 
-##### `impl Default`
+##### `impl Default for Move`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Move`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Move`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Move`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Move`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Move`
 
 ### `Mut`
 
@@ -1413,31 +1412,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Mut`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Mut`
 
-##### `impl Default`
+##### `impl Default for Mut`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Mut`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Mut`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Mut`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Mut`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Mut`
 
 ### `Override`
 
@@ -1455,31 +1454,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Override`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Override`
 
-##### `impl Default`
+##### `impl Default for Override`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Override`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Override`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Override`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Override`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Override`
 
 ### `Priv`
 
@@ -1497,31 +1496,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Priv`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Priv`
 
-##### `impl Default`
+##### `impl Default for Priv`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Priv`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Priv`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Priv`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Priv`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Priv`
 
 ### `Pub`
 
@@ -1539,31 +1538,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Pub`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Pub`
 
-##### `impl Default`
+##### `impl Default for Pub`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Pub`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Pub`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Pub`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Pub`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Pub`
 
 ### `Raw`
 
@@ -1581,31 +1580,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Raw`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Raw`
 
-##### `impl Default`
+##### `impl Default for Raw`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Raw`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Raw`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Raw`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Raw`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Raw`
 
 ### `Ref`
 
@@ -1623,31 +1622,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Ref`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Ref`
 
-##### `impl Default`
+##### `impl Default for Ref`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Ref`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Ref`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Ref`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Ref`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Ref`
 
 ### `Return`
 
@@ -1665,31 +1664,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Return`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Return`
 
-##### `impl Default`
+##### `impl Default for Return`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Return`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Return`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Return`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Return`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Return`
 
 ### `SelfType`
 
@@ -1707,31 +1706,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SelfType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for SelfType`
 
-##### `impl Default`
+##### `impl Default for SelfType`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for SelfType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for SelfType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for SelfType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for SelfType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for SelfType`
 
 ### `SelfValue`
 
@@ -1749,31 +1748,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SelfValue`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for SelfValue`
 
-##### `impl Default`
+##### `impl Default for SelfValue`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for SelfValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for SelfValue`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for SelfValue`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for SelfValue`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for SelfValue`
 
 ### `Static`
 
@@ -1791,31 +1790,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Static`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Static`
 
-##### `impl Default`
+##### `impl Default for Static`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Static`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Static`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Static`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Static`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Static`
 
 ### `Struct`
 
@@ -1833,31 +1832,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Struct`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Struct`
 
-##### `impl Default`
+##### `impl Default for Struct`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Struct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Struct`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Struct`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Struct`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Struct`
 
 ### `Super`
 
@@ -1875,31 +1874,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Super`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Super`
 
-##### `impl Default`
+##### `impl Default for Super`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Super`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Super`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Super`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Super`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Super`
 
 ### `Trait`
 
@@ -1917,31 +1916,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Trait`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Trait`
 
-##### `impl Default`
+##### `impl Default for Trait`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Trait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Trait`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Trait`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Trait`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Trait`
 
 ### `Try`
 
@@ -1959,31 +1958,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Try`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Try`
 
-##### `impl Default`
+##### `impl Default for Try`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Try`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Try`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Try`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Try`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Try`
 
 ### `Type`
 
@@ -2001,31 +2000,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Type`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Type`
 
-##### `impl Default`
+##### `impl Default for Type`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Type`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Type`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Type`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Type`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Type`
 
 ### `Typeof`
 
@@ -2043,31 +2042,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Typeof`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Typeof`
 
-##### `impl Default`
+##### `impl Default for Typeof`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Typeof`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Typeof`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Typeof`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Typeof`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Typeof`
 
 ### `Union`
 
@@ -2085,31 +2084,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Union`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Union`
 
-##### `impl Default`
+##### `impl Default for Union`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Union`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Union`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Union`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Union`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Union`
 
 ### `Unsafe`
 
@@ -2127,31 +2126,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Unsafe`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Unsafe`
 
-##### `impl Default`
+##### `impl Default for Unsafe`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Unsafe`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Unsafe`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Unsafe`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Unsafe`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Unsafe`
 
 ### `Unsized`
 
@@ -2169,31 +2168,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Unsized`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Unsized`
 
-##### `impl Default`
+##### `impl Default for Unsized`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Unsized`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Unsized`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Unsized`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Unsized`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Unsized`
 
 ### `Use`
 
@@ -2211,31 +2210,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Use`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Use`
 
-##### `impl Default`
+##### `impl Default for Use`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Use`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Use`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Use`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Use`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Use`
 
 ### `Virtual`
 
@@ -2253,31 +2252,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Virtual`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Virtual`
 
-##### `impl Default`
+##### `impl Default for Virtual`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Virtual`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Virtual`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Virtual`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Virtual`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Virtual`
 
 ### `Where`
 
@@ -2295,31 +2294,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Where`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Where`
 
-##### `impl Default`
+##### `impl Default for Where`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Where`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Where`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Where`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Where`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Where`
 
 ### `While`
 
@@ -2337,31 +2336,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for While`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for While`
 
-##### `impl Default`
+##### `impl Default for While`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for While`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for While`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for While`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for While`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for While`
 
 ### `Yield`
 
@@ -2379,31 +2378,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Yield`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Yield`
 
-##### `impl Default`
+##### `impl Default for Yield`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Yield`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Yield`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Yield`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Yield`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Yield`
 
 ### `And`
 
@@ -2424,45 +2423,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for And`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for And`
 
-##### `impl Default`
+##### `impl Default for And`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for And`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for And`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for And`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for And`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl Sealed for And`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for And`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for And`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for And`
 
 ### `AndAnd`
 
@@ -2483,31 +2482,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AndAnd`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for AndAnd`
 
-##### `impl Default`
+##### `impl Default for AndAnd`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for AndAnd`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for AndAnd`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for AndAnd`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for AndAnd`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for AndAnd`
 
 ### `AndEq`
 
@@ -2528,31 +2527,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AndEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for AndEq`
 
-##### `impl Default`
+##### `impl Default for AndEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for AndEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for AndEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for AndEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for AndEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for AndEq`
 
 ### `At`
 
@@ -2573,45 +2572,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for At`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for At`
 
-##### `impl Default`
+##### `impl Default for At`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for At`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for At`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for At`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for At`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for At`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for At`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for At`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for At`
 
 ### `Caret`
 
@@ -2632,45 +2631,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Caret`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Caret`
 
-##### `impl Default`
+##### `impl Default for Caret`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Caret`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Caret`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Caret`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Caret`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl Sealed for Caret`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Caret`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Caret`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Caret`
 
 ### `CaretEq`
 
@@ -2691,31 +2690,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for CaretEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for CaretEq`
 
-##### `impl Default`
+##### `impl Default for CaretEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for CaretEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for CaretEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for CaretEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for CaretEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for CaretEq`
 
 ### `Colon`
 
@@ -2736,45 +2735,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Colon`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Colon`
 
-##### `impl Default`
+##### `impl Default for Colon`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Colon`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Colon`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Colon`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Colon`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Colon`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Colon`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Colon`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Colon`
 
 ### `Comma`
 
@@ -2795,45 +2794,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Comma`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Comma`
 
-##### `impl Default`
+##### `impl Default for Comma`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Comma`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Comma`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Comma`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Comma`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Comma`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Comma`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Comma`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Comma`
 
 ### `Dollar`
 
@@ -2854,45 +2853,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Dollar`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Dollar`
 
-##### `impl Default`
+##### `impl Default for Dollar`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Dollar`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Dollar`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Dollar`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Dollar`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Dollar`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Dollar`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Dollar`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Dollar`
 
 ### `Dot`
 
@@ -2913,45 +2912,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Dot`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Dot`
 
-##### `impl Default`
+##### `impl Default for Dot`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Dot`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Dot`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Dot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Dot`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Dot`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Dot`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Dot`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Dot`
 
 ### `DotDot`
 
@@ -2972,31 +2971,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DotDot`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for DotDot`
 
-##### `impl Default`
+##### `impl Default for DotDot`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for DotDot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for DotDot`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for DotDot`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for DotDot`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for DotDot`
 
 ### `DotDotDot`
 
@@ -3017,31 +3016,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DotDotDot`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for DotDotDot`
 
-##### `impl Default`
+##### `impl Default for DotDotDot`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for DotDotDot`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for DotDotDot`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for DotDotDot`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for DotDotDot`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for DotDotDot`
 
 ### `DotDotEq`
 
@@ -3062,31 +3061,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DotDotEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for DotDotEq`
 
-##### `impl Default`
+##### `impl Default for DotDotEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for DotDotEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for DotDotEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for DotDotEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for DotDotEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for DotDotEq`
 
 ### `Eq`
 
@@ -3107,45 +3106,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Eq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Eq`
 
-##### `impl Default`
+##### `impl Default for Eq`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Eq`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Eq`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Eq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Eq`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl Sealed for Eq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Eq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Eq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Eq`
 
 ### `EqEq`
 
@@ -3166,31 +3165,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for EqEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for EqEq`
 
-##### `impl Default`
+##### `impl Default for EqEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for EqEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for EqEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for EqEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for EqEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for EqEq`
 
 ### `FatArrow`
 
@@ -3211,31 +3210,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FatArrow`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for FatArrow`
 
-##### `impl Default`
+##### `impl Default for FatArrow`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for FatArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for FatArrow`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for FatArrow`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for FatArrow`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for FatArrow`
 
 ### `Ge`
 
@@ -3256,31 +3255,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Ge`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Ge`
 
-##### `impl Default`
+##### `impl Default for Ge`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Ge`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Ge`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Ge`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Ge`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Ge`
 
 ### `Gt`
 
@@ -3301,45 +3300,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Gt`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Gt`
 
-##### `impl Default`
+##### `impl Default for Gt`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Gt`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Gt`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Gt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Gt`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Gt`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Gt`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Gt`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Gt`
 
 ### `LArrow`
 
@@ -3360,31 +3359,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LArrow`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for LArrow`
 
-##### `impl Default`
+##### `impl Default for LArrow`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for LArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for LArrow`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LArrow`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for LArrow`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for LArrow`
 
 ### `Le`
 
@@ -3405,31 +3404,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Le`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Le`
 
-##### `impl Default`
+##### `impl Default for Le`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Le`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Le`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Le`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Le`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Le`
 
 ### `Lt`
 
@@ -3450,45 +3449,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Lt`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Lt`
 
-##### `impl Default`
+##### `impl Default for Lt`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Lt`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Lt`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Lt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Lt`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Lt`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Lt`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Lt`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Lt`
 
 ### `Minus`
 
@@ -3509,45 +3508,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Minus`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Minus`
 
-##### `impl Default`
+##### `impl Default for Minus`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Minus`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Minus`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Minus`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Minus`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Minus`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Minus`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Minus`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Minus`
 
 ### `MinusEq`
 
@@ -3568,31 +3567,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MinusEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for MinusEq`
 
-##### `impl Default`
+##### `impl Default for MinusEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for MinusEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for MinusEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for MinusEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for MinusEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for MinusEq`
 
 ### `Ne`
 
@@ -3613,31 +3612,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Ne`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Ne`
 
-##### `impl Default`
+##### `impl Default for Ne`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Ne`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for Ne`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Ne`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Ne`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Ne`
 
 ### `Not`
 
@@ -3658,45 +3657,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Not`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Not`
 
-##### `impl Default`
+##### `impl Default for Not`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Not`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Not`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Not`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Not`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Not`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Not`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Not`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Not`
 
 ### `Or`
 
@@ -3717,45 +3716,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Or`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Or`
 
-##### `impl Default`
+##### `impl Default for Or`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Or`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Or`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Or`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Or`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Or`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Or`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Or`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Or`
 
 ### `OrEq`
 
@@ -3776,31 +3775,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for OrEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for OrEq`
 
-##### `impl Default`
+##### `impl Default for OrEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for OrEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for OrEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for OrEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for OrEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for OrEq`
 
 ### `OrOr`
 
@@ -3821,31 +3820,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for OrOr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for OrOr`
 
-##### `impl Default`
+##### `impl Default for OrOr`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for OrOr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for OrOr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for OrOr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for OrOr`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for OrOr`
 
 ### `PathSep`
 
@@ -3866,31 +3865,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PathSep`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for PathSep`
 
-##### `impl Default`
+##### `impl Default for PathSep`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for PathSep`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for PathSep`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PathSep`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for PathSep`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for PathSep`
 
 ### `Percent`
 
@@ -3911,45 +3910,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Percent`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Percent`
 
-##### `impl Default`
+##### `impl Default for Percent`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Percent`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Percent`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Percent`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Percent`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl Sealed for Percent`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Percent`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Percent`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Percent`
 
 ### `PercentEq`
 
@@ -3970,31 +3969,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PercentEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for PercentEq`
 
-##### `impl Default`
+##### `impl Default for PercentEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for PercentEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for PercentEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PercentEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for PercentEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for PercentEq`
 
 ### `Plus`
 
@@ -4015,45 +4014,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Plus`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Plus`
 
-##### `impl Default`
+##### `impl Default for Plus`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Plus`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Plus`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Plus`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Plus`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Plus`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Plus`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Plus`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Plus`
 
 ### `PlusEq`
 
@@ -4074,31 +4073,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for PlusEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for PlusEq`
 
-##### `impl Default`
+##### `impl Default for PlusEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for PlusEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for PlusEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PlusEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for PlusEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for PlusEq`
 
 ### `Pound`
 
@@ -4119,45 +4118,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Pound`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Pound`
 
-##### `impl Default`
+##### `impl Default for Pound`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Pound`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Pound`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Pound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Pound`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Pound`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Pound`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Pound`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Pound`
 
 ### `Question`
 
@@ -4178,45 +4177,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Question`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Question`
 
-##### `impl Default`
+##### `impl Default for Question`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Question`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Question`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Question`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Question`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Question`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Question`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Question`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Question`
 
 ### `RArrow`
 
@@ -4237,31 +4236,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for RArrow`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for RArrow`
 
-##### `impl Default`
+##### `impl Default for RArrow`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for RArrow`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for RArrow`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for RArrow`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for RArrow`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for RArrow`
 
 ### `Semi`
 
@@ -4282,45 +4281,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Semi`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Semi`
 
-##### `impl Default`
+##### `impl Default for Semi`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Semi`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Semi`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Semi`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Semi`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Semi`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Semi`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Semi`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Semi`
 
 ### `Shl`
 
@@ -4341,31 +4340,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Shl`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Shl`
 
-##### `impl Default`
+##### `impl Default for Shl`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Shl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Shl`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Shl`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Shl`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Shl`
 
 ### `ShlEq`
 
@@ -4386,31 +4385,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ShlEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for ShlEq`
 
-##### `impl Default`
+##### `impl Default for ShlEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for ShlEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ShlEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ShlEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for ShlEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for ShlEq`
 
 ### `Shr`
 
@@ -4431,31 +4430,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Shr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Shr`
 
-##### `impl Default`
+##### `impl Default for Shr`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for Shr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for Shr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Shr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Shr`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Shr`
 
 ### `ShrEq`
 
@@ -4476,31 +4475,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ShrEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for ShrEq`
 
-##### `impl Default`
+##### `impl Default for ShrEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for ShrEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for ShrEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ShrEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for ShrEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for ShrEq`
 
 ### `Slash`
 
@@ -4521,45 +4520,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Slash`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Slash`
 
-##### `impl Default`
+##### `impl Default for Slash`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Slash`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Slash`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Slash`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Slash`
 
 - `type Target = T`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Slash`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Slash`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Slash`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Slash`
 
 ### `SlashEq`
 
@@ -4580,31 +4579,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SlashEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for SlashEq`
 
-##### `impl Default`
+##### `impl Default for SlashEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for SlashEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for SlashEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for SlashEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for SlashEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for SlashEq`
 
 ### `Star`
 
@@ -4625,45 +4624,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Star`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Star`
 
-##### `impl Default`
+##### `impl Default for Star`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Star`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Star`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Star`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Star`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl Sealed for Star`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Star`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Star`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Star`
 
 ### `StarEq`
 
@@ -4684,31 +4683,31 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StarEq`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for StarEq`
 
-##### `impl Default`
+##### `impl Default for StarEq`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for StarEq`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for StarEq`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for StarEq`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for StarEq`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for StarEq`
 
 ### `Tilde`
 
@@ -4729,45 +4728,45 @@ Don't try to remember the name of this type &mdash; use the
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Tilde`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Tilde`
 
-##### `impl Default`
+##### `impl Default for Tilde`
 
 - `fn default() -> Self`
 
-##### `impl Deref`
+##### `impl Deref for Tilde`
 
 - `type Target = WithSpan`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl DerefMut`
+##### `impl DerefMut for Tilde`
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
-##### `impl Parse`
+##### `impl Parse for Tilde`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../../parse/index.md), [`Result`](../../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Tilde`
 
 - `type Target = T`
 
-##### `impl Sealed`
+##### `impl Sealed for Tilde`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Tilde`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Tilde`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for Tilde`
 
 ### `Brace`
 
@@ -4785,19 +4784,19 @@ struct Brace {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Brace`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Brace`
 
-##### `impl Default`
+##### `impl Default for Brace`
 
 - `fn default() -> Self`
 
-##### `impl Sealed`
+##### `impl Sealed for Brace`
 
-##### `impl Token`
+##### `impl Token for Brace`
 
 ### `Bracket`
 
@@ -4815,19 +4814,19 @@ struct Bracket {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Bracket`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Bracket`
 
-##### `impl Default`
+##### `impl Default for Bracket`
 
 - `fn default() -> Self`
 
-##### `impl Sealed`
+##### `impl Sealed for Bracket`
 
-##### `impl Token`
+##### `impl Token for Bracket`
 
 ### `Paren`
 
@@ -4845,19 +4844,19 @@ struct Paren {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Paren`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Paren`
 
-##### `impl Default`
+##### `impl Default for Paren`
 
 - `fn default() -> Self`
 
-##### `impl Sealed`
+##### `impl Sealed for Paren`
 
-##### `impl Token`
+##### `impl Token for Paren`
 
 ## Traits
 

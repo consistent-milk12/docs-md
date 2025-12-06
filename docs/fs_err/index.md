@@ -100,10 +100,9 @@ This crate will generally be conservative with rust version updates. It uses the
 
 If the `tokio` feature is enabled, this crate will inherit the MSRV of the selected [`tokio`](https://crates.io/crates/tokio) version.
 
-[std::fs]: https://doc.rust-lang.org/stable/std/fs/
-[std::io::Error]: https://doc.rust-lang.org/stable/std/io/struct.Error.html
-[std::io::Read]: https://doc.rust-lang.org/stable/std/io/trait.Read.html
-[serde_json](#serde-json): https://crates.io/crates/serde_json
+
+
+
 
 ## Modules
 
@@ -121,39 +120,172 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 
 #### Implementations
 
-- `fn new() -> Self`
+- `fn from_options(options: fs::OpenOptions) -> Self`
 
-- `fn read(self: &mut Self, read: bool) -> &mut Self`
+- `fn options(self: &Self) -> &fs::OpenOptions`
 
-- `fn write(self: &mut Self, write: bool) -> &mut Self`
-
-- `fn append(self: &mut Self, append: bool) -> &mut Self`
-
-- `fn truncate(self: &mut Self, truncate: bool) -> &mut Self`
-
-- `fn create(self: &mut Self, create: bool) -> &mut Self`
-
-- `fn create_new(self: &mut Self, create_new: bool) -> &mut Self`
-
-- `fn open<P>(self: &Self, path: P) -> io::Result<crate::File>` — [`File`](../file/index.md)
+- `fn options_mut(self: &mut Self) -> &mut fs::OpenOptions`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for OpenOptions`
 
-- `fn clone(self: &Self) -> OpenOptions` — [`OpenOptions`](../open_options/index.md)
+- `fn clone(self: &Self) -> OpenOptions` — [`OpenOptions`](open_options/index.md)
 
-##### `impl Debug`
+##### `impl Debug for OpenOptions`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl OpenOptionsExt`
+##### `impl OpenOptionsExt for crate::OpenOptions`
 
 - `fn mode(self: &mut Self, mode: u32) -> &mut Self`
 
 - `fn custom_flags(self: &mut Self, flags: i32) -> &mut Self`
 
-##### `impl Sealed`
+##### `impl Sealed for crate::OpenOptions`
+
+### `ReadDir`
+
+```rust
+struct ReadDir {
+    inner: fs::ReadDir,
+    path: std::path::PathBuf,
+}
+```
+
+Wrapper around `std::fs::ReadDir` which adds more
+helpful information to all errors.
+
+This struct is created via `fs_err::read_dir`.
+
+
+
+#### Trait Implementations
+
+##### `impl Debug for ReadDir`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for ReadDir`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator for ReadDir`
+
+- `type Item = Result<DirEntry, Error>`
+
+- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+
+### `DirEntry`
+
+```rust
+struct DirEntry {
+    inner: fs::DirEntry,
+}
+```
+
+Wrapper around `std::fs::DirEntry` which adds more
+helpful information to all errors.
+
+
+#### Implementations
+
+- `fn path(self: &Self) -> PathBuf`
+
+- `fn metadata(self: &Self) -> io::Result<fs::Metadata>`
+
+- `fn file_type(self: &Self) -> io::Result<fs::FileType>`
+
+- `fn file_name(self: &Self) -> OsString`
+
+#### Trait Implementations
+
+##### `impl Debug for DirEntry`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl DirEntryExt for DirEntry`
+
+- `fn ino(self: &Self) -> u64`
+
+### `File`
+
+```rust
+struct File {
+    file: fs::File,
+    path: std::path::PathBuf,
+}
+```
+
+Wrapper around `std::fs::File` which adds more helpful
+information to all errors.
+
+
+#### Implementations
+
+- `fn from_parts<P>(file: fs::File, path: P) -> Self`
+
+- `fn into_parts(self: Self) -> (fs::File, PathBuf)`
+
+- `fn into_file(self: Self) -> fs::File`
+
+- `fn into_path(self: Self) -> PathBuf`
+
+- `fn file(self: &Self) -> &fs::File`
+
+- `fn file_mut(self: &mut Self) -> &mut fs::File`
+
+- `fn path(self: &Self) -> &Path`
+
+- `fn error(self: &Self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](errors/index.md)
+
+#### Trait Implementations
+
+##### `impl AsFd for crate::File`
+
+- `fn as_fd(self: &Self) -> BorrowedFd<'_>`
+
+##### `impl AsRawFd for crate::File`
+
+- `fn as_raw_fd(self: &Self) -> RawFd`
+
+##### `impl Debug for File`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl FileExt for crate::File`
+
+- `fn read_at(self: &Self, buf: &mut [u8], offset: u64) -> io::Result<usize>`
+
+- `fn write_at(self: &Self, buf: &[u8], offset: u64) -> io::Result<usize>`
+
+##### `impl IntoRawFd for crate::File`
+
+- `fn into_raw_fd(self: Self) -> RawFd`
+
+##### `impl Read for File`
+
+- `fn read(self: &mut Self, buf: &mut [u8]) -> std::io::Result<usize>`
+
+- `fn read_vectored(self: &mut Self, bufs: &mut [std::io::IoSliceMut<'_>]) -> std::io::Result<usize>`
+
+##### `impl Sealed for crate::File`
+
+##### `impl Seek for File`
+
+- `fn seek(self: &mut Self, pos: std::io::SeekFrom) -> std::io::Result<u64>`
+
+##### `impl Write for File`
+
+- `fn write(self: &mut Self, buf: &[u8]) -> std::io::Result<usize>`
+
+- `fn write_vectored(self: &mut Self, bufs: &[std::io::IoSlice<'_>]) -> std::io::Result<usize>`
+
+- `fn flush(self: &mut Self) -> std::io::Result<()>`
 
 ## Traits
 
@@ -351,4 +483,14 @@ fn set_permissions<P: AsRef<std::path::Path>>(path: P, perm: fs::Permissions) ->
 Changes the permissions found on a file or a directory.
 
 Wrapper for [`fs::set_permissions`](https://doc.rust-lang.org/stable/std/fs/fn.set_permissions.html).
+
+### `read_dir`
+
+```rust
+fn read_dir<P: Into<std::path::PathBuf>>(path: P) -> io::Result<ReadDir>
+```
+
+Returns an iterator over the entries within a directory.
+
+Wrapper for [`fs::read_dir`](https://doc.rust-lang.org/stable/std/fs/fn.read_dir.html).
 

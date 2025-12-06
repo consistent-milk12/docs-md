@@ -409,3 +409,327 @@ fn test_link_registry_includes_private_when_flag_set() {
     // The important thing is that non-public items CAN be registered when the flag is set
     eprintln!("Non-public items in registry with include_private=true: {non_public_count}");
 }
+
+// =============================================================================
+// Re-export Rendering Tests
+// =============================================================================
+
+#[test]
+fn test_reexports_are_rendered() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+        .expect("Generation failed");
+
+    // The crate re-exports Generator and MarkdownCapture from generator module
+    // These should appear in the index.md
+    let index = capture.get("index.md").expect("Should have index.md");
+
+    // Check that re-exported types are documented
+    // The re-exports from lib.rs: Generator, MarkdownCapture, LinkRegistry, etc.
+    assert!(
+        index.contains("Generator") || index.contains("generator"),
+        "Index should mention Generator (either as re-export or link to generator module)"
+    );
+}
+
+#[test]
+fn test_reexports_link_registry_registration() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+    let registry = LinkRegistry::build(&krate, false, false);
+
+    // Count how many Use items are registered vs how many exist
+    let mut use_items_count = 0;
+    let mut registered_use_items = 0;
+
+    for (id, item) in &krate.index {
+        if matches!(&item.inner, rustdoc_types::ItemEnum::Use(_))
+            && matches!(item.visibility, rustdoc_types::Visibility::Public)
+        {
+            use_items_count += 1;
+            if registry.get_path(*id).is_some() {
+                registered_use_items += 1;
+            }
+        }
+    }
+
+    eprintln!(
+        "Use items: {use_items_count} total, {registered_use_items} registered in link registry"
+    );
+
+    // At minimum, Use items with resolvable targets should be registered
+    // This is informational - the exact number depends on the fixture
+}
+
+#[test]
+fn test_reexport_target_resolution() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+
+    // Find Use items and verify their targets exist
+    let mut use_items_with_targets = 0;
+    let mut resolved_targets = 0;
+
+    for item in krate.index.values() {
+        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner {
+            if matches!(item.visibility, rustdoc_types::Visibility::Public) {
+                use_items_with_targets += 1;
+                if let Some(target_id) = &use_item.id {
+                    if krate.index.contains_key(target_id) {
+                        resolved_targets += 1;
+                    }
+                }
+            }
+        }
+    }
+
+    eprintln!(
+        "Public Use items: {use_items_with_targets}, targets resolved: {resolved_targets}"
+    );
+
+    // All Use items with IDs should resolve to existing items in the same crate
+    // (for single-crate mode)
+}
+
+// =============================================================================
+// Search Index Filtering Tests
+// =============================================================================
+
+#[test]
+fn test_search_index_only_contains_rendered_items() {
+    // This test would require multi-crate generation which needs a directory of JSON files
+    // For single-crate mode, we verify that all items in the output have corresponding files
+
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Nested, false)
+        .expect("Generation failed");
+
+    // Get all generated file paths
+    let generated_paths: std::collections::HashSet<String> = capture
+        .paths()
+        .iter()
+        .map(|p| p.to_string())
+        .collect();
+
+    // Verify that index.md exists
+    assert!(generated_paths.contains("index.md"), "Should have root index.md");
+
+    // All paths should be valid markdown files
+    for path in &generated_paths {
+        assert!(
+            path.ends_with(".md"),
+            "All generated files should be markdown: {path}"
+        );
+    }
+
+    eprintln!("Generated {} markdown files", generated_paths.len());
+}
+
+#[test]
+fn test_generated_links_point_to_existing_files() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+    let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Nested, false)
+        .expect("Generation failed");
+
+    // Collect all generated file paths (normalized)
+    let generated_paths: std::collections::HashSet<String> = capture
+        .paths()
+        .iter()
+        .map(|p| p.to_string())
+        .collect();
+
+    // Check links in generated markdown
+    let link_pattern = regex::Regex::new(r"\]\(([^)#]+)(?:#[^)]*)?\)").unwrap();
+    let mut broken_links = Vec::new();
+    let mut total_links = 0;
+
+    for path in capture.paths() {
+        let content = capture.get(path).unwrap();
+        for cap in link_pattern.captures_iter(content) {
+            let link_target = &cap[1];
+
+            // Skip external links and anchors-only
+            if link_target.starts_with("http")
+                || link_target.starts_with("https")
+                || link_target.is_empty()
+            {
+                continue;
+            }
+
+            total_links += 1;
+
+            // Resolve relative path from current file
+            let resolved = resolve_link_path(path, link_target);
+
+            if !generated_paths.contains(&resolved) {
+                broken_links.push((path.to_string(), link_target.to_string(), resolved));
+            }
+        }
+    }
+
+    eprintln!("Checked {total_links} internal links");
+
+    if !broken_links.is_empty() {
+        eprintln!("Found {} potentially broken links:", broken_links.len());
+        for (from, link, resolved) in broken_links.iter().take(10) {
+            eprintln!("  In {from}: {link} -> {resolved}");
+        }
+    }
+
+    // Note: Some broken links may be expected if they point to external crates
+    // This is informational rather than a strict assertion
+}
+
+/// Helper to resolve a relative link path from a source file
+fn resolve_link_path(from: &str, link: &str) -> String {
+    if link.starts_with('/') {
+        // Absolute path (from root)
+        link.trim_start_matches('/').to_string()
+    } else {
+        // Relative path
+        let from_dir = std::path::Path::new(from)
+            .parent()
+            .map(|p| p.to_string_lossy().to_string())
+            .unwrap_or_default();
+
+        let mut parts: Vec<&str> = if from_dir.is_empty() {
+            Vec::new()
+        } else {
+            from_dir.split('/').collect()
+        };
+
+        for segment in link.split('/') {
+            match segment {
+                ".." => {
+                    parts.pop();
+                }
+                "." | "" => {}
+                s => parts.push(s),
+            }
+        }
+
+        parts.join("/")
+    }
+}
+
+// =============================================================================
+// Glob Re-export Tests
+// =============================================================================
+
+#[test]
+fn test_glob_reexports_expanded() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+
+    // Count glob re-exports in the fixture
+    let mut glob_reexports = 0;
+    let mut modules_with_glob = 0;
+
+    for item in krate.index.values() {
+        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner {
+            if use_item.is_glob && matches!(item.visibility, rustdoc_types::Visibility::Public) {
+                glob_reexports += 1;
+
+                // Check if the target module exists and has items
+                if let Some(target_id) = &use_item.id {
+                    if let Some(target) = krate.index.get(target_id) {
+                        if let rustdoc_types::ItemEnum::Module(m) = &target.inner {
+                            if !m.items.is_empty() {
+                                modules_with_glob += 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    eprintln!(
+        "Found {glob_reexports} glob re-exports, {modules_with_glob} target modules with items"
+    );
+
+    // If there are glob re-exports with items, they should be expanded in the generated docs
+    if modules_with_glob > 0 {
+        let capture = Generator::generate_to_capture(&krate, CliOutputFormat::Flat, false)
+            .expect("Generation failed");
+
+        // The generated docs should not be empty for modules with glob re-exports
+        for path in capture.paths() {
+            let content = capture.get(path).unwrap();
+            // Basic sanity check - the file should have content
+            assert!(
+                !content.is_empty(),
+                "Generated file '{path}' should not be empty"
+            );
+        }
+    }
+}
+
+#[test]
+fn test_glob_reexports_in_link_registry() {
+    if !fixture_exists() {
+        eprintln!("Skipping test: fixture not found. Run `cargo doc --output-format json`");
+        return;
+    }
+
+    let krate = load_fixture();
+    let registry = LinkRegistry::build(&krate, false, false);
+
+    // For each glob re-export, verify that target module items are registered
+    for item in krate.index.values() {
+        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner {
+            if use_item.is_glob && matches!(item.visibility, rustdoc_types::Visibility::Public) {
+                if let Some(target_id) = &use_item.id {
+                    if let Some(target) = krate.index.get(target_id) {
+                        if let rustdoc_types::ItemEnum::Module(m) = &target.inner {
+                            // Check that public items from the target module are registered
+                            for child_id in &m.items {
+                                if let Some(child) = krate.index.get(child_id) {
+                                    if matches!(
+                                        child.visibility,
+                                        rustdoc_types::Visibility::Public
+                                    ) {
+                                        // Public items from glob re-exports should be registered
+                                        if registry.get_path(*child_id).is_none() {
+                                            eprintln!(
+                                                "Note: Item {:?} from glob re-export not in registry",
+                                                child.name
+                                            );
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

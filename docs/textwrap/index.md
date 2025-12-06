@@ -187,13 +187,12 @@ These Cargo features enable new functionality:
   [hyphenation](#hyphenation) crate. See the `word_splitters::WordSplitter`
   trait for details.
 
-[unicode-linebreak]: https://docs.rs/unicode-linebreak/
-[unicode-width]: https://docs.rs/unicode-width/
-[smawk](#smawk): https://docs.rs/smawk/
-[binary-sizes demo]: https://github.com/mgeisler/textwrap/tree/master/examples/binary-sizes
-[textwrap-macros]: https://docs.rs/textwrap-macros/
-[terminal_size](#terminal-size): https://docs.rs/terminal_size/
-[hyphenation](#hyphenation): https://docs.rs/hyphenation/
+
+
+
+
+
+
 
 ## Modules
 
@@ -266,7 +265,7 @@ Holds configuration options for wrapping and filling text.
 
 - `const fn new(width: usize) -> Self`
 
-- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](../line_ending/index.md)
+- `fn line_ending(self: Self, line_ending: LineEnding) -> Self` — [`LineEnding`](line_ending/index.md)
 
 - `fn width(self: Self, width: usize) -> Self`
 
@@ -276,19 +275,19 @@ Holds configuration options for wrapping and filling text.
 
 - `fn break_words(self: Self, break_words: bool) -> Self`
 
-- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](../word_separators/index.md), [`Options`](../options/index.md)
+- `fn word_separator(self: Self, word_separator: WordSeparator) -> Options<'a>` — [`WordSeparator`](word_separators/index.md), [`Options`](options/index.md)
 
-- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](../wrap_algorithms/index.md), [`Options`](../options/index.md)
+- `fn wrap_algorithm(self: Self, wrap_algorithm: WrapAlgorithm) -> Options<'a>` — [`WrapAlgorithm`](wrap_algorithms/index.md), [`Options`](options/index.md)
 
-- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](../word_splitters/index.md), [`Options`](../options/index.md)
+- `fn word_splitter(self: Self, word_splitter: WordSplitter) -> Options<'a>` — [`WordSplitter`](word_splitters/index.md), [`Options`](options/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Options<'a>`
 
-- `fn clone(self: &Self) -> Options<'a>` — [`Options`](../options/index.md)
+- `fn clone(self: &Self) -> Options<'a>` — [`Options`](options/index.md)
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Options<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -325,23 +324,23 @@ endings are supported: `\r\n` and `\n`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LineEnding`
 
-- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](../line_ending/index.md)
+- `fn clone(self: &Self) -> LineEnding` — [`LineEnding`](line_ending/index.md)
 
-##### `impl Copy`
+##### `impl Copy for LineEnding`
 
-##### `impl Debug`
+##### `impl Debug for LineEnding`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for LineEnding`
 
-##### `impl PartialEq`
+##### `impl PartialEq for LineEnding`
 
-- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](../line_ending/index.md)
+- `fn eq(self: &Self, other: &LineEnding) -> bool` — [`LineEnding`](line_ending/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for LineEnding`
 
 ### `WordSeparator`
 
@@ -463,21 +462,21 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
 
 - `const fn new() -> Self`
 
-- `fn find_words<'a>(self: &Self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](../core/index.md)
+- `fn find_words<'a>(self: &Self, line: &'a str) -> Box<dyn Iterator<Item = Word<'a>>>` — [`Word`](core/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for WordSeparator`
 
-- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](../word_separators/index.md)
+- `fn clone(self: &Self) -> WordSeparator` — [`WordSeparator`](word_separators/index.md)
 
-##### `impl Copy`
+##### `impl Copy for WordSeparator`
 
-##### `impl Debug`
+##### `impl Debug for WordSeparator`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl PartialEq`
+##### `impl PartialEq for WordSeparator`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
@@ -517,7 +516,6 @@ language-aware hyphenation:
 Please see the documentation for the [hyphenation](#hyphenation) crate for more
 details.
 
-[hyphenation](#hyphenation): https://docs.rs/hyphenation/
 
 #### Variants
 
@@ -581,17 +579,17 @@ details.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for WordSplitter`
 
-- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](../word_splitters/index.md)
+- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](word_splitters/index.md)
 
-##### `impl Debug`
+##### `impl Debug for WordSplitter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl PartialEq`
+##### `impl PartialEq for WordSplitter`
 
-- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](../word_splitters/index.md)
+- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](word_splitters/index.md)
 
 ### `WrapAlgorithm`
 
@@ -658,25 +656,25 @@ an entire paragraph at a time in order to find optimal line breaks
 
 - `const fn new() -> Self`
 
-- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](../core/index.md)
+- `fn wrap<'a, 'b>(self: &Self, words: &'b [Word<'a>], line_widths: &'b [usize]) -> Vec<&'b [Word<'a>]>` — [`Word`](core/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for WrapAlgorithm`
 
-- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](../wrap_algorithms/index.md)
+- `fn clone(self: &Self) -> WrapAlgorithm` — [`WrapAlgorithm`](wrap_algorithms/index.md)
 
-##### `impl Copy`
+##### `impl Copy for WrapAlgorithm`
 
-##### `impl Debug`
+##### `impl Debug for WrapAlgorithm`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for WrapAlgorithm`
 
 - `fn default() -> Self`
 
-##### `impl PartialEq`
+##### `impl PartialEq for WrapAlgorithm`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 

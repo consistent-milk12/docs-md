@@ -25,31 +25,31 @@ This builder permits modifying configuration options for the parser.
 
 #### Implementations
 
-- `fn new() -> ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
+- `fn new() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn build(self: &Self) -> Parser` — [`Parser`](../../../ast/parse/index.md)
+- `fn build(self: &Self) -> Parser` — [`Parser`](#parser)
 
-- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
+- `fn nest_limit(self: &mut Self, limit: u32) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
+- `fn octal(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
+- `fn ignore_whitespace(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-- `fn empty_min_range(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
+- `fn empty_min_range(self: &mut Self, yes: bool) -> &mut ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ParserBuilder`
 
-- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
+- `fn clone(self: &Self) -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
-##### `impl Debug`
+##### `impl Debug for ParserBuilder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ParserBuilder`
 
-- `fn default() -> ParserBuilder` — [`ParserBuilder`](../../../ast/parse/index.md)
+- `fn default() -> ParserBuilder` — [`ParserBuilder`](#parserbuilder)
 
 ### `Parser`
 
@@ -139,21 +139,21 @@ A `Parser` can be configured in more detail via a [`ParserBuilder`](#parserbuild
 
 #### Implementations
 
-- `fn new() -> Parser` — [`Parser`](../../../ast/parse/index.md)
+- `fn new() -> Parser` — [`Parser`](#parser)
 
-- `fn parse(self: &mut Self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../../../ast/index.md), [`Error`](../../../ast/index.md)
+- `fn parse(self: &mut Self, pattern: &str) -> core::result::Result<Ast, ast::Error>` — [`Ast`](../index.md), [`Error`](../index.md)
 
-- `fn parse_with_comments(self: &mut Self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../../../ast/index.md), [`Error`](../../../ast/index.md)
+- `fn parse_with_comments(self: &mut Self, pattern: &str) -> core::result::Result<ast::WithComments, ast::Error>` — [`WithComments`](../index.md), [`Error`](../index.md)
 
 - `fn reset(self: &Self)`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Parser`
 
-- `fn clone(self: &Self) -> Parser` — [`Parser`](../../../ast/parse/index.md)
+- `fn clone(self: &Self) -> Parser` — [`Parser`](#parser)
 
-##### `impl Debug`
+##### `impl Debug for Parser`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

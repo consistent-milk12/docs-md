@@ -42,7 +42,7 @@ pattern, while the latter supports multiple patterns but cannot report the
 offsets of a match.
 * A meta `Regex` provides the explicit capability of bypassing its internal
 memory pool for automatically acquiring mutable scratch space required by its
-internal regex engines. Namely, a [`Cache`](../nfa/thompson/backtrack/index.md) can be explicitly provided to lower
+internal regex engines. Namely, a [`Cache`](../nfa/thompson/pikevm/index.md) can be explicitly provided to lower
 level routines such as `Regex::search_with`.
 
 ## Structs
@@ -65,7 +65,7 @@ fails, usually because it gets too big with respect to limits like
 
 This error provides very little introspection capabilities. You can:
 
-* Ask for the [`PatternID`](../index.md) of the pattern that caused an error, if one
+* Ask for the [`PatternID`](../util/primitives/index.md) of the pattern that caused an error, if one
 is available. This is available for things like syntax errors, but not for
 cases where build limits are exceeded.
 * Ask for the underlying syntax error, but only if the error is a syntax
@@ -79,37 +79,37 @@ When the `std` feature is enabled, this implements `std::error::Error`.
 
 #### Implementations
 
-- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md)
+- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../util/primitives/index.md)
 
 - `fn size_limit(self: &Self) -> Option<usize>`
 
 - `fn syntax_error(self: &Self) -> Option<&regex_syntax::Error>`
 
-- `fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](../../meta/error/index.md)
+- `fn ast(pid: PatternID, err: ast::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](../../meta/error/index.md)
+- `fn hir(pid: PatternID, err: hir::Error) -> BuildError` — [`PatternID`](../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
+- `fn nfa(err: nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../nfa/thompson/error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../meta/error/index.md)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for BuildError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for BuildError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for BuildError`
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for BuildError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -211,27 +211,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../../meta/regex/index.md)
+- `fn new() -> Builder` — [`Builder`](regex/index.md)
 
-- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](../../meta/regex/index.md), [`BuildError`](../../meta/error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](../../meta/regex/index.md), [`BuildError`](../../meta/error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- `fn build_from_hir(self: &Self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](../../meta/regex/index.md), [`BuildError`](../../meta/error/index.md)
+- `fn build_from_hir(self: &Self, hir: &Hir) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](../../meta/regex/index.md), [`BuildError`](../../meta/error/index.md)
+- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, hirs: &[H]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../meta/regex/index.md), [`Builder`](../../meta/regex/index.md)
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](regex/index.md), [`Builder`](regex/index.md)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](../../meta/regex/index.md)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../util/syntax/index.md), [`Builder`](regex/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../../meta/regex/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](regex/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Builder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -297,19 +297,19 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(re: &Regex) -> Cache` — [`Regex`](../../meta/regex/index.md), [`Cache`](../../meta/regex/index.md)
+- `fn new(re: &Regex) -> Cache` — [`Regex`](regex/index.md), [`Cache`](regex/index.md)
 
-- `fn reset(self: &mut Self, re: &Regex)` — [`Regex`](../../meta/regex/index.md)
+- `fn reset(self: &mut Self, re: &Regex)` — [`Regex`](regex/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](../../meta/regex/index.md)
+- `fn clone(self: &Self) -> Cache` — [`Cache`](regex/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Cache`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -339,19 +339,19 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 #### Implementations
 
-- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](../../meta/regex/index.md)
+- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](regex/index.md)
 
-- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../util/search/index.md)
+- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'h>`
+##### `impl<'r, 'h> Debug for CapturesMatches<'r, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FusedIterator<'r, 'h>`
+##### `impl<'r, 'h> FusedIterator for CapturesMatches<'r, 'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for CapturesMatches<'r, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -359,11 +359,11 @@ This iterator can be created with the `Regex::captures_iter` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'h>`
+##### `impl<'r, 'h> Iterator for CapturesMatches<'r, 'h>`
 
 - `type Item = Captures`
 
-- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../../util/captures/index.md)
+- `fn next(self: &mut Self) -> Option<Captures>` — [`Captures`](../util/captures/index.md)
 
 - `fn count(self: Self) -> usize`
 
@@ -417,49 +417,49 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn new() -> Config` — [`Config`](regex/index.md)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../util/search/index.md), [`Config`](../../meta/regex/index.md)
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../index.md), [`Config`](regex/index.md)
 
-- `fn utf8_empty(self: Self, yes: bool) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn utf8_empty(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- `fn auto_prefilter(self: Self, yes: bool) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn auto_prefilter(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../util/prefilter/index.md), [`Config`](../../meta/regex/index.md)
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../util/prefilter/index.md), [`Config`](regex/index.md)
 
-- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../../nfa/thompson/compiler/index.md), [`Config`](../../meta/regex/index.md)
+- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../nfa/thompson/compiler/index.md), [`Config`](regex/index.md)
 
-- `fn nfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn nfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
 
-- `fn onepass_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn onepass_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
 
-- `fn hybrid_cache_capacity(self: Self, limit: usize) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn hybrid_cache_capacity(self: Self, limit: usize) -> Config` — [`Config`](regex/index.md)
 
-- `fn dfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn dfa_size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
 
-- `fn dfa_state_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn dfa_state_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](regex/index.md)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn line_terminator(self: Self, byte: u8) -> Config` — [`Config`](regex/index.md)
 
-- `fn hybrid(self: Self, yes: bool) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn hybrid(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- `fn dfa(self: Self, yes: bool) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn dfa(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- `fn onepass(self: Self, yes: bool) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn onepass(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- `fn backtrack(self: Self, yes: bool) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn backtrack(self: Self, yes: bool) -> Config` — [`Config`](regex/index.md)
 
-- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../util/search/index.md)
+- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../index.md)
 
 - `fn get_utf8_empty(self: &Self) -> bool`
 
 - `fn get_auto_prefilter(self: &Self) -> bool`
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
+- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../util/prefilter/index.md)
 
-- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../../nfa/thompson/compiler/index.md)
+- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../nfa/thompson/compiler/index.md)
 
 - `fn get_nfa_size_limit(self: &Self) -> Option<usize>`
 
@@ -483,21 +483,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get_backtrack(self: &Self) -> bool`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](regex/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](regex/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Config`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../../meta/regex/index.md)
+- `fn default() -> Config` — [`Config`](regex/index.md)
 
 ### `FindMatches<'r, 'h>`
 
@@ -522,19 +522,19 @@ This iterator can be created with the `Regex::find_iter` method.
 
 #### Implementations
 
-- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](../../meta/regex/index.md)
+- `fn regex(self: &Self) -> &'r Regex` — [`Regex`](regex/index.md)
 
-- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../util/search/index.md)
+- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'h>`
+##### `impl<'r, 'h> Debug for FindMatches<'r, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FusedIterator<'r, 'h>`
+##### `impl<'r, 'h> FusedIterator for FindMatches<'r, 'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindMatches<'r, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -542,11 +542,11 @@ This iterator can be created with the `Regex::find_iter` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'h>`
+##### `impl<'r, 'h> Iterator for FindMatches<'r, 'h>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../index.md)
 
 - `fn count(self: Self) -> usize`
 
@@ -614,7 +614,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](../nfa/thompson/backtrack/index.md).
+mutable scratch space. This scratch space is called a [`Cache`](../nfa/thompson/pikevm/index.md).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).
@@ -660,8 +660,6 @@ to an internal pool of `Cache` values. This may be undesirable because
 a spin-lock is [effectively impossible to implement correctly in user
 space][spinlocks-are-bad]. That is, more concretely, the spin-lock could
 result in a deadlock.
-
-[spinlocks-are-bad]: https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
 
 If one wants to avoid the use of spin-locks when the `std` feature is
 disabled, then you must use APIs that accept a `Cache` value explicitly.
@@ -776,27 +774,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
+- `fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
 
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, input: I, caps: &mut Captures)` — [`Captures`](../../util/captures/index.md)
+- `fn config() -> Config` — [`Config`](regex/index.md)
 
-- `fn find_iter<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> FindMatches<'r, 'h>` — [`FindMatches`](../../meta/regex/index.md)
-
-- `fn captures_iter<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> CapturesMatches<'r, 'h>` — [`CapturesMatches`](../../meta/regex/index.md)
-
-- `fn split<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> Split<'r, 'h>` — [`Split`](../../meta/regex/index.md)
-
-- `fn splitn<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I, limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../../meta/regex/index.md)
+- `fn builder() -> Builder` — [`Builder`](regex/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Regex`
 
-- `fn clone(self: &Self) -> Regex` — [`Regex`](../../meta/regex/index.md)
+- `fn clone(self: &Self) -> Regex` — [`Regex`](regex/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Regex`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -822,17 +814,17 @@ This iterator can be created with the `Regex::split` method.
 
 #### Implementations
 
-- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../util/search/index.md)
+- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'h>`
+##### `impl<'r, 'h> Debug for Split<'r, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FusedIterator<'r, 'h>`
+##### `impl<'r, 'h> FusedIterator for Split<'r, 'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Split<'r, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -840,11 +832,11 @@ This iterator can be created with the `Regex::split` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'h>`
+##### `impl<'r, 'h> Iterator for Split<'r, 'h>`
 
 - `type Item = Span`
 
-- `fn next(self: &mut Self) -> Option<Span>` — [`Span`](../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Span>` — [`Span`](../index.md)
 
 ### `SplitN<'r, 'h>`
 
@@ -869,17 +861,17 @@ This iterator can be created with the `Regex::splitn` method.
 
 #### Implementations
 
-- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../../util/search/index.md)
+- `fn input<'s>(self: &'s Self) -> &'s Input<'h>` — [`Input`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'h>`
+##### `impl<'r, 'h> Debug for SplitN<'r, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FusedIterator<'r, 'h>`
+##### `impl<'r, 'h> FusedIterator for SplitN<'r, 'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for SplitN<'r, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -887,11 +879,11 @@ This iterator can be created with the `Regex::splitn` method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'h>`
+##### `impl<'r, 'h> Iterator for SplitN<'r, 'h>`
 
 - `type Item = Span`
 
-- `fn next(self: &mut Self) -> Option<Span>` — [`Span`](../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Span>` — [`Span`](../index.md)
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 

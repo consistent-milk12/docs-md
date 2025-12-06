@@ -113,8 +113,6 @@ character or string, in order of decreasing precedence. These may be tweaked in 
       - Does not have a [`General_Category`](#general-category) of `Letter` or `Modifier_Symbol`.
    7. All other characters have width 1.
 
-[`'\u{0338}'` COMBINING LONG SOLIDUS OVERLAY]: https://util.unicode.org/UnicodeJsps/character.jsp?a=0338
-[`'\u{2D7F}'` TIFINAGH CONSONANT JOINER]: https://util.unicode.org/UnicodeJsps/character.jsp?a=2D7F
 
 
 
@@ -130,24 +128,15 @@ character or string, in order of decreasing precedence. These may be tweaked in 
 
 
 
-[combining marks]: https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-3/#G30602
 
-[emoji ZWJ sequences]: https://www.unicode.org/reports/tr51/#def_emoji_sequence
-[Emoji modifier sequences]: https://www.unicode.org/reports/tr51/#def_emoji_modifier_sequence
-[Emoji presentation sequences]: https://unicode.org/reports/tr51/#def_emoji_presentation_sequence
-[text presentation sequences]: https://unicode.org/reports/tr51/#def_text_presentation_sequence
 
-[General Punctuation]: https://www.unicode.org/charts/PDF/Unicode-16.0/U160-2000.pdf
-[Enclosed Ideographic Supplement]: https://unicode.org/charts/nameslist/n_1F200.html
 
-[Arabic]: https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-9/#G7480
-[Buginese]: https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-17/#G26743
-[Hebrew]: https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-9/#G6528
-[Khmer]: https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-16/#G64642
-[Kirat Rai]: https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-13/#G746409
-[Lisu]: https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-18/#G44587
-[Old Turkic]: https://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-14/#G41975
-[Tifinagh]: http://www.unicode.org/versions/Unicode16.0.0/core-spec/chapter-19/#G43184
+
+
+
+
+
+
 
 
 ## Canonical equivalence

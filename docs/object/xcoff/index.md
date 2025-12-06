@@ -61,17 +61,17 @@ The header at the start of every 32-bit XCOFF file.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FileHeader32`
 
-- `fn clone(self: &Self) -> FileHeader32` — [`FileHeader32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> FileHeader32` — [`FileHeader32`](#fileheader32)
 
-##### `impl Copy`
+##### `impl Copy for FileHeader32`
 
-##### `impl Debug`
+##### `impl Debug for FileHeader32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FileHeader`
+##### `impl FileHeader for xcoff::FileHeader32`
 
 - `type Word = u32`
 
@@ -95,7 +95,7 @@ The header at the start of every 32-bit XCOFF file.
 
 - `fn f_timdat(self: &Self) -> u32`
 
-- `fn f_symptr(self: &Self) -> <Self as >::Word` — [`FileHeader`](../../read/xcoff/file/index.md)
+- `fn f_symptr(self: &Self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md)
 
 - `fn f_nsyms(self: &Self) -> u32`
 
@@ -103,7 +103,7 @@ The header at the start of every 32-bit XCOFF file.
 
 - `fn f_flags(self: &Self) -> u16`
 
-##### `impl Pod`
+##### `impl Pod for FileHeader32`
 
 ### `FileHeader64`
 
@@ -153,17 +153,17 @@ The header at the start of every 64-bit XCOFF file.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FileHeader64`
 
-- `fn clone(self: &Self) -> FileHeader64` — [`FileHeader64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> FileHeader64` — [`FileHeader64`](#fileheader64)
 
-##### `impl Copy`
+##### `impl Copy for FileHeader64`
 
-##### `impl Debug`
+##### `impl Debug for FileHeader64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FileHeader`
+##### `impl FileHeader for xcoff::FileHeader64`
 
 - `type Word = u64`
 
@@ -187,7 +187,7 @@ The header at the start of every 64-bit XCOFF file.
 
 - `fn f_timdat(self: &Self) -> u32`
 
-- `fn f_symptr(self: &Self) -> <Self as >::Word` — [`FileHeader`](../../read/xcoff/file/index.md)
+- `fn f_symptr(self: &Self) -> <Self as >::Word` — [`FileHeader`](../read/xcoff/index.md)
 
 - `fn f_nsyms(self: &Self) -> u32`
 
@@ -195,7 +195,7 @@ The header at the start of every 64-bit XCOFF file.
 
 - `fn f_flags(self: &Self) -> u16`
 
-##### `impl Pod`
+##### `impl Pod for FileHeader64`
 
 ### `AuxHeader32`
 
@@ -356,7 +356,7 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 #### Trait Implementations
 
-##### `impl AuxHeader`
+##### `impl AuxHeader for xcoff::AuxHeader32`
 
 - `type Word = u32`
 
@@ -364,19 +364,19 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_vstamp(self: &Self) -> u16`
 
-- `fn o_tsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_tsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_dsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_dsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_bsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_bsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_entry(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_entry(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_text_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_text_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_data_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_data_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_toc(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_toc(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
 - `fn o_snentry(self: &Self) -> u16`
 
@@ -400,9 +400,9 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_cputype(self: &Self) -> u8`
 
-- `fn o_maxstack(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_maxstack(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_maxdata(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_maxdata(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
 - `fn o_debugger(self: &Self) -> u32`
 
@@ -420,17 +420,17 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_x64flags(self: &Self) -> Option<u16>`
 
-##### `impl Clone`
+##### `impl Clone for AuxHeader32`
 
-- `fn clone(self: &Self) -> AuxHeader32` — [`AuxHeader32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> AuxHeader32` — [`AuxHeader32`](#auxheader32)
 
-##### `impl Copy`
+##### `impl Copy for AuxHeader32`
 
-##### `impl Debug`
+##### `impl Debug for AuxHeader32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for AuxHeader32`
 
 ### `AuxHeader64`
 
@@ -606,7 +606,7 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 #### Trait Implementations
 
-##### `impl AuxHeader`
+##### `impl AuxHeader for xcoff::AuxHeader64`
 
 - `type Word = u64`
 
@@ -614,19 +614,19 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_vstamp(self: &Self) -> u16`
 
-- `fn o_tsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_tsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_dsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_dsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_bsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_bsize(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_entry(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_entry(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_text_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_text_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_data_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_data_start(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_toc(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_toc(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
 - `fn o_snentry(self: &Self) -> u16`
 
@@ -650,9 +650,9 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_cputype(self: &Self) -> u8`
 
-- `fn o_maxstack(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_maxstack(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
-- `fn o_maxdata(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../../read/xcoff/file/index.md)
+- `fn o_maxdata(self: &Self) -> <Self as >::Word` — [`AuxHeader`](../read/xcoff/index.md)
 
 - `fn o_debugger(self: &Self) -> u32`
 
@@ -670,17 +670,17 @@ f_opthdr field in the file header is 0, the auxiliary header does not exist.
 
 - `fn o_x64flags(self: &Self) -> Option<u16>`
 
-##### `impl Clone`
+##### `impl Clone for AuxHeader64`
 
-- `fn clone(self: &Self) -> AuxHeader64` — [`AuxHeader64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> AuxHeader64` — [`AuxHeader64`](#auxheader64)
 
-##### `impl Copy`
+##### `impl Copy for AuxHeader64`
 
-##### `impl Debug`
+##### `impl Debug for AuxHeader64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for AuxHeader64`
 
 ### `SectionHeader32`
 
@@ -745,19 +745,19 @@ Section header.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SectionHeader32`
 
-- `fn clone(self: &Self) -> SectionHeader32` — [`SectionHeader32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> SectionHeader32` — [`SectionHeader32`](#sectionheader32)
 
-##### `impl Copy`
+##### `impl Copy for SectionHeader32`
 
-##### `impl Debug`
+##### `impl Debug for SectionHeader32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for SectionHeader32`
 
-##### `impl SectionHeader`
+##### `impl SectionHeader for xcoff::SectionHeader32`
 
 - `type Word = u32`
 
@@ -769,25 +769,25 @@ Section header.
 
 - `fn s_name(self: &Self) -> &[u8; 8]`
 
-- `fn s_paddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_paddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_vaddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_vaddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_size(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_size(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_scnptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_scnptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_relptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_relptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_lnnoptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_lnnoptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md)
 
 - `fn s_flags(self: &Self) -> u32`
 
-- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../../read/index.md), [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md), [`SectionHeader`](../read/xcoff/index.md)
 
 ### `SectionHeader64`
 
@@ -857,19 +857,19 @@ Section header.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SectionHeader64`
 
-- `fn clone(self: &Self) -> SectionHeader64` — [`SectionHeader64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> SectionHeader64` — [`SectionHeader64`](#sectionheader64)
 
-##### `impl Copy`
+##### `impl Copy for SectionHeader64`
 
-##### `impl Debug`
+##### `impl Debug for SectionHeader64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for SectionHeader64`
 
-##### `impl SectionHeader`
+##### `impl SectionHeader for xcoff::SectionHeader64`
 
 - `type Word = u64`
 
@@ -881,25 +881,25 @@ Section header.
 
 - `fn s_name(self: &Self) -> &[u8; 8]`
 
-- `fn s_paddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_paddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_vaddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_vaddr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_size(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_size(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_scnptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_scnptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_relptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_relptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_lnnoptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_lnnoptr(self: &Self) -> <Self as >::Word` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_nreloc(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md)
 
-- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn s_nlnno(self: &Self) -> <Self as >::HalfWord` — [`SectionHeader`](../read/xcoff/index.md)
 
 - `fn s_flags(self: &Self) -> u32`
 
-- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../../read/index.md), [`SectionHeader`](../../read/xcoff/section/index.md)
+- `fn relocations<'data, R: ReadRef<'data>>(self: &Self, data: R) -> read::Result<&'data [<Self as >::Rel]>` — [`Result`](../index.md), [`SectionHeader`](../read/xcoff/index.md)
 
 ### `SymbolBytes`
 
@@ -909,17 +909,17 @@ struct SymbolBytes([u8; 18]);
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SymbolBytes`
 
-- `fn clone(self: &Self) -> SymbolBytes` — [`SymbolBytes`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> SymbolBytes` — [`SymbolBytes`](#symbolbytes)
 
-##### `impl Copy`
+##### `impl Copy for SymbolBytes`
 
-##### `impl Debug`
+##### `impl Debug for SymbolBytes`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for SymbolBytes`
 
 ### `Symbol32`
 
@@ -966,23 +966,23 @@ Symbol table entry.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Symbol32`
 
-- `fn clone(self: &Self) -> Symbol32` — [`Symbol32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> Symbol32` — [`Symbol32`](#symbol32)
 
-##### `impl Copy`
+##### `impl Copy for Symbol32`
 
-##### `impl Debug`
+##### `impl Debug for Symbol32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for Symbol32`
 
-##### `impl Symbol`
+##### `impl Symbol for xcoff::Symbol32`
 
 - `type Word = u32`
 
-- `fn n_value(self: &Self) -> <Self as >::Word` — [`Symbol`](../../read/xcoff/symbol/index.md)
+- `fn n_value(self: &Self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md)
 
 - `fn n_scnum(self: &Self) -> i16`
 
@@ -994,7 +994,7 @@ Symbol table entry.
 
 - `fn name_offset(self: &Self) -> Option<u32>`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
+- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
 
 ### `Symbol64`
 
@@ -1039,23 +1039,23 @@ Symbol table entry.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Symbol64`
 
-- `fn clone(self: &Self) -> Symbol64` — [`Symbol64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> Symbol64` — [`Symbol64`](#symbol64)
 
-##### `impl Copy`
+##### `impl Copy for Symbol64`
 
-##### `impl Debug`
+##### `impl Debug for Symbol64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for Symbol64`
 
-##### `impl Symbol`
+##### `impl Symbol for xcoff::Symbol64`
 
 - `type Word = u64`
 
-- `fn n_value(self: &Self) -> <Self as >::Word` — [`Symbol`](../../read/xcoff/symbol/index.md)
+- `fn n_value(self: &Self) -> <Self as >::Word` — [`Symbol`](../read/xcoff/index.md)
 
 - `fn n_scnum(self: &Self) -> i16`
 
@@ -1067,7 +1067,7 @@ Symbol table entry.
 
 - `fn name_offset(self: &Self) -> Option<u32>`
 
-- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../../read/util/index.md), [`Result`](../../read/index.md)
+- `fn name<'data, R: ReadRef<'data>>(self: &'data Self, strings: StringTable<'data, R>) -> Result<&'data [u8]>` — [`StringTable`](../read/index.md), [`Result`](../index.md)
 
 ### `FileAux32`
 
@@ -1104,17 +1104,17 @@ File Auxiliary Entry for C_FILE Symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FileAux32`
 
-- `fn clone(self: &Self) -> FileAux32` — [`FileAux32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> FileAux32` — [`FileAux32`](#fileaux32)
 
-##### `impl Copy`
+##### `impl Copy for FileAux32`
 
-##### `impl Debug`
+##### `impl Debug for FileAux32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FileAux`
+##### `impl FileAux for xcoff::FileAux32`
 
 - `fn x_fname(self: &Self) -> &[u8; 8]`
 
@@ -1122,7 +1122,7 @@ File Auxiliary Entry for C_FILE Symbols.
 
 - `fn x_auxtype(self: &Self) -> Option<u8>`
 
-##### `impl Pod`
+##### `impl Pod for FileAux32`
 
 ### `FileAux64`
 
@@ -1164,17 +1164,17 @@ File Auxiliary Entry for C_FILE Symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FileAux64`
 
-- `fn clone(self: &Self) -> FileAux64` — [`FileAux64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> FileAux64` — [`FileAux64`](#fileaux64)
 
-##### `impl Copy`
+##### `impl Copy for FileAux64`
 
-##### `impl Debug`
+##### `impl Debug for FileAux64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FileAux`
+##### `impl FileAux for xcoff::FileAux64`
 
 - `fn x_fname(self: &Self) -> &[u8; 8]`
 
@@ -1182,7 +1182,7 @@ File Auxiliary Entry for C_FILE Symbols.
 
 - `fn x_auxtype(self: &Self) -> Option<u8>`
 
-##### `impl Pod`
+##### `impl Pod for FileAux64`
 
 ### `CsectAux32`
 
@@ -1232,13 +1232,13 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for CsectAux32`
 
-- `fn clone(self: &Self) -> CsectAux32` — [`CsectAux32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> CsectAux32` — [`CsectAux32`](#csectaux32)
 
-##### `impl Copy`
+##### `impl Copy for CsectAux32`
 
-##### `impl CsectAux`
+##### `impl CsectAux for xcoff::CsectAux32`
 
 - `fn x_scnlen(self: &Self) -> u64`
 
@@ -1256,11 +1256,11 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 - `fn x_auxtype(self: &Self) -> Option<u8>`
 
-##### `impl Debug`
+##### `impl Debug for CsectAux32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for CsectAux32`
 
 ### `CsectAux64`
 
@@ -1315,13 +1315,13 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for CsectAux64`
 
-- `fn clone(self: &Self) -> CsectAux64` — [`CsectAux64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> CsectAux64` — [`CsectAux64`](#csectaux64)
 
-##### `impl Copy`
+##### `impl Copy for CsectAux64`
 
-##### `impl CsectAux`
+##### `impl CsectAux for xcoff::CsectAux64`
 
 - `fn x_scnlen(self: &Self) -> u64`
 
@@ -1339,11 +1339,11 @@ Csect auxiliary entry for C_EXT, C_WEAKEXT, and C_HIDEXT symbols.
 
 - `fn x_auxtype(self: &Self) -> Option<u8>`
 
-##### `impl Debug`
+##### `impl Debug for CsectAux64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for CsectAux64`
 
 ### `FunAux32`
 
@@ -1383,17 +1383,17 @@ Function auxiliary entry.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FunAux32`
 
-- `fn clone(self: &Self) -> FunAux32` — [`FunAux32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> FunAux32` — [`FunAux32`](#funaux32)
 
-##### `impl Copy`
+##### `impl Copy for FunAux32`
 
-##### `impl Debug`
+##### `impl Debug for FunAux32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for FunAux32`
 
 ### `FunAux64`
 
@@ -1433,17 +1433,17 @@ Function auxiliary entry.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for FunAux64`
 
-- `fn clone(self: &Self) -> FunAux64` — [`FunAux64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> FunAux64` — [`FunAux64`](#funaux64)
 
-##### `impl Copy`
+##### `impl Copy for FunAux64`
 
-##### `impl Debug`
+##### `impl Debug for FunAux64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for FunAux64`
 
 ### `ExpAux`
 
@@ -1483,17 +1483,17 @@ Exception auxiliary entry. (XCOFF64 only)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ExpAux`
 
-- `fn clone(self: &Self) -> ExpAux` — [`ExpAux`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> ExpAux` — [`ExpAux`](#expaux)
 
-##### `impl Copy`
+##### `impl Copy for ExpAux`
 
-##### `impl Debug`
+##### `impl Debug for ExpAux`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ExpAux`
 
 ### `BlockAux32`
 
@@ -1528,17 +1528,17 @@ Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BlockAux32`
 
-- `fn clone(self: &Self) -> BlockAux32` — [`BlockAux32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> BlockAux32` — [`BlockAux32`](#blockaux32)
 
-##### `impl Copy`
+##### `impl Copy for BlockAux32`
 
-##### `impl Debug`
+##### `impl Debug for BlockAux32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for BlockAux32`
 
 ### `BlockAux64`
 
@@ -1568,17 +1568,17 @@ Block auxiliary entry for the C_BLOCK and C_FCN Symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BlockAux64`
 
-- `fn clone(self: &Self) -> BlockAux64` — [`BlockAux64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> BlockAux64` — [`BlockAux64`](#blockaux64)
 
-##### `impl Copy`
+##### `impl Copy for BlockAux64`
 
-##### `impl Debug`
+##### `impl Debug for BlockAux64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for BlockAux64`
 
 ### `StatAux`
 
@@ -1613,17 +1613,17 @@ Section auxiliary entry for the C_STAT Symbol. (XCOFF32 Only)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StatAux`
 
-- `fn clone(self: &Self) -> StatAux` — [`StatAux`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> StatAux` — [`StatAux`](#stataux)
 
-##### `impl Copy`
+##### `impl Copy for StatAux`
 
-##### `impl Debug`
+##### `impl Debug for StatAux`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for StatAux`
 
 ### `DwarfAux32`
 
@@ -1658,17 +1658,17 @@ Section auxiliary entry Format for C_DWARF symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwarfAux32`
 
-- `fn clone(self: &Self) -> DwarfAux32` — [`DwarfAux32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> DwarfAux32` — [`DwarfAux32`](#dwarfaux32)
 
-##### `impl Copy`
+##### `impl Copy for DwarfAux32`
 
-##### `impl Debug`
+##### `impl Debug for DwarfAux32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for DwarfAux32`
 
 ### `DwarfAux64`
 
@@ -1703,17 +1703,17 @@ Section auxiliary entry Format for C_DWARF symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DwarfAux64`
 
-- `fn clone(self: &Self) -> DwarfAux64` — [`DwarfAux64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> DwarfAux64` — [`DwarfAux64`](#dwarfaux64)
 
-##### `impl Copy`
+##### `impl Copy for DwarfAux64`
 
-##### `impl Debug`
+##### `impl Debug for DwarfAux64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for DwarfAux64`
 
 ### `Rel32`
 
@@ -1748,23 +1748,23 @@ Relocation table entry
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Rel32`
 
-- `fn clone(self: &Self) -> Rel32` — [`Rel32`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> Rel32` — [`Rel32`](#rel32)
 
-##### `impl Copy`
+##### `impl Copy for Rel32`
 
-##### `impl Debug`
+##### `impl Debug for Rel32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for Rel32`
 
-##### `impl Rel`
+##### `impl Rel for xcoff::Rel32`
 
 - `type Word = u32`
 
-- `fn r_vaddr(self: &Self) -> <Self as >::Word` — [`Rel`](../../read/xcoff/relocation/index.md)
+- `fn r_vaddr(self: &Self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md)
 
 - `fn r_symndx(self: &Self) -> u32`
 
@@ -1805,23 +1805,23 @@ Relocation table entry
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Rel64`
 
-- `fn clone(self: &Self) -> Rel64` — [`Rel64`](../../xcoff/index.md)
+- `fn clone(self: &Self) -> Rel64` — [`Rel64`](#rel64)
 
-##### `impl Copy`
+##### `impl Copy for Rel64`
 
-##### `impl Debug`
+##### `impl Debug for Rel64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for Rel64`
 
-##### `impl Rel`
+##### `impl Rel for xcoff::Rel64`
 
 - `type Word = u64`
 
-- `fn r_vaddr(self: &Self) -> <Self as >::Word` — [`Rel`](../../read/xcoff/relocation/index.md)
+- `fn r_vaddr(self: &Self) -> <Self as >::Word` — [`Rel`](../read/xcoff/index.md)
 
 - `fn r_symndx(self: &Self) -> u32`
 

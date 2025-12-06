@@ -95,23 +95,43 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn try_search_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`HalfMatch`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- `fn try_search_rev(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`HalfMatch`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- `fn try_search_overlapping_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`OverlappingState`](../../../hybrid/dfa/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- `fn try_search_overlapping_rev(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`OverlappingState`](../../../hybrid/dfa/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn never_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- `fn try_which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), MatchError>` — [`Cache`](../../../hybrid/dfa/index.md), [`Input`](../../../util/search/index.md), [`PatternSet`](../../../util/search/index.md), [`MatchError`](../../../util/search/index.md)
+- `fn config() -> Config` — [`Config`](#config)
+
+- `fn builder() -> Builder` — [`Builder`](#builder)
+
+- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
+
+- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
+
+- `fn pattern_len(self: &Self) -> usize`
+
+- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
+
+- `fn get_config(self: &Self) -> &Config` — [`Config`](#config)
+
+- `fn get_nfa(self: &Self) -> &thompson::NFA` — [`NFA`](../../nfa/thompson/nfa/index.md)
+
+- `fn stride2(self: &Self) -> usize`
+
+- `fn stride(self: &Self) -> usize`
+
+- `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DFA`
 
-- `fn clone(self: &Self) -> DFA` — [`DFA`](../../../hybrid/dfa/index.md)
+- `fn clone(self: &Self) -> DFA` — [`DFA`](#dfa)
 
-##### `impl Debug`
+##### `impl Debug for DFA`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -264,9 +284,9 @@ or incorrect results.
 
 #### Implementations
 
-- `fn new(dfa: &DFA) -> Cache` — [`DFA`](../../../hybrid/dfa/index.md), [`Cache`](../../../hybrid/dfa/index.md)
+- `fn new(dfa: &DFA) -> Cache` — [`DFA`](#dfa), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, dfa: &DFA)` — [`DFA`](../../../hybrid/dfa/index.md)
+- `fn reset(self: &mut Self, dfa: &DFA)` — [`DFA`](#dfa)
 
 - `fn search_start(self: &mut Self, at: usize)`
 
@@ -282,11 +302,11 @@ or incorrect results.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../hybrid/dfa/index.md)
+- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
 
-##### `impl Debug`
+##### `impl Debug for Cache`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -320,37 +340,37 @@ with `Builder::configure`.
 The default configuration guarantees that a search will never return a
 "gave up" or "quit" error, although it is possible for a search to fail
 if `Config::starts_for_each_pattern` wasn't enabled (which it is not by
-default) and an `Anchored::Pattern` mode is requested via [`Input`](../../util/search/index.md).
+default) and an `Anchored::Pattern` mode is requested via [`Input`](../../index.md).
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn new() -> Config` — [`Config`](#config)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../../util/search/index.md), [`Config`](../../../hybrid/dfa/index.md)
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](../../../hybrid/dfa/index.md)
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../util/prefilter/index.md), [`Config`](#config)
 
-- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn unicode_word_boundary(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn unicode_word_boundary(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn quit(self: Self, byte: u8, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn quit(self: Self, byte: u8, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn specialize_start_states(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn specialize_start_states(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn cache_capacity(self: Self, bytes: usize) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn cache_capacity(self: Self, bytes: usize) -> Config` — [`Config`](#config)
 
-- `fn skip_cache_capacity_check(self: Self, yes: bool) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn skip_cache_capacity_check(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn minimum_cache_clear_count(self: Self, min: Option<usize>) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn minimum_cache_clear_count(self: Self, min: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn minimum_bytes_per_state(self: Self, min: Option<usize>) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn minimum_bytes_per_state(self: Self, min: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../util/search/index.md)
+- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
+- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../util/prefilter/index.md)
 
 - `fn get_starts_for_each_pattern(self: &Self) -> bool`
 
@@ -370,27 +390,27 @@ default) and an `Anchored::Pattern` mode is requested via [`Input`](../../util/s
 
 - `fn get_minimum_bytes_per_state(self: &Self) -> Option<usize>`
 
-- `fn get_minimum_cache_capacity(self: &Self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../hybrid/error/index.md)
+- `fn get_minimum_cache_capacity(self: &Self, nfa: &thompson::NFA) -> Result<usize, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`BuildError`](../error/index.md)
 
-- `fn byte_classes_from_nfa(self: &Self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`ByteSet`](../../../util/alphabet/index.md), [`ByteClasses`](../../../util/alphabet/index.md)
+- `fn byte_classes_from_nfa(self: &Self, nfa: &thompson::NFA, quit: &ByteSet) -> ByteClasses` — [`NFA`](../../nfa/thompson/nfa/index.md), [`ByteSet`](../../util/alphabet/index.md), [`ByteClasses`](../../util/alphabet/index.md)
 
-- `fn quit_set_from_nfa(self: &Self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`ByteSet`](../../../util/alphabet/index.md), [`BuildError`](../../../hybrid/error/index.md)
+- `fn quit_set_from_nfa(self: &Self, nfa: &thompson::NFA) -> Result<ByteSet, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`ByteSet`](../../util/alphabet/index.md), [`BuildError`](../error/index.md)
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](#config)
 
-##### `impl Debug`
+##### `impl Debug for Config`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../../../hybrid/dfa/index.md)
+- `fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -469,27 +489,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../../../hybrid/dfa/index.md)
+- `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](../../../hybrid/dfa/index.md), [`BuildError`](../../../hybrid/error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](../../../hybrid/dfa/index.md), [`BuildError`](../../../hybrid/error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`DFA`](../../../hybrid/dfa/index.md), [`BuildError`](../../../hybrid/error/index.md)
+- `fn build_from_nfa(self: &Self, nfa: thompson::NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`DFA`](#dfa), [`BuildError`](../error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../../hybrid/dfa/index.md), [`Builder`](../../../hybrid/dfa/index.md)
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](../../../hybrid/dfa/index.md)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../nfa/thompson/compiler/index.md), [`Builder`](../../../hybrid/dfa/index.md)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../hybrid/dfa/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
-##### `impl Debug`
+##### `impl Debug for Builder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -574,25 +594,25 @@ a previous search may result in incorrect results.
 
 #### Implementations
 
-- `fn start() -> OverlappingState` — [`OverlappingState`](../../../hybrid/dfa/index.md)
+- `fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-- `fn get_match(self: &Self) -> Option<HalfMatch>` — [`HalfMatch`](../../../util/search/index.md)
+- `fn get_match(self: &Self) -> Option<HalfMatch>` — [`HalfMatch`](../../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for OverlappingState`
 
-- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](../../../hybrid/dfa/index.md)
+- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-##### `impl Debug`
+##### `impl Debug for OverlappingState`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for OverlappingState`
 
-##### `impl PartialEq`
+##### `impl PartialEq for OverlappingState`
 
-- `fn eq(self: &Self, other: &OverlappingState) -> bool` — [`OverlappingState`](../../../hybrid/dfa/index.md)
+- `fn eq(self: &Self, other: &OverlappingState) -> bool` — [`OverlappingState`](#overlappingstate)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for OverlappingState`
 

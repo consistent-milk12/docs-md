@@ -33,7 +33,7 @@ deserializing JSON data.
 
 - `fn column(self: &Self) -> usize`
 
-- `fn classify(self: &Self) -> Category` — [`Category`](../../error/index.md)
+- `fn classify(self: &Self) -> Category` — [`Category`](#category)
 
 - `fn is_io(self: &Self) -> bool`
 
@@ -47,19 +47,23 @@ deserializing JSON data.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Error`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Error`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for Error`
 
-- `fn custom<T: Display>(msg: T) -> Error` — [`Error`](../../error/index.md)
+- `fn custom<T: Display>(msg: T) -> Error` — [`Error`](#error)
 
-##### `impl ToString<T>`
+- `fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+
+- `fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+
+##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -105,23 +109,23 @@ Categorizes the cause of a `serde_json::Error`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Category`
 
-- `fn clone(self: &Self) -> Category` — [`Category`](../../error/index.md)
+- `fn clone(self: &Self) -> Category` — [`Category`](#category)
 
-##### `impl Copy`
+##### `impl Copy for Category`
 
-##### `impl Debug`
+##### `impl Debug for Category`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Category`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Category`
 
-- `fn eq(self: &Self, other: &Category) -> bool` — [`Category`](../../error/index.md)
+- `fn eq(self: &Self, other: &Category) -> bool` — [`Category`](#category)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Category`
 
 ## Type Aliases
 

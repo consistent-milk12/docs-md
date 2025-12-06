@@ -20,45 +20,45 @@ with the addition of boldening it. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for BoldDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for BoldDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for BoldDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for BoldDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for BoldDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for BoldDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BoldDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for BoldDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for BoldDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for BoldDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -74,45 +74,45 @@ with the addition of dimming it. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for DimDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for DimDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for DimDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for DimDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for DimDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for DimDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for DimDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for DimDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for DimDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for DimDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -128,45 +128,45 @@ with the addition of italics. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for ItalicDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for ItalicDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for ItalicDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for ItalicDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for ItalicDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for ItalicDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ItalicDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for ItalicDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for ItalicDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for ItalicDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -182,45 +182,45 @@ while underlining it. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for UnderlineDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for UnderlineDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for UnderlineDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for UnderlineDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for UnderlineDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for UnderlineDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for UnderlineDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for UnderlineDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for UnderlineDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for UnderlineDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -236,45 +236,45 @@ while blinking. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for BlinkDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for BlinkDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for BlinkDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for BlinkDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for BlinkDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for BlinkDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BlinkDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for BlinkDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for BlinkDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for BlinkDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -289,45 +289,45 @@ with the addition of making it blink fast. Use [`OwoColorize`](OwoColorize::blin
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for BlinkFastDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for BlinkFastDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for BlinkFastDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for BlinkFastDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for BlinkFastDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for BlinkFastDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BlinkFastDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for BlinkFastDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for BlinkFastDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for BlinkFastDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -342,45 +342,45 @@ with the addition of swapping fg and bg colors. Use [`OwoColorize`](OwoColorize:
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for ReversedDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for ReversedDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for ReversedDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for ReversedDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for ReversedDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for ReversedDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ReversedDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for ReversedDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for ReversedDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for ReversedDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -395,45 +395,45 @@ with the addition of hiding the text. Use [`OwoColorize`](OwoColorize::hidden).
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for HiddenDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for HiddenDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for HiddenDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for HiddenDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for HiddenDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for HiddenDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for HiddenDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for HiddenDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for HiddenDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for HiddenDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -449,45 +449,45 @@ crossed out. Recommended to be constructed using
 
 #### Implementations
 
-- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../../dyn_styles/index.md)
+- `const fn into_styled(self: Self) -> Styled<&'a T>` — [`Styled`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Binary<'a, T: ?Sized + fmt::Binary>`
+##### `impl<'a, T: ?Sized + fmt::Binary> Binary for StrikeThroughDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Debug<'a, T: ?Sized + fmt::Debug>`
+##### `impl<'a, T: ?Sized + fmt::Debug> Debug for StrikeThroughDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display<'a, T: ?Sized + fmt::Display>`
+##### `impl<'a, T: ?Sized + fmt::Display> Display for StrikeThroughDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerExp<'a, T: ?Sized + fmt::LowerExp>`
+##### `impl<'a, T: ?Sized + fmt::LowerExp> LowerExp for StrikeThroughDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl LowerHex<'a, T: ?Sized + fmt::LowerHex>`
+##### `impl<'a, T: ?Sized + fmt::LowerHex> LowerHex for StrikeThroughDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Octal<'a, T: ?Sized + fmt::Octal>`
+##### `impl<'a, T: ?Sized + fmt::Octal> Octal for StrikeThroughDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for StrikeThroughDisplay<'a, T>`
 
-##### `impl Pointer<'a, T: ?Sized + fmt::Pointer>`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl UpperExp<'a, T: ?Sized + fmt::UpperExp>`
+##### `impl<'a, T: ?Sized + fmt::Pointer> Pointer for StrikeThroughDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl UpperHex<'a, T: ?Sized + fmt::UpperHex>`
+##### `impl<'a, T: ?Sized + fmt::UpperExp> UpperExp for StrikeThroughDisplay<'a, T>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'a, T: ?Sized + fmt::UpperHex> UpperHex for StrikeThroughDisplay<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 

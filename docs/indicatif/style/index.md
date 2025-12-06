@@ -25,13 +25,13 @@ struct ProgressStyle {
 
 - `fn default_spinner() -> Self`
 
-- `fn with_template(template: &str) -> Result<Self, TemplateError>` — [`TemplateError`](../../style/index.md)
+- `fn with_template(template: &str) -> Result<Self, TemplateError>` — [`TemplateError`](#templateerror)
 
 - `fn set_tab_width(self: &mut Self, new_tab_width: usize)`
 
 - `fn set_for_stderr(self: &mut Self)`
 
-- `fn new(template: Template) -> Self` — [`Template`](../../style/index.md)
+- `fn new(template: Template) -> Self` — [`Template`](#template)
 
 - `fn tick_chars(self: Self, s: &str) -> Self`
 
@@ -41,25 +41,25 @@ struct ProgressStyle {
 
 - `fn with_key<S: ProgressTracker + 'static>(self: Self, key: &'static str, f: S) -> Self`
 
-- `fn template(self: Self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](../../style/index.md)
+- `fn template(self: Self, s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](#templateerror)
 
-- `fn current_tick_str(self: &Self, state: &ProgressState) -> &str` — [`ProgressState`](../../state/index.md)
+- `fn current_tick_str(self: &Self, state: &ProgressState) -> &str` — [`ProgressState`](../state/index.md)
 
 - `fn get_tick_str(self: &Self, idx: u64) -> &str`
 
 - `fn get_final_tick_str(self: &Self) -> &str`
 
-- `fn format_bar(self: &Self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](../../style/index.md)
+- `fn format_bar(self: &Self, fract: f32, width: usize, alt_style: Option<&Style>) -> BarDisplay<'_>` — [`BarDisplay`](#bardisplay)
 
-- `fn format_state(self: &Self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](../../state/index.md), [`LineType`](../../draw_target/index.md)
+- `fn format_state(self: &Self, state: &ProgressState, lines: &mut Vec<LineType>, target_width: u16)` — [`ProgressState`](../state/index.md), [`LineType`](../draw_target/index.md)
 
-- `fn push_line(self: &Self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../../draw_target/index.md), [`ProgressState`](../../state/index.md), [`WideElement`](../../style/index.md)
+- `fn push_line(self: &Self, lines: &mut Vec<LineType>, cur: &mut String, state: &ProgressState, buf: &mut String, target_width: u16, wide: &Option<WideElement<'_>>)` — [`LineType`](../draw_target/index.md), [`ProgressState`](../state/index.md), [`WideElement`](#wideelement)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ProgressStyle`
 
-- `fn clone(self: &Self) -> ProgressStyle` — [`ProgressStyle`](../../style/index.md)
+- `fn clone(self: &Self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
 
 ### `TemplateError`
 
@@ -72,17 +72,17 @@ struct TemplateError {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for TemplateError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for TemplateError`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for TemplateError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for TemplateError`
 
 - `fn to_string(self: &Self) -> String`
 

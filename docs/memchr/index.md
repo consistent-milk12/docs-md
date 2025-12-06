@@ -198,25 +198,25 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](../memchr/index.md)
+- `fn new(needle1: u8, haystack: &'h [u8]) -> Memchr<'h>` — [`Memchr`](memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<'h>`
+##### `impl<'h> Clone for Memchr<'h>`
 
-- `fn clone(self: &Self) -> Memchr<'h>` — [`Memchr`](../memchr/index.md)
+- `fn clone(self: &Self) -> Memchr<'h>` — [`Memchr`](memchr/index.md)
 
-##### `impl Debug<'h>`
+##### `impl<'h> Debug for Memchr<'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'h>`
+##### `impl<'h> DoubleEndedIterator for Memchr<'h>`
 
 - `fn next_back(self: &mut Self) -> Option<usize>`
 
-##### `impl FusedIterator<'h>`
+##### `impl<'h> FusedIterator for Memchr<'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Memchr<'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -224,7 +224,7 @@ searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h>`
+##### `impl<'h> Iterator for Memchr<'h>`
 
 - `type Item = usize`
 
@@ -257,25 +257,25 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](../memchr/index.md)
+- `fn new(needle1: u8, needle2: u8, haystack: &'h [u8]) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<'h>`
+##### `impl<'h> Clone for Memchr2<'h>`
 
-- `fn clone(self: &Self) -> Memchr2<'h>` — [`Memchr2`](../memchr/index.md)
+- `fn clone(self: &Self) -> Memchr2<'h>` — [`Memchr2`](memchr/index.md)
 
-##### `impl Debug<'h>`
+##### `impl<'h> Debug for Memchr2<'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'h>`
+##### `impl<'h> DoubleEndedIterator for Memchr2<'h>`
 
 - `fn next_back(self: &mut Self) -> Option<usize>`
 
-##### `impl FusedIterator<'h>`
+##### `impl<'h> FusedIterator for Memchr2<'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Memchr2<'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -283,7 +283,7 @@ searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h>`
+##### `impl<'h> Iterator for Memchr2<'h>`
 
 - `type Item = usize`
 
@@ -315,25 +315,25 @@ searched.
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](../memchr/index.md)
+- `fn new(needle1: u8, needle2: u8, needle3: u8, haystack: &'h [u8]) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<'h>`
+##### `impl<'h> Clone for Memchr3<'h>`
 
-- `fn clone(self: &Self) -> Memchr3<'h>` — [`Memchr3`](../memchr/index.md)
+- `fn clone(self: &Self) -> Memchr3<'h>` — [`Memchr3`](memchr/index.md)
 
-##### `impl Debug<'h>`
+##### `impl<'h> Debug for Memchr3<'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'h>`
+##### `impl<'h> DoubleEndedIterator for Memchr3<'h>`
 
 - `fn next_back(self: &mut Self) -> Option<usize>`
 
-##### `impl FusedIterator<'h>`
+##### `impl<'h> FusedIterator for Memchr3<'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Memchr3<'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -341,7 +341,7 @@ searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'h>`
+##### `impl<'h> Iterator for Memchr3<'h>`
 
 - `type Item = usize`
 

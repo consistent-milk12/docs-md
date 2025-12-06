@@ -51,17 +51,17 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AnsiColors`
 
-- `fn clone(self: &Self) -> AnsiColors` — [`AnsiColors`](../../colors/ansi_colors/index.md)
+- `fn clone(self: &Self) -> AnsiColors` — [`AnsiColors`](../colors/ansi_colors/index.md)
 
-##### `impl Copy`
+##### `impl Copy for AnsiColors`
 
-##### `impl Debug`
+##### `impl Debug for AnsiColors`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DynColor`
+##### `impl DynColor for AnsiColors`
 
 - `fn fmt_ansi_fg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -71,15 +71,15 @@ or [`OwoColorize::on_color`](OwoColorize::on_color)
 
 - `fn fmt_raw_ansi_bg(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for AnsiColors`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for AnsiColors`
 
-##### `impl PartialEq`
+##### `impl PartialEq for AnsiColors`
 
-- `fn eq(self: &Self, other: &AnsiColors) -> bool` — [`AnsiColors`](../../colors/ansi_colors/index.md)
+- `fn eq(self: &Self, other: &AnsiColors) -> bool` — [`AnsiColors`](../colors/ansi_colors/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for AnsiColors`
 
 ## Traits
 

@@ -23,21 +23,21 @@ A [`Hasher`](#hasher) instance implementing foldhash, optimized for speed.
 
 While you can create one directly with `FoldHasher::with_seed`, you
 most likely want to use [`RandomState`](../quality/index.md), [`SeedableRandomState`](#seedablerandomstate) or
-[`FixedState`](../quality/index.md) to create [`FoldHasher`](#foldhasher)s.
+[`FixedState`](../quality/index.md) to create [`FoldHasher`](../quality/index.md)s.
 
 #### Implementations
 
-- `const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../../seed/index.md), [`FoldHasher`](../../fast/index.md)
+- `const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../seed/index.md), [`FoldHasher`](#foldhasher)
 
 - `fn write_num<T: Into<u128>>(self: &mut Self, x: T)`
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for FoldHasher<'a>`
 
-- `fn clone(self: &Self) -> FoldHasher<'a>` — [`FoldHasher`](../../fast/index.md)
+- `fn clone(self: &Self) -> FoldHasher<'a>` — [`FoldHasher`](#foldhasher)
 
-##### `impl Hasher<'a>`
+##### `impl<'a> Hasher for FoldHasher<'a>`
 
 - `fn write(self: &mut Self, bytes: &[u8])`
 
@@ -68,21 +68,21 @@ A [`BuildHasher`](#buildhasher) for [`fast::FoldHasher`](FoldHasher) that is ran
 
 #### Trait Implementations
 
-##### `impl BuildHasher`
+##### `impl BuildHasher for RandomState`
 
 - `type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](../../fast/index.md)
+- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
-##### `impl Clone`
+##### `impl Clone for RandomState`
 
-- `fn clone(self: &Self) -> RandomState` — [`RandomState`](../../fast/index.md)
+- `fn clone(self: &Self) -> RandomState` — [`RandomState`](#randomstate)
 
-##### `impl Debug`
+##### `impl Debug for RandomState`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for RandomState`
 
 - `fn default() -> Self`
 
@@ -107,25 +107,25 @@ has a size of 16 bytes rather than the 8 bytes [`RandomState`](../quality/index.
 
 - `fn fixed() -> Self`
 
-- `fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../../seed/index.md)
+- `fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../seed/index.md)
 
 #### Trait Implementations
 
-##### `impl BuildHasher`
+##### `impl BuildHasher for SeedableRandomState`
 
 - `type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](../../fast/index.md)
+- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
-##### `impl Clone`
+##### `impl Clone for SeedableRandomState`
 
-- `fn clone(self: &Self) -> SeedableRandomState` — [`SeedableRandomState`](../../fast/index.md)
+- `fn clone(self: &Self) -> SeedableRandomState` — [`SeedableRandomState`](#seedablerandomstate)
 
-##### `impl Debug`
+##### `impl Debug for SeedableRandomState`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for SeedableRandomState`
 
 - `fn default() -> Self`
 
@@ -147,21 +147,21 @@ Not recommended unless you absolutely need determinism.
 
 #### Trait Implementations
 
-##### `impl BuildHasher`
+##### `impl BuildHasher for FixedState`
 
 - `type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](../../fast/index.md)
+- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
-##### `impl Clone`
+##### `impl Clone for FixedState`
 
-- `fn clone(self: &Self) -> FixedState` — [`FixedState`](../../fast/index.md)
+- `fn clone(self: &Self) -> FixedState` — [`FixedState`](#fixedstate)
 
-##### `impl Debug`
+##### `impl Debug for FixedState`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for FixedState`
 
 - `fn default() -> Self`
 

@@ -48,7 +48,7 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Implementations
 
-- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../../../generator/context/index.md)
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str) -> Self` — [`RenderContext`](../context/index.md)
 
 - `fn process_docs(self: &Self, item: &Item) -> Option<String>`
 
@@ -62,11 +62,11 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for ImplRenderer<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for ImplRenderer<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ImplRenderer<'a>`
 
 - `const ALIGN: usize`
 

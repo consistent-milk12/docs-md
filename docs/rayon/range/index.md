@@ -20,7 +20,6 @@ let r = (0..100u64).into_par_iter()
 assert_eq!((0..100).sum::<u64>(), r);
 ```
 
-[ranges](#ranges): std::ops::Range
 
 ## Structs
 
@@ -56,25 +55,25 @@ assert_eq!(p, s);
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for Iter<T>`
 
-- `fn clone(self: &Self) -> Iter<T>` — [`Iter`](../../range/index.md)
+- `fn clone(self: &Self) -> Iter<T>` — [`Iter`](#iter)
 
-##### `impl Debug<T: $crate::fmt::Debug>`
+##### `impl<T: $crate::fmt::Debug> Debug for Iter<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<T: IndexedRangeInteger>`
+##### `impl IndexedParallelIterator for Iter<char>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../iter/plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Iter<T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Iter<T>`
 
 - `type Iter = T`
 
@@ -82,15 +81,15 @@ assert_eq!(p, s);
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator`
+##### `impl ParallelIterator for Iter<char>`
 
 - `type Item = char`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Iter<T>`
 
 - `const ALIGN: usize`
 

@@ -2,9 +2,7 @@
 
 [![github](#github)](https://github.com/dtolnay/itoa)&ensp;[![crates-io]](https://crates.io/crates/itoa)&ensp;[![docs-rs]](https://docs.rs/itoa)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
-[crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
-[docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
+
 
 <br>
 
@@ -14,7 +12,6 @@ performance penalty of going through `core::fmt::Formatter`.
 
 See also [`ryu`](#ryu) for printing floating point primitives.
 
-[libcore](#libcore): https://github.com/rust-lang/rust/blob/b8214dc6c6fc20d0a660fb5700dca9ebf51ebe89/src/libcore/fmt/num.rs#L201-L254
 
 # Example
 
@@ -53,21 +50,21 @@ assert_eq!(printed, "1234");
 
 #### Implementations
 
-- `fn new() -> Buffer` — [`Buffer`](../index.md)
+- `fn new() -> Buffer` — [`Buffer`](#buffer)
 
 - `fn format<I: Integer>(self: &mut Self, i: I) -> &str`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Buffer`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for Buffer`
 
-##### `impl Default`
+##### `impl Default for Buffer`
 
-- `fn default() -> Buffer` — [`Buffer`](../index.md)
+- `fn default() -> Buffer` — [`Buffer`](#buffer)
 
 ## Traits
 

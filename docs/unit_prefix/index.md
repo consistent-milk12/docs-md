@@ -270,29 +270,29 @@ A numeric prefix, either binary or decimal.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Prefix`
 
-- `fn clone(self: &Self) -> Prefix` — [`Prefix`](../index.md)
+- `fn clone(self: &Self) -> Prefix` — [`Prefix`](#prefix)
 
-##### `impl Copy`
+##### `impl Copy for Prefix`
 
-##### `impl Debug`
+##### `impl Debug for Prefix`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Prefix`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Prefix`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Prefix`
 
-- `fn eq(self: &Self, other: &Prefix) -> bool` — [`Prefix`](../index.md)
+- `fn eq(self: &Self, other: &Prefix) -> bool` — [`Prefix`](#prefix)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Prefix`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Prefix`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -326,31 +326,31 @@ The result of trying to apply a prefix to a floating-point value.
 
 - `fn binary(amount: F) -> Self`
 
-- `fn format_number(amount: F, kilo: F, prefixes: [Prefix; 8]) -> Self` — [`Prefix`](../index.md)
+- `fn format_number(amount: F, kilo: F, prefixes: [Prefix; 8]) -> Self` — [`Prefix`](#prefix)
 
 #### Trait Implementations
 
-##### `impl Clone<F: $crate::clone::Clone>`
+##### `impl<F: $crate::clone::Clone> Clone for NumberPrefix<F>`
 
-- `fn clone(self: &Self) -> NumberPrefix<F>` — [`NumberPrefix`](../index.md)
+- `fn clone(self: &Self) -> NumberPrefix<F>` — [`NumberPrefix`](#numberprefix)
 
-##### `impl Debug<F: $crate::fmt::Debug>`
+##### `impl<F: $crate::fmt::Debug> Debug for NumberPrefix<F>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq<F: $crate::cmp::Eq>`
+##### `impl<F: $crate::cmp::Eq> Eq for NumberPrefix<F>`
 
-##### `impl FromStr<T: str::FromStr>`
+##### `impl<T: str::FromStr> FromStr for super::NumberPrefix<T>`
 
 - `type Err = NumberPrefixParseError`
 
 - `fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
 
-##### `impl PartialEq<F: $crate::cmp::PartialEq>`
+##### `impl<F: $crate::cmp::PartialEq> PartialEq for NumberPrefix<F>`
 
-- `fn eq(self: &Self, other: &NumberPrefix<F>) -> bool` — [`NumberPrefix`](../index.md)
+- `fn eq(self: &Self, other: &NumberPrefix<F>) -> bool` — [`NumberPrefix`](#numberprefix)
 
-##### `impl StructuralPartialEq<F>`
+##### `impl<F> StructuralPartialEq for NumberPrefix<F>`
 
 ## Traits
 

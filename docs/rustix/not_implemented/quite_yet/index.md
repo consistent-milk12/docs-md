@@ -13,7 +13,6 @@ work and/or they don't yet have a libc backend implementation yet.
 See [#1314] for more information, and please leave comments if there are
 specific functions you're interested in.
 
-[#1314]: https://github.com/bytecodealliance/rustix/issues/1314
 
 ## Functions
 

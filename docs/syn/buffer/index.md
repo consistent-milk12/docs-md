@@ -23,13 +23,13 @@ once.
 
 #### Implementations
 
-- `fn recursive_new(entries: &mut Vec<Entry>, stream: TokenStream)` — [`Entry`](../../buffer/index.md)
+- `fn recursive_new(entries: &mut Vec<Entry>, stream: TokenStream)` — [`Entry`](#entry)
 
 - `fn new(stream: proc_macro::TokenStream) -> Self`
 
 - `fn new2(stream: TokenStream) -> Self`
 
-- `fn begin(self: &Self) -> Cursor<'_>` — [`Cursor`](../../buffer/index.md)
+- `fn begin(self: &Self) -> Cursor<'_>` — [`Cursor`](#cursor)
 
 ### `Cursor<'a>`
 
@@ -54,57 +54,57 @@ object and get a cursor to its first token with `begin()`.
 
 - `fn empty() -> Self`
 
-- `unsafe fn create(ptr: *const Entry, scope: *const Entry) -> Self` — [`Entry`](../../buffer/index.md)
+- `unsafe fn create(ptr: *const Entry, scope: *const Entry) -> Self` — [`Entry`](#entry)
 
-- `fn entry(self: Self) -> &'a Entry` — [`Entry`](../../buffer/index.md)
+- `fn entry(self: Self) -> &'a Entry` — [`Entry`](#entry)
 
-- `unsafe fn bump_ignore_group(self: Self) -> Cursor<'a>` — [`Cursor`](../../buffer/index.md)
+- `unsafe fn bump_ignore_group(self: Self) -> Cursor<'a>` — [`Cursor`](#cursor)
 
 - `fn ignore_none(self: &mut Self)`
 
 - `fn eof(self: Self) -> bool`
 
-- `fn ident(self: Self) -> Option<(Ident, Cursor<'a>)>` — [`Cursor`](../../buffer/index.md)
+- `fn ident(self: Self) -> Option<(Ident, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn punct(self: Self) -> Option<(Punct, Cursor<'a>)>` — [`Cursor`](../../buffer/index.md)
+- `fn punct(self: Self) -> Option<(Punct, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn literal(self: Self) -> Option<(Literal, Cursor<'a>)>` — [`Cursor`](../../buffer/index.md)
+- `fn literal(self: Self) -> Option<(Literal, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn lifetime(self: Self) -> Option<(Lifetime, Cursor<'a>)>` — [`Lifetime`](../../lifetime/index.md), [`Cursor`](../../buffer/index.md)
+- `fn lifetime(self: Self) -> Option<(Lifetime, Cursor<'a>)>` — [`Lifetime`](../lifetime/index.md), [`Cursor`](#cursor)
 
-- `fn group(self: Self, delim: Delimiter) -> Option<(Cursor<'a>, DelimSpan, Cursor<'a>)>` — [`Cursor`](../../buffer/index.md)
+- `fn group(self: Self, delim: Delimiter) -> Option<(Cursor<'a>, DelimSpan, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn any_group(self: Self) -> Option<(Cursor<'a>, Delimiter, DelimSpan, Cursor<'a>)>` — [`Cursor`](../../buffer/index.md)
+- `fn any_group(self: Self) -> Option<(Cursor<'a>, Delimiter, DelimSpan, Cursor<'a>)>` — [`Cursor`](#cursor)
 
-- `fn any_group_token(self: Self) -> Option<(Group, Cursor<'a>)>` — [`Cursor`](../../buffer/index.md)
+- `fn any_group_token(self: Self) -> Option<(Group, Cursor<'a>)>` — [`Cursor`](#cursor)
 
 - `fn token_stream(self: Self) -> TokenStream`
 
-- `fn token_tree(self: Self) -> Option<(TokenTree, Cursor<'a>)>` — [`Cursor`](../../buffer/index.md)
+- `fn token_tree(self: Self) -> Option<(TokenTree, Cursor<'a>)>` — [`Cursor`](#cursor)
 
 - `fn span(self: Self) -> Span`
 
 - `fn prev_span(self: Self) -> Span`
 
-- `fn skip(self: Self) -> Option<Cursor<'a>>` — [`Cursor`](../../buffer/index.md)
+- `fn skip(self: Self) -> Option<Cursor<'a>>` — [`Cursor`](#cursor)
 
 - `fn scope_delimiter(self: Self) -> Delimiter`
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Cursor<'a>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy<'a>`
+##### `impl<'a> Copy for Cursor<'a>`
 
-##### `impl Eq<'a>`
+##### `impl<'a> Eq for Cursor<'a>`
 
-##### `impl PartialEq<'a>`
+##### `impl<'a> PartialEq for Cursor<'a>`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl PartialOrd<'a>`
+##### `impl<'a> PartialOrd for Cursor<'a>`
 
 - `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
 

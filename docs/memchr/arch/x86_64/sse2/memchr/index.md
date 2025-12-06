@@ -6,7 +6,7 @@
 
 This module defines 128-bit vector implementations of `memchr` and friends.
 
-The main types in this module are [`One`](../../../generic/memchr/index.md), [`Two`](../../../all/memchr/index.md) and [`Three`](../../../generic/memchr/index.md). They are for
+The main types in this module are [`One`](../../avx2/memchr/index.md), [`Two`](../../../generic/memchr/index.md) and [`Three`](../../../all/memchr/index.md). They are for
 searching for one, two or three distinct bytes, respectively, in a haystack.
 Each type also has corresponding double ended iterators. These searchers are
 typically much faster than scalar routines accomplishing the same task.
@@ -15,7 +15,7 @@ The `One` searcher also provides a `One::count` routine for efficiently
 counting the number of times a single byte occurs in a haystack. This is
 useful, for example, for counting the number of lines in a haystack. This
 routine exists because it is usually faster, especially with a high match
-count, than using `One::find` repeatedly. ([`OneIter`](#oneiter) specializes its
+count, than using `One::find` repeatedly. ([`OneIter`](../../avx2/memchr/index.md) specializes its
 `Iterator::count` implementation to use this routine.)
 
 Only one, two and three bytes are supported because three bytes is about
@@ -36,9 +36,9 @@ Finds all occurrences of a single byte in a haystack.
 
 #### Implementations
 
-- `fn new(needle: u8) -> Option<One>` — [`One`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn new(needle: u8) -> Option<One>` — [`One`](#one)
 
-- `unsafe fn new_unchecked(needle: u8) -> One` — [`One`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `unsafe fn new_unchecked(needle: u8) -> One` — [`One`](#one)
 
 - `fn is_available() -> bool`
 
@@ -60,17 +60,17 @@ Finds all occurrences of a single byte in a haystack.
 
 - `unsafe fn count_raw_impl(self: &Self, start: *const u8, end: *const u8) -> usize`
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> OneIter<'a, 'h>` — [`OneIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for One`
 
-- `fn clone(self: &Self) -> One` — [`One`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn clone(self: &Self) -> One` — [`One`](#one)
 
-##### `impl Copy`
+##### `impl Copy for One`
 
-##### `impl Debug`
+##### `impl Debug for One`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -92,26 +92,26 @@ This iterator is created by the `One::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`One`](../../../generic/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`One`](../../avx2/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl Clone<'a, 'h>`
+##### `impl<'a, 'h> Clone for OneIter<'a, 'h>`
 
-- `fn clone(self: &Self) -> OneIter<'a, 'h>` — [`OneIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn clone(self: &Self) -> OneIter<'a, 'h>` — [`OneIter`](#oneiter)
 
-##### `impl Debug<'a, 'h>`
+##### `impl<'a, 'h> Debug for OneIter<'a, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a, 'h>`
+##### `impl<'a, 'h> DoubleEndedIterator for OneIter<'a, 'h>`
 
 - `fn next_back(self: &mut Self) -> Option<usize>`
 
-##### `impl FusedIterator<'a, 'h>`
+##### `impl<'a, 'h> FusedIterator for OneIter<'a, 'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for OneIter<'a, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -119,7 +119,7 @@ The lifetime parameters are as follows:
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, 'h>`
+##### `impl<'a, 'h> Iterator for OneIter<'a, 'h>`
 
 - `type Item = usize`
 
@@ -143,9 +143,9 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8) -> Option<Two>` — [`Two`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn new(needle1: u8, needle2: u8) -> Option<Two>` — [`Two`](#two)
 
-- `unsafe fn new_unchecked(needle1: u8, needle2: u8) -> Two` — [`Two`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `unsafe fn new_unchecked(needle1: u8, needle2: u8) -> Two` — [`Two`](#two)
 
 - `fn is_available() -> bool`
 
@@ -161,17 +161,17 @@ searching for `a` or `b` in `afoobar` would report matches at offsets `0`,
 
 - `unsafe fn rfind_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> TwoIter<'a, 'h>` — [`TwoIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Two`
 
-- `fn clone(self: &Self) -> Two` — [`Two`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn clone(self: &Self) -> Two` — [`Two`](#two)
 
-##### `impl Copy`
+##### `impl Copy for Two`
 
-##### `impl Debug`
+##### `impl Debug for Two`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -193,26 +193,26 @@ This iterator is created by the `Two::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Two`](../../../all/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Two`](../../../generic/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl Clone<'a, 'h>`
+##### `impl<'a, 'h> Clone for TwoIter<'a, 'h>`
 
-- `fn clone(self: &Self) -> TwoIter<'a, 'h>` — [`TwoIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn clone(self: &Self) -> TwoIter<'a, 'h>` — [`TwoIter`](#twoiter)
 
-##### `impl Debug<'a, 'h>`
+##### `impl<'a, 'h> Debug for TwoIter<'a, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a, 'h>`
+##### `impl<'a, 'h> DoubleEndedIterator for TwoIter<'a, 'h>`
 
 - `fn next_back(self: &mut Self) -> Option<usize>`
 
-##### `impl FusedIterator<'a, 'h>`
+##### `impl<'a, 'h> FusedIterator for TwoIter<'a, 'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for TwoIter<'a, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -220,7 +220,7 @@ The lifetime parameters are as follows:
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, 'h>`
+##### `impl<'a, 'h> Iterator for TwoIter<'a, 'h>`
 
 - `type Item = usize`
 
@@ -242,9 +242,9 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
 #### Implementations
 
-- `fn new(needle1: u8, needle2: u8, needle3: u8) -> Option<Three>` — [`Three`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn new(needle1: u8, needle2: u8, needle3: u8) -> Option<Three>` — [`Three`](#three)
 
-- `unsafe fn new_unchecked(needle1: u8, needle2: u8, needle3: u8) -> Three` — [`Three`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `unsafe fn new_unchecked(needle1: u8, needle2: u8, needle3: u8) -> Three` — [`Three`](#three)
 
 - `fn is_available() -> bool`
 
@@ -260,17 +260,17 @@ searching for `a`, `b` or `o` in `afoobar` would report matches at offsets
 
 - `unsafe fn rfind_raw_impl(self: &Self, start: *const u8, end: *const u8) -> Option<*const u8>`
 
-- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> ThreeIter<'a, 'h>` — [`ThreeIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn iter<'a, 'h>(self: &'a Self, haystack: &'h [u8]) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Three`
 
-- `fn clone(self: &Self) -> Three` — [`Three`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn clone(self: &Self) -> Three` — [`Three`](#three)
 
-##### `impl Copy`
+##### `impl Copy for Three`
 
-##### `impl Debug`
+##### `impl Debug for Three`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -292,26 +292,26 @@ This iterator is created by the `Three::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Three`](../../../generic/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Three`](../../../all/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl Clone<'a, 'h>`
+##### `impl<'a, 'h> Clone for ThreeIter<'a, 'h>`
 
-- `fn clone(self: &Self) -> ThreeIter<'a, 'h>` — [`ThreeIter`](../../../../../arch/x86_64/sse2/memchr/index.md)
+- `fn clone(self: &Self) -> ThreeIter<'a, 'h>` — [`ThreeIter`](#threeiter)
 
-##### `impl Debug<'a, 'h>`
+##### `impl<'a, 'h> Debug for ThreeIter<'a, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl DoubleEndedIterator<'a, 'h>`
+##### `impl<'a, 'h> DoubleEndedIterator for ThreeIter<'a, 'h>`
 
 - `fn next_back(self: &mut Self) -> Option<usize>`
 
-##### `impl FusedIterator<'a, 'h>`
+##### `impl<'a, 'h> FusedIterator for ThreeIter<'a, 'h>`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ThreeIter<'a, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -319,7 +319,7 @@ The lifetime parameters are as follows:
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, 'h>`
+##### `impl<'a, 'h> Iterator for ThreeIter<'a, 'h>`
 
 - `type Item = usize`
 

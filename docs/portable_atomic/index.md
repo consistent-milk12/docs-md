@@ -185,12 +185,10 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 - [atomic-maybe-uninit]: Atomic operations on potentially uninitialized integers.
 - [atomic-memcpy]: Byte-wise atomic memcpy.
 
-[#60]: https://github.com/taiki-e/portable-atomic/issues/60
-[atomic-maybe-uninit]: https://github.com/taiki-e/atomic-maybe-uninit
-[atomic-memcpy]: https://github.com/taiki-e/atomic-memcpy
-[critical-section]: https://github.com/rust-embedded/critical-section
-[rust-lang/rust#100650]: https://github.com/rust-lang/rust/issues/100650
-[serde](#serde): https://github.com/serde-rs/serde
+
+
+
+
 
 <!-- tidy:sync-markdown-to-rustdoc:end -->
 
@@ -264,21 +262,21 @@ assembly.
 
 - `const fn as_ptr(self: &Self) -> *mut bool`
 
-- `fn as_atomic_u8(self: &Self) -> &self::core_atomic::AtomicU8` — [`AtomicU8`](../imp/core_atomic/index.md)
+- `fn as_atomic_u8(self: &Self) -> &self::core_atomic::AtomicU8` — [`AtomicU8`](imp/core_atomic/index.md)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicBool`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicBool`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicBool`
 
-##### `impl Sync`
+##### `impl Sync for AtomicBool`
 
 ### `AtomicPtr<T>`
 
@@ -344,25 +342,25 @@ assembly.
 
 - `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool`
 
-- `fn as_atomic_usize(self: &Self) -> &AtomicUsize` — [`AtomicUsize`](../index.md)
+- `fn as_atomic_usize(self: &Self) -> &AtomicUsize` — [`AtomicUsize`](#atomicusize)
 
 - `const fn as_ptr(self: &Self) -> *mut *mut T`
 
 #### Trait Implementations
 
-##### `impl Debug<T>`
+##### `impl<T> Debug for AtomicPtr<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<T>`
+##### `impl<T> Default for AtomicPtr<T>`
 
 - `fn default() -> Self`
 
-##### `impl Pointer<T>`
+##### `impl<T> Pointer for AtomicPtr<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl RefUnwindSafe<T>`
+##### `impl<T> RefUnwindSafe for AtomicPtr<T>`
 
 ### `AtomicIsize`
 
@@ -452,15 +450,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicIsize`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicIsize`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicIsize`
 
 ### `AtomicUsize`
 
@@ -550,15 +548,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicUsize`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicUsize`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicUsize`
 
 ### `AtomicI8`
 
@@ -648,15 +646,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicI8`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicI8`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicI8`
 
 ### `AtomicU8`
 
@@ -746,15 +744,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicU8`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicU8`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicU8`
 
 ### `AtomicI16`
 
@@ -844,15 +842,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicI16`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicI16`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicI16`
 
 ### `AtomicU16`
 
@@ -942,15 +940,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicU16`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicU16`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicU16`
 
 ### `AtomicI32`
 
@@ -1040,15 +1038,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicI32`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicI32`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicI32`
 
 ### `AtomicU32`
 
@@ -1138,15 +1136,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicU32`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicU32`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicU32`
 
 ### `AtomicI64`
 
@@ -1236,15 +1234,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicI64`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicI64`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicI64`
 
 ### `AtomicU64`
 
@@ -1334,15 +1332,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicU64`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicU64`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicU64`
 
 ### `AtomicI128`
 
@@ -1432,15 +1430,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicI128`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicI128`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicI128`
 
 ### `AtomicU128`
 
@@ -1530,15 +1528,15 @@ atomic instructions or locks will be used.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for AtomicU128`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for AtomicU128`
 
 - `fn default() -> Self`
 
-##### `impl RefUnwindSafe`
+##### `impl RefUnwindSafe for AtomicU128`
 
 ## Functions
 

@@ -59,17 +59,17 @@ The header at the start of an archive member.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Header`
 
-- `fn clone(self: &Self) -> Header` — [`Header`](../../archive/index.md)
+- `fn clone(self: &Self) -> Header` — [`Header`](#header)
 
-##### `impl Copy`
+##### `impl Copy for Header`
 
-##### `impl Debug`
+##### `impl Debug for Header`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for Header`
 
 ### `AixHeader`
 
@@ -124,17 +124,17 @@ The header at the start of an AIX big archive member, without name.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AixHeader`
 
-- `fn clone(self: &Self) -> AixHeader` — [`AixHeader`](../../archive/index.md)
+- `fn clone(self: &Self) -> AixHeader` — [`AixHeader`](#aixheader)
 
-##### `impl Copy`
+##### `impl Copy for AixHeader`
 
-##### `impl Debug`
+##### `impl Debug for AixHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for AixHeader`
 
 ### `AixFileHeader`
 
@@ -184,17 +184,17 @@ The AIX big archive's fixed length header at file beginning.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AixFileHeader`
 
-- `fn clone(self: &Self) -> AixFileHeader` — [`AixFileHeader`](../../archive/index.md)
+- `fn clone(self: &Self) -> AixFileHeader` — [`AixFileHeader`](#aixfileheader)
 
-##### `impl Copy`
+##### `impl Copy for AixFileHeader`
 
-##### `impl Debug`
+##### `impl Debug for AixFileHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for AixFileHeader`
 
 ### `AixMemberOffset`
 
@@ -208,17 +208,17 @@ This is used in the member index.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AixMemberOffset`
 
-- `fn clone(self: &Self) -> AixMemberOffset` — [`AixMemberOffset`](../../archive/index.md)
+- `fn clone(self: &Self) -> AixMemberOffset` — [`AixMemberOffset`](#aixmemberoffset)
 
-##### `impl Copy`
+##### `impl Copy for AixMemberOffset`
 
-##### `impl Debug`
+##### `impl Debug for AixMemberOffset`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for AixMemberOffset`
 
 ## Constants
 

@@ -18,37 +18,37 @@ Compile-time little endian byte order.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LittleEndian`
 
-- `fn clone(self: &Self) -> LittleEndian` — [`LittleEndian`](../../endian/index.md)
+- `fn clone(self: &Self) -> LittleEndian` — [`LittleEndian`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for LittleEndian`
 
-##### `impl Debug`
+##### `impl Debug for LittleEndian`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for LittleEndian`
 
-- `fn default() -> LittleEndian` — [`LittleEndian`](../../endian/index.md)
+- `fn default() -> LittleEndian` — [`LittleEndian`](../index.md)
 
-##### `impl Endian`
+##### `impl Endian for LittleEndian`
 
 - `fn from_big_endian(big_endian: bool) -> Option<Self>`
 
 - `fn is_big_endian(self: Self) -> bool`
 
-##### `impl Eq`
+##### `impl Eq for LittleEndian`
 
-##### `impl Hash`
+##### `impl Hash for LittleEndian`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for LittleEndian`
 
-- `fn eq(self: &Self, other: &LittleEndian) -> bool` — [`LittleEndian`](../../endian/index.md)
+- `fn eq(self: &Self, other: &LittleEndian) -> bool` — [`LittleEndian`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for LittleEndian`
 
 ### `BigEndian`
 
@@ -60,37 +60,37 @@ Compile-time big endian byte order.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BigEndian`
 
-- `fn clone(self: &Self) -> BigEndian` — [`BigEndian`](../../endian/index.md)
+- `fn clone(self: &Self) -> BigEndian` — [`BigEndian`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for BigEndian`
 
-##### `impl Debug`
+##### `impl Debug for BigEndian`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for BigEndian`
 
-- `fn default() -> BigEndian` — [`BigEndian`](../../endian/index.md)
+- `fn default() -> BigEndian` — [`BigEndian`](../index.md)
 
-##### `impl Endian`
+##### `impl Endian for BigEndian`
 
 - `fn from_big_endian(big_endian: bool) -> Option<Self>`
 
 - `fn is_big_endian(self: Self) -> bool`
 
-##### `impl Eq`
+##### `impl Eq for BigEndian`
 
-##### `impl Hash`
+##### `impl Hash for BigEndian`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for BigEndian`
 
-- `fn eq(self: &Self, other: &BigEndian) -> bool` — [`BigEndian`](../../endian/index.md)
+- `fn eq(self: &Self, other: &BigEndian) -> bool` — [`BigEndian`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for BigEndian`
 
 ### `U16Bytes<E: Endian>`
 
@@ -112,41 +112,41 @@ An unaligned `u16` value with an externally specified endianness of type `E`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for U16Bytes<E>`
 
-- `fn clone(self: &Self) -> U16Bytes<E>` — [`U16Bytes`](../../endian/index.md)
+- `fn clone(self: &Self) -> U16Bytes<E>` — [`U16Bytes`](../index.md)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for U16Bytes<E>`
 
-##### `impl Debug<E: Endian>`
+##### `impl<E: Endian> Debug for U16Bytes<E>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for U16Bytes<E>`
 
-- `fn default() -> U16Bytes<E>` — [`U16Bytes`](../../endian/index.md)
+- `fn default() -> U16Bytes<E>` — [`U16Bytes`](../index.md)
 
-##### `impl Eq<E: $crate::cmp::Eq + Endian>`
+##### `impl<E: $crate::cmp::Eq + Endian> Eq for U16Bytes<E>`
 
-##### `impl Hash<E: $crate::hash::Hash + Endian>`
+##### `impl<E: $crate::hash::Hash + Endian> Hash for U16Bytes<E>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord<E: $crate::cmp::Ord + Endian>`
+##### `impl<E: $crate::cmp::Ord + Endian> Ord for U16Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U16Bytes<E>) -> $crate::cmp::Ordering` — [`U16Bytes`](../../endian/index.md)
+- `fn cmp(self: &Self, other: &U16Bytes<E>) -> $crate::cmp::Ordering` — [`U16Bytes`](../index.md)
 
-##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
+##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U16Bytes<E>`
 
-- `fn eq(self: &Self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../../endian/index.md)
+- `fn eq(self: &Self, other: &U16Bytes<E>) -> bool` — [`U16Bytes`](../index.md)
 
-##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
+##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U16Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U16Bytes`](../../endian/index.md)
+- `fn partial_cmp(self: &Self, other: &U16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U16Bytes`](../index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for U16Bytes<E>`
 
-##### `impl StructuralPartialEq<E: Endian>`
+##### `impl<E: Endian> StructuralPartialEq for U16Bytes<E>`
 
 ### `U32Bytes<E: Endian>`
 
@@ -168,41 +168,41 @@ An unaligned `u32` value with an externally specified endianness of type `E`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for U32Bytes<E>`
 
-- `fn clone(self: &Self) -> U32Bytes<E>` — [`U32Bytes`](../../endian/index.md)
+- `fn clone(self: &Self) -> U32Bytes<E>` — [`U32Bytes`](../index.md)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for U32Bytes<E>`
 
-##### `impl Debug<E: Endian>`
+##### `impl<E: Endian> Debug for U32Bytes<E>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for U32Bytes<E>`
 
-- `fn default() -> U32Bytes<E>` — [`U32Bytes`](../../endian/index.md)
+- `fn default() -> U32Bytes<E>` — [`U32Bytes`](../index.md)
 
-##### `impl Eq<E: $crate::cmp::Eq + Endian>`
+##### `impl<E: $crate::cmp::Eq + Endian> Eq for U32Bytes<E>`
 
-##### `impl Hash<E: $crate::hash::Hash + Endian>`
+##### `impl<E: $crate::hash::Hash + Endian> Hash for U32Bytes<E>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord<E: $crate::cmp::Ord + Endian>`
+##### `impl<E: $crate::cmp::Ord + Endian> Ord for U32Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U32Bytes<E>) -> $crate::cmp::Ordering` — [`U32Bytes`](../../endian/index.md)
+- `fn cmp(self: &Self, other: &U32Bytes<E>) -> $crate::cmp::Ordering` — [`U32Bytes`](../index.md)
 
-##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
+##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U32Bytes<E>`
 
-- `fn eq(self: &Self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../../endian/index.md)
+- `fn eq(self: &Self, other: &U32Bytes<E>) -> bool` — [`U32Bytes`](../index.md)
 
-##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
+##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U32Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U32Bytes`](../../endian/index.md)
+- `fn partial_cmp(self: &Self, other: &U32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U32Bytes`](../index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for U32Bytes<E>`
 
-##### `impl StructuralPartialEq<E: Endian>`
+##### `impl<E: Endian> StructuralPartialEq for U32Bytes<E>`
 
 ### `U64Bytes<E: Endian>`
 
@@ -224,41 +224,41 @@ An unaligned `u64` value with an externally specified endianness of type `E`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for U64Bytes<E>`
 
-- `fn clone(self: &Self) -> U64Bytes<E>` — [`U64Bytes`](../../endian/index.md)
+- `fn clone(self: &Self) -> U64Bytes<E>` — [`U64Bytes`](../index.md)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for U64Bytes<E>`
 
-##### `impl Debug<E: Endian>`
+##### `impl<E: Endian> Debug for U64Bytes<E>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for U64Bytes<E>`
 
-- `fn default() -> U64Bytes<E>` — [`U64Bytes`](../../endian/index.md)
+- `fn default() -> U64Bytes<E>` — [`U64Bytes`](../index.md)
 
-##### `impl Eq<E: $crate::cmp::Eq + Endian>`
+##### `impl<E: $crate::cmp::Eq + Endian> Eq for U64Bytes<E>`
 
-##### `impl Hash<E: $crate::hash::Hash + Endian>`
+##### `impl<E: $crate::hash::Hash + Endian> Hash for U64Bytes<E>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord<E: $crate::cmp::Ord + Endian>`
+##### `impl<E: $crate::cmp::Ord + Endian> Ord for U64Bytes<E>`
 
-- `fn cmp(self: &Self, other: &U64Bytes<E>) -> $crate::cmp::Ordering` — [`U64Bytes`](../../endian/index.md)
+- `fn cmp(self: &Self, other: &U64Bytes<E>) -> $crate::cmp::Ordering` — [`U64Bytes`](../index.md)
 
-##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
+##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for U64Bytes<E>`
 
-- `fn eq(self: &Self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../../endian/index.md)
+- `fn eq(self: &Self, other: &U64Bytes<E>) -> bool` — [`U64Bytes`](../index.md)
 
-##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
+##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for U64Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &U64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U64Bytes`](../../endian/index.md)
+- `fn partial_cmp(self: &Self, other: &U64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`U64Bytes`](../index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for U64Bytes<E>`
 
-##### `impl StructuralPartialEq<E: Endian>`
+##### `impl<E: Endian> StructuralPartialEq for U64Bytes<E>`
 
 ### `I16Bytes<E: Endian>`
 
@@ -280,41 +280,41 @@ An unaligned `i16` value with an externally specified endianness of type `E`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for I16Bytes<E>`
 
-- `fn clone(self: &Self) -> I16Bytes<E>` — [`I16Bytes`](../../endian/index.md)
+- `fn clone(self: &Self) -> I16Bytes<E>` — [`I16Bytes`](../index.md)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for I16Bytes<E>`
 
-##### `impl Debug<E: Endian>`
+##### `impl<E: Endian> Debug for I16Bytes<E>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for I16Bytes<E>`
 
-- `fn default() -> I16Bytes<E>` — [`I16Bytes`](../../endian/index.md)
+- `fn default() -> I16Bytes<E>` — [`I16Bytes`](../index.md)
 
-##### `impl Eq<E: $crate::cmp::Eq + Endian>`
+##### `impl<E: $crate::cmp::Eq + Endian> Eq for I16Bytes<E>`
 
-##### `impl Hash<E: $crate::hash::Hash + Endian>`
+##### `impl<E: $crate::hash::Hash + Endian> Hash for I16Bytes<E>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord<E: $crate::cmp::Ord + Endian>`
+##### `impl<E: $crate::cmp::Ord + Endian> Ord for I16Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I16Bytes<E>) -> $crate::cmp::Ordering` — [`I16Bytes`](../../endian/index.md)
+- `fn cmp(self: &Self, other: &I16Bytes<E>) -> $crate::cmp::Ordering` — [`I16Bytes`](../index.md)
 
-##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
+##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I16Bytes<E>`
 
-- `fn eq(self: &Self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../../endian/index.md)
+- `fn eq(self: &Self, other: &I16Bytes<E>) -> bool` — [`I16Bytes`](../index.md)
 
-##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
+##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I16Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I16Bytes`](../../endian/index.md)
+- `fn partial_cmp(self: &Self, other: &I16Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I16Bytes`](../index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for I16Bytes<E>`
 
-##### `impl StructuralPartialEq<E: Endian>`
+##### `impl<E: Endian> StructuralPartialEq for I16Bytes<E>`
 
 ### `I32Bytes<E: Endian>`
 
@@ -336,41 +336,41 @@ An unaligned `i32` value with an externally specified endianness of type `E`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for I32Bytes<E>`
 
-- `fn clone(self: &Self) -> I32Bytes<E>` — [`I32Bytes`](../../endian/index.md)
+- `fn clone(self: &Self) -> I32Bytes<E>` — [`I32Bytes`](../index.md)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for I32Bytes<E>`
 
-##### `impl Debug<E: Endian>`
+##### `impl<E: Endian> Debug for I32Bytes<E>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for I32Bytes<E>`
 
-- `fn default() -> I32Bytes<E>` — [`I32Bytes`](../../endian/index.md)
+- `fn default() -> I32Bytes<E>` — [`I32Bytes`](../index.md)
 
-##### `impl Eq<E: $crate::cmp::Eq + Endian>`
+##### `impl<E: $crate::cmp::Eq + Endian> Eq for I32Bytes<E>`
 
-##### `impl Hash<E: $crate::hash::Hash + Endian>`
+##### `impl<E: $crate::hash::Hash + Endian> Hash for I32Bytes<E>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord<E: $crate::cmp::Ord + Endian>`
+##### `impl<E: $crate::cmp::Ord + Endian> Ord for I32Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I32Bytes<E>) -> $crate::cmp::Ordering` — [`I32Bytes`](../../endian/index.md)
+- `fn cmp(self: &Self, other: &I32Bytes<E>) -> $crate::cmp::Ordering` — [`I32Bytes`](../index.md)
 
-##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
+##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I32Bytes<E>`
 
-- `fn eq(self: &Self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../../endian/index.md)
+- `fn eq(self: &Self, other: &I32Bytes<E>) -> bool` — [`I32Bytes`](../index.md)
 
-##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
+##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I32Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I32Bytes`](../../endian/index.md)
+- `fn partial_cmp(self: &Self, other: &I32Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I32Bytes`](../index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for I32Bytes<E>`
 
-##### `impl StructuralPartialEq<E: Endian>`
+##### `impl<E: Endian> StructuralPartialEq for I32Bytes<E>`
 
 ### `I64Bytes<E: Endian>`
 
@@ -392,41 +392,41 @@ An unaligned `i64` value with an externally specified endianness of type `E`.
 
 #### Trait Implementations
 
-##### `impl Clone<E: $crate::clone::Clone + Endian>`
+##### `impl<E: $crate::clone::Clone + Endian> Clone for I64Bytes<E>`
 
-- `fn clone(self: &Self) -> I64Bytes<E>` — [`I64Bytes`](../../endian/index.md)
+- `fn clone(self: &Self) -> I64Bytes<E>` — [`I64Bytes`](../index.md)
 
-##### `impl Copy<E: $crate::marker::Copy + Endian>`
+##### `impl<E: $crate::marker::Copy + Endian> Copy for I64Bytes<E>`
 
-##### `impl Debug<E: Endian>`
+##### `impl<E: Endian> Debug for I64Bytes<E>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default<E: $crate::default::Default + Endian>`
+##### `impl<E: $crate::default::Default + Endian> Default for I64Bytes<E>`
 
-- `fn default() -> I64Bytes<E>` — [`I64Bytes`](../../endian/index.md)
+- `fn default() -> I64Bytes<E>` — [`I64Bytes`](../index.md)
 
-##### `impl Eq<E: $crate::cmp::Eq + Endian>`
+##### `impl<E: $crate::cmp::Eq + Endian> Eq for I64Bytes<E>`
 
-##### `impl Hash<E: $crate::hash::Hash + Endian>`
+##### `impl<E: $crate::hash::Hash + Endian> Hash for I64Bytes<E>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord<E: $crate::cmp::Ord + Endian>`
+##### `impl<E: $crate::cmp::Ord + Endian> Ord for I64Bytes<E>`
 
-- `fn cmp(self: &Self, other: &I64Bytes<E>) -> $crate::cmp::Ordering` — [`I64Bytes`](../../endian/index.md)
+- `fn cmp(self: &Self, other: &I64Bytes<E>) -> $crate::cmp::Ordering` — [`I64Bytes`](../index.md)
 
-##### `impl PartialEq<E: $crate::cmp::PartialEq + Endian>`
+##### `impl<E: $crate::cmp::PartialEq + Endian> PartialEq for I64Bytes<E>`
 
-- `fn eq(self: &Self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../../endian/index.md)
+- `fn eq(self: &Self, other: &I64Bytes<E>) -> bool` — [`I64Bytes`](../index.md)
 
-##### `impl PartialOrd<E: $crate::cmp::PartialOrd + Endian>`
+##### `impl<E: $crate::cmp::PartialOrd + Endian> PartialOrd for I64Bytes<E>`
 
-- `fn partial_cmp(self: &Self, other: &I64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I64Bytes`](../../endian/index.md)
+- `fn partial_cmp(self: &Self, other: &I64Bytes<E>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`I64Bytes`](../index.md)
 
-##### `impl Pod<E: Endian>`
+##### `impl<E: Endian> Pod for I64Bytes<E>`
 
-##### `impl StructuralPartialEq<E: Endian>`
+##### `impl<E: Endian> StructuralPartialEq for I64Bytes<E>`
 
 ## Enums
 
@@ -453,37 +453,37 @@ An endianness that is selectable at run-time.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Endianness`
 
-- `fn clone(self: &Self) -> Endianness` — [`Endianness`](../../endian/index.md)
+- `fn clone(self: &Self) -> Endianness` — [`Endianness`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for Endianness`
 
-##### `impl Debug`
+##### `impl Debug for Endianness`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Endianness`
 
-- `fn default() -> Endianness` — [`Endianness`](../../endian/index.md)
+- `fn default() -> Endianness` — [`Endianness`](../index.md)
 
-##### `impl Endian`
+##### `impl Endian for Endianness`
 
 - `fn from_big_endian(big_endian: bool) -> Option<Self>`
 
 - `fn is_big_endian(self: Self) -> bool`
 
-##### `impl Eq`
+##### `impl Eq for Endianness`
 
-##### `impl Hash`
+##### `impl Hash for Endianness`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Endianness`
 
-- `fn eq(self: &Self, other: &Endianness) -> bool` — [`Endianness`](../../endian/index.md)
+- `fn eq(self: &Self, other: &Endianness) -> bool` — [`Endianness`](../index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Endianness`
 
 ## Traits
 

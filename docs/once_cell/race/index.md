@@ -57,13 +57,13 @@ A thread-safe cell which can be written to only once.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for OnceNonZeroUsize`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for OnceNonZeroUsize`
 
-- `fn default() -> OnceNonZeroUsize` — [`OnceNonZeroUsize`](../../race/index.md)
+- `fn default() -> OnceNonZeroUsize` — [`OnceNonZeroUsize`](#oncenonzerousize)
 
 ### `OnceBool`
 
@@ -93,13 +93,13 @@ A thread-safe cell which can be written to only once.
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for OnceBool`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for OnceBool`
 
-- `fn default() -> OnceBool` — [`OnceBool`](../../race/index.md)
+- `fn default() -> OnceBool` — [`OnceBool`](#oncebool)
 
 ### `OnceRef<'a, T>`
 
@@ -132,15 +132,15 @@ A thread-safe cell which can be written to only once.
 
 #### Trait Implementations
 
-##### `impl Debug<'a, T>`
+##### `impl<'a, T> Debug for OnceRef<'a, T>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default<'a, T>`
+##### `impl<'a, T> Default for OnceRef<'a, T>`
 
 - `fn default() -> Self`
 
-##### `impl Sync<'a, T: Sync>`
+##### `impl<'a, T: Sync> Sync for OnceRef<'a, T>`
 
 ### `OnceBox<T>`
 
@@ -171,21 +171,21 @@ A thread-safe cell which can be written to only once.
 
 #### Trait Implementations
 
-##### `impl Clone<T: Clone>`
+##### `impl<T: Clone> Clone for OnceBox<T>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Debug<T>`
+##### `impl<T> Debug for OnceBox<T>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default<T>`
+##### `impl<T> Default for OnceBox<T>`
 
 - `fn default() -> Self`
 
-##### `impl Drop<T>`
+##### `impl<T> Drop for OnceBox<T>`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Sync<T: Sync + Send>`
+##### `impl<T: Sync + Send> Sync for OnceBox<T>`
 

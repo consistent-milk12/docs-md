@@ -69,11 +69,11 @@ An iterator over function frames.
 
 - `fn new_empty() -> Self`
 
-- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](../frame/index.md)
+- `fn new_location(location: Location<'ctx>) -> Self` — [`Location`](frame/index.md)
 
-- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](../unit/index.md), [`Function`](../function/index.md), [`InlinedFunction`](../function/index.md), [`Location`](../frame/index.md)
+- `fn new_frames(unit: &'ctx ResUnit<R>, sections: &'ctx gimli::Dwarf<R>, function: &'ctx Function<R>, inlined_functions: alloc::vec::Vec<&'ctx InlinedFunction<R>>, location: Option<Location<'ctx>>) -> Self` — [`ResUnit`](unit/index.md), [`Function`](function/index.md), [`InlinedFunction`](function/index.md), [`Location`](frame/index.md)
 
-- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](../frame/index.md)
+- `fn next(self: &mut Self) -> Result<Option<Frame<'ctx, R>>, gimli::Error>` — [`Frame`](frame/index.md)
 
 ### `FunctionName<R: gimli::Reader>`
 
@@ -181,11 +181,11 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 #### Implementations
 
-- `fn next_loc(self: &mut Self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](../frame/index.md)
+- `fn next_loc(self: &mut Self) -> Result<Option<(u64, u64, Location<'ctx>)>, gimli::Error>` — [`Location`](frame/index.md)
 
 #### Trait Implementations
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for LocationRangeIter<'ctx, R>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -193,7 +193,7 @@ Iterator over `Location`s in a range of addresses, returned by `Context::find_lo
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'ctx, R>`
+##### `impl<'ctx, R> Iterator for LocationRangeIter<'ctx, R>`
 
 - `type Item = (u64, u64, Location<'ctx>)`
 
@@ -218,9 +218,9 @@ when performing lookups for many addresses in the same executable.
 
 - `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
 
-- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](../index.md)
+- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
-- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Context`](../index.md)
+- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
 ## Enums
 
@@ -273,11 +273,11 @@ This enum is intended to be used in a loop like so:
 
 #### Implementations
 
-- `fn skip_all_loads(self: Self) -> <L as >::Output` — [`LookupContinuation`](../lookup/index.md)
+- `fn skip_all_loads(self: Self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
 
-- `fn map<T, F: FnOnce(<L as >::Output) -> T>(self: Self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](../lookup/index.md), [`MappedLookup`](../lookup/index.md)
+- `fn map<T, F: FnOnce(<L as >::Output) -> T>(self: Self, f: F) -> LookupResult<MappedLookup<T, L, F>>` — [`LookupResult`](lookup/index.md), [`MappedLookup`](lookup/index.md)
 
-- `fn unwrap(self: Self) -> <L as >::Output` — [`LookupContinuation`](../lookup/index.md)
+- `fn unwrap(self: Self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
 
 ## Traits
 

@@ -16,43 +16,61 @@ struct __BindgenBitfieldUnit<Storage> {
 
 #### Implementations
 
-- `const fn new(storage: Storage) -> Self`
+- `fn extract_bit(byte: u8, index: usize) -> bool`
+
+- `fn get_bit(self: &Self, index: usize) -> bool`
+
+- `unsafe fn raw_get_bit(this: *const Self, index: usize) -> bool`
+
+- `fn change_bit(byte: u8, index: usize, val: bool) -> u8`
+
+- `fn set_bit(self: &mut Self, index: usize, val: bool)`
+
+- `unsafe fn raw_set_bit(this: *mut Self, index: usize, val: bool)`
+
+- `fn get(self: &Self, bit_offset: usize, bit_width: u8) -> u64`
+
+- `unsafe fn raw_get(this: *const Self, bit_offset: usize, bit_width: u8) -> u64`
+
+- `fn set(self: &mut Self, bit_offset: usize, bit_width: u8, val: u64)`
+
+- `unsafe fn raw_set(this: *mut Self, bit_offset: usize, bit_width: u8, val: u64)`
 
 #### Trait Implementations
 
-##### `impl Clone<Storage: $crate::clone::Clone>`
+##### `impl<Storage: $crate::clone::Clone> Clone for __BindgenBitfieldUnit<Storage>`
 
-- `fn clone(self: &Self) -> __BindgenBitfieldUnit<Storage>` — [`__BindgenBitfieldUnit`](../../general/index.md)
+- `fn clone(self: &Self) -> __BindgenBitfieldUnit<Storage>` — [`__BindgenBitfieldUnit`](#bindgenbitfieldunit)
 
-##### `impl Copy<Storage: $crate::marker::Copy>`
+##### `impl<Storage: $crate::marker::Copy> Copy for __BindgenBitfieldUnit<Storage>`
 
-##### `impl Debug<Storage: $crate::fmt::Debug>`
+##### `impl<Storage: $crate::fmt::Debug> Debug for __BindgenBitfieldUnit<Storage>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<Storage: $crate::default::Default>`
+##### `impl<Storage: $crate::default::Default> Default for __BindgenBitfieldUnit<Storage>`
 
-- `fn default() -> __BindgenBitfieldUnit<Storage>` — [`__BindgenBitfieldUnit`](../../general/index.md)
+- `fn default() -> __BindgenBitfieldUnit<Storage>` — [`__BindgenBitfieldUnit`](#bindgenbitfieldunit)
 
-##### `impl Eq<Storage: $crate::cmp::Eq>`
+##### `impl<Storage: $crate::cmp::Eq> Eq for __BindgenBitfieldUnit<Storage>`
 
-##### `impl Hash<Storage: $crate::hash::Hash>`
+##### `impl<Storage: $crate::hash::Hash> Hash for __BindgenBitfieldUnit<Storage>`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord<Storage: $crate::cmp::Ord>`
+##### `impl<Storage: $crate::cmp::Ord> Ord for __BindgenBitfieldUnit<Storage>`
 
-- `fn cmp(self: &Self, other: &__BindgenBitfieldUnit<Storage>) -> $crate::cmp::Ordering` — [`__BindgenBitfieldUnit`](../../general/index.md)
+- `fn cmp(self: &Self, other: &__BindgenBitfieldUnit<Storage>) -> $crate::cmp::Ordering` — [`__BindgenBitfieldUnit`](#bindgenbitfieldunit)
 
-##### `impl PartialEq<Storage: $crate::cmp::PartialEq>`
+##### `impl<Storage: $crate::cmp::PartialEq> PartialEq for __BindgenBitfieldUnit<Storage>`
 
-- `fn eq(self: &Self, other: &__BindgenBitfieldUnit<Storage>) -> bool` — [`__BindgenBitfieldUnit`](../../general/index.md)
+- `fn eq(self: &Self, other: &__BindgenBitfieldUnit<Storage>) -> bool` — [`__BindgenBitfieldUnit`](#bindgenbitfieldunit)
 
-##### `impl PartialOrd<Storage: $crate::cmp::PartialOrd>`
+##### `impl<Storage: $crate::cmp::PartialOrd> PartialOrd for __BindgenBitfieldUnit<Storage>`
 
-- `fn partial_cmp(self: &Self, other: &__BindgenBitfieldUnit<Storage>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`__BindgenBitfieldUnit`](../../general/index.md)
+- `fn partial_cmp(self: &Self, other: &__BindgenBitfieldUnit<Storage>) -> $crate::option::Option<$crate::cmp::Ordering>` — [`__BindgenBitfieldUnit`](#bindgenbitfieldunit)
 
-##### `impl StructuralPartialEq<Storage>`
+##### `impl<Storage> StructuralPartialEq for __BindgenBitfieldUnit<Storage>`
 
 ### `__IncompleteArrayField<T>`
 
@@ -74,13 +92,13 @@ struct __IncompleteArrayField<T>(::core::marker::PhantomData<T>, [T; 0]);
 
 #### Trait Implementations
 
-##### `impl Debug<T>`
+##### `impl<T> Debug for __IncompleteArrayField<T>`
 
 - `fn fmt(self: &Self, fmt: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result`
 
-##### `impl Default<T: $crate::default::Default>`
+##### `impl<T: $crate::default::Default> Default for __IncompleteArrayField<T>`
 
-- `fn default() -> __IncompleteArrayField<T>` — [`__IncompleteArrayField`](../../general/index.md)
+- `fn default() -> __IncompleteArrayField<T>` — [`__IncompleteArrayField`](#incompletearrayfield)
 
 ### `__kernel_fd_set`
 
@@ -92,13 +110,13 @@ struct __kernel_fd_set {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __kernel_fd_set`
 
-- `fn clone(self: &Self) -> __kernel_fd_set` — [`__kernel_fd_set`](../../general/index.md)
+- `fn clone(self: &Self) -> __kernel_fd_set` — [`__kernel_fd_set`](#kernel-fd-set)
 
-##### `impl Copy`
+##### `impl Copy for __kernel_fd_set`
 
-##### `impl Debug`
+##### `impl Debug for __kernel_fd_set`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -112,13 +130,13 @@ struct __kernel_fsid_t {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __kernel_fsid_t`
 
-- `fn clone(self: &Self) -> __kernel_fsid_t` — [`__kernel_fsid_t`](../../general/index.md)
+- `fn clone(self: &Self) -> __kernel_fsid_t` — [`__kernel_fsid_t`](#kernel-fsid-t)
 
-##### `impl Copy`
+##### `impl Copy for __kernel_fsid_t`
 
-##### `impl Debug`
+##### `impl Debug for __kernel_fsid_t`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -133,13 +151,13 @@ struct __user_cap_header_struct {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __user_cap_header_struct`
 
-- `fn clone(self: &Self) -> __user_cap_header_struct` — [`__user_cap_header_struct`](../../general/index.md)
+- `fn clone(self: &Self) -> __user_cap_header_struct` — [`__user_cap_header_struct`](#user-cap-header-struct)
 
-##### `impl Copy`
+##### `impl Copy for __user_cap_header_struct`
 
-##### `impl Debug`
+##### `impl Debug for __user_cap_header_struct`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -155,13 +173,13 @@ struct __user_cap_data_struct {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __user_cap_data_struct`
 
-- `fn clone(self: &Self) -> __user_cap_data_struct` — [`__user_cap_data_struct`](../../general/index.md)
+- `fn clone(self: &Self) -> __user_cap_data_struct` — [`__user_cap_data_struct`](#user-cap-data-struct)
 
-##### `impl Copy`
+##### `impl Copy for __user_cap_data_struct`
 
-##### `impl Debug`
+##### `impl Debug for __user_cap_data_struct`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -176,13 +194,13 @@ struct vfs_cap_data {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for vfs_cap_data`
 
-- `fn clone(self: &Self) -> vfs_cap_data` — [`vfs_cap_data`](../../general/index.md)
+- `fn clone(self: &Self) -> vfs_cap_data` — [`vfs_cap_data`](#vfs-cap-data)
 
-##### `impl Copy`
+##### `impl Copy for vfs_cap_data`
 
-##### `impl Debug`
+##### `impl Debug for vfs_cap_data`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -197,13 +215,13 @@ struct vfs_cap_data__bindgen_ty_1 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for vfs_cap_data__bindgen_ty_1`
 
-- `fn clone(self: &Self) -> vfs_cap_data__bindgen_ty_1` — [`vfs_cap_data__bindgen_ty_1`](../../general/index.md)
+- `fn clone(self: &Self) -> vfs_cap_data__bindgen_ty_1` — [`vfs_cap_data__bindgen_ty_1`](#vfs-cap-data-bindgen-ty-1)
 
-##### `impl Copy`
+##### `impl Copy for vfs_cap_data__bindgen_ty_1`
 
-##### `impl Debug`
+##### `impl Debug for vfs_cap_data__bindgen_ty_1`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -219,13 +237,13 @@ struct vfs_ns_cap_data {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for vfs_ns_cap_data`
 
-- `fn clone(self: &Self) -> vfs_ns_cap_data` — [`vfs_ns_cap_data`](../../general/index.md)
+- `fn clone(self: &Self) -> vfs_ns_cap_data` — [`vfs_ns_cap_data`](#vfs-ns-cap-data)
 
-##### `impl Copy`
+##### `impl Copy for vfs_ns_cap_data`
 
-##### `impl Debug`
+##### `impl Debug for vfs_ns_cap_data`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -240,13 +258,13 @@ struct vfs_ns_cap_data__bindgen_ty_1 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for vfs_ns_cap_data__bindgen_ty_1`
 
-- `fn clone(self: &Self) -> vfs_ns_cap_data__bindgen_ty_1` — [`vfs_ns_cap_data__bindgen_ty_1`](../../general/index.md)
+- `fn clone(self: &Self) -> vfs_ns_cap_data__bindgen_ty_1` — [`vfs_ns_cap_data__bindgen_ty_1`](#vfs-ns-cap-data-bindgen-ty-1)
 
-##### `impl Copy`
+##### `impl Copy for vfs_ns_cap_data__bindgen_ty_1`
 
-##### `impl Debug`
+##### `impl Debug for vfs_ns_cap_data__bindgen_ty_1`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -261,13 +279,13 @@ struct f_owner_ex {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for f_owner_ex`
 
-- `fn clone(self: &Self) -> f_owner_ex` — [`f_owner_ex`](../../general/index.md)
+- `fn clone(self: &Self) -> f_owner_ex` — [`f_owner_ex`](#f-owner-ex)
 
-##### `impl Copy`
+##### `impl Copy for f_owner_ex`
 
-##### `impl Debug`
+##### `impl Debug for f_owner_ex`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -285,13 +303,13 @@ struct flock {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for flock`
 
-- `fn clone(self: &Self) -> flock` — [`flock`](../../general/index.md)
+- `fn clone(self: &Self) -> flock` — [`flock`](#flock)
 
-##### `impl Copy`
+##### `impl Copy for flock`
 
-##### `impl Debug`
+##### `impl Debug for flock`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -309,13 +327,13 @@ struct flock64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for flock64`
 
-- `fn clone(self: &Self) -> flock64` — [`flock64`](../../general/index.md)
+- `fn clone(self: &Self) -> flock64` — [`flock64`](#flock64)
 
-##### `impl Copy`
+##### `impl Copy for flock64`
 
-##### `impl Debug`
+##### `impl Debug for flock64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -331,13 +349,13 @@ struct open_how {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for open_how`
 
-- `fn clone(self: &Self) -> open_how` — [`open_how`](../../general/index.md)
+- `fn clone(self: &Self) -> open_how` — [`open_how`](#open-how)
 
-##### `impl Copy`
+##### `impl Copy for open_how`
 
-##### `impl Debug`
+##### `impl Debug for open_how`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -352,13 +370,13 @@ struct epoll_event {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for epoll_event`
 
-- `fn clone(self: &Self) -> epoll_event` — [`epoll_event`](../../general/index.md)
+- `fn clone(self: &Self) -> epoll_event` — [`epoll_event`](#epoll-event)
 
-##### `impl Copy`
+##### `impl Copy for epoll_event`
 
-##### `impl Debug`
+##### `impl Debug for epoll_event`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -375,13 +393,13 @@ struct epoll_params {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for epoll_params`
 
-- `fn clone(self: &Self) -> epoll_params` — [`epoll_params`](../../general/index.md)
+- `fn clone(self: &Self) -> epoll_params` — [`epoll_params`](#epoll-params)
 
-##### `impl Copy`
+##### `impl Copy for epoll_params`
 
-##### `impl Debug`
+##### `impl Debug for epoll_params`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -399,13 +417,13 @@ struct fscrypt_policy_v1 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fscrypt_policy_v1`
 
-- `fn clone(self: &Self) -> fscrypt_policy_v1` — [`fscrypt_policy_v1`](../../general/index.md)
+- `fn clone(self: &Self) -> fscrypt_policy_v1` — [`fscrypt_policy_v1`](#fscrypt-policy-v1)
 
-##### `impl Copy`
+##### `impl Copy for fscrypt_policy_v1`
 
-##### `impl Debug`
+##### `impl Debug for fscrypt_policy_v1`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -421,13 +439,13 @@ struct fscrypt_key {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fscrypt_key`
 
-- `fn clone(self: &Self) -> fscrypt_key` — [`fscrypt_key`](../../general/index.md)
+- `fn clone(self: &Self) -> fscrypt_key` — [`fscrypt_key`](#fscrypt-key)
 
-##### `impl Copy`
+##### `impl Copy for fscrypt_key`
 
-##### `impl Debug`
+##### `impl Debug for fscrypt_key`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -447,13 +465,13 @@ struct fscrypt_policy_v2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fscrypt_policy_v2`
 
-- `fn clone(self: &Self) -> fscrypt_policy_v2` — [`fscrypt_policy_v2`](../../general/index.md)
+- `fn clone(self: &Self) -> fscrypt_policy_v2` — [`fscrypt_policy_v2`](#fscrypt-policy-v2)
 
-##### `impl Copy`
+##### `impl Copy for fscrypt_policy_v2`
 
-##### `impl Debug`
+##### `impl Debug for fscrypt_policy_v2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -468,11 +486,11 @@ struct fscrypt_get_policy_ex_arg {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fscrypt_get_policy_ex_arg`
 
-- `fn clone(self: &Self) -> fscrypt_get_policy_ex_arg` — [`fscrypt_get_policy_ex_arg`](../../general/index.md)
+- `fn clone(self: &Self) -> fscrypt_get_policy_ex_arg` — [`fscrypt_get_policy_ex_arg`](#fscrypt-get-policy-ex-arg)
 
-##### `impl Copy`
+##### `impl Copy for fscrypt_get_policy_ex_arg`
 
 ### `fscrypt_key_specifier`
 
@@ -486,11 +504,11 @@ struct fscrypt_key_specifier {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fscrypt_key_specifier`
 
-- `fn clone(self: &Self) -> fscrypt_key_specifier` — [`fscrypt_key_specifier`](../../general/index.md)
+- `fn clone(self: &Self) -> fscrypt_key_specifier` — [`fscrypt_key_specifier`](#fscrypt-key-specifier)
 
-##### `impl Copy`
+##### `impl Copy for fscrypt_key_specifier`
 
 ### `fscrypt_provisioning_key_payload`
 
@@ -504,7 +522,7 @@ struct fscrypt_provisioning_key_payload {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for fscrypt_provisioning_key_payload`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -533,11 +551,11 @@ struct fscrypt_remove_key_arg {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fscrypt_remove_key_arg`
 
-- `fn clone(self: &Self) -> fscrypt_remove_key_arg` — [`fscrypt_remove_key_arg`](../../general/index.md)
+- `fn clone(self: &Self) -> fscrypt_remove_key_arg` — [`fscrypt_remove_key_arg`](#fscrypt-remove-key-arg)
 
-##### `impl Copy`
+##### `impl Copy for fscrypt_remove_key_arg`
 
 ### `fscrypt_get_key_status_arg`
 
@@ -554,11 +572,11 @@ struct fscrypt_get_key_status_arg {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fscrypt_get_key_status_arg`
 
-- `fn clone(self: &Self) -> fscrypt_get_key_status_arg` — [`fscrypt_get_key_status_arg`](../../general/index.md)
+- `fn clone(self: &Self) -> fscrypt_get_key_status_arg` — [`fscrypt_get_key_status_arg`](#fscrypt-get-key-status-arg)
 
-##### `impl Copy`
+##### `impl Copy for fscrypt_get_key_status_arg`
 
 ### `mount_attr`
 
@@ -573,13 +591,13 @@ struct mount_attr {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for mount_attr`
 
-- `fn clone(self: &Self) -> mount_attr` — [`mount_attr`](../../general/index.md)
+- `fn clone(self: &Self) -> mount_attr` — [`mount_attr`](#mount-attr)
 
-##### `impl Copy`
+##### `impl Copy for mount_attr`
 
-##### `impl Debug`
+##### `impl Debug for mount_attr`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -625,7 +643,7 @@ struct statmount {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for statmount`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -643,13 +661,13 @@ struct mnt_id_req {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for mnt_id_req`
 
-- `fn clone(self: &Self) -> mnt_id_req` — [`mnt_id_req`](../../general/index.md)
+- `fn clone(self: &Self) -> mnt_id_req` — [`mnt_id_req`](#mnt-id-req)
 
-##### `impl Copy`
+##### `impl Copy for mnt_id_req`
 
-##### `impl Debug`
+##### `impl Debug for mnt_id_req`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -666,13 +684,13 @@ struct file_clone_range {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for file_clone_range`
 
-- `fn clone(self: &Self) -> file_clone_range` — [`file_clone_range`](../../general/index.md)
+- `fn clone(self: &Self) -> file_clone_range` — [`file_clone_range`](#file-clone-range)
 
-##### `impl Copy`
+##### `impl Copy for file_clone_range`
 
-##### `impl Debug`
+##### `impl Debug for file_clone_range`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -688,13 +706,13 @@ struct fstrim_range {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fstrim_range`
 
-- `fn clone(self: &Self) -> fstrim_range` — [`fstrim_range`](../../general/index.md)
+- `fn clone(self: &Self) -> fstrim_range` — [`fstrim_range`](#fstrim-range)
 
-##### `impl Copy`
+##### `impl Copy for fstrim_range`
 
-##### `impl Debug`
+##### `impl Debug for fstrim_range`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -709,13 +727,13 @@ struct fsuuid2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fsuuid2`
 
-- `fn clone(self: &Self) -> fsuuid2` — [`fsuuid2`](../../general/index.md)
+- `fn clone(self: &Self) -> fsuuid2` — [`fsuuid2`](#fsuuid2)
 
-##### `impl Copy`
+##### `impl Copy for fsuuid2`
 
-##### `impl Debug`
+##### `impl Debug for fsuuid2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -730,13 +748,13 @@ struct fs_sysfs_path {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fs_sysfs_path`
 
-- `fn clone(self: &Self) -> fs_sysfs_path` — [`fs_sysfs_path`](../../general/index.md)
+- `fn clone(self: &Self) -> fs_sysfs_path` — [`fs_sysfs_path`](#fs-sysfs-path)
 
-##### `impl Copy`
+##### `impl Copy for fs_sysfs_path`
 
-##### `impl Debug`
+##### `impl Debug for fs_sysfs_path`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -754,13 +772,13 @@ struct file_dedupe_range_info {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for file_dedupe_range_info`
 
-- `fn clone(self: &Self) -> file_dedupe_range_info` — [`file_dedupe_range_info`](../../general/index.md)
+- `fn clone(self: &Self) -> file_dedupe_range_info` — [`file_dedupe_range_info`](#file-dedupe-range-info)
 
-##### `impl Copy`
+##### `impl Copy for file_dedupe_range_info`
 
-##### `impl Debug`
+##### `impl Debug for file_dedupe_range_info`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -779,7 +797,7 @@ struct file_dedupe_range {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for file_dedupe_range`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -795,13 +813,13 @@ struct files_stat_struct {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for files_stat_struct`
 
-- `fn clone(self: &Self) -> files_stat_struct` — [`files_stat_struct`](../../general/index.md)
+- `fn clone(self: &Self) -> files_stat_struct` — [`files_stat_struct`](#files-stat-struct)
 
-##### `impl Copy`
+##### `impl Copy for files_stat_struct`
 
-##### `impl Debug`
+##### `impl Debug for files_stat_struct`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -817,13 +835,13 @@ struct inodes_stat_t {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for inodes_stat_t`
 
-- `fn clone(self: &Self) -> inodes_stat_t` — [`inodes_stat_t`](../../general/index.md)
+- `fn clone(self: &Self) -> inodes_stat_t` — [`inodes_stat_t`](#inodes-stat-t)
 
-##### `impl Copy`
+##### `impl Copy for inodes_stat_t`
 
-##### `impl Debug`
+##### `impl Debug for inodes_stat_t`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -842,13 +860,13 @@ struct fsxattr {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fsxattr`
 
-- `fn clone(self: &Self) -> fsxattr` — [`fsxattr`](../../general/index.md)
+- `fn clone(self: &Self) -> fsxattr` — [`fsxattr`](#fsxattr)
 
-##### `impl Copy`
+##### `impl Copy for fsxattr`
 
-##### `impl Debug`
+##### `impl Debug for fsxattr`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -864,13 +882,13 @@ struct page_region {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for page_region`
 
-- `fn clone(self: &Self) -> page_region` — [`page_region`](../../general/index.md)
+- `fn clone(self: &Self) -> page_region` — [`page_region`](#page-region)
 
-##### `impl Copy`
+##### `impl Copy for page_region`
 
-##### `impl Debug`
+##### `impl Debug for page_region`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -895,13 +913,13 @@ struct pm_scan_arg {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for pm_scan_arg`
 
-- `fn clone(self: &Self) -> pm_scan_arg` — [`pm_scan_arg`](../../general/index.md)
+- `fn clone(self: &Self) -> pm_scan_arg` — [`pm_scan_arg`](#pm-scan-arg)
 
-##### `impl Copy`
+##### `impl Copy for pm_scan_arg`
 
-##### `impl Debug`
+##### `impl Debug for pm_scan_arg`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -929,13 +947,13 @@ struct procmap_query {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for procmap_query`
 
-- `fn clone(self: &Self) -> procmap_query` — [`procmap_query`](../../general/index.md)
+- `fn clone(self: &Self) -> procmap_query` — [`procmap_query`](#procmap-query)
 
-##### `impl Copy`
+##### `impl Copy for procmap_query`
 
-##### `impl Debug`
+##### `impl Debug for procmap_query`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -952,13 +970,13 @@ struct futex_waitv {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for futex_waitv`
 
-- `fn clone(self: &Self) -> futex_waitv` — [`futex_waitv`](../../general/index.md)
+- `fn clone(self: &Self) -> futex_waitv` — [`futex_waitv`](#futex-waitv)
 
-##### `impl Copy`
+##### `impl Copy for futex_waitv`
 
-##### `impl Debug`
+##### `impl Debug for futex_waitv`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -972,13 +990,13 @@ struct robust_list {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for robust_list`
 
-- `fn clone(self: &Self) -> robust_list` — [`robust_list`](../../general/index.md)
+- `fn clone(self: &Self) -> robust_list` — [`robust_list`](#robust-list)
 
-##### `impl Copy`
+##### `impl Copy for robust_list`
 
-##### `impl Debug`
+##### `impl Debug for robust_list`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -994,13 +1012,13 @@ struct robust_list_head {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for robust_list_head`
 
-- `fn clone(self: &Self) -> robust_list_head` — [`robust_list_head`](../../general/index.md)
+- `fn clone(self: &Self) -> robust_list_head` — [`robust_list_head`](#robust-list-head)
 
-##### `impl Copy`
+##### `impl Copy for robust_list_head`
 
-##### `impl Debug`
+##### `impl Debug for robust_list_head`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1018,7 +1036,7 @@ struct inotify_event {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for inotify_event`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1033,13 +1051,13 @@ struct cachestat_range {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for cachestat_range`
 
-- `fn clone(self: &Self) -> cachestat_range` — [`cachestat_range`](../../general/index.md)
+- `fn clone(self: &Self) -> cachestat_range` — [`cachestat_range`](#cachestat-range)
 
-##### `impl Copy`
+##### `impl Copy for cachestat_range`
 
-##### `impl Debug`
+##### `impl Debug for cachestat_range`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1057,13 +1075,13 @@ struct cachestat {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for cachestat`
 
-- `fn clone(self: &Self) -> cachestat` — [`cachestat`](../../general/index.md)
+- `fn clone(self: &Self) -> cachestat` — [`cachestat`](#cachestat)
 
-##### `impl Copy`
+##### `impl Copy for cachestat`
 
-##### `impl Debug`
+##### `impl Debug for cachestat`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1079,13 +1097,13 @@ struct pollfd {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for pollfd`
 
-- `fn clone(self: &Self) -> pollfd` — [`pollfd`](../../general/index.md)
+- `fn clone(self: &Self) -> pollfd` — [`pollfd`](#pollfd)
 
-##### `impl Copy`
+##### `impl Copy for pollfd`
 
-##### `impl Debug`
+##### `impl Debug for pollfd`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1101,7 +1119,7 @@ struct rand_pool_info {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for rand_pool_info`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1118,13 +1136,13 @@ struct vgetrandom_opaque_params {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for vgetrandom_opaque_params`
 
-- `fn clone(self: &Self) -> vgetrandom_opaque_params` — [`vgetrandom_opaque_params`](../../general/index.md)
+- `fn clone(self: &Self) -> vgetrandom_opaque_params` — [`vgetrandom_opaque_params`](#vgetrandom-opaque-params)
 
-##### `impl Copy`
+##### `impl Copy for vgetrandom_opaque_params`
 
-##### `impl Debug`
+##### `impl Debug for vgetrandom_opaque_params`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1139,19 +1157,19 @@ struct __kernel_timespec {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __kernel_timespec`
 
-- `fn clone(self: &Self) -> __kernel_timespec` — [`__kernel_timespec`](../../general/index.md)
+- `fn clone(self: &Self) -> __kernel_timespec` — [`__kernel_timespec`](#kernel-timespec)
 
-##### `impl Copy`
+##### `impl Copy for __kernel_timespec`
 
-##### `impl Debug`
+##### `impl Debug for __kernel_timespec`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for general::__kernel_timespec`
 
-##### `impl PartialEq`
+##### `impl PartialEq for general::__kernel_timespec`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
@@ -1166,13 +1184,13 @@ struct __kernel_itimerspec {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __kernel_itimerspec`
 
-- `fn clone(self: &Self) -> __kernel_itimerspec` — [`__kernel_itimerspec`](../../general/index.md)
+- `fn clone(self: &Self) -> __kernel_itimerspec` — [`__kernel_itimerspec`](#kernel-itimerspec)
 
-##### `impl Copy`
+##### `impl Copy for __kernel_itimerspec`
 
-##### `impl Debug`
+##### `impl Debug for __kernel_itimerspec`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1187,13 +1205,13 @@ struct __kernel_old_timeval {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __kernel_old_timeval`
 
-- `fn clone(self: &Self) -> __kernel_old_timeval` — [`__kernel_old_timeval`](../../general/index.md)
+- `fn clone(self: &Self) -> __kernel_old_timeval` — [`__kernel_old_timeval`](#kernel-old-timeval)
 
-##### `impl Copy`
+##### `impl Copy for __kernel_old_timeval`
 
-##### `impl Debug`
+##### `impl Debug for __kernel_old_timeval`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1208,13 +1226,13 @@ struct __kernel_old_timespec {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __kernel_old_timespec`
 
-- `fn clone(self: &Self) -> __kernel_old_timespec` — [`__kernel_old_timespec`](../../general/index.md)
+- `fn clone(self: &Self) -> __kernel_old_timespec` — [`__kernel_old_timespec`](#kernel-old-timespec)
 
-##### `impl Copy`
+##### `impl Copy for __kernel_old_timespec`
 
-##### `impl Debug`
+##### `impl Debug for __kernel_old_timespec`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1229,13 +1247,13 @@ struct __kernel_old_itimerval {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __kernel_old_itimerval`
 
-- `fn clone(self: &Self) -> __kernel_old_itimerval` — [`__kernel_old_itimerval`](../../general/index.md)
+- `fn clone(self: &Self) -> __kernel_old_itimerval` — [`__kernel_old_itimerval`](#kernel-old-itimerval)
 
-##### `impl Copy`
+##### `impl Copy for __kernel_old_itimerval`
 
-##### `impl Debug`
+##### `impl Debug for __kernel_old_itimerval`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1250,13 +1268,13 @@ struct __kernel_sock_timeval {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __kernel_sock_timeval`
 
-- `fn clone(self: &Self) -> __kernel_sock_timeval` — [`__kernel_sock_timeval`](../../general/index.md)
+- `fn clone(self: &Self) -> __kernel_sock_timeval` — [`__kernel_sock_timeval`](#kernel-sock-timeval)
 
-##### `impl Copy`
+##### `impl Copy for __kernel_sock_timeval`
 
-##### `impl Debug`
+##### `impl Debug for __kernel_sock_timeval`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1285,13 +1303,13 @@ struct rusage {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for rusage`
 
-- `fn clone(self: &Self) -> rusage` — [`rusage`](../../general/index.md)
+- `fn clone(self: &Self) -> rusage` — [`rusage`](#rusage)
 
-##### `impl Copy`
+##### `impl Copy for rusage`
 
-##### `impl Debug`
+##### `impl Debug for rusage`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1306,13 +1324,13 @@ struct rlimit {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for rlimit`
 
-- `fn clone(self: &Self) -> rlimit` — [`rlimit`](../../general/index.md)
+- `fn clone(self: &Self) -> rlimit` — [`rlimit`](#rlimit)
 
-##### `impl Copy`
+##### `impl Copy for rlimit`
 
-##### `impl Debug`
+##### `impl Debug for rlimit`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1327,13 +1345,13 @@ struct rlimit64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for rlimit64`
 
-- `fn clone(self: &Self) -> rlimit64` — [`rlimit64`](../../general/index.md)
+- `fn clone(self: &Self) -> rlimit64` — [`rlimit64`](#rlimit64)
 
-##### `impl Copy`
+##### `impl Copy for rlimit64`
 
-##### `impl Debug`
+##### `impl Debug for rlimit64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1357,13 +1375,13 @@ struct clone_args {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for clone_args`
 
-- `fn clone(self: &Self) -> clone_args` — [`clone_args`](../../general/index.md)
+- `fn clone(self: &Self) -> clone_args` — [`clone_args`](#clone-args)
 
-##### `impl Copy`
+##### `impl Copy for clone_args`
 
-##### `impl Debug`
+##### `impl Debug for clone_args`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1380,13 +1398,13 @@ struct sigaction {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for sigaction`
 
-- `fn clone(self: &Self) -> sigaction` — [`sigaction`](../../general/index.md)
+- `fn clone(self: &Self) -> sigaction` — [`sigaction`](#sigaction)
 
-##### `impl Copy`
+##### `impl Copy for sigaction`
 
-##### `impl Debug`
+##### `impl Debug for sigaction`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1402,13 +1420,13 @@ struct sigaltstack {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for sigaltstack`
 
-- `fn clone(self: &Self) -> sigaltstack` — [`sigaltstack`](../../general/index.md)
+- `fn clone(self: &Self) -> sigaltstack` — [`sigaltstack`](#sigaltstack)
 
-##### `impl Copy`
+##### `impl Copy for sigaltstack`
 
-##### `impl Debug`
+##### `impl Debug for sigaltstack`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1423,13 +1441,13 @@ struct __sifields__bindgen_ty_1 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_1`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_1` — [`__sifields__bindgen_ty_1`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_1` — [`__sifields__bindgen_ty_1`](#sifields-bindgen-ty-1)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_1`
 
-##### `impl Debug`
+##### `impl Debug for __sifields__bindgen_ty_1`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1446,11 +1464,11 @@ struct __sifields__bindgen_ty_2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_2`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_2` — [`__sifields__bindgen_ty_2`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_2` — [`__sifields__bindgen_ty_2`](#sifields-bindgen-ty-2)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_2`
 
 ### `__sifields__bindgen_ty_3`
 
@@ -1464,11 +1482,11 @@ struct __sifields__bindgen_ty_3 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_3`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_3` — [`__sifields__bindgen_ty_3`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_3` — [`__sifields__bindgen_ty_3`](#sifields-bindgen-ty-3)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_3`
 
 ### `__sifields__bindgen_ty_4`
 
@@ -1484,13 +1502,13 @@ struct __sifields__bindgen_ty_4 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_4`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_4` — [`__sifields__bindgen_ty_4`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_4` — [`__sifields__bindgen_ty_4`](#sifields-bindgen-ty-4)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_4`
 
-##### `impl Debug`
+##### `impl Debug for __sifields__bindgen_ty_4`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1505,11 +1523,11 @@ struct __sifields__bindgen_ty_5 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_5`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_5` — [`__sifields__bindgen_ty_5`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_5` — [`__sifields__bindgen_ty_5`](#sifields-bindgen-ty-5)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_5`
 
 ### `__sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1`
 
@@ -1523,13 +1541,13 @@ struct __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1` — [`__sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1` — [`__sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1`](#sifields-bindgen-ty-5-bindgen-ty-1-bindgen-ty-1)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1`
 
-##### `impl Debug`
+##### `impl Debug for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_1`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1544,13 +1562,13 @@ struct __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2` — [`__sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2` — [`__sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2`](#sifields-bindgen-ty-5-bindgen-ty-1-bindgen-ty-2)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2`
 
-##### `impl Debug`
+##### `impl Debug for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1566,13 +1584,13 @@ struct __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3` — [`__sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3` — [`__sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3`](#sifields-bindgen-ty-5-bindgen-ty-1-bindgen-ty-3)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3`
 
-##### `impl Debug`
+##### `impl Debug for __sifields__bindgen_ty_5__bindgen_ty_1__bindgen_ty_3`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1587,13 +1605,13 @@ struct __sifields__bindgen_ty_6 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_6`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_6` — [`__sifields__bindgen_ty_6`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_6` — [`__sifields__bindgen_ty_6`](#sifields-bindgen-ty-6)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_6`
 
-##### `impl Debug`
+##### `impl Debug for __sifields__bindgen_ty_6`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1609,13 +1627,13 @@ struct __sifields__bindgen_ty_7 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __sifields__bindgen_ty_7`
 
-- `fn clone(self: &Self) -> __sifields__bindgen_ty_7` — [`__sifields__bindgen_ty_7`](../../general/index.md)
+- `fn clone(self: &Self) -> __sifields__bindgen_ty_7` — [`__sifields__bindgen_ty_7`](#sifields-bindgen-ty-7)
 
-##### `impl Copy`
+##### `impl Copy for __sifields__bindgen_ty_7`
 
-##### `impl Debug`
+##### `impl Debug for __sifields__bindgen_ty_7`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1629,11 +1647,11 @@ struct siginfo {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for siginfo`
 
-- `fn clone(self: &Self) -> siginfo` — [`siginfo`](../../general/index.md)
+- `fn clone(self: &Self) -> siginfo` — [`siginfo`](#siginfo)
 
-##### `impl Copy`
+##### `impl Copy for siginfo`
 
 ### `siginfo__bindgen_ty_1__bindgen_ty_1`
 
@@ -1648,11 +1666,11 @@ struct siginfo__bindgen_ty_1__bindgen_ty_1 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for siginfo__bindgen_ty_1__bindgen_ty_1`
 
-- `fn clone(self: &Self) -> siginfo__bindgen_ty_1__bindgen_ty_1` — [`siginfo__bindgen_ty_1__bindgen_ty_1`](../../general/index.md)
+- `fn clone(self: &Self) -> siginfo__bindgen_ty_1__bindgen_ty_1` — [`siginfo__bindgen_ty_1__bindgen_ty_1`](#siginfo-bindgen-ty-1-bindgen-ty-1)
 
-##### `impl Copy`
+##### `impl Copy for siginfo__bindgen_ty_1__bindgen_ty_1`
 
 ### `sigevent`
 
@@ -1667,11 +1685,11 @@ struct sigevent {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for sigevent`
 
-- `fn clone(self: &Self) -> sigevent` — [`sigevent`](../../general/index.md)
+- `fn clone(self: &Self) -> sigevent` — [`sigevent`](#sigevent)
 
-##### `impl Copy`
+##### `impl Copy for sigevent`
 
 ### `sigevent__bindgen_ty_1__bindgen_ty_1`
 
@@ -1684,13 +1702,13 @@ struct sigevent__bindgen_ty_1__bindgen_ty_1 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for sigevent__bindgen_ty_1__bindgen_ty_1`
 
-- `fn clone(self: &Self) -> sigevent__bindgen_ty_1__bindgen_ty_1` — [`sigevent__bindgen_ty_1__bindgen_ty_1`](../../general/index.md)
+- `fn clone(self: &Self) -> sigevent__bindgen_ty_1__bindgen_ty_1` — [`sigevent__bindgen_ty_1__bindgen_ty_1`](#sigevent-bindgen-ty-1-bindgen-ty-1)
 
-##### `impl Copy`
+##### `impl Copy for sigevent__bindgen_ty_1__bindgen_ty_1`
 
-##### `impl Debug`
+##### `impl Debug for sigevent__bindgen_ty_1__bindgen_ty_1`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1706,13 +1724,13 @@ struct statx_timestamp {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for statx_timestamp`
 
-- `fn clone(self: &Self) -> statx_timestamp` — [`statx_timestamp`](../../general/index.md)
+- `fn clone(self: &Self) -> statx_timestamp` — [`statx_timestamp`](#statx-timestamp)
 
-##### `impl Copy`
+##### `impl Copy for statx_timestamp`
 
-##### `impl Debug`
+##### `impl Debug for statx_timestamp`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1756,13 +1774,13 @@ struct statx {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for statx`
 
-- `fn clone(self: &Self) -> statx` — [`statx`](../../general/index.md)
+- `fn clone(self: &Self) -> statx` — [`statx`](#statx)
 
-##### `impl Copy`
+##### `impl Copy for statx`
 
-##### `impl Debug`
+##### `impl Debug for statx`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1781,13 +1799,13 @@ struct termios {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for termios`
 
-- `fn clone(self: &Self) -> termios` — [`termios`](../../general/index.md)
+- `fn clone(self: &Self) -> termios` — [`termios`](#termios)
 
-##### `impl Copy`
+##### `impl Copy for termios`
 
-##### `impl Debug`
+##### `impl Debug for termios`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1808,13 +1826,13 @@ struct termios2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for termios2`
 
-- `fn clone(self: &Self) -> termios2` — [`termios2`](../../general/index.md)
+- `fn clone(self: &Self) -> termios2` — [`termios2`](#termios2)
 
-##### `impl Copy`
+##### `impl Copy for termios2`
 
-##### `impl Debug`
+##### `impl Debug for termios2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1835,13 +1853,13 @@ struct ktermios {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ktermios`
 
-- `fn clone(self: &Self) -> ktermios` — [`ktermios`](../../general/index.md)
+- `fn clone(self: &Self) -> ktermios` — [`ktermios`](#ktermios)
 
-##### `impl Copy`
+##### `impl Copy for ktermios`
 
-##### `impl Debug`
+##### `impl Debug for ktermios`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1858,13 +1876,13 @@ struct winsize {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for winsize`
 
-- `fn clone(self: &Self) -> winsize` — [`winsize`](../../general/index.md)
+- `fn clone(self: &Self) -> winsize` — [`winsize`](#winsize)
 
-##### `impl Copy`
+##### `impl Copy for winsize`
 
-##### `impl Debug`
+##### `impl Debug for winsize`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1883,13 +1901,13 @@ struct termio {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for termio`
 
-- `fn clone(self: &Self) -> termio` — [`termio`](../../general/index.md)
+- `fn clone(self: &Self) -> termio` — [`termio`](#termio)
 
-##### `impl Copy`
+##### `impl Copy for termio`
 
-##### `impl Debug`
+##### `impl Debug for termio`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1904,13 +1922,13 @@ struct timespec {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for timespec`
 
-- `fn clone(self: &Self) -> timespec` — [`timespec`](../../general/index.md)
+- `fn clone(self: &Self) -> timespec` — [`timespec`](#timespec)
 
-##### `impl Copy`
+##### `impl Copy for timespec`
 
-##### `impl Debug`
+##### `impl Debug for timespec`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1925,13 +1943,13 @@ struct timeval {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for timeval`
 
-- `fn clone(self: &Self) -> timeval` — [`timeval`](../../general/index.md)
+- `fn clone(self: &Self) -> timeval` — [`timeval`](#timeval)
 
-##### `impl Copy`
+##### `impl Copy for timeval`
 
-##### `impl Debug`
+##### `impl Debug for timeval`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1946,13 +1964,13 @@ struct itimerspec {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for itimerspec`
 
-- `fn clone(self: &Self) -> itimerspec` — [`itimerspec`](../../general/index.md)
+- `fn clone(self: &Self) -> itimerspec` — [`itimerspec`](#itimerspec)
 
-##### `impl Copy`
+##### `impl Copy for itimerspec`
 
-##### `impl Debug`
+##### `impl Debug for itimerspec`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1967,13 +1985,13 @@ struct itimerval {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for itimerval`
 
-- `fn clone(self: &Self) -> itimerval` — [`itimerval`](../../general/index.md)
+- `fn clone(self: &Self) -> itimerval` — [`itimerval`](#itimerval)
 
-##### `impl Copy`
+##### `impl Copy for itimerval`
 
-##### `impl Debug`
+##### `impl Debug for itimerval`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1988,13 +2006,13 @@ struct timezone {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for timezone`
 
-- `fn clone(self: &Self) -> timezone` — [`timezone`](../../general/index.md)
+- `fn clone(self: &Self) -> timezone` — [`timezone`](#timezone)
 
-##### `impl Copy`
+##### `impl Copy for timezone`
 
-##### `impl Debug`
+##### `impl Debug for timezone`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2009,13 +2027,13 @@ struct iovec {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for iovec`
 
-- `fn clone(self: &Self) -> iovec` — [`iovec`](../../general/index.md)
+- `fn clone(self: &Self) -> iovec` — [`iovec`](#iovec)
 
-##### `impl Copy`
+##### `impl Copy for iovec`
 
-##### `impl Debug`
+##### `impl Debug for iovec`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2033,13 +2051,13 @@ struct dmabuf_cmsg {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for dmabuf_cmsg`
 
-- `fn clone(self: &Self) -> dmabuf_cmsg` — [`dmabuf_cmsg`](../../general/index.md)
+- `fn clone(self: &Self) -> dmabuf_cmsg` — [`dmabuf_cmsg`](#dmabuf-cmsg)
 
-##### `impl Copy`
+##### `impl Copy for dmabuf_cmsg`
 
-##### `impl Debug`
+##### `impl Debug for dmabuf_cmsg`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2054,13 +2072,13 @@ struct dmabuf_token {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for dmabuf_token`
 
-- `fn clone(self: &Self) -> dmabuf_token` — [`dmabuf_token`](../../general/index.md)
+- `fn clone(self: &Self) -> dmabuf_token` — [`dmabuf_token`](#dmabuf-token)
 
-##### `impl Copy`
+##### `impl Copy for dmabuf_token`
 
-##### `impl Debug`
+##### `impl Debug for dmabuf_token`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2076,13 +2094,13 @@ struct xattr_args {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for xattr_args`
 
-- `fn clone(self: &Self) -> xattr_args` — [`xattr_args`](../../general/index.md)
+- `fn clone(self: &Self) -> xattr_args` — [`xattr_args`](#xattr-args)
 
-##### `impl Copy`
+##### `impl Copy for xattr_args`
 
-##### `impl Debug`
+##### `impl Debug for xattr_args`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2100,11 +2118,11 @@ struct uffd_msg {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffd_msg`
 
-- `fn clone(self: &Self) -> uffd_msg` — [`uffd_msg`](../../general/index.md)
+- `fn clone(self: &Self) -> uffd_msg` — [`uffd_msg`](#uffd-msg)
 
-##### `impl Copy`
+##### `impl Copy for uffd_msg`
 
 ### `uffd_msg__bindgen_ty_1__bindgen_ty_1`
 
@@ -2118,11 +2136,11 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_1 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffd_msg__bindgen_ty_1__bindgen_ty_1`
 
-- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_1` — [`uffd_msg__bindgen_ty_1__bindgen_ty_1`](../../general/index.md)
+- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_1` — [`uffd_msg__bindgen_ty_1__bindgen_ty_1`](#uffd-msg-bindgen-ty-1-bindgen-ty-1)
 
-##### `impl Copy`
+##### `impl Copy for uffd_msg__bindgen_ty_1__bindgen_ty_1`
 
 ### `uffd_msg__bindgen_ty_1__bindgen_ty_2`
 
@@ -2134,13 +2152,13 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffd_msg__bindgen_ty_1__bindgen_ty_2`
 
-- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_2` — [`uffd_msg__bindgen_ty_1__bindgen_ty_2`](../../general/index.md)
+- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_2` — [`uffd_msg__bindgen_ty_1__bindgen_ty_2`](#uffd-msg-bindgen-ty-1-bindgen-ty-2)
 
-##### `impl Copy`
+##### `impl Copy for uffd_msg__bindgen_ty_1__bindgen_ty_2`
 
-##### `impl Debug`
+##### `impl Debug for uffd_msg__bindgen_ty_1__bindgen_ty_2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2156,13 +2174,13 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_3 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffd_msg__bindgen_ty_1__bindgen_ty_3`
 
-- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_3` — [`uffd_msg__bindgen_ty_1__bindgen_ty_3`](../../general/index.md)
+- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_3` — [`uffd_msg__bindgen_ty_1__bindgen_ty_3`](#uffd-msg-bindgen-ty-1-bindgen-ty-3)
 
-##### `impl Copy`
+##### `impl Copy for uffd_msg__bindgen_ty_1__bindgen_ty_3`
 
-##### `impl Debug`
+##### `impl Debug for uffd_msg__bindgen_ty_1__bindgen_ty_3`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2177,13 +2195,13 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_4 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffd_msg__bindgen_ty_1__bindgen_ty_4`
 
-- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_4` — [`uffd_msg__bindgen_ty_1__bindgen_ty_4`](../../general/index.md)
+- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_4` — [`uffd_msg__bindgen_ty_1__bindgen_ty_4`](#uffd-msg-bindgen-ty-1-bindgen-ty-4)
 
-##### `impl Copy`
+##### `impl Copy for uffd_msg__bindgen_ty_1__bindgen_ty_4`
 
-##### `impl Debug`
+##### `impl Debug for uffd_msg__bindgen_ty_1__bindgen_ty_4`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2199,13 +2217,13 @@ struct uffd_msg__bindgen_ty_1__bindgen_ty_5 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffd_msg__bindgen_ty_1__bindgen_ty_5`
 
-- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_5` — [`uffd_msg__bindgen_ty_1__bindgen_ty_5`](../../general/index.md)
+- `fn clone(self: &Self) -> uffd_msg__bindgen_ty_1__bindgen_ty_5` — [`uffd_msg__bindgen_ty_1__bindgen_ty_5`](#uffd-msg-bindgen-ty-1-bindgen-ty-5)
 
-##### `impl Copy`
+##### `impl Copy for uffd_msg__bindgen_ty_1__bindgen_ty_5`
 
-##### `impl Debug`
+##### `impl Debug for uffd_msg__bindgen_ty_1__bindgen_ty_5`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2221,13 +2239,13 @@ struct uffdio_api {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_api`
 
-- `fn clone(self: &Self) -> uffdio_api` — [`uffdio_api`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_api` — [`uffdio_api`](#uffdio-api)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_api`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_api`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2242,13 +2260,13 @@ struct uffdio_range {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_range`
 
-- `fn clone(self: &Self) -> uffdio_range` — [`uffdio_range`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_range` — [`uffdio_range`](#uffdio-range)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_range`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_range`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2264,13 +2282,13 @@ struct uffdio_register {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_register`
 
-- `fn clone(self: &Self) -> uffdio_register` — [`uffdio_register`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_register` — [`uffdio_register`](#uffdio-register)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_register`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_register`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2288,13 +2306,13 @@ struct uffdio_copy {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_copy`
 
-- `fn clone(self: &Self) -> uffdio_copy` — [`uffdio_copy`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_copy` — [`uffdio_copy`](#uffdio-copy)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_copy`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_copy`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2310,13 +2328,13 @@ struct uffdio_zeropage {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_zeropage`
 
-- `fn clone(self: &Self) -> uffdio_zeropage` — [`uffdio_zeropage`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_zeropage` — [`uffdio_zeropage`](#uffdio-zeropage)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_zeropage`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_zeropage`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2331,13 +2349,13 @@ struct uffdio_writeprotect {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_writeprotect`
 
-- `fn clone(self: &Self) -> uffdio_writeprotect` — [`uffdio_writeprotect`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_writeprotect` — [`uffdio_writeprotect`](#uffdio-writeprotect)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_writeprotect`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_writeprotect`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2353,13 +2371,13 @@ struct uffdio_continue {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_continue`
 
-- `fn clone(self: &Self) -> uffdio_continue` — [`uffdio_continue`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_continue` — [`uffdio_continue`](#uffdio-continue)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_continue`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_continue`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2375,13 +2393,13 @@ struct uffdio_poison {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_poison`
 
-- `fn clone(self: &Self) -> uffdio_poison` — [`uffdio_poison`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_poison` — [`uffdio_poison`](#uffdio-poison)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_poison`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_poison`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2399,13 +2417,13 @@ struct uffdio_move {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for uffdio_move`
 
-- `fn clone(self: &Self) -> uffdio_move` — [`uffdio_move`](../../general/index.md)
+- `fn clone(self: &Self) -> uffdio_move` — [`uffdio_move`](#uffdio-move)
 
-##### `impl Copy`
+##### `impl Copy for uffdio_move`
 
-##### `impl Debug`
+##### `impl Debug for uffdio_move`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2423,7 +2441,7 @@ struct linux_dirent64 {
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for linux_dirent64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2454,13 +2472,13 @@ struct stat {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for stat`
 
-- `fn clone(self: &Self) -> stat` — [`stat`](../../general/index.md)
+- `fn clone(self: &Self) -> stat` — [`stat`](#stat)
 
-##### `impl Copy`
+##### `impl Copy for stat`
 
-##### `impl Debug`
+##### `impl Debug for stat`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2484,13 +2502,13 @@ struct __old_kernel_stat {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for __old_kernel_stat`
 
-- `fn clone(self: &Self) -> __old_kernel_stat` — [`__old_kernel_stat`](../../general/index.md)
+- `fn clone(self: &Self) -> __old_kernel_stat` — [`__old_kernel_stat`](#old-kernel-stat)
 
-##### `impl Copy`
+##### `impl Copy for __old_kernel_stat`
 
-##### `impl Debug`
+##### `impl Debug for __old_kernel_stat`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2515,13 +2533,13 @@ struct statfs {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for statfs`
 
-- `fn clone(self: &Self) -> statfs` — [`statfs`](../../general/index.md)
+- `fn clone(self: &Self) -> statfs` — [`statfs`](#statfs)
 
-##### `impl Copy`
+##### `impl Copy for statfs`
 
-##### `impl Debug`
+##### `impl Debug for statfs`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2546,13 +2564,13 @@ struct statfs64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for statfs64`
 
-- `fn clone(self: &Self) -> statfs64` — [`statfs64`](../../general/index.md)
+- `fn clone(self: &Self) -> statfs64` — [`statfs64`](#statfs64)
 
-##### `impl Copy`
+##### `impl Copy for statfs64`
 
-##### `impl Debug`
+##### `impl Debug for statfs64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2577,13 +2595,13 @@ struct compat_statfs64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for compat_statfs64`
 
-- `fn clone(self: &Self) -> compat_statfs64` — [`compat_statfs64`](../../general/index.md)
+- `fn clone(self: &Self) -> compat_statfs64` — [`compat_statfs64`](#compat-statfs64)
 
-##### `impl Copy`
+##### `impl Copy for compat_statfs64`
 
-##### `impl Debug`
+##### `impl Debug for compat_statfs64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2602,73 +2620,73 @@ struct user_desc {
 
 #### Implementations
 
-- `fn seg_32bit(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `fn seg_32bit(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `fn set_seg_32bit(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `fn set_seg_32bit(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn seg_32bit_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn seg_32bit_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn set_seg_32bit_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn set_seg_32bit_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `fn contents(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `fn contents(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `fn set_contents(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `fn set_contents(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn contents_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn contents_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn set_contents_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn set_contents_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `fn read_exec_only(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `fn read_exec_only(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `fn set_read_exec_only(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `fn set_read_exec_only(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn read_exec_only_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn read_exec_only_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn set_read_exec_only_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn set_read_exec_only_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `fn limit_in_pages(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `fn limit_in_pages(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `fn set_limit_in_pages(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `fn set_limit_in_pages(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn limit_in_pages_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn limit_in_pages_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn set_limit_in_pages_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn set_limit_in_pages_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `fn seg_not_present(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `fn seg_not_present(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `fn set_seg_not_present(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `fn set_seg_not_present(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn seg_not_present_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn seg_not_present_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn set_seg_not_present_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn set_seg_not_present_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `fn useable(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `fn useable(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `fn set_useable(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `fn set_useable(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn useable_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn useable_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn set_useable_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn set_useable_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `fn lm(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `fn lm(self: &Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `fn set_lm(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `fn set_lm(self: &mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn lm_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn lm_raw(this: *const Self) -> crate::ctypes::c_uint` — [`c_uint`](../ctypes/index.md)
 
-- `unsafe fn set_lm_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../../ctypes/index.md)
+- `unsafe fn set_lm_raw(this: *mut Self, val: crate::ctypes::c_uint)` — [`c_uint`](../ctypes/index.md)
 
-- `fn new_bitfield_1(seg_32bit: crate::ctypes::c_uint, contents: crate::ctypes::c_uint, read_exec_only: crate::ctypes::c_uint, limit_in_pages: crate::ctypes::c_uint, seg_not_present: crate::ctypes::c_uint, useable: crate::ctypes::c_uint, lm: crate::ctypes::c_uint) -> __BindgenBitfieldUnit<[u8; 1]>` — [`c_uint`](../../ctypes/index.md), [`__BindgenBitfieldUnit`](../../general/index.md)
+- `fn new_bitfield_1(seg_32bit: crate::ctypes::c_uint, contents: crate::ctypes::c_uint, read_exec_only: crate::ctypes::c_uint, limit_in_pages: crate::ctypes::c_uint, seg_not_present: crate::ctypes::c_uint, useable: crate::ctypes::c_uint, lm: crate::ctypes::c_uint) -> __BindgenBitfieldUnit<[u8; 1]>` — [`c_uint`](../ctypes/index.md), [`__BindgenBitfieldUnit`](#bindgenbitfieldunit)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for user_desc`
 
-- `fn clone(self: &Self) -> user_desc` — [`user_desc`](../../general/index.md)
+- `fn clone(self: &Self) -> user_desc` — [`user_desc`](#user-desc)
 
-##### `impl Copy`
+##### `impl Copy for user_desc`
 
-##### `impl Debug`
+##### `impl Debug for user_desc`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2682,13 +2700,13 @@ struct kernel_sigset_t {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for kernel_sigset_t`
 
-- `fn clone(self: &Self) -> kernel_sigset_t` — [`kernel_sigset_t`](../../general/index.md)
+- `fn clone(self: &Self) -> kernel_sigset_t` — [`kernel_sigset_t`](#kernel-sigset-t)
 
-##### `impl Copy`
+##### `impl Copy for kernel_sigset_t`
 
-##### `impl Debug`
+##### `impl Debug for kernel_sigset_t`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2705,13 +2723,13 @@ struct kernel_sigaction {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for kernel_sigaction`
 
-- `fn clone(self: &Self) -> kernel_sigaction` — [`kernel_sigaction`](../../general/index.md)
+- `fn clone(self: &Self) -> kernel_sigaction` — [`kernel_sigaction`](#kernel-sigaction)
 
-##### `impl Copy`
+##### `impl Copy for kernel_sigaction`
 
-##### `impl Debug`
+##### `impl Debug for kernel_sigaction`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -2735,27 +2753,27 @@ enum fsconfig_command {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for fsconfig_command`
 
-- `fn clone(self: &Self) -> fsconfig_command` — [`fsconfig_command`](../../general/index.md)
+- `fn clone(self: &Self) -> fsconfig_command` — [`fsconfig_command`](#fsconfig-command)
 
-##### `impl Copy`
+##### `impl Copy for fsconfig_command`
 
-##### `impl Debug`
+##### `impl Debug for fsconfig_command`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for fsconfig_command`
 
-##### `impl Hash`
+##### `impl Hash for fsconfig_command`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for fsconfig_command`
 
-- `fn eq(self: &Self, other: &fsconfig_command) -> bool` — [`fsconfig_command`](../../general/index.md)
+- `fn eq(self: &Self, other: &fsconfig_command) -> bool` — [`fsconfig_command`](#fsconfig-command)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for fsconfig_command`
 
 ### `procmap_query_flags`
 
@@ -2772,27 +2790,27 @@ enum procmap_query_flags {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for procmap_query_flags`
 
-- `fn clone(self: &Self) -> procmap_query_flags` — [`procmap_query_flags`](../../general/index.md)
+- `fn clone(self: &Self) -> procmap_query_flags` — [`procmap_query_flags`](#procmap-query-flags)
 
-##### `impl Copy`
+##### `impl Copy for procmap_query_flags`
 
-##### `impl Debug`
+##### `impl Debug for procmap_query_flags`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for procmap_query_flags`
 
-##### `impl Hash`
+##### `impl Hash for procmap_query_flags`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for procmap_query_flags`
 
-- `fn eq(self: &Self, other: &procmap_query_flags) -> bool` — [`procmap_query_flags`](../../general/index.md)
+- `fn eq(self: &Self, other: &procmap_query_flags) -> bool` — [`procmap_query_flags`](#procmap-query-flags)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for procmap_query_flags`
 
 ### `membarrier_cmd`
 
@@ -2818,27 +2836,27 @@ enum membarrier_cmd {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for membarrier_cmd`
 
-- `fn clone(self: &Self) -> membarrier_cmd` — [`membarrier_cmd`](../../general/index.md)
+- `fn clone(self: &Self) -> membarrier_cmd` — [`membarrier_cmd`](#membarrier-cmd)
 
-##### `impl Copy`
+##### `impl Copy for membarrier_cmd`
 
-##### `impl Debug`
+##### `impl Debug for membarrier_cmd`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for membarrier_cmd`
 
-##### `impl Hash`
+##### `impl Hash for membarrier_cmd`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for membarrier_cmd`
 
-- `fn eq(self: &Self, other: &membarrier_cmd) -> bool` — [`membarrier_cmd`](../../general/index.md)
+- `fn eq(self: &Self, other: &membarrier_cmd) -> bool` — [`membarrier_cmd`](#membarrier-cmd)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for membarrier_cmd`
 
 ### `membarrier_cmd_flag`
 
@@ -2850,27 +2868,27 @@ enum membarrier_cmd_flag {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for membarrier_cmd_flag`
 
-- `fn clone(self: &Self) -> membarrier_cmd_flag` — [`membarrier_cmd_flag`](../../general/index.md)
+- `fn clone(self: &Self) -> membarrier_cmd_flag` — [`membarrier_cmd_flag`](#membarrier-cmd-flag)
 
-##### `impl Copy`
+##### `impl Copy for membarrier_cmd_flag`
 
-##### `impl Debug`
+##### `impl Debug for membarrier_cmd_flag`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for membarrier_cmd_flag`
 
-##### `impl Hash`
+##### `impl Hash for membarrier_cmd_flag`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for membarrier_cmd_flag`
 
-- `fn eq(self: &Self, other: &membarrier_cmd_flag) -> bool` — [`membarrier_cmd_flag`](../../general/index.md)
+- `fn eq(self: &Self, other: &membarrier_cmd_flag) -> bool` — [`membarrier_cmd_flag`](#membarrier-cmd-flag)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for membarrier_cmd_flag`
 
 ## Type Aliases
 

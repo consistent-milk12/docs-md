@@ -23,7 +23,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Black`
 
 - `const ANSI_FG: &'static str`
 
@@ -33,7 +33,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Black`
 
 ### `Red`
 
@@ -45,7 +45,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Red`
 
 - `const ANSI_FG: &'static str`
 
@@ -55,7 +55,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Red`
 
 ### `Green`
 
@@ -67,7 +67,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Green`
 
 - `const ANSI_FG: &'static str`
 
@@ -77,7 +77,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Green`
 
 ### `Yellow`
 
@@ -89,7 +89,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Yellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -99,7 +99,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Yellow`
 
 ### `Blue`
 
@@ -111,7 +111,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Blue`
 
 - `const ANSI_FG: &'static str`
 
@@ -121,7 +121,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Blue`
 
 ### `Magenta`
 
@@ -133,7 +133,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Magenta`
 
 - `const ANSI_FG: &'static str`
 
@@ -143,7 +143,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Magenta`
 
 ### `Cyan`
 
@@ -155,7 +155,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Cyan`
 
 - `const ANSI_FG: &'static str`
 
@@ -165,7 +165,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Cyan`
 
 ### `White`
 
@@ -177,7 +177,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for White`
 
 - `const ANSI_FG: &'static str`
 
@@ -187,7 +187,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for White`
 
 ### `Default`
 
@@ -199,7 +199,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for Default`
 
 - `const ANSI_FG: &'static str`
 
@@ -209,7 +209,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Default`
 
 ### `BrightBlack`
 
@@ -221,7 +221,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightBlack`
 
 - `const ANSI_FG: &'static str`
 
@@ -231,7 +231,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightBlack`
 
 ### `BrightRed`
 
@@ -243,7 +243,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightRed`
 
 - `const ANSI_FG: &'static str`
 
@@ -253,7 +253,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightRed`
 
 ### `BrightGreen`
 
@@ -265,7 +265,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightGreen`
 
 - `const ANSI_FG: &'static str`
 
@@ -275,7 +275,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightGreen`
 
 ### `BrightYellow`
 
@@ -287,7 +287,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightYellow`
 
 - `const ANSI_FG: &'static str`
 
@@ -297,7 +297,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightYellow`
 
 ### `BrightBlue`
 
@@ -309,7 +309,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightBlue`
 
 - `const ANSI_FG: &'static str`
 
@@ -319,7 +319,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightBlue`
 
 ### `BrightMagenta`
 
@@ -331,7 +331,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightMagenta`
 
 - `const ANSI_FG: &'static str`
 
@@ -341,7 +341,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightMagenta`
 
 ### `BrightCyan`
 
@@ -353,7 +353,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightCyan`
 
 - `const ANSI_FG: &'static str`
 
@@ -363,7 +363,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightCyan`
 
 ### `BrightWhite`
 
@@ -375,7 +375,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 #### Trait Implementations
 
-##### `impl Color`
+##### `impl Color for BrightWhite`
 
 - `const ANSI_FG: &'static str`
 
@@ -385,7 +385,7 @@ A color for use with [`OwoColorize`](crate::OwoColorize)'s `fg` and `bg` methods
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BrightWhite`
 
 ### `CustomColor<const R: u8, const G: u8, const B: u8>`
 
@@ -407,7 +407,7 @@ A custom RGB color, determined at compile time
 
 #### Trait Implementations
 
-##### `impl Color<const R: u8, const G: u8, const B: u8>`
+##### `impl<const R: u8, const G: u8, const B: u8> Color for CustomColor<R, G, B>`
 
 - `const ANSI_FG: &'static str`
 
@@ -417,5 +417,5 @@ A custom RGB color, determined at compile time
 
 - `const RAW_ANSI_BG: &'static str`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for CustomColor<R, G, B>`
 

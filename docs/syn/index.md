@@ -2,9 +2,7 @@
 
 [![github](#github)](https://github.com/dtolnay/syn)&ensp;[![crates-io]](https://crates.io/crates/syn)&ensp;[![docs-rs]](crate)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
-[crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
-[docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
+
 
 <br>
 
@@ -45,7 +43,6 @@ contains some APIs that may be useful more generally.
 
 
 
-[parser functions]: mod@parse
 
 <br>
 
@@ -209,8 +206,6 @@ argument is the name of the test file without the `.rs` extension.
 
 This write-up by Brandon W Maister discusses debugging in more detail:
 [Debugging Rust's new Custom Derive system][debugging](#debugging).
-
-[debugging](#debugging): https://quodlibetor.github.io/posts/debugging-rusts-new-custom-derive-system/
 
 <br>
 
@@ -413,31 +408,31 @@ assert_eq!(doc, attr);
 
 #### Implementations
 
-- `fn path(self: &Self) -> &Path` — [`Path`](../path/index.md)
+- `fn path(self: &Self) -> &Path` — [`Path`](path/index.md)
 
-- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../error/index.md)
+- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](error/index.md)
 
-- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
+- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md), [`Parser`](parse/index.md)
 
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../error/index.md)
+- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](meta/index.md), [`Result`](error/index.md)
 
-- `fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_outer(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_inner(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Attribute`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Attribute`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Attribute`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::attr::Attribute`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -455,29 +450,29 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 
 #### Implementations
 
-- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../error/index.md)
+- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](error/index.md)
 
-- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
+- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md), [`Parser`](parse/index.md)
 
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../error/index.md)
+- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](meta/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::MetaList`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::attr::MetaList`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for MetaList`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for MetaList`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::attr::MetaList`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -495,21 +490,21 @@ A name-value pair within an attribute, like `feature = "nightly"`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::MetaNameValue`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::attr::MetaNameValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for MetaNameValue`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for MetaNameValue`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::attr::MetaNameValue`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -538,23 +533,23 @@ A field of a struct or enum variant.
 
 #### Implementations
 
-- `fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_named(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_unnamed(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Field`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Field`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Field`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::data::Field`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -572,21 +567,21 @@ y: f64 }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::FieldsNamed`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::data::FieldsNamed`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for FieldsNamed`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for FieldsNamed`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::data::FieldsNamed`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -603,21 +598,21 @@ Unnamed fields of a tuple struct or tuple variant such as `Some(T)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::FieldsUnnamed`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::data::FieldsUnnamed`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for FieldsUnnamed`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for FieldsUnnamed`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::data::FieldsUnnamed`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -650,21 +645,21 @@ An enum variant.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Variant`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::data::Variant`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Variant`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Variant`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::data::Variant`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -682,7 +677,7 @@ An enum input to a `proc_macro_derive` macro.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::DataEnum`
 
 - `fn clone(self: &Self) -> Self`
 
@@ -700,7 +695,7 @@ A struct input to a `proc_macro_derive` macro.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::DataStruct`
 
 - `fn clone(self: &Self) -> Self`
 
@@ -717,7 +712,7 @@ An untagged union input to a `proc_macro_derive` macro.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::DataUnion`
 
 - `fn clone(self: &Self) -> Self`
 
@@ -737,21 +732,21 @@ Data structure sent to a `proc_macro_derive` macro.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::DeriveInput`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::derive::DeriveInput`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for DeriveInput`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for DeriveInput`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::derive::DeriveInput`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -854,29 +849,29 @@ mod expand {
 
 - `fn into_compile_error(self: Self) -> TokenStream`
 
-- `fn combine(self: &mut Self, another: Error)` — [`Error`](../error/index.md)
+- `fn combine(self: &mut Self, another: Error)` — [`Error`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Error`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Debug`
+##### `impl Debug for Error`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Error`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for Error`
 
-##### `impl Extend`
+##### `impl Extend for Error`
 
 - `fn extend<T: IntoIterator<Item = Error>>(self: &mut Self, iter: T)`
 
-##### `impl IntoIterator`
+##### `impl IntoIterator for Error`
 
 - `type Item = Error`
 
@@ -884,7 +879,7 @@ mod expand {
 
 - `fn into_iter(self: Self) -> <Self as >::IntoIter`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -921,25 +916,25 @@ match n {
 
 #### Implementations
 
-- `fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_multiple(input: ParseStream<'_>) -> Result<Vec<Self>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Arm`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::Arm`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Arm`](../expr/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Arm>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Arm`](expr/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Arm`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Arm`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::Arm`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -956,21 +951,21 @@ A lifetime labeling a `for`, `while`, or `loop`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Label`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::Label`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Label`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Label`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::Label`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -989,21 +984,21 @@ A binary operation: `a + b`, `a += b`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprBinary`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprBinary`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprBinary`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprBinary`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprBinary`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1022,21 +1017,21 @@ A function call expression: `invoke(a, b)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprCall`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprCall`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprCall`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprCall`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprCall`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1055,21 +1050,21 @@ A cast expression: `foo as f64`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprCast`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprCast`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprCast`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprCast`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprCast`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1089,21 +1084,21 @@ field (`obj.0`).
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprField`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprField`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprField`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprField`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprField`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1122,21 +1117,21 @@ A square bracketed indexing expression: `vector[2]`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprIndex`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprIndex`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprIndex`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprIndex`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprIndex`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1153,21 +1148,21 @@ A literal in place of an expression: `1`, `"foo"`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprLit`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprLit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprLit`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprLit`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprLit`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1184,21 +1179,21 @@ A macro invocation expression: `format!("{}", q)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprMacro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprMacro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprMacro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprMacro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1220,21 +1215,21 @@ A method call expression: `x.foo::<T>(a, b)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprMethodCall`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprMethodCall`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprMethodCall`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprMethodCall`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprMethodCall`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1252,21 +1247,21 @@ A parenthesized expression: `(a + b)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprParen`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprParen`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprParen`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprParen`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprParen`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1287,21 +1282,21 @@ A plain identifier like `x` is a path of length 1.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprPath`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprPath`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprPath`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprPath`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprPath`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1320,21 +1315,21 @@ A referencing operation: `&a` or `&mut a`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprReference`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprReference`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprReference`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprReference`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprReference`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1359,21 +1354,21 @@ The `rest` provides the value of the remaining fields as in `S { a:
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprStruct`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprStruct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprStruct`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprStruct`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprStruct`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1391,21 +1386,21 @@ A unary operation: `!x`, `*x`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprUnary`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprUnary`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprUnary`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprUnary`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprUnary`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1431,21 +1426,21 @@ A field-value pair in a struct literal.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::FieldValue`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::FieldValue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for FieldValue`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for FieldValue`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::FieldValue`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1462,37 +1457,37 @@ The index of an unnamed tuple struct field.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Index`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Eq`
+##### `impl Eq for Index`
 
-##### `impl Hash`
+##### `impl Hash for Index`
 
 - `fn hash<H: Hasher>(self: &Self, state: &mut H)`
 
-##### `impl IdentFragment`
+##### `impl IdentFragment for Index`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 - `fn span(self: &Self) -> Option<Span>`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::Index`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Index`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Index`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Index`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::Index`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1510,21 +1505,21 @@ A slice literal expression: `[a, b, c, d]`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprArray`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprArray`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprArray`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprArray`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprArray`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1543,21 +1538,21 @@ An assignment expression: `a = compute()`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprAssign`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprAssign`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprAssign`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprAssign`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprAssign`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1576,21 +1571,21 @@ An async block: `async { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprAsync`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprAsync`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprAsync`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprAsync`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprAsync`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1609,21 +1604,21 @@ An await expression: `fut.await`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprAwait`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprAwait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprAwait`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprAwait`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprAwait`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1641,21 +1636,21 @@ A blocked scope: `{ ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprBlock`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprBlock`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprBlock`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprBlock`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprBlock`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1675,21 +1670,21 @@ expression.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprBreak`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprBreak`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprBreak`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprBreak`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprBreak`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1715,21 +1710,21 @@ A closure expression: `|a, b| a + b`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprClosure`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprClosure`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprClosure`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprClosure`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprClosure`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1747,21 +1742,21 @@ A const block: `const { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprConst`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprConst`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprConst`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprConst`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1779,21 +1774,21 @@ A `continue`, with an optional label.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprContinue`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprContinue`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprContinue`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprContinue`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprContinue`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1815,21 +1810,21 @@ A for loop: `for pat in expr { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprForLoop`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprForLoop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprForLoop`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprForLoop`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprForLoop`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1851,17 +1846,17 @@ of expressions and is related to `None`-delimited spans in a
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprGroup`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprGroup`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprGroup`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprGroup`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1885,21 +1880,21 @@ expression, not any of the other types of expression.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprIf`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprIf`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprIf`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprIf`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprIf`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1916,21 +1911,21 @@ The inferred value of a const generic argument, denoted `_`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprInfer`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprInfer`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprInfer`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprInfer`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprInfer`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1950,21 +1945,21 @@ A `let` guard: `let Some(x) = opt`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprLet`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprLet`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprLet`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprLet`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprLet`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -1983,21 +1978,21 @@ Conditionless loop: `loop { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprLoop`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprLoop`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprLoop`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprLoop`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprLoop`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2017,21 +2012,21 @@ A `match` expression: `match n { Some(n) => {}, None => {} }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprMatch`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprMatch`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprMatch`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprMatch`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprMatch`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2050,21 +2045,21 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprRange`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprRange`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprRange`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprRange`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprRange`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2084,21 +2079,21 @@ Address-of operation: `&raw const place` or `&raw mut place`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprRawAddr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprRawAddr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprRawAddr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprRawAddr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprRawAddr`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2118,21 +2113,21 @@ An array literal constructed from one repeated element: `[0u8; N]`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprRepeat`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprRepeat`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprRepeat`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprRepeat`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprRepeat`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2150,21 +2145,21 @@ A `return`, with an optional value to be returned.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprReturn`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprReturn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprReturn`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprReturn`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprReturn`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2182,21 +2177,21 @@ A try-expression: `expr?`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprTry`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprTry`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprTry`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprTry`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprTry`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2214,21 +2209,21 @@ A try block: `try { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprTryBlock`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprTryBlock`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprTryBlock`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprTryBlock`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprTryBlock`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2246,21 +2241,21 @@ A tuple expression: `(a, b, c, d)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprTuple`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprTuple`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprTuple`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprTuple`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprTuple`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2278,21 +2273,21 @@ An unsafe block: `unsafe { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprUnsafe`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprUnsafe`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprUnsafe`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprUnsafe`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprUnsafe`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2312,21 +2307,21 @@ A while loop: `while expr { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprWhile`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprWhile`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprWhile`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprWhile`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprWhile`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2344,21 +2339,21 @@ A yield expression: `yield expr`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprYield`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprYield`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprYield`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprYield`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprYield`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2446,21 +2441,21 @@ File {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::File`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::file::File`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for File`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for File`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::file::File`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2479,25 +2474,25 @@ A set of bound lifetimes: `for<'a, 'b, 'c>`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::BoundLifetimes`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Default`
+##### `impl Default for BoundLifetimes`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::BoundLifetimes`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for BoundLifetimes`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for BoundLifetimes`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::BoundLifetimes`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2519,21 +2514,21 @@ A const generic parameter: `const LENGTH: usize`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ConstParam`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::ConstParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ConstParam`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ConstParam`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::ConstParam`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2555,48 +2550,47 @@ This struct represents two distinct optional syntactic elements,
 [generic parameters] and [where clause]. In some locations of the
 grammar, there may be other tokens in between these two things.
 
-[generic parameters]: https://doc.rust-lang.org/stable/reference/items/generics.html#generic-parameters
-[where clause]: https://doc.rust-lang.org/stable/reference/items/generics.html#where-clauses
+
 
 #### Implementations
 
-- `fn lifetimes(self: &Self) -> Lifetimes<'_>` — [`Lifetimes`](../generics/index.md)
+- `fn lifetimes(self: &Self) -> Lifetimes<'_>` — [`Lifetimes`](generics/index.md)
 
-- `fn lifetimes_mut(self: &mut Self) -> LifetimesMut<'_>` — [`LifetimesMut`](../generics/index.md)
+- `fn lifetimes_mut(self: &mut Self) -> LifetimesMut<'_>` — [`LifetimesMut`](generics/index.md)
 
-- `fn type_params(self: &Self) -> TypeParams<'_>` — [`TypeParams`](../generics/index.md)
+- `fn type_params(self: &Self) -> TypeParams<'_>` — [`TypeParams`](generics/index.md)
 
-- `fn type_params_mut(self: &mut Self) -> TypeParamsMut<'_>` — [`TypeParamsMut`](../generics/index.md)
+- `fn type_params_mut(self: &mut Self) -> TypeParamsMut<'_>` — [`TypeParamsMut`](generics/index.md)
 
-- `fn const_params(self: &Self) -> ConstParams<'_>` — [`ConstParams`](../generics/index.md)
+- `fn const_params(self: &Self) -> ConstParams<'_>` — [`ConstParams`](generics/index.md)
 
-- `fn const_params_mut(self: &mut Self) -> ConstParamsMut<'_>` — [`ConstParamsMut`](../generics/index.md)
+- `fn const_params_mut(self: &mut Self) -> ConstParamsMut<'_>` — [`ConstParamsMut`](generics/index.md)
 
-- `fn make_where_clause(self: &mut Self) -> &mut WhereClause` — [`WhereClause`](../generics/index.md)
+- `fn make_where_clause(self: &mut Self) -> &mut WhereClause` — [`WhereClause`](generics/index.md)
 
-- `fn split_for_impl(self: &Self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](../generics/index.md), [`TypeGenerics`](../generics/index.md), [`WhereClause`](../generics/index.md)
+- `fn split_for_impl(self: &Self) -> (ImplGenerics<'_>, TypeGenerics<'_>, Option<&WhereClause>)` — [`ImplGenerics`](generics/index.md), [`TypeGenerics`](generics/index.md), [`WhereClause`](generics/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Generics`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Default`
+##### `impl Default for Generics`
 
 - `fn default() -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::Generics`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Generics`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Generics`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::Generics`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2615,25 +2609,25 @@ A lifetime definition: `'a: 'b + 'c + 'd`.
 
 #### Implementations
 
-- `fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](../lifetime/index.md)
+- `fn new(lifetime: Lifetime) -> Self` — [`Lifetime`](lifetime/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::LifetimeParam`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::LifetimeParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for LifetimeParam`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LifetimeParam`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::LifetimeParam`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2651,17 +2645,17 @@ A lifetime predicate in a `where` clause: `'a: 'b + 'c`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PredicateLifetime`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PredicateLifetime`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PredicateLifetime`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::PredicateLifetime`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2694,17 +2688,17 @@ A type predicate in a `where` clause: `for<'c> Foo<'c>: Trait<'c>`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PredicateType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PredicateType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PredicateType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::PredicateType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2733,25 +2727,25 @@ A trait used as a bound on a type parameter.
 
 #### Implementations
 
-- `fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn do_parse(input: ParseStream<'_>, allow_const: bool) -> Result<Option<Self>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TraitBound`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::TraitBound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TraitBound`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TraitBound`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::TraitBound`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2772,21 +2766,21 @@ A generic type parameter: `T: Into<String>`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeParam`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::TypeParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeParam`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeParam`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::TypeParam`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2804,21 +2798,21 @@ A `where` clause in a definition: `where T: Deserialize<'de>, D:
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::WhereClause`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::WhereClause`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for WhereClause`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for WhereClause`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::WhereClause`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2838,21 +2832,21 @@ use<'a, T>`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PreciseCapture`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::PreciseCapture`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PreciseCapture`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PreciseCapture`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::PreciseCapture`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2866,17 +2860,17 @@ Returned by `Generics::split_for_impl`.
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for ImplGenerics<'a>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ImplGenerics<'a>`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ImplGenerics<'a>`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens<'a>`
+##### `impl<'a> ToTokens for crate::generics::ImplGenerics<'a>`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2890,17 +2884,17 @@ Returned by `TypeGenerics::as_turbofish`.
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Turbofish<'a>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Turbofish<'a>`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Turbofish<'a>`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens<'a>`
+##### `impl<'a> ToTokens for crate::generics::Turbofish<'a>`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2914,21 +2908,21 @@ Returned by `Generics::split_for_impl`.
 
 #### Implementations
 
-- `fn as_turbofish(self: &Self) -> Turbofish<'a>` — [`Turbofish`](../generics/index.md)
+- `fn as_turbofish(self: &Self) -> Turbofish<'a>` — [`Turbofish`](generics/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for TypeGenerics<'a>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeGenerics<'a>`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeGenerics<'a>`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens<'a>`
+##### `impl<'a> ToTokens for crate::generics::TypeGenerics<'a>`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2947,21 +2941,21 @@ A foreign function in an `extern` block.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ForeignItemFn`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ForeignItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ForeignItemFn`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ForeignItemFn`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ForeignItemFn`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -2979,21 +2973,21 @@ A macro invocation within an extern block.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ForeignItemMacro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ForeignItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ForeignItemMacro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ForeignItemMacro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ForeignItemMacro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3016,21 +3010,21 @@ A foreign static item in an `extern` block: `static ext: u8`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ForeignItemStatic`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ForeignItemStatic`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ForeignItemStatic`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ForeignItemStatic`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ForeignItemStatic`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3051,21 +3045,21 @@ A foreign type in an `extern` block: `type void`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ForeignItemType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ForeignItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ForeignItemType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ForeignItemType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ForeignItemType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3091,21 +3085,21 @@ An associated constant within an impl block.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ImplItemConst`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ImplItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ImplItemConst`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ImplItemConst`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ImplItemConst`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3125,21 +3119,21 @@ An associated function within an impl block.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ImplItemFn`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ImplItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ImplItemFn`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ImplItemFn`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ImplItemFn`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3157,21 +3151,21 @@ A macro invocation within an impl block.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ImplItemMacro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ImplItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ImplItemMacro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ImplItemMacro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ImplItemMacro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3195,21 +3189,21 @@ An associated type within an impl block.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ImplItemType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ImplItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ImplItemType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ImplItemType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ImplItemType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3234,21 +3228,21 @@ A constant item: `const MAX: u16 = 65535`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemConst`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemConst`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemConst`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemConst`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3270,21 +3264,21 @@ An enum definition: `enum Foo<A, B> { A(A), B(B) }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemEnum`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemEnum`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemEnum`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemEnum`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemEnum`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3306,21 +3300,21 @@ An `extern crate` item: `extern crate serde`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemExternCrate`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemExternCrate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemExternCrate`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemExternCrate`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemExternCrate`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3339,21 +3333,21 @@ A free-standing function: `fn process(n: usize) -> Result<()> { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemFn`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemFn`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemFn`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemFn`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3373,21 +3367,21 @@ A block of foreign items: `extern "C" { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemForeignMod`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemForeignMod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemForeignMod`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemForeignMod`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemForeignMod`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3422,21 +3416,21 @@ for Data<A> { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemImpl`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemImpl`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemImpl`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemImpl`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemImpl`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3461,21 +3455,21 @@ A macro invocation, which includes `macro_rules!` definitions.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemMacro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemMacro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemMacro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemMacro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3497,21 +3491,21 @@ A module or module declaration: `mod m` or `mod m { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemMod`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemMod`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemMod`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemMod`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemMod`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3536,21 +3530,21 @@ A static item: `static BIKE: Shed = Shed(42)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemStatic`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemStatic`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemStatic`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemStatic`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemStatic`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3572,21 +3566,21 @@ A struct definition: `struct Foo<A> { x: A }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemStruct`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemStruct`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemStruct`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemStruct`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemStruct`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3613,21 +3607,21 @@ A trait definition: `pub trait Iterator { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemTrait`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemTrait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemTrait`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemTrait`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemTrait`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3650,21 +3644,21 @@ A trait alias: `pub trait SharableIterator = Iterator + Sync`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemTraitAlias`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemTraitAlias`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemTraitAlias`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemTraitAlias`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemTraitAlias`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3687,21 +3681,21 @@ A type alias: `type Result<T> = std::result::Result<T, MyError>`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3722,21 +3716,21 @@ A union definition: `union Foo<A, B> { x: A, y: B }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemUnion`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemUnion`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemUnion`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemUnion`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemUnion`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3757,21 +3751,21 @@ A use declaration: `use std::collections::HashMap`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ItemUse`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ItemUse`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ItemUse`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ItemUse`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::ItemUse`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3798,25 +3792,25 @@ shorthand case, the type in `ty` is reconstructed as one of `Self`,
 
 #### Implementations
 
-- `fn lifetime(self: &Self) -> Option<&Lifetime>` — [`Lifetime`](../lifetime/index.md)
+- `fn lifetime(self: &Self) -> Option<&Lifetime>` — [`Lifetime`](lifetime/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Receiver`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::Receiver`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Receiver`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Receiver`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::Receiver`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3843,25 +3837,25 @@ initialize(&self)`.
 
 #### Implementations
 
-- `fn receiver(self: &Self) -> Option<&Receiver>` — [`Receiver`](../item/index.md)
+- `fn receiver(self: &Self) -> Option<&Receiver>` — [`Receiver`](item/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Signature`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::Signature`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Signature`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Signature`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::Signature`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3884,21 +3878,21 @@ An associated constant within the definition of a trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TraitItemConst`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::TraitItemConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TraitItemConst`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TraitItemConst`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::TraitItemConst`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3917,21 +3911,21 @@ An associated function within the definition of a trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TraitItemFn`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::TraitItemFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TraitItemFn`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TraitItemFn`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::TraitItemFn`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3949,21 +3943,21 @@ A macro invocation within the definition of a trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TraitItemMacro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::TraitItemMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TraitItemMacro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TraitItemMacro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::TraitItemMacro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -3986,21 +3980,21 @@ An associated type within the definition of a trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TraitItemType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::TraitItemType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TraitItemType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TraitItemType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::TraitItemType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4016,17 +4010,17 @@ A glob import in a `use` item: `*`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::UseGlob`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for UseGlob`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for UseGlob`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::UseGlob`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4043,17 +4037,17 @@ A braced group of imports in a `use` item: `{A, B, C}`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::UseGroup`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for UseGroup`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for UseGroup`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::UseGroup`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4069,17 +4063,17 @@ An identifier imported by a `use` item: `HashMap`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::UseName`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for UseName`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for UseName`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::UseName`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4097,17 +4091,17 @@ A path prefix of imports in a `use` item: `std::...`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::UsePath`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for UsePath`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for UsePath`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::UsePath`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4125,17 +4119,17 @@ An renamed identifier imported by a `use` item: `HashMap as Map`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::UseRename`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for UseRename`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for UseRename`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::UseRename`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4164,17 +4158,17 @@ extern "C" {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Variadic`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Variadic`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Variadic`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::Variadic`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4208,51 +4202,51 @@ Lifetime names must conform to the following rules:
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Lifetime`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Display`
+##### `impl Display for Lifetime`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Lifetime`
 
-##### `impl Hash`
+##### `impl Hash for Lifetime`
 
 - `fn hash<H: Hasher>(self: &Self, h: &mut H)`
 
-##### `impl Ord`
+##### `impl Ord for Lifetime`
 
-- `fn cmp(self: &Self, other: &Lifetime) -> Ordering` — [`Lifetime`](../lifetime/index.md)
+- `fn cmp(self: &Self, other: &Lifetime) -> Ordering` — [`Lifetime`](lifetime/index.md)
 
-##### `impl Parse`
+##### `impl Parse for crate::lifetime::Lifetime`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Lifetime`
 
-- `fn eq(self: &Self, other: &Lifetime) -> bool` — [`Lifetime`](../lifetime/index.md)
+- `fn eq(self: &Self, other: &Lifetime) -> bool` — [`Lifetime`](lifetime/index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Lifetime`
 
-- `fn partial_cmp(self: &Self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](../lifetime/index.md)
+- `fn partial_cmp(self: &Self, other: &Lifetime) -> Option<Ordering>` — [`Lifetime`](lifetime/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for Lifetime`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Lifetime`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Lifetime`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lifetime::Lifetime`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lifetime::Lifetime`
 
 ### `LitBool`
 
@@ -4279,25 +4273,25 @@ A boolean literal: `true` or `false`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::LitBool`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::LitBool`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for LitBool`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LitBool`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lit::LitBool`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::LitBool`
 
 ### `LitByte`
 
@@ -4325,25 +4319,25 @@ A byte literal: `b'f'`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LitByte`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::LitByte`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for LitByte`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LitByte`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lit::LitByte`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::LitByte`
 
 ### `LitByteStr`
 
@@ -4371,25 +4365,25 @@ A byte string literal: `b"foo"`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LitByteStr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::LitByteStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for LitByteStr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LitByteStr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lit::LitByteStr`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::LitByteStr`
 
 ### `LitCStr`
 
@@ -4417,25 +4411,25 @@ A nul-terminated C-string literal: `c"foo"`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LitCStr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::LitCStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for crate::lit::LitCStr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LitCStr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lit::LitCStr`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::LitCStr`
 
 ### `LitChar`
 
@@ -4463,25 +4457,25 @@ A character literal: `'a'`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LitChar`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::LitChar`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for crate::lit::LitChar`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LitChar`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lit::LitChar`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::LitChar`
 
 ### `LitFloat`
 
@@ -4501,7 +4495,7 @@ Must be finite. May not be infinite or NaN.
 
 - `fn base10_digits(self: &Self) -> &str`
 
-- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](../error/index.md)
+- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](error/index.md)
 
 - `fn suffix(self: &Self) -> &str`
 
@@ -4513,33 +4507,33 @@ Must be finite. May not be infinite or NaN.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LitFloat`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Display`
+##### `impl Display for LitFloat`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::LitFloat`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed`
+##### `impl<T> Sealed for LitFloat`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LitFloat`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for LitFloat`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lit::LitFloat`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::LitFloat`
 
 ### `LitInt`
 
@@ -4557,7 +4551,7 @@ An integer literal: `1` or `1u16`.
 
 - `fn base10_digits(self: &Self) -> &str`
 
-- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](../error/index.md)
+- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](error/index.md)
 
 - `fn suffix(self: &Self) -> &str`
 
@@ -4569,33 +4563,33 @@ An integer literal: `1` or `1u16`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LitInt`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Display`
+##### `impl Display for LitInt`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::LitInt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed`
+##### `impl Sealed for crate::lit::LitInt`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LitInt`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for LitInt`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lit::LitInt`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::LitInt`
 
 ### `LitStr`
 
@@ -4613,9 +4607,9 @@ A UTF-8 string literal: `"foo"`.
 
 - `fn value(self: &Self) -> String`
 
-- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../error/index.md)
+- `fn parse<T: Parse>(self: &Self) -> Result<T>` — [`Result`](error/index.md)
 
-- `fn parse_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
+- `fn parse_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md), [`Parser`](parse/index.md)
 
 - `fn span(self: &Self) -> Span`
 
@@ -4627,25 +4621,25 @@ A UTF-8 string literal: `"foo"`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LitStr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::LitStr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for crate::lit::LitStr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for LitStr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::lit::LitStr`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::LitStr`
 
 ### `Macro`
 
@@ -4662,27 +4656,27 @@ A macro invocation: `println!("{}", mac)`.
 
 #### Implementations
 
-- `fn parse_body<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../error/index.md)
+- `fn parse_body<T: Parse>(self: &Self) -> Result<T>` — [`Result`](error/index.md)
 
-- `fn parse_body_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../error/index.md), [`Parser`](../parse/index.md)
+- `fn parse_body_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](error/index.md), [`Parser`](parse/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Macro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::mac::Macro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Macro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Macro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::mac::Macro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4704,17 +4698,17 @@ the same as `x: x, y: ref y, z: ref mut z` but there is no colon token.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::FieldPat`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for FieldPat`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for FieldPat`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::FieldPat`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4732,21 +4726,21 @@ A const block: `const { ... }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprConst`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprConst`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprConst`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprConst`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprConst`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4769,17 +4763,17 @@ constant; these cannot be distinguished syntactically.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatIdent`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatIdent`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatIdent`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatIdent`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4796,21 +4790,21 @@ A literal in place of an expression: `1`, `"foo"`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprLit`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprLit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprLit`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprLit`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprLit`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4827,21 +4821,21 @@ A macro invocation expression: `format!("{}", q)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprMacro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprMacro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprMacro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprMacro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4859,17 +4853,17 @@ A pattern that matches any one of a set of cases.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatOr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatOr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatOr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatOr`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4887,17 +4881,17 @@ A parenthesized pattern: `(A | B)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatParen`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatParen`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatParen`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatParen`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4918,21 +4912,21 @@ A plain identifier like `x` is a path of length 1.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprPath`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprPath`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprPath`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprPath`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprPath`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4951,21 +4945,21 @@ A range expression: `1..2`, `1..`, `..2`, `1..=2`, `..=2`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ExprRange`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::ExprRange`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ExprRange`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ExprRange`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::ExprRange`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -4984,17 +4978,17 @@ A reference pattern: `&mut var`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatReference`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatReference`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatReference`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatReference`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5011,17 +5005,17 @@ The dots in a tuple or slice pattern: `[0, 1, ..]`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatRest`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatRest`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatRest`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatRest`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5039,17 +5033,17 @@ A dynamically sized slice pattern: `[a, b, ref i @ .., y, z]`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatSlice`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatSlice`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatSlice`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatSlice`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5070,17 +5064,17 @@ A struct or struct variant pattern: `Variant { x, y, .. }`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatStruct`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatStruct`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatStruct`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatStruct`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5098,17 +5092,17 @@ A tuple pattern: `(a, b)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatTuple`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatTuple`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatTuple`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatTuple`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5128,17 +5122,17 @@ A tuple struct or tuple variant pattern: `Variant(x, y, .., z)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatTupleStruct`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatTupleStruct`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatTupleStruct`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatTupleStruct`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5157,21 +5151,21 @@ A type ascription pattern: `foo: f64`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::pat::PatType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5188,17 +5182,17 @@ A pattern that matches any value: `_`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PatWild`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PatWild`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PatWild`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::pat::PatWild`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5218,27 +5212,27 @@ V>`.
 
 #### Implementations
 
-- `fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_turbofish(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn do_parse(colon2_token: Option<$crate::token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](../token/index.md), [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn do_parse(colon2_token: Option<$crate::token::PathSep>, input: ParseStream<'_>) -> Result<Self>` — [`PathSep`](token/index.md), [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::AngleBracketedGenericArguments`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::path::AngleBracketedGenericArguments`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for AngleBracketedGenericArguments`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for AngleBracketedGenericArguments`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::AngleBracketedGenericArguments`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5258,17 +5252,17 @@ An equality constraint on an associated constant: the `PANIC = false` in
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::AssocConst`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for AssocConst`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for AssocConst`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::AssocConst`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5288,17 +5282,17 @@ in `Iterator<Item = u8>`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::AssocType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for AssocType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for AssocType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::AssocType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5317,17 +5311,17 @@ An associated type bound: `Iterator<Item: Display>`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Constraint`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Constraint`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Constraint`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::Constraint`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5356,21 +5350,21 @@ C`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ParenthesizedGenericArguments`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::path::ParenthesizedGenericArguments`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ParenthesizedGenericArguments`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ParenthesizedGenericArguments`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::ParenthesizedGenericArguments`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5387,31 +5381,33 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 #### Implementations
 
-- `fn is_ident<I>(self: &Self, ident: &I) -> bool`
+- `fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn get_ident(self: &Self) -> Option<&Ident>`
+- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn require_ident(self: &Self) -> Result<&Ident>` — [`Result`](../error/index.md)
+- `fn parse_rest(input: ParseStream<'_>, path: &mut Self, expr_style: bool) -> Result<()>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
+
+- `fn is_mod_style(self: &Self) -> bool`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Path`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::path::Path`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for syn::Path`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Path`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Path`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::Path`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5428,25 +5424,25 @@ A segment of a path together with any path arguments on that segment.
 
 #### Implementations
 
-- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PathSegment`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::path::PathSegment`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PathSegment`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PathSegment`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::PathSegment`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5481,13 +5477,13 @@ item qualified with this Self type.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::QSelf`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed`
+##### `impl Sealed for crate::QSelf`
 
-##### `impl Spanned`
+##### `impl Spanned for crate::path::QSelf`
 
 - `fn span(self: &Self) -> Span`
 
@@ -5507,17 +5503,17 @@ A visibility level restricted to some path: `pub(self)` or
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::VisRestricted`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for VisRestricted`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for VisRestricted`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::restriction::VisRestricted`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5540,25 +5536,25 @@ A braced block containing Rust statements.
 
 #### Implementations
 
-- `fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Stmt`](../stmt/index.md)
+- `fn parse_within(input: ParseStream<'_>) -> Result<Vec<Stmt>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Stmt`](stmt/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Block`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::stmt::Block`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Block`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Block`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::stmt::Block`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5578,17 +5574,17 @@ A local `let` binding: `let x: u64 = s.parse()?;`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Local`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Local`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Local`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::stmt::Local`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5610,7 +5606,7 @@ diverging `else` block.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::LocalInit`
 
 - `fn clone(self: &Self) -> Self`
 
@@ -5632,17 +5628,17 @@ expression.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::StmtMacro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for StmtMacro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for StmtMacro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::stmt::StmtMacro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5659,21 +5655,21 @@ The binary interface of a function: `extern "C"`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Abi`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::Abi`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Abi`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Abi`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::Abi`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5691,21 +5687,21 @@ An argument in a function type: the `usize` in `fn(usize) -> bool`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::BareFnArg`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::BareFnArg`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for BareFnArg`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for BareFnArg`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::BareFnArg`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5724,17 +5720,17 @@ The variadic argument of a function pointer like `fn(usize, ...)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::BareVariadic`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for BareVariadic`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for BareVariadic`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::BareVariadic`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5753,21 +5749,21 @@ A fixed size array type: `[T; n]`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeArray`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeArray`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeArray`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeArray`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeArray`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5790,21 +5786,21 @@ A bare function type: `fn(usize) -> bool`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeBareFn`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeBareFn`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeBareFn`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeBareFn`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeBareFn`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5821,21 +5817,21 @@ A type contained within invisible delimiters.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeGroup`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeGroup`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeGroup`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeGroup`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeGroup`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5853,27 +5849,27 @@ a lifetime.
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeImplTrait`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeImplTrait`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeImplTrait`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeImplTrait`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeImplTrait`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5889,21 +5885,21 @@ Indication that a type should be inferred by the compiler: `_`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeInfer`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeInfer`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeInfer`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeInfer`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeInfer`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5919,21 +5915,21 @@ A macro in the type position.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeMacro`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeMacro`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeMacro`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeMacro`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeMacro`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5949,21 +5945,21 @@ The never type: `!`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeNever`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeNever`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeNever`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeNever`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeNever`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -5980,25 +5976,25 @@ A parenthesized type equivalent to the inner type.
 
 #### Implementations
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeParen`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeParen`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeParen`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeParen`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeParen`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6016,21 +6012,21 @@ self-type as in `<Vec<T> as SomeTrait>::Associated`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypePath`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypePath`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypePath`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypePath`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypePath`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6049,21 +6045,21 @@ A raw pointer type: `*const T` or `*mut T`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypePtr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypePtr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypePtr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypePtr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypePtr`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6082,21 +6078,21 @@ A reference type: `&'a T` or `&'a mut T`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeReference`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeReference`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeReference`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeReference`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeReference`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6113,21 +6109,21 @@ A dynamically sized slice type: `[T]`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeSlice`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeSlice`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeSlice`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeSlice`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeSlice`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6145,29 +6141,29 @@ trait or a lifetime.
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_bounds(dyn_span: Span, input: ParseStream<'_>, allow_plus: bool) -> Result<Punctuated<TypeParamBound, $crate::token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Punctuated`](../punctuated/index.md), [`TypeParamBound`](../generics/index.md), [`Plus`](../token/index.md)
+- `fn parse_bounds(dyn_span: Span, input: ParseStream<'_>, allow_plus: bool) -> Result<Punctuated<TypeParamBound, $crate::token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Punctuated`](punctuated/index.md), [`TypeParamBound`](generics/index.md), [`Plus`](token/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeTraitObject`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeTraitObject`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeTraitObject`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeTraitObject`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeTraitObject`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6184,21 +6180,21 @@ A tuple type: `(A, B, C, String)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeTuple`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::TypeTuple`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeTuple`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeTuple`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::TypeTuple`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6230,11 +6226,11 @@ that are contained within an item.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::AttrStyle`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for crate::AttrStyle`
 
 ### `Meta`
 
@@ -6265,7 +6261,6 @@ A name-value meta is like the `path = "..."` in `#[path =
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -6279,31 +6274,31 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn path(self: &Self) -> &Path` — [`Path`](../path/index.md)
+- `fn path(self: &Self) -> &Path` — [`Path`](path/index.md)
 
-- `fn require_path_only(self: &Self) -> Result<&Path>` — [`Result`](../error/index.md), [`Path`](../path/index.md)
+- `fn require_path_only(self: &Self) -> Result<&Path>` — [`Result`](error/index.md), [`Path`](path/index.md)
 
-- `fn require_list(self: &Self) -> Result<&MetaList>` — [`Result`](../error/index.md), [`MetaList`](../attr/index.md)
+- `fn require_list(self: &Self) -> Result<&MetaList>` — [`Result`](error/index.md), [`MetaList`](attr/index.md)
 
-- `fn require_name_value(self: &Self) -> Result<&MetaNameValue>` — [`Result`](../error/index.md), [`MetaNameValue`](../attr/index.md)
+- `fn require_name_value(self: &Self) -> Result<&MetaNameValue>` — [`Result`](error/index.md), [`MetaNameValue`](attr/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Meta`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::attr::Meta`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Meta`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Meta`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::attr::Meta`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6323,7 +6318,6 @@ Data stored within an enum variant or struct.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -6342,23 +6336,23 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn iter(self: &Self) -> punctuated::Iter<'_, Field>` — [`Iter`](../punctuated/index.md), [`Field`](../data/index.md)
+- `fn iter(self: &Self) -> punctuated::Iter<'_, Field>` — [`Iter`](punctuated/index.md), [`Field`](data/index.md)
 
-- `fn iter_mut(self: &mut Self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](../punctuated/index.md), [`Field`](../data/index.md)
+- `fn iter_mut(self: &mut Self) -> punctuated::IterMut<'_, Field>` — [`IterMut`](punctuated/index.md), [`Field`](data/index.md)
 
 - `fn len(self: &Self) -> usize`
 
 - `fn is_empty(self: &Self) -> bool`
 
-- `fn members(self: &Self) -> Members<'_>` — [`Members`](../data/index.md)
+- `fn members(self: &Self) -> Members<'_>` — [`Members`](data/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Fields`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl IntoIterator`
+##### `impl IntoIterator for Fields`
 
 - `type Item = Field`
 
@@ -6366,13 +6360,13 @@ This type is a [syntax tree enum].
 
 - `fn into_iter(self: Self) -> <Self as >::IntoIter`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Fields`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Fields`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Fields`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -6392,11 +6386,10 @@ The storage of a struct, enum or union data structure.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Data`
 
 - `fn clone(self: &Self) -> Self`
 
@@ -6414,21 +6407,21 @@ isn't the implicit default.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PointerMutability`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::PointerMutability`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PointerMutability`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PointerMutability`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::PointerMutability`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6455,27 +6448,27 @@ Limit types of a range, inclusive or exclusive.
 
 #### Implementations
 
-- `fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_obsolete(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::RangeLimits`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for crate::RangeLimits`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::RangeLimits`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for RangeLimits`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for RangeLimits`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::RangeLimits`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6783,31 +6776,31 @@ see names getting repeated in your code, like accessing
 
 - `const PLACEHOLDER: Self`
 
-- `fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Expr`](../expr/index.md)
+- `fn parse_without_eager_brace(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Expr`](expr/index.md)
 
-- `fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Expr`](../expr/index.md)
+- `fn parse_with_earlier_boundary_rule(input: ParseStream<'_>) -> Result<Expr>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Expr`](expr/index.md)
 
-- `fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](../parse/index.md)
+- `fn peek(input: ParseStream<'_>) -> bool` — [`ParseStream`](parse/index.md)
 
-- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../attr/index.md)
+- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](attr/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Expr`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::Expr`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Expr`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Expr`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Expr`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -6839,37 +6832,37 @@ expression.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Member`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Eq`
+##### `impl Eq for Member`
 
-##### `impl Hash`
+##### `impl Hash for Member`
 
 - `fn hash<H: Hasher>(self: &Self, state: &mut H)`
 
-##### `impl IdentFragment`
+##### `impl IdentFragment for Member`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 - `fn span(self: &Self) -> Option<Span>`
 
-##### `impl Parse`
+##### `impl Parse for crate::expr::Member`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Member`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Member`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Member`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::expr::Member`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6890,7 +6883,6 @@ A generic type parameter, lifetime, or const generic: `T: Into<String>`,
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -6908,21 +6900,21 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::GenericParam`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::GenericParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for GenericParam`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for GenericParam`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for GenericParam`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -6940,23 +6932,23 @@ A modifier on a trait bound, currently only used for the `?` in
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TraitBoundModifier`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for crate::TraitBoundModifier`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::TraitBoundModifier`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TraitBoundModifier`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TraitBoundModifier`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::TraitBoundModifier`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -6975,27 +6967,27 @@ A trait or lifetime used as a bound on a type parameter.
 
 #### Implementations
 
-- `fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_single(input: ParseStream<'_>, allow_precise_capture: bool, allow_const: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, $crate::token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`Punctuated`](../punctuated/index.md), [`Plus`](../token/index.md)
+- `fn parse_multiple(input: ParseStream<'_>, allow_plus: bool, allow_precise_capture: bool, allow_const: bool) -> Result<Punctuated<Self, $crate::token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Punctuated`](punctuated/index.md), [`Plus`](token/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TypeParamBound`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::TypeParamBound`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TypeParamBound`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TypeParamBound`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for TypeParamBound`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -7014,7 +7006,6 @@ A single predicate in a `where` clause: `T: Deserialize<'de>`.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -7028,21 +7019,21 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::WherePredicate`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::WherePredicate`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for WherePredicate`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for WherePredicate`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for WherePredicate`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -7072,21 +7063,21 @@ Single parameter in a precise capturing bound.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::CapturedParam`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::generics::CapturedParam`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for CapturedParam`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for CapturedParam`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::generics::CapturedParam`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -7113,21 +7104,21 @@ An argument in a function signature: the `n: usize` in `fn f(n: usize)`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::FnArg`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::FnArg`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for FnArg`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for FnArg`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for FnArg`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -7149,7 +7140,6 @@ An item within an `extern` block.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -7175,21 +7165,21 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ForeignItem`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ForeignItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ForeignItem`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ForeignItem`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for ForeignItem`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -7211,7 +7201,6 @@ An item within an impl block.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -7237,21 +7226,21 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ImplItem`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::ImplItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ImplItem`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ImplItem`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for ImplItem`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -7266,7 +7255,7 @@ Unused, but reserved for RFC 3323 restrictions.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ImplRestriction`
 
 - `fn clone(self: &Self) -> Self`
 
@@ -7299,7 +7288,6 @@ Things that can appear directly inside of a module or scope.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -7371,25 +7359,25 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](../attr/index.md)
+- `fn replace_attrs(self: &mut Self, new: Vec<Attribute>) -> Vec<Attribute>` — [`Attribute`](attr/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Item`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::Item`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Item`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Item`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Item`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -7406,21 +7394,21 @@ The mutability of an `Item::Static` or `ForeignItem::Static`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::StaticMutability`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::StaticMutability`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for StaticMutability`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for StaticMutability`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::item::StaticMutability`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -7442,7 +7430,6 @@ An item declaration within the definition of a trait.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -7468,21 +7455,21 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::TraitItem`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::TraitItem`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for TraitItem`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for TraitItem`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for TraitItem`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -7504,7 +7491,6 @@ A suffix of an import tree in a `use` item: `Type as Renamed` or `*`.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -7530,21 +7516,21 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::UseTree`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::item::UseTree`
 
-- `fn parse(input: ParseStream<'_>) -> Result<UseTree>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md), [`UseTree`](../item/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<UseTree>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`UseTree`](item/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for UseTree`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for UseTree`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for UseTree`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -7570,7 +7556,6 @@ A Rust literal such as a string or integer or boolean.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -7626,25 +7611,25 @@ This type is a [syntax tree enum].
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Lit`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::lit::Lit`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl Sealed for crate::lit::Lit`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Lit`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Lit`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
-##### `impl Token`
+##### `impl Token for crate::lit::Lit`
 
 ### `MacroDelimiter`
 
@@ -7666,7 +7651,7 @@ A grouping token that surrounds a macro body: `m!(...)` or `m!{...}` or `m![...]
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::MacroDelimiter`
 
 - `fn clone(self: &Self) -> Self`
 
@@ -7823,23 +7808,23 @@ A binary operator: `+`, `+=`, `&`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::BinOp`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for crate::BinOp`
 
-##### `impl Parse`
+##### `impl Parse for crate::op::BinOp`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for BinOp`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for BinOp`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::op::BinOp`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -7871,23 +7856,23 @@ A unary operator: `*`, `!`, `-`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::UnOp`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Copy`
+##### `impl Copy for crate::UnOp`
 
-##### `impl Parse`
+##### `impl Parse for crate::op::UnOp`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for UnOp`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for UnOp`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::op::UnOp`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -7922,7 +7907,6 @@ various other places.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -8002,25 +7986,25 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn parse_single(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_single(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_multi(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_multi(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse_multi_with_leading_vert(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_multi_with_leading_vert(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Pat`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Pat`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Pat`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Pat`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -8072,21 +8056,21 @@ An individual generic argument, like `'a`, `T`, or `Item = T`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::GenericArgument`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::path::GenericArgument`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for GenericArgument`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for GenericArgument`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::GenericArgument`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -8128,21 +8112,21 @@ The `(A, B) -> C` in `Fn(A, B) -> C`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::PathArguments`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Default`
+##### `impl Default for PathArguments`
 
 - `fn default() -> Self`
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for PathArguments`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for PathArguments`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::path::PathArguments`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -8158,7 +8142,7 @@ Unused, but reserved for RFC 3323 restrictions.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::FieldMutability`
 
 - `fn clone(self: &Self) -> Self`
 
@@ -8179,7 +8163,6 @@ The visibility level of an item: inherited or `pub` or
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -8198,27 +8181,27 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn parse_pub(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse_pub(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 - `fn is_some(self: &Self) -> bool`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Visibility`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::restriction::Visibility`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Visibility`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Visibility`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::restriction::Visibility`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -8259,21 +8242,21 @@ A statement, usually ending in a semicolon.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Stmt`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::stmt::Stmt`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Stmt`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Stmt`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::stmt::Stmt`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -8302,27 +8285,27 @@ Return type of a function signature.
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::ReturnType`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::ReturnType`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for ReturnType`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for ReturnType`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for crate::ty::ReturnType`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
@@ -8354,7 +8337,6 @@ The possible types that a Rust value could have.
 
 This type is a [syntax tree enum].
 
-[syntax tree enum]: crate::expr::Expr#syntax-tree-enums
 
 #### Variants
 
@@ -8423,25 +8405,25 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for crate::Type`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Parse`
+##### `impl Parse for crate::ty::Type`
 
-- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+- `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
 
-##### `impl Sealed<T>`
+##### `impl<T> Sealed for Type`
 
-##### `impl Spanned<T>`
+##### `impl<T> Spanned for Type`
 
 - `fn span(self: &Self) -> Span`
 
-##### `impl ToTokens`
+##### `impl ToTokens for Type`
 
 - `fn to_tokens(self: &Self, tokens: &mut ::proc_macro2::TokenStream)`
 
@@ -8775,7 +8757,6 @@ Ok(())
 
 See the [token module] documentation for details and examples.
 
-[token module]: crate::token
 
 ### `custom_keyword!`
 
@@ -8807,9 +8788,8 @@ any built-in keyword token.
 
 - Field access to its span — `let sp = whatever_token.span`
 
-[Peeking]: crate::parse::ParseBuffer::peek
-[Parsing]: crate::parse::ParseBuffer::parse
-[Printing]: quote::ToTokens
+
+
 
 # Example
 
@@ -8893,9 +8873,8 @@ any built-in punctuation token.
 
 - Field access to its spans — `let spans = lrarrow.spans`
 
-[Peeking]: crate::parse::ParseBuffer::peek
-[Parsing]: crate::parse::ParseBuffer::parse
-[Printing]: quote::ToTokens
+
+
 
 # Example
 
@@ -8954,8 +8933,6 @@ tokens fail to parse.
 Refer to the [`parse` module] documentation for more details about parsing
 in Syn.
 
-[`parse` module]: mod@crate::parse
-
 <br>
 
 # Intended usage
@@ -9000,8 +8977,6 @@ pub fn my_macro(tokens: TokenStream) -> TokenStream {
 
 This macro can also be used with the [`Parser` trait] for types that have
 multiple ways that they can be parsed.
-
-[`Parser` trait]: crate::parse::Parser
 
 ```rust
 extern crate proc_macro;
@@ -9116,7 +9091,7 @@ though they do not implement the `Parse` trait.
 - [`Vec<Stmt>`](#vec) — parses the same as `Block::parse_within`
 - [`Pat`](pat/index.md), [`Box<Pat>`](#box) — parses the same as
   `Pat::parse_multi_with_leading_vert`
-- [`Field`](#field) — parses a named or unnamed struct field
+- [`Field`](data/index.md) — parses a named or unnamed struct field
 
 
 

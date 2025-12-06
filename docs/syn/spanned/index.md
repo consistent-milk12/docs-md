@@ -98,7 +98,6 @@ This trait is automatically implemented for all types that implement
 
 See the [module documentation] for an example.
 
-[module documentation]: self
 
 #### Required Methods
 

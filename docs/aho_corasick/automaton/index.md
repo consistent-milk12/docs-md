@@ -38,17 +38,17 @@ much else. If you have a use case for more APIs, please submit an issue.
 
 #### Implementations
 
-- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../../util/search/index.md), [`Candidate`](../../util/prefilter/index.md)
+- `fn find_in(self: &Self, haystack: &[u8], span: Span) -> Candidate` — [`Span`](../util/search/index.md), [`Candidate`](../util/prefilter/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Prefilter`
 
-- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](../../util/prefilter/index.md)
+- `fn clone(self: &Self) -> Prefilter` — [`Prefilter`](../util/prefilter/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Prefilter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -86,13 +86,13 @@ panics or silent logical errors.
 
 - `const SIZE: usize`
 
-- `fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../../util/primitives/index.md), [`StateIDError`](../../util/primitives/index.md)
+- `fn new(value: usize) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
 
-- `const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- `const fn new_unchecked(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md)
 
-- `const fn from_u32_unchecked(index: u32) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- `const fn from_u32_unchecked(index: u32) -> StateID` — [`StateID`](../util/primitives/index.md)
 
-- `fn must(value: usize) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- `fn must(value: usize) -> StateID` — [`StateID`](../util/primitives/index.md)
 
 - `const fn as_usize(self: &Self) -> usize`
 
@@ -104,49 +104,49 @@ panics or silent logical errors.
 
 - `fn one_more(self: &Self) -> usize`
 
-- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../../util/primitives/index.md), [`StateIDError`](../../util/primitives/index.md)
+- `fn from_ne_bytes(bytes: [u8; 4]) -> Result<StateID, StateIDError>` — [`StateID`](../util/primitives/index.md), [`StateIDError`](../util/primitives/index.md)
 
-- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- `fn from_ne_bytes_unchecked(bytes: [u8; 4]) -> StateID` — [`StateID`](../util/primitives/index.md)
 
 - `fn to_ne_bytes(self: &Self) -> [u8; 4]`
 
-- `fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../../util/primitives/index.md)
+- `fn iter(len: usize) -> StateIDIter` — [`StateIDIter`](../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StateID`
 
-- `fn clone(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+- `fn clone(self: &Self) -> StateID` — [`StateID`](../util/primitives/index.md)
 
-##### `impl Copy`
+##### `impl Copy for StateID`
 
-##### `impl Debug`
+##### `impl Debug for StateID`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for StateID`
 
-- `fn default() -> StateID` — [`StateID`](../../util/primitives/index.md)
+- `fn default() -> StateID` — [`StateID`](../util/primitives/index.md)
 
-##### `impl Eq`
+##### `impl Eq for StateID`
 
-##### `impl Hash`
+##### `impl Hash for StateID`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for StateID`
 
-- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering` — [`StateID`](../../util/primitives/index.md)
+- `fn cmp(self: &Self, other: &StateID) -> $crate::cmp::Ordering` — [`StateID`](../util/primitives/index.md)
 
-##### `impl PartialEq`
+##### `impl PartialEq for StateID`
 
-- `fn eq(self: &Self, other: &StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &StateID) -> bool` — [`StateID`](../util/primitives/index.md)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for StateID`
 
-- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StateID`](../../util/primitives/index.md)
+- `fn partial_cmp(self: &Self, other: &StateID) -> $crate::option::Option<$crate::cmp::Ordering>` — [`StateID`](../util/primitives/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for StateID`
 
 ### `StateIDError`
 
@@ -168,29 +168,29 @@ trait.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for StateIDError`
 
-- `fn clone(self: &Self) -> StateIDError` — [`StateIDError`](../../util/primitives/index.md)
+- `fn clone(self: &Self) -> StateIDError` — [`StateIDError`](../util/primitives/index.md)
 
-##### `impl Debug`
+##### `impl Debug for StateIDError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for StateIDError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for StateIDError`
 
-##### `impl Error`
+##### `impl Error for StateIDError`
 
-##### `impl PartialEq`
+##### `impl PartialEq for StateIDError`
 
-- `fn eq(self: &Self, other: &StateIDError) -> bool` — [`StateIDError`](../../util/primitives/index.md)
+- `fn eq(self: &Self, other: &StateIDError) -> bool` — [`StateIDError`](../util/primitives/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for StateIDError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for StateIDError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -304,17 +304,17 @@ assert_eq!(expected, matches);
 
 #### Implementations
 
-- `fn start() -> OverlappingState` — [`OverlappingState`](../../automaton/index.md)
+- `fn start() -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for OverlappingState`
 
-- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](../../automaton/index.md)
+- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](#overlappingstate)
 
-##### `impl Debug`
+##### `impl Debug for OverlappingState`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -363,19 +363,19 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Implementations
 
-- `fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../../util/search/index.md), [`FindIter`](../../automaton/index.md), [`MatchError`](../../util/error/index.md)
+- `fn new(aut: &'a A, input: Input<'h>) -> Result<FindIter<'a, 'h, A>, MatchError>` — [`Input`](../util/search/index.md), [`FindIter`](#finditer), [`MatchError`](../util/error/index.md)
 
-- `fn search(self: &Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- `fn search(self: &Self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
-- `fn handle_overlapping_empty_match(self: &mut Self, m: Match) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- `fn handle_overlapping_empty_match(self: &mut Self, m: Match) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 #### Trait Implementations
 
-##### `impl Debug<'a, 'h, A: $crate::fmt::Debug>`
+##### `impl<'a, 'h, A: $crate::fmt::Debug> Debug for FindIter<'a, 'h, A>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindIter<'a, 'h, A>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -383,11 +383,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, 'h, A: Automaton>`
+##### `impl<'a, 'h, A: Automaton> Iterator for FindIter<'a, 'h, A>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 ### `FindOverlappingIter<'a, 'h, A>`
 
@@ -417,11 +417,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
 
-##### `impl Debug<'a, 'h, A: $crate::fmt::Debug>`
+##### `impl<'a, 'h, A: $crate::fmt::Debug> Debug for FindOverlappingIter<'a, 'h, A>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for FindOverlappingIter<'a, 'h, A>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -429,11 +429,11 @@ The lifetime `'h` refers to the lifetime of the haystack being searched.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, 'h, A: Automaton>`
+##### `impl<'a, 'h, A: Automaton> Iterator for FindOverlappingIter<'a, 'h, A>`
 
 - `type Item = Match`
 
-- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Match>` — [`Match`](../util/search/index.md)
 
 ### `StreamFindIter<'a, A, R>`
 
@@ -463,11 +463,11 @@ implementation.
 
 #### Trait Implementations
 
-##### `impl Debug<'a, A: $crate::fmt::Debug, R: $crate::fmt::Debug>`
+##### `impl<'a, A: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for StreamFindIter<'a, A, R>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for StreamFindIter<'a, A, R>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -475,11 +475,11 @@ implementation.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a, A: Automaton, R: std::io::Read>`
+##### `impl<'a, A: Automaton, R: std::io::Read> Iterator for StreamFindIter<'a, A, R>`
 
 - `type Item = Result<Match, Error>`
 
-- `fn next(self: &mut Self) -> Option<std::io::Result<Match>>` — [`Match`](../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md)
 
 ## Enums
 
@@ -531,11 +531,11 @@ implementations are permitted to return false positives.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Candidate`
 
-- `fn clone(self: &Self) -> Candidate` — [`Candidate`](../../util/prefilter/index.md)
+- `fn clone(self: &Self) -> Candidate` — [`Candidate`](../util/prefilter/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Candidate`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

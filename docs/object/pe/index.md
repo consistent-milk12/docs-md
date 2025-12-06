@@ -121,23 +121,23 @@ DOS .EXE header
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>` — [`Result`](../../read/index.md)
+- `fn parse<'data, R: ReadRef<'data>>(data: R) -> read::Result<&'data Self>` — [`Result`](../index.md)
 
 - `fn nt_headers_offset(self: &Self) -> u32`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDosHeader`
 
-- `fn clone(self: &Self) -> ImageDosHeader` — [`ImageDosHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDosHeader` — [`ImageDosHeader`](#imagedosheader)
 
-##### `impl Copy`
+##### `impl Copy for ImageDosHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageDosHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDosHeader`
 
 ### `ImageOs2Header`
 
@@ -302,17 +302,17 @@ OS/2 .EXE header
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageOs2Header`
 
-- `fn clone(self: &Self) -> ImageOs2Header` — [`ImageOs2Header`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageOs2Header` — [`ImageOs2Header`](#imageos2header)
 
-##### `impl Copy`
+##### `impl Copy for ImageOs2Header`
 
-##### `impl Debug`
+##### `impl Debug for ImageOs2Header`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageOs2Header`
 
 ### `ImageVxdHeader`
 
@@ -574,17 +574,17 @@ Windows VXD header
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageVxdHeader`
 
-- `fn clone(self: &Self) -> ImageVxdHeader` — [`ImageVxdHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageVxdHeader` — [`ImageVxdHeader`](#imagevxdheader)
 
-##### `impl Copy`
+##### `impl Copy for ImageVxdHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageVxdHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageVxdHeader`
 
 ### `MaskedRichHeaderEntry`
 
@@ -606,17 +606,17 @@ This data is "masked", i.e. XORed with a checksum derived from the file data.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for MaskedRichHeaderEntry`
 
-- `fn clone(self: &Self) -> MaskedRichHeaderEntry` — [`MaskedRichHeaderEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> MaskedRichHeaderEntry` — [`MaskedRichHeaderEntry`](#maskedrichheaderentry)
 
-##### `impl Copy`
+##### `impl Copy for MaskedRichHeaderEntry`
 
-##### `impl Debug`
+##### `impl Debug for MaskedRichHeaderEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for MaskedRichHeaderEntry`
 
 ### `ImageFileHeader`
 
@@ -634,11 +634,11 @@ struct ImageFileHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageFileHeader`
 
-- `fn clone(self: &Self) -> ImageFileHeader` — [`ImageFileHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-##### `impl CoffHeader`
+##### `impl CoffHeader for pe::ImageFileHeader`
 
 - `type ImageSymbol = ImageSymbol`
 
@@ -656,15 +656,15 @@ struct ImageFileHeader {
 
 - `fn characteristics(self: &Self) -> u16`
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../../read/index.md)
+- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for ImageFileHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageFileHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageFileHeader`
 
 ### `ImageDataDirectory`
 
@@ -679,23 +679,23 @@ struct ImageDataDirectory {
 
 - `fn address_range(self: &Self) -> (u32, u32)`
 
-- `fn file_range(self: &Self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../../read/coff/section/index.md), [`Result`](../../read/index.md)
+- `fn file_range(self: &Self, sections: &SectionTable<'_>) -> Result<(u32, u32)>` — [`SectionTable`](../read/coff/index.md), [`Result`](../index.md)
 
-- `fn data<'data, R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../../read/coff/section/index.md), [`Result`](../../read/index.md)
+- `fn data<'data, R: ReadRef<'data>>(self: &Self, data: R, sections: &SectionTable<'data>) -> Result<&'data [u8]>` — [`SectionTable`](../read/coff/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDataDirectory`
 
-- `fn clone(self: &Self) -> ImageDataDirectory` — [`ImageDataDirectory`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDataDirectory` — [`ImageDataDirectory`](#imagedatadirectory)
 
-##### `impl Copy`
+##### `impl Copy for ImageDataDirectory`
 
-##### `impl Debug`
+##### `impl Debug for ImageDataDirectory`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDataDirectory`
 
 ### `ImageOptionalHeader32`
 
@@ -736,17 +736,17 @@ struct ImageOptionalHeader32 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageOptionalHeader32`
 
-- `fn clone(self: &Self) -> ImageOptionalHeader32` — [`ImageOptionalHeader32`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageOptionalHeader32` — [`ImageOptionalHeader32`](#imageoptionalheader32)
 
-##### `impl Copy`
+##### `impl Copy for ImageOptionalHeader32`
 
-##### `impl Debug`
+##### `impl Debug for ImageOptionalHeader32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl ImageOptionalHeader`
+##### `impl ImageOptionalHeader for pe::ImageOptionalHeader32`
 
 - `fn magic(self: &Self) -> u16`
 
@@ -808,7 +808,7 @@ struct ImageOptionalHeader32 {
 
 - `fn number_of_rva_and_sizes(self: &Self) -> u32`
 
-##### `impl Pod`
+##### `impl Pod for ImageOptionalHeader32`
 
 ### `ImageRomOptionalHeader`
 
@@ -832,17 +832,17 @@ struct ImageRomOptionalHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageRomOptionalHeader`
 
-- `fn clone(self: &Self) -> ImageRomOptionalHeader` — [`ImageRomOptionalHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageRomOptionalHeader` — [`ImageRomOptionalHeader`](#imageromoptionalheader)
 
-##### `impl Copy`
+##### `impl Copy for ImageRomOptionalHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageRomOptionalHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageRomOptionalHeader`
 
 ### `ImageOptionalHeader64`
 
@@ -882,17 +882,17 @@ struct ImageOptionalHeader64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageOptionalHeader64`
 
-- `fn clone(self: &Self) -> ImageOptionalHeader64` — [`ImageOptionalHeader64`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageOptionalHeader64` — [`ImageOptionalHeader64`](#imageoptionalheader64)
 
-##### `impl Copy`
+##### `impl Copy for ImageOptionalHeader64`
 
-##### `impl Debug`
+##### `impl Debug for ImageOptionalHeader64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl ImageOptionalHeader`
+##### `impl ImageOptionalHeader for pe::ImageOptionalHeader64`
 
 - `fn magic(self: &Self) -> u16`
 
@@ -954,7 +954,7 @@ struct ImageOptionalHeader64 {
 
 - `fn number_of_rva_and_sizes(self: &Self) -> u32`
 
-##### `impl Pod`
+##### `impl Pod for ImageOptionalHeader64`
 
 ### `ImageNtHeaders64`
 
@@ -968,17 +968,17 @@ struct ImageNtHeaders64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageNtHeaders64`
 
-- `fn clone(self: &Self) -> ImageNtHeaders64` — [`ImageNtHeaders64`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageNtHeaders64` — [`ImageNtHeaders64`](#imagentheaders64)
 
-##### `impl Copy`
+##### `impl Copy for ImageNtHeaders64`
 
-##### `impl Debug`
+##### `impl Debug for ImageNtHeaders64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl ImageNtHeaders`
+##### `impl ImageNtHeaders for pe::ImageNtHeaders64`
 
 - `type ImageOptionalHeader = ImageOptionalHeader64`
 
@@ -990,11 +990,11 @@ struct ImageNtHeaders64 {
 
 - `fn signature(self: &Self) -> u32`
 
-- `fn file_header(self: &Self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](../../pe/index.md)
+- `fn file_header(self: &Self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-- `fn optional_header(self: &Self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../../read/pe/file/index.md)
+- `fn optional_header(self: &Self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md)
 
-##### `impl Pod`
+##### `impl Pod for ImageNtHeaders64`
 
 ### `ImageNtHeaders32`
 
@@ -1008,17 +1008,17 @@ struct ImageNtHeaders32 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageNtHeaders32`
 
-- `fn clone(self: &Self) -> ImageNtHeaders32` — [`ImageNtHeaders32`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageNtHeaders32` — [`ImageNtHeaders32`](#imagentheaders32)
 
-##### `impl Copy`
+##### `impl Copy for ImageNtHeaders32`
 
-##### `impl Debug`
+##### `impl Debug for ImageNtHeaders32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl ImageNtHeaders`
+##### `impl ImageNtHeaders for pe::ImageNtHeaders32`
 
 - `type ImageOptionalHeader = ImageOptionalHeader32`
 
@@ -1030,11 +1030,11 @@ struct ImageNtHeaders32 {
 
 - `fn signature(self: &Self) -> u32`
 
-- `fn file_header(self: &Self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](../../pe/index.md)
+- `fn file_header(self: &Self) -> &pe::ImageFileHeader` — [`ImageFileHeader`](#imagefileheader)
 
-- `fn optional_header(self: &Self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../../read/pe/file/index.md)
+- `fn optional_header(self: &Self) -> &<Self as >::ImageOptionalHeader` — [`ImageNtHeaders`](../read/pe/index.md)
 
-##### `impl Pod`
+##### `impl Pod for ImageNtHeaders32`
 
 ### `ImageRomHeaders`
 
@@ -1047,17 +1047,17 @@ struct ImageRomHeaders {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageRomHeaders`
 
-- `fn clone(self: &Self) -> ImageRomHeaders` — [`ImageRomHeaders`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageRomHeaders` — [`ImageRomHeaders`](#imageromheaders)
 
-##### `impl Copy`
+##### `impl Copy for ImageRomHeaders`
 
-##### `impl Debug`
+##### `impl Debug for ImageRomHeaders`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageRomHeaders`
 
 ### `Guid`
 
@@ -1067,35 +1067,35 @@ struct Guid([u8; 16]);
 
 #### Implementations
 
-- `fn data1(self: Self) -> U32<LE>` — [`U32`](../../endian/index.md), [`LittleEndian`](../../endian/index.md)
+- `fn data1(self: Self) -> U32<LE>` — [`U32`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data2(self: Self) -> U16<LE>` — [`U16`](../../endian/index.md), [`LittleEndian`](../../endian/index.md)
+- `fn data2(self: Self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data3(self: Self) -> U16<LE>` — [`U16`](../../endian/index.md), [`LittleEndian`](../../endian/index.md)
+- `fn data3(self: Self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
 
 - `fn data4(self: Self) -> [u8; 8]`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Guid`
 
-- `fn clone(self: &Self) -> Guid` — [`Guid`](../../pe/index.md)
+- `fn clone(self: &Self) -> Guid` — [`Guid`](#guid)
 
-##### `impl Copy`
+##### `impl Copy for Guid`
 
-##### `impl Debug`
+##### `impl Debug for Guid`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Guid`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Guid`
 
-- `fn eq(self: &Self, other: &Guid) -> bool` — [`Guid`](../../pe/index.md)
+- `fn eq(self: &Self, other: &Guid) -> bool` — [`Guid`](#guid)
 
-##### `impl Pod`
+##### `impl Pod for Guid`
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Guid`
 
 ### `ClsId`
 
@@ -1105,35 +1105,35 @@ struct ClsId([u8; 16]);
 
 #### Implementations
 
-- `fn data1(self: Self) -> U32<LE>` — [`U32`](../../endian/index.md), [`LittleEndian`](../../endian/index.md)
+- `fn data1(self: Self) -> U32<LE>` — [`U32`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data2(self: Self) -> U16<LE>` — [`U16`](../../endian/index.md), [`LittleEndian`](../../endian/index.md)
+- `fn data2(self: Self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
 
-- `fn data3(self: Self) -> U16<LE>` — [`U16`](../../endian/index.md), [`LittleEndian`](../../endian/index.md)
+- `fn data3(self: Self) -> U16<LE>` — [`U16`](../index.md), [`LittleEndian`](../index.md)
 
 - `fn data4(self: Self) -> [u8; 8]`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Guid`
 
-- `fn clone(self: &Self) -> Guid` — [`Guid`](../../pe/index.md)
+- `fn clone(self: &Self) -> Guid` — [`Guid`](#guid)
 
-##### `impl Copy`
+##### `impl Copy for Guid`
 
-##### `impl Debug`
+##### `impl Debug for Guid`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Guid`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Guid`
 
-- `fn eq(self: &Self, other: &Guid) -> bool` — [`Guid`](../../pe/index.md)
+- `fn eq(self: &Self, other: &Guid) -> bool` — [`Guid`](#guid)
 
-##### `impl Pod`
+##### `impl Pod for Guid`
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Guid`
 
 ### `AnonObjectHeader`
 
@@ -1175,17 +1175,17 @@ Non-COFF Object file header
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AnonObjectHeader`
 
-- `fn clone(self: &Self) -> AnonObjectHeader` — [`AnonObjectHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> AnonObjectHeader` — [`AnonObjectHeader`](#anonobjectheader)
 
-##### `impl Copy`
+##### `impl Copy for AnonObjectHeader`
 
-##### `impl Debug`
+##### `impl Debug for AnonObjectHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for AnonObjectHeader`
 
 ### `AnonObjectHeaderV2`
 
@@ -1240,17 +1240,17 @@ struct AnonObjectHeaderV2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AnonObjectHeaderV2`
 
-- `fn clone(self: &Self) -> AnonObjectHeaderV2` — [`AnonObjectHeaderV2`](../../pe/index.md)
+- `fn clone(self: &Self) -> AnonObjectHeaderV2` — [`AnonObjectHeaderV2`](#anonobjectheaderv2)
 
-##### `impl Copy`
+##### `impl Copy for AnonObjectHeaderV2`
 
-##### `impl Debug`
+##### `impl Debug for AnonObjectHeaderV2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for AnonObjectHeaderV2`
 
 ### `AnonObjectHeaderBigobj`
 
@@ -1316,11 +1316,11 @@ struct AnonObjectHeaderBigobj {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for AnonObjectHeaderBigobj`
 
-- `fn clone(self: &Self) -> AnonObjectHeaderBigobj` — [`AnonObjectHeaderBigobj`](../../pe/index.md)
+- `fn clone(self: &Self) -> AnonObjectHeaderBigobj` — [`AnonObjectHeaderBigobj`](#anonobjectheaderbigobj)
 
-##### `impl CoffHeader`
+##### `impl CoffHeader for pe::AnonObjectHeaderBigobj`
 
 - `type ImageSymbol = ImageSymbolEx`
 
@@ -1338,15 +1338,15 @@ struct AnonObjectHeaderBigobj {
 
 - `fn characteristics(self: &Self) -> u16`
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../../read/index.md)
+- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> read::Result<&'data Self>` — [`Result`](../index.md)
 
-##### `impl Copy`
+##### `impl Copy for AnonObjectHeaderBigobj`
 
-##### `impl Debug`
+##### `impl Debug for AnonObjectHeaderBigobj`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for AnonObjectHeaderBigobj`
 
 ### `ImageSectionHeader`
 
@@ -1367,25 +1367,37 @@ struct ImageSectionHeader {
 
 #### Implementations
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../../common/index.md)
+- `fn pe_file_range(self: &Self) -> (u32, u32)`
+
+- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
+
+- `fn pe_address_range(self: &Self) -> (u32, u32)`
+
+- `fn pe_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md)
+
+- `fn pe_data_at<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
+
+- `fn contains_rva(self: &Self, va: u32) -> bool`
+
+- `fn pe_data_containing<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageSectionHeader`
 
-- `fn clone(self: &Self) -> ImageSectionHeader` — [`ImageSectionHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageSectionHeader` — [`ImageSectionHeader`](#imagesectionheader)
 
-##### `impl Copy`
+##### `impl Copy for ImageSectionHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageSectionHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ImageSectionHeader`
 
-- `fn default() -> ImageSectionHeader` — [`ImageSectionHeader`](../../pe/index.md)
+- `fn default() -> ImageSectionHeader` — [`ImageSectionHeader`](#imagesectionheader)
 
-##### `impl Pod`
+##### `impl Pod for ImageSectionHeader`
 
 ### `ImageSymbol`
 
@@ -1408,17 +1420,17 @@ struct ImageSymbol {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageSymbol`
 
-- `fn clone(self: &Self) -> ImageSymbol` — [`ImageSymbol`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageSymbol` — [`ImageSymbol`](#imagesymbol)
 
-##### `impl Copy`
+##### `impl Copy for ImageSymbol`
 
-##### `impl Debug`
+##### `impl Debug for ImageSymbol`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl ImageSymbol`
+##### `impl ImageSymbol for pe::ImageSymbol`
 
 - `fn raw_name(self: &Self) -> &[u8; 8]`
 
@@ -1432,7 +1444,7 @@ struct ImageSymbol {
 
 - `fn number_of_aux_symbols(self: &Self) -> u8`
 
-##### `impl Pod`
+##### `impl Pod for ImageSymbol`
 
 ### `ImageSymbolBytes`
 
@@ -1442,17 +1454,17 @@ struct ImageSymbolBytes([u8; 18]);
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageSymbolBytes`
 
-- `fn clone(self: &Self) -> ImageSymbolBytes` — [`ImageSymbolBytes`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageSymbolBytes` — [`ImageSymbolBytes`](#imagesymbolbytes)
 
-##### `impl Copy`
+##### `impl Copy for ImageSymbolBytes`
 
-##### `impl Debug`
+##### `impl Debug for ImageSymbolBytes`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageSymbolBytes`
 
 ### `ImageSymbolEx`
 
@@ -1475,17 +1487,17 @@ struct ImageSymbolEx {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageSymbolEx`
 
-- `fn clone(self: &Self) -> ImageSymbolEx` — [`ImageSymbolEx`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageSymbolEx` — [`ImageSymbolEx`](#imagesymbolex)
 
-##### `impl Copy`
+##### `impl Copy for ImageSymbolEx`
 
-##### `impl Debug`
+##### `impl Debug for ImageSymbolEx`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl ImageSymbol`
+##### `impl ImageSymbol for pe::ImageSymbolEx`
 
 - `fn raw_name(self: &Self) -> &[u8; 8]`
 
@@ -1499,7 +1511,7 @@ struct ImageSymbolEx {
 
 - `fn number_of_aux_symbols(self: &Self) -> u8`
 
-##### `impl Pod`
+##### `impl Pod for ImageSymbolEx`
 
 ### `ImageSymbolExBytes`
 
@@ -1509,17 +1521,17 @@ struct ImageSymbolExBytes([u8; 20]);
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageSymbolExBytes`
 
-- `fn clone(self: &Self) -> ImageSymbolExBytes` — [`ImageSymbolExBytes`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageSymbolExBytes` — [`ImageSymbolExBytes`](#imagesymbolexbytes)
 
-##### `impl Copy`
+##### `impl Copy for ImageSymbolExBytes`
 
-##### `impl Debug`
+##### `impl Debug for ImageSymbolExBytes`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageSymbolExBytes`
 
 ### `ImageAuxSymbolTokenDef`
 
@@ -1548,17 +1560,17 @@ struct ImageAuxSymbolTokenDef {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageAuxSymbolTokenDef`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolTokenDef` — [`ImageAuxSymbolTokenDef`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageAuxSymbolTokenDef` — [`ImageAuxSymbolTokenDef`](#imageauxsymboltokendef)
 
-##### `impl Copy`
+##### `impl Copy for ImageAuxSymbolTokenDef`
 
-##### `impl Debug`
+##### `impl Debug for ImageAuxSymbolTokenDef`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageAuxSymbolTokenDef`
 
 ### `ImageAuxSymbolFunction`
 
@@ -1576,17 +1588,17 @@ Auxiliary symbol format 1: function definitions.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageAuxSymbolFunction`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolFunction` — [`ImageAuxSymbolFunction`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageAuxSymbolFunction` — [`ImageAuxSymbolFunction`](#imageauxsymbolfunction)
 
-##### `impl Copy`
+##### `impl Copy for ImageAuxSymbolFunction`
 
-##### `impl Debug`
+##### `impl Debug for ImageAuxSymbolFunction`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageAuxSymbolFunction`
 
 ### `ImageAuxSymbolFunctionBeginEnd`
 
@@ -1610,17 +1622,17 @@ Auxiliary symbol format 2: .bf and .ef symbols.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageAuxSymbolFunctionBeginEnd`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolFunctionBeginEnd` — [`ImageAuxSymbolFunctionBeginEnd`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageAuxSymbolFunctionBeginEnd` — [`ImageAuxSymbolFunctionBeginEnd`](#imageauxsymbolfunctionbeginend)
 
-##### `impl Copy`
+##### `impl Copy for ImageAuxSymbolFunctionBeginEnd`
 
-##### `impl Debug`
+##### `impl Debug for ImageAuxSymbolFunctionBeginEnd`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageAuxSymbolFunctionBeginEnd`
 
 ### `ImageAuxSymbolWeak`
 
@@ -1643,21 +1655,21 @@ Used for both `ImageSymbol` and `ImageSymbolEx` (both with padding).
 
 #### Implementations
 
-- `fn default_symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../read/index.md)
+- `fn default_symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageAuxSymbolWeak`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolWeak` — [`ImageAuxSymbolWeak`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageAuxSymbolWeak` — [`ImageAuxSymbolWeak`](#imageauxsymbolweak)
 
-##### `impl Copy`
+##### `impl Copy for ImageAuxSymbolWeak`
 
-##### `impl Debug`
+##### `impl Debug for ImageAuxSymbolWeak`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageAuxSymbolWeak`
 
 ### `ImageAuxSymbolSection`
 
@@ -1710,17 +1722,17 @@ Used for both `ImageSymbol` and `ImageSymbolEx` (with padding).
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageAuxSymbolSection`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolSection` — [`ImageAuxSymbolSection`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageAuxSymbolSection` — [`ImageAuxSymbolSection`](#imageauxsymbolsection)
 
-##### `impl Copy`
+##### `impl Copy for ImageAuxSymbolSection`
 
-##### `impl Debug`
+##### `impl Debug for ImageAuxSymbolSection`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageAuxSymbolSection`
 
 ### `ImageAuxSymbolCrc`
 
@@ -1732,17 +1744,17 @@ struct ImageAuxSymbolCrc {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageAuxSymbolCrc`
 
-- `fn clone(self: &Self) -> ImageAuxSymbolCrc` — [`ImageAuxSymbolCrc`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageAuxSymbolCrc` — [`ImageAuxSymbolCrc`](#imageauxsymbolcrc)
 
-##### `impl Copy`
+##### `impl Copy for ImageAuxSymbolCrc`
 
-##### `impl Debug`
+##### `impl Debug for ImageAuxSymbolCrc`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageAuxSymbolCrc`
 
 ### `ImageRelocation`
 
@@ -1762,21 +1774,21 @@ struct ImageRelocation {
 
 #### Implementations
 
-- `fn symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../../read/index.md)
+- `fn symbol(self: &Self) -> SymbolIndex` — [`SymbolIndex`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageRelocation`
 
-- `fn clone(self: &Self) -> ImageRelocation` — [`ImageRelocation`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageRelocation` — [`ImageRelocation`](#imagerelocation)
 
-##### `impl Copy`
+##### `impl Copy for ImageRelocation`
 
-##### `impl Debug`
+##### `impl Debug for ImageRelocation`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageRelocation`
 
 ### `ImageLinenumber`
 
@@ -1800,17 +1812,17 @@ struct ImageLinenumber {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageLinenumber`
 
-- `fn clone(self: &Self) -> ImageLinenumber` — [`ImageLinenumber`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageLinenumber` — [`ImageLinenumber`](#imagelinenumber)
 
-##### `impl Copy`
+##### `impl Copy for ImageLinenumber`
 
-##### `impl Debug`
+##### `impl Debug for ImageLinenumber`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageLinenumber`
 
 ### `ImageBaseRelocation`
 
@@ -1823,17 +1835,17 @@ struct ImageBaseRelocation {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageBaseRelocation`
 
-- `fn clone(self: &Self) -> ImageBaseRelocation` — [`ImageBaseRelocation`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageBaseRelocation` — [`ImageBaseRelocation`](#imagebaserelocation)
 
-##### `impl Copy`
+##### `impl Copy for ImageBaseRelocation`
 
-##### `impl Debug`
+##### `impl Debug for ImageBaseRelocation`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageBaseRelocation`
 
 ### `ImageArchiveMemberHeader`
 
@@ -1881,17 +1893,17 @@ struct ImageArchiveMemberHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageArchiveMemberHeader`
 
-- `fn clone(self: &Self) -> ImageArchiveMemberHeader` — [`ImageArchiveMemberHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageArchiveMemberHeader` — [`ImageArchiveMemberHeader`](#imagearchivememberheader)
 
-##### `impl Copy`
+##### `impl Copy for ImageArchiveMemberHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageArchiveMemberHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageArchiveMemberHeader`
 
 ### `ImageExportDirectory`
 
@@ -1927,17 +1939,17 @@ struct ImageExportDirectory {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageExportDirectory`
 
-- `fn clone(self: &Self) -> ImageExportDirectory` — [`ImageExportDirectory`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageExportDirectory` — [`ImageExportDirectory`](#imageexportdirectory)
 
-##### `impl Copy`
+##### `impl Copy for ImageExportDirectory`
 
-##### `impl Debug`
+##### `impl Debug for ImageExportDirectory`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageExportDirectory`
 
 ### `ImageImportByName`
 
@@ -1949,17 +1961,17 @@ struct ImageImportByName {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageImportByName`
 
-- `fn clone(self: &Self) -> ImageImportByName` — [`ImageImportByName`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageImportByName` — [`ImageImportByName`](#imageimportbyname)
 
-##### `impl Copy`
+##### `impl Copy for ImageImportByName`
 
-##### `impl Debug`
+##### `impl Debug for ImageImportByName`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageImportByName`
 
 ### `ImageThunkData64`
 
@@ -1969,17 +1981,17 @@ struct ImageThunkData64(crate::endian::U64<crate::endian::LittleEndian>);
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageThunkData64`
 
-- `fn clone(self: &Self) -> ImageThunkData64` — [`ImageThunkData64`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageThunkData64` — [`ImageThunkData64`](#imagethunkdata64)
 
-##### `impl Copy`
+##### `impl Copy for ImageThunkData64`
 
-##### `impl Debug`
+##### `impl Debug for ImageThunkData64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl ImageThunkData`
+##### `impl ImageThunkData for pe::ImageThunkData64`
 
 - `fn raw(self: Self) -> u64`
 
@@ -1989,7 +2001,7 @@ struct ImageThunkData64(crate::endian::U64<crate::endian::LittleEndian>);
 
 - `fn address(self: Self) -> u32`
 
-##### `impl Pod`
+##### `impl Pod for ImageThunkData64`
 
 ### `ImageThunkData32`
 
@@ -1999,17 +2011,17 @@ struct ImageThunkData32(crate::endian::U32<crate::endian::LittleEndian>);
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageThunkData32`
 
-- `fn clone(self: &Self) -> ImageThunkData32` — [`ImageThunkData32`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageThunkData32` — [`ImageThunkData32`](#imagethunkdata32)
 
-##### `impl Copy`
+##### `impl Copy for ImageThunkData32`
 
-##### `impl Debug`
+##### `impl Debug for ImageThunkData32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl ImageThunkData`
+##### `impl ImageThunkData for pe::ImageThunkData32`
 
 - `fn raw(self: Self) -> u64`
 
@@ -2019,7 +2031,7 @@ struct ImageThunkData32(crate::endian::U32<crate::endian::LittleEndian>);
 
 - `fn address(self: Self) -> u32`
 
-##### `impl Pod`
+##### `impl Pod for ImageThunkData32`
 
 ### `ImageTlsDirectory64`
 
@@ -2046,17 +2058,17 @@ struct ImageTlsDirectory64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageTlsDirectory64`
 
-- `fn clone(self: &Self) -> ImageTlsDirectory64` — [`ImageTlsDirectory64`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageTlsDirectory64` — [`ImageTlsDirectory64`](#imagetlsdirectory64)
 
-##### `impl Copy`
+##### `impl Copy for ImageTlsDirectory64`
 
-##### `impl Debug`
+##### `impl Debug for ImageTlsDirectory64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageTlsDirectory64`
 
 ### `ImageTlsDirectory32`
 
@@ -2083,17 +2095,17 @@ struct ImageTlsDirectory32 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageTlsDirectory32`
 
-- `fn clone(self: &Self) -> ImageTlsDirectory32` — [`ImageTlsDirectory32`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageTlsDirectory32` — [`ImageTlsDirectory32`](#imagetlsdirectory32)
 
-##### `impl Copy`
+##### `impl Copy for ImageTlsDirectory32`
 
-##### `impl Debug`
+##### `impl Debug for ImageTlsDirectory32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageTlsDirectory32`
 
 ### `ImageImportDescriptor`
 
@@ -2135,17 +2147,17 @@ struct ImageImportDescriptor {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageImportDescriptor`
 
-- `fn clone(self: &Self) -> ImageImportDescriptor` — [`ImageImportDescriptor`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageImportDescriptor` — [`ImageImportDescriptor`](#imageimportdescriptor)
 
-##### `impl Copy`
+##### `impl Copy for ImageImportDescriptor`
 
-##### `impl Debug`
+##### `impl Debug for ImageImportDescriptor`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageImportDescriptor`
 
 ### `ImageBoundImportDescriptor`
 
@@ -2159,17 +2171,17 @@ struct ImageBoundImportDescriptor {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageBoundImportDescriptor`
 
-- `fn clone(self: &Self) -> ImageBoundImportDescriptor` — [`ImageBoundImportDescriptor`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageBoundImportDescriptor` — [`ImageBoundImportDescriptor`](#imageboundimportdescriptor)
 
-##### `impl Copy`
+##### `impl Copy for ImageBoundImportDescriptor`
 
-##### `impl Debug`
+##### `impl Debug for ImageBoundImportDescriptor`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageBoundImportDescriptor`
 
 ### `ImageBoundForwarderRef`
 
@@ -2183,17 +2195,17 @@ struct ImageBoundForwarderRef {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageBoundForwarderRef`
 
-- `fn clone(self: &Self) -> ImageBoundForwarderRef` — [`ImageBoundForwarderRef`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageBoundForwarderRef` — [`ImageBoundForwarderRef`](#imageboundforwarderref)
 
-##### `impl Copy`
+##### `impl Copy for ImageBoundForwarderRef`
 
-##### `impl Debug`
+##### `impl Debug for ImageBoundForwarderRef`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageBoundForwarderRef`
 
 ### `ImageDelayloadDescriptor`
 
@@ -2246,17 +2258,17 @@ struct ImageDelayloadDescriptor {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDelayloadDescriptor`
 
-- `fn clone(self: &Self) -> ImageDelayloadDescriptor` — [`ImageDelayloadDescriptor`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDelayloadDescriptor` — [`ImageDelayloadDescriptor`](#imagedelayloaddescriptor)
 
-##### `impl Copy`
+##### `impl Copy for ImageDelayloadDescriptor`
 
-##### `impl Debug`
+##### `impl Debug for ImageDelayloadDescriptor`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDelayloadDescriptor`
 
 ### `ImageResourceDirectory`
 
@@ -2273,17 +2285,17 @@ struct ImageResourceDirectory {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageResourceDirectory`
 
-- `fn clone(self: &Self) -> ImageResourceDirectory` — [`ImageResourceDirectory`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageResourceDirectory` — [`ImageResourceDirectory`](#imageresourcedirectory)
 
-##### `impl Copy`
+##### `impl Copy for ImageResourceDirectory`
 
-##### `impl Debug`
+##### `impl Debug for ImageResourceDirectory`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageResourceDirectory`
 
 ### `ImageResourceDirectoryEntry`
 
@@ -2298,31 +2310,31 @@ struct ImageResourceDirectoryEntry {
 
 - `fn has_name(self: &Self) -> bool`
 
-- `fn name(self: &Self) -> ResourceName` — [`ResourceName`](../../read/pe/resource/index.md)
+- `fn name(self: &Self) -> ResourceName` — [`ResourceName`](../read/pe/index.md)
 
 - `fn id(self: &Self) -> u16`
 
-- `fn name_or_id(self: &Self) -> ResourceNameOrId` — [`ResourceNameOrId`](../../read/pe/resource/index.md)
+- `fn name_or_id(self: &Self) -> ResourceNameOrId` — [`ResourceNameOrId`](../read/pe/index.md)
 
 - `fn is_table(self: &Self) -> bool`
 
 - `fn data_offset(self: &Self) -> u32`
 
-- `fn data<'data>(self: &Self, section: ResourceDirectory<'data>) -> Result<ResourceDirectoryEntryData<'data>>` — [`ResourceDirectory`](../../read/pe/resource/index.md), [`Result`](../../read/index.md), [`ResourceDirectoryEntryData`](../../read/pe/resource/index.md)
+- `fn data<'data>(self: &Self, section: ResourceDirectory<'data>) -> Result<ResourceDirectoryEntryData<'data>>` — [`ResourceDirectory`](../read/pe/index.md), [`Result`](../index.md), [`ResourceDirectoryEntryData`](../read/pe/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageResourceDirectoryEntry`
 
-- `fn clone(self: &Self) -> ImageResourceDirectoryEntry` — [`ImageResourceDirectoryEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageResourceDirectoryEntry` — [`ImageResourceDirectoryEntry`](#imageresourcedirectoryentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageResourceDirectoryEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageResourceDirectoryEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageResourceDirectoryEntry`
 
 ### `ImageResourceDirectoryString`
 
@@ -2334,17 +2346,17 @@ struct ImageResourceDirectoryString {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageResourceDirectoryString`
 
-- `fn clone(self: &Self) -> ImageResourceDirectoryString` — [`ImageResourceDirectoryString`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageResourceDirectoryString` — [`ImageResourceDirectoryString`](#imageresourcedirectorystring)
 
-##### `impl Copy`
+##### `impl Copy for ImageResourceDirectoryString`
 
-##### `impl Debug`
+##### `impl Debug for ImageResourceDirectoryString`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageResourceDirectoryString`
 
 ### `ImageResourceDirStringU`
 
@@ -2356,17 +2368,17 @@ struct ImageResourceDirStringU {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageResourceDirStringU`
 
-- `fn clone(self: &Self) -> ImageResourceDirStringU` — [`ImageResourceDirStringU`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageResourceDirStringU` — [`ImageResourceDirStringU`](#imageresourcedirstringu)
 
-##### `impl Copy`
+##### `impl Copy for ImageResourceDirStringU`
 
-##### `impl Debug`
+##### `impl Debug for ImageResourceDirStringU`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageResourceDirStringU`
 
 ### `ImageResourceDataEntry`
 
@@ -2387,17 +2399,17 @@ struct ImageResourceDataEntry {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageResourceDataEntry`
 
-- `fn clone(self: &Self) -> ImageResourceDataEntry` — [`ImageResourceDataEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageResourceDataEntry` — [`ImageResourceDataEntry`](#imageresourcedataentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageResourceDataEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageResourceDataEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageResourceDataEntry`
 
 ### `ImageLoadConfigCodeIntegrity`
 
@@ -2426,17 +2438,17 @@ struct ImageLoadConfigCodeIntegrity {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageLoadConfigCodeIntegrity`
 
-- `fn clone(self: &Self) -> ImageLoadConfigCodeIntegrity` — [`ImageLoadConfigCodeIntegrity`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageLoadConfigCodeIntegrity` — [`ImageLoadConfigCodeIntegrity`](#imageloadconfigcodeintegrity)
 
-##### `impl Copy`
+##### `impl Copy for ImageLoadConfigCodeIntegrity`
 
-##### `impl Debug`
+##### `impl Debug for ImageLoadConfigCodeIntegrity`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageLoadConfigCodeIntegrity`
 
 ### `ImageDynamicRelocationTable`
 
@@ -2449,17 +2461,17 @@ struct ImageDynamicRelocationTable {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDynamicRelocationTable`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocationTable` — [`ImageDynamicRelocationTable`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDynamicRelocationTable` — [`ImageDynamicRelocationTable`](#imagedynamicrelocationtable)
 
-##### `impl Copy`
+##### `impl Copy for ImageDynamicRelocationTable`
 
-##### `impl Debug`
+##### `impl Debug for ImageDynamicRelocationTable`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDynamicRelocationTable`
 
 ### `ImageDynamicRelocation32`
 
@@ -2472,17 +2484,17 @@ struct ImageDynamicRelocation32 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDynamicRelocation32`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocation32` — [`ImageDynamicRelocation32`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDynamicRelocation32` — [`ImageDynamicRelocation32`](#imagedynamicrelocation32)
 
-##### `impl Copy`
+##### `impl Copy for ImageDynamicRelocation32`
 
-##### `impl Debug`
+##### `impl Debug for ImageDynamicRelocation32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDynamicRelocation32`
 
 ### `ImageDynamicRelocation64`
 
@@ -2495,17 +2507,17 @@ struct ImageDynamicRelocation64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDynamicRelocation64`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocation64` — [`ImageDynamicRelocation64`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDynamicRelocation64` — [`ImageDynamicRelocation64`](#imagedynamicrelocation64)
 
-##### `impl Copy`
+##### `impl Copy for ImageDynamicRelocation64`
 
-##### `impl Debug`
+##### `impl Debug for ImageDynamicRelocation64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDynamicRelocation64`
 
 ### `ImageDynamicRelocation32V2`
 
@@ -2521,17 +2533,17 @@ struct ImageDynamicRelocation32V2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDynamicRelocation32V2`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocation32V2` — [`ImageDynamicRelocation32V2`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDynamicRelocation32V2` — [`ImageDynamicRelocation32V2`](#imagedynamicrelocation32v2)
 
-##### `impl Copy`
+##### `impl Copy for ImageDynamicRelocation32V2`
 
-##### `impl Debug`
+##### `impl Debug for ImageDynamicRelocation32V2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDynamicRelocation32V2`
 
 ### `ImageDynamicRelocation64V2`
 
@@ -2547,17 +2559,17 @@ struct ImageDynamicRelocation64V2 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDynamicRelocation64V2`
 
-- `fn clone(self: &Self) -> ImageDynamicRelocation64V2` — [`ImageDynamicRelocation64V2`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDynamicRelocation64V2` — [`ImageDynamicRelocation64V2`](#imagedynamicrelocation64v2)
 
-##### `impl Copy`
+##### `impl Copy for ImageDynamicRelocation64V2`
 
-##### `impl Debug`
+##### `impl Debug for ImageDynamicRelocation64V2`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDynamicRelocation64V2`
 
 ### `ImagePrologueDynamicRelocationHeader`
 
@@ -2569,17 +2581,17 @@ struct ImagePrologueDynamicRelocationHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImagePrologueDynamicRelocationHeader`
 
-- `fn clone(self: &Self) -> ImagePrologueDynamicRelocationHeader` — [`ImagePrologueDynamicRelocationHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImagePrologueDynamicRelocationHeader` — [`ImagePrologueDynamicRelocationHeader`](#imageprologuedynamicrelocationheader)
 
-##### `impl Copy`
+##### `impl Copy for ImagePrologueDynamicRelocationHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImagePrologueDynamicRelocationHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImagePrologueDynamicRelocationHeader`
 
 ### `ImageEpilogueDynamicRelocationHeader`
 
@@ -2594,17 +2606,17 @@ struct ImageEpilogueDynamicRelocationHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageEpilogueDynamicRelocationHeader`
 
-- `fn clone(self: &Self) -> ImageEpilogueDynamicRelocationHeader` — [`ImageEpilogueDynamicRelocationHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageEpilogueDynamicRelocationHeader` — [`ImageEpilogueDynamicRelocationHeader`](#imageepiloguedynamicrelocationheader)
 
-##### `impl Copy`
+##### `impl Copy for ImageEpilogueDynamicRelocationHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageEpilogueDynamicRelocationHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageEpilogueDynamicRelocationHeader`
 
 ### `ImageLoadConfigDirectory32`
 
@@ -2719,17 +2731,17 @@ struct ImageLoadConfigDirectory32 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageLoadConfigDirectory32`
 
-- `fn clone(self: &Self) -> ImageLoadConfigDirectory32` — [`ImageLoadConfigDirectory32`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageLoadConfigDirectory32` — [`ImageLoadConfigDirectory32`](#imageloadconfigdirectory32)
 
-##### `impl Copy`
+##### `impl Copy for ImageLoadConfigDirectory32`
 
-##### `impl Debug`
+##### `impl Debug for ImageLoadConfigDirectory32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageLoadConfigDirectory32`
 
 ### `ImageLoadConfigDirectory64`
 
@@ -2848,17 +2860,17 @@ struct ImageLoadConfigDirectory64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageLoadConfigDirectory64`
 
-- `fn clone(self: &Self) -> ImageLoadConfigDirectory64` — [`ImageLoadConfigDirectory64`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageLoadConfigDirectory64` — [`ImageLoadConfigDirectory64`](#imageloadconfigdirectory64)
 
-##### `impl Copy`
+##### `impl Copy for ImageLoadConfigDirectory64`
 
-##### `impl Debug`
+##### `impl Debug for ImageLoadConfigDirectory64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageLoadConfigDirectory64`
 
 ### `ImageHotPatchInfo`
 
@@ -2886,17 +2898,17 @@ struct ImageHotPatchInfo {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageHotPatchInfo`
 
-- `fn clone(self: &Self) -> ImageHotPatchInfo` — [`ImageHotPatchInfo`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageHotPatchInfo` — [`ImageHotPatchInfo`](#imagehotpatchinfo)
 
-##### `impl Copy`
+##### `impl Copy for ImageHotPatchInfo`
 
-##### `impl Debug`
+##### `impl Debug for ImageHotPatchInfo`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageHotPatchInfo`
 
 ### `ImageHotPatchBase`
 
@@ -2921,17 +2933,17 @@ struct ImageHotPatchBase {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageHotPatchBase`
 
-- `fn clone(self: &Self) -> ImageHotPatchBase` — [`ImageHotPatchBase`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageHotPatchBase` — [`ImageHotPatchBase`](#imagehotpatchbase)
 
-##### `impl Copy`
+##### `impl Copy for ImageHotPatchBase`
 
-##### `impl Debug`
+##### `impl Debug for ImageHotPatchBase`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageHotPatchBase`
 
 ### `ImageHotPatchHashes`
 
@@ -2944,17 +2956,17 @@ struct ImageHotPatchHashes {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageHotPatchHashes`
 
-- `fn clone(self: &Self) -> ImageHotPatchHashes` — [`ImageHotPatchHashes`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageHotPatchHashes` — [`ImageHotPatchHashes`](#imagehotpatchhashes)
 
-##### `impl Copy`
+##### `impl Copy for ImageHotPatchHashes`
 
-##### `impl Debug`
+##### `impl Debug for ImageHotPatchHashes`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageHotPatchHashes`
 
 ### `ImageArmRuntimeFunctionEntry`
 
@@ -2967,17 +2979,17 @@ struct ImageArmRuntimeFunctionEntry {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageArmRuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageArmRuntimeFunctionEntry` — [`ImageArmRuntimeFunctionEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageArmRuntimeFunctionEntry` — [`ImageArmRuntimeFunctionEntry`](#imagearmruntimefunctionentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageArmRuntimeFunctionEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageArmRuntimeFunctionEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageArmRuntimeFunctionEntry`
 
 ### `ImageArm64RuntimeFunctionEntry`
 
@@ -2990,17 +3002,17 @@ struct ImageArm64RuntimeFunctionEntry {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageArm64RuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageArm64RuntimeFunctionEntry` — [`ImageArm64RuntimeFunctionEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageArm64RuntimeFunctionEntry` — [`ImageArm64RuntimeFunctionEntry`](#imagearm64runtimefunctionentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageArm64RuntimeFunctionEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageArm64RuntimeFunctionEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageArm64RuntimeFunctionEntry`
 
 ### `ImageAlpha64RuntimeFunctionEntry`
 
@@ -3016,17 +3028,17 @@ struct ImageAlpha64RuntimeFunctionEntry {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageAlpha64RuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageAlpha64RuntimeFunctionEntry` — [`ImageAlpha64RuntimeFunctionEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageAlpha64RuntimeFunctionEntry` — [`ImageAlpha64RuntimeFunctionEntry`](#imagealpha64runtimefunctionentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageAlpha64RuntimeFunctionEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageAlpha64RuntimeFunctionEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageAlpha64RuntimeFunctionEntry`
 
 ### `ImageAlphaRuntimeFunctionEntry`
 
@@ -3042,17 +3054,17 @@ struct ImageAlphaRuntimeFunctionEntry {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageAlphaRuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageAlphaRuntimeFunctionEntry` — [`ImageAlphaRuntimeFunctionEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageAlphaRuntimeFunctionEntry` — [`ImageAlphaRuntimeFunctionEntry`](#imagealpharuntimefunctionentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageAlphaRuntimeFunctionEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageAlphaRuntimeFunctionEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageAlphaRuntimeFunctionEntry`
 
 ### `ImageRuntimeFunctionEntry`
 
@@ -3066,17 +3078,17 @@ struct ImageRuntimeFunctionEntry {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageRuntimeFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageRuntimeFunctionEntry` — [`ImageRuntimeFunctionEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageRuntimeFunctionEntry` — [`ImageRuntimeFunctionEntry`](#imageruntimefunctionentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageRuntimeFunctionEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageRuntimeFunctionEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageRuntimeFunctionEntry`
 
 ### `ImageEnclaveConfig32`
 
@@ -3100,17 +3112,17 @@ struct ImageEnclaveConfig32 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageEnclaveConfig32`
 
-- `fn clone(self: &Self) -> ImageEnclaveConfig32` — [`ImageEnclaveConfig32`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageEnclaveConfig32` — [`ImageEnclaveConfig32`](#imageenclaveconfig32)
 
-##### `impl Copy`
+##### `impl Copy for ImageEnclaveConfig32`
 
-##### `impl Debug`
+##### `impl Debug for ImageEnclaveConfig32`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageEnclaveConfig32`
 
 ### `ImageEnclaveConfig64`
 
@@ -3134,17 +3146,17 @@ struct ImageEnclaveConfig64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageEnclaveConfig64`
 
-- `fn clone(self: &Self) -> ImageEnclaveConfig64` — [`ImageEnclaveConfig64`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageEnclaveConfig64` — [`ImageEnclaveConfig64`](#imageenclaveconfig64)
 
-##### `impl Copy`
+##### `impl Copy for ImageEnclaveConfig64`
 
-##### `impl Debug`
+##### `impl Debug for ImageEnclaveConfig64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageEnclaveConfig64`
 
 ### `ImageEnclaveImport`
 
@@ -3162,17 +3174,17 @@ struct ImageEnclaveImport {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageEnclaveImport`
 
-- `fn clone(self: &Self) -> ImageEnclaveImport` — [`ImageEnclaveImport`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageEnclaveImport` — [`ImageEnclaveImport`](#imageenclaveimport)
 
-##### `impl Copy`
+##### `impl Copy for ImageEnclaveImport`
 
-##### `impl Debug`
+##### `impl Debug for ImageEnclaveImport`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageEnclaveImport`
 
 ### `ImageDebugDirectory`
 
@@ -3191,17 +3203,17 @@ struct ImageDebugDirectory {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDebugDirectory`
 
-- `fn clone(self: &Self) -> ImageDebugDirectory` — [`ImageDebugDirectory`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDebugDirectory` — [`ImageDebugDirectory`](#imagedebugdirectory)
 
-##### `impl Copy`
+##### `impl Copy for ImageDebugDirectory`
 
-##### `impl Debug`
+##### `impl Debug for ImageDebugDirectory`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDebugDirectory`
 
 ### `ImageCoffSymbolsHeader`
 
@@ -3220,17 +3232,17 @@ struct ImageCoffSymbolsHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageCoffSymbolsHeader`
 
-- `fn clone(self: &Self) -> ImageCoffSymbolsHeader` — [`ImageCoffSymbolsHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageCoffSymbolsHeader` — [`ImageCoffSymbolsHeader`](#imagecoffsymbolsheader)
 
-##### `impl Copy`
+##### `impl Copy for ImageCoffSymbolsHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageCoffSymbolsHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageCoffSymbolsHeader`
 
 ### `ImageDebugMisc`
 
@@ -3259,17 +3271,17 @@ struct ImageDebugMisc {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageDebugMisc`
 
-- `fn clone(self: &Self) -> ImageDebugMisc` — [`ImageDebugMisc`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageDebugMisc` — [`ImageDebugMisc`](#imagedebugmisc)
 
-##### `impl Copy`
+##### `impl Copy for ImageDebugMisc`
 
-##### `impl Debug`
+##### `impl Debug for ImageDebugMisc`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageDebugMisc`
 
 ### `ImageFunctionEntry`
 
@@ -3283,17 +3295,17 @@ struct ImageFunctionEntry {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageFunctionEntry`
 
-- `fn clone(self: &Self) -> ImageFunctionEntry` — [`ImageFunctionEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageFunctionEntry` — [`ImageFunctionEntry`](#imagefunctionentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageFunctionEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageFunctionEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageFunctionEntry`
 
 ### `ImageFunctionEntry64`
 
@@ -3307,17 +3319,17 @@ struct ImageFunctionEntry64 {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageFunctionEntry64`
 
-- `fn clone(self: &Self) -> ImageFunctionEntry64` — [`ImageFunctionEntry64`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageFunctionEntry64` — [`ImageFunctionEntry64`](#imagefunctionentry64)
 
-##### `impl Copy`
+##### `impl Copy for ImageFunctionEntry64`
 
-##### `impl Debug`
+##### `impl Debug for ImageFunctionEntry64`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageFunctionEntry64`
 
 ### `ImageSeparateDebugHeader`
 
@@ -3341,17 +3353,17 @@ struct ImageSeparateDebugHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageSeparateDebugHeader`
 
-- `fn clone(self: &Self) -> ImageSeparateDebugHeader` — [`ImageSeparateDebugHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageSeparateDebugHeader` — [`ImageSeparateDebugHeader`](#imageseparatedebugheader)
 
-##### `impl Copy`
+##### `impl Copy for ImageSeparateDebugHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImageSeparateDebugHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageSeparateDebugHeader`
 
 ### `NonPagedDebugInfo`
 
@@ -3371,17 +3383,17 @@ struct NonPagedDebugInfo {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for NonPagedDebugInfo`
 
-- `fn clone(self: &Self) -> NonPagedDebugInfo` — [`NonPagedDebugInfo`](../../pe/index.md)
+- `fn clone(self: &Self) -> NonPagedDebugInfo` — [`NonPagedDebugInfo`](#nonpageddebuginfo)
 
-##### `impl Copy`
+##### `impl Copy for NonPagedDebugInfo`
 
-##### `impl Debug`
+##### `impl Debug for NonPagedDebugInfo`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for NonPagedDebugInfo`
 
 ### `ImageArchitectureEntry`
 
@@ -3404,17 +3416,17 @@ struct ImageArchitectureEntry {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageArchitectureEntry`
 
-- `fn clone(self: &Self) -> ImageArchitectureEntry` — [`ImageArchitectureEntry`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageArchitectureEntry` — [`ImageArchitectureEntry`](#imagearchitectureentry)
 
-##### `impl Copy`
+##### `impl Copy for ImageArchitectureEntry`
 
-##### `impl Debug`
+##### `impl Debug for ImageArchitectureEntry`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageArchitectureEntry`
 
 ### `ImportObjectHeader`
 
@@ -3455,9 +3467,9 @@ struct ImportObjectHeader {
 
 #### Implementations
 
-- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>` — [`Result`](../../read/index.md)
+- `fn parse<'data, R: ReadRef<'data>>(data: R, offset: &mut u64) -> Result<&'data Self>` — [`Result`](../index.md)
 
-- `fn parse_data<'data, R: ReadRef<'data>>(self: &Self, data: R, offset: &mut u64) -> Result<ImportObjectData<'data>>` — [`Result`](../../read/index.md), [`ImportObjectData`](../../read/coff/import/index.md)
+- `fn parse_data<'data, R: ReadRef<'data>>(self: &Self, data: R, offset: &mut u64) -> Result<ImportObjectData<'data>>` — [`Result`](../index.md), [`ImportObjectData`](../read/coff/index.md)
 
 - `fn import_type(self: &Self) -> u16`
 
@@ -3465,17 +3477,17 @@ struct ImportObjectHeader {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImportObjectHeader`
 
-- `fn clone(self: &Self) -> ImportObjectHeader` — [`ImportObjectHeader`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImportObjectHeader` — [`ImportObjectHeader`](#importobjectheader)
 
-##### `impl Copy`
+##### `impl Copy for ImportObjectHeader`
 
-##### `impl Debug`
+##### `impl Debug for ImportObjectHeader`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImportObjectHeader`
 
 ### `ImageCor20Header`
 
@@ -3498,17 +3510,17 @@ struct ImageCor20Header {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ImageCor20Header`
 
-- `fn clone(self: &Self) -> ImageCor20Header` — [`ImageCor20Header`](../../pe/index.md)
+- `fn clone(self: &Self) -> ImageCor20Header` — [`ImageCor20Header`](#imagecor20header)
 
-##### `impl Copy`
+##### `impl Copy for ImageCor20Header`
 
-##### `impl Debug`
+##### `impl Debug for ImageCor20Header`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Pod`
+##### `impl Pod for ImageCor20Header`
 
 ## Constants
 

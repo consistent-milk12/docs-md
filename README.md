@@ -13,10 +13,12 @@ I wanted something that mirrors how rustdoc actually organizes things: one file 
 - Adds breadcrumb navigation at the top of each file (e.g., `crate / module / submodule`)
 - Supports both flat (`module.md`) and nested (`module/index.md`) output formats
 - Handles multi-crate workspaces with cross-crate linking
+- Properly renders `pub use` re-exports with their documentation
 - Shows cross-crate trait implementations (impls from dependencies appear on your types)
+- Filters common blanket impls (From, Into, Any, etc.) by default (`--include-blanket-impls` to show)
 - Generates mdBook-compatible `SUMMARY.md` files
-- Produces a `search_index.json` for client-side search
-- Respects visibility (public-only by default, `--include-private` available)
+- Produces a `search_index.json` for client-side search (only includes rendered items)
+- Respects visibility throughout—links, search index, and SUMMARY.md all honor `--include-private`
 
 **Example output:** The [`docs/`](docs/) directory in this repository contains generated documentation for this tool's own dependencies, demonstrating multi-crate output with cross-crate linking.
 
@@ -77,6 +79,24 @@ docs_md --dir target/doc/ -o docs/ --mdbook --search-index
 docs_md --dir target/doc/ -o docs/ --mdbook --primary-crate my_crate
 ```
 
+### Development Scripts
+
+For development, you can use either `just` or `make`:
+
+```bash
+# Using just
+just          # Full rebuild: clean + build + rustdoc + generate
+just quick    # Quick rebuild (skip cargo clean)
+just help     # Show all available commands
+
+# Using make
+make          # Full rebuild: clean + build + rustdoc + generate
+make quick    # Quick rebuild (skip cargo clean)
+make help     # Show all available commands
+```
+
+Both scripts include helpful error messages if the nightly toolchain is missing.
+
 ### Output Structure
 
 **Flat format:**
@@ -118,40 +138,51 @@ docs/
 
 The tool reads rustdoc's JSON format (defined by the `rustdoc-types` crate) and walks through the module tree. For each module, it:
 
-1. **Collects items** - Structs, enums, traits, functions, constants, macros, type aliases
+1. **Collects items** - Structs, enums, traits, functions, constants, macros, type aliases, and re-exports (`pub use`)
 2. **Renders documentation** - Converts the doc comments (already markdown) and adds item signatures
 3. **Processes links** - Rustdoc JSON includes a `links` map that tells us what `[SomeType]` should point to. We resolve these to relative file paths.
 4. **Handles impl blocks** - Gathers trait implementations and inherent methods for each type
 
 For multi-crate mode, there's a `UnifiedLinkRegistry` that tracks items across all crates and resolves cross-crate references. When there's ambiguity (multiple crates have an item with the same name), it prefers: local crate → primary crate (if specified) → alphabetically first.
 
+### Architecture
+
+Single-crate and multi-crate modes share the same rendering code through a trait-based abstraction:
+
+- **`RenderContext`** - A trait composed of `ItemAccess`, `ItemFilter`, and `LinkResolver` sub-traits
+- **`GeneratorContext`** - Implements `RenderContext` for single-crate mode
+- **`SingleCrateView`** - Adapter that implements `RenderContext` for multi-crate mode, allowing existing renderers to work transparently with multi-crate data
+
+This design eliminates code duplication and ensures consistent output regardless of mode.
+
 ### Key Components
 
 - **`Parser`** - Reads and deserializes rustdoc JSON
 - **`LinkRegistry`** - Maps item IDs to file paths for single-crate linking
-- **`UnifiedLinkRegistry`** - Same thing but across multiple crates
-- **`RenderContext`** - Trait that abstracts over single-crate and multi-crate contexts, enabling shared rendering code
+- **`UnifiedLinkRegistry`** - Cross-crate linking with zero-allocation lookups (hashbrown raw_entry API)
 - **`ModuleRenderer`** - Generates markdown for a single module (works with any `RenderContext`)
 - **`DocLinkProcessor`** - Converts rustdoc's intra-doc links to markdown links
-- **`TypeRenderer`** - Formats type signatures (generics, bounds, etc.)
+- **`TypeRenderer`** - Formats type signatures with `Cow<str>` optimization (borrowed for simple types, owned for complex)
+
+### Performance
+
+- **Parallel generation** - Multi-crate mode uses rayon for 2-4x speedup on multi-core systems
+- **Zero-allocation lookups** - Registry queries use hashbrown's raw_entry API (~4x faster than standard HashMap)
+- **ASCII fast path** - Anchor slugification skips unicode normalization for pure ASCII names (~18x faster)
+- **Inline strings** - `CompactString` stores short identifiers without heap allocation
 
 ## Current Limitations
 
 Being honest about what doesn't work yet:
 
 - **External re-exports** - If a crate re-exports something from a dependency that isn't in your JSON files, we can't link to it. You'll see the re-export but not the full documentation.
-- **Duplicate headings** - Some crates start their docs with `# Crate Name`, which duplicates our generated heading. Working on stripping these.
+- **Duplicate headings** - Some crates start their docs with `# Crate Name`, which duplicates our generated heading.
 - **No incremental builds** - Regenerates everything every time. Fine for most crates, slow for huge workspaces.
 
 ## What's In Development
 
-Next up:
-
-1. **Duplicate title stripping** - Detect and remove redundant `# Title` lines from crate docs
-2. **Crate graph visualization** - Show dependency relationships between crates
-
-Further out:
-
+- **Duplicate title stripping** - Detect and remove redundant `# Title` lines from crate docs
+- **Crate graph visualization** - Show dependency relationships between crates
 - Cargo subcommand (`cargo docs-md`)
 - Incremental generation
 
@@ -165,6 +196,10 @@ The heavy lifting is done by:
 - `regex` - Processing doc links
 - `miette` - Nice error messages
 - `indicatif` - Progress bars
+- `rayon` - Parallel multi-crate generation
+- `hashbrown` - High-performance hash maps with raw_entry API for zero-allocation lookups
+- `unicode-normalization` - NFC normalization for anchor slugification
+- `compact_str` - Inline strings (≤24 bytes without heap allocation)
 
 ## Contributing
 

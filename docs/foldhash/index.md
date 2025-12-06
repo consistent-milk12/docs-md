@@ -135,19 +135,19 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 
 #### Implementations
 
-- `fn global_random() -> &'static SharedSeed` — [`SharedSeed`](../seed/index.md)
+- `fn global_random() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md)
 
-- `const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](../seed/index.md)
+- `const fn global_fixed() -> &'static SharedSeed` — [`SharedSeed`](seed/index.md)
 
 - `const fn from_u64(seed: u64) -> Self`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SharedSeed`
 
-- `fn clone(self: &Self) -> SharedSeed` — [`SharedSeed`](../seed/index.md)
+- `fn clone(self: &Self) -> SharedSeed` — [`SharedSeed`](seed/index.md)
 
-##### `impl Debug`
+##### `impl Debug for SharedSeed`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

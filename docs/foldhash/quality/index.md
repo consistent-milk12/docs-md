@@ -20,19 +20,19 @@ A [`Hasher`](#hasher) instance implementing foldhash, optimized for quality.
 
 While you can create one directly with `FoldHasher::with_seed`, you
 most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](../fast/index.md) or
-[`FixedState`](#fixedstate) to create [`FoldHasher`](../fast/index.md)s.
+[`FixedState`](#fixedstate) to create [`FoldHasher`](#foldhasher)s.
 
 #### Implementations
 
-- `const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../../seed/index.md), [`FoldHasher`](../../quality/index.md)
+- `const fn with_seed(per_hasher_seed: u64, shared_seed: &'a SharedSeed) -> FoldHasher<'a>` — [`SharedSeed`](../seed/index.md), [`FoldHasher`](#foldhasher)
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for FoldHasher<'a>`
 
-- `fn clone(self: &Self) -> FoldHasher<'a>` — [`FoldHasher`](../../quality/index.md)
+- `fn clone(self: &Self) -> FoldHasher<'a>` — [`FoldHasher`](#foldhasher)
 
-##### `impl Hasher<'a>`
+##### `impl<'a> Hasher for FoldHasher<'a>`
 
 - `fn write(self: &mut Self, bytes: &[u8])`
 
@@ -62,23 +62,23 @@ A [`BuildHasher`](#buildhasher) for [`quality::FoldHasher`](FoldHasher) that is 
 
 #### Trait Implementations
 
-##### `impl BuildHasher`
+##### `impl BuildHasher for RandomState`
 
 - `type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](../../quality/index.md)
+- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
-##### `impl Clone`
+##### `impl Clone for RandomState`
 
-- `fn clone(self: &Self) -> RandomState` — [`RandomState`](../../quality/index.md)
+- `fn clone(self: &Self) -> RandomState` — [`RandomState`](#randomstate)
 
-##### `impl Debug`
+##### `impl Debug for RandomState`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for RandomState`
 
-- `fn default() -> RandomState` — [`RandomState`](../../quality/index.md)
+- `fn default() -> RandomState` — [`RandomState`](#randomstate)
 
 ### `SeedableRandomState`
 
@@ -100,27 +100,27 @@ has a size of 16 bytes rather than the 8 bytes [`RandomState`](#randomstate) is.
 
 - `fn fixed() -> Self`
 
-- `fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../../seed/index.md)
+- `fn with_seed(per_hasher_seed: u64, shared_seed: &'static SharedSeed) -> Self` — [`SharedSeed`](../seed/index.md)
 
 #### Trait Implementations
 
-##### `impl BuildHasher`
+##### `impl BuildHasher for SeedableRandomState`
 
 - `type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](../../quality/index.md)
+- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
-##### `impl Clone`
+##### `impl Clone for SeedableRandomState`
 
-- `fn clone(self: &Self) -> SeedableRandomState` — [`SeedableRandomState`](../../quality/index.md)
+- `fn clone(self: &Self) -> SeedableRandomState` — [`SeedableRandomState`](#seedablerandomstate)
 
-##### `impl Debug`
+##### `impl Debug for SeedableRandomState`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for SeedableRandomState`
 
-- `fn default() -> SeedableRandomState` — [`SeedableRandomState`](../../quality/index.md)
+- `fn default() -> SeedableRandomState` — [`SeedableRandomState`](#seedablerandomstate)
 
 ### `FixedState`
 
@@ -140,21 +140,21 @@ Not recommended unless you absolutely need determinism.
 
 #### Trait Implementations
 
-##### `impl BuildHasher`
+##### `impl BuildHasher for FixedState`
 
 - `type Hasher = FoldHasher<'static>`
 
-- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](../../quality/index.md)
+- `fn build_hasher(self: &Self) -> FoldHasher<'static>` — [`FoldHasher`](#foldhasher)
 
-##### `impl Clone`
+##### `impl Clone for FixedState`
 
-- `fn clone(self: &Self) -> FixedState` — [`FixedState`](../../quality/index.md)
+- `fn clone(self: &Self) -> FixedState` — [`FixedState`](#fixedstate)
 
-##### `impl Debug`
+##### `impl Debug for FixedState`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for FixedState`
 
-- `fn default() -> FixedState` — [`FixedState`](../../quality/index.md)
+- `fn default() -> FixedState` — [`FixedState`](#fixedstate)
 

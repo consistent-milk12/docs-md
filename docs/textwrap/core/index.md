@@ -74,31 +74,31 @@ trailing whitespace, and potentially a penalty item.
 
 #### Implementations
 
-- `fn from(word: &str) -> Word<'_>` — [`Word`](../../core/index.md)
+- `fn from(word: &str) -> Word<'_>` — [`Word`](#word)
 
-- `fn break_apart<'b>(self: &'b Self, line_width: usize) -> impl Iterator<Item = Word<'a>> + 'b` — [`Word`](../../core/index.md)
+- `fn break_apart<'b>(self: &'b Self, line_width: usize) -> impl Iterator<Item = Word<'a>> + 'b` — [`Word`](#word)
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for Word<'a>`
 
-- `fn clone(self: &Self) -> Word<'a>` — [`Word`](../../core/index.md)
+- `fn clone(self: &Self) -> Word<'a>` — [`Word`](#word)
 
-##### `impl Copy<'a>`
+##### `impl<'a> Copy for Word<'a>`
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Word<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Deref`
+##### `impl Deref for Word<'_>`
 
 - `type Target = str`
 
 - `fn deref(self: &Self) -> &<Self as >::Target`
 
-##### `impl Eq<'a>`
+##### `impl<'a> Eq for Word<'a>`
 
-##### `impl Fragment`
+##### `impl Fragment for Word<'_>`
 
 - `fn width(self: &Self) -> f64`
 
@@ -106,15 +106,15 @@ trailing whitespace, and potentially a penalty item.
 
 - `fn penalty_width(self: &Self) -> f64`
 
-##### `impl PartialEq<'a>`
+##### `impl<'a> PartialEq for Word<'a>`
 
-- `fn eq(self: &Self, other: &Word<'a>) -> bool` — [`Word`](../../core/index.md)
+- `fn eq(self: &Self, other: &Word<'a>) -> bool` — [`Word`](#word)
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for Word<'a>`
 
 - `type Target = T`
 
-##### `impl StructuralPartialEq<'a>`
+##### `impl<'a> StructuralPartialEq for Word<'a>`
 
 ## Traits
 
@@ -246,10 +246,9 @@ as shown above, but terminals often struggle more. As an example,
 Gnome Terminal version 3.38.1, shows “❤️” as a big red heart, but
 shows "👨‍🦰" as “👨🦰”.
 
-[combining characters]: https://en.wikipedia.org/wiki/Combining_character
-[Unicode equivalence]: https://en.wikipedia.org/wiki/Unicode_equivalence
-[CJK characters]: https://en.wikipedia.org/wiki/CJK_characters
-[emoji modifier sequences]: https://unicode.org/emoji/charts/full-emoji-modifiers.html
+
+
+
 
 ### `break_words`
 

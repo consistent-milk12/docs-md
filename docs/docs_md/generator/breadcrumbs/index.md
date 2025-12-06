@@ -43,11 +43,11 @@ the current module, with each segment being a clickable link.
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for BreadcrumbGenerator<'a>`
 
 - `const ALIGN: usize`
 

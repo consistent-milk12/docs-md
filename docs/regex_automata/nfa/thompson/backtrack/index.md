@@ -32,31 +32,31 @@ typically used with `Builder::configure`.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
+- `fn new() -> Config` — [`Config`](#config)
 
-- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../../util/prefilter/index.md), [`Config`](../../../../nfa/thompson/backtrack/index.md)
+- `fn prefilter(self: Self, pre: Option<Prefilter>) -> Config` — [`Prefilter`](../../../util/prefilter/index.md), [`Config`](#config)
 
-- `fn visited_capacity(self: Self, capacity: usize) -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
+- `fn visited_capacity(self: Self, capacity: usize) -> Config` — [`Config`](#config)
 
-- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../../util/prefilter/index.md)
+- `fn get_prefilter(self: &Self) -> Option<&Prefilter>` — [`Prefilter`](../../../util/prefilter/index.md)
 
 - `fn get_visited_capacity(self: &Self) -> usize`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](#config)
 
-##### `impl Debug`
+##### `impl Debug for Config`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../../../../nfa/thompson/backtrack/index.md)
+- `fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -123,27 +123,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../../../../nfa/thompson/backtrack/index.md)
+- `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../../../../nfa/thompson/nfa/index.md), [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`BuildError`](../../../../nfa/thompson/error/index.md)
+- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../nfa/index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../../../nfa/thompson/backtrack/index.md), [`Builder`](../../../../nfa/thompson/backtrack/index.md)
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../../util/syntax/index.md), [`Builder`](../../../../nfa/thompson/backtrack/index.md)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../../nfa/thompson/compiler/index.md), [`Builder`](../../../../nfa/thompson/backtrack/index.md)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../compiler/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../../nfa/thompson/backtrack/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
-##### `impl Debug`
+##### `impl Debug for Builder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -239,25 +239,25 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`Captures`](../../../../util/captures/index.md), [`MatchError`](../../../../util/search/index.md)
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
 
-- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`PatternID`](../../../../util/primitives/index.md), [`MatchError`](../../../../util/search/index.md)
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`MatchError`](../../../index.md)
 
-- `fn try_search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md), [`MatchError`](../../../../util/search/index.md)
+- `fn try_search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
 
-- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md), [`MatchError`](../../../../util/search/index.md)
+- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
 
-- `fn backtrack(self: &Self, cache: &mut Cache, input: &Input<'_>, at: usize, start_id: StateID, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`StateID`](../../../../util/primitives/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md)
+- `fn backtrack(self: &Self, cache: &mut Cache, input: &Input<'_>, at: usize, start_id: StateID, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 
-- `fn step(self: &Self, cache: &mut Cache, input: &Input<'_>, sid: StateID, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`StateID`](../../../../util/primitives/index.md), [`NonMaxUsize`](../../../../util/primitives/index.md), [`HalfMatch`](../../../../util/search/index.md)
+- `fn step(self: &Self, cache: &mut Cache, input: &Input<'_>, sid: StateID, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BoundedBacktracker`
 
-- `fn clone(self: &Self) -> BoundedBacktracker` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md)
+- `fn clone(self: &Self) -> BoundedBacktracker` — [`BoundedBacktracker`](#boundedbacktracker)
 
-##### `impl Debug`
+##### `impl Debug for BoundedBacktracker`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -288,11 +288,11 @@ method.
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Debug for TryFindMatches<'r, 'c, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for TryFindMatches<'r, 'c, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -300,11 +300,11 @@ method.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Iterator for TryFindMatches<'r, 'c, 'h>`
 
 - `type Item = Result<Match, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Match, MatchError>>` — [`Match`](../../../../util/search/index.md), [`MatchError`](../../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Result<Match, MatchError>>` — [`Match`](../../../index.md), [`MatchError`](../../../index.md)
 
 ### `TryCapturesMatches<'r, 'c, 'h>`
 
@@ -334,11 +334,11 @@ This iterator can be created with the
 
 #### Trait Implementations
 
-##### `impl Debug<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Debug for TryCapturesMatches<'r, 'c, 'h>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for TryCapturesMatches<'r, 'c, 'h>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -346,11 +346,11 @@ This iterator can be created with the
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'r, 'c, 'h>`
+##### `impl<'r, 'c, 'h> Iterator for TryCapturesMatches<'r, 'c, 'h>`
 
 - `type Item = Result<Captures, MatchError>`
 
-- `fn next(self: &mut Self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../../../../util/captures/index.md), [`MatchError`](../../../../util/search/index.md)
+- `fn next(self: &mut Self) -> Option<Result<Captures, MatchError>>` — [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
 
 ### `Cache`
 
@@ -393,21 +393,21 @@ one).
 
 #### Implementations
 
-- `fn new(re: &BoundedBacktracker) -> Cache` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`Cache`](../../../../nfa/thompson/backtrack/index.md)
+- `fn new(re: &BoundedBacktracker) -> Cache` — [`BoundedBacktracker`](#boundedbacktracker), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, re: &BoundedBacktracker)` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md)
+- `fn reset(self: &mut Self, re: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn setup_search(self: &mut Self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](../../../../nfa/thompson/backtrack/index.md), [`Input`](../../../../util/search/index.md), [`MatchError`](../../../../util/search/index.md)
+- `fn setup_search(self: &mut Self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](#boundedbacktracker), [`Input`](../../../index.md), [`MatchError`](../../../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../../nfa/thompson/backtrack/index.md)
+- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
 
-##### `impl Debug`
+##### `impl Debug for Cache`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

@@ -115,31 +115,31 @@ A single inclusive range of UTF-8 bytes.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Utf8Range`
 
-- `fn clone(self: &Self) -> Utf8Range` — [`Utf8Range`](../../utf8/index.md)
+- `fn clone(self: &Self) -> Utf8Range` — [`Utf8Range`](#utf8range)
 
-##### `impl Copy`
+##### `impl Copy for Utf8Range`
 
-##### `impl Debug`
+##### `impl Debug for Utf8Range`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Utf8Range`
 
-##### `impl Ord`
+##### `impl Ord for Utf8Range`
 
-- `fn cmp(self: &Self, other: &Utf8Range) -> $crate::cmp::Ordering` — [`Utf8Range`](../../utf8/index.md)
+- `fn cmp(self: &Self, other: &Utf8Range) -> $crate::cmp::Ordering` — [`Utf8Range`](#utf8range)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Utf8Range`
 
-- `fn eq(self: &Self, other: &Utf8Range) -> bool` — [`Utf8Range`](../../utf8/index.md)
+- `fn eq(self: &Self, other: &Utf8Range) -> bool` — [`Utf8Range`](#utf8range)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Utf8Range`
 
-- `fn partial_cmp(self: &Self, other: &Utf8Range) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Range`](../../utf8/index.md)
+- `fn partial_cmp(self: &Self, other: &Utf8Range) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Range`](#utf8range)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Utf8Range`
 
 ### `Utf8Sequences`
 
@@ -208,13 +208,13 @@ always possible (for example, in a byte based automaton).
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for Utf8Sequences`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FusedIterator`
+##### `impl FusedIterator for Utf8Sequences`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for Utf8Sequences`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -222,7 +222,7 @@ always possible (for example, in a byte based automaton).
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator`
+##### `impl Iterator for Utf8Sequences`
 
 - `type Item = Utf8Sequence`
 
@@ -271,7 +271,7 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 
 - `fn from_encoded_range(start: &[u8], end: &[u8]) -> Self`
 
-- `fn as_slice(self: &Self) -> &[Utf8Range]` — [`Utf8Range`](../../utf8/index.md)
+- `fn as_slice(self: &Self) -> &[Utf8Range]` — [`Utf8Range`](#utf8range)
 
 - `fn len(self: &Self) -> usize`
 
@@ -281,29 +281,29 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Utf8Sequence`
 
-- `fn clone(self: &Self) -> Utf8Sequence` — [`Utf8Sequence`](../../utf8/index.md)
+- `fn clone(self: &Self) -> Utf8Sequence` — [`Utf8Sequence`](#utf8sequence)
 
-##### `impl Copy`
+##### `impl Copy for Utf8Sequence`
 
-##### `impl Debug`
+##### `impl Debug for Utf8Sequence`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Utf8Sequence`
 
-##### `impl Ord`
+##### `impl Ord for Utf8Sequence`
 
-- `fn cmp(self: &Self, other: &Utf8Sequence) -> $crate::cmp::Ordering` — [`Utf8Sequence`](../../utf8/index.md)
+- `fn cmp(self: &Self, other: &Utf8Sequence) -> $crate::cmp::Ordering` — [`Utf8Sequence`](#utf8sequence)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Utf8Sequence`
 
-- `fn eq(self: &Self, other: &Utf8Sequence) -> bool` — [`Utf8Sequence`](../../utf8/index.md)
+- `fn eq(self: &Self, other: &Utf8Sequence) -> bool` — [`Utf8Sequence`](#utf8sequence)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Utf8Sequence`
 
-- `fn partial_cmp(self: &Self, other: &Utf8Sequence) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Sequence`](../../utf8/index.md)
+- `fn partial_cmp(self: &Self, other: &Utf8Sequence) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Sequence`](#utf8sequence)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Utf8Sequence`
 

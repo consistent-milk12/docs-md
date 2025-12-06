@@ -2,9 +2,7 @@
 
 [![github](#github)](https://github.com/dtolnay/quote)&ensp;[![crates-io]](https://crates.io/crates/quote)&ensp;[![docs-rs]](https://docs.rs/quote)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
-[crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
-[docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
+
 
 <br>
 
@@ -17,7 +15,7 @@ a stream of tokens to hand back to the compiler to compile into the caller's
 crate. Quasi-quoting is a solution to one piece of that &mdash; producing
 tokens to return to the compiler.
 
-The idea of quasi-quoting is that we write _code_ that we treat as _data_.
+The idea of quasi-quoting is that we write *code* that we treat as *data*.
 Within the `quote!` macro, we can write what looks like code to our text
 editor or IDE. We get all the benefits of the editor's brace matching,
 syntax highlighting, indentation, and maybe autocompletion. But rather than
@@ -44,8 +42,6 @@ syntax performs interpolation of runtime variables into the quoted tokens.
 Check out the documentation of the [`quote!`](#quote) macro for more detail about
 the syntax. See also the [`quote_spanned!`](#quote-spanned) macro which is important for
 implementing hygienic procedural macros.
-
-[a](#a): https://serde.rs/
 
 ```rust
 use quote::quote;
@@ -88,7 +84,6 @@ file, consider having the code generator pass the tokens through
 [prettyplease](#prettyplease) before writing. This way if an error occurs in the generated
 code it is convenient for a human to read and debug.
 
-[prettyplease](#prettyplease): https://github.com/dtolnay/prettyplease
 
 ## Traits
 
@@ -108,11 +103,11 @@ named arguments.
 Only a limited set of formatting traits are supported. The current mapping
 of format types to traits is:
 
-- `{}` ⇒ [`IdentFragment`](ident_fragment/index.md)
-- `{:o}` ⇒ [`Octal`](std::fmt::Octal)
-- `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
-- `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
-- `{:b}` ⇒ [`Binary`](std::fmt::Binary)
+* `{}` ⇒ [`IdentFragment`](ident_fragment/index.md)
+* `{:o}` ⇒ [`Octal`](std::fmt::Octal)
+* `{:x}` ⇒ [`LowerHex`](std::fmt::LowerHex)
+* `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
+* `{:b}` ⇒ [`Binary`](std::fmt::Binary)
 
 See `std::fmt` for more information.
 
@@ -123,9 +118,10 @@ See `std::fmt` for more information.
 Unlike `format!`, this macro uses the [`IdentFragment`](ident_fragment/index.md) formatting trait by
 default. This trait is like `Display`, with a few differences:
 
-- `IdentFragment` is only implemented for a limited set of types, such as
+* `IdentFragment` is only implemented for a limited set of types, such as
   unsigned integers and strings.
-- [`Ident`](#ident) arguments will have their `r#` prefixes stripped, if present.
+* [`Ident`](#ident) arguments will have their `r#` prefixes stripped, if present.
+
 
 <br>
 
@@ -155,6 +151,7 @@ let my_span = proc_macro2::Span::call_site();
 format_ident!("MyIdent", span = my_span);
 ```
 
+
 <p><br></p>
 
 # Panics
@@ -167,7 +164,6 @@ identifier.
 # Examples
 
 Composing raw and non-raw identifiers:
-
 ```rust
 use quote::format_ident;
 let my_ident = format_ident!("My{}", "Ident");
@@ -181,7 +177,6 @@ assert_eq!(my_ident_raw, "MyIdentIsRaw");
 ```
 
 Integer formatting options:
-
 ```rust
 use quote::format_ident;
 let num: u32 = 10;
@@ -222,8 +217,6 @@ scope and inserts it in that location in the output tokens. Any type
 implementing the [`ToTokens`](to_tokens/index.md) trait can be interpolated. This includes most
 Rust primitive types as well as most of the syntax tree types from the [Syn]
 crate.
-
-[Syn]: https://github.com/dtolnay/syn
 
 Repetition is done using `#(...)*` or `#(...),*` again similar to
 `macro_rules!`. This iterates through the elements of any variable
@@ -275,8 +268,6 @@ There is a [`From`](#from)-conversion in both directions so returning the output
 The structure of a basic procedural macro is as follows. Refer to the [Syn]
 crate for further useful guidance on using `quote!` as part of a procedural
 macro.
-
-[Syn]: https://github.com/dtolnay/syn
 
 ```rust
 #[cfg(any())]
@@ -641,3 +632,4 @@ error[E0277]: the trait bound `*const (): std::marker::Sync` is not satisfied
 In this example it is important for the where-clause to be spanned with the
 line/column information of the user's input type so that error messages are
 placed appropriately by the compiler.
+

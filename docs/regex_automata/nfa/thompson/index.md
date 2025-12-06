@@ -287,43 +287,43 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../../../nfa/thompson/builder/index.md)
+- `fn new() -> Builder` — [`Builder`](builder/index.md)
 
 - `fn clear(self: &mut Self)`
 
-- `fn build(self: &Self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn build(self: &Self, start_anchored: StateID, start_unanchored: StateID) -> Result<NFA, BuildError>` — [`StateID`](../../util/primitives/index.md), [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- `fn start_pattern(self: &mut Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn start_pattern(self: &mut Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn finish_pattern(self: &mut Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn finish_pattern(self: &mut Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn current_pattern_id(self: &Self) -> PatternID` — [`PatternID`](../../../util/primitives/index.md)
+- `fn current_pattern_id(self: &Self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
 
-- `fn add_empty(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_empty(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_union(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_union(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_union_reverse(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_union_reverse(self: &mut Self, alternates: Vec<StateID>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_range(self: &mut Self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](../../../nfa/thompson/nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_range(self: &mut Self, trans: Transition) -> Result<StateID, BuildError>` — [`Transition`](nfa/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_sparse(self: &mut Self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../../../nfa/thompson/nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_sparse(self: &mut Self, transitions: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](nfa/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_look(self: &mut Self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`Look`](../../../util/look/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_look(self: &mut Self, next: StateID, look: Look) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`Look`](../../util/look/index.md), [`BuildError`](error/index.md)
 
-- `fn add_capture_start(self: &mut Self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_capture_start(self: &mut Self, next: StateID, group_index: u32, name: Option<Arc<str>>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_capture_end(self: &mut Self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_capture_end(self: &mut Self, next: StateID, group_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_fail(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_fail(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add(self: &mut Self, state: State) -> Result<StateID, BuildError>` — [`State`](../../../nfa/thompson/builder/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add(self: &mut Self, state: State) -> Result<StateID, BuildError>` — [`State`](builder/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn patch(self: &mut Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn patch(self: &mut Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
 - `fn set_utf8(self: &mut Self, yes: bool)`
 
@@ -333,31 +333,31 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn get_reverse(self: &Self) -> bool`
 
-- `fn set_look_matcher(self: &mut Self, m: LookMatcher)` — [`LookMatcher`](../../../util/look/index.md)
+- `fn set_look_matcher(self: &mut Self, m: LookMatcher)` — [`LookMatcher`](../../util/look/index.md)
 
-- `fn get_look_matcher(self: &Self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
+- `fn get_look_matcher(self: &Self) -> &LookMatcher` — [`LookMatcher`](../../util/look/index.md)
 
-- `fn set_size_limit(self: &mut Self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn set_size_limit(self: &mut Self, limit: Option<usize>) -> Result<(), BuildError>` — [`BuildError`](error/index.md)
 
 - `fn get_size_limit(self: &Self) -> Option<usize>`
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn check_size_limit(self: &Self) -> Result<(), BuildError>` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn check_size_limit(self: &Self) -> Result<(), BuildError>` — [`BuildError`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../nfa/thompson/builder/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](builder/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Builder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Builder`
 
-- `fn default() -> Builder` — [`Builder`](../../../nfa/thompson/builder/index.md)
+- `fn default() -> Builder` — [`Builder`](builder/index.md)
 
 ### `BuildError`
 
@@ -386,43 +386,43 @@ building the NFA will fail.
 
 - `fn size_limit(self: &Self) -> Option<usize>`
 
-- `fn kind(self: &Self) -> &BuildErrorKind` — [`BuildErrorKind`](../../../nfa/thompson/error/index.md)
+- `fn kind(self: &Self) -> &BuildErrorKind` — [`BuildErrorKind`](error/index.md)
 
-- `fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn syntax(err: regex_syntax::Error) -> BuildError` — [`BuildError`](error/index.md)
 
-- `fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../../util/captures/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn captures(err: captures::GroupInfoError) -> BuildError` — [`GroupInfoError`](../../util/captures/index.md), [`BuildError`](error/index.md)
 
-- `fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn word(err: look::UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md), [`BuildError`](error/index.md)
 
-- `fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn too_many_patterns(given: usize) -> BuildError` — [`BuildError`](error/index.md)
 
-- `fn too_many_states(given: usize) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn too_many_states(given: usize) -> BuildError` — [`BuildError`](error/index.md)
 
-- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](error/index.md)
 
-- `fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn invalid_capture_index(index: u32) -> BuildError` — [`BuildError`](error/index.md)
 
-- `fn unsupported_captures() -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn unsupported_captures() -> BuildError` — [`BuildError`](error/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](error/index.md)
 
-##### `impl Debug`
+##### `impl Debug for BuildError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for BuildError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for BuildError`
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for BuildError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -454,31 +454,31 @@ usually requires (much) more heap memory.
 
 #### Implementations
 
-- `fn matches(self: &Self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- `fn matches(self: &Self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
 
-- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../../util/alphabet/index.md), [`StateID`](../../../util/primitives/index.md)
+- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../util/alphabet/index.md), [`StateID`](../../util/primitives/index.md)
 
-- `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
 
-- `fn iter(self: &Self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](../../../nfa/thompson/nfa/index.md)
+- `fn iter(self: &Self) -> impl Iterator<Item = Transition> + '_` — [`Transition`](nfa/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DenseTransitions`
 
-- `fn clone(self: &Self) -> DenseTransitions` — [`DenseTransitions`](../../../nfa/thompson/nfa/index.md)
+- `fn clone(self: &Self) -> DenseTransitions` — [`DenseTransitions`](nfa/index.md)
 
-##### `impl Debug`
+##### `impl Debug for DenseTransitions`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for DenseTransitions`
 
-##### `impl PartialEq`
+##### `impl PartialEq for DenseTransitions`
 
-- `fn eq(self: &Self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](../../../nfa/thompson/nfa/index.md)
+- `fn eq(self: &Self, other: &DenseTransitions) -> bool` — [`DenseTransitions`](nfa/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for DenseTransitions`
 
 ### `PatternIter<'a>`
 
@@ -508,11 +508,11 @@ this pattern iterator was created.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for PatternIter<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for PatternIter<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -520,11 +520,11 @@ this pattern iterator was created.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for PatternIter<'a>`
 
 - `type Item = PatternID`
 
-- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../../util/primitives/index.md)
+- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md)
 
 ### `SparseTransitions`
 
@@ -550,29 +550,29 @@ corresponding transition.
 
 #### Implementations
 
-- `fn matches(self: &Self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- `fn matches(self: &Self, haystack: &[u8], at: usize) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
 
-- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../../util/alphabet/index.md), [`StateID`](../../../util/primitives/index.md)
+- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> Option<StateID>` — [`Unit`](../../util/alphabet/index.md), [`StateID`](../../util/primitives/index.md)
 
-- `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>` — [`StateID`](../../../util/primitives/index.md)
+- `fn matches_byte(self: &Self, byte: u8) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for SparseTransitions`
 
-- `fn clone(self: &Self) -> SparseTransitions` — [`SparseTransitions`](../../../nfa/thompson/nfa/index.md)
+- `fn clone(self: &Self) -> SparseTransitions` — [`SparseTransitions`](nfa/index.md)
 
-##### `impl Debug`
+##### `impl Debug for SparseTransitions`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for SparseTransitions`
 
-##### `impl PartialEq`
+##### `impl PartialEq for SparseTransitions`
 
-- `fn eq(self: &Self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](../../../nfa/thompson/nfa/index.md)
+- `fn eq(self: &Self, other: &SparseTransitions) -> bool` — [`SparseTransitions`](nfa/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for SparseTransitions`
 
 ### `Transition`
 
@@ -607,33 +607,33 @@ falls in the inclusive range of bytes specified.
 
 - `fn matches(self: &Self, haystack: &[u8], at: usize) -> bool`
 
-- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> bool` — [`Unit`](../../../util/alphabet/index.md)
+- `fn matches_unit(self: &Self, unit: alphabet::Unit) -> bool` — [`Unit`](../../util/alphabet/index.md)
 
 - `fn matches_byte(self: &Self, byte: u8) -> bool`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Transition`
 
-- `fn clone(self: &Self) -> Transition` — [`Transition`](../../../nfa/thompson/nfa/index.md)
+- `fn clone(self: &Self) -> Transition` — [`Transition`](nfa/index.md)
 
-##### `impl Copy`
+##### `impl Copy for Transition`
 
-##### `impl Debug`
+##### `impl Debug for Transition`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Transition`
 
-##### `impl Hash`
+##### `impl Hash for Transition`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Transition`
 
-- `fn eq(self: &Self, other: &Transition) -> bool` — [`Transition`](../../../nfa/thompson/nfa/index.md)
+- `fn eq(self: &Self, other: &Transition) -> bool` — [`Transition`](nfa/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Transition`
 
 ### `NFA`
 
@@ -810,37 +810,37 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn new(pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- `fn always_match() -> NFA` — [`NFA`](../../../nfa/thompson/nfa/index.md)
+- `fn always_match() -> NFA` — [`NFA`](nfa/index.md)
 
-- `fn never_match() -> NFA` — [`NFA`](../../../nfa/thompson/nfa/index.md)
+- `fn never_match() -> NFA` — [`NFA`](nfa/index.md)
 
-- `fn config() -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn config() -> Config` — [`Config`](compiler/index.md)
 
-- `fn compiler() -> Compiler` — [`Compiler`](../../../nfa/thompson/compiler/index.md)
+- `fn compiler() -> Compiler` — [`Compiler`](compiler/index.md)
 
-- `fn patterns(self: &Self) -> PatternIter<'_>` — [`PatternIter`](../../../nfa/thompson/nfa/index.md)
+- `fn patterns(self: &Self) -> PatternIter<'_>` — [`PatternIter`](nfa/index.md)
 
 - `fn pattern_len(self: &Self) -> usize`
 
-- `fn start_anchored(self: &Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `fn start_anchored(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn start_unanchored(self: &Self) -> StateID` — [`StateID`](../../../util/primitives/index.md)
+- `fn start_unanchored(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn start_pattern(self: &Self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../../util/primitives/index.md), [`StateID`](../../../util/primitives/index.md)
+- `fn start_pattern(self: &Self, pid: PatternID) -> Option<StateID>` — [`PatternID`](../../util/primitives/index.md), [`StateID`](../../util/primitives/index.md)
 
-- `fn byte_class_set(self: &Self) -> &ByteClassSet` — [`ByteClassSet`](../../../util/alphabet/index.md)
+- `fn byte_class_set(self: &Self) -> &ByteClassSet` — [`ByteClassSet`](../../util/alphabet/index.md)
 
-- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../../util/alphabet/index.md)
+- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
 
-- `fn state(self: &Self, id: StateID) -> &State` — [`StateID`](../../../util/primitives/index.md), [`State`](../../../nfa/thompson/nfa/index.md)
+- `fn state(self: &Self, id: StateID) -> &State` — [`StateID`](../../util/primitives/index.md), [`State`](nfa/index.md)
 
-- `fn states(self: &Self) -> &[State]` — [`State`](../../../nfa/thompson/nfa/index.md)
+- `fn states(self: &Self) -> &[State]` — [`State`](nfa/index.md)
 
-- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../../util/captures/index.md)
+- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](../../util/captures/index.md)
 
 - `fn has_capture(self: &Self) -> bool`
 
@@ -852,21 +852,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn is_always_start_anchored(self: &Self) -> bool`
 
-- `fn look_matcher(self: &Self) -> &LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
+- `fn look_matcher(self: &Self) -> &LookMatcher` — [`LookMatcher`](../../util/look/index.md)
 
-- `fn look_set_any(self: &Self) -> LookSet` — [`LookSet`](../../../util/look/index.md)
+- `fn look_set_any(self: &Self) -> LookSet` — [`LookSet`](../../util/look/index.md)
 
-- `fn look_set_prefix_any(self: &Self) -> LookSet` — [`LookSet`](../../../util/look/index.md)
+- `fn look_set_prefix_any(self: &Self) -> LookSet` — [`LookSet`](../../util/look/index.md)
 
 - `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for NFA`
 
-- `fn clone(self: &Self) -> NFA` — [`NFA`](../../../nfa/thompson/nfa/index.md)
+- `fn clone(self: &Self) -> NFA` — [`NFA`](nfa/index.md)
 
-##### `impl Debug`
+##### `impl Debug for NFA`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -987,79 +987,79 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn compile<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn compile<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](nfa/index.md), [`BuildError`](error/index.md)
 
-- `fn c(self: &Self, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c(self: &Self, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_concat<I>(self: &Self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_concat<I>(self: &Self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_alt_slice(self: &Self, exprs: &[Hir]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_alt_slice(self: &Self, exprs: &[Hir]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_alt_iter<I>(self: &Self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_alt_iter<I>(self: &Self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_cap(self: &Self, index: u32, name: Option<&str>, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_cap(self: &Self, index: u32, name: Option<&str>, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_repetition(self: &Self, rep: &hir::Repetition) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_repetition(self: &Self, rep: &hir::Repetition) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_bounded(self: &Self, expr: &Hir, greedy: bool, min: u32, max: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_bounded(self: &Self, expr: &Hir, greedy: bool, min: u32, max: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_at_least(self: &Self, expr: &Hir, greedy: bool, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_at_least(self: &Self, expr: &Hir, greedy: bool, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_zero_or_one(self: &Self, expr: &Hir, greedy: bool) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_zero_or_one(self: &Self, expr: &Hir, greedy: bool) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_exactly(self: &Self, expr: &Hir, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_exactly(self: &Self, expr: &Hir, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_byte_class(self: &Self, cls: &hir::ClassBytes) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_byte_class(self: &Self, cls: &hir::ClassBytes) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_unicode_class(self: &Self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_unicode_class(self: &Self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_unicode_class_reverse_with_suffix(self: &Self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_unicode_class_reverse_with_suffix(self: &Self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_look(self: &Self, anchor: &hir::Look) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_look(self: &Self, anchor: &hir::Look) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_literal(self: &Self, bytes: &[u8]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_literal(self: &Self, bytes: &[u8]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_range(self: &Self, start: u8, end: u8) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_range(self: &Self, start: u8, end: u8) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_empty(self: &Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_empty(self: &Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn c_fail(self: &Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](../../../nfa/thompson/compiler/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn c_fail(self: &Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](error/index.md)
 
-- `fn patch(self: &Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn patch(self: &Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn start_pattern(self: &Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn start_pattern(self: &Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn finish_pattern(self: &Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn finish_pattern(self: &Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_empty(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_empty(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_range(self: &Self, start: u8, end: u8) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_range(self: &Self, start: u8, end: u8) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_sparse(self: &Self, ranges: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](../../../nfa/thompson/nfa/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_sparse(self: &Self, ranges: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](nfa/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_look(self: &Self, look: Look) -> Result<StateID, BuildError>` — [`Look`](../../../util/look/index.md), [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_look(self: &Self, look: Look) -> Result<StateID, BuildError>` — [`Look`](../../util/look/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_union(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_union(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_union_reverse(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_union_reverse(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_capture_start(self: &Self, capture_index: u32, name: Option<&str>) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_capture_start(self: &Self, capture_index: u32, name: Option<&str>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_capture_end(self: &Self, capture_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_capture_end(self: &Self, capture_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_fail(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_fail(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
-- `fn add_match(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../../util/primitives/index.md), [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn add_match(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](error/index.md)
 
 - `fn is_reverse(self: &Self) -> bool`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Compiler`
 
-- `fn clone(self: &Self) -> Compiler` — [`Compiler`](../../../nfa/thompson/compiler/index.md)
+- `fn clone(self: &Self) -> Compiler` — [`Compiler`](compiler/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Compiler`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -1080,21 +1080,21 @@ The configuration used for a Thompson NFA compiler.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn new() -> Config` — [`Config`](compiler/index.md)
 
-- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn utf8(self: Self, yes: bool) -> Config` — [`Config`](compiler/index.md)
 
-- `fn reverse(self: Self, yes: bool) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn reverse(self: Self, yes: bool) -> Config` — [`Config`](compiler/index.md)
 
-- `fn nfa_size_limit(self: Self, bytes: Option<usize>) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn nfa_size_limit(self: Self, bytes: Option<usize>) -> Config` — [`Config`](compiler/index.md)
 
-- `fn shrink(self: Self, yes: bool) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn shrink(self: Self, yes: bool) -> Config` — [`Config`](compiler/index.md)
 
-- `fn captures(self: Self, yes: bool) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn captures(self: Self, yes: bool) -> Config` — [`Config`](compiler/index.md)
 
-- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](../../../nfa/thompson/compiler/index.md), [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn which_captures(self: Self, which_captures: WhichCaptures) -> Config` — [`WhichCaptures`](compiler/index.md), [`Config`](compiler/index.md)
 
-- `fn look_matcher(self: Self, m: LookMatcher) -> Config` — [`LookMatcher`](../../../util/look/index.md), [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn look_matcher(self: Self, m: LookMatcher) -> Config` — [`LookMatcher`](../../util/look/index.md), [`Config`](compiler/index.md)
 
 - `fn get_utf8(self: &Self) -> bool`
 
@@ -1106,27 +1106,27 @@ The configuration used for a Thompson NFA compiler.
 
 - `fn get_captures(self: &Self) -> bool`
 
-- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../../../nfa/thompson/compiler/index.md)
+- `fn get_which_captures(self: &Self) -> WhichCaptures` — [`WhichCaptures`](compiler/index.md)
 
-- `fn get_look_matcher(self: &Self) -> LookMatcher` — [`LookMatcher`](../../../util/look/index.md)
+- `fn get_look_matcher(self: &Self) -> LookMatcher` — [`LookMatcher`](../../util/look/index.md)
 
 - `fn get_unanchored_prefix(self: &Self) -> bool`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](compiler/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](compiler/index.md)
 
-##### `impl Debug`
+##### `impl Debug for Config`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../../../nfa/thompson/compiler/index.md)
+- `fn default() -> Config` — [`Config`](compiler/index.md)
 
 ## Enums
 
@@ -1274,25 +1274,25 @@ need to do some kind of analysis on the NFA.
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn remap(self: &mut Self, remap: &[StateID])` — [`StateID`](../../../util/primitives/index.md)
+- `fn remap(self: &mut Self, remap: &[StateID])` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for State`
 
-- `fn clone(self: &Self) -> State` — [`State`](../../../nfa/thompson/nfa/index.md)
+- `fn clone(self: &Self) -> State` — [`State`](nfa/index.md)
 
-##### `impl Debug`
+##### `impl Debug for State`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for State`
 
-##### `impl PartialEq`
+##### `impl PartialEq for State`
 
-- `fn eq(self: &Self, other: &State) -> bool` — [`State`](../../../nfa/thompson/nfa/index.md)
+- `fn eq(self: &Self, other: &State) -> bool` — [`State`](nfa/index.md)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for State`
 
 ### `WhichCaptures`
 
@@ -1369,17 +1369,17 @@ The default configuration is `WhichCaptures::All`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for WhichCaptures`
 
-- `fn clone(self: &Self) -> WhichCaptures` — [`WhichCaptures`](../../../nfa/thompson/compiler/index.md)
+- `fn clone(self: &Self) -> WhichCaptures` — [`WhichCaptures`](compiler/index.md)
 
-##### `impl Copy`
+##### `impl Copy for WhichCaptures`
 
-##### `impl Debug`
+##### `impl Debug for WhichCaptures`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for WhichCaptures`
 
-- `fn default() -> WhichCaptures` — [`WhichCaptures`](../../../nfa/thompson/compiler/index.md)
+- `fn default() -> WhichCaptures` — [`WhichCaptures`](compiler/index.md)
 

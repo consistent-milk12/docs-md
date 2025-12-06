@@ -10,7 +10,6 @@ The "packed pair" algorithm is based on the [generic SIMD] algorithm. The main
 difference is that it (by default) uses a background distribution of byte
 frequencies to heuristically select the pair of bytes to search for.
 
-[generic SIMD]: http://0x80.pl/articles/simd-strfind.html#first-and-last
 
 ## Structs
 
@@ -30,11 +29,11 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
 #### Implementations
 
-- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](../../../../../arch/x86_64/sse2/packedpair/index.md)
+- `fn new(needle: &[u8]) -> Option<Finder>` — [`Finder`](#finder)
 
-- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../../../arch/all/packedpair/index.md), [`Finder`](../../../../../arch/x86_64/sse2/packedpair/index.md)
+- `fn with_pair(needle: &[u8], pair: Pair) -> Option<Finder>` — [`Pair`](../../../all/packedpair/index.md), [`Finder`](#finder)
 
-- `unsafe fn with_pair_impl(needle: &[u8], pair: Pair) -> Finder` — [`Pair`](../../../../../arch/all/packedpair/index.md), [`Finder`](../../../../../arch/x86_64/sse2/packedpair/index.md)
+- `unsafe fn with_pair_impl(needle: &[u8], pair: Pair) -> Finder` — [`Pair`](../../../all/packedpair/index.md), [`Finder`](#finder)
 
 - `fn is_available() -> bool`
 
@@ -46,19 +45,19 @@ are reported whenever the [`Pair`](../../../all/packedpair/index.md) of bytes gi
 
 - `unsafe fn find_prefilter_impl(self: &Self, haystack: &[u8]) -> Option<usize>`
 
-- `fn pair(self: &Self) -> &Pair` — [`Pair`](../../../../../arch/all/packedpair/index.md)
+- `fn pair(self: &Self) -> &Pair` — [`Pair`](../../../all/packedpair/index.md)
 
 - `fn min_haystack_len(self: &Self) -> usize`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Finder`
 
-- `fn clone(self: &Self) -> Finder` — [`Finder`](../../../../../arch/x86_64/sse2/packedpair/index.md)
+- `fn clone(self: &Self) -> Finder` — [`Finder`](#finder)
 
-##### `impl Copy`
+##### `impl Copy for Finder`
 
-##### `impl Debug`
+##### `impl Debug for Finder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

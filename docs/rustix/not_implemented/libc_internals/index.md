@@ -29,8 +29,7 @@ process with a libc, perhaps because you are writing a libc or similar
 yourself, rustix's codebase does include experimental implementations of
 the primitives needed to implement most of these functions.
 
-[Eyra]: https://github.com/sunfishcode/eyra?tab=readme-ov-file#eyra
-[origin](#origin): https://github.com/sunfishcode/origin?tab=readme-ov-file#origin
+
 
 ## Functions
 

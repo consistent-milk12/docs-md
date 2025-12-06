@@ -15,12 +15,222 @@ a safe interface for every `ioctl` call, as they all have wildly varying
 semantics.
 
 This module provides an unsafe interface to write your own `ioctl` API. To
-start, create a type that implements [`Ioctl`](#ioctl). Then, pass it to [`ioctl`](#ioctl)
+start, create a type that implements [`Ioctl`](#ioctl). Then, pass it to [`ioctl`](../backend/io/syscalls/index.md)
 to make the `ioctl` call.
 
 ## Modules
 
 - [`opcode`](opcode/index.md) - Const functions for computing opcode values.
+
+## Structs
+
+### `NoArg<const OPCODE: super::Opcode>`
+
+```rust
+struct NoArg<const OPCODE: super::Opcode> {
+}
+```
+
+Implements an `ioctl` with no real arguments.
+
+To compute a value for the `OPCODE` argument, see the functions in the
+[`opcode`](opcode/index.md) module.
+
+
+#### Implementations
+
+- `const unsafe fn new() -> Self`
+
+#### Trait Implementations
+
+##### `impl<const OPCODE: super::Opcode> Debug for NoArg<OPCODE>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<const OPCODE: super::Opcode> Ioctl for NoArg<OPCODE>`
+
+- `type Output = ()`
+
+- `const IS_MUTATING: bool`
+
+- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+
+- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+
+- `unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
+
+### `Getter<const OPCODE: super::Opcode, Output>`
+
+```rust
+struct Getter<const OPCODE: super::Opcode, Output> {
+    output: mem::MaybeUninit<Output>,
+}
+```
+
+Implements the traditional “getter” pattern for `ioctl`s.
+
+Some `ioctl`s just read data into the userspace. As this is a popular
+pattern, this structure implements it.
+
+To compute a value for the `OPCODE` argument, see the functions in the
+[`opcode`](opcode/index.md) module.
+
+
+#### Fields
+
+- **`output`**: `mem::MaybeUninit<Output>`
+
+  The output data.
+
+#### Implementations
+
+- `const unsafe fn new() -> Self`
+
+#### Trait Implementations
+
+##### `impl<const OPCODE: super::Opcode, Output> Debug for Getter<OPCODE, Output>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<const OPCODE: super::Opcode, Output> Ioctl for Getter<OPCODE, Output>`
+
+- `type Output = Output`
+
+- `const IS_MUTATING: bool`
+
+- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+
+- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+
+- `unsafe fn output_from_ptr(_: IoctlOutput, ptr: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
+
+### `Setter<const OPCODE: super::Opcode, Input>`
+
+```rust
+struct Setter<const OPCODE: super::Opcode, Input> {
+    input: Input,
+}
+```
+
+Implements the pattern for `ioctl`s where a pointer argument is given to
+the `ioctl`.
+
+The opcode must be read-only.
+
+To compute a value for the `OPCODE` argument, see the functions in the
+[`opcode`](opcode/index.md) module.
+
+
+#### Fields
+
+- **`input`**: `Input`
+
+  The input data.
+
+#### Implementations
+
+- `const unsafe fn new(input: Input) -> Self`
+
+#### Trait Implementations
+
+##### `impl<const OPCODE: super::Opcode, Input: fmt::Debug> Debug for Setter<OPCODE, Input>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<const OPCODE: super::Opcode, Input> Ioctl for Setter<OPCODE, Input>`
+
+- `type Output = ()`
+
+- `const IS_MUTATING: bool`
+
+- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+
+- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+
+- `unsafe fn output_from_ptr(_: IoctlOutput, _: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
+
+### `Updater<'a, const OPCODE: super::Opcode, Value>`
+
+```rust
+struct Updater<'a, const OPCODE: super::Opcode, Value> {
+    value: &'a mut Value,
+}
+```
+
+Implements an “updater” pattern for `ioctl`s.
+
+The ioctl takes a reference to a struct that it reads its input from,
+then writes output to the same struct.
+
+To compute a value for the `OPCODE` argument, see the functions in the
+[`opcode`](opcode/index.md) module.
+
+
+#### Fields
+
+- **`value`**: `&'a mut Value`
+
+  Reference to input/output data.
+
+#### Implementations
+
+- `unsafe fn new(value: &'a mut Value) -> Self`
+
+#### Trait Implementations
+
+##### `impl<'a, const OPCODE: super::Opcode, T> Ioctl for Updater<'a, OPCODE, T>`
+
+- `type Output = ()`
+
+- `const IS_MUTATING: bool`
+
+- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+
+- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+
+- `unsafe fn output_from_ptr(_output: IoctlOutput, _ptr: *mut c::c_void) -> Result<()>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md)
+
+### `IntegerSetter<const OPCODE: super::Opcode>`
+
+```rust
+struct IntegerSetter<const OPCODE: super::Opcode> {
+    value: *mut c::c_void,
+}
+```
+
+Implements an `ioctl` that passes an integer into the `ioctl`.
+
+To compute a value for the `OPCODE` argument, see the functions in the
+[`opcode`](opcode/index.md) module.
+
+
+#### Fields
+
+- **`value`**: `*mut c::c_void`
+
+  The value to pass in.
+  
+  For strict provenance preservation, this is a pointer.
+
+#### Implementations
+
+- `const unsafe fn new_usize(value: usize) -> Self`
+
+- `const unsafe fn new_pointer(value: *mut c::c_void) -> Self`
+
+#### Trait Implementations
+
+##### `impl<const OPCODE: super::Opcode> Ioctl for IntegerSetter<OPCODE>`
+
+- `type Output = ()`
+
+- `const IS_MUTATING: bool`
+
+- `fn opcode(self: &Self) -> self::Opcode` — [`Opcode`](#opcode)
+
+- `fn as_ptr(self: &mut Self) -> *mut c::c_void`
+
+- `unsafe fn output_from_ptr(_out: IoctlOutput, _extract_output: *mut c::c_void) -> Result<<Self as >::Output>` — [`IoctlOutput`](#ioctloutput), [`Result`](../io/errno/index.md), [`Ioctl`](#ioctl)
 
 ## Enums
 
@@ -60,35 +270,35 @@ kernel, and `Write` means the kernel writing data to userspace.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Direction`
 
-- `fn clone(self: &Self) -> Direction` — [`Direction`](../../ioctl/index.md)
+- `fn clone(self: &Self) -> Direction` — [`Direction`](#direction)
 
-##### `impl Copy`
+##### `impl Copy for Direction`
 
-##### `impl Debug`
+##### `impl Debug for Direction`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Direction`
 
-##### `impl Hash`
+##### `impl Hash for Direction`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl Ord`
+##### `impl Ord for Direction`
 
-- `fn cmp(self: &Self, other: &Direction) -> $crate::cmp::Ordering` — [`Direction`](../../ioctl/index.md)
+- `fn cmp(self: &Self, other: &Direction) -> $crate::cmp::Ordering` — [`Direction`](#direction)
 
-##### `impl PartialEq`
+##### `impl PartialEq for Direction`
 
-- `fn eq(self: &Self, other: &Direction) -> bool` — [`Direction`](../../ioctl/index.md)
+- `fn eq(self: &Self, other: &Direction) -> bool` — [`Direction`](#direction)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Direction`
 
-- `fn partial_cmp(self: &Self, other: &Direction) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Direction`](../../ioctl/index.md)
+- `fn partial_cmp(self: &Self, other: &Direction) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Direction`](#direction)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Direction`
 
 ## Traits
 
@@ -100,7 +310,7 @@ trait Ioctl { ... }
 
 A trait defining the properties of an `ioctl` command.
 
-Objects implementing this trait can be passed to [`ioctl`](#ioctl) to make an
+Objects implementing this trait can be passed to [`ioctl`](../backend/io/syscalls/index.md) to make an
 `ioctl` call. The contents of the object represent the inputs to the
 `ioctl` call. The inputs must be convertible to a pointer through the
 `as_ptr` method. In most cases, this involves either casting a number to a
@@ -160,7 +370,7 @@ generic file descriptors, many drivers expose their own `ioctl` calls for
 controlling their behavior, some of which are proprietary.
 
 This crate exposes many other `ioctl` interfaces with safe and idiomatic
-wrappers, like [`ioctl_fionbio`](../io/ioctl/index.md) and [`ioctl_fionread`](../io/ioctl/index.md). It is recommended
+wrappers, like [`ioctl_fionbio`](../io/index.md) and [`ioctl_fionread`](../io/index.md). It is recommended
 to use those instead of this function, as they are safer and more
 idiomatic. For other cases, implement the [`Ioctl`](#ioctl) API and pass it to this
 function.
@@ -191,14 +401,13 @@ are compatible with Rust language invariants.
  - [Solaris]
  - [illumos](#illumos)
 
-[Linux]: https://man7.org/linux/man-pages/man2/ioctl.2.html
-[Winsock]: https://learn.microsoft.com/en-us/windows/win32/api/winsock/nf-winsock-ioctlsocket
-[FreeBSD]: https://man.freebsd.org/cgi/man.cgi?query=ioctl&sektion=2
-[NetBSD]: https://man.netbsd.org/ioctl.2
-[OpenBSD]: https://man.openbsd.org/ioctl.2
-[Apple]: https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/ioctl.2.html
-[Solaris]: https://docs.oracle.com/cd/E23824_01/html/821-1463/ioctl-2.html
-[illumos](#illumos): https://illumos.org/man/2/ioctl
+
+
+
+
+
+
+
 
 ## Type Aliases
 

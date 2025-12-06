@@ -55,8 +55,7 @@ ways to create (or consume) parallel iterators:
   collection to extend, you can use [`collect()`](#collect) to create a new
   one from scratch.)
 
-[the `ParallelSlice` trait]: crate::slice::ParallelSlice
-[the `ParallelString` trait]: crate::str::ParallelString
+
 
 
 To see the full range of methods available on parallel iterators,
@@ -66,9 +65,7 @@ traits.
 If you'd like to build a custom parallel iterator, or to write your own
 combinator, then check out the [split](#split) function and the [plumbing](#plumbing) module.
 
-[regular iterator]: Iterator
-[split](#split): split()
-[plumbing](#plumbing): plumbing
+
 
 Note: Several of the `ParallelIterator` methods rely on a `Try` trait which
 has been deliberately obscured from the public API.  This trait is intended
@@ -108,17 +105,17 @@ This struct is created by the [`by_exponential_blocks()`](#by-exponential-blocks
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for ExponentialBlocks<I>`
 
-- `fn clone(self: &Self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](../../iter/blocks/index.md)
+- `fn clone(self: &Self) -> ExponentialBlocks<I>` — [`ExponentialBlocks`](blocks/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for ExponentialBlocks<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for ExponentialBlocks<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for ExponentialBlocks<I>`
 
 - `type Iter = T`
 
@@ -126,13 +123,13 @@ This struct is created by the [`by_exponential_blocks()`](#by-exponential-blocks
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for ExponentialBlocks<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ExponentialBlocks<I>`
 
 - `const ALIGN: usize`
 
@@ -167,17 +164,17 @@ This struct is created by the [`by_uniform_blocks()`](#by-uniform-blocks) method
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for UniformBlocks<I>`
 
-- `fn clone(self: &Self) -> UniformBlocks<I>` — [`UniformBlocks`](../../iter/blocks/index.md)
+- `fn clone(self: &Self) -> UniformBlocks<I>` — [`UniformBlocks`](blocks/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for UniformBlocks<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for UniformBlocks<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for UniformBlocks<I>`
 
 - `type Iter = T`
 
@@ -185,13 +182,13 @@ This struct is created by the [`by_uniform_blocks()`](#by-uniform-blocks) method
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for UniformBlocks<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for UniformBlocks<I>`
 
 - `const ALIGN: usize`
 
@@ -224,25 +221,25 @@ This struct is created by the [`chain()`](#chain) method on [`ParallelIterator`]
 
 #### Trait Implementations
 
-##### `impl Clone<A: $crate::clone::Clone, B: $crate::clone::Clone>`
+##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for Chain<A, B>`
 
-- `fn clone(self: &Self) -> Chain<A, B>` — [`Chain`](../../iter/chain/index.md)
+- `fn clone(self: &Self) -> Chain<A, B>` — [`Chain`](chain/index.md)
 
-##### `impl Debug<A: $crate::fmt::Debug, B: $crate::fmt::Debug>`
+##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for Chain<A, B>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<A, B>`
+##### `impl<A, B> IndexedParallelIterator for Chain<A, B>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Chain<A, B>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Chain<A, B>`
 
 - `type Iter = T`
 
@@ -250,15 +247,15 @@ This struct is created by the [`chain()`](#chain) method on [`ParallelIterator`]
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<A, B>`
+##### `impl<A, B> ParallelIterator for Chain<A, B>`
 
 - `type Item = <A as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Chain<A, B>`
 
 - `const ALIGN: usize`
 
@@ -292,25 +289,25 @@ This struct is created by the [`chunks()`](#chunks) method on [`IndexedParallelI
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Chunks<I>`
 
-- `fn clone(self: &Self) -> Chunks<I>` — [`Chunks`](../../iter/chunks/index.md)
+- `fn clone(self: &Self) -> Chunks<I>` — [`Chunks`](chunks/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for Chunks<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for Chunks<I>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Chunks<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Chunks<I>`
 
 - `type Iter = T`
 
@@ -318,15 +315,15 @@ This struct is created by the [`chunks()`](#chunks) method on [`IndexedParallelI
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for Chunks<I>`
 
 - `type Item = Vec<<I as ParallelIterator>::Item>`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Chunks<I>`
 
 - `const ALIGN: usize`
 
@@ -359,25 +356,25 @@ This struct is created by the [`cloned()`](#cloned) method on [`ParallelIterator
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Cloned<I>`
 
-- `fn clone(self: &Self) -> Cloned<I>` — [`Cloned`](../../iter/cloned/index.md)
+- `fn clone(self: &Self) -> Cloned<I>` — [`Cloned`](cloned/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for Cloned<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<'a, T, I>`
+##### `impl<'a, T, I> IndexedParallelIterator for Cloned<I>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Cloned<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Cloned<I>`
 
 - `type Iter = T`
 
@@ -385,15 +382,15 @@ This struct is created by the [`cloned()`](#cloned) method on [`ParallelIterator
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'a, T, I>`
+##### `impl<'a, T, I> ParallelIterator for Cloned<I>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Cloned<I>`
 
 - `const ALIGN: usize`
 
@@ -426,25 +423,25 @@ This struct is created by the [`copied()`](#copied) method on [`ParallelIterator
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Copied<I>`
 
-- `fn clone(self: &Self) -> Copied<I>` — [`Copied`](../../iter/copied/index.md)
+- `fn clone(self: &Self) -> Copied<I>` — [`Copied`](copied/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for Copied<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<'a, T, I>`
+##### `impl<'a, T, I> IndexedParallelIterator for Copied<I>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Copied<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Copied<I>`
 
 - `type Iter = T`
 
@@ -452,15 +449,15 @@ This struct is created by the [`copied()`](#copied) method on [`ParallelIterator
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'a, T, I>`
+##### `impl<'a, T, I> ParallelIterator for Copied<I>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Copied<I>`
 
 - `const ALIGN: usize`
 
@@ -484,29 +481,28 @@ struct Empty<T> {
 
 Iterator adaptor for [the `empty()` function].
 
-[the `empty()` function]: empty()
 
 #### Trait Implementations
 
-##### `impl Clone<T>`
+##### `impl<T> Clone for Empty<T>`
 
 - `fn clone(self: &Self) -> Self`
 
-##### `impl Debug<T: Send>`
+##### `impl<T: Send> Debug for Empty<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<T: Send>`
+##### `impl<T: Send> IndexedParallelIterator for Empty<T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Empty<T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Empty<T>`
 
 - `type Iter = T`
 
@@ -514,15 +510,15 @@ Iterator adaptor for [the `empty()` function].
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<T: Send>`
+##### `impl<T: Send> ParallelIterator for Empty<T>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Empty<T>`
 
 - `const ALIGN: usize`
 
@@ -554,25 +550,25 @@ This struct is created by the [`enumerate()`](#enumerate) method on [`IndexedPar
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Enumerate<I>`
 
-- `fn clone(self: &Self) -> Enumerate<I>` — [`Enumerate`](../../iter/enumerate/index.md)
+- `fn clone(self: &Self) -> Enumerate<I>` — [`Enumerate`](enumerate/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for Enumerate<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for Enumerate<I>`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Enumerate<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Enumerate<I>`
 
 - `type Iter = T`
 
@@ -580,15 +576,15 @@ This struct is created by the [`enumerate()`](#enumerate) method on [`IndexedPar
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for Enumerate<I>`
 
 - `type Item = (usize, <I as ParallelIterator>::Item)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Enumerate<I>`
 
 - `const ALIGN: usize`
 
@@ -621,17 +617,17 @@ This struct is created by the [`filter()`](#filter) method on [`ParallelIterator
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, P: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for Filter<I, P>`
 
-- `fn clone(self: &Self) -> Filter<I, P>` — [`Filter`](../../iter/filter/index.md)
+- `fn clone(self: &Self) -> Filter<I, P>` — [`Filter`](filter/index.md)
 
-##### `impl Debug<I: Debug, P>`
+##### `impl<I: Debug, P> Debug for Filter<I, P>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Filter<I, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Filter<I, P>`
 
 - `type Iter = T`
 
@@ -639,13 +635,13 @@ This struct is created by the [`filter()`](#filter) method on [`ParallelIterator
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, P>`
+##### `impl<I, P> ParallelIterator for Filter<I, P>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Filter<I, P>`
 
 - `const ALIGN: usize`
 
@@ -678,17 +674,17 @@ This struct is created by the [`filter_map()`](#filter-map) method on [`Parallel
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, P: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for FilterMap<I, P>`
 
-- `fn clone(self: &Self) -> FilterMap<I, P>` — [`FilterMap`](../../iter/filter_map/index.md)
+- `fn clone(self: &Self) -> FilterMap<I, P>` — [`FilterMap`](filter_map/index.md)
 
-##### `impl Debug<I: Debug, P>`
+##### `impl<I: Debug, P> Debug for FilterMap<I, P>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for FilterMap<I, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for FilterMap<I, P>`
 
 - `type Iter = T`
 
@@ -696,13 +692,13 @@ This struct is created by the [`filter_map()`](#filter-map) method on [`Parallel
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, P, R>`
+##### `impl<I, P, R> ParallelIterator for FilterMap<I, P>`
 
 - `type Item = R`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for FilterMap<I, P>`
 
 - `const ALIGN: usize`
 
@@ -735,17 +731,17 @@ This struct is created by the [`flat_map()`](#flat-map) method on [`ParallelIter
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FlatMap<I, F>`
 
-- `fn clone(self: &Self) -> FlatMap<I, F>` — [`FlatMap`](../../iter/flat_map/index.md)
+- `fn clone(self: &Self) -> FlatMap<I, F>` — [`FlatMap`](flat_map/index.md)
 
-##### `impl Debug<I: Debug, F>`
+##### `impl<I: Debug, F> Debug for FlatMap<I, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for FlatMap<I, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for FlatMap<I, F>`
 
 - `type Iter = T`
 
@@ -753,13 +749,13 @@ This struct is created by the [`flat_map()`](#flat-map) method on [`ParallelIter
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, F, PI>`
+##### `impl<I, F, PI> ParallelIterator for FlatMap<I, F>`
 
 - `type Item = <PI as IntoParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for FlatMap<I, F>`
 
 - `const ALIGN: usize`
 
@@ -792,17 +788,17 @@ This struct is created by the [`flat_map_iter()`](#flat-map-iter) method on [`Pa
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FlatMapIter<I, F>`
 
-- `fn clone(self: &Self) -> FlatMapIter<I, F>` — [`FlatMapIter`](../../iter/flat_map_iter/index.md)
+- `fn clone(self: &Self) -> FlatMapIter<I, F>` — [`FlatMapIter`](flat_map_iter/index.md)
 
-##### `impl Debug<I: Debug, F>`
+##### `impl<I: Debug, F> Debug for FlatMapIter<I, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for FlatMapIter<I, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for FlatMapIter<I, F>`
 
 - `type Iter = T`
 
@@ -810,13 +806,13 @@ This struct is created by the [`flat_map_iter()`](#flat-map-iter) method on [`Pa
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, F, SI>`
+##### `impl<I, F, SI> ParallelIterator for FlatMapIter<I, F>`
 
 - `type Item = <SI as IntoIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for FlatMapIter<I, F>`
 
 - `const ALIGN: usize`
 
@@ -848,17 +844,17 @@ together. This struct is created by the [`flatten()`](#flatten) method on [`Para
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Flatten<I>`
 
-- `fn clone(self: &Self) -> Flatten<I>` — [`Flatten`](../../iter/flatten/index.md)
+- `fn clone(self: &Self) -> Flatten<I>` — [`Flatten`](flatten/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for Flatten<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Flatten<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Flatten<I>`
 
 - `type Iter = T`
 
@@ -866,13 +862,13 @@ together. This struct is created by the [`flatten()`](#flatten) method on [`Para
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for Flatten<I>`
 
 - `type Item = <<I as ParallelIterator>::Item as IntoParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Flatten<I>`
 
 - `const ALIGN: usize`
 
@@ -904,17 +900,17 @@ together. This struct is created by the [`flatten_iter()`](#flatten-iter) method
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for FlattenIter<I>`
 
-- `fn clone(self: &Self) -> FlattenIter<I>` — [`FlattenIter`](../../iter/flatten_iter/index.md)
+- `fn clone(self: &Self) -> FlattenIter<I>` — [`FlattenIter`](flatten_iter/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for FlattenIter<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for FlattenIter<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for FlattenIter<I>`
 
 - `type Iter = T`
 
@@ -922,13 +918,13 @@ together. This struct is created by the [`flatten_iter()`](#flatten-iter) method
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for FlattenIter<I>`
 
 - `type Item = <<I as ParallelIterator>::Item as IntoIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for FlattenIter<I>`
 
 - `const ALIGN: usize`
 
@@ -962,17 +958,17 @@ This struct is created by the [`fold()`](#fold) method on [`ParallelIterator`](#
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Fold<I, ID, F>`
 
-- `fn clone(self: &Self) -> Fold<I, ID, F>` — [`Fold`](../../iter/fold/index.md)
+- `fn clone(self: &Self) -> Fold<I, ID, F>` — [`Fold`](fold/index.md)
 
-##### `impl Debug<I: Debug, ID, F>`
+##### `impl<I: Debug, ID, F> Debug for Fold<I, ID, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Fold<I, ID, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Fold<I, ID, F>`
 
 - `type Iter = T`
 
@@ -980,13 +976,13 @@ This struct is created by the [`fold()`](#fold) method on [`ParallelIterator`](#
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<U, I, ID, F>`
+##### `impl<U, I, ID, F> ParallelIterator for Fold<I, ID, F>`
 
 - `type Item = U`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Fold<I, ID, F>`
 
 - `const ALIGN: usize`
 
@@ -1020,17 +1016,17 @@ This struct is created by the [`fold_with()`](#fold-with) method on [`ParallelIt
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, U: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldWith<I, U, F>`
 
-- `fn clone(self: &Self) -> FoldWith<I, U, F>` — [`FoldWith`](../../iter/fold/index.md)
+- `fn clone(self: &Self) -> FoldWith<I, U, F>` — [`FoldWith`](fold/index.md)
 
-##### `impl Debug<I: Debug, U: Debug, F>`
+##### `impl<I: Debug, U: Debug, F> Debug for FoldWith<I, U, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for FoldWith<I, U, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for FoldWith<I, U, F>`
 
 - `type Iter = T`
 
@@ -1038,13 +1034,13 @@ This struct is created by the [`fold_with()`](#fold-with) method on [`ParallelIt
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<U, I, F>`
+##### `impl<U, I, F> ParallelIterator for FoldWith<I, U, F>`
 
 - `type Item = U`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for FoldWith<I, U, F>`
 
 - `const ALIGN: usize`
 
@@ -1081,25 +1077,25 @@ This struct is created by the [`fold_chunks()`](#fold-chunks) method on [`Indexe
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldChunks<I, ID, F>`
 
-- `fn clone(self: &Self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](../../iter/fold_chunks/index.md)
+- `fn clone(self: &Self) -> FoldChunks<I, ID, F>` — [`FoldChunks`](fold_chunks/index.md)
 
-##### `impl Debug<I: Debug, ID, F>`
+##### `impl<I: Debug, ID, F> Debug for FoldChunks<I, ID, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<I, ID, U, F>`
+##### `impl<I, ID, U, F> IndexedParallelIterator for FoldChunks<I, ID, F>`
 
 - `fn len(self: &Self) -> usize`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for FoldChunks<I, ID, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for FoldChunks<I, ID, F>`
 
 - `type Iter = T`
 
@@ -1107,15 +1103,15 @@ This struct is created by the [`fold_chunks()`](#fold-chunks) method on [`Indexe
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, ID, U, F>`
+##### `impl<I, ID, U, F> ParallelIterator for FoldChunks<I, ID, F>`
 
 - `type Item = U`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for FoldChunks<I, ID, F>`
 
 - `const ALIGN: usize`
 
@@ -1152,25 +1148,25 @@ This struct is created by the [`fold_chunks_with()`](#fold-chunks-with) method o
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, U: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, F: $crate::clone::Clone> Clone for FoldChunksWith<I, U, F>`
 
-- `fn clone(self: &Self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](../../iter/fold_chunks_with/index.md)
+- `fn clone(self: &Self) -> FoldChunksWith<I, U, F>` — [`FoldChunksWith`](fold_chunks_with/index.md)
 
-##### `impl Debug<I: Debug, U: Debug, F>`
+##### `impl<I: Debug, U: Debug, F> Debug for FoldChunksWith<I, U, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<I, U, F>`
+##### `impl<I, U, F> IndexedParallelIterator for FoldChunksWith<I, U, F>`
 
 - `fn len(self: &Self) -> usize`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for FoldChunksWith<I, U, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for FoldChunksWith<I, U, F>`
 
 - `type Iter = T`
 
@@ -1178,15 +1174,15 @@ This struct is created by the [`fold_chunks_with()`](#fold-chunks-with) method o
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, U, F>`
+##### `impl<I, U, F> ParallelIterator for FoldChunksWith<I, U, F>`
 
 - `type Item = U`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for FoldChunksWith<I, U, F>`
 
 - `const ALIGN: usize`
 
@@ -1221,25 +1217,25 @@ This struct is created by the [`inspect()`](#inspect) method on [`ParallelIterat
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Inspect<I, F>`
 
-- `fn clone(self: &Self) -> Inspect<I, F>` — [`Inspect`](../../iter/inspect/index.md)
+- `fn clone(self: &Self) -> Inspect<I, F>` — [`Inspect`](inspect/index.md)
 
-##### `impl Debug<I: Debug, F>`
+##### `impl<I: Debug, F> Debug for Inspect<I, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<I, F>`
+##### `impl<I, F> IndexedParallelIterator for Inspect<I, F>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Inspect<I, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Inspect<I, F>`
 
 - `type Iter = T`
 
@@ -1247,15 +1243,15 @@ This struct is created by the [`inspect()`](#inspect) method on [`ParallelIterat
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, F>`
+##### `impl<I, F> ParallelIterator for Inspect<I, F>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Inspect<I, F>`
 
 - `const ALIGN: usize`
 
@@ -1289,25 +1285,25 @@ the [`interleave()`](#interleave) method on [`IndexedParallelIterator`](#indexed
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, J: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, J: $crate::clone::Clone> Clone for Interleave<I, J>`
 
-- `fn clone(self: &Self) -> Interleave<I, J>` — [`Interleave`](../../iter/interleave/index.md)
+- `fn clone(self: &Self) -> Interleave<I, J>` — [`Interleave`](interleave/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug, J: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug, J: $crate::fmt::Debug> Debug for Interleave<I, J>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I, J>`
+##### `impl<I, J> IndexedParallelIterator for Interleave<I, J>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Interleave<I, J>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Interleave<I, J>`
 
 - `type Iter = T`
 
@@ -1315,15 +1311,15 @@ the [`interleave()`](#interleave) method on [`IndexedParallelIterator`](#indexed
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, J>`
+##### `impl<I, J> ParallelIterator for Interleave<I, J>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Interleave<I, J>`
 
 - `const ALIGN: usize`
 
@@ -1359,25 +1355,25 @@ This struct is created by the [`interleave_shortest()`](#interleave-shortest) me
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, J: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, J: $crate::clone::Clone> Clone for InterleaveShortest<I, J>`
 
-- `fn clone(self: &Self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](../../iter/interleave_shortest/index.md)
+- `fn clone(self: &Self) -> InterleaveShortest<I, J>` — [`InterleaveShortest`](interleave_shortest/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug, J: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug, J: $crate::fmt::Debug> Debug for InterleaveShortest<I, J>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I, J>`
+##### `impl<I, J> IndexedParallelIterator for InterleaveShortest<I, J>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for InterleaveShortest<I, J>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for InterleaveShortest<I, J>`
 
 - `type Iter = T`
 
@@ -1385,15 +1381,15 @@ This struct is created by the [`interleave_shortest()`](#interleave-shortest) me
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, J>`
+##### `impl<I, J> ParallelIterator for InterleaveShortest<I, J>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for InterleaveShortest<I, J>`
 
 - `const ALIGN: usize`
 
@@ -1425,29 +1421,29 @@ item of the adapted iterator.  This struct is created by the
 
 #### Implementations
 
-- `fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](../../iter/index.md)
+- `fn new(base: I, item: <I as >::Item) -> Self` — [`ParallelIterator`](#paralleliterator)
 
 #### Trait Implementations
 
-##### `impl Clone<I>`
+##### `impl<I> Clone for Intersperse<I>`
 
-- `fn clone(self: &Self) -> Intersperse<I>` — [`Intersperse`](../../iter/intersperse/index.md)
+- `fn clone(self: &Self) -> Intersperse<I>` — [`Intersperse`](intersperse/index.md)
 
-##### `impl Debug<I>`
+##### `impl<I> Debug for Intersperse<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for Intersperse<I>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Intersperse<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Intersperse<I>`
 
 - `type Iter = T`
 
@@ -1455,15 +1451,15 @@ item of the adapted iterator.  This struct is created by the
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for Intersperse<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Intersperse<I>`
 
 - `const ALIGN: usize`
 
@@ -1496,25 +1492,25 @@ This struct is created by the [`with_max_len()`](#with-max-len) method on [`Inde
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for MaxLen<I>`
 
-- `fn clone(self: &Self) -> MaxLen<I>` — [`MaxLen`](../../iter/len/index.md)
+- `fn clone(self: &Self) -> MaxLen<I>` — [`MaxLen`](len/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for MaxLen<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for MaxLen<I>`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MaxLen<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for MaxLen<I>`
 
 - `type Iter = T`
 
@@ -1522,15 +1518,15 @@ This struct is created by the [`with_max_len()`](#with-max-len) method on [`Inde
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for MaxLen<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MaxLen<I>`
 
 - `const ALIGN: usize`
 
@@ -1563,25 +1559,25 @@ This struct is created by the [`with_min_len()`](#with-min-len) method on [`Inde
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for MinLen<I>`
 
-- `fn clone(self: &Self) -> MinLen<I>` — [`MinLen`](../../iter/len/index.md)
+- `fn clone(self: &Self) -> MinLen<I>` — [`MinLen`](len/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for MinLen<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for MinLen<I>`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MinLen<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for MinLen<I>`
 
 - `type Iter = T`
 
@@ -1589,15 +1585,15 @@ This struct is created by the [`with_min_len()`](#with-min-len) method on [`Inde
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for MinLen<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MinLen<I>`
 
 - `const ALIGN: usize`
 
@@ -1631,25 +1627,25 @@ This struct is created by the [`map()`](#map) method on [`ParallelIterator`](#pa
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Map<I, F>`
 
-- `fn clone(self: &Self) -> Map<I, F>` — [`Map`](../../iter/map/index.md)
+- `fn clone(self: &Self) -> Map<I, F>` — [`Map`](map/index.md)
 
-##### `impl Debug<I: Debug, F>`
+##### `impl<I: Debug, F> Debug for Map<I, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<I, F, R>`
+##### `impl<I, F, R> IndexedParallelIterator for Map<I, F>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Map<I, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Map<I, F>`
 
 - `type Iter = T`
 
@@ -1657,15 +1653,15 @@ This struct is created by the [`map()`](#map) method on [`ParallelIterator`](#pa
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, F, R>`
+##### `impl<I, F, R> ParallelIterator for Map<I, F>`
 
 - `type Item = <F as FnOnce>::Output`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Map<I, F>`
 
 - `const ALIGN: usize`
 
@@ -1700,25 +1696,25 @@ This struct is created by the [`map_init()`](#map-init) method on [`ParallelIter
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, INIT: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, INIT: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapInit<I, INIT, F>`
 
-- `fn clone(self: &Self) -> MapInit<I, INIT, F>` — [`MapInit`](../../iter/map_with/index.md)
+- `fn clone(self: &Self) -> MapInit<I, INIT, F>` — [`MapInit`](map_with/index.md)
 
-##### `impl Debug<I: Debug, INIT, F>`
+##### `impl<I: Debug, INIT, F> Debug for MapInit<I, INIT, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<I, INIT, T, F, R>`
+##### `impl<I, INIT, T, F, R> IndexedParallelIterator for MapInit<I, INIT, F>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MapInit<I, INIT, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for MapInit<I, INIT, F>`
 
 - `type Iter = T`
 
@@ -1726,15 +1722,15 @@ This struct is created by the [`map_init()`](#map-init) method on [`ParallelIter
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, INIT, T, F, R>`
+##### `impl<I, INIT, T, F, R> ParallelIterator for MapInit<I, INIT, F>`
 
 - `type Item = R`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MapInit<I, INIT, F>`
 
 - `const ALIGN: usize`
 
@@ -1769,25 +1765,25 @@ This struct is created by the [`map_with()`](#map-with) method on [`ParallelIter
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, T: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, T: $crate::clone::Clone, F: $crate::clone::Clone> Clone for MapWith<I, T, F>`
 
-- `fn clone(self: &Self) -> MapWith<I, T, F>` — [`MapWith`](../../iter/map_with/index.md)
+- `fn clone(self: &Self) -> MapWith<I, T, F>` — [`MapWith`](map_with/index.md)
 
-##### `impl Debug<I: Debug, T: Debug, F>`
+##### `impl<I: Debug, T: Debug, F> Debug for MapWith<I, T, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<I, T, F, R>`
+##### `impl<I, T, F, R> IndexedParallelIterator for MapWith<I, T, F>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MapWith<I, T, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for MapWith<I, T, F>`
 
 - `type Iter = T`
 
@@ -1795,15 +1791,15 @@ This struct is created by the [`map_with()`](#map-with) method on [`ParallelIter
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, T, F, R>`
+##### `impl<I, T, F, R> ParallelIterator for MapWith<I, T, F>`
 
 - `type Item = R`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MapWith<I, T, F>`
 
 - `const ALIGN: usize`
 
@@ -1902,25 +1898,25 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for MultiZip<T>`
 
-- `fn clone(self: &Self) -> MultiZip<T>` — [`MultiZip`](../../iter/multizip/index.md)
+- `fn clone(self: &Self) -> MultiZip<T>` — [`MultiZip`](multizip/index.md)
 
-##### `impl Debug<T: $crate::fmt::Debug>`
+##### `impl<T: $crate::fmt::Debug> Debug for MultiZip<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<A, B, C, D, E, F>`
+##### `impl<A> IndexedParallelIterator for MultiZip<(A)>`
 
-- `fn drive<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for MultiZip<T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for MultiZip<T>`
 
 - `type Iter = T`
 
@@ -1928,15 +1924,15 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<A, B, C>`
+##### `impl<A, B, C> ParallelIterator for MultiZip<(A, B, C)>`
 
 - `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item)`
 
-- `fn drive_unindexed<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for MultiZip<T>`
 
 - `const ALIGN: usize`
 
@@ -1960,29 +1956,28 @@ struct Once<T> {
 
 Iterator adaptor for [the `once()` function].
 
-[the `once()` function]: once()
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for Once<T>`
 
-- `fn clone(self: &Self) -> Once<T>` — [`Once`](../../iter/once/index.md)
+- `fn clone(self: &Self) -> Once<T>` — [`Once`](once/index.md)
 
-##### `impl Debug<T: $crate::fmt::Debug>`
+##### `impl<T: $crate::fmt::Debug> Debug for Once<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<T: Send>`
+##### `impl<T: Send> IndexedParallelIterator for Once<T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Once<T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Once<T>`
 
 - `type Iter = T`
 
@@ -1990,15 +1985,15 @@ Iterator adaptor for [the `once()` function].
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<T: Send>`
+##### `impl<T: Send> ParallelIterator for Once<T>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Once<T>`
 
 - `const ALIGN: usize`
 
@@ -2028,29 +2023,29 @@ This struct is created by the [`panic_fuse()`](#panic-fuse) method on [`Parallel
 
 #### Implementations
 
-- `fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](../../iter/panic_fuse/index.md)
+- `fn new(base: I) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for PanicFuse<I>`
 
-- `fn clone(self: &Self) -> PanicFuse<I>` — [`PanicFuse`](../../iter/panic_fuse/index.md)
+- `fn clone(self: &Self) -> PanicFuse<I>` — [`PanicFuse`](panic_fuse/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for PanicFuse<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for PanicFuse<I>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for PanicFuse<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for PanicFuse<I>`
 
 - `type Iter = T`
 
@@ -2058,15 +2053,15 @@ This struct is created by the [`panic_fuse()`](#panic-fuse) method on [`Parallel
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for PanicFuse<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for PanicFuse<I>`
 
 - `const ALIGN: usize`
 
@@ -2095,17 +2090,17 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 #### Trait Implementations
 
-##### `impl Clone<Iter: $crate::clone::Clone>`
+##### `impl<Iter: $crate::clone::Clone> Clone for IterBridge<Iter>`
 
-- `fn clone(self: &Self) -> IterBridge<Iter>` — [`IterBridge`](../../iter/par_bridge/index.md)
+- `fn clone(self: &Self) -> IterBridge<Iter>` — [`IterBridge`](par_bridge/index.md)
 
-##### `impl Debug<Iter: $crate::fmt::Debug>`
+##### `impl<Iter: $crate::fmt::Debug> Debug for IterBridge<Iter>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for IterBridge<Iter>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for IterBridge<Iter>`
 
 - `type Iter = T`
 
@@ -2113,13 +2108,13 @@ This type is created when using the `par_bridge` method on `ParallelBridge`. See
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<Iter>`
+##### `impl<Iter> ParallelIterator for IterBridge<Iter>`
 
 - `type Item = <Iter as Iterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for IterBridge<Iter>`
 
 - `const ALIGN: usize`
 
@@ -2154,17 +2149,17 @@ This struct is created by the [`positions()`](#positions) method on [`IndexedPar
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, P: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for Positions<I, P>`
 
-- `fn clone(self: &Self) -> Positions<I, P>` — [`Positions`](../../iter/positions/index.md)
+- `fn clone(self: &Self) -> Positions<I, P>` — [`Positions`](positions/index.md)
 
-##### `impl Debug<I: Debug, P>`
+##### `impl<I: Debug, P> Debug for Positions<I, P>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Positions<I, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Positions<I, P>`
 
 - `type Iter = T`
 
@@ -2172,13 +2167,13 @@ This struct is created by the [`positions()`](#positions) method on [`IndexedPar
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, P>`
+##### `impl<I, P> ParallelIterator for Positions<I, P>`
 
 - `type Item = usize`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Positions<I, P>`
 
 - `const ALIGN: usize`
 
@@ -2202,27 +2197,26 @@ struct Repeat<T> {
 
 Iterator adaptor for [the `repeat()` function].
 
-[the `repeat()` function]: repeat()
 
 #### Implementations
 
-- `fn take(self: Self, n: usize) -> RepeatN<T>` — [`RepeatN`](../../iter/repeat/index.md)
+- `fn take(self: Self, n: usize) -> RepeatN<T>` — [`RepeatN`](repeat/index.md)
 
-- `fn zip<Z>(self: Self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](../../iter/zip/index.md), [`RepeatN`](../../iter/repeat/index.md), [`IntoParallelIterator`](../../iter/index.md)
+- `fn zip<Z>(self: Self, zip_op: Z) -> Zip<RepeatN<T>, <Z as >::Iter>` — [`Zip`](zip/index.md), [`RepeatN`](repeat/index.md), [`IntoParallelIterator`](#intoparalleliterator)
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for Repeat<T>`
 
-- `fn clone(self: &Self) -> Repeat<T>` — [`Repeat`](../../iter/repeat/index.md)
+- `fn clone(self: &Self) -> Repeat<T>` — [`Repeat`](repeat/index.md)
 
-##### `impl Debug<T: $crate::fmt::Debug>`
+##### `impl<T: $crate::fmt::Debug> Debug for Repeat<T>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Repeat<T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Repeat<T>`
 
 - `type Iter = T`
 
@@ -2230,13 +2224,13 @@ Iterator adaptor for [the `repeat()` function].
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<T>`
+##### `impl<T> ParallelIterator for Repeat<T>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Repeat<T>`
 
 - `const ALIGN: usize`
 
@@ -2260,29 +2254,28 @@ struct RepeatN<T> {
 
 Iterator adaptor for [the `repeat_n()` function].
 
-[the `repeat_n()` function]: repeat_n()
 
 #### Trait Implementations
 
-##### `impl Clone<T: $crate::clone::Clone>`
+##### `impl<T: $crate::clone::Clone> Clone for RepeatN<T>`
 
-- `fn clone(self: &Self) -> RepeatN<T>` — [`RepeatN`](../../iter/repeat/index.md)
+- `fn clone(self: &Self) -> RepeatN<T>` — [`RepeatN`](repeat/index.md)
 
-##### `impl Debug<T: fmt::Debug>`
+##### `impl<T: fmt::Debug> Debug for RepeatN<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<T>`
+##### `impl<T> IndexedParallelIterator for RepeatN<T>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for RepeatN<T>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for RepeatN<T>`
 
 - `type Iter = T`
 
@@ -2290,15 +2283,15 @@ Iterator adaptor for [the `repeat_n()` function].
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<T>`
+##### `impl<T> ParallelIterator for RepeatN<T>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for RepeatN<T>`
 
 - `const ALIGN: usize`
 
@@ -2330,25 +2323,25 @@ is created by the [`rev()`](#rev) method on [`IndexedParallelIterator`](#indexed
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Rev<I>`
 
-- `fn clone(self: &Self) -> Rev<I>` — [`Rev`](../../iter/rev/index.md)
+- `fn clone(self: &Self) -> Rev<I>` — [`Rev`](rev/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for Rev<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for Rev<I>`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Rev<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Rev<I>`
 
 - `type Iter = T`
 
@@ -2356,15 +2349,15 @@ is created by the [`rev()`](#rev) method on [`IndexedParallelIterator`](#indexed
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for Rev<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Rev<I>`
 
 - `const ALIGN: usize`
 
@@ -2397,25 +2390,25 @@ This struct is created by the [`skip()`](#skip) method on [`IndexedParallelItera
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Skip<I>`
 
-- `fn clone(self: &Self) -> Skip<I>` — [`Skip`](../../iter/skip/index.md)
+- `fn clone(self: &Self) -> Skip<I>` — [`Skip`](skip/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for Skip<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for Skip<I>`
 
 - `fn len(self: &Self) -> usize`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Skip<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Skip<I>`
 
 - `type Iter = T`
 
@@ -2423,15 +2416,15 @@ This struct is created by the [`skip()`](#skip) method on [`IndexedParallelItera
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for Skip<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Skip<I>`
 
 - `const ALIGN: usize`
 
@@ -2464,17 +2457,17 @@ This struct is created by the [`skip_any()`](#skip-any) method on [`ParallelIter
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for SkipAny<I>`
 
-- `fn clone(self: &Self) -> SkipAny<I>` — [`SkipAny`](../../iter/skip_any/index.md)
+- `fn clone(self: &Self) -> SkipAny<I>` — [`SkipAny`](skip_any/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for SkipAny<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for SkipAny<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for SkipAny<I>`
 
 - `type Iter = T`
 
@@ -2482,13 +2475,13 @@ This struct is created by the [`skip_any()`](#skip-any) method on [`ParallelIter
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for SkipAny<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for SkipAny<I>`
 
 - `const ALIGN: usize`
 
@@ -2522,17 +2515,17 @@ This struct is created by the [`skip_any_while()`](#skip-any-while) method on [`
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, P: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for SkipAnyWhile<I, P>`
 
-- `fn clone(self: &Self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](../../iter/skip_any_while/index.md)
+- `fn clone(self: &Self) -> SkipAnyWhile<I, P>` — [`SkipAnyWhile`](skip_any_while/index.md)
 
-##### `impl Debug<I: fmt::Debug, P>`
+##### `impl<I: fmt::Debug, P> Debug for SkipAnyWhile<I, P>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for SkipAnyWhile<I, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for SkipAnyWhile<I, P>`
 
 - `type Iter = T`
 
@@ -2540,13 +2533,13 @@ This struct is created by the [`skip_any_while()`](#skip-any-while) method on [`
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, P>`
+##### `impl<I, P> ParallelIterator for SkipAnyWhile<I, P>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for SkipAnyWhile<I, P>`
 
 - `const ALIGN: usize`
 
@@ -2574,17 +2567,17 @@ This struct is created by the [`split()`](#split) function.
 
 #### Trait Implementations
 
-##### `impl Clone<D: $crate::clone::Clone, S: $crate::clone::Clone>`
+##### `impl<D: $crate::clone::Clone, S: $crate::clone::Clone> Clone for Split<D, S>`
 
-- `fn clone(self: &Self) -> Split<D, S>` — [`Split`](../../iter/splitter/index.md)
+- `fn clone(self: &Self) -> Split<D, S>` — [`Split`](splitter/index.md)
 
-##### `impl Debug<D: Debug, S>`
+##### `impl<D: Debug, S> Debug for Split<D, S>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Split<D, S>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Split<D, S>`
 
 - `type Iter = T`
 
@@ -2592,13 +2585,13 @@ This struct is created by the [`split()`](#split) function.
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<D, S>`
+##### `impl<D, S> ParallelIterator for Split<D, S>`
 
 - `type Item = D`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Split<D, S>`
 
 - `const ALIGN: usize`
 
@@ -2631,25 +2624,25 @@ This struct is created by the [`step_by()`](#step-by) method on [`IndexedParalle
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for StepBy<I>`
 
-- `fn clone(self: &Self) -> StepBy<I>` — [`StepBy`](../../iter/step_by/index.md)
+- `fn clone(self: &Self) -> StepBy<I>` — [`StepBy`](step_by/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for StepBy<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for StepBy<I>`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for StepBy<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for StepBy<I>`
 
 - `type Iter = T`
 
@@ -2657,15 +2650,15 @@ This struct is created by the [`step_by()`](#step-by) method on [`IndexedParalle
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for StepBy<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for StepBy<I>`
 
 - `const ALIGN: usize`
 
@@ -2698,25 +2691,25 @@ This struct is created by the [`take()`](#take) method on [`IndexedParallelItera
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for Take<I>`
 
-- `fn clone(self: &Self) -> Take<I>` — [`Take`](../../iter/take/index.md)
+- `fn clone(self: &Self) -> Take<I>` — [`Take`](take/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for Take<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<I>`
+##### `impl<I> IndexedParallelIterator for Take<I>`
 
 - `fn len(self: &Self) -> usize`
 
-- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C: Consumer<<Self as >::Item>>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Take<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Take<I>`
 
 - `type Iter = T`
 
@@ -2724,15 +2717,15 @@ This struct is created by the [`take()`](#take) method on [`IndexedParallelItera
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for Take<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Take<I>`
 
 - `const ALIGN: usize`
 
@@ -2765,17 +2758,17 @@ This struct is created by the [`take_any()`](#take-any) method on [`ParallelIter
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for TakeAny<I>`
 
-- `fn clone(self: &Self) -> TakeAny<I>` — [`TakeAny`](../../iter/take_any/index.md)
+- `fn clone(self: &Self) -> TakeAny<I>` — [`TakeAny`](take_any/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for TakeAny<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for TakeAny<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for TakeAny<I>`
 
 - `type Iter = T`
 
@@ -2783,13 +2776,13 @@ This struct is created by the [`take_any()`](#take-any) method on [`ParallelIter
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I>`
+##### `impl<I> ParallelIterator for TakeAny<I>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for TakeAny<I>`
 
 - `const ALIGN: usize`
 
@@ -2823,17 +2816,17 @@ This struct is created by the [`take_any_while()`](#take-any-while) method on [`
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, P: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, P: $crate::clone::Clone> Clone for TakeAnyWhile<I, P>`
 
-- `fn clone(self: &Self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](../../iter/take_any_while/index.md)
+- `fn clone(self: &Self) -> TakeAnyWhile<I, P>` — [`TakeAnyWhile`](take_any_while/index.md)
 
-##### `impl Debug<I: fmt::Debug, P>`
+##### `impl<I: fmt::Debug, P> Debug for TakeAnyWhile<I, P>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for TakeAnyWhile<I, P>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for TakeAnyWhile<I, P>`
 
 - `type Iter = T`
 
@@ -2841,13 +2834,13 @@ This struct is created by the [`take_any_while()`](#take-any-while) method on [`
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, P>`
+##### `impl<I, P> ParallelIterator for TakeAnyWhile<I, P>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for TakeAnyWhile<I, P>`
 
 - `const ALIGN: usize`
 
@@ -2882,17 +2875,17 @@ This struct is created by the [`try_fold()`](#try-fold) method on [`ParallelIter
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, U: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone, ID: $crate::clone::Clone, F: $crate::clone::Clone> Clone for TryFold<I, U, ID, F>`
 
-- `fn clone(self: &Self) -> TryFold<I, U, ID, F>` — [`TryFold`](../../iter/try_fold/index.md)
+- `fn clone(self: &Self) -> TryFold<I, U, ID, F>` — [`TryFold`](try_fold/index.md)
 
-##### `impl Debug<U, I: ParallelIterator + Debug, ID, F>`
+##### `impl<U, I: ParallelIterator + Debug, ID, F> Debug for TryFold<I, U, ID, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for TryFold<I, U, ID, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for TryFold<I, U, ID, F>`
 
 - `type Iter = T`
 
@@ -2900,13 +2893,13 @@ This struct is created by the [`try_fold()`](#try-fold) method on [`ParallelIter
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<U, I, ID, F>`
+##### `impl<U, I, ID, F> ParallelIterator for TryFold<I, U, ID, F>`
 
 - `type Item = U`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for TryFold<I, U, ID, F>`
 
 - `const ALIGN: usize`
 
@@ -2936,21 +2929,21 @@ This struct is created by the [`try_fold_with()`](#try-fold-with) method on [`Pa
 
 #### Implementations
 
-- `fn new(base: I, item: <U as >::Output, fold_op: F) -> Self` — [`Try`](../../iter/private/index.md)
+- `fn new(base: I, item: <U as >::Output, fold_op: F) -> Self` — [`Try`](private/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, U: $crate::clone::Clone + Try, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, U: $crate::clone::Clone + Try, F: $crate::clone::Clone> Clone for TryFoldWith<I, U, F>`
 
-- `fn clone(self: &Self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](../../iter/try_fold/index.md)
+- `fn clone(self: &Self) -> TryFoldWith<I, U, F>` — [`TryFoldWith`](try_fold/index.md)
 
-##### `impl Debug<I, U, F>`
+##### `impl<I, U, F> Debug for TryFoldWith<I, U, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for TryFoldWith<I, U, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for TryFoldWith<I, U, F>`
 
 - `type Iter = T`
 
@@ -2958,13 +2951,13 @@ This struct is created by the [`try_fold_with()`](#try-fold-with) method on [`Pa
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<U, I, F>`
+##### `impl<U, I, F> ParallelIterator for TryFoldWith<I, U, F>`
 
 - `type Item = U`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for TryFoldWith<I, U, F>`
 
 - `const ALIGN: usize`
 
@@ -2999,25 +2992,25 @@ This struct is created by the [`update()`](#update) method on [`ParallelIterator
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone, F: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone, F: $crate::clone::Clone> Clone for Update<I, F>`
 
-- `fn clone(self: &Self) -> Update<I, F>` — [`Update`](../../iter/update/index.md)
+- `fn clone(self: &Self) -> Update<I, F>` — [`Update`](update/index.md)
 
-##### `impl Debug<I: Debug, F>`
+##### `impl<I: Debug, F> Debug for Update<I, F>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl IndexedParallelIterator<I, F>`
+##### `impl<I, F> IndexedParallelIterator for Update<I, F>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Update<I, F>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Update<I, F>`
 
 - `type Iter = T`
 
@@ -3025,15 +3018,15 @@ This struct is created by the [`update()`](#update) method on [`ParallelIterator
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, F>`
+##### `impl<I, F> ParallelIterator for Update<I, F>`
 
 - `type Item = <I as ParallelIterator>::Item`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Update<I, F>`
 
 - `const ALIGN: usize`
 
@@ -3058,13 +3051,13 @@ Returned by the [`walk_tree()`](#walk-tree) function.
 
 #### Trait Implementations
 
-##### `impl Debug<S: $crate::fmt::Debug, B: $crate::fmt::Debug>`
+##### `impl<S: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for WalkTree<S, B>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for WalkTree<S, B>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for WalkTree<S, B>`
 
 - `type Iter = T`
 
@@ -3072,13 +3065,13 @@ Returned by the [`walk_tree()`](#walk-tree) function.
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<S, B, I>`
+##### `impl<S, B, I> ParallelIterator for WalkTree<S, B>`
 
 - `type Item = S`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for WalkTree<S, B>`
 
 - `const ALIGN: usize`
 
@@ -3106,13 +3099,13 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 #### Trait Implementations
 
-##### `impl Debug<S: $crate::fmt::Debug, B: $crate::fmt::Debug>`
+##### `impl<S: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for WalkTreePostfix<S, B>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for WalkTreePostfix<S, B>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for WalkTreePostfix<S, B>`
 
 - `type Iter = T`
 
@@ -3120,13 +3113,13 @@ Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<S, B, I>`
+##### `impl<S, B, I> ParallelIterator for WalkTreePostfix<S, B>`
 
 - `type Item = S`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for WalkTreePostfix<S, B>`
 
 - `const ALIGN: usize`
 
@@ -3154,13 +3147,13 @@ Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 #### Trait Implementations
 
-##### `impl Debug<S: $crate::fmt::Debug, B: $crate::fmt::Debug>`
+##### `impl<S: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for WalkTreePrefix<S, B>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for WalkTreePrefix<S, B>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for WalkTreePrefix<S, B>`
 
 - `type Iter = T`
 
@@ -3168,13 +3161,13 @@ Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<S, B, I>`
+##### `impl<S, B, I> ParallelIterator for WalkTreePrefix<S, B>`
 
 - `type Item = S`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for WalkTreePrefix<S, B>`
 
 - `const ALIGN: usize`
 
@@ -3208,17 +3201,17 @@ This struct is created by the [`while_some()`](#while-some) method on [`Parallel
 
 #### Trait Implementations
 
-##### `impl Clone<I: $crate::clone::Clone>`
+##### `impl<I: $crate::clone::Clone> Clone for WhileSome<I>`
 
-- `fn clone(self: &Self) -> WhileSome<I>` — [`WhileSome`](../../iter/while_some/index.md)
+- `fn clone(self: &Self) -> WhileSome<I>` — [`WhileSome`](while_some/index.md)
 
-##### `impl Debug<I: $crate::fmt::Debug>`
+##### `impl<I: $crate::fmt::Debug> Debug for WhileSome<I>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for WhileSome<I>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for WhileSome<I>`
 
 - `type Iter = T`
 
@@ -3226,13 +3219,13 @@ This struct is created by the [`while_some()`](#while-some) method on [`Parallel
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<I, T>`
+##### `impl<I, T> ParallelIterator for WhileSome<I>`
 
 - `type Item = T`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for WhileSome<I>`
 
 - `const ALIGN: usize`
 
@@ -3266,25 +3259,25 @@ of pairs. This struct is created by the [`zip()`](#zip) method on
 
 #### Trait Implementations
 
-##### `impl Clone<A: $crate::clone::Clone, B: $crate::clone::Clone>`
+##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for Zip<A, B>`
 
-- `fn clone(self: &Self) -> Zip<A, B>` — [`Zip`](../../iter/zip/index.md)
+- `fn clone(self: &Self) -> Zip<A, B>` — [`Zip`](zip/index.md)
 
-##### `impl Debug<A: $crate::fmt::Debug, B: $crate::fmt::Debug>`
+##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for Zip<A, B>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<A, B>`
+##### `impl<A, B> IndexedParallelIterator for Zip<A, B>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Zip<A, B>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Zip<A, B>`
 
 - `type Iter = T`
 
@@ -3292,15 +3285,15 @@ of pairs. This struct is created by the [`zip()`](#zip) method on
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<A, B>`
+##### `impl<A, B> ParallelIterator for Zip<A, B>`
 
 - `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Zip<A, B>`
 
 - `const ALIGN: usize`
 
@@ -3335,25 +3328,25 @@ see its documentation for more information.
 
 #### Trait Implementations
 
-##### `impl Clone<A: $crate::clone::Clone, B: $crate::clone::Clone>`
+##### `impl<A: $crate::clone::Clone, B: $crate::clone::Clone> Clone for ZipEq<A, B>`
 
-- `fn clone(self: &Self) -> ZipEq<A, B>` — [`ZipEq`](../../iter/zip_eq/index.md)
+- `fn clone(self: &Self) -> ZipEq<A, B>` — [`ZipEq`](zip_eq/index.md)
 
-##### `impl Debug<A: $crate::fmt::Debug, B: $crate::fmt::Debug>`
+##### `impl<A: $crate::fmt::Debug, B: $crate::fmt::Debug> Debug for ZipEq<A, B>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator<A, B>`
+##### `impl<A, B> IndexedParallelIterator for ZipEq<A, B>`
 
-- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn len(self: &Self) -> usize`
 
-- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](../../iter/plumbing/index.md)
+- `fn with_producer<CB>(self: Self, callback: CB) -> <CB as >::Output` — [`ProducerCallback`](plumbing/index.md)
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for ZipEq<A, B>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for ZipEq<A, B>`
 
 - `type Iter = T`
 
@@ -3361,15 +3354,15 @@ see its documentation for more information.
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<A, B>`
+##### `impl<A, B> ParallelIterator for ZipEq<A, B>`
 
 - `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item)`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](plumbing/index.md)
 
 - `fn opt_len(self: &Self) -> Option<usize>`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for ZipEq<A, B>`
 
 - `const ALIGN: usize`
 
@@ -3479,7 +3472,6 @@ become unavailable).
 For examples of using parallel iterators, see [the docs on the
 `iter` module][iter](#iter).
 
-[iter](#iter): self
 
 #### Required Methods
 

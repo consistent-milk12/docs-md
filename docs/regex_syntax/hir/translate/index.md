@@ -22,39 +22,39 @@ A builder for constructing an AST->HIR translator.
 
 #### Implementations
 
-- `fn new() -> TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn new() -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn build(self: &Self) -> Translator` — [`Translator`](../../../hir/translate/index.md)
+- `fn build(self: &Self) -> Translator` — [`Translator`](#translator)
 
-- `fn utf8(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn utf8(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn line_terminator(self: &mut Self, byte: u8) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn line_terminator(self: &mut Self, byte: u8) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn case_insensitive(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn multi_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn multi_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn dot_matches_new_line(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn crlf(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn crlf(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn swap_greed(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn swap_greed(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-- `fn unicode(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn unicode(self: &mut Self, yes: bool) -> &mut TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for TranslatorBuilder`
 
-- `fn clone(self: &Self) -> TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn clone(self: &Self) -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
-##### `impl Debug`
+##### `impl Debug for TranslatorBuilder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for TranslatorBuilder`
 
-- `fn default() -> TranslatorBuilder` — [`TranslatorBuilder`](../../../hir/translate/index.md)
+- `fn default() -> TranslatorBuilder` — [`TranslatorBuilder`](#translatorbuilder)
 
 ### `Translator`
 
@@ -96,17 +96,17 @@ A `Translator` can be configured in more detail via a
 
 #### Implementations
 
-- `fn new() -> Translator` — [`Translator`](../../../hir/translate/index.md)
+- `fn new() -> Translator` — [`Translator`](#translator)
 
-- `fn translate(self: &mut Self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>` — [`Ast`](../../../ast/index.md), [`Hir`](../../../hir/index.md), [`Error`](../../../hir/index.md)
+- `fn translate(self: &mut Self, pattern: &str, ast: &Ast) -> core::result::Result<Hir, crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Translator`
 
-- `fn clone(self: &Self) -> Translator` — [`Translator`](../../../hir/translate/index.md)
+- `fn clone(self: &Self) -> Translator` — [`Translator`](#translator)
 
-##### `impl Debug`
+##### `impl Debug for Translator`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

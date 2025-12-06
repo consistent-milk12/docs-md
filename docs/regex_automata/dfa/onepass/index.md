@@ -8,7 +8,7 @@ A DFA that can return spans for matching capturing groups.
 
 This module is the home of a [one-pass DFA](DFA).
 
-This module also contains a [`Builder`](../../nfa/thompson/backtrack/index.md) and a [`Config`](#config) for building and
+This module also contains a [`Builder`](../../nfa/thompson/builder/index.md) and a [`Config`](#config) for building and
 configuring a one-pass DFA.
 
 ## Structs
@@ -34,17 +34,17 @@ perhaps more conveniently, with `DFA::config`.
 
 #### Implementations
 
-- `fn new() -> Config` — [`Config`](../../../dfa/onepass/index.md)
+- `fn new() -> Config` — [`Config`](#config)
 
-- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../../util/search/index.md), [`Config`](../../../dfa/onepass/index.md)
+- `fn match_kind(self: Self, kind: MatchKind) -> Config` — [`MatchKind`](../../index.md), [`Config`](#config)
 
-- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config` — [`Config`](../../../dfa/onepass/index.md)
+- `fn starts_for_each_pattern(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](../../../dfa/onepass/index.md)
+- `fn byte_classes(self: Self, yes: bool) -> Config` — [`Config`](#config)
 
-- `fn size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](../../../dfa/onepass/index.md)
+- `fn size_limit(self: Self, limit: Option<usize>) -> Config` — [`Config`](#config)
 
-- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../../util/search/index.md)
+- `fn get_match_kind(self: &Self) -> MatchKind` — [`MatchKind`](../../index.md)
 
 - `fn get_starts_for_each_pattern(self: &Self) -> bool`
 
@@ -52,21 +52,21 @@ perhaps more conveniently, with `DFA::config`.
 
 - `fn get_size_limit(self: &Self) -> Option<usize>`
 
-- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](../../../dfa/onepass/index.md)
+- `fn overwrite(self: &Self, o: Config) -> Config` — [`Config`](#config)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Config`
 
-- `fn clone(self: &Self) -> Config` — [`Config`](../../../dfa/onepass/index.md)
+- `fn clone(self: &Self) -> Config` — [`Config`](#config)
 
-##### `impl Debug`
+##### `impl Debug for Config`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for Config`
 
-- `fn default() -> Config` — [`Config`](../../../dfa/onepass/index.md)
+- `fn default() -> Config` — [`Config`](#config)
 
 ### `Builder`
 
@@ -132,27 +132,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Builder` — [`Builder`](../../../dfa/onepass/index.md)
+- `fn new() -> Builder` — [`Builder`](#builder)
 
-- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
+- `fn build(self: &Self, pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
+- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
+- `fn build_from_nfa(self: &Self, nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/nfa/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](../../../dfa/onepass/index.md), [`Builder`](../../../dfa/onepass/index.md)
+- `fn configure(self: &mut Self, config: Config) -> &mut Builder` — [`Config`](#config), [`Builder`](#builder)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../../util/syntax/index.md), [`Builder`](../../../dfa/onepass/index.md)
+- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Builder` — [`Config`](../../util/syntax/index.md), [`Builder`](#builder)
 
-- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../../nfa/thompson/compiler/index.md), [`Builder`](../../../dfa/onepass/index.md)
+- `fn thompson(self: &mut Self, config: thompson::Config) -> &mut Builder` — [`Config`](../../nfa/thompson/compiler/index.md), [`Builder`](#builder)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Builder`
 
-- `fn clone(self: &Self) -> Builder` — [`Builder`](../../../dfa/onepass/index.md)
+- `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
-##### `impl Debug`
+##### `impl Debug for Builder`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -209,8 +209,8 @@ do anchored searches.
 * Since iterators are most useful in the context of unanchored searches,
 there is no `DFA::captures_iter` method.
 * For lower level routines like `DFA::try_search`, an error will be
-returned if the given [`Input`](../../util/search/index.md) is configured to do an unanchored search or
-search for an invalid pattern ID. (Note that an [`Input`](../../util/search/index.md) is configured to
+returned if the given [`Input`](../../index.md) is configured to do an unanchored search or
+search for an invalid pattern ID. (Note that an [`Input`](../../index.md) is configured to
 do an unanchored search by default, so just giving a `Input::new` is
 guaranteed to return an error.)
 
@@ -416,61 +416,29 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
+- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
-
-- `fn new_from_nfa(nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../../nfa/thompson/nfa/index.md), [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
-
-- `fn always_match() -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
-
-- `fn never_match() -> Result<DFA, BuildError>` — [`DFA`](../../../dfa/onepass/index.md), [`BuildError`](../../../dfa/onepass/index.md)
-
-- `fn config() -> Config` — [`Config`](../../../dfa/onepass/index.md)
-
-- `fn builder() -> Builder` — [`Builder`](../../../dfa/onepass/index.md)
-
-- `fn create_captures(self: &Self) -> Captures` — [`Captures`](../../../util/captures/index.md)
-
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](../../../dfa/onepass/index.md)
-
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](../../../dfa/onepass/index.md)
-
-- `fn get_config(self: &Self) -> &Config` — [`Config`](../../../dfa/onepass/index.md)
-
-- `fn get_nfa(self: &Self) -> &NFA` — [`NFA`](../../../nfa/thompson/nfa/index.md)
-
-- `fn pattern_len(self: &Self) -> usize`
-
-- `fn state_len(self: &Self) -> usize`
-
-- `fn alphabet_len(self: &Self) -> usize`
-
-- `fn stride2(self: &Self) -> usize`
-
-- `fn stride(self: &Self) -> usize`
-
-- `fn memory_usage(self: &Self) -> usize`
+- `fn find_match(self: &Self, cache: &mut Cache, input: &Input<'_>, at: usize, sid: StateID, slots: &mut [Option<NonMaxUsize>], matched_pid: &mut Option<PatternID>) -> bool` — [`Cache`](#cache), [`Input`](../../index.md), [`StateID`](../../util/primitives/index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for DFA`
 
-- `fn clone(self: &Self) -> DFA` — [`DFA`](../../../dfa/onepass/index.md)
+- `fn clone(self: &Self) -> DFA` — [`DFA`](#dfa)
 
-##### `impl Debug`
+##### `impl Debug for DFA`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Remappable`
+##### `impl Remappable for crate::dfa::onepass::DFA`
 
 - `fn state_len(self: &Self) -> usize`
 
 - `fn stride2(self: &Self) -> usize`
 
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../../util/primitives/index.md)
+- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../../util/primitives/index.md)
+- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
 
 ### `Cache`
 
@@ -512,23 +480,23 @@ only be used with the new one-pass DFA (and not the old one).
 
 #### Implementations
 
-- `fn new(re: &DFA) -> Cache` — [`DFA`](../../../dfa/onepass/index.md), [`Cache`](../../../dfa/onepass/index.md)
+- `fn new(re: &DFA) -> Cache` — [`DFA`](#dfa), [`Cache`](#cache)
 
-- `fn reset(self: &mut Self, re: &DFA)` — [`DFA`](../../../dfa/onepass/index.md)
+- `fn reset(self: &mut Self, re: &DFA)` — [`DFA`](#dfa)
 
 - `fn memory_usage(self: &Self) -> usize`
 
-- `fn explicit_slots(self: &mut Self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../../util/primitives/index.md)
+- `fn explicit_slots(self: &mut Self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../../util/primitives/index.md)
 
 - `fn setup_search(self: &mut Self, explicit_slot_len: usize)`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Cache`
 
-- `fn clone(self: &Self) -> Cache` — [`Cache`](../../../dfa/onepass/index.md)
+- `fn clone(self: &Self) -> Cache` — [`Cache`](#cache)
 
-##### `impl Debug`
+##### `impl Debug for Cache`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -556,39 +524,39 @@ trait.
 
 #### Implementations
 
-- `fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../../nfa/thompson/error/index.md)
+- `fn nfa(err: crate::nfa::thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
 
-- `fn word(err: UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../../util/look/index.md), [`BuildError`](../../../dfa/onepass/index.md)
+- `fn word(err: UnicodeWordBoundaryError) -> BuildError` — [`UnicodeWordBoundaryError`](../../util/look/index.md), [`BuildError`](#builderror)
 
-- `fn too_many_states(limit: u64) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+- `fn too_many_states(limit: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn too_many_patterns(limit: u64) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+- `fn too_many_patterns(limit: u64) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn unsupported_look(look: Look) -> BuildError` — [`Look`](../../../util/look/index.md), [`BuildError`](../../../dfa/onepass/index.md)
+- `fn unsupported_look(look: Look) -> BuildError` — [`Look`](../../util/look/index.md), [`BuildError`](#builderror)
 
-- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+- `fn exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
 
-- `fn not_one_pass(msg: &'static str) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+- `fn not_one_pass(msg: &'static str) -> BuildError` — [`BuildError`](#builderror)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for BuildError`
 
-- `fn clone(self: &Self) -> BuildError` — [`BuildError`](../../../dfa/onepass/index.md)
+- `fn clone(self: &Self) -> BuildError` — [`BuildError`](#builderror)
 
-##### `impl Debug`
+##### `impl Debug for BuildError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for BuildError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for BuildError`
 
 - `fn source(self: &Self) -> Option<&dyn std::error::Error>`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for BuildError`
 
 - `fn to_string(self: &Self) -> String`
 

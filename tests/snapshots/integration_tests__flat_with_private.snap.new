@@ -173,6 +173,10 @@ Each variant includes:
 
 - `unsafe fn drop(ptr: usize)`
 
+##### `impl<T> ToCompactString for Error`
+
+- `fn try_to_compact_string(self: &Self) -> Result<CompactString, ToCompactStringError>`
+
 ##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
@@ -234,6 +238,527 @@ generator.generate()?;
 - [`render_shared`](generator__render_shared.md) - Shared rendering functions for documentation generation.
 
 ## Structs
+
+### `BreadcrumbGenerator<'a>`
+
+```rust
+struct BreadcrumbGenerator<'a> {
+    module_path: &'a [String],
+    crate_name: &'a str,
+}
+```
+
+Generates breadcrumb navigation for nested module pages.
+
+Creates a navigation line showing the path from the crate root to
+the current module, with each segment being a clickable link.
+
+#### Fields
+
+- **`module_path`**: `&'a [String]`
+
+  The module path segments (e.g., `["error", "types"]`).
+
+- **`crate_name`**: `&'a str`
+
+  The name of the crate for the root link.
+
+#### Implementations
+
+- `const fn new(module_path: &'a [String], crate_name: &'a str) -> Self`
+
+  Create a new breadcrumb generator.
+
+- `fn generate(self: &Self) -> String`
+
+  Generate breadcrumb navigation markdown.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
+
+##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
+
+##### `impl<T> Pointable for BreadcrumbGenerator<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `MarkdownCapture`
+
+```rust
+struct MarkdownCapture {
+    files: std::collections::HashMap<String, String>,
+}
+```
+
+Captures generated markdown in memory for testing.
+
+Instead of writing files to disk, this struct stores all generated
+markdown content in a `HashMap`, keyed by relative file path. This
+enables snapshot testing and verification of output without filesystem
+side effects.
+
+#### Fields
+
+- **`files`**: `std::collections::HashMap<String, String>`
+
+  Maps file paths (relative to output directory) to their generated content.
+
+#### Implementations
+
+- `fn new() -> Self`
+
+  Create a new empty capture.
+
+- `fn insert(self: &mut Self, path: String, content: String)`
+
+  Add a file to the capture.
+
+- `fn get(self: &Self, path: &str) -> Option<&String>`
+
+  Get the content of a specific file.
+
+- `fn paths(self: &Self) -> Vec<&String>`
+
+  Get all file paths in sorted order.
+
+- `fn len(self: &Self) -> usize`
+
+  Get the number of captured files.
+
+- `fn is_empty(self: &Self) -> bool`
+
+  Check if the capture is empty.
+
+- `fn to_snapshot_string(self: &Self) -> String`
+
+  Convert all captured files to a single string for snapshot testing.
+
+- `fn into_inner(self: Self) -> HashMap<String, String>`
+
+  Consume self and return the underlying `HashMap`.
+
+#### Trait Implementations
+
+##### `impl Debug for MarkdownCapture`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for MarkdownCapture`
+
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](generator__capture.md)
+
+##### `impl<T> IntoEither for MarkdownCapture`
+
+##### `impl<D> OwoColorize for MarkdownCapture`
+
+##### `impl<T> Pointable for MarkdownCapture`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `GeneratorContext<'a>`
+
+```rust
+struct GeneratorContext<'a> {
+    pub krate: &'a rustdoc_types::Crate,
+    crate_name: String,
+    pub impl_map: std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>,
+    pub link_registry: crate::linker::LinkRegistry,
+    pub args: &'a crate::Args,
+}
+```
+
+Shared context containing all data needed for documentation generation.
+
+This struct is passed to all rendering components and provides:
+- Access to the parsed crate data
+- Impl block lookup for rendering implementations
+- Link registry for cross-references
+- CLI configuration options
+
+#### Fields
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  The parsed rustdoc JSON crate.
+
+- **`crate_name`**: `String`
+
+  The crate name (extracted from root module).
+
+- **`impl_map`**: `std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>`
+
+  Maps type IDs to all impl blocks for that type.
+  
+  Used for rendering "Implementations" and "Trait Implementations" sections.
+
+- **`link_registry`**: `crate::linker::LinkRegistry`
+
+  Registry for creating cross-reference links between items.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments containing output path, format, and options.
+
+#### Implementations
+
+- `fn new(krate: &'a Crate, args: &'a Args) -> Self` — [`Args`](index.md)
+
+  Create a new generator context from crate data and CLI arguments.
+
+- `fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
+
+  Build a map from type ID to all impl blocks for that type.
+
+- `const fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id>`
+
+  Extract the item ID from a Type if it's a resolved path.
+
+- `const fn should_include_item(self: &Self, item: &Item) -> bool`
+
+  Check if an item should be included based on visibility settings.
+
+- `fn count_modules(self: &Self, item: &Item) -> usize`
+
+  Count the total number of modules that will be generated.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for GeneratorContext<'a>`
+
+##### `impl ItemAccess for GeneratorContext<'_>`
+
+- `fn krate(self: &Self) -> &Crate`
+
+- `fn crate_name(self: &Self) -> &str`
+
+- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
+
+- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
+
+- `fn crate_version(self: &Self) -> Option<&str>`
+
+##### `impl ItemFilter for GeneratorContext<'_>`
+
+- `fn should_include_item(self: &Self, item: &Item) -> bool`
+
+- `fn include_private(self: &Self) -> bool`
+
+- `fn include_blanket_impls(self: &Self) -> bool`
+
+##### `impl LinkResolver for GeneratorContext<'_>`
+
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](linker.md)
+
+- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
+
+- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+
+##### `impl<D> OwoColorize for GeneratorContext<'a>`
+
+##### `impl<T> Pointable for GeneratorContext<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> RenderContext for GeneratorContext<'a>`
+
+### `DocLinkProcessor<'a>`
+
+```rust
+struct DocLinkProcessor<'a> {
+    krate: &'a rustdoc_types::Crate,
+    link_registry: &'a crate::linker::LinkRegistry,
+    current_file: &'a str,
+    path_name_index: std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>,
+}
+```
+
+Processes doc comments to resolve intra-doc links to markdown links.
+
+Rustdoc JSON includes a `links` field on each Item that maps intra-doc
+link text to item IDs. This processor uses that map along with the
+`LinkRegistry` to convert these to relative markdown links.
+
+# Supported Patterns
+
+- `` [`Name`] `` - Backtick code links (most common)
+- `` [`Item`](https://docs.rs/core/latest/core/option/struct.Item.html) `` - Qualified path links
+- `` [`Type::method`] `` - Method/associated item links
+- `[name]` - Plain identifier links
+- `[text][`ref`]` - Reference-style links
+- ``text`` - Path reference links
+
+# External Crate Links
+
+Items from external crates are linked to docs.rs when possible.
+
+# Code Block Protection
+
+Links inside fenced code blocks are not processed.
+
+#### Fields
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  The crate being documented (for looking up items).
+
+- **`link_registry`**: `&'a crate::linker::LinkRegistry`
+
+  Registry mapping IDs to file paths.
+
+- **`current_file`**: `&'a str`
+
+  The current file path (for relative link calculation).
+
+- **`path_name_index`**: `std::collections::HashMap<&'a str, Vec<rustdoc_types::Id>>`
+
+  Index mapping item names to their IDs for fast lookup.
+  Built from `krate.paths` at construction time.
+
+#### Implementations
+
+- `fn new(krate: &'a Crate, link_registry: &'a LinkRegistry, current_file: &'a str) -> Self` — [`LinkRegistry`](linker.md)
+
+  Create a new processor for the given context.
+
+- `fn process(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process a doc string and resolve all intra-doc links.
+
+- `fn process_links_protected(self: &Self, docs: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process links while protecting code block contents.
+
+- `fn process_line(self: &Self, line: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process a single line for all link types.
+
+- `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process reference-style links `[display text](https://docs.rs/regex_syntax/latest/regex_syntax/ast/struct.Span.html)`.
+
+- `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process path reference links `[text](https://docs.rs/core/latest/core/option/struct.Item.html)`.
+
+- `fn process_method_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process method links `[``Type::method``]`.
+
+- `fn process_backtick_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process backtick links `[`Name`]`.
+
+- `fn process_plain_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process plain links `[name]`.
+
+- `fn process_html_links_with_context(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Process HTML-style rustdoc links with context awareness.
+
+- `fn resolve_html_link_to_url(self: &Self, item_name: &str, item_kind: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Try to resolve an HTML-style link to a proper URL.
+
+- `fn kind_matches(html_kind: &str, item_kind: ItemKind) -> bool`
+
+  Check if the HTML link kind matches the rustdoc item kind.
+
+- `fn clean_blank_lines(docs: &str) -> String`
+
+  Clean up multiple consecutive blank lines.
+
+- `fn resolve_to_url(self: &Self, link_text: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Resolve a link reference to a URL.
+
+- `fn get_url_for_id(self: &Self, id: Id) -> Option<String>`
+
+  Get the URL for an ID (local or docs.rs).
+
+- `fn get_docs_rs_url(path_info: &rustdoc_types::ItemSummary) -> Option<String>`
+
+  Get docs.rs URL for an external crate item.
+
+- `fn resolve_method_link(self: &Self, type_name: &str, method_name: &str, item_links: &HashMap<String, Id>) -> Option<String>`
+
+  Resolve a method link to a markdown link (without method anchor).
+
+- `fn resolve_link(self: &Self, link_text: &str, item_links: &HashMap<String, Id>) -> String`
+
+  Try to resolve link text to a markdown link.
+
+- `fn create_link_for_id(self: &Self, id: Id, display_name: &str) -> Option<String>`
+
+  Create a markdown link for an ID.
+
+- `fn create_docs_rs_link(path_info: &rustdoc_types::ItemSummary, display_name: &str) -> Option<String>`
+
+  Create a docs.rs link for an external crate item.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for DocLinkProcessor<'a>`
+
+##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
+
+##### `impl<T> Pointable for DocLinkProcessor<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `ModuleRenderer<'a>`
+
+```rust
+struct ModuleRenderer<'a> {
+    ctx: &'a dyn RenderContext,
+    current_file: &'a str,
+    is_root: bool,
+}
+```
+
+Renders a module to markdown.
+
+This struct handles the complete rendering of a module's documentation page,
+including:
+- Title (Crate or Module heading)
+- Module-level documentation
+- Sections for each item type (Modules, Structs, Enums, etc.)
+
+The renderer is generic over [`RenderContext`](generator__context.md), allowing it to work with
+both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes.
+
+#### Fields
+
+- **`ctx`**: `&'a dyn RenderContext`
+
+  Reference to the render context (either single-crate or multi-crate).
+
+- **`current_file`**: `&'a str`
+
+  Path of the current file being generated (for relative link calculation).
+
+- **`is_root`**: `bool`
+
+  Whether this is the crate root module.
+
+#### Implementations
+
+- `fn new(ctx: &'a dyn RenderContext, current_file: &'a str, is_root: bool) -> Self` — [`RenderContext`](generator__context.md)
+
+  Create a new module renderer.
+
+- `fn process_docs(self: &Self, item: &Item) -> Option<String>`
+
+  Process documentation string to resolve intra-doc links.
+
+- `fn render(self: &Self, item: &Item) -> String`
+
+  Generate the complete markdown content for a module.
+
+- `fn categorize_items(self: &Self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](generator__module.md)
+
+  Categorize module items by type for organized rendering.
+
+- `fn expand_glob_reexport(self: &Self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](generator__module.md)
+
+  Expand a glob re-export by adding all public items from the target module.
+
+- `fn render_all_sections(self: &Self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](generator__module.md)
+
+  Render all item sections in the standard order.
+
+- `fn render_modules_section(self: &Self, md: &mut String, modules: &[(&Id, &Item)])`
+
+  Render the Modules section with links to submodules.
+
+- `fn render_structs_section(self: &Self, md: &mut String, structs: &[(&Id, &Item)])`
+
+  Render the Structs section.
+
+- `fn render_enums_section(self: &Self, md: &mut String, enums: &[(&Id, &Item)])`
+
+  Render the Enums section.
+
+- `fn render_traits_section(self: &Self, md: &mut String, traits: &[(&Id, &Item)])`
+
+  Render the Traits section.
+
+- `fn render_functions_section(self: &Self, md: &mut String, functions: &[&Item])`
+
+  Render the Functions section.
+
+- `fn render_macros_section(self: &Self, md: &mut String, macros: &[&Item])`
+
+  Render the Macros section.
+
+- `fn render_constants_section(self: &Self, md: &mut String, constants: &[&Item])`
+
+  Render the Constants section.
+
+- `fn render_type_aliases_section(self: &Self, md: &mut String, type_aliases: &[&Item])`
+
+  Render the Type Aliases section.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for ModuleRenderer<'a>`
+
+##### `impl<D> OwoColorize for ModuleRenderer<'a>`
+
+##### `impl<T> Pointable for ModuleRenderer<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ### `Generator<'a>`
 
@@ -325,6 +850,165 @@ generator.generate()?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+## Traits
+
+### `ItemAccess`
+
+```rust
+trait ItemAccess { ... }
+```
+
+Core data access for crate documentation.
+
+Provides read-only access to the crate structure, items, and impl blocks.
+
+#### Required Methods
+
+- `fn krate(self: &Self) -> &Crate`
+
+  Get the crate being documented.
+
+- `fn crate_name(self: &Self) -> &str`
+
+  Get the crate name.
+
+- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
+
+  Get an item by its ID.
+
+- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
+
+  Get impl blocks for a type.
+
+- `fn crate_version(self: &Self) -> Option<&str>`
+
+  Get the crate version for display in headers.
+
+### `ItemFilter`
+
+```rust
+trait ItemFilter { ... }
+```
+
+Item visibility and filtering logic.
+
+Determines which items should be included in the generated documentation.
+
+#### Required Methods
+
+- `fn should_include_item(self: &Self, item: &Item) -> bool`
+
+  Check if an item should be included based on visibility.
+
+- `fn include_private(self: &Self) -> bool`
+
+  Whether private items should be included.
+
+- `fn include_blanket_impls(self: &Self) -> bool`
+
+  Whether blanket trait implementations should be included.
+
+### `LinkResolver`
+
+```rust
+trait LinkResolver { ... }
+```
+
+Link creation and documentation processing.
+
+Handles intra-doc link resolution and markdown link generation.
+
+#### Required Methods
+
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>`
+
+  Get the link registry for single-crate mode.
+
+- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
+
+  Process documentation string with intra-doc link resolution.
+
+- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+
+  Create a markdown link to an item.
+
+### `RenderContext`
+
+```rust
+trait RenderContext: ItemAccess + ItemFilter + LinkResolver { ... }
+```
+
+Combined rendering context trait.
+
+This trait combines [`ItemAccess`](generator__context.md), [`ItemFilter`](generator__context.md), and [`LinkResolver`](generator__context.md)
+for components that need full access to the rendering context.
+
+Most renderers should use this trait for convenience, but components
+with limited requirements can depend on individual sub-traits.
+
+## Functions
+
+### `convert_html_links`
+
+```rust
+fn convert_html_links(docs: &str) -> String
+```
+
+Convert HTML-style rustdoc links to markdown anchors.
+
+Transforms links like:
+- `(https://docs.rs/unit_prefix/latest/unit_prefix/enum.NumberPrefix.html)` -> `(#numberprefix)`
+- `` -> removes the link (methods don't have anchors)
+
+This is useful for multi-crate documentation where the full processor
+context may not be available.
+
+### `convert_path_reference_links`
+
+```rust
+fn convert_path_reference_links(docs: &str) -> String
+```
+
+Convert path-style reference links to inline code.
+
+Transforms: `[``ProgressTracker``](https://docs.rs/indicatif/latest/indicatif/style/trait.ProgressTracker.html)`
+Into: `` `ProgressTracker` ``
+
+Without full link resolution context, we can't create valid anchors,
+so we preserve the display text as inline code.
+
+### `strip_duplicate_title`
+
+```rust
+fn strip_duplicate_title<'a>(docs: &'a str, item_name: &str) -> &'a str
+```
+
+Strip duplicate title from documentation.
+
+Some crate/module docs start with `# title` which duplicates the generated
+`# Crate 'name'` or `# Module 'name'` heading.
+
+# Arguments
+
+* `docs` - The documentation string to process
+* `item_name` - The name of the crate or module being documented
+
+# Returns
+
+The docs with the leading title removed if it matches the item name,
+otherwise the original docs unchanged.
+
+### `strip_reference_definitions`
+
+```rust
+fn strip_reference_definitions(docs: &str) -> String
+```
+
+Strip markdown reference definition lines.
+
+Removes lines like `[`Name`]: path::to::item` which are no longer needed
+after intra-doc links are processed.
 
 
 === generator__breadcrumbs.md ===
@@ -495,8 +1179,17 @@ This module provides the [`GeneratorContext`](#generatorcontext) struct which ho
 state needed during markdown generation, including the crate data, lookup
 maps, and configuration options.
 
-The [`RenderContext`](#rendercontext) trait defines the interface that renderers use,
-enabling both single-crate and multi-crate contexts to share rendering code.
+# Trait Hierarchy
+
+The rendering context is split into focused traits for better abstraction:
+
+- [`ItemAccess`](#itemaccess) - Core data access (crate, items, impls)
+- [`ItemFilter`](#itemfilter) - Visibility and filtering logic
+- [`LinkResolver`](#linkresolver) - Link creation and documentation processing
+- [`RenderContext`](#rendercontext) - Combined super-trait for convenience
+
+This allows components to depend only on the traits they need, improving
+testability and reducing coupling.
 
 ## Structs
 
@@ -570,6 +1263,34 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl<T> IntoEither for GeneratorContext<'a>`
 
+##### `impl ItemAccess for GeneratorContext<'_>`
+
+- `fn krate(self: &Self) -> &Crate`
+
+- `fn crate_name(self: &Self) -> &str`
+
+- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
+
+- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
+
+- `fn crate_version(self: &Self) -> Option<&str>`
+
+##### `impl ItemFilter for GeneratorContext<'_>`
+
+- `fn should_include_item(self: &Self, item: &Item) -> bool`
+
+- `fn include_private(self: &Self) -> bool`
+
+- `fn include_blanket_impls(self: &Self) -> bool`
+
+##### `impl LinkResolver for GeneratorContext<'_>`
+
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](linker.md)
+
+- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
+
+- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+
 ##### `impl<D> OwoColorize for GeneratorContext<'a>`
 
 ##### `impl<T> Pointable for GeneratorContext<'a>`
@@ -586,44 +1307,19 @@ This struct is passed to all rendering components and provides:
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl RenderContext for GeneratorContext<'_>`
-
-- `fn krate(self: &Self) -> &Crate`
-
-- `fn crate_name(self: &Self) -> &str`
-
-- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
-
-- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
-
-- `fn should_include_item(self: &Self, item: &Item) -> bool`
-
-- `fn include_private(self: &Self) -> bool`
-
-- `fn include_blanket_impls(self: &Self) -> bool`
-
-- `fn crate_version(self: &Self) -> Option<&str>`
-
-- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](linker.md)
-
-- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
-
-- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+##### `impl<T> RenderContext for GeneratorContext<'a>`
 
 ## Traits
 
-### `RenderContext`
+### `ItemAccess`
 
 ```rust
-trait RenderContext { ... }
+trait ItemAccess { ... }
 ```
 
-Trait defining the interface for rendering context.
+Core data access for crate documentation.
 
-This trait abstracts over [`GeneratorContext`](#generatorcontext) (single-crate) and
-[`SingleCrateView`](crate::multi_crate::SingleCrateView) (multi-crate),
-allowing renderers like [`ModuleRenderer`](super::module::ModuleRenderer)
-to work with both contexts.
+Provides read-only access to the crate structure, items, and impl blocks.
 
 #### Required Methods
 
@@ -643,6 +1339,22 @@ to work with both contexts.
 
   Get impl blocks for a type.
 
+- `fn crate_version(self: &Self) -> Option<&str>`
+
+  Get the crate version for display in headers.
+
+### `ItemFilter`
+
+```rust
+trait ItemFilter { ... }
+```
+
+Item visibility and filtering logic.
+
+Determines which items should be included in the generated documentation.
+
+#### Required Methods
+
 - `fn should_include_item(self: &Self, item: &Item) -> bool`
 
   Check if an item should be included based on visibility.
@@ -655,9 +1367,17 @@ to work with both contexts.
 
   Whether blanket trait implementations should be included.
 
-- `fn crate_version(self: &Self) -> Option<&str>`
+### `LinkResolver`
 
-  Get the crate version for display in headers.
+```rust
+trait LinkResolver { ... }
+```
+
+Link creation and documentation processing.
+
+Handles intra-doc link resolution and markdown link generation.
+
+#### Required Methods
 
 - `fn link_registry(self: &Self) -> Option<&LinkRegistry>`
 
@@ -670,6 +1390,20 @@ to work with both contexts.
 - `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
 
   Create a markdown link to an item.
+
+### `RenderContext`
+
+```rust
+trait RenderContext: ItemAccess + ItemFilter + LinkResolver { ... }
+```
+
+Combined rendering context trait.
+
+This trait combines [`ItemAccess`](#itemaccess), [`ItemFilter`](#itemfilter), and [`LinkResolver`](#linkresolver)
+for components that need full access to the rendering context.
+
+Most renderers should use this trait for convenience, but components
+with limited requirements can depend on individual sub-traits.
 
 
 === generator__doc_links.md ===
@@ -716,7 +1450,7 @@ link text to item IDs. This processor uses that map along with the
 # Supported Patterns
 
 - `` [`Name`] `` - Backtick code links (most common)
-- `` [`Item`](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html) `` - Qualified path links
+- `` [`Item`](https://docs.rs/core/latest/core/option/struct.Item.html) `` - Qualified path links
 - `` [`Type::method`] `` - Method/associated item links
 - `[name]` - Plain identifier links
 - `[text][`ref`]` - Reference-style links
@@ -769,11 +1503,11 @@ Links inside fenced code blocks are not processed.
 
 - `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process reference-style links `[display text](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Span.html)`.
+  Process reference-style links `[display text](https://docs.rs/regex_syntax/latest/regex_syntax/ast/struct.Span.html)`.
 
 - `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process path reference links `[text](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html)`.
+  Process path reference links `[text](https://docs.rs/core/latest/core/option/struct.Item.html)`.
 
 - `fn process_method_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -1225,6 +1959,10 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
   Process documentation string to resolve intra-doc links.
 
+- `fn resolve_use_target<'b>(self: &Self, item: &'b Item) -> Option<(&'b str, &'b Item)>`
+
+  Resolve a Use item to its target, returning the alias name and target item.
+
 - `fn render_struct(self: &Self, md: &mut String, item_id: Id, item: &Item)`
 
   Render a struct definition to markdown.
@@ -1341,6 +2079,10 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - `fn categorize_items(self: &Self, item_ids: &'a [Id]) -> CategorizedItems<'a>` — [`CategorizedItems`](#categorizeditems)
 
   Categorize module items by type for organized rendering.
+
+- `fn expand_glob_reexport(self: &Self, items: &mut CategorizedItems<'a>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<&'a Id>)` — [`CategorizedItems`](#categorizeditems)
+
+  Expand a glob re-export by adding all public items from the target module.
 
 - `fn render_all_sections(self: &Self, md: &mut String, items: &CategorizedItems<'_>)` — [`CategorizedItems`](#categorizeditems)
 
@@ -1909,6 +2651,892 @@ generation capabilities programmatically.
 
 ## Structs
 
+### `Generator<'a>`
+
+```rust
+struct Generator<'a> {
+    ctx: GeneratorContext<'a>,
+    args: &'a crate::Args,
+    root_item: &'a rustdoc_types::Item,
+}
+```
+
+Main documentation generator.
+
+This struct orchestrates the entire documentation generation process,
+coordinating between the context, format-specific generators, and
+progress reporting.
+
+# Example
+
+```ignore
+let generator = Generator::new(&krate, &args)?;
+generator.generate()?;
+```
+
+#### Fields
+
+- **`ctx`**: `GeneratorContext<'a>`
+
+  Shared context containing crate data, maps, and configuration.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments containing output path and format options.
+
+- **`root_item`**: `&'a rustdoc_types::Item`
+
+  The root module item of the crate.
+
+#### Implementations
+
+- `fn new(krate: &'a Crate, args: &'a Args) -> Result<Self, Error>` — [`Args`](#args), [`Error`](error.md)
+
+  Create a new generator for the given crate and arguments.
+
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error.md)
+
+  Generate markdown documentation.
+
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error.md)
+
+  Create a progress bar for user feedback.
+
+- `fn generate_to_capture(krate: &Crate, format: CliOutputFormat, include_private: bool) -> Result<MarkdownCapture, Error>` — [`CliOutputFormat`](#clioutputformat), [`MarkdownCapture`](generator__capture.md), [`Error`](error.md)
+
+  Generate documentation to memory instead of disk.
+
+- `fn generate_flat_to_capture(ctx: &GeneratorContext<'_>, root: &Item, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator__context.md), [`MarkdownCapture`](generator__capture.md), [`Error`](error.md)
+
+  Generate flat structure to capture.
+
+- `fn generate_flat_recursive_capture(ctx: &GeneratorContext<'_>, item: &Item, prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator__context.md), [`MarkdownCapture`](generator__capture.md), [`Error`](error.md)
+
+  Recursive flat generation to capture.
+
+- `fn generate_nested_to_capture(ctx: &GeneratorContext<'_>, root: &Item, path_prefix: &str, capture: &mut MarkdownCapture) -> Result<(), Error>` — [`GeneratorContext`](generator__context.md), [`MarkdownCapture`](generator__capture.md), [`Error`](error.md)
+
+  Generate nested structure to capture.
+
+- `fn run(krate: &'a Crate, args: &'a Args) -> Result<(), Error>` — [`Args`](#args), [`Error`](error.md)
+
+  Convenience method to generate documentation in one call.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for Generator<'a>`
+
+##### `impl<D> OwoColorize for Generator<'a>`
+
+##### `impl<T> Pointable for Generator<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `MarkdownCapture`
+
+```rust
+struct MarkdownCapture {
+    files: std::collections::HashMap<String, String>,
+}
+```
+
+Captures generated markdown in memory for testing.
+
+Instead of writing files to disk, this struct stores all generated
+markdown content in a `HashMap`, keyed by relative file path. This
+enables snapshot testing and verification of output without filesystem
+side effects.
+
+#### Fields
+
+- **`files`**: `std::collections::HashMap<String, String>`
+
+  Maps file paths (relative to output directory) to their generated content.
+
+#### Implementations
+
+- `fn new() -> Self`
+
+  Create a new empty capture.
+
+- `fn insert(self: &mut Self, path: String, content: String)`
+
+  Add a file to the capture.
+
+- `fn get(self: &Self, path: &str) -> Option<&String>`
+
+  Get the content of a specific file.
+
+- `fn paths(self: &Self) -> Vec<&String>`
+
+  Get all file paths in sorted order.
+
+- `fn len(self: &Self) -> usize`
+
+  Get the number of captured files.
+
+- `fn is_empty(self: &Self) -> bool`
+
+  Check if the capture is empty.
+
+- `fn to_snapshot_string(self: &Self) -> String`
+
+  Convert all captured files to a single string for snapshot testing.
+
+- `fn into_inner(self: Self) -> HashMap<String, String>`
+
+  Consume self and return the underlying `HashMap`.
+
+#### Trait Implementations
+
+##### `impl Debug for MarkdownCapture`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for MarkdownCapture`
+
+- `fn default() -> MarkdownCapture` — [`MarkdownCapture`](generator__capture.md)
+
+##### `impl<T> IntoEither for MarkdownCapture`
+
+##### `impl<D> OwoColorize for MarkdownCapture`
+
+##### `impl<T> Pointable for MarkdownCapture`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `LinkRegistry`
+
+```rust
+struct LinkRegistry {
+    item_paths: std::collections::HashMap<rustdoc_types::Id, String>,
+    item_names: std::collections::HashMap<rustdoc_types::Id, String>,
+}
+```
+
+Registry mapping item IDs to their documentation file paths.
+
+This is the central data structure for cross-reference resolution.
+It's built once during generation and queried whenever we need to
+create links between items.
+
+#### Fields
+
+- **`item_paths`**: `std::collections::HashMap<rustdoc_types::Id, String>`
+
+  Maps each item's ID to the markdown file path where it's documented.
+  
+  Paths are relative to the output directory root.
+  Examples: `"index.md"`, `"span.md"`, `"span/index.md"`
+
+- **`item_names`**: `std::collections::HashMap<rustdoc_types::Id, String>`
+
+  Maps each item's ID to its display name.
+  
+  Used to generate the link text (e.g., `[`name`](path)`).
+  This is typically the item's identifier without the full path.
+
+#### Implementations
+
+- `fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
+
+  Build a link registry by traversing all items in the crate.
+
+- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
+
+  Recursively register all items within a module.
+
+- `fn register_glob_items(self: &mut Self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
+
+  Register items from a glob re-export target module.
+
+- `fn get_path(self: &Self, id: Id) -> Option<&String>`
+
+  Get the file path where an item is documented.
+
+- `fn get_name(self: &Self, id: Id) -> Option<&String>`
+
+  Get the display name for an item.
+
+- `fn create_link(self: &Self, id: Id, from_path: &str) -> Option<String>`
+
+  Create a markdown link to an item from a given source file.
+
+- `fn compute_relative_path(from: &str, to: &str) -> String`
+
+  Compute the relative path from one file to another.
+
+#### Trait Implementations
+
+##### `impl Debug for LinkRegistry`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for LinkRegistry`
+
+- `fn default() -> LinkRegistry` — [`LinkRegistry`](linker.md)
+
+##### `impl<T> IntoEither for LinkRegistry`
+
+##### `impl<D> OwoColorize for LinkRegistry`
+
+##### `impl<T> Pointable for LinkRegistry`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `CrateCollection`
+
+```rust
+struct CrateCollection {
+    crates: std::collections::HashMap<String, rustdoc_types::Crate>,
+}
+```
+
+Collection of parsed crates ready for documentation generation.
+
+Uses `HashMap` for O(1) lookups and sorts keys on-demand when iteration
+is needed. This is optimal for our use case where:
+- All crates are inserted first (parsing phase)
+- Sorted iteration happens later (generation phase)
+- Collection size is small (typically 10-50 crates)
+
+# Example
+
+```ignore
+let mut collection = CrateCollection::new();
+collection.insert("tracing".to_string(), tracing_crate);
+collection.insert("tracing_core".to_string(), tracing_core_crate);
+
+for (name, krate) in collection.iter() {
+    println!("Processing {name}");
+}
+```
+
+#### Fields
+
+- **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
+
+  Map from crate name to parsed Crate data.
+  HashMap provides O(1) lookups; sorting done on-demand.
+
+#### Implementations
+
+- `fn new() -> Self`
+
+  Create an empty crate collection.
+
+- `fn insert(self: &mut Self, name: String, krate: Crate) -> Option<Crate>`
+
+  Insert a crate into the collection.
+
+- `fn get(self: &Self, name: &str) -> Option<&Crate>`
+
+  Get a crate by name.
+
+- `fn get_with_name(self: &Self, name: &str) -> Option<(&str, &Crate)>`
+
+  Get a crate by name, returning the stored key as well.
+
+- `fn contains(self: &Self, name: &str) -> bool`
+
+  Check if a crate exists in the collection.
+
+- `fn iter(self: &Self) -> impl Iterator<Item = (&String, &Crate)>`
+
+  Iterate over crates in alphabetical order.
+
+- `fn len(self: &Self) -> usize`
+
+  Get the number of crates in the collection.
+
+- `fn is_empty(self: &Self) -> bool`
+
+  Check if the collection is empty.
+
+- `fn names(self: &Self) -> Vec<&String>`
+
+  Get crate names in alphabetical order.
+
+#### Trait Implementations
+
+##### `impl Debug for CrateCollection`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for CrateCollection`
+
+- `fn default() -> CrateCollection` — [`CrateCollection`](multi_crate__collection.md)
+
+##### `impl<T> IntoEither for CrateCollection`
+
+##### `impl<D> OwoColorize for CrateCollection`
+
+##### `impl<T> Pointable for CrateCollection`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `MultiCrateContext<'a>`
+
+```rust
+struct MultiCrateContext<'a> {
+    crates: &'a crate::multi_crate::CrateCollection,
+    registry: crate::multi_crate::UnifiedLinkRegistry,
+    args: &'a crate::Args,
+    cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
+}
+```
+
+Shared context for multi-crate documentation generation.
+
+Holds references to all crates, the unified link registry, and
+CLI configuration. Used by [`MultiCrateGenerator`](multi_crate__generator.md) to coordinate
+generation across crates.
+
+#### Fields
+
+- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+
+  All crates being documented.
+
+- **`registry`**: `crate::multi_crate::UnifiedLinkRegistry`
+
+  Unified link registry for cross-crate resolution.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+- **`cross_crate_impls`**: `std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
+
+  Pre-computed cross-crate impl blocks.
+  
+  Maps target crate name -> type name -> impl blocks from other crates.
+  This is computed once during construction rather than per-view.
+
+#### Implementations
+
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](multi_crate__collection.md), [`Args`](#args)
+
+  Create a new multi-crate context.
+
+- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](multi_crate__collection.md)
+
+  Build the cross-crate impl map for all crates.
+
+- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](multi_crate__collection.md)
+
+  Get the crate collection.
+
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate__registry.md)
+
+  Get the unified link registry.
+
+- `const fn args(self: &Self) -> &Args` — [`Args`](#args)
+
+  Get CLI arguments.
+
+- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate__context.md)
+
+  Create a single-crate view for rendering one crate.
+
+- `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
+
+  Find an item across all crates by ID.
+
+- `fn get_cross_crate_impls(self: &Self, target_crate: &str) -> Option<&HashMap<String, Vec<&'a Impl>>>`
+
+  Get pre-computed cross-crate impl blocks for a target crate.
+
+- `fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
+
+  Get the target type path for an impl block.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for MultiCrateContext<'a>`
+
+##### `impl<D> OwoColorize for MultiCrateContext<'a>`
+
+##### `impl<T> Pointable for MultiCrateContext<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `MultiCrateGenerator<'a>`
+
+```rust
+struct MultiCrateGenerator<'a> {
+    ctx: crate::multi_crate::MultiCrateContext<'a>,
+    args: &'a crate::Args,
+}
+```
+
+Generator for multi-crate documentation.
+
+Produces a directory structure with one subdirectory per crate,
+each containing nested markdown files with cross-crate linking.
+
+# Output Structure
+
+```text
+output/
+├── tracing/
+│   ├── index.md
+│   └── span/
+│       └── index.md
+├── tracing_core/
+│   ├── index.md
+│   └── subscriber/
+│       └── index.md
+└── SUMMARY.md        # If --mdbook enabled
+```
+
+#### Fields
+
+- **`ctx`**: `crate::multi_crate::MultiCrateContext<'a>`
+
+  Multi-crate context with unified registry.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+#### Implementations
+
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](multi_crate__collection.md), [`Args`](#args)
+
+  Create a new multi-crate generator.
+
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error.md)
+
+  Generate documentation for all crates.
+
+- `fn collect_rendered_items(self: &Self) -> HashMap<String, HashSet<Id>>`
+
+  Collect the IDs of all items that would be rendered.
+
+- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate__context.md)
+
+  Collect rendered item IDs for a single crate.
+
+- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate__context.md)
+
+  Recursively collect rendered item IDs from a module.
+
+- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate__context.md), [`Error`](error.md)
+
+  Generate documentation for a single crate.
+
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate__context.md), [`Error`](error.md)
+
+  Generate a module directory with index.md and child modules.
+
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error.md)
+
+  Create a progress bar.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
+
+##### `impl<D> OwoColorize for MultiCrateGenerator<'a>`
+
+##### `impl<T> Pointable for MultiCrateGenerator<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `MultiCrateParser`
+
+```rust
+struct MultiCrateParser;
+```
+
+Parser for multiple rustdoc JSON files in a directory.
+
+Discovers JSON files and parses each one, extracting the crate name
+from the root module item.
+
+# Example
+
+```ignore
+let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
+println!("Found {} crates", crates.len());
+```
+
+#### Implementations
+
+- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](multi_crate__collection.md), [`Error`](error.md)
+
+  Parse all rustdoc JSON files in a directory.
+
+- `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error.md)
+
+  Extract the crate name from a parsed Crate.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for MultiCrateParser`
+
+##### `impl<D> OwoColorize for MultiCrateParser`
+
+##### `impl<T> Pointable for MultiCrateParser`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `SearchIndex`
+
+```rust
+struct SearchIndex {
+    pub items: Vec<SearchEntry>,
+}
+```
+
+The complete search index containing all searchable items.
+
+Serialized to `search_index.json` for client-side consumption.
+
+#### Fields
+
+- **`items`**: `Vec<SearchEntry>`
+
+  All searchable items across all crates.
+
+#### Trait Implementations
+
+##### `impl Debug for SearchIndex`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<T> IntoEither for SearchIndex`
+
+##### `impl<D> OwoColorize for SearchIndex`
+
+##### `impl<T> Pointable for SearchIndex`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl Serialize for SearchIndex`
+
+- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+### `SearchIndexGenerator<'a>`
+
+```rust
+struct SearchIndexGenerator<'a> {
+    crates: &'a super::CrateCollection,
+    include_private: bool,
+    rendered_items: std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>,
+}
+```
+
+Generator for multi-crate search indices.
+
+Traverses all crates in a [`CrateCollection`](multi_crate__collection.md) and builds a comprehensive
+search index of all public items (or all items if `include_private` is set).
+
+# Example
+
+```ignore
+let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
+let rendered_items = generator.generate();  // Returns HashMap<String, HashSet<Id>>
+let generator = SearchIndexGenerator::new(&crates, false, rendered_items);
+generator.write(Path::new("docs/"))?;
+```
+
+#### Fields
+
+- **`crates`**: `&'a super::CrateCollection`
+
+  Collection of crates to index.
+
+- **`include_private`**: `bool`
+
+  Whether to include private items in the search index.
+  
+  When false (default), only public items are indexed.
+  When true, all items regardless of visibility are indexed.
+
+- **`rendered_items`**: `std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>`
+
+  Set of item IDs that were actually rendered per crate.
+  
+  Only items in this set will appear in the search index.
+  This ensures the search index matches the generated documentation.
+
+#### Implementations
+
+- `fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate__collection.md)
+
+  Create a new search index generator.
+
+- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](multi_crate__search.md)
+
+  Generate the complete search index.
+
+- `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
+
+  Write the search index to `search_index.json` in the output directory.
+
+- `fn index_crate(self: &Self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](multi_crate__search.md)
+
+  Index all items in a single crate.
+
+- `fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
+
+  Build a map from item ID to its module path.
+
+- `fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
+
+  Compute the file path for an item based on its module location.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
+
+##### `impl<D> OwoColorize for SearchIndexGenerator<'a>`
+
+##### `impl<T> Pointable for SearchIndexGenerator<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `UnifiedLinkRegistry`
+
+```rust
+struct UnifiedLinkRegistry {
+    item_paths: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    item_names: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>,
+    primary_crate: Option<compact_str::CompactString>,
+}
+```
+
+Registry mapping item IDs to documentation paths across multiple crates.
+
+Unlike [`LinkRegistry`](linker.md) which handles a single crate, this registry
+spans multiple crates and supports cross-crate link resolution with
+disambiguation based on local/primary crate preference.
+
+# Path Format
+
+All paths use the nested format: `{crate_name}/{module_path}/index.md`
+
+Examples:
+- `tracing/index.md` (crate root)
+- `tracing/span/index.md` (module)
+- `tracing_core/subscriber/index.md` (cross-crate reference)
+
+# Link Resolution Priority
+
+When resolving ambiguous names:
+1. Items in the current crate (where the link appears)
+2. Items in the primary crate (if specified via `--primary-crate`)
+3. Items with the shortest qualified path
+
+# Performance
+
+Uses `hashbrown` with raw entry API for zero-allocation lookups.
+This avoids allocating a `String` for the crate name on every lookup.
+
+#### Fields
+
+- **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, item_id)` to the file path within output.
+  Uses hashbrown for raw_entry API (zero-alloc lookups).
+
+- **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, item_id)` to the item's display name.
+  Uses hashbrown for raw_entry API (zero-alloc lookups).
+
+- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
+
+  Maps short names to all `(crate_name, item_id)` pairs.
+  Used for disambiguating links like `Span` that exist in multiple crates.
+
+- **`primary_crate`**: `Option<compact_str::CompactString>`
+
+  The primary crate name for preferential resolution.
+
+#### Implementations
+
+- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](multi_crate__collection.md)
+
+  Build a unified registry from a collection of crates.
+
+- `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
+
+  Register all items from a single crate.
+
+- `fn register_from_paths(self: &mut Self, crate_name: &str, krate: &Crate)`
+
+  Register items using the `paths` field from rustdoc JSON.
+
+- `fn register_item_recursive(self: &mut Self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
+
+  Recursively register an item and its children.
+
+- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str)`
+
+  Register a single item in the registry.
+
+- `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+
+  Get the file path for an item in a specific crate.
+
+- `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+
+  Get the display name for an item.
+
+- `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
+
+  Resolve an item name to its crate and ID.
+
+- `fn resolve_path(self: &Self, path: &str) -> Option<(compact_str::CompactString, Id)>`
+
+  Resolve a full path like `regex_automata::Regex` to its crate and ID.
+
+- `fn create_link(self: &Self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
+
+  Create a markdown link from one file to another across crates.
+
+- `fn compute_cross_crate_path(from: &str, to: &str) -> String`
+
+  Compute relative path between files potentially in different crates.
+
+- `fn get_anchor(self: &Self, crate_name: &str, id: Id) -> Option<String>`
+
+  Get an anchor string for an item within its page.
+
+- `fn contains(self: &Self, crate_name: &str, id: Id) -> bool`
+
+  Check if an item exists in the registry.
+
+- `fn len(self: &Self) -> usize`
+
+  Get the number of registered items.
+
+- `fn is_empty(self: &Self) -> bool`
+
+  Check if the registry is empty.
+
+#### Trait Implementations
+
+##### `impl Debug for UnifiedLinkRegistry`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for UnifiedLinkRegistry`
+
+- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate__registry.md)
+
+##### `impl<T> IntoEither for UnifiedLinkRegistry`
+
+##### `impl<D> OwoColorize for UnifiedLinkRegistry`
+
+##### `impl<T> Pointable for UnifiedLinkRegistry`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
 ### `Args`
 
 ```rust
@@ -2193,6 +3821,40 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 - `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
+## Functions
+
+### `slugify_anchor`
+
+```rust
+fn slugify_anchor(name: &str) -> String
+```
+
+Convert a name to a GitHub-style markdown anchor slug.
+
+This normalizes item names to match the anchor IDs generated by markdown
+renderers (GitHub, mdBook, etc.) when they process headings.
+
+# Rules Applied
+
+1. Apply Unicode NFC normalization (canonical composition)
+2. Convert to lowercase (full Unicode, not just ASCII)
+3. Remove backticks (markdown code formatting)
+4. Remove generics (`<T>`, `<K, V>`) by stripping `<...>` content
+5. Replace spaces and underscores with hyphens
+6. Remove non-alphanumeric characters (except hyphens)
+7. Collapse consecutive hyphens
+8. Trim leading/trailing hyphens
+
+# Examples
+
+```ignore
+assert_eq!(slugify_anchor("HashMap"), "hashmap");
+assert_eq!(slugify_anchor("HashMap<K, V>"), "hashmap");
+assert_eq!(slugify_anchor("my_function"), "my-function");
+assert_eq!(slugify_anchor("Into<T>"), "into");
+assert_eq!(slugify_anchor("Größe"), "größe");
+```
+
 
 === linker.md ===
 # Module `linker`
@@ -2261,13 +3923,17 @@ create links between items.
 
 #### Implementations
 
-- `fn build(krate: &Crate, flat_format: bool) -> Self`
+- `fn build(krate: &Crate, flat_format: bool, include_private: bool) -> Self`
 
   Build a link registry by traversing all items in the crate.
 
-- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool)`
+- `fn register_module_items(self: &mut Self, krate: &Crate, module_id: Id, module_item: &rustdoc_types::Item, path: &str, module_prefix: &str, flat_format: bool, include_private: bool)`
 
   Recursively register all items within a module.
+
+- `fn register_glob_items(self: &mut Self, krate: &Crate, use_item: &rustdoc_types::Use, path: &str, include_private: bool)`
+
+  Register items from a glob re-export target module.
 
 - `fn get_path(self: &Self, id: Id) -> Option<&String>`
 
@@ -2403,6 +4069,952 @@ generator.generate()?;
 - [`registry`](multi_crate__registry.md) - Unified link registry for cross-crate documentation.
 - [`search`](multi_crate__search.md) - Search index generation for multi-crate documentation.
 - [`summary`](multi_crate__summary.md) - mdBook SUMMARY.md generator.
+
+## Structs
+
+### `CrateCollection`
+
+```rust
+struct CrateCollection {
+    crates: std::collections::HashMap<String, rustdoc_types::Crate>,
+}
+```
+
+Collection of parsed crates ready for documentation generation.
+
+Uses `HashMap` for O(1) lookups and sorts keys on-demand when iteration
+is needed. This is optimal for our use case where:
+- All crates are inserted first (parsing phase)
+- Sorted iteration happens later (generation phase)
+- Collection size is small (typically 10-50 crates)
+
+# Example
+
+```ignore
+let mut collection = CrateCollection::new();
+collection.insert("tracing".to_string(), tracing_crate);
+collection.insert("tracing_core".to_string(), tracing_core_crate);
+
+for (name, krate) in collection.iter() {
+    println!("Processing {name}");
+}
+```
+
+#### Fields
+
+- **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
+
+  Map from crate name to parsed Crate data.
+  HashMap provides O(1) lookups; sorting done on-demand.
+
+#### Implementations
+
+- `fn new() -> Self`
+
+  Create an empty crate collection.
+
+- `fn insert(self: &mut Self, name: String, krate: Crate) -> Option<Crate>`
+
+  Insert a crate into the collection.
+
+- `fn get(self: &Self, name: &str) -> Option<&Crate>`
+
+  Get a crate by name.
+
+- `fn get_with_name(self: &Self, name: &str) -> Option<(&str, &Crate)>`
+
+  Get a crate by name, returning the stored key as well.
+
+- `fn contains(self: &Self, name: &str) -> bool`
+
+  Check if a crate exists in the collection.
+
+- `fn iter(self: &Self) -> impl Iterator<Item = (&String, &Crate)>`
+
+  Iterate over crates in alphabetical order.
+
+- `fn len(self: &Self) -> usize`
+
+  Get the number of crates in the collection.
+
+- `fn is_empty(self: &Self) -> bool`
+
+  Check if the collection is empty.
+
+- `fn names(self: &Self) -> Vec<&String>`
+
+  Get crate names in alphabetical order.
+
+#### Trait Implementations
+
+##### `impl Debug for CrateCollection`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for CrateCollection`
+
+- `fn default() -> CrateCollection` — [`CrateCollection`](multi_crate__collection.md)
+
+##### `impl<T> IntoEither for CrateCollection`
+
+##### `impl<D> OwoColorize for CrateCollection`
+
+##### `impl<T> Pointable for CrateCollection`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `MultiCrateContext<'a>`
+
+```rust
+struct MultiCrateContext<'a> {
+    crates: &'a crate::multi_crate::CrateCollection,
+    registry: crate::multi_crate::UnifiedLinkRegistry,
+    args: &'a crate::Args,
+    cross_crate_impls: std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
+}
+```
+
+Shared context for multi-crate documentation generation.
+
+Holds references to all crates, the unified link registry, and
+CLI configuration. Used by [`MultiCrateGenerator`](multi_crate__generator.md) to coordinate
+generation across crates.
+
+#### Fields
+
+- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+
+  All crates being documented.
+
+- **`registry`**: `crate::multi_crate::UnifiedLinkRegistry`
+
+  Unified link registry for cross-crate resolution.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+- **`cross_crate_impls`**: `std::collections::HashMap<String, std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
+
+  Pre-computed cross-crate impl blocks.
+  
+  Maps target crate name -> type name -> impl blocks from other crates.
+  This is computed once during construction rather than per-view.
+
+#### Implementations
+
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](multi_crate__collection.md), [`Args`](index.md)
+
+  Create a new multi-crate context.
+
+- `fn build_cross_crate_impls(crates: &'a CrateCollection) -> HashMap<String, HashMap<String, Vec<&'a Impl>>>` — [`CrateCollection`](multi_crate__collection.md)
+
+  Build the cross-crate impl map for all crates.
+
+- `const fn crates(self: &Self) -> &CrateCollection` — [`CrateCollection`](multi_crate__collection.md)
+
+  Get the crate collection.
+
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate__registry.md)
+
+  Get the unified link registry.
+
+- `const fn args(self: &Self) -> &Args` — [`Args`](index.md)
+
+  Get CLI arguments.
+
+- `fn single_crate_view(self: &'a Self, crate_name: &str) -> Option<SingleCrateView<'a>>` — [`SingleCrateView`](multi_crate__context.md)
+
+  Create a single-crate view for rendering one crate.
+
+- `fn find_item(self: &Self, id: &Id) -> Option<(&str, &Item)>`
+
+  Find an item across all crates by ID.
+
+- `fn get_cross_crate_impls(self: &Self, target_crate: &str) -> Option<&HashMap<String, Vec<&'a Impl>>>`
+
+  Get pre-computed cross-crate impl blocks for a target crate.
+
+- `fn get_impl_target_path(impl_block: &Impl) -> Option<String>`
+
+  Get the target type path for an impl block.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for MultiCrateContext<'a>`
+
+##### `impl<D> OwoColorize for MultiCrateContext<'a>`
+
+##### `impl<T> Pointable for MultiCrateContext<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `SingleCrateView<'a>`
+
+```rust
+struct SingleCrateView<'a> {
+    crate_name: &'a str,
+    krate: &'a rustdoc_types::Crate,
+    registry: &'a crate::multi_crate::UnifiedLinkRegistry,
+    args: &'a crate::Args,
+    ctx: &'a MultiCrateContext<'a>,
+    impl_map: std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>,
+    cross_crate_impls: Option<&'a std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>,
+    type_name_to_id: std::collections::HashMap<String, rustdoc_types::Id>,
+}
+```
+
+View of a single crate within multi-crate context.
+
+Provides an interface similar to [`GeneratorContext`](generator__context.md) but uses
+[`UnifiedLinkRegistry`](multi_crate__registry.md) for cross-crate link resolution. This
+allows existing rendering code to work with minimal changes.
+
+#### Fields
+
+- **`crate_name`**: `&'a str`
+
+  Name of this crate (borrowed from the context).
+
+- **`krate`**: `&'a rustdoc_types::Crate`
+
+  The crate being rendered.
+
+- **`registry`**: `&'a crate::multi_crate::UnifiedLinkRegistry`
+
+  Unified registry for link resolution.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+- **`ctx`**: `&'a MultiCrateContext<'a>`
+
+  Reference to the parent multi-crate context for cross-crate lookups.
+
+- **`impl_map`**: `std::collections::HashMap<rustdoc_types::Id, Vec<&'a rustdoc_types::Impl>>`
+
+  Map from type ID to impl blocks (local crate only).
+
+- **`cross_crate_impls`**: `Option<&'a std::collections::HashMap<String, Vec<&'a rustdoc_types::Impl>>>`
+
+  Reference to pre-computed cross-crate impl blocks from context.
+  Maps type name to impl blocks from other crates.
+
+- **`type_name_to_id`**: `std::collections::HashMap<String, rustdoc_types::Id>`
+
+  Map from type name to type ID for cross-crate impl lookup.
+
+#### Implementations
+
+- `fn new(crate_name: &'a str, krate: &'a Crate, registry: &'a UnifiedLinkRegistry, args: &'a Args, ctx: &'a MultiCrateContext<'a>) -> Self` — [`UnifiedLinkRegistry`](multi_crate__registry.md), [`Args`](index.md), [`MultiCrateContext`](multi_crate__context.md)
+
+  Create a new single-crate view.
+
+- `fn build_impl_map(self: &mut Self)`
+
+  Build the impl map for all types.
+
+- `fn build_type_name_map(self: &mut Self)`
+
+  Build a map from type name to type ID.
+
+- `const fn get_impl_target_id(impl_block: &Impl) -> Option<Id>`
+
+  Get the target type ID for an impl block.
+
+- `fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
+
+  Generate a sort key for impl blocks.
+
+- `const fn crate_name(self: &Self) -> &str`
+
+  Get the crate name.
+
+- `const fn krate(self: &Self) -> &Crate`
+
+  Get the crate being rendered.
+
+- `const fn registry(self: &Self) -> &UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate__registry.md)
+
+  Get the unified registry.
+
+- `const fn args(self: &Self) -> &Args` — [`Args`](index.md)
+
+  Get CLI arguments.
+
+- `fn get_impls(self: &Self, id: Id) -> Option<&Vec<&'a Impl>>`
+
+  Get impl blocks for a type (local crate only).
+
+- `fn get_all_impls(self: &Self, id: Id) -> Vec<&'a Impl>`
+
+  Get all impl blocks for a type, including cross-crate impls.
+
+- `fn get_impls_from_crate(self: &Self, id: Id, source_krate: &'a Crate) -> Vec<&'a Impl>`
+
+  Get impl blocks for a type from a specific crate.
+
+- `const fn get_impl_target_id_from_type(ty: &rustdoc_types::Type) -> Option<Id>`
+
+  Extract the target ID from a Type (for impl block matching).
+
+- `const fn should_include_item(self: &Self, item: &rustdoc_types::Item) -> bool`
+
+  Check if an item should be included based on visibility.
+
+- `fn count_modules(self: &Self) -> usize`
+
+  Count modules for progress reporting.
+
+- `fn create_link(self: &Self, to_crate: &str, to_id: Id, from_path: &str) -> Option<String>`
+
+  Create a markdown link using the unified registry.
+
+- `fn resolve_name(self: &Self, name: &str) -> Option<(String, Id)>`
+
+  Resolve a name to a crate and ID.
+
+- `fn lookup_item_across_crates(self: &Self, id: &Id) -> Option<(&str, &Item)>`
+
+  Look up an item across all crates by ID.
+
+- `fn get_crate(self: &Self, name: &str) -> Option<&Crate>`
+
+  Get a crate by name from the collection.
+
+- `fn resolve_external_path(self: &Self, path: &str) -> Option<(&str, &Item, Id)>`
+
+  Resolve a path like `regex_automata::Regex` to an item.
+
+- `fn process_backtick_links(self: &Self, docs: &str, item_links: &HashMap<String, Id>, current_file: &str) -> String`
+
+  Process backtick links like `[`Span`](https://docs.rs/regex_syntax/latest/regex_syntax/ast/struct.Span.html)` to markdown links.
+
+- `fn process_plain_links(docs: &str) -> String`
+
+  Process plain links like `[enter]` to markdown links.
+
+- `fn resolve_link(self: &Self, link_text: &str, item_links: &HashMap<String, Id>, current_file: &str) -> Option<String>`
+
+  Resolve a link text to a markdown link using the registry.
+
+- `fn build_link_to_id(self: &Self, id: Id, current_file: &str, display_name: &str, anchor: Option<&str>) -> Option<String>`
+
+  Build a link to an item by ID.
+
+- `fn resolve_crate_path(self: &Self, path_without_crate: &str, display_name: &str, current_file: &str) -> Option<String>`
+
+  Resolve `crate::path::Item` or `crate::path::Item::method` patterns.
+
+- `fn split_type_and_anchor(path: &str) -> (&str, Option<&str>)`
+
+  Split `config::ConfigBuilder::method` into (`config::ConfigBuilder`, Some("method")).
+
+- `fn build_markdown_link(self: &Self, current_file: &str, target_crate: &str, target_path: &str, display_name: &str, anchor: Option<&str>) -> String`
+
+  Build a markdown link, handling same-crate and cross-crate cases.
+
+- `fn compute_cross_crate_path(current_local: &str, target_crate: &str, target_path: &str) -> String`
+
+  Compute a relative path for cross-crate linking.
+
+- `fn strip_crate_prefix(path: &str) -> &str`
+
+  Strip the crate prefix from a file path.
+
+- `fn looks_like_external_reference(link_text: &str) -> bool`
+
+  Check if a link text looks like an intentional external crate reference.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for SingleCrateView<'a>`
+
+##### `impl ItemAccess for SingleCrateView<'_>`
+
+- `fn krate(self: &Self) -> &Crate`
+
+- `fn crate_name(self: &Self) -> &str`
+
+- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
+
+- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
+
+- `fn crate_version(self: &Self) -> Option<&str>`
+
+##### `impl ItemFilter for SingleCrateView<'_>`
+
+- `fn should_include_item(self: &Self, item: &Item) -> bool`
+
+- `fn include_private(self: &Self) -> bool`
+
+- `fn include_blanket_impls(self: &Self) -> bool`
+
+##### `impl LinkResolver for SingleCrateView<'_>`
+
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](linker.md)
+
+- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
+
+- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+
+##### `impl<D> OwoColorize for SingleCrateView<'a>`
+
+##### `impl<T> Pointable for SingleCrateView<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> RenderContext for SingleCrateView<'a>`
+
+### `MultiCrateGenerator<'a>`
+
+```rust
+struct MultiCrateGenerator<'a> {
+    ctx: crate::multi_crate::MultiCrateContext<'a>,
+    args: &'a crate::Args,
+}
+```
+
+Generator for multi-crate documentation.
+
+Produces a directory structure with one subdirectory per crate,
+each containing nested markdown files with cross-crate linking.
+
+# Output Structure
+
+```text
+output/
+├── tracing/
+│   ├── index.md
+│   └── span/
+│       └── index.md
+├── tracing_core/
+│   ├── index.md
+│   └── subscriber/
+│       └── index.md
+└── SUMMARY.md        # If --mdbook enabled
+```
+
+#### Fields
+
+- **`ctx`**: `crate::multi_crate::MultiCrateContext<'a>`
+
+  Multi-crate context with unified registry.
+
+- **`args`**: `&'a crate::Args`
+
+  CLI arguments.
+
+#### Implementations
+
+- `fn new(crates: &'a CrateCollection, args: &'a Args) -> Self` — [`CrateCollection`](multi_crate__collection.md), [`Args`](index.md)
+
+  Create a new multi-crate generator.
+
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error.md)
+
+  Generate documentation for all crates.
+
+- `fn collect_rendered_items(self: &Self) -> HashMap<String, HashSet<Id>>`
+
+  Collect the IDs of all items that would be rendered.
+
+- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate__context.md)
+
+  Collect rendered item IDs for a single crate.
+
+- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate__context.md)
+
+  Recursively collect rendered item IDs from a module.
+
+- `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate__context.md), [`Error`](error.md)
+
+  Generate documentation for a single crate.
+
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate__context.md), [`Error`](error.md)
+
+  Generate a module directory with index.md and child modules.
+
+- `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error.md)
+
+  Create a progress bar.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
+
+##### `impl<D> OwoColorize for MultiCrateGenerator<'a>`
+
+##### `impl<T> Pointable for MultiCrateGenerator<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `MultiCrateParser`
+
+```rust
+struct MultiCrateParser;
+```
+
+Parser for multiple rustdoc JSON files in a directory.
+
+Discovers JSON files and parses each one, extracting the crate name
+from the root module item.
+
+# Example
+
+```ignore
+let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
+println!("Found {} crates", crates.len());
+```
+
+#### Implementations
+
+- `fn parse_directory(dir: &Path) -> Result<CrateCollection, Error>` — [`CrateCollection`](multi_crate__collection.md), [`Error`](error.md)
+
+  Parse all rustdoc JSON files in a directory.
+
+- `fn extract_crate_name(krate: &rustdoc_types::Crate, path: &Path) -> Result<String, Error>` — [`Error`](error.md)
+
+  Extract the crate name from a parsed Crate.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for MultiCrateParser`
+
+##### `impl<D> OwoColorize for MultiCrateParser`
+
+##### `impl<T> Pointable for MultiCrateParser`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `UnifiedLinkRegistry`
+
+```rust
+struct UnifiedLinkRegistry {
+    item_paths: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    item_names: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>,
+    primary_crate: Option<compact_str::CompactString>,
+}
+```
+
+Registry mapping item IDs to documentation paths across multiple crates.
+
+Unlike [`LinkRegistry`](linker.md) which handles a single crate, this registry
+spans multiple crates and supports cross-crate link resolution with
+disambiguation based on local/primary crate preference.
+
+# Path Format
+
+All paths use the nested format: `{crate_name}/{module_path}/index.md`
+
+Examples:
+- `tracing/index.md` (crate root)
+- `tracing/span/index.md` (module)
+- `tracing_core/subscriber/index.md` (cross-crate reference)
+
+# Link Resolution Priority
+
+When resolving ambiguous names:
+1. Items in the current crate (where the link appears)
+2. Items in the primary crate (if specified via `--primary-crate`)
+3. Items with the shortest qualified path
+
+# Performance
+
+Uses `hashbrown` with raw entry API for zero-allocation lookups.
+This avoids allocating a `String` for the crate name on every lookup.
+
+#### Fields
+
+- **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, item_id)` to the file path within output.
+  Uses hashbrown for raw_entry API (zero-alloc lookups).
+
+- **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, item_id)` to the item's display name.
+  Uses hashbrown for raw_entry API (zero-alloc lookups).
+
+- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
+
+  Maps short names to all `(crate_name, item_id)` pairs.
+  Used for disambiguating links like `Span` that exist in multiple crates.
+
+- **`primary_crate`**: `Option<compact_str::CompactString>`
+
+  The primary crate name for preferential resolution.
+
+#### Implementations
+
+- `fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self` — [`CrateCollection`](multi_crate__collection.md)
+
+  Build a unified registry from a collection of crates.
+
+- `fn register_crate(self: &mut Self, crate_name: &str, krate: &Crate)`
+
+  Register all items from a single crate.
+
+- `fn register_from_paths(self: &mut Self, crate_name: &str, krate: &Crate)`
+
+  Register items using the `paths` field from rustdoc JSON.
+
+- `fn register_item_recursive(self: &mut Self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
+
+  Recursively register an item and its children.
+
+- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str)`
+
+  Register a single item in the registry.
+
+- `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+
+  Get the file path for an item in a specific crate.
+
+- `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+
+  Get the display name for an item.
+
+- `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
+
+  Resolve an item name to its crate and ID.
+
+- `fn resolve_path(self: &Self, path: &str) -> Option<(compact_str::CompactString, Id)>`
+
+  Resolve a full path like `regex_automata::Regex` to its crate and ID.
+
+- `fn create_link(self: &Self, from_crate: &str, from_path: &str, to_crate: &str, to_id: Id) -> Option<String>`
+
+  Create a markdown link from one file to another across crates.
+
+- `fn compute_cross_crate_path(from: &str, to: &str) -> String`
+
+  Compute relative path between files potentially in different crates.
+
+- `fn get_anchor(self: &Self, crate_name: &str, id: Id) -> Option<String>`
+
+  Get an anchor string for an item within its page.
+
+- `fn contains(self: &Self, crate_name: &str, id: Id) -> bool`
+
+  Check if an item exists in the registry.
+
+- `fn len(self: &Self) -> usize`
+
+  Get the number of registered items.
+
+- `fn is_empty(self: &Self) -> bool`
+
+  Check if the registry is empty.
+
+#### Trait Implementations
+
+##### `impl Debug for UnifiedLinkRegistry`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for UnifiedLinkRegistry`
+
+- `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate__registry.md)
+
+##### `impl<T> IntoEither for UnifiedLinkRegistry`
+
+##### `impl<D> OwoColorize for UnifiedLinkRegistry`
+
+##### `impl<T> Pointable for UnifiedLinkRegistry`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `SearchIndex`
+
+```rust
+struct SearchIndex {
+    pub items: Vec<SearchEntry>,
+}
+```
+
+The complete search index containing all searchable items.
+
+Serialized to `search_index.json` for client-side consumption.
+
+#### Fields
+
+- **`items`**: `Vec<SearchEntry>`
+
+  All searchable items across all crates.
+
+#### Trait Implementations
+
+##### `impl Debug for SearchIndex`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<T> IntoEither for SearchIndex`
+
+##### `impl<D> OwoColorize for SearchIndex`
+
+##### `impl<T> Pointable for SearchIndex`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl Serialize for SearchIndex`
+
+- `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+### `SearchIndexGenerator<'a>`
+
+```rust
+struct SearchIndexGenerator<'a> {
+    crates: &'a super::CrateCollection,
+    include_private: bool,
+    rendered_items: std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>,
+}
+```
+
+Generator for multi-crate search indices.
+
+Traverses all crates in a [`CrateCollection`](multi_crate__collection.md) and builds a comprehensive
+search index of all public items (or all items if `include_private` is set).
+
+# Example
+
+```ignore
+let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
+let rendered_items = generator.generate();  // Returns HashMap<String, HashSet<Id>>
+let generator = SearchIndexGenerator::new(&crates, false, rendered_items);
+generator.write(Path::new("docs/"))?;
+```
+
+#### Fields
+
+- **`crates`**: `&'a super::CrateCollection`
+
+  Collection of crates to index.
+
+- **`include_private`**: `bool`
+
+  Whether to include private items in the search index.
+  
+  When false (default), only public items are indexed.
+  When true, all items regardless of visibility are indexed.
+
+- **`rendered_items`**: `std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>`
+
+  Set of item IDs that were actually rendered per crate.
+  
+  Only items in this set will appear in the search index.
+  This ensures the search index matches the generated documentation.
+
+#### Implementations
+
+- `fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate__collection.md)
+
+  Create a new search index generator.
+
+- `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](multi_crate__search.md)
+
+  Generate the complete search index.
+
+- `fn write(self: &Self, output_dir: &Path) -> std::io::Result<()>`
+
+  Write the search index to `search_index.json` in the output directory.
+
+- `fn index_crate(self: &Self, items: &mut Vec<SearchEntry>, crate_name: &str, krate: &Crate)` — [`SearchEntry`](multi_crate__search.md)
+
+  Index all items in a single crate.
+
+- `fn build_path_map(krate: &Crate) -> HashMap<Id, String>`
+
+  Build a map from item ID to its module path.
+
+- `fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
+
+  Compute the file path for an item based on its module location.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
+
+##### `impl<D> OwoColorize for SearchIndexGenerator<'a>`
+
+##### `impl<T> Pointable for SearchIndexGenerator<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `SummaryGenerator<'a>`
+
+```rust
+struct SummaryGenerator<'a> {
+    crates: &'a crate::multi_crate::CrateCollection,
+    output_dir: &'a std::path::Path,
+    include_private: bool,
+}
+```
+
+Generates mdBook-compatible SUMMARY.md file.
+
+Creates a table of contents linking all crates and their modules,
+allowing the documentation to be built as an mdBook site.
+
+# Output Format
+
+```markdown
+Summary
+
+- [tracing](tracing/index.md)
+  - [span](tracing/span/index.md)
+  - [field](tracing/field/index.md)
+- [tracing_core](tracing_core/index.md)
+  - [subscriber](tracing_core/subscriber/index.md)
+```
+
+#### Fields
+
+- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+
+  Collection of crates to document.
+
+- **`output_dir`**: `&'a std::path::Path`
+
+  Output directory for SUMMARY.md.
+
+- **`include_private`**: `bool`
+
+  Whether to include private items.
+
+#### Implementations
+
+- `const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](multi_crate__collection.md)
+
+  Create a new summary generator.
+
+- `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error.md)
+
+  Generate the SUMMARY.md file.
+
+- `fn add_modules(self: &Self, content: &mut String, krate: &rustdoc_types::Crate, items: &[rustdoc_types::Id], path_prefix: &str, indent: usize)`
+
+  Add module entries recursively.
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for SummaryGenerator<'a>`
+
+##### `impl<D> OwoColorize for SummaryGenerator<'a>`
+
+##### `impl<T> Pointable for SummaryGenerator<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+## Constants
+
+### `RUST_PATH_SEP`
+
+```rust
+const RUST_PATH_SEP: &str;
+```
+
+Rust module path separator (e.g., `serde_json::de::from_str`).
+
+### `FILE_PATH_SEP`
+
+```rust
+const FILE_PATH_SEP: char = '/';
+```
+
+File system path separator for generated documentation.
 
 
 === multi_crate__collection.md ===
@@ -2726,6 +5338,14 @@ allows existing rendering code to work with minimal changes.
 
   Get all impl blocks for a type, including cross-crate impls.
 
+- `fn get_impls_from_crate(self: &Self, id: Id, source_krate: &'a Crate) -> Vec<&'a Impl>`
+
+  Get impl blocks for a type from a specific crate.
+
+- `const fn get_impl_target_id_from_type(ty: &rustdoc_types::Type) -> Option<Id>`
+
+  Extract the target ID from a Type (for impl block matching).
+
 - `const fn should_include_item(self: &Self, item: &rustdoc_types::Item) -> bool`
 
   Check if an item should be included based on visibility.
@@ -2746,13 +5366,17 @@ allows existing rendering code to work with minimal changes.
 
   Look up an item across all crates by ID.
 
+- `fn get_crate(self: &Self, name: &str) -> Option<&Crate>`
+
+  Get a crate by name from the collection.
+
 - `fn resolve_external_path(self: &Self, path: &str) -> Option<(&str, &Item, Id)>`
 
   Resolve a path like `regex_automata::Regex` to an item.
 
 - `fn process_backtick_links(self: &Self, docs: &str, item_links: &HashMap<String, Id>, current_file: &str) -> String`
 
-  Process backtick links like `[`Span`](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Span.html)` to markdown links.
+  Process backtick links like `[`Span`](https://docs.rs/regex_syntax/latest/regex_syntax/ast/struct.Span.html)` to markdown links.
 
 - `fn process_plain_links(docs: &str) -> String`
 
@@ -2794,6 +5418,34 @@ allows existing rendering code to work with minimal changes.
 
 ##### `impl<T> IntoEither for SingleCrateView<'a>`
 
+##### `impl ItemAccess for SingleCrateView<'_>`
+
+- `fn krate(self: &Self) -> &Crate`
+
+- `fn crate_name(self: &Self) -> &str`
+
+- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
+
+- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
+
+- `fn crate_version(self: &Self) -> Option<&str>`
+
+##### `impl ItemFilter for SingleCrateView<'_>`
+
+- `fn should_include_item(self: &Self, item: &Item) -> bool`
+
+- `fn include_private(self: &Self) -> bool`
+
+- `fn include_blanket_impls(self: &Self) -> bool`
+
+##### `impl LinkResolver for SingleCrateView<'_>`
+
+- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](linker.md)
+
+- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
+
+- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+
 ##### `impl<D> OwoColorize for SingleCrateView<'a>`
 
 ##### `impl<T> Pointable for SingleCrateView<'a>`
@@ -2810,29 +5462,7 @@ allows existing rendering code to work with minimal changes.
 
 - `unsafe fn drop(ptr: usize)`
 
-##### `impl RenderContext for SingleCrateView<'_>`
-
-- `fn krate(self: &Self) -> &Crate`
-
-- `fn crate_name(self: &Self) -> &str`
-
-- `fn get_item(self: &Self, id: &Id) -> Option<&Item>`
-
-- `fn get_impls(self: &Self, id: &Id) -> Option<&[&Impl]>`
-
-- `fn should_include_item(self: &Self, item: &Item) -> bool`
-
-- `fn include_private(self: &Self) -> bool`
-
-- `fn include_blanket_impls(self: &Self) -> bool`
-
-- `fn crate_version(self: &Self) -> Option<&str>`
-
-- `fn link_registry(self: &Self) -> Option<&LinkRegistry>` — [`LinkRegistry`](linker.md)
-
-- `fn process_docs(self: &Self, item: &Item, current_file: &str) -> Option<String>`
-
-- `fn create_link(self: &Self, id: Id, current_file: &str) -> Option<String>`
+##### `impl<T> RenderContext for SingleCrateView<'a>`
 
 
 === multi_crate__generator.md ===
@@ -2893,6 +5523,18 @@ output/
 - `fn generate(self: &Self) -> Result<(), Error>` — [`Error`](error.md)
 
   Generate documentation for all crates.
+
+- `fn collect_rendered_items(self: &Self) -> HashMap<String, HashSet<Id>>`
+
+  Collect the IDs of all items that would be rendered.
+
+- `fn collect_crate_items(view: &SingleCrateView<'_>, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate__context.md)
+
+  Collect rendered item IDs for a single crate.
+
+- `fn collect_module_items(view: &SingleCrateView<'_>, item: &Item, ids: &mut HashSet<Id>)` — [`SingleCrateView`](multi_crate__context.md)
+
+  Recursively collect rendered item IDs from a module.
 
 - `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate__context.md), [`Error`](error.md)
 
@@ -3041,7 +5683,11 @@ resolve items across crate boundaries.
 
   Render a macro to markdown.
 
-- `fn render_impl_blocks(self: &Self, md: &mut String, item_id: Id)`
+- `fn expand_glob_reexport<'b>(self: &Self, modules: &mut Vec<&'b Item>, structs: &mut Vec<(&'b Id, &'b Item)>, enums: &mut Vec<(&'b Id, &'b Item)>, traits: &mut Vec<&'b Item>, functions: &mut Vec<&'b Item>, types: &mut Vec<&'b Item>, constants: &mut Vec<&'b Item>, macros: &mut Vec<&'b Item>, use_item: &rustdoc_types::Use, seen_items: &mut HashSet<Id>)`
+
+  Expand a glob re-export into the category vectors.
+
+- `fn render_impl_blocks(self: &Self, md: &mut String, item_id: Id, source_crate_name: Option<&str>)`
 
   Render impl blocks for a type, including cross-crate impls.
 
@@ -3144,7 +5790,7 @@ struct BorrowedKey<'a>(&'a str, rustdoc_types::Id);
 
 Borrowed key for zero-allocation lookups.
 
-Must hash identically to `RegistryKey` (tuple of String, Id).
+Must hash identically to `RegistryKey` (tuple of CompactString, Id).
 
 #### Trait Implementations
 
@@ -3186,10 +5832,10 @@ Must hash identically to `RegistryKey` (tuple of String, Id).
 
 ```rust
 struct UnifiedLinkRegistry {
-    item_paths: hashbrown::HashMap<(String, rustdoc_types::Id), String>,
-    item_names: hashbrown::HashMap<(String, rustdoc_types::Id), String>,
-    name_index: std::collections::HashMap<String, Vec<(String, rustdoc_types::Id)>>,
-    primary_crate: Option<String>,
+    item_paths: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    item_names: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
+    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>,
+    primary_crate: Option<compact_str::CompactString>,
 }
 ```
 
@@ -3222,22 +5868,22 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 #### Fields
 
-- **`item_paths`**: `hashbrown::HashMap<(String, rustdoc_types::Id), String>`
+- **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the file path within output.
   Uses hashbrown for raw_entry API (zero-alloc lookups).
 
-- **`item_names`**: `hashbrown::HashMap<(String, rustdoc_types::Id), String>`
+- **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the item's display name.
   Uses hashbrown for raw_entry API (zero-alloc lookups).
 
-- **`name_index`**: `std::collections::HashMap<String, Vec<(String, rustdoc_types::Id)>>`
+- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
 
   Maps short names to all `(crate_name, item_id)` pairs.
   Used for disambiguating links like `Span` that exist in multiple crates.
 
-- **`primary_crate`**: `Option<String>`
+- **`primary_crate`**: `Option<compact_str::CompactString>`
 
   The primary crate name for preferential resolution.
 
@@ -3263,19 +5909,19 @@ This avoids allocating a `String` for the crate name on every lookup.
 
   Register a single item in the registry.
 
-- `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&String>`
+- `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
   Get the file path for an item in a specific crate.
 
-- `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&String>`
+- `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
   Get the display name for an item.
 
-- `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(String, Id)>`
+- `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
 
   Resolve an item name to its crate and ID.
 
-- `fn resolve_path(self: &Self, path: &str) -> Option<(String, Id)>`
+- `fn resolve_path(self: &Self, path: &str) -> Option<(compact_str::CompactString, Id)>`
 
   Resolve a full path like `regex_automata::Regex` to its crate and ID.
 
@@ -3336,7 +5982,7 @@ This avoids allocating a `String` for the crate name on every lookup.
 ### `keys_match`
 
 ```rust
-fn keys_match(stored: &(String, rustdoc_types::Id), borrowed: &BorrowedKey<'_>) -> bool
+fn keys_match(stored: &(compact_str::CompactString, rustdoc_types::Id), borrowed: &BorrowedKey<'_>) -> bool
 ```
 
 **Types:** [`BorrowedKey`](#borrowedkey)
@@ -3345,16 +5991,26 @@ Allow comparing `BorrowedKey` with `RegistryKey`.
 
 ## Type Aliases
 
+### `Str`
+
+```rust
+type Str = compact_str::CompactString;
+```
+
+Compact string type for memory-efficient storage.
+Strings ≤24 bytes are stored inline (no heap allocation).
+Most crate names, item names, and short paths fit inline.
+
 ### `RegistryKey`
 
 ```rust
-type RegistryKey = (String, rustdoc_types::Id);
+type RegistryKey = (compact_str::CompactString, rustdoc_types::Id);
 ```
 
 Key type for registry lookups: (crate_name, item_id).
 
-Uses owned strings for storage but can be looked up with borrowed strings
-via the raw entry API to avoid allocation on every lookup.
+Uses `CompactString` for memory efficiency - most crate names are short
+and stored inline without heap allocation.
 
 
 === multi_crate__search.md ===
@@ -3519,8 +6175,9 @@ Serialized to `search_index.json` for client-side consumption.
 
 ```rust
 struct SearchIndexGenerator<'a> {
-    crates: &'a crate::multi_crate::CrateCollection,
+    crates: &'a super::CrateCollection,
     include_private: bool,
+    rendered_items: std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>,
 }
 ```
 
@@ -3533,13 +6190,14 @@ search index of all public items (or all items if `include_private` is set).
 
 ```ignore
 let crates = MultiCrateParser::parse_directory(Path::new("target/doc"))?;
-let generator = SearchIndexGenerator::new(&crates, false);
+let rendered_items = generator.generate();  // Returns HashMap<String, HashSet<Id>>
+let generator = SearchIndexGenerator::new(&crates, false, rendered_items);
 generator.write(Path::new("docs/"))?;
 ```
 
 #### Fields
 
-- **`crates`**: `&'a crate::multi_crate::CrateCollection`
+- **`crates`**: `&'a super::CrateCollection`
 
   Collection of crates to index.
 
@@ -3550,9 +6208,16 @@ generator.write(Path::new("docs/"))?;
   When false (default), only public items are indexed.
   When true, all items regardless of visibility are indexed.
 
+- **`rendered_items`**: `std::collections::HashMap<String, std::collections::HashSet<rustdoc_types::Id>>`
+
+  Set of item IDs that were actually rendered per crate.
+  
+  Only items in this set will appear in the search index.
+  This ensures the search index matches the generated documentation.
+
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, include_private: bool) -> Self` — [`CrateCollection`](multi_crate__collection.md)
+- `fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate__collection.md)
 
   Create a new search index generator.
 
@@ -3613,6 +6278,7 @@ compatible with mdBook for multi-crate documentation.
 struct SummaryGenerator<'a> {
     crates: &'a crate::multi_crate::CrateCollection,
     output_dir: &'a std::path::Path,
+    include_private: bool,
 }
 ```
 
@@ -3643,9 +6309,13 @@ Summary
 
   Output directory for SUMMARY.md.
 
+- **`include_private`**: `bool`
+
+  Whether to include private items.
+
 #### Implementations
 
-- `const fn new(crates: &'a CrateCollection, output_dir: &'a Path) -> Self` — [`CrateCollection`](multi_crate__collection.md)
+- `const fn new(crates: &'a CrateCollection, output_dir: &'a Path, include_private: bool) -> Self` — [`CrateCollection`](multi_crate__collection.md)
 
   Create a new summary generator.
 
@@ -3653,7 +6323,7 @@ Summary
 
   Generate the SUMMARY.md file.
 
-- `fn add_modules(content: &mut String, krate: &rustdoc_types::Crate, items: &[rustdoc_types::Id], path_prefix: &str, indent: usize)`
+- `fn add_modules(self: &Self, content: &mut String, krate: &rustdoc_types::Crate, items: &[rustdoc_types::Id], path_prefix: &str, indent: usize)`
 
   Add module entries recursively.
 

@@ -97,11 +97,11 @@ struct Elf_Dyn {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Elf_Dyn`
 
-- `fn clone(self: &Self) -> Elf_Dyn` — [`Elf_Dyn`](../../elf/index.md)
+- `fn clone(self: &Self) -> Elf_Dyn` — [`Elf_Dyn`](#elf-dyn)
 
-##### `impl Copy`
+##### `impl Copy for Elf_Dyn`
 
 ### `Elf_Rela`
 
@@ -141,9 +141,9 @@ struct Elf_auxv_t {
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Elf_auxv_t`
 
-- `fn clone(self: &Self) -> Elf_auxv_t` — [`Elf_auxv_t`](../../elf/index.md)
+- `fn clone(self: &Self) -> Elf_auxv_t` — [`Elf_auxv_t`](#elf-auxv-t)
 
 ## Functions
 

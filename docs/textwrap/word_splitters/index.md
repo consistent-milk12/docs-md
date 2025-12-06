@@ -48,7 +48,6 @@ language-aware hyphenation:
 Please see the documentation for the [hyphenation](#hyphenation) crate for more
 details.
 
-[hyphenation](#hyphenation): https://docs.rs/hyphenation/
 
 #### Variants
 
@@ -112,17 +111,17 @@ details.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for WordSplitter`
 
-- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](../../word_splitters/index.md)
+- `fn clone(self: &Self) -> WordSplitter` — [`WordSplitter`](#wordsplitter)
 
-##### `impl Debug`
+##### `impl Debug for WordSplitter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl PartialEq`
+##### `impl PartialEq for WordSplitter`
 
-- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](../../word_splitters/index.md)
+- `fn eq(self: &Self, other: &WordSplitter) -> bool` — [`WordSplitter`](#wordsplitter)
 
 ## Functions
 

@@ -57,27 +57,27 @@ This type is returned from [on](#on). See documentation for its fields for more 
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ColorLevel`
 
-- `fn clone(self: &Self) -> ColorLevel` — [`ColorLevel`](../index.md)
+- `fn clone(self: &Self) -> ColorLevel` — [`ColorLevel`](#colorlevel)
 
-##### `impl Copy`
+##### `impl Copy for ColorLevel`
 
-##### `impl Debug`
+##### `impl Debug for ColorLevel`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ColorLevel`
 
-##### `impl Hash`
+##### `impl Hash for ColorLevel`
 
 - `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ColorLevel`
 
-- `fn eq(self: &Self, other: &ColorLevel) -> bool` — [`ColorLevel`](../index.md)
+- `fn eq(self: &Self, other: &ColorLevel) -> bool` — [`ColorLevel`](#colorlevel)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ColorLevel`
 
 ## Enums
 
@@ -94,13 +94,13 @@ possible stream sources
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Stream`
 
-- `fn clone(self: &Self) -> Stream` — [`Stream`](../index.md)
+- `fn clone(self: &Self) -> Stream` — [`Stream`](#stream)
 
-##### `impl Copy`
+##### `impl Copy for Stream`
 
-##### `impl Debug`
+##### `impl Debug for Stream`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

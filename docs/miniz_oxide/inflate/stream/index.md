@@ -22,9 +22,9 @@ Note that not zeroing buffer can lead to security issues when dealing with untru
 
 #### Trait Implementations
 
-##### `impl ResetPolicy`
+##### `impl ResetPolicy for MinReset`
 
-- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](../../../inflate/stream/index.md)
+- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
 
 ### `ZeroReset`
 
@@ -36,9 +36,9 @@ Resets state and zero memory, continuing to use the same data format.
 
 #### Trait Implementations
 
-##### `impl ResetPolicy`
+##### `impl ResetPolicy for ZeroReset`
 
-- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](../../../inflate/stream/index.md)
+- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
 
 ### `FullReset`
 
@@ -52,9 +52,9 @@ Requires to provide new data format.
 
 #### Trait Implementations
 
-##### `impl ResetPolicy`
+##### `impl ResetPolicy for FullReset`
 
-- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](../../../inflate/stream/index.md)
+- `fn reset(self: &Self, state: &mut InflateState)` — [`InflateState`](#inflatestate)
 
 ### `InflateState`
 
@@ -103,23 +103,23 @@ A struct that compbines a decompressor with extra data for streaming decompressi
 
 #### Implementations
 
-- `fn new(data_format: DataFormat) -> InflateState` — [`DataFormat`](../../../index.md), [`InflateState`](../../../inflate/stream/index.md)
+- `fn new(data_format: DataFormat) -> InflateState` — [`DataFormat`](../../index.md), [`InflateState`](#inflatestate)
 
-- `fn decompressor(self: &mut Self) -> &mut DecompressorOxide` — [`DecompressorOxide`](../../../inflate/core/index.md)
+- `fn decompressor(self: &mut Self) -> &mut DecompressorOxide` — [`DecompressorOxide`](../core/index.md)
 
-- `const fn last_status(self: &Self) -> TINFLStatus` — [`TINFLStatus`](../../../inflate/index.md)
+- `const fn last_status(self: &Self) -> TINFLStatus` — [`TINFLStatus`](../index.md)
 
-- `fn reset(self: &mut Self, data_format: DataFormat)` — [`DataFormat`](../../../index.md)
+- `fn reset(self: &mut Self, data_format: DataFormat)` — [`DataFormat`](../../index.md)
 
 - `fn reset_as<T: ResetPolicy>(self: &mut Self, policy: T)`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for InflateState`
 
-- `fn clone(self: &Self) -> InflateState` — [`InflateState`](../../../inflate/stream/index.md)
+- `fn clone(self: &Self) -> InflateState` — [`InflateState`](#inflatestate)
 
-##### `impl Default`
+##### `impl Default for InflateState`
 
 - `fn default() -> Self`
 

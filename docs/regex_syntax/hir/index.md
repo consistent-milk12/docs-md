@@ -43,17 +43,17 @@ aware case folding are unavailable. This only occurs when the
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for CaseFoldError`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for CaseFoldError`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Error`
+##### `impl Error for CaseFoldError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for CaseFoldError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -86,37 +86,37 @@ An error that can occur while translating an `Ast` to a `Hir`.
 
 #### Implementations
 
-- `fn kind(self: &Self) -> &ErrorKind` — [`ErrorKind`](../../hir/index.md)
+- `fn kind(self: &Self) -> &ErrorKind` — [`ErrorKind`](#errorkind)
 
 - `fn pattern(self: &Self) -> &str`
 
-- `fn span(self: &Self) -> &Span` — [`Span`](../../ast/index.md)
+- `fn span(self: &Self) -> &Span` — [`Span`](../ast/index.md)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Error`
 
-- `fn clone(self: &Self) -> Error` — [`Error`](../../hir/index.md)
+- `fn clone(self: &Self) -> Error` — [`Error`](#error)
 
-##### `impl Debug`
+##### `impl Debug for Error`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Error`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Error`
 
-##### `impl Error`
+##### `impl Error for Error`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Error`
 
-- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Error) -> bool` — [`Error`](#error)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Error`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -204,53 +204,41 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 #### Implementations
 
-- `fn empty() -> Hir` — [`Hir`](../../hir/index.md)
+- `fn kind(self: &Self) -> &HirKind` — [`HirKind`](#hirkind)
 
-- `fn fail() -> Hir` — [`Hir`](../../hir/index.md)
+- `fn into_kind(self: Self) -> HirKind` — [`HirKind`](#hirkind)
 
-- `fn literal<B: Into<Box<[u8]>>>(lit: B) -> Hir` — [`Hir`](../../hir/index.md)
+- `fn properties(self: &Self) -> &Properties` — [`Properties`](#properties)
 
-- `fn class(class: Class) -> Hir` — [`Class`](../../hir/index.md), [`Hir`](../../hir/index.md)
-
-- `fn look(look: Look) -> Hir` — [`Look`](../../hir/index.md), [`Hir`](../../hir/index.md)
-
-- `fn repetition(rep: Repetition) -> Hir` — [`Repetition`](../../hir/index.md), [`Hir`](../../hir/index.md)
-
-- `fn capture(capture: Capture) -> Hir` — [`Capture`](../../hir/index.md), [`Hir`](../../hir/index.md)
-
-- `fn concat(subs: Vec<Hir>) -> Hir` — [`Hir`](../../hir/index.md)
-
-- `fn alternation(subs: Vec<Hir>) -> Hir` — [`Hir`](../../hir/index.md)
-
-- `fn dot(dot: Dot) -> Hir` — [`Dot`](../../hir/index.md), [`Hir`](../../hir/index.md)
+- `fn into_parts(self: Self) -> (HirKind, Properties)` — [`HirKind`](#hirkind), [`Properties`](#properties)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Hir`
 
-- `fn clone(self: &Self) -> Hir` — [`Hir`](../../hir/index.md)
+- `fn clone(self: &Self) -> Hir` — [`Hir`](#hir)
 
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
-
-##### `impl Display`
+##### `impl Debug for Hir`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Drop`
+##### `impl Display for Hir`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Drop for Hir`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl Eq`
+##### `impl Eq for Hir`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Hir`
 
-- `fn eq(self: &Self, other: &Hir) -> bool` — [`Hir`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Hir) -> bool` — [`Hir`](#hir)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Hir`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Hir`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -273,21 +261,21 @@ is, not a sequence of decimal numbers.)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Literal`
 
-- `fn clone(self: &Self) -> Literal` — [`Literal`](../../hir/index.md)
+- `fn clone(self: &Self) -> Literal` — [`Literal`](#literal)
 
-##### `impl Debug`
+##### `impl Debug for Literal`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Literal`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Literal`
 
-- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Literal) -> bool` — [`Literal`](#literal)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Literal`
 
 ### `ClassUnicode`
 
@@ -301,29 +289,29 @@ A set of characters represented by Unicode scalar values.
 
 #### Implementations
 
-- `fn new<I>(ranges: I) -> ClassUnicode` — [`ClassUnicode`](../../hir/index.md)
+- `fn new<I>(ranges: I) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
-- `fn empty() -> ClassUnicode` — [`ClassUnicode`](../../hir/index.md)
+- `fn empty() -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
-- `fn push(self: &mut Self, range: ClassUnicodeRange)` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn push(self: &mut Self, range: ClassUnicodeRange)` — [`ClassUnicodeRange`](#classunicoderange)
 
-- `fn iter(self: &Self) -> ClassUnicodeIter<'_>` — [`ClassUnicodeIter`](../../hir/index.md)
+- `fn iter(self: &Self) -> ClassUnicodeIter<'_>` — [`ClassUnicodeIter`](#classunicodeiter)
 
-- `fn ranges(self: &Self) -> &[ClassUnicodeRange]` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn ranges(self: &Self) -> &[ClassUnicodeRange]` — [`ClassUnicodeRange`](#classunicoderange)
 
 - `fn case_fold_simple(self: &mut Self)`
 
-- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md)
+- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md)
 
 - `fn negate(self: &mut Self)`
 
-- `fn union(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](../../hir/index.md)
+- `fn union(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
-- `fn intersect(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](../../hir/index.md)
+- `fn intersect(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
-- `fn difference(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](../../hir/index.md)
+- `fn difference(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
-- `fn symmetric_difference(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](../../hir/index.md)
+- `fn symmetric_difference(self: &mut Self, other: &ClassUnicode)` — [`ClassUnicode`](#classunicode)
 
 - `fn is_ascii(self: &Self) -> bool`
 
@@ -333,25 +321,25 @@ A set of characters represented by Unicode scalar values.
 
 - `fn literal(self: &Self) -> Option<Vec<u8>>`
 
-- `fn to_byte_class(self: &Self) -> Option<ClassBytes>` — [`ClassBytes`](../../hir/index.md)
+- `fn to_byte_class(self: &Self) -> Option<ClassBytes>` — [`ClassBytes`](#classbytes)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassUnicode`
 
-- `fn clone(self: &Self) -> ClassUnicode` — [`ClassUnicode`](../../hir/index.md)
+- `fn clone(self: &Self) -> ClassUnicode` — [`ClassUnicode`](#classunicode)
 
-##### `impl Debug`
+##### `impl Debug for ClassUnicode`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassUnicode`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassUnicode`
 
-- `fn eq(self: &Self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](../../hir/index.md)
+- `fn eq(self: &Self, other: &ClassUnicode) -> bool` — [`ClassUnicode`](#classunicode)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassUnicode`
 
 ### `ClassUnicodeIter<'a>`
 
@@ -365,11 +353,11 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for ClassUnicodeIter<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ClassUnicodeIter<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -377,11 +365,11 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for ClassUnicodeIter<'a>`
 
 - `type Item = &'a ClassUnicodeRange`
 
-- `fn next(self: &mut Self) -> Option<&'a ClassUnicodeRange>` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn next(self: &mut Self) -> Option<&'a ClassUnicodeRange>` — [`ClassUnicodeRange`](#classunicoderange)
 
 ### `ClassUnicodeRange`
 
@@ -399,7 +387,7 @@ in the range.
 
 #### Implementations
 
-- `fn new(start: char, end: char) -> ClassUnicodeRange` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn new(start: char, end: char) -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
 
 - `fn start(self: &Self) -> char`
 
@@ -409,23 +397,23 @@ in the range.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassUnicodeRange`
 
-- `fn clone(self: &Self) -> ClassUnicodeRange` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn clone(self: &Self) -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
 
-##### `impl Copy`
+##### `impl Copy for ClassUnicodeRange`
 
-##### `impl Debug`
+##### `impl Debug for ClassUnicodeRange`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ClassUnicodeRange`
 
-- `fn default() -> ClassUnicodeRange` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn default() -> ClassUnicodeRange` — [`ClassUnicodeRange`](#classunicoderange)
 
-##### `impl Eq`
+##### `impl Eq for ClassUnicodeRange`
 
-##### `impl Interval`
+##### `impl Interval for ClassUnicodeRange`
 
 - `type Bound = char`
 
@@ -437,21 +425,21 @@ in the range.
 
 - `fn set_upper(self: &mut Self, bound: char)`
 
-- `fn case_fold_simple(self: &Self, ranges: &mut Vec<ClassUnicodeRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassUnicodeRange`](../../hir/index.md), [`CaseFoldError`](../../unicode/index.md)
+- `fn case_fold_simple(self: &Self, ranges: &mut Vec<ClassUnicodeRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassUnicodeRange`](#classunicoderange), [`CaseFoldError`](../unicode/index.md)
 
-##### `impl Ord`
+##### `impl Ord for ClassUnicodeRange`
 
-- `fn cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::cmp::Ordering` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::cmp::Ordering` — [`ClassUnicodeRange`](#classunicoderange)
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassUnicodeRange`
 
-- `fn eq(self: &Self, other: &ClassUnicodeRange) -> bool` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn eq(self: &Self, other: &ClassUnicodeRange) -> bool` — [`ClassUnicodeRange`](#classunicoderange)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for ClassUnicodeRange`
 
-- `fn partial_cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ClassUnicodeRange`](../../hir/index.md)
+- `fn partial_cmp(self: &Self, other: &ClassUnicodeRange) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ClassUnicodeRange`](#classunicoderange)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassUnicodeRange`
 
 ### `ClassBytes`
 
@@ -467,27 +455,27 @@ Each byte corresponds to one character.
 
 #### Implementations
 
-- `fn new<I>(ranges: I) -> ClassBytes` — [`ClassBytes`](../../hir/index.md)
+- `fn new<I>(ranges: I) -> ClassBytes` — [`ClassBytes`](#classbytes)
 
-- `fn empty() -> ClassBytes` — [`ClassBytes`](../../hir/index.md)
+- `fn empty() -> ClassBytes` — [`ClassBytes`](#classbytes)
 
-- `fn push(self: &mut Self, range: ClassBytesRange)` — [`ClassBytesRange`](../../hir/index.md)
+- `fn push(self: &mut Self, range: ClassBytesRange)` — [`ClassBytesRange`](#classbytesrange)
 
-- `fn iter(self: &Self) -> ClassBytesIter<'_>` — [`ClassBytesIter`](../../hir/index.md)
+- `fn iter(self: &Self) -> ClassBytesIter<'_>` — [`ClassBytesIter`](#classbytesiter)
 
-- `fn ranges(self: &Self) -> &[ClassBytesRange]` — [`ClassBytesRange`](../../hir/index.md)
+- `fn ranges(self: &Self) -> &[ClassBytesRange]` — [`ClassBytesRange`](#classbytesrange)
 
 - `fn case_fold_simple(self: &mut Self)`
 
 - `fn negate(self: &mut Self)`
 
-- `fn union(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](../../hir/index.md)
+- `fn union(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
-- `fn intersect(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](../../hir/index.md)
+- `fn intersect(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
-- `fn difference(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](../../hir/index.md)
+- `fn difference(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
-- `fn symmetric_difference(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](../../hir/index.md)
+- `fn symmetric_difference(self: &mut Self, other: &ClassBytes)` — [`ClassBytes`](#classbytes)
 
 - `fn is_ascii(self: &Self) -> bool`
 
@@ -497,25 +485,25 @@ Each byte corresponds to one character.
 
 - `fn literal(self: &Self) -> Option<Vec<u8>>`
 
-- `fn to_unicode_class(self: &Self) -> Option<ClassUnicode>` — [`ClassUnicode`](../../hir/index.md)
+- `fn to_unicode_class(self: &Self) -> Option<ClassUnicode>` — [`ClassUnicode`](#classunicode)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassBytes`
 
-- `fn clone(self: &Self) -> ClassBytes` — [`ClassBytes`](../../hir/index.md)
+- `fn clone(self: &Self) -> ClassBytes` — [`ClassBytes`](#classbytes)
 
-##### `impl Debug`
+##### `impl Debug for ClassBytes`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ClassBytes`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassBytes`
 
-- `fn eq(self: &Self, other: &ClassBytes) -> bool` — [`ClassBytes`](../../hir/index.md)
+- `fn eq(self: &Self, other: &ClassBytes) -> bool` — [`ClassBytes`](#classbytes)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassBytes`
 
 ### `ClassBytesIter<'a>`
 
@@ -529,11 +517,11 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for ClassBytesIter<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for ClassBytesIter<'a>`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -541,11 +529,11 @@ The lifetime `'a` refers to the lifetime of the underlying class.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator<'a>`
+##### `impl<'a> Iterator for ClassBytesIter<'a>`
 
 - `type Item = &'a ClassBytesRange`
 
-- `fn next(self: &mut Self) -> Option<&'a ClassBytesRange>` — [`ClassBytesRange`](../../hir/index.md)
+- `fn next(self: &mut Self) -> Option<&'a ClassBytesRange>` — [`ClassBytesRange`](#classbytesrange)
 
 ### `ClassBytesRange`
 
@@ -563,7 +551,7 @@ in the range.
 
 #### Implementations
 
-- `fn new(start: u8, end: u8) -> ClassBytesRange` — [`ClassBytesRange`](../../hir/index.md)
+- `fn new(start: u8, end: u8) -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
 
 - `fn start(self: &Self) -> u8`
 
@@ -573,23 +561,23 @@ in the range.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ClassBytesRange`
 
-- `fn clone(self: &Self) -> ClassBytesRange` — [`ClassBytesRange`](../../hir/index.md)
+- `fn clone(self: &Self) -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
 
-##### `impl Copy`
+##### `impl Copy for ClassBytesRange`
 
-##### `impl Debug`
+##### `impl Debug for ClassBytesRange`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for ClassBytesRange`
 
-- `fn default() -> ClassBytesRange` — [`ClassBytesRange`](../../hir/index.md)
+- `fn default() -> ClassBytesRange` — [`ClassBytesRange`](#classbytesrange)
 
-##### `impl Eq`
+##### `impl Eq for ClassBytesRange`
 
-##### `impl Interval`
+##### `impl Interval for ClassBytesRange`
 
 - `type Bound = u8`
 
@@ -601,21 +589,21 @@ in the range.
 
 - `fn set_upper(self: &mut Self, bound: u8)`
 
-- `fn case_fold_simple(self: &Self, ranges: &mut Vec<ClassBytesRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassBytesRange`](../../hir/index.md), [`CaseFoldError`](../../unicode/index.md)
+- `fn case_fold_simple(self: &Self, ranges: &mut Vec<ClassBytesRange>) -> Result<(), unicode::CaseFoldError>` — [`ClassBytesRange`](#classbytesrange), [`CaseFoldError`](../unicode/index.md)
 
-##### `impl Ord`
+##### `impl Ord for ClassBytesRange`
 
-- `fn cmp(self: &Self, other: &ClassBytesRange) -> $crate::cmp::Ordering` — [`ClassBytesRange`](../../hir/index.md)
+- `fn cmp(self: &Self, other: &ClassBytesRange) -> $crate::cmp::Ordering` — [`ClassBytesRange`](#classbytesrange)
 
-##### `impl PartialEq`
+##### `impl PartialEq for ClassBytesRange`
 
-- `fn eq(self: &Self, other: &ClassBytesRange) -> bool` — [`ClassBytesRange`](../../hir/index.md)
+- `fn eq(self: &Self, other: &ClassBytesRange) -> bool` — [`ClassBytesRange`](#classbytesrange)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for ClassBytesRange`
 
-- `fn partial_cmp(self: &Self, other: &ClassBytesRange) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ClassBytesRange`](../../hir/index.md)
+- `fn partial_cmp(self: &Self, other: &ClassBytesRange) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ClassBytesRange`](#classbytesrange)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ClassBytesRange`
 
 ### `Capture`
 
@@ -653,21 +641,21 @@ the recursive structure of the `Hir` itself.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Capture`
 
-- `fn clone(self: &Self) -> Capture` — [`Capture`](../../hir/index.md)
+- `fn clone(self: &Self) -> Capture` — [`Capture`](#capture)
 
-##### `impl Debug`
+##### `impl Debug for Capture`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Capture`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Capture`
 
-- `fn eq(self: &Self, other: &Capture) -> bool` — [`Capture`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Capture) -> bool` — [`Capture`](#capture)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Capture`
 
 ### `Repetition`
 
@@ -722,25 +710,25 @@ sub-expression.
 
 #### Implementations
 
-- `fn with(self: &Self, sub: Hir) -> Repetition` — [`Hir`](../../hir/index.md), [`Repetition`](../../hir/index.md)
+- `fn with(self: &Self, sub: Hir) -> Repetition` — [`Hir`](#hir), [`Repetition`](#repetition)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Repetition`
 
-- `fn clone(self: &Self) -> Repetition` — [`Repetition`](../../hir/index.md)
+- `fn clone(self: &Self) -> Repetition` — [`Repetition`](#repetition)
 
-##### `impl Debug`
+##### `impl Debug for Repetition`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Repetition`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Repetition`
 
-- `fn eq(self: &Self, other: &Repetition) -> bool` — [`Repetition`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Repetition) -> bool` — [`Repetition`](#repetition)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Repetition`
 
 ### `Properties`
 
@@ -759,51 +747,39 @@ be cheap to call.
 
 #### Implementations
 
-- `fn minimum_len(self: &Self) -> Option<usize>`
+- `fn empty() -> Properties` — [`Properties`](#properties)
 
-- `fn maximum_len(self: &Self) -> Option<usize>`
+- `fn literal(lit: &Literal) -> Properties` — [`Literal`](#literal), [`Properties`](#properties)
 
-- `fn look_set(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn class(class: &Class) -> Properties` — [`Class`](#class), [`Properties`](#properties)
 
-- `fn look_set_prefix(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn look(look: Look) -> Properties` — [`Look`](#look), [`Properties`](#properties)
 
-- `fn look_set_prefix_any(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn repetition(rep: &Repetition) -> Properties` — [`Repetition`](#repetition), [`Properties`](#properties)
 
-- `fn look_set_suffix(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn capture(capture: &Capture) -> Properties` — [`Capture`](#capture), [`Properties`](#properties)
 
-- `fn look_set_suffix_any(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn concat(concat: &[Hir]) -> Properties` — [`Hir`](#hir), [`Properties`](#properties)
 
-- `fn is_utf8(self: &Self) -> bool`
-
-- `fn explicit_captures_len(self: &Self) -> usize`
-
-- `fn static_explicit_captures_len(self: &Self) -> Option<usize>`
-
-- `fn is_literal(self: &Self) -> bool`
-
-- `fn is_alternation_literal(self: &Self) -> bool`
-
-- `fn memory_usage(self: &Self) -> usize`
-
-- `fn union<I, P>(props: I) -> Properties` — [`Properties`](../../hir/index.md)
+- `fn alternation(alts: &[Hir]) -> Properties` — [`Hir`](#hir), [`Properties`](#properties)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Properties`
 
-- `fn clone(self: &Self) -> Properties` — [`Properties`](../../hir/index.md)
+- `fn clone(self: &Self) -> Properties` — [`Properties`](#properties)
 
-##### `impl Debug`
+##### `impl Debug for Properties`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Properties`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Properties`
 
-- `fn eq(self: &Self, other: &Properties) -> bool` — [`Properties`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Properties) -> bool` — [`Properties`](#properties)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Properties`
 
 ### `LookSet`
 
@@ -834,17 +810,17 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 
 #### Implementations
 
-- `fn empty() -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn empty() -> LookSet` — [`LookSet`](#lookset)
 
-- `fn full() -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn full() -> LookSet` — [`LookSet`](#lookset)
 
-- `fn singleton(look: Look) -> LookSet` — [`Look`](../../hir/index.md), [`LookSet`](../../hir/index.md)
+- `fn singleton(look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
 - `fn len(self: Self) -> usize`
 
 - `fn is_empty(self: Self) -> bool`
 
-- `fn contains(self: Self, look: Look) -> bool` — [`Look`](../../hir/index.md)
+- `fn contains(self: Self, look: Look) -> bool` — [`Look`](#look)
 
 - `fn contains_anchor(self: &Self) -> bool`
 
@@ -862,55 +838,55 @@ example, an [`Hir`](#hir) provides properties that return `LookSet`s.
 
 - `fn contains_word_ascii(self: Self) -> bool`
 
-- `fn iter(self: Self) -> LookSetIter` — [`LookSetIter`](../../hir/index.md)
+- `fn iter(self: Self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
 
-- `fn insert(self: Self, look: Look) -> LookSet` — [`Look`](../../hir/index.md), [`LookSet`](../../hir/index.md)
+- `fn insert(self: Self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
-- `fn set_insert(self: &mut Self, look: Look)` — [`Look`](../../hir/index.md)
+- `fn set_insert(self: &mut Self, look: Look)` — [`Look`](#look)
 
-- `fn remove(self: Self, look: Look) -> LookSet` — [`Look`](../../hir/index.md), [`LookSet`](../../hir/index.md)
+- `fn remove(self: Self, look: Look) -> LookSet` — [`Look`](#look), [`LookSet`](#lookset)
 
-- `fn set_remove(self: &mut Self, look: Look)` — [`Look`](../../hir/index.md)
+- `fn set_remove(self: &mut Self, look: Look)` — [`Look`](#look)
 
-- `fn subtract(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn subtract(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_subtract(self: &mut Self, other: LookSet)` — [`LookSet`](../../hir/index.md)
+- `fn set_subtract(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn union(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn union(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_union(self: &mut Self, other: LookSet)` — [`LookSet`](../../hir/index.md)
+- `fn set_union(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn intersect(self: Self, other: LookSet) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn intersect(self: Self, other: LookSet) -> LookSet` — [`LookSet`](#lookset)
 
-- `fn set_intersect(self: &mut Self, other: LookSet)` — [`LookSet`](../../hir/index.md)
+- `fn set_intersect(self: &mut Self, other: LookSet)` — [`LookSet`](#lookset)
 
-- `fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn read_repr(slice: &[u8]) -> LookSet` — [`LookSet`](#lookset)
 
 - `fn write_repr(self: Self, slice: &mut [u8])`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LookSet`
 
-- `fn clone(self: &Self) -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn clone(self: &Self) -> LookSet` — [`LookSet`](#lookset)
 
-##### `impl Copy`
+##### `impl Copy for LookSet`
 
-##### `impl Debug`
+##### `impl Debug for LookSet`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for LookSet`
 
-- `fn default() -> LookSet` — [`LookSet`](../../hir/index.md)
+- `fn default() -> LookSet` — [`LookSet`](#lookset)
 
-##### `impl Eq`
+##### `impl Eq for LookSet`
 
-##### `impl PartialEq`
+##### `impl PartialEq for LookSet`
 
-- `fn eq(self: &Self, other: &LookSet) -> bool` — [`LookSet`](../../hir/index.md)
+- `fn eq(self: &Self, other: &LookSet) -> bool` — [`LookSet`](#lookset)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for LookSet`
 
 ### `LookSetIter`
 
@@ -926,15 +902,15 @@ This iterator is created by `LookSet::iter`.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for LookSetIter`
 
-- `fn clone(self: &Self) -> LookSetIter` — [`LookSetIter`](../../hir/index.md)
+- `fn clone(self: &Self) -> LookSetIter` — [`LookSetIter`](#looksetiter)
 
-##### `impl Debug`
+##### `impl Debug for LookSetIter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IntoIterator<I>`
+##### `impl<I> IntoIterator for LookSetIter`
 
 - `type Item = <I as Iterator>::Item`
 
@@ -942,11 +918,11 @@ This iterator is created by `LookSet::iter`.
 
 - `fn into_iter(self: Self) -> I`
 
-##### `impl Iterator`
+##### `impl Iterator for LookSetIter`
 
 - `type Item = Look`
 
-- `fn next(self: &mut Self) -> Option<Look>` — [`Look`](../../hir/index.md)
+- `fn next(self: &mut Self) -> Option<Look>` — [`Look`](#look)
 
 ## Enums
 
@@ -1010,27 +986,27 @@ new variant is not considered a breaking change.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for ErrorKind`
 
-- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](../../hir/index.md)
+- `fn clone(self: &Self) -> ErrorKind` — [`ErrorKind`](#errorkind)
 
-##### `impl Debug`
+##### `impl Debug for ErrorKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Display`
+##### `impl Display for ErrorKind`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for ErrorKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for ErrorKind`
 
-- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](../../hir/index.md)
+- `fn eq(self: &Self, other: &ErrorKind) -> bool` — [`ErrorKind`](#errorkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for ErrorKind`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for ErrorKind`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -1111,25 +1087,25 @@ not expose any way of building an `Hir` directly from an `HirKind`.
 
 #### Implementations
 
-- `fn subs(self: &Self) -> &[Hir]` — [`Hir`](../../hir/index.md)
+- `fn subs(self: &Self) -> &[Hir]` — [`Hir`](#hir)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for HirKind`
 
-- `fn clone(self: &Self) -> HirKind` — [`HirKind`](../../hir/index.md)
+- `fn clone(self: &Self) -> HirKind` — [`HirKind`](#hirkind)
 
-##### `impl Debug`
+##### `impl Debug for HirKind`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for HirKind`
 
-##### `impl PartialEq`
+##### `impl PartialEq for HirKind`
 
-- `fn eq(self: &Self, other: &HirKind) -> bool` — [`HirKind`](../../hir/index.md)
+- `fn eq(self: &Self, other: &HirKind) -> bool` — [`HirKind`](#hirkind)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for HirKind`
 
 ### `Class`
 
@@ -1176,7 +1152,7 @@ and `(?i-u)k` will not match the same set of strings.
 
 - `fn case_fold_simple(self: &mut Self)`
 
-- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../../unicode/index.md)
+- `fn try_case_fold_simple(self: &mut Self) -> core::result::Result<(), CaseFoldError>` — [`CaseFoldError`](../unicode/index.md)
 
 - `fn negate(self: &mut Self)`
 
@@ -1192,21 +1168,21 @@ and `(?i-u)k` will not match the same set of strings.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Class`
 
-- `fn clone(self: &Self) -> Class` — [`Class`](../../hir/index.md)
+- `fn clone(self: &Self) -> Class` — [`Class`](#class)
 
-##### `impl Debug`
+##### `impl Debug for Class`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Class`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Class`
 
-- `fn eq(self: &Self, other: &Class) -> bool` — [`Class`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Class) -> bool` — [`Class`](#class)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Class`
 
 ### `Look`
 
@@ -1349,33 +1325,33 @@ An assertion match is always zero-length. Also called an "empty match."
 
 #### Implementations
 
-- `const fn reversed(self: Self) -> Look` — [`Look`](../../hir/index.md)
+- `const fn reversed(self: Self) -> Look` — [`Look`](#look)
 
 - `const fn as_repr(self: Self) -> u32`
 
-- `const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](../../hir/index.md)
+- `const fn from_repr(repr: u32) -> Option<Look>` — [`Look`](#look)
 
 - `const fn as_char(self: Self) -> char`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Look`
 
-- `fn clone(self: &Self) -> Look` — [`Look`](../../hir/index.md)
+- `fn clone(self: &Self) -> Look` — [`Look`](#look)
 
-##### `impl Copy`
+##### `impl Copy for Look`
 
-##### `impl Debug`
+##### `impl Debug for Look`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Look`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Look`
 
-- `fn eq(self: &Self, other: &Look) -> bool` — [`Look`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Look) -> bool` — [`Look`](#look)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Look`
 
 ### `Dot`
 
@@ -1465,23 +1441,23 @@ routine for building HIR values derived from the `.` regex.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Dot`
 
-- `fn clone(self: &Self) -> Dot` — [`Dot`](../../hir/index.md)
+- `fn clone(self: &Self) -> Dot` — [`Dot`](#dot)
 
-##### `impl Copy`
+##### `impl Copy for Dot`
 
-##### `impl Debug`
+##### `impl Debug for Dot`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Dot`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Dot`
 
-- `fn eq(self: &Self, other: &Dot) -> bool` — [`Dot`](../../hir/index.md)
+- `fn eq(self: &Self, other: &Dot) -> bool` — [`Dot`](#dot)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Dot`
 
 ## Traits
 

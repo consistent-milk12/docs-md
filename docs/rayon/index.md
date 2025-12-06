@@ -27,7 +27,6 @@ There are two ways to use Rayon:
   - [`ThreadPoolBuilder`](#threadpoolbuilder) can be used to create your own thread pools or customize
     the global one.
 
-[Parallel iterators]: iter
 
 
 
@@ -50,7 +49,6 @@ parallel implementations of many iterative functions such as [`map`](iter/map/in
 
 
 
-[more](#more): iter::ParallelIterator#provided-methods
 
 # Crate Layout
 
@@ -64,8 +62,6 @@ found in [the `option` module of `std`]. Similarly, the
 these submodules unless you need to name iterator types
 explicitly.
 
-[the `option` module of `std`]: std::option
-[the `collections` from `std`]: std::collections
 
 # Targets without threading
 
@@ -76,7 +72,6 @@ See the [`rayon_core`](#rayon-core) documentation for more information about its
 
 See [the Rayon FAQ][faq](#faq).
 
-[faq](#faq): https://github.com/rayon-rs/rayon/blob/main/FAQ.md
 
 ## Modules
 

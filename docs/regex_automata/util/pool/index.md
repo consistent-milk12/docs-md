@@ -62,8 +62,6 @@ may used a spin lock internally. This can have subtle effects that may
 be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm) for a more
 thorough treatment of this topic.
 
-[spinharm](#spinharm): https://matklad.github.io/2020/01/02/spinlocks-considered-harmful.html
-
 # Example
 
 This example shows how to share a single hybrid regex among multiple
@@ -89,11 +87,11 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn get(self: &Self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](../../../util/pool/index.md)
+- `fn get(self: &Self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
 
 #### Trait Implementations
 
-##### `impl Debug<T: core::fmt::Debug, F>`
+##### `impl<T: core::fmt::Debug, F> Debug for Pool<T, F>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
@@ -110,25 +108,25 @@ back in the pool once it's dropped.
 
 #### Implementations
 
-- `fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](../../../util/pool/index.md)
+- `fn put(this: PoolGuard<'_, T, F>)` — [`PoolGuard`](#poolguard)
 
 #### Trait Implementations
 
-##### `impl Debug<'a, T: Send + core::fmt::Debug, F: Fn() -> T>`
+##### `impl<'a, T: Send + core::fmt::Debug, F: Fn() -> T> Debug for PoolGuard<'a, T, F>`
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl Deref<'a, T: Send, F: Fn() -> T>`
+##### `impl<'a, T: Send, F: Fn() -> T> Deref for PoolGuard<'a, T, F>`
 
 - `type Target = T`
 
 - `fn deref(self: &Self) -> &T`
 
-##### `impl DerefMut<'a, T: Send, F: Fn() -> T>`
+##### `impl<'a, T: Send, F: Fn() -> T> DerefMut for PoolGuard<'a, T, F>`
 
 - `fn deref_mut(self: &mut Self) -> &mut T`
 
-##### `impl Receiver<P, T>`
+##### `impl<P, T> Receiver for PoolGuard<'a, T, F>`
 
 - `type Target = T`
 

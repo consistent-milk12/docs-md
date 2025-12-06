@@ -24,17 +24,17 @@ but keeps the total capacity.
 
 #### Trait Implementations
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for Drain<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Drop<'a>`
+##### `impl<'a> Drop for Drain<'a>`
 
 - `fn drop(self: &mut Self)`
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Drain<'a>`
 
-##### `impl IntoParallelIterator<T>`
+##### `impl<T> IntoParallelIterator for Drain<'a>`
 
 - `type Iter = T`
 
@@ -42,13 +42,13 @@ but keeps the total capacity.
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator<'a>`
+##### `impl<'a> ParallelIterator for Drain<'a>`
 
 - `type Item = char`
 
-- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../../iter/plumbing/index.md)
+- `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Drain<'a>`
 
 - `const ALIGN: usize`
 

@@ -2,9 +2,7 @@
 
 [![github](#github)](https://github.com/dtolnay/proc-macro2)&ensp;[![crates-io]](https://crates.io/crates/proc-macro2)&ensp;[![docs-rs]](crate)
 
-[github](#github): https://img.shields.io/badge/github-8da0cb?style=for-the-badge&labelColor=555555&logo=github
-[crates-io]: https://img.shields.io/badge/crates.io-fc8d62?style=for-the-badge&labelColor=555555&logo=rust
-[docs-rs]: https://img.shields.io/badge/docs.rs-66c2a5?style=for-the-badge&labelColor=555555&logo=docs.rs
+
 
 <br>
 
@@ -26,8 +24,6 @@ crate. This library serves two purposes:
   a macro to be testable in isolation, they must be implemented using
   `proc_macro2`.
 
-[syn](#syn): https://github.com/dtolnay/syn
-[quote](#quote): https://github.com/dtolnay/quote
 
 # Usage
 
@@ -109,7 +105,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Implementations
 
-- `fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](../imp/index.md)
+- `fn _new(inner: imp::TokenStream) -> Self` — [`TokenStream`](imp/index.md)
 
 - `fn _new_fallback(inner: fallback::TokenStream) -> Self`
 
@@ -119,59 +115,59 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for TokenStream`
 
-- `fn clone(self: &Self) -> TokenStream` — [`TokenStream`](../index.md)
+- `fn clone(self: &Self) -> TokenStream` — [`TokenStream`](#tokenstream)
 
-##### `impl Debug`
+##### `impl Debug for TokenStream`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Default`
+##### `impl Default for TokenStream`
 
 - `fn default() -> Self`
 
-##### `impl Display`
+##### `impl Display for TokenStream`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Extend`
+##### `impl Extend for TokenStream`
 
 - `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
-##### `impl FromIterator`
+##### `impl FromIterator for TokenStream`
 
 - `fn from_iter<I: IntoIterator<Item = TokenStream>>(streams: I) -> Self`
 
-##### `impl FromStr`
+##### `impl FromStr for TokenStream`
 
 - `type Err = LexError`
 
-- `fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](../index.md), [`LexError`](../index.md)
+- `fn from_str(src: &str) -> Result<TokenStream, LexError>` — [`TokenStream`](#tokenstream), [`LexError`](#lexerror)
 
-##### `impl IntoIterator`
+##### `impl IntoIterator for TokenStream`
 
 - `type Item = TokenTree`
 
 - `type IntoIter = IntoIter`
 
-- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](../token_stream/index.md)
+- `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](token_stream/index.md)
 
-##### `impl Parse`
+##### `impl Parse for proc_macro2::TokenStream`
 
-##### `impl Sealed`
+##### `impl Sealed for proc_macro2::TokenStream`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for TokenStream`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for proc_macro2::TokenStream`
 
-- `fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- `fn byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
 
-- `fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- `fn cooked_byte_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
 
-##### `impl TokenStreamExt`
+##### `impl TokenStreamExt for proc_macro2::TokenStream`
 
 - `fn borrow_mut(self: &mut Self) -> &mut T`
 
@@ -188,21 +184,21 @@ Error returned from `TokenStream::from_str`.
 
 #### Implementations
 
-- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn span(self: &Self) -> Span` — [`Span`](#span)
 
 #### Trait Implementations
 
-##### `impl Debug`
+##### `impl Debug for LexError`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display`
+##### `impl Display for LexError`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Error`
+##### `impl Error for LexError`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for LexError`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -219,7 +215,7 @@ A region of source code, along with macro expansion information.
 
 #### Implementations
 
-- `fn _new(inner: imp::Span) -> Self` — [`Span`](../imp/index.md)
+- `fn _new(inner: imp::Span) -> Self` — [`Span`](imp/index.md)
 
 - `fn _new_fallback(inner: fallback::Span) -> Self`
 
@@ -227,29 +223,29 @@ A region of source code, along with macro expansion information.
 
 - `fn mixed_site() -> Self`
 
-- `fn resolved_at(self: &Self, other: Span) -> Span` — [`Span`](../index.md)
+- `fn resolved_at(self: &Self, other: Span) -> Span` — [`Span`](#span)
 
-- `fn located_at(self: &Self, other: Span) -> Span` — [`Span`](../index.md)
+- `fn located_at(self: &Self, other: Span) -> Span` — [`Span`](#span)
 
 - `fn unwrap(self: Self) -> proc_macro::Span`
 
-- `fn join(self: &Self, other: Span) -> Option<Span>` — [`Span`](../index.md)
+- `fn join(self: &Self, other: Span) -> Option<Span>` — [`Span`](#span)
 
 - `fn source_text(self: &Self) -> Option<String>`
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Span`
 
-- `fn clone(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn clone(self: &Self) -> Span` — [`Span`](#span)
 
-##### `impl Copy`
+##### `impl Copy for Span`
 
-##### `impl Debug`
+##### `impl Debug for Span`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl SpanError`
+##### `impl SpanError for proc_macro2::Span`
 
 ### `Group`
 
@@ -266,53 +262,53 @@ A `Group` internally contains a `TokenStream` which is surrounded by
 
 #### Implementations
 
-- `fn _new(inner: imp::Group) -> Self` — [`Group`](../imp/index.md)
+- `fn _new(inner: imp::Group) -> Self` — [`Group`](imp/index.md)
 
 - `fn _new_fallback(inner: fallback::Group) -> Self`
 
-- `fn new(delimiter: Delimiter, stream: TokenStream) -> Self` — [`Delimiter`](../index.md), [`TokenStream`](../index.md)
+- `fn new(delimiter: Delimiter, stream: TokenStream) -> Self` — [`Delimiter`](#delimiter), [`TokenStream`](#tokenstream)
 
-- `fn delimiter(self: &Self) -> Delimiter` — [`Delimiter`](../index.md)
+- `fn delimiter(self: &Self) -> Delimiter` — [`Delimiter`](#delimiter)
 
-- `fn stream(self: &Self) -> TokenStream` — [`TokenStream`](../index.md)
+- `fn stream(self: &Self) -> TokenStream` — [`TokenStream`](#tokenstream)
 
-- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn span(self: &Self) -> Span` — [`Span`](#span)
 
-- `fn span_open(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn span_open(self: &Self) -> Span` — [`Span`](#span)
 
-- `fn span_close(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn span_close(self: &Self) -> Span` — [`Span`](#span)
 
-- `fn delim_span(self: &Self) -> DelimSpan` — [`DelimSpan`](../extra/index.md)
+- `fn delim_span(self: &Self) -> DelimSpan` — [`DelimSpan`](extra/index.md)
 
-- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](#span)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Group`
 
-- `fn clone(self: &Self) -> Group` — [`Group`](../index.md)
+- `fn clone(self: &Self) -> Group` — [`Group`](#group)
 
-##### `impl Debug`
-
-- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Display`
+##### `impl Debug for Group`
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Parse`
+##### `impl Display for Group`
 
-##### `impl Sealed`
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl Parse for proc_macro2::Group`
+
+##### `impl Sealed for proc_macro2::Group`
+
+##### `impl<T> ToString for Group`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for proc_macro2::Group`
 
-- `fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](../parse/index.md), [`TokenTree`](../index.md), [`Reject`](../parse/index.md)
+- `fn leaf_token(input: Cursor<'_>) -> Result<(Cursor<'_>, crate::TokenTree), Reject>` — [`Cursor`](parse/index.md), [`TokenTree`](#tokentree), [`Reject`](parse/index.md)
 
-##### `impl Token`
+##### `impl Token for proc_macro2::Group`
 
 ### `Punct`
 
@@ -331,45 +327,45 @@ Multicharacter operators like `+=` are represented as two instances of
 
 #### Implementations
 
-- `fn new(ch: char, spacing: Spacing) -> Self` — [`Spacing`](../index.md)
+- `fn new(ch: char, spacing: Spacing) -> Self` — [`Spacing`](#spacing)
 
 - `fn as_char(self: &Self) -> char`
 
-- `fn spacing(self: &Self) -> Spacing` — [`Spacing`](../index.md)
+- `fn spacing(self: &Self) -> Spacing` — [`Spacing`](#spacing)
 
-- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn span(self: &Self) -> Span` — [`Span`](#span)
 
-- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](#span)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Punct`
 
-- `fn clone(self: &Self) -> Punct` — [`Punct`](../index.md)
+- `fn clone(self: &Self) -> Punct` — [`Punct`](#punct)
 
-##### `impl Debug`
+##### `impl Debug for Punct`
 
 - `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Display`
+##### `impl Display for Punct`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Parse`
+##### `impl Parse for proc_macro2::Punct`
 
-##### `impl PunctExt`
+##### `impl PunctExt for proc_macro2::Punct`
 
-##### `impl Sealed`
+##### `impl Sealed for proc_macro2::Punct`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Punct`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for proc_macro2::Punct`
 
-- `fn ident_not_raw(input: Cursor<'_>) -> Result<(Cursor<'_>, &str), Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- `fn ident_not_raw(input: Cursor<'_>) -> Result<(Cursor<'_>, &str), Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
 
-##### `impl Token`
+##### `impl Token for proc_macro2::Punct`
 
 ### `Ident`
 
@@ -445,67 +441,67 @@ if ident_string.len() > 60 {
 
 #### Implementations
 
-- `fn _new(inner: imp::Ident) -> Self` — [`Ident`](../imp/index.md)
+- `fn _new(inner: imp::Ident) -> Self` — [`Ident`](imp/index.md)
 
 - `fn _new_fallback(inner: fallback::Ident) -> Self`
 
-- `fn new(string: &str, span: Span) -> Self` — [`Span`](../index.md)
+- `fn new(string: &str, span: Span) -> Self` — [`Span`](#span)
 
-- `fn new_raw(string: &str, span: Span) -> Self` — [`Span`](../index.md)
+- `fn new_raw(string: &str, span: Span) -> Self` — [`Span`](#span)
 
-- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn span(self: &Self) -> Span` — [`Span`](#span)
 
-- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](#span)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Ident`
 
-- `fn clone(self: &Self) -> Ident` — [`Ident`](../index.md)
+- `fn clone(self: &Self) -> Ident` — [`Ident`](#ident)
 
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Display`
+##### `impl Debug for Ident`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Eq`
+##### `impl Display for Ident`
 
-##### `impl Hash`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Eq for Ident`
+
+##### `impl Hash for Ident`
 
 - `fn hash<H: Hasher>(self: &Self, hasher: &mut H)`
 
-##### `impl IdentExt`
+##### `impl IdentExt for proc_macro2::Ident`
 
-##### `impl IdentFragment`
+##### `impl IdentFragment for proc_macro2::Ident`
 
 - `type Error = Infallible`
 
-##### `impl Ord`
+##### `impl Ord for Ident`
 
-- `fn cmp(self: &Self, other: &Ident) -> Ordering` — [`Ident`](../index.md)
+- `fn cmp(self: &Self, other: &Ident) -> Ordering` — [`Ident`](#ident)
 
-##### `impl Parse`
+##### `impl Parse for proc_macro2::Ident`
 
-##### `impl PartialEq<T>`
+##### `impl PartialEq for Ident`
 
-- `fn eq(self: &Self, other: &T) -> bool`
+- `fn eq(self: &Self, other: &Ident) -> bool` — [`Ident`](#ident)
 
-##### `impl PartialOrd`
+##### `impl PartialOrd for Ident`
 
-- `fn partial_cmp(self: &Self, other: &Ident) -> Option<Ordering>` — [`Ident`](../index.md)
+- `fn partial_cmp(self: &Self, other: &Ident) -> Option<Ordering>` — [`Ident`](#ident)
 
-##### `impl Sealed`
+##### `impl Sealed for proc_macro2::Ident`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Ident`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for proc_macro2::Ident`
 
-##### `impl Token`
+##### `impl Token for proc_macro2::Ident`
 
 ### `Literal`
 
@@ -525,115 +521,115 @@ Boolean literals like `true` and `false` do not belong here, they are
 
 #### Implementations
 
-- `fn _new(inner: imp::Literal) -> Self` — [`Literal`](../imp/index.md)
+- `fn _new(inner: imp::Literal) -> Self` — [`Literal`](imp/index.md)
 
 - `fn _new_fallback(inner: fallback::Literal) -> Self`
 
-- `fn u8_suffixed(n: u8) -> Literal` — [`Literal`](../index.md)
+- `fn u8_suffixed(n: u8) -> Literal` — [`Literal`](#literal)
 
-- `fn u16_suffixed(n: u16) -> Literal` — [`Literal`](../index.md)
+- `fn u16_suffixed(n: u16) -> Literal` — [`Literal`](#literal)
 
-- `fn u32_suffixed(n: u32) -> Literal` — [`Literal`](../index.md)
+- `fn u32_suffixed(n: u32) -> Literal` — [`Literal`](#literal)
 
-- `fn u64_suffixed(n: u64) -> Literal` — [`Literal`](../index.md)
+- `fn u64_suffixed(n: u64) -> Literal` — [`Literal`](#literal)
 
-- `fn u128_suffixed(n: u128) -> Literal` — [`Literal`](../index.md)
+- `fn u128_suffixed(n: u128) -> Literal` — [`Literal`](#literal)
 
-- `fn usize_suffixed(n: usize) -> Literal` — [`Literal`](../index.md)
+- `fn usize_suffixed(n: usize) -> Literal` — [`Literal`](#literal)
 
-- `fn i8_suffixed(n: i8) -> Literal` — [`Literal`](../index.md)
+- `fn i8_suffixed(n: i8) -> Literal` — [`Literal`](#literal)
 
-- `fn i16_suffixed(n: i16) -> Literal` — [`Literal`](../index.md)
+- `fn i16_suffixed(n: i16) -> Literal` — [`Literal`](#literal)
 
-- `fn i32_suffixed(n: i32) -> Literal` — [`Literal`](../index.md)
+- `fn i32_suffixed(n: i32) -> Literal` — [`Literal`](#literal)
 
-- `fn i64_suffixed(n: i64) -> Literal` — [`Literal`](../index.md)
+- `fn i64_suffixed(n: i64) -> Literal` — [`Literal`](#literal)
 
-- `fn i128_suffixed(n: i128) -> Literal` — [`Literal`](../index.md)
+- `fn i128_suffixed(n: i128) -> Literal` — [`Literal`](#literal)
 
-- `fn isize_suffixed(n: isize) -> Literal` — [`Literal`](../index.md)
+- `fn isize_suffixed(n: isize) -> Literal` — [`Literal`](#literal)
 
-- `fn u8_unsuffixed(n: u8) -> Literal` — [`Literal`](../index.md)
+- `fn u8_unsuffixed(n: u8) -> Literal` — [`Literal`](#literal)
 
-- `fn u16_unsuffixed(n: u16) -> Literal` — [`Literal`](../index.md)
+- `fn u16_unsuffixed(n: u16) -> Literal` — [`Literal`](#literal)
 
-- `fn u32_unsuffixed(n: u32) -> Literal` — [`Literal`](../index.md)
+- `fn u32_unsuffixed(n: u32) -> Literal` — [`Literal`](#literal)
 
-- `fn u64_unsuffixed(n: u64) -> Literal` — [`Literal`](../index.md)
+- `fn u64_unsuffixed(n: u64) -> Literal` — [`Literal`](#literal)
 
-- `fn u128_unsuffixed(n: u128) -> Literal` — [`Literal`](../index.md)
+- `fn u128_unsuffixed(n: u128) -> Literal` — [`Literal`](#literal)
 
-- `fn usize_unsuffixed(n: usize) -> Literal` — [`Literal`](../index.md)
+- `fn usize_unsuffixed(n: usize) -> Literal` — [`Literal`](#literal)
 
-- `fn i8_unsuffixed(n: i8) -> Literal` — [`Literal`](../index.md)
+- `fn i8_unsuffixed(n: i8) -> Literal` — [`Literal`](#literal)
 
-- `fn i16_unsuffixed(n: i16) -> Literal` — [`Literal`](../index.md)
+- `fn i16_unsuffixed(n: i16) -> Literal` — [`Literal`](#literal)
 
-- `fn i32_unsuffixed(n: i32) -> Literal` — [`Literal`](../index.md)
+- `fn i32_unsuffixed(n: i32) -> Literal` — [`Literal`](#literal)
 
-- `fn i64_unsuffixed(n: i64) -> Literal` — [`Literal`](../index.md)
+- `fn i64_unsuffixed(n: i64) -> Literal` — [`Literal`](#literal)
 
-- `fn i128_unsuffixed(n: i128) -> Literal` — [`Literal`](../index.md)
+- `fn i128_unsuffixed(n: i128) -> Literal` — [`Literal`](#literal)
 
-- `fn isize_unsuffixed(n: isize) -> Literal` — [`Literal`](../index.md)
+- `fn isize_unsuffixed(n: isize) -> Literal` — [`Literal`](#literal)
 
-- `fn f64_unsuffixed(f: f64) -> Literal` — [`Literal`](../index.md)
+- `fn f64_unsuffixed(f: f64) -> Literal` — [`Literal`](#literal)
 
-- `fn f64_suffixed(f: f64) -> Literal` — [`Literal`](../index.md)
+- `fn f64_suffixed(f: f64) -> Literal` — [`Literal`](#literal)
 
-- `fn f32_unsuffixed(f: f32) -> Literal` — [`Literal`](../index.md)
+- `fn f32_unsuffixed(f: f32) -> Literal` — [`Literal`](#literal)
 
-- `fn f32_suffixed(f: f32) -> Literal` — [`Literal`](../index.md)
+- `fn f32_suffixed(f: f32) -> Literal` — [`Literal`](#literal)
 
-- `fn string(string: &str) -> Literal` — [`Literal`](../index.md)
+- `fn string(string: &str) -> Literal` — [`Literal`](#literal)
 
-- `fn character(ch: char) -> Literal` — [`Literal`](../index.md)
+- `fn character(ch: char) -> Literal` — [`Literal`](#literal)
 
-- `fn byte_character(byte: u8) -> Literal` — [`Literal`](../index.md)
+- `fn byte_character(byte: u8) -> Literal` — [`Literal`](#literal)
 
-- `fn byte_string(bytes: &[u8]) -> Literal` — [`Literal`](../index.md)
+- `fn byte_string(bytes: &[u8]) -> Literal` — [`Literal`](#literal)
 
-- `fn c_string(string: &CStr) -> Literal` — [`Literal`](../index.md)
+- `fn c_string(string: &CStr) -> Literal` — [`Literal`](#literal)
 
-- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn span(self: &Self) -> Span` — [`Span`](#span)
 
-- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](#span)
 
-- `fn subspan<R: RangeBounds<usize>>(self: &Self, range: R) -> Option<Span>` — [`Span`](../index.md)
+- `fn subspan<R: RangeBounds<usize>>(self: &Self, range: R) -> Option<Span>` — [`Span`](#span)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Literal`
 
-- `fn clone(self: &Self) -> Literal` — [`Literal`](../index.md)
+- `fn clone(self: &Self) -> Literal` — [`Literal`](#literal)
 
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Display`
+##### `impl Debug for Literal`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl FromStr`
+##### `impl Display for Literal`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl FromStr for Literal`
 
 - `type Err = LexError`
 
-- `fn from_str(repr: &str) -> Result<Self, LexError>` — [`LexError`](../index.md)
+- `fn from_str(repr: &str) -> Result<Self, LexError>` — [`LexError`](#lexerror)
 
-##### `impl Parse`
+##### `impl Parse for proc_macro2::Literal`
 
-##### `impl Sealed`
+##### `impl Sealed for proc_macro2::Literal`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for Literal`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for proc_macro2::Literal`
 
-- `fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- `fn literal_nocapture(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
 
-##### `impl Token`
+##### `impl Token for proc_macro2::Literal`
 
 ## Enums
 
@@ -670,37 +666,37 @@ A single token or a delimited sequence of token trees (e.g. `[1, (), ..]`).
 
 #### Implementations
 
-- `fn span(self: &Self) -> Span` — [`Span`](../index.md)
+- `fn span(self: &Self) -> Span` — [`Span`](#span)
 
-- `fn set_span(self: &mut Self, span: Span)` — [`Span`](../index.md)
+- `fn set_span(self: &mut Self, span: Span)` — [`Span`](#span)
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for TokenTree`
 
-- `fn clone(self: &Self) -> TokenTree` — [`TokenTree`](../index.md)
+- `fn clone(self: &Self) -> TokenTree` — [`TokenTree`](#tokentree)
 
-##### `impl Debug`
-
-- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
-
-##### `impl Display`
+##### `impl Debug for TokenTree`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl Parse`
+##### `impl Display for TokenTree`
 
-##### `impl Sealed`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl Parse for proc_macro2::TokenTree`
+
+##### `impl Sealed for proc_macro2::TokenTree`
+
+##### `impl<T> ToString for TokenTree`
 
 - `fn to_string(self: &Self) -> String`
 
-##### `impl ToTokens`
+##### `impl ToTokens for proc_macro2::TokenTree`
 
-- `fn cooked_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](../parse/index.md), [`Reject`](../parse/index.md)
+- `fn cooked_string(input: Cursor<'_>) -> Result<Cursor<'_>, Reject>` — [`Cursor`](parse/index.md), [`Reject`](parse/index.md)
 
-##### `impl Token`
+##### `impl Token for proc_macro2::TokenTree`
 
 ### `Delimiter`
 
@@ -753,23 +749,23 @@ Describes how a sequence of token trees is delimited.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Delimiter`
 
-- `fn clone(self: &Self) -> Delimiter` — [`Delimiter`](../index.md)
+- `fn clone(self: &Self) -> Delimiter` — [`Delimiter`](#delimiter)
 
-##### `impl Copy`
+##### `impl Copy for Delimiter`
 
-##### `impl Debug`
+##### `impl Debug for Delimiter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Delimiter`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Delimiter`
 
-- `fn eq(self: &Self, other: &Delimiter) -> bool` — [`Delimiter`](../index.md)
+- `fn eq(self: &Self, other: &Delimiter) -> bool` — [`Delimiter`](#delimiter)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Delimiter`
 
 ### `Spacing`
 
@@ -798,21 +794,21 @@ another token or whitespace.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for Spacing`
 
-- `fn clone(self: &Self) -> Spacing` — [`Spacing`](../index.md)
+- `fn clone(self: &Self) -> Spacing` — [`Spacing`](#spacing)
 
-##### `impl Copy`
+##### `impl Copy for Spacing`
 
-##### `impl Debug`
+##### `impl Debug for Spacing`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Eq`
+##### `impl Eq for Spacing`
 
-##### `impl PartialEq`
+##### `impl PartialEq for Spacing`
 
-- `fn eq(self: &Self, other: &Spacing) -> bool` — [`Spacing`](../index.md)
+- `fn eq(self: &Self, other: &Spacing) -> bool` — [`Spacing`](#spacing)
 
-##### `impl StructuralPartialEq`
+##### `impl StructuralPartialEq for Spacing`
 

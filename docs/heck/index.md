@@ -60,11 +60,11 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsKebabCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsKebabCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -87,11 +87,11 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsLowerCamelCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsLowerCamelCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -114,11 +114,11 @@ assert_eq!(format!("{}", AsShoutyKebabCase(sentence)), "WE-ARE-GOING-TO-INHERIT-
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsShoutyKebabCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsShoutyKebabCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -141,11 +141,11 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsShoutySnakeCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsShoutySnakeCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -168,11 +168,11 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsShoutySnakeCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsShoutySnakeCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -195,11 +195,11 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsSnakeCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsSnakeCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -222,11 +222,11 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsSnakeCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsSnakeCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -249,11 +249,11 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsTitleCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsTitleCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -276,11 +276,11 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsTrainCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsTrainCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -303,11 +303,11 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsUpperCamelCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsUpperCamelCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -330,11 +330,11 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 
 #### Trait Implementations
 
-##### `impl Display<T: AsRef<str>>`
+##### `impl<T: AsRef<str>> Display for AsUpperCamelCase<T>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl ToString<T>`
+##### `impl<T> ToString for AsUpperCamelCase<T>`
 
 - `fn to_string(self: &Self) -> String`
 

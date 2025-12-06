@@ -52,17 +52,17 @@ into the `rustdoc_types::Crate` structure.
 
 #### Implementations
 
-- `fn parse_json(path: &Path) -> Result<Crate, Error>` — [`Error`](../../error/index.md)
+- `fn parse_json(path: &Path) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
-- `fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../../error/index.md)
+- `fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
 #### Trait Implementations
 
-##### `impl IntoEither<T>`
+##### `impl<T> IntoEither for Parser`
 
-##### `impl OwoColorize<D>`
+##### `impl<D> OwoColorize for Parser`
 
-##### `impl Pointable<T>`
+##### `impl<T> Pointable for Parser`
 
 - `const ALIGN: usize`
 

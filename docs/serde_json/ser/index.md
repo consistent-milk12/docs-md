@@ -33,19 +33,19 @@ This structure compacts a JSON value with no extra whitespace.
 
 #### Trait Implementations
 
-##### `impl Clone`
+##### `impl Clone for CompactFormatter`
 
-- `fn clone(self: &Self) -> CompactFormatter` — [`CompactFormatter`](../../ser/index.md)
+- `fn clone(self: &Self) -> CompactFormatter` — [`CompactFormatter`](#compactformatter)
 
-##### `impl Debug`
+##### `impl Debug for CompactFormatter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default`
+##### `impl Default for CompactFormatter`
 
-- `fn default() -> CompactFormatter` — [`CompactFormatter`](../../ser/index.md)
+- `fn default() -> CompactFormatter` — [`CompactFormatter`](#compactformatter)
 
-##### `impl Formatter`
+##### `impl Formatter for CompactFormatter`
 
 ### `PrettyFormatter<'a>`
 
@@ -67,19 +67,19 @@ This structure pretty prints a JSON value to make it human readable.
 
 #### Trait Implementations
 
-##### `impl Clone<'a>`
+##### `impl<'a> Clone for PrettyFormatter<'a>`
 
-- `fn clone(self: &Self) -> PrettyFormatter<'a>` — [`PrettyFormatter`](../../ser/index.md)
+- `fn clone(self: &Self) -> PrettyFormatter<'a>` — [`PrettyFormatter`](#prettyformatter)
 
-##### `impl Debug<'a>`
+##### `impl<'a> Debug for PrettyFormatter<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl Default<'a>`
+##### `impl<'a> Default for PrettyFormatter<'a>`
 
 - `fn default() -> Self`
 
-##### `impl Formatter<'a>`
+##### `impl<'a> Formatter for PrettyFormatter<'a>`
 
 - `fn begin_array<W>(self: &mut Self, writer: &mut W) -> io::Result<()>`
 
