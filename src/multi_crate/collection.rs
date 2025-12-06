@@ -29,7 +29,7 @@ use rustdoc_types::Crate;
 #[derive(Debug, Default)]
 pub struct CrateCollection {
     /// Map from crate name to parsed Crate data.
-    /// HashMap provides O(1) lookups; sorting done on-demand.
+    /// `HashMap` provides O(1) lookups; sorting done on-demand.
     crates: HashMap<String, Crate>,
 }
 

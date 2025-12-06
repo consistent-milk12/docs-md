@@ -15,15 +15,15 @@ use rustdoc_types::{Id, Item, ItemEnum, StructKind};
 
 use crate::Args;
 use crate::error::Error;
-use crate::generator::{ItemFilter, LinkResolver};
 use crate::generator::breadcrumbs::BreadcrumbGenerator;
 use crate::generator::impls::is_blanket_impl;
 use crate::generator::render_shared::{
     append_docs, impl_sort_key, render_constant_definition, render_enum_definition,
-    render_enum_variants_docs, render_function_definition, render_impl_items,
-    render_macro_heading, render_struct_definition, render_struct_fields, render_trait_definition,
-    render_trait_item, render_type_alias_definition,
+    render_enum_variants_docs, render_function_definition, render_impl_items, render_macro_heading,
+    render_struct_definition, render_struct_fields, render_trait_definition, render_trait_item,
+    render_type_alias_definition,
 };
+use crate::generator::{ItemFilter, LinkResolver};
 use crate::multi_crate::context::SingleCrateView;
 use crate::multi_crate::search::SearchIndexGenerator;
 use crate::multi_crate::summary::SummaryGenerator;
@@ -109,7 +109,7 @@ impl<'a> MultiCrateGenerator<'a> {
                 let view = self
                     .ctx
                     .single_crate_view(crate_name)
-                    .ok_or_else(|| Error::ItemNotFound(crate_name.to_string()))?;
+                    .ok_or_else(|| Error::ItemNotFound((*crate_name).clone()))?;
 
                 self.generate_crate(&view, &progress)
             })?;
@@ -132,8 +132,11 @@ impl<'a> MultiCrateGenerator<'a> {
             // Collect the IDs of all rendered items to filter the search index
             let rendered_items = self.collect_rendered_items();
 
-            let search_gen =
-                SearchIndexGenerator::new(self.ctx.crates(), self.args.include_private, rendered_items);
+            let search_gen = SearchIndexGenerator::new(
+                self.ctx.crates(),
+                self.args.include_private,
+                rendered_items,
+            );
             search_gen
                 .write(&self.args.output)
                 .map_err(Error::FileWrite)?;
@@ -155,7 +158,7 @@ impl<'a> MultiCrateGenerator<'a> {
             if let Some(view) = self.ctx.single_crate_view(crate_name) {
                 let mut ids = HashSet::new();
                 Self::collect_crate_items(&view, &mut ids);
-                result.insert(crate_name.to_string(), ids);
+                result.insert(crate_name.clone(), ids);
             }
         }
 
@@ -207,10 +210,11 @@ impl<'a> MultiCrateGenerator<'a> {
                         // Re-exports - add the Use item ID (not the target)
                         ItemEnum::Use(use_item) if !use_item.is_glob => {
                             // Verify target exists (same logic as rendering)
-                            let target_exists = use_item.id.as_ref().map_or(false, |target_id| {
-                                krate.index.contains_key(target_id)
-                                    || view.lookup_item_across_crates(target_id).is_some()
-                            }) || view.resolve_external_path(&use_item.source).is_some();
+                            let target_exists =
+                                use_item.id.as_ref().is_some_and(|target_id| {
+                                    krate.index.contains_key(target_id)
+                                        || view.lookup_item_across_crates(target_id).is_some()
+                                }) || view.resolve_external_path(&use_item.source).is_some();
 
                             if target_exists {
                                 ids.insert(*item_id);
@@ -258,7 +262,7 @@ impl<'a> MultiCrateGenerator<'a> {
                     && let ItemEnum::Module(_) = &item.inner
                     && view.should_include_item(item)
                 {
-                    Self::generate_module(view, item, &crate_dir, vec![], Arc::clone(progress))?;
+                    Self::generate_module(view, item, &crate_dir, vec![], &Arc::clone(progress))?;
                 }
             }
         }
@@ -272,7 +276,7 @@ impl<'a> MultiCrateGenerator<'a> {
         item: &Item,
         parent_dir: &Path,
         module_path: Vec<String>,
-        progress: Arc<ProgressBar>,
+        progress: &Arc<ProgressBar>,
     ) -> Result<(), Error> {
         let name = item.name.as_deref().unwrap_or("unnamed");
 
@@ -315,7 +319,7 @@ impl<'a> MultiCrateGenerator<'a> {
                         sub_item,
                         &module_dir,
                         current_path.clone(),
-                        Arc::clone(&progress),
+                        &Arc::clone(progress),
                     )?;
                 }
             }
@@ -332,11 +336,10 @@ impl<'a> MultiCrateGenerator<'a> {
     fn create_progress_bar(total: usize) -> Result<ProgressBar, Error> {
         let progress = ProgressBar::new(total as u64);
 
-        let style = ProgressStyle::with_template(
-            "{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}",
-        )
-        .map_err(Error::ProgressBarTemplate)?
-        .progress_chars("=>-");
+        let style =
+            ProgressStyle::with_template("{spinner:.green} [{bar:40.cyan/blue}] {pos}/{len} {msg}")
+                .map_err(Error::ProgressBarTemplate)?
+                .progress_chars("=>-");
 
         progress.set_style(style);
         Ok(progress)
@@ -366,7 +369,7 @@ struct MultiCrateModuleRenderer<'a> {
 
 impl<'a> MultiCrateModuleRenderer<'a> {
     /// Create a new multi-crate module renderer.
-    fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self {
+    const fn new(view: &'a SingleCrateView<'a>, file_path: &'a str, is_root: bool) -> Self {
         Self {
             view,
             file_path,
@@ -547,7 +550,10 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 _ = writeln!(md, "### Usage\n");
                 _ = writeln!(md, "```toml");
                 _ = writeln!(md, "[dependencies]");
-                _ = writeln!(md, "{parent_crate} = {{ version = \"*\", features = [\"derive\"] }}");
+                _ = writeln!(
+                    md,
+                    "{parent_crate} = {{ version = \"*\", features = [\"derive\"] }}"
+                );
                 _ = writeln!(md, "```");
             } else if crate_name.ends_with("_impl") || crate_name.ends_with("-impl") {
                 let parent_crate = crate_name
@@ -568,10 +574,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                      You should depend on the parent crate instead."
                 );
             } else {
-                _ = writeln!(
-                    md,
-                    "*This crate has no public items to document.*"
-                );
+                _ = writeln!(md, "*This crate has no public items to document.*");
             }
             return;
         }
@@ -730,7 +733,12 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     {
                         // Found in another crate - capture the source crate name
                         let is_external = src_crate != self.view.crate_name();
-                        (name, target, *target_id, if is_external { Some(src_crate) } else { None })
+                        (
+                            name,
+                            target,
+                            *target_id,
+                            if is_external { Some(src_crate) } else { None },
+                        )
                     } else {
                         return;
                     }
@@ -765,7 +773,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 TypeRenderer::new(render_krate)
             } else {
                 // Use cached renderer for local items
-                self.type_renderer.clone()
+                self.type_renderer
             };
 
             // Struct definition (heading + code block)
@@ -811,7 +819,12 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     {
                         // Found in another crate - capture the source crate name
                         let is_external = src_crate != self.view.crate_name();
-                        (name, target, *target_id, if is_external { Some(src_crate) } else { None })
+                        (
+                            name,
+                            target,
+                            *target_id,
+                            if is_external { Some(src_crate) } else { None },
+                        )
                     } else {
                         return;
                     }
@@ -846,7 +859,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                 TypeRenderer::new(render_krate)
             } else {
                 // Use cached renderer for local items
-                self.type_renderer.clone()
+                self.type_renderer
             };
 
             // Enum definition (heading + code block with variants)
@@ -956,16 +969,24 @@ impl<'a> MultiCrateModuleRenderer<'a> {
     {
         let krate = self.view.krate();
 
-        let Some(target_id) = &use_item.id else { return };
-        let Some(target_module) = krate.index.get(target_id) else { return };
-        let ItemEnum::Module(module) = &target_module.inner else { return };
+        let Some(target_id) = &use_item.id else {
+            return;
+        };
+        let Some(target_module) = krate.index.get(target_id) else {
+            return;
+        };
+        let ItemEnum::Module(module) = &target_module.inner else {
+            return;
+        };
 
         for child_id in &module.items {
             if !seen_items.insert(*child_id) {
                 continue; // Already processed
             }
 
-            let Some(child) = krate.index.get(child_id) else { continue };
+            let Some(child) = krate.index.get(child_id) else {
+                continue;
+            };
 
             if !self.view.should_include_item(child) {
                 continue;
@@ -1005,7 +1026,7 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         let type_renderer = if source_crate_name.is_some() {
             TypeRenderer::new(render_krate)
         } else {
-            self.type_renderer.clone()
+            self.type_renderer
         };
 
         // Get impls - for cross-crate items, look up from source crate
@@ -1045,9 +1066,8 @@ impl<'a> MultiCrateModuleRenderer<'a> {
         });
 
         // Deduplicate trait impls with same key (can happen with cross-crate impls)
-        trait_impls.dedup_by(|a, b| {
-            impl_sort_key(a, &type_renderer) == impl_sort_key(b, &type_renderer)
-        });
+        trait_impls
+            .dedup_by(|a, b| impl_sort_key(a, &type_renderer) == impl_sort_key(b, &type_renderer));
 
         // Render inherent implementations
         if !inherent.is_empty() {
@@ -1059,8 +1079,8 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     impl_block,
                     render_krate,
                     &type_renderer,
-                    None::<fn(&Item) -> Option<String>>,
-                    Some(|id: rustdoc_types::Id| {
+                    &None::<fn(&Item) -> Option<String>>,
+                    &Some(|id: rustdoc_types::Id| {
                         LinkResolver::create_link(self.view, id, self.file_path)
                     }),
                 );
@@ -1098,8 +1118,8 @@ impl<'a> MultiCrateModuleRenderer<'a> {
                     impl_block,
                     render_krate,
                     &type_renderer,
-                    None::<fn(&Item) -> Option<String>>,
-                    Some(|id: rustdoc_types::Id| {
+                    &None::<fn(&Item) -> Option<String>>,
+                    &Some(|id: rustdoc_types::Id| {
                         LinkResolver::create_link(self.view, id, self.file_path)
                     }),
                 );

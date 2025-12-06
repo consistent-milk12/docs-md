@@ -77,11 +77,12 @@ impl<'a> ItemRenderer<'a> {
             let name = use_item.name.as_str();
 
             // Try to resolve target by ID
-            if let Some(target_id) = &use_item.id {
-                if let Some(target) = self.ctx.get_item(target_id) {
-                    return Some((name, target));
-                }
+            if let Some(target_id) = &use_item.id
+                && let Some(target) = self.ctx.get_item(target_id)
+            {
+                return Some((name, target));
             }
+
             // Can't resolve - return None
             None
         } else {
@@ -190,9 +191,7 @@ impl<'a> ItemRenderer<'a> {
 
         // Variants documentation
         if let ItemEnum::Enum(e) = &actual_item.inner {
-            render_enum_variants_docs(md, &e.variants, krate, |variant| {
-                self.process_docs(variant)
-            });
+            render_enum_variants_docs(md, &e.variants, krate, |variant| self.process_docs(variant));
         }
 
         // Implementations

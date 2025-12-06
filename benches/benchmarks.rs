@@ -7,7 +7,7 @@
 //! These benchmarks measure:
 //! - JSON parsing (standard vs simd-json)
 //! - `slugify_anchor`: Anchor slug generation (ASCII fast path vs Unicode)
-//! - Registry lookups: Zero-allocation hashbrown raw_entry API
+//! - Registry lookups: Zero-allocation hashbrown `raw_entry` API
 //! - Type rendering: String allocations
 //! - Path computation: Cross-crate link resolution
 
@@ -22,7 +22,7 @@ fn main() {
 // =============================================================================
 
 mod json_parsing {
-    use super::*;
+    use super::black_box;
 
     /// Get a sample JSON file path for benchmarking
     fn get_sample_json() -> Option<std::path::PathBuf> {
@@ -44,7 +44,7 @@ mod json_parsing {
         // Fall back to any JSON file
         std::fs::read_dir(doc_dir)
             .ok()?
-            .filter_map(|e| e.ok())
+            .filter_map(Result::ok)
             .map(|e| e.path())
             .find(|p| p.extension().is_some_and(|e| e == "json"))
     }
@@ -88,8 +88,9 @@ mod json_parsing {
 // =============================================================================
 
 mod slugify {
-    use super::*;
     use docs_md::slugify_anchor;
+
+    use super::black_box;
 
     // ASCII inputs (use fast path)
     const ASCII_SIMPLE: &str = "HashMap";
@@ -143,20 +144,27 @@ mod slugify {
 // =============================================================================
 
 mod registry_lookup {
-    use super::*;
     use std::collections::HashMap as StdHashMap;
-    use std::hash::{Hash, Hasher};
+    use std::hash::Hash;
+
+    use super::black_box;
 
     /// Borrowed key for zero-allocation lookups
     #[derive(Hash, PartialEq, Eq)]
     struct BorrowedKey<'a>(&'a str, u32);
 
     /// Setup maps with realistic data
-    fn setup_maps() -> (StdHashMap<(String, u32), String>, hashbrown::HashMap<(String, u32), String>) {
+    #[expect(clippy::type_complexity)]
+    fn setup_maps() -> (
+        StdHashMap<(String, u32), String>,
+        hashbrown::HashMap<(String, u32), String>,
+    ) {
         let mut std_map = StdHashMap::new();
         let mut hb_map = hashbrown::HashMap::new();
 
-        let crate_names = ["ureq", "http", "rustls", "serde", "tokio", "tracing", "regex", "clap"];
+        let crate_names = [
+            "ureq", "http", "rustls", "serde", "tokio", "tracing", "regex", "clap",
+        ];
         for crate_name in crate_names {
             for id in 0..500u32 {
                 let path = format!("{crate_name}/module{}/index.md", id % 20);
@@ -203,8 +211,9 @@ mod registry_lookup {
 // =============================================================================
 
 mod string_alloc {
-    use super::*;
     use std::borrow::Cow;
+
+    use super::black_box;
 
     const TYPE_PATHS: &[&str] = &[
         "std::collections::HashMap",
@@ -258,7 +267,7 @@ mod string_alloc {
 // =============================================================================
 
 mod path_computation {
-    use super::*;
+    use super::black_box;
 
     #[divan::bench(args = [
         ("root_to_root", "index.md", "http", "index.md"),
@@ -287,9 +296,8 @@ mod path_computation {
         let from = Path::new("ureq/agent/config/index.md");
         let to = Path::new("http/response/index.md");
 
-        bencher.bench_local(|| {
-            pathdiff::diff_paths(black_box(to), black_box(from.parent().unwrap()))
-        });
+        bencher
+            .bench_local(|| pathdiff::diff_paths(black_box(to), black_box(from.parent().unwrap())));
     }
 }
 
@@ -298,18 +306,19 @@ mod path_computation {
 // =============================================================================
 
 mod impl_sorting {
-    use super::*;
 
     /// Simulated impl sort keys (like what we generate for deduplication)
     fn generate_impl_keys(count: usize) -> Vec<String> {
-        let traits = ["Debug", "Clone", "Default", "Display", "From", "Into", "Hash", "Eq"];
+        let traits = [
+            "Debug", "Clone", "Default", "Display", "From", "Into", "Hash", "Eq",
+        ];
         let types = ["MyStruct", "Config", "Builder", "Error", "Response"];
 
         let mut keys = Vec::with_capacity(count);
         for i in 0..count {
             let trait_name = traits[i % traits.len()];
             let type_name = types[i % types.len()];
-            keys.push(format!("{}::{}", trait_name, type_name));
+            keys.push(format!("{trait_name}::{type_name}"));
         }
         // Shuffle to simulate unsorted input
         keys.reverse();
@@ -333,7 +342,7 @@ mod impl_sorting {
                 let mut keys = generate_impl_keys(count);
                 // Add some duplicates
                 let len = keys.len();
-                for i in 0..len/4 {
+                for i in 0..len / 4 {
                     keys.push(keys[i].clone());
                 }
                 keys
@@ -351,11 +360,17 @@ mod impl_sorting {
 // =============================================================================
 
 mod blanket_impl {
-    use super::*;
 
     const BLANKET_TRAITS: &[&str] = &[
-        "From", "Into", "TryFrom", "TryInto", "Any",
-        "Borrow", "BorrowMut", "ToOwned", "CloneToUninit",
+        "From",
+        "Into",
+        "TryFrom",
+        "TryInto",
+        "Any",
+        "Borrow",
+        "BorrowMut",
+        "ToOwned",
+        "CloneToUninit",
     ];
 
     const TEST_TRAITS: &[&str] = &[
@@ -386,7 +401,7 @@ mod blanket_impl {
         bencher.bench_local(|| {
             for trait_path in TEST_TRAITS {
                 let trait_name = trait_path.split("::").last().unwrap_or(trait_path);
-                let _is_blanket = BLANKET_TRAITS.iter().any(|&b| b == trait_name);
+                let _is_blanket = BLANKET_TRAITS.contains(&trait_name);
             }
         });
     }
@@ -397,7 +412,7 @@ mod blanket_impl {
 // =============================================================================
 
 mod full_pipeline {
-    use super::*;
+    use super::black_box;
 
     #[divan::bench(sample_count = 10)]
     fn parse_and_generate_single_crate(bencher: divan::Bencher) {

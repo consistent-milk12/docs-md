@@ -141,9 +141,8 @@ static REFERENCE_LINK_RE: LazyLock<Regex> =
 /// - `[`Foo`]: crate::Foo` (backtick style)
 /// - `[name]: crate::path` (plain style)
 /// - `[name](#anchor): crate::path` (with anchor)
-static REFERENCE_DEF_RE: LazyLock<Regex> = LazyLock::new(|| {
-    Regex::new(r"(?m)^\s*\[[^\]]+\](?:\([^)]*\))?:\s*\S+\s*$").unwrap()
-});
+static REFERENCE_DEF_RE: LazyLock<Regex> =
+    LazyLock::new(|| Regex::new(r"(?m)^\s*\[[^\]]+\](?:\([^)]*\))?:\s*\S+\s*$").unwrap());
 
 /// Regex for plain identifier links.
 ///
@@ -706,7 +705,7 @@ impl<'a> DocLinkProcessor<'a> {
         }
 
         // Strategy 3: Search krate.paths for external items by name
-        for (_id, path_info) in &self.krate.paths {
+        for path_info in self.krate.paths.values() {
             if path_info.crate_id != 0 {
                 // External crate
                 if let Some(name) = path_info.path.last()

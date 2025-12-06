@@ -84,6 +84,9 @@ impl Parser {
     /// This variant is used when the `simd-json` feature is enabled.
     /// It reads the file as bytes and uses simd-json's in-place parsing
     /// for significantly faster performance on large files.
+    ///
+    /// # Errors
+    /// If fails to read file or parse JSON.
     #[cfg(feature = "simd-json")]
     pub fn parse_json(path: &Path) -> Result<Crate, Error> {
         // Read file as mutable bytes for simd-json's in-place parsing

@@ -16,7 +16,7 @@
 //! cargo insta review
 //! ```
 
-use std::path::PathBuf;
+use std::path::{Path, PathBuf};
 
 use docs_md::generator::Generator;
 use docs_md::linker::LinkRegistry;
@@ -94,12 +94,12 @@ fn test_include_private_flag() {
     let public_len: usize = public_only
         .paths()
         .iter()
-        .map(|p| public_only.get(p).map_or(0, |s| s.len()))
+        .map(|p| public_only.get(p).map_or(0, String::len))
         .sum();
     let private_len: usize = with_private
         .paths()
         .iter()
-        .map(|p| with_private.get(p).map_or(0, |s| s.len()))
+        .map(|p| with_private.get(p).map_or(0, String::len))
         .sum();
 
     assert!(
@@ -484,21 +484,20 @@ fn test_reexport_target_resolution() {
     let mut resolved_targets = 0;
 
     for item in krate.index.values() {
-        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner {
-            if matches!(item.visibility, rustdoc_types::Visibility::Public) {
-                use_items_with_targets += 1;
-                if let Some(target_id) = &use_item.id {
-                    if krate.index.contains_key(target_id) {
-                        resolved_targets += 1;
-                    }
-                }
+        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner
+            && matches!(item.visibility, rustdoc_types::Visibility::Public)
+        {
+            use_items_with_targets += 1;
+
+            if let Some(target_id) = &use_item.id
+                && krate.index.contains_key(target_id)
+            {
+                resolved_targets += 1;
             }
         }
     }
 
-    eprintln!(
-        "Public Use items: {use_items_with_targets}, targets resolved: {resolved_targets}"
-    );
+    eprintln!("Public Use items: {use_items_with_targets}, targets resolved: {resolved_targets}");
 
     // All Use items with IDs should resolve to existing items in the same crate
     // (for single-crate mode)
@@ -523,19 +522,21 @@ fn test_search_index_only_contains_rendered_items() {
         .expect("Generation failed");
 
     // Get all generated file paths
-    let generated_paths: std::collections::HashSet<String> = capture
-        .paths()
-        .iter()
-        .map(|p| p.to_string())
-        .collect();
+    let generated_paths: std::collections::HashSet<String> =
+        capture.paths().iter().map(ToString::to_string).collect();
 
     // Verify that index.md exists
-    assert!(generated_paths.contains("index.md"), "Should have root index.md");
+    assert!(
+        generated_paths.contains("index.md"),
+        "Should have root index.md"
+    );
 
     // All paths should be valid markdown files
     for path in &generated_paths {
         assert!(
-            path.ends_with(".md"),
+            Path::new(path)
+                .extension()
+                .is_some_and(|ext| ext.eq_ignore_ascii_case("md")),
             "All generated files should be markdown: {path}"
         );
     }
@@ -555,11 +556,8 @@ fn test_generated_links_point_to_existing_files() {
         .expect("Generation failed");
 
     // Collect all generated file paths (normalized)
-    let generated_paths: std::collections::HashSet<String> = capture
-        .paths()
-        .iter()
-        .map(|p| p.to_string())
-        .collect();
+    let generated_paths: std::collections::HashSet<String> =
+        capture.paths().iter().map(ToString::to_string).collect();
 
     // Check links in generated markdown
     let link_pattern = regex::Regex::new(r"\]\(([^)#]+)(?:#[^)]*)?\)").unwrap();
@@ -585,7 +583,7 @@ fn test_generated_links_point_to_existing_files() {
             let resolved = resolve_link_path(path, link_target);
 
             if !generated_paths.contains(&resolved) {
-                broken_links.push((path.to_string(), link_target.to_string(), resolved));
+                broken_links.push((path.clone(), link_target.to_string(), resolved));
             }
         }
     }
@@ -625,8 +623,8 @@ fn resolve_link_path(from: &str, link: &str) -> String {
             match segment {
                 ".." => {
                     parts.pop();
-                }
-                "." | "" => {}
+                },
+                "." | "" => {},
                 s => parts.push(s),
             }
         }
@@ -653,20 +651,19 @@ fn test_glob_reexports_expanded() {
     let mut modules_with_glob = 0;
 
     for item in krate.index.values() {
-        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner {
-            if use_item.is_glob && matches!(item.visibility, rustdoc_types::Visibility::Public) {
-                glob_reexports += 1;
+        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner
+            && use_item.is_glob
+            && matches!(item.visibility, rustdoc_types::Visibility::Public)
+        {
+            glob_reexports += 1;
 
-                // Check if the target module exists and has items
-                if let Some(target_id) = &use_item.id {
-                    if let Some(target) = krate.index.get(target_id) {
-                        if let rustdoc_types::ItemEnum::Module(m) = &target.inner {
-                            if !m.items.is_empty() {
-                                modules_with_glob += 1;
-                            }
-                        }
-                    }
-                }
+            // Check if the target module exists and has items
+            if let Some(target_id) = &use_item.id
+                && let Some(target) = krate.index.get(target_id)
+                && let rustdoc_types::ItemEnum::Module(m) = &target.inner
+                && !m.items.is_empty()
+            {
+                modules_with_glob += 1;
             }
         }
     }
@@ -704,29 +701,24 @@ fn test_glob_reexports_in_link_registry() {
 
     // For each glob re-export, verify that target module items are registered
     for item in krate.index.values() {
-        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner {
-            if use_item.is_glob && matches!(item.visibility, rustdoc_types::Visibility::Public) {
-                if let Some(target_id) = &use_item.id {
-                    if let Some(target) = krate.index.get(target_id) {
-                        if let rustdoc_types::ItemEnum::Module(m) = &target.inner {
-                            // Check that public items from the target module are registered
-                            for child_id in &m.items {
-                                if let Some(child) = krate.index.get(child_id) {
-                                    if matches!(
-                                        child.visibility,
-                                        rustdoc_types::Visibility::Public
-                                    ) {
-                                        // Public items from glob re-exports should be registered
-                                        if registry.get_path(*child_id).is_none() {
-                                            eprintln!(
-                                                "Note: Item {:?} from glob re-export not in registry",
-                                                child.name
-                                            );
-                                        }
-                                    }
-                                }
-                            }
-                        }
+        if let rustdoc_types::ItemEnum::Use(use_item) = &item.inner
+            && use_item.is_glob
+            && matches!(item.visibility, rustdoc_types::Visibility::Public)
+            && let Some(target_id) = &use_item.id
+            && let Some(target) = krate.index.get(target_id)
+            && let rustdoc_types::ItemEnum::Module(m) = &target.inner
+        {
+            // Check that public items from the target module are registered
+            for child_id in &m.items {
+                if let Some(child) = krate.index.get(child_id)
+                    && matches!(child.visibility, rustdoc_types::Visibility::Public)
+                {
+                    // Public items from glob re-exports should be registered
+                    if registry.get_path(*child_id).is_none() {
+                        eprintln!(
+                            "Note: Item {:?} from glob re-export not in registry",
+                            child.name
+                        );
                     }
                 }
             }

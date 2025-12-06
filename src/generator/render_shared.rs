@@ -351,9 +351,7 @@ pub fn render_trait_item<F>(
                 .sig
                 .inputs
                 .iter()
-                .map(|(param_name, ty)| {
-                    format!("{param_name}: {}", type_renderer.render_type(ty))
-                })
+                .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
                 .collect();
 
             let ret = f
@@ -433,9 +431,7 @@ pub fn render_function_definition(
         .sig
         .inputs
         .iter()
-        .map(|(param_name, ty)| {
-            format!("{param_name}: {}", type_renderer.render_type(ty))
-        })
+        .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
         .collect();
 
     let ret = f
@@ -562,14 +558,14 @@ pub fn render_macro_heading(md: &mut String, name: &str) {
 /// * `krate` - The crate containing item definitions
 /// * `type_renderer` - Type renderer for types
 /// * `process_docs` - Optional closure to process documentation
-/// * `create_type_link` - Optional closure to create links for types (id -> Option<markdown_link>)
+/// * `create_type_link` - Optional closure to create links for types `(id -> Option<markdown_link>)`
 pub fn render_impl_items<F, L>(
     md: &mut String,
     impl_block: &Impl,
     krate: &Crate,
     type_renderer: &TypeRenderer,
-    process_docs: Option<F>,
-    create_type_link: Option<L>,
+    process_docs: &Option<F>,
+    create_type_link: &Option<L>,
 ) where
     F: Fn(&Item) -> Option<String>,
     L: Fn(rustdoc_types::Id) -> Option<String>,
@@ -580,15 +576,15 @@ pub fn render_impl_items<F, L>(
 
             match &item.inner {
                 ItemEnum::Function(f) => {
-                    render_impl_function(md, name, f, type_renderer);
+                    render_impl_function(md, name, f, *type_renderer);
 
                     // Add type links if link creator is provided
-                    if let Some(ref link_creator) = create_type_link {
-                        render_function_type_links_inline(md, f, type_renderer, link_creator);
+                    if let Some(link_creator) = create_type_link {
+                        render_function_type_links_inline(md, f, *type_renderer, link_creator);
                     }
 
                     // First line of docs as summary (with blank line before)
-                    if let Some(ref pf) = process_docs
+                    if let Some(pf) = process_docs
                         && let Some(docs) = pf(item)
                         && let Some(first_line) = docs.lines().next()
                     {
@@ -607,11 +603,7 @@ pub fn render_impl_items<F, L>(
 
                 ItemEnum::AssocType { type_, .. } => {
                     if let Some(ty) = type_ {
-                        _ = writeln!(
-                            md,
-                            "- `type {name} = {}`\n",
-                            type_renderer.render_type(ty)
-                        );
+                        _ = writeln!(md, "- `type {name} = {}`\n", type_renderer.render_type(ty));
                     } else {
                         _ = writeln!(md, "- `type {name}`\n");
                     }
@@ -630,7 +622,7 @@ pub fn render_impl_items<F, L>(
 fn render_function_type_links_inline<L>(
     md: &mut String,
     f: &rustdoc_types::Function,
-    type_renderer: &TypeRenderer,
+    type_renderer: TypeRenderer,
     create_link: &L,
 ) where
     L: Fn(rustdoc_types::Id) -> Option<String>,
@@ -675,7 +667,7 @@ fn render_impl_function(
     md: &mut String,
     name: &str,
     f: &rustdoc_types::Function,
-    type_renderer: &TypeRenderer,
+    type_renderer: TypeRenderer,
 ) {
     let generics = type_renderer.render_generics(&f.generics.params);
 
@@ -683,9 +675,7 @@ fn render_impl_function(
         .sig
         .inputs
         .iter()
-        .map(|(param_name, ty)| {
-            format!("{param_name}: {}", type_renderer.render_type(ty))
-        })
+        .map(|(param_name, ty)| format!("{param_name}: {}", type_renderer.render_type(ty)))
         .collect();
 
     let ret = f
@@ -725,6 +715,7 @@ pub fn append_docs(md: &mut String, docs: Option<String>) {
 /// Generate a sort key for an impl block for deterministic ordering.
 ///
 /// Combines trait name, generic params, and for-type to create a unique key.
+#[must_use]
 pub fn impl_sort_key(impl_block: &Impl, type_renderer: &TypeRenderer) -> String {
     let trait_name = impl_block
         .trait_

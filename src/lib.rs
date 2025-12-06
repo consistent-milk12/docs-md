@@ -78,6 +78,10 @@ pub enum Command {
 
 /// Arguments for the `docs` subcommand (build + generate).
 #[derive(Parser, Debug)]
+#[expect(
+    clippy::struct_excessive_bools,
+    reason = "Hm.. Cache lining optimization? Seems unnecessary for a CLI args struct."
+)]
 pub struct DocsArgs {
     /// Output directory for generated markdown files.
     ///
@@ -107,7 +111,7 @@ pub struct DocsArgs {
     #[arg(long, default_value_t = false)]
     pub no_mdbook: bool,
 
-    /// Skip generating search_index.json file.
+    /// Skip generating `search_index.json` file.
     #[arg(long, default_value_t = false)]
     pub no_search_index: bool,
 
@@ -128,6 +132,10 @@ pub struct DocsArgs {
 /// 1. A local rustdoc JSON file (`--path`)
 /// 2. A directory of rustdoc JSON files (`--dir`)
 #[derive(Parser, Debug, Default)]
+#[expect(
+    clippy::struct_excessive_bools,
+    reason = "Hm.. Cache lining optimization? Seems unnecessary for a CLI args struct."
+)]
 pub struct GenerateArgs {
     /// Path to a local rustdoc JSON file.
     ///

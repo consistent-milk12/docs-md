@@ -240,7 +240,7 @@ impl<'a> TypeRenderer<'a> {
     /// - Angle brackets: `<T, U, Item = V>` (most common)
     /// - Parenthesized: `(A, B) -> C` (for Fn traits)
     /// - Return type notation: `(..)` (experimental)
-    fn render_generic_args(&self, args: &GenericArgs) -> String {
+    fn render_generic_args(self, args: &GenericArgs) -> String {
         match args {
             // Standard angle bracket syntax: `<T, U, Item = V>`
             GenericArgs::AngleBracketed { args, constraints } => {
@@ -286,7 +286,7 @@ impl<'a> TypeRenderer<'a> {
     /// - Types: `T`, `Vec<u32>`
     /// - Const values: `N`, `{expr}`
     /// - Inferred: `_`
-    fn render_generic_arg<'t>(&self, arg: &'t GenericArg) -> Cow<'t, str> {
+    fn render_generic_arg(self, arg: &GenericArg) -> Cow<'_, str> {
         match arg {
             // Zero allocation - borrow from input
             GenericArg::Lifetime(lt) => Cow::Borrowed(lt),
@@ -295,9 +295,7 @@ impl<'a> TypeRenderer<'a> {
 
             // For consts, prefer the computed value; fall back to the expression
             // These are already owned strings in rustdoc_types
-            GenericArg::Const(c) => {
-                Cow::Borrowed(c.value.as_deref().unwrap_or(&c.expr))
-            },
+            GenericArg::Const(c) => Cow::Borrowed(c.value.as_deref().unwrap_or(&c.expr)),
 
             // Zero allocation - static string
             GenericArg::Infer => Cow::Borrowed("_"),
@@ -309,7 +307,7 @@ impl<'a> TypeRenderer<'a> {
     /// These appear in generic bounds:
     /// - Equality: `Item = u32`
     /// - Bound: `Item: Display`
-    fn render_assoc_item_constraint(&self, constraint: &AssocItemConstraint) -> String {
+    fn render_assoc_item_constraint(self, constraint: &AssocItemConstraint) -> String {
         // The constraint may have its own generic args (rare)
         let args = constraint
             .args
@@ -338,7 +336,7 @@ impl<'a> TypeRenderer<'a> {
     /// Render a term, which is either a type or a constant.
     ///
     /// Used in associated type constraints like `Item = u32`.
-    fn render_term<'t>(&self, term: &'t Term) -> Cow<'t, str> {
+    fn render_term(self, term: &Term) -> Cow<'_, str> {
         match term {
             Term::Type(ty) => self.render_type(ty),
 
@@ -436,7 +434,7 @@ impl<'a> TypeRenderer<'a> {
     /// - Lifetime: `'a`, `'a: 'b + 'c`
     /// - Type: `T`, `T: Clone + Send`
     /// - Const: `const N: usize`
-    fn render_generic_param_def(&self, param: &GenericParamDef) -> Option<String> {
+    fn render_generic_param_def(self, param: &GenericParamDef) -> Option<String> {
         match &param.kind {
             // Lifetime parameter: `'a` or `'a: 'b + 'c`
             GenericParamDefKind::Lifetime { outlives } => {
@@ -528,7 +526,7 @@ impl<'a> TypeRenderer<'a> {
     /// - Bound: `T: Clone + Send`
     /// - Lifetime: `'a: 'b + 'c`
     /// - Equality: `<T as Iterator>::Item = u32`
-    fn render_where_predicate(&self, pred: &rustdoc_types::WherePredicate) -> String {
+    fn render_where_predicate(self, pred: &rustdoc_types::WherePredicate) -> String {
         match pred {
             // Type bound predicate: `T: Clone + Send`
             rustdoc_types::WherePredicate::BoundPredicate { type_, bounds, .. } => {
@@ -555,7 +553,7 @@ impl<'a> TypeRenderer<'a> {
     /// Collect all linkable type names from a type.
     ///
     /// This extracts type names that could potentially be linked to their definitions.
-    /// Returns a set of (type_name, type_id) pairs for `ResolvedPath` types.
+    /// Returns a set of (`ype_name`, `type_id`) pairs for `ResolvedPath` types.
     ///
     /// # Linkable Types
     ///
@@ -567,6 +565,7 @@ impl<'a> TypeRenderer<'a> {
     /// - Primitives (e.g., `u32`, `bool`)
     /// - Generic parameters (e.g., `T`, `U`)
     /// - Inferred types (`_`)
+    #[must_use]
     pub fn collect_linkable_types(&self, ty: &Type) -> Vec<(String, rustdoc_types::Id)> {
         let mut result = Vec::new();
         self.collect_types_recursive(ty, &mut result);
@@ -574,7 +573,7 @@ impl<'a> TypeRenderer<'a> {
     }
 
     /// Recursively collect linkable types from a type tree.
-    fn collect_types_recursive(&self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>) {
+    fn collect_types_recursive(self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>) {
         match ty {
             Type::ResolvedPath(path) => {
                 // Extract the simple name (last segment of the path)
@@ -602,7 +601,9 @@ impl<'a> TypeRenderer<'a> {
                 self.collect_types_recursive(type_, result);
             },
 
-            Type::Slice(inner) | Type::Array { type_: inner, .. } | Type::Pat { type_: inner, .. } => {
+            Type::Slice(inner)
+            | Type::Array { type_: inner, .. }
+            | Type::Pat { type_: inner, .. } => {
                 self.collect_types_recursive(inner, result);
             },
 
@@ -634,7 +635,9 @@ impl<'a> TypeRenderer<'a> {
                 }
             },
 
-            Type::QualifiedPath { self_type, trait_, .. } => {
+            Type::QualifiedPath {
+                self_type, trait_, ..
+            } => {
                 self.collect_types_recursive(self_type, result);
                 if let Some(t) = trait_ {
                     let name = t.path.split("::").last().unwrap_or(&t.path);
@@ -649,7 +652,7 @@ impl<'a> TypeRenderer<'a> {
 
     /// Collect types from generic arguments.
     fn collect_from_generic_args(
-        &self,
+        self,
         args: &GenericArgs,
         result: &mut Vec<(String, rustdoc_types::Id)>,
     ) {

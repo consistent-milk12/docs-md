@@ -43,11 +43,7 @@ pub fn is_blanket_impl(impl_block: &Impl) -> bool {
     };
 
     // Extract the trait name (last segment of the path)
-    let trait_name = trait_ref
-        .path
-        .split("::")
-        .last()
-        .unwrap_or(&trait_ref.path);
+    let trait_name = trait_ref.path.split("::").last().unwrap_or(&trait_ref.path);
 
     BLANKET_TRAITS.contains(&trait_name)
 }
@@ -210,8 +206,8 @@ impl<'a> ImplRenderer<'a> {
             impl_block,
             krate,
             &self.type_renderer,
-            Some(|item: &Item| self.process_docs(item)),
-            Some(|id: rustdoc_types::Id| self.ctx.create_link(id, self.current_file)),
+            &Some(|item: &Item| self.process_docs(item)),
+            &Some(|id: rustdoc_types::Id| self.ctx.create_link(id, self.current_file)),
         );
     }
 
@@ -229,9 +225,9 @@ impl<'a> ImplRenderer<'a> {
                     .map(|a| match a {
                         rustdoc_types::GenericArg::Lifetime(lt) => Cow::Borrowed(lt.as_str()),
                         rustdoc_types::GenericArg::Type(ty) => self.type_renderer.render_type(ty),
-                        rustdoc_types::GenericArg::Const(c) => Cow::Borrowed(
-                            c.value.as_deref().unwrap_or(&c.expr),
-                        ),
+                        rustdoc_types::GenericArg::Const(c) => {
+                            Cow::Borrowed(c.value.as_deref().unwrap_or(&c.expr))
+                        },
                         rustdoc_types::GenericArg::Infer => Cow::Borrowed("_"),
                     })
                     .collect();
@@ -246,12 +242,10 @@ impl<'a> ImplRenderer<'a> {
                     match &c.binding {
                         rustdoc_types::AssocItemConstraintKind::Equality(term) => {
                             let term_str = match term {
-                                rustdoc_types::Term::Type(ty) => {
-                                    self.type_renderer.render_type(ty)
+                                rustdoc_types::Term::Type(ty) => self.type_renderer.render_type(ty),
+                                rustdoc_types::Term::Constant(c) => {
+                                    Cow::Borrowed(c.value.as_deref().unwrap_or(&c.expr))
                                 },
-                                rustdoc_types::Term::Constant(c) => Cow::Borrowed(
-                                    c.value.as_deref().unwrap_or(&c.expr),
-                                ),
                             };
                             Cow::Owned(format!("{}{constraint_args} = {term_str}", c.name))
                         },
@@ -263,7 +257,11 @@ impl<'a> ImplRenderer<'a> {
                             Cow::Owned(format!(
                                 "{}{constraint_args}: {}",
                                 c.name,
-                                bound_strs.iter().map(|s| s.as_ref()).collect::<Vec<_>>().join(" + ")
+                                bound_strs
+                                    .iter()
+                                    .map(AsRef::as_ref)
+                                    .collect::<Vec<_>>()
+                                    .join(" + ")
                             ))
                         },
                     }
@@ -274,7 +272,11 @@ impl<'a> ImplRenderer<'a> {
                 } else {
                     format!(
                         "<{}>",
-                        parts.iter().map(|s| s.as_ref()).collect::<Vec<_>>().join(", ")
+                        parts
+                            .iter()
+                            .map(AsRef::as_ref)
+                            .collect::<Vec<_>>()
+                            .join(", ")
                     )
                 }
             },
@@ -290,7 +292,11 @@ impl<'a> ImplRenderer<'a> {
                     .unwrap_or_default();
                 format!(
                     "({}){ret}",
-                    input_strs.iter().map(|s| s.as_ref()).collect::<Vec<_>>().join(", ")
+                    input_strs
+                        .iter()
+                        .map(AsRef::as_ref)
+                        .collect::<Vec<_>>()
+                        .join(", ")
                 )
             },
 

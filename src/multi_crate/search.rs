@@ -116,7 +116,7 @@ impl<'a> SearchIndexGenerator<'a> {
     /// * `include_private` - Whether to include non-public items
     /// * `rendered_items` - Map of crate name to set of rendered item IDs
     #[must_use]
-    pub fn new(
+    pub const fn new(
         crates: &'a CrateCollection,
         include_private: bool,
         rendered_items: HashMap<String, HashSet<Id>>,
@@ -186,10 +186,10 @@ impl<'a> SearchIndexGenerator<'a> {
             let Some(name) = &item.name else { continue };
 
             // Filter by rendered items - only include items that were actually rendered
-            if let Some(rendered) = rendered_set {
-                if !rendered.contains(id) {
-                    continue;
-                }
+            if let Some(rendered) = rendered_set
+                && !rendered.contains(id)
+            {
+                continue;
             }
 
             // Filter by visibility unless include_private is set

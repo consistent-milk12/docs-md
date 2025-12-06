@@ -18,7 +18,7 @@ use crate::linker::{LinkRegistry, slugify_anchor};
 /// Most crate names, item names, and short paths fit inline.
 type Str = CompactString;
 
-/// Key type for registry lookups: (crate_name, item_id).
+/// Key type for registry lookups: `(crate_name, item_id)`.
 ///
 /// Uses `CompactString` for memory efficiency - most crate names are short
 /// and stored inline without heap allocation.
@@ -26,7 +26,7 @@ type RegistryKey = (Str, Id);
 
 /// Borrowed key for zero-allocation lookups.
 ///
-/// Must hash identically to `RegistryKey` (tuple of CompactString, Id).
+/// Must hash identically to `RegistryKey` tuple of `(CompactString, Id)`.
 #[derive(PartialEq, Eq)]
 struct BorrowedKey<'a>(&'a str, Id);
 
@@ -38,7 +38,6 @@ impl Hash for BorrowedKey<'_> {
         self.1.hash(state);
     }
 }
-
 
 /// Allow comparing `BorrowedKey` with `RegistryKey`.
 fn keys_match(stored: &RegistryKey, borrowed: &BorrowedKey<'_>) -> bool {
@@ -74,11 +73,11 @@ fn keys_match(stored: &RegistryKey, borrowed: &BorrowedKey<'_>) -> bool {
 #[derive(Debug, Default)]
 pub struct UnifiedLinkRegistry {
     /// Maps `(crate_name, item_id)` to the file path within output.
-    /// Uses hashbrown for raw_entry API (zero-alloc lookups).
+    /// Uses hashbrown for `raw_entry` API (zero-alloc lookups).
     item_paths: hashbrown::HashMap<RegistryKey, Str>,
 
     /// Maps `(crate_name, item_id)` to the item's display name.
-    /// Uses hashbrown for raw_entry API (zero-alloc lookups).
+    /// Uses hashbrown for `raw_entry` API (zero-alloc lookups).
     item_names: hashbrown::HashMap<RegistryKey, Str>,
 
     /// Maps short names to all `(crate_name, item_id)` pairs.
@@ -238,24 +237,18 @@ impl UnifiedLinkRegistry {
 
                 if use_item.is_glob {
                     // Register items from glob re-export target
-                    if let Some(target_id) = &use_item.id {
-                        if let Some(target_module) = krate.index.get(target_id) {
-                            if let ItemEnum::Module(module) = &target_module.inner {
-                                for child_id in &module.items {
-                                    if let Some(child) = krate.index.get(child_id) {
-                                        // Check visibility
-                                        if !matches!(child.visibility, Visibility::Public) {
-                                            continue;
-                                        }
-                                        let child_name = child.name.as_deref().unwrap_or("unnamed");
-                                        self.register_item(
-                                            crate_name,
-                                            *child_id,
-                                            child_name,
-                                            &file_path,
-                                        );
-                                    }
+                    if let Some(target_id) = &use_item.id
+                        && let Some(target_module) = krate.index.get(target_id)
+                        && let ItemEnum::Module(module) = &target_module.inner
+                    {
+                        for child_id in &module.items {
+                            if let Some(child) = krate.index.get(child_id) {
+                                // Check visibility
+                                if !matches!(child.visibility, Visibility::Public) {
+                                    continue;
                                 }
+                                let child_name = child.name.as_deref().unwrap_or("unnamed");
+                                self.register_item(crate_name, *child_id, child_name, &file_path);
                             }
                         }
                     }
@@ -484,8 +477,9 @@ impl UnifiedLinkRegistry {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use hashbrown::DefaultHashBuilder;
+
+    use super::*;
 
     #[test]
     fn test_cross_crate_path_same_crate() {
@@ -546,7 +540,7 @@ mod tests {
         );
     }
 
-    /// Test that raw_entry lookup works correctly.
+    /// Test that `raw_entry` lookup works correctly.
     #[test]
     fn test_raw_entry_lookup() {
         let mut registry = UnifiedLinkRegistry::default();

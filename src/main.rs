@@ -101,10 +101,7 @@ fn run_docs_command(args: DocsArgs) -> Result<()> {
             "-Z unstable-options --output-format json --document-private-items",
         );
     } else {
-        cargo_cmd.env(
-            "RUSTDOCFLAGS",
-            "-Z unstable-options --output-format json",
-        );
+        cargo_cmd.env("RUSTDOCFLAGS", "-Z unstable-options --output-format json");
     }
 
     // Add any extra cargo args
@@ -218,25 +215,30 @@ fn detect_crate_name() -> Option<String> {
 
     // Simple parsing - look for name = "..." in [package] section
     let mut in_package = false;
+
     for line in cargo_toml.lines() {
         let trimmed = line.trim();
+
         if trimmed == "[package]" {
             in_package = true;
             continue;
         }
+
         if trimmed.starts_with('[') {
             in_package = false;
             continue;
         }
-        if in_package && trimmed.starts_with("name") {
-            if let Some(name) = trimmed
+
+        if in_package
+            && trimmed.starts_with("name")
+            && let Some(name) = trimmed
                 .split('=')
                 .nth(1)
                 .map(|s| s.trim().trim_matches('"').trim_matches('\''))
-            {
-                eprintln!("Detected primary crate: {name}");
-                return Some(name.to_string());
-            }
+        {
+            eprintln!("Detected primary crate: {name}");
+
+            return Some(name.to_string());
         }
     }
 

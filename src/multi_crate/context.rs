@@ -12,11 +12,11 @@ use regex::Regex;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
 
 use crate::Args;
-use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
 use crate::generator::doc_links::{
     convert_html_links, convert_path_reference_links, strip_duplicate_title,
     strip_reference_definitions, unhide_code_lines,
 };
+use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
 use crate::linker::{LinkRegistry, slugify_anchor};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
 
@@ -419,23 +419,22 @@ impl<'a> SingleCrateView<'a> {
         for item in source_krate.index.values() {
             if let ItemEnum::Impl(impl_block) = &item.inner {
                 // Check if this impl targets our type using existing helper
-                if let Some(target_id) = Self::get_impl_target_id_from_type(&impl_block.for_) {
-                    if target_id == id {
-                        result.push(impl_block);
-                    }
+                if let Some(target_id) = Self::get_impl_target_id_from_type(&impl_block.for_)
+                    && target_id == id
+                {
+                    result.push(impl_block);
                 }
             }
         }
 
         // Also include cross-crate impls if this is our current crate
-        if std::ptr::eq(source_krate, self.krate) {
-            if let Some(item) = self.krate.index.get(&id)
-                && let Some(type_name) = &item.name
-                && let Some(cross_crate_map) = self.cross_crate_impls
-                && let Some(external_impls) = cross_crate_map.get(type_name)
-            {
-                result.extend(external_impls.iter().copied());
-            }
+        if std::ptr::eq(source_krate, self.krate)
+            && let Some(item) = self.krate.index.get(&id)
+            && let Some(type_name) = &item.name
+            && let Some(cross_crate_map) = self.cross_crate_impls
+            && let Some(external_impls) = cross_crate_map.get(type_name)
+        {
+            result.extend(external_impls.iter().copied());
         }
 
         result
@@ -1123,7 +1122,11 @@ impl<'a> SingleCrateView<'a> {
     /// compute_cross_crate_path("a/b/c/index.md", "other", "index.md")
     ///   → "../../../../other/index.md"
     /// ```
-    fn compute_cross_crate_path(current_local: &str, target_crate: &str, target_path: &str) -> String {
+    fn compute_cross_crate_path(
+        current_local: &str,
+        target_crate: &str,
+        target_path: &str,
+    ) -> String {
         // Count depth: number of '/' in current path
         // "agent/index.md" has 1 slash → depth = 1
         let depth = current_local.matches('/').count();
@@ -1267,8 +1270,7 @@ impl LinkResolver for SingleCrateView<'_> {
         let display_name = self
             .registry
             .get_name(self.crate_name, id)
-            .map(|s| s.as_str())
-            .unwrap_or("item");
+            .map_or("item", |s| s.as_str());
 
         // Strip crate prefix from current_file to get crate-local path
         // "crate_name/module/index.md" -> "module/index.md"
@@ -1302,10 +1304,7 @@ mod tests {
 
         #[test]
         fn simple_type_no_anchor() {
-            assert_eq!(
-                SingleCrateView::split_type_and_anchor("Vec"),
-                ("Vec", None)
-            );
+            assert_eq!(SingleCrateView::split_type_and_anchor("Vec"), ("Vec", None));
         }
 
         #[test]
@@ -1439,7 +1438,10 @@ mod tests {
 
         #[test]
         fn no_slash_returns_as_is() {
-            assert_eq!(SingleCrateView::strip_crate_prefix("simple.md"), "simple.md");
+            assert_eq!(
+                SingleCrateView::strip_crate_prefix("simple.md"),
+                "simple.md"
+            );
         }
     }
 
@@ -1452,27 +1454,37 @@ mod tests {
 
         #[test]
         fn qualified_path_is_external() {
-            assert!(SingleCrateView::looks_like_external_reference("std::io::Error"));
+            assert!(SingleCrateView::looks_like_external_reference(
+                "std::io::Error"
+            ));
         }
 
         #[test]
         fn crate_path_is_external() {
-            assert!(SingleCrateView::looks_like_external_reference("regex::Regex"));
+            assert!(SingleCrateView::looks_like_external_reference(
+                "regex::Regex"
+            ));
         }
 
         #[test]
         fn std_prefix_is_external() {
-            assert!(SingleCrateView::looks_like_external_reference("std::vec::Vec"));
+            assert!(SingleCrateView::looks_like_external_reference(
+                "std::vec::Vec"
+            ));
         }
 
         #[test]
         fn core_prefix_is_external() {
-            assert!(SingleCrateView::looks_like_external_reference("core::mem::drop"));
+            assert!(SingleCrateView::looks_like_external_reference(
+                "core::mem::drop"
+            ));
         }
 
         #[test]
         fn alloc_prefix_is_external() {
-            assert!(SingleCrateView::looks_like_external_reference("alloc::string::String"));
+            assert!(SingleCrateView::looks_like_external_reference(
+                "alloc::string::String"
+            ));
         }
 
         #[test]
@@ -1482,12 +1494,16 @@ mod tests {
 
         #[test]
         fn pascal_case_not_external() {
-            assert!(!SingleCrateView::looks_like_external_reference("ConfigBuilder"));
+            assert!(!SingleCrateView::looks_like_external_reference(
+                "ConfigBuilder"
+            ));
         }
 
         #[test]
         fn derive_suffix_is_external() {
-            assert!(SingleCrateView::looks_like_external_reference("serde_derive"));
+            assert!(SingleCrateView::looks_like_external_reference(
+                "serde_derive"
+            ));
         }
     }
 
@@ -1530,7 +1546,11 @@ mod tests {
         fn from_nested_to_nested() {
             // From nested module to nested module in another crate
             assert_eq!(
-                SingleCrateView::compute_cross_crate_path("agent/index.md", "http", "status/index.md"),
+                SingleCrateView::compute_cross_crate_path(
+                    "agent/index.md",
+                    "http",
+                    "status/index.md"
+                ),
                 "../../http/status/index.md"
             );
         }
@@ -1540,11 +1560,7 @@ mod tests {
             // From deeply nested (3 levels) to another crate
             // depth = 3, needs "../" * 4 = "../../../../"
             assert_eq!(
-                SingleCrateView::compute_cross_crate_path(
-                    "a/b/c/index.md",
-                    "other",
-                    "index.md"
-                ),
+                SingleCrateView::compute_cross_crate_path("a/b/c/index.md", "other", "index.md"),
                 "../../../../other/index.md"
             );
         }
@@ -1553,11 +1569,7 @@ mod tests {
         fn to_deeply_nested() {
             // From root to deeply nested in another crate
             assert_eq!(
-                SingleCrateView::compute_cross_crate_path(
-                    "index.md",
-                    "target",
-                    "x/y/z/index.md"
-                ),
+                SingleCrateView::compute_cross_crate_path("index.md", "target", "x/y/z/index.md"),
                 "../target/x/y/z/index.md"
             );
         }
@@ -1566,11 +1578,7 @@ mod tests {
         fn both_deeply_nested() {
             // Both source and target are deeply nested
             assert_eq!(
-                SingleCrateView::compute_cross_crate_path(
-                    "a/b/index.md",
-                    "target",
-                    "x/y/index.md"
-                ),
+                SingleCrateView::compute_cross_crate_path("a/b/index.md", "target", "x/y/index.md"),
                 "../../../target/x/y/index.md"
             );
         }

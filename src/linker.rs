@@ -91,11 +91,9 @@ fn slugify_anchor_ascii(name: &str) -> String {
                 if ch.is_alphanumeric() {
                     result.push(ch.to_ascii_lowercase());
                     last_was_hyphen = false;
-                } else if ch == ' ' || ch == '_' || ch == '-' {
-                    if !last_was_hyphen {
-                        result.push('-');
-                        last_was_hyphen = true;
-                    }
+                } else if (ch == ' ' || ch == '_' || ch == '-') && !last_was_hyphen {
+                    result.push('-');
+                    last_was_hyphen = true;
                 }
             },
             _ => {},
@@ -130,11 +128,9 @@ fn slugify_anchor_impl(name: &str) -> String {
                         result.push(lower_ch);
                     }
                     last_was_hyphen = false;
-                } else if ch == ' ' || ch == '_' || ch == '-' {
-                    if !last_was_hyphen {
-                        result.push('-');
-                        last_was_hyphen = true;
-                    }
+                } else if (ch == ' ' || ch == '_' || ch == '-') && !last_was_hyphen {
+                    result.push('-');
+                    last_was_hyphen = true;
                 }
             },
             _ => {},
@@ -269,9 +265,7 @@ impl LinkRegistry {
                                             registry
                                                 .item_paths
                                                 .insert(*child_id, "index.md".to_string());
-                                            registry
-                                                .item_names
-                                                .insert(*child_id, name.to_string());
+                                            registry.item_names.insert(*child_id, name.to_string());
                                         }
                                     }
                                 }
@@ -307,6 +301,7 @@ impl LinkRegistry {
     /// * `module_prefix` - Prefix for building child paths (e.g., "parent" or "`parent__child`")
     /// * `flat_format` - Whether to use flat naming convention
     /// * `include_private` - Whether to include non-public items
+    #[expect(clippy::too_many_arguments, reason = "Complex method")]
     fn register_module_items(
         &mut self,
         krate: &Crate,
@@ -405,9 +400,15 @@ impl LinkRegistry {
         path: &str,
         include_private: bool,
     ) {
-        let Some(target_id) = &use_item.id else { return };
-        let Some(target_module) = krate.index.get(target_id) else { return };
-        let ItemEnum::Module(module) = &target_module.inner else { return };
+        let Some(target_id) = &use_item.id else {
+            return;
+        };
+        let Some(target_module) = krate.index.get(target_id) else {
+            return;
+        };
+        let ItemEnum::Module(module) = &target_module.inner else {
+            return;
+        };
 
         for child_id in &module.items {
             // Skip if already registered
@@ -415,7 +416,9 @@ impl LinkRegistry {
                 continue;
             }
 
-            let Some(child) = krate.index.get(child_id) else { continue };
+            let Some(child) = krate.index.get(child_id) else {
+                continue;
+            };
 
             // Visibility filter
             if !include_private && !matches!(child.visibility, Visibility::Public) {
