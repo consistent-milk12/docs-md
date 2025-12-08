@@ -59,7 +59,7 @@ clean: check-cargo
 build: check-cargo
 	@echo "$(YELLOW)Building release binary...$(RESET)"
 	@cargo build --release
-	@echo "$(GREEN)Build complete: target/release/docs_md$(RESET)"
+	@echo "$(GREEN)Build complete: target/release/cargo-docs-md$(RESET)"
 
 # Generate rustdoc JSON with private items
 rustdoc: check-nightly
@@ -69,8 +69,8 @@ rustdoc: check-nightly
 
 # Generate markdown documentation (assumes binary is built)
 generate:
-	@if [ ! -f ./target/release/docs_md ]; then \
-		echo "$(RED)Error: Binary not found at target/release/docs_md$(RESET)"; \
+	@if [ ! -f ./target/release/cargo-docs-md ]; then \
+		echo "$(RED)Error: Binary not found at target/release/cargo-docs-md$(RESET)"; \
 		echo "Run 'make build' first"; \
 		exit 1; \
 	fi
@@ -80,7 +80,7 @@ generate:
 		exit 1; \
 	fi
 	@echo "$(YELLOW)Generating markdown documentation...$(RESET)"
-	@./target/release/docs_md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate docs_md
+	@./target/release/cargo-docs-md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate cargo_docs_md
 	@echo "$(GREEN)Markdown docs generated in docs/$(RESET)"
 
 # Quick regenerate (skip cargo clean, just rebuild docs)
@@ -90,7 +90,7 @@ quick: check-nightly
 	@echo "$(YELLOW)Building release binary...$(RESET)"
 	@cargo build --release
 	@echo "$(YELLOW)Generating markdown documentation...$(RESET)"
-	@./target/release/docs_md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate docs_md
+	@./target/release/cargo-docs-md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate cargo_docs_md
 	@echo "$(GREEN)Quick rebuild complete - docs in docs/$(RESET)"
 
 # Run tests

@@ -125,6 +125,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "46c5e41b57b8bba42a04676d81cb89e9ee8e859a1a66f80a5a72e1cb76b34d43"
 
 [[package]]
+name = "cargo-docs-md"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "compact_str",
+ "divan",
+ "fs-err",
+ "hashbrown",
+ "indicatif",
+ "insta",
+ "miette",
+ "pathdiff",
+ "rayon",
+ "regex",
+ "rustdoc-types",
+ "serde",
+ "serde_json",
+ "simd-json",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
+ "unicode-normalization",
+ "walkdir",
+]
+
+[[package]]
 name = "castaway"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -279,32 +305,6 @@ dependencies = [
  "proc-macro2",
  "quote",
  "syn",
-]
-
-[[package]]
-name = "docs_md"
-version = "0.1.0"
-dependencies = [
- "clap",
- "compact_str",
- "divan",
- "fs-err",
- "hashbrown",
- "indicatif",
- "insta",
- "miette",
- "pathdiff",
- "rayon",
- "regex",
- "rustdoc-types",
- "serde",
- "serde_json",
- "simd-json",
- "thiserror",
- "tracing",
- "tracing-subscriber",
- "unicode-normalization",
- "walkdir",
 ]
 
 [[package]]

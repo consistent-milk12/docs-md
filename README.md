@@ -25,7 +25,10 @@ By default, all items (including private ones) are documented. Use `--exclude-pr
 You'll need Rust (nightly toolchain too because rustdoc-types is still unstable) installed. Then:
 
 ```bash
-# Direct install from git
+# Install from crates.io
+cargo install cargo-docs-md
+
+# Or direct install from git
 cargo install --git https://github.com/consistent-milk12/docs-md
 
 # Or clone and install locally
@@ -44,13 +47,13 @@ The easiest way to generate docs—builds rustdoc JSON and generates markdown in
 
 ```bash
 # Generate docs for your project and all dependencies
-docs_md docs
+cargo docs-md docs
 
 # With options
-docs_md docs --primary-crate my_crate    # Prioritize your crate for links
-docs_md docs --clean                      # Full rebuild (cargo clean first)
-docs_md docs --exclude-private            # Only include public items
-docs_md docs -- --all-features            # Pass args to cargo doc
+cargo docs-md docs --primary-crate my_crate    # Prioritize your crate for links
+cargo docs-md docs --clean                      # Full rebuild (cargo clean first)
+cargo docs-md docs --exclude-private            # Only include public items
+cargo docs-md docs -- --all-features            # Pass args to cargo doc
 ```
 
 This requires the nightly toolchain (`rustup toolchain install nightly`).
@@ -75,13 +78,13 @@ _Single crate:_
 
 ```bash
 # Nested format (directory per module) - default
-docs_md --path target/doc/my_crate.json -o generated_docs/
+cargo docs-md --path target/doc/my_crate.json -o generated_docs/
 
 # Flat format (all files in one directory)
-docs_md --path target/doc/my_crate.json -o generated_docs/ --format flat
+cargo docs-md --path target/doc/my_crate.json -o generated_docs/ --format flat
 
 # Exclude private items (public only)
-docs_md --path target/doc/my_crate.json -o generated_docs/ --exclude-private
+cargo docs-md --path target/doc/my_crate.json -o generated_docs/ --exclude-private
 ```
 
 _Multiple crates (workspace or with dependencies):_
@@ -90,16 +93,16 @@ Multi-crate mode always uses a nested structure (one directory per crate), regar
 
 ```bash
 # Basic multi-crate generation
-docs_md --dir target/doc/ -o generated_docs/
+cargo docs-md --dir target/doc/ -o generated_docs/
 
 # With mdBook support (generates SUMMARY.md)
-docs_md --dir target/doc/ -o generated_docs/ --mdbook
+cargo docs-md --dir target/doc/ -o generated_docs/ --mdbook
 
 # With search index
-docs_md --dir target/doc/ -o generated_docs/ --mdbook --search-index
+cargo docs-md --dir target/doc/ -o generated_docs/ --mdbook --search-index
 
 # Prioritize your crate for ambiguous links
-docs_md --dir target/doc/ -o generated_docs/ --mdbook --primary-crate my_crate
+cargo docs-md --dir target/doc/ -o generated_docs/ --mdbook --primary-crate my_crate
 ```
 
 ### Development Scripts
@@ -211,7 +214,6 @@ repo yet - should probably be fine though.
 ## What's In Development
 
 - **Crate graph visualization** - Show dependency relationships between crates
-- Cargo subcommand (`cargo docs-md`)
 - Incremental generation
 
 ## Dependencies
@@ -236,6 +238,6 @@ Issues and PRs welcome. The codebase should be FULLY DOCUMENTED (should not buil
 
 ## License
 
-MIT or Apache-2.0, pick whichever works for you.
+MIT
 
 This was mostly developed for personal use. If it's useful to you too, that's great. If you find bugs or have ideas, let me know.

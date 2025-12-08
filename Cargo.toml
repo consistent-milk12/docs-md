@@ -1,7 +1,18 @@
 [package]
-name = "docs_md"
+name = "cargo-docs-md"
 version = "0.1.0"
 edition = "2024"
+description = "Generate per-module markdown documentation from rustdoc JSON output"
+license = "MIT"
+repository = "https://github.com/consistent-milk12/docs-md"
+readme = "README.md"
+keywords = ["documentation", "rustdoc", "markdown", "mdbook"]
+categories = ["development-tools", "command-line-utilities"]
+exclude = ["SourceCode/", "generated_docs/", "benches/"]
+
+[[bin]]
+name = "cargo-docs-md"
+path = "src/main.rs"
 
 [dependencies]
 rustdoc-types = "0.57.0"

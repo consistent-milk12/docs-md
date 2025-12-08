@@ -59,7 +59,7 @@ clean: check-cargo
 build: check-cargo
     @echo "{{yellow}}Building release binary...{{reset}}"
     cargo build --release
-    @echo "{{green}}Build complete: target/release/docs_md{{reset}}"
+    @echo "{{green}}Build complete: target/release/cargo-docs-md{{reset}}"
 
 # Generate rustdoc JSON with private items
 rustdoc: check-nightly
@@ -71,8 +71,8 @@ rustdoc: check-nightly
 generate:
     #!/usr/bin/env bash
     set -euo pipefail
-    if [[ ! -f ./target/release/docs_md ]]; then
-        echo -e "{{red}}Error: Binary not found at target/release/docs_md{{reset}}"
+    if [[ ! -f ./target/release/cargo-docs-md ]]; then
+        echo -e "{{red}}Error: Binary not found at target/release/cargo-docs-md{{reset}}"
         echo "Run 'just build' first"
         exit 1
     fi
@@ -82,7 +82,7 @@ generate:
         exit 1
     fi
     echo -e "{{yellow}}Generating markdown documentation...{{reset}}"
-    ./target/release/docs_md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate docs_md --include-private
+    ./target/release/cargo-docs-md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate cargo_docs_md
     echo -e "{{green}}Markdown docs generated in docs/{{reset}}"
 
 # Quick regenerate (skip cargo clean, just rebuild docs)
@@ -92,7 +92,7 @@ quick: check-nightly
     @echo "{{yellow}}Building release binary...{{reset}}"
     cargo build --release
     @echo "{{yellow}}Generating markdown documentation...{{reset}}"
-    ./target/release/docs_md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate docs_md --include-private
+    ./target/release/cargo-docs-md --dir target/doc/ -o docs/ --mdbook --search-index --primary-crate cargo_docs_md
     @echo "{{green}}Quick rebuild complete - docs in docs/{{reset}}"
 
 # Run tests

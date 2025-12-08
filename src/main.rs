@@ -30,9 +30,9 @@ use Internals::multi_crate::{MultiCrateGenerator, MultiCrateParser};
 use Internals::parser::Parser as InternalParser;
 use Internals::{Cli, Command as CliCommand, DocsArgs, GenerateArgs};
 use clap::Parser;
-use docs_md as Internals;
+use cargo_docs_md as Internals;
 #[cfg(feature = "trace")]
-use docs_md::logger::Logger;
+use cargo_docs_md::logger::Logger;
 use miette::{IntoDiagnostic, Result, miette};
 
 /// Entry point for the docs-md CLI tool.
