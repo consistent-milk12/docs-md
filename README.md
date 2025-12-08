@@ -27,6 +27,10 @@ I wanted something that mirrors how rustdoc actually organizes things: one file 
 You'll need Rust (nightly toolchain too because rustdoc-types is still unstable) installed. Then:
 
 ```bash
+# Direct install from git
+cargo install --git https://github.com/consistent-milk12/docs-md
+
+# Or clone and install locally
 git clone https://github.com/consistent-milk12/docs-md
 cd docs-md
 cargo install --path .
@@ -52,6 +56,8 @@ docs_md docs -- --all-features            # Pass args to cargo doc
 ```
 
 This requires the nightly toolchain (`rustup toolchain install nightly`).
+
+**Defaults:** The `docs` subcommand uses nested format and generates `SUMMARY.md` + `search_index.json` by default. Use `--format flat`, `--no-mdbook`, or `--no-search-index` to change this.
 
 ### Manual Two-Step Process
 
@@ -162,7 +168,7 @@ The tool reads rustdoc's JSON format (defined by the `rustdoc-types` crate) and 
 3. **Processes links** - Rustdoc JSON includes a `links` map that tells us what `[SomeType]` should point to. We resolve these to relative file paths.
 4. **Handles impl blocks** - Gathers trait implementations and inherent methods for each type
 
-For multi-crate mode, there's a `UnifiedLinkRegistry` that tracks items across all crates and resolves cross-crate references. When there's ambiguity (multiple crates have an item with the same name), it prefers: local crate → primary crate (if specified) → alphabetically first.
+For multi-crate mode, there's a `UnifiedLinkRegistry` that tracks items across all crates and resolves cross-crate references. When there's ambiguity (multiple crates have an item with the same name), it prefers: local crate → primary crate (if specified) → modules over other items → first match.
 
 ### Architecture
 
@@ -198,7 +204,7 @@ To be honest, it's currently good enough for my use cases. There are some
 formatting issues here and there. I haven't tested it out on any EXTREMELY LARGE
 repo yet - should probably be fine though.
 
-- **External re-exports** - If a crate re-exports something from a dependency that isn't in your JSON files, we can't link to it. You'll see the re-export but not the full documentation. Workaround: include all dependency JSON files in `--dir`.
+- **External re-exports** - Re-exported items now link to their original definitions when all relevant crates are included. If a dependency's JSON isn't available, the re-export will link to the re-exporting module instead. Workaround: include all dependency JSON files in `--dir`.
 - **Duplicate headings** - Some crates start their docs with `# Crate Name`, which duplicates our generated heading. Basic mitigation exists for exact matches, but edge cases remain.
 - **No incremental builds** - Regenerates everything every time. Fine for most crates, slow for huge workspaces. Use `just quick` to skip cargo clean.
 - **Reference link conversion** - Markdown reference links like `[text][ref]` may get incorrectly processed in rare cases.
@@ -224,13 +230,14 @@ The heavy lifting is done by:
 - `hashbrown` - High-performance hash maps with raw_entry API for zero-allocation lookups
 - `unicode-normalization` - NFC normalization for anchor slugification
 - `compact_str` - Inline strings (≤24 bytes without heap allocation)
+- `tracing` - Structured logging (compiled out in release builds via `release_max_level_info`)
 
 ## Contributing
 
-Issues and PRs welcome. The codebase should FULLY DOCUMENTED (should not build if not, due to the `#![deny(missing_docs)]` lint in root lib.rs) each module has a `//!` header explaining what it does, and public functions have doc comments.
+Issues and PRs welcome. The codebase should be FULLY DOCUMENTED (should not build if not, due to the `#![deny(missing_docs)]` lint in root lib.rs). Each module has a `//!` header explaining what it does, and public functions have doc comments.
 
 ## License
 
 MIT or Apache-2.0, pick whichever works for you.
 
-_This was mostly developed for personal use. If it's useful to you too, that's great. If you find bugs or have ideas, let me know._
+This was mostly developed for personal use. If it's useful to you too, that's great. If you find bugs or have ideas, let me know.
