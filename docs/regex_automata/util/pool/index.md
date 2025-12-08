@@ -6,13 +6,17 @@
 
 A thread safe memory pool.
 
-The principal type in this module is a [`Pool`](inner/index.md). It main use case is for
+The principal type in this module is a [`Pool`](#pool). It main use case is for
 holding a thread safe collection of mutable scratch spaces (usually called
 `Cache` in this crate) that regex engines need to execute a search. This then
 permits sharing the same read-only regex object across multiple threads while
 having a quick way of reusing scratch space in a thread safe way. This avoids
 needing to re-create the scratch space for every search, which could wind up
 being quite expensive.
+
+## Modules
+
+- [`inner`](inner/index.md) - 
 
 ## Structs
 
@@ -87,7 +91,7 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
+- `fn get(self: &Self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
 
 #### Trait Implementations
 

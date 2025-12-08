@@ -12,7 +12,7 @@ Unlike the [`dense`](../dense/index.md) module, this module does not contain a b
 configuration specific for sparse DFAs. Instead, the intended way to build a
 sparse DFA is either by using a default configuration with its constructor
 [`sparse::DFA::new`](DFA::new), or by first configuring the construction of a
-dense DFA with `dense::Builder` and then calling `dense::DFA::to_sparse`.
+dense DFA with [`dense::Builder`](../dense/index.md) and then calling `dense::DFA::to_sparse`.
 For example, this configures a sparse DFA to do an overlapping search:
 
 ```rust
@@ -66,7 +66,7 @@ DFA.
 
 A sparse DFA can be built using the default configuration via the
 `DFA::new` constructor. Otherwise, one can configure various aspects of a
-dense DFA via `dense::Builder`, and then convert a dense DFA to a sparse
+dense DFA via [`dense::Builder`](../dense/index.md), and then convert a dense DFA to a sparse
 DFA using `dense::DFA::to_sparse`.
 
 In general, a sparse DFA supports all the same search operations as a dense

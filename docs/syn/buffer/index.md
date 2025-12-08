@@ -108,3 +108,52 @@ object and get a cursor to its first token with `begin()`.
 
 - `fn partial_cmp(self: &Self, other: &Self) -> Option<Ordering>`
 
+## Enums
+
+### `Entry`
+
+```rust
+enum Entry {
+    Group(proc_macro2::Group, usize),
+    Ident(proc_macro2::Ident),
+    Punct(proc_macro2::Punct),
+    Literal(proc_macro2::Literal),
+    End(isize, isize),
+}
+```
+
+Internal type which is used instead of `TokenTree` to represent a token tree
+within a `TokenBuffer`.
+
+## Functions
+
+### `same_scope`
+
+```rust
+fn same_scope(a: Cursor<'_>, b: Cursor<'_>) -> bool
+```
+
+### `same_buffer`
+
+```rust
+fn same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> bool
+```
+
+### `start_of_buffer`
+
+```rust
+fn start_of_buffer(cursor: Cursor<'_>) -> *const Entry
+```
+
+### `cmp_assuming_same_buffer`
+
+```rust
+fn cmp_assuming_same_buffer(a: Cursor<'_>, b: Cursor<'_>) -> std::cmp::Ordering
+```
+
+### `open_span_of_group`
+
+```rust
+fn open_span_of_group(cursor: Cursor<'_>) -> proc_macro2::Span
+```
+

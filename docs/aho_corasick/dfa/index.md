@@ -39,7 +39,7 @@ When possible, prefer using [`AhoCorasick`](crate::AhoCorasick) instead of
 this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the [`Automaton`](../automaton/index.md) trait implementation.
 
-This DFA can only be built by first constructing a `noncontiguous::NFA`.
+This DFA can only be built by first constructing a [`noncontiguous::NFA`](../nfa/noncontiguous/index.md).
 Both `DFA::new` and `Builder::build` do this for you automatically, but
 `Builder::build_from_noncontiguous` permits doing it explicitly.
 
@@ -166,9 +166,9 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../util/error/index.md)
+- `const DEAD: StateID`
 
-- `fn builder() -> Builder` — [`Builder`](#builder)
+- `fn set_matches(self: &mut Self, sid: StateID, pids: impl Iterator<Item = PatternID>)` — [`StateID`](../util/primitives/index.md), [`PatternID`](../util/primitives/index.md)
 
 #### Trait Implementations
 
@@ -265,4 +265,22 @@ their behavior is identical.
 ##### `impl Default for Builder`
 
 - `fn default() -> Builder` — [`Builder`](#builder)
+
+## Functions
+
+### `sparse_iter`
+
+```rust
+fn sparse_iter<F: FnMut(u8, u8, crate::util::primitives::StateID)>(nnfa: &noncontiguous::NFA, oldsid: crate::util::primitives::StateID, classes: &crate::util::alphabet::ByteClasses, f: F)
+```
+
+Iterate over all possible equivalence class transitions in this state.
+The closure is called for all transitions with a distinct equivalence
+class, even those not explicitly represented in this sparse state. For
+any implicitly defined transitions, the given closure is called with
+the fail state ID.
+
+The closure is guaranteed to be called precisely
+`byte_classes.alphabet_len()` times, once for every possible class in
+ascending order.
 

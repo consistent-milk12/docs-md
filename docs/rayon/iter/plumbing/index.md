@@ -9,6 +9,109 @@ low-level details -- users of parallel iterators should not need to
 interact with them directly.  See [the `plumbing` README][r] for a general overview.
 
 
+## Structs
+
+### `Splitter`
+
+```rust
+struct Splitter {
+    splits: usize,
+}
+```
+
+A splitter controls the policy for splitting into smaller work items.
+
+Thief-splitting is an adaptive policy that starts by splitting into
+enough jobs for every worker thread, and then resets itself whenever a
+job is actually stolen into a different thread.
+
+#### Fields
+
+- **`splits`**: `usize`
+
+  The `splits` tell us approximately how many remaining times we'd
+  like to split this job.  We always just divide it by two though, so
+  the effective number of pieces will be `next_power_of_two()`.
+
+#### Implementations
+
+- `fn new() -> Splitter` — [`Splitter`](#splitter)
+
+- `fn try_split(self: &mut Self, stolen: bool) -> bool`
+
+#### Trait Implementations
+
+##### `impl Clone for Splitter`
+
+- `fn clone(self: &Self) -> Splitter` — [`Splitter`](#splitter)
+
+##### `impl Copy for Splitter`
+
+##### `impl<T> IntoEither for Splitter`
+
+##### `impl<T> Pointable for Splitter`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+### `LengthSplitter`
+
+```rust
+struct LengthSplitter {
+    inner: Splitter,
+    min: usize,
+}
+```
+
+The length splitter is built on thief-splitting, but additionally takes
+into account the remaining length of the iterator.
+
+#### Fields
+
+- **`min`**: `usize`
+
+  The smallest we're willing to divide into.  Usually this is just 1,
+  but you can choose a larger working size with `with_min_len()`.
+
+#### Implementations
+
+- `fn new(min: usize, max: usize, len: usize) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
+
+- `fn try_split(self: &mut Self, len: usize, stolen: bool) -> bool`
+
+#### Trait Implementations
+
+##### `impl Clone for LengthSplitter`
+
+- `fn clone(self: &Self) -> LengthSplitter` — [`LengthSplitter`](#lengthsplitter)
+
+##### `impl Copy for LengthSplitter`
+
+##### `impl<T> IntoEither for LengthSplitter`
+
+##### `impl<T> Pointable for LengthSplitter`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
 ## Traits
 
 ### `ProducerCallback<T>`
@@ -257,7 +360,7 @@ where
 ```
 
 This helper function is used to "connect" a producer and a
-consumer. You may prefer to call `bridge()`, which wraps this
+consumer. You may prefer to call [`bridge()`](#bridge), which wraps this
 function. This function will draw items from `producer` and feed
 them to `consumer`, splitting and creating parallel tasks when
 needed.
@@ -277,5 +380,14 @@ where
     C: UnindexedConsumer<<P as >::Item>
 ```
 
-A variant of `bridge_producer_consumer()` where the producer is an unindexed producer.
+A variant of [`bridge_producer_consumer()`](#bridge-producer-consumer) where the producer is an unindexed producer.
+
+### `bridge_unindexed_producer_consumer`
+
+```rust
+fn bridge_unindexed_producer_consumer<P, C>(migrated: bool, splitter: Splitter, producer: P, consumer: C) -> <C as >::Result
+where
+    P: UnindexedProducer,
+    C: UnindexedConsumer<<P as >::Item>
+```
 

@@ -21,6 +21,10 @@ assert_eq!((0..100).sum::<u64>(), r);
 ```
 
 
+## Modules
+
+- [`private`](private/index.md) - These traits help drive integer type inference. Without them, an unknown `{integer}` type only
+
 ## Structs
 
 ### `Iter<T>`
@@ -63,7 +67,7 @@ assert_eq!(p, s);
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl<T: IndexedRangeInteger> IndexedParallelIterator for Iter<T>`
+##### `impl IndexedParallelIterator for Iter<char>`
 
 - `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -81,9 +85,9 @@ assert_eq!(p, s);
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
+##### `impl ParallelIterator for Iter<char>`
 
-- `type Item = T`
+- `type Item = char`
 
 - `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -102,4 +106,76 @@ assert_eq!(p, s);
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+### `IterProducer<T>`
+
+```rust
+struct IterProducer<T> {
+    range: std::ops::Range<T>,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for IterProducer<T>`
+
+##### `impl<T> IntoIterator for IterProducer<T>`
+
+- `type Item = <Range<T> as Iterator>::Item`
+
+- `type IntoIter = Range<T>`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter`
+
+##### `impl<T> Pointable for IterProducer<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl Producer for IterProducer<i32>`
+
+- `type Item = <Range<i32> as Iterator>::Item`
+
+- `type IntoIter = Range<i32>`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+
+- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+
+##### `impl UnindexedProducer for IterProducer<u64>`
+
+- `type Item = u64`
+
+- `fn split(self: Self) -> (Self, Option<Self>)`
+
+- `fn fold_with<F>(self: Self, folder: F) -> F`
+
+## Traits
+
+### `UnindexedRangeLen<L>`
+
+```rust
+trait UnindexedRangeLen<L> { ... }
+```
+
+#### Required Methods
+
+- `fn unindexed_len(self: &Self) -> L`
+
+## Macros
+
+### `indexed_range_impl!`
+
+### `unindexed_range_impl!`
+
+### `convert_char!`
 

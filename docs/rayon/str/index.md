@@ -17,6 +17,10 @@ and any function or closure `F: Fn(char) -> bool + Sync + Send`.
 
 
 
+## Modules
+
+- [`private`](private/index.md) - We hide the `Pattern` trait in a private module, as its API is not meant
+
 ## Structs
 
 ### `Chars<'ch>`
@@ -69,6 +73,40 @@ Parallel iterator over the characters of a string
 
 - `unsafe fn drop(ptr: usize)`
 
+### `CharsProducer<'ch>`
+
+```rust
+struct CharsProducer<'ch> {
+    chars: &'ch str,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for CharsProducer<'ch>`
+
+##### `impl<T> Pointable for CharsProducer<'ch>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'ch> UnindexedProducer for CharsProducer<'ch>`
+
+- `type Item = char`
+
+- `fn split(self: Self) -> (Self, Option<Self>)`
+
+- `fn fold_with<F>(self: Self, folder: F) -> F`
+
 ### `CharIndices<'ch>`
 
 ```rust
@@ -118,6 +156,41 @@ Parallel iterator over the characters of a string, with their positions
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+### `CharIndicesProducer<'ch>`
+
+```rust
+struct CharIndicesProducer<'ch> {
+    index: usize,
+    chars: &'ch str,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for CharIndicesProducer<'ch>`
+
+##### `impl<T> Pointable for CharIndicesProducer<'ch>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'ch> UnindexedProducer for CharIndicesProducer<'ch>`
+
+- `type Item = (usize, char)`
+
+- `fn split(self: Self) -> (Self, Option<Self>)`
+
+- `fn fold_with<F>(self: Self, folder: F) -> F`
 
 ### `Bytes<'ch>`
 
@@ -169,6 +242,40 @@ Parallel iterator over the bytes of a string
 
 - `unsafe fn drop(ptr: usize)`
 
+### `BytesProducer<'ch>`
+
+```rust
+struct BytesProducer<'ch> {
+    chars: &'ch str,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for BytesProducer<'ch>`
+
+##### `impl<T> Pointable for BytesProducer<'ch>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'ch> UnindexedProducer for BytesProducer<'ch>`
+
+- `type Item = u8`
+
+- `fn split(self: Self) -> (Self, Option<Self>)`
+
+- `fn fold_with<F>(self: Self, folder: F) -> F`
+
 ### `EncodeUtf16<'ch>`
 
 ```rust
@@ -218,6 +325,40 @@ Parallel iterator over a string encoded as UTF-16
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+### `EncodeUtf16Producer<'ch>`
+
+```rust
+struct EncodeUtf16Producer<'ch> {
+    chars: &'ch str,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for EncodeUtf16Producer<'ch>`
+
+##### `impl<T> Pointable for EncodeUtf16Producer<'ch>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'ch> UnindexedProducer for EncodeUtf16Producer<'ch>`
+
+- `type Item = u16`
+
+- `fn split(self: Self) -> (Self, Option<Self>)`
+
+- `fn fold_with<F>(self: Self, folder: F) -> F`
 
 ### `Split<'ch, P: Pattern>`
 
@@ -383,6 +524,45 @@ Parallel iterator over substrings separated by a terminator pattern
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+### `SplitTerminatorProducer<'ch, 'sep, P: Pattern>`
+
+```rust
+struct SplitTerminatorProducer<'ch, 'sep, P: Pattern> {
+    splitter: SplitProducer<'sep, P, &'ch str>,
+    skip_last: bool,
+}
+```
+
+#### Implementations
+
+- `fn new(chars: &'ch str, terminator: &'sep P) -> Self`
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for SplitTerminatorProducer<'ch, 'sep, P>`
+
+##### `impl<T> Pointable for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'ch, 'sep, P: Pattern + 'sep> UnindexedProducer for SplitTerminatorProducer<'ch, 'sep, P>`
+
+- `type Item = &'ch str`
+
+- `fn split(self: Self) -> (Self, Option<Self>)`
+
+- `fn fold_with<F>(self: Self, folder: F) -> F`
 
 ### `Lines<'ch>`
 
@@ -579,6 +759,41 @@ Parallel iterator over substrings that match a pattern
 
 - `unsafe fn drop(ptr: usize)`
 
+### `MatchesProducer<'ch, 'pat, P: Pattern>`
+
+```rust
+struct MatchesProducer<'ch, 'pat, P: Pattern> {
+    chars: &'ch str,
+    pattern: &'pat P,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for MatchesProducer<'ch, 'pat, P>`
+
+##### `impl<T> Pointable for MatchesProducer<'ch, 'pat, P>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'ch, 'pat, P: Pattern> UnindexedProducer for MatchesProducer<'ch, 'pat, P>`
+
+- `type Item = &'ch str`
+
+- `fn split(self: Self) -> (Self, Option<Self>)`
+
+- `fn fold_with<F>(self: Self, folder: F) -> F`
+
 ### `MatchIndices<'ch, P: Pattern>`
 
 ```rust
@@ -629,6 +844,42 @@ Parallel iterator over substrings that match a pattern, with their positions
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+### `MatchIndicesProducer<'ch, 'pat, P: Pattern>`
+
+```rust
+struct MatchIndicesProducer<'ch, 'pat, P: Pattern> {
+    index: usize,
+    chars: &'ch str,
+    pattern: &'pat P,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for MatchIndicesProducer<'ch, 'pat, P>`
+
+##### `impl<T> Pointable for MatchIndicesProducer<'ch, 'pat, P>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'ch, 'pat, P: Pattern> UnindexedProducer for MatchIndicesProducer<'ch, 'pat, P>`
+
+- `type Item = (usize, &'ch str)`
+
+- `fn split(self: Self) -> (Self, Option<Self>)`
+
+- `fn fold_with<F>(self: Self, folder: F) -> F`
 
 ## Traits
 
@@ -693,4 +944,59 @@ Parallel extensions for strings.
 - `fn par_match_indices<P: Pattern>(self: &Self, pattern: P) -> MatchIndices<'_, P>`
 
   Returns a parallel iterator over substrings that match a given character
+
+## Functions
+
+### `is_char_boundary`
+
+```rust
+fn is_char_boundary(b: u8) -> bool
+```
+
+Test if a byte is the start of a UTF-8 character.
+(extracted from `str::is_char_boundary`)
+
+### `find_char_midpoint`
+
+```rust
+fn find_char_midpoint(chars: &str) -> usize
+```
+
+Find the index of a character boundary near the midpoint.
+
+### `split`
+
+```rust
+fn split(chars: &str) -> Option<(&str, &str)>
+```
+
+Try to split a string near the midpoint.
+
+### `offset`
+
+```rust
+fn offset<T>(base: usize) -> impl Fn((usize, T)) -> (usize, T)
+```
+
+### `no_carriage_return`
+
+```rust
+fn no_carriage_return(line: &str) -> &str
+```
+
+### `not_empty`
+
+```rust
+fn not_empty(s: &&str) -> bool
+```
+
+### `is_ascii_whitespace`
+
+```rust
+fn is_ascii_whitespace(c: char) -> bool
+```
+
+## Macros
+
+### `impl_pattern!`
 

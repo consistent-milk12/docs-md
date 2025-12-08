@@ -44,3 +44,26 @@ in a more compact representation than holding those 2 spans individually.
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+## Enums
+
+### `DelimSpanEnum`
+
+```rust
+enum DelimSpanEnum {
+    Compiler {
+        join: proc_macro::Span,
+        open: proc_macro::Span,
+        close: proc_macro::Span,
+    },
+    Fallback(fallback::Span),
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for DelimSpanEnum`
+
+- `fn clone(self: &Self) -> DelimSpanEnum` — [`DelimSpanEnum`](#delimspanenum)
+
+##### `impl Copy for DelimSpanEnum`
+

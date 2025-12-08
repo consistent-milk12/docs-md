@@ -24,6 +24,10 @@ a_function_call(arg1, arg2, arg3);
                 ~~~~^ ~~~~^ ~~~~
 ```
 
+## Modules
+
+- [`printing`](printing/index.md) - 
+
 ## Structs
 
 ### `Punctuated<T, P>`
@@ -117,7 +121,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> Extend for Punctuated<T, P>`
 
-- `fn extend<I: IntoIterator<Item = Pair<T, P>>>(self: &mut Self, i: I)`
+- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, i: I)`
 
 ##### `impl<T, P> FromIterator for Punctuated<T, P>`
 
@@ -373,6 +377,45 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
 
+### `PrivateIter<'a, T: 'a, P: 'a>`
+
+```rust
+struct PrivateIter<'a, T: 'a, P: 'a> {
+    inner: slice::Iter<'a, (T, P)>,
+    last: option::IntoIter<&'a T>,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'a, T, P> Clone for PrivateIter<'a, T, P>`
+
+- `fn clone(self: &Self) -> Self`
+
+##### `impl<'a, T, P> DoubleEndedIterator for PrivateIter<'a, T, P>`
+
+- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+
+##### `impl<'a, T, P> ExactSizeIterator for PrivateIter<'a, T, P>`
+
+- `fn len(self: &Self) -> usize`
+
+##### `impl<I> IntoIterator for PrivateIter<'a, T, P>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'a, T, P> Iterator for PrivateIter<'a, T, P>`
+
+- `type Item = &'a T`
+
+- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+
+##### `impl<'a, T, P> TrivialDrop for PrivateIter<'a, T, P>`
+
 ### `IterMut<'a, T: 'a>`
 
 ```rust
@@ -411,6 +454,41 @@ Refer to the [module documentation] for details about punctuated sequences.
 - `fn next(self: &mut Self) -> Option<<Self as >::Item>`
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+### `PrivateIterMut<'a, T: 'a, P: 'a>`
+
+```rust
+struct PrivateIterMut<'a, T: 'a, P: 'a> {
+    inner: slice::IterMut<'a, (T, P)>,
+    last: option::IntoIter<&'a mut T>,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'a, T, P> DoubleEndedIterator for PrivateIterMut<'a, T, P>`
+
+- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+
+##### `impl<'a, T, P> ExactSizeIterator for PrivateIterMut<'a, T, P>`
+
+- `fn len(self: &Self) -> usize`
+
+##### `impl<I> IntoIterator for PrivateIterMut<'a, T, P>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'a, T, P> Iterator for PrivateIterMut<'a, T, P>`
+
+- `type Item = &'a mut T`
+
+- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+
+##### `impl<'a, T, P> TrivialDrop for PrivateIterMut<'a, T, P>`
 
 ## Enums
 
@@ -462,4 +540,44 @@ Refer to the [module documentation] for details about punctuated sequences.
 ##### `impl<T, P> ToTokens for crate::punctuated::Pair<T, P>`
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
+
+## Traits
+
+### `IterTrait<'a, T: 'a>`
+
+```rust
+trait IterTrait<'a, T: 'a>: Iterator<Item = &'a T> + DoubleEndedIterator + ExactSizeIterator { ... }
+```
+
+#### Required Methods
+
+- `fn clone_box(self: &Self) -> Box<NoDrop<dyn IterTrait<'a, T>>>`
+
+### `IterMutTrait<'a, T: 'a>`
+
+```rust
+trait IterMutTrait<'a, T: 'a>: DoubleEndedIterator<Item = &'a mut T> + ExactSizeIterator<Item = &'a mut T> { ... }
+```
+
+## Functions
+
+### `do_extend`
+
+```rust
+fn do_extend<T, P, I>(punctuated: &mut Punctuated<T, P>, i: I)
+where
+    I: Iterator<Item = Pair<T, P>>
+```
+
+### `empty_punctuated_iter`
+
+```rust
+fn empty_punctuated_iter<'a, T>() -> Iter<'a, T>
+```
+
+### `empty_punctuated_iter_mut`
+
+```rust
+fn empty_punctuated_iter_mut<'a, T>() -> IterMut<'a, T>
+```
 

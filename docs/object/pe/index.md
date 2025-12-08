@@ -1367,7 +1367,19 @@ struct ImageSectionHeader {
 
 #### Implementations
 
-- `fn kind(self: &Self) -> SectionKind` — [`SectionKind`](../index.md)
+- `fn pe_file_range(self: &Self) -> (u32, u32)`
+
+- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
+
+- `fn pe_address_range(self: &Self) -> (u32, u32)`
+
+- `fn pe_data<'data, R: ReadRef<'data>>(self: &Self, data: R) -> Result<&'data [u8]>` — [`Result`](../index.md)
+
+- `fn pe_data_at<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
+
+- `fn contains_rva(self: &Self, va: u32) -> bool`
+
+- `fn pe_data_containing<'data, R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
 
 #### Trait Implementations
 

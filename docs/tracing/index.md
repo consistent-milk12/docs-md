@@ -64,7 +64,7 @@
 
  ## Events
 
- An [`Event`](#event) represents a _moment_ in time. It signifies something that
+ An [`Event`](../tracing_core/event/index.md) represents a _moment_ in time. It signifies something that
  happened while a trace was being recorded. `Event`s are comparable to the log
  records emitted by unstructured logging code, but unlike a typical log line,
  an `Event` may occur within the context of a span.
@@ -89,13 +89,13 @@
  span — a request returned with a given status code, _n_ new items were
  taken from a queue, and so on.
 
- The [`Event` struct][`Event`](#event) documentation provides further details on using
+ The [`Event` struct][`Event`](../tracing_core/event/index.md) documentation provides further details on using
  events.
 
  ## Subscribers
 
  As `Span`s and `Event`s occur, they are recorded or aggregated by
- implementations of the [`Subscriber`](#subscriber) trait. `Subscriber`s are notified
+ implementations of the [`Subscriber`](../tracing_core/subscriber/index.md) trait. `Subscriber`s are notified
  when an `Event` takes place and when a `Span` is entered or exited. These
  notifications are represented by the following `Subscriber` trait methods:
 
@@ -104,7 +104,7 @@
  + [`exit`](#exit), called when execution exits a `Span`
 
  In addition, subscribers may implement the [`enabled`](#enabled) function to _filter_
- the notifications they receive based on [metadata] describing each `Span`
+ the notifications they receive based on [`metadata`](../tracing_core/metadata/index.md) describing each `Span`
  or `Event`. If a call to `Subscriber::enabled` returns `false` for a given
  set of metadata, that `Subscriber` will *not* be notified about the
  corresponding `Span` or `Event`. For performance reasons, if no currently
@@ -196,7 +196,7 @@
 
  ### Events
 
- [`Event`](#event)s are recorded using the [`event!`](#event) macro:
+ [`Event`](../tracing_core/event/index.md)s are recorded using the [`event!`](#event) macro:
 
  ```rust
  fn main() {
@@ -212,8 +212,8 @@
 
  ### Configuring Attributes
 
- Both macros require a [`Level`](#level) specifying the verbosity of the span or
- event. Optionally, the, [target] and [parent span] may be overridden. If the
+ Both macros require a [`Level`](../tracing_core/metadata/index.md) specifying the verbosity of the span or
+ event. Optionally, the, [`target`](../tracing_attributes/attr/kw/index.md) and [parent span] may be overridden. If the
  target and parent span are not overridden, they will default to the
  module path where the macro was invoked and the current span (as determined
  by the subscriber), respectively.
@@ -408,7 +408,7 @@
  ```
 
  Finally, events may also include human-readable messages, in the form of a
- [format string][fmt] and (optional) arguments, **after** the event's
+ [format string][`fmt`](../anstream/fmt/index.md) and (optional) arguments, **after** the event's
  key-value fields. If a format string and arguments are provided,
  they will implicitly create a new field named `message` whose value is the
  provided set of format arguments.
@@ -447,7 +447,7 @@
 
  `tracing` also offers a number of macros with preset verbosity levels.
  The [`trace!`](#trace), [`debug!`](#debug), [`info!`](#info), [`warn!`](#warn), and [`error!`](#error) behave
- similarly to the [`event!`](#event) macro, but with the [`Level`](#level) argument already
+ similarly to the [`event!`](#event) macro, but with the [`Level`](../tracing_core/metadata/index.md) argument already
  specified, while the corresponding [`trace_span!`](#trace-span), [`debug_span!`](#debug-span),
  [`info_span!`](#info-span), [`warn_span!`](#warn-span), and [`error_span!`](#error-span) macros are the same,
  but for the [`span!`](#span) macro.
@@ -635,7 +635,7 @@
  libraries and applications either emit or consume `log` records. Therefore,
  `tracing` provides multiple forms of interoperability with `log`: `tracing`
  instrumentation can emit `log` records, and a compatibility layer enables
- `tracing` [`Subscriber`](#subscriber)s to consume `log` records as `tracing` [`Event`](#event)s.
+ `tracing` [`Subscriber`](../tracing_core/subscriber/index.md)s to consume `log` records as `tracing` [`Event`](../tracing_core/event/index.md)s.
 
  ### Emitting `log` Records
 
@@ -656,7 +656,7 @@
  libraries generally should **not** enable the "log-always" feature, as doing
  so will prevent applications from being able to opt out of the `log` records.
 
- See [here][flags] for more details on this crate's feature flags.
+ See [here][`flags`](../portable_atomic/imp/atomic128/x86_64/detect/index.md) for more details on this crate's feature flags.
 
  The generated `log` records' messages will be a string representation of the
  span or event's fields, and all additional information recorded by `log`
@@ -674,7 +674,7 @@
  ### Consuming `log` Records
 
  The `tracing-log` crate provides a compatibility layer which
- allows a `tracing` [`Subscriber`](#subscriber) to consume `log` records as though they
+ allows a `tracing` [`Subscriber`](../tracing_core/subscriber/index.md) to consume `log` records as though they
  were `tracing` [events]. This allows applications using `tracing` to record
  the logs emitted by dependencies using `log` as events within the context of
  the application's trace tree. See [that crate's documentation][log-tracer]
@@ -903,12 +903,14 @@
 
 ## Modules
 
+- [`macros`](macros/index.md) - 
 - [`dispatcher`](dispatcher/index.md) - Dispatches trace events to [`Subscriber`]s.
 - [`field`](field/index.md) - `Span` and `Event` key-value data.
 - [`instrument`](instrument/index.md) - Attach a span to a `std::future::Future`.
 - [`level_filters`](level_filters/index.md) - Trace verbosity level filtering.
 - [`span`](span/index.md) -  Spans represent periods of time in which a program was executing in a
 - [`subscriber`](subscriber/index.md) - Collects and records trace data.
+- [`sealed`](sealed/index.md) - 
 
 ## Structs
 
@@ -1029,7 +1031,7 @@ The event macro is invoked with a `Level` and up to 32 key-value fields.
 Optionally, a format string and arguments may follow the fields; this will
 be used to construct an implicit field named "message".
 
-See [the top-level documentation][lib] for details on the syntax accepted by
+See [the top-level documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 # Examples
@@ -1061,7 +1063,7 @@ event!(Level::INFO, the_answer = data.0);
 
 Constructs a new span.
 
-See [the top-level documentation][lib] for details on the syntax accepted by
+See [the top-level documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 # Examples
@@ -1085,7 +1087,7 @@ This macro supports two optional sigils:
 - `%` uses the Display implementation.
 - `?` uses the Debug implementation.
 
-For more details, see the [top-level documentation][lib].
+For more details, see the [top-level documentation][`lib`](../serde/lib/index.md).
 
 # Examples
 
@@ -1099,10 +1101,10 @@ record_all!(span, field1 = ?"1", field2 = %"2", field3 = 3);
 
 Constructs a span at the trace level.
 
-[Fields] and [attributes] are set using the same syntax as the `span!`
+[Fields] and [`attributes`](../object/read/elf/attributes/index.md) are set using the same syntax as the `span!`
 macro.
 
-See [the top-level documentation][lib] for details on the syntax accepted by
+See [the top-level documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1133,10 +1135,10 @@ span.in_scope(|| {
 
 Constructs a span at the debug level.
 
-[Fields] and [attributes] are set using the same syntax as the `span!`
+[Fields] and [`attributes`](../object/read/elf/attributes/index.md) are set using the same syntax as the `span!`
 macro.
 
-See [the top-level documentation][lib] for details on the syntax accepted by
+See [the top-level documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1167,10 +1169,10 @@ span.in_scope(|| {
 
 Constructs a span at the info level.
 
-[Fields] and [attributes] are set using the same syntax as the `span!`
+[Fields] and [`attributes`](../object/read/elf/attributes/index.md) are set using the same syntax as the `span!`
 macro.
 
-See [the top-level documentation][lib] for details on the syntax accepted by
+See [the top-level documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1201,10 +1203,10 @@ span.in_scope(|| {
 
 Constructs a span at the warn level.
 
-[Fields] and [attributes] are set using the same syntax as the `span!`
+[Fields] and [`attributes`](../object/read/elf/attributes/index.md) are set using the same syntax as the `span!`
 macro.
 
-See [the top-level documentation][lib] for details on the syntax accepted by
+See [the top-level documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1235,10 +1237,10 @@ span.in_scope(|| {
 
 Constructs a span at the error level.
 
-[Fields] and [attributes] are set using the same syntax as the `span!`
+[Fields] and [`attributes`](../object/read/elf/attributes/index.md) are set using the same syntax as the `span!`
 macro.
 
-See [the top-level documentation][lib] for details on the syntax accepted by
+See [the top-level documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1325,7 +1327,7 @@ if span_enabled!(Level::DEBUG, foo_field) {
 
 ### `enabled!`
 
-Checks whether a span or event is [enabled](#enabled) based on the provided [metadata].
+Checks whether a span or event is [enabled](#enabled) based on the provided [`metadata`](../tracing_core/metadata/index.md).
 
 
 This macro is a specialized tool: it is intended to be used prior
@@ -1337,7 +1339,7 @@ and emitting an event for each item).
 # Usage
 
 [Subscribers] can make filtering decisions based all the data included in a
-span or event's [`Metadata`](#metadata). This means that it is possible for `enabled!`
+span or event's [`Metadata`](../tracing_core/metadata/index.md). This means that it is possible for `enabled!`
 to return a _false positive_ (indicating that something would be enabled
 when it actually would not be) or a _false negative_ (indicating that
 something would be disabled when it would actually be enabled).
@@ -1400,9 +1402,9 @@ if enabled!(target: "my_crate", Level::DEBUG, hello) {
 
 # Alternatives
 
-`enabled!` queries subscribers with [`Metadata`](#metadata) where
+`enabled!` queries subscribers with [`Metadata`](../tracing_core/metadata/index.md) where
 `is_event` and `is_span` both return `false`. Alternatively,
-use `event_enabled!` or `span_enabled!` to ensure one of these
+use [`event_enabled!`](#event-enabled) or `span_enabled!` to ensure one of these
 returns true.
 
 
@@ -1415,7 +1417,7 @@ returns true.
 Constructs an event at the trace level.
 
 This functions similarly to the `event!` macro. See [the top-level
-documentation][lib] for details on the syntax accepted by
+documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1452,7 +1454,7 @@ trace!(name: "completed", position = ?pos);
 Constructs an event at the debug level.
 
 This functions similarly to the `event!` macro. See [the top-level
-documentation][lib] for details on the syntax accepted by
+documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1476,7 +1478,7 @@ debug!(name: "completed", position = ?pos);
 Constructs an event at the info level.
 
 This functions similarly to the `event!` macro. See [the top-level
-documentation][lib] for details on the syntax accepted by
+documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1511,7 +1513,7 @@ info!(name: "completed", "completed connection to {:?}", addr);
 Constructs an event at the warn level.
 
 This functions similarly to the `event!` macro. See [the top-level
-documentation][lib] for details on the syntax accepted by
+documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 
@@ -1539,7 +1541,7 @@ warn!(name: "invalid", ?input);
 Constructs an event at the error level.
 
 This functions similarly to the `event!` macro. See [the top-level
-documentation][lib] for details on the syntax accepted by
+documentation][`lib`](../serde/lib/index.md) for details on the syntax accepted by
 this macro.
 
 

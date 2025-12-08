@@ -7,7 +7,7 @@
 An NFA backed bounded backtracker for executing regex searches with capturing
 groups.
 
-This module provides a [`BoundedBacktracker`](../../../meta/wrappers/index.md) that works by simulating an NFA
+This module provides a [`BoundedBacktracker`](#boundedbacktracker) that works by simulating an NFA
 using the classical backtracking algorithm with a twist: it avoids redoing
 work that it has done before and thereby avoids worst case exponential time.
 In exchange, it can only be used on "short" haystacks. Its advantage is that
@@ -239,33 +239,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`Captures`](../../../util/captures/index.md), [`MatchError`](../../../index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../util/primitives/index.md), [`MatchError`](../../../index.md)
 
-- `fn new_from_nfa(nfa: NFA) -> Result<BoundedBacktracker, BuildError>` — [`NFA`](../nfa/index.md), [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
+- `fn try_search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
 
-- `fn always_match() -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
+- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md), [`MatchError`](../../../index.md)
 
-- `fn never_match() -> Result<BoundedBacktracker, BuildError>` — [`BoundedBacktracker`](#boundedbacktracker), [`BuildError`](../error/index.md)
+- `fn backtrack(self: &Self, cache: &mut Cache, input: &Input<'_>, at: usize, start_id: StateID, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 
-- `fn config() -> Config` — [`Config`](#config)
-
-- `fn builder() -> Builder` — [`Builder`](#builder)
-
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
-
-- `fn create_captures(self: &Self) -> Captures` — [`Captures`](../../../util/captures/index.md)
-
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
-
-- `fn pattern_len(self: &Self) -> usize`
-
-- `fn get_config(self: &Self) -> &Config` — [`Config`](#config)
-
-- `fn get_nfa(self: &Self) -> &NFA` — [`NFA`](../nfa/index.md)
-
-- `fn max_haystack_len(self: &Self) -> usize`
+- `fn step(self: &Self, cache: &mut Cache, input: &Input<'_>, sid: StateID, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 
 #### Trait Implementations
 
@@ -377,15 +361,15 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a [`BoundedBacktracker`](../../../meta/wrappers/index.md) requires
+A cache represents mutable state that a [`BoundedBacktracker`](#boundedbacktracker) requires
 during a search.
 
-For a given [`BoundedBacktracker`](../../../meta/wrappers/index.md), its corresponding cache may be created
+For a given [`BoundedBacktracker`](#boundedbacktracker), its corresponding cache may be created
 either via `BoundedBacktracker::create_cache`, or via `Cache::new`.
 They are equivalent in every way, except the former does not require
 explicitly importing `Cache`.
 
-A particular `Cache` is coupled with the [`BoundedBacktracker`](../../../meta/wrappers/index.md) from which
+A particular `Cache` is coupled with the [`BoundedBacktracker`](#boundedbacktracker) from which
 it was created. It may only be used with that `BoundedBacktracker`. A cache
 and its allocations may be re-purposed via `Cache::reset`, in which case,
 it can only be used with the new `BoundedBacktracker` (and not the old
@@ -427,6 +411,120 @@ one).
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `Visited`
+
+```rust
+struct Visited {
+    bitset: alloc::vec::Vec<usize>,
+    stride: usize,
+}
+```
+
+A bitset that keeps track of whether a particular (StateID, offset) has
+been considered during backtracking. If it has already been visited, then
+backtracking skips it. This is what gives backtracking its "bound."
+
+#### Fields
+
+- **`bitset`**: `alloc::vec::Vec<usize>`
+
+  The actual underlying bitset. Each element in the bitset corresponds
+  to a particular (StateID, offset) pair. States correspond to the rows
+  and the offsets correspond to the columns.
+  
+  If our underlying NFA has N states and the haystack we're searching
+  has M bytes, then we have N*(M+1) entries in our bitset table. The
+  M+1 occurs because our matches are delayed by one byte (to support
+  look-around), and so we need to handle the end position itself rather
+  than stopping just before the end. (If there is no end position, then
+  it's treated as "end-of-input," which is matched by things like '$'.)
+  
+  Given BITS=N*(M+1), we wind up with div_ceil(BITS, sizeof(usize))
+  blocks.
+  
+  We use 'usize' to represent our blocks because it makes some of the
+  arithmetic in 'insert' a bit nicer. For example, if we used 'u32' for
+  our block, we'd either need to cast u32s to usizes or usizes to u32s.
+
+- **`stride`**: `usize`
+
+  The stride represents one plus length of the haystack we're searching
+  (as described above). The stride must be initialized for each search.
+
+#### Implementations
+
+- `const BLOCK_SIZE: usize`
+
+- `fn new(re: &BoundedBacktracker) -> Visited` — [`BoundedBacktracker`](#boundedbacktracker), [`Visited`](#visited)
+
+- `fn insert(self: &mut Self, sid: StateID, at: usize) -> bool` — [`StateID`](../../../util/primitives/index.md)
+
+- `fn reset(self: &mut Self, _: &BoundedBacktracker)` — [`BoundedBacktracker`](#boundedbacktracker)
+
+- `fn setup_search(self: &mut Self, re: &BoundedBacktracker, input: &Input<'_>) -> Result<(), MatchError>` — [`BoundedBacktracker`](#boundedbacktracker), [`Input`](../../../index.md), [`MatchError`](../../../index.md)
+
+- `fn memory_usage(self: &Self) -> usize`
+
+#### Trait Implementations
+
+##### `impl Clone for Visited`
+
+- `fn clone(self: &Self) -> Visited` — [`Visited`](#visited)
+
+##### `impl Debug for Visited`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Enums
+
+### `Frame`
+
+```rust
+enum Frame {
+    Step {
+        sid: crate::util::primitives::StateID,
+        at: usize,
+    },
+    RestoreCapture {
+        slot: crate::util::primitives::SmallIndex,
+        offset: Option<crate::util::primitives::NonMaxUsize>,
+    },
+}
+```
+
+Represents a stack frame on the heap while doing backtracking.
+
+Instead of using explicit recursion for backtracking, we use a stack on
+the heap to keep track of things that we want to explore if the current
+backtracking branch turns out to not lead to a match.
+
+#### Variants
+
+- **`Step`**
+
+  Look for a match starting at `sid` and the given position in the
+  haystack.
+
+- **`RestoreCapture`**
+
+  Reset the given `slot` to the given `offset` (which might be `None`).
+  This effectively gives a "scope" to capturing groups, such that an
+  offset for a particular group only gets returned if the match goes
+  through that capturing group. If backtracking ends up going down a
+  different branch that results in a different offset (or perhaps none at
+  all), then this "restore capture" frame will cause the offset to get
+  reset.
+
+#### Trait Implementations
+
+##### `impl Clone for Frame`
+
+- `fn clone(self: &Self) -> Frame` — [`Frame`](#frame)
+
+##### `impl Debug for Frame`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ## Functions
 
 ### `min_visited_capacity`
@@ -439,7 +537,7 @@ Returns the minimum visited capacity for the given haystack.
 
 This function can be used as the argument to `Config::visited_capacity`
 in order to guarantee that a backtracking search for the given `input`
-won't return an error when using a [`BoundedBacktracker`](../../../meta/wrappers/index.md) built from the
+won't return an error when using a [`BoundedBacktracker`](#boundedbacktracker) built from the
 given `NFA`.
 
 This routine exists primarily as a way to test that the bounded backtracker
@@ -450,4 +548,12 @@ capacity to provide to make it work.
 
 Be warned that this number could be quite large as it is multiplicative in
 the size the given NFA and haystack.
+
+### `div_ceil`
+
+```rust
+fn div_ceil(lhs: usize, rhs: usize) -> usize
+```
+
+Integer division, but rounds up instead of down.
 

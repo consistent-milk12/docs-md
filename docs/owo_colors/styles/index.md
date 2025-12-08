@@ -491,3 +491,7 @@ crossed out. Recommended to be constructed using
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+## Macros
+
+### `impl_fmt_for_style!`
+

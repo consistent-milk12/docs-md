@@ -4,7 +4,7 @@
 
 # Module `format`
 
-Formatters for logging `tracing` events.
+Formatters for logging [`tracing`](../../../tracing/index.md) events.
 
 This module provides several formatter implementations, as well as utilities
 for implementing custom formatters.
@@ -50,14 +50,14 @@ A writer to which formatted representations of spans and events are written.
 
 This type is provided as input to the `FormatEvent::format_event` and
 `FormatFields::format_fields` methods, which will write formatted
-representations of `Event`s and [`fields`](../../macros/index.md) to the [`Writer`](#writer).
+representations of [`Event`](../../../tracing_core/event/index.md)s and [`fields`](../../../tracing_attributes/attr/kw/index.md) to the [`Writer`](#writer).
 
-This type implements the `std::fmt::Write` trait, allowing it to be used
-with any function that takes an instance of `std::fmt::Write`.
-Additionally, it can be used with the standard library's `std::write!` and
+This type implements the [`std::fmt::Write`](../../../fs_err/index.md) trait, allowing it to be used
+with any function that takes an instance of [`std::fmt::Write`](../../../fs_err/index.md).
+Additionally, it can be used with the standard library's [`std::write!`](../../../nu_ansi_term/write/index.md) and
 `std::writeln!` macros.
 
-Additionally, a [`Writer`](#writer) may expose additional `tracing`-specific
+Additionally, a [`Writer`](#writer) may expose additional [`tracing`](../../../tracing/index.md)-specific
 information to the formatter implementation.
 
 
@@ -145,7 +145,7 @@ struct FieldFnVisitor<'a, F> {
 }
 ```
 
-The [visitor] produced by [`FieldFn`](#fieldfn)'s [`MakeVisitor`](../../field/index.md) implementation.
+The [`visitor`](../../../regex_syntax/ast/visitor/index.md) produced by [`FieldFn`](#fieldfn)'s [`MakeVisitor`](../../field/index.md) implementation.
 
 
 
@@ -182,7 +182,7 @@ Marker for [`Format`](#format) that indicates that the compact log format should
 The compact format includes fields from all currently entered spans, after
 the event's fields. Span fields are ordered (but not grouped) by
 span, and span names are not shown. A more compact representation of the
-event's [`Level`](../../index.md) is used, and additional information—such as the event's
+event's [`Level`](../../../tracing_core/metadata/index.md) is used, and additional information—such as the event's
 target—is disabled by default.
 
 # Example Output
@@ -370,9 +370,9 @@ intended for use in development.
 
 - `fn default() -> Self`
 
-##### `impl<S, N, T> FormatEvent for Format<Compact, T>`
+##### `impl<C, N, T> FormatEvent for Format<Pretty, T>`
 
-- `fn format_event(self: &Self, ctx: &FmtContext<'_, S, N>, writer: Writer<'_>, event: &Event<'_>) -> fmt::Result` — [`FmtContext`](../fmt_layer/index.md), [`Writer`](#writer)
+- `fn format_event(self: &Self, ctx: &FmtContext<'_, C, N>, writer: Writer<'_>, event: &Event<'_>) -> fmt::Result` — [`FmtContext`](../fmt_layer/index.md), [`Writer`](#writer)
 
 ##### `impl<T> Instrument for Format<F, T>`
 
@@ -427,7 +427,7 @@ struct DefaultVisitor<'a> {
 }
 ```
 
-The [visitor] produced by [`DefaultFields`](#defaultfields)'s [`MakeVisitor`](../../field/index.md) implementation.
+The [`visitor`](../../../regex_syntax/ast/visitor/index.md) produced by [`DefaultFields`](#defaultfields)'s [`MakeVisitor`](../../field/index.md) implementation.
 
 
 
@@ -689,7 +689,7 @@ struct PrettyVisitor<'a> {
 }
 ```
 
-The [visitor] produced by [`Pretty`](#pretty)'s [`MakeVisitor`](../../field/index.md) implementation.
+The [`visitor`](../../../regex_syntax/ast/visitor/index.md) produced by [`Pretty`](#pretty)'s [`MakeVisitor`](../../field/index.md) implementation.
 
 
 
@@ -821,9 +821,9 @@ The following arguments are passed to `FormatEvent::format_event`:
   forwarding to the configured [`FormatFields`](#formatfields) type.
 
 * A [`Writer`](#writer) to which the formatted representation of the event is
-  written. This type implements the `std::fmt::Write` trait, and therefore
-  can be used with the `std::write!` and `std::writeln!` macros, as well
-  as calling `std::fmt::Write` methods directly.
+  written. This type implements the [`std::fmt::Write`](../../../fs_err/index.md) trait, and therefore
+  can be used with the [`std::write!`](../../../nu_ansi_term/write/index.md) and `std::writeln!` macros, as well
+  as calling [`std::fmt::Write`](../../../fs_err/index.md) methods directly.
 
   The [`Writer`](#writer) type also implements additional methods that provide
   information about how the event should be formatted. The
@@ -930,7 +930,7 @@ DEBUG yak_shaving::shaver: some-span{field-on-span=foo}: started shaving yak
 
 - `fn format_event(self: &Self, ctx: &FmtContext<'_, S, N>, writer: Writer<'_>, event: &Event<'_>) -> fmt::Result`
 
-  Write a log message for `Event` in [`FmtContext`](../fmt_layer/index.md) to the given [`Writer`](#writer).
+  Write a log message for [`Event`](../../../tracing_core/event/index.md) in [`FmtContext`](../fmt_layer/index.md) to the given [`Writer`](#writer).
 
 ### `FormatFields<'writer>`
 

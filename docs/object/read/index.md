@@ -49,12 +49,19 @@ fn main() -> Result<(), Box<dyn Error>> {
 
 ## Modules
 
+- [`read_ref`](read_ref/index.md) - 
+- [`read_cache`](read_cache/index.md) - 
+- [`util`](util/index.md) - 
+- [`gnu_compression`](gnu_compression/index.md) - 
+- [`any`](any/index.md) - 
 - [`archive`](archive/index.md) - Support for archive files.
 - [`coff`](coff/index.md) - Support for reading Windows COFF files.
 - [`elf`](elf/index.md) - Support for reading ELF files.
 - [`macho`](macho/index.md) - Support for reading Mach-O files.
 - [`pe`](pe/index.md) - Support for reading PE files.
 - [`xcoff`](xcoff/index.md) - Support for reading AIX XCOFF files.
+- [`traits`](traits/index.md) - 
+- [`private`](private/index.md) - 
 
 ## Structs
 
@@ -588,6 +595,39 @@ Returned by `ObjectSection::relocation_map`.
 
 - `fn default() -> RelocationMap` — [`RelocationMap`](../index.md)
 
+### `RelocationMapEntry`
+
+```rust
+struct RelocationMapEntry {
+    implicit_addend: bool,
+    addend: u64,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for RelocationMapEntry`
+
+- `fn clone(self: &Self) -> RelocationMapEntry` — [`RelocationMapEntry`](#relocationmapentry)
+
+##### `impl Copy for RelocationMapEntry`
+
+##### `impl Debug for RelocationMapEntry`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for RelocationMapEntry`
+
+##### `impl Hash for RelocationMapEntry`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq for RelocationMapEntry`
+
+- `fn eq(self: &Self, other: &RelocationMapEntry) -> bool` — [`RelocationMapEntry`](#relocationmapentry)
+
+##### `impl StructuralPartialEq for RelocationMapEntry`
+
 ### `CompressedFileRange`
 
 ```rust
@@ -747,6 +787,29 @@ the file size.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `ReadCacheInternal<R: ReadCacheOps>`
+
+```rust
+struct ReadCacheInternal<R: ReadCacheOps> {
+    read: R,
+    bufs: alloc::collections::btree_map::BTreeMap<(u64, u64), alloc::boxed::Box<[u8]>>,
+    strings: alloc::collections::btree_map::BTreeMap<(u64, u8), alloc::boxed::Box<[u8]>>,
+    len: Option<u64>,
+}
+```
+
+#### Implementations
+
+- `fn range_in_bounds(self: &mut Self, range: &Range<u64>) -> Result<(), ()>`
+
+- `fn len(self: &mut Self) -> Result<u64, ()>`
+
+#### Trait Implementations
+
+##### `impl<R: $crate::fmt::Debug + ReadCacheOps> Debug for ReadCacheInternal<R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ### `ReadCacheRange<'a, R: ReadCacheOps>`
 
 ```rust
@@ -846,6 +909,66 @@ It has these important features:
 - `fn eq(self: &Self, other: &Bytes<'data>) -> bool` — [`Bytes`](#bytes)
 
 ##### `impl<'data> StructuralPartialEq for Bytes<'data>`
+
+### `DebugByte`
+
+```rust
+struct DebugByte(u8);
+```
+
+#### Trait Implementations
+
+##### `impl Debug for DebugByte`
+
+- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+### `DebugLen`
+
+```rust
+struct DebugLen(usize);
+```
+
+#### Trait Implementations
+
+##### `impl Debug for DebugLen`
+
+- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+### `ByteString<'data>`
+
+```rust
+struct ByteString<'data>(&'data [u8]);
+```
+
+A newtype for byte strings.
+
+For byte slices that are strings of an unknown encoding.
+
+Provides a `Debug` implementation that interprets the bytes as UTF-8.
+
+#### Trait Implementations
+
+##### `impl<'data> Clone for ByteString<'data>`
+
+- `fn clone(self: &Self) -> ByteString<'data>` — [`ByteString`](util/index.md)
+
+##### `impl<'data> Copy for ByteString<'data>`
+
+##### `impl<'data> Debug for ByteString<'data>`
+
+- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<'data> Default for ByteString<'data>`
+
+- `fn default() -> ByteString<'data>` — [`ByteString`](util/index.md)
+
+##### `impl<'data> Eq for ByteString<'data>`
+
+##### `impl<'data> PartialEq for ByteString<'data>`
+
+- `fn eq(self: &Self, other: &ByteString<'data>) -> bool` — [`ByteString`](util/index.md)
+
+##### `impl<'data> StructuralPartialEq for ByteString<'data>`
 
 ### `StringTable<'data, R>`
 
@@ -1180,7 +1303,7 @@ where
 }
 ```
 
-An iterator for the symbols in a [`SymbolTable`](xcoff/index.md).
+An iterator for the symbols in a [`SymbolTable`](#symboltable).
 
 #### Trait Implementations
 
@@ -1212,7 +1335,7 @@ where
 }
 ```
 
-An symbol in a [`SymbolTable`](xcoff/index.md).
+An symbol in a [`SymbolTable`](#symboltable).
 
 Most functionality is provided by the [`ObjectSymbol`](#objectsymbol) trait implementation.
 
@@ -1296,7 +1419,7 @@ struct SectionRelocationIterator<'data, 'file, R: ReadRef<'data>> {
 }
 ```
 
-An iterator for the relocation entries in a [`Section`](../index.md).
+An iterator for the relocation entries in a [`Section`](#section).
 
 #### Trait Implementations
 
@@ -1378,13 +1501,13 @@ A file format kind.
 
   A Unix archive.
   
-  See `archive::ArchiveFile`.
+  See [`archive::ArchiveFile`](archive/index.md).
 
 - **`Coff`**
 
   A COFF object file.
   
-  See `coff::CoffFile`.
+  See [`coff::CoffFile`](coff/index.md).
 
 - **`CoffBig`**
 
@@ -1392,79 +1515,79 @@ A file format kind.
   
   This supports a larger number of sections.
   
-  See `coff::CoffBigFile`.
+  See [`coff::CoffBigFile`](coff/index.md).
 
 - **`CoffImport`**
 
   A Windows short import file.
   
-  See `coff::ImportFile`.
+  See [`coff::ImportFile`](coff/index.md).
 
 - **`DyldCache`**
 
   A dyld cache file containing Mach-O images.
   
-  See `macho::DyldCache`
+  See [`macho::DyldCache`](macho/index.md)
 
 - **`Elf32`**
 
   A 32-bit ELF file.
   
-  See `elf::ElfFile32`.
+  See [`elf::ElfFile32`](elf/index.md).
 
 - **`Elf64`**
 
   A 64-bit ELF file.
   
-  See `elf::ElfFile64`.
+  See [`elf::ElfFile64`](elf/index.md).
 
 - **`MachO32`**
 
   A 32-bit Mach-O file.
   
-  See `macho::MachOFile32`.
+  See [`macho::MachOFile32`](macho/index.md).
 
 - **`MachO64`**
 
   A 64-bit Mach-O file.
   
-  See `macho::MachOFile64`.
+  See [`macho::MachOFile64`](macho/index.md).
 
 - **`MachOFat32`**
 
   A 32-bit Mach-O fat binary.
   
-  See `macho::MachOFatFile32`.
+  See [`macho::MachOFatFile32`](macho/index.md).
 
 - **`MachOFat64`**
 
   A 64-bit Mach-O fat binary.
   
-  See `macho::MachOFatFile64`.
+  See [`macho::MachOFatFile64`](macho/index.md).
 
 - **`Pe32`**
 
   A 32-bit PE file.
   
-  See `pe::PeFile32`.
+  See [`pe::PeFile32`](pe/index.md).
 
 - **`Pe64`**
 
   A 64-bit PE file.
   
-  See `pe::PeFile64`.
+  See [`pe::PeFile64`](pe/index.md).
 
 - **`Xcoff32`**
 
   A 32-bit XCOFF file.
   
-  See `xcoff::XcoffFile32`.
+  See [`xcoff::XcoffFile32`](xcoff/index.md).
 
 - **`Xcoff64`**
 
   A 64-bit XCOFF file.
   
-  See `xcoff::XcoffFile64`.
+  See [`xcoff::XcoffFile64`](xcoff/index.md).
 
 #### Implementations
 
@@ -1637,7 +1760,7 @@ enum RelocationTarget {
 }
 ```
 
-The target referenced by a [`Relocation`](../macho/index.md).
+The target referenced by a [`Relocation`](../index.md).
 
 #### Variants
 
@@ -3038,7 +3161,276 @@ Most functionality is provided by the [`Object`](#object) trait implementation.
 
 ##### `impl<'data, R: ReadRef<'data>> Sealed for File<'data, R>`
 
+### `SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>>`
+
+```rust
+enum SegmentIteratorInternal<'data, 'file, R: ReadRef<'data>> {
+    Coff(coff::CoffSegmentIterator<'data, 'file, R>),
+    CoffBig(coff::CoffBigSegmentIterator<'data, 'file, R>),
+    Elf32(elf::ElfSegmentIterator32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfSegmentIterator64<'data, 'file, crate::endian::Endianness, R>),
+    MachO32(macho::MachOSegmentIterator32<'data, 'file, crate::endian::Endianness, R>),
+    MachO64(macho::MachOSegmentIterator64<'data, 'file, crate::endian::Endianness, R>),
+    Pe32(pe::PeSegmentIterator32<'data, 'file, R>),
+    Pe64(pe::PeSegmentIterator64<'data, 'file, R>),
+    Xcoff32(xcoff::XcoffSegmentIterator32<'data, 'file, R>),
+    Xcoff64(xcoff::XcoffSegmentIterator64<'data, 'file, R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SegmentIteratorInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `SegmentInternal<'data, 'file, R: ReadRef<'data>>`
+
+```rust
+enum SegmentInternal<'data, 'file, R: ReadRef<'data>> {
+    Coff(coff::CoffSegment<'data, 'file, R>),
+    CoffBig(coff::CoffBigSegment<'data, 'file, R>),
+    Elf32(elf::ElfSegment32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfSegment64<'data, 'file, crate::endian::Endianness, R>),
+    MachO32(macho::MachOSegment32<'data, 'file, crate::endian::Endianness, R>),
+    MachO64(macho::MachOSegment64<'data, 'file, crate::endian::Endianness, R>),
+    Pe32(pe::PeSegment32<'data, 'file, R>),
+    Pe64(pe::PeSegment64<'data, 'file, R>),
+    Xcoff32(xcoff::XcoffSegment32<'data, 'file, R>),
+    Xcoff64(xcoff::XcoffSegment64<'data, 'file, R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SegmentInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `SectionIteratorInternal<'data, 'file, R: ReadRef<'data>>`
+
+```rust
+enum SectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
+    Coff(coff::CoffSectionIterator<'data, 'file, R>),
+    CoffBig(coff::CoffBigSectionIterator<'data, 'file, R>),
+    Elf32(elf::ElfSectionIterator32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfSectionIterator64<'data, 'file, crate::endian::Endianness, R>),
+    MachO32(macho::MachOSectionIterator32<'data, 'file, crate::endian::Endianness, R>),
+    MachO64(macho::MachOSectionIterator64<'data, 'file, crate::endian::Endianness, R>),
+    Pe32(pe::PeSectionIterator32<'data, 'file, R>),
+    Pe64(pe::PeSectionIterator64<'data, 'file, R>),
+    Xcoff32(xcoff::XcoffSectionIterator32<'data, 'file, R>),
+    Xcoff64(xcoff::XcoffSectionIterator64<'data, 'file, R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SectionIteratorInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `SectionInternal<'data, 'file, R: ReadRef<'data>>`
+
+```rust
+enum SectionInternal<'data, 'file, R: ReadRef<'data>> {
+    Coff(coff::CoffSection<'data, 'file, R>),
+    CoffBig(coff::CoffBigSection<'data, 'file, R>),
+    Elf32(elf::ElfSection32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfSection64<'data, 'file, crate::endian::Endianness, R>),
+    MachO32(macho::MachOSection32<'data, 'file, crate::endian::Endianness, R>),
+    MachO64(macho::MachOSection64<'data, 'file, crate::endian::Endianness, R>),
+    Pe32(pe::PeSection32<'data, 'file, R>),
+    Pe64(pe::PeSection64<'data, 'file, R>),
+    Xcoff32(xcoff::XcoffSection32<'data, 'file, R>),
+    Xcoff64(xcoff::XcoffSection64<'data, 'file, R>),
+}
+```
+
+### `ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>>`
+
+```rust
+enum ComdatIteratorInternal<'data, 'file, R: ReadRef<'data>> {
+    Coff(coff::CoffComdatIterator<'data, 'file, R>),
+    CoffBig(coff::CoffBigComdatIterator<'data, 'file, R>),
+    Elf32(elf::ElfComdatIterator32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfComdatIterator64<'data, 'file, crate::endian::Endianness, R>),
+    MachO32(macho::MachOComdatIterator32<'data, 'file, crate::endian::Endianness, R>),
+    MachO64(macho::MachOComdatIterator64<'data, 'file, crate::endian::Endianness, R>),
+    Pe32(pe::PeComdatIterator32<'data, 'file, R>),
+    Pe64(pe::PeComdatIterator64<'data, 'file, R>),
+    Xcoff32(xcoff::XcoffComdatIterator32<'data, 'file, R>),
+    Xcoff64(xcoff::XcoffComdatIterator64<'data, 'file, R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for ComdatIteratorInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `ComdatInternal<'data, 'file, R: ReadRef<'data>>`
+
+```rust
+enum ComdatInternal<'data, 'file, R: ReadRef<'data>> {
+    Coff(coff::CoffComdat<'data, 'file, R>),
+    CoffBig(coff::CoffBigComdat<'data, 'file, R>),
+    Elf32(elf::ElfComdat32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfComdat64<'data, 'file, crate::endian::Endianness, R>),
+    MachO32(macho::MachOComdat32<'data, 'file, crate::endian::Endianness, R>),
+    MachO64(macho::MachOComdat64<'data, 'file, crate::endian::Endianness, R>),
+    Pe32(pe::PeComdat32<'data, 'file, R>),
+    Pe64(pe::PeComdat64<'data, 'file, R>),
+    Xcoff32(xcoff::XcoffComdat32<'data, 'file, R>),
+    Xcoff64(xcoff::XcoffComdat64<'data, 'file, R>),
+}
+```
+
+### `ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>>`
+
+```rust
+enum ComdatSectionIteratorInternal<'data, 'file, R: ReadRef<'data>> {
+    Coff(coff::CoffComdatSectionIterator<'data, 'file, R>),
+    CoffBig(coff::CoffBigComdatSectionIterator<'data, 'file, R>),
+    Elf32(elf::ElfComdatSectionIterator32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfComdatSectionIterator64<'data, 'file, crate::endian::Endianness, R>),
+    MachO32(macho::MachOComdatSectionIterator32<'data, 'file, crate::endian::Endianness, R>),
+    MachO64(macho::MachOComdatSectionIterator64<'data, 'file, crate::endian::Endianness, R>),
+    Pe32(pe::PeComdatSectionIterator32<'data, 'file, R>),
+    Pe64(pe::PeComdatSectionIterator64<'data, 'file, R>),
+    Xcoff32(xcoff::XcoffComdatSectionIterator32<'data, 'file, R>),
+    Xcoff64(xcoff::XcoffComdatSectionIterator64<'data, 'file, R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for ComdatSectionIteratorInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `SymbolTableInternal<'data, 'file, R>`
+
+```rust
+enum SymbolTableInternal<'data, 'file, R>
+where
+    R: ReadRef<'data> {
+    Coff((coff::CoffSymbolTable<'data, 'file, R>, core::marker::PhantomData<R>)),
+    CoffBig((coff::CoffBigSymbolTable<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Elf32((elf::ElfSymbolTable32<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<R>)),
+    Elf64((elf::ElfSymbolTable64<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<R>)),
+    MachO32((macho::MachOSymbolTable32<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<()>)),
+    MachO64((macho::MachOSymbolTable64<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<()>)),
+    Pe32((coff::CoffSymbolTable<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Pe64((coff::CoffSymbolTable<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Xcoff32((xcoff::XcoffSymbolTable32<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Xcoff64((xcoff::XcoffSymbolTable64<'data, 'file, R>, core::marker::PhantomData<R>)),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R> Debug for SymbolTableInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `SymbolIteratorInternal<'data, 'file, R>`
+
+```rust
+enum SymbolIteratorInternal<'data, 'file, R>
+where
+    R: ReadRef<'data> {
+    Coff((coff::CoffSymbolIterator<'data, 'file, R>, core::marker::PhantomData<R>)),
+    CoffBig((coff::CoffBigSymbolIterator<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Elf32((elf::ElfSymbolIterator32<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<R>)),
+    Elf64((elf::ElfSymbolIterator64<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<R>)),
+    MachO32((macho::MachOSymbolIterator32<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<()>)),
+    MachO64((macho::MachOSymbolIterator64<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<()>)),
+    Pe32((coff::CoffSymbolIterator<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Pe64((coff::CoffSymbolIterator<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Xcoff32((xcoff::XcoffSymbolIterator32<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Xcoff64((xcoff::XcoffSymbolIterator64<'data, 'file, R>, core::marker::PhantomData<R>)),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R> Debug for SymbolIteratorInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `SymbolInternal<'data, 'file, R>`
+
+```rust
+enum SymbolInternal<'data, 'file, R>
+where
+    R: ReadRef<'data> {
+    Coff((coff::CoffSymbol<'data, 'file, R>, core::marker::PhantomData<R>)),
+    CoffBig((coff::CoffBigSymbol<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Elf32((elf::ElfSymbol32<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<R>)),
+    Elf64((elf::ElfSymbol64<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<R>)),
+    MachO32((macho::MachOSymbol32<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<()>)),
+    MachO64((macho::MachOSymbol64<'data, 'file, crate::endian::Endianness, R>, core::marker::PhantomData<()>)),
+    Pe32((coff::CoffSymbol<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Pe64((coff::CoffSymbol<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Xcoff32((xcoff::XcoffSymbol32<'data, 'file, R>, core::marker::PhantomData<R>)),
+    Xcoff64((xcoff::XcoffSymbol64<'data, 'file, R>, core::marker::PhantomData<R>)),
+}
+```
+
+### `DynamicRelocationIteratorInternal<'data, 'file, R>`
+
+```rust
+enum DynamicRelocationIteratorInternal<'data, 'file, R>
+where
+    R: ReadRef<'data> {
+    Elf32(elf::ElfDynamicRelocationIterator32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfDynamicRelocationIterator64<'data, 'file, crate::endian::Endianness, R>),
+    None(core::marker::PhantomData<(&'data (), &'file (), R)>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R> Debug for DynamicRelocationIteratorInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>>`
+
+```rust
+enum SectionRelocationIteratorInternal<'data, 'file, R: ReadRef<'data>> {
+    Coff(coff::CoffRelocationIterator<'data, 'file, R>),
+    CoffBig(coff::CoffBigRelocationIterator<'data, 'file, R>),
+    Elf32(elf::ElfSectionRelocationIterator32<'data, 'file, crate::endian::Endianness, R>),
+    Elf64(elf::ElfSectionRelocationIterator64<'data, 'file, crate::endian::Endianness, R>),
+    MachO32(macho::MachORelocationIterator32<'data, 'file, crate::endian::Endianness, R>),
+    MachO64(macho::MachORelocationIterator64<'data, 'file, crate::endian::Endianness, R>),
+    Pe32(pe::PeRelocationIterator<'data, 'file, R>),
+    Pe64(pe::PeRelocationIterator<'data, 'file, R>),
+    Xcoff32(xcoff::XcoffRelocationIterator32<'data, 'file, R>),
+    Xcoff64(xcoff::XcoffRelocationIterator64<'data, 'file, R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, 'file, R: $crate::fmt::Debug + ReadRef<'data>> Debug for SectionRelocationIteratorInternal<'data, 'file, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ## Traits
+
+### `ReadError<T>`
+
+```rust
+trait ReadError<T> { ... }
+```
+
+#### Required Methods
+
+- `fn read_error(self: Self, error: &'static str) -> Result<T>`
 
 ### `SymbolMapEntry`
 
@@ -3591,6 +3983,26 @@ This trait is part of the unified read API.
 
   Symbol flags that are specific to each file format.
 
+## Functions
+
+### `debug_list_bytes`
+
+```rust
+fn debug_list_bytes(bytes: &[u8], fmt: &mut fmt::Formatter<'_>) -> fmt::Result
+```
+
+### `align`
+
+```rust
+fn align(offset: usize, size: usize) -> usize
+```
+
+### `data_range`
+
+```rust
+fn data_range(data: &[u8], data_address: u64, range_address: u64, size: u64) -> Option<&[u8]>
+```
+
 ## Type Aliases
 
 ### `Result<T>`
@@ -3608,4 +4020,34 @@ type NativeFile<'data, R> = elf::ElfFile64<'data, crate::endian::Endianness, R>;
 ```
 
 The native executable file for the target platform.
+
+### `Result<T>`
+
+```rust
+type Result<T> = result::Result<T, ()>;
+```
+
+## Macros
+
+### `with_inner!`
+
+Evaluate an expression on the contents of a file format enum.
+
+This is a hack to avoid virtual calls.
+
+### `with_inner_mut!`
+
+### `map_inner!`
+
+Like `with_inner!`, but wraps the result in another enum.
+
+### `map_inner_option!`
+
+Like `map_inner!`, but the result is a Result or Option.
+
+### `map_inner_option_mut!`
+
+### `next_inner!`
+
+Call `next` for a file format iterator.
 

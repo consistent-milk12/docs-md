@@ -10,6 +10,10 @@ The `Automaton` trait provides a way to write generic code over any
 Aho-Corasick automaton. It also provides access to lower level APIs that
 permit walking the state transitions of an Aho-Corasick automaton manually.
 
+## Modules
+
+- [`private`](private/index.md) - We seal the `Automaton` trait for now. It's a big trait, and it's
+
 ## Structs
 
 ### `Prefilter`
@@ -481,6 +485,107 @@ implementation.
 
 - `fn next(self: &mut Self) -> Option<std::io::Result<Match>>` — [`Match`](../util/search/index.md)
 
+### `StreamChunkIter<'a, A, R>`
+
+```rust
+struct StreamChunkIter<'a, A, R> {
+    aut: &'a A,
+    rdr: R,
+    buf: crate::util::buffer::Buffer,
+    start: StateID,
+    sid: StateID,
+    absolute_pos: usize,
+    buffer_pos: usize,
+    buffer_reported_pos: usize,
+}
+```
+
+An iterator that reports matches in a stream.
+
+(This doesn't actually implement the `Iterator` trait because it returns
+something with a lifetime attached to a buffer it owns, but that's OK. It
+still has a `next` method and is iterator-like enough to be fine.)
+
+This iterator yields elements of type `io::Result<StreamChunk>`, where
+an error is reported if there was a problem reading from the underlying
+stream. The iterator terminates only when the underlying stream reaches
+`EOF`.
+
+The idea here is that each chunk represents either a match or a non-match,
+and if you concatenated all of the chunks together, you'd reproduce the
+entire contents of the stream, byte-for-byte.
+
+This chunk machinery is a bit complicated and it isn't strictly required
+for a stream searcher that just reports matches. But we do need something
+like this to deal with the "replacement" API, which needs to know which
+chunks it can copy and which it needs to replace.
+
+#### Fields
+
+- **`aut`**: `&'a A`
+
+  The underlying automaton to do the search.
+
+- **`rdr`**: `R`
+
+  The source of bytes we read from.
+
+- **`buf`**: `crate::util::buffer::Buffer`
+
+  A roll buffer for managing bytes from `rdr`. Basically, this is used
+  to handle the case of a match that is split by two different
+  calls to `rdr.read()`. This isn't strictly needed if all we needed to
+  do was report matches, but here we are reporting chunks of non-matches
+  and matches and in order to do that, we really just cannot treat our
+  stream as non-overlapping blocks of bytes. We need to permit some
+  overlap while we retain bytes from a previous `read` call in memory.
+
+- **`start`**: `StateID`
+
+  The unanchored starting state of this automaton.
+
+- **`sid`**: `StateID`
+
+  The state of the automaton.
+
+- **`absolute_pos`**: `usize`
+
+  The absolute position over the entire stream.
+
+- **`buffer_pos`**: `usize`
+
+  The position we're currently at within `buf`.
+
+- **`buffer_reported_pos`**: `usize`
+
+  The buffer position of the end of the bytes that we last returned
+  to the caller. Basically, whenever we find a match, we look to see if
+  there is a difference between where the match started and the position
+  of the last byte we returned to the caller. If there's a difference,
+  then we need to return a 'NonMatch' chunk.
+
+#### Implementations
+
+- `fn new(aut: &'a A, rdr: R) -> Result<StreamChunkIter<'a, A, R>, MatchError>` — [`StreamChunkIter`](#streamchunkiter), [`MatchError`](../util/error/index.md)
+
+- `fn next(self: &mut Self) -> Option<std::io::Result<StreamChunk<'_>>>` — [`StreamChunk`](#streamchunk)
+
+- `fn get_match_chunk(self: &Self, mat: Match) -> core::ops::Range<usize>` — [`Match`](../util/search/index.md)
+
+- `fn get_non_match_chunk(self: &Self, mat: Match) -> Option<core::ops::Range<usize>>` — [`Match`](../util/search/index.md)
+
+- `fn get_pre_roll_non_match_chunk(self: &Self) -> Option<core::ops::Range<usize>>`
+
+- `fn get_eof_non_match_chunk(self: &Self) -> Option<core::ops::Range<usize>>`
+
+- `fn get_match(self: &Self) -> Match` — [`Match`](../util/search/index.md)
+
+#### Trait Implementations
+
+##### `impl<'a, A: $crate::fmt::Debug, R: $crate::fmt::Debug> Debug for StreamChunkIter<'a, A, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ## Enums
 
 ### `Candidate`
@@ -536,6 +641,40 @@ implementations are permitted to return false positives.
 - `fn clone(self: &Self) -> Candidate` — [`Candidate`](../util/prefilter/index.md)
 
 ##### `impl Debug for Candidate`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `StreamChunk<'r>`
+
+```rust
+enum StreamChunk<'r> {
+    NonMatch {
+        bytes: &'r [u8],
+    },
+    Match {
+        bytes: &'r [u8],
+        mat: crate::util::search::Match,
+    },
+}
+```
+
+A single chunk yielded by the stream chunk iterator.
+
+The `'r` lifetime refers to the lifetime of the stream chunk iterator.
+
+#### Variants
+
+- **`NonMatch`**
+
+  A chunk that does not contain any matches.
+
+- **`Match`**
+
+  A chunk that precisely contains a match.
+
+#### Trait Implementations
+
+##### `impl<'r> Debug for StreamChunk<'r>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -814,4 +953,61 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> std::io::Result<()>`
 
   Replaces all non-overlapping matches in `rdr` by calling the
+
+## Functions
+
+### `try_find_fwd`
+
+```rust
+fn try_find_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>) -> Result<Option<crate::util::search::Match>, crate::util::error::MatchError>
+```
+
+### `try_find_fwd_imp`
+
+```rust
+fn try_find_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, pre: Option<&Prefilter>, anchored: crate::util::search::Anchored, earliest: bool) -> Result<Option<crate::util::search::Match>, crate::util::error::MatchError>
+```
+
+### `try_find_overlapping_fwd`
+
+```rust
+fn try_find_overlapping_fwd<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, state: &mut OverlappingState) -> Result<(), crate::util::error::MatchError>
+```
+
+### `try_find_overlapping_fwd_imp`
+
+```rust
+fn try_find_overlapping_fwd_imp<A: Automaton + ?Sized>(aut: &A, input: &crate::util::search::Input<'_>, pre: Option<&Prefilter>, state: &mut OverlappingState) -> Result<(), crate::util::error::MatchError>
+```
+
+### `get_match`
+
+```rust
+fn get_match<A: Automaton + ?Sized>(aut: &A, sid: StateID, index: usize, at: usize) -> crate::util::search::Match
+```
+
+### `fmt_state_indicator`
+
+```rust
+fn fmt_state_indicator<A: Automaton>(f: &mut core::fmt::Formatter<'_>, aut: A, id: StateID) -> core::fmt::Result
+```
+
+Write a prefix "state" indicator for fmt::Debug impls. It always writes
+exactly two printable bytes to the given formatter.
+
+Specifically, this tries to succinctly distinguish the different types of
+states: dead states, start states and match states. It even accounts for
+the possible overlappings of different state types. (The only possible
+overlapping is that of match and start states.)
+
+### `sparse_transitions`
+
+```rust
+fn sparse_transitions<'a>(it: impl Iterator<Item = (u8, StateID)> + 'a) -> impl Iterator<Item = (u8, u8, StateID)> + 'a
+```
+
+Return an iterator of transitions in a sparse format given an iterator
+of all explicitly defined transitions. The iterator yields ranges of
+transitions, such that any adjacent transitions mapped to the same
+state are combined into a single range.
 

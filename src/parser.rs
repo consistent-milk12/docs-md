@@ -49,6 +49,9 @@ impl Parser {
     /// This is the primary entry point for loading documentation data.
     /// The file should be generated with `cargo doc --output-format json`.
     /// Parse a JSON string into a Crate structure.
+    ///
+    /// # Errors
+    /// Returns an error if it faills to parse the JSON.
     #[instrument(skip(json), fields(json_len = json.len()))]
     pub fn parse_json(json: &str) -> Result<Crate, Error> {
         tracing::info!("Starting JSON parsing");
@@ -86,6 +89,9 @@ impl Parser {
     }
 
     /// Parse a JSON file.
+    ///
+    /// # Errors
+    /// Returns error if fails to read the JSON file.
     #[instrument(skip_all, fields(path = %path.as_ref().display()))]
     pub fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error> {
         let path = path.as_ref();

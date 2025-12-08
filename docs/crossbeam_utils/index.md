@@ -27,7 +27,10 @@ Miscellaneous tools for concurrent programming.
 
 ## Modules
 
+- [`primitive`](primitive/index.md) - 
 - [`atomic`](atomic/index.md) - Atomic types.
+- [`cache_padded`](cache_padded/index.md) - 
+- [`backoff`](backoff/index.md) - 
 - [`sync`](sync/index.md) - Thread synchronization primitives.
 - [`thread`](thread/index.md) - Threads that can borrow variables from the stack.
 

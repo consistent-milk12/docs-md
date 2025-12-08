@@ -23,7 +23,7 @@ This section gives a brief overview of the primary types in this module:
 * A [`regex::Regex`](regex/index.md) provides a way to search for matches of a regular
 expression using lazy DFAs. This includes iterating over matches with both the
 start and end positions of each match.
-* A `dfa::DFA` provides direct low level access to a lazy DFA.
+* A [`dfa::DFA`](dfa/index.md) provides direct low level access to a lazy DFA.
 
 # Example: basic regex searching
 
@@ -139,7 +139,10 @@ compiled DFAs.
 ## Modules
 
 - [`dfa`](dfa/index.md) - Types and routines specific to lazy DFAs.
+- [`error`](error/index.md) - 
+- [`id`](id/index.md) - 
 - [`regex`](regex/index.md) - A lazy DFA backed `Regex`.
+- [`search`](search/index.md) - 
 
 ## Structs
 

@@ -143,6 +143,11 @@ character or string, in order of decreasing precedence. These may be tweaked in 
 
 Canonically equivalent strings are assigned the same width (CJK and non-CJK).
 
+## Modules
+
+- [`tables`](tables/index.md) - 
+- [`private`](private/index.md) - 
+
 ## Traits
 
 ### `UnicodeWidthChar`

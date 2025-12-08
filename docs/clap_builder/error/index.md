@@ -6,6 +6,12 @@
 
 Error reporting
 
+## Modules
+
+- [`context`](context/index.md) - 
+- [`format`](format/index.md) - 
+- [`kind`](kind/index.md) - 
+
 ## Structs
 
 ### `KindFormatter`
@@ -184,6 +190,52 @@ See `Command::error` to create an error.
 - `fn source(self: &Self) -> Option<&dyn error::Error>`
 
 ##### `impl<T> ToString for Error<F>`
+
+- `fn to_string(self: &Self) -> String`
+
+### `ErrorInner`
+
+```rust
+struct ErrorInner {
+    kind: ErrorKind,
+    context: self::flat_map::FlatMap<ContextKind, ContextValue>,
+    message: Option<Message>,
+    source: Option<Box<dyn error::Error + Send + Sync>>,
+    help_flag: Option<std::borrow::Cow<'static, str>>,
+    styles: crate::builder::Styles,
+    color_when: crate::util::color::ColorChoice,
+    color_help_when: crate::util::color::ColorChoice,
+    backtrace: Option<Backtrace>,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Debug for ErrorInner`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `Backtrace`
+
+```rust
+struct Backtrace;
+```
+
+#### Implementations
+
+- `fn new() -> Option<Self>`
+
+#### Trait Implementations
+
+##### `impl Debug for Backtrace`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Display for Backtrace`
+
+- `fn fmt(self: &Self, _: &mut Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> ToString for Backtrace`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -792,6 +844,31 @@ A piece of error information
 ##### `impl<T> ToString for ContextValue`
 
 - `fn to_string(self: &Self) -> String`
+
+### `Message`
+
+```rust
+enum Message {
+    Raw(String),
+    Formatted(crate::builder::StyledStr),
+}
+```
+
+#### Implementations
+
+- `fn format(self: &mut Self, cmd: &Command, usage: Option<StyledStr>)` — [`Command`](../builder/command/index.md), [`StyledStr`](../builder/styled_str/index.md)
+
+- `fn formatted(self: &Self, styles: &Styles) -> Cow<'_, StyledStr>` — [`Styles`](../builder/styling/index.md), [`StyledStr`](../builder/styled_str/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for Message`
+
+- `fn clone(self: &Self) -> Message` — [`Message`](#message)
+
+##### `impl Debug for Message`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ## Traits
 

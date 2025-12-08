@@ -4,7 +4,7 @@
 
 # Module `field`
 
-Utilities for working with [`fields`](../macros/index.md) and [field visitors].
+Utilities for working with [`fields`](../../tracing_attributes/attr/kw/index.md) and [field visitors].
 
 
 
@@ -47,7 +47,7 @@ data to, configuration variables that determine the visitor's behavior, or
 trait VisitOutput<Out>: Visit { ... }
 ```
 
-A [visitor] that produces output once it has visited a set of fields.
+A [`visitor`](../../regex_syntax/ast/visitor/index.md) that produces output once it has visited a set of fields.
 
 
 #### Required Methods
@@ -66,10 +66,10 @@ A [visitor] that produces output once it has visited a set of fields.
 trait RecordFields: crate::sealed::Sealed<RecordFieldsMarker> { ... }
 ```
 
-Extension trait implemented by types which can be recorded by a [visitor].
+Extension trait implemented by types which can be recorded by a [`visitor`](../../regex_syntax/ast/visitor/index.md).
 
 This allows writing code that is generic over `tracing_core`'s
-[`span::Attributes`][attr], [`span::Record`][rec], and `Event`
+[`span::Attributes`][`attr`](../../clap_derive/attr/index.md), [`span::Record`][rec], and [`Event`](../../tracing_core/event/index.md)
 types. These types all provide inherent `record` methods that allow a
 visitor to record their fields, but there is no common trait representing this.
 

@@ -7058,3 +7058,19 @@ const DW_EH_PE_absptr: DwEhPe;
 const DW_EH_PE_omit: DwEhPe;
 ```
 
+### `DW_EH_PE_FORMAT_MASK`
+
+```rust
+const DW_EH_PE_FORMAT_MASK: u8 = 15u8;
+```
+
+### `DW_EH_PE_APPLICATION_MASK`
+
+```rust
+const DW_EH_PE_APPLICATION_MASK: u8 = 112u8;
+```
+
+## Macros
+
+### `dw!`
+

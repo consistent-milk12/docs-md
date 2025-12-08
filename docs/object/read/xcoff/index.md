@@ -7,19 +7,19 @@
 Support for reading AIX XCOFF files.
 
 Traits are used to abstract over the difference between 32-bit and 64-bit XCOFF.
-The primary trait for this is [`FileHeader`](../elf/index.md).
+The primary trait for this is [`FileHeader`](#fileheader).
 
 ## High level API
 
 [`XcoffFile`](#xcofffile) implements the [`Object`](crate::read::Object) trait for XCOFF files.
-[`XcoffFile`](#xcofffile) is parameterised by [`FileHeader`](../elf/index.md) to allow reading both 32-bit and
+[`XcoffFile`](#xcofffile) is parameterised by [`FileHeader`](#fileheader) to allow reading both 32-bit and
 64-bit XCOFF. There are type aliases for these parameters ([`XcoffFile32`](#xcofffile32) and
 [`XcoffFile64`](#xcofffile64)).
 
 ## Low level API
 
-The [`FileHeader`](../elf/index.md) trait can be directly used to parse both `xcoff::FileHeader32`
-and `xcoff::FileHeader64`.
+The [`FileHeader`](#fileheader) trait can be directly used to parse both [`xcoff::FileHeader32`](../../xcoff/index.md)
+and [`xcoff::FileHeader64`](../../xcoff/index.md).
 
 ### Example for low level API
  ```no_run
@@ -47,6 +47,15 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 ```
+
+## Modules
+
+- [`file`](file/index.md) - 
+- [`section`](section/index.md) - 
+- [`symbol`](symbol/index.md) - 
+- [`relocation`](relocation/index.md) - 
+- [`comdat`](comdat/index.md) - XCOFF doesn't support the COMDAT section.
+- [`segment`](segment/index.md) - TODO: Support the segment for XCOFF when auxiliary file header and loader section is ready.
 
 ## Structs
 
@@ -764,7 +773,7 @@ This is a stub that doesn't implement any functionality.
 trait FileHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `xcoff::FileHeader32` and `xcoff::FileHeader64`.
+A trait for generic access to [`xcoff::FileHeader32`](../../xcoff/index.md) and [`xcoff::FileHeader64`](../../xcoff/index.md).
 
 #### Required Methods
 
@@ -824,7 +833,7 @@ A trait for generic access to `xcoff::FileHeader32` and `xcoff::FileHeader64`.
 trait AuxHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `xcoff::AuxHeader32` and `xcoff::AuxHeader64`.
+A trait for generic access to [`xcoff::AuxHeader32`](../../xcoff/index.md) and [`xcoff::AuxHeader64`](../../xcoff/index.md).
 
 #### Required Methods
 
@@ -896,7 +905,7 @@ A trait for generic access to `xcoff::AuxHeader32` and `xcoff::AuxHeader64`.
 trait SectionHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `xcoff::SectionHeader32` and `xcoff::SectionHeader64`.
+A trait for generic access to [`xcoff::SectionHeader32`](../../xcoff/index.md) and [`xcoff::SectionHeader64`](../../xcoff/index.md).
 
 #### Required Methods
 
@@ -950,7 +959,7 @@ A trait for generic access to `xcoff::SectionHeader32` and `xcoff::SectionHeader
 trait Symbol: Debug + Pod { ... }
 ```
 
-A trait for generic access to `xcoff::Symbol32` and `xcoff::Symbol64`.
+A trait for generic access to [`xcoff::Symbol32`](../../xcoff/index.md) and [`xcoff::Symbol64`](../../xcoff/index.md).
 
 #### Required Methods
 
@@ -996,7 +1005,7 @@ A trait for generic access to `xcoff::Symbol32` and `xcoff::Symbol64`.
 trait FileAux: Debug + Pod { ... }
 ```
 
-A trait for generic access to `xcoff::FileAux32` and `xcoff::FileAux64`.
+A trait for generic access to [`xcoff::FileAux32`](../../xcoff/index.md) and [`xcoff::FileAux64`](../../xcoff/index.md).
 
 #### Required Methods
 
@@ -1018,7 +1027,7 @@ A trait for generic access to `xcoff::FileAux32` and `xcoff::FileAux64`.
 trait CsectAux: Debug + Pod { ... }
 ```
 
-A trait for generic access to `xcoff::CsectAux32` and `xcoff::CsectAux64`.
+A trait for generic access to [`xcoff::CsectAux32`](../../xcoff/index.md) and [`xcoff::CsectAux64`](../../xcoff/index.md).
 
 #### Required Methods
 
@@ -1048,7 +1057,7 @@ A trait for generic access to `xcoff::CsectAux32` and `xcoff::CsectAux64`.
 trait Rel: Debug + Pod { ... }
 ```
 
-A trait for generic access to `xcoff::Rel32` and `xcoff::Rel64`.
+A trait for generic access to [`xcoff::Rel32`](../../xcoff/index.md) and [`xcoff::Rel64`](../../xcoff/index.md).
 
 #### Required Methods
 
@@ -1074,8 +1083,8 @@ type XcoffFile32<'data, R> = XcoffFile<'data, xcoff::FileHeader32, R>;
 
 A 32-bit XCOFF object file.
 
-This is a file that starts with `xcoff::FileHeader32`, and corresponds
-to [`crate::FileKind::Xcoff32`](../../index.md#xcoff32).
+This is a file that starts with [`xcoff::FileHeader32`](../../xcoff/index.md), and corresponds
+to [`crate::FileKind::Xcoff32`](../../index.md).
 
 ### `XcoffFile64<'data, R>`
 
@@ -1085,8 +1094,8 @@ type XcoffFile64<'data, R> = XcoffFile<'data, xcoff::FileHeader64, R>;
 
 A 64-bit XCOFF object file.
 
-This is a file that starts with `xcoff::FileHeader64`, and corresponds
-to [`crate::FileKind::Xcoff64`](../../index.md#xcoff64).
+This is a file that starts with [`xcoff::FileHeader64`](../../xcoff/index.md), and corresponds
+to [`crate::FileKind::Xcoff64`](../../index.md).
 
 ### `XcoffSectionIterator32<'data, 'file, R>`
 

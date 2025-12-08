@@ -86,6 +86,15 @@ need to worry about these caveats. We'll try to fix ones where we can over
 time, but otherwise it's important to be aware of the limitations of
 unwinding-based backtraces!
 
+## Modules
+
+- [`backtrace`](backtrace/index.md) - 
+- [`symbolize`](symbolize/index.md) - 
+- [`types`](types/index.md) - Platform dependent types.
+- [`print`](print/index.md) - 
+- [`capture`](capture/index.md) - 
+- [`lock`](lock/index.md) - 
+
 ## Structs
 
 ### `Frame`

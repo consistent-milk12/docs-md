@@ -31,3 +31,9 @@ Returns true if the current environment is found to probably be a CI
 environment or service. If you expect to call this multiple times without
 the environment changing, use [cached](#cached).
 
+### `check`
+
+```rust
+fn check(name: &str) -> bool
+```
+

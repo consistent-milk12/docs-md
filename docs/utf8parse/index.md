@@ -2,9 +2,14 @@
 
 A table-driven UTF-8 Parser
 
+ 
 This module implements a table-driven UTF-8 parser which should
 theoretically contain the minimal number of branches (1). The only branch is
 on the `Action` returned from unpacking a transition.
+
+## Modules
+
+- [`types`](types/index.md) - Types supporting the UTF-8 parser
 
 ## Structs
 
@@ -70,4 +75,14 @@ Handles codepoint and invalid sequence events from the parser.
 - `fn invalid_sequence(self: &mut Self)`
 
   Called when an invalid_sequence is detected
+
+## Constants
+
+### `CONTINUATION_MASK`
+
+```rust
+const CONTINUATION_MASK: u8 = 63u8;
+```
+
+Continuation bytes are masked with this value.
 

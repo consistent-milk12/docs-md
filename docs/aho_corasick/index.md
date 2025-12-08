@@ -25,7 +25,7 @@ This section gives a brief overview of the primary types in this crate:
 This is the type you use to execute searches.
 * [`AhoCorasickBuilder`](ahocorasick/index.md) can be used to build an Aho-Corasick automaton, and
 supports configuring a number of options.
-* [`Match`](#match) represents a single match reported by an Aho-Corasick automaton.
+* [`Match`](util/search/index.md) represents a single match reported by an Aho-Corasick automaton.
 Each match has two pieces of information: the pattern that matched and the
 start and end byte offsets corresponding to the position in the haystack at
 which it matched.
@@ -226,10 +226,13 @@ this crate can be used without the standard library.
 
 ## Modules
 
+- [`macros`](macros/index.md) - 
+- [`ahocorasick`](ahocorasick/index.md) - 
 - [`automaton`](automaton/index.md) - Provides [`Automaton`] trait for abstracting over Aho-Corasick automata.
 - [`dfa`](dfa/index.md) - Provides direct access to a DFA implementation of Aho-Corasick.
 - [`nfa`](nfa/index.md) - Provides direct access to NFA implementations of Aho-Corasick.
 - [`packed`](packed/index.md) - Provides packed multiple substring search, principally for a small number of
+- [`util`](util/index.md) - 
 
 ## Structs
 
@@ -313,9 +316,9 @@ implementations and their resource usage, here's a sample of construction
 times and heap memory used after building an automaton from 100,000
 randomly selected titles from Wikipedia:
 
-* 99MB for a `noncontiguous::NFA` in 240ms.
-* 21MB for a `contiguous::NFA` in 275ms.
-* 1.6GB for a `dfa::DFA` in 1.88s.
+* 99MB for a [`noncontiguous::NFA`](nfa/noncontiguous/index.md) in 240ms.
+* 21MB for a [`contiguous::NFA`](nfa/contiguous/index.md) in 275ms.
+* 1.6GB for a [`dfa::DFA`](dfa/index.md) in 1.88s.
 
 (Note that the memory usage above reflects the size of each automaton and
 not peak memory usage. For example, building a contiguous NFA requires
@@ -380,9 +383,9 @@ version of the `AhoCorasick::try_find_iter` method.
 
 Examples of errors that can occur:
 
-* Running a search that requires `MatchKind::Standard` semantics (such
+* Running a search that requires [`MatchKind::Standard`](#matchkindstandard) semantics (such
 as a stream or overlapping search) with an automaton that was built with
-`MatchKind::LeftmostFirst` or `MatchKind::LeftmostLongest` semantics.
+[`MatchKind::LeftmostFirst`](#matchkindleftmostfirst) or [`MatchKind::LeftmostLongest`](#matchkindleftmostlongest) semantics.
 * Running an anchored search with an automaton that only supports
 unanchored searches. (By default, `AhoCorasick` only supports unanchored
 searches. But this can be toggled with `AhoCorasickBuilder::start_kind`.)
@@ -488,19 +491,25 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn kind(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](ahocorasick/index.md)
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
 
-- `fn start_kind(self: &Self) -> StartKind` — [`StartKind`](util/search/index.md)
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>` — [`Match`](util/search/index.md)
 
-- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](util/search/index.md)
+- `fn find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState)` — [`OverlappingState`](automaton/index.md)
 
-- `fn min_pattern_len(self: &Self) -> usize`
+- `fn find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindIter<'a, 'h>` — [`FindIter`](ahocorasick/index.md)
 
-- `fn max_pattern_len(self: &Self) -> usize`
+- `fn find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> FindOverlappingIter<'a, 'h>` — [`FindOverlappingIter`](ahocorasick/index.md)
 
-- `fn patterns_len(self: &Self) -> usize`
+- `fn replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> String`
 
-- `fn memory_usage(self: &Self) -> usize`
+- `fn replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Vec<u8>`
+
+- `fn replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F)`
+
+- `fn replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F)`
+
+- `fn stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> StreamFindIter<'a, R>` — [`StreamFindIter`](ahocorasick/index.md)
 
 #### Trait Implementations
 
@@ -529,19 +538,19 @@ A builder for configuring an Aho-Corasick automaton.
 # Quick advice
 
 * Use `AhoCorasickBuilder::match_kind` to configure your searcher
-with `MatchKind::LeftmostFirst` if you want to match how backtracking
+with [`MatchKind::LeftmostFirst`](#matchkindleftmostfirst) if you want to match how backtracking
 regex engines execute searches for `pat1|pat2|..|patN`. Use
-`MatchKind::LeftmostLongest` if you want to match how POSIX regex engines
+[`MatchKind::LeftmostLongest`](#matchkindleftmostlongest) if you want to match how POSIX regex engines
 do it.
 * If you need an anchored search, use `AhoCorasickBuilder::start_kind` to
-set the `StartKind::Anchored` mode since `StartKind::Unanchored` is the
-default. Or just use `StartKind::Both` to support both types of searches.
+set the [`StartKind::Anchored`](#startkindanchored) mode since [`StartKind::Unanchored`](#startkindunanchored) is the
+default. Or just use [`StartKind::Both`](#startkindboth) to support both types of searches.
 * You might want to use `AhoCorasickBuilder::kind` to set your searcher
-to always use a `AhoCorasickKind::DFA` if search speed is critical and
+to always use a [`AhoCorasickKind::DFA`](#ahocorasickkinddfa) if search speed is critical and
 memory usage isn't a concern. Otherwise, not setting a kind will probably
-make the right choice for you. Beware that if you use `StartKind::Both`
+make the right choice for you. Beware that if you use [`StartKind::Both`](#startkindboth)
 to build a searcher that supports both unanchored and anchored searches
-_and_ you set `AhoCorasickKind::DFA`, then the DFA will essentially be
+_and_ you set [`AhoCorasickKind::DFA`](#ahocorasickkinddfa), then the DFA will essentially be
 duplicated to support both simultaneously. This results in very high memory
 usage.
 * For all other options, their defaults are almost certainly what you want.
@@ -1203,7 +1212,7 @@ to create a span where `start > end`.
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](util/search/index.md)
+- `fn eq(self: &Self, range: &Range<usize>) -> bool`
 
 ##### `impl StructuralPartialEq for Span`
 

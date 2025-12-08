@@ -1,0 +1,111 @@
+*[backtrace](../../../index.md) / [symbolize](../../index.md) / [gimli](../index.md) / [parse_running_mmaps](index.md)*
+
+---
+
+# Module `parse_running_mmaps`
+
+## Structs
+
+### `MapsEntry`
+
+```rust
+struct MapsEntry {
+    address: (usize, usize),
+    perms: [char; 4],
+    offset: u64,
+    dev: (usize, usize),
+    inode: usize,
+    pathname: super::mystd::ffi::OsString,
+}
+```
+
+#### Fields
+
+- **`address`**: `(usize, usize)`
+
+  start (inclusive) and limit (exclusive) of address range.
+
+- **`perms`**: `[char; 4]`
+
+  The perms field are the permissions for the entry
+  
+  r = read
+  w = write
+  x = execute
+  s = shared
+  p = private (copy on write)
+
+- **`offset`**: `u64`
+
+  Offset into the file (or "whatever").
+
+- **`dev`**: `(usize, usize)`
+
+  device (major, minor)
+
+- **`inode`**: `usize`
+
+  inode on the device. 0 indicates that no inode is associated with the memory region (e.g. uninitalized data aka BSS).
+
+- **`pathname`**: `super::mystd::ffi::OsString`
+
+  Usually the file backing the mapping.
+  
+  Note: The man page for proc includes a note about "coordination" by
+  using readelf to see the Offset field in ELF program headers. pnkfelix
+  is not yet sure if that is intended to be a comment on pathname, or what
+  form/purpose such coordination is meant to have.
+  
+  There are also some pseudo-paths:
+  "[stack]": The initial process's (aka main thread's) stack.
+  "[stack:<tid>]": a specific thread's stack. (This was only present for a limited range of Linux verisons; it was determined to be too expensive to provide.)
+  "[vdso]": Virtual dynamically linked shared object
+  "[`heap`](../../../../compact_str/repr/heap/index.md)": The process's heap
+  
+  The pathname can be blank, which means it is an anonymous mapping
+  obtained via mmap.
+  
+  Newlines in pathname are replaced with an octal escape sequence.
+  
+  The pathname may have "(deleted)" appended onto it if the file-backed
+  path has been deleted.
+  
+  Note that modifications like the latter two indicated above imply that
+  in general the pathname may be ambiguous. (I.e. you cannot tell if the
+  denoted filename actually ended with the text "(deleted)", or if that
+  was added by the maps rendering.
+
+#### Implementations
+
+- `fn pathname(self: &Self) -> &OsString`
+
+- `fn ip_matches(self: &Self, ip: usize) -> bool`
+
+#### Trait Implementations
+
+##### `impl Debug for MapsEntry`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for MapsEntry`
+
+##### `impl FromStr for MapsEntry`
+
+- `type Err = &'static str`
+
+- `fn from_str(s: &str) -> Result<Self, <Self as >::Err>`
+
+##### `impl PartialEq for MapsEntry`
+
+- `fn eq(self: &Self, other: &MapsEntry) -> bool` — [`MapsEntry`](#mapsentry)
+
+##### `impl StructuralPartialEq for MapsEntry`
+
+## Functions
+
+### `parse_maps`
+
+```rust
+fn parse_maps() -> Result<alloc::vec::Vec<MapsEntry>, &'static str>
+```
+

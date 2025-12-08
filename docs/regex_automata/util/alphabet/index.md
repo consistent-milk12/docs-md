@@ -329,3 +329,286 @@ iterator was created from.
 
 - `fn next(self: &mut Self) -> Option<Unit>` — [`Unit`](#unit)
 
+### `ByteClassElementRanges<'a>`
+
+```rust
+struct ByteClassElementRanges<'a> {
+    elements: ByteClassElements<'a>,
+    range: Option<(Unit, Unit)>,
+}
+```
+
+An iterator over all elements in an equivalence class expressed as a
+sequence of contiguous ranges.
+
+#### Trait Implementations
+
+##### `impl<'a> Debug for ByteClassElementRanges<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for ByteClassElementRanges<'a>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'a> Iterator for ByteClassElementRanges<'a>`
+
+- `type Item = (Unit, Unit)`
+
+- `fn next(self: &mut Self) -> Option<(Unit, Unit)>` — [`Unit`](#unit)
+
+### `ByteClassSet`
+
+```rust
+struct ByteClassSet(ByteSet);
+```
+
+A partitioning of bytes into equivalence classes.
+
+A byte class set keeps track of an *approximation* of equivalence classes
+of bytes during NFA construction. That is, every byte in an equivalence
+class cannot discriminate between a match and a non-match.
+
+For example, in the regex `[ab]+`, the bytes `a` and `b` would be in the
+same equivalence class because it never matters whether an `a` or a `b` is
+seen, and no combination of `a`s and `b`s in the text can discriminate a
+match.
+
+Note though that this does not compute the minimal set of equivalence
+classes. For example, in the regex `[ac]+`, both `a` and `c` are in the
+same equivalence class for the same reason that `a` and `b` are in the
+same equivalence class in the aforementioned regex. However, in this
+implementation, `a` and `c` are put into distinct equivalence classes. The
+reason for this is implementation complexity. In the future, we should
+endeavor to compute the minimal equivalence classes since they can have a
+rather large impact on the size of the DFA. (Doing this will likely require
+rethinking how equivalence classes are computed, including changing the
+representation here, which is only able to group contiguous bytes into the
+same equivalence class.)
+
+#### Implementations
+
+- `fn empty() -> Self`
+
+- `fn set_range(self: &mut Self, start: u8, end: u8)`
+
+- `fn add_set(self: &mut Self, set: &ByteSet)` — [`ByteSet`](#byteset)
+
+- `fn byte_classes(self: &Self) -> ByteClasses` — [`ByteClasses`](#byteclasses)
+
+#### Trait Implementations
+
+##### `impl Clone for ByteClassSet`
+
+- `fn clone(self: &Self) -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
+
+##### `impl Debug for ByteClassSet`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for ByteClassSet`
+
+- `fn default() -> ByteClassSet` — [`ByteClassSet`](#byteclassset)
+
+### `ByteSet`
+
+```rust
+struct ByteSet {
+    bits: BitSet,
+}
+```
+
+A simple set of bytes that is reasonably cheap to copy and allocation free.
+
+#### Implementations
+
+- `fn empty() -> ByteSet` — [`ByteSet`](#byteset)
+
+- `fn add(self: &mut Self, byte: u8)`
+
+- `fn remove(self: &mut Self, byte: u8)`
+
+- `fn contains(self: &Self, byte: u8) -> bool`
+
+- `fn contains_range(self: &Self, start: u8, end: u8) -> bool`
+
+- `fn iter(self: &Self) -> ByteSetIter<'_>` — [`ByteSetIter`](#bytesetiter)
+
+- `fn iter_ranges(self: &Self) -> ByteSetRangeIter<'_>` — [`ByteSetRangeIter`](#bytesetrangeiter)
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn from_bytes(slice: &[u8]) -> Result<(ByteSet, usize), DeserializeError>` — [`ByteSet`](#byteset), [`DeserializeError`](../wire/index.md)
+
+- `fn write_to<E: crate::util::wire::Endian>(self: &Self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../wire/index.md)
+
+- `fn write_to_len(self: &Self) -> usize`
+
+#### Trait Implementations
+
+##### `impl Clone for ByteSet`
+
+- `fn clone(self: &Self) -> ByteSet` — [`ByteSet`](#byteset)
+
+##### `impl Copy for ByteSet`
+
+##### `impl Debug for ByteSet`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for ByteSet`
+
+- `fn default() -> ByteSet` — [`ByteSet`](#byteset)
+
+##### `impl Eq for ByteSet`
+
+##### `impl PartialEq for ByteSet`
+
+- `fn eq(self: &Self, other: &ByteSet) -> bool` — [`ByteSet`](#byteset)
+
+##### `impl StructuralPartialEq for ByteSet`
+
+### `BitSet`
+
+```rust
+struct BitSet([u128; 2]);
+```
+
+The representation of a byte set. Split out so that we can define a
+convenient Debug impl for it while keeping "ByteSet" in the output.
+
+#### Trait Implementations
+
+##### `impl Clone for BitSet`
+
+- `fn clone(self: &Self) -> BitSet` — [`BitSet`](#bitset)
+
+##### `impl Copy for BitSet`
+
+##### `impl Debug for BitSet`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Default for BitSet`
+
+- `fn default() -> BitSet` — [`BitSet`](#bitset)
+
+##### `impl Eq for BitSet`
+
+##### `impl PartialEq for BitSet`
+
+- `fn eq(self: &Self, other: &BitSet) -> bool` — [`BitSet`](#bitset)
+
+##### `impl StructuralPartialEq for BitSet`
+
+### `ByteSetIter<'a>`
+
+```rust
+struct ByteSetIter<'a> {
+    set: &'a ByteSet,
+    b: usize,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'a> Debug for ByteSetIter<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for ByteSetIter<'a>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'a> Iterator for ByteSetIter<'a>`
+
+- `type Item = u8`
+
+- `fn next(self: &mut Self) -> Option<u8>`
+
+### `ByteSetRangeIter<'a>`
+
+```rust
+struct ByteSetRangeIter<'a> {
+    set: &'a ByteSet,
+    b: usize,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'a> Debug for ByteSetRangeIter<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for ByteSetRangeIter<'a>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'a> Iterator for ByteSetRangeIter<'a>`
+
+- `type Item = (u8, u8)`
+
+- `fn next(self: &mut Self) -> Option<(u8, u8)>`
+
+## Enums
+
+### `UnitKind`
+
+```rust
+enum UnitKind {
+    U8(u8),
+    EOI(u16),
+}
+```
+
+#### Variants
+
+- **`U8`**
+
+  Represents a byte value, or more typically, an equivalence class
+  represented as a byte value.
+
+- **`EOI`**
+
+  Represents the "end of input" sentinel. We regrettably use a `u16`
+  here since the maximum sentinel value is `256`. Thankfully, we don't
+  actually store a `Unit` anywhere, so this extra space shouldn't be too
+  bad.
+
+#### Trait Implementations
+
+##### `impl Clone for UnitKind`
+
+- `fn clone(self: &Self) -> UnitKind` — [`UnitKind`](#unitkind)
+
+##### `impl Copy for UnitKind`
+
+##### `impl Eq for UnitKind`
+
+##### `impl Ord for UnitKind`
+
+- `fn cmp(self: &Self, other: &UnitKind) -> $crate::cmp::Ordering` — [`UnitKind`](#unitkind)
+
+##### `impl PartialEq for UnitKind`
+
+- `fn eq(self: &Self, other: &UnitKind) -> bool` — [`UnitKind`](#unitkind)
+
+##### `impl PartialOrd for UnitKind`
+
+- `fn partial_cmp(self: &Self, other: &UnitKind) -> $crate::option::Option<$crate::cmp::Ordering>` — [`UnitKind`](#unitkind)
+
+##### `impl StructuralPartialEq for UnitKind`
+

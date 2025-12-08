@@ -152,22 +152,34 @@ Try to decompress from `input` to `output` with the given [`InflateState`](#infl
 # `flush`
 
 Generally, the various [`MZFlush`](../../index.md) flags have meaning only on the compression side.  They can be
-supplied here, but the only one that has any semantic meaning is `MZFlush::Finish`, which is a
+supplied here, but the only one that has any semantic meaning is [`MZFlush::Finish`](../../index.md), which is a
 signal that the stream is expected to finish, and failing to do so is an error.  It isn't
 necessary to specify it when the stream ends; you'll still get returned a
-`MZStatus::StreamEnd` anyway.  Other values either have no effect or cause errors.  It's
-likely that you'll almost always just want to use `MZFlush::None`.
+[`MZStatus::StreamEnd`](../../index.md) anyway.  Other values either have no effect or cause errors.  It's
+likely that you'll almost always just want to use [`MZFlush::None`](../../index.md).
 
 # Errors
 
-Returns `MZError::Buf` if the size of the `output` slice is empty or no progress was made due
-to lack of expected input data, or if called with `MZFlush::Finish` and input wasn't all
+Returns [`MZError::Buf`](../../index.md) if the size of the `output` slice is empty or no progress was made due
+to lack of expected input data, or if called with [`MZFlush::Finish`](../../index.md) and input wasn't all
 consumed.
 
-Returns `MZError::Data` if this or a a previous call failed with an error return from
+Returns [`MZError::Data`](../../index.md) if this or a a previous call failed with an error return from
 [`TINFLStatus`](../index.md); probably indicates corrupted data.
 
-Returns `MZError::Stream` when called with `MZFlush::Full` (meaningless on
-decompression), or when called without `MZFlush::Finish` after an earlier call with
-`MZFlush::Finish` has been made.
+Returns [`MZError::Stream`](../../index.md) when called with [`MZFlush::Full`](../../index.md) (meaningless on
+decompression), or when called without [`MZFlush::Finish`](../../index.md) after an earlier call with
+[`MZFlush::Finish`](../../index.md) has been made.
+
+### `inflate_loop`
+
+```rust
+fn inflate_loop(state: &mut InflateState, next_in: &mut &[u8], next_out: &mut &mut [u8], total_in: &mut usize, total_out: &mut usize, decomp_flags: u32, flush: crate::MZFlush) -> crate::MZResult
+```
+
+### `push_dict_out`
+
+```rust
+fn push_dict_out(state: &mut InflateState, next_out: &mut &mut [u8]) -> usize
+```
 

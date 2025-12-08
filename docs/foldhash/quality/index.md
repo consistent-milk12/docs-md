@@ -19,8 +19,8 @@ struct FoldHasher<'a> {
 A `Hasher` instance implementing foldhash, optimized for quality.
 
 While you can create one directly with `FoldHasher::with_seed`, you
-most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](../fast/index.md) or
-[`FixedState`](#fixedstate) to create [`FoldHasher`](../fast/index.md)s.
+most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](#seedablerandomstate) or
+[`FixedState`](#fixedstate) to create [`FoldHasher`](#foldhasher)s.
 
 #### Implementations
 
@@ -58,7 +58,7 @@ struct RandomState {
 }
 ```
 
-A `BuildHasher` for [`quality::FoldHasher`](FoldHasher) that is randomly initialized.
+A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that is randomly initialized.
 
 #### Trait Implementations
 
@@ -88,7 +88,7 @@ struct SeedableRandomState {
 }
 ```
 
-A `BuildHasher` for [`quality::FoldHasher`](FoldHasher) that is randomly
+A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that is randomly
 initialized by default, but can also be initialized with a specific seed.
 
 This can be useful for e.g. testing, but the downside is that this type
@@ -130,7 +130,7 @@ struct FixedState {
 }
 ```
 
-A `BuildHasher` for [`quality::FoldHasher`](FoldHasher) that always has the same fixed seed.
+A [`BuildHasher`](../../serde_core/lib/index.md) for [`quality::FoldHasher`](FoldHasher) that always has the same fixed seed.
 
 Not recommended unless you absolutely need determinism.
 

@@ -8,8 +8,11 @@ Color types for used for being generic over the color
 
 ## Modules
 
+- [`ansi_colors`](ansi_colors/index.md) - 
 - [`css`](css/index.md) - CSS named colors. Not as widely supported as standard ANSI as it relies on 48bit color support.
 - [`xterm`](xterm/index.md) - XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 more colors.
+- [`custom`](custom/index.md) - 
+- [`dynamic`](dynamic/index.md) - 
 
 ## Structs
 
@@ -418,4 +421,12 @@ A custom RGB color, determined at compile time
 - `const RAW_ANSI_BG: &'static str`
 
 ##### `impl<D> OwoColorize for CustomColor<R, G, B>`
+
+## Macros
+
+### `colors!`
+
+### `impl_fmt_for!`
+
+### `impl_fmt_for_dyn!`
 

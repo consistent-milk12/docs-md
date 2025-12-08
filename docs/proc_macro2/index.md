@@ -13,7 +13,7 @@ crate. This library serves two purposes:
   main.rs.** Types from `proc_macro` are entirely specific to procedural
   macros and cannot ever exist in code outside of a procedural macro.
   Meanwhile `proc_macro2` types may exist anywhere including non-macro code.
-  By developing foundational libraries like [syn] and [quote] against
+  By developing foundational libraries like [`syn`](../syn/index.md) and [`quote`](../quote/index.md) against
   `proc_macro2` rather than `proc_macro`, the procedural macro ecosystem
   becomes easily applicable to many other use cases and we avoid
   reimplementing non-macro equivalents of those libraries.
@@ -81,7 +81,13 @@ a different thread.
 
 ## Modules
 
+- [`marker`](marker/index.md) - 
+- [`parse`](parse/index.md) - 
+- [`probe`](probe/index.md) - 
+- [`rcvec`](rcvec/index.md) - 
+- [`detection`](detection/index.md) - 
 - [`extra`](extra/index.md) - Items which do not have a correspondence to any API in the proc_macro crate,
+- [`imp`](imp/index.md) - 
 - [`token_stream`](token_stream/index.md) - Public implementation details for the `TokenStream` type, such as iterators.
 
 ## Structs
@@ -133,7 +139,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl Extend for TokenStream`
 
-- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
 
 ##### `impl FromIterator for TokenStream`
 
@@ -811,4 +817,10 @@ another token or whitespace.
 - `fn eq(self: &Self, other: &Spacing) -> bool` — [`Spacing`](#spacing)
 
 ##### `impl StructuralPartialEq for Spacing`
+
+## Macros
+
+### `suffixed_int_literals!`
+
+### `unsuffixed_int_literals!`
 

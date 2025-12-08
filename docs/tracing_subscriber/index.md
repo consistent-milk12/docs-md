@@ -17,18 +17,18 @@ application authors using `tracing` to instrument their applications.
 ## `Layer`s and `Filter`s
 
 The most important component of the `tracing-subscriber` API is the
-[`Layer`](layer/index.md) trait, which provides a composable abstraction for building
-[`Subscriber`](fmt/index.md)s. Like the [`Subscriber`](fmt/index.md) trait, a [`Layer`](layer/index.md) defines a
+[`Layer`](fmt/fmt_layer/index.md) trait, which provides a composable abstraction for building
+[`Subscriber`](fmt/index.md)s. Like the [`Subscriber`](fmt/index.md) trait, a [`Layer`](fmt/fmt_layer/index.md) defines a
 particular behavior for collecting trace data. Unlike [`Subscriber`](fmt/index.md)s,
 which implement a *complete* strategy for how trace data is collected,
-[`Layer`](layer/index.md)s provide *modular* implementations of specific behaviors.
+[`Layer`](fmt/fmt_layer/index.md)s provide *modular* implementations of specific behaviors.
 Therefore, they can be [composed together] to form a [`Subscriber`](fmt/index.md) which is
 capable of recording traces in a variety of ways. See the [`layer` module's
-documentation][`layer`](layer/index.md) for details on using [`Layer`](layer/index.md)s.
+documentation][`layer`](layer/index.md) for details on using [`Layer`](fmt/fmt_layer/index.md)s.
 
 In addition, the [`Filter`](layer/index.md) trait defines an interface for filtering what
 spans and events are recorded by a particular layer. This allows different
-[`Layer`](layer/index.md)s to handle separate subsets of the trace data emitted by a
+[`Layer`](fmt/fmt_layer/index.md)s to handle separate subsets of the trace data emitted by a
 program. See the [documentation on per-layer filtering][plf] for more
 information on using [`Filter`](layer/index.md)s.
 
@@ -78,7 +78,7 @@ In embedded systems and other bare-metal applications, `tracing` can be
 used without requiring the Rust standard library, although some features are
 disabled. Although most of the APIs provided by `tracing-subscriber`, such
 as [`fmt`](fmt/index.md) and [`EnvFilter`](filter/index.md), require the standard library, some
-functionality, such as the [`Layer`](layer/index.md) trait, can still be used in
+functionality, such as the [`Layer`](fmt/fmt_layer/index.md) trait, can still be used in
 `no_std` environments.
 
 The dependency on the standard library is controlled by two crate feature
@@ -262,7 +262,7 @@ A [`Layer`](layer/index.md) which filters spans and events based on a set of fil
 directives.
 
 `EnvFilter` implements both the [`Layer`](#impl-Layer<S>) and [`Filter`](layer/index.md) traits, so it may
-be used for both [global filtering][global] and [per-layer filtering][plf],
+be used for both [global filtering][`global`](../allocator_api2/stable/alloc/global/index.md) and [per-layer filtering][plf],
 respectively. See [the documentation on filtering with `Layer`s][filtering]
 for details.
 
@@ -293,19 +293,19 @@ Each component (`target`, `span`, `field`, `value`, and `level`) will be covered
   please refer to `Metadata`'s documentation.
 - `span` matches on the span's name. If a `span` directive is provided alongside a `target`,
   the `span` directive will match on spans _within_ the `target`.
-- `field` matches on [`fields`](macros/index.md) within spans. Field names can also be supplied without a `value`
+- `field` matches on [`fields`](../tracing_attributes/attr/kw/index.md) within spans. Field names can also be supplied without a `value`
   and will match on any [`Span`](#span) or `Event` that has a field with that name.
   For example: `[span{field=\"value\"}]=debug`, `[{field}]=trace`.
 - `value` matches on the value of a span's field. If a value is a numeric literal or a bool,
   it will match _only_ on that value. Otherwise, this filter matches the
-  `std::fmt::Debug` output from the value.
+  [`std::fmt::Debug`](../docs_md/index.md) output from the value.
 - `level` sets a maximum verbosity level accepted by this directive.
 
 When a field value directive (`[{<FIELD NAME>=<FIELD_VALUE>}]=...`) matches a
-value's `std::fmt::Debug` output (i.e., the field value in the directive
+value's [`std::fmt::Debug`](../docs_md/index.md) output (i.e., the field value in the directive
 is not a `bool`, `i64`, `u64`, or `f64` literal), the matched pattern may be
 interpreted as either a regular expression or as the precise expected
-output of the field's `std::fmt::Debug` implementation. By default, these
+output of the field's [`std::fmt::Debug`](../docs_md/index.md) implementation. By default, these
 filters are interpreted as regular expressions, but this can be disabled
 using the `Builder::with_regex` builder method to use precise matching
 instead.
@@ -543,16 +543,16 @@ struct Registry {
 
 A shared, reusable store for spans.
 
-A `Registry` is a [`Subscriber`](fmt/index.md) around which multiple [`Layer`](layer/index.md)s
+A `Registry` is a [`Subscriber`](../tracing_core/subscriber/index.md) around which multiple [`Layer`](fmt/fmt_layer/index.md)s
 implementing various behaviors may be [added]. Unlike other types
 implementing `Subscriber`, `Registry` does not actually record traces itself:
-instead, it collects and stores span data that is exposed to any [`Layer`](layer/index.md)s
+instead, it collects and stores span data that is exposed to any [`Layer`](fmt/fmt_layer/index.md)s
 wrapping it through implementations of the [`LookupSpan`](registry/index.md) trait.
 The `Registry` is responsible for storing span metadata, recording
 relationships between spans, and tracking which spans are active and which
-are closed. In addition, it provides a mechanism for [`Layer`](layer/index.md)s to store
+are closed. In addition, it provides a mechanism for [`Layer`](fmt/fmt_layer/index.md)s to store
 user-defined per-span data, called [`extensions`](registry/extensions/index.md), in the registry. This
-allows [`Layer`](layer/index.md)-specific data to benefit from the `Registry`'s
+allows [`Layer`](fmt/fmt_layer/index.md)-specific data to benefit from the `Registry`'s
 high-performance concurrent storage.
 
 This registry is implemented using a [lock-free sharded slab][slab], and is
@@ -565,7 +565,7 @@ no two currently active spans have the same ID within a process.
 
 One of the primary responsibilities of the registry is to generate [span
 IDs]. Therefore, it's important for other code that interacts with the
-registry, such as [`Layer`](layer/index.md)s, to understand the guarantees of the
+registry, such as [`Layer`](fmt/fmt_layer/index.md)s, to understand the guarantees of the
 span IDs that are generated.
 
 The registry's span IDs are guaranteed to be unique **at a given point
@@ -594,7 +594,7 @@ IDs generated by the registry should **not** be used for this purpose.
 Instead, code which integrates with a distributed tracing system should
 generate and propagate its own IDs according to the rules specified by
 the distributed tracing system. These IDs can be associated with
-`tracing` spans using [`fields`](macros/index.md) and/or [stored span data].
+`tracing` spans using [`fields`](../tracing_attributes/attr/kw/index.md) and/or [stored span data].
 
 
 

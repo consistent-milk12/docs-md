@@ -46,4 +46,12 @@ with the `regex-syntax` crate.
 - [`start`](start/index.md) - Provides helpers for dealing with start state configurations in DFAs.
 - [`syntax`](syntax/index.md) - Utilities for dealing with the syntax of a regular expression.
 - [`wire`](wire/index.md) - Types and routines that support the wire format of finite automata.
+- [`determinize`](determinize/index.md) - This module contains types and routines for implementing determinization.
+- [`empty`](empty/index.md) - This module provides helper routines for dealing with zero-width matches.
+- [`int`](int/index.md) - This module provides several integer oriented traits for converting between
+- [`memchr`](memchr/index.md) - This module defines simple wrapper routines for the memchr functions from the
+- [`search`](search/index.md) - Types and routines that support the search APIs of most regex engines.
+- [`sparse_set`](sparse_set/index.md) - This module defines a sparse set data structure. Its most interesting
+- [`unicode_data`](unicode_data/index.md) - 
+- [`utf8`](utf8/index.md) - Utilities for dealing with UTF-8.
 

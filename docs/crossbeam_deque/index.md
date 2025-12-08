@@ -37,7 +37,7 @@ Steal operations come in three flavors:
 3. `steal_batch_and_pop()` - Steals a batch of tasks, moves them into another queue, and pops
    one task from that worker.
 
-In contrast to push and pop operations, stealing can spuriously fail with `Steal::Retry`, in
+In contrast to push and pop operations, stealing can spuriously fail with [`Steal::Retry`](#stealretry), in
 which case the steal operation needs to be retried.
 
 # Examples
@@ -82,6 +82,10 @@ fn find_task<T>(
 
 
 
+
+## Modules
+
+- [`deque`](deque/index.md) - 
 
 ## Structs
 

@@ -8,10 +8,14 @@ Types and routines for working with look-around assertions.
 
 This module principally defines two types:
 
-* [`Look`](../../index.md) enumerates all of the assertions supported by this crate.
-* [`LookSet`](#lookset) provides a way to efficiently store a set of [`Look`](../../index.md) values.
+* [`Look`](#look) enumerates all of the assertions supported by this crate.
+* [`LookSet`](#lookset) provides a way to efficiently store a set of [`Look`](#look) values.
 * [`LookMatcher`](#lookmatcher) provides routines for checking whether a `Look` or a
 `LookSet` matches at a particular position in a haystack.
+
+## Modules
+
+- [`is_word_char`](is_word_char/index.md) - A module that looks for word codepoints using regex-syntax's data tables.
 
 ## Structs
 

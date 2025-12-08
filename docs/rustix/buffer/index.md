@@ -6,6 +6,10 @@
 
 Utilities for functions that return data via buffers.
 
+## Modules
+
+- [`private`](private/index.md) - 
+
 ## Structs
 
 ### `SpareCapacity<'a, T>`

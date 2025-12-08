@@ -4,7 +4,7 @@
 
 # Module `targets`
 
-A [`filter`](../index.md) that enables or disables spans and events based on their [target] and [`level`](../level/index.md).
+A [`filter`](../index.md) that enables or disables spans and events based on their [`target`](../../../tracing_attributes/attr/kw/index.md) and [`level`](../level/index.md).
 
 See [`Targets`](#targets) for details.
 
@@ -19,23 +19,23 @@ See [`Targets`](#targets) for details.
 struct Targets(crate::filter::directive::DirectiveSet<crate::filter::directive::StaticDirective>);
 ```
 
- A filter that enables or disables spans and events based on their [target]
+ A filter that enables or disables spans and events based on their [`target`](../../../tracing_attributes/attr/kw/index.md)
  and [`level`](../level/index.md).
 
  Targets are typically equal to the Rust module path of the code where the
  span or event was recorded, although they may be overridden.
 
  This type can be used for both [per-layer filtering][plf] (using its
- [`Filter`](../../layer/index.md) implementation) and [global filtering][global] (using its
- [`Layer`](../../layer/index.md) implementation).
+ [`Filter`](../../layer/index.md) implementation) and [global filtering][`global`](../../../allocator_api2/stable/alloc/global/index.md) (using its
+ [`Layer`](../../fmt/fmt_layer/index.md) implementation).
 
  See the [documentation on filtering with layers][filtering] for details.
 
  # Filtering With `Targets`
 
- A `Targets` filter consists of one or more [target] prefixes, paired with
- [`LevelFilter`](../level/index.md)s. If a span or event's [target] begins with one of those
- prefixes, and its [`level`](../level/index.md) is at or below the [`LevelFilter`](../level/index.md) enabled for
+ A `Targets` filter consists of one or more [`target`](../../../tracing_attributes/attr/kw/index.md) prefixes, paired with
+ [`LevelFilter`](../../../tracing_core/metadata/index.md)s. If a span or event's [`target`](../../../tracing_attributes/attr/kw/index.md) begins with one of those
+ prefixes, and its [`level`](../level/index.md) is at or below the [`LevelFilter`](../../../tracing_core/metadata/index.md) enabled for
  that prefix, then the span or event will be enabled.
 
  This is similar to the behavior implemented by the [`env_logger` crate] in
@@ -108,7 +108,7 @@ struct Targets(crate::filter::directive::DirectiveSet<crate::filter::directive::
  by the user at runtime.
 
  The `Targets` filter can be used as a [per-layer filter][plf] *and* as a
- [global filter][global]:
+ [global filter][`global`](../../../allocator_api2/stable/alloc/global/index.md):
 
  ```rust
  use tracing_subscriber::{
@@ -259,7 +259,7 @@ struct Targets(crate::filter::directive::DirectiveSet<crate::filter::directive::
 struct IntoIter(core::iter::FilterMap<<crate::filter::directive::DirectiveSet<crate::filter::directive::StaticDirective> as IntoIterator>::IntoIter, fn(crate::filter::directive::StaticDirective) -> Option<(alloc::string::String, crate::filter::LevelFilter)>>);
 ```
 
-An owning iterator over the [target]-[`level`](../level/index.md) pairs of a `Targets` filter.
+An owning iterator over the [`target`](../../../tracing_attributes/attr/kw/index.md)-[`level`](../level/index.md) pairs of a `Targets` filter.
 
 This struct is created by the `IntoIterator` trait implementation of [`Targets`](#targets).
 
@@ -316,7 +316,7 @@ drop(filter);
 struct Iter<'a>(core::iter::FilterMap<slice::Iter<'a, crate::filter::directive::StaticDirective>, fn(&'a crate::filter::directive::StaticDirective) -> Option<(&'a str, crate::filter::LevelFilter)>>);
 ```
 
-A borrowing iterator over the [target]-[`level`](../level/index.md) pairs of a `Targets` filter.
+A borrowing iterator over the [`target`](../../../tracing_attributes/attr/kw/index.md)-[`level`](../level/index.md) pairs of a `Targets` filter.
 
 This struct is created by [`iter`](#iter) method of [`Targets`](#targets), or from the `IntoIterator`
 implementation for `&Targets`.

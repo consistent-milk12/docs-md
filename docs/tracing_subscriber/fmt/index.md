@@ -72,17 +72,17 @@ The output format used by the layer and subscriber in this module is
 represented by implementing the [`FormatEvent`](format/index.md) trait, and can be
 customized. This module provides a number of formatter implementations:
 
-* `format::Full`: The default formatter. This emits human-readable,
+* [`format::Full`](format/index.md): The default formatter. This emits human-readable,
   single-line logs for each event that occurs, with the current span context
   displayed before the formatted representation of the event. See
   [here](format::Full#example-output) for sample output.
 
-* `format::Compact`: A variant of the default formatter, optimized for
+* [`format::Compact`](format/index.md): A variant of the default formatter, optimized for
   short line lengths. Fields from the current span context are appended to
   the fields of the formatted event. See
   [here](format::Compact#example-output) for sample output.
 
-* `format::Pretty`: Emits excessively pretty, multi-line logs, optimized
+* [`format::Pretty`](format/index.md): Emits excessively pretty, multi-line logs, optimized
   for human readability. This is primarily intended to be used in local
   development and debugging, or for command-line applications, where
   automated analysis and compact storage of logs is less of a priority than
@@ -105,7 +105,7 @@ fields and fields on spans &mdash; are formatted.
 
 The `fmt::format` module provides several types which implement these traits,
 many of which expose additional configuration options to customize their
-output. The `format::Format` type implements common configuration used by
+output. The [`format::Format`](format/index.md) type implements common configuration used by
 all the formatters provided in this crate, and can be used as a builder to
 set specific formatting settings. For example:
 
@@ -325,7 +325,7 @@ struct Layer<S, N, E, W> {
 }
 ```
 
-A [`Layer`](../layer/index.md) that logs formatted representations of `tracing` events.
+A [`Layer`](fmt_layer/index.md) that logs formatted representations of `tracing` events.
 
 ## Examples
 
@@ -372,23 +372,27 @@ tracing::subscriber::set_global_default(subscriber).unwrap();
 
 #### Implementations
 
-- `fn with_writer<W2>(self: Self, make_writer: W2) -> Layer<S, N, E, W2>` — [`Layer`](fmt_layer/index.md)
+- `fn with_timer<T2>(self: Self, timer: T2) -> Layer<S, N, format::Format<L, T2>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md)
 
-- `fn writer(self: &Self) -> &W`
+- `fn without_time(self: Self) -> Layer<S, N, format::Format<L, ()>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md)
 
-- `fn writer_mut(self: &mut Self) -> &mut W`
+- `fn with_span_events(self: Self, kind: FmtSpan) -> Self` — [`FmtSpan`](format/index.md)
 
-- `fn set_ansi(self: &mut Self, ansi: bool)`
+- `fn with_target(self: Self, display_target: bool) -> Layer<S, N, format::Format<L, T>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md)
 
-- `fn set_span_events(self: &mut Self, kind: FmtSpan)` — [`FmtSpan`](format/index.md)
+- `fn with_file(self: Self, display_filename: bool) -> Layer<S, N, format::Format<L, T>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md)
 
-- `fn with_test_writer(self: Self) -> Layer<S, N, E, TestWriter>` — [`Layer`](fmt_layer/index.md), [`TestWriter`](writer/index.md)
+- `fn with_line_number(self: Self, display_line_number: bool) -> Layer<S, N, format::Format<L, T>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md)
 
-- `fn with_ansi(self: Self, ansi: bool) -> Self`
+- `fn with_level(self: Self, display_level: bool) -> Layer<S, N, format::Format<L, T>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md)
 
-- `fn log_internal_errors(self: Self, log_internal_errors: bool) -> Self`
+- `fn with_thread_ids(self: Self, display_thread_ids: bool) -> Layer<S, N, format::Format<L, T>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md)
 
-- `fn map_writer<W2>(self: Self, f: impl FnOnce(W) -> W2) -> Layer<S, N, E, W2>` — [`Layer`](fmt_layer/index.md)
+- `fn with_thread_names(self: Self, display_thread_names: bool) -> Layer<S, N, format::Format<L, T>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md)
+
+- `fn compact(self: Self) -> Layer<S, N, format::Format<format::Compact, T>, W>` — [`Layer`](fmt_layer/index.md), [`Format`](format/index.md), [`Compact`](format/index.md)
+
+- `fn pretty(self: Self) -> Layer<S, format::Pretty, format::Format<format::Pretty, T>, W>` — [`Layer`](fmt_layer/index.md), [`Pretty`](format/index.md), [`Format`](format/index.md)
 
 #### Trait Implementations
 
@@ -430,7 +434,7 @@ A writer intended to support [`libtest`'s output capturing][capturing] for use i
 
 `TestWriter` is used by `fmt::Subscriber` or `fmt::Layer` to enable capturing support.
 
-`cargo test` can only capture output from the standard library's `print!` and `eprint!`
+`cargo test` can only capture output from the standard library's `print!` and [`eprint!`](../../anstream/index.md)
 macros. See [`libtest`'s output capturing][capturing] and
 [rust-lang/rust#90785](https://github.com/rust-lang/rust/issues/90785) for more details about
 output capturing.
@@ -575,7 +579,11 @@ Configures and constructs `Subscriber`s.
 
 #### Implementations
 
-- `fn reload_handle(self: &Self) -> crate::reload::Handle<crate::EnvFilter, Formatter<N, E, W>>` — [`Handle`](../reload/index.md), [`EnvFilter`](../filter/index.md), [`Formatter`](#formatter)
+- `fn finish(self: Self) -> Subscriber<N, E, F, W>` — [`Subscriber`](#subscriber)
+
+- `fn try_init(self: Self) -> Result<(), Box<dyn Error + Send + Sync>>`
+
+- `fn init(self: Self)`
 
 #### Trait Implementations
 

@@ -91,4 +91,14 @@ for Serde by the community.
 
 
 
-*This crate has no public items to document.*
+## Modules
+
+- [`lib`](lib/index.md) - A facade around all the types we need from the `std`, `core`, and `alloc`
+- [`integer128`](integer128/index.md) - 
+
+## Macros
+
+### `crate_root!`
+
+### `tri!`
+

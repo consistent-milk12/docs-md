@@ -61,6 +61,44 @@ struct ProgressStyle {
 
 - `fn clone(self: &Self) -> ProgressStyle` — [`ProgressStyle`](#progressstyle)
 
+### `TabRewriter<'a>`
+
+```rust
+struct TabRewriter<'a>(&'a mut dyn fmt::Write, usize);
+```
+
+#### Trait Implementations
+
+##### `impl Write for TabRewriter<'_>`
+
+- `fn write_str(self: &mut Self, s: &str) -> fmt::Result`
+
+### `Template`
+
+```rust
+struct Template {
+    parts: Vec<TemplatePart>,
+}
+```
+
+#### Implementations
+
+- `fn from_str_with_tab_width(s: &str, tab_width: usize) -> Result<Self, TemplateError>` — [`TemplateError`](#templateerror)
+
+- `fn from_str(s: &str) -> Result<Self, TemplateError>` — [`TemplateError`](#templateerror)
+
+- `fn set_tab_width(self: &mut Self, new_tab_width: usize)`
+
+#### Trait Implementations
+
+##### `impl Clone for Template`
+
+- `fn clone(self: &Self) -> Template` — [`Template`](#template)
+
+##### `impl Debug for Template`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ### `TemplateError`
 
 ```rust
@@ -85,6 +123,194 @@ struct TemplateError {
 ##### `impl<T> ToString for TemplateError`
 
 - `fn to_string(self: &Self) -> String`
+
+### `BarDisplay<'a>`
+
+```rust
+struct BarDisplay<'a> {
+    chars: &'a [Box<str>],
+    filled: usize,
+    cur: Option<usize>,
+    rest: console::StyledObject<RepeatedStringDisplay<'a>>,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Display for BarDisplay<'_>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> ToString for BarDisplay<'a>`
+
+- `fn to_string(self: &Self) -> String`
+
+### `RepeatedStringDisplay<'a>`
+
+```rust
+struct RepeatedStringDisplay<'a> {
+    str: &'a str,
+    num: usize,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Display for RepeatedStringDisplay<'_>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> ToString for RepeatedStringDisplay<'a>`
+
+- `fn to_string(self: &Self) -> String`
+
+### `PaddedStringDisplay<'a>`
+
+```rust
+struct PaddedStringDisplay<'a> {
+    str: &'a str,
+    width: usize,
+    align: Alignment,
+    truncate: bool,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Display for PaddedStringDisplay<'_>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> ToString for PaddedStringDisplay<'a>`
+
+- `fn to_string(self: &Self) -> String`
+
+## Enums
+
+### `WideElement<'a>`
+
+```rust
+enum WideElement<'a> {
+    Bar {
+        alt_style: &'a Option<console::Style>,
+    },
+    Message {
+        align: &'a Alignment,
+    },
+}
+```
+
+#### Implementations
+
+- `fn expand(self: Self, cur: String, style: &ProgressStyle, state: &ProgressState, buf: &mut String, width: u16) -> String` — [`ProgressStyle`](#progressstyle), [`ProgressState`](../state/index.md)
+
+#### Trait Implementations
+
+##### `impl<'a> Clone for WideElement<'a>`
+
+- `fn clone(self: &Self) -> WideElement<'a>` — [`WideElement`](#wideelement)
+
+##### `impl<'a> Copy for WideElement<'a>`
+
+### `TemplatePart`
+
+```rust
+enum TemplatePart {
+    Literal(crate::state::TabExpandedString),
+    Placeholder {
+        key: String,
+        align: Alignment,
+        width: Option<u16>,
+        truncate: bool,
+        style: Option<console::Style>,
+        alt_style: Option<console::Style>,
+    },
+    NewLine,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for TemplatePart`
+
+- `fn clone(self: &Self) -> TemplatePart` — [`TemplatePart`](#templatepart)
+
+##### `impl Debug for TemplatePart`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for TemplatePart`
+
+##### `impl PartialEq for TemplatePart`
+
+- `fn eq(self: &Self, other: &TemplatePart) -> bool` — [`TemplatePart`](#templatepart)
+
+##### `impl StructuralPartialEq for TemplatePart`
+
+### `State`
+
+```rust
+enum State {
+    Literal,
+    MaybeOpen,
+    DoubleClose,
+    Key,
+    Align,
+    Width,
+    FirstStyle,
+    AltStyle,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for State`
+
+- `fn clone(self: &Self) -> State` — [`State`](#state)
+
+##### `impl Copy for State`
+
+##### `impl Debug for State`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for State`
+
+##### `impl PartialEq for State`
+
+- `fn eq(self: &Self, other: &State) -> bool` — [`State`](#state)
+
+##### `impl StructuralPartialEq for State`
+
+### `Alignment`
+
+```rust
+enum Alignment {
+    Left,
+    Center,
+    Right,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for Alignment`
+
+- `fn clone(self: &Self) -> Alignment` — [`Alignment`](#alignment)
+
+##### `impl Copy for Alignment`
+
+##### `impl Debug for Alignment`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for Alignment`
+
+##### `impl PartialEq for Alignment`
+
+- `fn eq(self: &Self, other: &Alignment) -> bool` — [`Alignment`](#alignment)
+
+##### `impl StructuralPartialEq for Alignment`
 
 ## Traits
 
@@ -115,6 +341,27 @@ Trait for defining stateful or stateless formatters
   Provides access to the progress bar display buffer for custom messages
 
 ## Functions
+
+### `segment`
+
+```rust
+fn segment(s: &str) -> Vec<Box<str>>
+```
+
+### `measure`
+
+```rust
+fn measure(s: &str) -> usize
+```
+
+### `width`
+
+```rust
+fn width(c: &[Box<str>]) -> usize
+```
+
+finds the unicode-aware width of the passed grapheme cluters
+panics on an empty parameter, or if the characters are not equal-width
 
 ### `write_ansi_range`
 

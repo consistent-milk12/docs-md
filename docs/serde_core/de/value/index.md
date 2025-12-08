@@ -27,6 +27,10 @@ impl FromStr for Setting {
 }
 ```
 
+## Modules
+
+- [`private`](private/index.md) - 
+
 ## Structs
 
 ### `Error`
@@ -56,7 +60,7 @@ A minimal representation of all possible errors that can occur using the
 
 ##### `impl Error for Error`
 
-- `fn description(self: &Self) -> &str`
+- `fn custom<T>(msg: T) -> Self`
 
 ##### `impl PartialEq for Error`
 
@@ -2411,7 +2415,7 @@ A deserializer that iterates over a sequence.
 
 #### Implementations
 
-- `fn new(iter: I) -> Self`
+- `fn end(self: Self) -> Result<(), E>`
 
 #### Trait Implementations
 
@@ -2502,6 +2506,18 @@ A deserializer that iterates over a sequence.
 - `fn next_element_seed<V>(self: &mut Self, seed: V) -> Result<Option<<V as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md)
 
 - `fn size_hint(self: &Self) -> Option<usize>`
+
+### `ExpectedInSeq`
+
+```rust
+struct ExpectedInSeq(usize);
+```
+
+#### Trait Implementations
+
+##### `impl Expected for ExpectedInSeq`
+
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `SeqAccessDeserializer<A>`
 
@@ -2618,7 +2634,7 @@ A deserializer that iterates over a map.
 
 #### Implementations
 
-- `fn new(iter: I) -> Self`
+- `fn end(self: Self) -> Result<(), E>`
 
 #### Trait Implementations
 
@@ -2721,6 +2737,108 @@ A deserializer that iterates over a map.
 - `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md)
 
 - `fn size_hint(self: &Self) -> Option<usize>`
+
+### `PairDeserializer<A, B, E>`
+
+```rust
+struct PairDeserializer<A, B, E>(A, B, PhantomData<E>);
+```
+
+#### Trait Implementations
+
+##### `impl<'de, A, B, E> Deserializer for PairDeserializer<A, B, E>`
+
+- `type Error = E`
+
+- `fn deserialize_bool<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_i8<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_i16<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_i32<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_i64<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_i128<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_u8<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_u16<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_u32<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_u64<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_u128<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_f32<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_f64<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_char<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_str<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_string<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_bytes<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_byte_buf<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_option<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_unit<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_unit_struct<V>(self: Self, name: &'static str, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_newtype_struct<V>(self: Self, name: &'static str, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_tuple_struct<V>(self: Self, name: &'static str, len: usize, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_map<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_struct<V>(self: Self, name: &'static str, fields: &'static [&'static str], visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_enum<V>(self: Self, name: &'static str, variants: &'static [&'static str], visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_identifier<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_ignored_any<V>(self: Self, visitor: V) -> $crate::__private::Result<<V as >::Value, <Self as $crate::de::Deserializer>::Error>` — [`Visitor`](../index.md), [`Deserializer`](../index.md)
+
+- `fn deserialize_any<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md)
+
+- `fn deserialize_seq<V>(self: Self, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md)
+
+- `fn deserialize_tuple<V>(self: Self, len: usize, visitor: V) -> Result<<V as >::Value, <Self as >::Error>` — [`Visitor`](../index.md)
+
+### `PairVisitor<A, B, E>`
+
+```rust
+struct PairVisitor<A, B, E>(Option<A>, Option<B>, PhantomData<E>);
+```
+
+#### Trait Implementations
+
+##### `impl<'de, A, B, E> SeqAccess for PairVisitor<A, B, E>`
+
+- `type Error = E`
+
+- `fn next_element_seed<T>(self: &mut Self, seed: T) -> Result<Option<<T as >::Value>, <Self as >::Error>` — [`DeserializeSeed`](../index.md)
+
+- `fn size_hint(self: &Self) -> Option<usize>`
+
+### `ExpectedInMap`
+
+```rust
+struct ExpectedInMap(usize);
+```
+
+#### Trait Implementations
+
+##### `impl Expected for ExpectedInMap`
+
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `MapAccessDeserializer<A>`
 
@@ -2921,4 +3039,18 @@ A deserializer holding an `EnumAccess`.
 - `type Deserializer = EnumAccessDeserializer<A>`
 
 - `fn into_deserializer(self: Self) -> Self`
+
+## Type Aliases
+
+### `ErrorImpl`
+
+```rust
+type ErrorImpl = Box<str>;
+```
+
+## Macros
+
+### `impl_copy_clone!`
+
+### `primitive_deserializer!`
 

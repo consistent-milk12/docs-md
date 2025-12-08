@@ -9,6 +9,7 @@ Used a rust back-end for the
 ## Modules
 
 - [`inflate`](inflate/index.md) - This module contains functionality for decompression.
+- [`shared`](shared/index.md) - 
 
 ## Structs
 
@@ -158,7 +159,7 @@ enum MZStatus {
 A list of miniz successful status codes.
 
 These are emitted as the [`Ok`](#ok) side of a [`MZResult`](#mzresult) in the [`StreamResult`](#streamresult) returned from
-`deflate::stream::deflate()` or `inflate::stream::inflate()`.
+`deflate::stream::deflate()` or [`inflate::stream::inflate()`](inflate/stream/index.md).
 
 #### Variants
 
@@ -222,7 +223,7 @@ enum MZError {
 A list of miniz failed status codes.
 
 These are emitted as the `Err` side of a [`MZResult`](#mzresult) in the [`StreamResult`](#streamresult) returned from
-`deflate::stream::deflate()` or `inflate::stream::inflate()`.
+`deflate::stream::deflate()` or [`inflate::stream::inflate()`](inflate/stream/index.md).
 
 #### Variants
 
@@ -234,14 +235,14 @@ These are emitted as the `Err` side of a [`MZResult`](#mzresult) in the [`Stream
 
   General stream error.
   
-  See `inflate::stream::inflate()` docs for details of how it can occur there.
+  See [`inflate::stream::inflate()`](inflate/stream/index.md) docs for details of how it can occur there.
   
   See `deflate::stream::deflate()` docs for how it can in principle occur there, though it's
   believed impossible in practice.
 
 - **`Data`**
 
-  Error in inflation; see `inflate::stream::inflate()` for details.
+  Error in inflation; see [`inflate::stream::inflate()`](inflate/stream/index.md) for details.
   
   Not returned from `deflate::stream::deflate()`.
 
@@ -253,7 +254,7 @@ These are emitted as the `Err` side of a [`MZResult`](#mzresult) in the [`Stream
 
   Buffer-related error.
   
-  See the docs of `deflate::stream::deflate()` or `inflate::stream::inflate()` for details
+  See the docs of `deflate::stream::deflate()` or [`inflate::stream::inflate()`](inflate/stream/index.md) for details
   of when it would trigger in the one you're using.
 
 - **`Version`**

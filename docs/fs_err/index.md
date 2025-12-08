@@ -44,7 +44,7 @@ Ok::<(), std::io::Error>(())
 fs-err uses `std::io::Error` for all errors. This helps fs-err
 compose well with traits from the standard library like
 `std::io::Read` and crates that use them like
-[`serde_json`][serde_json]:
+[`serde_json`][`serde_json`](../serde_json/index.md):
 
 ```no_run
 use fs_err::File;
@@ -106,7 +106,15 @@ If the `tokio` feature is enabled, this crate will inherit the MSRV of the selec
 
 ## Modules
 
+- [`dir`](dir/index.md) - 
+- [`errors`](errors/index.md) - 
+- [`file`](file/index.md) - 
+- [`open_options`](open_options/index.md) - 
 - [`os`](os/index.md) - OS-specific functionality.
+- [`path`](path/index.md) - 
+- [`private`](private/index.md) - 
+- [`unix`](unix/index.md) - 
+- [`unix`](unix/index.md) - 
 
 ## Structs
 
@@ -120,11 +128,21 @@ Wrapper around [`std::fs::OpenOptions`](https://doc.rust-lang.org/std/fs/struct.
 
 #### Implementations
 
-- `fn from_options(options: fs::OpenOptions) -> Self`
+- `fn new() -> Self`
 
-- `fn options(self: &Self) -> &fs::OpenOptions`
+- `fn read(self: &mut Self, read: bool) -> &mut Self`
 
-- `fn options_mut(self: &mut Self) -> &mut fs::OpenOptions`
+- `fn write(self: &mut Self, write: bool) -> &mut Self`
+
+- `fn append(self: &mut Self, append: bool) -> &mut Self`
+
+- `fn truncate(self: &mut Self, truncate: bool) -> &mut Self`
+
+- `fn create(self: &mut Self, create: bool) -> &mut Self`
+
+- `fn create_new(self: &mut Self, create_new: bool) -> &mut Self`
+
+- `fn open<P>(self: &Self, path: P) -> io::Result<crate::File>` — [`File`](#file)
 
 #### Trait Implementations
 
@@ -227,15 +245,21 @@ information to all errors.
 
 #### Implementations
 
-- `fn lock(self: &Self) -> Result<(), io::Error>`
+- `fn from_parts<P>(file: fs::File, path: P) -> Self`
 
-- `fn lock_shared(self: &Self) -> Result<(), io::Error>`
+- `fn into_parts(self: Self) -> (fs::File, PathBuf)`
 
-- `fn try_lock(self: &Self) -> Result<(), fs::TryLockError>`
+- `fn into_file(self: Self) -> fs::File`
 
-- `fn try_lock_shared(self: &Self) -> Result<(), fs::TryLockError>`
+- `fn into_path(self: Self) -> PathBuf`
 
-- `fn unlock(self: &Self) -> Result<(), io::Error>`
+- `fn file(self: &Self) -> &fs::File`
+
+- `fn file_mut(self: &mut Self) -> &mut fs::File`
+
+- `fn path(self: &Self) -> &Path`
+
+- `fn error(self: &Self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](errors/index.md)
 
 #### Trait Implementations
 
@@ -478,6 +502,12 @@ Changes the permissions found on a file or a directory.
 
 Wrapper for [`fs::set_permissions`](https://doc.rust-lang.org/stable/std/fs/fn.set_permissions.html).
 
+### `initial_buffer_size`
+
+```rust
+fn initial_buffer_size(file: &std::fs::File) -> usize
+```
+
 ### `read_dir`
 
 ```rust
@@ -487,4 +517,16 @@ fn read_dir<P: Into<std::path::PathBuf>>(path: P) -> io::Result<ReadDir>
 Returns an iterator over the entries within a directory.
 
 Wrapper for [`fs::read_dir`](https://doc.rust-lang.org/stable/std/fs/fn.read_dir.html).
+
+### `open`
+
+```rust
+fn open(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
+```
+
+### `create`
+
+```rust
+fn create(path: &std::path::Path) -> Result<std::fs::File, impl FnOnce(std::path::PathBuf) -> io::Error>
+```
 

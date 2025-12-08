@@ -19,7 +19,7 @@ reading both PE32 and PE32+. There are type aliases for these parameters
 ## Low level API
 
 The [`ImageNtHeaders`](#imagentheaders) trait can be directly used to parse both
-`pe::ImageNtHeaders32` and `pe::ImageNtHeaders64`.
+[`pe::ImageNtHeaders32`](../../pe/index.md) and [`pe::ImageNtHeaders64`](../../pe/index.md).
 
 ### Example for low level API
  ```no_run
@@ -45,6 +45,17 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
+## Modules
+
+- [`file`](file/index.md) - 
+- [`section`](section/index.md) - 
+- [`data_directory`](data_directory/index.md) - 
+- [`export`](export/index.md) - 
+- [`import`](import/index.md) - 
+- [`relocation`](relocation/index.md) - 
+- [`resource`](resource/index.md) - 
+- [`rich`](rich/index.md) - PE rich header handling
+
 ## Structs
 
 ### `SectionTable<'data>`
@@ -62,21 +73,13 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
+- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
 
-- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
+- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
 
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
 
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn len(self: &Self) -> usize`
-
-- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
-
-- `fn section_by_name<R: ReadRef<'data>>(self: &Self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
-
-- `fn max_section_file_offset(self: &Self) -> u64`
+- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
 
 #### Trait Implementations
 
@@ -1216,7 +1219,7 @@ struct RichHeaderEntry {
 
 A PE rich header entry after it has been unmasked.
 
-See `pe::MaskedRichHeaderEntry`.
+See [`pe::MaskedRichHeaderEntry`](../../pe/index.md).
 
 #### Fields
 
@@ -1405,7 +1408,7 @@ Can be either a string or a numeric ID.
 trait ImageNtHeaders: Debug + Pod { ... }
 ```
 
-A trait for generic access to `pe::ImageNtHeaders32` and `pe::ImageNtHeaders64`.
+A trait for generic access to [`pe::ImageNtHeaders32`](../../pe/index.md) and [`pe::ImageNtHeaders64`](../../pe/index.md).
 
 #### Required Methods
 
@@ -1451,7 +1454,7 @@ A trait for generic access to `pe::ImageNtHeaders32` and `pe::ImageNtHeaders64`.
 trait ImageOptionalHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `pe::ImageOptionalHeader32` and `pe::ImageOptionalHeader64`.
+A trait for generic access to [`pe::ImageOptionalHeader32`](../../pe/index.md) and [`pe::ImageOptionalHeader64`](../../pe/index.md).
 
 #### Required Methods
 
@@ -1521,7 +1524,7 @@ A trait for generic access to `pe::ImageOptionalHeader32` and `pe::ImageOptional
 trait ImageThunkData: Debug + Pod { ... }
 ```
 
-A trait for generic access to `pe::ImageThunkData32` and `pe::ImageThunkData64`.
+A trait for generic access to [`pe::ImageThunkData32`](../../pe/index.md) and [`pe::ImageThunkData64`](../../pe/index.md).
 
 #### Required Methods
 
@@ -1554,6 +1557,22 @@ Find the optional header and read its `magic` field.
 It can be useful to know this magic value before trying to
 fully parse the NT headers.
 
+### `parse_ordinal`
+
+```rust
+fn parse_ordinal(digits: &[u8]) -> Option<u32>
+```
+
+### `memmem`
+
+```rust
+fn memmem(data: &[u8], needle: &[u8], align: usize) -> Option<usize>
+```
+
+Find the offset of the first occurrence of needle in the data.
+
+The offset must have the given alignment.
+
 ## Type Aliases
 
 ### `PeFile32<'data, R>`
@@ -1564,8 +1583,8 @@ type PeFile32<'data, R> = PeFile<'data, pe::ImageNtHeaders32, R>;
 
 A PE32 (32-bit) image file.
 
-This is a file that starts with `pe::ImageNtHeaders32`, and corresponds
-to [`crate::FileKind::Pe32`](../../index.md#pe32).
+This is a file that starts with [`pe::ImageNtHeaders32`](../../pe/index.md), and corresponds
+to [`crate::FileKind::Pe32`](../../index.md).
 
 ### `PeFile64<'data, R>`
 
@@ -1575,8 +1594,8 @@ type PeFile64<'data, R> = PeFile<'data, pe::ImageNtHeaders64, R>;
 
 A PE32+ (64-bit) image file.
 
-This is a file that starts with `pe::ImageNtHeaders64`, and corresponds
-to [`crate::FileKind::Pe64`](../../index.md#pe64).
+This is a file that starts with [`pe::ImageNtHeaders64`](../../pe/index.md), and corresponds
+to [`crate::FileKind::Pe64`](../../index.md).
 
 ### `PeComdatIterator32<'data, 'file, R>`
 

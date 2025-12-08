@@ -203,6 +203,24 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
+### `CapturesDebugMap<'a>`
+
+```rust
+struct CapturesDebugMap<'a> {
+    pid: crate::util::primitives::PatternID,
+    caps: &'a Captures,
+}
+```
+
+A little helper type to provide a nice map-like debug representation for
+our capturing group spans.
+
+#### Trait Implementations
+
+##### `impl<'a> Debug for CapturesDebugMap<'a>`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
 ### `CapturesPatternIter<'a>`
 
 ```rust
@@ -473,6 +491,44 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn default() -> GroupInfo` — [`GroupInfo`](#groupinfo)
 
+### `GroupInfoInner`
+
+```rust
+struct GroupInfoInner {
+    slot_ranges: alloc::vec::Vec<(crate::util::primitives::SmallIndex, crate::util::primitives::SmallIndex)>,
+    name_to_index: alloc::vec::Vec<std::collections::HashMap<alloc::sync::Arc<str>, crate::util::primitives::SmallIndex>>,
+    index_to_name: alloc::vec::Vec<alloc::vec::Vec<Option<alloc::sync::Arc<str>>>>,
+    memory_extra: usize,
+}
+```
+
+The inner guts of `GroupInfo`. This type only exists so that it can
+be wrapped in an `Arc` to make `GroupInfo` reference counted.
+
+#### Implementations
+
+- `fn add_first_group(self: &mut Self, pid: PatternID)` — [`PatternID`](../primitives/index.md)
+
+- `fn add_explicit_group<N: AsRef<str>>(self: &mut Self, pid: PatternID, group: SmallIndex, maybe_name: Option<N>) -> Result<(), GroupInfoError>` — [`PatternID`](../primitives/index.md), [`SmallIndex`](../primitives/index.md), [`GroupInfoError`](#groupinfoerror)
+
+- `fn fixup_slot_ranges(self: &mut Self) -> Result<(), GroupInfoError>` — [`GroupInfoError`](#groupinfoerror)
+
+- `fn pattern_len(self: &Self) -> usize`
+
+- `fn group_len(self: &Self, pid: PatternID) -> usize` — [`PatternID`](../primitives/index.md)
+
+- `fn small_slot_len(self: &Self) -> SmallIndex` — [`SmallIndex`](../primitives/index.md)
+
+#### Trait Implementations
+
+##### `impl Debug for GroupInfoInner`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for GroupInfoInner`
+
+- `fn default() -> GroupInfoInner` — [`GroupInfoInner`](#groupinfoinner)
+
 ### `GroupInfoError`
 
 ```rust
@@ -610,4 +666,101 @@ from which this iterator was created.
 - `type Item = (PatternID, usize, Option<&'a str>)`
 
 - `fn next(self: &mut Self) -> Option<(PatternID, usize, Option<&'a str>)>` — [`PatternID`](../primitives/index.md)
+
+## Enums
+
+### `GroupInfoErrorKind`
+
+```rust
+enum GroupInfoErrorKind {
+    TooManyPatterns {
+        err: crate::util::primitives::PatternIDError,
+    },
+    TooManyGroups {
+        pattern: crate::util::primitives::PatternID,
+        minimum: usize,
+    },
+    MissingGroups {
+        pattern: crate::util::primitives::PatternID,
+    },
+    FirstMustBeUnnamed {
+        pattern: crate::util::primitives::PatternID,
+    },
+    Duplicate {
+        pattern: crate::util::primitives::PatternID,
+        name: alloc::string::String,
+    },
+}
+```
+
+The kind of error that occurs when building a `GroupInfo` fails.
+
+We keep this un-exported because it's not clear how useful it is to
+export it.
+
+#### Variants
+
+- **`TooManyPatterns`**
+
+  This occurs when too many patterns have been added. i.e., It would
+  otherwise overflow a `PatternID`.
+
+- **`TooManyGroups`**
+
+  This occurs when too many capturing groups have been added for a
+  particular pattern.
+
+- **`MissingGroups`**
+
+  An error that occurs when a pattern has no capture groups. Either the
+  group info must be empty, or all patterns must have at least one group
+  (corresponding to the unnamed group for the entire pattern).
+
+- **`FirstMustBeUnnamed`**
+
+  An error that occurs when one tries to provide a name for the capture
+  group at index 0. This capturing group must currently always be
+  unnamed.
+
+- **`Duplicate`**
+
+  An error that occurs when duplicate capture group names for the same
+  pattern are added.
+  
+  NOTE: At time of writing, this error can never occur if you're using
+  regex-syntax, since the parser itself will reject patterns with
+  duplicate capture group names. This error can only occur when the
+  builder is used to hand construct NFAs.
+
+#### Trait Implementations
+
+##### `impl Clone for GroupInfoErrorKind`
+
+- `fn clone(self: &Self) -> GroupInfoErrorKind` — [`GroupInfoErrorKind`](#groupinfoerrorkind)
+
+##### `impl Debug for GroupInfoErrorKind`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Type Aliases
+
+### `CaptureNameMap`
+
+```rust
+type CaptureNameMap = std::collections::HashMap<alloc::sync::Arc<str>, crate::util::primitives::SmallIndex>;
+```
+
+A map from capture group name to its corresponding capture group index.
+
+This type is actually wrapped inside a Vec indexed by pattern ID on a
+`GroupInfo`, since multiple patterns may have the same capture group name.
+That is, each pattern gets its own namespace of capture group names.
+
+Perhaps a more memory efficient representation would be
+HashMap<(PatternID, Arc<str>), usize>, but this makes it difficult to look
+up a capture index by name without producing a `Arc<str>`, which requires
+an allocation. To fix this, I think we'd need to define our own unsized
+type or something? Anyway, I didn't give this much thought since it
+probably doesn't matter much in the grand scheme of things. But it did
+stand out to me as mildly wasteful.
 

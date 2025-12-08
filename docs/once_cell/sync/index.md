@@ -136,13 +136,9 @@ fn main() {
 
 #### Implementations
 
-- `fn force(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
+- `const fn new(f: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
-- `fn force_mut(this: &mut Lazy<T, F>) -> &mut T` — [`Lazy`](#lazy)
-
-- `fn get(this: &Lazy<T, F>) -> Option<&T>` — [`Lazy`](#lazy)
-
-- `fn get_mut(this: &mut Lazy<T, F>) -> Option<&mut T>` — [`Lazy`](#lazy)
+- `fn into_value(this: Lazy<T, F>) -> Result<T, F>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 
@@ -171,4 +167,28 @@ fn main() {
 ##### `impl<T, F: RefUnwindSafe> RefUnwindSafe for Lazy<T, F>`
 
 ##### `impl<T, F: Send> Sync for Lazy<T, F>`
+
+## Functions
+
+### `_dummy`
+
+```rust
+fn _dummy()
+```
+
+```compile_fail
+struct S(*mut ());
+unsafe impl Sync for S {}
+
+fn share<T: Sync>(_: &T) {}
+share(&once_cell::sync::OnceCell::<S>::new());
+```
+
+```compile_fail
+struct S(*mut ());
+unsafe impl Sync for S {}
+
+fn share<T: Sync>(_: &T) {}
+share(&once_cell::sync::Lazy::<S>::new(|| unimplemented!()));
+```
 

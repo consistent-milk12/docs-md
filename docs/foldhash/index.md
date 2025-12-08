@@ -117,6 +117,7 @@ containers, but can be turned off for `#![no_std]` crates.
 
 - [`fast`](fast/index.md) - The foldhash implementation optimized for speed.
 - [`quality`](quality/index.md) - The foldhash implementation optimized for quality.
+- [`seed`](seed/index.md) - 
 
 ## Structs
 
@@ -150,4 +151,128 @@ and [`SeedableRandomState::with_seed`](crate::fast::SeedableRandomState::with_se
 ##### `impl Debug for SharedSeed`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Functions
+
+### `folded_multiply`
+
+```rust
+const fn folded_multiply(x: u64, y: u64) -> u64
+```
+
+### `rotate_right`
+
+```rust
+const fn rotate_right(x: u64, r: u32) -> u64
+```
+
+### `cold_path`
+
+```rust
+fn cold_path()
+```
+
+### `hash_bytes_short`
+
+```rust
+fn hash_bytes_short(bytes: &[u8], accumulator: u64, seeds: &[u64; 6]) -> u64
+```
+
+Hashes strings <= 16 bytes, has unspecified behavior when bytes.len() > 16.
+
+### `load`
+
+```rust
+unsafe fn load(bytes: &[u8], offset: usize) -> u64
+```
+
+Load 8 bytes into a u64 word at the given offset.
+
+# Safety
+You must ensure that offset + 8 <= bytes.len().
+
+### `hash_bytes_long`
+
+```rust
+unsafe fn hash_bytes_long(v: &[u8], accumulator: u64, seeds: &[u64; 6]) -> u64
+```
+
+Hashes strings > 16 bytes.
+
+# Safety
+v.len() must be > 16 bytes.
+
+## Constants
+
+### `ARBITRARY0`
+
+```rust
+const ARBITRARY0: u64 = 2_611_923_443_488_327_891u64;
+```
+
+### `ARBITRARY1`
+
+```rust
+const ARBITRARY1: u64 = 1_376_283_091_369_227_076u64;
+```
+
+### `ARBITRARY2`
+
+```rust
+const ARBITRARY2: u64 = 11_820_040_416_388_919_760u64;
+```
+
+### `ARBITRARY3`
+
+```rust
+const ARBITRARY3: u64 = 589_684_135_938_649_225u64;
+```
+
+### `ARBITRARY4`
+
+```rust
+const ARBITRARY4: u64 = 4_983_270_260_364_809_079u64;
+```
+
+### `ARBITRARY5`
+
+```rust
+const ARBITRARY5: u64 = 13_714_699_805_381_954_668u64;
+```
+
+### `ARBITRARY6`
+
+```rust
+const ARBITRARY6: u64 = 13_883_517_620_612_518_109u64;
+```
+
+### `ARBITRARY7`
+
+```rust
+const ARBITRARY7: u64 = 4_577_018_097_722_394_903u64;
+```
+
+### `ARBITRARY8`
+
+```rust
+const ARBITRARY8: u64 = 10_526_836_309_316_205_339u64;
+```
+
+### `ARBITRARY9`
+
+```rust
+const ARBITRARY9: u64 = 15_073_842_237_943_035_308u64;
+```
+
+### `ARBITRARY10`
+
+```rust
+const ARBITRARY10: u64 = 3_458_046_377_305_235_383u64;
+```
+
+### `ARBITRARY11`
+
+```rust
+const ARBITRARY11: u64 = 13_322_122_606_961_655_446u64;
+```
 

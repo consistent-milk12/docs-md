@@ -49,6 +49,78 @@ module, it is impossible for a replacement string to be invalid. A replacement
 string may not have the intended semantics, but the interpolation procedure
 itself can never fail.
 
+## Structs
+
+### `CaptureRef<'a>`
+
+```rust
+struct CaptureRef<'a> {
+    cap: Ref<'a>,
+    end: usize,
+}
+```
+
+`CaptureRef` represents a reference to a capture group inside some text.
+The reference is either a capture group name or a number.
+
+It is also tagged with the position in the text following the
+capture reference.
+
+#### Trait Implementations
+
+##### `impl<'a> Clone for CaptureRef<'a>`
+
+- `fn clone(self: &Self) -> CaptureRef<'a>` — [`CaptureRef`](#captureref)
+
+##### `impl<'a> Copy for CaptureRef<'a>`
+
+##### `impl<'a> Debug for CaptureRef<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'a> Eq for CaptureRef<'a>`
+
+##### `impl<'a> PartialEq for CaptureRef<'a>`
+
+- `fn eq(self: &Self, other: &CaptureRef<'a>) -> bool` — [`CaptureRef`](#captureref)
+
+##### `impl<'a> StructuralPartialEq for CaptureRef<'a>`
+
+## Enums
+
+### `Ref<'a>`
+
+```rust
+enum Ref<'a> {
+    Named(&'a str),
+    Number(usize),
+}
+```
+
+A reference to a capture group in some text.
+
+e.g., `$2`, `$foo`, `${foo}`.
+
+#### Trait Implementations
+
+##### `impl<'a> Clone for Ref<'a>`
+
+- `fn clone(self: &Self) -> Ref<'a>` — [`Ref`](#ref)
+
+##### `impl<'a> Copy for Ref<'a>`
+
+##### `impl<'a> Debug for Ref<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'a> Eq for Ref<'a>`
+
+##### `impl<'a> PartialEq for Ref<'a>`
+
+- `fn eq(self: &Self, other: &Ref<'a>) -> bool` — [`Ref`](#ref)
+
+##### `impl<'a> StructuralPartialEq for Ref<'a>`
+
 ## Functions
 
 ### `string`
@@ -148,4 +220,38 @@ interpolate::bytes(
 );
 assert_eq!(&b"foo BAR baz"[..], dst);
 ```
+
+### `find_cap_ref`
+
+```rust
+fn find_cap_ref(replacement: &[u8]) -> Option<CaptureRef<'_>>
+```
+
+Parses a possible reference to a capture group name in the given text,
+starting at the beginning of `replacement`.
+
+If no such valid reference could be found, None is returned.
+
+Note that this returns a "possible" reference because this routine doesn't
+know whether the reference is to a valid group or not. If it winds up not
+being a valid reference, then it should be replaced with the empty string.
+
+### `find_cap_ref_braced`
+
+```rust
+fn find_cap_ref_braced(rep: &[u8], i: usize) -> Option<CaptureRef<'_>>
+```
+
+Looks for a braced reference, e.g., `${foo1}`. This assumes that an opening
+brace has been found at `i-1` in `rep`. This then looks for a closing
+brace and returns the capture reference within the brace.
+
+### `is_valid_cap_letter`
+
+```rust
+fn is_valid_cap_letter(b: u8) -> bool
+```
+
+Returns true if and only if the given byte is allowed in a capture name
+written in non-brace form.
 

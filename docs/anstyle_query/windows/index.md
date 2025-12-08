@@ -6,6 +6,10 @@
 
 Windows-specific style queries
 
+## Modules
+
+- [`windows_console`](windows_console/index.md) - 
+
 ## Functions
 
 ### `enable_ansi_colors`

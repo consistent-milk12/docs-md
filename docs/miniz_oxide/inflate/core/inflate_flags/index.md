@@ -4,7 +4,7 @@
 
 # Module `inflate_flags`
 
-Flags to `decompress()` to control how inflation works.
+Flags to [`decompress()`](../index.md) to control how inflation works.
 
 These define bits for a bitmask argument.
 

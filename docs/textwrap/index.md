@@ -19,8 +19,8 @@ assert_eq!(textwrap::wrap(text, 18),
 }
 ```
 
-The `wrap()` function returns the individual lines, use
-`fill()` is you want the lines joined with `'\n'` to form a
+The [`wrap()`](wrap/index.md) function returns the individual lines, use
+[`fill()`](fill/index.md) is you want the lines joined with `'\n'` to form a
 `String`.
 
 If you enable the `hyphenation` Cargo feature, you can get
@@ -41,7 +41,7 @@ assert_eq!(wrap(text, &options),
 }
 ```
 
-See also the `unfill()` and `refill()` functions which allow
+See also the [`unfill()`](refill/index.md) and [`refill()`](refill/index.md) functions which allow
 you to manipulate already wrapped text.
 
 ## Wrapping Strings at Compile Time
@@ -73,7 +73,7 @@ default).
 
 The textwrap library also offers functions for adding a prefix to
 every line of a string and to remove leading whitespace. As an
-example, `indent()` allows you to turn lines of text into a
+example, [`indent()`](indentation/index.md) allows you to turn lines of text into a
 bullet list:
 
 ```rust
@@ -90,7 +90,7 @@ let after = "\
 assert_eq!(textwrap::indent(before, "* "), after);
 ```
 
-Removing leading whitespace is done with `dedent()`:
+Removing leading whitespace is done with [`dedent()`](indentation/index.md):
 
 ```rust
 let before = "
@@ -133,12 +133,12 @@ These features are enabled by default:
 
 * `unicode-width`: enables correct width computation of non-ASCII
   characters via the [unicode-width] crate. Without this feature,
-  every [`char`](#char) is 1 column wide, except for emojis which are 2
-  columns wide. See `core::display_width()` for details.
+  every [`char`](../unicode_normalization/char/index.md) is 1 column wide, except for emojis which are 2
+  columns wide. See [`core::display_width()`](core/index.md) for details.
 
   This feature can be disabled if you only need to wrap ASCII
   text, or if the functions in [`core`](core/index.md) are used directly with
-  `core::Fragment`s for which the widths have been computed in
+  [`core::Fragment`](core/index.md)s for which the widths have been computed in
   other ways.
 
 * `smawk`: enables linear-time wrapping of the whole paragraph via
@@ -146,7 +146,7 @@ These features are enabled by default:
   for details on the optimal-fit algorithm.
 
   This feature can be disabled if you only ever intend to use
-  `wrap_algorithms::wrap_first_fit()`.
+  [`wrap_algorithms::wrap_first_fit()`](wrap_algorithms/index.md).
 
 <!-- begin binary-sizes -->
 
@@ -180,11 +180,11 @@ results.
 These Cargo features enable new functionality:
 
 * `terminal_size`: enables automatic detection of the terminal
-  width via the [terminal_size] crate. See
+  width via the [`terminal_size`](../terminal_size/index.md) crate. See
   `Options::with_termwidth()` for details.
 
 * `hyphenation`: enables language-sensitive hyphenation via the
-  [hyphenation] crate. See the `word_splitters::WordSplitter`
+  [hyphenation] crate. See the [`word_splitters::WordSplitter`](word_splitters/index.md)
   trait for details.
 
 
@@ -199,6 +199,14 @@ These Cargo features enable new functionality:
 - [`core`](core/index.md) - Building blocks for advanced wrapping functionality.
 - [`word_splitters`](word_splitters/index.md) - Word splitting functionality.
 - [`wrap_algorithms`](wrap_algorithms/index.md) - Word wrapping algorithms.
+- [`columns`](columns/index.md) - Functionality for wrapping text into columns.
+- [`fill`](fill/index.md) - Functions for filling text.
+- [`indentation`](indentation/index.md) - Functions related to adding and removing indentation from lines of
+- [`line_ending`](line_ending/index.md) - Line ending detection and conversion.
+- [`options`](options/index.md) - Options for wrapping text.
+- [`refill`](refill/index.md) - Functionality for unfilling and refilling text.
+- [`word_separators`](word_separators/index.md) - Functionality for finding words.
+- [`wrap`](wrap/index.md) - Functions for wrapping text.
 
 ## Structs
 
@@ -405,7 +413,7 @@ assert_eq!(words, vec![Word::from("Hello "), Word::from("World!")]);
   
   # Examples
   
-  Unlike `WordSeparator::AsciiSpace`, the Unicode line
+  Unlike [`WordSeparator::AsciiSpace`](#wordseparatorasciispace), the Unicode line
   breaking algorithm will find line break opportunities between
   some characters with no intervening whitespace:
   
@@ -604,7 +612,7 @@ Describes how to wrap words into lines.
 
 The simplest approach is to wrap words one word at a time and
 accept the first way of wrapping which fit
-(`WrapAlgorithm::FirstFit`). If the `smawk` Cargo feature is
+([`WrapAlgorithm::FirstFit`](#wrapalgorithmfirstfit)). If the `smawk` Cargo feature is
 enabled, a more complex algorithm is available which will look at
 an entire paragraph at a time in order to find optimal line breaks
 (`WrapAlgorithm::OptimalFit`).
@@ -616,7 +624,7 @@ an entire paragraph at a time in order to find optimal line breaks
   Wrap words using a fast and simple algorithm.
   
   This algorithm uses no look-ahead when finding line breaks.
-  Implemented by `wrap_first_fit()`, please see that function
+  Implemented by [`wrap_first_fit()`](wrap_algorithms/index.md), please see that function
   for details and examples.
 
 - **`Custom`**

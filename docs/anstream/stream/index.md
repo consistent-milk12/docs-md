@@ -6,6 +6,10 @@
 
 Higher-level traits to describe writeable streams
 
+## Modules
+
+- [`private`](private/index.md) - 
+
 ## Traits
 
 ### `RawStream`
@@ -14,7 +18,7 @@ Higher-level traits to describe writeable streams
 trait RawStream: std::io::Write + IsTerminal + private::Sealed { ... }
 ```
 
-Required functionality for underlying `std::io::Write` for adaptation
+Required functionality for underlying [`std::io::Write`](../../fs_err/index.md) for adaptation
 
 ### `IsTerminal`
 

@@ -50,6 +50,18 @@ structures may defer the deallocation of an object.
 For majority of use cases, just use the default garbage collector by invoking [`pin`](default/index.md). If you
 want to create your own garbage collector, use the [`Collector`](collector/index.md) API.
 
+## Modules
+
+- [`primitive`](primitive/index.md) - 
+- [`atomic`](atomic/index.md) - 
+- [`collector`](collector/index.md) - 
+- [`deferred`](deferred/index.md) - 
+- [`epoch`](epoch/index.md) - The global epoch
+- [`guard`](guard/index.md) - 
+- [`internal`](internal/index.md) - The global data and participant for garbage collection.
+- [`sync`](sync/index.md) - Synchronization primitives.
+- [`default`](default/index.md) - The default garbage collector.
+
 ## Structs
 
 ### `Atomic<T: ?Sized + Pointable>`
@@ -170,11 +182,13 @@ least significant bits of the address.
 
 #### Implementations
 
-- `unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](atomic/index.md)
+- `fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](atomic/index.md), [`Owned`](atomic/index.md)
 
-- `fn into_box(self: Self) -> Box<T>`
+- `fn into_shared<'g>(self: Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](guard/index.md), [`Shared`](atomic/index.md)
 
-- `fn new(init: T) -> Owned<T>` — [`Owned`](atomic/index.md)
+- `fn tag(self: &Self) -> usize`
+
+- `fn with_tag(self: Self, tag: usize) -> Owned<T>` — [`Owned`](atomic/index.md)
 
 #### Trait Implementations
 

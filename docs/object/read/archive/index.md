@@ -316,3 +316,187 @@ The kind of archive format.
 
 ##### `impl StructuralPartialEq for ArchiveKind`
 
+### `Members<'data>`
+
+```rust
+enum Members<'data> {
+    Common {
+        offset: u64,
+        end_offset: u64,
+    },
+    AixBig {
+        index: &'data [archive::AixMemberOffset],
+    },
+}
+```
+
+The list of members in the archive.
+
+#### Trait Implementations
+
+##### `impl<'data> Clone for Members<'data>`
+
+- `fn clone(self: &Self) -> Members<'data>` — [`Members`](#members)
+
+##### `impl<'data> Copy for Members<'data>`
+
+##### `impl<'data> Debug for Members<'data>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `MemberHeader<'data>`
+
+```rust
+enum MemberHeader<'data> {
+    Common(&'data archive::Header),
+    AixBig(&'data archive::AixHeader),
+}
+```
+
+An archive member header.
+
+#### Variants
+
+- **`Common`**
+
+  Common header used by many formats.
+
+- **`AixBig`**
+
+  AIX big archive header
+
+#### Trait Implementations
+
+##### `impl<'data> Clone for MemberHeader<'data>`
+
+- `fn clone(self: &Self) -> MemberHeader<'data>` — [`MemberHeader`](#memberheader)
+
+##### `impl<'data> Copy for MemberHeader<'data>`
+
+##### `impl<'data> Debug for MemberHeader<'data>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `SymbolIteratorInternal<'data>`
+
+```rust
+enum SymbolIteratorInternal<'data> {
+    None,
+    Gnu {
+        offsets: slice::Iter<'data, crate::endian::U32Bytes<crate::endian::BigEndian>>,
+        names: crate::read::Bytes<'data>,
+    },
+    Gnu64 {
+        offsets: slice::Iter<'data, crate::endian::U64Bytes<crate::endian::BigEndian>>,
+        names: crate::read::Bytes<'data>,
+    },
+    Bsd {
+        offsets: slice::Iter<'data, [crate::endian::U32Bytes<crate::endian::LittleEndian>; 2]>,
+        names: crate::read::Bytes<'data>,
+    },
+    Bsd64 {
+        offsets: slice::Iter<'data, [crate::endian::U64Bytes<crate::endian::LittleEndian>; 2]>,
+        names: crate::read::Bytes<'data>,
+    },
+    Coff {
+        members: &'data [crate::endian::U32Bytes<crate::endian::LittleEndian>],
+        indices: slice::Iter<'data, crate::endian::U16Bytes<crate::endian::LittleEndian>>,
+        names: crate::read::Bytes<'data>,
+    },
+}
+```
+
+#### Variants
+
+- **`None`**
+
+  There is no symbol table.
+
+- **`Gnu`**
+
+  A GNU symbol table.
+  
+  Contains:
+  - the number of symbols as a 32-bit big-endian integer
+  - the offsets of the member headers as 32-bit big-endian integers
+  - the symbol names as null-terminated strings
+
+- **`Gnu64`**
+
+  A GNU 64-bit symbol table
+  
+  Contains:
+  - the number of symbols as a 64-bit big-endian integer
+  - the offsets of the member headers as 64-bit big-endian integers
+  - the symbol names as null-terminated strings
+
+- **`Bsd`**
+
+  A BSD symbol table.
+  
+  Contains:
+  - the size in bytes of the offsets array as a 32-bit little-endian integer
+  - the offsets array, for which each entry is a pair of 32-bit little-endian integers
+    for the offset of the member header and the offset of the symbol name
+  - the size in bytes of the symbol names as a 32-bit little-endian integer
+  - the symbol names as null-terminated strings
+
+- **`Bsd64`**
+
+  A BSD 64-bit symbol table.
+  
+  Contains:
+  - the size in bytes of the offsets array as a 64-bit little-endian integer
+  - the offsets array, for which each entry is a pair of 64-bit little-endian integers
+    for the offset of the member header and the offset of the symbol name
+  - the size in bytes of the symbol names as a 64-bit little-endian integer
+  - the symbol names as null-terminated strings
+
+- **`Coff`**
+
+  A Windows COFF symbol table.
+  
+  Contains:
+  - the number of members as a 32-bit little-endian integer
+  - the offsets of the member headers as 32-bit little-endian integers
+  - the number of symbols as a 32-bit little-endian integer
+  - the member index for each symbol as a 16-bit little-endian integer
+  - the symbol names as null-terminated strings in lexical order
+
+#### Trait Implementations
+
+##### `impl<'data> Clone for SymbolIteratorInternal<'data>`
+
+- `fn clone(self: &Self) -> SymbolIteratorInternal<'data>` — [`SymbolIteratorInternal`](#symboliteratorinternal)
+
+##### `impl<'data> Debug for SymbolIteratorInternal<'data>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Functions
+
+### `parse_u64_digits`
+
+```rust
+fn parse_u64_digits(digits: &[u8], radix: u32) -> Option<u64>
+```
+
+### `parse_sysv_extended_name`
+
+```rust
+fn parse_sysv_extended_name<'data>(digits: &[u8], names: &'data [u8]) -> Result<&'data [u8], ()>
+```
+
+Digits are a decimal offset into the extended name table.
+Name is terminated by "/\n" (for GNU) or a null byte (for COFF).
+
+### `parse_bsd_extended_name`
+
+```rust
+fn parse_bsd_extended_name<'data, R: ReadRef<'data>>(digits: &[u8], data: R, offset: &mut u64, size: &mut u64) -> Result<&'data [u8], ()>
+```
+
+Digits are a decimal length of the extended name, which is contained
+in `data` at `offset`.
+Modifies `offset` and `size` to start after the extended name.
+

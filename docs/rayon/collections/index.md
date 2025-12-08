@@ -19,4 +19,12 @@ to name one of the iterator types.
 - [`hash_set`](hash_set/index.md) - This module contains the parallel iterator types for hash sets
 - [`linked_list`](linked_list/index.md) - This module contains the parallel iterator types for linked lists
 - [`vec_deque`](vec_deque/index.md) - This module contains the parallel iterator types for double-ended queues
+- [`drain_guard`](drain_guard/index.md) - 
+
+## Macros
+
+### `into_par_vec!`
+
+Convert an iterable collection into a parallel iterator by first
+collecting into a temporary `Vec`, then iterating that.
 

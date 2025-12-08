@@ -44,7 +44,7 @@ with [`dense::Builder::configure`](self::Builder::configure).
 The default configuration guarantees that a search will never return
 a "quit" error, although it is possible for a search to fail if
 `Config::starts_for_each_pattern` wasn't enabled (which it is
-not by default) and an `Anchored::Pattern` mode is requested via
+not by default) and an [`Anchored::Pattern`](../../index.md) mode is requested via
 [`Input`](crate::Input).
 
 #### Implementations
@@ -135,7 +135,7 @@ a DFA from different kinds of inputs. The most convenient is
 most flexible is `Builder::build_from_nfa`, which builds a DFA straight
 from an NFA.
 2. The builder permits configuring a number of things.
-`Builder::configure` is used with [`Config`](../../util/syntax/index.md) to configure aspects of
+`Builder::configure` is used with [`Config`](#config) to configure aspects of
 the DFA and the construction process itself. `Builder::syntax` and
 `Builder::thompson` permit configuring the regex parser and Thompson NFA
 construction, respectively. The syntax and thompson configurations only
@@ -247,7 +247,7 @@ the pattern, its size or the size of the alphabet. If your needs don't line
 up with this trade off, then a dense DFA may not be an adequate solution to
 your problem.
 
-In contrast, a `sparse::DFA` makes the opposite
+In contrast, a [`sparse::DFA`](../sparse/index.md) makes the opposite
 trade off: it uses less space but will execute a variable number of
 instructions per byte at match time, which makes it slower for matching.
 (Note that space usage is still exponential in the size of the pattern in
@@ -466,7 +466,21 @@ trait.
 
 #### Implementations
 
-- `fn is_size_limit_exceeded(self: &Self) -> bool`
+- `fn kind(self: &Self) -> &BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
+
+- `fn nfa(err: thompson::BuildError) -> BuildError` — [`BuildError`](../../nfa/thompson/error/index.md)
+
+- `fn unsupported_dfa_word_boundary_unicode() -> BuildError` — [`BuildError`](#builderror)
+
+- `fn too_many_states() -> BuildError` — [`BuildError`](#builderror)
+
+- `fn too_many_start_states() -> BuildError` — [`BuildError`](#builderror)
+
+- `fn too_many_match_pattern_ids() -> BuildError` — [`BuildError`](#builderror)
+
+- `fn dfa_exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
+
+- `fn determinize_exceeded_size_limit(limit: usize) -> BuildError` — [`BuildError`](#builderror)
 
 #### Trait Implementations
 

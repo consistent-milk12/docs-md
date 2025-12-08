@@ -82,6 +82,64 @@ because `ParallelIterator` is **not object-safe**.
 ## Modules
 
 - [`plumbing`](plumbing/index.md) - Traits and functions used to implement parallel iteration.  These are
+- [`blocks`](blocks/index.md) - 
+- [`chain`](chain/index.md) - 
+- [`chunks`](chunks/index.md) - 
+- [`cloned`](cloned/index.md) - 
+- [`collect`](collect/index.md) - 
+- [`copied`](copied/index.md) - 
+- [`empty`](empty/index.md) - 
+- [`enumerate`](enumerate/index.md) - 
+- [`extend`](extend/index.md) - 
+- [`filter`](filter/index.md) - 
+- [`filter_map`](filter_map/index.md) - 
+- [`find`](find/index.md) - 
+- [`find_first_last`](find_first_last/index.md) - 
+- [`flat_map`](flat_map/index.md) - 
+- [`flat_map_iter`](flat_map_iter/index.md) - 
+- [`flatten`](flatten/index.md) - 
+- [`flatten_iter`](flatten_iter/index.md) - 
+- [`fold`](fold/index.md) - 
+- [`fold_chunks`](fold_chunks/index.md) - 
+- [`fold_chunks_with`](fold_chunks_with/index.md) - 
+- [`for_each`](for_each/index.md) - 
+- [`from_par_iter`](from_par_iter/index.md) - 
+- [`inspect`](inspect/index.md) - 
+- [`interleave`](interleave/index.md) - 
+- [`interleave_shortest`](interleave_shortest/index.md) - 
+- [`intersperse`](intersperse/index.md) - 
+- [`len`](len/index.md) - 
+- [`map`](map/index.md) - 
+- [`map_with`](map_with/index.md) - 
+- [`multizip`](multizip/index.md) - 
+- [`noop`](noop/index.md) - 
+- [`once`](once/index.md) - 
+- [`panic_fuse`](panic_fuse/index.md) - 
+- [`par_bridge`](par_bridge/index.md) - 
+- [`positions`](positions/index.md) - 
+- [`product`](product/index.md) - 
+- [`reduce`](reduce/index.md) - 
+- [`repeat`](repeat/index.md) - 
+- [`rev`](rev/index.md) - 
+- [`skip`](skip/index.md) - 
+- [`skip_any`](skip_any/index.md) - 
+- [`skip_any_while`](skip_any_while/index.md) - 
+- [`splitter`](splitter/index.md) - 
+- [`step_by`](step_by/index.md) - 
+- [`sum`](sum/index.md) - 
+- [`take`](take/index.md) - 
+- [`take_any`](take_any/index.md) - 
+- [`take_any_while`](take_any_while/index.md) - 
+- [`try_fold`](try_fold/index.md) - 
+- [`try_reduce`](try_reduce/index.md) - 
+- [`try_reduce_with`](try_reduce_with/index.md) - 
+- [`unzip`](unzip/index.md) - 
+- [`update`](update/index.md) - 
+- [`walk_tree`](walk_tree/index.md) - 
+- [`while_some`](while_some/index.md) - 
+- [`zip`](zip/index.md) - 
+- [`zip_eq`](zip_eq/index.md) - 
+- [`private`](private/index.md) - We hide the `Try` trait in a private module, as it's only meant to be a
 
 ## Structs
 
@@ -1906,7 +1964,7 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl<A, B, C, D, E, F, G, H, I, J> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J)>`
+##### `impl<A, B, C, D, E, F> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F)>`
 
 - `fn drive<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1924,9 +1982,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl<A, B, C, D, E, F, G> ParallelIterator for MultiZip<(A, B, C, D, E, F, G)>`
+##### `impl<A, B, C, D, E, F, G, H, I, J> ParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J)>`
 
-- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item, <F as ParallelIterator>::Item, <G as ParallelIterator>::Item)`
+- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item, <F as ParallelIterator>::Item, <G as ParallelIterator>::Item, <H as ParallelIterator>::Item, <I as ParallelIterator>::Item, <J as ParallelIterator>::Item)`
 
 - `fn drive_unindexed<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2563,7 +2621,7 @@ struct Split<D, S> {
 ```
 
 `Split` is a parallel iterator using arbitrary data and a splitting function.
-This struct is created by the `split()` function.
+This struct is created by the [`split()`](splitter/index.md) function.
 
 #### Trait Implementations
 
@@ -3047,7 +3105,7 @@ struct WalkTree<S, B>(WalkTreePostfix<S, B>);
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the `walk_tree()` function.
+Returned by the [`walk_tree()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 
@@ -3095,7 +3153,7 @@ struct WalkTreePostfix<S, B> {
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the `walk_tree_postfix()` function.
+Returned by the [`walk_tree_postfix()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 
@@ -3143,7 +3201,7 @@ struct WalkTreePrefix<S, B> {
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the `walk_tree_prefix()` function.
+Returned by the [`walk_tree_prefix()`](walk_tree/index.md) function.
 
 #### Trait Implementations
 

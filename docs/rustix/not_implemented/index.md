@@ -19,3 +19,7 @@ could probably be implemented but are not yet.
 - [`yet`](yet/index.md) - These functions are not yet implemented in rustix, but probably could be.
 - [`quite_yet`](quite_yet/index.md) - These functions are not quite yet finished in rustix.
 
+## Macros
+
+### `not_implemented!`
+

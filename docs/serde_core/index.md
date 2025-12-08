@@ -34,12 +34,18 @@ as shown in the following build timings.
 
 ## Modules
 
+- [`crate_root`](crate_root/index.md) - 
+- [`macros`](macros/index.md) - 
+- [`lib`](lib/index.md) - A facade around all the types we need from the `std`, `core`, and `alloc`
 - [`de`](de/index.md) - Generic data structure deserialization framework.
 - [`ser`](ser/index.md) - Generic data structure serialization framework.
+- [`format`](format/index.md) - 
 
 ## Traits
 
 ## Macros
+
+### `tri!`
 
 ### `forward_to_deserialize_any!`
 

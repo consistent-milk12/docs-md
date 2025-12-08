@@ -9,6 +9,12 @@ Atomic types.
 * [`AtomicCell`](atomic_cell/index.md), a thread-safe mutable memory location.
 * [`AtomicConsume`](consume/index.md), for reading from primitive atomic types with "consume" ordering.
 
+## Modules
+
+- [`seq_lock`](seq_lock/index.md) - 
+- [`atomic_cell`](atomic_cell/index.md) - 
+- [`consume`](consume/index.md) - 
+
 ## Structs
 
 ### `AtomicCell<T>`
@@ -53,21 +59,21 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- `fn fetch_add(self: &Self, val: u16) -> u16`
+- `fn fetch_add(self: &Self, val: i128) -> i128`
 
-- `fn fetch_sub(self: &Self, val: u16) -> u16`
+- `fn fetch_sub(self: &Self, val: i128) -> i128`
 
-- `fn fetch_and(self: &Self, val: u16) -> u16`
+- `fn fetch_and(self: &Self, val: i128) -> i128`
 
-- `fn fetch_nand(self: &Self, val: u16) -> u16`
+- `fn fetch_nand(self: &Self, val: i128) -> i128`
 
-- `fn fetch_or(self: &Self, val: u16) -> u16`
+- `fn fetch_or(self: &Self, val: i128) -> i128`
 
-- `fn fetch_xor(self: &Self, val: u16) -> u16`
+- `fn fetch_xor(self: &Self, val: i128) -> i128`
 
-- `fn fetch_max(self: &Self, val: u16) -> u16`
+- `fn fetch_max(self: &Self, val: i128) -> i128`
 
-- `fn fetch_min(self: &Self, val: u16) -> u16`
+- `fn fetch_min(self: &Self, val: i128) -> i128`
 
 #### Trait Implementations
 

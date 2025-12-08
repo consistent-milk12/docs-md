@@ -181,7 +181,7 @@
  Ok(()) }
  ```
 
- However, a [`Layer`](#layer) wrapped in an `Option` [also implements the `Layer`
+ However, a [`Layer`](#layer) wrapped in an [`Option`](../../clap_derive/index.md) [also implements the `Layer`
  trait][option-impl]. This allows individual layers to be enabled or disabled at
  runtime while always producing a [`Subscriber`](../fmt/index.md) of the same type. For
  example:
@@ -430,12 +430,12 @@ Ok(()) }
  - `register_callsite`, once per callsite (roughly: once per time that
    `event!` or `span!` is written in the source code; this is cached at the
    callsite). See `Subscriber::register_callsite` and
-   `tracing_core::callsite` for a summary of how this behaves.
+   [`tracing_core::callsite`](../../tracing_core/callsite/index.md) for a summary of how this behaves.
  - `enabled`, once per emitted event (roughly: once per time that `event!`
    or `span!` is *executed*), and only if `register_callsite` registers an
    `Interest::sometimes`. This is the main customization point to globally
-   filter events based on their `Metadata`. If an event can be disabled
-   based only on `Metadata`, it should be, as this allows the construction
+   filter events based on their [`Metadata`](../../tracing_core/metadata/index.md). If an event can be disabled
+   based only on [`Metadata`](../../tracing_core/metadata/index.md), it should be, as this allows the construction
    of the actual `Event`/`Span` to be skipped.
  - For events only (and not spans), `event_enabled` is called just before
    processing the event. This gives layers one last chance to say that
@@ -472,7 +472,7 @@ Ok(()) }
  function pointer. In addition, when more control is required, the [`Filter`](#filter)
  trait may also be implemented for user-defined types.
 
- `Option<Filter>` also implements [`Filter`](#filter), which allows for an optional
+ [`Option<Filter>`](../../clap_derive/index.md) also implements [`Filter`](#filter), which allows for an optional
  filter. `None` filters out _nothing_ (that is, allows everything through). For
  example:
 
@@ -608,7 +608,7 @@ Ok(()) }
  trees.
 
  As an example, consider the following constraints:
- - Suppose that a particular [target] is used to indicate events that
+ - Suppose that a particular [`target`](../../tracing_attributes/attr/kw/index.md) is used to indicate events that
    should be counted as part of a metrics system, which should be only
    observed by a layer that collects metrics.
  - A log of high-priority events (`INFO` and above) should be logged
@@ -740,7 +740,7 @@ struct Context<'a, S> {
 }
 ```
 
-Represents information about the current context provided to [`Layer`](#layer)s by the
+Represents information about the current context provided to [`Layer`](../fmt/fmt_layer/index.md)s by the
 wrapped [`Subscriber`](../fmt/index.md).
 
 To access [stored data] keyed by a span ID, implementors of the `Layer`
@@ -839,7 +839,7 @@ struct Layered<L, I, S> {
 ```
 
 A [`Subscriber`](../fmt/index.md) composed of a `Subscriber` wrapped by one or more
-[`Layer`](#layer)s.
+[`Layer`](../fmt/fmt_layer/index.md)s.
 
 
 
@@ -888,9 +888,7 @@ A [`Subscriber`](../fmt/index.md) composed of a `Subscriber` wrapped by one or m
 
 #### Implementations
 
-- `fn is<T: Any>(self: &Self) -> bool`
-
-- `fn downcast_ref<T: Any>(self: &Self) -> Option<&T>`
+- `fn ctx(self: &Self) -> Context<'_, S>` — [`Context`](#context)
 
 #### Trait Implementations
 
@@ -1066,7 +1064,7 @@ be composed together with other `Layer`s to build a [`Subscriber`](../fmt/index.
 
 - `fn boxed(self: Self) -> Box<dyn Layer<S> + Send + Sync>`
 
-  Erases the type of this [`Layer`](#layer), returning a `Box`ed `dyn
+  Erases the type of this [`Layer`](#layer), returning a [`Box`](../../allocator_api2/stable/boxed/index.md)ed `dyn
 
 ### `Filter<S>`
 

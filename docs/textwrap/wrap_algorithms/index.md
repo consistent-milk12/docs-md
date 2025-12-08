@@ -9,7 +9,7 @@ Word wrapping algorithms.
 After a text has been broken into words (or [`Fragment`](../core/index.md)s), one
 now has to decide how to break the fragments into lines. The
 simplest algorithm for this is implemented by
-`wrap_first_fit()`: it uses no look-ahead and simply adds
+[`wrap_first_fit()`](#wrap-first-fit): it uses no look-ahead and simply adds
 fragments to the line as long as they fit. However, this can lead
 to poor line breaks if a large fragment almost-but-not-quite fits
 on a line. When that happens, the fragment is moved to the next
@@ -38,7 +38,7 @@ Describes how to wrap words into lines.
 
 The simplest approach is to wrap words one word at a time and
 accept the first way of wrapping which fit
-(`WrapAlgorithm::FirstFit`). If the `smawk` Cargo feature is
+([`WrapAlgorithm::FirstFit`](../index.md)). If the `smawk` Cargo feature is
 enabled, a more complex algorithm is available which will look at
 an entire paragraph at a time in order to find optimal line breaks
 (`WrapAlgorithm::OptimalFit`).
@@ -50,7 +50,7 @@ an entire paragraph at a time in order to find optimal line breaks
   Wrap words using a fast and simple algorithm.
   
   This algorithm uses no look-ahead when finding line breaks.
-  Implemented by `wrap_first_fit()`, please see that function
+  Implemented by [`wrap_first_fit()`](#wrap-first-fit), please see that function
   for details and examples.
 
 - **`Custom`**

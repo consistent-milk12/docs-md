@@ -10,6 +10,10 @@ This implementation features:
 - Decent performance (3-4 GB/s).
 - `#![no_std]` support (with `default-features = false`).
 
+## Modules
+
+- [`algo`](algo/index.md) - 
+
 ## Structs
 
 ### `Adler32`
@@ -80,13 +84,7 @@ if cfg!(target_endian = "big") {
 
 #### Implementations
 
-- `fn new() -> Self`
-
-- `const fn from_checksum(sum: u32) -> Self`
-
-- `fn checksum(self: &Self) -> u32`
-
-- `fn write_slice(self: &mut Self, bytes: &[u8])`
+- `fn compute(self: &mut Self, bytes: &[u8])`
 
 #### Trait Implementations
 

@@ -99,10 +99,6 @@ created.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl RecordFields for tracing_core::span::Attributes<'_>`
-
-- `fn clone_span(self: &Self, id: &span::Id) -> span::Id` — [`Id`](#id)
-
 ### `Record<'a>`
 
 ```rust
@@ -130,10 +126,6 @@ A set of fields recorded by a span.
 ##### `impl<'a> Debug for Record<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl RecordFields for tracing_core::span::Record<'_>`
-
-- `fn drop_span(self: &Self, _id: span::Id)` — [`Id`](#id)
 
 ### `Current`
 
@@ -172,6 +164,27 @@ possible states:
 #### Trait Implementations
 
 ##### `impl Debug for Current`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Enums
+
+### `CurrentInner`
+
+```rust
+enum CurrentInner {
+    Current {
+        id: Id,
+        metadata: &'static crate::Metadata<'static>,
+    },
+    None,
+    Unknown,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Debug for CurrentInner`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

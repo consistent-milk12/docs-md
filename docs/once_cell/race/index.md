@@ -25,6 +25,10 @@ getter thread's perspective. This is an acceptable tradeoff to make since
 `Acquire` and `Release` have very little performance overhead on most
 architectures versus `Relaxed`.
 
+## Modules
+
+- [`once_box`](once_box/index.md) - 
+
 ## Structs
 
 ### `OnceNonZeroUsize`

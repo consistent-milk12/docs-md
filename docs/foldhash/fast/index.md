@@ -22,8 +22,8 @@ struct FoldHasher<'a> {
 A `Hasher` instance implementing foldhash, optimized for speed.
 
 While you can create one directly with `FoldHasher::with_seed`, you
-most likely want to use [`RandomState`](../quality/index.md), [`SeedableRandomState`](#seedablerandomstate) or
-[`FixedState`](../quality/index.md) to create [`FoldHasher`](#foldhasher)s.
+most likely want to use [`RandomState`](#randomstate), [`SeedableRandomState`](#seedablerandomstate) or
+[`FixedState`](#fixedstate) to create [`FoldHasher`](#foldhasher)s.
 
 #### Implementations
 
@@ -64,7 +64,7 @@ struct RandomState {
 }
 ```
 
-A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that is randomly initialized.
+A [`BuildHasher`](../../serde_core/lib/index.md) for [`fast::FoldHasher`](FoldHasher) that is randomly initialized.
 
 #### Trait Implementations
 
@@ -95,11 +95,11 @@ struct SeedableRandomState {
 }
 ```
 
-A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that is randomly
+A [`BuildHasher`](../../serde_core/lib/index.md) for [`fast::FoldHasher`](FoldHasher) that is randomly
 initialized by default, but can also be initialized with a specific seed.
 
 This can be useful for e.g. testing, but the downside is that this type
-has a size of 16 bytes rather than the 8 bytes [`RandomState`](../quality/index.md) is.
+has a size of 16 bytes rather than the 8 bytes [`RandomState`](#randomstate) is.
 
 #### Implementations
 
@@ -137,7 +137,7 @@ struct FixedState {
 }
 ```
 
-A `BuildHasher` for [`fast::FoldHasher`](FoldHasher) that always has the same fixed seed.
+A [`BuildHasher`](../../serde_core/lib/index.md) for [`fast::FoldHasher`](FoldHasher) that always has the same fixed seed.
 
 Not recommended unless you absolutely need determinism.
 

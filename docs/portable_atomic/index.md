@@ -84,7 +84,7 @@ See the [`atomic128` module's readme](https://github.com/taiki-e/portable-atomic
   Implement `serde::{Serialize,Deserialize}` for atomic types.
 
   Note:
-  - The MSRV when this feature is enabled depends on the MSRV of [serde].
+  - The MSRV when this feature is enabled depends on the MSRV of [`serde`](../serde/index.md).
 
 - <a name="optional-features-critical-section"></a>**`critical-section`**<br>
   When this feature is enabled, this crate uses [critical-section] to provide atomic CAS for targets where
@@ -194,6 +194,9 @@ RUSTFLAGS="--cfg portable_atomic_no_outline_atomics" cargo ...
 
 ## Modules
 
+- [`cfgs`](cfgs/index.md) - 
+- [`utils`](utils/index.md) - 
+- [`imp`](imp/index.md) - 
 - [`hint`](hint/index.md) - Re-export of the [`core::hint`] module.
 
 ## Structs
@@ -863,9 +866,9 @@ struct AtomicU16 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-`u16`.
+[`u16`](../gimli/leb128/read/index.md).
 
-If the compiler and the platform support atomic loads and stores of `u16`, this type is a wrapper for the standard library's `AtomicU16`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of [`u16`](../gimli/leb128/read/index.md), this type is a wrapper for the standard library's `AtomicU16`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicU16::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -1545,6 +1548,8 @@ atomic instructions or locks will be used.
 ### `unnamed!`
 
 ### `unnamed!`
+
+### `atomic_int!`
 
 ### `cfg_has_atomic_8!`
 

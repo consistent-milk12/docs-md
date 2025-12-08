@@ -4,12 +4,12 @@
 
 # Module `log_tracer`
 
-An adapter for converting [`log`](../index.md) records into `tracing` `Event`s.
+An adapter for converting [`log`](../../log/index.md) records into `tracing` `Event`s.
 
 This module provides the [`LogTracer`](#logtracer) type which implements `log`'s [logger
 interface] by recording log records as `tracing` `Event`s. This is intended for
 use in conjunction with a `tracing` `Subscriber` to consume events from
-dependencies that emit [`log`](../index.md) records within a trace context.
+dependencies that emit [`log`](../../log/index.md) records within a trace context.
 
 # Usage
 
@@ -19,7 +19,7 @@ To create and initialize a `LogTracer` with the default configurations, use:
   allowing the tracing `Subscriber` to perform any filtering
 * `init_with_filter` to convert all logs up to a specified log level
 
-In addition, a [builder] is available for cases where more advanced
+In addition, a [`builder`](../../aho_corasick/packed/teddy/builder/index.md) is available for cases where more advanced
 configuration is required. In particular, the builder can be used to [ignore
 log records][ignore] emitted by particular crates. This is useful in cases
 such as when a crate emits both `tracing` diagnostics _and_ log records by

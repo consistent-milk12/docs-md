@@ -20,7 +20,7 @@ Serde provides [`Serialize`](#serialize) implementations for many Rust primitive
 standard library types. The complete list is below. All of these can be
 serialized using Serde out of the box.
 
-Additionally, Serde provides a procedural macro called [`serde_derive`](../../serde_derive/index.md) to
+Additionally, Serde provides a procedural macro called `serde_derive` to
 automatically generate [`Serialize`](#serialize) implementations for structs and enums
 in your program. See the [derive section of the manual] for how to use this.
 
@@ -111,6 +111,12 @@ website][data formats].
 
 
 
+
+## Modules
+
+- [`fmt`](fmt/index.md) - 
+- [`impls`](impls/index.md) - 
+- [`impossible`](impossible/index.md) - This module contains `Impossible` serializer and its implementations.
 
 ## Structs
 
@@ -285,7 +291,7 @@ Serde provides `Serialize` implementations for many Rust primitive and
 standard library types. The complete list is `here`. All of
 these can be serialized using Serde out of the box.
 
-Additionally, Serde provides a procedural macro called [`serde_derive`](../../serde_derive/index.md) to
+Additionally, Serde provides a procedural macro called `serde_derive` to
 automatically generate `Serialize` implementations for structs and enums in
 your program. See the [derive section of the manual] for how to use this.
 
@@ -1026,4 +1032,18 @@ implementation of `SerializeStructVariant` for a basic JSON data format.
 - `fn end(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
   Finish serializing a struct variant.
+
+## Functions
+
+### `iterator_len_hint`
+
+```rust
+fn iterator_len_hint<I>(iter: &I) -> Option<usize>
+where
+    I: Iterator
+```
+
+## Macros
+
+### `declare_error_trait!`
 

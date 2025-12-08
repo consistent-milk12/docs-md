@@ -106,6 +106,66 @@ possible stream sources
 
 ## Functions
 
+### `env_force_color`
+
+```rust
+fn env_force_color() -> usize
+```
+
+### `env_no_color`
+
+```rust
+fn env_no_color() -> bool
+```
+
+### `as_str`
+
+```rust
+fn as_str<E>(option: &Result<String, E>) -> Result<&str, &E>
+```
+
+### `translate_level`
+
+```rust
+fn translate_level(level: usize) -> Option<ColorLevel>
+```
+
+### `is_a_tty`
+
+```rust
+fn is_a_tty(stream: Stream) -> bool
+```
+
+### `supports_color`
+
+```rust
+fn supports_color(stream: Stream) -> usize
+```
+
+### `check_ansi_color`
+
+```rust
+fn check_ansi_color(term: Option<&str>) -> bool
+```
+
+### `check_colorterm_16m`
+
+```rust
+fn check_colorterm_16m(colorterm: &str) -> bool
+```
+
+### `check_term_16m`
+
+```rust
+fn check_term_16m(term: &str) -> bool
+```
+
+### `check_256_color`
+
+```rust
+fn check_256_color(term: &str) -> bool
+```
+
 ### `on`
 
 ```rust
@@ -124,4 +184,8 @@ Returns a [ColorLevel] if a [Stream] supports terminal colors, caching the resul
 be returned from then on.
 
 If you expect your environment to change between calls, use [`on`](#on)
+
+## Macros
+
+### `assert_stream_in_bounds!`
 

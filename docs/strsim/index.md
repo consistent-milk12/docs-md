@@ -2,6 +2,119 @@
 
 This library implements string similarity metrics.
 
+## Structs
+
+### `StringWrapper<'a>`
+
+```rust
+struct StringWrapper<'a>(&'a str);
+```
+
+### `RowId`
+
+```rust
+struct RowId {
+    val: isize,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for RowId`
+
+- `fn clone(self: &Self) -> RowId` — [`RowId`](#rowid)
+
+##### `impl Copy for RowId`
+
+##### `impl Default for RowId`
+
+- `fn default() -> Self`
+
+##### `impl Eq for RowId`
+
+##### `impl PartialEq for RowId`
+
+- `fn eq(self: &Self, other: &RowId) -> bool` — [`RowId`](#rowid)
+
+##### `impl StructuralPartialEq for RowId`
+
+### `GrowingHashmapMapElemChar<ValueType>`
+
+```rust
+struct GrowingHashmapMapElemChar<ValueType> {
+    key: u32,
+    value: ValueType,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<ValueType: $crate::clone::Clone> Clone for GrowingHashmapMapElemChar<ValueType>`
+
+- `fn clone(self: &Self) -> GrowingHashmapMapElemChar<ValueType>` — [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
+
+##### `impl<ValueType: $crate::default::Default> Default for GrowingHashmapMapElemChar<ValueType>`
+
+- `fn default() -> GrowingHashmapMapElemChar<ValueType>` — [`GrowingHashmapMapElemChar`](#growinghashmapmapelemchar)
+
+### `GrowingHashmapChar<ValueType>`
+
+```rust
+struct GrowingHashmapChar<ValueType> {
+    used: i32,
+    fill: i32,
+    mask: i32,
+    map: Option<Vec<GrowingHashmapMapElemChar<ValueType>>>,
+}
+```
+
+specialized hashmap to store user provided types
+this implementation relies on a couple of base assumptions in order to simplify the implementation
+- the hashmap does not have an upper limit of included items
+- the default value for the `ValueType` can be used as a dummy value to indicate an empty cell
+- elements can't be removed
+- only allocates memory on first write access.
+  This improves performance for hashmaps that are never written to
+
+#### Implementations
+
+- `fn get(self: &Self, key: u32) -> ValueType`
+
+- `fn get_mut(self: &mut Self, key: u32) -> &mut ValueType`
+
+- `fn allocate(self: &mut Self)`
+
+- `fn lookup(self: &Self, key: u32) -> usize`
+
+- `fn grow(self: &mut Self, min_used: i32)`
+
+#### Trait Implementations
+
+##### `impl<ValueType> Default for GrowingHashmapChar<ValueType>`
+
+- `fn default() -> Self`
+
+### `HybridGrowingHashmapChar<ValueType>`
+
+```rust
+struct HybridGrowingHashmapChar<ValueType> {
+    map: GrowingHashmapChar<ValueType>,
+    extended_ascii: [ValueType; 256],
+}
+```
+
+#### Implementations
+
+- `fn get(self: &Self, key: char) -> ValueType`
+
+- `fn get_mut(self: &mut Self, key: char) -> &mut ValueType`
+
+#### Trait Implementations
+
+##### `impl<ValueType> Default for HybridGrowingHashmapChar<ValueType>`
+
+- `fn default() -> Self`
+
 ## Enums
 
 ### `StrSimError`
@@ -190,6 +303,12 @@ use strsim::osa_distance;
 assert_eq!(3, osa_distance("ab", "bca"));
 ```
 
+### `flat_index`
+
+```rust
+fn flat_index(i: usize, j: usize, width: usize) -> usize
+```
+
 ### `generic_damerau_levenshtein`
 
 ```rust
@@ -205,6 +324,15 @@ number of times, and the triangle inequality holds.
 use strsim::generic_damerau_levenshtein;
 
 assert_eq!(2, generic_damerau_levenshtein(&[1,2], &[2,3,1]));
+```
+
+### `damerau_levenshtein_impl`
+
+```rust
+fn damerau_levenshtein_impl<Iter1, Iter2>(s1: Iter1, len1: usize, s2: Iter2, len2: usize) -> usize
+where
+    Iter1: Iterator<Item = char> + Clone,
+    Iter2: Iterator<Item = char> + Clone
 ```
 
 ### `damerau_levenshtein`
@@ -240,6 +368,14 @@ assert!(normalized_damerau_levenshtein("", "flower").abs() < 0.00001);
 assert!(normalized_damerau_levenshtein("tree", "").abs() < 0.00001);
 assert!((normalized_damerau_levenshtein("sunglasses", "sunglasses") - 1.0).abs() < 0.00001);
 ```
+
+### `bigrams`
+
+```rust
+fn bigrams(s: &str) -> impl Iterator<Item = (char, char)> + '_
+```
+
+Returns an Iterator of char tuples.
 
 ### `sorensen_dice`
 

@@ -95,35 +95,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
+- `fn try_search_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
+- `fn try_search_rev(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<HalfMatch>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`HalfMatch`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
+- `fn try_search_overlapping_fwd(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`OverlappingState`](#overlappingstate), [`MatchError`](../../index.md)
 
-- `fn never_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](../error/index.md)
+- `fn try_search_overlapping_rev(self: &Self, cache: &mut Cache, input: &Input<'_>, state: &mut OverlappingState) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`OverlappingState`](#overlappingstate), [`MatchError`](../../index.md)
 
-- `fn config() -> Config` — [`Config`](#config)
-
-- `fn builder() -> Builder` — [`Builder`](#builder)
-
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
-
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
-
-- `fn pattern_len(self: &Self) -> usize`
-
-- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
-
-- `fn get_config(self: &Self) -> &Config` — [`Config`](#config)
-
-- `fn get_nfa(self: &Self) -> &thompson::NFA` — [`NFA`](../../nfa/thompson/nfa/index.md)
-
-- `fn stride2(self: &Self) -> usize`
-
-- `fn stride(self: &Self) -> usize`
-
-- `fn memory_usage(self: &Self) -> usize`
+- `fn try_which_overlapping_matches(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`PatternSet`](../../index.md), [`MatchError`](../../index.md)
 
 #### Trait Implementations
 
@@ -162,7 +142,7 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`DFA`](../../dfa/dense/index.md).
+a [`DFA`](#dfa).
 
 Caches can be created from their corresponding DFA via
 `DFA::create_cache`. A cache can only be used with either the DFA that
@@ -310,6 +290,136 @@ or incorrect results.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `SearchProgress`
+
+```rust
+struct SearchProgress {
+    start: usize,
+    at: usize,
+}
+```
+
+Keeps track of the progress of the current search.
+
+This is updated via the `Cache::search_{start,update,finish}` APIs to
+record how many bytes have been searched. This permits computing a
+heuristic that represents the efficiency of a cache, and thus helps inform
+whether the lazy DFA should give up or not.
+
+#### Implementations
+
+- `fn len(self: &Self) -> usize`
+
+#### Trait Implementations
+
+##### `impl Clone for SearchProgress`
+
+- `fn clone(self: &Self) -> SearchProgress` — [`SearchProgress`](#searchprogress)
+
+##### `impl Debug for SearchProgress`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `Lazy<'i, 'c>`
+
+```rust
+struct Lazy<'i, 'c> {
+    dfa: &'i DFA,
+    cache: &'c mut Cache,
+}
+```
+
+A type that groups methods that require the base NFA/DFA and writable
+access to the cache.
+
+#### Implementations
+
+- `fn new(dfa: &'i DFA, cache: &'c mut Cache) -> Lazy<'i, 'c>` — [`DFA`](#dfa), [`Cache`](#cache), [`Lazy`](#lazy)
+
+- `fn as_ref<'a>(self: &'a Self) -> LazyRef<'i, 'a>` — [`LazyRef`](#lazyref)
+
+- `fn cache_next_state(self: &mut Self, current: LazyStateID, unit: alphabet::Unit) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../id/index.md), [`Unit`](../../util/alphabet/index.md), [`CacheError`](../error/index.md)
+
+- `fn cache_start_group(self: &mut Self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`StartError`](../error/index.md)
+
+- `fn cache_start_one(self: &mut Self, nfa_start_id: NFAStateID, start: Start) -> Result<LazyStateID, CacheError>` — [`StateID`](../../util/primitives/index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
+
+- `fn add_builder_state(self: &mut Self, builder: StateBuilderNFA, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`StateBuilderNFA`](../../util/determinize/state/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
+
+- `fn add_state(self: &mut Self, state: State, idmap: impl Fn(LazyStateID) -> LazyStateID) -> Result<LazyStateID, CacheError>` — [`State`](../../util/determinize/state/index.md), [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
+
+- `fn next_state_id(self: &mut Self) -> Result<LazyStateID, CacheError>` — [`LazyStateID`](../id/index.md), [`CacheError`](../error/index.md)
+
+- `fn try_clear_cache(self: &mut Self) -> Result<(), CacheError>` — [`CacheError`](../error/index.md)
+
+- `fn reset_cache(self: &mut Self)`
+
+- `fn clear_cache(self: &mut Self)`
+
+- `fn init_cache(self: &mut Self)`
+
+- `fn save_state(self: &mut Self, id: LazyStateID)` — [`LazyStateID`](../id/index.md)
+
+- `fn saved_state_id(self: &mut Self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
+
+- `fn set_all_transitions(self: &mut Self, from: LazyStateID, to: LazyStateID)` — [`LazyStateID`](../id/index.md)
+
+- `fn set_transition(self: &mut Self, from: LazyStateID, unit: alphabet::Unit, to: LazyStateID)` — [`LazyStateID`](../id/index.md), [`Unit`](../../util/alphabet/index.md)
+
+- `fn set_start_state(self: &mut Self, anchored: Anchored, start: Start, id: LazyStateID)` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md)
+
+- `fn get_state_builder(self: &mut Self) -> StateBuilderEmpty` — [`StateBuilderEmpty`](../../util/determinize/state/index.md)
+
+- `fn put_state_builder(self: &mut Self, builder: StateBuilderNFA)` — [`StateBuilderNFA`](../../util/determinize/state/index.md)
+
+#### Trait Implementations
+
+##### `impl<'i, 'c> Debug for Lazy<'i, 'c>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `LazyRef<'i, 'c>`
+
+```rust
+struct LazyRef<'i, 'c> {
+    dfa: &'i DFA,
+    cache: &'c Cache,
+}
+```
+
+A type that groups methods that require the base NFA/DFA and read-only
+access to the cache.
+
+#### Implementations
+
+- `fn new(dfa: &'i DFA, cache: &'c Cache) -> LazyRef<'i, 'c>` — [`DFA`](#dfa), [`Cache`](#cache), [`LazyRef`](#lazyref)
+
+- `fn get_cached_start_id(self: &Self, anchored: Anchored, start: Start) -> Result<LazyStateID, StartError>` — [`Anchored`](../../index.md), [`Start`](../../util/start/index.md), [`LazyStateID`](../id/index.md), [`StartError`](../error/index.md)
+
+- `fn get_cached_state(self: &Self, sid: LazyStateID) -> &State` — [`LazyStateID`](../id/index.md), [`State`](../../util/determinize/state/index.md)
+
+- `fn is_sentinel(self: &Self, id: LazyStateID) -> bool` — [`LazyStateID`](../id/index.md)
+
+- `fn unknown_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
+
+- `fn dead_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
+
+- `fn quit_id(self: &Self) -> LazyStateID` — [`LazyStateID`](../id/index.md)
+
+- `fn is_valid(self: &Self, id: LazyStateID) -> bool` — [`LazyStateID`](../id/index.md)
+
+- `fn state_fits_in_cache(self: &Self, state: &State) -> bool` — [`State`](../../util/determinize/state/index.md)
+
+- `fn state_builder_fits_in_cache(self: &Self, state: &StateBuilderNFA) -> bool` — [`StateBuilderNFA`](../../util/determinize/state/index.md)
+
+- `fn memory_usage_for_one_more_state(self: &Self, state_heap_size: usize) -> usize`
+
+#### Trait Implementations
+
+##### `impl<'i, 'c> Debug for LazyRef<'i, 'c>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ### `Config`
 
 ```rust
@@ -340,7 +450,7 @@ with `Builder::configure`.
 The default configuration guarantees that a search will never return a
 "gave up" or "quit" error, although it is possible for a search to fail
 if `Config::starts_for_each_pattern` wasn't enabled (which it is not by
-default) and an `Anchored::Pattern` mode is requested via [`Input`](../../index.md).
+default) and an [`Anchored::Pattern`](../../index.md) mode is requested via [`Input`](../../index.md).
 
 #### Implementations
 
@@ -436,7 +546,7 @@ a DFA from different kinds of inputs. The most convenient is
 most flexible is `Builder::build_from_nfa`, which builds a DFA straight
 from an NFA.
 2. The builder permits configuring a number of things.
-`Builder::configure` is used with [`Config`](../../util/syntax/index.md) to configure aspects of
+`Builder::configure` is used with [`Config`](#config) to configure aspects of
 the DFA and the construction process itself. `Builder::syntax` and
 `Builder::thompson` permit configuring the regex parser and Thompson NFA
 construction, respectively. The syntax and thompson configurations only
@@ -615,4 +725,171 @@ a previous search may result in incorrect results.
 - `fn eq(self: &Self, other: &OverlappingState) -> bool` — [`OverlappingState`](#overlappingstate)
 
 ##### `impl StructuralPartialEq for OverlappingState`
+
+## Enums
+
+### `StateSaver`
+
+```rust
+enum StateSaver {
+    None,
+    ToSave {
+        id: crate::hybrid::id::LazyStateID,
+        state: self::state::State,
+    },
+    Saved(crate::hybrid::id::LazyStateID),
+}
+```
+
+A simple type that encapsulates the saving of a state ID through a cache
+clearing.
+
+A state ID can be marked for saving with ToSave, while a state ID can be
+saved itself with Saved.
+
+#### Variants
+
+- **`None`**
+
+  An empty state saver. In this case, no states (other than the special
+  sentinel states) are preserved after clearing the cache.
+
+- **`ToSave`**
+
+  An ID of a state (and the state itself) that should be preserved after
+  the lazy DFA's cache has been cleared. After clearing, the updated ID
+  is stored in 'Saved' since it may have changed.
+
+- **`Saved`**
+
+  An ID that of a state that has been persisted through a lazy DFA
+  cache clearing. The ID recorded here corresponds to an ID that was
+  once marked as ToSave. The IDs are likely not equivalent even though
+  the states they point to are.
+
+#### Implementations
+
+- `fn none() -> StateSaver` — [`StateSaver`](#statesaver)
+
+- `fn take_to_save(self: &mut Self) -> Option<(LazyStateID, State)>` — [`LazyStateID`](../id/index.md), [`State`](../../util/determinize/state/index.md)
+
+- `fn take_saved(self: &mut Self) -> Option<LazyStateID>` — [`LazyStateID`](../id/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for StateSaver`
+
+- `fn clone(self: &Self) -> StateSaver` — [`StateSaver`](#statesaver)
+
+##### `impl Debug for StateSaver`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Functions
+
+### `skip_empty_utf8_splits_overlapping`
+
+```rust
+fn skip_empty_utf8_splits_overlapping<F>(input: &crate::util::search::Input<'_>, state: &mut OverlappingState, search: F) -> Result<(), crate::util::search::MatchError>
+where
+    F: FnMut(&crate::util::search::Input<'_>, &mut OverlappingState) -> Result<(), crate::util::search::MatchError>
+```
+
+Runs the given overlapping `search` function (forwards or backwards) until
+a match is found whose offset does not split a codepoint.
+
+This is *not* always correct to call. It should only be called when the
+underlying NFA has UTF-8 mode enabled *and* it can produce zero-width
+matches. Calling this when both of those things aren't true might result
+in legitimate matches getting skipped.
+
+### `minimum_lazy_state_id`
+
+```rust
+fn minimum_lazy_state_id(classes: &crate::util::alphabet::ByteClasses) -> Result<crate::hybrid::id::LazyStateID, crate::hybrid::id::LazyStateIDError>
+```
+
+Based on the minimum number of states required for a useful lazy DFA cache,
+this returns the minimum lazy state ID that must be representable.
+
+It's not likely for this to have any impact 32-bit systems (or higher), but
+on 16-bit systems, the lazy state ID space is quite constrained and thus
+may be insufficient if our MIN_STATES value is (for some reason) too high.
+
+### `minimum_cache_capacity`
+
+```rust
+fn minimum_cache_capacity(nfa: &thompson::NFA, classes: &crate::util::alphabet::ByteClasses, starts_for_each_pattern: bool) -> usize
+```
+
+Based on the minimum number of states required for a useful lazy DFA cache,
+this returns a heuristic minimum number of bytes of heap space required.
+
+This is a "heuristic" because the minimum it returns is likely bigger than
+the true minimum. Namely, it assumes that each powerset NFA/DFA state uses
+the maximum number of NFA states (all of them). This is likely bigger
+than what is required in practice. Computing the true minimum effectively
+requires determinization, which is probably too much work to do for a
+simple check like this.
+
+One of the issues with this approach IMO is that it requires that this
+be in sync with the calculation above for computing how much heap memory
+the DFA cache uses. If we get it wrong, it's possible for example for the
+minimum to be smaller than the computed heap memory, and thus, it may be
+the case that we can't add the required minimum number of states. That in
+turn will make lazy DFA panic because we assume that we can add at least a
+minimum number of states.
+
+Another approach would be to always allow the minimum number of states to
+be added to the lazy DFA cache, even if it exceeds the configured cache
+limit. This does mean that the limit isn't really a limit in all cases,
+which is unfortunate. But it does at least guarantee that the lazy DFA can
+always make progress, even if it is slow. (This approach is very similar to
+enabling the 'skip_cache_capacity_check' config knob, except it wouldn't
+rely on cache size calculation. Instead, it would just always permit a
+minimum number of states to be added.)
+
+## Type Aliases
+
+### `StateMap`
+
+```rust
+type StateMap = std::collections::HashMap<self::state::State, crate::hybrid::id::LazyStateID>;
+```
+
+A map from states to state identifiers. When using std, we use a standard
+hashmap, since it's a bit faster for this use case. (Other maps, like
+one's based on FNV, have not yet been benchmarked.)
+
+The main purpose of this map is to reuse states where possible. This won't
+fully minimize the DFA, but it works well in a lot of cases.
+
+## Constants
+
+### `MIN_STATES`
+
+```rust
+const MIN_STATES: usize = 5usize;
+```
+
+The minimum number of states that a lazy DFA's cache size must support.
+
+This is checked at time of construction to ensure that at least some small
+number of states can fit in the given capacity allotment. If we can't fit
+at least this number of states, then the thinking is that it's pretty
+senseless to use the lazy DFA. More to the point, parts of the code do
+assume that the cache can fit at least some small number of states.
+
+### `SENTINEL_STATES`
+
+```rust
+const SENTINEL_STATES: usize = 3usize;
+```
+
+The number of "sentinel" states that get added to every lazy DFA.
+
+These are special states indicating status conditions of a search: unknown,
+dead and quit. These states in particular also use zero NFA states, so
+their memory usage is quite small. This is relevant for computing the
+minimum memory needed for a lazy DFA cache.
 

@@ -101,3 +101,89 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 ##### `impl<T> WithSubscriber for ModuleRenderer<'a>`
 
+### `CategorizedItems<'a>`
+
+```rust
+struct CategorizedItems<'a> {
+    modules: Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>,
+    structs: Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>,
+    enums: Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>,
+    traits: Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>,
+    functions: Vec<&'a rustdoc_types::Item>,
+    macros: Vec<&'a rustdoc_types::Item>,
+    constants: Vec<&'a rustdoc_types::Item>,
+    type_aliases: Vec<&'a rustdoc_types::Item>,
+}
+```
+
+Items categorized by type for organized rendering.
+
+Items are sorted into buckets by their type so they can be rendered
+in consistent sections.
+
+#### Fields
+
+- **`modules`**: `Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>`
+
+  Child modules (need ID for linking).
+
+- **`structs`**: `Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>`
+
+  Struct definitions (need ID for impl lookup).
+
+- **`enums`**: `Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>`
+
+  Enum definitions (need ID for impl lookup).
+
+- **`traits`**: `Vec<(&'a rustdoc_types::Id, &'a rustdoc_types::Item)>`
+
+  Trait definitions (need ID for impl lookup).
+
+- **`functions`**: `Vec<&'a rustdoc_types::Item>`
+
+  Standalone functions.
+
+- **`macros`**: `Vec<&'a rustdoc_types::Item>`
+
+  Macro definitions.
+
+- **`constants`**: `Vec<&'a rustdoc_types::Item>`
+
+  Constants and statics.
+
+- **`type_aliases`**: `Vec<&'a rustdoc_types::Item>`
+
+  Type alias definitions.
+
+#### Implementations
+
+- `fn sort(self: &mut Self)`
+
+#### Trait Implementations
+
+##### `impl<'a> Default for CategorizedItems<'a>`
+
+- `fn default() -> CategorizedItems<'a>` — [`CategorizedItems`](#categorizeditems)
+
+##### `impl<T> Instrument for CategorizedItems<'a>`
+
+##### `impl<T> IntoEither for CategorizedItems<'a>`
+
+##### `impl<D> OwoColorize for CategorizedItems<'a>`
+
+##### `impl<T> Pointable for CategorizedItems<'a>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for CategorizedItems<'a>`
+

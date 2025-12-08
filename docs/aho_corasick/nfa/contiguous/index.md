@@ -36,7 +36,7 @@ When possible, prefer using [`AhoCorasick`](crate::AhoCorasick) instead of
 this type directly. Using an `NFA` directly is typically only necessary
 when one needs access to the [`Automaton`](../../automaton/index.md) trait implementation.
 
-This NFA can only be built by first constructing a `noncontiguous::NFA`.
+This NFA can only be built by first constructing a [`noncontiguous::NFA`](../noncontiguous/index.md).
 Both `NFA::new` and `Builder::build` do this for you automatically, but
 `Builder::build_from_noncontiguous` permits doing it explicitly.
 
@@ -145,9 +145,9 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `const DEAD: StateID`
+- `fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
 
-- `const FAIL: StateID`
+- `fn builder() -> Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 
@@ -192,6 +192,82 @@ It is also possible to implement your own version of `try_find`. See the
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ##### `impl Sealed for crate::nfa::contiguous::NFA`
+
+### `State<'a>`
+
+```rust
+struct State<'a> {
+    fail: crate::util::primitives::StateID,
+    match_len: usize,
+    trans: StateTrans<'a>,
+}
+```
+
+The "in memory" representation a single dense or sparse state.
+
+A `State`'s in memory representation is not ever actually materialized
+during a search with a contiguous NFA. Doing so would be too slow. (Indeed,
+the only time a `State` is actually constructed is in `Debug` impls.)
+Instead, a `State` exposes a number of static methods for reading certain
+things from the raw binary encoding of the state.
+
+#### Fields
+
+- **`fail`**: `crate::util::primitives::StateID`
+
+  The state to transition to when 'class_to_next' yields a transition
+  to the FAIL state.
+
+- **`match_len`**: `usize`
+
+  The number of pattern IDs in this state. For a non-match state, this is
+  always zero. Otherwise it is always bigger than zero.
+
+- **`trans`**: `StateTrans<'a>`
+
+  The sparse or dense representation of the transitions for this state.
+
+#### Implementations
+
+- `const KIND: usize`
+
+- `const KIND_DENSE: u32`
+
+- `const KIND_ONE: u32`
+
+- `const MAX_SPARSE_TRANSITIONS: usize`
+
+- `fn remap(alphabet_len: usize, old_to_new: &[StateID], state: &mut [u32]) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../util/error/index.md)
+
+- `fn len(alphabet_len: usize, is_match: bool, state: &[u32]) -> usize`
+
+- `fn kind(state: &[u32]) -> u32`
+
+- `fn sparse_trans_len(state: &[u32]) -> usize`
+
+- `fn match_len(alphabet_len: usize, state: &[u32]) -> usize`
+
+- `fn match_pattern(alphabet_len: usize, state: &[u32], index: usize) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
+
+- `fn read(alphabet_len: usize, is_match: bool, state: &'a [u32]) -> State<'a>` — [`State`](#state)
+
+- `fn write(nnfa: &noncontiguous::NFA, oldsid: StateID, old: &noncontiguous::State, classes: &ByteClasses, dst: &mut Vec<u32>, force_dense: bool) -> Result<StateID, BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`State`](../noncontiguous/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
+
+- `fn write_sparse_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
+
+- `fn write_dense_trans(nnfa: &noncontiguous::NFA, oldsid: StateID, classes: &ByteClasses, dst: &mut Vec<u32>) -> Result<(), BuildError>` — [`NFA`](../noncontiguous/index.md), [`StateID`](../../util/primitives/index.md), [`ByteClasses`](../../util/alphabet/index.md), [`BuildError`](../../util/error/index.md)
+
+- `fn transitions(self: &Self) -> impl Iterator<Item = (u8, StateID)> + '_` — [`StateID`](../../util/primitives/index.md)
+
+#### Trait Implementations
+
+##### `impl<'a> Clone for State<'a>`
+
+- `fn clone(self: &Self) -> State<'a>` — [`State`](#state)
+
+##### `impl<'a> Debug for State<'a>`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
 ### `Builder`
 
@@ -240,4 +316,67 @@ their behavior is identical.
 ##### `impl Default for Builder`
 
 - `fn default() -> Builder` — [`Builder`](#builder)
+
+## Enums
+
+### `StateTrans<'a>`
+
+```rust
+enum StateTrans<'a> {
+    Sparse {
+        classes: &'a [u32],
+        nexts: &'a [u32],
+    },
+    One {
+        class: u8,
+        next: u32,
+    },
+    Dense {
+        class_to_next: &'a [u32],
+    },
+}
+```
+
+The underlying representation of sparse or dense transitions for a state.
+
+Note that like `State`, we don't typically construct values of this type
+during a search since we don't always need all values and thus would
+represent a lot of wasteful work.
+
+#### Variants
+
+- **`Sparse`**
+
+  A sparse representation of transitions for a state, where only non-FAIL
+  transitions are explicitly represented.
+
+- **`One`**
+
+  A "one transition" state that is never a match state.
+  
+  These are by far the most common state, so we use a specialized and
+  very compact representation for them.
+
+- **`Dense`**
+
+  A dense representation of transitions for a state, where all
+  transitions are explicitly represented, including transitions to the
+  FAIL state.
+
+#### Trait Implementations
+
+##### `impl<'a> Clone for StateTrans<'a>`
+
+- `fn clone(self: &Self) -> StateTrans<'a>` — [`StateTrans`](#statetrans)
+
+## Functions
+
+### `u32_len`
+
+```rust
+fn u32_len(ntrans: usize) -> usize
+```
+
+Computes the number of u32 values needed to represent one byte per the
+number of transitions given.
 

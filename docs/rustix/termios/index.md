@@ -17,6 +17,10 @@ not supported by the platform or the device.
 
 ## Modules
 
+- [`ioctl`](ioctl/index.md) - Terminal-related `ioctl` functions.
+- [`tc`](tc/index.md) - 
+- [`tty`](tty/index.md) - Functions which operate on file descriptors which might be terminals.
+- [`types`](types/index.md) - 
 - [`speed`](speed/index.md) - Speeds for use with [`Termios::set_speed`], [`Termios::set_input_speed`],
 
 ## Structs
@@ -36,7 +40,7 @@ struct Termios {
 }
 ```
 
-`struct termios` for use with [`tcgetattr`](../backend/termios/syscalls/index.md) and [`tcsetattr`](../backend/termios/syscalls/index.md).
+`struct termios` for use with [`tcgetattr`](#tcgetattr) and [`tcsetattr`](#tcsetattr).
 
 
 
@@ -596,37 +600,9 @@ Flags controlling “local” terminal modes.
 
 #### Implementations
 
-- `const XCASE: Self`
+- `const fn iter(self: &Self) -> $crate::iter::Iter<LocalModes>` — [`LocalModes`](#localmodes)
 
-- `const ECHOCTL: Self`
-
-- `const ECHOPRT: Self`
-
-- `const ECHOKE: Self`
-
-- `const FLUSHO: Self`
-
-- `const PENDIN: Self`
-
-- `const EXTPROC: Self`
-
-- `const ISIG: Self`
-
-- `const ICANON: Self`
-
-- `const ECHO: Self`
-
-- `const ECHOE: Self`
-
-- `const ECHOK: Self`
-
-- `const ECHONL: Self`
-
-- `const NOFLSH: Self`
-
-- `const TOSTOP: Self`
-
-- `const IEXTEN: Self`
+- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<LocalModes>` — [`LocalModes`](#localmodes)
 
 #### Trait Implementations
 
@@ -775,6 +751,20 @@ various special control codes.
 
 - `fn index_mut(self: &mut Self, index: SpecialCodeIndex) -> &mut <Self as >::Output` — [`SpecialCodeIndex`](#specialcodeindex)
 
+### `SpecialCode`
+
+```rust
+struct SpecialCode(u8);
+```
+
+A newtype for pretty printing.
+
+#### Trait Implementations
+
+##### `impl Debug for SpecialCode`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
 ### `SpecialCodeIndex`
 
 ```rust
@@ -903,7 +893,7 @@ enum OptionalActions {
 }
 ```
 
-`TCSA*` values for use with [`tcsetattr`](../backend/termios/syscalls/index.md).
+`TCSA*` values for use with [`tcsetattr`](#tcsetattr).
 
 
 #### Variants

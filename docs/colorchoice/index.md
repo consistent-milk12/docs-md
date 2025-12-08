@@ -2,6 +2,36 @@
 
 Global override of color control
 
+## Structs
+
+### `AtomicChoice`
+
+```rust
+struct AtomicChoice(core::sync::atomic::AtomicUsize);
+```
+
+#### Implementations
+
+- `const fn new() -> Self`
+
+- `fn get(self: &Self) -> ColorChoice` — [`ColorChoice`](#colorchoice)
+
+- `fn set(self: &Self, choice: ColorChoice)` — [`ColorChoice`](#colorchoice)
+
+- `const fn from_choice(choice: ColorChoice) -> usize` — [`ColorChoice`](#colorchoice)
+
+- `const fn to_choice(choice: usize) -> Option<ColorChoice>` — [`ColorChoice`](#colorchoice)
+
+#### Trait Implementations
+
+##### `impl Debug for AtomicChoice`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for AtomicChoice`
+
+- `fn default() -> Self`
+
 ## Enums
 
 ### `ColorChoice`

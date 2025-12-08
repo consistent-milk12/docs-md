@@ -66,6 +66,28 @@ An error encountered while parsing flags from text.
 
 - `fn to_string(self: &Self) -> String`
 
+## Enums
+
+### `ParseErrorKind`
+
+```rust
+enum ParseErrorKind {
+    EmptyFlag,
+    InvalidNamedFlag {
+        got: String,
+    },
+    InvalidHexFlag {
+        got: String,
+    },
+}
+```
+
+#### Trait Implementations
+
+##### `impl Debug for ParseErrorKind`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ## Traits
 
 ### `WriteHex`

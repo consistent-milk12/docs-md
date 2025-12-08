@@ -4,7 +4,7 @@
 
 # Module `option`
 
-Parallel iterator types for [options]
+Parallel iterator types for [`options`](../../textwrap/options/index.md)
 
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
@@ -20,9 +20,9 @@ struct IntoIter<T> {
 }
 ```
 
-A parallel iterator over the value in [`Some`](#some) variant of an `Option`.
+A parallel iterator over the value in [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
 
-The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
+The iterator yields one value if the [`Option`](../../clap_derive/index.md) is a [`Some`](#some), otherwise none.
 
 This `struct` is created by the `into_par_iter` function.
 
@@ -85,9 +85,9 @@ struct Iter<'a, T> {
 }
 ```
 
-A parallel iterator over a reference to the [`Some`](#some) variant of an `Option`.
+A parallel iterator over a reference to the [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
 
-The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
+The iterator yields one value if the [`Option`](../../clap_derive/index.md) is a [`Some`](#some), otherwise none.
 
 This `struct` is created by the `par_iter` function.
 
@@ -150,9 +150,9 @@ struct IterMut<'a, T> {
 }
 ```
 
-A parallel iterator over a mutable reference to the [`Some`](#some) variant of an `Option`.
+A parallel iterator over a mutable reference to the [`Some`](#some) variant of an [`Option`](../../clap_derive/index.md).
 
-The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
+The iterator yields one value if the [`Option`](../../clap_derive/index.md) is a [`Some`](#some), otherwise none.
 
 This `struct` is created by the `par_iter_mut` function.
 
@@ -202,4 +202,42 @@ This `struct` is created by the `par_iter_mut` function.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+### `OptionProducer<T: Send>`
+
+```rust
+struct OptionProducer<T: Send> {
+    opt: Option<T>,
+}
+```
+
+Private producer for an option
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for OptionProducer<T>`
+
+##### `impl<T> Pointable for OptionProducer<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T: Send> Producer for OptionProducer<T>`
+
+- `type Item = T`
+
+- `type IntoIter = IntoIter<T>`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+
+- `fn split_at(self: Self, index: usize) -> (Self, Self)`
 

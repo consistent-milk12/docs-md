@@ -181,11 +181,9 @@ assert!(v.spilled());
 
 #### Implementations
 
-- `fn from_slice(slice: &[<A as >::Item]) -> Self` — [`Array`](#array)
+- `fn resize(self: &mut Self, len: usize, value: <A as >::Item)` — [`Array`](#array)
 
-- `fn insert_from_slice(self: &mut Self, index: usize, slice: &[<A as >::Item])` — [`Array`](#array)
-
-- `fn extend_from_slice(self: &mut Self, slice: &[<A as >::Item])` — [`Array`](#array)
+- `fn from_elem(elem: <A as >::Item, n: usize) -> Self` — [`Array`](#array)
 
 #### Trait Implementations
 
@@ -437,7 +435,7 @@ assert_eq!(v, SmallVec::from_buf([1, 1, 1]));
 ```
 
 Note that unlike array expressions this syntax supports all elements
-which implement `Clone` and the number of elements doesn't have to be
+which implement [`Clone`](../fs_err/index.md) and the number of elements doesn't have to be
 a constant.
 
 This will use `clone` to duplicate an expression, so one should be careful

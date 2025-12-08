@@ -37,6 +37,14 @@ there's no way to know which pattern (or patterns) it came from. Therefore,
 in order to confirm a match, you'll have to check all of the patterns by
 running the full regex engine.
 
+## Modules
+
+- [`aho_corasick`](aho_corasick/index.md) - 
+- [`byteset`](byteset/index.md) - 
+- [`memchr`](memchr/index.md) - 
+- [`memmem`](memmem/index.md) - 
+- [`teddy`](teddy/index.md) - 
+
 ## Structs
 
 ### `Prefilter`
@@ -53,7 +61,7 @@ A prefilter for accelerating regex searches.
 
 If you already have your literals that you want to search with,
 then the vanilla `Prefilter::new` constructor is for you. But
-if you have an `Hir` value from the `regex-syntax` crate, then
+if you have an [`Hir`](../../../regex_syntax/hir/index.md) value from the `regex-syntax` crate, then
 `Prefilter::from_hir_prefix` might be more convenient. Namely, it uses
 the [`regex-syntax::hir::literal`](regex_syntax::hir::literal) module to
 extract literal prefixes for you, optimize them and then select and build a
@@ -156,4 +164,128 @@ Ok::<(), Box<dyn std::error::Error>>(())
 ##### `impl Debug for Prefilter`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Enums
+
+### `Choice`
+
+```rust
+enum Choice {
+    Memchr(crate::util::prefilter::memchr::Memchr),
+    Memchr2(crate::util::prefilter::memchr::Memchr2),
+    Memchr3(crate::util::prefilter::memchr::Memchr3),
+    Memmem(crate::util::prefilter::memmem::Memmem),
+    Teddy(crate::util::prefilter::teddy::Teddy),
+    ByteSet(crate::util::prefilter::byteset::ByteSet),
+    AhoCorasick(crate::util::prefilter::aho_corasick::AhoCorasick),
+}
+```
+
+A type that encapsulates the selection of a prefilter algorithm from a
+sequence of needles.
+
+The existence of this type is a little tricky, because we don't (currently)
+use it for performing a search. Instead, we really only consume it by
+converting the underlying prefilter into a trait object, whether that be
+`dyn PrefilterI` or `dyn Strategy` (for the meta regex engine). In order
+to avoid re-copying the prefilter selection logic, we isolate it here, and
+then force anything downstream that wants to convert it to a trait object
+to do trivial case analysis on it.
+
+One wonders whether we *should* use an enum instead of a trait object.
+At time of writing, I chose trait objects based on instinct because 1) I
+knew I wasn't going to inline anything and 2) there would potentially be
+many different choices. However, as of time of writing, I haven't actually
+compared the trait object approach to the enum approach. That probably
+should be litigated, but I ran out of steam.
+
+Note that if the `alloc` feature is disabled, then values of this type
+are (and should) never be constructed. Also, in practice, for any of the
+prefilters to be selected, you'll need at least one of the `perf-literal-*`
+features enabled.
+
+#### Implementations
+
+- `fn new<B: AsRef<[u8]>>(kind: MatchKind, needles: &[B]) -> Option<Choice>` — [`MatchKind`](../../index.md), [`Choice`](#choice)
+
+#### Trait Implementations
+
+##### `impl Clone for Choice`
+
+- `fn clone(self: &Self) -> Choice` — [`Choice`](#choice)
+
+##### `impl Debug for Choice`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Traits
+
+### `PrefilterI`
+
+```rust
+trait PrefilterI: Debug + Send + Sync + RefUnwindSafe + UnwindSafe + 'static { ... }
+```
+
+A trait for abstracting over prefilters. Basically, a prefilter is
+something that do an unanchored *and* an anchored search in a haystack
+within a given span.
+
+This exists pretty much only so that we can use prefilters as a trait
+object (which is what `Prefilter` is). If we ever move off of trait objects
+and to an enum, then it's likely this trait could be removed.
+
+#### Required Methods
+
+- `fn find(self: &Self, haystack: &[u8], span: Span) -> Option<Span>`
+
+  Run this prefilter on `haystack[span.start..end]` and return a matching
+
+- `fn prefix(self: &Self, haystack: &[u8], span: Span) -> Option<Span>`
+
+  Returns the span of a prefix of `haystack[span.start..span.end]` if
+
+- `fn memory_usage(self: &Self) -> usize`
+
+  Returns the heap memory, in bytes, used by the underlying prefilter.
+
+- `fn is_fast(self: &Self) -> bool`
+
+  Implementations might return true here if they believe themselves to
+
+## Functions
+
+### `prefixes`
+
+```rust
+fn prefixes<H>(kind: crate::util::search::MatchKind, hirs: &[H]) -> literal::Seq
+where
+    H: core::borrow::Borrow<regex_syntax::hir::Hir>
+```
+
+Extracts all of the prefix literals from the given HIR expressions into a
+single `Seq`. The literals in the sequence are ordered with respect to the
+order of the given HIR expressions and consistent with the match semantics
+given.
+
+The sequence returned is "optimized." That is, they may be shrunk or even
+truncated according to heuristics with the intent of making them more
+useful as a prefilter. (Which translates to both using faster algorithms
+and minimizing the false positive rate.)
+
+Note that this erases any connection between the literals and which pattern
+(or patterns) they came from.
+
+The match kind given must correspond to the match semantics of the regex
+that is represented by the HIRs given. The match semantics may change the
+literal sequence returned.
+
+### `suffixes`
+
+```rust
+fn suffixes<H>(kind: crate::util::search::MatchKind, hirs: &[H]) -> literal::Seq
+where
+    H: core::borrow::Borrow<regex_syntax::hir::Hir>
+```
+
+Like `prefixes`, but for all suffixes of all matches for the given HIRs.
 

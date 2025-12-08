@@ -135,17 +135,7 @@ obsoleted by performance improvements to [`ThreadLocal`](#threadlocal) itself.
 
 #### Implementations
 
-- `fn new() -> CachedThreadLocal<T>` — [`CachedThreadLocal`](cached/index.md)
-
-- `fn get(self: &Self) -> Option<&T>`
-
-- `fn get_or<F>(self: &Self, create: F) -> &T`
-
-- `fn get_or_try<F, E>(self: &Self, create: F) -> Result<&T, E>`
-
-- `fn iter_mut(self: &mut Self) -> CachedIterMut<'_, T>` — [`CachedIterMut`](cached/index.md)
-
-- `fn clear(self: &mut Self)`
+- `fn get_or_default(self: &Self) -> &T`
 
 #### Trait Implementations
 

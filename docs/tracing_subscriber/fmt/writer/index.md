@@ -21,7 +21,7 @@ A writer intended to support [`libtest`'s output capturing][capturing] for use i
 
 `TestWriter` is used by `fmt::Subscriber` or `fmt::Layer` to enable capturing support.
 
-`cargo test` can only capture output from the standard library's `print!` and `eprint!`
+`cargo test` can only capture output from the standard library's `print!` and [`eprint!`](../../../anstream/index.md)
 macros. See [`libtest`'s output capturing][capturing] and
 [rust-lang/rust#90785](https://github.com/rust-lang/rust/issues/90785) for more details about
 output capturing.
@@ -368,7 +368,7 @@ struct Tee<A, B> {
 }
 ```
 
-Combines two types implementing [`MakeWriter`](#makewriter) (or `std::io::Write`) to
+Combines two types implementing [`MakeWriter`](#makewriter) (or [`std::io::Write`](../../../fs_err/index.md)) to
 produce a writer that writes to both [`MakeWriter`](#makewriter)'s returned writers.
 
 This is returned by the `MakeWriterExt::and` method. See the method
@@ -475,7 +475,7 @@ enum EitherWriter<A, B> {
 }
 ```
 
-A [writer](#writer) that is one of two types implementing `io::Write`.
+A [writer](#writer) that is one of two types implementing [`io::Write`](../../../fs_err/index.md).
 
 This may be used by [`MakeWriter`](#makewriter) implementations that may conditionally
 return one of two writers.
@@ -549,7 +549,7 @@ formatted text representations of `Event`s.
 This trait is already implemented for function pointers and
 immutably-borrowing closures that return an instance of `io::Write`, such
 as `io::stdout` and `io::stderr`. Additionally, it is implemented for
-`std::sync::Mutex` when the type inside the mutex implements
+[`std::sync::Mutex`](../../../serde_core/lib/index.md) when the type inside the mutex implements
 `io::Write`.
 
 # Examples
@@ -599,7 +599,7 @@ drop(subscriber);
 ```
 
 A single instance of a type implementing `io::Write` may be used as a
-`MakeWriter` by wrapping it in a `Mutex`. For example, we could
+`MakeWriter` by wrapping it in a [`Mutex`](../../../serde_core/lib/index.md). For example, we could
 write to a file like so:
 
 ```rust
@@ -684,6 +684,6 @@ A [writer](#writer) which may or may not be enabled.
 
 This may be used by [`MakeWriter`](#makewriter) implementations that wish to
 conditionally enable or disable the returned writer based on a span or
-event's `Metadata`.
+event's [`Metadata`](../../../tracing_core/metadata/index.md).
 
 

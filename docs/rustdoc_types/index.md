@@ -6,7 +6,7 @@ These types are the public API exposed through the `--output-format json` flag. 
 struct is the root of the JSON blob and all other items are contained within.
 
 We expose a `rustc-hash` feature that is disabled by default. This feature switches the
-`std::collections::HashMap` for `rustc_hash::FxHashMap` to improve the performance of said
+[`std::collections::HashMap`](../hashbrown/hash_map/index.md) for `rustc_hash::FxHashMap` to improve the performance of said
 `HashMap` in specific situations.
 
 `cargo-semver-checks` for example, saw a [-3% improvement][1] when benchmarking using the
@@ -339,7 +339,7 @@ the actual item definition with all the relevant info.
   
   Note that items can appear in multiple paths, and the one chosen is implementation
   defined. Currently, this is the full path to where the item was defined. Eg
-  `String` is currently `["alloc", "string", "String"]` and [`HashMap`]`std::collections::HashMap`
+  [`String`](../clap_builder/index.md) is currently `["alloc", "string", "String"]` and [`HashMap`][`std::collections::HashMap`](../hashbrown/hash_map/index.md)
   is `["std", "collections", "hash", "map", "HashMap"]`, but this is subject to change.
 
 - **`kind`**: `ItemKind`
@@ -497,7 +497,7 @@ struct AttributeRepr {
 
 The contents of a `#[repr(...)]` attribute.
 
-Used in `Attribute::Repr`.
+Used in [`Attribute::Repr`](#attributerepr).
 
 #### Fields
 
@@ -1047,13 +1047,13 @@ A `union`.
 
   The list of fields in the union.
   
-  All of the corresponding [`Item`](#item)s are of kind `ItemEnum::StructField`.
+  All of the corresponding [`Item`](#item)s are of kind [`ItemEnum::StructField`](#itemenumstructfield).
 
 - **`impls`**: `Vec<Id>`
 
   All impls (both of traits and inherent) for this union.
   
-  All of the corresponding [`Item`](#item)s are of kind `ItemEnum::Impl`.
+  All of the corresponding [`Item`](#item)s are of kind [`ItemEnum::Impl`](#itemenumimpl).
 
 #### Trait Implementations
 
@@ -1113,7 +1113,7 @@ A `struct`.
 - **`impls`**: `Vec<Id>`
 
   All impls (both of traits and inherent) for this struct.
-  All of the corresponding [`Item`](#item)s are of kind `ItemEnum::Impl`.
+  All of the corresponding [`Item`](#item)s are of kind [`ItemEnum::Impl`](#itemenumimpl).
 
 #### Trait Implementations
 
@@ -1174,7 +1174,7 @@ An `enum`.
 
   The list of variants in the enum.
   
-  All of the corresponding [`Item`](#item)s are of kind `ItemEnum::Variant`
+  All of the corresponding [`Item`](#item)s are of kind [`ItemEnum::Variant`](#itemenumvariant)
 
 - **`impls`**: `Vec<Id>`
 
@@ -2088,7 +2088,7 @@ A procedural macro.
   
   Defined only for derive macros.
   
-  E.g. the [`Default`](#default) derive macro defines a `#[default]` helper attribute so that one can
+  E.g. the [`Default`](../gimli/index.md) derive macro defines a `#[default]` helper attribute so that one can
   do:
   
   ```rust
@@ -3149,7 +3149,7 @@ The kind of a [`Struct`](#struct) and the data specific to it, i.e. fields.
 
   A struct with unnamed fields.
   
-  All [`Id`](#id)'s will point to `ItemEnum::StructField`.
+  All [`Id`](#id)'s will point to [`ItemEnum::StructField`](#itemenumstructfield).
   Unlike most of JSON, private and `#[doc(hidden)]` fields will be given as `None`
   instead of being omitted, because order matters.
   
@@ -3231,7 +3231,7 @@ The kind of an [`Enum`](#enum) [`Variant`](#variant) and the data specific to it
 
   A variant with unnamed fields.
   
-  All [`Id`](#id)'s will point to `ItemEnum::StructField`.
+  All [`Id`](#id)'s will point to [`ItemEnum::StructField`](#itemenumstructfield).
   Unlike most of JSON, `#[doc(hidden)]` fields will be given as `None`
   instead of being omitted, because order matters.
   

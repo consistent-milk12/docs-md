@@ -116,7 +116,7 @@ The `parse_quote!` macro also uses this approach.
 
 Some types can be parsed in several ways depending on context. For example
 an [`Attribute`](../attr/index.md) can be either "outer" like `#[...]` or "inner" like
-`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
+`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../punctuated/index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
 
@@ -461,7 +461,7 @@ Ok(())
 
 ##### `impl Peek for End`
 
-##### `impl Sealed for End`
+##### `impl<T> Sealed for End`
 
 ##### `impl<T> Token for End`
 
@@ -776,6 +776,28 @@ error: unexpected token
 
 - `fn to_tokens(self: &Self, tokens: &mut TokenStream)`
 
+## Enums
+
+### `Unexpected`
+
+```rust
+enum Unexpected {
+    None,
+    Some(proc_macro2::Span, proc_macro2::Delimiter),
+    Chain(std::rc::Rc<std::cell::Cell<Unexpected>>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for Unexpected`
+
+- `fn clone(self: &Self) -> Self`
+
+##### `impl Default for Unexpected`
+
+- `fn default() -> Self`
+
 ## Traits
 
 ### `Parse`
@@ -821,6 +843,62 @@ Refer to the [module documentation] for details about parsing in Syn.
 - `fn parse_str(self: Self, s: &str) -> Result<<Self as >::Output>`
 
   Parse a string of Rust code into the chosen syntax tree node.
+
+## Functions
+
+### `advance_step_cursor`
+
+```rust
+fn advance_step_cursor<'c, 'a>(proof: StepCursor<'c, 'a>, to: crate::buffer::Cursor<'c>) -> crate::buffer::Cursor<'a>
+```
+
+### `new_parse_buffer`
+
+```rust
+fn new_parse_buffer(scope: proc_macro2::Span, cursor: crate::buffer::Cursor<'_>, unexpected: std::rc::Rc<std::cell::Cell<Unexpected>>) -> ParseBuffer<'_>
+```
+
+### `cell_clone`
+
+```rust
+fn cell_clone<T: Default + Clone>(cell: &std::cell::Cell<T>) -> T
+```
+
+### `inner_unexpected`
+
+```rust
+fn inner_unexpected(buffer: &ParseBuffer<'_>) -> (std::rc::Rc<std::cell::Cell<Unexpected>>, Option<(proc_macro2::Span, proc_macro2::Delimiter)>)
+```
+
+### `get_unexpected`
+
+```rust
+fn get_unexpected(buffer: &ParseBuffer<'_>) -> std::rc::Rc<std::cell::Cell<Unexpected>>
+```
+
+### `span_of_unexpected_ignoring_nones`
+
+```rust
+fn span_of_unexpected_ignoring_nones(cursor: crate::buffer::Cursor<'_>) -> Option<(proc_macro2::Span, proc_macro2::Delimiter)>
+```
+
+### `tokens_to_parse_buffer`
+
+```rust
+fn tokens_to_parse_buffer(tokens: &crate::buffer::TokenBuffer) -> ParseBuffer<'_>
+```
+
+### `parse_scoped`
+
+```rust
+fn parse_scoped<F: Parser>(f: F, scope: proc_macro2::Span, tokens: proc_macro2::TokenStream) -> Result<<F as >::Output>
+```
+
+### `err_unexpected_token`
+
+```rust
+fn err_unexpected_token(span: proc_macro2::Span, delimiter: proc_macro2::Delimiter) -> Error
+```
 
 ## Type Aliases
 

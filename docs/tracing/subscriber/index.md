@@ -18,11 +18,11 @@ where
     S: Subscriber + Send + Sync + 'static
 ```
 
-Sets this [`Subscriber`](../index.md) as the default for the current thread for the
+Sets this [`Subscriber`](../../tracing_core/subscriber/index.md) as the default for the current thread for the
 duration of a closure.
 
 The default subscriber is used when creating a new [`Span`](../span/index.md) or
-[`Event`](../index.md).
+[`Event`](../../tracing_core/event/index.md).
 
 
 
@@ -54,10 +54,10 @@ where
     S: Subscriber + Send + Sync + 'static
 ```
 
-Sets the [`Subscriber`](../index.md) as the default for the current thread for the
-duration of the lifetime of the returned [`DefaultGuard`](../dispatcher/index.md).
+Sets the [`Subscriber`](../../tracing_core/subscriber/index.md) as the default for the current thread for the
+duration of the lifetime of the returned [`DefaultGuard`](../../tracing_core/dispatcher/index.md).
 
-The default subscriber is used when creating a new [`Span`](../span/index.md) or [`Event`](../index.md).
+The default subscriber is used when creating a new [`Span`](../span/index.md) or [`Event`](../../tracing_core/event/index.md).
 
 
 

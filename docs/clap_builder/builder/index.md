@@ -4,10 +4,27 @@
 
 # Module `builder`
 
-Define [`Command`](command/index.md) line [arguments][`Arg`](../index.md)
+Define [`Command`](command/index.md) line [arguments][`Arg`](arg/index.md)
 
 ## Modules
 
+- [`action`](action/index.md) - 
+- [`app_settings`](app_settings/index.md) - 
+- [`arg`](arg/index.md) - 
+- [`arg_group`](arg_group/index.md) - 
+- [`arg_predicate`](arg_predicate/index.md) - 
+- [`arg_settings`](arg_settings/index.md) - 
+- [`command`](command/index.md) - 
+- [`ext`](ext/index.md) - 
+- [`os_str`](os_str/index.md) - 
+- [`possible_value`](possible_value/index.md) - 
+- [`range`](range/index.md) - 
+- [`resettable`](resettable/index.md) - 
+- [`str`](str/index.md) - 
+- [`styled_str`](styled_str/index.md) - 
+- [`value_hint`](value_hint/index.md) - 
+- [`value_parser`](value_parser/index.md) - 
+- [`debug_asserts`](debug_asserts/index.md) - 
 - [`styling`](styling/index.md) - Terminal [`Styles`] for help and error output
 
 ## Structs
@@ -41,7 +58,7 @@ feature
 
 ##### `impl AsRef for Str`
 
-- `fn as_ref(self: &Self) -> &[u8]`
+- `fn as_ref(self: &Self) -> &std::path::Path`
 
 ##### `impl Clone for Str`
 
@@ -73,7 +90,7 @@ feature
 
 ##### `impl<I> IntoResettable for Str`
 
-- `fn into_resettable(self: Self) -> Resettable<Str>` — [`Resettable`](resettable/index.md), [`Str`](str/index.md)
+- `fn into_resettable(self: Self) -> Resettable<Id>` — [`Resettable`](resettable/index.md), [`Id`](../util/id/index.md)
 
 ##### `impl Ord for Str`
 
@@ -81,7 +98,7 @@ feature
 
 ##### `impl PartialEq for Str`
 
-- `fn eq(self: &Self, other: &std::ffi::OsStr) -> bool`
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Str`
 
@@ -136,7 +153,7 @@ struct Arg {
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
 
-There are two methods for constructing [`Arg`](../index.md)s, using the builder pattern and setting options
+There are two methods for constructing [`Arg`](arg/index.md)s, using the builder pattern and setting options
 manually, or using a usage string which is far less verbose but has fewer options. You can also
 use a combination of the two methods to achieve the best of both worlds.
 
@@ -164,43 +181,17 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn action(self: Self, action: impl IntoResettable<ArgAction>) -> Self` — [`IntoResettable`](resettable/index.md), [`ArgAction`](action/index.md)
+- `fn _build(self: &mut Self)`
 
-- `fn value_parser(self: Self, parser: impl IntoResettable<super::ValueParser>) -> Self` — [`IntoResettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
+- `fn name_no_brackets(self: &Self) -> String`
 
-- `fn num_args(self: Self, qty: impl IntoResettable<ValueRange>) -> Self` — [`IntoResettable`](resettable/index.md), [`ValueRange`](range/index.md)
+- `fn stylized(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](styling/index.md), [`StyledStr`](styled_str/index.md)
 
-- `fn value_name(self: Self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
+- `fn stylize_arg_suffix(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](styling/index.md), [`StyledStr`](styled_str/index.md)
 
-- `fn value_names(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md)
+- `fn render_arg_val(self: &Self, required: bool) -> String`
 
-- `fn value_hint(self: Self, value_hint: impl IntoResettable<ValueHint>) -> Self` — [`IntoResettable`](resettable/index.md), [`ValueHint`](value_hint/index.md)
-
-- `fn ignore_case(self: Self, yes: bool) -> Self`
-
-- `fn allow_hyphen_values(self: Self, yes: bool) -> Self`
-
-- `fn allow_negative_numbers(self: Self, yes: bool) -> Self`
-
-- `fn require_equals(self: Self, yes: bool) -> Self`
-
-- `fn value_delimiter(self: Self, d: impl IntoResettable<char>) -> Self` — [`IntoResettable`](resettable/index.md)
-
-- `fn value_terminator(self: Self, term: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
-
-- `fn raw(self: Self, yes: bool) -> Self`
-
-- `fn default_value(self: Self, val: impl IntoResettable<OsStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`OsStr`](os_str/index.md)
-
-- `fn default_values(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](os_str/index.md)
-
-- `fn default_missing_value(self: Self, val: impl IntoResettable<OsStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`OsStr`](os_str/index.md)
-
-- `fn default_missing_value_os(self: Self, val: impl Into<OsStr>) -> Self` — [`OsStr`](os_str/index.md)
-
-- `fn default_missing_values(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](os_str/index.md)
-
-- `fn default_missing_values_os(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](os_str/index.md)
+- `fn is_multiple(self: &Self) -> bool`
 
 #### Trait Implementations
 
@@ -424,51 +415,67 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
+- `fn new(name: impl Into<Str>) -> Self` — [`Str`](str/index.md)
 
-- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
+- `fn arg(self: Self, a: impl Into<Arg>) -> Self` — [`Arg`](arg/index.md)
 
-- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
+- `fn arg_internal(self: &mut Self, arg: Arg)` — [`Arg`](arg/index.md)
 
-- `fn get_term_width(self: &Self) -> Option<usize>`
+- `fn args(self: Self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](arg/index.md)
 
-- `fn get_max_term_width(self: &Self) -> Option<usize>`
+- `fn mut_arg<F>(self: Self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](../mkeymap/index.md)
+- `fn mut_args<F>(self: Self, f: F) -> Self`
 
-- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](../parser/matches/arg_matches/index.md), [`Id`](../util/id/index.md)
+- `fn mut_group<F>(self: Self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../parser/matches/arg_matches/index.md)
+- `fn mut_subcommand<F>(self: Self, name: impl AsRef<str>, f: F) -> Self`
 
-- `fn build(self: &mut Self)`
+- `fn mut_subcommands<F>(self: Self, f: F) -> Self`
 
-- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
+- `fn group(self: Self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](arg_group/index.md)
 
-- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
+- `fn groups(self: Self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](arg_group/index.md)
 
-- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
+- `fn subcommand(self: Self, subcmd: impl Into<Command>) -> Self` — [`Command`](command/index.md)
 
-- `fn _build_bin_names_internal(self: &mut Self)`
+- `fn subcommand_internal(self: Self, subcmd: Self) -> Self`
 
-- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
+- `fn subcommands(self: Self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
 
-- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](arg/index.md)
+- `fn defer(self: Self, deferred: fn(Command) -> Command) -> Self` — [`Command`](command/index.md)
 
-- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](arg_group/index.md)
+- `fn debug_assert(self: Self)`
 
-- `fn _propagate_global_args(self: &mut Self)`
+- `fn error(self: &mut Self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](../error/kind/index.md), [`Error`](../index.md)
 
-- `fn _propagate(self: &mut Self)`
+- `fn get_matches(self: Self) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md)
 
-- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
+- `fn get_matches_mut(self: &mut Self) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md)
 
-- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
+- `fn try_get_matches(self: Self) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../parser/matches/arg_matches/index.md)
 
-- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](command/index.md)
+- `fn get_matches_from<I, T>(self: Self, itr: I) -> ArgMatches` — [`ArgMatches`](../parser/matches/arg_matches/index.md)
 
-- `fn _render_version(self: &Self, use_long: bool) -> String`
+- `fn try_get_matches_from<I, T>(self: Self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../parser/matches/arg_matches/index.md)
 
-- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](../util/id/index.md), [`StyledStr`](styled_str/index.md)
+- `fn try_get_matches_from_mut<I, T>(self: &mut Self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../parser/matches/arg_matches/index.md)
+
+- `fn print_help(self: &mut Self) -> io::Result<()>`
+
+- `fn print_long_help(self: &mut Self) -> io::Result<()>`
+
+- `fn render_help(self: &mut Self) -> StyledStr` — [`StyledStr`](styled_str/index.md)
+
+- `fn render_long_help(self: &mut Self) -> StyledStr` — [`StyledStr`](styled_str/index.md)
+
+- `fn render_version(self: &Self) -> String`
+
+- `fn render_long_version(self: &Self) -> String`
+
+- `fn render_usage(self: &mut Self) -> StyledStr` — [`StyledStr`](styled_str/index.md)
+
+- `fn render_usage_(self: &mut Self) -> Option<StyledStr>` — [`StyledStr`](styled_str/index.md)
 
 #### Trait Implementations
 
@@ -563,7 +570,7 @@ feature
 
 ##### `impl PartialEq for OsStr`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- `fn eq(self: &Self, other: &OsStr) -> bool` — [`OsStr`](os_str/index.md)
 
 ##### `impl PartialOrd for OsStr`
 
@@ -621,19 +628,15 @@ let cfg = Arg::new("config")
 
 #### Implementations
 
-- `fn get_name(self: &Self) -> &str`
+- `fn new(name: impl Into<Str>) -> Self` — [`Str`](str/index.md)
 
-- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
+- `fn help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
 
-- `fn is_hide_set(self: &Self) -> bool`
+- `fn hide(self: Self, yes: bool) -> Self`
 
-- `fn should_show_help(self: &Self) -> bool`
+- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
 
-- `fn get_visible_quoted_name(self: &Self) -> Option<std::borrow::Cow<'_, str>>`
-
-- `fn get_name_and_aliases(self: &Self) -> impl Iterator<Item = &str> + '_`
-
-- `fn matches(self: &Self, value: &str, ignore_case: bool) -> bool`
+- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md)
 
 #### Trait Implementations
 
@@ -1874,15 +1877,13 @@ assert_eq!(port, 3001);
 
 #### Implementations
 
-- `fn new<P>(other: P) -> Self`
+- `fn parse_ref(self: &Self, cmd: &crate::Command, arg: Option<&crate::Arg>, value: &std::ffi::OsStr, source: ValueSource) -> Result<AnyValue, crate::Error>` — [`Command`](command/index.md), [`Arg`](arg/index.md), [`ValueSource`](../parser/matches/value_source/index.md), [`AnyValue`](../util/any_value/index.md), [`Error`](../index.md)
 
-- `const fn bool() -> Self`
+- `fn type_id(self: &Self) -> AnyValueId` — [`AnyValueId`](../util/any_value/index.md)
 
-- `const fn string() -> Self`
+- `fn possible_values(self: &Self) -> Option<Box<dyn Iterator<Item = crate::builder::PossibleValue>>>` — [`PossibleValue`](possible_value/index.md)
 
-- `const fn os_string() -> Self`
-
-- `const fn path_buf() -> Self`
+- `fn any_value_parser(self: &Self) -> &dyn AnyValueParser` — [`AnyValueParser`](value_parser/index.md)
 
 #### Trait Implementations
 

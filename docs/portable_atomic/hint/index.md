@@ -4,9 +4,9 @@
 
 # Module `hint`
 
-Re-export of the `core::hint` module.
+Re-export of the [`core::hint`](../../crossbeam_utils/primitive/hint/index.md) module.
 
-The only difference from the `core::hint` module is that [`spin_loop`](#spin-loop)
+The only difference from the [`core::hint`](../../crossbeam_utils/primitive/hint/index.md) module is that [`spin_loop`](#spin-loop)
 is available in all rust versions that this crate supports.
 
 ```rust

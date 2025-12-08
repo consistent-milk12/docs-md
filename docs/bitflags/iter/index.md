@@ -60,7 +60,7 @@ won't be yielded, but can be found with the `IterNames::remaining` method.
 
 #### Implementations
 
-- `fn remaining(self: &Self) -> &B`
+- `fn new(flags: &B) -> Self`
 
 #### Trait Implementations
 

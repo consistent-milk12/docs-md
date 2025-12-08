@@ -23,15 +23,15 @@ This crate defines two primary types:
 
 These two types come with conversion routines:
 
-* An `ast::parse::Parser` converts concrete syntax (a `&str`) to an
+* An [`ast::parse::Parser`](ast/parse/index.md) converts concrete syntax (a `&str`) to an
 [`Ast`](ast::Ast).
-* A `hir::translate::Translator` converts an [`Ast`](ast::Ast) to a
+* A [`hir::translate::Translator`](hir/translate/index.md) converts an [`Ast`](ast::Ast) to a
 [`Hir`](hir::Hir).
 
 As a convenience, the above two conversion routines are combined into one via
 the top-level [`Parser`](parser/index.md) type. This `Parser` will first convert your pattern to
 an `Ast` and then convert the `Ast` to an `Hir`. It's also exposed as top-level
-[`parse`](ast/parse/index.md) free function.
+[`parse`](parser/index.md) free function.
 
 
 # Example
@@ -167,7 +167,14 @@ The following features are available:
 ## Modules
 
 - [`ast`](ast/index.md) - Defines an abstract syntax for regular expressions.
+- [`debug`](debug/index.md) - 
+- [`either`](either/index.md) - 
+- [`error`](error/index.md) - 
 - [`hir`](hir/index.md) - Defines a high-level intermediate (HIR) representation for regular expressions.
+- [`parser`](parser/index.md) - 
+- [`rank`](rank/index.md) - 
+- [`unicode`](unicode/index.md) - 
+- [`unicode_tables`](unicode_tables/index.md) - 
 - [`utf8`](utf8/index.md) - Converts ranges of Unicode scalar values to equivalent ranges of UTF-8 bytes.
 
 ## Structs
@@ -191,7 +198,7 @@ The AST is itself far more complex than the HIR, so this parser serves as a
 convenience for never having to deal with it at all.
 
 If callers have more fine grained use cases that need an AST, then please
-see the `ast::parse` module.
+see the [`ast::parse`](ast/parse/index.md) module.
 
 A `Parser` can be configured in more detail via a [`ParserBuilder`](parser/index.md).
 

@@ -26,9 +26,14 @@ See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
 ## Modules
 
+- [`macros`](macros/index.md) - 
+- [`derive`](derive/index.md) - This module contains traits that are usable with the `#[derive(...)]`
 - [`builder`](builder/index.md) - Define [`Command`] line [arguments][`Arg`]
 - [`error`](error/index.md) - Error reporting
 - [`parser`](parser/index.md) - [`Command`][crate::Command] line argument parser
+- [`mkeymap`](mkeymap/index.md) - 
+- [`output`](output/index.md) - 
+- [`util`](util/index.md) - 
 
 ## Structs
 
@@ -114,51 +119,67 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
+- `fn new(name: impl Into<Str>) -> Self` — [`Str`](builder/str/index.md)
 
-- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
+- `fn arg(self: Self, a: impl Into<Arg>) -> Self` — [`Arg`](builder/arg/index.md)
 
-- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
+- `fn arg_internal(self: &mut Self, arg: Arg)` — [`Arg`](builder/arg/index.md)
 
-- `fn get_term_width(self: &Self) -> Option<usize>`
+- `fn args(self: Self, args: impl IntoIterator<Item = impl Into<Arg>>) -> Self` — [`Arg`](builder/arg/index.md)
 
-- `fn get_max_term_width(self: &Self) -> Option<usize>`
+- `fn mut_arg<F>(self: Self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](mkeymap/index.md)
+- `fn mut_args<F>(self: Self, f: F) -> Self`
 
-- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](parser/matches/arg_matches/index.md), [`Id`](util/id/index.md)
+- `fn mut_group<F>(self: Self, arg_id: impl AsRef<str>, f: F) -> Self`
 
-- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
+- `fn mut_subcommand<F>(self: Self, name: impl AsRef<str>, f: F) -> Self`
 
-- `fn build(self: &mut Self)`
+- `fn mut_subcommands<F>(self: Self, f: F) -> Self`
 
-- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
+- `fn group(self: Self, group: impl Into<ArgGroup>) -> Self` — [`ArgGroup`](builder/arg_group/index.md)
 
-- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
+- `fn groups(self: Self, groups: impl IntoIterator<Item = impl Into<ArgGroup>>) -> Self` — [`ArgGroup`](builder/arg_group/index.md)
 
-- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
+- `fn subcommand(self: Self, subcmd: impl Into<Command>) -> Self` — [`Command`](builder/command/index.md)
 
-- `fn _build_bin_names_internal(self: &mut Self)`
+- `fn subcommand_internal(self: Self, subcmd: Self) -> Self`
 
-- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
+- `fn subcommands(self: Self, subcmds: impl IntoIterator<Item = impl Into<Self>>) -> Self`
 
-- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](builder/arg/index.md)
+- `fn defer(self: Self, deferred: fn(Command) -> Command) -> Self` — [`Command`](builder/command/index.md)
 
-- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](builder/arg_group/index.md)
+- `fn debug_assert(self: Self)`
 
-- `fn _propagate_global_args(self: &mut Self)`
+- `fn error(self: &mut Self, kind: ErrorKind, message: impl fmt::Display) -> Error` — [`ErrorKind`](error/kind/index.md), [`Error`](#error)
 
-- `fn _propagate(self: &mut Self)`
+- `fn get_matches(self: Self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
 
-- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
+- `fn get_matches_mut(self: &mut Self) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
 
-- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
+- `fn try_get_matches(self: Self) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
 
-- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](builder/command/index.md)
+- `fn get_matches_from<I, T>(self: Self, itr: I) -> ArgMatches` — [`ArgMatches`](parser/matches/arg_matches/index.md)
 
-- `fn _render_version(self: &Self, use_long: bool) -> String`
+- `fn try_get_matches_from<I, T>(self: Self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
 
-- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](util/id/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn try_get_matches_from_mut<I, T>(self: &mut Self, itr: I) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
+
+- `fn print_help(self: &mut Self) -> io::Result<()>`
+
+- `fn print_long_help(self: &mut Self) -> io::Result<()>`
+
+- `fn render_help(self: &mut Self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
+
+- `fn render_long_help(self: &mut Self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
+
+- `fn render_version(self: &Self) -> String`
+
+- `fn render_long_version(self: &Self) -> String`
+
+- `fn render_usage(self: &mut Self) -> StyledStr` — [`StyledStr`](builder/styled_str/index.md)
+
+- `fn render_usage_(self: &mut Self) -> Option<StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
 
 #### Trait Implementations
 
@@ -227,7 +248,7 @@ struct Arg {
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
 
-There are two methods for constructing [`Arg`](#arg)s, using the builder pattern and setting options
+There are two methods for constructing [`Arg`](builder/arg/index.md)s, using the builder pattern and setting options
 manually, or using a usage string which is far less verbose but has fewer options. You can also
 use a combination of the two methods to achieve the best of both worlds.
 
@@ -255,43 +276,17 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn action(self: Self, action: impl IntoResettable<ArgAction>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`ArgAction`](builder/action/index.md)
+- `fn _build(self: &mut Self)`
 
-- `fn value_parser(self: Self, parser: impl IntoResettable<super::ValueParser>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`ValueParser`](builder/value_parser/index.md)
+- `fn name_no_brackets(self: &Self) -> String`
 
-- `fn num_args(self: Self, qty: impl IntoResettable<ValueRange>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`ValueRange`](builder/range/index.md)
+- `fn stylized(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](builder/styling/index.md), [`StyledStr`](builder/styled_str/index.md)
 
-- `fn value_name(self: Self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
+- `fn stylize_arg_suffix(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](builder/styling/index.md), [`StyledStr`](builder/styled_str/index.md)
 
-- `fn value_names(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](builder/str/index.md)
+- `fn render_arg_val(self: &Self, required: bool) -> String`
 
-- `fn value_hint(self: Self, value_hint: impl IntoResettable<ValueHint>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`ValueHint`](builder/value_hint/index.md)
-
-- `fn ignore_case(self: Self, yes: bool) -> Self`
-
-- `fn allow_hyphen_values(self: Self, yes: bool) -> Self`
-
-- `fn allow_negative_numbers(self: Self, yes: bool) -> Self`
-
-- `fn require_equals(self: Self, yes: bool) -> Self`
-
-- `fn value_delimiter(self: Self, d: impl IntoResettable<char>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
-
-- `fn value_terminator(self: Self, term: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
-
-- `fn raw(self: Self, yes: bool) -> Self`
-
-- `fn default_value(self: Self, val: impl IntoResettable<OsStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`OsStr`](builder/os_str/index.md)
-
-- `fn default_values(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](builder/os_str/index.md)
-
-- `fn default_missing_value(self: Self, val: impl IntoResettable<OsStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`OsStr`](builder/os_str/index.md)
-
-- `fn default_missing_value_os(self: Self, val: impl Into<OsStr>) -> Self` — [`OsStr`](builder/os_str/index.md)
-
-- `fn default_missing_values(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](builder/os_str/index.md)
-
-- `fn default_missing_values_os(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](builder/os_str/index.md)
+- `fn is_multiple(self: &Self) -> bool`
 
 #### Trait Implementations
 
@@ -493,37 +488,19 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
+- `fn try_get_arg(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
 
-- `fn get_count(self: &Self, id: &str) -> u8`
+- `fn try_get_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
 
-- `fn get_flag(self: &Self, id: &str) -> bool`
+- `fn try_remove_arg_t<T: Any + Send + Sync + 'static>(self: &mut Self, arg: &str) -> Result<Option<MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
 
-- `fn get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](parser/matches/arg_matches/index.md)
+- `fn verify_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &MatchedArg) -> Result<(), MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
 
-- `fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](parser/matches/arg_matches/index.md)
+- `fn verify_arg(self: &Self, _arg: &str) -> Result<(), MatchesError>` — [`MatchesError`](parser/error/index.md)
 
-- `fn get_raw(self: &Self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](parser/matches/arg_matches/index.md)
+- `fn get_arg<'s>(self: &'s Self, arg: &str) -> Option<&'s MatchedArg>` — [`MatchedArg`](parser/matches/matched_arg/index.md)
 
-- `fn get_raw_occurrences(self: &Self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](parser/matches/arg_matches/index.md)
-
-- `fn remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<T>`
-
-- `fn remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Values<T>>` — [`Values`](parser/matches/arg_matches/index.md)
-
-- `fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](parser/matches/arg_matches/index.md)
-
-- `fn contains_id(self: &Self, id: &str) -> bool`
-
-- `fn ids(self: &Self) -> IdsRef<'_>` — [`IdsRef`](parser/matches/arg_matches/index.md)
-
-- `fn args_present(self: &Self) -> bool`
-
-- `fn value_source(self: &Self, id: &str) -> Option<ValueSource>` — [`ValueSource`](parser/matches/value_source/index.md)
-
-- `fn index_of(self: &Self, id: &str) -> Option<usize>`
-
-- `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>` — [`Indices`](parser/matches/arg_matches/index.md)
+- `fn get_subcommand(self: &Self, name: &str) -> Option<&SubCommand>` — [`SubCommand`](parser/matches/arg_matches/index.md)
 
 #### Trait Implementations
 
@@ -611,7 +588,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &String) -> bool`
+- `fn eq(self: &Self, other: &Id) -> bool` — [`Id`](util/id/index.md)
 
 ##### `impl PartialOrd for Id`
 
@@ -1312,6 +1289,14 @@ Command Line Argument Parser Error
 
 See `Command::error` to create an error.
 
+
+## Constants
+
+### `INTERNAL_ERROR_MSG`
+
+```rust
+const INTERNAL_ERROR_MSG: &str;
+```
 
 ## Macros
 

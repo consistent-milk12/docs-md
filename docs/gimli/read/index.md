@@ -181,6 +181,32 @@ fn find_sum_of_address_range_lengths(aranges: DebugAranges<EndianSlice<LittleEnd
 fn main() {}
 ```
 
+## Modules
+
+- [`util`](util/index.md) - 
+- [`addr`](addr/index.md) - 
+- [`cfi`](cfi/index.md) - 
+- [`dwarf`](dwarf/index.md) - 
+- [`endian_slice`](endian_slice/index.md) - Working with byte slices that have an associated endianity.
+- [`reader`](reader/index.md) - 
+- [`relocate`](relocate/index.md) - 
+- [`abbrev`](abbrev/index.md) - Functions for parsing DWARF debugging abbreviations.
+- [`aranges`](aranges/index.md) - 
+- [`index`](index/index.md) - 
+- [`line`](line/index.md) - 
+- [`lists`](lists/index.md) - 
+- [`loclists`](loclists/index.md) - 
+- [`lookup`](lookup/index.md) - 
+- [`macros`](macros/index.md) - 
+- [`op`](op/index.md) - Functions for parsing and evaluating DWARF expressions.
+- [`pubnames`](pubnames/index.md) - 
+- [`pubtypes`](pubtypes/index.md) - 
+- [`rnglists`](rnglists/index.md) - 
+- [`str`](str/index.md) - 
+- [`unit`](unit/index.md) - Functions for parsing DWARF `.debug_info` and `.debug_types` sections.
+- [`value`](value/index.md) - Definitions for values used in DWARF expressions.
+- [`sealed`](sealed/index.md) - 
+
 ## Structs
 
 ### `UnitOffset<T>`
@@ -271,6 +297,67 @@ Indicates that storage should be allocated on heap.
 
 - `type Stack = Box<[UnwindTableRow<T>; 4]>`
 
+### `ArrayVec<A: ArrayLike>`
+
+```rust
+struct ArrayVec<A: ArrayLike> {
+    storage: <A as >::Storage,
+    len: usize,
+}
+```
+
+#### Implementations
+
+- `fn new() -> Self`
+
+- `fn clear(self: &mut Self)`
+
+- `fn try_push(self: &mut Self, value: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](#arraylike), [`CapacityFull`](util/sealed/index.md)
+
+- `fn try_insert(self: &mut Self, index: usize, element: <A as >::Item) -> Result<(), CapacityFull>` — [`ArrayLike`](#arraylike), [`CapacityFull`](util/sealed/index.md)
+
+- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`ArrayLike`](#arraylike)
+
+- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`ArrayLike`](#arraylike)
+
+#### Trait Implementations
+
+##### `impl<A: ArrayLike> Clone for ArrayVec<A>`
+
+- `fn clone(self: &Self) -> Self`
+
+##### `impl<A: ArrayLike> Debug for ArrayVec<A>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<A: ArrayLike> Default for ArrayVec<A>`
+
+- `fn default() -> Self`
+
+##### `impl<A: ArrayLike> Deref for ArrayVec<A>`
+
+- `type Target = [<A as ArrayLike>::Item]`
+
+- `fn deref(self: &Self) -> &[<A as >::Item]` — [`ArrayLike`](#arraylike)
+
+##### `impl<A: ArrayLike> DerefMut for ArrayVec<A>`
+
+- `fn deref_mut(self: &mut Self) -> &mut [<A as >::Item]` — [`ArrayLike`](#arraylike)
+
+##### `impl<A: ArrayLike> Drop for ArrayVec<A>`
+
+- `fn drop(self: &mut Self)`
+
+##### `impl<A: ArrayLike> Eq for ArrayVec<A>`
+
+##### `impl<A: ArrayLike> PartialEq for ArrayVec<A>`
+
+- `fn eq(self: &Self, other: &Self) -> bool`
+
+##### `impl<P, T> Receiver for ArrayVec<A>`
+
+- `type Target = T`
+
 ### `DebugAddr<R>`
 
 ```rust
@@ -283,7 +370,9 @@ The raw contents of the `.debug_addr` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugAddr<R>` — [`DebugAddr`](#debugaddr)
+- `fn get_address(self: &Self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../index.md), [`Reader`](#reader), [`DebugAddrIndex`](../index.md), [`Result`](../index.md)
+
+- `fn headers(self: &Self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](#addrheaderiter)
 
 #### Trait Implementations
 
@@ -435,9 +524,7 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 #### Implementations
 
-- `fn set_address_size(self: &mut Self, address_size: u8)`
-
-- `fn set_vendor(self: &mut Self, vendor: Vendor)` — [`Vendor`](../index.md)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -482,7 +569,7 @@ search table of pointers to the `.eh_frame` records that are found in this secti
 
 #### Implementations
 
-- `fn parse(self: &Self, bases: &BaseAddresses, address_size: u8) -> Result<ParsedEhFrameHdr<R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`ParsedEhFrameHdr`](#parsedehframehdr)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -626,9 +713,7 @@ for some discussion on the differences between `.debug_frame` and
 
 #### Implementations
 
-- `fn set_address_size(self: &mut Self, address_size: u8)`
-
-- `fn set_vendor(self: &mut Self, vendor: Vendor)` — [`Vendor`](../index.md)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -937,6 +1022,42 @@ We support the z-style augmentation [defined by `.eh_frame`][ehframe].
 
 ##### `impl StructuralPartialEq for Augmentation`
 
+### `AugmentationData`
+
+```rust
+struct AugmentationData {
+    lsda: Option<Pointer>,
+}
+```
+
+Parsed augmentation data for a `FrameDescriptEntry`.
+
+#### Implementations
+
+- `fn parse<R: Reader>(augmentation: &Augmentation, encoding_parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> Result<AugmentationData>` — [`Augmentation`](#augmentation), [`PointerEncodingParameters`](cfi/index.md), [`Result`](../index.md), [`AugmentationData`](cfi/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for AugmentationData`
+
+- `fn clone(self: &Self) -> AugmentationData` — [`AugmentationData`](cfi/index.md)
+
+##### `impl Debug for AugmentationData`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for AugmentationData`
+
+- `fn default() -> AugmentationData` — [`AugmentationData`](cfi/index.md)
+
+##### `impl Eq for AugmentationData`
+
+##### `impl PartialEq for AugmentationData`
+
+- `fn eq(self: &Self, other: &AugmentationData) -> bool` — [`AugmentationData`](cfi/index.md)
+
+##### `impl StructuralPartialEq for AugmentationData`
+
 ### `CommonInformationEntry<R, Offset>`
 
 ```rust
@@ -1020,37 +1141,9 @@ where
 
 #### Implementations
 
-- `fn offset(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
+- `fn parse<Section: UnwindSection<R>>(bases: &BaseAddresses, section: &Section, input: &mut R) -> Result<CommonInformationEntry<R>>` — [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`CommonInformationEntry`](#commoninformationentry)
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../index.md)
-
-- `fn address_size(self: &Self) -> u8`
-
-- `fn instructions<'a, Section>(self: &Self, section: &'a Section, bases: &'a BaseAddresses) -> CallFrameInstructionIter<'a, R>` — [`BaseAddresses`](#baseaddresses), [`CallFrameInstructionIter`](#callframeinstructioniter)
-
-- `fn entry_len(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
-
-- `fn version(self: &Self) -> u8`
-
-- `fn augmentation(self: &Self) -> Option<&Augmentation>` — [`Augmentation`](#augmentation)
-
-- `fn has_lsda(self: &Self) -> bool`
-
-- `fn lsda_encoding(self: &Self) -> Option<constants::DwEhPe>` — [`DwEhPe`](../index.md)
-
-- `fn personality_with_encoding(self: &Self) -> Option<(constants::DwEhPe, Pointer)>` — [`DwEhPe`](../index.md), [`Pointer`](#pointer)
-
-- `fn personality(self: &Self) -> Option<Pointer>` — [`Pointer`](#pointer)
-
-- `fn fde_address_encoding(self: &Self) -> Option<constants::DwEhPe>` — [`DwEhPe`](../index.md)
-
-- `fn is_signal_trampoline(self: &Self) -> bool`
-
-- `fn code_alignment_factor(self: &Self) -> u64`
-
-- `fn data_alignment_factor(self: &Self) -> i64`
-
-- `fn return_address_register(self: &Self) -> Register` — [`Register`](../index.md)
+- `fn parse_rest<Section: UnwindSection<R>>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, bases: &BaseAddresses, section: &Section, rest: R) -> Result<CommonInformationEntry<R>>` — [`Reader`](#reader), [`Format`](../index.md), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`CommonInformationEntry`](#commoninformationentry)
 
 #### Trait Implementations
 
@@ -1184,27 +1277,13 @@ A `FrameDescriptionEntry` is a set of CFA instructions for an address range.
 
 #### Implementations
 
-- `fn offset(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
+- `fn parse_rest<Section, F>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, cie_pointer: <Section as >::Offset, rest: R, section: &Section, bases: &BaseAddresses, get_cie: F) -> Result<FrameDescriptionEntry<R>>` — [`Reader`](#reader), [`Format`](../index.md), [`BaseAddresses`](#baseaddresses), [`Result`](../index.md), [`FrameDescriptionEntry`](#framedescriptionentry)
 
-- `fn cie(self: &Self) -> &CommonInformationEntry<R>` — [`CommonInformationEntry`](#commoninformationentry)
+- `fn parse_addresses(input: &mut R, cie: &CommonInformationEntry<R>, parameters: &PointerEncodingParameters<'_, R>) -> Result<(u64, u64)>` — [`CommonInformationEntry`](#commoninformationentry), [`PointerEncodingParameters`](cfi/index.md), [`Result`](../index.md)
 
-- `fn entry_len(self: &Self) -> <R as >::Offset` — [`Reader`](#reader)
+- `fn rows<'a, 'ctx, Section, S>(self: &Self, section: &'a Section, bases: &'a BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>) -> Result<UnwindTable<'a, 'ctx, R, S>>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md), [`UnwindTable`](#unwindtable)
 
-- `fn instructions<'a, Section>(self: &Self, section: &'a Section, bases: &'a BaseAddresses) -> CallFrameInstructionIter<'a, R>` — [`BaseAddresses`](#baseaddresses), [`CallFrameInstructionIter`](#callframeinstructioniter)
-
-- `fn initial_address(self: &Self) -> u64`
-
-- `fn end_address(self: &Self) -> u64`
-
-- `fn len(self: &Self) -> u64`
-
-- `fn contains(self: &Self, address: u64) -> bool`
-
-- `fn lsda(self: &Self) -> Option<Pointer>` — [`Pointer`](#pointer)
-
-- `fn is_signal_trampoline(self: &Self) -> bool`
-
-- `fn personality(self: &Self) -> Option<Pointer>` — [`Pointer`](#pointer)
+- `fn unwind_info_for_address<'ctx, Section, S>(self: &Self, section: &Section, bases: &BaseAddresses, ctx: &'ctx mut UnwindContext<<R as >::Offset, S>, address: u64) -> Result<&'ctx UnwindTableRow<<R as >::Offset, S>>` — [`BaseAddresses`](#baseaddresses), [`UnwindContext`](#unwindcontext), [`Reader`](#reader), [`Result`](../index.md), [`UnwindTableRow`](#unwindtablerow)
 
 #### Trait Implementations
 
@@ -1240,7 +1319,7 @@ where
 Common context needed when evaluating the call frame unwinding information.
 
 By default, this structure is small and allocates its internal storage
-on the heap using `Box` during `UnwindContext::new`.
+on the heap using [`Box`](../../allocator_api2/stable/boxed/index.md) during `UnwindContext::new`.
 
 This can be overridden by providing a custom [`UnwindContextStorage`](#unwindcontextstorage) type parameter.
 When using a custom storage with in-line arrays, the [`UnwindContext`](#unwindcontext) type itself
@@ -1392,6 +1471,51 @@ The `UnwindTable` iteratively evaluates a `FrameDescriptionEntry`'s
 ##### `impl<'a, 'ctx, R, S> Debug for UnwindTable<'a, 'ctx, R, S>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `RegisterRuleMap<T, S>`
+
+```rust
+struct RegisterRuleMap<T, S>
+where
+    T: ReaderOffset,
+    S: UnwindContextStorage<T> {
+    rules: super::util::ArrayVec<<S as >::Rules>,
+}
+```
+
+#### Implementations
+
+- `fn is_default(self: &Self) -> bool`
+
+- `fn get(self: &Self, register: Register) -> RegisterRule<T>` — [`Register`](../index.md), [`RegisterRule`](#registerrule)
+
+- `fn set(self: &mut Self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../index.md), [`RegisterRule`](#registerrule), [`Result`](../index.md)
+
+- `fn iter(self: &Self) -> RegisterRuleIter<'_, T>` — [`RegisterRuleIter`](#registerruleiter)
+
+#### Trait Implementations
+
+##### `impl<T, S> Clone for RegisterRuleMap<T, S>`
+
+- `fn clone(self: &Self) -> Self`
+
+##### `impl<T, S> Debug for RegisterRuleMap<T, S>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T, S> Default for RegisterRuleMap<T, S>`
+
+- `fn default() -> Self`
+
+##### `impl<T, S> Eq for RegisterRuleMap<T, S>`
+
+##### `impl<'a, R, S> FromIterator for RegisterRuleMap<R, S>`
+
+- `fn from_iter<T>(iter: T) -> Self`
+
+##### `impl<T, S> PartialEq for RegisterRuleMap<T, S>`
+
+- `fn eq(self: &Self, rhs: &Self) -> bool`
 
 ### `RegisterRuleIter<'iter, T>`
 
@@ -1584,6 +1708,27 @@ Ok(())
 - `fn eq(self: &Self, other: &UnwindExpression<T>) -> bool` — [`UnwindExpression`](#unwindexpression)
 
 ##### `impl<T: ReaderOffset> StructuralPartialEq for UnwindExpression<T>`
+
+### `PointerEncodingParameters<'a, R: Reader>`
+
+```rust
+struct PointerEncodingParameters<'a, R: Reader> {
+    bases: &'a SectionBaseAddresses,
+    func_base: Option<u64>,
+    address_size: u8,
+    section: &'a R,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'a, R: $crate::clone::Clone + Reader> Clone for PointerEncodingParameters<'a, R>`
+
+- `fn clone(self: &Self) -> PointerEncodingParameters<'a, R>` — [`PointerEncodingParameters`](cfi/index.md)
+
+##### `impl<'a, R: $crate::fmt::Debug + Reader> Debug for PointerEncodingParameters<'a, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `DwarfSections<T>`
 
@@ -2325,11 +2470,21 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 
 #### Implementations
 
-- `fn range(self: &Self, idx: Range<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- `fn new(slice: &'input [u8], endian: Endian) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
 
-- `fn range_from(self: &Self, idx: RangeFrom<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- `fn slice(self: &Self) -> &'input [u8]`
 
-- `fn range_to(self: &Self, idx: RangeTo<usize>) -> EndianSlice<'input, Endian>` — [`EndianSlice`](#endianslice)
+- `fn split_at(self: &Self, idx: usize) -> (EndianSlice<'input, Endian>, EndianSlice<'input, Endian>)` — [`EndianSlice`](#endianslice)
+
+- `fn find(self: &Self, byte: u8) -> Option<usize>`
+
+- `fn offset_from(self: &Self, base: EndianSlice<'input, Endian>) -> usize` — [`EndianSlice`](#endianslice)
+
+- `fn to_string(self: &Self) -> Result<&'input str>` — [`Result`](../index.md)
+
+- `fn to_string_lossy(self: &Self) -> Cow<'input, str>`
+
+- `fn read_slice(self: &mut Self, len: usize) -> Result<&'input [u8]>` — [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -2404,6 +2559,42 @@ This implements the `Reader` trait, which is used for all reading of DWARF secti
 - `type Target = T`
 
 ##### `impl<'input, Endian> StructuralPartialEq for EndianSlice<'input, Endian>`
+
+### `DebugBytes<'input>`
+
+```rust
+struct DebugBytes<'input>(&'input [u8]);
+```
+
+#### Trait Implementations
+
+##### `impl<'input> Debug for DebugBytes<'input>`
+
+- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> core::result::Result<(), fmt::Error>`
+
+### `DebugByte`
+
+```rust
+struct DebugByte(u8);
+```
+
+#### Trait Implementations
+
+##### `impl Debug for DebugByte`
+
+- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+### `DebugLen`
+
+```rust
+struct DebugLen(usize);
+```
+
+#### Trait Implementations
+
+##### `impl Debug for DebugLen`
+
+- `fn fmt(self: &Self, fmt: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `ReaderOffsetId`
 
@@ -2521,7 +2712,7 @@ The `DebugAbbrev` struct represents the abbreviations describing
 
 #### Implementations
 
-- `fn abbreviations(self: &Self, debug_abbrev_offset: DebugAbbrevOffset<<R as >::Offset>) -> Result<Abbreviations>` — [`DebugAbbrevOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
+- `fn new(debug_abbrev_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -2728,7 +2919,7 @@ found in the `.debug_aranges` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugAranges<R>` — [`DebugAranges`](#debugaranges)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -2919,7 +3110,7 @@ This section contains the compilation unit index.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugCuIndex<R>` — [`DebugCuIndex`](#debugcuindex)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -2957,7 +3148,7 @@ This section contains the type unit index.
 
 #### Implementations
 
-- `fn index(self: Self) -> Result<UnitIndex<R>>` — [`Result`](../index.md), [`UnitIndex`](#unitindex)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -3120,7 +3311,7 @@ found in the `.debug_line` section.
 
 #### Implementations
 
-- `fn new(debug_line_section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLine<R>` — [`DebugLine`](#debugline)
 
 #### Trait Implementations
 
@@ -3200,7 +3391,7 @@ for more details.
 
 #### Implementations
 
-- `fn next_instruction(self: &mut Self, header: &LineProgramHeader<R>) -> Result<Option<LineInstruction<R>>>` — [`LineProgramHeader`](#lineprogramheader), [`Result`](../index.md), [`LineInstruction`](#lineinstruction)
+- `fn remove_trailing(self: &Self, other: &LineInstructions<R>) -> Result<LineInstructions<R>>` — [`LineInstructions`](#lineinstructions), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -3719,7 +3910,7 @@ found in the `.debug_loclists` section.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLocLists<R>` — [`DebugLocLists`](#debugloclists)
 
 #### Trait Implementations
 
@@ -3756,7 +3947,17 @@ The DWARF data found in `.debug_loc` and `.debug_loclists` sections.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> LocationLists<R>` — [`LocationLists`](#locationlists)
+- `fn locations(self: &Self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`LocListIter`](#loclistiter)
+
+- `fn locations_dwo(self: &Self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<LocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`LocListIter`](#loclistiter)
+
+- `fn raw_locations(self: &Self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
+
+- `fn raw_locations_dwo(self: &Self, offset: LocationListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawLocListIter<R>>` — [`LocationListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawLocListIter`](#rawloclistiter)
+
+- `fn get_offset(self: &Self, unit_encoding: Encoding, base: DebugLocListsBase<<R as >::Offset>, index: DebugLocListsIndex<<R as >::Offset>) -> Result<LocationListsOffset<<R as >::Offset>>` — [`Encoding`](../index.md), [`DebugLocListsBase`](../index.md), [`Reader`](#reader), [`DebugLocListsIndex`](../index.md), [`Result`](../index.md), [`LocationListsOffset`](../index.md)
+
+- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](#readeroffsetid), [`SectionId`](../index.md), [`Reader`](#reader)
 
 #### Trait Implementations
 
@@ -3889,7 +4090,7 @@ The raw contents of the `.debug_macinfo` section.
 
 #### Implementations
 
-- `fn new(macinfo_section: &'input [u8], endian: Endian) -> Self`
+- `fn get_macinfo(self: &Self, offset: DebugMacinfoOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacinfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
 
 #### Trait Implementations
 
@@ -3925,7 +4126,7 @@ The raw contents of the `.debug_macro` section.
 
 #### Implementations
 
-- `fn get_macros(self: &Self, offset: DebugMacroOffset<<R as >::Offset>) -> Result<MacroIter<R>>` — [`DebugMacroOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`MacroIter`](#macroiter)
+- `fn new(macro_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -3948,6 +4149,44 @@ The raw contents of the `.debug_macro` section.
 - `fn id() -> SectionId` — [`SectionId`](../index.md)
 
 - `fn reader(self: &Self) -> &R`
+
+### `MacroUnitHeader<R: Reader>`
+
+```rust
+struct MacroUnitHeader<R: Reader> {
+    _version: u16,
+    flags: u8,
+    _debug_line_offset: crate::DebugLineOffset<<R as >::Offset>,
+}
+```
+
+#### Fields
+
+- **`_version`**: `u16`
+
+  The version of the macro unit header. At the moment only version 5 is defined.
+
+#### Implementations
+
+- `const OFFSET_SIZE_FLAG: u8`
+
+- `const DEBUG_LINE_OFFSET_FLAG: u8`
+
+- `const OPCODE_OPERANDS_TABLE_FLAG: u8`
+
+- `fn parse(input: &mut R) -> Result<Self>` — [`Result`](../index.md)
+
+- `fn format(self: &Self) -> Format` — [`Format`](../index.md)
+
+#### Trait Implementations
+
+##### `impl<R: $crate::clone::Clone + Reader> Clone for MacroUnitHeader<R>`
+
+- `fn clone(self: &Self) -> MacroUnitHeader<R>` — [`MacroUnitHeader`](macros/index.md)
+
+##### `impl<R: $crate::fmt::Debug + Reader> Debug for MacroUnitHeader<R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `MacroIter<R: Reader>`
 
@@ -4366,7 +4605,7 @@ The raw contents of the `.debug_ranges` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugRanges<R>` — [`DebugRanges`](#debugranges)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -4440,13 +4679,7 @@ The DWARF data found in `.debug_ranges` and `.debug_rnglists` sections.
 
 #### Implementations
 
-- `fn ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding, base_address: u64, debug_addr: &DebugAddr<R>, debug_addr_base: DebugAddrBase<<R as >::Offset>) -> Result<RngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`DebugAddr`](#debugaddr), [`DebugAddrBase`](../index.md), [`Result`](../index.md), [`RngListIter`](#rnglistiter)
-
-- `fn raw_ranges(self: &Self, offset: RangeListsOffset<<R as >::Offset>, unit_encoding: Encoding) -> Result<RawRngListIter<R>>` — [`RangeListsOffset`](../index.md), [`Reader`](#reader), [`Encoding`](../index.md), [`Result`](../index.md), [`RawRngListIter`](#rawrnglistiter)
-
-- `fn get_offset(self: &Self, unit_encoding: Encoding, base: DebugRngListsBase<<R as >::Offset>, index: DebugRngListsIndex<<R as >::Offset>) -> Result<RangeListsOffset<<R as >::Offset>>` — [`Encoding`](../index.md), [`DebugRngListsBase`](../index.md), [`Reader`](#reader), [`DebugRngListsIndex`](../index.md), [`Result`](../index.md), [`RangeListsOffset`](../index.md)
-
-- `fn lookup_offset_id(self: &Self, id: ReaderOffsetId) -> Option<(SectionId, <R as >::Offset)>` — [`ReaderOffsetId`](#readeroffsetid), [`SectionId`](../index.md), [`Reader`](#reader)
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> RangeLists<R>` — [`RangeLists`](#rangelists)
 
 #### Trait Implementations
 
@@ -4522,6 +4755,59 @@ and already adjusted for the base address.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `RawRange`
+
+```rust
+struct RawRange {
+    pub begin: u64,
+    pub end: u64,
+}
+```
+
+A raw address range from the `.debug_ranges` section.
+
+#### Fields
+
+- **`begin`**: `u64`
+
+  The beginning address of the range.
+
+- **`end`**: `u64`
+
+  The first address past the end of the range.
+
+#### Implementations
+
+- `fn is_end(self: &Self) -> bool`
+
+- `fn is_base_address(self: &Self, address_size: u8) -> bool`
+
+- `fn parse<R: Reader>(input: &mut R, address_size: u8) -> Result<RawRange>` — [`Result`](../index.md), [`RawRange`](rnglists/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for RawRange`
+
+- `fn clone(self: &Self) -> RawRange` — [`RawRange`](rnglists/index.md)
+
+##### `impl Copy for RawRange`
+
+##### `impl Debug for RawRange`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for RawRange`
+
+##### `impl Hash for RawRange`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq for RawRange`
+
+- `fn eq(self: &Self, other: &RawRange) -> bool` — [`RawRange`](rnglists/index.md)
+
+##### `impl StructuralPartialEq for RawRange`
+
 ### `Range`
 
 ```rust
@@ -4592,7 +4878,7 @@ found in the `.debug_str` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugStr<R>` — [`DebugStr`](#debugstr)
+- `fn get_str(self: &Self, offset: DebugStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugStrOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -4628,7 +4914,7 @@ The raw contents of the `.debug_str_offsets` section.
 
 #### Implementations
 
-- `fn get_str_offset(self: &Self, format: Format, base: DebugStrOffsetsBase<<R as >::Offset>, index: DebugStrOffsetsIndex<<R as >::Offset>) -> Result<DebugStrOffset<<R as >::Offset>>` — [`Format`](../index.md), [`DebugStrOffsetsBase`](../index.md), [`Reader`](#reader), [`DebugStrOffsetsIndex`](../index.md), [`Result`](../index.md), [`DebugStrOffset`](../index.md)
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugStrOffsets<R>` — [`DebugStrOffsets`](#debugstroffsets)
 
 #### Trait Implementations
 
@@ -4665,7 +4951,7 @@ found in the `.debug_line_str` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugLineStr<R>` — [`DebugLineStr`](#debuglinestr)
+- `fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -4702,7 +4988,9 @@ the `.debug_info` section.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugInfo<R>` — [`DebugInfo`](#debuginfo)
+- `fn units(self: &Self) -> DebugInfoUnitHeadersIter<R>` — [`DebugInfoUnitHeadersIter`](#debuginfounitheadersiter)
+
+- `fn header_from_offset(self: &Self, offset: DebugInfoOffset<<R as >::Offset>) -> Result<UnitHeader<R>>` — [`DebugInfoOffset`](../index.md), [`Reader`](#reader), [`Result`](../index.md), [`UnitHeader`](#unitheader)
 
 #### Trait Implementations
 
@@ -4775,7 +5063,47 @@ type units.
 
 #### Implementations
 
-- `fn new(encoding: Encoding, unit_length: Offset, unit_type: UnitType<Offset>, debug_abbrev_offset: DebugAbbrevOffset<Offset>, unit_offset: UnitSectionOffset<Offset>, entries_buf: R) -> Self` — [`Encoding`](../index.md), [`UnitType`](#unittype), [`DebugAbbrevOffset`](../index.md), [`UnitSectionOffset`](../index.md)
+- `fn offset(self: &Self) -> UnitSectionOffset<Offset>` — [`UnitSectionOffset`](../index.md)
+
+- `fn size_of_header(self: &Self) -> usize`
+
+- `fn unit_length(self: &Self) -> Offset`
+
+- `fn length_including_self(self: &Self) -> Offset`
+
+- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../index.md)
+
+- `fn version(self: &Self) -> u16`
+
+- `fn type_(self: &Self) -> UnitType<Offset>` — [`UnitType`](#unittype)
+
+- `fn debug_abbrev_offset(self: &Self) -> DebugAbbrevOffset<Offset>` — [`DebugAbbrevOffset`](../index.md)
+
+- `fn address_size(self: &Self) -> u8`
+
+- `fn format(self: &Self) -> Format` — [`Format`](../index.md)
+
+- `fn header_size(self: &Self) -> Offset`
+
+- `fn is_valid_offset(self: &Self, offset: UnitOffset<Offset>) -> bool` — [`UnitOffset`](../index.md)
+
+- `fn range(self: &Self, idx: Range<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../index.md), [`Result`](../index.md)
+
+- `fn range_from(self: &Self, idx: RangeFrom<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../index.md), [`Result`](../index.md)
+
+- `fn range_to(self: &Self, idx: RangeTo<UnitOffset<Offset>>) -> Result<R>` — [`UnitOffset`](../index.md), [`Result`](../index.md)
+
+- `fn entry<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<DebuggingInformationEntry<'abbrev, 'me, R>>` — [`Abbreviations`](#abbreviations), [`UnitOffset`](../index.md), [`Result`](../index.md), [`DebuggingInformationEntry`](#debugginginformationentry)
+
+- `fn entries<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations) -> EntriesCursor<'abbrev, 'me, R>` — [`Abbreviations`](#abbreviations), [`EntriesCursor`](#entriescursor)
+
+- `fn entries_at_offset<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: UnitOffset<Offset>) -> Result<EntriesCursor<'abbrev, 'me, R>>` — [`Abbreviations`](#abbreviations), [`UnitOffset`](../index.md), [`Result`](../index.md), [`EntriesCursor`](#entriescursor)
+
+- `fn entries_tree<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesTree<'abbrev, 'me, R>>` — [`Abbreviations`](#abbreviations), [`UnitOffset`](../index.md), [`Result`](../index.md), [`EntriesTree`](#entriestree)
+
+- `fn entries_raw<'me, 'abbrev>(self: &'me Self, abbreviations: &'abbrev Abbreviations, offset: Option<UnitOffset<Offset>>) -> Result<EntriesRaw<'abbrev, 'me, R>>` — [`Abbreviations`](#abbreviations), [`UnitOffset`](../index.md), [`Result`](../index.md), [`EntriesRaw`](#entriesraw)
+
+- `fn abbreviations(self: &Self, debug_abbrev: &DebugAbbrev<R>) -> Result<Abbreviations>` — [`DebugAbbrev`](#debugabbrev), [`Result`](../index.md), [`Abbreviations`](#abbreviations)
 
 #### Trait Implementations
 
@@ -6329,6 +6657,21 @@ A decoded pointer.
 
 ##### `impl StructuralPartialEq for Pointer`
 
+### `RangeIterInner<R: Reader>`
+
+```rust
+enum RangeIterInner<R: Reader> {
+    Single(Option<crate::read::Range>),
+    List(crate::read::RngListIter<R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<R: $crate::fmt::Debug + Reader> Debug for RangeIterInner<R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ### `AbbreviationsCacheStrategy`
 
 ```rust
@@ -6373,6 +6716,56 @@ The strategy to use for caching abbreviations.
 - `fn eq(self: &Self, other: &AbbreviationsCacheStrategy) -> bool` — [`AbbreviationsCacheStrategy`](#abbreviationscachestrategy)
 
 ##### `impl StructuralPartialEq for AbbreviationsCacheStrategy`
+
+### `Attributes`
+
+```rust
+enum Attributes {
+    Inline {
+        buf: [AttributeSpecification; 5],
+        len: usize,
+    },
+    Heap(alloc::vec::Vec<AttributeSpecification>),
+}
+```
+
+A list of attributes found in an `Abbreviation`
+
+#### Implementations
+
+- `fn new() -> Attributes` — [`Attributes`](abbrev/index.md)
+
+- `fn push(self: &mut Self, attr: AttributeSpecification)` — [`AttributeSpecification`](#attributespecification)
+
+#### Trait Implementations
+
+##### `impl Clone for Attributes`
+
+- `fn clone(self: &Self) -> Attributes` — [`Attributes`](abbrev/index.md)
+
+##### `impl Debug for Attributes`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Deref for Attributes`
+
+- `type Target = [AttributeSpecification]`
+
+- `fn deref(self: &Self) -> &[AttributeSpecification]` — [`AttributeSpecification`](#attributespecification)
+
+##### `impl Eq for Attributes`
+
+##### `impl FromIterator for Attributes`
+
+- `fn from_iter<I>(iter: I) -> Attributes` — [`Attributes`](abbrev/index.md)
+
+##### `impl PartialEq for Attributes`
+
+- `fn eq(self: &Self, other: &Attributes) -> bool` — [`Attributes`](abbrev/index.md)
+
+##### `impl<P, T> Receiver for Attributes`
+
+- `type Target = T`
 
 ### `IndexSectionId`
 
@@ -6524,7 +6917,7 @@ A parsed line number program instruction.
 
 - **`Copy`**
 
-  "`LineInstruction::Copy` appends a row to the matrix using the current
+  "[`LineInstruction::Copy`](../index.md) appends a row to the matrix using the current
   values of the state machine registers. Then it sets the discriminator
   register to 0, and sets the basic_block, prologue_end and epilogue_begin
   registers to “false.”"
@@ -6585,11 +6978,11 @@ A parsed line number program instruction.
 
 - **`SetPrologueEnd`**
 
-  "`LineInstruction::SetPrologueEnd` sets the prologue_end register to “true”."
+  "[`LineInstruction::SetPrologueEnd`](../index.md) sets the prologue_end register to “true”."
 
 - **`SetEpilogueBegin`**
 
-  "`LineInstruction::SetEpilogueBegin` sets the epilogue_begin register to
+  "[`LineInstruction::SetEpilogueBegin`](../index.md) sets the epilogue_begin register to
   “true”."
 
 - **`SetIsa`**
@@ -6611,7 +7004,7 @@ A parsed line number program instruction.
 
 - **`EndSequence`**
 
-  > `LineInstruction::EndSequence` sets the end_sequence register of the state
+  > [`LineInstruction::EndSequence`](../index.md) sets the end_sequence register of the state
   > machine to “true” and appends a row to the matrix using the current
   > values of the state-machine registers. Then it resets the registers to
   > the initial values specified above (see Section 6.2.2). Every line
@@ -6718,6 +7111,46 @@ The type of column that a row is referring to.
 - `fn partial_cmp(self: &Self, other: &ColumnType) -> $crate::option::Option<$crate::cmp::Ordering>` — [`ColumnType`](#columntype)
 
 ##### `impl StructuralPartialEq for ColumnType`
+
+### `LocListsFormat`
+
+```rust
+enum LocListsFormat {
+    Bare,
+    Lle,
+}
+```
+
+#### Variants
+
+- **`Bare`**
+
+  The bare location list format used before DWARF 5.
+
+- **`Lle`**
+
+  The DW_LLE encoded range list format used in DWARF 5 and the non-standard GNU
+  split dwarf extension.
+
+#### Trait Implementations
+
+##### `impl Clone for LocListsFormat`
+
+- `fn clone(self: &Self) -> LocListsFormat` — [`LocListsFormat`](loclists/index.md)
+
+##### `impl Copy for LocListsFormat`
+
+##### `impl Debug for LocListsFormat`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for LocListsFormat`
+
+##### `impl PartialEq for LocListsFormat`
+
+- `fn eq(self: &Self, other: &LocListsFormat) -> bool` — [`LocListsFormat`](loclists/index.md)
+
+##### `impl StructuralPartialEq for LocListsFormat`
 
 ### `RawLocListEntry<R: Reader>`
 
@@ -7427,6 +7860,25 @@ using `Operation::Deref`.
 
 ##### `impl<R, Offset> StructuralPartialEq for Operation<R, Offset>`
 
+### `OperationEvaluationResult<R: Reader>`
+
+```rust
+enum OperationEvaluationResult<R: Reader> {
+    Piece,
+    Incomplete,
+    Complete {
+        location: Location<R>,
+    },
+    Waiting(EvaluationWaiting<R>, EvaluationResult<R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<R: $crate::fmt::Debug + Reader> Debug for OperationEvaluationResult<R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ### `Location<R, Offset>`
 
 ```rust
@@ -7504,6 +7956,56 @@ A single location of a piece of the result of a DWARF expression.
 - `fn eq(self: &Self, other: &Location<R, Offset>) -> bool` — [`Location`](#location)
 
 ##### `impl<R, Offset> StructuralPartialEq for Location<R, Offset>`
+
+### `EvaluationState<R: Reader>`
+
+```rust
+enum EvaluationState<R: Reader> {
+    Start(Option<u64>),
+    Ready,
+    Error(crate::read::Error),
+    Complete,
+    Waiting(EvaluationWaiting<R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<R: $crate::fmt::Debug + Reader> Debug for EvaluationState<R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `EvaluationWaiting<R: Reader>`
+
+```rust
+enum EvaluationWaiting<R: Reader> {
+    Memory,
+    Register {
+        offset: i64,
+    },
+    FrameBase {
+        offset: i64,
+    },
+    Tls,
+    Cfa,
+    AtLocation,
+    EntryValue,
+    ParameterRef,
+    RelocatedAddress,
+    IndexedAddress,
+    TypedLiteral {
+        value: R,
+    },
+    Convert,
+    Reinterpret,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<R: $crate::fmt::Debug + Reader> Debug for EvaluationWaiting<R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `EvaluationResult<R: Reader>`
 
@@ -7629,6 +8131,45 @@ to continue, as described by the variant.
 - `fn eq(self: &Self, other: &EvaluationResult<R>) -> bool` — [`EvaluationResult`](#evaluationresult)
 
 ##### `impl<R: Reader> StructuralPartialEq for EvaluationResult<R>`
+
+### `RangeListsFormat`
+
+```rust
+enum RangeListsFormat {
+    Bare,
+    Rle,
+}
+```
+
+#### Variants
+
+- **`Bare`**
+
+  The bare range list format used before DWARF 5.
+
+- **`Rle`**
+
+  The DW_RLE encoded range list format used in DWARF 5.
+
+#### Trait Implementations
+
+##### `impl Clone for RangeListsFormat`
+
+- `fn clone(self: &Self) -> RangeListsFormat` — [`RangeListsFormat`](rnglists/index.md)
+
+##### `impl Copy for RangeListsFormat`
+
+##### `impl Debug for RangeListsFormat`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for RangeListsFormat`
+
+##### `impl PartialEq for RangeListsFormat`
+
+- `fn eq(self: &Self, other: &RangeListsFormat) -> bool` — [`RangeListsFormat`](rnglists/index.md)
+
+##### `impl StructuralPartialEq for RangeListsFormat`
 
 ### `RawRngListEntry<T>`
 
@@ -8489,7 +9030,7 @@ trait UnwindContextStorage<T: ReaderOffset>: Sized { ... }
 Specification of what storage should be used for [`UnwindContext`](#unwindcontext).
 
 Normally you would only need to use [`StoreOnHeap`](../index.md), which places the stack
-on the heap using `Box`. This is the default storage type parameter for [`UnwindContext`](#unwindcontext).
+on the heap using [`Box`](../../allocator_api2/stable/boxed/index.md). This is the default storage type parameter for [`UnwindContext`](#unwindcontext).
 
 You may want to supply your own storage type for one of the following reasons:
 
@@ -8581,6 +9122,39 @@ This allows consumers to choose a size that is appropriate for their address spa
 - `fn checked_sub(self: Self, other: Self) -> Option<Self>`
 
   Checked subtraction. Computes `self - other`.
+
+### `ReaderAddress`
+
+```rust
+trait ReaderAddress: Sized { ... }
+```
+
+A trait for addresses within a DWARF section.
+
+Currently this is a simple extension trait for `u64`, but it may be expanded
+in the future to support user-defined address types.
+
+#### Required Methods
+
+- `fn add_sized(self: Self, length: u64, size: u8) -> Result<Self>`
+
+  Add a length to an address of the given size.
+
+- `fn wrapping_add_sized(self: Self, length: u64, size: u8) -> Self`
+
+  Add a length to an address of the given size.
+
+- `fn zeros() -> Self`
+
+  The all-zeros value of an address.
+
+- `fn ones_sized(size: u8) -> Self`
+
+  The all-ones value of an address of the given size.
+
+- `fn min_tombstone(size: u8) -> Self`
+
+  Return the minimum value for a tombstone address.
 
 ### `Reader`
 
@@ -8824,7 +9398,7 @@ trait EvaluationStorage<R: Reader> { ... }
 Specification of what storage should be used for [`Evaluation`](#evaluation).
 
 Normally you would only need to use [`StoreOnHeap`](../index.md), which places the stacks and the results
-on the heap using [`Vec`](). This is the default storage type parameter for [`Evaluation`](#evaluation).
+on the heap using [`Vec`](../../addr2line/maybe_small/index.md). This is the default storage type parameter for [`Evaluation`](#evaluation).
 
 If you need to avoid [`Evaluation`](#evaluation) from allocating memory, e.g. for signal safety,
 you can provide you own storage specification:
@@ -8871,6 +9445,190 @@ println!("{:?}", result);
 
 - `type Result: 1`
 
+## Functions
+
+### `parse_cfi_entry`
+
+```rust
+fn parse_cfi_entry<'bases, Section, R>(bases: &'bases BaseAddresses, section: &Section, input: &mut R) -> crate::read::Result<Option<CieOrFde<'bases, Section, R>>>
+where
+    R: Reader,
+    Section: UnwindSection<R>
+```
+
+### `parse_encoded_pointer`
+
+```rust
+fn parse_encoded_pointer<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<Pointer>
+```
+
+### `parse_encoded_value`
+
+```rust
+fn parse_encoded_value<R: Reader>(encoding: constants::DwEhPe, parameters: &PointerEncodingParameters<'_, R>, input: &mut R) -> crate::read::Result<u64>
+```
+
+### `get_attribute_size`
+
+```rust
+fn get_attribute_size(form: constants::DwForm, encoding: crate::common::Encoding) -> Option<u8>
+```
+
+### `parse_directory_v5`
+
+```rust
+fn parse_directory_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<crate::read::AttributeValue<R>>
+```
+
+### `parse_file_v5`
+
+```rust
+fn parse_file_v5<R: Reader>(input: &mut R, encoding: crate::common::Encoding, formats: &[FileEntryFormat]) -> crate::read::Result<FileEntry<R>>
+```
+
+### `parse_attribute`
+
+```rust
+fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, form: constants::DwForm) -> crate::read::Result<crate::read::AttributeValue<R>>
+```
+
+### `parse_data`
+
+```rust
+fn parse_data<R: Reader>(input: &mut R, encoding: crate::common::Encoding) -> crate::read::Result<crate::read::Expression<R>>
+```
+
+### `compute_pc`
+
+```rust
+fn compute_pc<R: Reader>(pc: &R, bytecode: &R, offset: i16) -> crate::read::Result<R>
+```
+
+### `generic_type`
+
+```rust
+fn generic_type<O: ReaderOffset>() -> crate::read::UnitOffset<O>
+```
+
+### `parse_unit_type`
+
+```rust
+fn parse_unit_type<R: Reader>(input: &mut R) -> crate::read::Result<constants::DwUt>
+```
+
+Parse the unit type from the unit header.
+
+### `parse_debug_abbrev_offset`
+
+```rust
+fn parse_debug_abbrev_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugAbbrevOffset<<R as >::Offset>>
+```
+
+Parse the `debug_abbrev_offset` in the compilation unit header.
+
+### `parse_debug_info_offset`
+
+```rust
+fn parse_debug_info_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::common::DebugInfoOffset<<R as >::Offset>>
+```
+
+Parse the `debug_info_offset` in the arange header.
+
+### `parse_unit_header`
+
+```rust
+fn parse_unit_header<R, Offset>(input: &mut R, unit_offset: crate::common::UnitSectionOffset<Offset>) -> crate::read::Result<UnitHeader<R>>
+where
+    R: Reader<Offset = Offset>,
+    Offset: ReaderOffset
+```
+
+Parse a unit header.
+
+### `parse_dwo_id`
+
+```rust
+fn parse_dwo_id<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DwoId>
+```
+
+Parse a dwo_id from a header
+
+### `length_u8_value`
+
+```rust
+fn length_u8_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
+```
+
+### `length_u16_value`
+
+```rust
+fn length_u16_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
+```
+
+### `length_u32_value`
+
+```rust
+fn length_u32_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
+```
+
+### `length_uleb128_value`
+
+```rust
+fn length_uleb128_value<R: Reader>(input: &mut R) -> crate::read::Result<R>
+```
+
+### `allow_section_offset`
+
+```rust
+fn allow_section_offset(name: constants::DwAt, version: u16) -> bool
+```
+
+### `parse_attribute`
+
+```rust
+fn parse_attribute<R: Reader>(input: &mut R, encoding: crate::common::Encoding, spec: crate::read::AttributeSpecification) -> crate::read::Result<Attribute<R>>
+```
+
+### `skip_attributes`
+
+```rust
+fn skip_attributes<R: Reader>(input: &mut R, encoding: crate::common::Encoding, specs: &[crate::read::AttributeSpecification]) -> crate::read::Result<()>
+```
+
+### `parse_type_signature`
+
+```rust
+fn parse_type_signature<R: Reader>(input: &mut R) -> crate::read::Result<crate::common::DebugTypeSignature>
+```
+
+Parse a type unit header's unique type signature. Callers should handle
+unique-ness checking.
+
+### `parse_type_offset`
+
+```rust
+fn parse_type_offset<R: Reader>(input: &mut R, format: crate::common::Format) -> crate::read::Result<crate::read::UnitOffset<<R as >::Offset>>
+```
+
+Parse a type unit header's type offset.
+
+### `sign_extend`
+
+```rust
+fn sign_extend(value: u64, mask: u64) -> i64
+```
+
+Convert a u64 to an i64, with sign extension if required.
+
+This is primarily used when needing to treat `Value::Generic`
+as a signed value.
+
+### `mask_bit_size`
+
+```rust
+fn mask_bit_size(addr_mask: u64) -> u32
+```
+
 ## Type Aliases
 
 ### `EndianBuf<'input, Endian>`
@@ -8905,6 +9663,18 @@ type StateMachine<R, Program, Offset> = LineRows<R, Program, Offset>;
 ```
 
 Deprecated. `StateMachine` has been renamed to `LineRows`.
+
+### `OneShotLineRows<R, Offset>`
+
+```rust
+type OneShotLineRows<R, Offset> = LineRows<R, IncompleteLineProgram<R, Offset>, Offset>;
+```
+
+### `ResumedLineRows<'program, R, Offset>`
+
+```rust
+type ResumedLineRows<'program, R, Offset> = LineRows<R, &'program CompleteLineProgram<R, Offset>, Offset>;
+```
 
 ### `Opcode<R>`
 
@@ -8961,4 +9731,54 @@ type CompleteLineNumberProgram<R, Offset> = CompleteLineProgram<R, Offset>;
 ```
 
 Deprecated. `CompleteLineNumberProgram` has been renamed to `CompleteLineProgram`.
+
+### `LocListsHeader`
+
+```rust
+type LocListsHeader = crate::read::lists::ListsHeader;
+```
+
+### `RngListsHeader`
+
+```rust
+type RngListsHeader = crate::read::lists::ListsHeader;
+```
+
+## Constants
+
+### `MAX_RULES`
+
+```rust
+const MAX_RULES: usize = 192usize;
+```
+
+### `MAX_UNWIND_STACK_DEPTH`
+
+```rust
+const MAX_UNWIND_STACK_DEPTH: usize = 4usize;
+```
+
+### `CFI_INSTRUCTION_HIGH_BITS_MASK`
+
+```rust
+const CFI_INSTRUCTION_HIGH_BITS_MASK: u8 = 192u8;
+```
+
+### `CFI_INSTRUCTION_LOW_BITS_MASK`
+
+```rust
+const CFI_INSTRUCTION_LOW_BITS_MASK: u8 = 63u8;
+```
+
+### `MAX_ATTRIBUTES_INLINE`
+
+```rust
+const MAX_ATTRIBUTES_INLINE: usize = 5usize;
+```
+
+### `SECTION_COUNT_MAX`
+
+```rust
+const SECTION_COUNT_MAX: u8 = 8u8;
+```
 

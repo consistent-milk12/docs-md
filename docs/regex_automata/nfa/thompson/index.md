@@ -60,7 +60,14 @@ seen as a sequence of instructions for how to match a regex.
 ## Modules
 
 - [`backtrack`](backtrack/index.md) - An NFA backed bounded backtracker for executing regex searches with capturing
+- [`builder`](builder/index.md) - 
+- [`compiler`](compiler/index.md) - 
+- [`error`](error/index.md) - 
+- [`literal_trie`](literal_trie/index.md) - 
+- [`map`](map/index.md) - 
+- [`nfa`](nfa/index.md) - 
 - [`pikevm`](pikevm/index.md) - An NFA backed Pike VM for executing regex searches with capturing groups.
+- [`range_trie`](range_trie/index.md) - 
 
 ## Structs
 
@@ -373,7 +380,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying `regex_syntax::Error` type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/hir/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -891,7 +898,7 @@ NFA state graph. The NFA state graph can either be used directly to execute
 a search (e.g., with a Pike VM), or it can be further used to build a DFA.
 
 This compiler provides APIs both for compiling regex patterns directly from
-their concrete syntax, or via a `regex_syntax::hir::Hir`.
+their concrete syntax, or via a [`regex_syntax::hir::Hir`](../../../regex_syntax/hir/index.md).
 
 This compiler has various options that may be configured via
 [`thompson::Config`](Config).
@@ -1258,7 +1265,7 @@ A configuration indicating which kinds of
 This configuration can be used with `Config::which_captures` to control
 which capture states are compiled into a Thompson NFA.
 
-The default configuration is `WhichCaptures::All`.
+The default configuration is [`WhichCaptures::All`](../../index.md).
 
 #### Variants
 

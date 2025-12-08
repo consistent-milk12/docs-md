@@ -236,13 +236,51 @@ are available.
 
 ## Modules
 
+- [`macros`](macros/index.md) - 
+- [`group`](group/index.md) - 
 - [`token`](token/index.md) - Tokens representing Rust punctuation, keywords, and delimiters.
+- [`attr`](attr/index.md) - 
+- [`bigint`](bigint/index.md) - 
 - [`buffer`](buffer/index.md) - A stably addressed token buffer supporting efficient traversal based on a
+- [`classify`](classify/index.md) - 
+- [`custom_keyword`](custom_keyword/index.md) - 
+- [`custom_punctuation`](custom_punctuation/index.md) - 
+- [`data`](data/index.md) - 
+- [`derive`](derive/index.md) - 
+- [`drops`](drops/index.md) - 
+- [`error`](error/index.md) - 
+- [`expr`](expr/index.md) - 
 - [`ext`](ext/index.md) - Extension traits to provide parsing methods on foreign types.
+- [`file`](file/index.md) - 
+- [`fixup`](fixup/index.md) - 
+- [`generics`](generics/index.md) - 
+- [`ident`](ident/index.md) - 
+- [`item`](item/index.md) - 
+- [`lifetime`](lifetime/index.md) - 
+- [`lit`](lit/index.md) - 
+- [`lookahead`](lookahead/index.md) - 
+- [`mac`](mac/index.md) - 
 - [`meta`](meta/index.md) - Facility for interpreting structured content inside of an `Attribute`.
+- [`op`](op/index.md) - 
 - [`parse`](parse/index.md) - Parsing interface for parsing a token stream into a syntax tree node.
+- [`parse_macro_input`](parse_macro_input/index.md) - 
+- [`parse_quote`](parse_quote/index.md) - 
+- [`pat`](pat/index.md) - 
+- [`path`](path/index.md) - 
+- [`precedence`](precedence/index.md) - 
+- [`print`](print/index.md) - 
 - [`punctuated`](punctuated/index.md) - A punctuated sequence of syntax tree nodes separated by punctuation.
+- [`restriction`](restriction/index.md) - 
+- [`sealed`](sealed/index.md) - 
+- [`span`](span/index.md) - 
 - [`spanned`](spanned/index.md) - A trait that can provide the `Span` of the complete contents of a syntax
+- [`stmt`](stmt/index.md) - 
+- [`thread`](thread/index.md) - 
+- [`tt`](tt/index.md) - 
+- [`ty`](ty/index.md) - 
+- [`verbatim`](verbatim/index.md) - 
+- [`whitespace`](whitespace/index.md) - 
+- [`gen`](gen/index.md) - 
 - [`visit_mut`](visit_mut/index.md) - 
 
 ## Structs
@@ -5982,7 +6020,15 @@ A boolean literal: `true` or `false`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(value: bool, span: Span) -> Self`
+
+- `fn value(self: &Self) -> bool`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
+
+- `fn token(self: &Self) -> Ident`
 
 #### Trait Implementations
 
@@ -6008,7 +6054,7 @@ A boolean literal: `true` or `false`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitBool`
+##### `impl<T> Sealed for LitBool`
 
 ##### `impl<T> Spanned for LitBool`
 
@@ -6068,7 +6114,7 @@ A byte literal: `b'f'`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitByte`
+##### `impl<T> Sealed for LitByte`
 
 ##### `impl<T> Spanned for LitByte`
 
@@ -6092,7 +6138,17 @@ A byte string literal: `b"foo"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(value: &[u8], span: Span) -> Self`
+
+- `fn value(self: &Self) -> Vec<u8>`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
+
+- `fn suffix(self: &Self) -> &str`
+
+- `fn token(self: &Self) -> Literal`
 
 #### Trait Implementations
 
@@ -6142,7 +6198,17 @@ A nul-terminated C-string literal: `c"foo"`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(value: &CStr, span: Span) -> Self`
+
+- `fn value(self: &Self) -> CString`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
+
+- `fn suffix(self: &Self) -> &str`
+
+- `fn token(self: &Self) -> Literal`
 
 #### Trait Implementations
 
@@ -6218,7 +6284,7 @@ A character literal: `'a'`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitChar`
+##### `impl<T> Sealed for LitChar`
 
 ##### `impl<T> Spanned for LitChar`
 
@@ -6244,19 +6310,7 @@ Must be finite. May not be infinite or NaN.
 
 #### Implementations
 
-- `fn new(repr: &str, span: Span) -> Self`
-
-- `fn base10_digits(self: &Self) -> &str`
-
-- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](error/index.md)
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn token(self: &Self) -> Literal`
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -6314,19 +6368,7 @@ An integer literal: `1` or `1u16`.
 
 #### Implementations
 
-- `fn new(repr: &str, span: Span) -> Self`
-
-- `fn base10_digits(self: &Self) -> &str`
-
-- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](error/index.md)
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn token(self: &Self) -> Literal`
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -6356,7 +6398,7 @@ An integer literal: `1` or `1u16`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitInt`
+##### `impl Sealed for crate::lit::LitInt`
 
 ##### `impl<T> Spanned for LitInt`
 
@@ -6410,7 +6452,7 @@ A UTF-8 string literal: `"foo"`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl<T> Sealed for LitStr`
+##### `impl Sealed for crate::lit::LitStr`
 
 ##### `impl<T> Spanned for LitStr`
 
@@ -7552,7 +7594,11 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn is_ident<I>(self: &Self, ident: &I) -> bool`
+
+- `fn get_ident(self: &Self) -> Option<&Ident>`
+
+- `fn require_ident(self: &Self) -> Result<&Ident>` — [`Result`](error/index.md)
 
 #### Trait Implementations
 
@@ -8680,11 +8726,7 @@ trait or a lifetime.
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
-
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
-
-- `fn parse_bounds(dyn_span: Span, input: ParseStream<'_>, allow_plus: bool) -> Result<Punctuated<TypeParamBound, $crate::token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md), [`Punctuated`](punctuated/index.md), [`TypeParamBound`](generics/index.md), [`Plus`](token/index.md)
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -10488,7 +10530,7 @@ This type is a [syntax tree enum].
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::Lit`
+##### `impl<T> Sealed for Lit`
 
 ##### `impl<T> Spanned for Lit`
 
@@ -11148,9 +11190,7 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn parse_pub(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](error/index.md)
-
-- `fn is_some(self: &Self) -> bool`
+- `fn is_inherited(self: &Self) -> bool`
 
 #### Trait Implementations
 
@@ -12107,7 +12147,7 @@ though they do not implement the `Parse` trait.
   or inner like `#![...]`
 - `Vec<Attribute>` — parses multiple attributes, including mixed kinds in
   any order
-- `Punctuated<T, P>` — parses zero or more `T` separated by punctuation
+- [`Punctuated<T, P>`](punctuated/index.md) — parses zero or more `T` separated by punctuation
   `P` with optional trailing punctuation
 - `Vec<Arm>` — parses arms separated by optional commas according to the
   same grammar as the inside of a `match` expression
@@ -12128,7 +12168,7 @@ valid.
 
 ### `parse_quote_spanned!`
 
-This macro is `parse_quote!` + `quote_spanned!`.
+This macro is [`parse_quote!`](#parse-quote) + `quote_spanned!`.
 
 Please refer to each of their documentation.
 

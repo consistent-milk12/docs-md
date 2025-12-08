@@ -97,3 +97,16 @@ Check if an impl block is for a blanket trait that should be filtered.
 Returns `true` if the impl is for one of the commonly auto-derived traits
 that add noise to documentation (From, Into, Any, Borrow, etc.).
 
+## Constants
+
+### `BLANKET_TRAITS`
+
+```rust
+const BLANKET_TRAITS: &[&str];
+```
+
+Blanket trait implementations to filter from output.
+
+These are automatically derived by the compiler and add noise to documentation
+without providing useful information. Users who want them can use `--include-blanket-impls`.
+

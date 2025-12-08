@@ -56,81 +56,9 @@ doing this because it changes the runtime of hash table operations from
 
 #### Implementations
 
-- `const fn new_in(alloc: A) -> Self`
+- `const fn new() -> Self`
 
-- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
-
-- `fn allocator(self: &Self) -> &A`
-
-- `fn find(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&T>`
-
-- `fn find_mut(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&mut T>`
-
-- `fn find_entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Result<OccupiedEntry<'_, T, A>, AbsentEntry<'_, T, A>>` — [`OccupiedEntry`](#occupiedentry), [`AbsentEntry`](#absententry)
-
-- `fn find_bucket_index(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<usize>`
-
-- `fn entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool, hasher: impl Fn(&T) -> u64) -> Entry<'_, T, A>` — [`Entry`](#entry)
-
-- `fn get_bucket_entry(self: &mut Self, index: usize) -> Result<OccupiedEntry<'_, T, A>, AbsentEntry<'_, T, A>>` — [`OccupiedEntry`](#occupiedentry), [`AbsentEntry`](#absententry)
-
-- `unsafe fn get_bucket_entry_unchecked(self: &mut Self, index: usize) -> OccupiedEntry<'_, T, A>` — [`OccupiedEntry`](#occupiedentry)
-
-- `fn get_bucket(self: &Self, index: usize) -> Option<&T>`
-
-- `unsafe fn get_bucket_unchecked(self: &Self, index: usize) -> &T`
-
-- `fn get_bucket_mut(self: &mut Self, index: usize) -> Option<&mut T>`
-
-- `unsafe fn get_bucket_unchecked_mut(self: &mut Self, index: usize) -> &mut T`
-
-- `fn insert_unique(self: &mut Self, hash: u64, value: T, hasher: impl Fn(&T) -> u64) -> OccupiedEntry<'_, T, A>` — [`OccupiedEntry`](#occupiedentry)
-
-- `fn clear(self: &mut Self)`
-
-- `fn shrink_to_fit(self: &mut Self, hasher: impl Fn(&T) -> u64)`
-
-- `fn shrink_to(self: &mut Self, min_capacity: usize, hasher: impl Fn(&T) -> u64)`
-
-- `fn reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64)`
-
-- `fn try_reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64) -> Result<(), TryReserveError>` — [`TryReserveError`](../index.md)
-
-- `fn num_buckets(self: &Self) -> usize`
-
-- `fn capacity(self: &Self) -> usize`
-
-- `fn len(self: &Self) -> usize`
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](#iter)
-
-- `fn iter_mut(self: &mut Self) -> IterMut<'_, T>` — [`IterMut`](#itermut)
-
-- `fn iter_buckets(self: &Self) -> IterBuckets<'_, T>` — [`IterBuckets`](#iterbuckets)
-
-- `fn iter_hash(self: &Self, hash: u64) -> IterHash<'_, T>` — [`IterHash`](#iterhash)
-
-- `fn iter_hash_mut(self: &mut Self, hash: u64) -> IterHashMut<'_, T>` — [`IterHashMut`](#iterhashmut)
-
-- `fn iter_hash_buckets(self: &Self, hash: u64) -> IterHashBuckets<'_, T>` — [`IterHashBuckets`](#iterhashbuckets)
-
-- `fn retain(self: &mut Self, f: impl FnMut(&mut T) -> bool)`
-
-- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](#drain)
-
-- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](#extractif)
-
-- `fn get_disjoint_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `fn get_many_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `unsafe fn get_disjoint_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `unsafe fn get_many_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `fn allocation_size(self: &Self) -> usize`
+- `fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 
@@ -166,7 +94,7 @@ where
 ```
 
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -251,7 +179,7 @@ where
 ```
 
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 

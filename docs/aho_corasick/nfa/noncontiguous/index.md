@@ -294,6 +294,160 @@ It is also possible to implement your own version of `try_find`. See the
 
 ##### `impl Sealed for crate::nfa::noncontiguous::NFA`
 
+### `State`
+
+```rust
+struct State {
+    sparse: crate::util::primitives::StateID,
+    dense: crate::util::primitives::StateID,
+    matches: crate::util::primitives::StateID,
+    fail: crate::util::primitives::StateID,
+    depth: crate::util::primitives::SmallIndex,
+}
+```
+
+A representation of a sparse NFA state for an Aho-Corasick automaton.
+
+It contains the transitions to the next state, a failure transition for
+cases where there exists no other transition for the current input byte
+and the matches implied by visiting this state (if any).
+
+#### Fields
+
+- **`sparse`**: `crate::util::primitives::StateID`
+
+  A pointer to `NFA::trans` corresponding to the head of a linked list
+  containing all of the transitions for this state.
+  
+  This is `StateID::ZERO` if and only if this state has zero transitions.
+
+- **`dense`**: `crate::util::primitives::StateID`
+
+  A pointer to a row of `N` transitions in `NFA::dense`. These
+  transitions correspond precisely to what is obtained by traversing
+  `sparse`, but permits constant time lookup.
+  
+  When this is zero (which is true for most states in the default
+  configuration), then this state has no dense representation.
+  
+  Note that `N` is equal to `NFA::byte_classes::alphabet_len()`. This is
+  typically much less than 256 (the maximum value).
+
+- **`matches`**: `crate::util::primitives::StateID`
+
+  A pointer to `NFA::matches` corresponding to the head of a linked list
+  containing all of the matches for this state.
+  
+  This is `StateID::ZERO` if and only if this state is not a match state.
+
+- **`fail`**: `crate::util::primitives::StateID`
+
+  The state that should be transitioned to if the current byte in the
+  haystack does not have a corresponding transition defined in this
+  state.
+
+- **`depth`**: `crate::util::primitives::SmallIndex`
+
+  The depth of this state. Specifically, this is the distance from this
+  state to the starting state. (For the special sentinel states DEAD and
+  FAIL, their depth is always 0.) The depth of a starting state is 0.
+  
+  Note that depth is currently not used in this non-contiguous NFA. It
+  may in the future, but it is used in the contiguous NFA. Namely, it
+  permits an optimization where states near the starting state have their
+  transitions stored in a dense fashion, but all other states have their
+  transitions stored in a sparse fashion. (This non-contiguous NFA uses
+  a sparse representation for all states unconditionally.) In any case,
+  this is really the only convenient place to compute and store this
+  information, which we need when building the contiguous NFA.
+
+#### Implementations
+
+- `fn is_match(self: &Self) -> bool`
+
+- `fn fail(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+
+- `fn depth(self: &Self) -> SmallIndex` — [`SmallIndex`](../../util/primitives/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for State`
+
+- `fn clone(self: &Self) -> State` — [`State`](#state)
+
+##### `impl Debug for State`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `Transition`
+
+```rust
+struct Transition {
+    byte: u8,
+    next: crate::util::primitives::StateID,
+    link: crate::util::primitives::StateID,
+}
+```
+
+A single transition in a non-contiguous NFA.
+
+#### Implementations
+
+- `fn byte(self: &Self) -> u8`
+
+- `fn next(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+
+- `fn link(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for Transition`
+
+- `fn clone(self: &Self) -> Transition` — [`Transition`](#transition)
+
+##### `impl Copy for Transition`
+
+##### `impl Debug for Transition`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Default for Transition`
+
+- `fn default() -> Transition` — [`Transition`](#transition)
+
+### `Match`
+
+```rust
+struct Match {
+    pid: crate::util::primitives::PatternID,
+    link: crate::util::primitives::StateID,
+}
+```
+
+A single match in a non-contiguous NFA.
+
+#### Implementations
+
+- `fn pattern(self: &Self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
+
+- `fn link(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for Match`
+
+- `fn clone(self: &Self) -> Match` — [`Match`](#match)
+
+##### `impl Copy for Match`
+
+##### `impl Debug for Match`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Default for Match`
+
+- `fn default() -> Match` — [`Match`](#match)
+
 ### `Builder`
 
 ```rust
@@ -338,4 +492,84 @@ their behavior is identical.
 ##### `impl Default for Builder`
 
 - `fn default() -> Builder` — [`Builder`](#builder)
+
+### `Compiler<'a>`
+
+```rust
+struct Compiler<'a> {
+    builder: &'a Builder,
+    prefilter: prefilter::Builder,
+    nfa: NFA,
+    byteset: crate::util::alphabet::ByteClassSet,
+}
+```
+
+A compiler uses a builder configuration and builds up the NFA formulation
+of an Aho-Corasick automaton. This roughly corresponds to the standard
+formulation described in textbooks, with some tweaks to support leftmost
+searching.
+
+#### Implementations
+
+- `fn new(builder: &'a Builder) -> Result<Compiler<'a>, BuildError>` — [`Builder`](#builder), [`Compiler`](#compiler), [`BuildError`](../../util/error/index.md)
+
+- `fn compile<I, P>(self: Self, patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../util/error/index.md)
+
+- `fn build_trie<I, P>(self: &mut Self, patterns: I) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+
+- `fn fill_failure_transitions(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+
+- `fn shuffle(self: &mut Self)`
+
+- `fn densify(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+
+- `fn queued_set(self: &Self) -> QueuedSet` — [`QueuedSet`](#queuedset)
+
+- `fn init_unanchored_start_state(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+
+- `fn set_anchored_start_state(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+
+- `fn add_unanchored_start_state_loop(self: &mut Self)`
+
+- `fn close_start_state_loop_for_leftmost(self: &mut Self)`
+
+- `fn add_dead_state_loop(self: &mut Self) -> Result<(), BuildError>` — [`BuildError`](../../util/error/index.md)
+
+#### Trait Implementations
+
+##### `impl<'a> Debug for Compiler<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `QueuedSet`
+
+```rust
+struct QueuedSet {
+    set: Option<alloc::collections::BTreeSet<crate::util::primitives::StateID>>,
+}
+```
+
+A set of state identifiers used to avoid revisiting the same state multiple
+times when filling in failure transitions.
+
+This set has an "inert" and an "active" mode. When inert, the set never
+stores anything and always returns `false` for every member test. This is
+useful to avoid the performance and memory overhead of maintaining this
+set when it is not needed.
+
+#### Implementations
+
+- `fn inert() -> QueuedSet` — [`QueuedSet`](#queuedset)
+
+- `fn active() -> QueuedSet` — [`QueuedSet`](#queuedset)
+
+- `fn insert(self: &mut Self, state_id: StateID)` — [`StateID`](../../util/primitives/index.md)
+
+- `fn contains(self: &Self, state_id: StateID) -> bool` — [`StateID`](../../util/primitives/index.md)
+
+#### Trait Implementations
+
+##### `impl Debug for QueuedSet`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

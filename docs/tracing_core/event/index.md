@@ -27,7 +27,7 @@ two key differences:
   may be located within the trace tree, allowing visibility into the
   _temporal_ context in which the event occurred, as well as the source
   code location.
-- Like spans, `Event`s have structured key-value data known as _[fields]_,
+- Like spans, `Event`s have structured key-value data known as _[`fields`](../../tracing_attributes/attr/kw/index.md)_,
   which may include textual message. In general, a majority of the data
   associated with an event should be in the event's fields rather than in
   the textual message, as the fields are more structured.
@@ -61,12 +61,4 @@ two key differences:
 ##### `impl<'a> Debug for Event<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl<'a> NormalizeEvent for tracing_core::Event<'a>`
-
-##### `impl RecordFields for tracing_core::Event<'_>`
-
-- `fn exit(self: &Self, span: &span::Id)` — [`Id`](../span/index.md)
-
-##### `impl<'a> Sealed for tracing_core::Event<'a>`
 

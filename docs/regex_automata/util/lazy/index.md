@@ -9,6 +9,10 @@ A lazily initialized value for safe sharing between threads.
 The principal type in this module is `Lazy`, which makes it easy to construct
 values that are shared safely across multiple threads simultaneously.
 
+## Modules
+
+- [`lazy`](lazy/index.md) - 
+
 ## Structs
 
 ### `Lazy<T, F>`
@@ -60,7 +64,7 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
+- `fn get(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 

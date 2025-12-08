@@ -229,6 +229,10 @@ necessitate raising the size of the trie's first level.
 In contrast to binary search or the `ucd-trie` crate, performing lookups in
 this data structure is straight-line code with no need for branching.
 
+## Modules
+
+- [`tables`](tables/index.md) - 
+
 ## Functions
 
 ### `is_xid_start`

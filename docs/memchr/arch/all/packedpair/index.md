@@ -15,6 +15,10 @@ good of a job keeping the search for candidates inside a SIMD hot path. It
 however can be good enough in many circumstances.
 
 
+## Modules
+
+- [`default_rank`](default_rank/index.md) - 
+
 ## Structs
 
 ### `Finder`
@@ -120,6 +124,20 @@ needles with length at least 2.
 ##### `impl Debug for Pair`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `DefaultFrequencyRank`
+
+```rust
+struct DefaultFrequencyRank;
+```
+
+The default byte frequency heuristic that is good for most haystacks.
+
+#### Trait Implementations
+
+##### `impl HeuristicFrequencyRank for DefaultFrequencyRank`
+
+- `fn rank(self: &Self, byte: u8) -> u8`
 
 ## Traits
 

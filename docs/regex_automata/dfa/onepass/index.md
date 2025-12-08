@@ -8,7 +8,7 @@ A DFA that can return spans for matching capturing groups.
 
 This module is the home of a [one-pass DFA](DFA).
 
-This module also contains a [`Builder`](../../meta/regex/index.md) and a [`Config`](../../util/syntax/index.md) for building and
+This module also contains a [`Builder`](#builder) and a [`Config`](#config) for building and
 configuring a one-pass DFA.
 
 ## Structs
@@ -153,6 +153,131 @@ Ok::<(), Box<dyn std::error::Error>>(())
 - `fn clone(self: &Self) -> Builder` — [`Builder`](#builder)
 
 ##### `impl Debug for Builder`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `InternalBuilder<'a>`
+
+```rust
+struct InternalBuilder<'a> {
+    dfa: DFA,
+    uncompiled_nfa_ids: alloc::vec::Vec<crate::util::primitives::StateID>,
+    nfa_to_dfa_id: alloc::vec::Vec<crate::util::primitives::StateID>,
+    stack: alloc::vec::Vec<(crate::util::primitives::StateID, Epsilons)>,
+    seen: crate::util::sparse_set::SparseSet,
+    matched: bool,
+    config: Config,
+    nfa: &'a crate::nfa::thompson::NFA,
+    classes: crate::util::alphabet::ByteClasses,
+}
+```
+
+An internal builder for encapsulating the state necessary to build a
+one-pass DFA. Typical use is just `InternalBuilder::new(..).build()`.
+
+There is no separate pass for determining whether the NFA is one-pass or
+not. We just try to build the DFA. If during construction we discover that
+it is not one-pass, we bail out. This is likely to lead to some undesirable
+expense in some cases, so it might make sense to try an identify common
+patterns in the NFA that make it definitively not one-pass. That way, we
+can avoid ever trying to build a one-pass DFA in the first place. For
+example, '\w*\s' is not one-pass, and since '\w' is Unicode-aware by
+default, it's probably not a trivial cost to try and build a one-pass DFA
+for it and then fail.
+
+Note that some (immutable) fields are duplicated here. For example, the
+'nfa' and 'classes' fields are both in the 'DFA'. They are the same thing,
+but we duplicate them because it makes composition easier below. Otherwise,
+since the borrow checker can't see through method calls, the mutable borrow
+we use to mutate the DFA winds up preventing borrowing from any other part
+of the DFA, even though we aren't mutating those parts. We only do this
+because the duplication is cheap.
+
+#### Fields
+
+- **`dfa`**: `DFA`
+
+  The DFA we're building.
+
+- **`uncompiled_nfa_ids`**: `alloc::vec::Vec<crate::util::primitives::StateID>`
+
+  An unordered collection of NFA state IDs that we haven't yet tried to
+  build into a DFA state yet.
+  
+  This collection does not ultimately wind up including every NFA state
+  ID. Instead, each ID represents a "start" state for a sub-graph of the
+  NFA. The set of NFA states we then use to build a DFA state consists
+  of that "start" state and all states reachable from it via epsilon
+  transitions.
+
+- **`nfa_to_dfa_id`**: `alloc::vec::Vec<crate::util::primitives::StateID>`
+
+  A map from NFA state ID to DFA state ID. This is useful for easily
+  determining whether an NFA state has been used as a "starting" point
+  to build a DFA state yet. If it hasn't, then it is mapped to DEAD,
+  and since DEAD is specially added and never corresponds to any NFA
+  state, it follows that a mapping to DEAD implies the NFA state has
+  no corresponding DFA state yet.
+
+- **`stack`**: `alloc::vec::Vec<(crate::util::primitives::StateID, Epsilons)>`
+
+  A stack used to traverse the NFA states that make up a single DFA
+  state. Traversal occurs until the stack is empty, and we only push to
+  the stack when the state ID isn't in 'seen'. Actually, even more than
+  that, if we try to push something on to this stack that is already in
+  'seen', then we bail out on construction completely, since it implies
+  that the NFA is not one-pass.
+
+- **`seen`**: `crate::util::sparse_set::SparseSet`
+
+  The set of NFA states that we've visited via 'stack'.
+
+- **`matched`**: `bool`
+
+  Whether a match NFA state has been observed while constructing a
+  one-pass DFA state. Once a match state is seen, assuming we are using
+  leftmost-first match semantics, then we don't add any more transitions
+  to the DFA state we're building.
+
+- **`config`**: `Config`
+
+  The config passed to the builder.
+  
+  This is duplicated in dfa.config.
+
+- **`nfa`**: `&'a crate::nfa::thompson::NFA`
+
+  The NFA we're building a one-pass DFA from.
+  
+  This is duplicated in dfa.nfa.
+
+- **`classes`**: `crate::util::alphabet::ByteClasses`
+
+  The equivalence classes that make up the alphabet for this DFA>
+  
+  This is duplicated in dfa.classes.
+
+#### Implementations
+
+- `fn new(config: Config, nfa: &'a NFA) -> InternalBuilder<'a>` — [`Config`](#config), [`NFA`](../../nfa/thompson/nfa/index.md), [`InternalBuilder`](#internalbuilder)
+
+- `fn build(self: Self) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+
+- `fn shuffle_states(self: &mut Self)`
+
+- `fn compile_transition(self: &mut Self, dfa_id: StateID, trans: &thompson::Transition, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Transition`](../../nfa/thompson/nfa/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+
+- `fn add_start_state(self: &mut Self, pid: Option<PatternID>, nfa_id: StateID) -> Result<StateID, BuildError>` — [`PatternID`](../../util/primitives/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_dfa_state_for_nfa_state(self: &mut Self, nfa_id: StateID) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_empty_state(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn stack_push(self: &mut Self, nfa_id: StateID, epsilons: Epsilons) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`Epsilons`](#epsilons), [`BuildError`](#builderror)
+
+#### Trait Implementations
+
+##### `impl<'a> Debug for InternalBuilder<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -448,6 +573,38 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 - `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
 
+### `SparseTransitionIter<'a>`
+
+```rust
+struct SparseTransitionIter<'a> {
+    it: core::iter::Enumerate<core::slice::Iter<'a, Transition>>,
+    cur: Option<(u8, u8, Transition)>,
+}
+```
+
+An iterator over groups of consecutive equivalent transitions in a single
+state.
+
+#### Trait Implementations
+
+##### `impl<'a> Debug for SparseTransitionIter<'a>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for SparseTransitionIter<'a>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'a> Iterator for SparseTransitionIter<'a>`
+
+- `type Item = (u8, u8, Transition)`
+
+- `fn next(self: &mut Self) -> Option<(u8, u8, Transition)>` — [`Transition`](#transition)
+
 ### `Cache`
 
 ```rust
@@ -457,7 +614,7 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a one-pass [`DFA`](../dense/index.md) requires during a
+A cache represents mutable state that a one-pass [`DFA`](#dfa) requires during a
 search.
 
 For a given one-pass DFA, its corresponding cache may be created either via
@@ -508,6 +665,278 @@ only be used with the new one-pass DFA (and not the old one).
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `Transition`
+
+```rust
+struct Transition(u64);
+```
+
+Represents a single transition in a one-pass DFA.
+
+The high 21 bits corresponds to the state ID. The bit following corresponds
+to the special "match wins" flag. The remaining low 42 bits corresponds to
+the transition epsilons, which contains the slots that should be saved when
+this transition is followed and the conditional epsilon transitions that
+must be satisfied in order to follow this transition.
+
+#### Implementations
+
+- `const STATE_ID_BITS: u64`
+
+- `const STATE_ID_SHIFT: u64`
+
+- `const STATE_ID_LIMIT: u64`
+
+- `const MATCH_WINS_SHIFT: u64`
+
+- `const INFO_MASK: u64`
+
+- `fn new(match_wins: bool, sid: StateID, epsilons: Epsilons) -> Transition` — [`StateID`](../../util/primitives/index.md), [`Epsilons`](#epsilons), [`Transition`](#transition)
+
+- `fn is_dead(self: Self) -> bool`
+
+- `fn match_wins(self: &Self) -> bool`
+
+- `fn state_id(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
+
+- `fn set_state_id(self: &mut Self, sid: StateID)` — [`StateID`](../../util/primitives/index.md)
+
+- `fn epsilons(self: &Self) -> Epsilons` — [`Epsilons`](#epsilons)
+
+#### Trait Implementations
+
+##### `impl Clone for Transition`
+
+- `fn clone(self: &Self) -> Transition` — [`Transition`](#transition)
+
+##### `impl Copy for Transition`
+
+##### `impl Debug for Transition`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Eq for Transition`
+
+##### `impl PartialEq for Transition`
+
+- `fn eq(self: &Self, other: &Transition) -> bool` — [`Transition`](#transition)
+
+##### `impl StructuralPartialEq for Transition`
+
+### `PatternEpsilons`
+
+```rust
+struct PatternEpsilons(u64);
+```
+
+A representation of a match state's pattern ID along with the epsilons for
+when a match occurs.
+
+A match state in a one-pass DFA, unlike in a more general DFA, has exactly
+one pattern ID. If it had more, then the original NFA would not have been
+one-pass.
+
+The "epsilons" part of this corresponds to what was found in the epsilon
+transitions between the transition taken in the last byte of input and the
+ultimate match state. This might include saving slots and/or conditional
+epsilon transitions that must be satisfied before one can report the match.
+
+Technically, every state has room for a 'PatternEpsilons', but it is only
+ever non-empty for match states.
+
+#### Implementations
+
+- `const PATTERN_ID_BITS: u64`
+
+- `const PATTERN_ID_SHIFT: u64`
+
+- `const PATTERN_ID_NONE: u64`
+
+- `const PATTERN_ID_LIMIT: u64`
+
+- `const PATTERN_ID_MASK: u64`
+
+- `const EPSILONS_MASK: u64`
+
+- `fn empty() -> PatternEpsilons` — [`PatternEpsilons`](#patternepsilons)
+
+- `fn is_empty(self: Self) -> bool`
+
+- `fn pattern_id(self: Self) -> Option<PatternID>` — [`PatternID`](../../util/primitives/index.md)
+
+- `fn pattern_id_unchecked(self: Self) -> PatternID` — [`PatternID`](../../util/primitives/index.md)
+
+- `fn set_pattern_id(self: Self, pid: PatternID) -> PatternEpsilons` — [`PatternID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
+
+- `fn epsilons(self: Self) -> Epsilons` — [`Epsilons`](#epsilons)
+
+- `fn set_epsilons(self: Self, epsilons: Epsilons) -> PatternEpsilons` — [`Epsilons`](#epsilons), [`PatternEpsilons`](#patternepsilons)
+
+#### Trait Implementations
+
+##### `impl Clone for PatternEpsilons`
+
+- `fn clone(self: &Self) -> PatternEpsilons` — [`PatternEpsilons`](#patternepsilons)
+
+##### `impl Copy for PatternEpsilons`
+
+##### `impl Debug for PatternEpsilons`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+### `Epsilons`
+
+```rust
+struct Epsilons(u64);
+```
+
+Epsilons represents all of the NFA epsilons transitions that went into a
+single transition in a single DFA state. In this case, it only represents
+the epsilon transitions that have some kind of non-consuming side effect:
+either the transition requires storing the current position of the search
+into a slot, or the transition is conditional and requires the current
+position in the input to satisfy an assertion before the transition may be
+taken.
+
+This folds the cumulative effect of a group of NFA states (all connected
+by epsilon transitions) down into a single set of bits. While these bits
+can represent all possible conditional epsilon transitions, it only permits
+storing up to a somewhat small number of slots.
+
+Epsilons is represented as a 42-bit integer. For example, it is packed into
+the lower 42 bits of a `Transition`. (Where the high 22 bits contains a
+`StateID` and a special "match wins" property.)
+
+#### Implementations
+
+- `const SLOT_MASK: u64`
+
+- `const SLOT_SHIFT: u64`
+
+- `const LOOK_MASK: u64`
+
+- `fn empty() -> Epsilons` — [`Epsilons`](#epsilons)
+
+- `fn is_empty(self: Self) -> bool`
+
+- `fn slots(self: Self) -> Slots` — [`Slots`](#slots)
+
+- `fn set_slots(self: Self, slots: Slots) -> Epsilons` — [`Slots`](#slots), [`Epsilons`](#epsilons)
+
+- `fn looks(self: Self) -> LookSet` — [`LookSet`](../../util/look/index.md)
+
+- `fn set_looks(self: Self, look_set: LookSet) -> Epsilons` — [`LookSet`](../../util/look/index.md), [`Epsilons`](#epsilons)
+
+#### Trait Implementations
+
+##### `impl Clone for Epsilons`
+
+- `fn clone(self: &Self) -> Epsilons` — [`Epsilons`](#epsilons)
+
+##### `impl Copy for Epsilons`
+
+##### `impl Debug for Epsilons`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+### `Slots`
+
+```rust
+struct Slots(u32);
+```
+
+The set of epsilon transitions indicating that the current position in a
+search should be saved to a slot.
+
+This *only* represents explicit slots. So for example, the pattern
+`[a-z]+([0-9]+)([a-z]+)` has:
+
+* 3 capturing groups, thus 6 slots.
+* 1 implicit capturing group, thus 2 implicit slots.
+* 2 explicit capturing groups, thus 4 explicit slots.
+
+While implicit slots are represented by epsilon transitions in an NFA, we
+do not explicitly represent them here. Instead, implicit slots are assumed
+to be present and handled automatically in the search code. Therefore,
+that means we only need to represent explicit slots in our epsilon
+transitions.
+
+Its representation is a bit set. The bit 'i' is set if and only if there
+exists an explicit slot at index 'c', where 'c = (#patterns * 2) + i'. That
+is, the bit 'i' corresponds to the first explicit slot and the first
+explicit slot appears immediately following the last implicit slot. (If
+this is confusing, see `GroupInfo` for more details on how slots works.)
+
+A single `Slots` represents all the active slots in a sub-graph of an NFA,
+where all the states are connected by epsilon transitions. In effect, when
+traversing the one-pass DFA during a search, all slots set in a particular
+transition must be captured by recording the current search position.
+
+The API of `Slots` requires the caller to handle the explicit slot offset.
+That is, a `Slots` doesn't know where the explicit slots start for a
+particular NFA. Thus, if the callers see's the bit 'i' is set, then they
+need to do the arithmetic above to find 'c', which is the real actual slot
+index in the corresponding NFA.
+
+#### Implementations
+
+- `const LIMIT: usize`
+
+- `fn insert(self: Self, slot: usize) -> Slots` — [`Slots`](#slots)
+
+- `fn remove(self: Self, slot: usize) -> Slots` — [`Slots`](#slots)
+
+- `fn is_empty(self: Self) -> bool`
+
+- `fn iter(self: Self) -> SlotsIter` — [`SlotsIter`](#slotsiter)
+
+- `fn apply(self: Self, at: usize, caller_explicit_slots: &mut [Option<NonMaxUsize>])` — [`NonMaxUsize`](../../util/primitives/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for Slots`
+
+- `fn clone(self: &Self) -> Slots` — [`Slots`](#slots)
+
+##### `impl Copy for Slots`
+
+##### `impl Debug for Slots`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+### `SlotsIter`
+
+```rust
+struct SlotsIter {
+    slots: Slots,
+}
+```
+
+An iterator over all of the bits set in a slot set.
+
+This returns the bit index that is set, so callers may need to offset it
+to get the actual NFA slot index.
+
+#### Trait Implementations
+
+##### `impl Debug for SlotsIter`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for SlotsIter`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator for SlotsIter`
+
+- `type Item = usize`
+
+- `fn next(self: &mut Self) -> Option<usize>`
+
 ### `BuildError`
 
 ```rust
@@ -522,7 +951,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying `thompson::BuildError` type from its `source`
+* Access an underlying [`thompson::BuildError`](../../nfa/thompson/error/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building a one-pass DFA directly from a pattern
 string.
@@ -567,4 +996,42 @@ trait.
 ##### `impl<T> ToString for BuildError`
 
 - `fn to_string(self: &Self) -> String`
+
+## Enums
+
+### `BuildErrorKind`
+
+```rust
+enum BuildErrorKind {
+    NFA(crate::nfa::thompson::BuildError),
+    Word(crate::util::look::UnicodeWordBoundaryError),
+    TooManyStates {
+        limit: u64,
+    },
+    TooManyPatterns {
+        limit: u64,
+    },
+    UnsupportedLook {
+        look: crate::util::look::Look,
+    },
+    ExceededSizeLimit {
+        limit: usize,
+    },
+    NotOnePass {
+        msg: &'static str,
+    },
+}
+```
+
+The kind of error that occurred during the construction of a one-pass DFA.
+
+#### Trait Implementations
+
+##### `impl Clone for BuildErrorKind`
+
+- `fn clone(self: &Self) -> BuildErrorKind` — [`BuildErrorKind`](#builderrorkind)
+
+##### `impl Debug for BuildErrorKind`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 

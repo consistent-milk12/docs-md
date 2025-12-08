@@ -14,15 +14,37 @@ fn main() {}
 Please refer to [https://serde.rs/derive.html] for how to set this up.
 
 
-## Overview
+## Modules
 
-This is a **procedural macro crate** that provides derive macros.
+- [`internals`](internals/index.md) - 
+- [`bound`](bound/index.md) - 
+- [`fragment`](fragment/index.md) - 
+- [`de`](de/index.md) - 
+- [`deprecated`](deprecated/index.md) - 
+- [`dummy`](dummy/index.md) - 
+- [`pretend`](pretend/index.md) - 
+- [`ser`](ser/index.md) - 
+- [`this`](this/index.md) - 
 
-The macros from this crate are typically re-exported from the parent crate [`serde`](../serde/index.md) for convenience. You should generally depend on the parent crate rather than this one directly.
+## Structs
 
-### Usage
+### `private`
 
-```toml
-[dependencies]
-serde = { version = "*", features = ["derive"] }
+```rust
+struct private;
 ```
+
+#### Implementations
+
+- `fn ident(self: &Self) -> Ident`
+
+#### Trait Implementations
+
+##### `impl<T> Spanned for private`
+
+- `fn span(self: &Self) -> Span`
+
+##### `impl ToTokens for private`
+
+- `fn to_tokens(self: &Self, tokens: &mut proc_macro2::TokenStream)`
+

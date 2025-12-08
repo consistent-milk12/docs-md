@@ -32,7 +32,7 @@ Best paired with other libraries in the family:
 
 indicatif comes with a [`ProgressBar`](progress_bar/index.md) type that supports both bounded
 progress bar uses as well as unbounded "spinner" type progress reports.
-Progress bars are `Sync` and `Send` objects which means that they are
+Progress bars are [`Sync`](../miniz_oxide/index.md) and `Send` objects which means that they are
 internally locked and can be passed from thread to thread.
 
 Additionally a [`MultiProgress`](multi/index.md) utility is provided that can manage
@@ -245,7 +245,14 @@ assert_eq!("33,857,009.1235", HumanFloatCount(33857009.123456).to_string());
 
 ## Modules
 
+- [`draw_target`](draw_target/index.md) - 
+- [`format`](format/index.md) - 
+- [`iter`](iter/index.md) - 
+- [`multi`](multi/index.md) - 
+- [`progress_bar`](progress_bar/index.md) - 
+- [`state`](state/index.md) - 
 - [`style`](style/index.md) - 
+- [`term_like`](term_like/index.md) - 
 
 ## Structs
 

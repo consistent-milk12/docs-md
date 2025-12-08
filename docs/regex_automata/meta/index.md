@@ -7,7 +7,7 @@
 Provides a regex matcher that composes several other regex matchers
 automatically.
 
-This module is home to a meta [`Regex`](../dfa/regex/index.md), which provides a convenient high
+This module is home to a meta [`Regex`](regex/index.md), which provides a convenient high
 level API for executing regular expressions in linear time.
 
 # Comparison with the `regex` crate
@@ -44,6 +44,17 @@ offsets of a match.
 memory pool for automatically acquiring mutable scratch space required by its
 internal regex engines. Namely, a [`Cache`](regex/index.md) can be explicitly provided to lower
 level routines such as `Regex::search_with`.
+
+## Modules
+
+- [`error`](error/index.md) - 
+- [`limited`](limited/index.md) - This module defines two bespoke reverse DFA searching routines. (One for the
+- [`literal`](literal/index.md) - 
+- [`regex`](regex/index.md) - 
+- [`reverse_inner`](reverse_inner/index.md) - A module dedicated to plucking inner literals out of a regex pattern, and
+- [`stopat`](stopat/index.md) - This module defines two bespoke forward DFA search routines. One for the lazy
+- [`strategy`](strategy/index.md) - 
+- [`wrappers`](wrappers/index.md) - This module contains a boat load of wrappers around each of our internal regex
 
 ## Structs
 
@@ -128,7 +139,7 @@ A builder for configuring and constructing a `Regex`.
 The builder permits configuring two different aspects of a `Regex`:
 
 * `Builder::configure` will set high-level configuration options as
-described by a [`Config`](../util/syntax/index.md).
+described by a [`Config`](regex/index.md).
 * `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
@@ -774,13 +785,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- `fn search(self: &Self, input: &Input<'_>) -> Option<Match>` — [`Input`](../index.md), [`Match`](../index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](regex/index.md), [`BuildError`](error/index.md)
+- `fn search_half(self: &Self, input: &Input<'_>) -> Option<HalfMatch>` — [`Input`](../index.md), [`HalfMatch`](../index.md)
 
-- `fn config() -> Config` — [`Config`](regex/index.md)
+- `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)` — [`Input`](../index.md), [`Captures`](../util/captures/index.md)
 
-- `fn builder() -> Builder` — [`Builder`](regex/index.md)
+- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../index.md), [`NonMaxUsize`](../util/primitives/index.md), [`PatternID`](../util/primitives/index.md)
+
+- `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)` — [`Input`](../index.md), [`PatternSet`](../index.md)
 
 #### Trait Implementations
 

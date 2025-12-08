@@ -17,7 +17,51 @@ Currently supported syntax highlighters and their feature flags:
 * `syntect-highlighter` - Enables [`syntect`](https://docs.rs/syntect/latest/syntect/) syntax highlighting support via the `SyntectHighlighter`
 
 
+## Modules
+
+- [`blank`](blank/index.md) - 
+
 ## Structs
+
+### `MietteHighlighter`
+
+```rust
+struct MietteHighlighter(std::sync::Arc<dyn Highlighter + Send + Sync>);
+```
+
+Arcified trait object for Highlighter. Used internally by [`GraphicalReportHandler`](../handlers/index.md)
+
+Wrapping the trait object in this way allows us to implement `Debug` and `Clone`.
+
+#### Implementations
+
+- `fn nocolor() -> Self`
+
+#### Trait Implementations
+
+##### `impl Clone for MietteHighlighter`
+
+- `fn clone(self: &Self) -> MietteHighlighter` — [`MietteHighlighter`](#miettehighlighter)
+
+##### `impl Debug for MietteHighlighter`
+
+- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+
+##### `impl Default for MietteHighlighter`
+
+- `fn default() -> Self`
+
+##### `impl Deref for MietteHighlighter`
+
+- `type Target = dyn Highlighter + Send + Sync`
+
+- `fn deref(self: &Self) -> &<Self as >::Target`
+
+##### `impl<D> OwoColorize for MietteHighlighter`
+
+##### `impl<P, T> Receiver for MietteHighlighter`
+
+- `type Target = T`
 
 ### `BlankHighlighter`
 

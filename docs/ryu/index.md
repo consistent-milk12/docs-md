@@ -80,6 +80,15 @@ notation.
 
 ## Modules
 
+- [`buffer`](buffer/index.md) - 
+- [`common`](common/index.md) - 
+- [`d2s`](d2s/index.md) - 
+- [`d2s_full_table`](d2s_full_table/index.md) - 
+- [`d2s_intrinsics`](d2s_intrinsics/index.md) - 
+- [`digit_table`](digit_table/index.md) - 
+- [`f2s`](f2s/index.md) - 
+- [`f2s_intrinsics`](f2s_intrinsics/index.md) - 
+- [`pretty`](pretty/index.md) - 
 - [`raw`](raw/index.md) - Unsafe functions that mirror the API of the C implementation of Ryū.
 
 ## Structs

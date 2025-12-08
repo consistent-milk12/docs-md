@@ -21,7 +21,7 @@ The primary types in this sub-module are:
 
 * [`Searcher`](api/index.md) executes the actual search algorithm to report matches in a
 haystack.
-* [`Builder`](../util/prefilter/index.md) accumulates patterns incrementally and can construct a
+* [`Builder`](api/index.md) accumulates patterns incrementally and can construct a
 `Searcher`.
 * [`Config`](api/index.md) permits tuning the searcher, and itself will produce a `Builder`
 (which can then be used to build a `Searcher`). Currently, the only tuneable
@@ -31,7 +31,7 @@ knob are the match semantics, but this may be expanded in the future.
 
 This example shows how to create a searcher from an iterator of patterns.
 By default, leftmost-first match semantics are used. (See the top-level
-[`MatchKind`](../util/search/index.md) type for more details about match semantics, which apply
+[`MatchKind`](api/index.md) type for more details about match semantics, which apply
 similarly to packed substring search.)
 
 ```rust
@@ -111,6 +111,15 @@ implementation detail, here are some common reasons:
 * Something else about the nature of the patterns (typically based on
   heuristics) suggests that a packed searcher would perform very poorly, so
   no searcher is built.
+
+## Modules
+
+- [`api`](api/index.md) - 
+- [`ext`](ext/index.md) - 
+- [`pattern`](pattern/index.md) - 
+- [`rabinkarp`](rabinkarp/index.md) - 
+- [`teddy`](teddy/index.md) - 
+- [`vector`](vector/index.md) - 
 
 ## Structs
 
@@ -326,7 +335,7 @@ A packed searcher for quickly finding occurrences of multiple patterns.
 
 If callers need more flexible construction, or if one wants to change the
 match semantics (either leftmost-first or leftmost-longest), then one can
-use the [`Config`](api/index.md) and/or [`Builder`](../util/prefilter/index.md) types for more fine grained control.
+use the [`Config`](api/index.md) and/or [`Builder`](api/index.md) types for more fine grained control.
 
 # Example
 

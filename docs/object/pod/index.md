@@ -132,3 +132,15 @@ fn bytes_of_slice_mut<T: Pod>(val: &mut [T]) -> &mut [u8]
 
 Cast a slice of a `Pod` type to a mutable byte slice.
 
+## Type Aliases
+
+### `Result<T>`
+
+```rust
+type Result<T> = result::Result<T, ()>;
+```
+
+## Macros
+
+### `unsafe_impl_pod!`
+

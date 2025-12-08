@@ -24,15 +24,20 @@ conditions.
 
 See [CONTRIBUTING](CONTRIBUTING.md) for more details.
 
-## Overview
+## Modules
 
-This is a **procedural macro crate** that provides derive macros.
+- [`macros`](macros/index.md) - 
+- [`attr`](attr/index.md) - 
+- [`derives`](derives/index.md) - 
+- [`dummies`](dummies/index.md) - Dummy implementations that we emit along with an error.
+- [`item`](item/index.md) - 
+- [`utils`](utils/index.md) - 
 
-The macros from this crate are typically re-exported from the parent crate [`clap`](../clap/index.md) for convenience. You should generally depend on the parent crate rather than this one directly.
+## Functions
 
-### Usage
+### `to_compile_error`
 
-```toml
-[dependencies]
-clap = { version = "*", features = ["derive"] }
+```rust
+fn to_compile_error(error: syn::Error, dummy: proc_macro2::TokenStream) -> proc_macro2::TokenStream
 ```
+

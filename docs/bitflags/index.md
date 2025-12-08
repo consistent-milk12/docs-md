@@ -241,6 +241,11 @@ The result of `Flags::A ^ Flags::B` is `0b0000_0010`, which doesn't correspond t
 
 - [`iter`](iter/index.md) - Yield the bits of a source flags value in a set of contained flags values.
 - [`parser`](parser/index.md) - Parsing flags from text.
+- [`traits`](traits/index.md) - 
+- [`public`](public/index.md) - Generate the user-facing flags type.
+- [`internal`](internal/index.md) - Generate the internal `bitflags`-facing flags type.
+- [`external`](external/index.md) - Conditional trait implementations for external libraries.
+- [`__private`](__private/index.md) - 
 
 ## Structs
 

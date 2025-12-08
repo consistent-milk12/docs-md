@@ -22,7 +22,7 @@ buffered data should probably use the [`regex`](#regex) crate instead.
 
 ## Syntax
 
-This crate uses the same [regex syntax][syntax] of the `regex-automata` crate.
+This crate uses the same [regex syntax][`syntax`](../regex_automata/util/syntax/index.md) of the `regex-automata` crate.
 
 
 
@@ -48,15 +48,9 @@ A compiled match pattern that can match multipe inputs, or return a
 
 #### Implementations
 
-- `fn matcher(self: &Self) -> Matcher<&A>` — [`Matcher`](#matcher)
+- `fn new(pattern: &str) -> Result<Self, BuildError>`
 
-- `fn matches(self: &Self, s: &impl AsRef<str>) -> bool`
-
-- `fn debug_matches(self: &Self, d: &impl fmt::Debug) -> bool`
-
-- `fn display_matches(self: &Self, d: &impl fmt::Display) -> bool`
-
-- `fn read_matches(self: &Self, io: impl io::Read) -> io::Result<bool>`
+- `fn new_anchored(pattern: &str) -> Result<Self, BuildError>`
 
 #### Trait Implementations
 
@@ -112,7 +106,5 @@ A reference to a [`Pattern`](#pattern) that matches a single input.
 
 ##### `impl<A: Automaton> Write for Matcher<A>`
 
-- `fn write(self: &mut Self, bytes: &[u8]) -> Result<usize, io::Error>`
-
-- `fn flush(self: &mut Self) -> Result<(), io::Error>`
+- `fn write_str(self: &mut Self, s: &str) -> fmt::Result`
 

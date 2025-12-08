@@ -20,7 +20,7 @@ Serde provides [`Deserialize`](#deserialize) implementations for many Rust primi
 standard library types. The complete list is below. All of these can be
 deserialized using Serde out of the box.
 
-Additionally, Serde provides a procedural macro called [`serde_derive`](../../serde_derive/index.md) to
+Additionally, Serde provides a procedural macro called `serde_derive` to
 automatically generate [`Deserialize`](#deserialize) implementations for structs and enums
 in your program. See the [derive section of the manual] for how to use this.
 
@@ -120,6 +120,8 @@ One example is `OsStr`.
 ## Modules
 
 - [`value`](value/index.md) - Building blocks for deserializing basic values using the `IntoDeserializer`
+- [`ignored_any`](ignored_any/index.md) - 
+- [`impls`](impls/index.md) - 
 
 ## Structs
 
@@ -300,6 +302,48 @@ let s: String = NthElement::new(3).deserialize(deserializer)?;
 - `fn visit_bytes<E>(self: Self, bytes: &[u8]) -> Result<<Self as >::Value, E>` — [`Visitor`](#visitor)
 
 - `fn visit_enum<A>(self: Self, data: A) -> Result<<Self as >::Value, <A as >::Error>` — [`Visitor`](#visitor)
+
+### `OneOf`
+
+```rust
+struct OneOf {
+    names: &'static [&'static str],
+}
+```
+
+Used in error messages.
+
+- expected `a`
+- expected `a` or `b`
+- expected one of `a`, `b`, `c`
+
+The slice of names must not be empty.
+
+#### Trait Implementations
+
+##### `impl Display for OneOf`
+
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> ToString for OneOf`
+
+- `fn to_string(self: &Self) -> String`
+
+### `WithDecimalPoint`
+
+```rust
+struct WithDecimalPoint(f64);
+```
+
+#### Trait Implementations
+
+##### `impl Display for WithDecimalPoint`
+
+- `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl<T> ToString for WithDecimalPoint`
+
+- `fn to_string(self: &Self) -> String`
 
 ## Enums
 
@@ -605,7 +649,7 @@ can be deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
 automatically generate `Deserialize` implementations for structs and enums
-in your program. See the [derive section of the manual][derive] for how to
+in your program. See the [derive section of the manual][`derive`](../../clap_builder/derive/index.md) for how to
 use this.
 
 In rare cases it may be necessary to implement `Deserialize` manually for
@@ -1467,4 +1511,8 @@ impl FromStr for Setting {
 - `fn into_deserializer(self: Self) -> <Self as >::Deserializer`
 
   Convert this value into a deserializer.
+
+## Macros
+
+### `declare_error_trait!`
 

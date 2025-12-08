@@ -38,7 +38,7 @@ for their field names rather than printing them.
 
 `tracing`'s [`Value`](#value) trait is intentionally minimalist: it supports only a small
 number of Rust primitives as typed values, and only permits recording
-user-defined types with their `fmt::Debug` or `fmt::Display`
+user-defined types with their [`fmt::Debug`](../../object/index.md) or [`fmt::Display`](../../miette_derive/fmt/index.md)
 implementations. However, there are some cases where it may be useful to record
 nested values (such as arrays, `Vec`s, or `HashMap`s containing values), or
 user-defined `struct` and `enum` types without having to format them as
@@ -112,6 +112,10 @@ be forwarded to the visitor's `record_debug` method.
 
 
 
+
+## Modules
+
+- [`private`](private/index.md) - 
 
 ## Structs
 
@@ -401,6 +405,40 @@ A `Value` which serializes as a string using `fmt::Debug`.
 
 - `fn record(self: &Self, key: &Field, visitor: &mut dyn Visit)` — [`Field`](#field), [`Visit`](#visit)
 
+### `HexBytes<'a>`
+
+```rust
+struct HexBytes<'a>(&'a [u8]);
+```
+
+#### Trait Implementations
+
+##### `impl Debug for HexBytes<'_>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+## Enums
+
+### `Values<'a>`
+
+```rust
+enum Values<'a> {
+    Explicit(&'a [(&'a Field, Option<&'a dyn Value>)]),
+    All(&'a [Option<&'a dyn Value>]),
+}
+```
+
+#### Variants
+
+- **`Explicit`**
+
+  A set of field-value pairs. Fields may be for the wrong field set, some
+  fields may be missing, and fields may be in any order.
+
+- **`All`**
+
+  A list of values corresponding exactly to the fields in a `FieldSet`.
+
 ## Traits
 
 ### `Visit`
@@ -548,7 +586,7 @@ trait Value: crate::sealed::Sealed { ... }
 A field value of an erased type.
 
 Implementors of `Value` may call the appropriate typed recording methods on
-the [visitor] passed to their `record` method in order to indicate how
+the [`visitor`](../../regex_syntax/ast/visitor/index.md) passed to their `record` method in order to indicate how
 their data should be recorded.
 
 
@@ -581,4 +619,14 @@ where
 
 Wraps a type implementing `fmt::Debug` as a `Value` that can be
 recorded using its `Debug` implementation.
+
+## Macros
+
+### `impl_values!`
+
+### `ty_to_nonzero!`
+
+### `impl_one_value!`
+
+### `impl_value!`
 

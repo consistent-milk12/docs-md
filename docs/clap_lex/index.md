@@ -112,6 +112,10 @@ let args = parse_args(["bin", "--hello", "world"]);
 println!("{args:?}");
 ```
 
+## Modules
+
+- [`ext`](ext/index.md) - 
+
 ## Structs
 
 ### `SeekFrom<R: gimli::Reader>`
@@ -360,4 +364,18 @@ Walk through short flags within a [`ParsedArg`](#parsedarg)
 - `fn next(self: &mut Self) -> Option<<Self as >::Item>`
 
 ## Traits
+
+## Functions
+
+### `split_nonutf8_once`
+
+```rust
+fn split_nonutf8_once(b: &std::ffi::OsStr) -> (&str, Option<&std::ffi::OsStr>)
+```
+
+### `is_number`
+
+```rust
+fn is_number(arg: &str) -> bool
+```
 

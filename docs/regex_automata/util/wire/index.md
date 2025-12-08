@@ -170,3 +170,558 @@ configurations.
 
 - `fn to_string(self: &Self) -> String`
 
+## Enums
+
+### `DeserializeErrorKind`
+
+```rust
+enum DeserializeErrorKind {
+    Generic {
+        msg: &'static str,
+    },
+    BufferTooSmall {
+        what: &'static str,
+    },
+    InvalidUsize {
+        what: &'static str,
+    },
+    VersionMismatch {
+        expected: u32,
+        found: u32,
+    },
+    EndianMismatch {
+        expected: u32,
+        found: u32,
+    },
+    AlignmentMismatch {
+        alignment: usize,
+        address: usize,
+    },
+    LabelMismatch {
+        expected: &'static str,
+    },
+    ArithmeticOverflow {
+        what: &'static str,
+    },
+    PatternID {
+        err: crate::util::primitives::PatternIDError,
+        what: &'static str,
+    },
+    StateID {
+        err: crate::util::primitives::StateIDError,
+        what: &'static str,
+    },
+}
+```
+
+#### Trait Implementations
+
+##### `impl Debug for DeserializeErrorKind`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `LE`
+
+```rust
+enum LE {
+}
+```
+
+Little endian writing.
+
+#### Trait Implementations
+
+##### `impl Endian for LE`
+
+- `fn write_u16(n: u16, dst: &mut [u8])`
+
+- `fn write_u32(n: u32, dst: &mut [u8])`
+
+- `fn write_u128(n: u128, dst: &mut [u8])`
+
+### `BE`
+
+```rust
+enum BE {
+}
+```
+
+Big endian writing.
+
+#### Trait Implementations
+
+##### `impl Endian for BE`
+
+- `fn write_u16(n: u16, dst: &mut [u8])`
+
+- `fn write_u32(n: u32, dst: &mut [u8])`
+
+- `fn write_u128(n: u128, dst: &mut [u8])`
+
+## Traits
+
+### `Endian`
+
+```rust
+trait Endian { ... }
+```
+
+A simple trait for writing code generic over endianness.
+
+This is similar to what byteorder provides, but we only need a very small
+subset.
+
+#### Required Methods
+
+- `fn write_u16(n: u16, dst: &mut [u8])`
+
+  Writes a u16 to the given destination buffer in a particular
+
+- `fn write_u32(n: u32, dst: &mut [u8])`
+
+  Writes a u32 to the given destination buffer in a particular
+
+- `fn write_u128(n: u128, dst: &mut [u8])`
+
+  Writes a u128 to the given destination buffer in a particular
+
+## Functions
+
+### `u32s_to_state_ids`
+
+```rust
+fn u32s_to_state_ids(slice: &[u32]) -> &[crate::util::primitives::StateID]
+```
+
+Safely converts a `&[u32]` to `&[StateID]` with zero cost.
+
+### `u32s_to_state_ids_mut`
+
+```rust
+fn u32s_to_state_ids_mut(slice: &mut [u32]) -> &mut [crate::util::primitives::StateID]
+```
+
+Safely converts a `&mut [u32]` to `&mut [StateID]` with zero cost.
+
+### `u32s_to_pattern_ids`
+
+```rust
+fn u32s_to_pattern_ids(slice: &[u32]) -> &[crate::util::primitives::PatternID]
+```
+
+Safely converts a `&[u32]` to `&[PatternID]` with zero cost.
+
+### `check_alignment`
+
+```rust
+fn check_alignment<T>(slice: &[u8]) -> Result<(), DeserializeError>
+```
+
+Checks that the given slice has an alignment that matches `T`.
+
+This is useful for checking that a slice has an appropriate alignment
+before casting it to a &[T]. Note though that alignment is not itself
+sufficient to perform the cast for any `T`.
+
+### `skip_initial_padding`
+
+```rust
+fn skip_initial_padding(slice: &[u8]) -> usize
+```
+
+Reads a possibly empty amount of padding, up to 7 bytes, from the beginning
+of the given slice. All padding bytes must be NUL bytes.
+
+This is useful because it can be theoretically necessary to pad the
+beginning of a serialized object with NUL bytes to ensure that it starts
+at a correctly aligned address. These padding bytes should come immediately
+before the label.
+
+This returns the number of bytes read from the given slice.
+
+### `alloc_aligned_buffer`
+
+```rust
+fn alloc_aligned_buffer<T>(size: usize) -> (alloc::vec::Vec<u8>, usize)
+```
+
+Allocate a byte buffer of the given size, along with some initial padding
+such that `buf[padding..]` has the same alignment as `T`, where the
+alignment of `T` must be at most `8`. In particular, callers should treat
+the first N bytes (second return value) as padding bytes that must not be
+overwritten. In all cases, the following identity holds:
+
+```ignore
+let (buf, padding) = alloc_aligned_buffer::<StateID>(SIZE);
+assert_eq!(SIZE, buf[padding..].len());
+```
+
+In practice, padding is often zero.
+
+The requirement for `8` as a maximum here is somewhat arbitrary. In
+practice, we never need anything bigger in this crate, and so this function
+does some sanity asserts under the assumption of a max alignment of `8`.
+
+### `read_label`
+
+```rust
+fn read_label(slice: &[u8], expected_label: &'static str) -> Result<usize, DeserializeError>
+```
+
+Reads a NUL terminated label starting at the beginning of the given slice.
+
+If a NUL terminated label could not be found, then an error is returned.
+Similarly, if a label is found but doesn't match the expected label, then
+an error is returned.
+
+Upon success, the total number of bytes read (including padding bytes) is
+returned.
+
+### `write_label`
+
+```rust
+fn write_label(label: &str, dst: &mut [u8]) -> Result<usize, SerializeError>
+```
+
+Writes the given label to the buffer as a NUL terminated string. The label
+given must not contain NUL, otherwise this will panic. Similarly, the label
+must not be longer than 255 bytes, otherwise this will panic.
+
+Additional NUL bytes are written as necessary to ensure that the number of
+bytes written is always a multiple of 4.
+
+Upon success, the total number of bytes written (including padding) is
+returned.
+
+### `write_label_len`
+
+```rust
+fn write_label_len(label: &str) -> usize
+```
+
+Returns the total number of bytes (including padding) that would be written
+for the given label. This panics if the given label contains a NUL byte or
+is longer than 255 bytes. (The size restriction exists so that searching
+for a label during deserialization can be done in small bounded space.)
+
+### `read_endianness_check`
+
+```rust
+fn read_endianness_check(slice: &[u8]) -> Result<usize, DeserializeError>
+```
+
+Reads the endianness check from the beginning of the given slice and
+confirms that the endianness of the serialized object matches the expected
+endianness. If the slice is too small or if the endianness check fails,
+this returns an error.
+
+Upon success, the total number of bytes read is returned.
+
+### `write_endianness_check`
+
+```rust
+fn write_endianness_check<E: Endian>(dst: &mut [u8]) -> Result<usize, SerializeError>
+```
+
+Writes 0xFEFF as an integer using the given endianness.
+
+This is useful for writing into the header of a serialized object. It can
+be read during deserialization as a sanity check to ensure the proper
+endianness is used.
+
+Upon success, the total number of bytes written is returned.
+
+### `write_endianness_check_len`
+
+```rust
+fn write_endianness_check_len() -> usize
+```
+
+Returns the number of bytes written by the endianness check.
+
+### `read_version`
+
+```rust
+fn read_version(slice: &[u8], expected_version: u32) -> Result<usize, DeserializeError>
+```
+
+Reads a version number from the beginning of the given slice and confirms
+that is matches the expected version number given. If the slice is too
+small or if the version numbers aren't equivalent, this returns an error.
+
+Upon success, the total number of bytes read is returned.
+
+N.B. Currently, we require that the version number is exactly equivalent.
+In the future, if we bump the version number without a semver bump, then
+we'll need to relax this a bit and support older versions.
+
+### `write_version`
+
+```rust
+fn write_version<E: Endian>(version: u32, dst: &mut [u8]) -> Result<usize, SerializeError>
+```
+
+Writes the given version number to the beginning of the given slice.
+
+This is useful for writing into the header of a serialized object. It can
+be read during deserialization as a sanity check to ensure that the library
+code supports the format of the serialized object.
+
+Upon success, the total number of bytes written is returned.
+
+### `write_version_len`
+
+```rust
+fn write_version_len() -> usize
+```
+
+Returns the number of bytes written by writing the version number.
+
+### `read_pattern_id`
+
+```rust
+fn read_pattern_id(slice: &[u8], what: &'static str) -> Result<(crate::util::primitives::PatternID, usize), DeserializeError>
+```
+
+Reads a pattern ID from the given slice. If the slice has insufficient
+length, then this panics. If the deserialized integer exceeds the pattern
+ID limit for the current target, then this returns an error.
+
+Upon success, this also returns the number of bytes read.
+
+### `read_pattern_id_unchecked`
+
+```rust
+fn read_pattern_id_unchecked(slice: &[u8]) -> (crate::util::primitives::PatternID, usize)
+```
+
+Reads a pattern ID from the given slice. If the slice has insufficient
+length, then this panics. Otherwise, the deserialized integer is assumed
+to be a valid pattern ID.
+
+This also returns the number of bytes read.
+
+### `write_pattern_id`
+
+```rust
+fn write_pattern_id<E: Endian>(pid: crate::util::primitives::PatternID, dst: &mut [u8]) -> usize
+```
+
+Write the given pattern ID to the beginning of the given slice of bytes
+using the specified endianness. The given slice must have length at least
+`PatternID::SIZE`, or else this panics. Upon success, the total number of
+bytes written is returned.
+
+### `try_read_state_id`
+
+```rust
+fn try_read_state_id(slice: &[u8], what: &'static str) -> Result<(crate::util::primitives::StateID, usize), DeserializeError>
+```
+
+Attempts to read a state ID from the given slice. If the slice has an
+insufficient number of bytes or if the state ID exceeds the limit for
+the current target, then this returns an error.
+
+Upon success, this also returns the number of bytes read.
+
+### `read_state_id`
+
+```rust
+fn read_state_id(slice: &[u8], what: &'static str) -> Result<(crate::util::primitives::StateID, usize), DeserializeError>
+```
+
+Reads a state ID from the given slice. If the slice has insufficient
+length, then this panics. If the deserialized integer exceeds the state ID
+limit for the current target, then this returns an error.
+
+Upon success, this also returns the number of bytes read.
+
+### `read_state_id_unchecked`
+
+```rust
+fn read_state_id_unchecked(slice: &[u8]) -> (crate::util::primitives::StateID, usize)
+```
+
+Reads a state ID from the given slice. If the slice has insufficient
+length, then this panics. Otherwise, the deserialized integer is assumed
+to be a valid state ID.
+
+This also returns the number of bytes read.
+
+### `write_state_id`
+
+```rust
+fn write_state_id<E: Endian>(sid: crate::util::primitives::StateID, dst: &mut [u8]) -> usize
+```
+
+Write the given state ID to the beginning of the given slice of bytes
+using the specified endianness. The given slice must have length at least
+`StateID::SIZE`, or else this panics. Upon success, the total number of
+bytes written is returned.
+
+### `try_read_u16_as_usize`
+
+```rust
+fn try_read_u16_as_usize(slice: &[u8], what: &'static str) -> Result<(usize, usize), DeserializeError>
+```
+
+Try to read a u16 as a usize from the beginning of the given slice in
+native endian format. If the slice has fewer than 2 bytes or if the
+deserialized number cannot be represented by usize, then this returns an
+error. The error message will include the `what` description of what is
+being deserialized, for better error messages. `what` should be a noun in
+singular form.
+
+Upon success, this also returns the number of bytes read.
+
+### `try_read_u32_as_usize`
+
+```rust
+fn try_read_u32_as_usize(slice: &[u8], what: &'static str) -> Result<(usize, usize), DeserializeError>
+```
+
+Try to read a u32 as a usize from the beginning of the given slice in
+native endian format. If the slice has fewer than 4 bytes or if the
+deserialized number cannot be represented by usize, then this returns an
+error. The error message will include the `what` description of what is
+being deserialized, for better error messages. `what` should be a noun in
+singular form.
+
+Upon success, this also returns the number of bytes read.
+
+### `try_read_u16`
+
+```rust
+fn try_read_u16(slice: &[u8], what: &'static str) -> Result<(u16, usize), DeserializeError>
+```
+
+Try to read a u16 from the beginning of the given slice in native endian
+format. If the slice has fewer than 2 bytes, then this returns an error.
+The error message will include the `what` description of what is being
+deserialized, for better error messages. `what` should be a noun in
+singular form.
+
+Upon success, this also returns the number of bytes read.
+
+### `try_read_u32`
+
+```rust
+fn try_read_u32(slice: &[u8], what: &'static str) -> Result<(u32, usize), DeserializeError>
+```
+
+Try to read a u32 from the beginning of the given slice in native endian
+format. If the slice has fewer than 4 bytes, then this returns an error.
+The error message will include the `what` description of what is being
+deserialized, for better error messages. `what` should be a noun in
+singular form.
+
+Upon success, this also returns the number of bytes read.
+
+### `try_read_u128`
+
+```rust
+fn try_read_u128(slice: &[u8], what: &'static str) -> Result<(u128, usize), DeserializeError>
+```
+
+Try to read a u128 from the beginning of the given slice in native endian
+format. If the slice has fewer than 16 bytes, then this returns an error.
+The error message will include the `what` description of what is being
+deserialized, for better error messages. `what` should be a noun in
+singular form.
+
+Upon success, this also returns the number of bytes read.
+
+### `read_u16`
+
+```rust
+fn read_u16(slice: &[u8]) -> u16
+```
+
+Read a u16 from the beginning of the given slice in native endian format.
+If the slice has fewer than 2 bytes, then this panics.
+
+Marked as inline to speed up sparse searching which decodes integers from
+its automaton at search time.
+
+### `read_u32`
+
+```rust
+fn read_u32(slice: &[u8]) -> u32
+```
+
+Read a u32 from the beginning of the given slice in native endian format.
+If the slice has fewer than 4 bytes, then this panics.
+
+Marked as inline to speed up sparse searching which decodes integers from
+its automaton at search time.
+
+### `read_u128`
+
+```rust
+fn read_u128(slice: &[u8]) -> u128
+```
+
+Read a u128 from the beginning of the given slice in native endian format.
+If the slice has fewer than 16 bytes, then this panics.
+
+### `check_slice_len`
+
+```rust
+fn check_slice_len<T>(slice: &[T], at_least_len: usize, what: &'static str) -> Result<(), DeserializeError>
+```
+
+Checks that the given slice has some minimal length. If it's smaller than
+the bound given, then a "buffer too small" error is returned with `what`
+describing what the buffer represents.
+
+### `mul`
+
+```rust
+fn mul(a: usize, b: usize, what: &'static str) -> Result<usize, DeserializeError>
+```
+
+Multiply the given numbers, and on overflow, return an error that includes
+'what' in the error message.
+
+This is useful when doing arithmetic with untrusted data.
+
+### `add`
+
+```rust
+fn add(a: usize, b: usize, what: &'static str) -> Result<usize, DeserializeError>
+```
+
+Add the given numbers, and on overflow, return an error that includes
+'what' in the error message.
+
+This is useful when doing arithmetic with untrusted data.
+
+### `shl`
+
+```rust
+fn shl(a: usize, b: usize, what: &'static str) -> Result<usize, DeserializeError>
+```
+
+Shift `a` left by `b`, and on overflow, return an error that includes
+'what' in the error message.
+
+This is useful when doing arithmetic with untrusted data.
+
+### `padding_len`
+
+```rust
+fn padding_len(non_padding_len: usize) -> usize
+```
+
+Returns the number of additional bytes required to add to the given length
+in order to make the total length a multiple of 4. The return value is
+always less than 4.
+
+## Type Aliases
+
+### `NE`
+
+```rust
+type NE = LE;
+```
+

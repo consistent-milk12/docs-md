@@ -314,6 +314,12 @@ Break opportunity type.
 
 ## Functions
 
+### `is_safe_pair`
+
+```rust
+fn is_safe_pair(a: BreakClass, b: BreakClass) -> bool
+```
+
 ### `break_property`
 
 ```rust
@@ -387,4 +393,98 @@ const UNICODE_VERSION: (u8, u8, u8);
 ```
 
 The [Unicode version](https://www.unicode.org/versions/) conformed to.
+
+### `BMP_LIMIT`
+
+```rust
+const BMP_LIMIT: u32 = 65_536u32;
+```
+
+Ceiling for code points in the Basic Multilingual Place (BMP).
+
+### `SHIFT_3`
+
+```rust
+const SHIFT_3: u32 = 4u32;
+```
+
+Shift size for getting index-3 table offset.
+
+### `SHIFT_2`
+
+```rust
+const SHIFT_2: u32 = 9u32;
+```
+
+Shift size for getting index-2 table offset.
+
+### `SHIFT_1`
+
+```rust
+const SHIFT_1: u32 = 14u32;
+```
+
+Shift size for getting index-1 table offset.
+
+### `BMP_SHIFT`
+
+```rust
+const BMP_SHIFT: u32 = 6u32;
+```
+
+Shift size for getting BMP block start.
+
+### `INDEX_2_BLOCK_LENGTH`
+
+```rust
+const INDEX_2_BLOCK_LENGTH: u32 = 32u32;
+```
+
+### `INDEX_3_BLOCK_LENGTH`
+
+```rust
+const INDEX_3_BLOCK_LENGTH: u32 = 32u32;
+```
+
+### `SMALL_DATA_BLOCK_LENGTH`
+
+```rust
+const SMALL_DATA_BLOCK_LENGTH: u32 = 16u32;
+```
+
+### `BMP_DATA_BLOCK_LENGTH`
+
+```rust
+const BMP_DATA_BLOCK_LENGTH: u32 = 64u32;
+```
+
+### `ALLOWED_BREAK_BIT`
+
+```rust
+const ALLOWED_BREAK_BIT: u8 = 128u8;
+```
+
+### `MANDATORY_BREAK_BIT`
+
+```rust
+const MANDATORY_BREAK_BIT: u8 = 64u8;
+```
+
+### `eot`
+
+```rust
+const eot: u8 = 43u8;
+```
+
+### `sot`
+
+```rust
+const sot: u8 = 44u8;
+```
+
+### `BREAK_PROP_TRIE_HIGH_START`
+
+```rust
+const BREAK_PROP_TRIE_HIGH_START: u32 = 918_016u32;
+```
 

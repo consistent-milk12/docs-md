@@ -6,7 +6,7 @@
 
 Provides architecture independent implementations of `memchr` and friends.
 
-The main types in this module are [`One`](../../generic/memchr/index.md), [`Two`](../../x86_64/sse2/memchr/index.md) and [`Three`](#three). They are for
+The main types in this module are [`One`](#one), [`Two`](#two) and [`Three`](#three). They are for
 searching for one, two or three distinct bytes, respectively, in a haystack.
 Each type also has corresponding double ended iterators. These searchers
 are typically slower than hand-coded vector routines accomplishing the same
@@ -18,7 +18,7 @@ The `One` searcher also provides a `One::count` routine for efficiently
 counting the number of times a single byte occurs in a haystack. This is
 useful, for example, for counting the number of lines in a haystack. This
 routine exists because it is usually faster, especially with a high match
-count, than using `One::find` repeatedly. ([`OneIter`](../../x86_64/avx2/memchr/index.md) specializes its
+count, than using `One::find` repeatedly. ([`OneIter`](#oneiter) specializes its
 `Iterator::count` implementation to use this routine.)
 
 Only one, two and three bytes are supported because three bytes is about
@@ -94,7 +94,7 @@ This iterator is created by the `One::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`One`](../../generic/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`One`](#one) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Fields
@@ -204,7 +204,7 @@ This iterator is created by the `Two::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Two`](../../x86_64/sse2/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Two`](#two) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Fields
@@ -356,4 +356,48 @@ The lifetime parameters are as follows:
 - `fn next(self: &mut Self) -> Option<usize>`
 
 - `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+## Functions
+
+### `has_zero_byte`
+
+```rust
+fn has_zero_byte(x: usize) -> bool
+```
+
+Return `true` if `x` contains any zero byte.
+
+That is, this routine treats `x` as a register of 8-bit lanes and returns
+true when any of those lanes is `0`.
+
+From "Matters Computational" by J. Arndt.
+
+### `splat`
+
+```rust
+const fn splat(b: u8) -> usize
+```
+
+Repeat the given byte into a word size number. That is, every 8 bits
+is equivalent to the given byte. For example, if `b` is `\x4E` or
+`01001110` in binary, then the returned value on a 32-bit system would be:
+`01001110_01001110_01001110_01001110`.
+
+## Constants
+
+### `USIZE_BYTES`
+
+```rust
+const USIZE_BYTES: usize = 8usize;
+```
+
+The number of bytes in a single `usize` value.
+
+### `USIZE_ALIGN`
+
+```rust
+const USIZE_ALIGN: usize = 7usize;
+```
+
+The bits that must be zero for a `*const usize` to be properly aligned.
 

@@ -562,6 +562,7 @@ impl<'a> SingleCrateView<'a> {
     }
 
     /// Process backtick links like `[`Span`]` to markdown links.
+    #[tracing::instrument(skip(self, docs, item_links), level = "trace", fields(file = %current_file))]
     fn process_backtick_links(
         &self,
         docs: &str,
@@ -570,6 +571,8 @@ impl<'a> SingleCrateView<'a> {
     ) -> String {
         let mut result = String::with_capacity(docs.len());
         let mut last_end = 0;
+        let mut resolved_count = 0;
+        let mut unresolved_count = 0;
 
         for caps in BACKTICK_LINK_RE.captures_iter(docs) {
             let full_match = caps.get(0).unwrap();
@@ -579,6 +582,10 @@ impl<'a> SingleCrateView<'a> {
             // Check if followed by ( or [ (already a link)
             let next_char = docs[match_end..].chars().next();
             if matches!(next_char, Some('(' | '[')) {
+                tracing::trace!(
+                    link = %full_match.as_str(),
+                    "Skipping - already has link target"
+                );
                 continue;
             }
 
@@ -587,16 +594,43 @@ impl<'a> SingleCrateView<'a> {
 
             let link_text = &caps[1];
 
-            // Try to resolve the link
-            if let Some(resolved) = self.resolve_link(link_text, item_links, current_file) {
+            // The item_links keys may have backticks (e.g., "`Visit`") or not ("Visit")
+            // Try the backtick-wrapped version first since that's what rustdoc typically uses
+            let backtick_key = format!("`{link_text}`");
+
+            // Try to resolve the link (try backtick version first, then plain)
+            if let Some(resolved) = self
+                .resolve_link(&backtick_key, item_links, current_file)
+                .or_else(|| self.resolve_link(link_text, item_links, current_file))
+            {
+                tracing::trace!(
+                    link_text = %link_text,
+                    resolved = %resolved,
+                    "Resolved backtick link"
+                );
+                resolved_count += 1;
                 result.push_str(&resolved);
             } else {
+                tracing::trace!(
+                    link_text = %link_text,
+                    "Could not resolve backtick link, keeping as inline code"
+                );
+                unresolved_count += 1;
                 // Couldn't resolve - convert to plain inline code
                 _ = write!(result, "`{link_text}`");
             }
         }
 
         result.push_str(&docs[last_end..]);
+
+        if resolved_count > 0 || unresolved_count > 0 {
+            tracing::trace!(
+                resolved = resolved_count,
+                unresolved = unresolved_count,
+                "Finished processing backtick links"
+            );
+        }
+
         result
     }
 
@@ -654,34 +688,78 @@ impl<'a> SingleCrateView<'a> {
     ///
     /// Returns `Some(markdown_link)` if the item can be resolved,
     /// `None` if it should remain as plain text.
+    #[tracing::instrument(skip(self), level = "trace")]
     fn resolve_plain_link(&self, link_text: &str, current_file: &str) -> Option<String> {
         // Try to find the item in the registry
-        let (_, id) = self.registry.resolve_name(link_text, self.crate_name)?;
+        let (resolved_crate, id) = self.registry.resolve_name(link_text, self.crate_name)?;
 
-        // Get the item's path info to check its kind
-        let path_info = self.krate.paths.get(&id)?;
+        tracing::trace!(
+            resolved_crate = %resolved_crate,
+            id = ?id,
+            "Found item in registry"
+        );
+
+        // Check if this is an external re-export and try to follow it
+        let (target_crate, target_id) = self
+            .registry
+            .resolve_reexport(&resolved_crate, id)
+            .unwrap_or_else(|| (resolved_crate.clone(), id));
+
+        let followed_reexport = target_crate != resolved_crate || target_id != id;
+        if followed_reexport {
+            tracing::trace!(
+                original_crate = %resolved_crate,
+                original_id = ?id,
+                target_crate = %target_crate,
+                target_id = ?target_id,
+                "Followed re-export chain to original item"
+            );
+        }
+
+        // Get the crate data for the target (might be different from current crate)
+        let target_krate = self.ctx.crates.get(&target_crate)?;
+
+        // Get the item's path info from the target crate
+        let path_info = target_krate.paths.get(&target_id)?;
 
         // Get the file path for this item
-        let target_path = self.registry.get_path(self.crate_name, id)?;
+        let target_path = self.registry.get_path(&target_crate, target_id)?;
 
         // Strip crate prefix from current_file for comparison
         let current_local = Self::strip_crate_prefix(current_file);
 
-        if target_path == current_local {
+        // Check if same file (accounting for cross-crate)
+        let is_same_file = target_crate == self.crate_name && target_path == current_local;
+
+        if is_same_file {
             // Item is on the current page
             if item_has_anchor(path_info.kind) {
                 // Has a heading - create anchor link
                 let anchor = slugify_anchor(link_text);
+                tracing::trace!(
+                    anchor = %anchor,
+                    kind = ?path_info.kind,
+                    "Creating same-page anchor link"
+                );
                 Some(format!("[{link_text}](#{anchor})"))
             } else {
                 // No heading - link to page without anchor
+                tracing::trace!(
+                    kind = ?path_info.kind,
+                    "Item on same page but no heading - linking to page"
+                );
                 Some(format!("[{link_text}]()"))
             }
         } else {
-            // Item is in a different file - create relative link
+            // Item is in a different file (possibly different crate)
+            tracing::trace!(
+                target_crate = %target_crate,
+                target_path = %target_path,
+                "Creating cross-file link"
+            );
             let relative = self.build_markdown_link(
                 current_file,
-                self.crate_name,
+                &target_crate,
                 target_path,
                 link_text,
                 None,
@@ -747,7 +825,10 @@ impl<'a> SingleCrateView<'a> {
             // We have an ID! Now convert it to a markdown path.
             // Example: Id(123) → "config/index.md" → "[`ConfigBuilder`](config/index.md)"
             tracing::debug!(strategy = "item_links", ?id, "Found ID in item links");
-            if let Some(link) = self.build_link_to_id(*id, current_file, link_text, None) {
+
+            // Strip backticks from display name if present (rustdoc uses `Name` as keys)
+            let display_name = link_text.trim_matches('`');
+            if let Some(link) = self.build_link_to_id(*id, current_file, display_name, None) {
                 tracing::debug!(strategy = "item_links", link = %link, "Successfully resolved");
 
                 return Some(link);
@@ -770,22 +851,17 @@ impl<'a> SingleCrateView<'a> {
             strategy = "registry_name",
             "Attempting resolution via registry name lookup"
         );
-        if let Some((resolved_crate, id)) = self.registry.resolve_name(link_text, self.crate_name)
-            && let Some(target_path) = self.registry.get_path(&resolved_crate, id)
-        {
+        if let Some((resolved_crate, id)) = self.registry.resolve_name(link_text, self.crate_name) {
             // Only use this if:
             // 1. Same crate (internal link), OR
             // 2. Explicitly looks like an external reference (contains "::")
             //
             // This prevents accidental cross-crate linking for common names like "Error"
             if resolved_crate == self.crate_name || Self::looks_like_external_reference(link_text) {
-                return Some(self.build_markdown_link(
-                    current_file,
-                    &resolved_crate,
-                    target_path,
-                    link_text,
-                    None,
-                ));
+                // Use build_link_to_id to follow re-exports to the original definition
+                if let Some(link) = self.build_link_to_id(id, current_file, link_text, None) {
+                    return Some(link);
+                }
             }
         }
 
@@ -863,6 +939,7 @@ impl<'a> SingleCrateView<'a> {
     ///
     /// Output: Some("[`ConfigBuilder`](../config/index.md)")
     /// ```
+    #[tracing::instrument(skip(self), level = "trace")]
     fn build_link_to_id(
         &self,
         id: Id,
@@ -870,18 +947,208 @@ impl<'a> SingleCrateView<'a> {
         display_name: &str,
         anchor: Option<&str>,
     ) -> Option<String> {
-        // Look up the file path for this ID in the current crate
-        // Returns None if the ID isn't registered (shouldn't happen for valid links)
-        let target_path = self.registry.get_path(self.crate_name, id)?;
+        // First: Check if this is a re-export and follow to the original definition
+        // Re-exports don't have headings - we need to link to where the item is defined
+        //
+        // Method 1: Check our re_export_sources registry
+        if let Some((original_crate, original_id)) =
+            self.registry.resolve_reexport(self.crate_name, id)
+        {
+            tracing::trace!(
+                original_crate = %original_crate,
+                original_id = ?original_id,
+                "Following re-export via registry to original definition"
+            );
 
-        // Delegate to build_markdown_link for the actual path computation
-        Some(self.build_markdown_link(
-            current_file,
-            self.crate_name, // Same crate as current context
-            target_path,
-            display_name,
-            anchor,
-        ))
+            if let Some(target_path) = self.registry.get_path(&original_crate, original_id) {
+                return Some(self.build_markdown_link(
+                    current_file,
+                    &original_crate,
+                    target_path,
+                    display_name,
+                    anchor,
+                ));
+            }
+        }
+
+        // Method 2: Check if the item itself is a Use item in the index
+        if let Some(item) = self.krate.index.get(&id)
+            && let ItemEnum::Use(use_item) = &item.inner
+        {
+            tracing::trace!(
+                source = %use_item.source,
+                target_id = ?use_item.id,
+                "Found Use item in index"
+            );
+
+            // Method 2a: If the Use item has a target ID, look up via paths
+            // This handles cases where source is relative (e.g., "self::event::Event")
+            // but the ID points to the actual item in another crate
+            if let Some(target_id) = use_item.id {
+                if let Some(path_info) = self.krate.paths.get(&target_id) {
+                    if let Some(external_crate) = path_info.path.first() {
+                        tracing::trace!(
+                            external_crate = %external_crate,
+                            path = ?path_info.path,
+                            "Following Use item target ID to external crate"
+                        );
+
+                        // Try to find the item in the external crate by name
+                        let item_name = path_info.path.last().unwrap_or(&path_info.path[0]);
+                        if let Some((resolved_crate, resolved_id)) =
+                            self.registry.resolve_name(item_name, external_crate)
+                        {
+                            if let Some(target_path) =
+                                self.registry.get_path(&resolved_crate, resolved_id)
+                            {
+                                return Some(self.build_markdown_link(
+                                    current_file,
+                                    &resolved_crate,
+                                    target_path,
+                                    display_name,
+                                    anchor,
+                                ));
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Method 2b: Try to resolve the source path directly
+            if !use_item.source.is_empty() {
+                if let Some((original_crate, original_id)) =
+                    self.registry.resolve_path(&use_item.source)
+                {
+                    if let Some(target_path) =
+                        self.registry.get_path(&original_crate, original_id)
+                    {
+                        return Some(self.build_markdown_link(
+                            current_file,
+                            &original_crate,
+                            target_path,
+                            display_name,
+                            anchor,
+                        ));
+                    }
+                }
+            }
+        }
+
+        // Strategy 1: Try to find the ID in the current crate
+        if let Some(target_path) = self.registry.get_path(self.crate_name, id) {
+            tracing::trace!(
+                strategy = "current_crate",
+                crate_name = %self.crate_name,
+                target_path = %target_path,
+                "Found ID in current crate registry"
+            );
+            return Some(self.build_markdown_link(
+                current_file,
+                self.crate_name,
+                target_path,
+                display_name,
+                anchor,
+            ));
+        }
+
+        tracing::trace!(
+            strategy = "current_crate",
+            crate_name = %self.crate_name,
+            "ID not found in current crate, checking paths for external reference"
+        );
+
+        // Strategy 2: ID not in current crate - check if it's an external item via paths
+        // The paths map can contain IDs from other crates (for re-exports/cross-refs)
+        if let Some(path_info) = self.krate.paths.get(&id) {
+            // path_info.path is like ["tracing_core", "field", "Visit"]
+            // First element is the crate name
+            let path_str = path_info.path.join("::");
+            tracing::trace!(
+                strategy = "external_paths",
+                path = %path_str,
+                kind = ?path_info.kind,
+                "Found path info for external item"
+            );
+
+            if let Some(external_crate) = path_info.path.first() {
+                // Strategy 2a: Try direct ID lookup in external crate
+                if let Some(target_path) = self.registry.get_path(external_crate, id) {
+                    tracing::trace!(
+                        strategy = "external_direct_id",
+                        external_crate = %external_crate,
+                        target_path = %target_path,
+                        "Found external item by direct ID lookup"
+                    );
+                    return Some(self.build_markdown_link(
+                        current_file,
+                        external_crate,
+                        target_path,
+                        display_name,
+                        anchor,
+                    ));
+                }
+
+                // Strategy 2b: External crate uses different ID - try name-based lookup
+                // This handles cross-crate references where IDs are crate-local
+                let item_name = path_info.path.last()?;
+                tracing::trace!(
+                    strategy = "external_name_lookup",
+                    external_crate = %external_crate,
+                    item_name = %item_name,
+                    "Attempting name-based lookup in external crate"
+                );
+
+                if let Some((resolved_crate, resolved_id)) =
+                    self.registry.resolve_name(item_name, external_crate)
+                {
+                    tracing::trace!(
+                        strategy = "external_name_lookup",
+                        resolved_crate = %resolved_crate,
+                        resolved_id = ?resolved_id,
+                        "Name resolved to crate and ID"
+                    );
+
+                    if let Some(target_path) = self.registry.get_path(&resolved_crate, resolved_id)
+                    {
+                        tracing::debug!(
+                            strategy = "external_name_lookup",
+                            resolved_crate = %resolved_crate,
+                            target_path = %target_path,
+                            "Successfully resolved external item"
+                        );
+                        return Some(self.build_markdown_link(
+                            current_file,
+                            &resolved_crate,
+                            target_path,
+                            display_name,
+                            anchor,
+                        ));
+                    }
+
+                    tracing::trace!(
+                        strategy = "external_name_lookup",
+                        resolved_crate = %resolved_crate,
+                        resolved_id = ?resolved_id,
+                        "Name resolved but no path found in registry"
+                    );
+                } else {
+                    tracing::trace!(
+                        strategy = "external_name_lookup",
+                        external_crate = %external_crate,
+                        item_name = %item_name,
+                        "Name not found in external crate registry"
+                    );
+                }
+            }
+        } else {
+            tracing::trace!(
+                strategy = "external_paths",
+                "No path info found for ID"
+            );
+        }
+
+        tracing::trace!("All strategies exhausted, returning None");
+        None
     }
 
     /// Resolve `crate::path::Item` or `crate::path::Item::method` patterns.

@@ -6,7 +6,7 @@
 
 <br>
 
-This crate provides the `quote!` macro for turning Rust syntax tree data
+This crate provides the [`quote!`](#quote) macro for turning Rust syntax tree data
 structures into tokens of source code.
 
 Procedural macros in Rust receive a stream of tokens as input, execute
@@ -39,8 +39,8 @@ quote = "1.0"
 The following quasi-quoted block of code is something you might find in [a]
 procedural macro having to do with data structure serialization. The `#var`
 syntax performs interpolation of runtime variables into the quoted tokens.
-Check out the documentation of the `quote!` macro for more detail about
-the syntax. See also the `quote_spanned!` macro which is important for
+Check out the documentation of the [`quote!`](#quote) macro for more detail about
+the syntax. See also the [`quote_spanned!`](#quote-spanned) macro which is important for
 implementing hygienic procedural macros.
 
 ```rust
@@ -85,9 +85,20 @@ file, consider having the code generator pass the tokens through
 code it is convenient for a human to read and debug.
 
 
+## Modules
+
+- [`ext`](ext/index.md) - 
+- [`format`](format/index.md) - 
+- [`ident_fragment`](ident_fragment/index.md) - 
+- [`to_tokens`](to_tokens/index.md) - 
+
 ## Traits
 
 ## Macros
+
+### `__quote!`
+
+### `__quote_spanned!`
 
 ### `format_ident!`
 
@@ -97,7 +108,7 @@ Formatting macro for constructing `Ident`s.
 
 # Syntax
 
-Syntax is copied from the `format!` macro, supporting both positional and
+Syntax is copied from the [`format!`](../clap_builder/error/format/index.md) macro, supporting both positional and
 named arguments.
 
 Only a limited set of formatting traits are supported. The current mapping
@@ -109,7 +120,7 @@ of format types to traits is:
 * `{:X}` ⇒ [`UpperHex`](std::fmt::UpperHex)
 * `{:b}` ⇒ [`Binary`](std::fmt::Binary)
 
-See `std::fmt` for more information.
+See [`std::fmt`](../anstream/fmt/index.md) for more information.
 
 <br>
 
@@ -202,10 +213,10 @@ assert_eq!(upper_hex, "Id_A");
 The whole point.
 
 Performs variable interpolation against the input and produces it as
-`proc_macro2::TokenStream`.
+[`proc_macro2::TokenStream`](../proc_macro2/imp/index.md).
 
 Note: for returning tokens to the compiler in a procedural macro, use
-`.into()` on the result to convert to `proc_macro::TokenStream`.
+`.into()` on the result to convert to [`proc_macro::TokenStream`](../proc_macro2/imp/index.md).
 
 <br>
 
@@ -237,7 +248,7 @@ Any interpolated tokens preserve the `Span` information provided by their
 `ToTokens` implementation. Tokens that originate within the `quote!`
 invocation are spanned with `Span::call_site()`.
 
-A different span can be provided through the `quote_spanned!` macro.
+A different span can be provided through the [`quote_spanned!`](#quote-spanned) macro.
 
 <br>
 
@@ -255,7 +266,7 @@ procedural macro ecosystem is largely built around `proc_macro2`, because
 that ensures the libraries are unit testable and accessible in non-macro
 contexts.
 
-There is a [`From`](#from)-conversion in both directions so returning the output of
+There is a [`From`](../thiserror_impl/attr/index.md)-conversion in both directions so returning the output of
 `quote!` from a procedural macro usually looks like `tokens.into()` or
 `proc_macro::TokenStream::from(tokens)`.
 
@@ -353,7 +364,7 @@ quote! {
 ```
 
 The solution is to build a new identifier token with the correct value. As
-this is such a common case, the `format_ident!` macro provides a
+this is such a common case, the [`format_ident!`](#format-ident) macro provides a
 convenient utility for doing so correctly.
 
 ```rust
@@ -590,7 +601,7 @@ invocation are spanned with the given span argument.
 # Example
 
 The following procedural macro code uses `quote_spanned!` to assert that a
-particular Rust type implements the [`Sync`](#sync) trait so that references can be
+particular Rust type implements the [`Sync`](../miniz_oxide/index.md) trait so that references can be
 safely shared between threads.
 
 ```rust

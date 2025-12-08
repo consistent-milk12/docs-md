@@ -6,6 +6,10 @@
 
 Extension traits to provide parsing methods on foreign types.
 
+## Modules
+
+- [`private`](private/index.md) - 
+
 ## Traits
 
 ### `IdentExt`
@@ -30,4 +34,24 @@ is implemented only for `proc_macro2::Ident`.
 - `fn unraw(self: &Self) -> Ident`
 
   Strips the raw marker `r#`, if any, from the beginning of an ident.
+
+### `TokenStreamExt`
+
+```rust
+trait TokenStreamExt { ... }
+```
+
+#### Required Methods
+
+- `fn append(self: &mut Self, token: TokenTree)`
+
+### `PunctExt`
+
+```rust
+trait PunctExt { ... }
+```
+
+#### Required Methods
+
+- `fn new_spanned(ch: char, spacing: Spacing, span: Span) -> Self`
 

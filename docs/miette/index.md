@@ -58,12 +58,12 @@ diagnostic error code: ruget::api::bad_json
 ## Features
 
 - Generic [`Diagnostic`](#diagnostic) protocol, compatible (and dependent on)
-  `std::error::Error`.
+  [`std::error::Error`](../addr2line/index.md).
 - Unique error codes on every [`Diagnostic`](#diagnostic).
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
 - Replacements for [`anyhow`](https://docs.rs/anyhow)/[`eyre`](https://docs.rs/eyre)
-  types [`Result`](#result), [`Report`](#report) and the `miette!` macro for the
+  types [`Result`](#result), [`Report`](#report) and the [`miette!`](#miette) macro for the
   `anyhow!`/`eyre!` macros.
 - Generic support for arbitrary [`SourceCode`](#sourcecode)s for snippet data, with
   default support for `String`s included.
@@ -182,7 +182,7 @@ diagnostic help: try doing it better next time?">
 
 `miette` is _fully compatible_ with library usage. Consumers who don't know
 about, or don't want, `miette` features can safely use its error types as
-regular `std::error::Error`.
+regular [`std::error::Error`](../addr2line/index.md).
 
 We highly recommend using something like [`thiserror`](https://docs.rs/thiserror)
 to define unique error types and error wrappers for your library.
@@ -266,7 +266,7 @@ pub fn some_tool() -> Result<Version> {
 }
 ```
 
-To construct your own simple adhoc error use the `miette!` macro:
+To construct your own simple adhoc error use the [`miette!`](#miette) macro:
 ```rust
 // my_app/lib/my_internal_file.rs
 use miette::{miette, Result};
@@ -645,7 +645,7 @@ customize!
 If you...
 - ...don't know all the possible errors upfront
 - ...need to serialize/deserialize errors
-  then you may want to use `miette!`, `diagnostic!` macros or
+  then you may want to use [`miette!`](#miette), [`diagnostic!`](#diagnostic) macros or
   [`MietteDiagnostic`](#miettediagnostic) directly to create diagnostic on the fly.
 
 ```rust,ignore
@@ -806,7 +806,33 @@ under the Apache License. Some code is taken from
 
 ## Modules
 
+- [`chain`](chain/index.md) - Iterate over error `.source()` chains.
+- [`diagnostic_chain`](diagnostic_chain/index.md) - Iterate over error `.diagnostic_source()` chains.
+- [`diagnostic_impls`](diagnostic_impls/index.md) - Default trait implementations for [`Diagnostic`].
+- [`error`](error/index.md) - 
+- [`eyreish`](eyreish/index.md) - 
+- [`handler`](handler/index.md) - 
+- [`handlers`](handlers/index.md) - Reporters included with `miette`.
 - [`highlighters`](highlighters/index.md) - This module provides a trait for creating custom syntax highlighters that
+- [`miette_diagnostic`](miette_diagnostic/index.md) - 
+- [`named_source`](named_source/index.md) - 
+- [`panic`](panic/index.md) - 
+- [`protocol`](protocol/index.md) - This module defines the core of the miette protocol: a series of types and
+- [`source_impls`](source_impls/index.md) - Default trait implementations for [`SourceCode`].
+- [`context`](context/index.md) - 
+- [`error`](error/index.md) - 
+- [`fmt`](fmt/index.md) - 
+- [`into_diagnostic`](into_diagnostic/index.md) - 
+- [`kind`](kind/index.md) - 
+- [`macros`](macros/index.md) - 
+- [`ptr`](ptr/index.md) - 
+- [`wrapper`](wrapper/index.md) - 
+- [`syscall`](syscall/index.md) - 
+- [`debug`](debug/index.md) - 
+- [`graphical`](graphical/index.md) - 
+- [`json`](json/index.md) - 
+- [`narratable`](narratable/index.md) - 
+- [`theme`](theme/index.md) - 
 
 ## Structs
 
@@ -870,7 +896,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- `fn as_ref(self: &Self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](#diagnostic)
+- `fn as_ref(self: &Self) -> &dyn StdError + Send + Sync`
 
 ##### `impl Debug for super::Report`
 
@@ -920,7 +946,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 struct InstallError;
 ```
 
-Error indicating that `set_hook()` was unable to install the provided
+Error indicating that [`set_hook()`](#set-hook) was unable to install the provided
 [`ErrorHook`](#errorhook).
 
 #### Trait Implementations
@@ -1129,7 +1155,7 @@ Diagnostic that can be created at runtime.
 
   [`Diagnostic`](#diagnostic) severity. Intended to be used by
   [`ReportHandler`](crate::ReportHandler)s to change the way different
-  [`Diagnostic`](#diagnostic)s are displayed. Defaults to `Severity::Error`
+  [`Diagnostic`](#diagnostic)s are displayed. Defaults to [`Severity::Error`](#severityerror)
 
 - **`help`**: `Option<String>`
 
@@ -1223,7 +1249,7 @@ struct NamedSource<S: SourceCode + 'static> {
 ```
 
 Utility struct for when you have a regular [`SourceCode`](#sourcecode) type that doesn't
-implement `name`. For example `String`. Or if you want to override the
+implement `name`. For example [`String`](../clap_builder/index.md). Or if you want to override the
 `name` returned by the `SourceCode`.
 
 #### Implementations
@@ -1271,6 +1297,44 @@ implement `name`. For example `String`. Or if you want to override the
 - `fn read_span<'a>(self: &'a Self, span: &crate::SourceSpan, context_lines_before: usize, context_lines_after: usize) -> Result<Box<dyn SpanContents<'a>>, MietteError>` — [`SourceSpan`](#sourcespan), [`SpanContents`](#spancontents), [`MietteError`](#mietteerror)
 
 ##### `impl<S: SourceCode + 'static> StructuralPartialEq for NamedSource<S>`
+
+### `Panic`
+
+```rust
+struct Panic(String);
+```
+
+#### Implementations
+
+- `fn backtrace() -> String`
+
+#### Trait Implementations
+
+##### `impl Debug for Panic`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<E> Diag for Panic`
+
+- `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](#report)
+
+##### `impl Diagnostic for Panic`
+
+- `fn help<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
+
+##### `impl Display for Panic`
+
+- `fn fmt(self: &Self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result`
+
+##### `impl Error for Panic`
+
+##### `impl<D> OwoColorize for Panic`
+
+##### `impl<T> ToString for Panic`
+
+- `fn to_string(self: &Self) -> String`
+
+##### `impl<E> TraitKind for Panic`
 
 ### `LabeledSpan`
 
@@ -1516,7 +1580,7 @@ Error enum for miette. Used by certain operations in the protocol.
 
 - **`IoError`**
 
-  Wrapper around `std::io::Error`. This is returned when something went
+  Wrapper around [`std::io::Error`](../addr2line/index.md). This is returned when something went
   wrong while reading a [`SourceCode`](crate::SourceCode).
 
 - **`OutOfBounds`**
@@ -1610,6 +1674,27 @@ Settings to control the color format used for graphical rendering.
 
 ##### `impl StructuralPartialEq for RgbColors`
 
+### `HighlighterOption`
+
+```rust
+enum HighlighterOption {
+    Disable,
+    EnableCustom(crate::highlighters::MietteHighlighter),
+}
+```
+
+#### Implementations
+
+- `fn select(color: Option<bool>, highlighter: Option<MietteHighlighter>, supports_color: bool) -> HighlighterOption` — [`MietteHighlighter`](highlighters/index.md), [`HighlighterOption`](handler/index.md)
+
+#### Trait Implementations
+
+##### `impl Default for HighlighterOption`
+
+- `fn default() -> Self`
+
+##### `impl<D> OwoColorize for HighlighterOption`
+
 ### `Severity`
 
 ```rust
@@ -1622,7 +1707,7 @@ enum Severity {
 
 [`Diagnostic`](#diagnostic) severity. Intended to be used by
 [`ReportHandler`](crate::ReportHandler)s to change the way different
-[`Diagnostic`](#diagnostic)s are displayed. Defaults to `Severity::Error`.
+[`Diagnostic`](#diagnostic)s are displayed. Defaults to [`Severity::Error`](#severityerror).
 
 #### Variants
 
@@ -1948,7 +2033,7 @@ trait SourceCode: Send + Sync { ... }
 
 Represents readable source code of some sort.
 
-This trait is able to support simple `SourceCode` types like `String`s, as
+This trait is able to support simple `SourceCode` types like [`String`](../clap_builder/index.md)s, as
 well as more involved types like indexes into centralized `SourceMap`-like
 types, file handles, and even network streams.
 
@@ -2011,6 +2096,18 @@ fn set_hook(hook: ErrorHook) -> Result<(), InstallError>
 ```
 
 Set the error hook.
+
+### `capture_handler`
+
+```rust
+fn capture_handler(error: &dyn Diagnostic) -> Box<dyn ReportHandler>
+```
+
+### `get_default_printer`
+
+```rust
+fn get_default_printer(_err: &dyn Diagnostic) -> Box<dyn ReportHandler>
+```
 
 ### `set_panic_hook`
 
@@ -2306,4 +2403,8 @@ let diag = diagnostic!("{x} + {y} = {z}");
 assert_eq!(diag.message, "1 + 2 = 3");
 ```
 
+
+### `box_error_impls!`
+
+### `box_borrow_impls!`
 

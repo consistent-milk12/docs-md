@@ -87,6 +87,10 @@ Every keyword and punctuation token supports the following operations.
 
 
 
+## Modules
+
+- [`private`](private/index.md) - 
+
 ## Structs
 
 ### `Underscore`
@@ -150,7 +154,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Underscore`
+##### `impl Sealed for Underscore`
 
 ##### `impl<T> Spanned for Underscore`
 
@@ -250,7 +254,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Abstract) -> bool` — [`Abstract`](#abstract)
 
-##### `impl<T> Sealed for Abstract`
+##### `impl Sealed for Abstract`
 
 ##### `impl<T> Spanned for Abstract`
 
@@ -362,7 +366,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Async) -> bool` — [`Async`](#async)
 
-##### `impl Sealed for Async`
+##### `impl<T> Sealed for Async`
 
 ##### `impl<T> Spanned for Async`
 
@@ -418,7 +422,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Auto) -> bool` — [`Auto`](#auto)
 
-##### `impl Sealed for Auto`
+##### `impl<T> Sealed for Auto`
 
 ##### `impl<T> Spanned for Auto`
 
@@ -474,7 +478,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Await) -> bool` — [`Await`](#await)
 
-##### `impl<T> Sealed for Await`
+##### `impl Sealed for Await`
 
 ##### `impl<T> Spanned for Await`
 
@@ -530,7 +534,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Become) -> bool` — [`Become`](#become)
 
-##### `impl Sealed for Become`
+##### `impl<T> Sealed for Become`
 
 ##### `impl<T> Spanned for Become`
 
@@ -586,7 +590,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Box) -> bool` — [`Box`](#box)
 
-##### `impl<T> Sealed for Box`
+##### `impl Sealed for Box`
 
 ##### `impl<T> Spanned for Box`
 
@@ -642,7 +646,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Break) -> bool` — [`Break`](#break)
 
-##### `impl Sealed for Break`
+##### `impl<T> Sealed for Break`
 
 ##### `impl<T> Spanned for Break`
 
@@ -922,7 +926,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Do) -> bool` — [`Do`](#do)
 
-##### `impl Sealed for Do`
+##### `impl<T> Sealed for Do`
 
 ##### `impl<T> Spanned for Do`
 
@@ -978,7 +982,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Dyn) -> bool` — [`Dyn`](#dyn)
 
-##### `impl<T> Sealed for Dyn`
+##### `impl Sealed for Dyn`
 
 ##### `impl<T> Spanned for Dyn`
 
@@ -1090,7 +1094,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Enum) -> bool` — [`Enum`](#enum)
 
-##### `impl<T> Sealed for Enum`
+##### `impl Sealed for Enum`
 
 ##### `impl<T> Spanned for Enum`
 
@@ -1202,7 +1206,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Final) -> bool` — [`Final`](#final)
 
-##### `impl<T> Sealed for Final`
+##### `impl Sealed for Final`
 
 ##### `impl<T> Spanned for Final`
 
@@ -1258,7 +1262,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Fn) -> bool` — [`Fn`](#fn)
 
-##### `impl<T> Sealed for Fn`
+##### `impl Sealed for Fn`
 
 ##### `impl<T> Spanned for Fn`
 
@@ -1314,7 +1318,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &For) -> bool` — [`For`](#for)
 
-##### `impl<T> Sealed for For`
+##### `impl Sealed for For`
 
 ##### `impl<T> Spanned for For`
 
@@ -1370,7 +1374,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &If) -> bool` — [`If`](#if)
 
-##### `impl Sealed for If`
+##### `impl<T> Sealed for If`
 
 ##### `impl<T> Spanned for If`
 
@@ -1426,7 +1430,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Impl) -> bool` — [`Impl`](#impl)
 
-##### `impl Sealed for Impl`
+##### `impl<T> Sealed for Impl`
 
 ##### `impl<T> Spanned for Impl`
 
@@ -1482,7 +1486,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &In) -> bool` — [`In`](#in)
 
-##### `impl<T> Sealed for In`
+##### `impl Sealed for In`
 
 ##### `impl<T> Spanned for In`
 
@@ -1594,7 +1598,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Loop) -> bool` — [`Loop`](#loop)
 
-##### `impl Sealed for Loop`
+##### `impl<T> Sealed for Loop`
 
 ##### `impl<T> Spanned for Loop`
 
@@ -1650,7 +1654,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Macro) -> bool` — [`Macro`](#macro)
 
-##### `impl<T> Sealed for Macro`
+##### `impl Sealed for Macro`
 
 ##### `impl<T> Spanned for Macro`
 
@@ -1762,7 +1766,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Mod) -> bool` — [`Mod`](#mod)
 
-##### `impl<T> Sealed for Mod`
+##### `impl Sealed for Mod`
 
 ##### `impl<T> Spanned for Mod`
 
@@ -1818,7 +1822,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Move) -> bool` — [`Move`](#move)
 
-##### `impl<T> Sealed for Move`
+##### `impl Sealed for Move`
 
 ##### `impl<T> Spanned for Move`
 
@@ -1874,7 +1878,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Mut) -> bool` — [`Mut`](#mut)
 
-##### `impl<T> Sealed for Mut`
+##### `impl Sealed for Mut`
 
 ##### `impl<T> Spanned for Mut`
 
@@ -1930,7 +1934,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Override) -> bool` — [`Override`](#override)
 
-##### `impl Sealed for Override`
+##### `impl<T> Sealed for Override`
 
 ##### `impl<T> Spanned for Override`
 
@@ -2210,7 +2214,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Return) -> bool` — [`Return`](#return)
 
-##### `impl Sealed for Return`
+##### `impl<T> Sealed for Return`
 
 ##### `impl<T> Spanned for Return`
 
@@ -2266,7 +2270,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &SelfType) -> bool` — [`SelfType`](#selftype)
 
-##### `impl<T> Sealed for SelfType`
+##### `impl Sealed for SelfType`
 
 ##### `impl<T> Spanned for SelfType`
 
@@ -2378,7 +2382,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Static) -> bool` — [`Static`](#static)
 
-##### `impl<T> Sealed for Static`
+##### `impl Sealed for Static`
 
 ##### `impl<T> Spanned for Static`
 
@@ -2658,7 +2662,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Type) -> bool` — [`Type`](#type)
 
-##### `impl<T> Sealed for Type`
+##### `impl Sealed for Type`
 
 ##### `impl<T> Spanned for Type`
 
@@ -2826,7 +2830,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Unsafe) -> bool` — [`Unsafe`](#unsafe)
 
-##### `impl<T> Sealed for Unsafe`
+##### `impl Sealed for Unsafe`
 
 ##### `impl<T> Spanned for Unsafe`
 
@@ -2882,7 +2886,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Unsized) -> bool` — [`Unsized`](#unsized)
 
-##### `impl Sealed for Unsized`
+##### `impl<T> Sealed for Unsized`
 
 ##### `impl<T> Spanned for Unsized`
 
@@ -2938,7 +2942,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Use) -> bool` — [`Use`](#use)
 
-##### `impl<T> Sealed for Use`
+##### `impl Sealed for Use`
 
 ##### `impl<T> Spanned for Use`
 
@@ -2994,7 +2998,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Virtual) -> bool` — [`Virtual`](#virtual)
 
-##### `impl<T> Sealed for Virtual`
+##### `impl Sealed for Virtual`
 
 ##### `impl<T> Spanned for Virtual`
 
@@ -3050,7 +3054,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Where) -> bool` — [`Where`](#where)
 
-##### `impl<T> Sealed for Where`
+##### `impl Sealed for Where`
 
 ##### `impl<T> Spanned for Where`
 
@@ -3106,7 +3110,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &While) -> bool` — [`While`](#while)
 
-##### `impl Sealed for While`
+##### `impl<T> Sealed for While`
 
 ##### `impl<T> Spanned for While`
 
@@ -3294,7 +3298,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &AndAnd) -> bool` — [`AndAnd`](#andand)
 
-##### `impl Sealed for AndAnd`
+##### `impl<T> Sealed for AndAnd`
 
 ##### `impl<T> Spanned for AndAnd`
 
@@ -3631,7 +3635,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Colon`
+##### `impl Sealed for Colon`
 
 ##### `impl<T> Spanned for Colon`
 
@@ -3704,7 +3708,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Comma`
+##### `impl<T> Sealed for Comma`
 
 ##### `impl<T> Spanned for Comma`
 
@@ -3909,7 +3913,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &DotDot) -> bool` — [`DotDot`](#dotdot)
 
-##### `impl<T> Sealed for DotDot`
+##### `impl Sealed for DotDot`
 
 ##### `impl<T> Spanned for DotDot`
 
@@ -4027,7 +4031,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &DotDotEq) -> bool` — [`DotDotEq`](#dotdoteq)
 
-##### `impl<T> Sealed for DotDotEq`
+##### `impl Sealed for DotDotEq`
 
 ##### `impl<T> Spanned for DotDotEq`
 
@@ -4100,7 +4104,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Eq`
+##### `impl<T> Sealed for Eq`
 
 ##### `impl<T> Spanned for Eq`
 
@@ -4159,7 +4163,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &EqEq) -> bool` — [`EqEq`](#eqeq)
 
-##### `impl<T> Sealed for EqEq`
+##### `impl Sealed for EqEq`
 
 ##### `impl<T> Spanned for EqEq`
 
@@ -4218,7 +4222,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &FatArrow) -> bool` — [`FatArrow`](#fatarrow)
 
-##### `impl Sealed for FatArrow`
+##### `impl<T> Sealed for FatArrow`
 
 ##### `impl<T> Spanned for FatArrow`
 
@@ -4350,7 +4354,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Gt`
+##### `impl<T> Sealed for Gt`
 
 ##### `impl<T> Spanned for Gt`
 
@@ -4409,7 +4413,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &LArrow) -> bool` — [`LArrow`](#larrow)
 
-##### `impl<T> Sealed for LArrow`
+##### `impl Sealed for LArrow`
 
 ##### `impl<T> Spanned for LArrow`
 
@@ -4468,7 +4472,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Le) -> bool` — [`Le`](#le)
 
-##### `impl<T> Sealed for Le`
+##### `impl Sealed for Le`
 
 ##### `impl<T> Spanned for Le`
 
@@ -4541,7 +4545,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Lt`
+##### `impl Sealed for Lt`
 
 ##### `impl<T> Spanned for Lt`
 
@@ -4614,7 +4618,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Minus`
+##### `impl Sealed for Minus`
 
 ##### `impl<T> Spanned for Minus`
 
@@ -4673,7 +4677,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &MinusEq) -> bool` — [`MinusEq`](#minuseq)
 
-##### `impl<T> Sealed for MinusEq`
+##### `impl Sealed for MinusEq`
 
 ##### `impl<T> Spanned for MinusEq`
 
@@ -4805,7 +4809,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Not`
+##### `impl Sealed for Not`
 
 ##### `impl<T> Spanned for Not`
 
@@ -4996,7 +5000,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &OrOr) -> bool` — [`OrOr`](#oror)
 
-##### `impl Sealed for OrOr`
+##### `impl<T> Sealed for OrOr`
 
 ##### `impl<T> Spanned for OrOr`
 
@@ -5055,7 +5059,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &PathSep) -> bool` — [`PathSep`](#pathsep)
 
-##### `impl Sealed for PathSep`
+##### `impl<T> Sealed for PathSep`
 
 ##### `impl<T> Spanned for PathSep`
 
@@ -5392,7 +5396,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Pound`
+##### `impl Sealed for Pound`
 
 ##### `impl<T> Spanned for Pound`
 
@@ -5465,7 +5469,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Question`
+##### `impl<T> Sealed for Question`
 
 ##### `impl<T> Spanned for Question`
 
@@ -5524,7 +5528,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &RArrow) -> bool` — [`RArrow`](#rarrow)
 
-##### `impl Sealed for RArrow`
+##### `impl<T> Sealed for RArrow`
 
 ##### `impl<T> Spanned for RArrow`
 
@@ -5715,7 +5719,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &ShlEq) -> bool` — [`ShlEq`](#shleq)
 
-##### `impl Sealed for ShlEq`
+##### `impl<T> Sealed for ShlEq`
 
 ##### `impl<T> Spanned for ShlEq`
 
@@ -5774,7 +5778,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Shr) -> bool` — [`Shr`](#shr)
 
-##### `impl Sealed for Shr`
+##### `impl<T> Sealed for Shr`
 
 ##### `impl<T> Spanned for Shr`
 
@@ -6038,7 +6042,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Star`
+##### `impl<T> Sealed for Star`
 
 ##### `impl<T> Spanned for Star`
 
@@ -6325,4 +6329,18 @@ trait Token: private::Sealed { ... }
 Marker trait for types that represent single tokens.
 
 This trait is sealed and cannot be implemented for types outside of Syn.
+
+## Macros
+
+### `impl_low_level_token!`
+
+### `define_keywords!`
+
+### `impl_deref_if_len_is_1!`
+
+### `define_punctuation_structs!`
+
+### `define_punctuation!`
+
+### `define_delimiters!`
 

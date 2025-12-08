@@ -6,6 +6,10 @@
 
 XTerm 256-bit colors. Not as widely supported as standard ANSI but contains 240 more colors.
 
+## Modules
+
+- [`dynamic`](dynamic/index.md) - 
+
 ## Structs
 
 ### `UserBlack`
@@ -5127,4 +5131,8 @@ struct GalleryGray;
 - `const RAW_ANSI_FG: &'static str`
 
 ##### `impl<D> OwoColorize for GalleryGray`
+
+## Macros
+
+### `xterm_colors!`
 

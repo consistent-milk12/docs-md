@@ -8,7 +8,7 @@
 
 This crate provides a fast conversion of integer primitives to decimal
 strings. The implementation comes straight from [libcore] but avoids the
-performance penalty of going through `core::fmt::Formatter`.
+performance penalty of going through [`core::fmt::Formatter`](../regex_syntax/error/index.md).
 
 See also [`ryu`](#ryu) for printing floating point primitives.
 
@@ -26,6 +26,11 @@ fn main() {
 # Performance (lower is better)
 
 ![performance](https://raw.githubusercontent.com/dtolnay/itoa/master/performance.png)
+
+## Modules
+
+- [`udiv128`](udiv128/index.md) - 
+- [`private`](private/index.md) - 
 
 ## Structs
 
@@ -81,4 +86,20 @@ This trait is sealed and cannot be implemented for types outside of itoa.
 #### Required Methods
 
 - `const MAX_STR_LEN: usize`
+
+## Constants
+
+### `DEC_DIGITS_LUT`
+
+```rust
+const DEC_DIGITS_LUT: [u8; 200];
+```
+
+## Macros
+
+### `impl_Integer!`
+
+### `impl_Integer_size!`
+
+### `impl_Integer128!`
 

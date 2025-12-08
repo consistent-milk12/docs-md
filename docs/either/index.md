@@ -12,6 +12,11 @@ sum type with two cases.
   Disabled by default. Enable to `#[derive(Serialize, Deserialize)]` for `Either`
 
 
+## Modules
+
+- [`iterator`](iterator/index.md) - 
+- [`into_either`](into_either/index.md) - The trait [`IntoEither`] provides methods for converting a type `Self`, whose
+
 ## Structs
 
 ### `IterEither<L, R>`
@@ -130,13 +135,13 @@ preference.
 
 #### Implementations
 
-- `fn factor_err(self: Self) -> Result<Either<L, R>, E>` — [`Either`](#either)
+- `fn factor_first(self: Self) -> (T, Either<L, R>)` — [`Either`](#either)
 
 #### Trait Implementations
 
-##### `impl<L, R, Target> AsMut for Either<L, R>`
+##### `impl<L, R> AsMut for Either<L, R>`
 
-- `fn as_mut(self: &mut Self) -> &mut Target`
+- `fn as_mut(self: &mut Self) -> &mut str`
 
 ##### `impl<L, R, Target> AsRef for Either<L, R>`
 
@@ -278,11 +283,27 @@ preference.
 
 ## Traits
 
+## Functions
+
+### `_unsized_ref_propagation`
+
+```rust
+fn _unsized_ref_propagation()
+```
+
 ## Macros
+
+### `map_either!`
+
+### `impl_specific_ref_and_mut!`
+
+### `check_t!`
+
+A helper macro to check if AsRef and AsMut are implemented for a given type.
 
 ### `for_both!`
 
-Evaluate the provided expression for both `Either::Left` and `Either::Right`.
+Evaluate the provided expression for both [`Either::Left`](#eitherleft) and [`Either::Right`](#eitherright).
 
 This macro is useful in cases where both sides of [`Either`](#either) can be interacted with
 in the same way even though the don't share the same type.
@@ -313,7 +334,7 @@ Macro for unwrapping the left side of an [`Either`](#either), which fails early
 with the opposite side. Can only be used in functions that return
 `Either` because of the early return of `Right` that it provides.
 
-See also `try_right!` for its dual, which applies the same just to the
+See also [`try_right!`](#try-right) for its dual, which applies the same just to the
 right side.
 
 # Example
@@ -334,5 +355,5 @@ fn main() {
 
 ### `try_right!`
 
-Dual to `try_left!`, see its documentation for more information.
+Dual to [`try_left!`](#try-left), see its documentation for more information.
 

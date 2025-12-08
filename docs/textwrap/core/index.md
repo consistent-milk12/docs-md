@@ -151,6 +151,26 @@ the displayed width of each part, which this trait provides.
 
 ## Functions
 
+### `skip_ansi_escape_sequence`
+
+```rust
+fn skip_ansi_escape_sequence<I: Iterator<Item = char>>(ch: char, chars: &mut I) -> bool
+```
+
+Skip ANSI escape sequences.
+
+The `ch` is the current `char`, the `chars` provide the following
+characters. The `chars` will be modified if `ch` is the start of
+an ANSI escape sequence.
+
+Returns `true` if one or more chars were skipped.
+
+### `ch_width`
+
+```rust
+fn ch_width(ch: char) -> usize
+```
+
 ### `display_width`
 
 ```rust
@@ -263,4 +283,24 @@ Forcibly break words wider than `line_width` into smaller words.
 This simply calls `Word::break_apart` on words that are too
 wide. This means that no extra `'-'` is inserted, the word is
 simply broken into smaller pieces.
+
+## Constants
+
+### `CSI`
+
+```rust
+const CSI: (char, char);
+```
+
+The CSI or “Control Sequence Introducer” introduces an ANSI escape
+sequence. This is typically used for colored text and will be
+ignored when computing the text width.
+
+### `ANSI_FINAL_BYTE`
+
+```rust
+const ANSI_FINAL_BYTE: std::ops::RangeInclusive<char>;
+```
+
+The final bytes of an ANSI escape sequence must be in this range.
 

@@ -6,7 +6,7 @@
 
 Export the `*Fd` types and traits that are used in rustix's public API.
 
-This module exports the types and traits from `std::os::fd`, or polyills
+This module exports the types and traits from [`std::os::fd`](../maybe_polyfill/os/fd/index.md), or polyills
 on Rust < 1.66 or on Windows.
 
 On Windows, the polyfill consists of aliases of the socket types and

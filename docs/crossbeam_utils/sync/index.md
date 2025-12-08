@@ -10,6 +10,13 @@ Thread synchronization primitives.
 * [`ShardedLock`](sharded_lock/index.md), a sharded reader-writer lock with fast concurrent reads.
 * [`WaitGroup`](wait_group/index.md), for synchronizing the beginning or end of some computation.
 
+## Modules
+
+- [`once_lock`](once_lock/index.md) - 
+- [`parker`](parker/index.md) - 
+- [`sharded_lock`](sharded_lock/index.md) - 
+- [`wait_group`](wait_group/index.md) - 
+
 ## Structs
 
 ### `Parker`

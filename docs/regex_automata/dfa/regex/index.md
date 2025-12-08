@@ -43,7 +43,7 @@ a match.
 
 The type of the DFA used by a `Regex` corresponds to the `A` type
 parameter, which must satisfy the [`Automaton`](../automaton/index.md) trait. Typically, `A`
-is either a `dense::DFA` or a `sparse::DFA`, where dense DFAs use
+is either a [`dense::DFA`](../dense/index.md) or a [`sparse::DFA`](../sparse/index.md), where dense DFAs use
 more memory but search faster, while sparse DFAs use less memory but
 search more slowly.
 
@@ -94,7 +94,7 @@ assert_eq!(true, sparse_re.is_match(b"foo123"));
 Ok::<(), Box<dyn std::error::Error>>(())
 ```
 
-Alternatively, one can use a [`Builder`](../../meta/regex/index.md) to construct a sparse DFA
+Alternatively, one can use a [`Builder`](#builder) to construct a sparse DFA
 more succinctly. (Note though that dense DFAs are still constructed
 first internally, and then converted to sparse DFAs, as in the example
 above.)
@@ -150,9 +150,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn try_search(self: &Self, input: &Input<'_>) -> Result<Option<Match>, MatchError>` — [`Input`](../../index.md), [`Match`](../../index.md), [`MatchError`](../../index.md)
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> bool`
 
-- `fn is_anchored(self: &Self, input: &Input<'_>) -> bool` — [`Input`](../../index.md)
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Option<Match>` — [`Match`](../../index.md)
+
+- `fn find_iter<'r, 'h, I: Into<Input<'h>>>(self: &'r Self, input: I) -> FindMatches<'r, 'h, A>` — [`FindMatches`](#findmatches)
 
 #### Trait Implementations
 
@@ -242,7 +244,7 @@ Internally, building a regex requires building two DFAs, where one is
 responsible for finding the end of a match and the other is responsible
 for finding the start of a match. If you only need to detect whether
 something matched, or only the end of a match, then you should use a
-`dense::Builder` to construct a single DFA, which is cheaper than
+[`dense::Builder`](../dense/index.md) to construct a single DFA, which is cheaper than
 building two DFAs.
 
 # Build methods

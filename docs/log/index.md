@@ -141,7 +141,7 @@ here are some of the most popular ones:
     * [fern]
     * [spdlog-rs]
 * Adaptors for other facilities:
-    * [syslog]
+    * [`syslog`](../libc/index.md)
     * [slog-stdlog]
     * [systemd-journal-logger]
     * [android_log]
@@ -838,7 +838,7 @@ Typical usage includes: checking if a certain `Level` is enabled with
 
 ##### `impl PartialOrd for Level`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Level`](#level)
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
 
 ##### `impl Sealed for log::Level`
 
@@ -953,7 +953,7 @@ to get and set the maximum log level with `max_level()` and [`set_max_level`](#s
 
 ##### `impl PartialOrd for LevelFilter`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> $crate::option::Option<$crate::cmp::Ordering>` — [`LevelFilter`](#levelfilter)
 
 ##### `impl Sealed for log::LevelFilter`
 
@@ -1226,7 +1226,7 @@ if log_enabled!(logger: my_logger, Level::Debug) {
 }
 ```
 
-This macro accepts the same `target` and `logger` arguments as `macro@log`.
+This macro accepts the same `target` and `logger` arguments as [`macro@log`](#macrolog).
 
 ### `log!`
 

@@ -37,6 +37,10 @@ And this will correctly handle piping to a file, etc
 
 - [`adapter`](adapter/index.md) - Gracefully degrade styled output
 - [`stream`](stream/index.md) - Higher-level traits to describe writeable streams
+- [`auto`](auto/index.md) - 
+- [`buffer`](buffer/index.md) - 
+- [`fmt`](fmt/index.md) - 
+- [`strip`](strip/index.md) - 
 
 ## Structs
 
@@ -48,7 +52,7 @@ struct AutoStream<S: RawStream> {
 }
 ```
 
-`std::io::Write` that adapts ANSI escape codes to the underlying `Write`s capabilities
+[`std::io::Write`](../fs_err/index.md) that adapts ANSI escape codes to the underlying `Write`s capabilities
 
 This includes
 - Stripping colors for non-terminals
@@ -57,7 +61,7 @@ This includes
 
 You can customize auto-detection by calling into
 [anstyle_query](https://docs.rs/anstyle-query/latest/anstyle_query/)
-to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream, choice)`.
+to get a [`ColorChoice`](../colorchoice/index.md) and then calling `AutoStream::new(stream, choice)`.
 
 #### Implementations
 
@@ -96,7 +100,11 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>` — [`StripStream`](strip/index.md)
+- `fn new(raw: S) -> Self`
+
+- `fn into_inner(self: Self) -> S`
+
+- `fn as_inner(self: &Self) -> &S`
 
 #### Trait Implementations
 
@@ -127,7 +135,7 @@ fn stdout() -> Stdout
 Create an ANSI escape code compatible stdout
 
 **Note:** Call `AutoStream::lock` in loops to avoid the performance hit of acquiring/releasing
-from the implicit locking in each `std::io::Write` call
+from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 
 ### `stderr`
 
@@ -138,7 +146,7 @@ fn stderr() -> Stderr
 Create an ANSI escape code compatible stderr
 
 **Note:** Call `AutoStream::lock` in loops to avoid the performance hit of acquiring/releasing
-from the implicit locking in each `std::io::Write` call
+from the implicit locking in each [`std::io::Write`](../fs_err/index.md) call
 
 ## Type Aliases
 
@@ -164,7 +172,7 @@ An adaptive wrapper around the global standard error stream of the current proce
 
 Prints to `stdout`.
 
-Equivalent to the `println!` macro except that a newline is not printed at
+Equivalent to the [`println!`](#println) macro except that a newline is not printed at
 the end of the message.
 
 Note that stdout is frequently line-buffered by default so it may be
@@ -184,9 +192,9 @@ write!(lock, "hello world").unwrap();
 ```
 
 Use `print!` only for the primary output of your program. Use
-`eprint!` instead to print error and progress messages.
+[`eprint!`](#eprint) instead to print error and progress messages.
 
-**NOTE:** Not all `print!` calls will be captured in tests like `std::print!`
+**NOTE:** Not all `print!` calls will be captured in tests like [`std::print!`](../backtrace/print/index.md)
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -228,8 +236,8 @@ Prints to `stdout`, with a newline.
 On all platforms, the newline is the LINE FEED character (`\n`/`U+000A`) alone
 (no additional CARRIAGE RETURN (`\r`/`U+000D`)).
 
-This macro uses the same syntax as `format!`, but writes to the standard output instead.
-See `std::fmt` for more information.
+This macro uses the same syntax as [`format!`](../clap_builder/error/format/index.md), but writes to the standard output instead.
+See [`std::fmt`](fmt/index.md) for more information.
 
 **NOTE:** The `println!` macro will lock the standard output on each call. If you call
 `println!` within a hot loop, this behavior may be the bottleneck of the loop.
@@ -244,9 +252,9 @@ writeln!(lock, "hello world").unwrap();
 ```
 
 Use `println!` only for the primary output of your program. Use
-`eprintln!` instead to print error and progress messages.
+[`eprintln!`](#eprintln) instead to print error and progress messages.
 
-**NOTE:** Not all `println!` calls will be captured in tests like `std::println!`
+**NOTE:** Not all `println!` calls will be captured in tests like [`std::println!`](#stdprintln)
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -275,14 +283,14 @@ println!("format {local_variable} arguments");
 
 Prints to `stderr`.
 
-Equivalent to the `print!` macro, except that output goes to
-`stderr` instead of `stdout`. See `print!` for
+Equivalent to the [`print!`](#print) macro, except that output goes to
+`stderr` instead of `stdout`. See [`print!`](#print) for
 example usage.
 
 Use `eprint!` only for error and progress messages. Use `print!`
 instead for the primary output of your program.
 
-**NOTE:** Not all `eprint!` calls will be captured in tests like `std::eprint!`
+**NOTE:** Not all `eprint!` calls will be captured in tests like [`std::eprint!`](#stdeprint)
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 
@@ -307,14 +315,14 @@ eprint!("Error: Could not complete task");
 
 Prints to `stderr`, with a newline.
 
-Equivalent to the `println!` macro, except that output goes to
-`stderr` instead of `stdout`. See `println!` for
+Equivalent to the [`println!`](#println) macro, except that output goes to
+`stderr` instead of `stdout`. See [`println!`](#println) for
 example usage.
 
 Use `eprintln!` only for error and progress messages. Use `println!`
 instead for the primary output of your program.
 
-**NOTE:** Not all `eprintln!` calls will be captured in tests like `std::eprintln!`
+**NOTE:** Not all `eprintln!` calls will be captured in tests like [`std::eprintln!`](#stdeprintln)
 - Capturing will automatically be activated in test binaries
 - Otherwise, only when the `test` feature is enabled
 

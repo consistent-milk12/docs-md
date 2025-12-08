@@ -32,6 +32,7 @@ Just type `:q` to exit.
 
 ## Modules
 
+- [`params`](params/index.md) - Fixed size parameters list with optional subparameters.
 - [`state`](state/index.md) - ANSI escape code parsing state machine
 
 ## Structs
@@ -270,6 +271,20 @@ Allow parsing UTF-8
 
 ##### `impl StructuralPartialEq for Utf8Parser`
 
+### `VtUtf8Receiver<'a>`
+
+```rust
+struct VtUtf8Receiver<'a>(&'a mut Option<char>);
+```
+
+#### Trait Implementations
+
+##### `impl Receiver for VtUtf8Receiver<'_>`
+
+- `fn codepoint(self: &mut Self, c: char)`
+
+- `fn invalid_sequence(self: &mut Self)`
+
 ## Traits
 
 ### `CharAccumulator`
@@ -346,4 +361,18 @@ type DefaultCharAccumulator = Utf8Parser;
 ```
 
 Most flexible [`CharAccumulator`](#characcumulator) for [`Parser`](#parser) based on active features
+
+## Constants
+
+### `MAX_INTERMEDIATES`
+
+```rust
+const MAX_INTERMEDIATES: usize = 2usize;
+```
+
+### `MAX_OSC_PARAMS`
+
+```rust
+const MAX_OSC_PARAMS: usize = 16usize;
+```
 

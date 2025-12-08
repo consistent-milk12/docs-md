@@ -1,0 +1,24 @@
+*[rustix](../../index.md) / [maybe_polyfill](../index.md) / [io](index.md)*
+
+---
+
+# Module `io`
+
+## Structs
+
+### `IoSliceMut<'ctx, R>`
+
+```rust
+struct IoSliceMut<'ctx, R>
+where
+    R: gimli::Reader {
+    unit: &'ctx crate::unit::ResUnit<R>,
+    sections: &'ctx gimli::Dwarf<R>,
+    function: &'ctx crate::function::Function<R>,
+    inlined_functions: iter::Rev<alloc::vec::IntoIter<&'ctx crate::function::InlinedFunction<R>>>,
+    next: Option<Location<'ctx>>,
+}
+```
+
+*Re-exported from `addr2line`*
+

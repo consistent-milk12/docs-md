@@ -40,17 +40,17 @@ The primary type in this crate is a [`Regex`](#regex). Its most important method
 as follows:
 
 * `Regex::new` compiles a regex using the default configuration. A
-[`RegexBuilder`](bytes/index.md) permits setting a non-default configuration. (For example,
+[`RegexBuilder`](#regexbuilder) permits setting a non-default configuration. (For example,
 case insensitive matching, verbose mode and others.)
 * `Regex::is_match` reports whether a match exists in a particular haystack.
 * `Regex::find` reports the byte offsets of a match in a haystack, if one
 exists. `Regex::find_iter` returns an iterator over all such matches.
-* `Regex::captures` returns a [`Captures`](regex/bytes/index.md), which reports both the byte
+* `Regex::captures` returns a [`Captures`](#captures), which reports both the byte
 offsets of a match in a haystack and the byte offsets of each matching capture
 group from the regex in the haystack.
 `Regex::captures_iter` returns an iterator over all such matches.
 
-There is also a [`RegexSet`](regexset/bytes/index.md), which permits searching for multiple regex
+There is also a [`RegexSet`](#regexset), which permits searching for multiple regex
 patterns simultaneously in a single search. However, it currently only reports
 which patterns match and *not* the byte offsets of a match.
 
@@ -262,7 +262,7 @@ assert_eq!(dates, vec![
 ]);
 ```
 
-We can also iterate over [`Captures`](regex/bytes/index.md) values instead of [`Match`](#match) values, and
+We can also iterate over [`Captures`](#captures) values instead of [`Match`](#match) values, and
 that in turn permits accessing each component of the date via capturing groups:
 
 ```rust
@@ -372,7 +372,7 @@ the `x` flag, e.g., `(?-x: )`.
 
 ### Example: match multiple regular expressions simultaneously
 
-This demonstrates how to use a [`RegexSet`](regexset/bytes/index.md) to match multiple (possibly
+This demonstrates how to use a [`RegexSet`](#regexset) to match multiple (possibly
 overlapping) regexes in a single scan of a haystack:
 
 ```rust
@@ -527,7 +527,7 @@ crate repository. There is virtually no support for "Extended Unicode Support"
 * The top-level [`Regex`](#regex) runs searches *as if* iterating over each of the
 codepoints in the haystack. That is, the fundamental atom of matching is a
 single codepoint.
-* `bytes::Regex`, in contrast, permits disabling Unicode mode for part of all
+* [`bytes::Regex`](regex/bytes/index.md), in contrast, permits disabling Unicode mode for part of all
 of your pattern in all cases. When Unicode mode is disabled, then a search is
 run *as if* iterating over each byte in the haystack. That is, the fundamental
 atom of matching is a single byte. (A top-level `Regex` also permits disabling
@@ -600,7 +600,7 @@ assert_eq!(subs, vec!["ΔδΔ𐅌ΔδΔ"]);
 
 ### Opt out of Unicode support
 
-The `bytes::Regex` type that can be used to search `&[u8]` haystacks. By
+The [`bytes::Regex`](regex/bytes/index.md) type that can be used to search `&[u8]` haystacks. By
 default, haystacks are conventionally treated as UTF-8 just like it is with the
 main `Regex` type. However, this behavior can be disabled by turning off the
 `u` flag, even if doing so could result in matching invalid UTF-8. For example,
@@ -734,7 +734,7 @@ The empty regex is valid and matches the empty string. For example, the
 empty regex matches `abc` at positions `0`, `1`, `2` and `3`. When using the
 top-level [`Regex`](#regex) on `&str` haystacks, an empty match that splits a codepoint
 is guaranteed to never be returned. However, such matches are permitted when
-using a `bytes::Regex`. For example:
+using a [`bytes::Regex`](regex/bytes/index.md). For example:
 
 ```rust
 let re = regex::Regex::new(r"").unwrap();
@@ -1304,7 +1304,12 @@ this for literal optimizations.
 
 ## Modules
 
+- [`builders`](builders/index.md) - 
 - [`bytes`](bytes/index.md) - Search for regex matches in `&[u8]` haystacks.
+- [`error`](error/index.md) - 
+- [`find_byte`](find_byte/index.md) - 
+- [`regex`](regex/index.md) - 
+- [`regexset`](regexset/index.md) - 
 
 ## Structs
 
@@ -1371,7 +1376,7 @@ struct RegexSetBuilder {
 }
 ```
 
-A configurable builder for a [`RegexSet`](regexset/bytes/index.md).
+A configurable builder for a [`RegexSet`](#regexset).
 
 This builder can be used to programmatically set flags such as
 `i` (case insensitive) and `x` (for verbose mode). This builder
@@ -1523,15 +1528,27 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 #### Implementations
 
-- `fn as_str(self: &Self) -> &str`
+- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](error/index.md)
 
-- `fn capture_names(self: &Self) -> CaptureNames<'_>` — [`CaptureNames`](#capturenames)
+- `fn is_match(self: &Self, haystack: &str) -> bool`
 
-- `fn captures_len(self: &Self) -> usize`
+- `fn find<'h>(self: &Self, haystack: &'h str) -> Option<Match<'h>>` — [`Match`](#match)
 
-- `fn static_captures_len(self: &Self) -> Option<usize>`
+- `fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> Matches<'r, 'h>` — [`Matches`](#matches)
 
-- `fn capture_locations(self: &Self) -> CaptureLocations` — [`CaptureLocations`](#capturelocations)
+- `fn captures<'h>(self: &Self, haystack: &'h str) -> Option<Captures<'h>>` — [`Captures`](#captures)
+
+- `fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](#capturematches)
+
+- `fn split<'r, 'h>(self: &'r Self, haystack: &'h str) -> Split<'r, 'h>` — [`Split`](#split)
+
+- `fn splitn<'r, 'h>(self: &'r Self, haystack: &'h str, limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](#splitn)
+
+- `fn replace<'h, R: Replacer>(self: &Self, haystack: &'h str, rep: R) -> Cow<'h, str>`
+
+- `fn replace_all<'h, R: Replacer>(self: &Self, haystack: &'h str, rep: R) -> Cow<'h, str>`
+
+- `fn replacen<'h, R: Replacer>(self: &Self, haystack: &'h str, limit: usize, rep: R) -> Cow<'h, str>`
 
 #### Trait Implementations
 
@@ -1596,7 +1613,7 @@ corresponds to the same kind of slicing that Rust uses.
 
 For more on why this was chosen over other schemes (aside from being
 consistent with how Rust the language works), see [this discussion] and
-[Dijkstra's note on a related topic][note].
+[Dijkstra's note on a related topic][`note`](../object/read/elf/note/index.md).
 
 
 # Example
@@ -1738,11 +1755,11 @@ assert_eq!("y", &caps["last"]);
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h, 'n> Index for Captures<'h>`
+##### `impl<'h> Index for Captures<'h>`
 
 - `type Output = str`
 
-- `fn index<'a>(self: &'a Self, name: &'n str) -> &'a str`
+- `fn index<'a>(self: &'a Self, i: usize) -> &'a str`
 
 ### `CaptureLocations`
 
@@ -1752,7 +1769,7 @@ struct CaptureLocations(captures::Captures);
 
 A low level representation of the byte offsets of each capture group.
 
-You can think of this as a lower level [`Captures`](regex/bytes/index.md), where this type does
+You can think of this as a lower level [`Captures`](#captures), where this type does
 not support named capturing groups directly and it does not borrow the
 haystack that these offsets were matched on.
 
@@ -1865,7 +1882,7 @@ struct CaptureMatches<'r, 'h> {
 
 An iterator over all non-overlapping capture matches in a haystack.
 
-This iterator yields [`Captures`](regex/bytes/index.md) values. The iterator stops when no more
+This iterator yields [`Captures`](#captures) values. The iterator stops when no more
 matches can be found.
 
 `'r` is the lifetime of the compiled regular expression and `'h` is the
@@ -2057,7 +2074,7 @@ struct SubCaptureMatches<'c, 'h> {
 }
 ```
 
-An iterator over all group matches in a [`Captures`](regex/bytes/index.md) value.
+An iterator over all group matches in a [`Captures`](#captures) value.
 
 This iterator yields values of type `Option<Match<'h>>`, where `'h` is the
 lifetime of the haystack that the matches are for. The order of elements
@@ -2066,7 +2083,7 @@ in the regex pattern. `None` is yielded for groups that did not participate
 in the match.
 
 The first element always corresponds to the implicit group for the overall
-match. Since this iterator is created by a [`Captures`](regex/bytes/index.md) value, and a
+match. Since this iterator is created by a [`Captures`](#captures) value, and a
 `Captures` value is only created when a match occurs, it follows that the
 first element yielded by this iterator is guaranteed to be non-`None`.
 
@@ -2112,7 +2129,7 @@ matched haystack.
 struct ReplacerRef<'a, R: ?Sized>(&'a mut R);
 ```
 
-A by-reference adaptor for a [`Replacer`](regex/bytes/index.md).
+A by-reference adaptor for a [`Replacer`](#replacer).
 
 This permits reusing the same `Replacer` value in multiple calls to a
 replacement routine like `Regex::replace_all`.
@@ -2636,4 +2653,19 @@ Escapes all regular expression meta characters in `pattern`.
 
 The string returned may be safely used as a literal in a regular
 expression.
+
+### `no_expansion`
+
+```rust
+fn no_expansion<T: AsRef<str>>(replacement: &T) -> Option<alloc::borrow::Cow<'_, str>>
+```
+
+Quickly checks the given replacement string for whether interpolation
+should be done on it. It returns `None` if a `$` was found anywhere in the
+given string, which suggests interpolation needs to be done. But if there's
+no `$` anywhere, then interpolation definitely does not need to be done. In
+that case, the given string is returned as a borrowed `Cow`.
+
+This is meant to be used to implement the `Replacer::no_expansion` method
+in its various trait impls.
 

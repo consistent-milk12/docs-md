@@ -34,7 +34,7 @@ If you're here because there is something specific you want to do that can't
 be easily done with `regex` crate, then you are perhaps in the right place.
 It's most likely that the first stop you'll want to make is to explore the
 [`meta` regex APIs](meta). Namely, the `regex` crate is just a light wrapper
-over a `meta::Regex`, so its API will probably be the easiest to transition
+over a [`meta::Regex`](meta/regex/index.md), so its API will probably be the easiest to transition
 to. In contrast to the `regex` crate, the `meta::Regex` API supports more
 search parameters and does multi-pattern searches. However, it isn't quite as
 ergonomic.
@@ -221,7 +221,7 @@ fully compiled DFAs are provided by the [`Automaton` trait](dfa::Automaton).
 Fully compiled dense DFAs can handle all regexes except for searching a regex
 with a Unicode word boundary on non-ASCII haystacks. A fully compiled DFA based
 regex can only report the start and end of each match.
-* `hybrid::regex::Regex` is a regex engine that works on top of a lazily
+* [`hybrid::regex::Regex`](hybrid/regex/index.md) is a regex engine that works on top of a lazily
 built DFA. Its performance profile is very similar to that of fully compiled
 DFAs, but can be slower in some pathological cases. Fully compiled DFAs are
 also amenable to more optimizations, such as state acceleration, that aren't
@@ -229,24 +229,24 @@ available in a lazy DFA. You might use this lazy DFA if you can't abide the
 worst case exponential compile time of a full DFA, but still want the DFA
 search performance in the vast majority of cases. A lazy DFA based regex can
 only report the start and end of each match.
-* `dfa::onepass::DFA` is a regex engine that is implemented as a DFA, but
+* [`dfa::onepass::DFA`](dfa/onepass/index.md) is a regex engine that is implemented as a DFA, but
 can report the matches of each capture group in addition to the start and end
 of each match. The catch is that it only works on a somewhat small subset of
 regexes known as "one-pass." You'll want to use this for cases when you need
 capture group matches and the regex is one-pass since it is likely to be faster
 than any alternative. A one-pass DFA can handle all types of regexes, but does
 have some reasonable limits on the number of capture groups it can handle.
-* `nfa::thompson::backtrack::BoundedBacktracker` is a regex engine that uses
+* [`nfa::thompson::backtrack::BoundedBacktracker`](nfa/thompson/backtrack/index.md) is a regex engine that uses
 backtracking, but keeps track of the work it has done to avoid catastrophic
 backtracking. Like the one-pass DFA, it provides the matches of each capture
 group. It retains the `O(m * n)` worst case time bound. This tends to be slower
 than the one-pass DFA regex engine, but faster than the PikeVM. It can handle
 all types of regexes, but usually only works well with small haystacks and
 small regexes due to the memory required to avoid redoing work.
-* `nfa::thompson::pikevm::PikeVM` is a regex engine that can handle all
+* [`nfa::thompson::pikevm::PikeVM`](nfa/thompson/pikevm/index.md) is a regex engine that can handle all
 regexes, of all sizes and provides capture group matches. It tends to be a tool
 of last resort because it is also usually the slowest regex engine.
-* `meta::Regex` is the meta regex engine that combines *all* of the above
+* [`meta::Regex`](meta/regex/index.md) is the meta regex engine that combines *all* of the above
 engines into one. The reason for this is that each of the engines above have
 their own caveats such as, "only handles a subset of regexes" or "is generally
 slow." The meta regex engine accounts for all of these caveats and composes
@@ -359,15 +359,15 @@ so flexible: it needs to support not just convenient construction, but also
 construction from parts built elsewhere.
 
 This is also in turn why there are many different `Config` structs in this
-crate. Let's look more closely at an example: `hybrid::regex::Builder`. It
+crate. Let's look more closely at an example: [`hybrid::regex::Builder`](hybrid/regex/index.md). It
 accepts three different `Config` types for configuring construction of a lazy
 DFA regex:
 
 * `hybrid::regex::Builder::syntax` accepts a
-`util::syntax::Config` for configuring the options found in the
+[`util::syntax::Config`](util/syntax/index.md) for configuring the options found in the
 [`regex-syntax`](regex_syntax) crate. For example, whether to match
 case insensitively.
-* `hybrid::regex::Builder::thompson` accepts a `nfa::thompson::Config` for
+* `hybrid::regex::Builder::thompson` accepts a [`nfa::thompson::Config`](nfa/thompson/compiler/index.md) for
 configuring construction of a [Thompson NFA](nfa::thompson::NFA). For example,
 whether to build an NFA that matches the reverse language described by the
 regex.
@@ -542,6 +542,7 @@ enables `alloc` and `nfa-thompson`.
 
 ## Modules
 
+- [`macros`](macros/index.md) - 
 - [`dfa`](dfa/index.md) - A module for building and searching with deterministic finite automata (DFAs).
 - [`hybrid`](hybrid/index.md) - A module for building and searching with lazy deterministic finite automata
 - [`meta`](meta/index.md) - Provides a regex matcher that composes several other regex matchers
@@ -861,7 +862,7 @@ which means things like `Span::from(5..10)` work.
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, range: &Range<usize>) -> bool`
+- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](#span)
 
 ##### `impl StructuralPartialEq for Span`
 
@@ -1335,7 +1336,7 @@ anchored starting states) and some regex engines might only support
 anchored searches (like the one-pass DFA).
 
 The specific error returned is a [`MatchError`](#matcherror) with a
-`MatchErrorKind::UnsupportedAnchored` kind. The kind includes the
+[`MatchErrorKind::UnsupportedAnchored`](#matcherrorkindunsupportedanchored) kind. The kind includes the
 `Anchored` value given that is unsupported.
 
 Note that regex engines should report "no match" if, for example, an

@@ -46,6 +46,14 @@ The core type is [`Style`](#style):
 let style = anstyle::Style::new().bold();
 ```
 
+## Modules
+
+- [`macros`](macros/index.md) - 
+- [`color`](color/index.md) - 
+- [`effect`](effect/index.md) - 
+- [`reset`](reset/index.md) - 
+- [`style`](style/index.md) - 
+
 ## Structs
 
 ### `Ansi256Color`
@@ -176,6 +184,79 @@ struct RgbColor(u8, u8, u8);
 
 ##### `impl StructuralPartialEq for RgbColor`
 
+### `DisplayBuffer`
+
+```rust
+struct DisplayBuffer {
+    buffer: [u8; 19],
+    len: usize,
+}
+```
+
+#### Implementations
+
+- `fn write_str(self: Self, part: &'static str) -> Self`
+
+- `fn write_code(self: Self, code: u8) -> Self`
+
+- `fn as_str(self: &Self) -> &str`
+
+- `fn write_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+
+#### Trait Implementations
+
+##### `impl Clone for DisplayBuffer`
+
+- `fn clone(self: &Self) -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+
+##### `impl Copy for DisplayBuffer`
+
+##### `impl Debug for DisplayBuffer`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for DisplayBuffer`
+
+- `fn default() -> DisplayBuffer` — [`DisplayBuffer`](color/index.md)
+
+##### `impl Display for DisplayBuffer`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> ToString for DisplayBuffer`
+
+- `fn to_string(self: &Self) -> String`
+
+### `NullFormatter`
+
+```rust
+struct NullFormatter(&'static str);
+```
+
+#### Trait Implementations
+
+##### `impl Clone for NullFormatter`
+
+- `fn clone(self: &Self) -> NullFormatter` — [`NullFormatter`](color/index.md)
+
+##### `impl Copy for NullFormatter`
+
+##### `impl Debug for NullFormatter`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for NullFormatter`
+
+- `fn default() -> NullFormatter` — [`NullFormatter`](color/index.md)
+
+##### `impl Display for NullFormatter`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> ToString for NullFormatter`
+
+- `fn to_string(self: &Self) -> String`
+
 ### `Effects`
 
 ```rust
@@ -296,6 +377,45 @@ let effects = anstyle::Effects::BOLD | anstyle::Effects::UNDERLINE;
 
 - `fn sub_assign(self: &mut Self, other: Self)`
 
+### `Metadata`
+
+```rust
+struct Metadata {
+    name: &'static str,
+    escape: &'static str,
+}
+```
+
+### `EffectsDisplay`
+
+```rust
+struct EffectsDisplay(Effects);
+```
+
+#### Trait Implementations
+
+##### `impl Clone for EffectsDisplay`
+
+- `fn clone(self: &Self) -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md)
+
+##### `impl Copy for EffectsDisplay`
+
+##### `impl Debug for EffectsDisplay`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for EffectsDisplay`
+
+- `fn default() -> EffectsDisplay` — [`EffectsDisplay`](effect/index.md)
+
+##### `impl Display for EffectsDisplay`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> ToString for EffectsDisplay`
+
+- `fn to_string(self: &Self) -> String`
+
 ### `EffectIter`
 
 ```rust
@@ -338,6 +458,47 @@ Enumerate each enabled value in [`Effects`](#effects)
 - `fn eq(self: &Self, other: &EffectIter) -> bool` — [`EffectIter`](#effectiter)
 
 ##### `impl StructuralPartialEq for EffectIter`
+
+### `EffectIndexIter`
+
+```rust
+struct EffectIndexIter {
+    index: usize,
+    effects: Effects,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for EffectIndexIter`
+
+- `fn clone(self: &Self) -> EffectIndexIter` — [`EffectIndexIter`](effect/index.md)
+
+##### `impl Debug for EffectIndexIter`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for EffectIndexIter`
+
+##### `impl<I> IntoIterator for EffectIndexIter`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator for EffectIndexIter`
+
+- `type Item = usize`
+
+- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+
+##### `impl PartialEq for EffectIndexIter`
+
+- `fn eq(self: &Self, other: &EffectIndexIter) -> bool` — [`EffectIndexIter`](effect/index.md)
+
+##### `impl StructuralPartialEq for EffectIndexIter`
 
 ### `Reset`
 
@@ -423,25 +584,21 @@ println!("{style}{value}{style:#}");
 
 #### Implementations
 
-- `const fn new() -> Self`
+- `const fn bold(self: Self) -> Self`
 
-- `const fn fg_color(self: Self, fg: Option<crate::Color>) -> Self` — [`Color`](#color)
+- `const fn dimmed(self: Self) -> Self`
 
-- `const fn bg_color(self: Self, bg: Option<crate::Color>) -> Self` — [`Color`](#color)
+- `const fn italic(self: Self) -> Self`
 
-- `const fn underline_color(self: Self, underline: Option<crate::Color>) -> Self` — [`Color`](#color)
+- `const fn underline(self: Self) -> Self`
 
-- `const fn effects(self: Self, effects: crate::Effects) -> Self` — [`Effects`](#effects)
+- `const fn blink(self: Self) -> Self`
 
-- `fn render(self: Self) -> impl core::fmt::Display + Copy`
+- `const fn invert(self: Self) -> Self`
 
-- `fn fmt_to(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+- `const fn hidden(self: Self) -> Self`
 
-- `fn write_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
-
-- `fn render_reset(self: Self) -> impl core::fmt::Display + Copy`
-
-- `fn write_reset_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- `const fn strikethrough(self: Self) -> Self`
 
 #### Trait Implementations
 
@@ -485,7 +642,7 @@ println!("{style}{value}{style:#}");
 
 ##### `impl PartialEq for Style`
 
-- `fn eq(self: &Self, other: &crate::Effects) -> bool` — [`Effects`](#effects)
+- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](#style)
 
 ##### `impl PartialOrd for Style`
 
@@ -504,6 +661,36 @@ println!("{style}{value}{style:#}");
 - `fn sub_assign(self: &mut Self, other: crate::Effects)` — [`Effects`](#effects)
 
 ##### `impl<T> ToString for Style`
+
+- `fn to_string(self: &Self) -> String`
+
+### `StyleDisplay`
+
+```rust
+struct StyleDisplay(Style);
+```
+
+#### Trait Implementations
+
+##### `impl Clone for StyleDisplay`
+
+- `fn clone(self: &Self) -> StyleDisplay` — [`StyleDisplay`](style/index.md)
+
+##### `impl Copy for StyleDisplay`
+
+##### `impl Debug for StyleDisplay`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for StyleDisplay`
+
+- `fn default() -> StyleDisplay` — [`StyleDisplay`](style/index.md)
+
+##### `impl Display for StyleDisplay`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl<T> ToString for StyleDisplay`
 
 - `fn to_string(self: &Self) -> String`
 
@@ -739,4 +926,24 @@ The user's terminal defines the meaning of the each palette code.
 - `fn partial_cmp(self: &Self, other: &AnsiColor) -> $crate::option::Option<$crate::cmp::Ordering>` — [`AnsiColor`](#ansicolor)
 
 ##### `impl StructuralPartialEq for AnsiColor`
+
+## Constants
+
+### `DISPLAY_BUFFER_CAPACITY`
+
+```rust
+const DISPLAY_BUFFER_CAPACITY: usize = 19usize;
+```
+
+### `METADATA`
+
+```rust
+const METADATA: [Metadata; 12];
+```
+
+### `RESET`
+
+```rust
+const RESET: &str;
+```
 

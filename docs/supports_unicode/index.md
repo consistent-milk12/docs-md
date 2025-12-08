@@ -51,6 +51,12 @@ possible stream sources
 
 ## Functions
 
+### `is_a_tty`
+
+```rust
+fn is_a_tty(stream: Stream) -> bool
+```
+
 ### `on`
 
 ```rust

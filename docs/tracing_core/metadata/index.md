@@ -26,15 +26,15 @@ struct Metadata<'a> {
 Metadata describing a [`span`](../span/index.md) or [`event`](../event/index.md).
 
 All spans and events have the following metadata:
-- A [name], represented as a static string.
-- A [target], a string that categorizes part of the system where the span
+- A [`name`](../../serde_derive/internals/name/index.md), represented as a static string.
+- A [`target`](../../tracing_attributes/attr/kw/index.md), a string that categorizes part of the system where the span
   or event occurred. The `tracing` macros default to using the module
   path where the span or event originated as the target, but it may be
   overridden.
 - A [verbosity level]. This determines how verbose a given span or event
   is, and allows enabling or disabling more verbose diagnostics
   situationally. See the documentation for the [`Level`](#level) type for details.
-- The names of the [fields] defined by the span or event.
+- The names of the [`fields`](../../tracing_attributes/attr/kw/index.md) defined by the span or event.
 - Whether the metadata corresponds to a span or event.
 
 In addition, the following optional metadata describing the source code
@@ -136,8 +136,6 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Trait Implementations
 
-##### `impl<'a> AsLog for tracing_core::Metadata<'a>`
-
 ##### `impl Debug for Metadata<'_>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
@@ -147,8 +145,6 @@ of `Metadata`'s other fields is checked in debug builds.
 ##### `impl PartialEq for Metadata<'_>`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
-
-##### `impl<'a> Sealed for tracing_core::Metadata<'a>`
 
 ### `Kind`
 
@@ -348,8 +344,6 @@ recorded in.
 
 #### Trait Implementations
 
-##### `impl AsLog for tracing_core::Level`
-
 ##### `impl Clone for Level`
 
 - `fn clone(self: &Self) -> Level` — [`Level`](#level)
@@ -382,7 +376,7 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl PartialOrd for Level`
 
@@ -395,8 +389,6 @@ recorded in.
 - `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 - `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
-
-##### `impl Sealed for tracing_core::Level`
 
 ##### `impl StructuralPartialEq for Level`
 
@@ -460,10 +452,6 @@ and `LevelFilter`s interact.
 
 #### Trait Implementations
 
-##### `impl AsLog for tracing_core::LevelFilter`
-
-- `type Owned = T`
-
 ##### `impl Clone for LevelFilter`
 
 - `fn clone(self: &Self) -> LevelFilter` — [`LevelFilter`](#levelfilter)
@@ -496,7 +484,7 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq for LevelFilter`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
+- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](#level)
 
 ##### `impl PartialOrd for LevelFilter`
 
@@ -509,8 +497,6 @@ and `LevelFilter`s interact.
 - `fn gt(self: &Self, other: &Level) -> bool` — [`Level`](#level)
 
 - `fn ge(self: &Self, other: &Level) -> bool` — [`Level`](#level)
-
-##### `impl Sealed for tracing_core::LevelFilter`
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
@@ -571,4 +557,82 @@ Returned if parsing a `Level` fails.
 ##### `impl<T> ToString for ParseLevelError`
 
 - `fn to_string(self: &Self) -> String`
+
+## Enums
+
+### `LevelInner`
+
+```rust
+enum LevelInner {
+    Trace,
+    Debug,
+    Info,
+    Warn,
+    Error,
+}
+```
+
+#### Variants
+
+- **`Trace`**
+
+  The "trace" level.
+  
+  Designates very low priority, often extremely verbose, information.
+
+- **`Debug`**
+
+  The "debug" level.
+  
+  Designates lower priority information.
+
+- **`Info`**
+
+  The "info" level.
+  
+  Designates useful information.
+
+- **`Warn`**
+
+  The "warn" level.
+  
+  Designates hazardous situations.
+
+- **`Error`**
+
+  The "error" level.
+  
+  Designates very serious errors.
+
+#### Trait Implementations
+
+##### `impl Clone for LevelInner`
+
+- `fn clone(self: &Self) -> LevelInner` — [`LevelInner`](#levelinner)
+
+##### `impl Copy for LevelInner`
+
+##### `impl Debug for LevelInner`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for LevelInner`
+
+##### `impl Hash for LevelInner`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq for LevelInner`
+
+- `fn eq(self: &Self, other: &LevelInner) -> bool` — [`LevelInner`](#levelinner)
+
+##### `impl StructuralPartialEq for LevelInner`
+
+## Functions
+
+### `filter_as_usize`
+
+```rust
+fn filter_as_usize(x: &Option<Level>) -> usize
+```
 

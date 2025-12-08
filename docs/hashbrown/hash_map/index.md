@@ -187,9 +187,9 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- `const fn with_hasher(hash_builder: S) -> Self`
+- `fn new_in(alloc: A) -> Self`
 
-- `fn with_capacity_and_hasher(capacity: usize, hash_builder: S) -> Self`
+- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
 
 #### Trait Implementations
 
@@ -215,7 +215,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<'a, K, V, S, A> Extend for HashMap<K, V, S, A>`
 
-- `fn extend<T: IntoIterator<Item = &'a (K, V)>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = (&'a K, &'a V)>>(self: &mut Self, iter: T)`
 
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
@@ -1032,7 +1032,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 ```
 
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_table/index.md) enum.
 
 # Examples
 
@@ -1280,21 +1280,7 @@ assert_eq!(vec, [("a", 1), ("b", 2), ("c", 3), ("d", 4), ("e", 5), ("f", 6)]);
 
 #### Implementations
 
-- `fn insert(self: Self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
-
-- `fn or_insert(self: Self, default: V) -> &'a mut V`
-
-- `fn or_insert_entry(self: Self, default: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
-
-- `fn or_insert_with<F: FnOnce() -> V>(self: Self, default: F) -> &'a mut V`
-
-- `fn or_insert_with_key<F: FnOnce(&K) -> V>(self: Self, default: F) -> &'a mut V`
-
-- `fn key(self: &Self) -> &K`
-
-- `fn and_modify<F>(self: Self, f: F) -> Self`
-
-- `fn and_replace_entry_with<F>(self: Self, f: F) -> Self`
+- `fn or_default(self: Self) -> &'a mut V`
 
 #### Trait Implementations
 
@@ -1400,21 +1386,64 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- `fn insert(self: Self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+- `fn or_default(self: Self) -> &'a mut V`
 
-- `fn or_insert(self: Self, default: V) -> &'a mut V`
-
-- `fn or_insert_with<F: FnOnce() -> V>(self: Self, default: F) -> &'a mut V`
-
-- `fn or_insert_with_key<F: FnOnce(&Q) -> V>(self: Self, default: F) -> &'a mut V`
-
-- `fn key(self: &Self) -> &Q`
-
-- `fn and_modify<F>(self: Self, f: F) -> Self`
+- `fn or_default_entry(self: Self) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
 
 #### Trait Implementations
 
 ##### `impl<K, Q, V, S, A> Debug for EntryRef<'_, '_, K, Q, V, S, A>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+## Functions
+
+### `make_hasher`
+
+```rust
+fn make_hasher<Q, V, S>(hash_builder: &S) -> impl Fn(&(Q, V)) -> u64 + '_
+where
+    Q: Hash,
+    S: BuildHasher
+```
+
+Ensures that a single closure type across uses of this which, in turn prevents multiple
+instances of any functions like `RawTable::reserve` from being generated
+
+### `equivalent_key`
+
+```rust
+fn equivalent_key<Q, K, V>(k: &Q) -> impl Fn(&(K, V)) -> bool + '_
+where
+    Q: Equivalent<K> + ?Sized
+```
+
+Ensures that a single closure type across uses of this which, in turn prevents multiple
+instances of any functions like `RawTable::reserve` from being generated
+
+### `equivalent`
+
+```rust
+fn equivalent<Q, K>(k: &Q) -> impl Fn(&K) -> bool + '_
+where
+    Q: Equivalent<K> + ?Sized
+```
+
+Ensures that a single closure type across uses of this which, in turn prevents multiple
+instances of any functions like `RawTable::reserve` from being generated
+
+### `make_hash`
+
+```rust
+fn make_hash<Q, S>(hash_builder: &S, val: &Q) -> u64
+where
+    Q: Hash + ?Sized,
+    S: BuildHasher
+```
+
+### `assert_covariance`
+
+```rust
+fn assert_covariance()
+```
 

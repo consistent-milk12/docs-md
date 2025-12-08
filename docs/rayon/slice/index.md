@@ -10,6 +10,13 @@ You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
 
 
+## Modules
+
+- [`chunk_by`](chunk_by/index.md) - 
+- [`chunks`](chunks/index.md) - 
+- [`rchunks`](rchunks/index.md) - 
+- [`sort`](sort/index.md) - **Parallel** Slice sorting
+
 ## Structs
 
 ### `ChunkBy<'data, T, P>`
@@ -709,6 +716,42 @@ Parallel iterator over immutable items in a slice
 
 - `unsafe fn drop(ptr: usize)`
 
+### `IterProducer<'data, T: Sync>`
+
+```rust
+struct IterProducer<'data, T: Sync> {
+    slice: &'data [T],
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for IterProducer<'data, T>`
+
+##### `impl<T> Pointable for IterProducer<'data, T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'data, T: 'data + Sync> Producer for IterProducer<'data, T>`
+
+- `type Item = &'data T`
+
+- `type IntoIter = Iter<'data, T>`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+
+- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+
 ### `Windows<'data, T>`
 
 ```rust
@@ -770,6 +813,43 @@ Parallel iterator over immutable overlapping windows of a slice
 
 - `unsafe fn drop(ptr: usize)`
 
+### `WindowsProducer<'data, T: Sync>`
+
+```rust
+struct WindowsProducer<'data, T: Sync> {
+    window_size: usize,
+    slice: &'data [T],
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for WindowsProducer<'data, T>`
+
+##### `impl<T> Pointable for WindowsProducer<'data, T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'data, T: 'data + Sync> Producer for WindowsProducer<'data, T>`
+
+- `type Item = &'data [T]`
+
+- `type IntoIter = Windows<'data, T>`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+
+- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+
 ### `IterMut<'data, T>`
 
 ```rust
@@ -825,6 +905,42 @@ Parallel iterator over mutable items in a slice
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+### `IterMutProducer<'data, T: Send>`
+
+```rust
+struct IterMutProducer<'data, T: Send> {
+    slice: &'data mut [T],
+}
+```
+
+#### Trait Implementations
+
+##### `impl<T> IntoEither for IterMutProducer<'data, T>`
+
+##### `impl<T> Pointable for IterMutProducer<'data, T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'data, T: 'data + Send> Producer for IterMutProducer<'data, T>`
+
+- `type Item = &'data mut T`
+
+- `type IntoIter = IterMut<'data, T>`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+
+- `fn split_at(self: Self, index: usize) -> (Self, Self)`
 
 ### `Split<'data, T, P>`
 

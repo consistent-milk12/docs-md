@@ -39,6 +39,17 @@ word.
 7. SHOUTY-KEBAB-CASE
 8. Train-Case
 
+## Modules
+
+- [`kebab`](kebab/index.md) - 
+- [`lower_camel`](lower_camel/index.md) - 
+- [`shouty_kebab`](shouty_kebab/index.md) - 
+- [`shouty_snake`](shouty_snake/index.md) - 
+- [`snake`](snake/index.md) - 
+- [`title`](title/index.md) - 
+- [`train`](train/index.md) - 
+- [`upper_camel`](upper_camel/index.md) - 
+
 ## Structs
 
 ### `AsKebabCase<T: AsRef<str>>`
@@ -47,7 +58,7 @@ word.
 struct AsKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in `fmt::Display`.
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -74,7 +85,7 @@ assert_eq!(format!("{}", AsKebabCase(sentence)), "we-are-going-to-inherit-the-ea
 struct AsLowerCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a lower camel case conversion in `fmt::Display`.
+This wrapper performs a lower camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -101,7 +112,7 @@ assert_eq!(format!("{}", AsLowerCamelCase(sentence)), "itIsWeWhoBuiltThesePalace
 struct AsShoutyKebabCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a kebab case conversion in `fmt::Display`.
+This wrapper performs a kebab case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -128,7 +139,7 @@ assert_eq!(format!("{}", AsShoutyKebabCase(sentence)), "WE-ARE-GOING-TO-INHERIT-
 struct AsShoutySnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in `fmt::Display`.
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -155,7 +166,7 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 struct AsShoutySnekCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a shouty snake  case conversion in `fmt::Display`.
+This wrapper performs a shouty snake  case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -182,7 +193,7 @@ assert_eq!(format!("{}", AsShoutySnakeCase(sentence)), "THAT_WORLD_IS_GROWING_IN
 struct AsSnakeCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in `fmt::Display`.
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -209,7 +220,7 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 struct AsSnekCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a snake case conversion in `fmt::Display`.
+This wrapper performs a snake case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -236,7 +247,7 @@ assert_eq!(format!("{}", AsSnakeCase(sentence)), "we_carry_a_new_world_here_in_o
 struct AsTitleCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a title case conversion in `fmt::Display`.
+This wrapper performs a title case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -263,7 +274,7 @@ assert_eq!(format!("{}", AsTitleCase(sentence)), "We Have Always Lived In Slums 
 struct AsTrainCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a train case conversion in `fmt::Display`.
+This wrapper performs a train case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -290,7 +301,7 @@ assert_eq!(format!("{}", AsTrainCase(sentence)), "We-Are-Going-To-Inherit-The-Ea
 struct AsUpperCamelCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in `fmt::Display`.
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -317,7 +328,7 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 struct AsPascalCase<T: AsRef<str>>(T);
 ```
 
-This wrapper performs a upper camel case conversion in `fmt::Display`.
+This wrapper performs a upper camel case conversion in [`fmt::Display`](../miette_derive/fmt/index.md).
 
 ## Example:
 
@@ -339,4 +350,33 @@ assert_eq!(format!("{}", AsUpperCamelCase(sentence)), "WeAreNotInTheLeastAfraidO
 - `fn to_string(self: &Self) -> String`
 
 ## Traits
+
+## Functions
+
+### `transform`
+
+```rust
+fn transform<F, G>(s: &str, with_word: F, boundary: G, f: &mut fmt::Formatter<'_>) -> fmt::Result
+where
+    F: FnMut(&str, &mut fmt::Formatter<'_>) -> fmt::Result,
+    G: FnMut(&mut fmt::Formatter<'_>) -> fmt::Result
+```
+
+### `lowercase`
+
+```rust
+fn lowercase(s: &str, f: &mut fmt::Formatter<'_>) -> fmt::Result
+```
+
+### `uppercase`
+
+```rust
+fn uppercase(s: &str, f: &mut fmt::Formatter<'_>) -> fmt::Result
+```
+
+### `capitalize`
+
+```rust
+fn capitalize(s: &str, f: &mut fmt::Formatter<'_>) -> fmt::Result
+```
 

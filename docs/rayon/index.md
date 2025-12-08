@@ -22,9 +22,9 @@ There are two ways to use Rayon:
   - `par_extend` can be used to efficiently grow collections with items produced
     by a parallel iterator.
 - **Custom tasks** let you divide your work into parallel tasks yourself.
-  - [`join`](#join) is used to subdivide a task into two pieces.
-  - [`scope`](#scope) creates a scope within which you can create any number of parallel tasks.
-  - [`ThreadPoolBuilder`](#threadpoolbuilder) can be used to create your own thread pools or customize
+  - [`join`](../rayon_core/join/index.md) is used to subdivide a task into two pieces.
+  - [`scope`](../rayon_core/scope/index.md) creates a scope within which you can create any number of parallel tasks.
+  - [`ThreadPoolBuilder`](../rayon_core/index.md) can be used to create your own thread pools or customize
     the global one.
 
 
@@ -66,7 +66,7 @@ explicitly.
 # Targets without threading
 
 Rayon has limited support for targets without `std` threading implementations.
-See the `rayon_core` documentation for more information about its global fallback.
+See the [`rayon_core`](../rayon_core/index.md) documentation for more information about its global fallback.
 
 # Other questions?
 
@@ -75,6 +75,9 @@ See [the Rayon FAQ][faq].
 
 ## Modules
 
+- [`delegate`](delegate/index.md) - Macros for delegating newtype iterators to inner types.
+- [`private`](private/index.md) - The public parts of this private module are used to create traits
+- [`split_producer`](split_producer/index.md) - Common splitter for strings and slices
 - [`array`](array/index.md) - Parallel iterator types for [arrays] (`[T; N]`)
 - [`collections`](collections/index.md) - Parallel iterator types for [standard collections]
 - [`iter`](iter/index.md) - Traits for writing parallel programs using an iterator-style interface
@@ -87,6 +90,58 @@ See [the Rayon FAQ][faq].
 - [`str`](str/index.md) - Parallel iterator types for [strings]
 - [`string`](string/index.md) - This module contains the parallel iterator types for owned strings
 - [`vec`](vec/index.md) - Parallel iterator types for [vectors] (`Vec<T>`)
+- [`math`](math/index.md) - 
+- [`par_either`](par_either/index.md) - 
+- [`compile_fail`](compile_fail/index.md) - 
+
+## Structs
+
+### `SendPtr<T>`
+
+```rust
+struct SendPtr<T>(*mut T);
+```
+
+We need to transmit raw pointers across threads. It is possible to do this
+without any unsafe code by converting pointers to usize or to AtomicPtr<T>
+then back to a raw pointer for use. We prefer this approach because code
+that uses this type is more explicit.
+
+Unsafe code is still required to dereference the pointer, so this type is
+not unsound on its own, although it does partly lift the unconditional
+!Send and !Sync on raw pointers. As always, dereference with care.
+
+#### Implementations
+
+- `fn get(self: Self) -> *mut T`
+
+#### Trait Implementations
+
+##### `impl<T> Clone for SendPtr<T>`
+
+- `fn clone(self: &Self) -> Self`
+
+##### `impl<T> Copy for SendPtr<T>`
+
+##### `impl<T> IntoEither for SendPtr<T>`
+
+##### `impl<T> Pointable for SendPtr<T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T: Send> Send for SendPtr<T>`
+
+##### `impl<T: Send> Sync for SendPtr<T>`
 
 ## Functions
 

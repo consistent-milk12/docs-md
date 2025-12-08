@@ -253,6 +253,29 @@ within an impl block as bullet points.
 * `process_docs` - Optional closure to process documentation
 * `create_type_link` - Optional closure to create links for types `(id -> Option<markdown_link>)`
 
+### `render_function_type_links_inline`
+
+```rust
+fn render_function_type_links_inline<L>(md: &mut String, f: &rustdoc_types::Function, type_renderer: crate::types::TypeRenderer<'_>, create_link: &L)
+where
+    L: Fn(rustdoc_types::Id) -> Option<String>
+```
+
+Render type links for a function signature inline (for impl methods).
+
+This is a helper that collects types from function signatures and
+creates links for resolvable types, outputting them on the same line.
+
+### `render_impl_function`
+
+```rust
+fn render_impl_function(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: crate::types::TypeRenderer<'_>)
+```
+
+Render a function signature within an impl block.
+
+Renders as a bullet point with the full signature including modifiers.
+
 ### `append_docs`
 
 ```rust

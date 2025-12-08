@@ -360,6 +360,7 @@ Don't use `lazy_static`.
 
 ## Modules
 
+- [`imp`](imp/index.md) - 
 - [`unsync`](unsync/index.md) - Single-threaded version of `OnceCell`.
 - [`sync`](sync/index.md) - Thread-safe, blocking version of `OnceCell`.
 - [`race`](race/index.md) - Thread-safe, non-blocking, "first one wins" flavor of `OnceCell`.

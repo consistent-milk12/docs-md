@@ -7,14 +7,14 @@
  Spans represent periods of time in which a program was executing in a
  particular context.
 
- A span consists of [fields], user-defined key-value pairs of arbitrary data
+ A span consists of [`fields`](../../tracing_attributes/attr/kw/index.md), user-defined key-value pairs of arbitrary data
  that describe the context the span represents, and a set of fixed attributes
  that describe all `tracing` spans and events. Attributes describing spans
  include:
 
- - An [`Id`](#id) assigned by the subscriber that uniquely identifies it in relation
+ - An [`Id`](../../tracing_core/index.md) assigned by the subscriber that uniquely identifies it in relation
    to other spans.
- - The span's [parent] in the trace tree.
+ - The span's [`parent`](../../tracing_core/parent/index.md) in the trace tree.
  - [Metadata] that describes static characteristics of all spans
    originating from that callsite, such as its name, source code location,
    [verbosity level], and the names of its fields.
@@ -24,7 +24,7 @@
  Spans are created using the `span!` macro. This macro is invoked with the
  following arguments, in order:
 
- - The `target` and/or [`parent`][parent] attributes, if the user wishes to
+ - The `target` and/or [`parent`][`parent`](../../tracing_core/parent/index.md) attributes, if the user wishes to
    override their default values.
  - The span's [verbosity level]
  - A string literal providing the span's name.
@@ -48,9 +48,9 @@
 
  ## Recording Span Creation
 
- The [`Attributes`](#attributes) type contains data associated with a span, and is
- provided to the [`Subscriber`](../index.md) when a new span is created. It contains
- the span's metadata, the ID of [the span's parent][parent] if one was
+ The [`Attributes`](../../tracing_core/span/index.md) type contains data associated with a span, and is
+ provided to the [`Subscriber`](../../tracing_core/subscriber/index.md) when a new span is created. It contains
+ the span's metadata, the ID of [the span's parent][`parent`](../../tracing_core/parent/index.md) if one was
  explicitly set, and any fields whose values were recorded when the span was
  constructed. The subscriber, which is responsible for recording `tracing`
  data, can then store or record these values.
@@ -63,7 +63,7 @@
  and _exit_ the span when it switches to another context. Spans may be
  entered through the `enter`, `entered`, and `in_scope` methods.
 
- The `enter` method enters a span, returning a [guard] that exits the span
+ The `enter` method enters a span, returning a [`guard`](../../crossbeam_epoch/guard/index.md) that exits the span
  when dropped
  ```rust
  use tracing::{span, Level};
@@ -231,7 +231,7 @@
  to be _idle_.
 
  Because spans may be entered and exited multiple times before they close,
- [`Subscriber`](../index.md)s have separate trait methods which are called to notify them
+ [`Subscriber`](../../tracing_core/subscriber/index.md)s have separate trait methods which are called to notify them
  of span exits and when span handles are dropped. When execution exits a
  span, [`exit`](#exit) will always be called with that span's ID to notify the
  subscriber that the span has been exited. When span handles are dropped, the
@@ -342,6 +342,12 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
+- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
+
+- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>`
+
+- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>`
+
 - `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>`
 
 - `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`set_global_default`](../dispatcher/index.md)
@@ -353,12 +359,6 @@ when performing lookups for many addresses in the same executable.
 - `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`DefaultGuard`](../subscriber/index.md)
 
 - `fn find_unit(self: &Self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`Id`](#id)
-
-- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
-
-- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>`
-
-- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>`
 
 ### `Span`
 
@@ -463,6 +463,66 @@ manner regardless of whether or not the trace is currently being collected.
 
 ##### `impl<T> WithSubscriber for Span`
 
+### `Inner`
+
+```rust
+struct Inner {
+    id: Id,
+    subscriber: crate::dispatcher::Dispatch,
+}
+```
+
+A handle representing the capacity to enter a span which is known to exist.
+
+Unlike `Span`, this type is only constructed for spans which _have_ been
+enabled by the current filter. This type is primarily used for implementing
+span handles; users should typically not need to interact with it directly.
+
+#### Fields
+
+- **`id`**: `Id`
+
+  The span's ID, as provided by `subscriber`.
+
+- **`subscriber`**: `crate::dispatcher::Dispatch`
+
+  The subscriber that will receive events relating to this span.
+  
+  This should be the same subscriber that provided this span with its
+  `id`.
+
+#### Implementations
+
+- `fn follows_from(self: &Self, from: &Id)`
+
+- `fn id(self: &Self) -> Id`
+
+- `fn record(self: &Self, values: &Record<'_>)`
+
+- `fn new(id: Id, subscriber: &Dispatch) -> Self`
+
+#### Trait Implementations
+
+##### `impl Clone for Inner`
+
+- `fn clone(self: &Self) -> Self`
+
+##### `impl Debug for Inner`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Hash for Inner`
+
+- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
+
+##### `impl<T> Instrument for Inner`
+
+##### `impl PartialEq for Inner`
+
+- `fn eq(self: &Self, other: &Self) -> bool`
+
+##### `impl<T> WithSubscriber for Inner`
+
 ### `Entered<'a>`
 
 ```rust
@@ -551,6 +611,41 @@ This is returned by the `Span::entered` function.
 
 ##### `impl<T> WithSubscriber for EnteredSpan`
 
+### `PhantomNotSend`
+
+```rust
+struct PhantomNotSend {
+    ghost: core::marker::PhantomData<*mut ()>,
+}
+```
+
+Technically, `EnteredSpan` _can_ implement both `Send` *and*
+`Sync` safely. It doesn't, because it has a `PhantomNotSend` field,
+specifically added in order to make it `!Send`.
+
+Sending an `EnteredSpan` guard between threads cannot cause memory unsafety.
+However, it *would* result in incorrect behavior, so we add a
+`PhantomNotSend` to prevent it from being sent between threads. This is
+because it must be *dropped* on the same thread that it was created;
+otherwise, the span will never be exited on the thread where it was entered,
+and it will attempt to exit the span on a thread that may never have entered
+it. However, we still want them to be `Sync` so that a struct holding an
+`Entered` guard can be `Sync`.
+
+Thus, this is totally safe.
+
+#### Trait Implementations
+
+##### `impl Debug for PhantomNotSend`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<T> Instrument for PhantomNotSend`
+
+##### `impl Sync for PhantomNotSend`
+
+##### `impl<T> WithSubscriber for PhantomNotSend`
+
 ## Traits
 
 ### `AsId`
@@ -568,4 +663,12 @@ Trait implemented by types which have a span `Id`.
   Returns the `Id` of the span that `self` corresponds to, or `None` if
 
 ## Functions
+
+## Constants
+
+### `PhantomNotSend`
+
+```rust
+const PhantomNotSend: PhantomNotSend;
+```
 

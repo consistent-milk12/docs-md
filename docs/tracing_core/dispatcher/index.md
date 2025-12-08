@@ -237,6 +237,59 @@ This type is analogous to the `std::sync::Weak` type, but for a
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
+### `State`
+
+```rust
+struct State {
+    default: std::cell::RefCell<Option<Dispatch>>,
+    can_enter: std::cell::Cell<bool>,
+}
+```
+
+The dispatch state of a thread.
+
+#### Fields
+
+- **`default`**: `std::cell::RefCell<Option<Dispatch>>`
+
+  This thread's current default dispatcher.
+
+- **`can_enter`**: `std::cell::Cell<bool>`
+
+  Whether or not we can currently begin dispatching a trace event.
+  
+  This is set to `false` when functions such as `enter`, `exit`, `event`,
+  and `new_span` are called on this thread's default dispatcher, to
+  prevent further trace events triggered inside those functions from
+  creating an infinite recursion. When we finish handling a dispatch, this
+  is set back to `true`.
+
+#### Implementations
+
+- `fn set_default(new_dispatch: Dispatch) -> DefaultGuard` — [`Dispatch`](#dispatch), [`DefaultGuard`](#defaultguard)
+
+- `fn enter(self: &Self) -> Option<Entered<'_>>` — [`Entered`](#entered)
+
+### `Entered<'a>`
+
+```rust
+struct Entered<'a>(&'a State);
+```
+
+While this guard is active, additional calls to subscriber functions on
+the default dispatcher will not be able to access the dispatch context.
+Dropping the guard will allow the dispatch context to be re-entered.
+
+#### Implementations
+
+- `fn current(self: &Self) -> Ref<'a, Dispatch>` — [`Dispatch`](#dispatch)
+
+#### Trait Implementations
+
+##### `impl Drop for Entered<'_>`
+
+- `fn drop(self: &mut Self)`
+
 ### `DefaultGuard`
 
 ```rust
@@ -285,6 +338,37 @@ Returned if setting the global dispatcher fails.
 ##### `impl<T> ToString for SetGlobalDefaultError`
 
 - `fn to_string(self: &Self) -> String`
+
+### `Registrar`
+
+```rust
+struct Registrar(Kind<alloc::sync::Weak<dyn Subscriber + Send + Sync>>);
+```
+
+#### Implementations
+
+- `fn upgrade(self: &Self) -> Option<Dispatch>` — [`Dispatch`](#dispatch)
+
+## Enums
+
+### `Kind<T>`
+
+```rust
+enum Kind<T> {
+    Global(&'static dyn Subscriber + Send + Sync),
+    Scoped(T),
+}
+```
+
+#### Implementations
+
+- `fn downgrade(self: &Self) -> Kind<Weak<dyn Subscriber + Send + Sync>>` — [`Kind`](#kind), [`Subscriber`](../subscriber/index.md)
+
+#### Trait Implementations
+
+##### `impl<T: $crate::clone::Clone> Clone for Kind<T>`
+
+- `fn clone(self: &Self) -> Kind<T>` — [`Kind`](#kind)
 
 ## Functions
 
@@ -360,4 +444,36 @@ Note that calls to `get_default` should not be nested; if this function is
 called while inside of another `get_default`, that closure will be provided
 with `Dispatch::none` rather than the previously set dispatcher.
 
+
+### `get_global`
+
+```rust
+fn get_global() -> &'static Dispatch
+```
+
+## Constants
+
+### `CURRENT_STATE`
+
+```rust
+const CURRENT_STATE: $crate::thread::LocalKey<State>;
+```
+
+### `UNINITIALIZED`
+
+```rust
+const UNINITIALIZED: usize = 0usize;
+```
+
+### `INITIALIZING`
+
+```rust
+const INITIALIZING: usize = 1usize;
+```
+
+### `INITIALIZED`
+
+```rust
+const INITIALIZED: usize = 2usize;
+```
 

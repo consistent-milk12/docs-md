@@ -672,3 +672,7 @@ type I64<E> = I64Bytes<E>;
 
 An `i64` value with an externally specified endianness of type `E`.
 
+## Macros
+
+### `unsafe_impl_endian_pod!`
+

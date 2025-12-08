@@ -46,9 +46,14 @@ generator.generate()?;
 ## Modules
 
 - [`breadcrumbs`](breadcrumbs/index.md) - Breadcrumb navigation generation for nested module pages.
+- [`capture`](capture/index.md) - In-memory markdown capture for testing.
+- [`context`](context/index.md) - Shared context for documentation generation.
 - [`doc_links`](doc_links/index.md) - Intra-doc link processing for documentation generation.
+- [`flat`](flat/index.md) - Flat format documentation generation.
 - [`impls`](impls/index.md) - Implementation block rendering for documentation generation.
+- [`items`](items/index.md) - Item rendering for documentation generation.
 - [`module`](module/index.md) - Module markdown rendering for documentation generation.
+- [`nested`](nested/index.md) - Nested format documentation generation.
 - [`render_shared`](render_shared/index.md) - Shared rendering functions for documentation generation.
 
 ## Structs

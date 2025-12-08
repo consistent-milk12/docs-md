@@ -110,3 +110,308 @@ A `Translator` can be configured in more detail via a
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `TranslatorI<'t, 'p>`
+
+```rust
+struct TranslatorI<'t, 'p> {
+    trans: &'t Translator,
+    pattern: &'p str,
+}
+```
+
+The internal implementation of a translator.
+
+This type is responsible for carrying around the original pattern string,
+which is not tied to the internal state of a translator.
+
+A TranslatorI exists for the time it takes to translate a single Ast.
+
+#### Implementations
+
+- `fn new(trans: &'t Translator, pattern: &'p str) -> TranslatorI<'t, 'p>` — [`Translator`](#translator), [`TranslatorI`](#translatori)
+
+- `fn trans(self: &Self) -> &Translator` — [`Translator`](#translator)
+
+- `fn push(self: &Self, frame: HirFrame)` — [`HirFrame`](#hirframe)
+
+- `fn push_char(self: &Self, ch: char)`
+
+- `fn push_byte(self: &Self, byte: u8)`
+
+- `fn pop(self: &Self) -> Option<HirFrame>` — [`HirFrame`](#hirframe)
+
+- `fn pop_concat_expr(self: &Self) -> Option<Hir>` — [`Hir`](../index.md)
+
+- `fn pop_alt_expr(self: &Self) -> Option<Hir>` — [`Hir`](../index.md)
+
+- `fn error(self: &Self, span: Span, kind: ErrorKind) -> Error` — [`Span`](../../ast/index.md), [`ErrorKind`](../index.md), [`Error`](../index.md)
+
+- `fn flags(self: &Self) -> Flags` — [`Flags`](#flags)
+
+- `fn set_flags(self: &Self, ast_flags: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md)
+
+- `fn ast_literal_to_scalar(self: &Self, lit: &ast::Literal) -> core::result::Result<Either<char, u8>, crate::hir::Error>` — [`Literal`](../../ast/index.md), [`Either`](../../either/index.md), [`Error`](../index.md)
+
+- `fn case_fold_char(self: &Self, span: Span, c: char) -> core::result::Result<Option<Hir>, crate::hir::Error>` — [`Span`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+
+- `fn hir_dot(self: &Self, span: Span) -> core::result::Result<Hir, crate::hir::Error>` — [`Span`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+
+- `fn hir_assertion(self: &Self, asst: &ast::Assertion) -> core::result::Result<Hir, crate::hir::Error>` — [`Assertion`](../../ast/index.md), [`Hir`](../index.md), [`Error`](../index.md)
+
+- `fn hir_capture(self: &Self, group: &ast::Group, expr: Hir) -> Hir` — [`Group`](../../ast/index.md), [`Hir`](../index.md)
+
+- `fn hir_repetition(self: &Self, rep: &ast::Repetition, expr: Hir) -> Hir` — [`Repetition`](../../ast/index.md), [`Hir`](../index.md)
+
+- `fn hir_unicode_class(self: &Self, ast_class: &ast::ClassUnicode) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassUnicode`](../../ast/index.md), [`Error`](../index.md)
+
+- `fn hir_ascii_unicode_class(self: &Self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+
+- `fn hir_ascii_byte_class(self: &Self, ast: &ast::ClassAscii) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassAscii`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+
+- `fn hir_perl_unicode_class(self: &Self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+
+- `fn hir_perl_byte_class(self: &Self, ast_class: &ast::ClassPerl) -> core::result::Result<hir::ClassBytes, crate::hir::Error>` — [`ClassPerl`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+
+- `fn convert_unicode_class_error(self: &Self, span: &Span, result: core::result::Result<hir::ClassUnicode, unicode::Error>) -> core::result::Result<hir::ClassUnicode, crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../../unicode/index.md)
+
+- `fn unicode_fold_and_negate(self: &Self, span: &Span, negated: bool, class: &mut hir::ClassUnicode) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassUnicode`](../index.md), [`Error`](../index.md)
+
+- `fn bytes_fold_and_negate(self: &Self, span: &Span, negated: bool, class: &mut hir::ClassBytes) -> core::result::Result<(), crate::hir::Error>` — [`Span`](../../ast/index.md), [`ClassBytes`](../index.md), [`Error`](../index.md)
+
+- `fn class_literal_byte(self: &Self, ast: &ast::Literal) -> core::result::Result<u8, crate::hir::Error>` — [`Literal`](../../ast/index.md), [`Error`](../index.md)
+
+#### Trait Implementations
+
+##### `impl<'t, 'p> Clone for TranslatorI<'t, 'p>`
+
+- `fn clone(self: &Self) -> TranslatorI<'t, 'p>` — [`TranslatorI`](#translatori)
+
+##### `impl<'t, 'p> Debug for TranslatorI<'t, 'p>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<'t, 'p> Visitor for TranslatorI<'t, 'p>`
+
+- `type Output = Hir`
+
+- `type Err = Error`
+
+- `fn finish(self: Self) -> core::result::Result<Hir, crate::hir::Error>` — [`Hir`](../index.md), [`Error`](../index.md)
+
+- `fn visit_pre(self: &mut Self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Error`](../index.md)
+
+- `fn visit_post(self: &mut Self, ast: &Ast) -> core::result::Result<(), crate::hir::Error>` — [`Ast`](../../ast/index.md), [`Error`](../index.md)
+
+- `fn visit_alternation_in(self: &mut Self) -> core::result::Result<(), crate::hir::Error>` — [`Error`](../index.md)
+
+- `fn visit_class_set_item_pre(self: &mut Self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md), [`Error`](../index.md)
+
+- `fn visit_class_set_item_post(self: &mut Self, ast: &ast::ClassSetItem) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetItem`](../../ast/index.md), [`Error`](../index.md)
+
+- `fn visit_class_set_binary_op_pre(self: &mut Self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+
+- `fn visit_class_set_binary_op_in(self: &mut Self, _op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+
+- `fn visit_class_set_binary_op_post(self: &mut Self, op: &ast::ClassSetBinaryOp) -> core::result::Result<(), crate::hir::Error>` — [`ClassSetBinaryOp`](../../ast/index.md), [`Error`](../index.md)
+
+### `Flags`
+
+```rust
+struct Flags {
+    case_insensitive: Option<bool>,
+    multi_line: Option<bool>,
+    dot_matches_new_line: Option<bool>,
+    swap_greed: Option<bool>,
+    unicode: Option<bool>,
+    crlf: Option<bool>,
+}
+```
+
+A translator's representation of a regular expression's flags at any given
+moment in time.
+
+Each flag can be in one of three states: absent, present but disabled or
+present but enabled.
+
+#### Implementations
+
+- `fn from_ast(ast: &ast::Flags) -> Flags` — [`Flags`](../../ast/index.md)
+
+- `fn merge(self: &mut Self, previous: &Flags)` — [`Flags`](#flags)
+
+- `fn case_insensitive(self: &Self) -> bool`
+
+- `fn multi_line(self: &Self) -> bool`
+
+- `fn dot_matches_new_line(self: &Self) -> bool`
+
+- `fn swap_greed(self: &Self) -> bool`
+
+- `fn unicode(self: &Self) -> bool`
+
+- `fn crlf(self: &Self) -> bool`
+
+#### Trait Implementations
+
+##### `impl Clone for Flags`
+
+- `fn clone(self: &Self) -> Flags` — [`Flags`](#flags)
+
+##### `impl Copy for Flags`
+
+##### `impl Debug for Flags`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for Flags`
+
+- `fn default() -> Flags` — [`Flags`](#flags)
+
+## Enums
+
+### `HirFrame`
+
+```rust
+enum HirFrame {
+    Expr(crate::hir::Hir),
+    Literal(alloc::vec::Vec<u8>),
+    ClassUnicode(hir::ClassUnicode),
+    ClassBytes(hir::ClassBytes),
+    Repetition,
+    Group {
+        old_flags: Flags,
+    },
+    Concat,
+    Alternation,
+    AlternationBranch,
+}
+```
+
+An HirFrame is a single stack frame, represented explicitly, which is
+created for each item in the Ast that we traverse.
+
+Note that technically, this type doesn't represent our entire stack
+frame. In particular, the Ast visitor represents any state associated with
+traversing the Ast itself.
+
+#### Variants
+
+- **`Expr`**
+
+  An arbitrary HIR expression. These get pushed whenever we hit a base
+  case in the Ast. They get popped after an inductive (i.e., recursive)
+  step is complete.
+
+- **`Literal`**
+
+  A literal that is being constructed, character by character, from the
+  AST. We need this because the AST gives each individual character its
+  own node. So as we see characters, we peek at the top-most HirFrame.
+  If it's a literal, then we add to it. Otherwise, we push a new literal.
+  When it comes time to pop it, we convert it to an Hir via Hir::literal.
+
+- **`ClassUnicode`**
+
+  A Unicode character class. This frame is mutated as we descend into
+  the Ast of a character class (which is itself its own mini recursive
+  structure).
+
+- **`ClassBytes`**
+
+  A byte-oriented character class. This frame is mutated as we descend
+  into the Ast of a character class (which is itself its own mini
+  recursive structure).
+  
+  Byte character classes are created when Unicode mode (`u`) is disabled.
+  If `utf8` is enabled (the default), then a byte character is only
+  permitted to match ASCII text.
+
+- **`Repetition`**
+
+  This is pushed whenever a repetition is observed. After visiting every
+  sub-expression in the repetition, the translator's stack is expected to
+  have this sentinel at the top.
+  
+  This sentinel only exists to stop other things (like flattening
+  literals) from reaching across repetition operators.
+
+- **`Group`**
+
+  This is pushed on to the stack upon first seeing any kind of capture,
+  indicated by parentheses (including non-capturing groups). It is popped
+  upon leaving a group.
+
+- **`Concat`**
+
+  This is pushed whenever a concatenation is observed. After visiting
+  every sub-expression in the concatenation, the translator's stack is
+  popped until it sees a Concat frame.
+
+- **`Alternation`**
+
+  This is pushed whenever an alternation is observed. After visiting
+  every sub-expression in the alternation, the translator's stack is
+  popped until it sees an Alternation frame.
+
+- **`AlternationBranch`**
+
+  This is pushed immediately before each sub-expression in an
+  alternation. This separates the branches of an alternation on the
+  stack and prevents literal flattening from reaching across alternation
+  branches.
+  
+  It is popped after each expression in a branch until an 'Alternation'
+  frame is observed when doing a post visit on an alternation.
+
+#### Implementations
+
+- `fn unwrap_expr(self: Self) -> Hir` — [`Hir`](../index.md)
+
+- `fn unwrap_class_unicode(self: Self) -> hir::ClassUnicode` — [`ClassUnicode`](../index.md)
+
+- `fn unwrap_class_bytes(self: Self) -> hir::ClassBytes` — [`ClassBytes`](../index.md)
+
+- `fn unwrap_repetition(self: Self)`
+
+- `fn unwrap_group(self: Self) -> Flags` — [`Flags`](#flags)
+
+- `fn unwrap_alternation_pipe(self: Self)`
+
+#### Trait Implementations
+
+##### `impl Clone for HirFrame`
+
+- `fn clone(self: &Self) -> HirFrame` — [`HirFrame`](#hirframe)
+
+##### `impl Debug for HirFrame`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+## Functions
+
+### `hir_ascii_class_bytes`
+
+```rust
+fn hir_ascii_class_bytes(kind: &ast::ClassAsciiKind) -> hir::ClassBytes
+```
+
+### `ascii_class`
+
+```rust
+fn ascii_class(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (u8, u8)>
+```
+
+### `ascii_class_as_chars`
+
+```rust
+fn ascii_class_as_chars(kind: &ast::ClassAsciiKind) -> impl Iterator<Item = (char, char)>
+```
+
+## Type Aliases
+
+### `Result<T>`
+
+```rust
+type Result<T> = core::result::Result<T, crate::hir::Error>;
+```
+

@@ -96,6 +96,46 @@ never being interested in any callsite, and dropping all spans and events.
 
 - `fn exit(self: &Self, _span: &span::Id)` — [`Id`](../span/index.md)
 
+## Enums
+
+### `InterestKind`
+
+```rust
+enum InterestKind {
+    Never,
+    Sometimes,
+    Always,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for InterestKind`
+
+- `fn clone(self: &Self) -> InterestKind` — [`InterestKind`](#interestkind)
+
+##### `impl Copy for InterestKind`
+
+##### `impl Debug for InterestKind`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for InterestKind`
+
+##### `impl Ord for InterestKind`
+
+- `fn cmp(self: &Self, other: &InterestKind) -> $crate::cmp::Ordering` — [`InterestKind`](#interestkind)
+
+##### `impl PartialEq for InterestKind`
+
+- `fn eq(self: &Self, other: &InterestKind) -> bool` — [`InterestKind`](#interestkind)
+
+##### `impl PartialOrd for InterestKind`
+
+- `fn partial_cmp(self: &Self, other: &InterestKind) -> $crate::option::Option<$crate::cmp::Ordering>` — [`InterestKind`](#interestkind)
+
+##### `impl StructuralPartialEq for InterestKind`
+
 ## Traits
 
 ### `Subscriber`
@@ -193,7 +233,7 @@ The following methods are likely of interest:
 
 - `fn max_level_hint(self: &Self) -> Option<LevelFilter>`
 
-  Returns the highest [verbosity level][level] that this `Subscriber` will
+  Returns the highest [verbosity level][`level`](../../tracing_attributes/attr/kw/index.md) that this `Subscriber` will
 
 - `fn new_span(self: &Self, span: &span::Attributes<'_>) -> span::Id`
 

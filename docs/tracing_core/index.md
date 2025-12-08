@@ -115,13 +115,16 @@ long as doing so complies with this policy.
 
 ## Modules
 
+- [`lazy`](lazy/index.md) - 
 - [`callsite`](callsite/index.md) - Callsites represent the source locations from which spans or events
 - [`dispatcher`](dispatcher/index.md) - Dispatches trace events to [`Subscriber`]s.
 - [`event`](event/index.md) - Events represent single points in time during the execution of a program.
 - [`field`](field/index.md) - `Span` and `Event` key-value data.
 - [`metadata`](metadata/index.md) - Metadata describing trace data.
+- [`parent`](parent/index.md) - 
 - [`span`](span/index.md) - Spans represent periods of time in the execution of a program.
 - [`subscriber`](subscriber/index.md) - Collectors collect and record trace data.
+- [`sealed`](sealed/index.md) - 
 
 ## Structs
 
@@ -210,7 +213,7 @@ two key differences:
   may be located within the trace tree, allowing visibility into the
   _temporal_ context in which the event occurred, as well as the source
   code location.
-- Like spans, `Event`s have structured key-value data known as _[fields]_,
+- Like spans, `Event`s have structured key-value data known as _[`fields`](../tracing_attributes/attr/kw/index.md)_,
   which may include textual message. In general, a majority of the data
   associated with an event should be in the event's fields rather than in
   the textual message, as the fields are more structured.
@@ -244,14 +247,6 @@ two key differences:
 ##### `impl<'a> Debug for Event<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl<'a> NormalizeEvent for tracing_core::Event<'a>`
-
-##### `impl RecordFields for tracing_core::Event<'_>`
-
-- `fn exit(self: &Self, span: &span::Id)` — [`Id`](span/index.md)
-
-##### `impl<'a> Sealed for tracing_core::Event<'a>`
 
 ### `Field`
 
@@ -461,8 +456,6 @@ recorded in.
 
 #### Trait Implementations
 
-##### `impl AsLog for tracing_core::Level`
-
 ##### `impl Clone for Level`
 
 - `fn clone(self: &Self) -> Level` — [`Level`](metadata/index.md)
@@ -495,7 +488,7 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
 
 ##### `impl PartialOrd for Level`
 
@@ -508,8 +501,6 @@ recorded in.
 - `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
 
 - `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
-
-##### `impl Sealed for tracing_core::Level`
 
 ##### `impl StructuralPartialEq for Level`
 
@@ -573,10 +564,6 @@ and `LevelFilter`s interact.
 
 #### Trait Implementations
 
-##### `impl AsLog for tracing_core::LevelFilter`
-
-- `type Owned = T`
-
 ##### `impl Clone for LevelFilter`
 
 - `fn clone(self: &Self) -> LevelFilter` — [`LevelFilter`](metadata/index.md)
@@ -609,7 +596,7 @@ and `LevelFilter`s interact.
 
 ##### `impl PartialEq for LevelFilter`
 
-- `fn eq(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](metadata/index.md)
+- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
 
 ##### `impl PartialOrd for LevelFilter`
 
@@ -622,8 +609,6 @@ and `LevelFilter`s interact.
 - `fn gt(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
 
 - `fn ge(self: &Self, other: &Level) -> bool` — [`Level`](metadata/index.md)
-
-##### `impl Sealed for tracing_core::LevelFilter`
 
 ##### `impl StructuralPartialEq for LevelFilter`
 
@@ -649,15 +634,15 @@ struct Metadata<'a> {
 Metadata describing a [`span`](span/index.md) or [`event`](event/index.md).
 
 All spans and events have the following metadata:
-- A [name], represented as a static string.
-- A [target], a string that categorizes part of the system where the span
+- A [`name`](../serde_derive/internals/name/index.md), represented as a static string.
+- A [`target`](../tracing_attributes/attr/kw/index.md), a string that categorizes part of the system where the span
   or event occurred. The `tracing` macros default to using the module
   path where the span or event originated as the target, but it may be
   overridden.
 - A [verbosity level]. This determines how verbose a given span or event
   is, and allows enabling or disabling more verbose diagnostics
   situationally. See the documentation for the [`Level`](metadata/index.md) type for details.
-- The names of the [fields] defined by the span or event.
+- The names of the [`fields`](../tracing_attributes/attr/kw/index.md) defined by the span or event.
 - Whether the metadata corresponds to a span or event.
 
 In addition, the following optional metadata describing the source code
@@ -759,8 +744,6 @@ of `Metadata`'s other fields is checked in debug builds.
 
 #### Trait Implementations
 
-##### `impl<'a> AsLog for tracing_core::Metadata<'a>`
-
 ##### `impl Debug for Metadata<'_>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
@@ -770,8 +753,6 @@ of `Metadata`'s other fields is checked in debug builds.
 ##### `impl PartialEq for Metadata<'_>`
 
 - `fn eq(self: &Self, other: &Self) -> bool`
-
-##### `impl<'a> Sealed for tracing_core::Metadata<'a>`
 
 ### `Kind`
 

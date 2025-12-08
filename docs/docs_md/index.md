@@ -11,7 +11,6 @@ generation capabilities programmatically.
 - [`error`](error/index.md) - Error types for docs-md.
 - [`generator`](generator/index.md) - Markdown documentation generator for rustdoc JSON.
 - [`linker`](linker/index.md) - Cross-reference linking for markdown documentation.
-- [`logger`](logger/index.md) - Logging related utils.
 - [`multi_crate`](multi_crate/index.md) - Multi-crate documentation generation.
 - [`parser`](parser/index.md) - Rustdoc JSON parsing module.
 - [`types`](types/index.md) - Type rendering utilities for converting rustdoc types to string representations.
@@ -684,7 +683,8 @@ generator.write(Path::new("docs/"))?;
 struct UnifiedLinkRegistry {
     item_paths: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
     item_names: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
-    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>,
+    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id, rustdoc_types::ItemKind)>>,
+    re_export_sources: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
     primary_crate: Option<compact_str::CompactString>,
 }
 ```
@@ -728,10 +728,18 @@ This avoids allocating a `String` for the crate name on every lookup.
   Maps `(crate_name, item_id)` to the item's display name.
   Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
-- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
+- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id, rustdoc_types::ItemKind)>>`
 
-  Maps short names to all `(crate_name, item_id)` pairs.
+  Maps short names to all `(crate_name, item_id, item_kind)` tuples.
   Used for disambiguating links like `Span` that exist in multiple crates.
+  The `ItemKind` enables preferring modules over macros with the same name.
+
+- **`re_export_sources`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, reexport_id)` to the original source path.
+  Used for resolving external re-exports where `use_item.id` is `None`
+  but `use_item.source` provides the canonical path.
+  Example: `("tracing", id_123)` -> `"tracing_core::field::Visit"`
 
 - **`primary_crate`**: `Option<compact_str::CompactString>`
 
@@ -745,13 +753,19 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `fn register_from_paths(self: &mut Self, crate_name: &str, krate: &Crate)`
 
+- `fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
+
 - `fn register_item_recursive(self: &mut Self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
 
-- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str)`
+- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind)`
 
 - `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
 - `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+
+- `fn get_re_export_source(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+
+- `fn resolve_reexport(self: &Self, crate_name: &str, id: Id) -> Option<(compact_str::CompactString, Id)>`
 
 - `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
 
@@ -807,8 +821,6 @@ This avoids allocating a `String` for the crate name on every lookup.
 struct Cli {
     pub command: Option<Command>,
     pub args: GenerateArgs,
-    pub log_level: crate::logger::LogLevel,
-    pub log_file: Option<std::path::PathBuf>,
 }
 ```
 
@@ -823,20 +835,6 @@ Top-level CLI for docs-md.
 - **`args`**: `GenerateArgs`
 
   Generation options (used when no subcommand is specified)
-
-- **`log_level`**: `crate::logger::LogLevel`
-
-  Logging verbosity level
-  
-  Controls the amount of diagnostic output. Use for debugging link
-  resolution issues or understanding the generation process.
-
-- **`log_file`**: `Option<std::path::PathBuf>`
-
-  Enable logging to a file instead of stderr
-  
-  When set, logs are written to this file path instead of stderr.
-  Useful for capturing debug output without cluttering terminal.
 
 #### Trait Implementations
 

@@ -104,7 +104,7 @@ compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
 
 Providing additional trait impls as types are stabilized in the standard library
 without breaking compatibility with older compilers; in this case Pin\<P\>
-stabilized in [Rust 1.33][pin]:
+stabilized in [Rust 1.33][`pin`](../crossbeam_epoch/default/index.md):
 
 ```rust
 trait MyTrait {}
@@ -119,7 +119,7 @@ impl<P: MyTrait> MyTrait for Pin<P> {
 ```
 
 Similar but for language features; the ability to control alignment greater than
-1 of packed structs was stabilized in [Rust 1.33][packed].
+1 of packed structs was stabilized in [Rust 1.33][`packed`](../aho_corasick/packed/index.md).
 
 ```rust
 #[rustversion::attr(before(1.33), repr(packed))]
@@ -169,4 +169,26 @@ extern crate alloc;
 
 <br>
 
-*This crate has no public items to document.*
+## Modules
+
+- [`attr`](attr/index.md) - 
+- [`bound`](bound/index.md) - 
+- [`constfn`](constfn/index.md) - 
+- [`date`](date/index.md) - 
+- [`error`](error/index.md) - 
+- [`expand`](expand/index.md) - 
+- [`expr`](expr/index.md) - 
+- [`iter`](iter/index.md) - 
+- [`release`](release/index.md) - 
+- [`time`](time/index.md) - 
+- [`token`](token/index.md) - 
+- [`version`](version/index.md) - 
+
+## Constants
+
+### `RUSTVERSION`
+
+```rust
+const RUSTVERSION: crate::version::Version;
+```
+

@@ -76,7 +76,7 @@ before the scope ends.
 # How scoped threads work
 
 If a variable is borrowed by a thread, the thread must complete before the variable is
-destroyed. Threads spawned using `std::thread::spawn` can only borrow variables with the
+destroyed. Threads spawned using [`std::thread::spawn`](../../rayon_core/spawn/index.md) can only borrow variables with the
 `'static` lifetime because the borrow checker cannot be sure when the thread will complete.
 
 A scope creates a clear boundary between variables outside the scope and threads inside the
@@ -116,6 +116,10 @@ thread::scope(|s| {
     });
 }).unwrap();
 ```
+
+## Modules
+
+- [`unix`](unix/index.md) - Unix-specific extensions.
 
 ## Structs
 
@@ -288,7 +292,7 @@ returned with the return value of `f`. If any of the joined threads has panicked
 returned containing errors from panicked threads. Note that if panics are implemented by
 aborting the process, no error is returned; see the notes of [std::panic::catch_unwind].
 
-**Note:** Since Rust 1.63, this function is soft-deprecated in favor of the more efficient `std::thread::scope`.
+**Note:** Since Rust 1.63, this function is soft-deprecated in favor of the more efficient [`std::thread::scope`](../../rayon_core/scope/index.md).
 
 # Examples
 
@@ -302,5 +306,19 @@ thread::scope(|s| {
         println!("A child thread borrowing `var`: {:?}", var);
     });
 }).unwrap();
+```
+
+## Type Aliases
+
+### `SharedVec<T>`
+
+```rust
+type SharedVec<T> = std::sync::Arc<std::sync::Mutex<std::vec::Vec<T>>>;
+```
+
+### `SharedOption<T>`
+
+```rust
+type SharedOption<T> = std::sync::Arc<std::sync::Mutex<Option<T>>>;
 ```
 

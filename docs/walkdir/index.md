@@ -96,6 +96,12 @@ Ok(())
 ```
 
 
+## Modules
+
+- [`dent`](dent/index.md) - 
+- [`error`](error/index.md) - 
+- [`util`](util/index.md) - 
+
 ## Structs
 
 ### `DirEntry`
@@ -385,6 +391,27 @@ error is reported.
 
 - `fn into_iter(self: Self) -> IntoIter` — [`IntoIter`](#intoiter)
 
+### `WalkDirOptions`
+
+```rust
+struct WalkDirOptions {
+    follow_links: bool,
+    follow_root_links: bool,
+    max_open: usize,
+    min_depth: usize,
+    max_depth: usize,
+    sorter: Option<Box<dyn FnMut(&DirEntry, &DirEntry) -> std::cmp::Ordering + Send + Sync>>,
+    contents_first: bool,
+    same_file_system: bool,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Debug for WalkDirOptions`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> result::Result<(), fmt::Error>`
+
 ### `IntoIter`
 
 ```rust
@@ -510,6 +537,35 @@ The order of elements yielded by this iterator is unspecified.
 
 - `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
+### `Ancestor`
+
+```rust
+struct Ancestor {
+    path: std::path::PathBuf,
+}
+```
+
+An ancestor is an item in the directory tree traversed by walkdir, and is
+used to check for loops in the tree when traversing symlinks.
+
+#### Fields
+
+- **`path`**: `std::path::PathBuf`
+
+  The path of this ancestor.
+
+#### Implementations
+
+- `fn new(dent: &DirEntry) -> io::Result<Ancestor>` — [`DirEntry`](dent/index.md), [`Ancestor`](#ancestor)
+
+- `fn is_same(self: &Self, child: &Handle) -> io::Result<bool>`
+
+#### Trait Implementations
+
+##### `impl Debug for Ancestor`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ### `FilterEntry<I, P>`
 
 ```rust
@@ -568,6 +624,73 @@ predicate, which is usually `FnMut(&DirEntry) -> bool`.
 
 - `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
 
+## Enums
+
+### `DirList`
+
+```rust
+enum DirList {
+    Opened {
+        depth: usize,
+        it: result::Result<std::fs::ReadDir, Option<Error>>,
+    },
+    Closed(vec::IntoIter<Result<DirEntry>>),
+}
+```
+
+A sequence of unconsumed directory entries.
+
+This represents the opened or closed state of a directory handle. When
+open, future entries are read by iterating over the raw `fs::ReadDir`.
+When closed, all future entries are read into memory. Iteration then
+proceeds over a `Vec<fs::DirEntry>`.
+
+
+
+#### Variants
+
+- **`Opened`**
+
+  An opened handle.
+  
+  This includes the depth of the handle itself.
+  
+  If there was an error with the initial `fs::read_dir` call, then it
+  is stored here. (We use an `Option<...>` to make yielding the error
+  exactly once simpler.)
+  
+  
+
+- **`Closed`**
+
+  A closed handle.
+  
+  All remaining directory entries are read into memory.
+
+#### Implementations
+
+- `fn close(self: &mut Self)`
+
+#### Trait Implementations
+
+##### `impl Debug for DirList`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for DirList`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator for DirList`
+
+- `type Item = Result<DirEntry, Error>`
+
+- `fn next(self: &mut Self) -> Option<Result<DirEntry>>` — [`Result`](#result), [`DirEntry`](dent/index.md)
+
 ## Traits
 
 ## Type Aliases
@@ -587,5 +710,12 @@ was dectected). If you want things to Just Work, then you can use
 `io::Result` instead since the error type in this package will
 automatically convert to an `io::Result` when using the `try!` macro.
 
+
+
+## Macros
+
+### `itry!`
+
+Like try, but for iterators that return `Option<Result<_, _>>`.
 
 

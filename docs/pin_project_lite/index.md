@@ -14,7 +14,7 @@ pin-project-lite = "0.2"
 
 ## Examples
 
-`pin_project!` macro creates a projection type covering all the fields of
+[`pin_project!`](#pin-project) macro creates a projection type covering all the fields of
 struct.
 
 ```rust
@@ -39,7 +39,7 @@ impl<T, U> Struct<T, U> {
 }
 ```
 
-To use `pin_project!` on enums, you need to name the projection type
+To use [`pin_project!`](#pin-project) on enums, you need to name the projection type
 returned from the method.
 
 ```rust
@@ -307,11 +307,11 @@ attribute has no effect.
 
 # Pinned Drop
 
-In order to correctly implement pin projections, a type’s `Drop` impl must not move out of any
+In order to correctly implement pin projections, a type’s [`Drop`](../gimli/index.md) impl must not move out of any
 structurally pinned fields. Unfortunately, `Drop::drop` takes `&mut Self`, not `Pin<&mut
 Self>`.
 
-To implement `Drop` for type that has pin, add an `impl PinnedDrop` block at the end of the
+To implement [`Drop`](../gimli/index.md) for type that has pin, add an `impl PinnedDrop` block at the end of the
 [`pin_project`](#pin-project) macro block. PinnedDrop has the following interface:
 
 ```rust
@@ -323,9 +323,9 @@ trait PinnedDrop {
 
 Note that the argument to `PinnedDrop::drop` cannot be named `self`.
 
-`pin_project!` implements the actual `Drop` trait via PinnedDrop you implemented. To
+`pin_project!` implements the actual [`Drop`](../gimli/index.md) trait via PinnedDrop you implemented. To
 explicitly drop a type that implements PinnedDrop, use the [drop] function just like dropping a
-type that directly implements `Drop`.
+type that directly implements [`Drop`](../gimli/index.md).
 
 `PinnedDrop::drop` will never be called more than once, just like `Drop::drop`.
 

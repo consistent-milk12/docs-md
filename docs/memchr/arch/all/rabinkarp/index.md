@@ -98,3 +98,77 @@ A reverse substring searcher using the Rabin-Karp algorithm.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `Hash`
+
+```rust
+struct Hash(u32);
+```
+
+A Rabin-Karp hash. This might represent the hash of a needle, or the hash
+of a rolling window in the haystack.
+
+#### Implementations
+
+- `fn new() -> Hash` — [`Hash`](#hash)
+
+- `unsafe fn forward(start: *const u8, end: *const u8) -> Hash` — [`Hash`](#hash)
+
+- `unsafe fn reverse(start: *const u8, end: *const u8) -> Hash` — [`Hash`](#hash)
+
+- `fn roll(self: &mut Self, finder: &Finder, old: u8, new: u8)` — [`Finder`](#finder)
+
+- `fn add(self: &mut Self, byte: u8)`
+
+- `fn del(self: &mut Self, finder: &Finder, byte: u8)` — [`Finder`](#finder)
+
+#### Trait Implementations
+
+##### `impl Clone for Hash`
+
+- `fn clone(self: &Self) -> Hash` — [`Hash`](#hash)
+
+##### `impl Copy for Hash`
+
+##### `impl Debug for Hash`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for Hash`
+
+- `fn default() -> Hash` — [`Hash`](#hash)
+
+##### `impl Eq for Hash`
+
+##### `impl PartialEq for Hash`
+
+- `fn eq(self: &Self, other: &Hash) -> bool` — [`Hash`](#hash)
+
+##### `impl StructuralPartialEq for Hash`
+
+## Functions
+
+### `is_fast`
+
+```rust
+fn is_fast(haystack: &[u8], _needle: &[u8]) -> bool
+```
+
+Whether RK is believed to be very fast for the given needle/haystack.
+
+### `is_equal_raw`
+
+```rust
+unsafe fn is_equal_raw(x: *const u8, y: *const u8, n: usize) -> bool
+```
+
+Returns true when `x[i] == y[i]` for all `0 <= i < n`.
+
+We forcefully don't inline this to hint at the compiler that it is unlikely
+to be called. This causes the inner rabinkarp loop above to be a bit
+tighter and leads to some performance improvement. See the
+memmem/krate/prebuilt/sliceslice-words/words benchmark.
+
+# Safety
+
+Same as `crate::arch::all::is_equal_raw`.
+

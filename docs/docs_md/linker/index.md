@@ -148,6 +148,22 @@ assert_eq!(slugify_anchor("Into<T>"), "into");
 assert_eq!(slugify_anchor("Größe"), "größe");
 ```
 
+### `slugify_anchor_ascii`
+
+```rust
+fn slugify_anchor_ascii(name: &str) -> String
+```
+
+Fast ASCII-only slugification (no allocation for normalization).
+
+### `slugify_anchor_impl`
+
+```rust
+fn slugify_anchor_impl(name: &str) -> String
+```
+
+Unicode-aware slugification with full lowercase support.
+
 ### `item_has_anchor`
 
 ```rust

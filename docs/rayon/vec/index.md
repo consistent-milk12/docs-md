@@ -134,3 +134,107 @@ Draining parallel iterator that moves a range out of a vector, but keeps the tot
 
 - `unsafe fn drop(ptr: usize)`
 
+### `DrainProducer<'data, T: Send>`
+
+```rust
+struct DrainProducer<'data, T: Send> {
+    slice: &'data mut [T],
+}
+```
+
+#### Implementations
+
+- `unsafe fn new(slice: &mut [T]) -> DrainProducer<'_, T>` — [`DrainProducer`](#drainproducer)
+
+- `unsafe fn from_vec(vec: &mut Vec<T>, len: usize) -> DrainProducer<'_, T>` — [`DrainProducer`](#drainproducer)
+
+#### Trait Implementations
+
+##### `impl<'data, T: 'data + Send> Drop for DrainProducer<'data, T>`
+
+- `fn drop(self: &mut Self)`
+
+##### `impl<T> IntoEither for DrainProducer<'data, T>`
+
+##### `impl<T> Pointable for DrainProducer<'data, T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<'data, T: 'data + Send> Producer for DrainProducer<'data, T>`
+
+- `type Item = T`
+
+- `type IntoIter = SliceDrain<'data, T>`
+
+- `fn into_iter(self: Self) -> <Self as >::IntoIter` — [`Producer`](../iter/plumbing/index.md)
+
+- `fn split_at(self: Self, index: usize) -> (Self, Self)`
+
+### `SliceDrain<'data, T>`
+
+```rust
+struct SliceDrain<'data, T> {
+    iter: slice::IterMut<'data, T>,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, T: 'data> DoubleEndedIterator for SliceDrain<'data, T>`
+
+- `fn next_back(self: &mut Self) -> Option<<Self as >::Item>`
+
+##### `impl<'data, T: 'data> Drop for SliceDrain<'data, T>`
+
+- `fn drop(self: &mut Self)`
+
+##### `impl<'data, T: 'data> ExactSizeIterator for SliceDrain<'data, T>`
+
+- `fn len(self: &Self) -> usize`
+
+##### `impl<'data, T: 'data> FusedIterator for SliceDrain<'data, T>`
+
+##### `impl<T> IntoEither for SliceDrain<'data, T>`
+
+##### `impl<I> IntoIterator for SliceDrain<'data, T>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'data, T: 'data> Iterator for SliceDrain<'data, T>`
+
+- `type Item = T`
+
+- `fn next(self: &mut Self) -> Option<T>`
+
+- `fn size_hint(self: &Self) -> (usize, Option<usize>)`
+
+- `fn count(self: Self) -> usize`
+
+##### `impl<T> Pointable for SliceDrain<'data, T>`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+

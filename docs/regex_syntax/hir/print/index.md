@@ -8,6 +8,39 @@ This module provides a regular expression printer for `Hir`.
 
 ## Structs
 
+### `PrinterBuilder`
+
+```rust
+struct PrinterBuilder {
+    _priv: (),
+}
+```
+
+A builder for constructing a printer.
+
+Note that since a printer doesn't have any configuration knobs, this type
+remains unexported.
+
+#### Implementations
+
+- `fn new() -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
+
+- `fn build(self: &Self) -> Printer` — [`Printer`](#printer)
+
+#### Trait Implementations
+
+##### `impl Clone for PrinterBuilder`
+
+- `fn clone(self: &Self) -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
+
+##### `impl Debug for PrinterBuilder`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for PrinterBuilder`
+
+- `fn default() -> PrinterBuilder` — [`PrinterBuilder`](#printerbuilder)
+
 ### `Printer`
 
 ```rust
@@ -44,4 +77,40 @@ specific HIR representation.)
 ##### `impl Debug for Printer`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `Writer<W>`
+
+```rust
+struct Writer<W> {
+    wtr: W,
+}
+```
+
+#### Implementations
+
+- `fn write_literal_char(self: &mut Self, c: char) -> fmt::Result`
+
+- `fn write_literal_byte(self: &mut Self, b: u8) -> fmt::Result`
+
+- `fn write_literal_class_byte(self: &mut Self, b: u8) -> fmt::Result`
+
+#### Trait Implementations
+
+##### `impl<W: $crate::fmt::Debug> Debug for Writer<W>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<W: fmt::Write> Visitor for Writer<W>`
+
+- `type Output = ()`
+
+- `type Err = Error`
+
+- `fn finish(self: Self) -> fmt::Result`
+
+- `fn visit_pre(self: &mut Self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md)
+
+- `fn visit_post(self: &mut Self, hir: &Hir) -> fmt::Result` — [`Hir`](../index.md)
+
+- `fn visit_alternation_in(self: &mut Self) -> fmt::Result`
 

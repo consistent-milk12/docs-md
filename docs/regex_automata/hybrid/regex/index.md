@@ -6,7 +6,7 @@
 
 A lazy DFA backed `Regex`.
 
-This module provides a [`Regex`](../../dfa/regex/index.md) backed by a lazy DFA. A `Regex` implements
+This module provides a [`Regex`](#regex) backed by a lazy DFA. A `Regex` implements
 convenience routines you might have come to expect, such as finding a match
 and iterating over all non-overlapping matches. This `Regex` type is limited
 in its capabilities to what a lazy DFA can provide. Therefore, APIs involving
@@ -103,9 +103,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`Match`](../../index.md), [`MatchError`](../../index.md)
+- `fn forward(self: &Self) -> &DFA` — [`DFA`](../dfa/index.md)
 
-- `fn is_anchored(self: &Self, input: &Input<'_>) -> bool` — [`Input`](../../index.md)
+- `fn reverse(self: &Self) -> &DFA` — [`DFA`](../dfa/index.md)
+
+- `fn pattern_len(self: &Self) -> usize`
 
 #### Trait Implementations
 
@@ -173,7 +175,7 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`Regex`](../../dfa/regex/index.md).
+a [`Regex`](#regex).
 
 Caches can be created from their corresponding `Regex` via
 `Regex::create_cache`. A cache can only be used with either the `Regex`
@@ -243,7 +245,7 @@ Internally, building a regex requires building two hybrid NFA/DFAs,
 where one is responsible for finding the end of a match and the other is
 responsible for finding the start of a match. If you only need to detect
 whether something matched, or only the end of a match, then you should use
-a `dfa::Builder` to construct a single hybrid NFA/DFA, which is cheaper
+a [`dfa::Builder`](../dfa/index.md) to construct a single hybrid NFA/DFA, which is cheaper
 than building two of them.
 
 # Example

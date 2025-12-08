@@ -413,9 +413,11 @@ println!("{}", style.paint("Bold on black"));
 
 #### Implementations
 
-- `fn write_prefix<W: AnyWrite + ?Sized>(self: &Self, f: &mut W) -> Result<(), <W as >::Error>` — [`AnyWrite`](write/index.md)
+- `const fn prefix(self: Self) -> Prefix` — [`Prefix`](ansi/index.md)
 
-- `fn write_suffix<W: AnyWrite + ?Sized>(self: &Self, f: &mut W) -> Result<(), <W as >::Error>` — [`AnyWrite`](write/index.md)
+- `const fn infix(self: Self, next: Style) -> Infix` — [`Style`](style/index.md), [`Infix`](ansi/index.md)
+
+- `const fn suffix(self: Self) -> Suffix` — [`Suffix`](ansi/index.md)
 
 #### Trait Implementations
 
@@ -459,17 +461,7 @@ this type on `str` and `\[u8]`, respectively.
 
 #### Implementations
 
-- `const fn style_ref(self: &Self) -> &Style` — [`Style`](style/index.md)
-
-- `fn style_ref_mut(self: &mut Self) -> &mut Style` — [`Style`](style/index.md)
-
-- `fn as_str(self: &Self) -> &S`
-
-- `fn title<I>(s: I) -> Self`
-
-- `fn hyperlink<I>(self: Self, url: I) -> Self`
-
-- `fn url_string(self: &Self) -> Option<&S>`
+- `fn write_to<W: std::io::Write>(self: &Self, w: &mut W) -> std::io::Result<()>`
 
 #### Trait Implementations
 
@@ -630,7 +622,7 @@ struct Rgb {
 
 - `type Output = Rgb`
 
-- `fn add(self: Self, rhs: Rgb) -> <Self as >::Output` — [`Rgb`](#rgb)
+- `fn add(self: Self, rhs: &Rgb) -> <Self as >::Output` — [`Rgb`](#rgb)
 
 ##### `impl Clone for Rgb`
 
@@ -648,7 +640,7 @@ struct Rgb {
 
 - `type Output = Rgb`
 
-- `fn mul(self: Self, rhs: &f32) -> <Self as >::Output`
+- `fn mul(self: Self, rhs: f32) -> <Self as >::Output`
 
 ##### `impl Neg for Rgb`
 
@@ -812,7 +804,27 @@ See <http://invisible-island.net/xterm/ctlseqs/ctlseqs.html>
 
 #### Implementations
 
-- `fn paint<'a, I, S: 'a + ToOwned + ?Sized>(self: Self, input: I) -> AnsiGenericString<'a, S>` — [`AnsiGenericString`](#ansigenericstring)
+- `fn normal(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn bold(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn dimmed(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn italic(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn underline(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn blink(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn reverse(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn hidden(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn strikethrough(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn reset_before_style(self: Self) -> Style` — [`Style`](style/index.md)
+
+- `fn on(self: Self, background: Color) -> Style` — [`Color`](style/index.md), [`Style`](style/index.md)
 
 #### Trait Implementations
 

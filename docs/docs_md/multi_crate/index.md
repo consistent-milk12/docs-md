@@ -31,6 +31,16 @@ let generator = MultiCrateGenerator::new(&crates, &args);
 generator.generate()?;
 ```
 
+## Modules
+
+- [`collection`](collection/index.md) - Crate collection for multi-crate documentation.
+- [`context`](context/index.md) - Multi-crate generation context.
+- [`generator`](generator/index.md) - Multi-crate documentation generator.
+- [`parser`](parser/index.md) - Multi-crate JSON parser.
+- [`registry`](registry/index.md) - Unified link registry for cross-crate documentation.
+- [`search`](search/index.md) - Search index generation for multi-crate documentation.
+- [`summary`](summary/index.md) - mdBook SUMMARY.md generator.
+
 ## Structs
 
 ### `CrateCollection`
@@ -513,7 +523,8 @@ println!("Found {} crates", crates.len());
 struct UnifiedLinkRegistry {
     item_paths: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
     item_names: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
-    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>,
+    name_index: std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id, rustdoc_types::ItemKind)>>,
+    re_export_sources: hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>,
     primary_crate: Option<compact_str::CompactString>,
 }
 ```
@@ -557,10 +568,18 @@ This avoids allocating a `String` for the crate name on every lookup.
   Maps `(crate_name, item_id)` to the item's display name.
   Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
-- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
+- **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id, rustdoc_types::ItemKind)>>`
 
-  Maps short names to all `(crate_name, item_id)` pairs.
+  Maps short names to all `(crate_name, item_id, item_kind)` tuples.
   Used for disambiguating links like `Span` that exist in multiple crates.
+  The `ItemKind` enables preferring modules over macros with the same name.
+
+- **`re_export_sources`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
+
+  Maps `(crate_name, reexport_id)` to the original source path.
+  Used for resolving external re-exports where `use_item.id` is `None`
+  but `use_item.source` provides the canonical path.
+  Example: `("tracing", id_123)` -> `"tracing_core::field::Visit"`
 
 - **`primary_crate`**: `Option<compact_str::CompactString>`
 
@@ -574,13 +593,19 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `fn register_from_paths(self: &mut Self, crate_name: &str, krate: &Crate)`
 
+- `fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind`
+
 - `fn register_item_recursive(self: &mut Self, krate: &Crate, crate_name: &str, item_id: Id, item: &rustdoc_types::Item, parent_path: &str)`
 
-- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str)`
+- `fn register_item(self: &mut Self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind)`
 
 - `fn get_path(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
 
 - `fn get_name(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+
+- `fn get_re_export_source(self: &Self, crate_name: &str, id: Id) -> Option<&compact_str::CompactString>`
+
+- `fn resolve_reexport(self: &Self, crate_name: &str, id: Id) -> Option<(compact_str::CompactString, Id)>`
 
 - `fn resolve_name(self: &Self, name: &str, current_crate: &str) -> Option<(compact_str::CompactString, Id)>`
 

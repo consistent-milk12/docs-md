@@ -18,8 +18,8 @@ files. The primary trait for this is [`MachHeader`](#machheader).
 
 ## Low level API
 
-The [`MachHeader`](#machheader) trait can be directly used to parse both `macho::MachHeader32`
-and `macho::MachHeader64`. Additionally, [`FatHeader`](../../macho/index.md) and the [`FatArch`](#fatarch) trait
+The [`MachHeader`](#machheader) trait can be directly used to parse both [`macho::MachHeader32`](../../macho/index.md)
+and [`macho::MachHeader64`](../../macho/index.md). Additionally, [`FatHeader`](../../macho/index.md) and the [`FatArch`](#fatarch) trait
 can be used to iterate images in multi-architecture binaries, and [`DyldCache`](#dyldcache) can
 be used to locate images in a dyld shared cache.
 
@@ -50,6 +50,17 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 ```
+
+## Modules
+
+- [`dyld_cache`](dyld_cache/index.md) - 
+- [`fat`](fat/index.md) - 
+- [`file`](file/index.md) - 
+- [`load_command`](load_command/index.md) - 
+- [`segment`](segment/index.md) - 
+- [`section`](section/index.md) - 
+- [`symbol`](symbol/index.md) - 
+- [`relocation`](relocation/index.md) - 
 
 ## Structs
 
@@ -99,6 +110,32 @@ A parsed representation of the dyld shared cache.
 #### Trait Implementations
 
 ##### `impl<'data, E, R> Debug for DyldCache<'data, E, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `DyldFile<'data, E, R>`
+
+```rust
+struct DyldFile<'data, E, R>
+where
+    E: Endian,
+    R: ReadRef<'data> {
+    data: R,
+    mappings: DyldCacheMappingSlice<'data, E>,
+}
+```
+
+The data for one file in the cache.
+
+#### Implementations
+
+- `fn mappings(self: &Self, endian: E) -> DyldCacheMappingIterator<'data, E, R>` — [`DyldCacheMappingIterator`](#dyldcachemappingiterator)
+
+- `fn address_to_file_offset(self: &Self, endian: E, address: u64) -> Option<u64>`
+
+#### Trait Implementations
+
+##### `impl<'data, E, R> Debug for DyldFile<'data, E, R>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
@@ -277,6 +314,136 @@ An iterator over relocations in a mapping
 
 - `fn next(self: &mut Self) -> Option<<Self as >::Item>`
 
+### `DyldCacheRelocationIteratorV2<'data, E, R>`
+
+```rust
+struct DyldCacheRelocationIteratorV2<'data, E, R>
+where
+    E: Endian,
+    R: ReadRef<'data> {
+    data: R,
+    endian: E,
+    mapping_file_offset: u64,
+    page_size: u64,
+    delta_mask: u64,
+    delta_shift: u32,
+    value_add: u64,
+    page_starts: &'data [crate::endian::U16<E>],
+    page_extras: &'data [crate::endian::U16<E>],
+    state: RelocationStateV2,
+    start_index: usize,
+    extra_index: usize,
+    page_offset: u64,
+    offset: u64,
+}
+```
+
+#### Fields
+
+- **`start_index`**: `usize`
+
+  The next index within page_starts.
+
+- **`extra_index`**: `usize`
+
+  The next index within page_extras.
+
+- **`page_offset`**: `u64`
+
+  The current page offset within the mapping.
+
+- **`offset`**: `u64`
+
+  The offset of the next linked list entry within the page.
+
+#### Implementations
+
+- `fn next(self: &mut Self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md), [`DyldRelocation`](#dyldrelocation)
+
+#### Trait Implementations
+
+##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV2<'data, E, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `DyldCacheRelocationIteratorV3<'data, E, R>`
+
+```rust
+struct DyldCacheRelocationIteratorV3<'data, E, R>
+where
+    E: Endian,
+    R: ReadRef<'data> {
+    data: R,
+    endian: E,
+    mapping_file_offset: u64,
+    auth_value_add: u64,
+    page_size: u64,
+    page_starts: &'data [crate::endian::U16<E>],
+    state: RelocationStateV3,
+    start_index: usize,
+    offset: u64,
+}
+```
+
+#### Fields
+
+- **`start_index`**: `usize`
+
+  Index of the page within the mapping.
+
+- **`offset`**: `u64`
+
+  The current offset within the mapping.
+
+#### Implementations
+
+- `fn next(self: &mut Self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md), [`DyldRelocation`](#dyldrelocation)
+
+#### Trait Implementations
+
+##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV3<'data, E, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `DyldCacheRelocationIteratorV5<'data, E, R>`
+
+```rust
+struct DyldCacheRelocationIteratorV5<'data, E, R>
+where
+    E: Endian,
+    R: ReadRef<'data> {
+    data: R,
+    endian: E,
+    mapping_file_offset: u64,
+    page_size: u64,
+    value_add: u64,
+    page_starts: &'data [crate::endian::U16<E>],
+    state: RelocationStateV5,
+    start_index: usize,
+    offset: u64,
+}
+```
+
+#### Fields
+
+- **`start_index`**: `usize`
+
+  The next index within page_starts.
+
+- **`offset`**: `u64`
+
+  The current offset within the mapping.
+
+#### Implementations
+
+- `fn next(self: &mut Self) -> Result<Option<DyldRelocation>>` — [`Result`](../../index.md), [`DyldRelocation`](#dyldrelocation)
+
+#### Trait Implementations
+
+##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorV5<'data, E, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ### `DyldRelocation`
 
 ```rust
@@ -357,8 +524,8 @@ struct MachOFatFile<'data, Fat: FatArch> {
 
 A Mach-O universal binary.
 
-This is a file that starts with `macho::FatHeader`, and corresponds
-to [`crate::FileKind::MachOFat32`](../../index.md#machofat32) or [`crate::FileKind::MachOFat64`](../../index.md#machofat64).
+This is a file that starts with [`macho::FatHeader`](../../macho/index.md), and corresponds
+to [`crate::FileKind::MachOFat32`](../../index.md) or [`crate::FileKind::MachOFat64`](../../index.md).
 
 #### Implementations
 
@@ -666,7 +833,7 @@ struct LoadCommandData<'data, E: Endian> {
 }
 ```
 
-The data for a `macho::LoadCommand`.
+The data for a [`macho::LoadCommand`](../../macho/index.md).
 
 #### Implementations
 
@@ -798,6 +965,36 @@ Most functionality is provided by the [`ObjectSegment`](../index.md) trait imple
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSegment<'data, 'file, Mach, R>`
 
+### `MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
+
+```rust
+struct MachOSegmentInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
+    pub segment: &'data <Mach as >::Segment,
+    pub data: R,
+}
+```
+
+#### Fields
+
+- **`data`**: `R`
+
+  The data for the file that contains the segment data.
+  
+  This is required for dyld caches, where this may be a different subcache
+  from the file containing the Mach-O load commands.
+
+#### Trait Implementations
+
+##### `impl<'data, Mach: $crate::clone::Clone + MachHeader, R: $crate::clone::Clone + ReadRef<'data>> Clone for MachOSegmentInternal<'data, Mach, R>`
+
+- `fn clone(self: &Self) -> MachOSegmentInternal<'data, Mach, R>` — [`MachOSegmentInternal`](segment/index.md)
+
+##### `impl<'data, Mach: $crate::marker::Copy + MachHeader, R: $crate::marker::Copy + ReadRef<'data>> Copy for MachOSegmentInternal<'data, Mach, R>`
+
+##### `impl<'data, Mach: $crate::fmt::Debug + MachHeader, R: $crate::fmt::Debug + ReadRef<'data>> Debug for MachOSegmentInternal<'data, Mach, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
 ### `MachOSectionIterator<'data, 'file, Mach, R>`
 
 ```rust
@@ -905,6 +1102,42 @@ Most functionality is provided by the [`ObjectSection`](../index.md) trait imple
 - `fn flags(self: &Self) -> SectionFlags` — [`SectionFlags`](../../index.md)
 
 ##### `impl<'data, 'file, Mach, R> Sealed for MachOSection<'data, 'file, Mach, R>`
+
+### `MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>>`
+
+```rust
+struct MachOSectionInternal<'data, Mach: MachHeader, R: ReadRef<'data>> {
+    pub index: crate::read::SectionIndex,
+    pub kind: crate::read::SectionKind,
+    pub section: &'data <Mach as >::Section,
+    pub data: R,
+}
+```
+
+#### Fields
+
+- **`data`**: `R`
+
+  The data for the file that contains the section data.
+  
+  This is required for dyld caches, where this may be a different subcache
+  from the file containing the Mach-O load commands.
+
+#### Implementations
+
+- `fn parse(index: SectionIndex, section: &'data <Mach as >::Section, data: R) -> Self` — [`SectionIndex`](../../index.md), [`MachHeader`](#machheader)
+
+#### Trait Implementations
+
+##### `impl<'data, Mach: $crate::clone::Clone + MachHeader, R: $crate::clone::Clone + ReadRef<'data>> Clone for MachOSectionInternal<'data, Mach, R>`
+
+- `fn clone(self: &Self) -> MachOSectionInternal<'data, Mach, R>` — [`MachOSectionInternal`](section/index.md)
+
+##### `impl<'data, Mach: $crate::marker::Copy + MachHeader, R: $crate::marker::Copy + ReadRef<'data>> Copy for MachOSectionInternal<'data, Mach, R>`
+
+##### `impl<'data, Mach: $crate::fmt::Debug + MachHeader, R: $crate::fmt::Debug + ReadRef<'data>> Debug for MachOSectionInternal<'data, Mach, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `SymbolTable<'data, Mach: MachHeader, R>`
 
@@ -1213,6 +1446,42 @@ so this is an enum of the two possible slice types.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `DyldCacheMappingVersionIterator<'data, E>`
+
+```rust
+enum DyldCacheMappingVersionIterator<'data, E>
+where
+    E: Endian {
+    V1(slice::Iter<'data, macho::DyldCacheMappingInfo<E>>),
+    V2(slice::Iter<'data, macho::DyldCacheMappingAndSlideInfo<E>>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, E> Debug for DyldCacheMappingVersionIterator<'data, E>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `DyldCacheMappingVersion<'data, E>`
+
+```rust
+enum DyldCacheMappingVersion<'data, E>
+where
+    E: Endian {
+    V1(&'data macho::DyldCacheMappingInfo<E>),
+    V2(&'data macho::DyldCacheMappingAndSlideInfo<E>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, E> Clone for DyldCacheMappingVersion<'data, E>`
+
+- `fn clone(self: &Self) -> DyldCacheMappingVersion<'data, E>` — [`DyldCacheMappingVersion`](dyld_cache/index.md)
+
+##### `impl<'data, E> Copy for DyldCacheMappingVersion<'data, E>`
+
 ### `DyldCacheSlideInfo<'data, E: Endian>`
 
 ```rust
@@ -1247,6 +1516,115 @@ The slide info for a dyld cache mapping, including variable length arrays.
 ##### `impl<'data, E: $crate::fmt::Debug + Endian> Debug for DyldCacheSlideInfo<'data, E>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+```rust
+enum DyldCacheRelocationIteratorVersion<'data, E, R>
+where
+    E: Endian,
+    R: ReadRef<'data> {
+    None,
+    V2(DyldCacheRelocationIteratorV2<'data, E, R>),
+    V3(DyldCacheRelocationIteratorV3<'data, E, R>),
+    V5(DyldCacheRelocationIteratorV5<'data, E, R>),
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'data, E, R> Debug for DyldCacheRelocationIteratorVersion<'data, E, R>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `RelocationStateV2`
+
+```rust
+enum RelocationStateV2 {
+    Start,
+    Extra,
+    Page,
+    PageExtra,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for RelocationStateV2`
+
+- `fn clone(self: &Self) -> RelocationStateV2` — [`RelocationStateV2`](dyld_cache/index.md)
+
+##### `impl Copy for RelocationStateV2`
+
+##### `impl Debug for RelocationStateV2`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for RelocationStateV2`
+
+##### `impl PartialEq for RelocationStateV2`
+
+- `fn eq(self: &Self, other: &RelocationStateV2) -> bool` — [`RelocationStateV2`](dyld_cache/index.md)
+
+##### `impl StructuralPartialEq for RelocationStateV2`
+
+### `RelocationStateV3`
+
+```rust
+enum RelocationStateV3 {
+    Start,
+    Page,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for RelocationStateV3`
+
+- `fn clone(self: &Self) -> RelocationStateV3` — [`RelocationStateV3`](dyld_cache/index.md)
+
+##### `impl Copy for RelocationStateV3`
+
+##### `impl Debug for RelocationStateV3`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for RelocationStateV3`
+
+##### `impl PartialEq for RelocationStateV3`
+
+- `fn eq(self: &Self, other: &RelocationStateV3) -> bool` — [`RelocationStateV3`](dyld_cache/index.md)
+
+##### `impl StructuralPartialEq for RelocationStateV3`
+
+### `RelocationStateV5`
+
+```rust
+enum RelocationStateV5 {
+    Start,
+    Page,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for RelocationStateV5`
+
+- `fn clone(self: &Self) -> RelocationStateV5` — [`RelocationStateV5`](dyld_cache/index.md)
+
+##### `impl Copy for RelocationStateV5`
+
+##### `impl Debug for RelocationStateV5`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for RelocationStateV5`
+
+##### `impl PartialEq for RelocationStateV5`
+
+- `fn eq(self: &Self, other: &RelocationStateV5) -> bool` — [`RelocationStateV5`](dyld_cache/index.md)
+
+##### `impl StructuralPartialEq for RelocationStateV5`
 
 ### `LoadCommandVariant<'data, E: Endian>`
 
@@ -1288,7 +1666,7 @@ enum LoadCommandVariant<'data, E: Endian> {
 }
 ```
 
-A `macho::LoadCommand` that has been interpreted according to its `cmd` field.
+A [`macho::LoadCommand`](../../macho/index.md) that has been interpreted according to its `cmd` field.
 
 #### Variants
 
@@ -1448,7 +1826,7 @@ A `macho::LoadCommand` that has been interpreted according to its `cmd` field.
 trait FatArch: Pod { ... }
 ```
 
-A trait for generic access to `macho::FatArch32` and `macho::FatArch64`.
+A trait for generic access to [`macho::FatArch32`](../../macho/index.md) and [`macho::FatArch64`](../../macho/index.md).
 
 #### Required Methods
 
@@ -1478,7 +1856,7 @@ A trait for generic access to `macho::FatArch32` and `macho::FatArch64`.
 trait MachHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `macho::MachHeader32` and `macho::MachHeader64`.
+A trait for generic access to [`macho::MachHeader32`](../../macho/index.md) and [`macho::MachHeader64`](../../macho/index.md).
 
 #### Required Methods
 
@@ -1538,7 +1916,7 @@ A trait for generic access to `macho::MachHeader32` and `macho::MachHeader64`.
 trait Segment: Debug + Pod { ... }
 ```
 
-A trait for generic access to `macho::SegmentCommand32` and `macho::SegmentCommand64`.
+A trait for generic access to [`macho::SegmentCommand32`](../../macho/index.md) and [`macho::SegmentCommand64`](../../macho/index.md).
 
 #### Required Methods
 
@@ -1594,7 +1972,7 @@ A trait for generic access to `macho::SegmentCommand32` and `macho::SegmentComma
 trait Section: Debug + Pod { ... }
 ```
 
-A trait for generic access to `macho::Section32` and `macho::Section64`.
+A trait for generic access to [`macho::Section32`](../../macho/index.md) and [`macho::Section64`](../../macho/index.md).
 
 #### Required Methods
 
@@ -1646,7 +2024,7 @@ A trait for generic access to `macho::Section32` and `macho::Section64`.
 trait Nlist: Debug + Pod { ... }
 ```
 
-A trait for generic access to `macho::Nlist32` and `macho::Nlist64`.
+A trait for generic access to [`macho::Nlist32`](../../macho/index.md) and [`macho::Nlist64`](../../macho/index.md).
 
 #### Required Methods
 
@@ -1692,8 +2070,8 @@ type MachOFatFile32<'data> = MachOFatFile<'data, macho::FatArch32>;
 
 A 32-bit Mach-O universal binary.
 
-This is a file that starts with `macho::FatHeader`, and corresponds
-to [`crate::FileKind::MachOFat32`](../../index.md#machofat32).
+This is a file that starts with [`macho::FatHeader`](../../macho/index.md), and corresponds
+to [`crate::FileKind::MachOFat32`](../../index.md).
 
 ### `MachOFatFile64<'data>`
 
@@ -1703,8 +2081,8 @@ type MachOFatFile64<'data> = MachOFatFile<'data, macho::FatArch64>;
 
 A 64-bit Mach-O universal binary.
 
-This is a file that starts with `macho::FatHeader`, and corresponds
-to [`crate::FileKind::MachOFat64`](../../index.md#machofat64).
+This is a file that starts with [`macho::FatHeader`](../../macho/index.md), and corresponds
+to [`crate::FileKind::MachOFat64`](../../index.md).
 
 ### `MachOFile32<'data, Endian, R>`
 
@@ -1714,8 +2092,8 @@ type MachOFile32<'data, Endian, R> = MachOFile<'data, macho::MachHeader32<Endian
 
 A 32-bit Mach-O object file.
 
-This is a file that starts with `macho::MachHeader32`, and corresponds
-to [`crate::FileKind::MachO32`](../../index.md#macho32).
+This is a file that starts with [`macho::MachHeader32`](../../macho/index.md), and corresponds
+to [`crate::FileKind::MachO32`](../../index.md).
 
 ### `MachOFile64<'data, Endian, R>`
 
@@ -1725,8 +2103,8 @@ type MachOFile64<'data, Endian, R> = MachOFile<'data, macho::MachHeader64<Endian
 
 A 64-bit Mach-O object file.
 
-This is a file that starts with `macho::MachHeader64`, and corresponds
-to [`crate::FileKind::MachO64`](../../index.md#macho64).
+This is a file that starts with [`macho::MachHeader64`](../../macho/index.md), and corresponds
+to [`crate::FileKind::MachO64`](../../index.md).
 
 ### `MachOComdatIterator32<'data, 'file, Endian, R>`
 
@@ -1903,4 +2281,24 @@ type MachORelocationIterator64<'data, 'file, Endian, R> = MachORelocationIterato
 ```
 
 An iterator for the relocations in a [`MachOSection64`](super::MachOSection64).
+
+## Constants
+
+### `MIN_HEADER_SIZE_SUBCACHES_V1`
+
+```rust
+const MIN_HEADER_SIZE_SUBCACHES_V1: u32 = 456u32;
+```
+
+### `MIN_HEADER_SIZE_SUBCACHES_V2`
+
+```rust
+const MIN_HEADER_SIZE_SUBCACHES_V2: u32 = 464u32;
+```
+
+### `MIN_HEADER_SIZE_MAPPINGS_V2`
+
+```rust
+const MIN_HEADER_SIZE_MAPPINGS_V2: u32 = 320u32;
+```
 

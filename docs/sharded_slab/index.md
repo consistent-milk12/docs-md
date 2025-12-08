@@ -30,7 +30,7 @@
 
  In contrast, the [`Pool`](pool/index.md) type provides an [object pool] style API for
  _reusing storage_. Rather than constructing values and moving them into the
- pool, as with [`Slab`](#slab), [allocating an entry][create] from the pool takes a
+ pool, as with [`Slab`](#slab), [allocating an entry][`create`](../fs_err/file/index.md) from the pool takes a
  closure that's provided with a mutable reference to initialize the entry in
  place. When entries are deallocated, they are [cleared] in place. Types
  which own a heap allocation can be cleared by dropping any _data_ they
@@ -384,23 +384,9 @@ See the [crate-level documentation](crate) for details on using this type.
 
 #### Implementations
 
-- `const USED_BITS: usize`
+- `fn new() -> Self`
 
-- `fn insert(self: &Self, value: T) -> Option<usize>`
-
-- `fn vacant_entry(self: &Self) -> Option<VacantEntry<'_, T, C>>` — [`VacantEntry`](#vacantentry)
-
-- `fn remove(self: &Self, idx: usize) -> bool`
-
-- `fn take(self: &Self, idx: usize) -> Option<T>`
-
-- `fn get(self: &Self, key: usize) -> Option<Entry<'_, T, C>>` — [`Entry`](#entry)
-
-- `fn get_owned(self: Arc<Self>, key: usize) -> Option<OwnedEntry<T, C>>` — [`OwnedEntry`](#ownedentry)
-
-- `fn contains(self: &Self, key: usize) -> bool`
-
-- `fn unique_iter(self: &mut Self) -> iter::UniqueIter<'_, T, C>` — [`UniqueIter`](iter/index.md)
+- `fn new_with_config<C: cfg::Config>() -> Slab<T, C>` — [`Slab`](#slab)
 
 #### Trait Implementations
 

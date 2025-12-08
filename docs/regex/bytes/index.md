@@ -6,7 +6,7 @@
 
 Search for regex matches in `&[u8]` haystacks.
 
-This module provides a nearly identical API via [`Regex`](../index.md) to the one found in
+This module provides a nearly identical API via [`Regex`](../regex/bytes/index.md) to the one found in
 the top-level of this crate. There are two important differences:
 
 1. Matching is done on `&[u8]` instead of `&str`. Additionally, `Vec<u8>`
@@ -103,7 +103,7 @@ struct RegexBuilder {
 }
 ```
 
-A configurable builder for a [`Regex`](../index.md).
+A configurable builder for a [`Regex`](../regex/bytes/index.md).
 
 This builder can be used to programmatically set flags such as `i`
 (case insensitive) and `x` (for verbose mode). This builder can also be
@@ -308,27 +308,15 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 #### Implementations
 
-- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../error/index.md)
+- `fn as_str(self: &Self) -> &str`
 
-- `fn is_match(self: &Self, haystack: &[u8]) -> bool`
+- `fn capture_names(self: &Self) -> CaptureNames<'_>` — [`CaptureNames`](../regex/bytes/index.md)
 
-- `fn find<'h>(self: &Self, haystack: &'h [u8]) -> Option<Match<'h>>` — [`Match`](../regex/bytes/index.md)
+- `fn captures_len(self: &Self) -> usize`
 
-- `fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Matches<'r, 'h>` — [`Matches`](../regex/bytes/index.md)
+- `fn static_captures_len(self: &Self) -> Option<usize>`
 
-- `fn captures<'h>(self: &Self, haystack: &'h [u8]) -> Option<Captures<'h>>` — [`Captures`](../regex/bytes/index.md)
-
-- `fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](../regex/bytes/index.md)
-
-- `fn split<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Split<'r, 'h>` — [`Split`](../regex/bytes/index.md)
-
-- `fn splitn<'r, 'h>(self: &'r Self, haystack: &'h [u8], limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../regex/bytes/index.md)
-
-- `fn replace<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
-
-- `fn replace_all<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
-
-- `fn replacen<'h, R: Replacer>(self: &Self, haystack: &'h [u8], limit: usize, rep: R) -> Cow<'h, [u8]>`
+- `fn capture_locations(self: &Self) -> CaptureLocations` — [`CaptureLocations`](../regex/bytes/index.md)
 
 #### Trait Implementations
 
@@ -389,7 +377,7 @@ corresponds to the same kind of slicing that Rust uses.
 
 For more on why this was chosen over other schemes (aside from being
 consistent with how Rust the language works), see [this discussion] and
-[Dijkstra's note on a related topic][note].
+[Dijkstra's note on a related topic][`note`](../../object/read/elf/note/index.md).
 
 
 # Example
@@ -462,7 +450,7 @@ Represents the capture groups for a single match.
 Capture groups refer to parts of a regex enclosed in parentheses. They
 can be optionally named. The purpose of capture groups is to be able to
 reference different parts of a match based on the original pattern. In
-essence, a `Captures` is a container of [`Match`](../index.md) values for each group
+essence, a `Captures` is a container of [`Match`](../regex/bytes/index.md) values for each group
 that participated in a regex match. Each `Match` can be looked up by either
 its capture group index or name (if it has one).
 
@@ -609,7 +597,7 @@ struct Matches<'r, 'h> {
 
 An iterator over all non-overlapping matches in a haystack.
 
-This iterator yields [`Match`](../index.md) values. The iterator stops when no more
+This iterator yields [`Match`](../regex/bytes/index.md) values. The iterator stops when no more
 matches can be found.
 
 `'r` is the lifetime of the compiled regular expression and `'h` is the
@@ -1251,7 +1239,7 @@ struct SetMatchesIter<'a>(regex_automata::PatternSetIter<'a>);
 
 A borrowed iterator over the set of matches from a regex set.
 
-The lifetime `'a` refers to the lifetime of the [`SetMatches`](../index.md) value that
+The lifetime `'a` refers to the lifetime of the [`SetMatches`](../regexset/bytes/index.md) value that
 created this iterator.
 
 This will always produces matches in ascending order, where the index
@@ -1346,4 +1334,21 @@ assert_eq!(result, &b"Bruce Springsteen"[..]);
 - `fn by_ref<'r>(self: &'r mut Self) -> ReplacerRef<'r, Self>`
 
   Returns a type that implements `Replacer`, but that borrows and wraps
+
+## Functions
+
+### `no_expansion`
+
+```rust
+fn no_expansion<T: AsRef<[u8]>>(replacement: &T) -> Option<alloc::borrow::Cow<'_, [u8]>>
+```
+
+Quickly checks the given replacement string for whether interpolation
+should be done on it. It returns `None` if a `$` was found anywhere in the
+given string, which suggests interpolation needs to be done. But if there's
+no `$` anywhere, then interpolation definitely does not need to be done. In
+that case, the given string is returned as a borrowed `Cow`.
+
+This is meant to be used to implement the `Replacer::no_expansion` method
+in its various trait impls.
 

@@ -69,6 +69,12 @@ fn supports_hyperlinks() -> bool
 Returns true if the current terminal, detected through various environment
 variables, is known to support hyperlink rendering.
 
+### `is_a_tty`
+
+```rust
+fn is_a_tty(stream: Stream) -> bool
+```
+
 ### `on`
 
 ```rust

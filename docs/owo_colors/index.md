@@ -75,7 +75,12 @@ println!("{}", text.style(my_style));
 ## Modules
 
 - [`colors`](colors/index.md) - Color types for used for being generic over the color
+- [`combo`](combo/index.md) - 
+- [`dyn_colors`](dyn_colors/index.md) - 
+- [`dyn_styles`](dyn_styles/index.md) - 
+- [`styled_list`](styled_list/index.md) - 
 - [`styles`](styles/index.md) - Different display styles (strikethrough, bold, etc.)
+- [`private`](private/index.md) - 
 - [`colored`](colored/index.md) - Module for drop-in [`colored`](https://docs.rs/colored) support to aid in porting code from
 
 ## Structs
@@ -889,6 +894,40 @@ println!("{}", "red text, white background, struck through".style(my_style));
 - `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](#style)
 
 ##### `impl StructuralPartialEq for Style`
+
+### `StyleFlags`
+
+```rust
+struct StyleFlags(u8);
+```
+
+#### Implementations
+
+- `const fn is_plain(self: &Self) -> bool`
+
+#### Trait Implementations
+
+##### `impl Clone for StyleFlags`
+
+- `fn clone(self: &Self) -> StyleFlags` — [`StyleFlags`](dyn_styles/index.md)
+
+##### `impl Copy for StyleFlags`
+
+##### `impl Debug for StyleFlags`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for StyleFlags`
+
+- `fn default() -> Self`
+
+##### `impl<D> OwoColorize for StyleFlags`
+
+##### `impl PartialEq for StyleFlags`
+
+- `fn eq(self: &Self, other: &StyleFlags) -> bool` — [`StyleFlags`](dyn_styles/index.md)
+
+##### `impl StructuralPartialEq for StyleFlags`
 
 ### `StylePrefixFormatter`
 
@@ -1937,4 +1976,68 @@ const fn style() -> Style
 ```
 
 Helper to create [`Style`](#style)s more ergonomically
+
+## Constants
+
+### `DIMMED_SHIFT`
+
+```rust
+const DIMMED_SHIFT: u8 = 0u8;
+```
+
+### `ITALIC_SHIFT`
+
+```rust
+const ITALIC_SHIFT: u8 = 1u8;
+```
+
+### `UNDERLINE_SHIFT`
+
+```rust
+const UNDERLINE_SHIFT: u8 = 2u8;
+```
+
+### `BLINK_SHIFT`
+
+```rust
+const BLINK_SHIFT: u8 = 3u8;
+```
+
+### `BLINK_FAST_SHIFT`
+
+```rust
+const BLINK_FAST_SHIFT: u8 = 4u8;
+```
+
+### `REVERSED_SHIFT`
+
+```rust
+const REVERSED_SHIFT: u8 = 5u8;
+```
+
+### `HIDDEN_SHIFT`
+
+```rust
+const HIDDEN_SHIFT: u8 = 6u8;
+```
+
+### `STRIKETHROUGH_SHIFT`
+
+```rust
+const STRIKETHROUGH_SHIFT: u8 = 7u8;
+```
+
+## Macros
+
+### `style_methods!`
+
+### `color_methods!`
+
+### `color_methods!`
+
+### `style_methods!`
+
+### `style_flags_methods!`
+
+### `impl_fmt!`
 

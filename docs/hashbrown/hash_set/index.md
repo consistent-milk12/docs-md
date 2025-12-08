@@ -163,9 +163,9 @@ let viking_names: HashSet<&'static str> =
 
 - `fn equivalent(self: &Self, key: &K) -> bool`
 
-##### `impl<T, S, A> Extend for HashSet<T, S, A>`
+##### `impl<'a, T, S, A> Extend for HashSet<T, S, A>`
 
-- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, iter: I)`
+- `fn extend<I: IntoIterator<Item = &'a T>>(self: &mut Self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
@@ -561,7 +561,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 ```
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_table/index.md) enum.
 
 # Examples
 
@@ -616,7 +616,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 ```
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](../hash_map/index.md) enum.
+It is part of the [`Entry`](../hash_table/index.md) enum.
 
 # Examples
 
@@ -749,4 +749,12 @@ assert_eq!(vec, ["a", "b", "c", "d", "e"]);
 ##### `impl<T: fmt::Debug, S, A: Allocator> Debug for Entry<'_, T, S, A>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+## Functions
+
+### `assert_covariance`
+
+```rust
+fn assert_covariance()
+```
 

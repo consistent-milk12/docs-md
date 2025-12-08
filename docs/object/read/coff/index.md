@@ -22,8 +22,8 @@ libraries. Currently these are not integrated with the unified read API.
 ## Low level API
 
 The [`CoffHeader`](#coffheader) trait can be directly used to parse both COFF
-object files (which start with `pe::ImageFileHeader`) and COFF bigobj
-files (which start with `pe::AnonObjectHeaderBigobj`).
+object files (which start with [`pe::ImageFileHeader`](../../pe/index.md)) and COFF bigobj
+files (which start with [`pe::AnonObjectHeaderBigobj`](../../pe/index.md)).
 
 ### Example for low level API
  ```no_run
@@ -51,7 +51,34 @@ fn main() -> Result<(), Box<dyn Error>> {
 }
 ```
 
+## Modules
+
+- [`file`](file/index.md) - 
+- [`section`](section/index.md) - 
+- [`symbol`](symbol/index.md) - 
+- [`relocation`](relocation/index.md) - 
+- [`comdat`](comdat/index.md) - 
+- [`import`](import/index.md) - Support for reading short import files.
+
 ## Structs
+
+### `CoffCommon<'data, R: ReadRef<'data>, Coff: CoffHeader>`
+
+```rust
+struct CoffCommon<'data, R: ReadRef<'data>, Coff: CoffHeader> {
+    sections: super::SectionTable<'data>,
+    symbols: super::SymbolTable<'data, R, Coff>,
+    image_base: u64,
+}
+```
+
+The common parts of `PeFile` and `CoffFile`.
+
+#### Trait Implementations
+
+##### `impl<'data, R: $crate::fmt::Debug + ReadRef<'data>, Coff: $crate::fmt::Debug + CoffHeader> Debug for CoffCommon<'data, R, Coff>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
 ### `CoffFile<'data, R: ReadRef<'data>, Coff: CoffHeader>`
 
@@ -65,8 +92,8 @@ struct CoffFile<'data, R: ReadRef<'data>, Coff: CoffHeader> {
 
 A COFF object file.
 
-This is a file that starts with `pe::ImageFileHeader`, and corresponds
-to [`crate::FileKind::Coff`](../../index.md#coff).
+This is a file that starts with [`pe::ImageFileHeader`](../../pe/index.md), and corresponds
+to [`crate::FileKind::Coff`](../../index.md).
 
 Most functionality is provided by the [`Object`](../index.md) trait implementation.
 
@@ -169,21 +196,13 @@ Returned by `CoffHeader::sections` and
 
 #### Implementations
 
-- `fn parse<Coff: CoffHeader, R: ReadRef<'data>>(header: &Coff, data: R, offset: u64) -> Result<Self>` — [`Result`](../../index.md)
+- `fn pe_file_range_at(self: &Self, va: u32) -> Option<(u32, u32)>`
 
-- `fn iter(self: &Self) -> slice::Iter<'data, pe::ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
+- `fn pe_data_at<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<&'data [u8]>`
 
-- `fn enumerate(self: &Self) -> impl Iterator<Item = (SectionIndex, &'data pe::ImageSectionHeader)>` — [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
+- `fn pe_data_containing<R: ReadRef<'data>>(self: &Self, data: R, va: u32) -> Option<(&'data [u8], u32)>`
 
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn len(self: &Self) -> usize`
-
-- `fn section(self: &Self, index: SectionIndex) -> read::Result<&'data pe::ImageSectionHeader>` — [`SectionIndex`](../../index.md), [`Result`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
-
-- `fn section_by_name<R: ReadRef<'data>>(self: &Self, strings: StringTable<'data, R>, name: &[u8]) -> Option<(SectionIndex, &'data pe::ImageSectionHeader)>` — [`StringTable`](../index.md), [`SectionIndex`](../../index.md), [`ImageSectionHeader`](../../pe/index.md)
-
-- `fn max_section_file_offset(self: &Self) -> u64`
+- `fn section_containing(self: &Self, va: u32) -> Option<&'data ImageSectionHeader>` — [`ImageSectionHeader`](../../pe/index.md)
 
 #### Trait Implementations
 
@@ -777,8 +796,8 @@ A Windows short form description of a symbol to import.
 Used in Windows import libraries to provide a mapping from
 a symbol name to a DLL export. This is not an object file.
 
-This is a file that starts with `pe::ImportObjectHeader`, and corresponds
-to [`crate::FileKind::CoffImport`](../../index.md#coffimport).
+This is a file that starts with [`pe::ImportObjectHeader`](../../pe/index.md), and corresponds
+to [`crate::FileKind::CoffImport`](../../index.md).
 
 #### Implementations
 
@@ -816,7 +835,7 @@ struct ImportObjectData<'data> {
 }
 ```
 
-The data following `pe::ImportObjectHeader`.
+The data following [`pe::ImportObjectHeader`](../../pe/index.md).
 
 #### Implementations
 
@@ -937,7 +956,7 @@ The kind of import symbol.
 trait CoffHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `pe::ImageFileHeader` and `pe::AnonObjectHeaderBigobj`.
+A trait for generic access to [`pe::ImageFileHeader`](../../pe/index.md) and [`pe::AnonObjectHeaderBigobj`](../../pe/index.md).
 
 #### Required Methods
 
@@ -947,7 +966,7 @@ A trait for generic access to `pe::ImageFileHeader` and `pe::AnonObjectHeaderBig
 
 - `fn is_type_bigobj() -> bool`
 
-  Return true if this type is `pe::AnonObjectHeaderBigobj`.
+  Return true if this type is [`pe::AnonObjectHeaderBigobj`](../../pe/index.md).
 
 - `fn machine(self: &Self) -> u16`
 
@@ -977,7 +996,7 @@ A trait for generic access to `pe::ImageFileHeader` and `pe::AnonObjectHeaderBig
 trait ImageSymbol: Debug + Pod { ... }
 ```
 
-A trait for generic access to `pe::ImageSymbol` and `pe::ImageSymbolEx`.
+A trait for generic access to [`pe::ImageSymbol`](../../pe/index.md) and [`pe::ImageSymbolEx`](../../pe/index.md).
 
 #### Required Methods
 
@@ -1037,7 +1056,7 @@ A trait for generic access to `pe::ImageSymbol` and `pe::ImageSymbolEx`.
 fn anon_object_class_id<'data, R: ReadRef<'data>>(data: R) -> crate::read::Result<pe::ClsId>
 ```
 
-Read the `class_id` field from a `pe::AnonObjectHeader`.
+Read the `class_id` field from a [`pe::AnonObjectHeader`](../../pe/index.md).
 
 This can be used to determine the format of the header.
 
@@ -1051,8 +1070,8 @@ type CoffBigFile<'data, R> = CoffFile<'data, R, pe::AnonObjectHeaderBigobj>;
 
 A COFF bigobj object file with 32-bit section numbers.
 
-This is a file that starts with `pe::AnonObjectHeaderBigobj`, and corresponds
-to [`crate::FileKind::CoffBig`](../../index.md#coffbig).
+This is a file that starts with [`pe::AnonObjectHeaderBigobj`](../../pe/index.md), and corresponds
+to [`crate::FileKind::CoffBig`](../../index.md).
 
 Most functionality is provided by the [`Object`](../index.md) trait implementation.
 

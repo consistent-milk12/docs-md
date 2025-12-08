@@ -6,6 +6,15 @@
 
 `Command` line argument parser
 
+## Modules
+
+- [`arg_matcher`](arg_matcher/index.md) - 
+- [`error`](error/index.md) - 
+- [`matches`](matches/index.md) - 
+- [`parser`](parser/index.md) - 
+- [`validator`](validator/index.md) - 
+- [`features`](features/index.md) - 
+
 ## Structs
 
 ### `IdsRef<'a>`
@@ -335,37 +344,19 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
+- `fn try_get_arg(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
 
-- `fn get_count(self: &Self, id: &str) -> u8`
+- `fn try_get_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
 
-- `fn get_flag(self: &Self, id: &str) -> bool`
+- `fn try_remove_arg_t<T: Any + Send + Sync + 'static>(self: &mut Self, arg: &str) -> Result<Option<MatchedArg>, MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
 
-- `fn get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](matches/arg_matches/index.md)
+- `fn verify_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &MatchedArg) -> Result<(), MatchesError>` — [`MatchedArg`](matches/matched_arg/index.md), [`MatchesError`](error/index.md)
 
-- `fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](matches/arg_matches/index.md)
+- `fn verify_arg(self: &Self, _arg: &str) -> Result<(), MatchesError>` — [`MatchesError`](error/index.md)
 
-- `fn get_raw(self: &Self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](matches/arg_matches/index.md)
+- `fn get_arg<'s>(self: &'s Self, arg: &str) -> Option<&'s MatchedArg>` — [`MatchedArg`](matches/matched_arg/index.md)
 
-- `fn get_raw_occurrences(self: &Self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](matches/arg_matches/index.md)
-
-- `fn remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<T>`
-
-- `fn remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Values<T>>` — [`Values`](matches/arg_matches/index.md)
-
-- `fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](matches/arg_matches/index.md)
-
-- `fn contains_id(self: &Self, id: &str) -> bool`
-
-- `fn ids(self: &Self) -> IdsRef<'_>` — [`IdsRef`](matches/arg_matches/index.md)
-
-- `fn args_present(self: &Self) -> bool`
-
-- `fn value_source(self: &Self, id: &str) -> Option<ValueSource>` — [`ValueSource`](matches/value_source/index.md)
-
-- `fn index_of(self: &Self, id: &str) -> Option<usize>`
-
-- `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>` — [`Indices`](matches/arg_matches/index.md)
+- `fn get_subcommand(self: &Self, name: &str) -> Option<&SubCommand>` — [`SubCommand`](matches/arg_matches/index.md)
 
 #### Trait Implementations
 

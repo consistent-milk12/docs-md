@@ -78,6 +78,15 @@ By default all features are enabled.  The following features exist:
   for stripping and taking ansi escape codes into account for length
   calculations).
 
+## Modules
+
+- [`common_term`](common_term/index.md) - 
+- [`kb`](kb/index.md) - 
+- [`term`](term/index.md) - 
+- [`unix_term`](unix_term/index.md) - 
+- [`utils`](utils/index.md) - 
+- [`ansi`](ansi/index.md) - 
+
 ## Structs
 
 ### `Term`
@@ -562,7 +571,7 @@ struct WithoutAnsi<'a> {
 }
 ```
 
-A wrapper struct that implements `core::fmt::Display`, only displaying non-ansi parts.
+A wrapper struct that implements [`core::fmt::Display`](../miette_derive/fmt/index.md), only displaying non-ansi parts.
 
 #### Implementations
 

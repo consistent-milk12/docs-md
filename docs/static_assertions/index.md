@@ -77,6 +77,18 @@ and thousands of others.
 
 
 
+## Modules
+
+- [`assert_cfg`](assert_cfg/index.md) - 
+- [`assert_eq_align`](assert_eq_align/index.md) - 
+- [`assert_eq_size`](assert_eq_size/index.md) - 
+- [`assert_fields`](assert_fields/index.md) - 
+- [`assert_impl`](assert_impl/index.md) - 
+- [`assert_obj_safe`](assert_obj_safe/index.md) - 
+- [`assert_trait`](assert_trait/index.md) - 
+- [`assert_type`](assert_type/index.md) - 
+- [`const_assert`](const_assert/index.md) - 
+
 ## Macros
 
 ### `assert_cfg!`
@@ -526,7 +538,7 @@ Asserts that the traits support dynamic dispatch
 ([object-safety](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#object-safety-is-required-for-trait-objects)).
 
 This is useful for when changes are made to a trait that accidentally
-prevent it from being used as an [object]. Such a case would be adding a
+prevent it from being used as an [`object`](../object/index.md). Such a case would be adding a
 generic method and forgetting to add `where Self: Sized` after it. If left
 unnoticed, that mistake will affect crate users and break both forward and
 backward compatibility.
@@ -568,7 +580,7 @@ assert_impl!(*const u8, Send);
 ```
 
 The following example fails to compile because generics without
-`where Self: Sized` are not allowed in [object-safe][object] trait methods:
+`where Self: Sized` are not allowed in [object-safe][`object`](../object/index.md) trait methods:
 
 ```compile_fail
 #[macro_use] extern crate static_assertions; fn main() {}
@@ -743,7 +755,7 @@ Asserts that constant expressions evaluate to `true`.
 
 Constant expressions can be ensured to have certain properties via this
 macro If the expression evaluates to `false`, the file will fail to compile.
-This is synonymous to [`static_assert` in C++][static_assert](#static-assert).
+This is synonymous to [`static_assert` in C++][`static_assert`](../portable_atomic/utils/index.md).
 
 # Alternatives
 

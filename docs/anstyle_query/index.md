@@ -69,7 +69,7 @@ fn term_supports_ansi_color() -> bool
 
 Check `TERM` for ANSI color support
 
-On Windows, you might need to also check `windows::enable_ansi_colors` as ANSI color support
+On Windows, you might need to also check [`windows::enable_ansi_colors`](windows/index.md) as ANSI color support
 is opt-in, rather than assumed.
 
 ### `truecolor`
@@ -93,4 +93,10 @@ CI is a common environment where, despite being piped, ansi color codes are supp
 
 This is not as exhaustive as you'd find in a crate like `is_ci` but it should work in enough
 cases.
+
+### `non_empty`
+
+```rust
+fn non_empty(var: Option<&std::ffi::OsStr>) -> bool
+```
 

@@ -6,6 +6,11 @@
 
 ANSI escape code parsing state machine
 
+## Modules
+
+- [`definitions`](definitions/index.md) - 
+- [`table`](table/index.md) - 
+
 ## Enums
 
 ### `Action`
@@ -114,10 +119,16 @@ Transition to next [`State`](definitions/index.md)
 
 Note: This does not directly support UTF-8.
 - If the data is validated as UTF-8 (e.g. `str`) or single-byte C1 control codes are
-  unsupported, then treat `Action::BeginUtf8` and `Action::Execute` for UTF-8 continuations
-  as `Action::Print`.
+  unsupported, then treat [`Action::BeginUtf8`](../index.md) and [`Action::Execute`](../index.md) for UTF-8 continuations
+  as [`Action::Print`](../index.md).
 - If the data is not validated, then a UTF-8 state machine will need to be implemented on top,
-  starting with `Action::BeginUtf8`.
+  starting with [`Action::BeginUtf8`](../index.md).
 
-Note: When `State::Anywhere` is returned, revert back to the prior state.
+Note: When [`State::Anywhere`](../index.md) is returned, revert back to the prior state.
+
+### `state_change_`
+
+```rust
+const fn state_change_(state: State, byte: u8) -> u8
+```
 

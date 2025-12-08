@@ -15,11 +15,13 @@ a safe interface for every `ioctl` call, as they all have wildly varying
 semantics.
 
 This module provides an unsafe interface to write your own `ioctl` API. To
-start, create a type that implements [`Ioctl`](#ioctl). Then, pass it to [`ioctl`](../io/ioctl/index.md)
+start, create a type that implements [`Ioctl`](#ioctl). Then, pass it to [`ioctl`](#ioctl)
 to make the `ioctl` call.
 
 ## Modules
 
+- [`patterns`](patterns/index.md) - Implements typical patterns for `ioctl` usage.
+- [`linux`](linux/index.md) - `ioctl` opcode behavior for Linux platforms.
 - [`opcode`](opcode/index.md) - Const functions for computing opcode values.
 
 ## Structs
@@ -310,7 +312,7 @@ trait Ioctl { ... }
 
 A trait defining the properties of an `ioctl` command.
 
-Objects implementing this trait can be passed to [`ioctl`](../io/ioctl/index.md) to make an
+Objects implementing this trait can be passed to [`ioctl`](#ioctl) to make an
 `ioctl` call. The contents of the object represent the inputs to the
 `ioctl` call. The inputs must be convertible to a pointer through the
 `as_ptr` method. In most cases, this involves either casting a number to a
@@ -409,6 +411,18 @@ are compatible with Rust language invariants.
 
 
 
+### `_ioctl`
+
+```rust
+unsafe fn _ioctl(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *mut c::c_void) -> crate::io::Result<IoctlOutput>
+```
+
+### `_ioctl_readonly`
+
+```rust
+unsafe fn _ioctl_readonly(fd: crate::fd::BorrowedFd<'_>, request: Opcode, arg: *mut c::c_void) -> crate::io::Result<IoctlOutput>
+```
+
 ## Type Aliases
 
 ### `IoctlOutput`
@@ -426,4 +440,10 @@ type Opcode = c::c_uint;
 ```
 
 The type used by the `ioctl` to signify the command.
+
+### `_Opcode`
+
+```rust
+type _Opcode = c::c_uint;
+```
 

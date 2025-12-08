@@ -86,6 +86,12 @@ pub struct UnifiedLinkRegistry {
     /// The `ItemKind` enables preferring modules over macros with the same name.
     name_index: HashMap<Str, Vec<(Str, Id, ItemKind)>>,
 
+    /// Maps `(crate_name, reexport_id)` to the original source path.
+    /// Used for resolving external re-exports where `use_item.id` is `None`
+    /// but `use_item.source` provides the canonical path.
+    /// Example: `("tracing", id_123)` -> `"tracing_core::field::Visit"`
+    re_export_sources: hashbrown::HashMap<RegistryKey, Str>,
+
     /// The primary crate name for preferential resolution.
     primary_crate: Option<Str>,
 }
@@ -290,6 +296,13 @@ impl UnifiedLinkRegistry {
                         .and_then(|id| krate.index.get(&id))
                         .map_or(ItemKind::Use, |target| Self::item_enum_to_kind(&target.inner));
                     self.register_item(crate_name, item_id, export_name, &file_path, kind);
+
+                    // For ALL re-exports, store the source path so we can
+                    // resolve to the original definition (which has a heading)
+                    if !use_item.source.is_empty() {
+                        let key = (Str::from(crate_name), item_id);
+                        self.re_export_sources.insert(key, Str::from(use_item.source.as_str()));
+                    }
                 }
             },
 
@@ -342,6 +355,42 @@ impl UnifiedLinkRegistry {
             .raw_entry()
             .from_hash(hash, |k| keys_match(k, &borrowed))
             .map(|(_, v)| v)
+    }
+
+    /// Get the original source path for an external re-export.
+    ///
+    /// Returns `Some("crate::path::Item")` if this item is a re-export
+    /// from another crate, `None` otherwise.
+    #[must_use]
+    pub fn get_re_export_source(&self, crate_name: &str, id: Id) -> Option<&Str> {
+        use std::hash::BuildHasher;
+        let borrowed = BorrowedKey(crate_name, id);
+        let hash = self.re_export_sources.hasher().hash_one(&borrowed);
+        self.re_export_sources
+            .raw_entry()
+            .from_hash(hash, |k| keys_match(k, &borrowed))
+            .map(|(_, v)| v)
+    }
+
+    /// Resolve through re-export chain to find the canonical item.
+    ///
+    /// If the item is an external re-export, follows the source path
+    /// to find the original crate and ID. Returns the original if found,
+    /// otherwise returns `None`.
+    ///
+    /// # Arguments
+    ///
+    /// * `crate_name` - The crate where the re-export appears
+    /// * `id` - The ID of the re-export Use item
+    ///
+    /// # Returns
+    ///
+    /// `Some((original_crate, original_id))` if the re-export chain can be resolved,
+    /// `None` if there's no re-export source or the original can't be found.
+    #[must_use]
+    pub fn resolve_reexport(&self, crate_name: &str, id: Id) -> Option<(Str, Id)> {
+        let source = self.get_re_export_source(crate_name, id)?;
+        self.resolve_path(source)
     }
 
     /// Resolve an item name to its crate and ID.

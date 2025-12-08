@@ -207,6 +207,14 @@ This function performs two transformations on code blocks:
 2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
    examples are Rust code.
 
+### `detect_fence`
+
+```rust
+fn detect_fence(trimmed: &str) -> Option<&'static str>
+```
+
+Detect a code fence and return the fence string.
+
 ### `convert_path_reference_links`
 
 ```rust
@@ -220,4 +228,24 @@ Into: `` `ProgressTracker` ``
 
 Without full link resolution context, we can't create valid anchors,
 so we preserve the display text as inline code.
+
+### `replace_with_regex`
+
+```rust
+fn replace_with_regex<F>(text: &str, re: &regex::Regex, replacer: F) -> String
+where
+    F: Fn(&regex::Captures<'_>) -> String
+```
+
+Replace regex matches using a closure.
+
+### `replace_with_regex_checked`
+
+```rust
+fn replace_with_regex_checked<F>(text: &str, re: &regex::Regex, replacer: F) -> String
+where
+    F: Fn(&regex::Captures<'_>, &str) -> String
+```
+
+Replace regex matches with access to the text after the match.
 

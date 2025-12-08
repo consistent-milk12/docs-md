@@ -6,8 +6,8 @@ This crate works fully on stable Rust, and also does not require the
 standard library. To disable references to the standard library, you must
 opt-out of the `std` feature using `default-features = false` in your
 `Cargo.toml` file. When in no-std mode, a separate `alloc` feature flag
-is available to support casting to several [`alloc`](#alloc) types not included
-in `core`.
+is available to support casting to several [`alloc`](../allocator_api2/index.md) types not included
+in [`core`](../clap_builder/output/textwrap/core/index.md).
 
 Castaway provides the following key macros:
 
@@ -15,6 +15,11 @@ Castaway provides the following key macros:
   concrete type.
 - [`match_type`](#match-type): Match the result of an expression against multiple
   concrete types.
+
+## Modules
+
+- [`lifetime_free`](lifetime_free/index.md) - 
+- [`utils`](utils/index.md) - Low-level utility functions.
 
 ## Traits
 
@@ -80,9 +85,9 @@ bounds, ensuring that all possible instantiations of the type are always
 `'static`. To mark a type as being lifetime-free and enable it to be casted
 to in this manner by this macro it must implement the [`LifetimeFree`](lifetime_free/index.md)
 trait. This is implemented automatically for all primitive types and for
-several `core` types. If you enable the `std` crate feature, then it will
+several [`core`](../clap_builder/output/textwrap/core/index.md) types. If you enable the `std` crate feature, then it will
 also be implemented for several `std` types as well. If you enable the
-`alloc` crate feature, then it will be implemented for several [`alloc`](#alloc)
+`alloc` crate feature, then it will be implemented for several [`alloc`](../allocator_api2/index.md)
 types without linking to the standard library as the `std` feature would.
 
 # Examples

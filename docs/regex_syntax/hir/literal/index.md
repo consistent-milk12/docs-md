@@ -7,7 +7,7 @@
 Provides literal extraction from `Hir` expressions.
 
 An [`Extractor`](#extractor) pulls literals out of [`Hir`](../index.md) expressions and returns a
-[`Seq`](#seq) of [`Literal`](../../index.md)s.
+[`Seq`](#seq) of [`Literal`](#literal)s.
 
 The purpose of literal extraction is generally to provide avenues for
 optimizing regex searches. The main idea is that substring searches can be an
@@ -48,7 +48,7 @@ You're encouraged to explore the methods on [`Seq`](#seq), which permit shrinkin
 the size of sequences in a preference-order preserving fashion.
 
 Finally, note that it isn't strictly necessary to use an [`Extractor`](#extractor). Namely,
-an `Extractor` only uses public APIs of the [`Seq`](#seq) and [`Literal`](../../index.md) types,
+an `Extractor` only uses public APIs of the [`Seq`](#seq) and [`Literal`](#literal) types,
 so it is possible to implement your own extractor. For example, for n-grams
 or "inner" literals (i.e., not prefix or suffix literals). The `Extractor`
 is mostly responsible for the case analysis over `Hir` expressions. Much of
@@ -464,6 +464,99 @@ literal extraction ignores look-around assertions.)
 - `fn partial_cmp(self: &Self, other: &Literal) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Literal`](#literal)
 
 ##### `impl StructuralPartialEq for Literal`
+
+### `PreferenceTrie`
+
+```rust
+struct PreferenceTrie {
+    states: alloc::vec::Vec<State>,
+    matches: alloc::vec::Vec<Option<core::num::NonZeroUsize>>,
+    next_literal_index: usize,
+}
+```
+
+A "preference" trie that rejects literals that will never match when
+executing a leftmost first or "preference" search.
+
+For example, if 'sam' is inserted, then trying to insert 'samwise' will be
+rejected because 'samwise' can never match since 'sam' will always take
+priority. However, if 'samwise' is inserted first, then inserting 'sam'
+after it is accepted. In this case, either 'samwise' or 'sam' can match in
+a "preference" search.
+
+Note that we only use this trie as a "set." That is, given a sequence of
+literals, we insert each one in order. An `insert` will reject a literal
+if a prefix of that literal already exists in the trie. Thus, to rebuild
+the "minimal" sequence, we simply only keep literals that were successfully
+inserted. (Since we don't need traversal, one wonders whether we can make
+some simplifications here, but I haven't given it a ton of thought and I've
+never seen this show up on a profile. Because of the heuristic limits
+imposed on literal extractions, the size of the inputs here is usually
+very small.)
+
+#### Fields
+
+- **`states`**: `alloc::vec::Vec<State>`
+
+  The states in this trie. The index of a state in this vector is its ID.
+
+- **`matches`**: `alloc::vec::Vec<Option<core::num::NonZeroUsize>>`
+
+  This vec indicates which states are match states. It always has
+  the same length as `states` and is indexed by the same state ID.
+  A state with identifier `sid` is a match state if and only if
+  `matches[sid].is_some()`. The option contains the index of the literal
+  corresponding to the match. The index is offset by 1 so that it fits in
+  a NonZeroUsize.
+
+- **`next_literal_index`**: `usize`
+
+  The index to allocate to the next literal added to this trie. Starts at
+  1 and increments by 1 for every literal successfully added to the trie.
+
+#### Implementations
+
+- `fn minimize(literals: &mut Vec<Literal>, keep_exact: bool)` — [`Literal`](#literal)
+
+- `fn insert(self: &mut Self, bytes: &[u8]) -> Result<usize, usize>`
+
+- `fn root(self: &mut Self) -> usize`
+
+- `fn create_state(self: &mut Self) -> usize`
+
+#### Trait Implementations
+
+##### `impl Debug for PreferenceTrie`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `State`
+
+```rust
+struct State {
+    trans: alloc::vec::Vec<(u8, usize)>,
+}
+```
+
+A single state in a trie. Uses a sparse representation for its transitions.
+
+#### Fields
+
+- **`trans`**: `alloc::vec::Vec<(u8, usize)>`
+
+  Sparse representation of the transitions out of this state. Transitions
+  are sorted by byte. There is at most one such transition for any
+  particular byte.
+
+#### Trait Implementations
+
+##### `impl Debug for State`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for State`
+
+- `fn default() -> State` — [`State`](#state)
 
 ## Enums
 

@@ -569,7 +569,7 @@ enum Entry<'a> {
 ```
 
 A view into a single entry in a map, which may either be vacant or occupied.
-This enum is constructed from the `entry` method on [`Map`](../index.md).
+This enum is constructed from the `entry` method on [`Map`](#map).
 
 
 #### Variants
@@ -591,4 +591,70 @@ This enum is constructed from the `entry` method on [`Map`](../index.md).
 - `fn or_insert_with<F>(self: Self, default: F) -> &'a mut Value` — [`Value`](../value/index.md)
 
 - `fn and_modify<F>(self: Self, f: F) -> Self`
+
+## Type Aliases
+
+### `MapImpl<K, V>`
+
+```rust
+type MapImpl<K, V> = alloc::collections::BTreeMap<K, V>;
+```
+
+### `VacantEntryImpl<'a>`
+
+```rust
+type VacantEntryImpl<'a> = btree_map::VacantEntry<'a, alloc::string::String, crate::value::Value>;
+```
+
+### `OccupiedEntryImpl<'a>`
+
+```rust
+type OccupiedEntryImpl<'a> = btree_map::OccupiedEntry<'a, alloc::string::String, crate::value::Value>;
+```
+
+### `IterImpl<'a>`
+
+```rust
+type IterImpl<'a> = btree_map::Iter<'a, alloc::string::String, crate::value::Value>;
+```
+
+### `IterMutImpl<'a>`
+
+```rust
+type IterMutImpl<'a> = btree_map::IterMut<'a, alloc::string::String, crate::value::Value>;
+```
+
+### `IntoIterImpl`
+
+```rust
+type IntoIterImpl = btree_map::IntoIter<alloc::string::String, crate::value::Value>;
+```
+
+### `KeysImpl<'a>`
+
+```rust
+type KeysImpl<'a> = btree_map::Keys<'a, alloc::string::String, crate::value::Value>;
+```
+
+### `ValuesImpl<'a>`
+
+```rust
+type ValuesImpl<'a> = btree_map::Values<'a, alloc::string::String, crate::value::Value>;
+```
+
+### `ValuesMutImpl<'a>`
+
+```rust
+type ValuesMutImpl<'a> = btree_map::ValuesMut<'a, alloc::string::String, crate::value::Value>;
+```
+
+### `IntoValuesImpl`
+
+```rust
+type IntoValuesImpl = btree_map::IntoValues<alloc::string::String, crate::value::Value>;
+```
+
+## Macros
+
+### `delegate_iterator!`
 

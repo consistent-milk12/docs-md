@@ -4,15 +4,15 @@ Rayon-core houses the core stable APIs of Rayon.
 
 These APIs have been mirrored in the Rayon crate and it is recommended to use these from there.
 
-`join()` is used to take two closures and potentially run them in parallel.
+[`join()`](join/index.md) is used to take two closures and potentially run them in parallel.
   - It will run in parallel if task B gets stolen before task A can finish.
   - It will run sequentially if task A finishes before task B is stolen and can continue on task B.
 
-`scope()` creates a scope in which you can run any number of parallel tasks.
+[`scope()`](scope/index.md) creates a scope in which you can run any number of parallel tasks.
 These tasks can spawn nested tasks and scopes, but given the nature of work stealing, the order of execution can not be guaranteed.
 The scope will exist until all tasks spawned within the scope have been completed.
 
-`spawn()` add a task into the 'static' or 'global' scope, or a local scope created by the `scope()` function.
+[`spawn()`](spawn/index.md) add a task into the 'static' or 'global' scope, or a local scope created by the [`scope()`](scope/index.md) function.
 
 [`ThreadPool`](thread_pool/index.md) can be used to create your own thread pools (using [`ThreadPoolBuilder`](#threadpoolbuilder)) or to customize the global one.
 Tasks spawned within the pool (using [`install()`][tpinstall], [`join()`][tpjoin], etc.) will be added to a deque,
@@ -53,6 +53,21 @@ possible to arrive at this situation if different crates have overly
 restrictive tilde or inequality requirements for `rayon-core`.  The
 conflicting requirements will need to be resolved before the build will
 succeed.
+
+## Modules
+
+- [`private`](private/index.md) - The public parts of this private module are used to create traits
+- [`broadcast`](broadcast/index.md) - 
+- [`job`](job/index.md) - 
+- [`join`](join/index.md) - 
+- [`latch`](latch/index.md) - 
+- [`registry`](registry/index.md) - 
+- [`scope`](scope/index.md) - Methods for custom fork-join scopes, created by the [`scope()`]
+- [`sleep`](sleep/index.md) - Code that decides when workers should go to sleep. See README.md
+- [`spawn`](spawn/index.md) - 
+- [`thread_pool`](thread_pool/index.md) - Contains support for user-managed thread pools, represented by the
+- [`unwind`](unwind/index.md) - Package up unwind recovery. Note that if you are in some sensitive
+- [`compile_fail`](compile_fail/index.md) - 
 
 ## Structs
 
@@ -155,7 +170,7 @@ struct Scope<'scope> {
 ```
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
-See `scope()` for more information.
+See [`scope()`](scope/index.md) for more information.
 
 #### Implementations
 
@@ -196,7 +211,7 @@ struct ScopeFifo<'scope> {
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
-See `scope_fifo()` for more information.
+See [`scope_fifo()`](scope/index.md) for more information.
 
 #### Implementations
 
@@ -449,9 +464,39 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 #### Implementations
 
-- `fn build(self: Self) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPool`](thread_pool/index.md), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- `fn spawn_handler<F>(self: Self, spawn: F) -> ThreadPoolBuilder<CustomSpawn<F>>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`CustomSpawn`](registry/index.md)
 
-- `fn build_global(self: Self) -> Result<(), ThreadPoolBuildError>` — [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- `fn get_spawn_handler(self: &mut Self) -> &mut S`
+
+- `fn get_num_threads(self: &Self) -> usize`
+
+- `fn get_thread_name(self: &mut Self, index: usize) -> Option<String>`
+
+- `fn thread_name<F>(self: Self, closure: F) -> Self`
+
+- `fn num_threads(self: Self, num_threads: usize) -> Self`
+
+- `fn use_current_thread(self: Self) -> Self`
+
+- `fn take_panic_handler(self: &mut Self) -> Option<Box<dyn Fn(Box<dyn Any + Send>) + Send + Sync>>`
+
+- `fn panic_handler<H>(self: Self, panic_handler: H) -> Self`
+
+- `fn get_stack_size(self: &Self) -> Option<usize>`
+
+- `fn stack_size(self: Self, stack_size: usize) -> Self`
+
+- `fn breadth_first(self: Self) -> Self`
+
+- `fn get_breadth_first(self: &Self) -> bool`
+
+- `fn take_start_handler(self: &mut Self) -> Option<Box<dyn Fn(usize) + Send + Sync>>`
+
+- `fn start_handler<H>(self: Self, start_handler: H) -> Self`
+
+- `fn take_exit_handler(self: &mut Self) -> Option<Box<dyn Fn(usize) + Send + Sync>>`
+
+- `fn exit_handler<H>(self: Self, exit_handler: H) -> Self`
 
 #### Trait Implementations
 
@@ -552,7 +597,7 @@ Provides the calling context to a closure called by `join_context`.
 
 #### Implementations
 
-- `fn migrated(self: &Self) -> bool`
+- `fn new(migrated: bool) -> Self`
 
 #### Trait Implementations
 
@@ -585,7 +630,7 @@ enum Yield {
 }
 ```
 
-Result of `yield_now()` or `yield_local()`.
+Result of [`yield_now()`](thread_pool/index.md) or [`yield_local()`](thread_pool/index.md).
 
 #### Variants
 
@@ -630,6 +675,36 @@ Result of `yield_now()` or `yield_local()`.
 - `unsafe fn drop(ptr: usize)`
 
 ##### `impl StructuralPartialEq for Yield`
+
+### `ErrorKind`
+
+```rust
+enum ErrorKind {
+    GlobalPoolAlreadyInitialized,
+    CurrentThreadAlreadyInPool,
+    IOError(io::Error),
+}
+```
+
+#### Trait Implementations
+
+##### `impl Debug for ErrorKind`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<T> Pointable for ErrorKind`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
 
 ## Functions
 
@@ -677,4 +752,49 @@ fn initialize(config: Configuration) -> Result<(), Box<dyn Error>>
 ```
 
 Deprecated in favor of `ThreadPoolBuilder::build_global`.
+
+## Type Aliases
+
+### `PanicHandler`
+
+```rust
+type PanicHandler = dyn Fn(Box<dyn Any + Send>) + Send + Sync;
+```
+
+The type for a panic-handling closure. Note that this same closure
+may be invoked multiple times in parallel.
+
+### `StartHandler`
+
+```rust
+type StartHandler = dyn Fn(usize) + Send + Sync;
+```
+
+The type for a closure that gets invoked when a thread starts. The
+closure is passed the index of the thread on which it is invoked.
+Note that this same closure may be invoked multiple times in parallel.
+
+### `ExitHandler`
+
+```rust
+type ExitHandler = dyn Fn(usize) + Send + Sync;
+```
+
+The type for a closure that gets invoked when a thread exits. The
+closure is passed the index of the thread on which it is invoked.
+Note that this same closure may be invoked multiple times in parallel.
+
+## Constants
+
+### `GLOBAL_POOL_ALREADY_INITIALIZED`
+
+```rust
+const GLOBAL_POOL_ALREADY_INITIALIZED: &str;
+```
+
+### `CURRENT_THREAD_ALREADY_IN_POOL`
+
+```rust
+const CURRENT_THREAD_ALREADY_IN_POOL: &str;
+```
 

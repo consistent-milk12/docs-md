@@ -1,0 +1,14 @@
+*[regex_syntax](../../index.md) / [unicode_tables](../index.md) / [case_folding_simple](index.md)*
+
+---
+
+# Module `case_folding_simple`
+
+## Constants
+
+### `CASE_FOLDING_SIMPLE`
+
+```rust
+const CASE_FOLDING_SIMPLE: &'static [(char, &'static [char])];
+```
+

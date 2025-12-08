@@ -31,6 +31,7 @@ use Internals::parser::Parser as InternalParser;
 use Internals::{Cli, Command as CliCommand, DocsArgs, GenerateArgs};
 use clap::Parser;
 use docs_md as Internals;
+#[cfg(feature = "trace")]
 use docs_md::logger::Logger;
 use miette::{IntoDiagnostic, Result, miette};
 
@@ -58,6 +59,7 @@ fn main() -> Result<()> {
     // Parse CLI arguments (clap handles validation and help text)
     let cli = Cli::parse();
 
+    #[cfg(feature = "trace")]
     Logger::init_logging(cli.log_level, cli.log_file.as_ref())?;
 
     // Handle subcommands

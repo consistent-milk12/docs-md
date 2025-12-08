@@ -17,7 +17,7 @@ struct WithDispatch<T> {
 }
 ```
 
-A `Future` that has been instrumented with a `tracing` [`Subscriber`](../index.md).
+A `Future` that has been instrumented with a `tracing` [`Subscriber`](../../tracing_core/subscriber/index.md).
 
 This type is returned by the [`WithSubscriber`](#withsubscriber) extension trait. See that
 trait's documentation for details.
@@ -171,9 +171,9 @@ a `tracing` [`Subscriber`](crate::Subscriber).
 
 - `fn with_subscriber<S>(self: Self, subscriber: S) -> WithDispatch<Self>`
 
-  Attaches the provided [`Subscriber`](../index.md) to this type, returning a
+  Attaches the provided [`Subscriber`](../../tracing_core/subscriber/index.md) to this type, returning a
 
 - `fn with_current_subscriber(self: Self) -> WithDispatch<Self>`
 
-  Attaches the current [default] [`Subscriber`](../index.md) to this type, returning a
+  Attaches the current [`default`](../../crossbeam_epoch/default/index.md) [`Subscriber`](../../tracing_core/subscriber/index.md) to this type, returning a
 

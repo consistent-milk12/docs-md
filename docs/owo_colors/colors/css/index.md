@@ -9,6 +9,10 @@ CSS named colors. Not as widely supported as standard ANSI as it relies on 48bit
 Reference: <https://www.w3schools.com/cssref/css_colors.asp>
 Reference: <https://developer.mozilla.org/en-US/docs/Web/CSS/color_value>
 
+## Modules
+
+- [`dynamic`](dynamic/index.md) - 
+
 ## Type Aliases
 
 ### `AliceBlue`
@@ -892,4 +896,8 @@ type Yellow = CustomColor<255, 255, 0>;
 ```rust
 type YellowGreen = CustomColor<154, 205, 50>;
 ```
+
+## Macros
+
+### `css_color_types!`
 

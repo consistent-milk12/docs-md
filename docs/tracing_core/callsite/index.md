@@ -76,7 +76,7 @@ configuration changes infrequently, it may be more efficient than calling
 
 In most cases, instrumenting code using `tracing` should *not* require
 implementing the [`Callsite`](#callsite) trait directly. When using the [`tracing`
-crate's macros][macros] or the [`#[instrument]` attribute][instrument], a
+crate's macros][`macros`](../../tracing/macros/index.md) or the [`#[instrument]` attribute][`instrument`](../../tracing/instrument/index.md), a
 `Callsite` is automatically generated.
 
 However, code which provides alternative forms of `tracing` instrumentation
@@ -101,6 +101,11 @@ additional performance optimizations.
 
 
 
+
+## Modules
+
+- [`private`](private/index.md) - 
+- [`dispatchers`](dispatchers/index.md) - 
 
 ## Structs
 
@@ -180,6 +185,25 @@ A default [`Callsite`](#callsite) implementation.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `Callsites`
+
+```rust
+struct Callsites {
+    list_head: core::sync::atomic::AtomicPtr<DefaultCallsite>,
+    has_locked_callsites: core::sync::atomic::AtomicBool,
+}
+```
+
+#### Implementations
+
+- `fn rebuild_interest(self: &Self, dispatchers: dispatchers::Rebuilder<'_>)` — [`Rebuilder`](dispatchers/index.md)
+
+- `fn push_dyn(self: &Self, callsite: &'static dyn Callsite)` — [`Callsite`](#callsite)
+
+- `fn push_default(self: &Self, callsite: &'static DefaultCallsite)` — [`DefaultCallsite`](#defaultcallsite)
+
+- `fn for_each(self: &Self, f: impl FnMut(&'static dyn Callsite))` — [`Callsite`](#callsite)
+
 ## Traits
 
 ### `Callsite`
@@ -252,4 +276,16 @@ See the [documentation on callsite registration][reg-docs] for details
 on the global callsite registry.
 
 
+
+### `register_dispatch`
+
+```rust
+fn register_dispatch(dispatch: &crate::dispatcher::Dispatch)
+```
+
+### `rebuild_callsite_interest`
+
+```rust
+fn rebuild_callsite_interest(callsite: &'static dyn Callsite, dispatchers: &dispatchers::Rebuilder<'_>)
+```
 

@@ -228,6 +228,33 @@ always possible (for example, in a byte based automaton).
 
 - `fn next(self: &mut Self) -> Option<<Self as >::Item>`
 
+### `ScalarRange`
+
+```rust
+struct ScalarRange {
+    start: u32,
+    end: u32,
+}
+```
+
+#### Implementations
+
+- `fn split(self: &Self) -> Option<(ScalarRange, ScalarRange)>` — [`ScalarRange`](#scalarrange)
+
+- `fn is_valid(self: &Self) -> bool`
+
+- `fn as_ascii(self: &Self) -> Option<Utf8Range>` — [`Utf8Range`](#utf8range)
+
+- `fn is_ascii(self: &Self) -> bool`
+
+- `fn encode(self: &Self, start: &mut [u8], end: &mut [u8]) -> usize`
+
+#### Trait Implementations
+
+##### `impl Debug for ScalarRange`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ## Enums
 
 ### `Utf8Sequence`
@@ -306,4 +333,20 @@ sequence `\xDD\x61` would not match because `0x61 < 0x80`.
 - `fn partial_cmp(self: &Self, other: &Utf8Sequence) -> $crate::option::Option<$crate::cmp::Ordering>` — [`Utf8Sequence`](#utf8sequence)
 
 ##### `impl StructuralPartialEq for Utf8Sequence`
+
+## Functions
+
+### `max_scalar_value`
+
+```rust
+fn max_scalar_value(nbytes: usize) -> u32
+```
+
+## Constants
+
+### `MAX_UTF8_BYTES`
+
+```rust
+const MAX_UTF8_BYTES: usize = 4usize;
+```
 

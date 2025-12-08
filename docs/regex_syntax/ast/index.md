@@ -10,6 +10,7 @@ Defines an abstract syntax for regular expressions.
 
 - [`parse`](parse/index.md) - This module provides a regular expression parser.
 - [`print`](print/index.md) - This module provides a regular expression printer for `Ast`.
+- [`visitor`](visitor/index.md) - 
 
 ## Structs
 

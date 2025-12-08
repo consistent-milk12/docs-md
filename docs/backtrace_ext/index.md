@@ -4,6 +4,42 @@ Minor conveniences on top of the backtrace crate
 
 See [`short_frames_strict`][] for details.
 
+## Traits
+
+### `Backtraceish`
+
+```rust
+trait Backtraceish { ... }
+```
+
+#### Required Methods
+
+- `type Frame: 1`
+
+- `fn frames(self: &Self) -> &[<Self as >::Frame]`
+
+### `Frameish`
+
+```rust
+trait Frameish { ... }
+```
+
+#### Required Methods
+
+- `type Symbol: 1`
+
+- `fn symbols(self: &Self) -> &[<Self as >::Symbol]`
+
+### `Symbolish`
+
+```rust
+trait Symbolish { ... }
+```
+
+#### Required Methods
+
+- `fn name_str(self: &Self) -> Option<&str>`
+
 ## Functions
 
 ### `short_frames_strict`
@@ -109,5 +145,11 @@ fn backtrace() -> String {
     }
     "".into()
 }
+```
+
+### `short_frames_strict_impl`
+
+```rust
+fn short_frames_strict_impl<B: Backtraceish>(backtrace: &B) -> impl Iterator<Item = (&<B as >::Frame, std::ops::Range<usize>)>
 ```
 

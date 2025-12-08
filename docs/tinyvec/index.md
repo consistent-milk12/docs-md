@@ -21,7 +21,7 @@ All of this is done with no `unsafe` code within the crate. Technically the
 crate* introduces no new `unsafe` code into your project.
 
 The limitation is that the element type of a vec from this crate must
-support the [`Default`](#default) trait. This means that this crate isn't suitable for
+support the [`Default`](../gimli/index.md) trait. This means that this crate isn't suitable for
 all situations, but a very surprising number of types do support `Default`.
 
 ## Other Features
@@ -44,6 +44,15 @@ a `Default` bound that's not part of the normal `Vec` type.
 The vecs here also have a few additional methods that aren't on the `Vec`
 type. In this case, the names tend to be fairly long so that they are
 unlikely to clash with any future methods added to `Vec`.
+
+## Modules
+
+- [`array`](array/index.md) - 
+- [`arrayvec`](arrayvec/index.md) - 
+- [`arrayvec_drain`](arrayvec_drain/index.md) - 
+- [`slicevec`](slicevec/index.md) - 
+- [`tinyvec`](tinyvec/index.md) - 
+- [`const_generic_impl`](const_generic_impl/index.md) - 
 
 ## Structs
 
@@ -111,9 +120,69 @@ assert_eq!(no_ints.len(), 0);
 
 #### Implementations
 
-- `fn drain_to_vec_and_reserve(self: &mut Self, n: usize) -> Vec<<A as >::Item>` — [`Array`](#array)
+- `fn append(self: &mut Self, other: &mut Self)`
 
-- `fn drain_to_vec(self: &mut Self) -> Vec<<A as >::Item>` — [`Array`](#array)
+- `fn try_append<'other>(self: &mut Self, other: &'other mut Self) -> Option<&'other mut Self>`
+
+- `fn as_mut_ptr(self: &mut Self) -> *mut <A as >::Item` — [`Array`](#array)
+
+- `fn as_mut_slice(self: &mut Self) -> &mut [<A as >::Item]` — [`Array`](#array)
+
+- `fn as_ptr(self: &Self) -> *const <A as >::Item` — [`Array`](#array)
+
+- `fn as_slice(self: &Self) -> &[<A as >::Item]` — [`Array`](#array)
+
+- `fn capacity(self: &Self) -> usize`
+
+- `fn clear(self: &mut Self)`
+
+- `fn drain<R>(self: &mut Self, range: R) -> ArrayVecDrain<'_, <A as >::Item>` — [`ArrayVecDrain`](#arrayvecdrain), [`Array`](#array)
+
+- `fn into_inner(self: Self) -> A`
+
+- `fn extend_from_slice(self: &mut Self, sli: &[<A as >::Item])` — [`Array`](#array)
+
+- `fn fill<I: IntoIterator<Item = <A as >::Item>>(self: &mut Self, iter: I) -> <I as >::IntoIter`
+
+- `fn from_array_len(data: A, len: usize) -> Self`
+
+- `fn insert(self: &mut Self, index: usize, item: <A as >::Item)` — [`Array`](#array)
+
+- `fn try_insert(self: &mut Self, index: usize, item: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](#array)
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn len(self: &Self) -> usize`
+
+- `fn new() -> Self`
+
+- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`Array`](#array)
+
+- `fn push(self: &mut Self, val: <A as >::Item)` — [`Array`](#array)
+
+- `fn try_push(self: &mut Self, val: <A as >::Item) -> Option<<A as >::Item>` — [`Array`](#array)
+
+- `fn remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](#array)
+
+- `fn resize(self: &mut Self, new_len: usize, new_val: <A as >::Item)` — [`Array`](#array)
+
+- `fn resize_with<F: FnMut() -> <A as >::Item>(self: &mut Self, new_len: usize, f: F)`
+
+- `fn retain<F: FnMut(&<A as >::Item) -> bool>(self: &mut Self, acceptable: F)`
+
+- `fn retain_mut<F>(self: &mut Self, acceptable: F)`
+
+- `fn set_len(self: &mut Self, new_len: usize)`
+
+- `fn split_off(self: &mut Self, at: usize) -> Self`
+
+- `fn splice<R, I>(self: &mut Self, range: R, replacement: I) -> ArrayVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`ArrayVecSplice`](#arrayvecsplice)
+
+- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](#array)
+
+- `fn truncate(self: &mut Self, new_len: usize)`
+
+- `fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
 
 #### Trait Implementations
 
@@ -209,7 +278,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> PartialEq for ArrayVec<A>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- `fn eq(self: &Self, other: &&[<A as >::Item]) -> bool` — [`Array`](#array)
 
 ##### `impl<A: Array> PartialOrd for ArrayVec<A>`
 
@@ -714,55 +783,25 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 #### Implementations
 
-- `fn append(self: &mut Self, other: &mut Self)`
+- `fn is_heap(self: &Self) -> bool`
 
-- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](#array)
+- `fn is_inline(self: &Self) -> bool`
 
-- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`Array`](#array)
+- `fn shrink_to_fit(self: &mut Self)`
 
-- `fn remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](#array)
+- `fn move_to_the_heap(self: &mut Self)`
 
-- `fn len(self: &Self) -> usize`
+- `fn move_to_the_heap_and_reserve(self: &mut Self, n: usize)`
 
-- `fn capacity(self: &Self) -> usize`
+- `fn reserve(self: &mut Self, n: usize)`
 
-- `fn truncate(self: &mut Self, new_len: usize)`
+- `fn reserve_exact(self: &mut Self, n: usize)`
 
-- `fn as_mut_ptr(self: &mut Self) -> *mut <A as >::Item` — [`Array`](#array)
+- `fn with_capacity(cap: usize) -> Self`
 
-- `fn as_ptr(self: &Self) -> *const <A as >::Item` — [`Array`](#array)
+- `fn into_boxed_slice(self: Self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](#array)
 
-- `fn retain<F: FnMut(&<A as >::Item) -> bool>(self: &mut Self, acceptable: F)`
-
-- `fn as_mut_slice(self: &mut Self) -> &mut [<A as >::Item]` — [`Array`](#array)
-
-- `fn as_slice(self: &Self) -> &[<A as >::Item]` — [`Array`](#array)
-
-- `fn clear(self: &mut Self)`
-
-- `fn drain<R: RangeBounds<usize>>(self: &mut Self, range: R) -> TinyVecDrain<'_, A>` — [`TinyVecDrain`](#tinyvecdrain)
-
-- `fn extend_from_slice(self: &mut Self, sli: &[<A as >::Item])` — [`Array`](#array)
-
-- `fn from_array_len(data: A, len: usize) -> Self`
-
-- `fn insert(self: &mut Self, index: usize, item: <A as >::Item)` — [`Array`](#array)
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn new() -> Self`
-
-- `fn push(self: &mut Self, val: <A as >::Item)` — [`Array`](#array)
-
-- `fn resize(self: &mut Self, new_len: usize, new_val: <A as >::Item)` — [`Array`](#array)
-
-- `fn resize_with<F: FnMut() -> <A as >::Item>(self: &mut Self, new_len: usize, f: F)`
-
-- `fn split_off(self: &mut Self, at: usize) -> Self`
-
-- `fn splice<R, I>(self: &mut Self, range: R, replacement: I) -> TinyVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`TinyVecSplice`](#tinyvecsplice)
-
-- `fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
+- `fn into_vec(self: Self) -> Vec<<A as >::Item>` — [`Array`](#array)
 
 #### Trait Implementations
 
@@ -856,7 +895,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array> PartialEq for TinyVec<A>`
 
-- `fn eq(self: &Self, other: &&A) -> bool`
+- `fn eq(self: &Self, other: &&[<A as >::Item]) -> bool` — [`Array`](#array)
 
 ##### `impl<A: Array> PartialOrd for TinyVec<A>`
 
@@ -994,7 +1033,7 @@ A trait for types that are an array.
 
 An "array", for our purposes, has the following properties:
 * Owns some number of elements.
-* The element type can be generic, but must implement [`Default`](#default).
+* The element type can be generic, but must implement [`Default`](../gimli/index.md).
 * The capacity is fixed at compile time, based on the implementing type.
 * You can get a shared or mutable slice to the elements.
 

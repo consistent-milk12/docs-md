@@ -8,12 +8,12 @@ the `tracing` ecosystem.
 [`tracing`](#tracing) is a framework for instrumenting Rust programs with context-aware,
 structured, event-based diagnostic information. This crate provides
 compatibility layers for using `tracing` alongside the logging facade provided
-by the [`log`](#log) crate.
+by the [`log`](../log/index.md) crate.
 
 This crate provides:
 
 - [`AsTrace`](#astrace) and [`AsLog`](#aslog) traits for converting between `tracing` and `log` types.
-- [`LogTracer`](log_tracer/index.md), a `log::Log` implementation that consumes `log::Record`s
+- [`LogTracer`](log_tracer/index.md), a [`log::Log`](../log/index.md) implementation that consumes [`log::Record`](../log/index.md)s
   and outputs them as `tracing::Event`.
 
 *Compiler support: [requires `rustc` 1.56+][msrv]*
@@ -22,7 +22,7 @@ This crate provides:
 
 ## Convert log records to tracing `Event`s
 
-To convert `log::Record`s as `tracing::Event`s, set `LogTracer` as the default
+To convert [`log::Record`](../log/index.md)s as `tracing::Event`s, set `LogTracer` as the default
 logger by calling its `init` or `init_with_filter` methods.
 
 ```rust
@@ -49,7 +49,7 @@ trace.
 
 ## Convert tracing `Event`s to logs
 
-Enabling the ["log" and "log-always" feature flags][flags] on the `tracing`
+Enabling the ["log" and "log-always" feature flags][`flags`](../portable_atomic/imp/atomic128/x86_64/detect/index.md) on the `tracing`
 crate will cause all `tracing` spans and events to emit `log::Record`s as
 they occur.
 
@@ -184,7 +184,7 @@ Extends log `Event`s to provide complete `Metadata`.
 
 In `tracing-log`, an `Event` produced by a log (through [`AsTrace`](#astrace)) has an hard coded
 "log" target and no `file`, `line`, or `module_path` attributes. This happens because `Event`
-requires its `Metadata` to be `'static`, while `log::Record`s provide them with a generic
+requires its `Metadata` to be `'static`, while [`log::Record`](../log/index.md)s provide them with a generic
 lifetime.
 
 However, these values are stored in the `Event`'s fields and

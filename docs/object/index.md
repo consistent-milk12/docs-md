@@ -12,13 +12,13 @@ Types and traits for zerocopy support are defined in the [`pod`](pod/index.md) a
 
 ## Unified read API
 
-The [`read`](read/index.md) module provides a unified read API using the `read::Object` trait.
-There is an implementation of this trait for `read::File`, which allows reading any
+The [`read`](read/index.md) module provides a unified read API using the [`read::Object`](read/index.md) trait.
+There is an implementation of this trait for [`read::File`](read/index.md), which allows reading any
 file format, as well as implementations for each file format.
 
 ## Low level read API
 
-The `read#modules` submodules define helpers that operate on the raw structs.
+The [`read#modules`](read/index.md) submodules define helpers that operate on the raw structs.
 These can be used instead of the unified API, or in conjunction with it to access
 details that are not available via the unified API.
 
@@ -44,6 +44,7 @@ points of the crate.
 
 ## Modules
 
+- [`common`](common/index.md) - 
 - [`endian`](endian/index.md) - Types for compile-time and run-time endianness.
 - [`pod`](pod/index.md) - Tools for converting file format structures to and from bytes.
 - [`read`](read/index.md) - Interface for reading object files.
@@ -52,12 +53,19 @@ points of the crate.
 - [`macho`](macho/index.md) - Mach-O definitions.
 - [`pe`](pe/index.md) - PE/COFF definitions.
 - [`xcoff`](xcoff/index.md) - XCOFF definitions
+- [`read_ref`](read_ref/index.md) - 
+- [`read_cache`](read_cache/index.md) - 
+- [`util`](util/index.md) - 
+- [`gnu_compression`](gnu_compression/index.md) - 
+- [`any`](any/index.md) - 
 - [`archive`](archive/index.md) - Support for archive files.
 - [`coff`](coff/index.md) - Support for reading Windows COFF files.
 - [`elf`](elf/index.md) - Support for reading ELF files.
 - [`macho`](macho/index.md) - Support for reading Mach-O files.
 - [`pe`](pe/index.md) - Support for reading PE files.
 - [`xcoff`](xcoff/index.md) - Support for reading AIX XCOFF files.
+- [`traits`](traits/index.md) - 
+- [`private`](private/index.md) - 
 
 ## Structs
 
@@ -1010,6 +1018,39 @@ Returned by `ObjectSection::relocation_map`.
 ##### `impl Default for RelocationMap`
 
 - `fn default() -> RelocationMap` — [`RelocationMap`](#relocationmap)
+
+### `RelocationMapEntry`
+
+```rust
+struct RelocationMapEntry {
+    implicit_addend: bool,
+    addend: u64,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for RelocationMapEntry`
+
+- `fn clone(self: &Self) -> RelocationMapEntry` — [`RelocationMapEntry`](read/index.md)
+
+##### `impl Copy for RelocationMapEntry`
+
+##### `impl Debug for RelocationMapEntry`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for RelocationMapEntry`
+
+##### `impl Hash for RelocationMapEntry`
+
+- `fn hash<__H: $crate::hash::Hasher>(self: &Self, state: &mut __H)`
+
+##### `impl PartialEq for RelocationMapEntry`
+
+- `fn eq(self: &Self, other: &RelocationMapEntry) -> bool` — [`RelocationMapEntry`](read/index.md)
+
+##### `impl StructuralPartialEq for RelocationMapEntry`
 
 ### `CompressedFileRange`
 
@@ -2404,13 +2445,13 @@ A file format kind.
 
   A Unix archive.
   
-  See `archive::ArchiveFile`.
+  See [`archive::ArchiveFile`](read/archive/index.md).
 
 - **`Coff`**
 
   A COFF object file.
   
-  See `coff::CoffFile`.
+  See [`coff::CoffFile`](read/coff/index.md).
 
 - **`CoffBig`**
 
@@ -2418,79 +2459,79 @@ A file format kind.
   
   This supports a larger number of sections.
   
-  See `coff::CoffBigFile`.
+  See [`coff::CoffBigFile`](read/coff/index.md).
 
 - **`CoffImport`**
 
   A Windows short import file.
   
-  See `coff::ImportFile`.
+  See [`coff::ImportFile`](read/coff/index.md).
 
 - **`DyldCache`**
 
   A dyld cache file containing Mach-O images.
   
-  See `macho::DyldCache`
+  See [`macho::DyldCache`](read/macho/index.md)
 
 - **`Elf32`**
 
   A 32-bit ELF file.
   
-  See `elf::ElfFile32`.
+  See [`elf::ElfFile32`](read/elf/index.md).
 
 - **`Elf64`**
 
   A 64-bit ELF file.
   
-  See `elf::ElfFile64`.
+  See [`elf::ElfFile64`](read/elf/index.md).
 
 - **`MachO32`**
 
   A 32-bit Mach-O file.
   
-  See `macho::MachOFile32`.
+  See [`macho::MachOFile32`](read/macho/index.md).
 
 - **`MachO64`**
 
   A 64-bit Mach-O file.
   
-  See `macho::MachOFile64`.
+  See [`macho::MachOFile64`](read/macho/index.md).
 
 - **`MachOFat32`**
 
   A 32-bit Mach-O fat binary.
   
-  See `macho::MachOFatFile32`.
+  See [`macho::MachOFatFile32`](read/macho/index.md).
 
 - **`MachOFat64`**
 
   A 64-bit Mach-O fat binary.
   
-  See `macho::MachOFatFile64`.
+  See [`macho::MachOFatFile64`](read/macho/index.md).
 
 - **`Pe32`**
 
   A 32-bit PE file.
   
-  See `pe::PeFile32`.
+  See [`pe::PeFile32`](read/pe/index.md).
 
 - **`Pe64`**
 
   A 64-bit PE file.
   
-  See `pe::PeFile64`.
+  See [`pe::PeFile64`](read/pe/index.md).
 
 - **`Xcoff32`**
 
   A 32-bit XCOFF file.
   
-  See `xcoff::XcoffFile32`.
+  See [`xcoff::XcoffFile32`](read/xcoff/index.md).
 
 - **`Xcoff64`**
 
   A 64-bit XCOFF file.
   
-  See `xcoff::XcoffFile64`.
+  See [`xcoff::XcoffFile64`](read/xcoff/index.md).
 
 #### Implementations
 
@@ -2663,7 +2704,7 @@ enum RelocationTarget {
 }
 ```
 
-The target referenced by a [`Relocation`](macho/index.md).
+The target referenced by a [`Relocation`](#relocation).
 
 #### Variants
 
@@ -2905,6 +2946,16 @@ A type that is `Pod` must:
 - have no invalid byte values
 - have no padding
 
+### `ReadError<T>`
+
+```rust
+trait ReadError<T> { ... }
+```
+
+#### Required Methods
+
+- `fn read_error(self: Self, error: &'static str) -> Result<T>`
+
 ### `SymbolMapEntry`
 
 ```rust
@@ -3088,6 +3139,12 @@ An `i64` value with an externally specified endianness of type `E`.
 ### `Result<T>`
 
 ```rust
+type Result<T> = result::Result<T, ()>;
+```
+
+### `Result<T>`
+
+```rust
 type Result<T> = result::Result<T, Error>;
 ```
 
@@ -3100,4 +3157,10 @@ type NativeFile<'data, R> = elf::ElfFile64<'data, crate::endian::Endianness, R>;
 ```
 
 The native executable file for the target platform.
+
+## Macros
+
+### `unsafe_impl_endian_pod!`
+
+### `unsafe_impl_pod!`
 

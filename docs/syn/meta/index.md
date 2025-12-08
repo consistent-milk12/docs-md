@@ -173,3 +173,15 @@ impl TeaAttributes {
 }
 ```
 
+### `parse_nested_meta`
+
+```rust
+fn parse_nested_meta(input: crate::parse::ParseStream<'_>, logic: impl FnMut(ParseNestedMeta<'_>) -> crate::error::Result<()>) -> crate::error::Result<()>
+```
+
+### `parse_meta_path`
+
+```rust
+fn parse_meta_path(input: crate::parse::ParseStream<'_>) -> crate::error::Result<crate::path::Path>
+```
+

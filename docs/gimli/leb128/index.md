@@ -54,3 +54,31 @@ assert_eq!(val, 98765);
 
 - [`read`](read/index.md) - A module for reading signed and unsigned integers that have been LEB128
 
+## Functions
+
+### `low_bits_of_byte`
+
+```rust
+fn low_bits_of_byte(byte: u8) -> u8
+```
+
+### `low_bits_of_u64`
+
+```rust
+fn low_bits_of_u64(val: u64) -> u8
+```
+
+## Constants
+
+### `CONTINUATION_BIT`
+
+```rust
+const CONTINUATION_BIT: u8 = 128u8;
+```
+
+### `SIGN_BIT`
+
+```rust
+const SIGN_BIT: u8 = 64u8;
+```
+

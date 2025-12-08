@@ -67,7 +67,7 @@ assert_eq!(None, it.next());
 It may be possible for the overhead of constructing a substring searcher to be
 measurable in some workloads. In cases where the same needle is used to search
 many haystacks, it is possible to do construction once and thus to avoid it for
-subsequent searches. This can be done with a `memmem::Finder`:
+subsequent searches. This can be done with a [`memmem::Finder`](memmem/index.md):
 
 ```rust
 use memchr::memmem;
@@ -171,8 +171,13 @@ Originally, this crate was literally just a safe wrapper function around the
 
 ## Modules
 
+- [`macros`](macros/index.md) - 
 - [`arch`](arch/index.md) - A module with low-level architecture dependent routines.
+- [`cow`](cow/index.md) - 
+- [`ext`](ext/index.md) - 
+- [`memchr`](memchr/index.md) - 
 - [`memmem`](memmem/index.md) - This module provides forward and reverse substring search routines.
+- [`vector`](vector/index.md) - 
 
 ## Structs
 

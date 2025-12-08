@@ -31,6 +31,15 @@ unicode-normalization = "0.1.20"
 
 ## Modules
 
+- [`decompose`](decompose/index.md) - 
+- [`lookups`](lookups/index.md) - Lookups of unicode properties using minimal perfect hashing.
+- [`normalize`](normalize/index.md) - Functions for computing canonical and compatible decompositions for Unicode characters.
+- [`perfect_hash`](perfect_hash/index.md) - Support for lookups based on minimal perfect hashing.
+- [`quick_check`](quick_check/index.md) - 
+- [`recompose`](recompose/index.md) - 
+- [`replace`](replace/index.md) - 
+- [`stream_safe`](stream_safe/index.md) - 
+- [`tables`](tables/index.md) - 
 - [`char`](char/index.md) - Methods for composing and decomposing characters.
 
 ## Structs
@@ -50,9 +59,13 @@ External iterator for a string decomposition's characters.
 
 #### Implementations
 
-- `fn new_canonical(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- `fn push_back(self: &mut Self, ch: char)`
 
-- `fn new_compatible(iter: I) -> Decompositions<I>` — [`Decompositions`](decompose/index.md)
+- `fn sort_pending(self: &mut Self)`
+
+- `fn reset_buffer(self: &mut Self)`
+
+- `fn increment_next_ready(self: &mut Self)`
 
 #### Trait Implementations
 

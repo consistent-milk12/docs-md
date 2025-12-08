@@ -171,6 +171,14 @@ For a comparison of all these crates (and possibly more!) please see the [Rust S
 <br />
 Thanks for readingme!
 
+## Modules
+
+- [`features`](features/index.md) - A module that contains the implementations for optional features. For example `serde` support
+- [`macros`](macros/index.md) - 
+- [`unicode_data`](unicode_data/index.md) - Adapted from
+- [`repr`](repr/index.md) - 
+- [`traits`](traits/index.md) - 
+
 ## Structs
 
 ### `CompactString`
@@ -180,7 +188,7 @@ struct CompactString(repr::Repr);
 ```
 
 A [`CompactString`](#compactstring) is a compact string type that can be used almost anywhere a
-[`String`](#string) or [`str`](#str) can be used.
+[`String`](../clap_builder/index.md) or [`str`](../clap_builder/builder/str/index.md) can be used.
 
 ## Using `CompactString`
 ```rust
@@ -399,7 +407,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl AsRef for CompactString`
 
-- `fn as_ref(self: &Self) -> &OsStr`
+- `fn as_ref(self: &Self) -> &std::path::Path`
 
 ##### `impl Clone for CompactString`
 
@@ -431,13 +439,13 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Eq for CompactString`
 
-##### `impl Extend for CompactString`
+##### `impl<'a> Extend for CompactString`
 
-- `fn extend<T: IntoIterator<Item = Box<str>>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = Cow<'a, str>>>(self: &mut Self, iter: T)`
 
-##### `impl<'a> FromIterator for CompactString`
+##### `impl FromIterator for CompactString`
 
-- `fn from_iter<T: IntoIterator<Item = &'a char>>(iter: T) -> Self`
+- `fn from_iter<T: IntoIterator<Item = String>>(iter: T) -> Self`
 
 ##### `impl FromStr for CompactString`
 
@@ -706,6 +714,38 @@ A possible error value if `ToCompactString::try_to_compact_string()` failed.
 
 ## Traits
 
+### `UnwrapWithMsg`
+
+```rust
+trait UnwrapWithMsg { ... }
+```
+
+#### Required Methods
+
+- `type T`
+
+- `fn unwrap_with_msg(self: Self) -> <Self as >::T`
+
+## Functions
+
+### `convert_while_ascii`
+
+```rust
+fn convert_while_ascii(b: &[u8], convert: fn(&u8) -> u8) -> CompactString
+```
+
+Converts the bytes while the bytes are still ascii.
+For better average performance, this is happens in chunks of `2*size_of::<usize>()`.
+Returns a vec with the converted bytes.
+
+Copied from https://doc.rust-lang.org/nightly/src/alloc/str.rs.html#623-666
+
+### `unwrap_with_msg_fail`
+
+```rust
+fn unwrap_with_msg_fail<E: fmt::Display>(error: E) -> never
+```
+
 ## Macros
 
 ### `format_compact!`
@@ -718,16 +758,16 @@ The power of the formatting string is in the `{}`s contained.
 
 Additional parameters passed to `format_compact!` replace the `{}`s within
 the formatting string in the order given unless named or
-positional parameters are used; see `std::fmt` for more information.
+positional parameters are used; see [`std::fmt`](../anstream/fmt/index.md) for more information.
 
 A common use for `format_compact!` is concatenation and interpolation
 of strings.
-The same convention is used with `print!` and `write!` macros,
+The same convention is used with [`print!`](../backtrace/print/index.md) and [`write!`](../anstream/strip/index.md) macros,
 depending on the intended destination of the string.
 
 To convert a single value to a string, use the
 `ToCompactString::to_compact_string` method, which uses
-the `std::fmt::Display` formatting trait.
+the [`std::fmt::Display`](../miette_derive/fmt/index.md) formatting trait.
 
 # Panics
 

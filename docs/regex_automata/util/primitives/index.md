@@ -14,7 +14,7 @@ when you might want to use them.
 * [`PatternID`](#patternid) - A type that represents the identifier of a regex pattern.
 This is probably the most widely used type in this module (which is why it's
 also re-exported in the crate root).
-* [`StateID`](../../index.md) - A type the represents the identifier of a finite automaton
+* [`StateID`](#stateid) - A type the represents the identifier of a finite automaton
 state. This is used for both NFAs and DFAs, with the notable exception of
 the hybrid NFA/DFA. (The hybrid NFA/DFA uses a special purpose "lazy" state
 identifier.)
@@ -137,7 +137,7 @@ for delta encoding.
 The following types wrap `SmallIndex` to provide a more focused use case:
 
 * [`PatternID`](#patternid) is for representing the identifiers of patterns.
-* [`StateID`](../../index.md) is for representing the identifiers of states in finite
+* [`StateID`](#stateid) is for representing the identifiers of states in finite
 automata. It is used for both NFAs and DFAs.
 
 # Representation
@@ -272,6 +272,38 @@ When the `std` feature is enabled, this implements the `Error` trait.
 ##### `impl<T> ToString for SmallIndexError`
 
 - `fn to_string(self: &Self) -> String`
+
+### `SmallIndexIter`
+
+```rust
+struct SmallIndexIter {
+    rng: core::ops::Range<usize>,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for SmallIndexIter`
+
+- `fn clone(self: &Self) -> SmallIndexIter` — [`SmallIndexIter`](#smallindexiter)
+
+##### `impl Debug for SmallIndexIter`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for SmallIndexIter`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator for SmallIndexIter`
+
+- `type Item = SmallIndex`
+
+- `fn next(self: &mut Self) -> Option<SmallIndex>` — [`SmallIndex`](#smallindex)
 
 ### `PatternID`
 
@@ -499,6 +531,82 @@ trait.
 
 - `fn to_string(self: &Self) -> String`
 
+### `PatternIDIter`
+
+```rust
+struct PatternIDIter(SmallIndexIter);
+```
+
+#### Implementations
+
+- `fn new(len: usize) -> PatternIDIter` — [`PatternIDIter`](#patterniditer)
+
+#### Trait Implementations
+
+##### `impl Clone for PatternIDIter`
+
+- `fn clone(self: &Self) -> PatternIDIter` — [`PatternIDIter`](#patterniditer)
+
+##### `impl Debug for PatternIDIter`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for PatternIDIter`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator for PatternIDIter`
+
+- `type Item = PatternID`
+
+- `fn next(self: &mut Self) -> Option<PatternID>` — [`PatternID`](#patternid)
+
+### `WithPatternIDIter<I>`
+
+```rust
+struct WithPatternIDIter<I> {
+    it: I,
+    ids: PatternIDIter,
+}
+```
+
+An iterator adapter that is like std::iter::Enumerate, but attaches
+small index values instead. It requires `ExactSizeIterator`. At
+construction, it ensures that the index of each element in the
+iterator is representable in the corresponding small index type.
+
+#### Implementations
+
+- `fn new(it: I) -> WithPatternIDIter<I>` — [`WithPatternIDIter`](#withpatterniditer)
+
+#### Trait Implementations
+
+##### `impl<I: $crate::clone::Clone> Clone for WithPatternIDIter<I>`
+
+- `fn clone(self: &Self) -> WithPatternIDIter<I>` — [`WithPatternIDIter`](#withpatterniditer)
+
+##### `impl<I: $crate::fmt::Debug> Debug for WithPatternIDIter<I>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for WithPatternIDIter<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<I: Iterator + ExactSizeIterator> Iterator for WithPatternIDIter<I>`
+
+- `type Item = (PatternID, <I as Iterator>::Item)`
+
+- `fn next(self: &mut Self) -> Option<(PatternID, <I as >::Item)>` — [`PatternID`](#patternid)
+
 ### `StateIDError`
 
 ```rust
@@ -544,4 +652,103 @@ trait.
 ##### `impl<T> ToString for StateIDError`
 
 - `fn to_string(self: &Self) -> String`
+
+### `StateIDIter`
+
+```rust
+struct StateIDIter(SmallIndexIter);
+```
+
+#### Implementations
+
+- `fn new(len: usize) -> StateIDIter` — [`StateIDIter`](#stateiditer)
+
+#### Trait Implementations
+
+##### `impl Clone for StateIDIter`
+
+- `fn clone(self: &Self) -> StateIDIter` — [`StateIDIter`](#stateiditer)
+
+##### `impl Debug for StateIDIter`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for StateIDIter`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl Iterator for StateIDIter`
+
+- `type Item = StateID`
+
+- `fn next(self: &mut Self) -> Option<StateID>` — [`StateID`](#stateid)
+
+### `WithStateIDIter<I>`
+
+```rust
+struct WithStateIDIter<I> {
+    it: I,
+    ids: StateIDIter,
+}
+```
+
+An iterator adapter that is like std::iter::Enumerate, but attaches
+small index values instead. It requires `ExactSizeIterator`. At
+construction, it ensures that the index of each element in the
+iterator is representable in the corresponding small index type.
+
+#### Implementations
+
+- `fn new(it: I) -> WithStateIDIter<I>` — [`WithStateIDIter`](#withstateiditer)
+
+#### Trait Implementations
+
+##### `impl<I: $crate::clone::Clone> Clone for WithStateIDIter<I>`
+
+- `fn clone(self: &Self) -> WithStateIDIter<I>` — [`WithStateIDIter`](#withstateiditer)
+
+##### `impl<I: $crate::fmt::Debug> Debug for WithStateIDIter<I>`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<I> IntoIterator for WithStateIDIter<I>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<I: Iterator + ExactSizeIterator> Iterator for WithStateIDIter<I>`
+
+- `type Item = (StateID, <I as Iterator>::Item)`
+
+- `fn next(self: &mut Self) -> Option<(StateID, <I as >::Item)>` — [`StateID`](#stateid)
+
+## Traits
+
+### `IteratorIndexExt`
+
+```rust
+trait IteratorIndexExt: Iterator { ... }
+```
+
+A utility trait that defines a couple of adapters for making it convenient
+to access indices as "small index" types. We require ExactSizeIterator so
+that iterator construction can do a single check to make sure the index of
+each element is representable by its small index type.
+
+#### Required Methods
+
+- `fn with_pattern_ids(self: Self) -> WithPatternIDIter<Self>`
+
+- `fn with_state_ids(self: Self) -> WithStateIDIter<Self>`
+
+## Macros
+
+### `index_type_impls!`
 

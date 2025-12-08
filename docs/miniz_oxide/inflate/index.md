@@ -9,6 +9,7 @@ This module contains functionality for decompression.
 ## Modules
 
 - [`core`](core/index.md) - Streaming decompression functionality.
+- [`output_buffer`](output_buffer/index.md) - 
 - [`stream`](stream/index.md) - Extra streaming decompression functionality.
 
 ## Enums
@@ -125,4 +126,48 @@ the output buffer will still contain the partial decompression.
 * `zlib_header` if the first slice out of the iterator is expected to have a
   Zlib header. Otherwise the slices are assumed to be the deflate data only.
 * `ignore_adler32` if the adler32 checksum should be calculated or not.
+
+## Constants
+
+### `TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS`
+
+```rust
+const TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS: i32 = -4i32;
+```
+
+### `TINFL_STATUS_BAD_PARAM`
+
+```rust
+const TINFL_STATUS_BAD_PARAM: i32 = -3i32;
+```
+
+### `TINFL_STATUS_ADLER32_MISMATCH`
+
+```rust
+const TINFL_STATUS_ADLER32_MISMATCH: i32 = -2i32;
+```
+
+### `TINFL_STATUS_FAILED`
+
+```rust
+const TINFL_STATUS_FAILED: i32 = -1i32;
+```
+
+### `TINFL_STATUS_DONE`
+
+```rust
+const TINFL_STATUS_DONE: i32 = 0i32;
+```
+
+### `TINFL_STATUS_NEEDS_MORE_INPUT`
+
+```rust
+const TINFL_STATUS_NEEDS_MORE_INPUT: i32 = 1i32;
+```
+
+### `TINFL_STATUS_HAS_MORE_OUTPUT`
+
+```rust
+const TINFL_STATUS_HAS_MORE_OUTPUT: i32 = 2i32;
+```
 

@@ -4,12 +4,12 @@
 
 # Module `filter`
 
-[`Layer`](../layer/index.md)s that control which spans and events are enabled by the wrapped
+[`Layer`](../fmt/fmt_layer/index.md)s that control which spans and events are enabled by the wrapped
 subscriber.
 
 This module contains a number of types that provide implementations of
 various strategies for filtering which spans and events are enabled. For
-details on filtering spans and events using [`Layer`](../layer/index.md)s, see the
+details on filtering spans and events using [`Layer`](../fmt/fmt_layer/index.md)s, see the
 [`layer` module's documentation].
 
 
@@ -27,23 +27,23 @@ details on filtering spans and events using [`Layer`](../layer/index.md)s, see t
 struct Targets(crate::filter::directive::DirectiveSet<crate::filter::directive::StaticDirective>);
 ```
 
- A filter that enables or disables spans and events based on their [target]
+ A filter that enables or disables spans and events based on their [`target`](../../tracing_attributes/attr/kw/index.md)
  and [`level`](level/index.md).
 
  Targets are typically equal to the Rust module path of the code where the
  span or event was recorded, although they may be overridden.
 
  This type can be used for both [per-layer filtering][plf] (using its
- [`Filter`](../layer/index.md) implementation) and [global filtering][global] (using its
- [`Layer`](../layer/index.md) implementation).
+ [`Filter`](../layer/index.md) implementation) and [global filtering][`global`](../../allocator_api2/stable/alloc/global/index.md) (using its
+ [`Layer`](../fmt/fmt_layer/index.md) implementation).
 
  See the [documentation on filtering with layers][filtering] for details.
 
  # Filtering With `Targets`
 
- A `Targets` filter consists of one or more [target] prefixes, paired with
- [`LevelFilter`](level/index.md)s. If a span or event's [target] begins with one of those
- prefixes, and its [`level`](level/index.md) is at or below the [`LevelFilter`](level/index.md) enabled for
+ A `Targets` filter consists of one or more [`target`](../../tracing_attributes/attr/kw/index.md) prefixes, paired with
+ [`LevelFilter`](../../tracing_core/metadata/index.md)s. If a span or event's [`target`](../../tracing_attributes/attr/kw/index.md) begins with one of those
+ prefixes, and its [`level`](level/index.md) is at or below the [`LevelFilter`](../../tracing_core/metadata/index.md) enabled for
  that prefix, then the span or event will be enabled.
 
  This is similar to the behavior implemented by the [`env_logger` crate] in
@@ -116,7 +116,7 @@ struct Targets(crate::filter::directive::DirectiveSet<crate::filter::directive::
  by the user at runtime.
 
  The `Targets` filter can be used as a [per-layer filter][plf] *and* as a
- [global filter][global]:
+ [global filter][`global`](../../allocator_api2/stable/alloc/global/index.md):
 
  ```rust
  use tracing_subscriber::{
@@ -319,7 +319,7 @@ A [`Layer`](../layer/index.md) which filters spans and events based on a set of 
 directives.
 
 `EnvFilter` implements both the [`Layer`](#impl-Layer<S>) and [`Filter`](../layer/index.md) traits, so it may
-be used for both [global filtering][global] and [per-layer filtering][plf],
+be used for both [global filtering][`global`](../../allocator_api2/stable/alloc/global/index.md) and [per-layer filtering][plf],
 respectively. See [the documentation on filtering with `Layer`s][filtering]
 for details.
 
@@ -350,19 +350,19 @@ Each component (`target`, `span`, `field`, `value`, and `level`) will be covered
   please refer to `Metadata`'s documentation.
 - `span` matches on the span's name. If a `span` directive is provided alongside a `target`,
   the `span` directive will match on spans _within_ the `target`.
-- `field` matches on [`fields`](../macros/index.md) within spans. Field names can also be supplied without a `value`
+- `field` matches on [`fields`](../../tracing_attributes/attr/kw/index.md) within spans. Field names can also be supplied without a `value`
   and will match on any [`Span`](#span) or `Event` that has a field with that name.
   For example: `[span{field=\"value\"}]=debug`, `[{field}]=trace`.
 - `value` matches on the value of a span's field. If a value is a numeric literal or a bool,
   it will match _only_ on that value. Otherwise, this filter matches the
-  `std::fmt::Debug` output from the value.
+  [`std::fmt::Debug`](../../docs_md/index.md) output from the value.
 - `level` sets a maximum verbosity level accepted by this directive.
 
 When a field value directive (`[{<FIELD NAME>=<FIELD_VALUE>}]=...`) matches a
-value's `std::fmt::Debug` output (i.e., the field value in the directive
+value's [`std::fmt::Debug`](../../docs_md/index.md) output (i.e., the field value in the directive
 is not a `bool`, `i64`, `u64`, or `f64` literal), the matched pattern may be
 interpreted as either a regular expression or as the precise expected
-output of the field's `std::fmt::Debug` implementation. By default, these
+output of the field's [`std::fmt::Debug`](../../docs_md/index.md) implementation. By default, these
 filters are interpreted as regular expressions, but this can be disabled
 using the `Builder::with_regex` builder method to use precise matching
 instead.
@@ -707,7 +707,7 @@ struct FilterId(u64);
 Uniquely identifies an individual [`Filter`](../layer/index.md) instance in the context of
 a [`Subscriber`](../fmt/index.md).
 
-When adding a [`Filtered`](#filtered) [`Layer`](../layer/index.md) to a [`Subscriber`](../fmt/index.md), the [`Subscriber`](../fmt/index.md)
+When adding a [`Filtered`](#filtered) [`Layer`](../fmt/fmt_layer/index.md) to a [`Subscriber`](../fmt/index.md), the [`Subscriber`](../fmt/index.md)
 generates a `FilterId` for that [`Filtered`](#filtered) layer. The [`Filtered`](#filtered) layer
 will then use the generated ID to query whether a particular span was
 previously enabled by that layer's [`Filter`](../layer/index.md).
@@ -770,8 +770,8 @@ determines whether a given span or event is enabled, based on its
 `Metadata`.
 
 This type can be used for both [per-layer filtering][plf] (using its
-[`Filter`](../layer/index.md) implementation) and [global filtering][global] (using its
-[`Layer`](../layer/index.md) implementation).
+[`Filter`](../layer/index.md) implementation) and [global filtering][`global`](../../allocator_api2/stable/alloc/global/index.md) (using its
+[`Layer`](../fmt/fmt_layer/index.md) implementation).
 
 See the [documentation on filtering with layers][filtering] for details.
 
@@ -839,8 +839,8 @@ determines whether a given span or event is enabled _dynamically_,
 potentially based on the current [span context].
 
 This type can be used for both [per-layer filtering][plf] (using its
-[`Filter`](../layer/index.md) implementation) and [global filtering][global] (using its
-[`Layer`](../layer/index.md) implementation).
+[`Filter`](../layer/index.md) implementation) and [global filtering][`global`](../../allocator_api2/stable/alloc/global/index.md) (using its
+[`Layer`](../fmt/fmt_layer/index.md) implementation).
 
 See the [documentation on filtering with layers][filtering] for details.
 
@@ -852,11 +852,7 @@ See the [documentation on filtering with layers][filtering] for details.
 
 #### Implementations
 
-- `fn with_max_level_hint(self: Self, max_level_hint: impl Into<LevelFilter>) -> Self`
-
-- `fn with_callsite_filter<R2>(self: Self, callsite_enabled: R2) -> DynFilterFn<S, F, R2>` — [`DynFilterFn`](#dynfilterfn)
-
-- `fn default_callsite_enabled(self: &Self, metadata: &Metadata<'_>) -> Interest`
+- `fn new(enabled: F) -> Self`
 
 #### Trait Implementations
 
@@ -932,8 +928,8 @@ Constructs a [`FilterFn`](#filterfn), from a function or closure that returns `t
 a span or event should be enabled, based on its `Metadata`.
 
 The returned [`FilterFn`](#filterfn) can be used for both [per-layer filtering][plf]
-(using its [`Filter`](../layer/index.md) implementation) and [global filtering][global] (using
-its  [`Layer`](../layer/index.md) implementation).
+(using its [`Filter`](../layer/index.md) implementation) and [global filtering][`global`](../../allocator_api2/stable/alloc/global/index.md) (using
+its  [`Layer`](../fmt/fmt_layer/index.md) implementation).
 
 See the [documentation on filtering with layers][filtering] for details.
 
@@ -984,16 +980,16 @@ if a span or event should be enabled within a particular [span context][`Context
 
 This is equivalent to calling `DynFilterFn::new`.
 
-Unlike [`filter_fn`](filter_fn/index.md), this function takes a closure or function pointer
+Unlike [`filter_fn`](#filter-fn), this function takes a closure or function pointer
 taking the `Metadata` for a span or event *and* the current [`Context`](../layer/index.md).
 This means that a [`DynFilterFn`](#dynfilterfn) can choose whether to enable spans or
 events based on information about the _current_ span (or its parents).
 
-If this is *not* necessary, use [`filter_fn`](filter_fn/index.md) instead.
+If this is *not* necessary, use [`filter_fn`](#filter-fn) instead.
 
 The returned [`DynFilterFn`](#dynfilterfn) can be used for both [per-layer filtering][plf]
-(using its [`Filter`](../layer/index.md) implementation) and [global filtering][global] (using
-its  [`Layer`](../layer/index.md) implementation).
+(using its [`Filter`](../layer/index.md) implementation) and [global filtering][`global`](../../allocator_api2/stable/alloc/global/index.md) (using
+its  [`Layer`](../fmt/fmt_layer/index.md) implementation).
 
 See the [documentation on filtering with layers][filtering] for details.
 

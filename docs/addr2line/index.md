@@ -8,7 +8,7 @@ stack leading to that address.
 At the lowest level, the library uses a [`Context`](#context) to cache parsed information so that
 multiple lookups are efficient. To create a `Context`, you first need to open and parse the
 file using an object file parser such as [`object`](https://github.com/gimli-rs/object),
-create a `gimli::Dwarf`, and finally call `Context::from_dwarf`.
+create a [`gimli::Dwarf`](../gimli/read/index.md), and finally call `Context::from_dwarf`.
 
 Location information is obtained with `Context::find_location` or
 `Context::find_location_range`. Function information is obtained with
@@ -26,6 +26,15 @@ The `Loader` will load Mach-O dSYM files and split DWARF files as needed.
 The crate has a CLI wrapper around the library which provides some of
 the functionality of the `addr2line` command line tool distributed with
 [GNU binutils](https://sourceware.org/binutils/docs/binutils/addr2line.html).
+
+## Modules
+
+- [`maybe_small`](maybe_small/index.md) - 
+- [`frame`](frame/index.md) - 
+- [`function`](function/index.md) - 
+- [`line`](line/index.md) - 
+- [`lookup`](lookup/index.md) - 
+- [`unit`](unit/index.md) - 
 
 ## Structs
 
@@ -216,15 +225,32 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`LookupResult`](lookup/index.md), [`LookupContinuation`](lookup/index.md)
+- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
 
-- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](frame/index.md)
+- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
-- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`LocationRangeIter`](unit/index.md)
+- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
 
-- `fn find_frames(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`LookupResult`](lookup/index.md), [`LookupContinuation`](lookup/index.md), [`FrameIter`](frame/index.md)
+### `RangeAttributes<R: gimli::Reader>`
 
-- `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`SplitDwarfLoad`](lookup/index.md)
+```rust
+struct RangeAttributes<R: gimli::Reader> {
+    low_pc: Option<u64>,
+    high_pc: Option<u64>,
+    size: Option<u64>,
+    ranges_offset: Option<gimli::RangeListsOffset<<R as gimli::Reader>::Offset>>,
+}
+```
+
+#### Implementations
+
+- `fn for_each_range<F: FnMut(gimli::Range)>(self: &Self, unit: gimli::UnitRef<'_, R>, f: F) -> Result<bool, gimli::Error>`
+
+#### Trait Implementations
+
+##### `impl<R: gimli::Reader> Default for RangeAttributes<R>`
+
+- `fn default() -> Self`
 
 ## Enums
 
@@ -283,7 +309,51 @@ This enum is intended to be used in a loop like so:
 
 - `fn unwrap(self: Self) -> <L as >::Output` — [`LookupContinuation`](lookup/index.md)
 
+### `DebugFile`
+
+```rust
+enum DebugFile {
+    Primary,
+    Supplementary,
+    Dwo,
+}
+```
+
+#### Trait Implementations
+
+##### `impl Clone for DebugFile`
+
+- `fn clone(self: &Self) -> DebugFile` — [`DebugFile`](#debugfile)
+
+##### `impl Copy for DebugFile`
+
+##### `impl Debug for DebugFile`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for DebugFile`
+
+##### `impl PartialEq for DebugFile`
+
+- `fn eq(self: &Self, other: &DebugFile) -> bool` — [`DebugFile`](#debugfile)
+
+##### `impl StructuralPartialEq for DebugFile`
+
 ## Traits
 
 ## Functions
+
+## Type Aliases
+
+### `Error`
+
+```rust
+type Error = gimli::Error;
+```
+
+### `LazyResult<T>`
+
+```rust
+type LazyResult<T> = core::cell::OnceCell<Result<T, gimli::Error>>;
+```
 

@@ -23,9 +23,11 @@ to its simplified structure.
 
 ## Modules
 
+- [`interval`](interval/index.md) - 
 - [`literal`](literal/index.md) - Provides literal extraction from `Hir` expressions.
 - [`print`](print/index.md) - This module provides a regular expression printer for `Hir`.
 - [`translate`](translate/index.md) - Defines a translator that converts an `Ast` to an `Hir`.
+- [`visitor`](visitor/index.md) - 
 
 ## Structs
 
@@ -204,13 +206,25 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 #### Implementations
 
-- `fn kind(self: &Self) -> &HirKind` — [`HirKind`](#hirkind)
+- `fn empty() -> Hir` — [`Hir`](#hir)
 
-- `fn into_kind(self: Self) -> HirKind` — [`HirKind`](#hirkind)
+- `fn fail() -> Hir` — [`Hir`](#hir)
 
-- `fn properties(self: &Self) -> &Properties` — [`Properties`](#properties)
+- `fn literal<B: Into<Box<[u8]>>>(lit: B) -> Hir` — [`Hir`](#hir)
 
-- `fn into_parts(self: Self) -> (HirKind, Properties)` — [`HirKind`](#hirkind), [`Properties`](#properties)
+- `fn class(class: Class) -> Hir` — [`Class`](#class), [`Hir`](#hir)
+
+- `fn look(look: Look) -> Hir` — [`Look`](#look), [`Hir`](#hir)
+
+- `fn repetition(rep: Repetition) -> Hir` — [`Repetition`](#repetition), [`Hir`](#hir)
+
+- `fn capture(capture: Capture) -> Hir` — [`Capture`](#capture), [`Hir`](#hir)
+
+- `fn concat(subs: Vec<Hir>) -> Hir` — [`Hir`](#hir)
+
+- `fn alternation(subs: Vec<Hir>) -> Hir` — [`Hir`](#hir)
+
+- `fn dot(dot: Dot) -> Hir` — [`Dot`](#dot), [`Hir`](#hir)
 
 #### Trait Implementations
 
@@ -792,6 +806,51 @@ be cheap to call.
 - `fn eq(self: &Self, other: &Properties) -> bool` — [`Properties`](#properties)
 
 ##### `impl StructuralPartialEq for Properties`
+
+### `PropertiesI`
+
+```rust
+struct PropertiesI {
+    minimum_len: Option<usize>,
+    maximum_len: Option<usize>,
+    look_set: LookSet,
+    look_set_prefix: LookSet,
+    look_set_suffix: LookSet,
+    look_set_prefix_any: LookSet,
+    look_set_suffix_any: LookSet,
+    utf8: bool,
+    explicit_captures_len: usize,
+    static_explicit_captures_len: Option<usize>,
+    literal: bool,
+    alternation_literal: bool,
+}
+```
+
+The property definition. It is split out so that we can box it, and
+there by make `Properties` use less stack size. This is kind-of important
+because every HIR value has a `Properties` attached to it.
+
+This does have the unfortunate consequence that creating any HIR value
+always leads to at least one alloc for properties, but this is generally
+true anyway (for pretty much all HirKinds except for look-arounds).
+
+#### Trait Implementations
+
+##### `impl Clone for PropertiesI`
+
+- `fn clone(self: &Self) -> PropertiesI` — [`PropertiesI`](#propertiesi)
+
+##### `impl Debug for PropertiesI`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for PropertiesI`
+
+##### `impl PartialEq for PropertiesI`
+
+- `fn eq(self: &Self, other: &PropertiesI) -> bool` — [`PropertiesI`](#propertiesi)
+
+##### `impl StructuralPartialEq for PropertiesI`
 
 ### `LookSet`
 
@@ -1474,4 +1533,62 @@ routine for building HIR values derived from the `.` regex.
 ## Traits
 
 ## Functions
+
+### `class_chars`
+
+```rust
+fn class_chars(hirs: &[Hir]) -> Option<Class>
+```
+
+Given a sequence of HIR values where each value corresponds to a Unicode
+class (or an all-ASCII byte class), return a single Unicode class
+corresponding to the union of the classes found.
+
+### `class_bytes`
+
+```rust
+fn class_bytes(hirs: &[Hir]) -> Option<Class>
+```
+
+Given a sequence of HIR values where each value corresponds to a byte class
+(or an all-ASCII Unicode class), return a single byte class corresponding
+to the union of the classes found.
+
+### `singleton_chars`
+
+```rust
+fn singleton_chars(hirs: &[Hir]) -> Option<alloc::vec::Vec<char>>
+```
+
+Given a sequence of HIR values where each value corresponds to a literal
+that is a single `char`, return that sequence of `char`s. Otherwise return
+None. No deduplication is done.
+
+### `singleton_bytes`
+
+```rust
+fn singleton_bytes(hirs: &[Hir]) -> Option<alloc::vec::Vec<u8>>
+```
+
+Given a sequence of HIR values where each value corresponds to a literal
+that is a single byte, return that sequence of bytes. Otherwise return
+None. No deduplication is done.
+
+### `lift_common_prefix`
+
+```rust
+fn lift_common_prefix(hirs: alloc::vec::Vec<Hir>) -> Result<Hir, alloc::vec::Vec<Hir>>
+```
+
+Looks for a common prefix in the list of alternation branches given. If one
+is found, then an equivalent but (hopefully) simplified Hir is returned.
+Otherwise, the original given list of branches is returned unmodified.
+
+This is not quite as good as it could be. Right now, it requires that
+all branches are 'Concat' expressions. It also doesn't do well with
+literals. For example, given 'foofoo|foobar', it will not refactor it to
+'foo(?:foo|bar)' because literals are flattened into their own special
+concatenation. (One wonders if perhaps 'Literal' should be a single atom
+instead of a string of bytes because of this. Otherwise, handling the
+current representation in this routine will be pretty gnarly. Sigh.)
 

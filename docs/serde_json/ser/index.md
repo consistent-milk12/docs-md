@@ -21,7 +21,101 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- `fn pretty(writer: W) -> Self`
+- `fn with_formatter(writer: W, formatter: F) -> Self`
+
+- `fn into_inner(self: Self) -> W`
+
+### `MapKeySerializer<'a, W: 'a, F: 'a>`
+
+```rust
+struct MapKeySerializer<'a, W: 'a, F: 'a> {
+    ser: &'a mut Serializer<W, F>,
+}
+```
+
+#### Trait Implementations
+
+##### `impl<'a, W, F> Serializer for MapKeySerializer<'a, W, F>`
+
+- `type Ok = ()`
+
+- `type Error = Error`
+
+- `fn serialize_str(self: Self, value: &str) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_unit_variant(self: Self, _name: &'static str, _variant_index: u32, variant: &'static str) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_newtype_struct<T>(self: Self, _name: &'static str, value: &T) -> Result<()>` — [`Result`](../error/index.md)
+
+- `type SerializeSeq = Impossible<(), Error>`
+
+- `type SerializeTuple = Impossible<(), Error>`
+
+- `type SerializeTupleStruct = Impossible<(), Error>`
+
+- `type SerializeTupleVariant = Impossible<(), Error>`
+
+- `type SerializeMap = Impossible<(), Error>`
+
+- `type SerializeStruct = Impossible<(), Error>`
+
+- `type SerializeStructVariant = Impossible<(), Error>`
+
+- `fn serialize_bool(self: Self, value: bool) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_i8(self: Self, value: i8) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_i16(self: Self, value: i16) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_i32(self: Self, value: i32) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_i64(self: Self, value: i64) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_i128(self: Self, value: i128) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_u8(self: Self, value: u8) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_u16(self: Self, value: u16) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_u32(self: Self, value: u32) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_u64(self: Self, value: u64) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_u128(self: Self, value: u128) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_f32(self: Self, value: f32) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_f64(self: Self, value: f64) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_char(self: Self, value: char) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_bytes(self: Self, _value: &[u8]) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_unit(self: Self) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_unit_struct(self: Self, _name: &'static str) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_newtype_variant<T>(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _value: &T) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_none(self: Self) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_some<T>(self: Self, value: &T) -> Result<()>` — [`Result`](../error/index.md)
+
+- `fn serialize_seq(self: Self, _len: Option<usize>) -> Result<<Self as >::SerializeSeq>` — [`Result`](../error/index.md)
+
+- `fn serialize_tuple(self: Self, _len: usize) -> Result<<Self as >::SerializeTuple>` — [`Result`](../error/index.md)
+
+- `fn serialize_tuple_struct(self: Self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleStruct>` — [`Result`](../error/index.md)
+
+- `fn serialize_tuple_variant(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeTupleVariant>` — [`Result`](../error/index.md)
+
+- `fn serialize_map(self: Self, _len: Option<usize>) -> Result<<Self as >::SerializeMap>` — [`Result`](../error/index.md)
+
+- `fn serialize_struct(self: Self, _name: &'static str, _len: usize) -> Result<<Self as >::SerializeStruct>` — [`Result`](../error/index.md)
+
+- `fn serialize_struct_variant(self: Self, _name: &'static str, _variant_index: u32, _variant: &'static str, _len: usize) -> Result<<Self as >::SerializeStructVariant>` — [`Result`](../error/index.md)
+
+- `fn collect_str<T>(self: Self, value: &T) -> Result<()>` — [`Result`](../error/index.md)
 
 ### `CompactFormatter`
 
@@ -297,6 +391,36 @@ optionally pretty print the JSON output.
 
 ## Functions
 
+### `key_must_be_a_string`
+
+```rust
+fn key_must_be_a_string() -> crate::error::Error
+```
+
+### `float_key_must_be_finite`
+
+```rust
+fn float_key_must_be_finite() -> crate::error::Error
+```
+
+### `format_escaped_str`
+
+```rust
+fn format_escaped_str<W, F>(writer: &mut W, formatter: &mut F, value: &str) -> io::Result<()>
+where
+    W: ?Sized + io::Write,
+    F: ?Sized + Formatter
+```
+
+### `format_escaped_str_contents`
+
+```rust
+fn format_escaped_str_contents<W, F>(writer: &mut W, formatter: &mut F, value: &str) -> io::Result<()>
+where
+    W: ?Sized + io::Write,
+    F: ?Sized + Formatter
+```
+
 ### `to_writer`
 
 ```rust
@@ -393,4 +517,68 @@ Serialize the given data structure as a pretty-printed String of JSON.
 
 Serialization can fail if `T`'s implementation of `Serialize` decides to
 fail, or if `T` contains a map with non-string keys.
+
+### `indent`
+
+```rust
+fn indent<W>(wr: &mut W, n: usize, s: &[u8]) -> io::Result<()>
+where
+    W: ?Sized + io::Write
+```
+
+## Constants
+
+### `BB`
+
+```rust
+const BB: u8 = 98u8;
+```
+
+### `TT`
+
+```rust
+const TT: u8 = 116u8;
+```
+
+### `NN`
+
+```rust
+const NN: u8 = 110u8;
+```
+
+### `FF`
+
+```rust
+const FF: u8 = 102u8;
+```
+
+### `RR`
+
+```rust
+const RR: u8 = 114u8;
+```
+
+### `QU`
+
+```rust
+const QU: u8 = 34u8;
+```
+
+### `BS`
+
+```rust
+const BS: u8 = 92u8;
+```
+
+### `UU`
+
+```rust
+const UU: u8 = 117u8;
+```
+
+### `__`
+
+```rust
+const __: u8 = 0u8;
+```
 

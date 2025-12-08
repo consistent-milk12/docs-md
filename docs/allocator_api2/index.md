@@ -6,10 +6,35 @@ allocator-api2 crate.
 
 ## Modules
 
+- [`stable`](stable/index.md) - 
 - [`alloc`](alloc/index.md) - Memory allocation APIs
 - [`boxed`](boxed/index.md) - The `Box<T>` type for heap allocation.
+- [`raw_vec`](raw_vec/index.md) - 
 - [`vec`](vec/index.md) - A contiguous growable array type with heap-allocated contents, written
+- [`macros`](macros/index.md) - 
+- [`slice`](slice/index.md) - 
+- [`unique`](unique/index.md) - 
 - [`collections`](collections/index.md) - 
+
+## Functions
+
+### `assume`
+
+```rust
+unsafe fn assume(v: bool)
+```
+
+### `addr`
+
+```rust
+fn addr<T>(x: *const T) -> usize
+```
+
+### `invalid_mut`
+
+```rust
+fn invalid_mut<T>(addr: usize) -> *mut T
+```
 
 ## Macros
 
@@ -54,7 +79,7 @@ assert_eq!(v, [1, 1, 1]);
 ```
 
 Note that unlike array expressions this syntax supports all elements
-which implement `Clone` and the number of elements doesn't have to be
+which implement [`Clone`](../fs_err/index.md) and the number of elements doesn't have to be
 a constant.
 
 This will use `clone` to duplicate an expression, so one should be careful

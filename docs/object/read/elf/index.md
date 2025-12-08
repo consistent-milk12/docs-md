@@ -18,8 +18,8 @@ The primary trait for this is [`FileHeader`](#fileheader).
 
 ## Low level API
 
-The [`FileHeader`](#fileheader) trait can be directly used to parse both `elf::FileHeader32`
-and `elf::FileHeader64`.
+The [`FileHeader`](#fileheader) trait can be directly used to parse both [`elf::FileHeader32`](../../elf/index.md)
+and [`elf::FileHeader64`](../../elf/index.md).
 
 ### Example for low level API
  ```no_run
@@ -44,6 +44,21 @@ fn main() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 ```
+
+## Modules
+
+- [`file`](file/index.md) - 
+- [`segment`](segment/index.md) - 
+- [`section`](section/index.md) - 
+- [`symbol`](symbol/index.md) - 
+- [`relocation`](relocation/index.md) - 
+- [`comdat`](comdat/index.md) - 
+- [`dynamic`](dynamic/index.md) - 
+- [`compression`](compression/index.md) - 
+- [`note`](note/index.md) - 
+- [`hash`](hash/index.md) - 
+- [`version`](version/index.md) - 
+- [`attributes`](attributes/index.md) - 
 
 ## Structs
 
@@ -880,6 +895,93 @@ The specification has been submited here: <https://groups.google.com/g/generic-a
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+### `CrelIteratorHeader`
+
+```rust
+struct CrelIteratorHeader {
+    count: usize,
+    flag_bits: u64,
+    shift: u64,
+    is_rela: bool,
+}
+```
+
+#### Fields
+
+- **`count`**: `usize`
+
+  The number of encoded relocations.
+
+- **`flag_bits`**: `u64`
+
+  The number of flag bits each relocation uses.
+
+- **`shift`**: `u64`
+
+  Shift of the relocation value.
+
+- **`is_rela`**: `bool`
+
+  True if the relocation format encodes addend.
+
+#### Trait Implementations
+
+##### `impl Clone for CrelIteratorHeader`
+
+- `fn clone(self: &Self) -> CrelIteratorHeader` — [`CrelIteratorHeader`](relocation/index.md)
+
+##### `impl Debug for CrelIteratorHeader`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `CrelIteratorState`
+
+```rust
+struct CrelIteratorState {
+    index: usize,
+    offset: u64,
+    addend: i64,
+    symidx: u32,
+    typ: u32,
+}
+```
+
+#### Fields
+
+- **`index`**: `usize`
+
+  Index of the current relocation.
+
+- **`offset`**: `u64`
+
+  Offset of the latest relocation.
+
+- **`addend`**: `i64`
+
+  Addend of the latest relocation.
+
+- **`symidx`**: `u32`
+
+  Symbol index of the latest relocation.
+
+- **`typ`**: `u32`
+
+  Type of the latest relocation.
+
+#### Trait Implementations
+
+##### `impl Clone for CrelIteratorState`
+
+- `fn clone(self: &Self) -> CrelIteratorState` — [`CrelIteratorState`](relocation/index.md)
+
+##### `impl Debug for CrelIteratorState`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for CrelIteratorState`
+
+- `fn default() -> CrelIteratorState` — [`CrelIteratorState`](relocation/index.md)
+
 ### `CrelIterator<'data>`
 
 ```rust
@@ -1154,7 +1256,7 @@ struct GnuPropertyIterator<'data, Endian: endian::Endian> {
 }
 ```
 
-An iterator for the properties in a `elf::NT_GNU_PROPERTY_TYPE_0` note.
+An iterator for the properties in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
 Returned by `Note::gnu_properties`.
 
@@ -1193,7 +1295,7 @@ struct GnuProperty<'data> {
 }
 ```
 
-A property in a `elf::NT_GNU_PROPERTY_TYPE_0` note.
+A property in a [`elf::NT_GNU_PROPERTY_TYPE_0`](../../elf/index.md) note.
 
 #### Implementations
 
@@ -1321,7 +1423,7 @@ struct Version<'data> {
 
 A version definition or requirement.
 
-This is derived from entries in the `elf::SHT_GNU_VERDEF` and `elf::SHT_GNU_VERNEED` sections.
+This is derived from entries in the [`elf::SHT_GNU_VERDEF`](../../elf/index.md) and [`elf::SHT_GNU_VERNEED`](../../elf/index.md) sections.
 
 #### Implementations
 
@@ -1360,8 +1462,8 @@ A table of version definitions and requirements.
 
 It allows looking up the version information for a given symbol index.
 
-This is derived from entries in the `elf::SHT_GNU_VERSYM`, `elf::SHT_GNU_VERDEF`
-and `elf::SHT_GNU_VERNEED` sections.
+This is derived from entries in the [`elf::SHT_GNU_VERSYM`](../../elf/index.md), [`elf::SHT_GNU_VERDEF`](../../elf/index.md)
+and [`elf::SHT_GNU_VERNEED`](../../elf/index.md) sections.
 
 Returned by [`SectionTable::versions`](super::SectionTable::versions).
 
@@ -1400,7 +1502,7 @@ struct VerdefIterator<'data, Elf: FileHeader> {
 }
 ```
 
-An iterator for the entries in an ELF `elf::SHT_GNU_VERDEF` section.
+An iterator for the entries in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
 #### Implementations
 
@@ -1444,7 +1546,7 @@ struct VerdauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-An iterator for the auxiliary records for an entry in an ELF `elf::SHT_GNU_VERDEF` section.
+An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERDEF`](../../elf/index.md) section.
 
 #### Implementations
 
@@ -1487,7 +1589,7 @@ struct VerneedIterator<'data, Elf: FileHeader> {
 }
 ```
 
-An iterator for the entries in an ELF `elf::SHT_GNU_VERNEED` section.
+An iterator for the entries in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
 #### Implementations
 
@@ -1531,7 +1633,7 @@ struct VernauxIterator<'data, Elf: FileHeader> {
 }
 ```
 
-An iterator for the auxiliary records for an entry in an ELF `elf::SHT_GNU_VERNEED` section.
+An iterator for the auxiliary records for an entry in an ELF [`elf::SHT_GNU_VERNEED`](../../elf/index.md) section.
 
 #### Implementations
 
@@ -1828,6 +1930,38 @@ The parser relies on the caller to know the format of the data for each attribut
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+## Enums
+
+### `ElfRelocationIterator<'data, Elf: FileHeader>`
+
+```rust
+enum ElfRelocationIterator<'data, Elf: FileHeader> {
+    Rel(slice::Iter<'data, <Elf as >::Rel>, <Elf as >::Endian),
+    Rela(slice::Iter<'data, <Elf as >::Rela>, <Elf as >::Endian, bool),
+    Crel(CrelIterator<'data>),
+}
+```
+
+#### Implementations
+
+- `fn is_rel(self: &Self) -> bool`
+
+#### Trait Implementations
+
+##### `impl<I> IntoIterator for ElfRelocationIterator<'data, Elf>`
+
+- `type Item = <I as Iterator>::Item`
+
+- `type IntoIter = I`
+
+- `fn into_iter(self: Self) -> I`
+
+##### `impl<'data, Elf: FileHeader> Iterator for ElfRelocationIterator<'data, Elf>`
+
+- `type Item = Crel`
+
+- `fn next(self: &mut Self) -> Option<<Self as >::Item>`
+
 ## Traits
 
 ### `FileHeader`
@@ -1836,7 +1970,7 @@ The parser relies on the caller to know the format of the data for each attribut
 trait FileHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `elf::FileHeader32` and `elf::FileHeader64`.
+A trait for generic access to [`elf::FileHeader32`](../../elf/index.md) and [`elf::FileHeader64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -1964,7 +2098,7 @@ A trait for generic access to `elf::FileHeader32` and `elf::FileHeader64`.
 trait ProgramHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `elf::ProgramHeader32` and `elf::ProgramHeader64`.
+A trait for generic access to [`elf::ProgramHeader32`](../../elf/index.md) and [`elf::ProgramHeader64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2024,7 +2158,7 @@ A trait for generic access to `elf::ProgramHeader32` and `elf::ProgramHeader64`.
 trait SectionHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `elf::SectionHeader32` and `elf::SectionHeader64`.
+A trait for generic access to [`elf::SectionHeader32`](../../elf/index.md) and [`elf::SectionHeader64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2164,7 +2298,7 @@ A trait for generic access to `elf::SectionHeader32` and `elf::SectionHeader64`.
 trait Sym: Debug + Pod { ... }
 ```
 
-A trait for generic access to `elf::Sym32` and `elf::Sym64`.
+A trait for generic access to [`elf::Sym32`](../../elf/index.md) and [`elf::Sym64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2224,7 +2358,7 @@ A trait for generic access to `elf::Sym32` and `elf::Sym64`.
 trait Rel: Debug + Pod + Clone { ... }
 ```
 
-A trait for generic access to `elf::Rel32` and `elf::Rel64`.
+A trait for generic access to [`elf::Rel32`](../../elf/index.md) and [`elf::Rel64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2252,7 +2386,7 @@ A trait for generic access to `elf::Rel32` and `elf::Rel64`.
 trait Rela: Debug + Pod + Clone { ... }
 ```
 
-A trait for generic access to `elf::Rela32` and `elf::Rela64`.
+A trait for generic access to [`elf::Rela32`](../../elf/index.md) and [`elf::Rela64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2282,7 +2416,7 @@ A trait for generic access to `elf::Rela32` and `elf::Rela64`.
 trait Relr: Debug + Pod + Clone { ... }
 ```
 
-A trait for generic access to `elf::Relr32` and `elf::Relr64`.
+A trait for generic access to [`elf::Relr32`](../../elf/index.md) and [`elf::Relr64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2306,7 +2440,7 @@ A trait for generic access to `elf::Relr32` and `elf::Relr64`.
 trait Dyn: Debug + Pod { ... }
 ```
 
-A trait for generic access to `elf::Dyn32` and `elf::Dyn64`.
+A trait for generic access to [`elf::Dyn32`](../../elf/index.md) and [`elf::Dyn64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2344,7 +2478,7 @@ A trait for generic access to `elf::Dyn32` and `elf::Dyn64`.
 trait CompressionHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `elf::CompressionHeader32` and `elf::CompressionHeader64`.
+A trait for generic access to [`elf::CompressionHeader32`](../../elf/index.md) and [`elf::CompressionHeader64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2364,7 +2498,7 @@ A trait for generic access to `elf::CompressionHeader32` and `elf::CompressionHe
 trait NoteHeader: Debug + Pod { ... }
 ```
 
-A trait for generic access to `elf::NoteHeader32` and `elf::NoteHeader64`.
+A trait for generic access to [`elf::NoteHeader32`](../../elf/index.md) and [`elf::NoteHeader64`](../../elf/index.md).
 
 #### Required Methods
 
@@ -2376,6 +2510,14 @@ A trait for generic access to `elf::NoteHeader32` and `elf::NoteHeader64`.
 
 - `fn n_type(self: &Self, endian: <Self as >::Endian) -> u32`
 
+## Functions
+
+### `parse_relocation`
+
+```rust
+fn parse_relocation<Elf: FileHeader>(header: &Elf, endian: <Elf as >::Endian, reloc: Crel, implicit_addend: bool) -> crate::read::Relocation
+```
+
 ## Type Aliases
 
 ### `ElfFile32<'data, Endian, R>`
@@ -2386,8 +2528,8 @@ type ElfFile32<'data, Endian, R> = ElfFile<'data, elf::FileHeader32<Endian>, R>;
 
 A 32-bit ELF object file.
 
-This is a file that starts with `elf::FileHeader32`, and corresponds
-to [`crate::FileKind::Elf32`](../../index.md#elf32).
+This is a file that starts with [`elf::FileHeader32`](../../elf/index.md), and corresponds
+to [`crate::FileKind::Elf32`](../../index.md).
 
 ### `ElfFile64<'data, Endian, R>`
 
@@ -2397,8 +2539,8 @@ type ElfFile64<'data, Endian, R> = ElfFile<'data, elf::FileHeader64<Endian>, R>;
 
 A 64-bit ELF object file.
 
-This is a file that starts with `elf::FileHeader64`, and corresponds
-to [`crate::FileKind::Elf64`](../../index.md#elf64).
+This is a file that starts with [`elf::FileHeader64`](../../elf/index.md), and corresponds
+to [`crate::FileKind::Elf64`](../../index.md).
 
 ### `ElfSegmentIterator32<'data, 'file, Endian, R>`
 

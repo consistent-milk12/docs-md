@@ -21,6 +21,10 @@ assert_eq!((0..=100).sum::<u64>(), r);
 ```
 
 
+## Modules
+
+- [`private`](private/index.md) - These traits help drive integer type inference. Without them, an unknown `{integer}` type only
+
 ## Structs
 
 ### `Iter<T>`
@@ -85,9 +89,9 @@ assert_eq!(p, s);
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator for Iter<char>`
+##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
 
-- `type Item = char`
+- `type Item = T`
 
 - `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -106,4 +110,14 @@ assert_eq!(p, s);
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+## Macros
+
+### `convert!`
+
+### `parallel_range_impl!`
+
+### `indexed_range_impl!`
+
+### `convert_char!`
 
