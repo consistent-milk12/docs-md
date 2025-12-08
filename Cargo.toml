@@ -1,6 +1,6 @@
 [package]
 name = "cargo-docs-md"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "Generate per-module markdown documentation from rustdoc JSON output"
 license = "MIT"

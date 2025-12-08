@@ -8,13 +8,13 @@
 //!
 //! ```bash
 //! # One-step: build and generate docs
-//! docs-md docs
+//! cargo docs-md docs
 //!
 //! # From local JSON file
-//! docs-md --path target/doc/my_crate.json -o generated_docs/
+//! cargo docs-md --path target/doc/my_crate.json -o generated_docs/
 //!
 //! # With nested directory structure
-//! docs-md --path target/doc/my_crate.json -o generated_docs/ --format nested
+//! cargo docs-md --path target/doc/my_crate.json -o generated_docs/ --format nested
 //! ```
 //!
 //! # Output Formats
@@ -28,7 +28,7 @@ use std::process::Command;
 use Internals::generator::Generator;
 use Internals::multi_crate::{MultiCrateGenerator, MultiCrateParser};
 use Internals::parser::Parser as InternalParser;
-use Internals::{Cli, Command as CliCommand, DocsArgs, GenerateArgs};
+use Internals::{Cargo, Command as CliCommand, DocsArgs, GenerateArgs};
 use clap::Parser;
 use cargo_docs_md as Internals;
 #[cfg(feature = "trace")]
@@ -57,7 +57,8 @@ fn main() -> Result<()> {
     miette::set_panic_hook();
 
     // Parse CLI arguments (clap handles validation and help text)
-    let cli = Cli::parse();
+    // Cargo wrapper handles `cargo docs-md` invocation
+    let Cargo::DocsMd(cli) = Cargo::parse();
 
     #[cfg(feature = "trace")]
     Logger::init_logging(cli.log_level, cli.log_file.as_ref())?;

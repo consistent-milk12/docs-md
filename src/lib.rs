@@ -49,9 +49,20 @@ pub enum OutputFormat {
     Nested,
 }
 
+/// Cargo wrapper for subcommand invocation.
+///
+/// When invoked as `cargo docs-md`, cargo passes "docs-md" as the first argument.
+/// This wrapper handles that by making `docs-md` a subcommand that contains the real CLI.
+#[derive(Parser, Debug)]
+#[command(name = "cargo", bin_name = "cargo")]
+pub enum Cargo {
+    /// Generate per-module markdown from rustdoc JSON
+    #[command(name = "docs-md")]
+    DocsMd(Cli),
+}
+
 /// Top-level CLI for docs-md.
 #[derive(Parser, Debug)]
-#[command(name = "docs-md")]
 #[command(
     author,
     version,
@@ -92,7 +103,7 @@ pub enum Command {
     /// This runs `cargo +nightly doc` with JSON output, then generates
     /// markdown documentation from the result. Requires nightly toolchain.
     ///
-    /// Example: `docs-md docs --primary-crate my_crate`
+    /// Example: `cargo docs-md docs --primary-crate my_crate`
     Docs(DocsArgs),
 }
 
