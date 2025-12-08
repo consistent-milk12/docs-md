@@ -12,7 +12,7 @@ tree node.
 # Example
 
 Suppose in a procedural macro we have a [`Type`](../index.md) that we want to assert
-implements the [`Sync`](#sync) trait. Maybe this is the type of one of the fields
+implements the `Sync` trait. Maybe this is the type of one of the fields
 of a struct for which we are deriving a trait implementation, and we need to
 be able to pass a reference to one of those fields across threads.
 

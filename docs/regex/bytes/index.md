@@ -308,15 +308,27 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 #### Implementations
 
-- `fn as_str(self: &Self) -> &str`
+- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../regex/bytes/index.md), [`Error`](../error/index.md)
 
-- `fn capture_names(self: &Self) -> CaptureNames<'_>` — [`CaptureNames`](../regex/bytes/index.md)
+- `fn is_match(self: &Self, haystack: &[u8]) -> bool`
 
-- `fn captures_len(self: &Self) -> usize`
+- `fn find<'h>(self: &Self, haystack: &'h [u8]) -> Option<Match<'h>>` — [`Match`](../regex/bytes/index.md)
 
-- `fn static_captures_len(self: &Self) -> Option<usize>`
+- `fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Matches<'r, 'h>` — [`Matches`](../regex/bytes/index.md)
 
-- `fn capture_locations(self: &Self) -> CaptureLocations` — [`CaptureLocations`](../regex/bytes/index.md)
+- `fn captures<'h>(self: &Self, haystack: &'h [u8]) -> Option<Captures<'h>>` — [`Captures`](../regex/bytes/index.md)
+
+- `fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](../regex/bytes/index.md)
+
+- `fn split<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Split<'r, 'h>` — [`Split`](../regex/bytes/index.md)
+
+- `fn splitn<'r, 'h>(self: &'r Self, haystack: &'h [u8], limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../regex/bytes/index.md)
+
+- `fn replace<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
+
+- `fn replace_all<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
+
+- `fn replacen<'h, R: Replacer>(self: &Self, haystack: &'h [u8], limit: usize, rep: R) -> Cow<'h, [u8]>`
 
 #### Trait Implementations
 
@@ -377,7 +389,7 @@ corresponds to the same kind of slicing that Rust uses.
 
 For more on why this was chosen over other schemes (aside from being
 consistent with how Rust the language works), see [this discussion] and
-[Dijkstra's note on a related topic][note](#note).
+[Dijkstra's note on a related topic][note].
 
 
 # Example
@@ -519,11 +531,11 @@ assert_eq!(b"y", &caps["last"]);
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h, 'n> Index for Captures<'h>`
+##### `impl<'h> Index for Captures<'h>`
 
 - `type Output = [u8]`
 
-- `fn index<'a>(self: &'a Self, name: &'n str) -> &'a [u8]`
+- `fn index<'a>(self: &'a Self, i: usize) -> &'a [u8]`
 
 ### `CaptureLocations`
 
@@ -533,7 +545,7 @@ struct CaptureLocations(captures::Captures);
 
 A low level representation of the byte offsets of each capture group.
 
-You can think of this as a lower level [`Captures`](../index.md), where this type does
+You can think of this as a lower level [`Captures`](../regex/bytes/index.md), where this type does
 not support named capturing groups directly and it does not borrow the
 haystack that these offsets were matched on.
 
@@ -646,7 +658,7 @@ struct CaptureMatches<'r, 'h> {
 
 An iterator over all non-overlapping capture matches in a haystack.
 
-This iterator yields [`Captures`](../index.md) values. The iterator stops when no more
+This iterator yields [`Captures`](../regex/bytes/index.md) values. The iterator stops when no more
 matches can be found.
 
 `'r` is the lifetime of the compiled regular expression and `'h` is the
@@ -838,7 +850,7 @@ struct SubCaptureMatches<'c, 'h> {
 }
 ```
 
-An iterator over all group matches in a [`Captures`](../index.md) value.
+An iterator over all group matches in a [`Captures`](../regex/bytes/index.md) value.
 
 This iterator yields values of type `Option<Match<'h>>`, where `'h` is the
 lifetime of the haystack that the matches are for. The order of elements
@@ -847,7 +859,7 @@ in the regex pattern. `None` is yielded for groups that did not participate
 in the match.
 
 The first element always corresponds to the implicit group for the overall
-match. Since this iterator is created by a [`Captures`](../index.md) value, and a
+match. Since this iterator is created by a [`Captures`](../regex/bytes/index.md) value, and a
 `Captures` value is only created when a match occurs, it follows that the
 first element yielded by this iterator is guaranteed to be non-`None`.
 

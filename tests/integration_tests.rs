@@ -39,7 +39,7 @@ fn fixture_exists() -> bool {
 /// Load the test fixture crate.
 fn load_fixture() -> rustdoc_types::Crate {
     let path = fixture_path();
-    Parser::parse_json(&path)
+    Parser::parse_file(&path)
         .expect("Failed to parse test fixture. Run `cargo doc --output-format json` first.")
 }
 

@@ -79,6 +79,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for ModuleRenderer<'a>`
+
 ##### `impl<T> IntoEither for ModuleRenderer<'a>`
 
 ##### `impl<D> OwoColorize for ModuleRenderer<'a>`
@@ -96,4 +98,6 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for ModuleRenderer<'a>`
 

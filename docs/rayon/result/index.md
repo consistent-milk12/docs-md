@@ -4,7 +4,7 @@
 
 # Module `result`
 
-Parallel iterator types for [results](#results)
+Parallel iterator types for [results]
 
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.

@@ -44,6 +44,10 @@ compact_str = "0.9.0"
 # layer adds overhead. NOT RECOMMENDED - kept for experimentation only.
 simd-json = { version = "0.17.0", optional = true }
 
+# Structured logging for debugging
+tracing = "0.1.43"
+tracing-subscriber = { version = "0.3.22", features = ["env-filter", "fmt"] }
+
 [features]
 default = []
 # Enable SIMD-accelerated JSON parsing (NOT RECOMMENDED - see benchmarks)

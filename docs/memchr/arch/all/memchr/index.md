@@ -6,7 +6,7 @@
 
 Provides architecture independent implementations of `memchr` and friends.
 
-The main types in this module are [`One`](../../x86_64/avx2/memchr/index.md), [`Two`](../../generic/memchr/index.md) and [`Three`](#three). They are for
+The main types in this module are [`One`](../../generic/memchr/index.md), [`Two`](../../x86_64/sse2/memchr/index.md) and [`Three`](#three). They are for
 searching for one, two or three distinct bytes, respectively, in a haystack.
 Each type also has corresponding double ended iterators. These searchers
 are typically slower than hand-coded vector routines accomplishing the same
@@ -94,7 +94,7 @@ This iterator is created by the `One::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`One`](../../x86_64/avx2/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`One`](../../generic/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Fields
@@ -204,7 +204,7 @@ This iterator is created by the `Two::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Two`](../../generic/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Two`](../../x86_64/sse2/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Fields

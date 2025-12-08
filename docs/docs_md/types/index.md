@@ -83,29 +83,29 @@ let generics = renderer.render_generics(&params);
 
 - `fn render_type<'t>(self: &Self, ty: &'t Type) -> Cow<'t, str>`
 
-- `fn render_generic_args(self: &Self, args: &GenericArgs) -> String`
+- `fn render_generic_args(self: Self, args: &GenericArgs) -> String`
 
-- `fn render_generic_arg<'t>(self: &Self, arg: &'t GenericArg) -> Cow<'t, str>`
+- `fn render_generic_arg(self: Self, arg: &GenericArg) -> Cow<'_, str>`
 
-- `fn render_assoc_item_constraint(self: &Self, constraint: &AssocItemConstraint) -> String`
+- `fn render_assoc_item_constraint(self: Self, constraint: &AssocItemConstraint) -> String`
 
-- `fn render_term<'t>(self: &Self, term: &'t Term) -> Cow<'t, str>`
+- `fn render_term(self: Self, term: &Term) -> Cow<'_, str>`
 
 - `fn render_generic_bound<'t>(self: &Self, bound: &'t GenericBound) -> Cow<'t, str>`
 
 - `fn render_generics(self: &Self, generics: &[GenericParamDef]) -> String`
 
-- `fn render_generic_param_def(self: &Self, param: &GenericParamDef) -> Option<String>`
+- `fn render_generic_param_def(self: Self, param: &GenericParamDef) -> Option<String>`
 
 - `fn render_where_clause(self: &Self, where_predicates: &[rustdoc_types::WherePredicate]) -> String`
 
-- `fn render_where_predicate(self: &Self, pred: &rustdoc_types::WherePredicate) -> String`
+- `fn render_where_predicate(self: Self, pred: &rustdoc_types::WherePredicate) -> String`
 
 - `fn collect_linkable_types(self: &Self, ty: &Type) -> Vec<(String, rustdoc_types::Id)>`
 
-- `fn collect_types_recursive(self: &Self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>)`
+- `fn collect_types_recursive(self: Self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>)`
 
-- `fn collect_from_generic_args(self: &Self, args: &GenericArgs, result: &mut Vec<(String, rustdoc_types::Id)>)`
+- `fn collect_from_generic_args(self: Self, args: &GenericArgs, result: &mut Vec<(String, rustdoc_types::Id)>)`
 
 #### Trait Implementations
 
@@ -118,6 +118,8 @@ let generics = renderer.render_generics(&params);
 ##### `impl<'a> Debug for TypeRenderer<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<T> Instrument for TypeRenderer<'a>`
 
 ##### `impl<T> IntoEither for TypeRenderer<'a>`
 
@@ -136,4 +138,6 @@ let generics = renderer.render_generics(&params);
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for TypeRenderer<'a>`
 

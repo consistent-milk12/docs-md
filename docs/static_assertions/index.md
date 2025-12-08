@@ -23,8 +23,8 @@ or implement certain traits.
 
 # Usage
 
-This crate is available [on crates.io][crate](#crate) and can be used by adding the
-following to your project's [`Cargo.toml`](#cargotoml):
+This crate is available [on crates.io][crate] and can be used by adding the
+following to your project's `Cargo.toml`:
 
 ```toml
 [dependencies]
@@ -159,8 +159,8 @@ assert_eq_align!(i32x4, [i32; 4]);
 
 Asserts that types are equal in size.
 
-When performing operations such as pointer casts or dealing with [`usize`](#usize)
-versus [`u64`](#u64) versus [`u32`](#u32), the size of your types matter. That is where
+When performing operations such as pointer casts or dealing with `usize`
+versus `u64` versus `u32`, the size of your types matter. That is where
 this macro comes into play.
 
 # Alternatives
@@ -300,7 +300,7 @@ enum Data {
 assert_fields!(Data::Val: id, bytes);
 ```
 
-The following example fails to compile because [`Range`](#range) does not have a field named `middle`:
+The following example fails to compile because `Range` does not have a field named `middle`:
 
 ```compile_fail
 #[macro_use] extern crate static_assertions; fn main() {}
@@ -315,10 +315,10 @@ assert_fields!(Range<u32>: middle);
 Asserts that the type implements exactly one in a set of traits.
 
 Related:
-- [`assert_impl_any!`](#assert-impl-any)
-- [`assert_impl_all!`](#assert-impl-all)
-- [`assert_not_impl_all!`](#assert-not-impl-all)
-- [`assert_not_impl_any!`](#assert-not-impl-any)
+- `assert_impl_any!`
+- `assert_impl_all!`
+- `assert_not_impl_all!`
+- `assert_not_impl_any!`
 
 # Examples
 
@@ -371,12 +371,12 @@ assert_impl_one!(Foo: Snap, Crackle, Pop);
 
 Asserts that the type implements _all_ of the given traits.
 
-See [`assert_not_impl_all!`](#assert-not-impl-all) for achieving the opposite effect.
+See `assert_not_impl_all!` for achieving the opposite effect.
 
 # Examples
 
-This can be used to ensure types implement auto traits such as [`Send`](#send) and
-[`Sync`](#sync), as well as traits with [blanket `impl`s][blanket](#blanket).
+This can be used to ensure types implement auto traits such as `Send` and
+[`Sync`](#sync), as well as traits with [blanket `impl`s][blanket].
 
 ```rust
 #[macro_use] extern crate static_assertions; fn main() {}
@@ -385,7 +385,7 @@ assert_impl_all!(&str: Into<String>);
 ```
 
 The following example fails to compile because raw pointers do not implement
-[`Send`](#send) since they cannot be moved between threads safely:
+`Send` since they cannot be moved between threads safely:
 
 ```compile_fail
 #[macro_use] extern crate static_assertions; fn main() {}
@@ -400,7 +400,7 @@ assert_impl_all!(*const u8: Send);
 
 Asserts that the type implements _any_ of the given traits.
 
-See [`assert_not_impl_any!`](#assert-not-impl-any) for achieving the opposite effect.
+See `assert_not_impl_any!` for achieving the opposite effect.
 
 # Examples
 
@@ -413,16 +413,16 @@ assert_impl_any!(u8: From<u16>, Into<u16>);
 
 The unit type cannot be converted from `u8` or `u16`, but it does implement
 
-# #[macro_use](#macro-use) extern crate static_assertions; fn main() {}
+# #[macro_use] extern crate static_assertions; fn main() {}
 assert_impl_any!((): From<u8>, From<u16>, Send);
 ```rust
 
 The following example fails to compile because raw pointers do not implement
-[`Send`](#send) or [`Sync`](#sync) since they cannot be moved or shared between threads
+`Send` or [`Sync`](#sync) since they cannot be moved or shared between threads
 safely:
 
 ```compile_fail
-# #[macro_use](#macro-use) extern crate static_assertions; fn main() {}
+# #[macro_use] extern crate static_assertions; fn main() {}
 assert_impl_any!(*const u8: Send, Sync);
 ```rust
 
@@ -434,11 +434,11 @@ assert_impl_any!(*const u8: Send, Sync);
 Asserts that the type does **not** implement _all_ of the given traits.
 
 This can be used to ensure types do not implement auto traits such as
-[`Send`](#send) and [`Sync`](#sync), as well as traits with [blanket `impl`s][blanket](#blanket).
+`Send` and [`Sync`](#sync), as well as traits with [blanket `impl`s][blanket].
 
 Note that the combination of all provided traits is required to not be
 implemented. If you want to check that none of multiple traits are
-implemented you should invoke [`assert_not_impl_any!`](#assert-not-impl-any) instead.
+implemented you should invoke `assert_not_impl_any!` instead.
 
 # Examples
 
@@ -457,7 +457,7 @@ The following example fails to compile since `u32` can be converted into
 assert_not_impl_all!(u32: Into<u64>);
 ```
 
-The following compiles because [`Cell`](#cell) is not both [`Sync`](#sync) _and_ [`Send`](#send):
+The following compiles because [`Cell`](#cell) is not both [`Sync`](#sync) _and_ `Send`:
 
 ```rust
 #[macro_use] extern crate static_assertions; fn main() {}
@@ -466,7 +466,7 @@ use std::cell::Cell;
 assert_not_impl_all!(Cell<u32>: Sync, Send);
 ```
 
-But it is [`Send`](#send), so this fails to compile:
+But it is `Send`, so this fails to compile:
 
 ```compile_fail
 #[macro_use] extern crate static_assertions; fn main() {}
@@ -484,11 +484,11 @@ assert_not_impl_all!(Cell<u32>: Send);
 Asserts that the type does **not** implement _any_ of the given traits.
 
 This can be used to ensure types do not implement auto traits such as
-[`Send`](#send) and [`Sync`](#sync), as well as traits with [blanket `impl`s][blanket](#blanket).
+`Send` and [`Sync`](#sync), as well as traits with [blanket `impl`s][blanket].
 
 This macro causes a compilation failure if any of the provided individual
 traits are implemented for the type. If you want to check that a combination
-of traits is not implemented you should invoke [`assert_not_impl_all!`](#assert-not-impl-all)
+of traits is not implemented you should invoke `assert_not_impl_all!`
 instead. For single traits both macros behave the same.
 
 # Examples
@@ -526,7 +526,7 @@ Asserts that the traits support dynamic dispatch
 ([object-safety](https://doc.rust-lang.org/book/ch17-02-trait-objects.html#object-safety-is-required-for-trait-objects)).
 
 This is useful for when changes are made to a trait that accidentally
-prevent it from being used as an [object](#object). Such a case would be adding a
+prevent it from being used as an [object]. Such a case would be adding a
 generic method and forgetting to add `where Self: Sized` after it. If left
 unnoticed, that mistake will affect crate users and break both forward and
 backward compatibility.
@@ -568,7 +568,7 @@ assert_impl!(*const u8, Send);
 ```
 
 The following example fails to compile because generics without
-`where Self: Sized` are not allowed in [object-safe][object](#object) trait methods:
+`where Self: Sized` are not allowed in [object-safe][object] trait methods:
 
 ```compile_fail
 #[macro_use] extern crate static_assertions; fn main() {}
@@ -596,7 +596,7 @@ assert_obj_safe!(MyUnsafeTrait);
 Asserts that the trait is a child of all of the other traits.
 
 Related:
-- [`assert_trait_super_all!`](#assert-trait-super-all)
+- `assert_trait_super_all!`
 
 # Examples
 
@@ -607,13 +607,13 @@ All types that implement [`Copy`](#copy) must implement [`Clone`](#clone):
 assert_trait_sub_all!(Copy: Clone);
 ```
 
-All types that implement [`Ord`](#ord) must implement [`PartialEq`](#partialeq), [`Eq`](#eq), and
+All types that implement `Ord` must implement `PartialEq`, `Eq`, and
 
-# #[macro_use](#macro-use) extern crate static_assertions; fn main() {}
+# #[macro_use] extern crate static_assertions; fn main() {}
 assert_trait_sub_all!(Ord: PartialEq, Eq, PartialOrd);
 ```rust
 
-The following example fails to compile because [`Eq`](#eq) is not required for
+The following example fails to compile because `Eq` is not required for
 
 #[macro_use] extern crate static_assertions; fn main() {}
 assert_trait_sub_all!(PartialOrd: Eq);
@@ -630,7 +630,7 @@ assert_trait_sub_all!(PartialOrd: Eq);
 Asserts that the trait is a parent of all of the other traits.
 
 Related:
-- [`assert_trait_sub_all!`](#assert-trait-sub-all)
+- `assert_trait_sub_all!`
 
 # Examples
 
@@ -647,7 +647,7 @@ assert_trait_super_all!(Copy: A, B);
 
 Otherwise, each sub-trait would require its own call to
 
-# #[macro_use](#macro-use) extern crate static_assertions; fn main() {}
+# #[macro_use] extern crate static_assertions; fn main() {}
 # trait A: Copy {}
 # trait B: Copy {}
 assert_trait_sub_all!(A: Copy);
@@ -702,7 +702,7 @@ refer to the same type:
 assert_type_eq_all!(String, str);
 ```
 
-This should also work the other way around, regardless of [`Deref`](#deref)
+This should also work the other way around, regardless of `Deref`
 implementations.
 
 ```compile_fail
@@ -726,7 +726,7 @@ assert_type_ne_all!([u8], [u16], str);
 ```
 
 The following example fails to compile because [`c_uchar`](#c-uchar) is a type alias
-for [`u8`](#u8):
+for `u8`:
 
 ```compile_fail
 #[macro_use] extern crate static_assertions; fn main() {}

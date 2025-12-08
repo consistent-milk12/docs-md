@@ -839,7 +839,7 @@ See Section 7.12, Table 7.17.
 
 #### Implementations
 
-- `fn default_lower_bound(self: Self) -> Option<usize>`
+- `fn static_string(self: &Self) -> Option<&'static str>`
 
 #### Trait Implementations
 
@@ -1708,7 +1708,15 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- `fn format(self: Self) -> DwEhPe` — [`DwEhPe`](../index.md)
+
+- `fn application(self: Self) -> DwEhPe` — [`DwEhPe`](../index.md)
+
+- `fn is_absent(self: Self) -> bool`
+
+- `fn is_indirect(self: Self) -> bool`
+
+- `fn is_valid_encoding(self: Self) -> bool`
 
 #### Trait Implementations
 

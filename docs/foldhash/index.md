@@ -27,8 +27,8 @@ Foldhash can be used in a `#![no_std]` environment by disabling its default
 
 # Usage
 
-The easiest way to use this crate with the standard library [`HashMap`](#hashmap) or
-[`HashSet`](#hashset) is to import them from `foldhash` instead, along with the
+The easiest way to use this crate with the standard library `HashMap` or
+`HashSet` is to import them from `foldhash` instead, along with the
 extension traits to make `HashMap::new` and `HashMap::with_capacity`
 work out-of-the-box:
 

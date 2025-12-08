@@ -4,7 +4,7 @@ This crate is a Rust port of Google's high-performance [SwissTable] hash
 map, adapted to make it a drop-in replacement for Rust's standard `HashMap`
 and `HashSet` types.
 
-The original C++ version of [SwissTable] can be found [here](#here), and this
+The original C++ version of [SwissTable] can be found [here], and this
 [CppCon talk] gives an overview of how the algorithm works.
 
 
@@ -110,16 +110,16 @@ struct HashMap<K, V, S, A: Allocator> {
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
-The default hashing algorithm is currently [`foldhash`](#foldhash), though this is
+The default hashing algorithm is currently `foldhash`, though this is
 subject to change at any point in the future. This hash function is very
 fast for all types of keys, but this algorithm will typically *not* protect
 against attacks such as HashDoS.
 
 The hashing algorithm can be replaced on a per-`HashMap` basis using the
-[`default`](#default), [`with_hasher`](#with-hasher), and [`with_capacity_and_hasher`](#with-capacity-and-hasher) methods. Many
-alternative algorithms are available on crates.io, such as the [`fnv`](#fnv) crate.
+`default`, `with_hasher`, and `with_capacity_and_hasher` methods. Many
+alternative algorithms are available on crates.io, such as the `fnv` crate.
 
-It is required that the keys implement the [`Eq`](#eq) and [`Hash`](#hash) traits, although
+It is required that the keys implement the `Eq` and `Hash` traits, although
 this can frequently be achieved by using `#[derive(PartialEq, Eq, Hash)]`.
 If you implement these yourself, it is important that the following
 property holds:
@@ -131,11 +131,11 @@ k1 == k2 -> hash(k1) == hash(k2)
 In other words, if two keys are equal, their hashes must be equal.
 
 It is a logic error for a key to be modified in such a way that the key's
-hash, as determined by the [`Hash`](#hash) trait, or its equality, as determined by
-the [`Eq`](#eq) trait, changes while it is in the map. This is normally only
+hash, as determined by the `Hash` trait, or its equality, as determined by
+the `Eq` trait, changes while it is in the map. This is normally only
 possible through [`Cell`](#cell), [`RefCell`](#refcell), global state, I/O, or unsafe code.
 
-It is also a logic error for the [`Hash`](#hash) implementation of a key to panic.
+It is also a logic error for the `Hash` implementation of a key to panic.
 This is generally only possible if the trait is implemented manually. If a
 panic does occur then the contents of the `HashMap` may become corrupted and
 some items may be dropped from the table.
@@ -225,8 +225,8 @@ let stat = player_stats.entry("attack").or_insert(100);
 *stat += random_stat_buff();
 ```
 
-The easiest way to use `HashMap` with a custom key type is to derive [`Eq`](#eq) and [`Hash`](#hash).
-We must also derive [`PartialEq`](#partialeq).
+The easiest way to use `HashMap` with a custom key type is to derive `Eq` and `Hash`.
+We must also derive `PartialEq`.
 
 
 
@@ -278,63 +278,9 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- `fn reserve(self: &mut Self, additional: usize)`
+- `const fn with_hasher(hash_builder: S) -> Self`
 
-- `fn try_reserve(self: &mut Self, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](#tryreserveerror)
-
-- `fn shrink_to_fit(self: &mut Self)`
-
-- `fn shrink_to(self: &mut Self, min_capacity: usize)`
-
-- `fn entry(self: &mut Self, key: K) -> Entry<'_, K, V, S, A>` — [`Entry`](hash_map/index.md)
-
-- `fn entry_ref<'a, 'b, Q>(self: &'a mut Self, key: &'b Q) -> EntryRef<'a, 'b, K, Q, V, S, A>` — [`EntryRef`](hash_map/index.md)
-
-- `fn get<Q>(self: &Self, k: &Q) -> Option<&V>`
-
-- `fn get_key_value<Q>(self: &Self, k: &Q) -> Option<(&K, &V)>`
-
-- `fn get_key_value_mut<Q>(self: &mut Self, k: &Q) -> Option<(&K, &mut V)>`
-
-- `fn contains_key<Q>(self: &Self, k: &Q) -> bool`
-
-- `fn get_mut<Q>(self: &mut Self, k: &Q) -> Option<&mut V>`
-
-- `fn get_disjoint_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut V>; N]`
-
-- `fn get_many_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut V>; N]`
-
-- `unsafe fn get_disjoint_unchecked_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut V>; N]`
-
-- `unsafe fn get_many_unchecked_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut V>; N]`
-
-- `fn get_disjoint_key_value_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<(&K, &mut V)>; N]`
-
-- `fn get_many_key_value_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<(&K, &mut V)>; N]`
-
-- `unsafe fn get_disjoint_key_value_unchecked_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<(&K, &mut V)>; N]`
-
-- `unsafe fn get_many_key_value_unchecked_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<(&K, &mut V)>; N]`
-
-- `fn get_disjoint_mut_inner<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut (K, V)>; N]`
-
-- `unsafe fn get_disjoint_unchecked_mut_inner<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut (K, V)>; N]`
-
-- `fn build_hashes_inner<Q, const N: usize>(self: &Self, ks: [&Q; N]) -> [u64; N]`
-
-- `fn insert(self: &mut Self, k: K, v: V) -> Option<V>`
-
-- `fn find_or_find_insert_index<Q>(self: &mut Self, hash: u64, key: &Q) -> Result<Bucket<(K, V)>, usize>` — [`Bucket`](raw/index.md)
-
-- `unsafe fn insert_unique_unchecked(self: &mut Self, k: K, v: V) -> (&K, &mut V)`
-
-- `fn try_insert(self: &mut Self, key: K, value: V) -> Result<&mut V, OccupiedError<'_, K, V, S, A>>` — [`OccupiedError`](hash_map/index.md)
-
-- `fn remove<Q>(self: &mut Self, k: &Q) -> Option<V>`
-
-- `fn remove_entry<Q>(self: &mut Self, k: &Q) -> Option<(K, V)>`
-
-- `fn allocation_size(self: &Self) -> usize`
+- `fn with_capacity_and_hasher(capacity: usize, hash_builder: S) -> Self`
 
 #### Trait Implementations
 
@@ -360,7 +306,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<'a, K, V, S, A> Extend for HashMap<K, V, S, A>`
 
-- `fn extend<T: IntoIterator<Item = (&'a K, &'a V)>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = &'a (K, V)>>(self: &mut Self, iter: T)`
 
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
@@ -395,7 +341,7 @@ struct HashSet<T, S, A: Allocator> {
 A hash set implemented as a `HashMap` where the value is `()`.
 
 As with the [`HashMap`](hash_map/index.md) type, a `HashSet` requires that the elements
-implement the [`Eq`](#eq) and [`Hash`](#hash) traits. This can frequently be achieved by
+implement the `Eq` and `Hash` traits. This can frequently be achieved by
 using `#[derive(PartialEq, Eq, Hash)]`. If you implement these yourself,
 it is important that the following property holds:
 
@@ -407,12 +353,12 @@ In other words, if two keys are equal, their hashes must be equal.
 
 
 It is a logic error for an item to be modified in such a way that the
-item's hash, as determined by the [`Hash`](#hash) trait, or its equality, as
-determined by the [`Eq`](#eq) trait, changes while it is in the set. This is
+item's hash, as determined by the `Hash` trait, or its equality, as
+determined by the `Eq` trait, changes while it is in the set. This is
 normally only possible through [`Cell`](#cell), [`RefCell`](#refcell), global state, I/O, or
 unsafe code.
 
-It is also a logic error for the [`Hash`](#hash) implementation of a key to panic.
+It is also a logic error for the `Hash` implementation of a key to panic.
 This is generally only possible if the trait is implemented manually. If a
 panic does occur then the contents of the `HashSet` may become corrupted and
 some items may be dropped from the table.
@@ -447,8 +393,8 @@ for book in &books {
 ```
 
 The easiest way to use `HashSet` with a custom type is to derive
-[`Eq`](#eq) and [`Hash`](#hash). We must also derive [`PartialEq`](#partialeq). This will in the
-future be implied by [`Eq`](#eq).
+`Eq` and `Hash`. We must also derive `PartialEq`. This will in the
+future be implied by `Eq`.
 
 ```rust
 use hashbrown::HashSet;
@@ -489,9 +435,21 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- `fn new() -> Self`
+- `fn capacity(self: &Self) -> usize`
 
-- `fn with_capacity(capacity: usize) -> Self`
+- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](hash_set/index.md)
+
+- `fn len(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](hash_set/index.md)
+
+- `fn retain<F>(self: &mut Self, f: F)`
+
+- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](hash_set/index.md)
+
+- `fn clear(self: &mut Self)`
 
 #### Trait Implementations
 
@@ -527,9 +485,9 @@ let viking_names: HashSet<&'static str> =
 
 - `fn equivalent(self: &Self, key: &K) -> bool`
 
-##### `impl<'a, T, S, A> Extend for HashSet<T, S, A>`
+##### `impl<T, S, A> Extend for HashSet<T, S, A>`
 
-- `fn extend<I: IntoIterator<Item = &'a T>>(self: &mut Self, iter: I)`
+- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
@@ -564,7 +522,7 @@ where
 Low-level hash table with explicit hashing.
 
 The primary use case for this type over [`HashMap`](hash_map/index.md) or [`HashSet`](hash_set/index.md) is to
-support types that do not implement the [`Hash`](#hash) and [`Eq`](#eq) traits, but
+support types that do not implement the `Hash` and `Eq` traits, but
 instead require additional data not contained in the key itself to compute a
 hash and compare two elements for equality.
 

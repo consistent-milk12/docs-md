@@ -56,7 +56,7 @@ A minimal representation of all possible errors that can occur using the
 
 ##### `impl Error for Error`
 
-- `fn custom<T>(msg: T) -> Self`
+- `fn description(self: &Self) -> &str`
 
 ##### `impl PartialEq for Error`
 
@@ -2618,7 +2618,7 @@ A deserializer that iterates over a map.
 
 #### Implementations
 
-- `fn end(self: Self) -> Result<(), E>`
+- `fn new(iter: I) -> Self`
 
 #### Trait Implementations
 

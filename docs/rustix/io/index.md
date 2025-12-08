@@ -6,7 +6,7 @@
 
 I/O operations.
 
-If you're looking for [`SeekFrom`](#seekfrom), it's in the [`fs`](#fs) module.
+If you're looking for [`SeekFrom`](#seekfrom), it's in the `fs` module.
 
 
 
@@ -31,8 +31,8 @@ but only holds an OS error code, and no extra error value.
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -45,273 +45,7 @@ but only holds an OS error code, and no extra error value.
 
 #### Implementations
 
-- `const ACCESS: Self`
-
-- `const ADDRINUSE: Self`
-
-- `const ADDRNOTAVAIL: Self`
-
-- `const ADV: Self`
-
-- `const AFNOSUPPORT: Self`
-
-- `const AGAIN: Self`
-
-- `const ALREADY: Self`
-
-- `const BADE: Self`
-
-- `const BADF: Self`
-
-- `const BADFD: Self`
-
-- `const BADMSG: Self`
-
-- `const BADR: Self`
-
-- `const BADRQC: Self`
-
-- `const BADSLT: Self`
-
-- `const BFONT: Self`
-
-- `const BUSY: Self`
-
-- `const CANCELED: Self`
-
-- `const CHILD: Self`
-
-- `const CHRNG: Self`
-
-- `const COMM: Self`
-
-- `const CONNABORTED: Self`
-
-- `const CONNREFUSED: Self`
-
-- `const CONNRESET: Self`
-
-- `const DEADLK: Self`
-
-- `const DEADLOCK: Self`
-
-- `const DESTADDRREQ: Self`
-
-- `const DOM: Self`
-
-- `const DOTDOT: Self`
-
-- `const DQUOT: Self`
-
-- `const EXIST: Self`
-
-- `const FAULT: Self`
-
-- `const FBIG: Self`
-
-- `const HOSTDOWN: Self`
-
-- `const HOSTUNREACH: Self`
-
-- `const HWPOISON: Self`
-
-- `const IDRM: Self`
-
-- `const ILSEQ: Self`
-
-- `const INPROGRESS: Self`
-
-- `const INTR: Self`
-
-- `const INVAL: Self`
-
-- `const IO: Self`
-
-- `const ISCONN: Self`
-
-- `const ISDIR: Self`
-
-- `const ISNAM: Self`
-
-- `const KEYEXPIRED: Self`
-
-- `const KEYREJECTED: Self`
-
-- `const KEYREVOKED: Self`
-
-- `const L2HLT: Self`
-
-- `const L2NSYNC: Self`
-
-- `const L3HLT: Self`
-
-- `const L3RST: Self`
-
-- `const LIBACC: Self`
-
-- `const LIBBAD: Self`
-
-- `const LIBEXEC: Self`
-
-- `const LIBMAX: Self`
-
-- `const LIBSCN: Self`
-
-- `const LNRNG: Self`
-
-- `const LOOP: Self`
-
-- `const MEDIUMTYPE: Self`
-
-- `const MFILE: Self`
-
-- `const MLINK: Self`
-
-- `const MSGSIZE: Self`
-
-- `const MULTIHOP: Self`
-
-- `const NAMETOOLONG: Self`
-
-- `const NAVAIL: Self`
-
-- `const NETDOWN: Self`
-
-- `const NETRESET: Self`
-
-- `const NETUNREACH: Self`
-
-- `const NFILE: Self`
-
-- `const NOANO: Self`
-
-- `const NOBUFS: Self`
-
-- `const NOCSI: Self`
-
-- `const NODATA: Self`
-
-- `const NODEV: Self`
-
-- `const NOENT: Self`
-
-- `const NOEXEC: Self`
-
-- `const NOKEY: Self`
-
-- `const NOLCK: Self`
-
-- `const NOLINK: Self`
-
-- `const NOMEDIUM: Self`
-
-- `const NOMEM: Self`
-
-- `const NOMSG: Self`
-
-- `const NONET: Self`
-
-- `const NOPKG: Self`
-
-- `const NOPROTOOPT: Self`
-
-- `const NOSPC: Self`
-
-- `const NOSR: Self`
-
-- `const NOSTR: Self`
-
-- `const NOSYS: Self`
-
-- `const NOTBLK: Self`
-
-- `const NOTCONN: Self`
-
-- `const NOTDIR: Self`
-
-- `const NOTEMPTY: Self`
-
-- `const NOTNAM: Self`
-
-- `const NOTRECOVERABLE: Self`
-
-- `const NOTSOCK: Self`
-
-- `const NOTSUP: Self`
-
-- `const NOTTY: Self`
-
-- `const NOTUNIQ: Self`
-
-- `const NXIO: Self`
-
-- `const OPNOTSUPP: Self`
-
-- `const OVERFLOW: Self`
-
-- `const OWNERDEAD: Self`
-
-- `const PERM: Self`
-
-- `const PFNOSUPPORT: Self`
-
-- `const PIPE: Self`
-
-- `const PROTO: Self`
-
-- `const PROTONOSUPPORT: Self`
-
-- `const PROTOTYPE: Self`
-
-- `const RANGE: Self`
-
-- `const REMCHG: Self`
-
-- `const REMOTE: Self`
-
-- `const REMOTEIO: Self`
-
-- `const RESTART: Self`
-
-- `const RFKILL: Self`
-
-- `const ROFS: Self`
-
-- `const SHUTDOWN: Self`
-
-- `const SOCKTNOSUPPORT: Self`
-
-- `const SPIPE: Self`
-
-- `const SRCH: Self`
-
-- `const SRMNT: Self`
-
-- `const STALE: Self`
-
-- `const STRPIPE: Self`
-
-- `const TIME: Self`
-
-- `const TIMEDOUT: Self`
-
-- `const TOOBIG: Self`
-
-- `const TOOMANYREFS: Self`
-
-- `const TXTBSY: Self`
-
-- `const UCLEAN: Self`
-
-- `const UNATCH: Self`
-
-- `const USERS: Self`
-
-- `const WOULDBLOCK: Self`
-
-- `const XDEV: Self`
-
-- `const XFULL: Self`
+- `fn kind(self: Self) -> std::io::ErrorKind`
 
 #### Trait Implementations
 
@@ -360,7 +94,7 @@ unsafe fn close(raw_fd: backend::fd::RawFd)
 Most users won't need to use this, as [`OwnedFd`](../fd/index.md) automatically closes its
 file descriptor on `Drop`.
 
-This function does not return a `Result`, as it is the [responsibility](#responsibility) of
+This function does not return a `Result`, as it is the [responsibility] of
 filesystem designers to not return errors from `close`. Users who chose to
 use NFS or similar filesystems should take care to monitor for problems
 externally.
@@ -375,8 +109,8 @@ externally.
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -404,7 +138,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -418,8 +152,8 @@ be unexpectedly allocated on other threads or in libraries.
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -447,7 +181,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](#dup3) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](#fcntl-dupfd-cloexec).
+support it, or [`fcntl_dupfd_cloexec`](../backend/io/syscalls/index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.
@@ -460,8 +194,8 @@ For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -520,8 +254,8 @@ fn fcntl_getfd<Fd: AsFd>(fd: Fd) -> io::Result<FdFlags>
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -548,8 +282,8 @@ fn fcntl_setfd<Fd: AsFd>(fd: Fd, flags: FdFlags) -> io::Result<()>
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -583,8 +317,8 @@ threads or in libraries.
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -679,8 +413,8 @@ fn read<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf) -> io::Result<<Buf as >::Ou
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -707,8 +441,8 @@ fn write<Fd: AsFd>(fd: Fd, buf: &[u8]) -> io::Result<usize>
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -735,8 +469,8 @@ fn pread<Fd: AsFd, Buf: Buffer<u8>>(fd: Fd, buf: Buf, offset: u64) -> io::Result
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -767,8 +501,8 @@ data to the end of the file.
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -795,8 +529,8 @@ fn readv<Fd: AsFd>(fd: Fd, bufs: &mut [IoSliceMut<'_>]) -> io::Result<usize>
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -823,8 +557,8 @@ fn writev<Fd: AsFd>(fd: Fd, bufs: &[IoSlice<'_>]) -> io::Result<usize>
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -850,8 +584,8 @@ multiple buffers.
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -879,8 +613,8 @@ data to the end of the file.
  - [NetBSD]
  - [OpenBSD]
  - [DragonFly BSD]
- - [illumos](#illumos)
- - [glibc](#glibc)
+ - [illumos]
+ - [glibc]
 
 
 
@@ -901,7 +635,7 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 
 # References
  - [Linux]
- - [glibc](#glibc)
+ - [glibc]
 
 
 
@@ -917,7 +651,7 @@ An `offset` of `u64::MAX` means to use and update the current file offset.
 
 # References
  - [Linux]
- - [glibc](#glibc)
+ - [glibc]
 
 
 

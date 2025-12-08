@@ -18,23 +18,23 @@ shared among threads and is usually the entry point for new tasks.
 
 [`Worker`](deque/index.md) has two constructors:
 
-* [`new_fifo()`](#new-fifo) - Creates a FIFO queue, in which tasks are pushed and popped from opposite
+* `new_fifo()` - Creates a FIFO queue, in which tasks are pushed and popped from opposite
   ends.
-* [`new_lifo()`](#new-lifo) - Creates a LIFO queue, in which tasks are pushed and popped from the same
+* `new_lifo()` - Creates a LIFO queue, in which tasks are pushed and popped from the same
   end.
 
 Each [`Worker`](deque/index.md) is owned by a single thread and supports only push and pop operations.
 
-Method [`stealer()`](#stealer) creates a [`Stealer`](deque/index.md) that may be shared among threads and can only steal
+Method `stealer()` creates a [`Stealer`](deque/index.md) that may be shared among threads and can only steal
 tasks from its [`Worker`](deque/index.md). Tasks are stolen from the end opposite to where they get pushed.
 
 # Stealing
 
 Steal operations come in three flavors:
 
-1. [`steal()`](#steal) - Steals one task.
-2. [`steal_batch()`](#steal-batch) - Steals a batch of tasks and moves them into another worker.
-3. [`steal_batch_and_pop()`](#steal-batch-and-pop) - Steals a batch of tasks, moves them into another queue, and pops
+1. `steal()` - Steals one task.
+2. `steal_batch()` - Steals a batch of tasks and moves them into another worker.
+3. `steal_batch_and_pop()` - Steals a batch of tasks, moves them into another queue, and pops
    one task from that worker.
 
 In contrast to push and pop operations, stealing can spuriously fail with `Steal::Retry`, in

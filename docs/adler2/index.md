@@ -24,8 +24,8 @@ struct Adler32 {
 Adler-32 checksum calculator.
 
 An instance of this type is equivalent to an Adler-32 checksum: It can be created in the default
-state via [`new`](#new) (or the provided `Default` impl), or from a precalculated checksum via
-[`from_checksum`](#from-checksum), and the currently stored checksum can be fetched via [`checksum`](#checksum).
+state via `new` (or the provided `Default` impl), or from a precalculated checksum via
+`from_checksum`, and the currently stored checksum can be fetched via `checksum`.
 
 This type also implements `Hasher`, which makes it easy to calculate Adler-32 checksums of any
 type that implements or derives `Hash`. This also allows using Adler-32 in a `HashMap`, although
@@ -80,7 +80,13 @@ if cfg!(target_endian = "big") {
 
 #### Implementations
 
-- `fn compute(self: &mut Self, bytes: &[u8])`
+- `fn new() -> Self`
+
+- `const fn from_checksum(sum: u32) -> Self`
+
+- `fn checksum(self: &Self) -> u32`
+
+- `fn write_slice(self: &mut Self, bytes: &[u8])`
 
 #### Trait Implementations
 

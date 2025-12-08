@@ -19,8 +19,8 @@ assert_eq!(textwrap::wrap(text, 18),
 }
 ```
 
-The [`wrap()`](#wrap) function returns the individual lines, use
-[`fill()`](#fill) is you want the lines joined with `'\n'` to form a
+The `wrap()` function returns the individual lines, use
+`fill()` is you want the lines joined with `'\n'` to form a
 `String`.
 
 If you enable the `hyphenation` Cargo feature, you can get
@@ -41,7 +41,7 @@ assert_eq!(wrap(text, &options),
 }
 ```
 
-See also the [`unfill()`](#unfill) and [`refill()`](#refill) functions which allow
+See also the `unfill()` and `refill()` functions which allow
 you to manipulate already wrapped text.
 
 ## Wrapping Strings at Compile Time
@@ -73,7 +73,7 @@ default).
 
 The textwrap library also offers functions for adding a prefix to
 every line of a string and to remove leading whitespace. As an
-example, [`indent()`](#indent) allows you to turn lines of text into a
+example, `indent()` allows you to turn lines of text into a
 bullet list:
 
 ```rust
@@ -90,7 +90,7 @@ let after = "\
 assert_eq!(textwrap::indent(before, "* "), after);
 ```
 
-Removing leading whitespace is done with [`dedent()`](#dedent):
+Removing leading whitespace is done with `dedent()`:
 
 ```rust
 let before = "
@@ -142,7 +142,7 @@ These features are enabled by default:
   other ways.
 
 * `smawk`: enables linear-time wrapping of the whole paragraph via
-  the [smawk](#smawk) crate. See `wrap_algorithms::wrap_optimal_fit()`
+  the [smawk] crate. See `wrap_algorithms::wrap_optimal_fit()`
   for details on the optimal-fit algorithm.
 
   This feature can be disabled if you only ever intend to use
@@ -180,11 +180,11 @@ results.
 These Cargo features enable new functionality:
 
 * `terminal_size`: enables automatic detection of the terminal
-  width via the [terminal_size](#terminal-size) crate. See
+  width via the [terminal_size] crate. See
   `Options::with_termwidth()` for details.
 
 * `hyphenation`: enables language-sensitive hyphenation via the
-  [hyphenation](#hyphenation) crate. See the `word_splitters::WordSplitter`
+  [hyphenation] crate. See the `word_splitters::WordSplitter`
   trait for details.
 
 
@@ -513,7 +513,7 @@ language-aware hyphenation:
 }
 ```
 
-Please see the documentation for the [hyphenation](#hyphenation) crate for more
+Please see the documentation for the [hyphenation] crate for more
 details.
 
 
@@ -521,7 +521,7 @@ details.
 
 - **`NoHyphenation`**
 
-  Use this as a [`Options.word_splitter`](#optionsword-splitter) to avoid any kind of
+  Use this as a `Options.word_splitter` to avoid any kind of
   hyphenation:
   
   ```rust
@@ -616,7 +616,7 @@ an entire paragraph at a time in order to find optimal line breaks
   Wrap words using a fast and simple algorithm.
   
   This algorithm uses no look-ahead when finding line breaks.
-  Implemented by [`wrap_first_fit()`](#wrap-first-fit), please see that function
+  Implemented by `wrap_first_fit()`, please see that function
   for details and examples.
 
 - **`Custom`**

@@ -4,7 +4,7 @@
 
 # Module `slice`
 
-Parallel iterator types for [slices](#slices)
+Parallel iterator types for [slices]
 
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
@@ -23,7 +23,7 @@ struct ChunkBy<'data, T, P> {
 
 Parallel iterator over slice in (non-overlapping) chunks separated by a predicate.
 
-This struct is created by the [`par_chunk_by`](#par-chunk-by) method on `&[T]`.
+This struct is created by the `par_chunk_by` method on `&[T]`.
 
 
 #### Implementations
@@ -82,7 +82,7 @@ struct ChunkByMut<'data, T, P> {
 Parallel iterator over slice in (non-overlapping) mutable chunks
 separated by a predicate.
 
-This struct is created by the [`par_chunk_by_mut`](#par-chunk-by-mut) method on `&mut [T]`.
+This struct is created by the `par_chunk_by_mut` method on `&mut [T]`.
 
 
 #### Implementations

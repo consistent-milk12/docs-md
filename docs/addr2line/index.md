@@ -15,7 +15,7 @@ Location information is obtained with `Context::find_location` or
 `Context::find_frames`, which returns a frame for each inline function. Each frame
 contains both name and location.
 
-The library also provides a [`Loader`](#loader) which internally memory maps the files,
+The library also provides a `Loader` which internally memory maps the files,
 uses the `object` crate to do the parsing, and creates a `Context`.
 The `Context` is not exposed, but the `Loader` provides the same functionality
 via `Loader::find_location`, `Loader::find_location_range`, and
@@ -216,11 +216,15 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn from_sections(debug_abbrev: gimli::DebugAbbrev<R>, debug_addr: gimli::DebugAddr<R>, debug_aranges: gimli::DebugAranges<R>, debug_info: gimli::DebugInfo<R>, debug_line: gimli::DebugLine<R>, debug_line_str: gimli::DebugLineStr<R>, debug_ranges: gimli::DebugRanges<R>, debug_rnglists: gimli::DebugRngLists<R>, debug_str: gimli::DebugStr<R>, debug_str_offsets: gimli::DebugStrOffsets<R>, default_section: R) -> Result<Self, gimli::Error>`
+- `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`LookupResult`](lookup/index.md), [`LookupContinuation`](lookup/index.md)
 
-- `fn from_dwarf(sections: gimli::Dwarf<R>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
+- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](frame/index.md)
 
-- `fn from_arc_dwarf(sections: Arc<gimli::Dwarf<R>>) -> Result<Context<R>, gimli::Error>` — [`Context`](#context)
+- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`LocationRangeIter`](unit/index.md)
+
+- `fn find_frames(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`LookupResult`](lookup/index.md), [`LookupContinuation`](lookup/index.md), [`FrameIter`](frame/index.md)
+
+- `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`SplitDwarfLoad`](lookup/index.md)
 
 ## Enums
 

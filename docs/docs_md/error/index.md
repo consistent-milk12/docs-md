@@ -153,6 +153,8 @@ Each variant includes:
 
 - `fn source(self: &Self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
 
+##### `impl<T> Instrument for Error`
+
 ##### `impl<T> IntoEither for Error`
 
 ##### `impl<D> OwoColorize for Error`
@@ -178,4 +180,6 @@ Each variant includes:
 ##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
+
+##### `impl<T> WithSubscriber for Error`
 

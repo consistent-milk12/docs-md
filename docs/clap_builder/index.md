@@ -114,53 +114,51 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn name(self: Self, name: impl Into<Str>) -> Self` — [`Str`](builder/str/index.md)
+- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
 
-- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
+- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
 
-- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
+- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
 
-- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
+- `fn get_term_width(self: &Self) -> Option<usize>`
 
-- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn get_max_term_width(self: &Self) -> Option<usize>`
 
-- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](mkeymap/index.md)
 
-- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](parser/matches/arg_matches/index.md), [`Id`](util/id/index.md)
 
-- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](error/index.md), [`ArgMatches`](parser/matches/arg_matches/index.md)
 
-- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn build(self: &mut Self)`
 
-- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
 
-- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
+- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
 
-- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
+- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
 
-- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn _build_bin_names_internal(self: &mut Self)`
 
-- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
 
-- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`StyledStr`](builder/styled_str/index.md)
+- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](builder/arg/index.md)
 
-- `fn setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](builder/app_settings/index.md)
+- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](builder/arg_group/index.md)
 
-- `fn unset_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](builder/app_settings/index.md)
+- `fn _propagate_global_args(self: &mut Self)`
 
-- `fn global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](builder/app_settings/index.md)
+- `fn _propagate(self: &mut Self)`
 
-- `fn unset_global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](builder/app_settings/index.md)
+- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
 
-- `fn flatten_help(self: Self, yes: bool) -> Self`
+- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
 
-- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
+- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](builder/command/index.md)
 
-- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
+- `fn _render_version(self: &Self, use_long: bool) -> String`
 
-- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
-
-- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
+- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](util/id/index.md), [`StyledStr`](builder/styled_str/index.md)
 
 #### Trait Implementations
 
@@ -229,7 +227,7 @@ struct Arg {
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
 
-There are two methods for constructing [`Arg`](builder/arg/index.md)s, using the builder pattern and setting options
+There are two methods for constructing [`Arg`](#arg)s, using the builder pattern and setting options
 manually, or using a usage string which is far less verbose but has fewer options. You can also
 use a combination of the two methods to achieve the best of both worlds.
 
@@ -257,91 +255,43 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn get_id(self: &Self) -> &Id` — [`Id`](util/id/index.md)
+- `fn action(self: Self, action: impl IntoResettable<ArgAction>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`ArgAction`](builder/action/index.md)
 
-- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
+- `fn value_parser(self: Self, parser: impl IntoResettable<super::ValueParser>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`ValueParser`](builder/value_parser/index.md)
 
-- `fn get_long_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](builder/styled_str/index.md)
+- `fn num_args(self: Self, qty: impl IntoResettable<ValueRange>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`ValueRange`](builder/range/index.md)
 
-- `fn get_display_order(self: &Self) -> usize`
+- `fn value_name(self: Self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
 
-- `fn get_help_heading(self: &Self) -> Option<&str>`
+- `fn value_names(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](builder/str/index.md)
 
-- `fn get_short(self: &Self) -> Option<char>`
+- `fn value_hint(self: Self, value_hint: impl IntoResettable<ValueHint>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`ValueHint`](builder/value_hint/index.md)
 
-- `fn get_visible_short_aliases(self: &Self) -> Option<Vec<char>>`
+- `fn ignore_case(self: Self, yes: bool) -> Self`
 
-- `fn get_all_short_aliases(self: &Self) -> Option<Vec<char>>`
+- `fn allow_hyphen_values(self: Self, yes: bool) -> Self`
 
-- `fn get_short_and_visible_aliases(self: &Self) -> Option<Vec<char>>`
+- `fn allow_negative_numbers(self: Self, yes: bool) -> Self`
 
-- `fn get_long(self: &Self) -> Option<&str>`
+- `fn require_equals(self: Self, yes: bool) -> Self`
 
-- `fn get_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+- `fn value_delimiter(self: Self, d: impl IntoResettable<char>) -> Self` — [`IntoResettable`](builder/resettable/index.md)
 
-- `fn get_all_aliases(self: &Self) -> Option<Vec<&str>>`
+- `fn value_terminator(self: Self, term: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`Str`](builder/str/index.md)
 
-- `fn get_long_and_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+- `fn raw(self: Self, yes: bool) -> Self`
 
-- `fn get_aliases(self: &Self) -> Option<Vec<&str>>`
+- `fn default_value(self: Self, val: impl IntoResettable<OsStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`OsStr`](builder/os_str/index.md)
 
-- `fn get_possible_values(self: &Self) -> Vec<PossibleValue>` — [`PossibleValue`](builder/possible_value/index.md)
+- `fn default_values(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](builder/os_str/index.md)
 
-- `fn get_value_names(self: &Self) -> Option<&[Str]>` — [`Str`](builder/str/index.md)
+- `fn default_missing_value(self: Self, val: impl IntoResettable<OsStr>) -> Self` — [`IntoResettable`](builder/resettable/index.md), [`OsStr`](builder/os_str/index.md)
 
-- `fn get_num_args(self: &Self) -> Option<ValueRange>` — [`ValueRange`](builder/range/index.md)
+- `fn default_missing_value_os(self: Self, val: impl Into<OsStr>) -> Self` — [`OsStr`](builder/os_str/index.md)
 
-- `fn get_min_vals(self: &Self) -> usize`
+- `fn default_missing_values(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](builder/os_str/index.md)
 
-- `fn get_value_delimiter(self: &Self) -> Option<char>`
-
-- `fn get_value_terminator(self: &Self) -> Option<&Str>` — [`Str`](builder/str/index.md)
-
-- `fn get_index(self: &Self) -> Option<usize>`
-
-- `fn get_value_hint(self: &Self) -> ValueHint` — [`ValueHint`](builder/value_hint/index.md)
-
-- `fn get_default_values(self: &Self) -> &[OsStr]` — [`OsStr`](builder/os_str/index.md)
-
-- `fn is_positional(self: &Self) -> bool`
-
-- `fn is_required_set(self: &Self) -> bool`
-
-- `fn is_multiple_values_set(self: &Self) -> bool`
-
-- `fn is_takes_value_set(self: &Self) -> bool`
-
-- `fn is_allow_hyphen_values_set(self: &Self) -> bool`
-
-- `fn is_allow_negative_numbers_set(self: &Self) -> bool`
-
-- `fn get_action(self: &Self) -> &ArgAction` — [`ArgAction`](builder/action/index.md)
-
-- `fn get_value_parser(self: &Self) -> &super::ValueParser` — [`ValueParser`](builder/value_parser/index.md)
-
-- `fn is_global_set(self: &Self) -> bool`
-
-- `fn is_next_line_help_set(self: &Self) -> bool`
-
-- `fn is_hide_set(self: &Self) -> bool`
-
-- `fn is_hide_default_value_set(self: &Self) -> bool`
-
-- `fn is_hide_possible_values_set(self: &Self) -> bool`
-
-- `fn is_hide_short_help_set(self: &Self) -> bool`
-
-- `fn is_hide_long_help_set(self: &Self) -> bool`
-
-- `fn is_require_equals_set(self: &Self) -> bool`
-
-- `fn is_exclusive_set(self: &Self) -> bool`
-
-- `fn is_trailing_var_arg_set(self: &Self) -> bool`
-
-- `fn is_last_set(self: &Self) -> bool`
-
-- `fn is_ignore_case_set(self: &Self) -> bool`
+- `fn default_missing_values_os(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](builder/os_str/index.md)
 
 #### Trait Implementations
 
@@ -392,11 +342,11 @@ struct ArgGroup {
 }
 ```
 
-Specifies a logical group of [arguments](#arguments)
+Specifies a logical group of [arguments]
 
 You can use this for
 - applying validation to an entire group, like `ArgGroup::multiple`
-- validate relationships between an argument and a group, like [conflicts](#conflicts) or [requirements](#requirements)
+- validate relationships between an argument and a group, like [conflicts] or [requirements]
 - check which argument in a group was specified on the command-line
 
 For visually grouping arguments in help, see instead
@@ -543,19 +493,37 @@ if matches.contains_id("out") {
 
 #### Implementations
 
-- `fn try_get_arg(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
+- `fn get_one<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<&T>`
 
-- `fn try_get_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &str) -> Result<Option<&MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
+- `fn get_count(self: &Self, id: &str) -> u8`
 
-- `fn try_remove_arg_t<T: Any + Send + Sync + 'static>(self: &mut Self, arg: &str) -> Result<Option<MatchedArg>, MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
+- `fn get_flag(self: &Self, id: &str) -> bool`
 
-- `fn verify_arg_t<T: Any + Send + Sync + 'static>(self: &Self, arg: &MatchedArg) -> Result<(), MatchesError>` — [`MatchedArg`](parser/matches/matched_arg/index.md), [`MatchesError`](parser/error/index.md)
+- `fn get_many<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<ValuesRef<'_, T>>` — [`ValuesRef`](parser/matches/arg_matches/index.md)
 
-- `fn verify_arg(self: &Self, _arg: &str) -> Result<(), MatchesError>` — [`MatchesError`](parser/error/index.md)
+- `fn get_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &Self, id: &str) -> Option<OccurrencesRef<'_, T>>` — [`OccurrencesRef`](parser/matches/arg_matches/index.md)
 
-- `fn get_arg<'s>(self: &'s Self, arg: &str) -> Option<&'s MatchedArg>` — [`MatchedArg`](parser/matches/matched_arg/index.md)
+- `fn get_raw(self: &Self, id: &str) -> Option<RawValues<'_>>` — [`RawValues`](parser/matches/arg_matches/index.md)
 
-- `fn get_subcommand(self: &Self, name: &str) -> Option<&SubCommand>` — [`SubCommand`](parser/matches/arg_matches/index.md)
+- `fn get_raw_occurrences(self: &Self, id: &str) -> Option<RawOccurrences<'_>>` — [`RawOccurrences`](parser/matches/arg_matches/index.md)
+
+- `fn remove_one<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<T>`
+
+- `fn remove_many<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Values<T>>` — [`Values`](parser/matches/arg_matches/index.md)
+
+- `fn remove_occurrences<T: Any + Clone + Send + Sync + 'static>(self: &mut Self, id: &str) -> Option<Occurrences<T>>` — [`Occurrences`](parser/matches/arg_matches/index.md)
+
+- `fn contains_id(self: &Self, id: &str) -> bool`
+
+- `fn ids(self: &Self) -> IdsRef<'_>` — [`IdsRef`](parser/matches/arg_matches/index.md)
+
+- `fn args_present(self: &Self) -> bool`
+
+- `fn value_source(self: &Self, id: &str) -> Option<ValueSource>` — [`ValueSource`](parser/matches/value_source/index.md)
+
+- `fn index_of(self: &Self, id: &str) -> Option<usize>`
+
+- `fn indices_of(self: &Self, id: &str) -> Option<Indices<'_>>` — [`Indices`](parser/matches/arg_matches/index.md)
 
 #### Trait Implementations
 
@@ -643,7 +611,7 @@ relationships between `Arg`s and `ArgGroup`s with functions like
 
 ##### `impl PartialEq for Id`
 
-- `fn eq(self: &Self, other: &str) -> bool`
+- `fn eq(self: &Self, other: &String) -> bool`
 
 ##### `impl PartialOrd for Id`
 
@@ -1153,7 +1121,7 @@ Overview of which hints are supported by which shell:
   common when writing shell wrappers that execute anther command, for example `sudo` or `env`.
   
   This hint is special, the argument must be a positional argument and have
-  [`.num_args(1..)`](#num-args1) and Command must use `Command::trailing_var_arg(true)`. The result is that the
+  `.num_args(1..)` and Command must use `Command::trailing_var_arg(true)`. The result is that the
   command line `my_app ls -la /` will be parsed as `["ls", "-la", "/"]` and clap won't try to
   parse the `-la` argument itself.
   
@@ -1353,9 +1321,9 @@ Requires `cargo` feature flag to be enabled.
 
 ### `arg!`
 
-Create an [`Arg`](builder/arg/index.md) from a usage string.
+Create an [`Arg`](#arg) from a usage string.
 
-Allows creation of basic settings for the [`Arg`](builder/arg/index.md).
+Allows creation of basic settings for the [`Arg`](#arg).
 
 <div class="warning">
 

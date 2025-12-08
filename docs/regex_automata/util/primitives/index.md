@@ -14,7 +14,7 @@ when you might want to use them.
 * [`PatternID`](#patternid) - A type that represents the identifier of a regex pattern.
 This is probably the most widely used type in this module (which is why it's
 also re-exported in the crate root).
-* [`StateID`](#stateid) - A type the represents the identifier of a finite automaton
+* [`StateID`](../../index.md) - A type the represents the identifier of a finite automaton
 state. This is used for both NFAs and DFAs, with the notable exception of
 the hybrid NFA/DFA. (The hybrid NFA/DFA uses a special purpose "lazy" state
 identifier.)
@@ -137,7 +137,7 @@ for delta encoding.
 The following types wrap `SmallIndex` to provide a more focused use case:
 
 * [`PatternID`](#patternid) is for representing the identifiers of patterns.
-* [`StateID`](#stateid) is for representing the identifiers of states in finite
+* [`StateID`](../../index.md) is for representing the identifiers of states in finite
 automata. It is used for both NFAs and DFAs.
 
 # Representation

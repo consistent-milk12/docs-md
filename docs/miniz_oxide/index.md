@@ -221,7 +221,7 @@ enum MZError {
 
 A list of miniz failed status codes.
 
-These are emitted as the [`Err`](#err) side of a [`MZResult`](#mzresult) in the [`StreamResult`](#streamresult) returned from
+These are emitted as the `Err` side of a [`MZResult`](#mzresult) in the [`StreamResult`](#streamresult) returned from
 `deflate::stream::deflate()` or `inflate::stream::inflate()`.
 
 #### Variants

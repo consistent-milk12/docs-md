@@ -189,7 +189,23 @@ impl<'a> GeneratorContext<'a> {
             }
         }
 
+        // Sort impl blocks within each type for deterministic output
+        for impls in map.values_mut() {
+            impls.sort_by(|a, b| Self::impl_sort_key(a).cmp(&Self::impl_sort_key(b)));
+        }
+
         map
+    }
+
+    /// Generate a sort key for an impl block.
+    ///
+    /// Inherent impls (no trait) sort before trait impls.
+    /// Trait impls are sorted by trait name.
+    fn impl_sort_key(impl_block: &Impl) -> (u8, String) {
+        match &impl_block.trait_ {
+            None => (0, String::new()), // Inherent impls first
+            Some(path) => (1, path.path.clone()), // Then trait impls by name
+        }
     }
 
     /// Extract the item ID from a Type if it's a resolved path.

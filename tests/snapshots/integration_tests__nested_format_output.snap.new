@@ -155,6 +155,8 @@ Each variant includes:
 
 - `fn source(self: &Self) -> ::core::option::Option<&dyn ::thiserror::__private17::Error>`
 
+##### `impl<T> Instrument for Error`
+
 ##### `impl<T> IntoEither for Error`
 
 ##### `impl<D> OwoColorize for Error`
@@ -180,6 +182,8 @@ Each variant includes:
 ##### `impl<T> ToString for Error`
 
 - `fn to_string(self: &Self) -> String`
+
+##### `impl<T> WithSubscriber for Error`
 
 
 === generator/breadcrumbs/index.md ===
@@ -228,6 +232,8 @@ the current module, with each segment being a clickable link.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for BreadcrumbGenerator<'a>`
+
 ##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
 
 ##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
@@ -245,6 +251,8 @@ the current module, with each segment being a clickable link.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for BreadcrumbGenerator<'a>`
 
 
 === generator/doc_links/index.md ===
@@ -344,7 +352,7 @@ Links inside fenced code blocks are not processed.
 
 - `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process reference-style links `[display text](https://docs.rs/core/latest/core/net/ip_addr/fmt/struct.Span.html)`.
+  Process reference-style links `[display text](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)`.
 
 - `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -408,6 +416,8 @@ Links inside fenced code blocks are not processed.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for DocLinkProcessor<'a>`
+
 ##### `impl<T> IntoEither for DocLinkProcessor<'a>`
 
 ##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
@@ -426,6 +436,8 @@ Links inside fenced code blocks are not processed.
 
 - `unsafe fn drop(ptr: usize)`
 
+##### `impl<T> WithSubscriber for DocLinkProcessor<'a>`
+
 ## Functions
 
 ### `convert_html_links`
@@ -442,6 +454,20 @@ Transforms links like:
 
 This is useful for multi-crate documentation where the full processor
 context may not be available.
+
+### `convert_path_reference_links`
+
+```rust
+fn convert_path_reference_links(docs: &str) -> String
+```
+
+Convert path-style reference links to inline code.
+
+Transforms: `[``ProgressTracker``](https://docs.rs/indicatif/latest/indicatif/style/trait.ProgressTracker.html)`
+Into: `` `ProgressTracker` ``
+
+Without full link resolution context, we can't create valid anchors,
+so we preserve the display text as inline code.
 
 ### `strip_duplicate_title`
 
@@ -488,20 +514,6 @@ This function performs two transformations on code blocks:
    but compiled. We remove the prefix to show the full example.
 2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
    examples are Rust code.
-
-### `convert_path_reference_links`
-
-```rust
-fn convert_path_reference_links(docs: &str) -> String
-```
-
-Convert path-style reference links to inline code.
-
-Transforms: `[``ProgressTracker``](https://docs.rs/indicatif/latest/indicatif/style/trait.ProgressTracker.html)`
-Into: `` `ProgressTracker` ``
-
-Without full link resolution context, we can't create valid anchors,
-so we preserve the display text as inline code.
 
 
 === generator/impls/index.md ===
@@ -577,6 +589,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for ImplRenderer<'a>`
+
 ##### `impl<T> IntoEither for ImplRenderer<'a>`
 
 ##### `impl<D> OwoColorize for ImplRenderer<'a>`
@@ -594,6 +608,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for ImplRenderer<'a>`
 
 ## Functions
 
@@ -697,6 +713,8 @@ the current module, with each segment being a clickable link.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for BreadcrumbGenerator<'a>`
+
 ##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
 
 ##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
@@ -714,6 +732,8 @@ the current module, with each segment being a clickable link.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for BreadcrumbGenerator<'a>`
 
 ### `MarkdownCapture`
 
@@ -780,6 +800,8 @@ side effects.
 
 - `fn default() -> MarkdownCapture`
 
+##### `impl<T> Instrument for MarkdownCapture`
+
 ##### `impl<T> IntoEither for MarkdownCapture`
 
 ##### `impl<D> OwoColorize for MarkdownCapture`
@@ -797,6 +819,8 @@ side effects.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MarkdownCapture`
 
 ### `GeneratorContext<'a>`
 
@@ -852,6 +876,10 @@ This struct is passed to all rendering components and provides:
 
   Build a map from type ID to all impl blocks for that type.
 
+- `fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
+
+  Generate a sort key for an impl block.
+
 - `const fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id>`
 
   Extract the item ID from a Type if it's a resolved path.
@@ -865,6 +893,8 @@ This struct is passed to all rendering components and provides:
   Count the total number of modules that will be generated.
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for GeneratorContext<'a>`
 
 ##### `impl<T> IntoEither for GeneratorContext<'a>`
 
@@ -913,6 +943,8 @@ This struct is passed to all rendering components and provides:
 - `unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> RenderContext for GeneratorContext<'a>`
+
+##### `impl<T> WithSubscriber for GeneratorContext<'a>`
 
 ### `DocLinkProcessor<'a>`
 
@@ -987,7 +1019,7 @@ Links inside fenced code blocks are not processed.
 
 - `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process reference-style links `[display text](https://docs.rs/core/latest/core/net/ip_addr/fmt/struct.Span.html)`.
+  Process reference-style links `[display text](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)`.
 
 - `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -1051,6 +1083,8 @@ Links inside fenced code blocks are not processed.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for DocLinkProcessor<'a>`
+
 ##### `impl<T> IntoEither for DocLinkProcessor<'a>`
 
 ##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
@@ -1068,6 +1102,8 @@ Links inside fenced code blocks are not processed.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for DocLinkProcessor<'a>`
 
 ### `ModuleRenderer<'a>`
 
@@ -1164,6 +1200,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for ModuleRenderer<'a>`
+
 ##### `impl<T> IntoEither for ModuleRenderer<'a>`
 
 ##### `impl<D> OwoColorize for ModuleRenderer<'a>`
@@ -1181,6 +1219,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for ModuleRenderer<'a>`
 
 ### `Generator<'a>`
 
@@ -1255,6 +1295,8 @@ generator.generate()?;
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for Generator<'a>`
+
 ##### `impl<T> IntoEither for Generator<'a>`
 
 ##### `impl<D> OwoColorize for Generator<'a>`
@@ -1272,6 +1314,8 @@ generator.generate()?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Generator<'a>`
 
 ## Traits
 
@@ -1539,6 +1583,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for ModuleRenderer<'a>`
+
 ##### `impl<T> IntoEither for ModuleRenderer<'a>`
 
 ##### `impl<D> OwoColorize for ModuleRenderer<'a>`
@@ -1556,6 +1602,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for ModuleRenderer<'a>`
 
 
 === generator/render_shared/index.md ===
@@ -1590,49 +1638,48 @@ This trait provides a unified way to process docs from different contexts.
 
 ## Functions
 
-### `render_struct_definition`
+### `append_docs`
 
 ```rust
-fn render_struct_definition(md: &mut String, name: &str, s: &rustdoc_types::Struct, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>)
+fn append_docs(md: &mut String, docs: Option<String>)
+```
+
+Append processed documentation to markdown.
+
+Helper function to add documentation with consistent formatting.
+
+### `impl_sort_key`
+
+```rust
+fn impl_sort_key(impl_block: &rustdoc_types::Impl, type_renderer: &crate::types::TypeRenderer<'_>) -> String
 ```
 
 **Types:** [`TypeRenderer`](../../types/index.md)
 
-Render a struct definition code block to markdown.
+Generate a sort key for an impl block for deterministic ordering.
 
-Produces a heading with the struct name and generics, followed by a Rust
-code block showing the struct definition.
+Combines trait name, generic params, and for-type to create a unique key.
 
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The struct name (may differ from item.name for re-exports)
-* `s` - The struct data from rustdoc
-* `krate` - The crate containing field definitions
-* `type_renderer` - Type renderer for generics and field types
-
-### `render_struct_fields`
+### `render_constant_definition`
 
 ```rust
-fn render_struct_fields<F>(md: &mut String, fields: &[rustdoc_types::Id], krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: F)
-where
-    F: Fn(&rustdoc_types::Item) -> Option<String>
+fn render_constant_definition(md: &mut String, name: &str, type_: &rustdoc_types::Type, const_: &rustdoc_types::Constant, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
 **Types:** [`TypeRenderer`](../../types/index.md)
 
-Render documented struct fields to markdown.
+Render a constant definition to markdown.
 
-Produces a "Fields" section with each documented field as a bullet point
-showing the field name, type, and documentation.
+Produces a heading with the constant name, followed by a Rust code block
+showing `const NAME: Type = value;`.
 
 # Arguments
 
 * `md` - Output markdown string
-* `fields` - Field IDs from the struct
-* `krate` - Crate containing field definitions
-* `type_renderer` - Type renderer for field types
-* `process_docs` - Closure to process documentation with intra-doc link resolution
+* `name` - The constant name
+* `type_` - The constant's type
+* `const_` - The constant data including value
+* `type_renderer` - Type renderer for the type
 
 ### `render_enum_definition`
 
@@ -1686,6 +1733,111 @@ Produces a "Variants" section with each documented variant as a bullet point.
 * `krate` - Crate containing variant definitions
 * `process_docs` - Closure to process documentation with intra-doc link resolution
 
+### `render_function_definition`
+
+```rust
+fn render_function_definition(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: &crate::types::TypeRenderer<'_>)
+```
+
+**Types:** [`TypeRenderer`](../../types/index.md)
+
+Render a function definition to markdown.
+
+Produces a heading with the function name, followed by a Rust code block
+showing the full signature with modifiers (const, async, unsafe).
+
+# Arguments
+
+* `md` - Output markdown string
+* `name` - The function name
+* `f` - The function data from rustdoc
+* `type_renderer` - Type renderer for parameter and return types
+
+### `render_impl_items`
+
+```rust
+fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: &Option<F>, create_type_link: &Option<L>)
+where
+    F: Fn(&rustdoc_types::Item) -> Option<String>,
+    L: Fn(rustdoc_types::Id) -> Option<String>
+```
+
+**Types:** [`TypeRenderer`](../../types/index.md)
+
+Render the items within an impl block.
+
+This renders all methods, associated constants, and associated types
+within an impl block as bullet points.
+
+# Arguments
+
+* `md` - Output markdown string
+* `impl_block` - The impl block to render items from
+* `krate` - The crate containing item definitions
+* `type_renderer` - Type renderer for types
+* `process_docs` - Optional closure to process documentation
+* `create_type_link` - Optional closure to create links for types `(id -> Option<markdown_link>)`
+
+### `render_macro_heading`
+
+```rust
+fn render_macro_heading(md: &mut String, name: &str)
+```
+
+Render a macro definition to markdown.
+
+Produces a heading with the macro name and `!` suffix.
+Note: We don't show macro rules since rustdoc JSON doesn't provide them.
+
+# Arguments
+
+* `md` - Output markdown string
+* `name` - The macro name
+
+### `render_struct_definition`
+
+```rust
+fn render_struct_definition(md: &mut String, name: &str, s: &rustdoc_types::Struct, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>)
+```
+
+**Types:** [`TypeRenderer`](../../types/index.md)
+
+Render a struct definition code block to markdown.
+
+Produces a heading with the struct name and generics, followed by a Rust
+code block showing the struct definition.
+
+# Arguments
+
+* `md` - Output markdown string
+* `name` - The struct name (may differ from item.name for re-exports)
+* `s` - The struct data from rustdoc
+* `krate` - The crate containing field definitions
+* `type_renderer` - Type renderer for generics and field types
+
+### `render_struct_fields`
+
+```rust
+fn render_struct_fields<F>(md: &mut String, fields: &[rustdoc_types::Id], krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: F)
+where
+    F: Fn(&rustdoc_types::Item) -> Option<String>
+```
+
+**Types:** [`TypeRenderer`](../../types/index.md)
+
+Render documented struct fields to markdown.
+
+Produces a "Fields" section with each documented field as a bullet point
+showing the field name, type, and documentation.
+
+# Arguments
+
+* `md` - Output markdown string
+* `fields` - Field IDs from the struct
+* `krate` - Crate containing field definitions
+* `type_renderer` - Type renderer for field types
+* `process_docs` - Closure to process documentation with intra-doc link resolution
+
 ### `render_trait_definition`
 
 ```rust
@@ -1728,47 +1880,6 @@ For methods, the first line of documentation is included.
 * `type_renderer` - Type renderer for types
 * `process_docs` - Closure to process documentation with intra-doc link resolution
 
-### `render_function_definition`
-
-```rust
-fn render_function_definition(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: &crate::types::TypeRenderer<'_>)
-```
-
-**Types:** [`TypeRenderer`](../../types/index.md)
-
-Render a function definition to markdown.
-
-Produces a heading with the function name, followed by a Rust code block
-showing the full signature with modifiers (const, async, unsafe).
-
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The function name
-* `f` - The function data from rustdoc
-* `type_renderer` - Type renderer for parameter and return types
-
-### `render_constant_definition`
-
-```rust
-fn render_constant_definition(md: &mut String, name: &str, type_: &rustdoc_types::Type, const_: &rustdoc_types::Constant, type_renderer: &crate::types::TypeRenderer<'_>)
-```
-
-**Types:** [`TypeRenderer`](../../types/index.md)
-
-Render a constant definition to markdown.
-
-Produces a heading with the constant name, followed by a Rust code block
-showing `const NAME: Type = value;`.
-
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The constant name
-* `type_` - The constant's type
-* `const_` - The constant data including value
-* `type_renderer` - Type renderer for the type
-
 ### `render_type_alias_definition`
 
 ```rust
@@ -1789,69 +1900,6 @@ code block showing `type Name<T> = TargetType;`.
 * `ta` - The type alias data from rustdoc
 * `type_renderer` - Type renderer for generics and the aliased type
 
-### `render_macro_heading`
-
-```rust
-fn render_macro_heading(md: &mut String, name: &str)
-```
-
-Render a macro definition to markdown.
-
-Produces a heading with the macro name and `!` suffix.
-Note: We don't show macro rules since rustdoc JSON doesn't provide them.
-
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The macro name
-
-### `render_impl_items`
-
-```rust
-fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: Option<F>, create_type_link: Option<L>)
-where
-    F: Fn(&rustdoc_types::Item) -> Option<String>,
-    L: Fn(rustdoc_types::Id) -> Option<String>
-```
-
-**Types:** [`TypeRenderer`](../../types/index.md)
-
-Render the items within an impl block.
-
-This renders all methods, associated constants, and associated types
-within an impl block as bullet points.
-
-# Arguments
-
-* `md` - Output markdown string
-* `impl_block` - The impl block to render items from
-* `krate` - The crate containing item definitions
-* `type_renderer` - Type renderer for types
-* `process_docs` - Optional closure to process documentation
-* `create_type_link` - Optional closure to create links for types (id -> Option<markdown_link>)
-
-### `append_docs`
-
-```rust
-fn append_docs(md: &mut String, docs: Option<String>)
-```
-
-Append processed documentation to markdown.
-
-Helper function to add documentation with consistent formatting.
-
-### `impl_sort_key`
-
-```rust
-fn impl_sort_key(impl_block: &rustdoc_types::Impl, type_renderer: &crate::types::TypeRenderer<'_>) -> String
-```
-
-**Types:** [`TypeRenderer`](../../types/index.md)
-
-Generate a sort key for an impl block for deterministic ordering.
-
-Combines trait name, generic params, and for-type to create a unique key.
-
 
 === index.md ===
 # Crate `docs_md`
@@ -1869,6 +1917,7 @@ generation capabilities programmatically.
 - [`error`](error/index.md) - Error types for docs-md.
 - [`generator`](generator/index.md) - Markdown documentation generator for rustdoc JSON.
 - [`linker`](linker/index.md) - Cross-reference linking for markdown documentation.
+- [`logger`](logger/index.md) - Logging related utils.
 - [`multi_crate`](multi_crate/index.md) - Multi-crate documentation generation.
 - [`parser`](parser/index.md) - Rustdoc JSON parsing module.
 - [`types`](types/index.md) - Type rendering utilities for converting rustdoc types to string representations.
@@ -1948,6 +1997,8 @@ generator.generate()?;
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for Generator<'a>`
+
 ##### `impl<T> IntoEither for Generator<'a>`
 
 ##### `impl<D> OwoColorize for Generator<'a>`
@@ -1965,6 +2016,8 @@ generator.generate()?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Generator<'a>`
 
 ### `MarkdownCapture`
 
@@ -2031,6 +2084,8 @@ side effects.
 
 - `fn default() -> MarkdownCapture`
 
+##### `impl<T> Instrument for MarkdownCapture`
+
 ##### `impl<T> IntoEither for MarkdownCapture`
 
 ##### `impl<D> OwoColorize for MarkdownCapture`
@@ -2048,6 +2103,8 @@ side effects.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MarkdownCapture`
 
 ### `LinkRegistry`
 
@@ -2120,6 +2177,8 @@ create links between items.
 
 - `fn default() -> LinkRegistry` — [`LinkRegistry`](linker/index.md)
 
+##### `impl<T> Instrument for LinkRegistry`
+
 ##### `impl<T> IntoEither for LinkRegistry`
 
 ##### `impl<D> OwoColorize for LinkRegistry`
@@ -2137,6 +2196,8 @@ create links between items.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for LinkRegistry`
 
 ### `CrateCollection`
 
@@ -2171,7 +2232,7 @@ for (name, krate) in collection.iter() {
 - **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
 
   Map from crate name to parsed Crate data.
-  HashMap provides O(1) lookups; sorting done on-demand.
+  `HashMap` provides O(1) lookups; sorting done on-demand.
 
 #### Implementations
 
@@ -2221,6 +2282,8 @@ for (name, krate) in collection.iter() {
 
 - `fn default() -> CrateCollection`
 
+##### `impl<T> Instrument for CrateCollection`
+
 ##### `impl<T> IntoEither for CrateCollection`
 
 ##### `impl<D> OwoColorize for CrateCollection`
@@ -2238,6 +2301,8 @@ for (name, krate) in collection.iter() {
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for CrateCollection`
 
 ### `MultiCrateContext<'a>`
 
@@ -2317,6 +2382,8 @@ generation across crates.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for MultiCrateContext<'a>`
+
 ##### `impl<T> IntoEither for MultiCrateContext<'a>`
 
 ##### `impl<D> OwoColorize for MultiCrateContext<'a>`
@@ -2334,6 +2401,8 @@ generation across crates.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateContext<'a>`
 
 ### `MultiCrateGenerator<'a>`
 
@@ -2400,7 +2469,7 @@ output/
 
   Generate documentation for a single crate.
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`Error`](error/index.md)
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`Error`](error/index.md)
 
   Generate a module directory with index.md and child modules.
 
@@ -2409,6 +2478,8 @@ output/
   Create a progress bar.
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for MultiCrateGenerator<'a>`
 
 ##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
 
@@ -2427,6 +2498,8 @@ output/
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateGenerator<'a>`
 
 ### `MultiCrateParser`
 
@@ -2458,6 +2531,8 @@ println!("Found {} crates", crates.len());
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for MultiCrateParser`
+
 ##### `impl<T> IntoEither for MultiCrateParser`
 
 ##### `impl<D> OwoColorize for MultiCrateParser`
@@ -2475,6 +2550,8 @@ println!("Found {} crates", crates.len());
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateParser`
 
 ### `SearchIndex`
 
@@ -2500,6 +2577,8 @@ Serialized to `search_index.json` for client-side consumption.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl<T> Instrument for SearchIndex`
+
 ##### `impl<T> IntoEither for SearchIndex`
 
 ##### `impl<D> OwoColorize for SearchIndex`
@@ -2521,6 +2600,8 @@ Serialized to `search_index.json` for client-side consumption.
 ##### `impl Serialize for SearchIndex`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl<T> WithSubscriber for SearchIndex`
 
 ### `SearchIndexGenerator<'a>`
 
@@ -2568,7 +2649,7 @@ generator.write(Path::new("docs/"))?;
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self`
+- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self`
 
   Create a new search index generator.
 
@@ -2594,6 +2675,8 @@ generator.write(Path::new("docs/"))?;
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for SearchIndexGenerator<'a>`
+
 ##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
 
 ##### `impl<D> OwoColorize for SearchIndexGenerator<'a>`
@@ -2611,6 +2694,8 @@ generator.write(Path::new("docs/"))?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
 
 ### `UnifiedLinkRegistry`
 
@@ -2655,12 +2740,12 @@ This avoids allocating a `String` for the crate name on every lookup.
 - **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the file path within output.
-  Uses hashbrown for raw_entry API (zero-alloc lookups).
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
 - **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the item's display name.
-  Uses hashbrown for raw_entry API (zero-alloc lookups).
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
 - **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
 
@@ -2743,6 +2828,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `fn default() -> UnifiedLinkRegistry`
 
+##### `impl<T> Instrument for UnifiedLinkRegistry`
+
 ##### `impl<T> IntoEither for UnifiedLinkRegistry`
 
 ##### `impl<D> OwoColorize for UnifiedLinkRegistry`
@@ -2761,10 +2848,219 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `unsafe fn drop(ptr: usize)`
 
-### `Args`
+##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
+
+### `Cli`
 
 ```rust
-struct Args {
+struct Cli {
+    pub command: Option<Command>,
+    pub args: GenerateArgs,
+    pub log_level: crate::logger::LogLevel,
+    pub log_file: Option<std::path::PathBuf>,
+}
+```
+
+Top-level CLI for docs-md.
+
+#### Fields
+
+- **`command`**: `Option<Command>`
+
+  Subcommand to run
+
+- **`args`**: `GenerateArgs`
+
+  Generation options (used when no subcommand is specified)
+
+- **`log_level`**: `crate::logger::LogLevel`
+
+  Logging verbosity level
+  
+  Controls the amount of diagnostic output. Use for debugging link
+  resolution issues or understanding the generation process.
+
+- **`log_file`**: `Option<std::path::PathBuf>`
+
+  Enable logging to a file instead of stderr
+  
+  When set, logs are written to this file path instead of stderr.
+  Useful for capturing debug output without cluttering terminal.
+
+#### Trait Implementations
+
+##### `impl Args for Cli`
+
+- `fn group_id() -> Option<clap::Id>`
+
+- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+##### `impl CommandFactory for Cli`
+
+- `fn command<'b>() -> clap::Command`
+
+- `fn command_for_update<'b>() -> clap::Command`
+
+##### `impl Debug for Cli`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl FromArgMatches for Cli`
+
+- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+- `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+##### `impl<T> Instrument for Cli`
+
+##### `impl<T> IntoEither for Cli`
+
+##### `impl<D> OwoColorize for Cli`
+
+##### `impl Parser for Cli`
+
+##### `impl<T> Pointable for Cli`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Cli`
+
+### `DocsArgs`
+
+```rust
+struct DocsArgs {
+    pub output: std::path::PathBuf,
+    pub format: CliOutputFormat,
+    pub primary_crate: Option<String>,
+    pub include_private: bool,
+    pub include_blanket_impls: bool,
+    pub no_mdbook: bool,
+    pub no_search_index: bool,
+    pub clean: bool,
+    pub cargo_args: Vec<String>,
+}
+```
+
+Arguments for the `docs` subcommand (build + generate).
+
+#### Fields
+
+- **`output`**: `std::path::PathBuf`
+
+  Output directory for generated markdown files.
+  
+  Defaults to `docs/` in the current directory.
+
+- **`format`**: `CliOutputFormat`
+
+  Output format (flat or nested).
+
+- **`primary_crate`**: `Option<String>`
+
+  Primary crate name for preferential link resolution.
+  
+  If not specified, attempts to detect from Cargo.toml.
+
+- **`include_private`**: `bool`
+
+  Include private (non-public) items in the output.
+
+- **`include_blanket_impls`**: `bool`
+
+  Include blanket trait implementations in the output.
+
+- **`no_mdbook`**: `bool`
+
+  Skip generating mdBook SUMMARY.md file.
+
+- **`no_search_index`**: `bool`
+
+  Skip generating `search_index.json` file.
+
+- **`clean`**: `bool`
+
+  Run cargo clean before building (full rebuild).
+
+- **`cargo_args`**: `Vec<String>`
+
+  Additional arguments to pass to cargo doc.
+  
+  Example: `docs-md docs -- --all-features`
+
+#### Trait Implementations
+
+##### `impl Args for DocsArgs`
+
+- `fn group_id() -> Option<clap::Id>`
+
+- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+##### `impl CommandFactory for DocsArgs`
+
+- `fn command<'b>() -> clap::Command`
+
+- `fn command_for_update<'b>() -> clap::Command`
+
+##### `impl Debug for DocsArgs`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl FromArgMatches for DocsArgs`
+
+- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+- `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+##### `impl<T> Instrument for DocsArgs`
+
+##### `impl<T> IntoEither for DocsArgs`
+
+##### `impl<D> OwoColorize for DocsArgs`
+
+##### `impl Parser for DocsArgs`
+
+##### `impl<T> Pointable for DocsArgs`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for DocsArgs`
+
+### `GenerateArgs`
+
+```rust
+struct GenerateArgs {
     pub path: Option<std::path::PathBuf>,
     pub dir: Option<std::path::PathBuf>,
     pub mdbook: bool,
@@ -2777,12 +3073,11 @@ struct Args {
 }
 ```
 
-Command-line arguments for docs-md.
+Command-line arguments for direct generation (no subcommand).
 
 The tool accepts input from two mutually exclusive sources:
 1. A local rustdoc JSON file (`--path`)
-2. A crate name to fetch from docs.rs (`--crate-name`) - Note: currently non-functional
-   as docs.rs doesn't serve rustdoc JSON files publicly.
+2. A directory of rustdoc JSON files (`--dir`)
 
 #### Fields
 
@@ -2865,7 +3160,7 @@ The tool accepts input from two mutually exclusive sources:
 
 #### Trait Implementations
 
-##### `impl Args for Args`
+##### `impl Args for GenerateArgs`
 
 - `fn group_id() -> Option<clap::Id>`
 
@@ -2873,17 +3168,21 @@ The tool accepts input from two mutually exclusive sources:
 
 - `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
 
-##### `impl CommandFactory for Args`
+##### `impl CommandFactory for GenerateArgs`
 
 - `fn command<'b>() -> clap::Command`
 
 - `fn command_for_update<'b>() -> clap::Command`
 
-##### `impl Debug for Args`
+##### `impl Debug for GenerateArgs`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FromArgMatches for Args`
+##### `impl Default for GenerateArgs`
+
+- `fn default() -> GenerateArgs` — [`GenerateArgs`](#generateargs)
+
+##### `impl FromArgMatches for GenerateArgs`
 
 - `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
@@ -2893,13 +3192,15 @@ The tool accepts input from two mutually exclusive sources:
 
 - `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl<T> IntoEither for Args`
+##### `impl<T> Instrument for GenerateArgs`
 
-##### `impl<D> OwoColorize for Args`
+##### `impl<T> IntoEither for GenerateArgs`
 
-##### `impl Parser for Args`
+##### `impl<D> OwoColorize for GenerateArgs`
 
-##### `impl<T> Pointable for Args`
+##### `impl Parser for GenerateArgs`
+
+##### `impl<T> Pointable for GenerateArgs`
 
 - `const ALIGN: usize`
 
@@ -2913,7 +3214,141 @@ The tool accepts input from two mutually exclusive sources:
 
 - `unsafe fn drop(ptr: usize)`
 
+##### `impl<T> WithSubscriber for GenerateArgs`
+
 ## Enums
+
+### `CliOutputFormat`
+
+```rust
+enum CliOutputFormat {
+    Flat,
+    Nested,
+}
+```
+
+CLI-compatible output format enum (for clap `ValueEnum` derive).
+
+#### Variants
+
+- **`Flat`**
+
+  Flat structure with double-underscore separators in filenames.
+
+- **`Nested`**
+
+  Nested directory structure mirroring the module hierarchy.
+
+#### Trait Implementations
+
+##### `impl Clone for CliOutputFormat`
+
+- `fn clone(self: &Self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
+
+##### `impl Copy for CliOutputFormat`
+
+##### `impl Debug for CliOutputFormat`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for CliOutputFormat`
+
+- `fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
+
+##### `impl<T> Instrument for CliOutputFormat`
+
+##### `impl<T> IntoEither for CliOutputFormat`
+
+##### `impl<D> OwoColorize for CliOutputFormat`
+
+##### `impl<T> Pointable for CliOutputFormat`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl ValueEnum for CliOutputFormat`
+
+- `fn value_variants<'a>() -> &'a [Self]`
+
+- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+
+##### `impl<T> WithSubscriber for CliOutputFormat`
+
+### `Command`
+
+```rust
+enum Command {
+    Docs(DocsArgs),
+}
+```
+
+Available subcommands
+
+#### Variants
+
+- **`Docs`**
+
+  Build rustdoc JSON and generate markdown in one step.
+  
+  This runs `cargo +nightly doc` with JSON output, then generates
+  markdown documentation from the result. Requires nightly toolchain.
+  
+  Example: `docs-md docs --primary-crate my_crate`
+
+#### Trait Implementations
+
+##### `impl Debug for Command`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl FromArgMatches for Command`
+
+- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+- `fn update_from_arg_matches_mut<'b>(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+##### `impl<T> Instrument for Command`
+
+##### `impl<T> IntoEither for Command`
+
+##### `impl<D> OwoColorize for Command`
+
+##### `impl<T> Pointable for Command`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl Subcommand for Command`
+
+- `fn augment_subcommands<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn augment_subcommands_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn has_subcommand(__clap_name: &str) -> bool`
+
+##### `impl<T> WithSubscriber for Command`
 
 ### `OutputFormat`
 
@@ -2960,6 +3395,8 @@ Controls how module files are organized in the output directory.
 
 - `fn default() -> OutputFormat` — [`OutputFormat`](#outputformat)
 
+##### `impl<T> Instrument for OutputFormat`
+
 ##### `impl<T> IntoEither for OutputFormat`
 
 ##### `impl<D> OwoColorize for OutputFormat`
@@ -2984,66 +3421,7 @@ Controls how module files are organized in the output directory.
 
 - `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
-### `CliOutputFormat`
-
-```rust
-enum CliOutputFormat {
-    Flat,
-    Nested,
-}
-```
-
-CLI-compatible output format enum (for clap `ValueEnum` derive).
-
-#### Variants
-
-- **`Flat`**
-
-  Flat structure with double-underscore separators in filenames.
-
-- **`Nested`**
-
-  Nested directory structure mirroring the module hierarchy.
-
-#### Trait Implementations
-
-##### `impl Clone for CliOutputFormat`
-
-- `fn clone(self: &Self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
-
-##### `impl Copy for CliOutputFormat`
-
-##### `impl Debug for CliOutputFormat`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default for CliOutputFormat`
-
-- `fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
-
-##### `impl<T> IntoEither for CliOutputFormat`
-
-##### `impl<D> OwoColorize for CliOutputFormat`
-
-##### `impl<T> Pointable for CliOutputFormat`
-
-- `const ALIGN: usize`
-
-- `type Init = T`
-
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
-
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
-
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
-
-- `unsafe fn drop(ptr: usize)`
-
-##### `impl ValueEnum for CliOutputFormat`
-
-- `fn value_variants<'a>() -> &'a [Self]`
-
-- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+##### `impl<T> WithSubscriber for OutputFormat`
 
 ## Functions
 
@@ -3078,6 +3456,16 @@ assert_eq!(slugify_anchor("my_function"), "my-function");
 assert_eq!(slugify_anchor("Into<T>"), "into");
 assert_eq!(slugify_anchor("Größe"), "größe");
 ```
+
+## Type Aliases
+
+### `Args`
+
+```rust
+type Args = GenerateArgs;
+```
+
+Backwards-compatible type alias for existing code.
 
 
 === linker/index.md ===
@@ -3185,6 +3573,8 @@ create links between items.
 
 - `fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
 
+##### `impl<T> Instrument for LinkRegistry`
+
 ##### `impl<T> IntoEither for LinkRegistry`
 
 ##### `impl<D> OwoColorize for LinkRegistry`
@@ -3203,7 +3593,33 @@ create links between items.
 
 - `unsafe fn drop(ptr: usize)`
 
+##### `impl<T> WithSubscriber for LinkRegistry`
+
 ## Functions
+
+### `item_has_anchor`
+
+```rust
+fn item_has_anchor(kind: rustdoc_types::ItemKind) -> bool
+```
+
+Check if an item kind generates a heading anchor in markdown.
+
+Only certain item types get `### \`Name\`` headings in the generated output.
+Other items (methods, fields, variants) are rendered as bullet points
+without heading anchors.
+
+# Items with anchors
+
+- Struct, Enum, Trait, Function, Constant, `TypeAlias`, Macro, Module
+
+# Items without anchors
+
+- Methods (in impl blocks)
+- Struct fields
+- Enum variants
+- Associated types/constants
+- Trait methods
 
 ### `slugify_anchor`
 
@@ -3236,6 +3652,145 @@ assert_eq!(slugify_anchor("my_function"), "my-function");
 assert_eq!(slugify_anchor("Into<T>"), "into");
 assert_eq!(slugify_anchor("Größe"), "größe");
 ```
+
+
+=== logger/index.md ===
+# Module `logger`
+
+Logging related utils.
+
+## Structs
+
+### `Logger`
+
+```rust
+struct Logger;
+```
+
+Logger
+
+#### Implementations
+
+- `fn init_logging(log_level: LogLevel, log_file: Option<&PathBuf>) -> Result<()>` — [`LogLevel`](#loglevel)
+
+  Initialize logging
+
+#### Trait Implementations
+
+##### `impl<T> Instrument for Logger`
+
+##### `impl<T> IntoEither for Logger`
+
+##### `impl<D> OwoColorize for Logger`
+
+##### `impl<T> Pointable for Logger`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Logger`
+
+## Enums
+
+### `LogLevel`
+
+```rust
+enum LogLevel {
+    Off,
+    Error,
+    Warn,
+    Info,
+    Debug,
+    Trace,
+}
+```
+
+Log level for debug output
+
+#### Variants
+
+- **`Off`**
+
+  No logging output
+
+- **`Error`**
+
+  Errors only
+
+- **`Warn`**
+
+  Errors and warnings
+
+- **`Info`**
+
+  Informational messages
+
+- **`Debug`**
+
+  Debug messages (verbose)
+
+- **`Trace`**
+
+  Trace messages (very verbose)
+
+#### Implementations
+
+- `const fn to_tracing_level(self: Self) -> LevelFilter`
+
+  Convert to tracing level filter
+
+#### Trait Implementations
+
+##### `impl Clone for LogLevel`
+
+- `fn clone(self: &Self) -> LogLevel` — [`LogLevel`](#loglevel)
+
+##### `impl Copy for LogLevel`
+
+##### `impl Debug for LogLevel`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for LogLevel`
+
+- `fn default() -> LogLevel` — [`LogLevel`](#loglevel)
+
+##### `impl<T> Instrument for LogLevel`
+
+##### `impl<T> IntoEither for LogLevel`
+
+##### `impl<D> OwoColorize for LogLevel`
+
+##### `impl<T> Pointable for LogLevel`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl ValueEnum for LogLevel`
+
+- `fn value_variants<'a>() -> &'a [Self]`
+
+- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+
+##### `impl<T> WithSubscriber for LogLevel`
 
 
 === multi_crate/index.md ===
@@ -3303,7 +3858,7 @@ for (name, krate) in collection.iter() {
 - **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
 
   Map from crate name to parsed Crate data.
-  HashMap provides O(1) lookups; sorting done on-demand.
+  `HashMap` provides O(1) lookups; sorting done on-demand.
 
 #### Implementations
 
@@ -3353,6 +3908,8 @@ for (name, krate) in collection.iter() {
 
 - `fn default() -> CrateCollection`
 
+##### `impl<T> Instrument for CrateCollection`
+
 ##### `impl<T> IntoEither for CrateCollection`
 
 ##### `impl<D> OwoColorize for CrateCollection`
@@ -3370,6 +3927,8 @@ for (name, krate) in collection.iter() {
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for CrateCollection`
 
 ### `MultiCrateContext<'a>`
 
@@ -3449,6 +4008,8 @@ generation across crates.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for MultiCrateContext<'a>`
+
 ##### `impl<T> IntoEither for MultiCrateContext<'a>`
 
 ##### `impl<D> OwoColorize for MultiCrateContext<'a>`
@@ -3466,6 +4027,8 @@ generation across crates.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateContext<'a>`
 
 ### `SingleCrateView<'a>`
 
@@ -3607,11 +4170,15 @@ allows existing rendering code to work with minimal changes.
 
 - `fn process_backtick_links(self: &Self, docs: &str, item_links: &HashMap<String, Id>, current_file: &str) -> String`
 
-  Process backtick links like `[`Span`](https://docs.rs/core/latest/core/net/ip_addr/fmt/struct.Span.html)` to markdown links.
+  Process backtick links like `[`Span`](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)` to markdown links.
 
-- `fn process_plain_links(docs: &str) -> String`
+- `fn process_plain_links(self: &Self, docs: &str, current_file: &str) -> String`
 
   Process plain links like `[enter]` to markdown links.
+
+- `fn resolve_plain_link(self: &Self, link_text: &str, current_file: &str) -> Option<String>`
+
+  Resolve a plain link `[name]` to a markdown link.
 
 - `fn resolve_link(self: &Self, link_text: &str, item_links: &HashMap<String, Id>, current_file: &str) -> Option<String>`
 
@@ -3646,6 +4213,8 @@ allows existing rendering code to work with minimal changes.
   Check if a link text looks like an intentional external crate reference.
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for SingleCrateView<'a>`
 
 ##### `impl<T> IntoEither for SingleCrateView<'a>`
 
@@ -3694,6 +4263,8 @@ allows existing rendering code to work with minimal changes.
 - `unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> RenderContext for SingleCrateView<'a>`
+
+##### `impl<T> WithSubscriber for SingleCrateView<'a>`
 
 ### `MultiCrateGenerator<'a>`
 
@@ -3760,7 +4331,7 @@ output/
 
   Generate documentation for a single crate.
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`Error`](../error/index.md)
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`Error`](../error/index.md)
 
   Generate a module directory with index.md and child modules.
 
@@ -3769,6 +4340,8 @@ output/
   Create a progress bar.
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for MultiCrateGenerator<'a>`
 
 ##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
 
@@ -3787,6 +4360,8 @@ output/
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateGenerator<'a>`
 
 ### `MultiCrateParser`
 
@@ -3818,6 +4393,8 @@ println!("Found {} crates", crates.len());
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for MultiCrateParser`
+
 ##### `impl<T> IntoEither for MultiCrateParser`
 
 ##### `impl<D> OwoColorize for MultiCrateParser`
@@ -3835,6 +4412,8 @@ println!("Found {} crates", crates.len());
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateParser`
 
 ### `UnifiedLinkRegistry`
 
@@ -3879,12 +4458,12 @@ This avoids allocating a `String` for the crate name on every lookup.
 - **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the file path within output.
-  Uses hashbrown for raw_entry API (zero-alloc lookups).
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
 - **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the item's display name.
-  Uses hashbrown for raw_entry API (zero-alloc lookups).
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
 - **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
 
@@ -3967,6 +4546,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `fn default() -> UnifiedLinkRegistry`
 
+##### `impl<T> Instrument for UnifiedLinkRegistry`
+
 ##### `impl<T> IntoEither for UnifiedLinkRegistry`
 
 ##### `impl<D> OwoColorize for UnifiedLinkRegistry`
@@ -3984,6 +4565,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
 
 ### `SearchIndex`
 
@@ -4009,6 +4592,8 @@ Serialized to `search_index.json` for client-side consumption.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl<T> Instrument for SearchIndex`
+
 ##### `impl<T> IntoEither for SearchIndex`
 
 ##### `impl<D> OwoColorize for SearchIndex`
@@ -4030,6 +4615,8 @@ Serialized to `search_index.json` for client-side consumption.
 ##### `impl Serialize for SearchIndex`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl<T> WithSubscriber for SearchIndex`
 
 ### `SearchIndexGenerator<'a>`
 
@@ -4077,7 +4664,7 @@ generator.write(Path::new("docs/"))?;
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self`
+- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self`
 
   Create a new search index generator.
 
@@ -4103,6 +4690,8 @@ generator.write(Path::new("docs/"))?;
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for SearchIndexGenerator<'a>`
+
 ##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
 
 ##### `impl<D> OwoColorize for SearchIndexGenerator<'a>`
@@ -4120,6 +4709,8 @@ generator.write(Path::new("docs/"))?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
 
 ### `SummaryGenerator<'a>`
 
@@ -4178,6 +4769,8 @@ Summary
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for SummaryGenerator<'a>`
+
 ##### `impl<T> IntoEither for SummaryGenerator<'a>`
 
 ##### `impl<D> OwoColorize for SummaryGenerator<'a>`
@@ -4196,15 +4789,9 @@ Summary
 
 - `unsafe fn drop(ptr: usize)`
 
+##### `impl<T> WithSubscriber for SummaryGenerator<'a>`
+
 ## Constants
-
-### `RUST_PATH_SEP`
-
-```rust
-const RUST_PATH_SEP: &str;
-```
-
-Rust module path separator (e.g., `serde_json::de::from_str`).
 
 ### `FILE_PATH_SEP`
 
@@ -4213,6 +4800,14 @@ const FILE_PATH_SEP: char = '/';
 ```
 
 File system path separator for generated documentation.
+
+### `RUST_PATH_SEP`
+
+```rust
+const RUST_PATH_SEP: &str;
+```
+
+Rust module path separator (e.g., `serde_json::de::from_str`).
 
 
 === parser/index.md ===
@@ -4266,15 +4861,21 @@ into the `rustdoc_types::Crate` structure.
 
 #### Implementations
 
-- `fn parse_json(path: &Path) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+- `fn parse_json(json: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
   Parse a rustdoc JSON file from disk into a `Crate` structure.
+
+- `fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+
+  Parse a JSON file.
 
 - `fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
   Parse a rustdoc JSON string into a `Crate` structure.
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for Parser`
 
 ##### `impl<T> IntoEither for Parser`
 
@@ -4293,6 +4894,8 @@ into the `rustdoc_types::Crate` structure.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Parser`
 
 
 === types/index.md ===
@@ -4381,19 +4984,19 @@ let generics = renderer.render_generics(&params);
 
   Render a rustdoc `Type` to its Rust syntax string representation.
 
-- `fn render_generic_args(self: &Self, args: &GenericArgs) -> String`
+- `fn render_generic_args(self: Self, args: &GenericArgs) -> String`
 
   Render generic arguments in angle bracket or parenthesized form.
 
-- `fn render_generic_arg<'t>(self: &Self, arg: &'t GenericArg) -> Cow<'t, str>`
+- `fn render_generic_arg(self: Self, arg: &GenericArg) -> Cow<'_, str>`
 
   Render a single generic argument.
 
-- `fn render_assoc_item_constraint(self: &Self, constraint: &AssocItemConstraint) -> String`
+- `fn render_assoc_item_constraint(self: Self, constraint: &AssocItemConstraint) -> String`
 
   Render an associated type constraint.
 
-- `fn render_term<'t>(self: &Self, term: &'t Term) -> Cow<'t, str>`
+- `fn render_term(self: Self, term: &Term) -> Cow<'_, str>`
 
   Render a term, which is either a type or a constant.
 
@@ -4405,7 +5008,7 @@ let generics = renderer.render_generics(&params);
 
   Render a list of generic parameter definitions.
 
-- `fn render_generic_param_def(self: &Self, param: &GenericParamDef) -> Option<String>`
+- `fn render_generic_param_def(self: Self, param: &GenericParamDef) -> Option<String>`
 
   Render a single generic parameter definition.
 
@@ -4413,7 +5016,7 @@ let generics = renderer.render_generics(&params);
 
   Render where clause predicates.
 
-- `fn render_where_predicate(self: &Self, pred: &rustdoc_types::WherePredicate) -> String`
+- `fn render_where_predicate(self: Self, pred: &rustdoc_types::WherePredicate) -> String`
 
   Render a single where predicate.
 
@@ -4421,11 +5024,11 @@ let generics = renderer.render_generics(&params);
 
   Collect all linkable type names from a type.
 
-- `fn collect_types_recursive(self: &Self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>)`
+- `fn collect_types_recursive(self: Self, ty: &Type, result: &mut Vec<(String, rustdoc_types::Id)>)`
 
   Recursively collect linkable types from a type tree.
 
-- `fn collect_from_generic_args(self: &Self, args: &GenericArgs, result: &mut Vec<(String, rustdoc_types::Id)>)`
+- `fn collect_from_generic_args(self: Self, args: &GenericArgs, result: &mut Vec<(String, rustdoc_types::Id)>)`
 
   Collect types from generic arguments.
 
@@ -4440,6 +5043,8 @@ let generics = renderer.render_generics(&params);
 ##### `impl<'a> Debug for TypeRenderer<'a>`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl<T> Instrument for TypeRenderer<'a>`
 
 ##### `impl<T> IntoEither for TypeRenderer<'a>`
 
@@ -4458,3 +5063,5 @@ let generics = renderer.render_generics(&params);
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for TypeRenderer<'a>`

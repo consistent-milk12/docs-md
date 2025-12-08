@@ -170,13 +170,11 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](atomic/index.md), [`Owned`](atomic/index.md)
+- `unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](atomic/index.md)
 
-- `fn into_shared<'g>(self: Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](guard/index.md), [`Shared`](atomic/index.md)
+- `fn into_box(self: Self) -> Box<T>`
 
-- `fn tag(self: &Self) -> usize`
-
-- `fn with_tag(self: Self, tag: usize) -> Owned<T>` — [`Owned`](atomic/index.md)
+- `fn new(init: T) -> Owned<T>` — [`Owned`](atomic/index.md)
 
 #### Trait Implementations
 
@@ -316,9 +314,7 @@ least significant bits of the address.
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Shared<'_, T>`
 
-- `fn into_usize(self: Self) -> usize`
-
-- `unsafe fn from_usize(data: usize) -> Self`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ### `Collector`
 

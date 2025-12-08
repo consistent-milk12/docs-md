@@ -6,8 +6,8 @@
 
 The ELF ABI. 🧝
 
-This module is not as comprehensive as bindgened [`elf_uapi`](#elf-uapi) and provides only types for target
-pointer width: instead of [`elf32_phdr`](#elf32-phdr) and [`elf64_phdr`](#elf64-phdr) there's only [`Elf_Phdr`](#elf-phdr).
+This module is not as comprehensive as bindgened `elf_uapi` and provides only types for target
+pointer width: instead of `elf32_phdr` and `elf64_phdr` there's only [`Elf_Phdr`](#elf-phdr).
 
 
 

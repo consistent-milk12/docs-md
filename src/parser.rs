@@ -31,10 +31,9 @@
 //! JSON parsing which is significantly faster for large rustdoc JSON files
 //! (10-50MB+). This requires AVX2/SSE4.2 on x86 platforms.
 
-use std::path::Path;
-
-use fs_err as fs;
+use fs_err as FileSystemError;
 use rustdoc_types::Crate;
+use tracing::instrument;
 
 use crate::error::Error;
 
@@ -49,53 +48,53 @@ impl Parser {
     ///
     /// This is the primary entry point for loading documentation data.
     /// The file should be generated with `cargo doc --output-format json`.
-    ///
-    /// # Arguments
-    ///
-    /// * `path` - Path to the `.json` file (e.g., `target/doc/my_crate.json`)
-    ///
-    /// # Returns
-    ///
-    /// A parsed `Crate` structure containing all documentation data.
-    ///
-    /// # Errors
-    ///
-    /// Returns `Error::FileRead` if the file cannot be read, or
-    /// `Error::JsonParse` if the JSON is invalid or doesn't match
-    /// the expected rustdoc JSON schema.
-    ///
-    /// # Example
-    ///
-    /// ```ignore
-    /// let krate = parse_json(Path::new("target/doc/my_crate.json"))?;
-    /// println!("Crate: {:?}", krate.index.get(&krate.root));
-    /// ```
-    #[cfg(not(feature = "simd-json"))]
-    pub fn parse_json(path: &Path) -> Result<Crate, Error> {
-        // Read the entire file into memory
-        let content = fs::read_to_string(path).map_err(Error::FileRead)?;
+    /// Parse a JSON string into a Crate structure.
+    #[instrument(skip(json), fields(json_len = json.len()))]
+    pub fn parse_json(json: &str) -> Result<Crate, Error> {
+        tracing::info!("Starting JSON parsing");
 
-        // Delegate to string parsing
-        Self::parse_json_string(&content)
+        #[cfg(feature = "simd-json")]
+        let result = {
+            tracing::debug!("Using simd-json parser");
+
+            let mut json_bytes = json.as_bytes().to_vec();
+            simd_json::from_slice::<Crate>(&mut json_bytes).map_err(Error::SimdJsonParse)
+        };
+
+        #[cfg(not(feature = "simd-json"))]
+        let result: Result<Crate, Error> = {
+            tracing::debug!("Using serde_json parser");
+
+            serde_json::from_str(json).map_err(Error::JsonParse)
+        };
+
+        match &result {
+            Ok(krate) => {
+                tracing::info!(
+                    crate_name = ?krate.index.get(&krate.root).and_then(|i| i.name.as_ref()),
+                    item_count = krate.index.len(),
+                    "Successfully parsed crate"
+                );
+            },
+
+            Err(e) => {
+                tracing::warn!(error = %e, "Failed to parse JSON");
+            },
+        }
+
+        result
     }
 
-    /// Parse a rustdoc JSON file using SIMD-accelerated parsing.
-    ///
-    /// This variant is used when the `simd-json` feature is enabled.
-    /// It reads the file as bytes and uses simd-json's in-place parsing
-    /// for significantly faster performance on large files.
-    ///
-    /// # Errors
-    /// If fails to read file or parse JSON.
-    #[cfg(feature = "simd-json")]
-    pub fn parse_json(path: &Path) -> Result<Crate, Error> {
-        // Read file as mutable bytes for simd-json's in-place parsing
-        let mut content = fs::read(path).map_err(Error::FileRead)?;
+    /// Parse a JSON file.
+    #[instrument(skip_all, fields(path = %path.as_ref().display()))]
+    pub fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error> {
+        let path = path.as_ref();
+        tracing::debug!("Reading file");
 
-        // simd-json requires mutable slice for in-place string parsing
-        let krate: Crate = simd_json::from_slice(&mut content).map_err(Error::SimdJsonParse)?;
+        let json = FileSystemError::read_to_string(path).map_err(Error::FileRead)?;
+        tracing::debug!(bytes = json.len(), "File read successfully");
 
-        Ok(krate)
+        Self::parse_json(&json)
     }
 
     /// Parse a rustdoc JSON string into a `Crate` structure.

@@ -85,6 +85,8 @@ the current module, with each segment being a clickable link.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for BreadcrumbGenerator<'a>`
+
 ##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
 
 ##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
@@ -102,6 +104,8 @@ the current module, with each segment being a clickable link.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for BreadcrumbGenerator<'a>`
 
 ### `MarkdownCapture`
 
@@ -152,6 +156,8 @@ side effects.
 
 - `fn default() -> MarkdownCapture` — [`MarkdownCapture`](capture/index.md)
 
+##### `impl<T> Instrument for MarkdownCapture`
+
 ##### `impl<T> IntoEither for MarkdownCapture`
 
 ##### `impl<D> OwoColorize for MarkdownCapture`
@@ -169,6 +175,8 @@ side effects.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MarkdownCapture`
 
 ### `GeneratorContext<'a>`
 
@@ -220,6 +228,8 @@ This struct is passed to all rendering components and provides:
 
 - `fn build_impl_map(krate: &'a Crate) -> HashMap<Id, Vec<&'a Impl>>`
 
+- `fn impl_sort_key(impl_block: &Impl) -> (u8, String)`
+
 - `const fn get_type_id(ty: &rustdoc_types::Type) -> Option<Id>`
 
 - `const fn should_include_item(self: &Self, item: &Item) -> bool`
@@ -227,6 +237,8 @@ This struct is passed to all rendering components and provides:
 - `fn count_modules(self: &Self, item: &Item) -> usize`
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for GeneratorContext<'a>`
 
 ##### `impl<T> IntoEither for GeneratorContext<'a>`
 
@@ -276,6 +288,8 @@ This struct is passed to all rendering components and provides:
 
 ##### `impl<T> RenderContext for GeneratorContext<'a>`
 
+##### `impl<T> WithSubscriber for GeneratorContext<'a>`
+
 ### `DocLinkProcessor<'a>`
 
 ```rust
@@ -295,11 +309,11 @@ link text to item IDs. This processor uses that map along with the
 
 # Supported Patterns
 
-- `` [`Name`](#name) `` - Backtick code links (most common)
+- `` `Name` `` - Backtick code links (most common)
 - `` `path::to::Item` `` - Qualified path links
 - `` `Type::method` `` - Method/associated item links
 - `[name]` - Plain identifier links
-- `[text][`ref`](#ref)` - Reference-style links
+- `[text]`ref`` - Reference-style links
 - ``text`` - Path reference links
 
 # External Crate Links
@@ -373,6 +387,8 @@ Links inside fenced code blocks are not processed.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for DocLinkProcessor<'a>`
+
 ##### `impl<T> IntoEither for DocLinkProcessor<'a>`
 
 ##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
@@ -390,6 +406,8 @@ Links inside fenced code blocks are not processed.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for DocLinkProcessor<'a>`
 
 ### `ModuleRenderer<'a>`
 
@@ -458,6 +476,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for ModuleRenderer<'a>`
+
 ##### `impl<T> IntoEither for ModuleRenderer<'a>`
 
 ##### `impl<D> OwoColorize for ModuleRenderer<'a>`
@@ -475,6 +495,8 @@ both single-crate (`GeneratorContext`) and multi-crate (`SingleCrateView`) modes
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for ModuleRenderer<'a>`
 
 ### `Generator<'a>`
 
@@ -533,6 +555,8 @@ generator.generate()?;
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for Generator<'a>`
+
 ##### `impl<T> IntoEither for Generator<'a>`
 
 ##### `impl<D> OwoColorize for Generator<'a>`
@@ -550,6 +574,8 @@ generator.generate()?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Generator<'a>`
 
 ## Traits
 

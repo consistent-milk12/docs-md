@@ -53,7 +53,7 @@ A prefilter for accelerating regex searches.
 
 If you already have your literals that you want to search with,
 then the vanilla `Prefilter::new` constructor is for you. But
-if you have an [`Hir`](#hir) value from the `regex-syntax` crate, then
+if you have an `Hir` value from the `regex-syntax` crate, then
 `Prefilter::from_hir_prefix` might be more convenient. Namely, it uses
 the [`regex-syntax::hir::literal`](regex_syntax::hir::literal) module to
 extract literal prefixes for you, optimize them and then select and build a

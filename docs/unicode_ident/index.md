@@ -1,12 +1,12 @@
 # Crate `unicode_ident`
 
-[![github](#github)](https://github.com/dtolnay/unicode-ident)&ensp;[![crates-io]](https://crates.io/crates/unicode-ident)&ensp;[![docs-rs]](https://docs.rs/unicode-ident)
+[![github]](https://github.com/dtolnay/unicode-ident)&ensp;[![crates-io]](https://crates.io/crates/unicode-ident)&ensp;[![docs-rs]](https://docs.rs/unicode-ident)
 
 
 
 <br>
 
-Implementation of [Unicode Standard Annex #31][tr31](#tr31) for determining which
+Implementation of [Unicode Standard Annex #31][tr31] for determining which
 `char` values are valid in programming language identifiers.
 
 This crate is a better optimized implementation of the older `unicode-xid`
@@ -22,10 +22,10 @@ The following table shows a comparison between five Unicode identifier
 implementations.
 
 - `unicode-ident` is this crate;
-- [`unicode-xid`](#unicode-xid) is a widely used crate run by the "unicode-rs" org;
+- `unicode-xid` is a widely used crate run by the "unicode-rs" org;
 - `ucd-trie` and `fst` are two data structures supported by the
-  [`ucd-generate`](#ucd-generate) tool;
-- [`roaring`](#roaring) is a Rust implementation of Roaring bitmap.
+  `ucd-generate` tool;
+- `roaring` is a Rust implementation of Roaring bitmap.
 
 The *static storage* column shows the total size of `static` tables that the
 crate bakes into your binary, measured in 1000s of bytes.
@@ -145,7 +145,7 @@ converting back into the variable-length representation for trie traversal.
 
 #### fst
 
-Uses a [finite state transducer][fst](#fst). This representation is built into
+Uses a [finite state transducer][fst]. This representation is built into
 [ucd-generate] but I am not aware of any advantage over the `ucd-trie`
 representation. In particular `ucd-trie` is optimized for storing Unicode
 properties while `fst` is not.
@@ -172,7 +172,7 @@ substantially slower than the Unicode-optimized crates. Meanwhile the
 compression was significantly worse, requiring 6&times; as much storage for
 the data structure.
 
-I also benchmarked the [`croaring`](#croaring) crate which is an FFI wrapper around the
+I also benchmarked the `croaring` crate which is an FFI wrapper around the
 C reference implementation of Roaring Bitmap. This crate was consistently
 about 15% slower than pure-Rust `roaring`, which could just be FFI overhead.
 I did not investigate further.

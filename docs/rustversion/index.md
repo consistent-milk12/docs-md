@@ -1,6 +1,6 @@
 # Crate `rustversion`
 
-[![github](#github)](https://github.com/dtolnay/rustversion)&ensp;[![crates-io]](https://crates.io/crates/rustversion)&ensp;[![docs-rs]](https://docs.rs/rustversion)
+[![github]](https://github.com/dtolnay/rustversion)&ensp;[![crates-io]](https://crates.io/crates/rustversion)&ensp;[![docs-rs]](https://docs.rs/rustversion)
 
 
 
@@ -8,7 +8,7 @@
 
 This crate provides macros for conditional compilation according to rustc
 compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
-[`#[cfg_attr(...)]`][cfg_attr](#cfg-attr).
+[`#[cfg_attr(...)]`][cfg_attr].
 
 
 <br>
@@ -104,7 +104,7 @@ compiler version, analogous to [`#[cfg(...)]`][cfg](#cfg) and
 
 Providing additional trait impls as types are stabilized in the standard library
 without breaking compatibility with older compilers; in this case Pin\<P\>
-stabilized in [Rust 1.33][pin](#pin):
+stabilized in [Rust 1.33][pin]:
 
 ```rust
 trait MyTrait {}
@@ -119,7 +119,7 @@ impl<P: MyTrait> MyTrait for Pin<P> {
 ```
 
 Similar but for language features; the ability to control alignment greater than
-1 of packed structs was stabilized in [Rust 1.33][packed](#packed).
+1 of packed structs was stabilized in [Rust 1.33][packed].
 
 ```rust
 #[rustversion::attr(before(1.33), repr(packed))]

@@ -4,7 +4,7 @@
 
 # Module `option`
 
-Parallel iterator types for [options](#options)
+Parallel iterator types for [options]
 
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
@@ -20,11 +20,11 @@ struct IntoIter<T> {
 }
 ```
 
-A parallel iterator over the value in [`Some`](#some) variant of an [`Option`](#option).
+A parallel iterator over the value in [`Some`](#some) variant of an `Option`.
 
-The iterator yields one value if the [`Option`](#option) is a [`Some`](#some), otherwise none.
+The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
 
-This `struct` is created by the [`into_par_iter`](#into-par-iter) function.
+This `struct` is created by the `into_par_iter` function.
 
 
 #### Trait Implementations
@@ -85,11 +85,11 @@ struct Iter<'a, T> {
 }
 ```
 
-A parallel iterator over a reference to the [`Some`](#some) variant of an [`Option`](#option).
+A parallel iterator over a reference to the [`Some`](#some) variant of an `Option`.
 
-The iterator yields one value if the [`Option`](#option) is a [`Some`](#some), otherwise none.
+The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
 
-This `struct` is created by the [`par_iter`](#par-iter) function.
+This `struct` is created by the `par_iter` function.
 
 
 #### Trait Implementations
@@ -150,11 +150,11 @@ struct IterMut<'a, T> {
 }
 ```
 
-A parallel iterator over a mutable reference to the [`Some`](#some) variant of an [`Option`](#option).
+A parallel iterator over a mutable reference to the [`Some`](#some) variant of an `Option`.
 
-The iterator yields one value if the [`Option`](#option) is a [`Some`](#some), otherwise none.
+The iterator yields one value if the `Option` is a [`Some`](#some), otherwise none.
 
-This `struct` is created by the [`par_iter_mut`](#par-iter-mut) function.
+This `struct` is created by the `par_iter_mut` function.
 
 
 #### Trait Implementations

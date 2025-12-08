@@ -8,7 +8,7 @@ The Value enum, a loosely typed way of representing any valid JSON value.
 
 # Constructing JSON
 
-Serde JSON provides a [`json!` macro][macro](#macro) to build `serde_json::Value`
+Serde JSON provides a [`json!` macro][macro] to build `serde_json::Value`
 objects with very natural JSON syntax.
 
 ```rust
@@ -59,9 +59,9 @@ let john = json!({
 ```
 
 A string of JSON data can be parsed into a `serde_json::Value` by the
-[`serde_json::from_str`][from_str](#from-str) function. There is also
-[`from_slice`][from_slice](#from-slice) for parsing from a byte slice `&[u8]` and
-[`from_reader`][from_reader](#from-reader) for parsing from any `io::Read` like a File or
+[`serde_json::from_str`][`from_str`](../de/index.md) function. There is also
+[`from_slice`][`from_slice`](../de/index.md) for parsing from a byte slice `&[u8]` and
+[`from_reader`][`from_reader`](../de/index.md) for parsing from any `io::Read` like a File or
 a TCP stream.
 
 ```rust
@@ -416,31 +416,7 @@ Represents a JSON number, whether integer or floating point.
 
 #### Implementations
 
-- `fn is_i64(self: &Self) -> bool`
-
-- `fn is_u64(self: &Self) -> bool`
-
-- `fn is_f64(self: &Self) -> bool`
-
-- `fn as_i64(self: &Self) -> Option<i64>`
-
-- `fn as_u64(self: &Self) -> Option<u64>`
-
-- `fn as_f64(self: &Self) -> Option<f64>`
-
-- `fn from_f64(f: f64) -> Option<Number>` — [`Number`](../number/index.md)
-
-- `fn as_i128(self: &Self) -> Option<i128>`
-
-- `fn as_u128(self: &Self) -> Option<u128>`
-
-- `fn from_i128(i: i128) -> Option<Number>` — [`Number`](../number/index.md)
-
-- `fn from_u128(i: u128) -> Option<Number>` — [`Number`](../number/index.md)
-
-- `fn as_f32(self: &Self) -> Option<f32>`
-
-- `fn from_f32(f: f32) -> Option<Number>` — [`Number`](../number/index.md)
+- `fn unexpected(self: &Self) -> Unexpected<'_>`
 
 #### Trait Implementations
 
@@ -643,9 +619,57 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 #### Implementations
 
-- `fn invalid_type<E>(self: &Self, exp: &dyn Expected) -> E`
+- `fn get<I: Index>(self: &Self, index: I) -> Option<&Value>` — [`Value`](#value)
 
-- `fn unexpected(self: &Self) -> Unexpected<'_>`
+- `fn get_mut<I: Index>(self: &mut Self, index: I) -> Option<&mut Value>` — [`Value`](#value)
+
+- `fn is_object(self: &Self) -> bool`
+
+- `fn as_object(self: &Self) -> Option<&Map<String, Value>>` — [`Map`](../map/index.md), [`Value`](#value)
+
+- `fn as_object_mut(self: &mut Self) -> Option<&mut Map<String, Value>>` — [`Map`](../map/index.md), [`Value`](#value)
+
+- `fn is_array(self: &Self) -> bool`
+
+- `fn as_array(self: &Self) -> Option<&Vec<Value>>` — [`Value`](#value)
+
+- `fn as_array_mut(self: &mut Self) -> Option<&mut Vec<Value>>` — [`Value`](#value)
+
+- `fn is_string(self: &Self) -> bool`
+
+- `fn as_str(self: &Self) -> Option<&str>`
+
+- `fn is_number(self: &Self) -> bool`
+
+- `fn as_number(self: &Self) -> Option<&Number>` — [`Number`](../number/index.md)
+
+- `fn is_i64(self: &Self) -> bool`
+
+- `fn is_u64(self: &Self) -> bool`
+
+- `fn is_f64(self: &Self) -> bool`
+
+- `fn as_i64(self: &Self) -> Option<i64>`
+
+- `fn as_u64(self: &Self) -> Option<u64>`
+
+- `fn as_f64(self: &Self) -> Option<f64>`
+
+- `fn is_boolean(self: &Self) -> bool`
+
+- `fn as_bool(self: &Self) -> Option<bool>`
+
+- `fn is_null(self: &Self) -> bool`
+
+- `fn as_null(self: &Self) -> Option<()>`
+
+- `fn pointer(self: &Self, pointer: &str) -> Option<&Value>` — [`Value`](#value)
+
+- `fn pointer_mut(self: &mut Self, pointer: &str) -> Option<&mut Value>` — [`Value`](#value)
+
+- `fn take(self: &mut Self) -> Value` — [`Value`](#value)
+
+- `fn sort_all_objects(self: &mut Self)`
 
 #### Trait Implementations
 
@@ -771,7 +795,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq for Value`
 
-- `fn eq(self: &Self, other: &bool) -> bool`
+- `fn eq(self: &Self, other: &u16) -> bool`
 
 ##### `impl Serialize for crate::value::Value`
 

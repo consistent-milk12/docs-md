@@ -20,7 +20,7 @@ ergonomic wrappers around these libc functions, however that is out of
 scope for rustix itself.
 
 If you would like to write a Rust program which does not use a libc, and
-which does provide APIs for some of these functions, [Eyra] and [origin](#origin)
+which does provide APIs for some of these functions, [Eyra] and [origin]
 are two libraries which may be useful, and which provide public interfaces
 for some of this functionality.
 

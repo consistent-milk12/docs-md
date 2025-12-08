@@ -92,6 +92,8 @@ create links between items.
 
 - `fn default() -> LinkRegistry` — [`LinkRegistry`](#linkregistry)
 
+##### `impl<T> Instrument for LinkRegistry`
+
 ##### `impl<T> IntoEither for LinkRegistry`
 
 ##### `impl<D> OwoColorize for LinkRegistry`
@@ -109,6 +111,8 @@ create links between items.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for LinkRegistry`
 
 ## Functions
 
@@ -143,4 +147,28 @@ assert_eq!(slugify_anchor("my_function"), "my-function");
 assert_eq!(slugify_anchor("Into<T>"), "into");
 assert_eq!(slugify_anchor("Größe"), "größe");
 ```
+
+### `item_has_anchor`
+
+```rust
+fn item_has_anchor(kind: rustdoc_types::ItemKind) -> bool
+```
+
+Check if an item kind generates a heading anchor in markdown.
+
+Only certain item types get `### \`Name\`` headings in the generated output.
+Other items (methods, fields, variants) are rendered as bullet points
+without heading anchors.
+
+# Items with anchors
+
+- Struct, Enum, Trait, Function, Constant, `TypeAlias`, Macro, Module
+
+# Items without anchors
+
+- Methods (in impl blocks)
+- Struct fields
+- Enum variants
+- Associated types/constants
+- Trait methods
 

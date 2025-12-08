@@ -4,12 +4,12 @@
 
 # Module `str`
 
-Parallel iterator types for [strings](#strings)
+Parallel iterator types for [strings]
 
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.
 
-Note: `ParallelString::par_split()` and [`par_split_terminator()`](#par-split-terminator)
+Note: `ParallelString::par_split()` and `par_split_terminator()`
 reference a `Pattern` trait which is not visible outside this crate.
 This trait is intentionally kept private, for use only by Rayon itself.
 It is implemented for `char`, `&[char]`, `[char; N]`, `&[char; N]`,

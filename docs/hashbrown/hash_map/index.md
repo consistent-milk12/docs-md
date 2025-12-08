@@ -19,16 +19,16 @@ struct HashMap<K, V, S, A: Allocator> {
 
 A hash map implemented with quadratic probing and SIMD lookup.
 
-The default hashing algorithm is currently [`foldhash`](#foldhash), though this is
+The default hashing algorithm is currently `foldhash`, though this is
 subject to change at any point in the future. This hash function is very
 fast for all types of keys, but this algorithm will typically *not* protect
 against attacks such as HashDoS.
 
 The hashing algorithm can be replaced on a per-`HashMap` basis using the
-[`default`](#default), [`with_hasher`](#with-hasher), and [`with_capacity_and_hasher`](#with-capacity-and-hasher) methods. Many
-alternative algorithms are available on crates.io, such as the [`fnv`](#fnv) crate.
+`default`, `with_hasher`, and `with_capacity_and_hasher` methods. Many
+alternative algorithms are available on crates.io, such as the `fnv` crate.
 
-It is required that the keys implement the [`Eq`](#eq) and [`Hash`](#hash) traits, although
+It is required that the keys implement the `Eq` and `Hash` traits, although
 this can frequently be achieved by using `#[derive(PartialEq, Eq, Hash)]`.
 If you implement these yourself, it is important that the following
 property holds:
@@ -40,11 +40,11 @@ k1 == k2 -> hash(k1) == hash(k2)
 In other words, if two keys are equal, their hashes must be equal.
 
 It is a logic error for a key to be modified in such a way that the key's
-hash, as determined by the [`Hash`](#hash) trait, or its equality, as determined by
-the [`Eq`](#eq) trait, changes while it is in the map. This is normally only
+hash, as determined by the `Hash` trait, or its equality, as determined by
+the `Eq` trait, changes while it is in the map. This is normally only
 possible through [`Cell`](#cell), [`RefCell`](#refcell), global state, I/O, or unsafe code.
 
-It is also a logic error for the [`Hash`](#hash) implementation of a key to panic.
+It is also a logic error for the `Hash` implementation of a key to panic.
 This is generally only possible if the trait is implemented manually. If a
 panic does occur then the contents of the `HashMap` may become corrupted and
 some items may be dropped from the table.
@@ -134,8 +134,8 @@ let stat = player_stats.entry("attack").or_insert(100);
 *stat += random_stat_buff();
 ```
 
-The easiest way to use `HashMap` with a custom key type is to derive [`Eq`](#eq) and [`Hash`](#hash).
-We must also derive [`PartialEq`](#partialeq).
+The easiest way to use `HashMap` with a custom key type is to derive `Eq` and `Hash`.
+We must also derive `PartialEq`.
 
 
 
@@ -187,63 +187,9 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- `fn reserve(self: &mut Self, additional: usize)`
+- `const fn with_hasher(hash_builder: S) -> Self`
 
-- `fn try_reserve(self: &mut Self, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../index.md)
-
-- `fn shrink_to_fit(self: &mut Self)`
-
-- `fn shrink_to(self: &mut Self, min_capacity: usize)`
-
-- `fn entry(self: &mut Self, key: K) -> Entry<'_, K, V, S, A>` — [`Entry`](#entry)
-
-- `fn entry_ref<'a, 'b, Q>(self: &'a mut Self, key: &'b Q) -> EntryRef<'a, 'b, K, Q, V, S, A>` — [`EntryRef`](#entryref)
-
-- `fn get<Q>(self: &Self, k: &Q) -> Option<&V>`
-
-- `fn get_key_value<Q>(self: &Self, k: &Q) -> Option<(&K, &V)>`
-
-- `fn get_key_value_mut<Q>(self: &mut Self, k: &Q) -> Option<(&K, &mut V)>`
-
-- `fn contains_key<Q>(self: &Self, k: &Q) -> bool`
-
-- `fn get_mut<Q>(self: &mut Self, k: &Q) -> Option<&mut V>`
-
-- `fn get_disjoint_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut V>; N]`
-
-- `fn get_many_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut V>; N]`
-
-- `unsafe fn get_disjoint_unchecked_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut V>; N]`
-
-- `unsafe fn get_many_unchecked_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut V>; N]`
-
-- `fn get_disjoint_key_value_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<(&K, &mut V)>; N]`
-
-- `fn get_many_key_value_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<(&K, &mut V)>; N]`
-
-- `unsafe fn get_disjoint_key_value_unchecked_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<(&K, &mut V)>; N]`
-
-- `unsafe fn get_many_key_value_unchecked_mut<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<(&K, &mut V)>; N]`
-
-- `fn get_disjoint_mut_inner<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut (K, V)>; N]`
-
-- `unsafe fn get_disjoint_unchecked_mut_inner<Q, const N: usize>(self: &mut Self, ks: [&Q; N]) -> [Option<&mut (K, V)>; N]`
-
-- `fn build_hashes_inner<Q, const N: usize>(self: &Self, ks: [&Q; N]) -> [u64; N]`
-
-- `fn insert(self: &mut Self, k: K, v: V) -> Option<V>`
-
-- `fn find_or_find_insert_index<Q>(self: &mut Self, hash: u64, key: &Q) -> Result<Bucket<(K, V)>, usize>` — [`Bucket`](../raw/index.md)
-
-- `unsafe fn insert_unique_unchecked(self: &mut Self, k: K, v: V) -> (&K, &mut V)`
-
-- `fn try_insert(self: &mut Self, key: K, value: V) -> Result<&mut V, OccupiedError<'_, K, V, S, A>>` — [`OccupiedError`](#occupiederror)
-
-- `fn remove<Q>(self: &mut Self, k: &Q) -> Option<V>`
-
-- `fn remove_entry<Q>(self: &mut Self, k: &Q) -> Option<(K, V)>`
-
-- `fn allocation_size(self: &Self) -> usize`
+- `fn with_capacity_and_hasher(capacity: usize, hash_builder: S) -> Self`
 
 #### Trait Implementations
 
@@ -269,7 +215,7 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 ##### `impl<'a, K, V, S, A> Extend for HashMap<K, V, S, A>`
 
-- `fn extend<T: IntoIterator<Item = (&'a K, &'a V)>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = &'a (K, V)>>(self: &mut Self, iter: T)`
 
 ##### `impl<K, V, S, A> FromIterator for HashMap<K, V, S, A>`
 
@@ -379,7 +325,7 @@ struct IterMut<'a, K, V> {
 A mutable iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(&'a K, &'a mut V)`.
 
-This `struct` is created by the [`iter_mut`](#iter-mut) method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `iter_mut` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -453,8 +399,8 @@ struct IntoIter<K, V, A: Allocator> {
 An owning iterator over the entries of a `HashMap` in arbitrary order.
 The iterator element type is `(K, V)`.
 
-This `struct` is created by the [`into_iter`](#into-iter) method on [`HashMap`](#hashmap)
-(provided by the [`IntoIterator`](#intoiterator) trait). See its documentation for more.
+This `struct` is created by the `into_iter` method on [`HashMap`](#hashmap)
+(provided by the `IntoIterator` trait). See its documentation for more.
 The map cannot be used after calling that method.
 
 
@@ -528,7 +474,7 @@ struct IntoKeys<K, V, A: Allocator> {
 An owning iterator over the keys of a `HashMap` in arbitrary order.
 The iterator element type is `K`.
 
-This `struct` is created by the [`into_keys`](#into-keys) method on [`HashMap`](#hashmap).
+This `struct` is created by the `into_keys` method on [`HashMap`](#hashmap).
 See its documentation for more.
 The map cannot be used after calling that method.
 
@@ -598,7 +544,7 @@ struct IntoValues<K, V, A: Allocator> {
 An owning iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `V`.
 
-This `struct` is created by the [`into_values`](#into-values) method on [`HashMap`](#hashmap).
+This `struct` is created by the `into_values` method on [`HashMap`](#hashmap).
 See its documentation for more. The map cannot be used after calling that method.
 
 
@@ -667,7 +613,7 @@ struct Keys<'a, K, V> {
 An iterator over the keys of a `HashMap` in arbitrary order.
 The iterator element type is `&'a K`.
 
-This `struct` is created by the [`keys`](#keys) method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `keys` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -740,7 +686,7 @@ struct Values<'a, K, V> {
 An iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `&'a V`.
 
-This `struct` is created by the [`values`](#values) method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `values` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -813,7 +759,7 @@ struct Drain<'a, K, V, A: Allocator> {
 A draining iterator over the entries of a `HashMap` in arbitrary
 order. The iterator element type is `(K, V)`.
 
-This `struct` is created by the [`drain`](#drain) method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `drain` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -883,7 +829,7 @@ struct ExtractIf<'a, K, V, F, A: Allocator> {
 A draining iterator over entries of a `HashMap` which don't satisfy the predicate
 `f(&k, &mut v)` in arbitrary order. The iterator element type is `(K, V)`.
 
-This `struct` is created by the [`extract_if`](#extract-if) method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `extract_if` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -941,7 +887,7 @@ struct ValuesMut<'a, K, V> {
 A mutable iterator over the values of a `HashMap` in arbitrary order.
 The iterator element type is `&'a mut V`.
 
-This `struct` is created by the [`values_mut`](#values-mut) method on [`HashMap`](#hashmap). See its
+This `struct` is created by the `values_mut` method on [`HashMap`](#hashmap). See its
 documentation for more.
 
 
@@ -1009,7 +955,7 @@ struct OccupiedEntry<'a, K, V, S, A: Allocator> {
 ```
 
 A view into an occupied entry in a [`HashMap`](#hashmap).
-It is part of the [`Entry`](../hash_set/index.md) and [`EntryRef`](#entryref) enums.
+It is part of the [`Entry`](#entry) and [`EntryRef`](#entryref) enums.
 
 # Examples
 
@@ -1086,7 +1032,7 @@ struct VacantEntry<'a, K, V, S, A: Allocator> {
 ```
 
 A view into a vacant entry in a `HashMap`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](#entry) enum.
 
 # Examples
 
@@ -1258,7 +1204,7 @@ where
 
 A view into a single entry in a map, which may either be vacant or occupied.
 
-This `enum` is constructed from the [`entry`](#entry) method on [`HashMap`](#hashmap).
+This `enum` is constructed from the `entry` method on [`HashMap`](#hashmap).
 
 
 # Examples
@@ -1334,7 +1280,21 @@ assert_eq!(vec, [("a", 1), ("b", 2), ("c", 3), ("d", 4), ("e", 5), ("f", 6)]);
 
 #### Implementations
 
-- `fn or_default(self: Self) -> &'a mut V`
+- `fn insert(self: Self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+
+- `fn or_insert(self: Self, default: V) -> &'a mut V`
+
+- `fn or_insert_entry(self: Self, default: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](#occupiedentry)
+
+- `fn or_insert_with<F: FnOnce() -> V>(self: Self, default: F) -> &'a mut V`
+
+- `fn or_insert_with_key<F: FnOnce(&K) -> V>(self: Self, default: F) -> &'a mut V`
+
+- `fn key(self: &Self) -> &K`
+
+- `fn and_modify<F>(self: Self, f: F) -> Self`
+
+- `fn and_replace_entry_with<F>(self: Self, f: F) -> Self`
 
 #### Trait Implementations
 
@@ -1357,11 +1317,11 @@ A view into a single entry in a map, which may either be vacant or occupied,
 with any borrowed form of the map's key type.
 
 
-This `enum` is constructed from the [`entry_ref`](#entry-ref) method on [`HashMap`](#hashmap).
+This `enum` is constructed from the `entry_ref` method on [`HashMap`](#hashmap).
 
-[`Hash`](#hash) and [`Eq`](#eq) on the borrowed form of the map's key type *must* match those
+`Hash` and `Eq` on the borrowed form of the map's key type *must* match those
 for the key type. It also require that key may be constructed from the borrowed
-form through the [`From`](#from) trait.
+form through the `From` trait.
 
 
 

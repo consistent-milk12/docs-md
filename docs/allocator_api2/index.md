@@ -54,7 +54,7 @@ assert_eq!(v, [1, 1, 1]);
 ```
 
 Note that unlike array expressions this syntax supports all elements
-which implement [`Clone`](#clone) and the number of elements doesn't have to be
+which implement `Clone` and the number of elements doesn't have to be
 a constant.
 
 This will use `clone` to duplicate an expression, so one should be careful

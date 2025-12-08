@@ -488,27 +488,19 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn try_find<'h, I: Into<Input<'h>>>(self: &Self, input: I) -> Result<Option<Match>, MatchError>` — [`Match`](util/search/index.md), [`MatchError`](util/error/index.md)
+- `fn kind(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](ahocorasick/index.md)
 
-- `fn try_find_overlapping<'h, I: Into<Input<'h>>>(self: &Self, input: I, state: &mut OverlappingState) -> Result<(), MatchError>` — [`OverlappingState`](automaton/index.md), [`MatchError`](util/error/index.md)
+- `fn start_kind(self: &Self) -> StartKind` — [`StartKind`](util/search/index.md)
 
-- `fn try_find_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> Result<FindIter<'a, 'h>, MatchError>` — [`FindIter`](ahocorasick/index.md), [`MatchError`](util/error/index.md)
+- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](util/search/index.md)
 
-- `fn try_find_overlapping_iter<'a, 'h, I: Into<Input<'h>>>(self: &'a Self, input: I) -> Result<FindOverlappingIter<'a, 'h>, MatchError>` — [`FindOverlappingIter`](ahocorasick/index.md), [`MatchError`](util/error/index.md)
+- `fn min_pattern_len(self: &Self) -> usize`
 
-- `fn try_replace_all<B>(self: &Self, haystack: &str, replace_with: &[B]) -> Result<String, MatchError>` — [`MatchError`](util/error/index.md)
+- `fn max_pattern_len(self: &Self) -> usize`
 
-- `fn try_replace_all_bytes<B>(self: &Self, haystack: &[u8], replace_with: &[B]) -> Result<Vec<u8>, MatchError>` — [`MatchError`](util/error/index.md)
+- `fn patterns_len(self: &Self) -> usize`
 
-- `fn try_replace_all_with<F>(self: &Self, haystack: &str, dst: &mut String, replace_with: F) -> Result<(), MatchError>` — [`MatchError`](util/error/index.md)
-
-- `fn try_replace_all_with_bytes<F>(self: &Self, haystack: &[u8], dst: &mut Vec<u8>, replace_with: F) -> Result<(), MatchError>` — [`MatchError`](util/error/index.md)
-
-- `fn try_stream_find_iter<'a, R: std::io::Read>(self: &'a Self, rdr: R) -> Result<StreamFindIter<'a, R>, MatchError>` — [`StreamFindIter`](ahocorasick/index.md), [`MatchError`](util/error/index.md)
-
-- `fn try_stream_replace_all<R, W, B>(self: &Self, rdr: R, wtr: W, replace_with: &[B]) -> Result<(), std::io::Error>`
-
-- `fn try_stream_replace_all_with<R, W, F>(self: &Self, rdr: R, wtr: W, replace_with: F) -> Result<(), std::io::Error>`
+- `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 
@@ -1211,7 +1203,7 @@ to create a span where `start > end`.
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, range: &Range<usize>) -> bool`
+- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](util/search/index.md)
 
 ##### `impl StructuralPartialEq for Span`
 

@@ -13,10 +13,10 @@ intra-doc link syntax into proper markdown links.
 The processor applies transformations in this order:
 1. Strip markdown reference definitions
 2. Unhide rustdoc hidden lines in code blocks
-3. Process reference-style links `[text][`ref`](#ref)`
+3. Process reference-style links `[text]`ref``
 4. Process path reference links ``text``
 5. Process method links `[Type::method]`
-6. Process backtick links `[`Name`](#name)`
+6. Process backtick links ``Name``
 7. Process plain links `[name]`
 8. Convert HTML-style rustdoc links
 9. Clean up blank lines
@@ -44,11 +44,11 @@ link text to item IDs. This processor uses that map along with the
 
 # Supported Patterns
 
-- `` [`Name`](#name) `` - Backtick code links (most common)
+- `` `Name` `` - Backtick code links (most common)
 - `` `path::to::Item` `` - Qualified path links
 - `` `Type::method` `` - Method/associated item links
 - `[name]` - Plain identifier links
-- `[text][`ref`](#ref)` - Reference-style links
+- `[text]`ref`` - Reference-style links
 - ``text`` - Path reference links
 
 # External Crate Links
@@ -122,6 +122,8 @@ Links inside fenced code blocks are not processed.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for DocLinkProcessor<'a>`
+
 ##### `impl<T> IntoEither for DocLinkProcessor<'a>`
 
 ##### `impl<D> OwoColorize for DocLinkProcessor<'a>`
@@ -139,6 +141,8 @@ Links inside fenced code blocks are not processed.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for DocLinkProcessor<'a>`
 
 ## Functions
 
@@ -186,7 +190,7 @@ fn strip_reference_definitions(docs: &str) -> String
 
 Strip markdown reference definition lines.
 
-Removes lines like `[`Name`](#name): path::to::item` which are no longer needed
+Removes lines like ``Name`: path::to::item` which are no longer needed
 after intra-doc links are processed.
 
 ### `unhide_code_lines`

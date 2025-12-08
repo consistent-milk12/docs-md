@@ -57,7 +57,7 @@ rustix's APIs perform the following tasks:
  - Path arguments use [`Arg`](#arg), so they accept any string type.
  - File descriptors are passed and returned via [`AsFd`](fd/index.md) and [`OwnedFd`](fd/index.md)
    instead of bare integers, ensuring I/O safety.
- - Constants use `enum`s and [`bitflags`](#bitflags) types, and enable [support for
+ - Constants use `enum`s and `bitflags` types, and enable [support for
    externally defined flags].
  - Multiplexed functions (eg. `fcntl`, `ioctl`, etc.) are de-multiplexed.
  - Variadic functions (eg. `openat`, etc.) are presented as non-variadic.
@@ -84,8 +84,8 @@ Things they don't do include:
  - Imposing sandboxing features such as filesystem path or network address
    sandboxing.
 
-See [`cap-std`](#cap-std), [`system-interface`](#system-interface), and [`io-streams`](#io-streams) for libraries
-which do hide significant differences between platforms, and [`cap-std`](#cap-std)
+See `cap-std`, `system-interface`, and `io-streams` for libraries
+which do hide significant differences between platforms, and `cap-std`
 which does perform sandboxing and restricts ambient authorities.
 
 

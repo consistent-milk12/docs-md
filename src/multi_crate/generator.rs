@@ -12,6 +12,7 @@ use fs_err as fs;
 use indicatif::{ProgressBar, ProgressStyle};
 use rayon::prelude::*;
 use rustdoc_types::{Id, Item, ItemEnum, StructKind};
+use tracing::{debug, info, info_span, instrument};
 
 use crate::Args;
 use crate::error::Error;
@@ -79,9 +80,18 @@ impl<'a> MultiCrateGenerator<'a> {
     /// # Errors
     ///
     /// Returns an error if any file operation fails.
+    #[instrument(skip(self), fields(
+        crate_count = self.ctx.crates().names().len(),
+        output = %self.args.output.display(),
+        mdbook = self.args.mdbook,
+        search_index = self.args.search_index
+    ))]
     pub fn generate(&self) -> Result<(), Error> {
+        info!("Starting multi-crate documentation generation");
+
         // Create output directory
         fs::create_dir_all(&self.args.output).map_err(Error::CreateDir)?;
+        debug!(path = %self.args.output.display(), "Created output directory");
 
         // Pre-create crate directories to avoid race conditions in parallel generation
         for crate_name in self.ctx.crates().names() {
@@ -98,6 +108,7 @@ impl<'a> MultiCrateGenerator<'a> {
             .map(|view| view.count_modules() + 1)
             .sum();
 
+        debug!(total_modules, "Total modules to generate");
         let progress = Arc::new(Self::create_progress_bar(total_modules)?);
 
         // Generate crates in parallel
@@ -106,6 +117,9 @@ impl<'a> MultiCrateGenerator<'a> {
             .names()
             .par_iter()
             .try_for_each(|crate_name| {
+                let span = info_span!("generate_crate", crate_name);
+                let _guard = span.enter();
+
                 let view = self
                     .ctx
                     .single_crate_view(crate_name)
@@ -116,6 +130,7 @@ impl<'a> MultiCrateGenerator<'a> {
 
         // Generate SUMMARY.md if requested (sequential - single file)
         if self.args.mdbook {
+            info!("Generating SUMMARY.md for mdBook");
             progress.set_message("Generating SUMMARY.md...");
             let summary_gen = SummaryGenerator::new(
                 self.ctx.crates(),
@@ -127,6 +142,7 @@ impl<'a> MultiCrateGenerator<'a> {
 
         // Generate search index if requested (sequential - single file)
         if self.args.search_index {
+            info!("Generating search_index.json");
             progress.set_message("Generating search_index.json...");
 
             // Collect the IDs of all rendered items to filter the search index
@@ -143,6 +159,7 @@ impl<'a> MultiCrateGenerator<'a> {
         }
 
         progress.finish_with_message("Done!");
+        info!("Multi-crate documentation generation complete");
         Ok(())
     }
 
@@ -229,11 +246,14 @@ impl<'a> MultiCrateGenerator<'a> {
     }
 
     /// Generate documentation for a single crate.
+    #[instrument(skip(self, view, progress), fields(crate_name = %view.crate_name()))]
     fn generate_crate(
         &self,
         view: &SingleCrateView,
         progress: &Arc<ProgressBar>,
     ) -> Result<(), Error> {
+        debug!("Starting crate generation");
+
         let crate_name = view.crate_name();
         let crate_dir = self.args.output.join(crate_name);
 
@@ -267,6 +287,7 @@ impl<'a> MultiCrateGenerator<'a> {
             }
         }
 
+        debug!("Crate generation complete");
         Ok(())
     }
 

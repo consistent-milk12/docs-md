@@ -67,7 +67,7 @@ assert_eq!(p, s);
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl<T: IndexedRangeInteger> IndexedParallelIterator for Iter<T>`
+##### `impl IndexedParallelIterator for Iter<char>`
 
 - `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -85,9 +85,9 @@ assert_eq!(p, s);
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
+##### `impl ParallelIterator for Iter<char>`
 
-- `type Item = T`
+- `type Item = char`
 
 - `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 

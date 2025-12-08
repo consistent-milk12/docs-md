@@ -7,7 +7,7 @@ standard library. To disable references to the standard library, you must
 opt-out of the `std` feature using `default-features = false` in your
 `Cargo.toml` file. When in no-std mode, a separate `alloc` feature flag
 is available to support casting to several [`alloc`](#alloc) types not included
-in [`core`](#core).
+in `core`.
 
 Castaway provides the following key macros:
 
@@ -26,7 +26,7 @@ Attempt to cast the result of an expression into a given concrete type.
 
 If the expression is in fact of the given type, an [`Ok`](#ok) is returned
 containing the result of the expression as that type. If the types do not
-match, the value is returned in an [`Err`](#err) unchanged.
+match, the value is returned in an `Err` unchanged.
 
 This macro is designed to work inside a generic context, and allows you to
 downcast generic types to their concrete types or to another generic type at
@@ -80,8 +80,8 @@ bounds, ensuring that all possible instantiations of the type are always
 `'static`. To mark a type as being lifetime-free and enable it to be casted
 to in this manner by this macro it must implement the [`LifetimeFree`](lifetime_free/index.md)
 trait. This is implemented automatically for all primitive types and for
-several [`core`](#core) types. If you enable the `std` crate feature, then it will
-also be implemented for several [`std`](#std) types as well. If you enable the
+several `core` types. If you enable the `std` crate feature, then it will
+also be implemented for several `std` types as well. If you enable the
 `alloc` crate feature, then it will be implemented for several [`alloc`](#alloc)
 types without linking to the standard library as the `std` feature would.
 

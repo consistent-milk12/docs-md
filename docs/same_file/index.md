@@ -21,7 +21,7 @@ fn main() {
 }
 ```
 
-Additionally, this crate provides a [`Handle`](unix/index.md) type that permits a more efficient
+Additionally, this crate provides a [`Handle`](#handle) type that permits a more efficient
 equality check depending on your access pattern. For example, if one wanted to
 check whether any path in a list of paths corresponded to the process' stdout
 handle, then one could build a handle once for stdout. The equality check for
@@ -55,7 +55,7 @@ fn main() {
 }
 ```
 
-See [`examples/is_stderr.rs`](#examplesis-stderrrs) for a runnable example and compare the output of:
+See `examples/is_stderr.rs` for a runnable example and compare the output of:
 
 - `cargo run --example is_stderr 2> examples/stderr` and
 - `cargo run --example is_stderr`.
@@ -83,7 +83,7 @@ Equality is determined by comparing inode numbers on Unix and a combination
 of identifier, volume serial, and file size on Windows. Note that it's
 possible for comparing two handles to produce a false positive on some
 platforms. Namely, two handles can compare equal even if the two handles
-*don't* point to the same file. Check the [source](#source) for specific
+*don't* point to the same file. Check the [source] for specific
 implementation details.
 
 

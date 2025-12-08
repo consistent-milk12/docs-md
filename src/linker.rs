@@ -30,7 +30,7 @@
 use std::collections::HashMap;
 use std::path::Path;
 
-use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
+use rustdoc_types::{Crate, Id, ItemEnum, ItemKind, Visibility};
 use unicode_normalization::UnicodeNormalization;
 
 /// Convert a name to a GitHub-style markdown anchor slug.
@@ -142,6 +142,38 @@ fn slugify_anchor_impl(name: &str) -> String {
     }
 
     result
+}
+
+/// Check if an item kind generates a heading anchor in markdown.
+///
+/// Only certain item types get `### \`Name\`` headings in the generated output.
+/// Other items (methods, fields, variants) are rendered as bullet points
+/// without heading anchors.
+///
+/// # Items with anchors
+///
+/// - Struct, Enum, Trait, Function, Constant, `TypeAlias`, Macro, Module
+///
+/// # Items without anchors
+///
+/// - Methods (in impl blocks)
+/// - Struct fields
+/// - Enum variants
+/// - Associated types/constants
+/// - Trait methods
+#[must_use]
+pub fn item_has_anchor(kind: ItemKind) -> bool {
+    matches!(
+        kind,
+        ItemKind::Struct
+            | ItemKind::Enum
+            | ItemKind::Trait
+            | ItemKind::Function
+            | ItemKind::Constant
+            | ItemKind::TypeAlias
+            | ItemKind::Macro
+            | ItemKind::Module
+    )
 }
 
 /// Registry mapping item IDs to their documentation file paths.

@@ -7,7 +7,7 @@ The `serde_core` crate contains Serde's trait definitions with **no support
 for #\[derive()\]**.
 
 In crates that derive an implementation of `Serialize` or `Deserialize`, you
-must depend on the [`serde`](#serde) crate, not `serde_core`.
+must depend on the `serde` crate, not `serde_core`.
 
 In crates that handwrite implementations of Serde traits, or only use them
 as trait bounds, depending on `serde_core` is permitted. But `serde`

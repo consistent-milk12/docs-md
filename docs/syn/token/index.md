@@ -7,7 +7,7 @@
 Tokens representing Rust punctuation, keywords, and delimiters.
 
 The type names in this module can be difficult to keep straight, so we
-prefer to use the [`Token!`](#token) macro instead. This is a type-macro that
+prefer to use the `Token!` macro instead. This is a type-macro that
 expands to the token type of the given token.
 
 # Example
@@ -34,8 +34,8 @@ pub struct ItemStatic {
 # Parsing
 
 Keywords and punctuation can be parsed through the `ParseStream::parse`
-method. Delimiter tokens are parsed using the [`parenthesized!`](#parenthesized),
-[`bracketed!`](#bracketed) and [`braced!`](#braced) macros.
+method. Delimiter tokens are parsed using the `parenthesized!`,
+`bracketed!` and `braced!` macros.
 
 
 
@@ -103,7 +103,7 @@ Usage:
  wildcard patterns, inferred types, unnamed items in constants, extern crates, use declarations, and destructuring assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -113,6 +113,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Underscore`
+
+##### `impl Debug for Underscore`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Underscore`
 
@@ -128,9 +132,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Underscore`
+
+##### `impl Hash for Underscore`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Underscore`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Underscore`
+
+- `fn eq(self: &Self, _other: &Underscore) -> bool` — [`Underscore`](#underscore)
 
 ##### `impl<P, T> Receiver for Underscore`
 
@@ -170,9 +184,23 @@ None-delimited group
 
 ##### `impl Copy for Group`
 
+##### `impl Debug for Group`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Group`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Group`
+
+##### `impl Hash for Group`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
+##### `impl PartialEq for Group`
+
+- `fn eq(self: &Self, _other: &Group) -> bool` — [`Group`](#group)
 
 ##### `impl Sealed for Group`
 
@@ -189,7 +217,7 @@ struct Abstract {
 `abstract`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -200,15 +228,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Abstract`
 
+##### `impl Debug for Abstract`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Abstract`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Abstract`
+
+##### `impl Hash for Abstract`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Abstract`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Abstract`
+##### `impl PartialEq for Abstract`
+
+- `fn eq(self: &Self, _other: &Abstract) -> bool` — [`Abstract`](#abstract)
+
+##### `impl<T> Sealed for Abstract`
 
 ##### `impl<T> Spanned for Abstract`
 
@@ -231,7 +273,7 @@ struct As {
 `as`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -242,13 +284,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for As`
 
+##### `impl Debug for As`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for As`
 
 - `fn default() -> Self`
 
+##### `impl Eq for As`
+
+##### `impl Hash for As`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for As`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for As`
+
+- `fn eq(self: &Self, _other: &As) -> bool` — [`As`](#as)
 
 ##### `impl<T> Sealed for As`
 
@@ -273,7 +329,7 @@ struct Async {
 `async`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -284,13 +340,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Async`
 
+##### `impl Debug for Async`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Async`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Async`
+
+##### `impl Hash for Async`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Async`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Async`
+
+- `fn eq(self: &Self, _other: &Async) -> bool` — [`Async`](#async)
 
 ##### `impl Sealed for Async`
 
@@ -315,7 +385,7 @@ struct Auto {
 `auto`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -326,13 +396,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Auto`
 
+##### `impl Debug for Auto`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Auto`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Auto`
+
+##### `impl Hash for Auto`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Auto`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Auto`
+
+- `fn eq(self: &Self, _other: &Auto) -> bool` — [`Auto`](#auto)
 
 ##### `impl Sealed for Auto`
 
@@ -357,7 +441,7 @@ struct Await {
 `await`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -368,15 +452,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Await`
 
+##### `impl Debug for Await`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Await`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Await`
+
+##### `impl Hash for Await`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Await`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Await`
+##### `impl PartialEq for Await`
+
+- `fn eq(self: &Self, _other: &Await) -> bool` — [`Await`](#await)
+
+##### `impl<T> Sealed for Await`
 
 ##### `impl<T> Spanned for Await`
 
@@ -399,7 +497,7 @@ struct Become {
 `become`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -410,15 +508,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Become`
 
+##### `impl Debug for Become`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Become`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Become`
+
+##### `impl Hash for Become`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Become`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Become`
+##### `impl PartialEq for Become`
+
+- `fn eq(self: &Self, _other: &Become) -> bool` — [`Become`](#become)
+
+##### `impl Sealed for Become`
 
 ##### `impl<T> Spanned for Become`
 
@@ -441,7 +553,7 @@ struct Box {
 `box`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -452,15 +564,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Box`
 
+##### `impl Debug for Box`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Box`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Box`
+
+##### `impl Hash for Box`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Box`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Box`
+##### `impl PartialEq for Box`
+
+- `fn eq(self: &Self, _other: &Box) -> bool` — [`Box`](#box)
+
+##### `impl<T> Sealed for Box`
 
 ##### `impl<T> Spanned for Box`
 
@@ -483,7 +609,7 @@ struct Break {
 `break`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -494,13 +620,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Break`
 
+##### `impl Debug for Break`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Break`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Break`
+
+##### `impl Hash for Break`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Break`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Break`
+
+- `fn eq(self: &Self, _other: &Break) -> bool` — [`Break`](#break)
 
 ##### `impl Sealed for Break`
 
@@ -525,7 +665,7 @@ struct Const {
 `const`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -536,15 +676,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Const`
 
+##### `impl Debug for Const`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Const`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Const`
+
+##### `impl Hash for Const`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Const`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Const`
+##### `impl PartialEq for Const`
+
+- `fn eq(self: &Self, _other: &Const) -> bool` — [`Const`](#const)
+
+##### `impl Sealed for Const`
 
 ##### `impl<T> Spanned for Const`
 
@@ -567,7 +721,7 @@ struct Continue {
 `continue`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -578,13 +732,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Continue`
 
+##### `impl Debug for Continue`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Continue`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Continue`
+
+##### `impl Hash for Continue`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Continue`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Continue`
+
+- `fn eq(self: &Self, _other: &Continue) -> bool` — [`Continue`](#continue)
 
 ##### `impl Sealed for Continue`
 
@@ -609,7 +777,7 @@ struct Crate {
 `crate`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -620,15 +788,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Crate`
 
+##### `impl Debug for Crate`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Crate`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Crate`
+
+##### `impl Hash for Crate`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Crate`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Crate`
+##### `impl PartialEq for Crate`
+
+- `fn eq(self: &Self, _other: &Crate) -> bool` — [`Crate`](#crate)
+
+##### `impl Sealed for Crate`
 
 ##### `impl<T> Spanned for Crate`
 
@@ -651,7 +833,7 @@ struct Default {
 `default`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -662,13 +844,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Default`
 
+##### `impl Debug for Default`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Default`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Default`
+
+##### `impl Hash for Default`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Default`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Default`
+
+- `fn eq(self: &Self, _other: &Default) -> bool` — [`Default`](#default)
 
 ##### `impl<T> Sealed for Default`
 
@@ -693,7 +889,7 @@ struct Do {
 `do`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -704,15 +900,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Do`
 
+##### `impl Debug for Do`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Do`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Do`
+
+##### `impl Hash for Do`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Do`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Do`
+##### `impl PartialEq for Do`
+
+- `fn eq(self: &Self, _other: &Do) -> bool` — [`Do`](#do)
+
+##### `impl Sealed for Do`
 
 ##### `impl<T> Spanned for Do`
 
@@ -735,7 +945,7 @@ struct Dyn {
 `dyn`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -746,15 +956,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Dyn`
 
+##### `impl Debug for Dyn`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Dyn`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Dyn`
+
+##### `impl Hash for Dyn`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Dyn`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Dyn`
+##### `impl PartialEq for Dyn`
+
+- `fn eq(self: &Self, _other: &Dyn) -> bool` — [`Dyn`](#dyn)
+
+##### `impl<T> Sealed for Dyn`
 
 ##### `impl<T> Spanned for Dyn`
 
@@ -777,7 +1001,7 @@ struct Else {
 `else`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -788,13 +1012,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Else`
 
+##### `impl Debug for Else`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Else`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Else`
+
+##### `impl Hash for Else`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Else`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Else`
+
+- `fn eq(self: &Self, _other: &Else) -> bool` — [`Else`](#else)
 
 ##### `impl<T> Sealed for Else`
 
@@ -819,7 +1057,7 @@ struct Enum {
 `enum`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -830,13 +1068,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Enum`
 
+##### `impl Debug for Enum`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Enum`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Enum`
+
+##### `impl Hash for Enum`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Enum`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Enum`
+
+- `fn eq(self: &Self, _other: &Enum) -> bool` — [`Enum`](#enum)
 
 ##### `impl<T> Sealed for Enum`
 
@@ -861,7 +1113,7 @@ struct Extern {
 `extern`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -872,13 +1124,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Extern`
 
+##### `impl Debug for Extern`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Extern`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Extern`
+
+##### `impl Hash for Extern`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Extern`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Extern`
+
+- `fn eq(self: &Self, _other: &Extern) -> bool` — [`Extern`](#extern)
 
 ##### `impl<T> Sealed for Extern`
 
@@ -903,7 +1169,7 @@ struct Final {
 `final`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -914,15 +1180,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Final`
 
+##### `impl Debug for Final`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Final`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Final`
+
+##### `impl Hash for Final`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Final`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Final`
+##### `impl PartialEq for Final`
+
+- `fn eq(self: &Self, _other: &Final) -> bool` — [`Final`](#final)
+
+##### `impl<T> Sealed for Final`
 
 ##### `impl<T> Spanned for Final`
 
@@ -945,7 +1225,7 @@ struct Fn {
 `fn`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -956,13 +1236,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Fn`
 
+##### `impl Debug for Fn`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Fn`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Fn`
+
+##### `impl Hash for Fn`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Fn`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Fn`
+
+- `fn eq(self: &Self, _other: &Fn) -> bool` — [`Fn`](#fn)
 
 ##### `impl<T> Sealed for Fn`
 
@@ -987,7 +1281,7 @@ struct For {
 `for`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -998,15 +1292,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for For`
 
+##### `impl Debug for For`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for For`
 
 - `fn default() -> Self`
+
+##### `impl Eq for For`
+
+##### `impl Hash for For`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for For`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for For`
+##### `impl PartialEq for For`
+
+- `fn eq(self: &Self, _other: &For) -> bool` — [`For`](#for)
+
+##### `impl<T> Sealed for For`
 
 ##### `impl<T> Spanned for For`
 
@@ -1029,7 +1337,7 @@ struct If {
 `if`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1040,13 +1348,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for If`
 
+##### `impl Debug for If`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for If`
 
 - `fn default() -> Self`
 
+##### `impl Eq for If`
+
+##### `impl Hash for If`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for If`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for If`
+
+- `fn eq(self: &Self, _other: &If) -> bool` — [`If`](#if)
 
 ##### `impl Sealed for If`
 
@@ -1071,7 +1393,7 @@ struct Impl {
 `impl`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1082,15 +1404,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Impl`
 
+##### `impl Debug for Impl`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Impl`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Impl`
+
+##### `impl Hash for Impl`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Impl`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Impl`
+##### `impl PartialEq for Impl`
+
+- `fn eq(self: &Self, _other: &Impl) -> bool` — [`Impl`](#impl)
+
+##### `impl Sealed for Impl`
 
 ##### `impl<T> Spanned for Impl`
 
@@ -1113,7 +1449,7 @@ struct In {
 `in`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1124,15 +1460,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for In`
 
+##### `impl Debug for In`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for In`
 
 - `fn default() -> Self`
+
+##### `impl Eq for In`
+
+##### `impl Hash for In`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for In`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for In`
+##### `impl PartialEq for In`
+
+- `fn eq(self: &Self, _other: &In) -> bool` — [`In`](#in)
+
+##### `impl<T> Sealed for In`
 
 ##### `impl<T> Spanned for In`
 
@@ -1155,7 +1505,7 @@ struct Let {
 `let`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1166,13 +1516,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Let`
 
+##### `impl Debug for Let`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Let`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Let`
+
+##### `impl Hash for Let`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Let`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Let`
+
+- `fn eq(self: &Self, _other: &Let) -> bool` — [`Let`](#let)
 
 ##### `impl<T> Sealed for Let`
 
@@ -1197,7 +1561,7 @@ struct Loop {
 `loop`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1208,15 +1572,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Loop`
 
+##### `impl Debug for Loop`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Loop`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Loop`
+
+##### `impl Hash for Loop`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Loop`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Loop`
+##### `impl PartialEq for Loop`
+
+- `fn eq(self: &Self, _other: &Loop) -> bool` — [`Loop`](#loop)
+
+##### `impl Sealed for Loop`
 
 ##### `impl<T> Spanned for Loop`
 
@@ -1239,7 +1617,7 @@ struct Macro {
 `macro`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1250,15 +1628,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Macro`
 
+##### `impl Debug for Macro`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Macro`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Macro`
+
+##### `impl Hash for Macro`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Macro`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Macro`
+##### `impl PartialEq for Macro`
+
+- `fn eq(self: &Self, _other: &Macro) -> bool` — [`Macro`](#macro)
+
+##### `impl<T> Sealed for Macro`
 
 ##### `impl<T> Spanned for Macro`
 
@@ -1281,7 +1673,7 @@ struct Match {
 `match`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1292,15 +1684,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Match`
 
+##### `impl Debug for Match`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Match`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Match`
+
+##### `impl Hash for Match`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Match`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Match`
+##### `impl PartialEq for Match`
+
+- `fn eq(self: &Self, _other: &Match) -> bool` — [`Match`](#match)
+
+##### `impl<T> Sealed for Match`
 
 ##### `impl<T> Spanned for Match`
 
@@ -1323,7 +1729,7 @@ struct Mod {
 `mod`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1334,15 +1740,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Mod`
 
+##### `impl Debug for Mod`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Mod`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Mod`
+
+##### `impl Hash for Mod`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Mod`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Mod`
+##### `impl PartialEq for Mod`
+
+- `fn eq(self: &Self, _other: &Mod) -> bool` — [`Mod`](#mod)
+
+##### `impl<T> Sealed for Mod`
 
 ##### `impl<T> Spanned for Mod`
 
@@ -1365,7 +1785,7 @@ struct Move {
 `move`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1376,13 +1796,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Move`
 
+##### `impl Debug for Move`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Move`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Move`
+
+##### `impl Hash for Move`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Move`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Move`
+
+- `fn eq(self: &Self, _other: &Move) -> bool` — [`Move`](#move)
 
 ##### `impl<T> Sealed for Move`
 
@@ -1407,7 +1841,7 @@ struct Mut {
 `mut`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1418,15 +1852,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Mut`
 
+##### `impl Debug for Mut`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Mut`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Mut`
+
+##### `impl Hash for Mut`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Mut`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Mut`
+##### `impl PartialEq for Mut`
+
+- `fn eq(self: &Self, _other: &Mut) -> bool` — [`Mut`](#mut)
+
+##### `impl<T> Sealed for Mut`
 
 ##### `impl<T> Spanned for Mut`
 
@@ -1449,7 +1897,7 @@ struct Override {
 `override`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1460,15 +1908,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Override`
 
+##### `impl Debug for Override`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Override`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Override`
+
+##### `impl Hash for Override`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Override`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Override`
+##### `impl PartialEq for Override`
+
+- `fn eq(self: &Self, _other: &Override) -> bool` — [`Override`](#override)
+
+##### `impl Sealed for Override`
 
 ##### `impl<T> Spanned for Override`
 
@@ -1491,7 +1953,7 @@ struct Priv {
 `priv`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1502,15 +1964,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Priv`
 
+##### `impl Debug for Priv`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Priv`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Priv`
+
+##### `impl Hash for Priv`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Priv`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Priv`
+##### `impl PartialEq for Priv`
+
+- `fn eq(self: &Self, _other: &Priv) -> bool` — [`Priv`](#priv)
+
+##### `impl Sealed for Priv`
 
 ##### `impl<T> Spanned for Priv`
 
@@ -1533,7 +2009,7 @@ struct Pub {
 `pub`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1544,13 +2020,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Pub`
 
+##### `impl Debug for Pub`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Pub`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Pub`
+
+##### `impl Hash for Pub`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Pub`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Pub`
+
+- `fn eq(self: &Self, _other: &Pub) -> bool` — [`Pub`](#pub)
 
 ##### `impl<T> Sealed for Pub`
 
@@ -1575,7 +2065,7 @@ struct Raw {
 `raw`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1586,15 +2076,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Raw`
 
+##### `impl Debug for Raw`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Raw`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Raw`
+
+##### `impl Hash for Raw`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Raw`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Raw`
+##### `impl PartialEq for Raw`
+
+- `fn eq(self: &Self, _other: &Raw) -> bool` — [`Raw`](#raw)
+
+##### `impl<T> Sealed for Raw`
 
 ##### `impl<T> Spanned for Raw`
 
@@ -1617,7 +2121,7 @@ struct Ref {
 `ref`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1628,13 +2132,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Ref`
 
+##### `impl Debug for Ref`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Ref`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Ref`
+
+##### `impl Hash for Ref`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Ref`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Ref`
+
+- `fn eq(self: &Self, _other: &Ref) -> bool` — [`Ref`](#ref)
 
 ##### `impl<T> Sealed for Ref`
 
@@ -1659,7 +2177,7 @@ struct Return {
 `return`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1670,15 +2188,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Return`
 
+##### `impl Debug for Return`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Return`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Return`
+
+##### `impl Hash for Return`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Return`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Return`
+##### `impl PartialEq for Return`
+
+- `fn eq(self: &Self, _other: &Return) -> bool` — [`Return`](#return)
+
+##### `impl Sealed for Return`
 
 ##### `impl<T> Spanned for Return`
 
@@ -1701,7 +2233,7 @@ struct SelfType {
 `Self`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1712,15 +2244,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for SelfType`
 
+##### `impl Debug for SelfType`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for SelfType`
 
 - `fn default() -> Self`
+
+##### `impl Eq for SelfType`
+
+##### `impl Hash for SelfType`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for SelfType`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for SelfType`
+##### `impl PartialEq for SelfType`
+
+- `fn eq(self: &Self, _other: &SelfType) -> bool` — [`SelfType`](#selftype)
+
+##### `impl<T> Sealed for SelfType`
 
 ##### `impl<T> Spanned for SelfType`
 
@@ -1743,7 +2289,7 @@ struct SelfValue {
 `self`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1754,13 +2300,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for SelfValue`
 
+##### `impl Debug for SelfValue`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for SelfValue`
 
 - `fn default() -> Self`
 
+##### `impl Eq for SelfValue`
+
+##### `impl Hash for SelfValue`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for SelfValue`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for SelfValue`
+
+- `fn eq(self: &Self, _other: &SelfValue) -> bool` — [`SelfValue`](#selfvalue)
 
 ##### `impl<T> Sealed for SelfValue`
 
@@ -1785,7 +2345,7 @@ struct Static {
 `static`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1796,15 +2356,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Static`
 
+##### `impl Debug for Static`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Static`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Static`
+
+##### `impl Hash for Static`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Static`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Static`
+##### `impl PartialEq for Static`
+
+- `fn eq(self: &Self, _other: &Static) -> bool` — [`Static`](#static)
+
+##### `impl<T> Sealed for Static`
 
 ##### `impl<T> Spanned for Static`
 
@@ -1827,7 +2401,7 @@ struct Struct {
 `struct`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1838,15 +2412,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Struct`
 
+##### `impl Debug for Struct`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Struct`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Struct`
+
+##### `impl Hash for Struct`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Struct`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Struct`
+##### `impl PartialEq for Struct`
+
+- `fn eq(self: &Self, _other: &Struct) -> bool` — [`Struct`](#struct)
+
+##### `impl<T> Sealed for Struct`
 
 ##### `impl<T> Spanned for Struct`
 
@@ -1869,7 +2457,7 @@ struct Super {
 `super`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1880,15 +2468,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Super`
 
+##### `impl Debug for Super`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Super`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Super`
+
+##### `impl Hash for Super`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Super`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Super`
+##### `impl PartialEq for Super`
+
+- `fn eq(self: &Self, _other: &Super) -> bool` — [`Super`](#super)
+
+##### `impl Sealed for Super`
 
 ##### `impl<T> Spanned for Super`
 
@@ -1911,7 +2513,7 @@ struct Trait {
 `trait`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1922,13 +2524,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Trait`
 
+##### `impl Debug for Trait`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Trait`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Trait`
+
+##### `impl Hash for Trait`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Trait`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Trait`
+
+- `fn eq(self: &Self, _other: &Trait) -> bool` — [`Trait`](#trait)
 
 ##### `impl Sealed for Trait`
 
@@ -1953,7 +2569,7 @@ struct Try {
 `try`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -1964,15 +2580,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Try`
 
+##### `impl Debug for Try`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Try`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Try`
+
+##### `impl Hash for Try`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Try`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Try`
+##### `impl PartialEq for Try`
+
+- `fn eq(self: &Self, _other: &Try) -> bool` — [`Try`](#try)
+
+##### `impl Sealed for Try`
 
 ##### `impl<T> Spanned for Try`
 
@@ -1995,7 +2625,7 @@ struct Type {
 `type`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2006,13 +2636,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Type`
 
+##### `impl Debug for Type`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Type`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Type`
+
+##### `impl Hash for Type`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Type`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Type`
+
+- `fn eq(self: &Self, _other: &Type) -> bool` — [`Type`](#type)
 
 ##### `impl<T> Sealed for Type`
 
@@ -2037,7 +2681,7 @@ struct Typeof {
 `typeof`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2048,15 +2692,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Typeof`
 
+##### `impl Debug for Typeof`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Typeof`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Typeof`
+
+##### `impl Hash for Typeof`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Typeof`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Typeof`
+##### `impl PartialEq for Typeof`
+
+- `fn eq(self: &Self, _other: &Typeof) -> bool` — [`Typeof`](#typeof)
+
+##### `impl Sealed for Typeof`
 
 ##### `impl<T> Spanned for Typeof`
 
@@ -2079,7 +2737,7 @@ struct Union {
 `union`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2090,13 +2748,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Union`
 
+##### `impl Debug for Union`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Union`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Union`
+
+##### `impl Hash for Union`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Union`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Union`
+
+- `fn eq(self: &Self, _other: &Union) -> bool` — [`Union`](#union)
 
 ##### `impl<T> Sealed for Union`
 
@@ -2121,7 +2793,7 @@ struct Unsafe {
 `unsafe`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2132,13 +2804,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Unsafe`
 
+##### `impl Debug for Unsafe`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Unsafe`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Unsafe`
+
+##### `impl Hash for Unsafe`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Unsafe`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Unsafe`
+
+- `fn eq(self: &Self, _other: &Unsafe) -> bool` — [`Unsafe`](#unsafe)
 
 ##### `impl<T> Sealed for Unsafe`
 
@@ -2163,7 +2849,7 @@ struct Unsized {
 `unsized`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2174,13 +2860,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Unsized`
 
+##### `impl Debug for Unsized`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Unsized`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Unsized`
+
+##### `impl Hash for Unsized`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Unsized`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Unsized`
+
+- `fn eq(self: &Self, _other: &Unsized) -> bool` — [`Unsized`](#unsized)
 
 ##### `impl Sealed for Unsized`
 
@@ -2205,7 +2905,7 @@ struct Use {
 `use`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2216,13 +2916,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Use`
 
+##### `impl Debug for Use`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Use`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Use`
+
+##### `impl Hash for Use`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Use`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Use`
+
+- `fn eq(self: &Self, _other: &Use) -> bool` — [`Use`](#use)
 
 ##### `impl<T> Sealed for Use`
 
@@ -2247,7 +2961,7 @@ struct Virtual {
 `virtual`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2258,15 +2972,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Virtual`
 
+##### `impl Debug for Virtual`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Virtual`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Virtual`
+
+##### `impl Hash for Virtual`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Virtual`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Virtual`
+##### `impl PartialEq for Virtual`
+
+- `fn eq(self: &Self, _other: &Virtual) -> bool` — [`Virtual`](#virtual)
+
+##### `impl<T> Sealed for Virtual`
 
 ##### `impl<T> Spanned for Virtual`
 
@@ -2289,7 +3017,7 @@ struct Where {
 `where`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2300,15 +3028,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Where`
 
+##### `impl Debug for Where`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Where`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Where`
+
+##### `impl Hash for Where`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Where`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for Where`
+##### `impl PartialEq for Where`
+
+- `fn eq(self: &Self, _other: &Where) -> bool` — [`Where`](#where)
+
+##### `impl<T> Sealed for Where`
 
 ##### `impl<T> Spanned for Where`
 
@@ -2331,7 +3073,7 @@ struct While {
 `while`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2342,13 +3084,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for While`
 
+##### `impl Debug for While`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for While`
 
 - `fn default() -> Self`
 
+##### `impl Eq for While`
+
+##### `impl Hash for While`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for While`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for While`
+
+- `fn eq(self: &Self, _other: &While) -> bool` — [`While`](#while)
 
 ##### `impl Sealed for While`
 
@@ -2373,7 +3129,7 @@ struct Yield {
 `yield`
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2384,15 +3140,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Yield`
 
+##### `impl Debug for Yield`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Yield`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Yield`
+
+##### `impl Hash for Yield`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for Yield`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for Yield`
+##### `impl PartialEq for Yield`
+
+- `fn eq(self: &Self, _other: &Yield) -> bool` — [`Yield`](#yield)
+
+##### `impl Sealed for Yield`
 
 ##### `impl<T> Spanned for Yield`
 
@@ -2418,7 +3188,7 @@ Usage:
  bitwise and logical AND, borrow, references, reference patterns.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2428,6 +3198,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for And`
+
+##### `impl Debug for And`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for And`
 
@@ -2443,15 +3217,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for And`
+
+##### `impl Hash for And`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for And`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for And`
+
+- `fn eq(self: &Self, _other: &And) -> bool` — [`And`](#and)
 
 ##### `impl<P, T> Receiver for And`
 
 - `type Target = T`
 
-##### `impl Sealed for And`
+##### `impl<T> Sealed for And`
 
 ##### `impl<T> Spanned for And`
 
@@ -2477,7 +3261,7 @@ Usage:
  lazy AND, borrow, references, reference patterns.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2488,13 +3272,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for AndAnd`
 
+##### `impl Debug for AndAnd`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for AndAnd`
 
 - `fn default() -> Self`
 
+##### `impl Eq for AndAnd`
+
+##### `impl Hash for AndAnd`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for AndAnd`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for AndAnd`
+
+- `fn eq(self: &Self, _other: &AndAnd) -> bool` — [`AndAnd`](#andand)
 
 ##### `impl Sealed for AndAnd`
 
@@ -2522,7 +3320,7 @@ Usage:
  bitwise AND assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2533,13 +3331,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for AndEq`
 
+##### `impl Debug for AndEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for AndEq`
 
 - `fn default() -> Self`
 
+##### `impl Eq for AndEq`
+
+##### `impl Hash for AndEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for AndEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for AndEq`
+
+- `fn eq(self: &Self, _other: &AndEq) -> bool` — [`AndEq`](#andeq)
 
 ##### `impl Sealed for AndEq`
 
@@ -2567,7 +3379,7 @@ Usage:
  subpattern binding.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2577,6 +3389,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for At`
+
+##### `impl Debug for At`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for At`
 
@@ -2592,9 +3408,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for At`
+
+##### `impl Hash for At`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for At`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for At`
+
+- `fn eq(self: &Self, _other: &At) -> bool` — [`At`](#at)
 
 ##### `impl<P, T> Receiver for At`
 
@@ -2626,7 +3452,7 @@ Usage:
  bitwise and logical XOR.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2636,6 +3462,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Caret`
+
+##### `impl Debug for Caret`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Caret`
 
@@ -2651,9 +3481,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Caret`
+
+##### `impl Hash for Caret`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Caret`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Caret`
+
+- `fn eq(self: &Self, _other: &Caret) -> bool` — [`Caret`](#caret)
 
 ##### `impl<P, T> Receiver for Caret`
 
@@ -2685,7 +3525,7 @@ Usage:
  bitwise XOR assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2696,15 +3536,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for CaretEq`
 
+##### `impl Debug for CaretEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for CaretEq`
 
 - `fn default() -> Self`
+
+##### `impl Eq for CaretEq`
+
+##### `impl Hash for CaretEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for CaretEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for CaretEq`
+##### `impl PartialEq for CaretEq`
+
+- `fn eq(self: &Self, _other: &CaretEq) -> bool` — [`CaretEq`](#careteq)
+
+##### `impl Sealed for CaretEq`
 
 ##### `impl<T> Spanned for CaretEq`
 
@@ -2730,7 +3584,7 @@ Usage:
  various separators.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2740,6 +3594,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Colon`
+
+##### `impl Debug for Colon`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Colon`
 
@@ -2755,9 +3613,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Colon`
+
+##### `impl Hash for Colon`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Colon`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Colon`
+
+- `fn eq(self: &Self, _other: &Colon) -> bool` — [`Colon`](#colon)
 
 ##### `impl<P, T> Receiver for Colon`
 
@@ -2789,7 +3657,7 @@ Usage:
  various separators.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2799,6 +3667,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Comma`
+
+##### `impl Debug for Comma`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Comma`
 
@@ -2814,15 +3686,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Comma`
+
+##### `impl Hash for Comma`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Comma`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Comma`
+
+- `fn eq(self: &Self, _other: &Comma) -> bool` — [`Comma`](#comma)
 
 ##### `impl<P, T> Receiver for Comma`
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Comma`
+##### `impl Sealed for Comma`
 
 ##### `impl<T> Spanned for Comma`
 
@@ -2848,7 +3730,7 @@ Usage:
  macros.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2858,6 +3740,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Dollar`
+
+##### `impl Debug for Dollar`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dollar`
 
@@ -2873,15 +3759,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Dollar`
+
+##### `impl Hash for Dollar`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Dollar`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Dollar`
+
+- `fn eq(self: &Self, _other: &Dollar) -> bool` — [`Dollar`](#dollar)
 
 ##### `impl<P, T> Receiver for Dollar`
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Dollar`
+##### `impl Sealed for Dollar`
 
 ##### `impl<T> Spanned for Dollar`
 
@@ -2907,7 +3803,7 @@ Usage:
  field access, tuple index.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2917,6 +3813,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Dot`
+
+##### `impl Debug for Dot`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Dot`
 
@@ -2932,15 +3832,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Dot`
+
+##### `impl Hash for Dot`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Dot`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Dot`
+
+- `fn eq(self: &Self, _other: &Dot) -> bool` — [`Dot`](#dot)
 
 ##### `impl<P, T> Receiver for Dot`
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Dot`
+##### `impl Sealed for Dot`
 
 ##### `impl<T> Spanned for Dot`
 
@@ -2966,7 +3876,7 @@ Usage:
  range, struct expressions, patterns, range patterns.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -2977,13 +3887,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for DotDot`
 
+##### `impl Debug for DotDot`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for DotDot`
 
 - `fn default() -> Self`
 
+##### `impl Eq for DotDot`
+
+##### `impl Hash for DotDot`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for DotDot`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for DotDot`
+
+- `fn eq(self: &Self, _other: &DotDot) -> bool` — [`DotDot`](#dotdot)
 
 ##### `impl<T> Sealed for DotDot`
 
@@ -3011,7 +3935,7 @@ Usage:
  variadic functions, range patterns.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3022,13 +3946,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for DotDotDot`
 
+##### `impl Debug for DotDotDot`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for DotDotDot`
 
 - `fn default() -> Self`
 
+##### `impl Eq for DotDotDot`
+
+##### `impl Hash for DotDotDot`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for DotDotDot`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for DotDotDot`
+
+- `fn eq(self: &Self, _other: &DotDotDot) -> bool` — [`DotDotDot`](#dotdotdot)
 
 ##### `impl<T> Sealed for DotDotDot`
 
@@ -3056,7 +3994,7 @@ Usage:
  inclusive range, range patterns.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3067,15 +4005,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for DotDotEq`
 
+##### `impl Debug for DotDotEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for DotDotEq`
 
 - `fn default() -> Self`
+
+##### `impl Eq for DotDotEq`
+
+##### `impl Hash for DotDotEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for DotDotEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for DotDotEq`
+##### `impl PartialEq for DotDotEq`
+
+- `fn eq(self: &Self, _other: &DotDotEq) -> bool` — [`DotDotEq`](#dotdoteq)
+
+##### `impl<T> Sealed for DotDotEq`
 
 ##### `impl<T> Spanned for DotDotEq`
 
@@ -3101,7 +4053,7 @@ Usage:
  assignment, attributes, various type definitions.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3111,6 +4063,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Eq`
+
+##### `impl Debug for Eq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Eq`
 
@@ -3126,9 +4082,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Eq`
+
+##### `impl Hash for Eq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Eq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Eq`
+
+- `fn eq(self: &Self, _other: &Eq) -> bool` — [`Eq`](#eq)
 
 ##### `impl<P, T> Receiver for Eq`
 
@@ -3160,7 +4126,7 @@ Usage:
  equal.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3171,15 +4137,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for EqEq`
 
+##### `impl Debug for EqEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for EqEq`
 
 - `fn default() -> Self`
+
+##### `impl Eq for EqEq`
+
+##### `impl Hash for EqEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for EqEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for EqEq`
+##### `impl PartialEq for EqEq`
+
+- `fn eq(self: &Self, _other: &EqEq) -> bool` — [`EqEq`](#eqeq)
+
+##### `impl<T> Sealed for EqEq`
 
 ##### `impl<T> Spanned for EqEq`
 
@@ -3205,7 +4185,7 @@ Usage:
  match arms, macros.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3216,15 +4196,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for FatArrow`
 
+##### `impl Debug for FatArrow`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for FatArrow`
 
 - `fn default() -> Self`
+
+##### `impl Eq for FatArrow`
+
+##### `impl Hash for FatArrow`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for FatArrow`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for FatArrow`
+##### `impl PartialEq for FatArrow`
+
+- `fn eq(self: &Self, _other: &FatArrow) -> bool` — [`FatArrow`](#fatarrow)
+
+##### `impl Sealed for FatArrow`
 
 ##### `impl<T> Spanned for FatArrow`
 
@@ -3250,7 +4244,7 @@ Usage:
  greater than or equal to, generics.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3261,13 +4255,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Ge`
 
+##### `impl Debug for Ge`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Ge`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Ge`
+
+##### `impl Hash for Ge`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Ge`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Ge`
+
+- `fn eq(self: &Self, _other: &Ge) -> bool` — [`Ge`](#ge)
 
 ##### `impl<T> Sealed for Ge`
 
@@ -3295,7 +4303,7 @@ Usage:
  greater than, generics, paths.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3305,6 +4313,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Gt`
+
+##### `impl Debug for Gt`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Gt`
 
@@ -3320,15 +4332,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Gt`
+
+##### `impl Hash for Gt`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Gt`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Gt`
+
+- `fn eq(self: &Self, _other: &Gt) -> bool` — [`Gt`](#gt)
 
 ##### `impl<P, T> Receiver for Gt`
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Gt`
+##### `impl Sealed for Gt`
 
 ##### `impl<T> Spanned for Gt`
 
@@ -3354,7 +4376,7 @@ Usage:
  unused.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3365,15 +4387,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for LArrow`
 
+##### `impl Debug for LArrow`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for LArrow`
 
 - `fn default() -> Self`
+
+##### `impl Eq for LArrow`
+
+##### `impl Hash for LArrow`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for LArrow`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for LArrow`
+##### `impl PartialEq for LArrow`
+
+- `fn eq(self: &Self, _other: &LArrow) -> bool` — [`LArrow`](#larrow)
+
+##### `impl<T> Sealed for LArrow`
 
 ##### `impl<T> Spanned for LArrow`
 
@@ -3399,7 +4435,7 @@ Usage:
  less than or equal to.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3410,13 +4446,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Le`
 
+##### `impl Debug for Le`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Le`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Le`
+
+##### `impl Hash for Le`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Le`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Le`
+
+- `fn eq(self: &Self, _other: &Le) -> bool` — [`Le`](#le)
 
 ##### `impl<T> Sealed for Le`
 
@@ -3444,7 +4494,7 @@ Usage:
  less than, generics, paths.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3454,6 +4504,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Lt`
+
+##### `impl Debug for Lt`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Lt`
 
@@ -3469,15 +4523,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Lt`
+
+##### `impl Hash for Lt`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Lt`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Lt`
+
+- `fn eq(self: &Self, _other: &Lt) -> bool` — [`Lt`](#lt)
 
 ##### `impl<P, T> Receiver for Lt`
 
 - `type Target = T`
 
-##### `impl Sealed for Lt`
+##### `impl<T> Sealed for Lt`
 
 ##### `impl<T> Spanned for Lt`
 
@@ -3503,7 +4567,7 @@ Usage:
  subtraction, negation.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3513,6 +4577,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Minus`
+
+##### `impl Debug for Minus`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Minus`
 
@@ -3528,15 +4596,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Minus`
+
+##### `impl Hash for Minus`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Minus`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Minus`
+
+- `fn eq(self: &Self, _other: &Minus) -> bool` — [`Minus`](#minus)
 
 ##### `impl<P, T> Receiver for Minus`
 
 - `type Target = T`
 
-##### `impl Sealed for Minus`
+##### `impl<T> Sealed for Minus`
 
 ##### `impl<T> Spanned for Minus`
 
@@ -3562,7 +4640,7 @@ Usage:
  subtraction assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3573,13 +4651,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for MinusEq`
 
+##### `impl Debug for MinusEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for MinusEq`
 
 - `fn default() -> Self`
 
+##### `impl Eq for MinusEq`
+
+##### `impl Hash for MinusEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for MinusEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for MinusEq`
+
+- `fn eq(self: &Self, _other: &MinusEq) -> bool` — [`MinusEq`](#minuseq)
 
 ##### `impl<T> Sealed for MinusEq`
 
@@ -3607,7 +4699,7 @@ Usage:
  not equal.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3618,13 +4710,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Ne`
 
+##### `impl Debug for Ne`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Ne`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Ne`
+
+##### `impl Hash for Ne`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Ne`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Ne`
+
+- `fn eq(self: &Self, _other: &Ne) -> bool` — [`Ne`](#ne)
 
 ##### `impl Sealed for Ne`
 
@@ -3652,7 +4758,7 @@ Usage:
  bitwise and logical NOT, macro calls, inner attributes, never type, negative impls.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3662,6 +4768,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Not`
+
+##### `impl Debug for Not`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Not`
 
@@ -3677,15 +4787,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Not`
+
+##### `impl Hash for Not`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Not`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Not`
+
+- `fn eq(self: &Self, _other: &Not) -> bool` — [`Not`](#not)
 
 ##### `impl<P, T> Receiver for Not`
 
 - `type Target = T`
 
-##### `impl Sealed for Not`
+##### `impl<T> Sealed for Not`
 
 ##### `impl<T> Spanned for Not`
 
@@ -3711,7 +4831,7 @@ Usage:
  bitwise and logical OR, closures, patterns in match, if let, and while let.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3721,6 +4841,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Or`
+
+##### `impl Debug for Or`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Or`
 
@@ -3736,15 +4860,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Or`
+
+##### `impl Hash for Or`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Or`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Or`
+
+- `fn eq(self: &Self, _other: &Or) -> bool` — [`Or`](#or)
 
 ##### `impl<P, T> Receiver for Or`
 
 - `type Target = T`
 
-##### `impl Sealed for Or`
+##### `impl<T> Sealed for Or`
 
 ##### `impl<T> Spanned for Or`
 
@@ -3770,7 +4904,7 @@ Usage:
  bitwise OR assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3781,13 +4915,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for OrEq`
 
+##### `impl Debug for OrEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for OrEq`
 
 - `fn default() -> Self`
 
+##### `impl Eq for OrEq`
+
+##### `impl Hash for OrEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for OrEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for OrEq`
+
+- `fn eq(self: &Self, _other: &OrEq) -> bool` — [`OrEq`](#oreq)
 
 ##### `impl Sealed for OrEq`
 
@@ -3815,7 +4963,7 @@ Usage:
  lazy OR, closures.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3826,13 +4974,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for OrOr`
 
+##### `impl Debug for OrOr`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for OrOr`
 
 - `fn default() -> Self`
 
+##### `impl Eq for OrOr`
+
+##### `impl Hash for OrOr`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for OrOr`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for OrOr`
+
+- `fn eq(self: &Self, _other: &OrOr) -> bool` — [`OrOr`](#oror)
 
 ##### `impl Sealed for OrOr`
 
@@ -3860,7 +5022,7 @@ Usage:
  path separator.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3871,13 +5033,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for PathSep`
 
+##### `impl Debug for PathSep`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for PathSep`
 
 - `fn default() -> Self`
 
+##### `impl Eq for PathSep`
+
+##### `impl Hash for PathSep`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for PathSep`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for PathSep`
+
+- `fn eq(self: &Self, _other: &PathSep) -> bool` — [`PathSep`](#pathsep)
 
 ##### `impl Sealed for PathSep`
 
@@ -3905,7 +5081,7 @@ Usage:
  remainder.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3915,6 +5091,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Percent`
+
+##### `impl Debug for Percent`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Percent`
 
@@ -3930,15 +5110,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Percent`
+
+##### `impl Hash for Percent`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Percent`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Percent`
+
+- `fn eq(self: &Self, _other: &Percent) -> bool` — [`Percent`](#percent)
 
 ##### `impl<P, T> Receiver for Percent`
 
 - `type Target = T`
 
-##### `impl Sealed for Percent`
+##### `impl<T> Sealed for Percent`
 
 ##### `impl<T> Spanned for Percent`
 
@@ -3964,7 +5154,7 @@ Usage:
  remainder assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -3975,15 +5165,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for PercentEq`
 
+##### `impl Debug for PercentEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for PercentEq`
 
 - `fn default() -> Self`
+
+##### `impl Eq for PercentEq`
+
+##### `impl Hash for PercentEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for PercentEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl Sealed for PercentEq`
+##### `impl PartialEq for PercentEq`
+
+- `fn eq(self: &Self, _other: &PercentEq) -> bool` — [`PercentEq`](#percenteq)
+
+##### `impl<T> Sealed for PercentEq`
 
 ##### `impl<T> Spanned for PercentEq`
 
@@ -4009,7 +5213,7 @@ Usage:
  addition, trait bounds, macro Kleene matcher.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4019,6 +5223,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Plus`
+
+##### `impl Debug for Plus`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Plus`
 
@@ -4034,9 +5242,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Plus`
+
+##### `impl Hash for Plus`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Plus`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Plus`
+
+- `fn eq(self: &Self, _other: &Plus) -> bool` — [`Plus`](#plus)
 
 ##### `impl<P, T> Receiver for Plus`
 
@@ -4068,7 +5286,7 @@ Usage:
  addition assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4079,13 +5297,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for PlusEq`
 
+##### `impl Debug for PlusEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for PlusEq`
 
 - `fn default() -> Self`
 
+##### `impl Eq for PlusEq`
+
+##### `impl Hash for PlusEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for PlusEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for PlusEq`
+
+- `fn eq(self: &Self, _other: &PlusEq) -> bool` — [`PlusEq`](#pluseq)
 
 ##### `impl Sealed for PlusEq`
 
@@ -4113,7 +5345,7 @@ Usage:
  attributes.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4123,6 +5355,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Pound`
+
+##### `impl Debug for Pound`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Pound`
 
@@ -4138,9 +5374,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Pound`
+
+##### `impl Hash for Pound`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Pound`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Pound`
+
+- `fn eq(self: &Self, _other: &Pound) -> bool` — [`Pound`](#pound)
 
 ##### `impl<P, T> Receiver for Pound`
 
@@ -4172,7 +5418,7 @@ Usage:
  question mark operator, questionably sized, macro Kleene matcher.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4182,6 +5428,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Question`
+
+##### `impl Debug for Question`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Question`
 
@@ -4197,15 +5447,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Question`
+
+##### `impl Hash for Question`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Question`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Question`
+
+- `fn eq(self: &Self, _other: &Question) -> bool` — [`Question`](#question)
 
 ##### `impl<P, T> Receiver for Question`
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Question`
+##### `impl Sealed for Question`
 
 ##### `impl<T> Spanned for Question`
 
@@ -4231,7 +5491,7 @@ Usage:
  function return type, closure return type, function pointer type.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4242,15 +5502,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for RArrow`
 
+##### `impl Debug for RArrow`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for RArrow`
 
 - `fn default() -> Self`
+
+##### `impl Eq for RArrow`
+
+##### `impl Hash for RArrow`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for RArrow`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for RArrow`
+##### `impl PartialEq for RArrow`
+
+- `fn eq(self: &Self, _other: &RArrow) -> bool` — [`RArrow`](#rarrow)
+
+##### `impl Sealed for RArrow`
 
 ##### `impl<T> Spanned for RArrow`
 
@@ -4276,7 +5550,7 @@ Usage:
  terminator for various items and statements, array types.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4286,6 +5560,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Semi`
+
+##### `impl Debug for Semi`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Semi`
 
@@ -4301,9 +5579,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Semi`
+
+##### `impl Hash for Semi`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Semi`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Semi`
+
+- `fn eq(self: &Self, _other: &Semi) -> bool` — [`Semi`](#semi)
 
 ##### `impl<P, T> Receiver for Semi`
 
@@ -4335,7 +5623,7 @@ Usage:
  shift left, nested generics.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4346,13 +5634,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Shl`
 
+##### `impl Debug for Shl`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Shl`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Shl`
+
+##### `impl Hash for Shl`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Shl`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Shl`
+
+- `fn eq(self: &Self, _other: &Shl) -> bool` — [`Shl`](#shl)
 
 ##### `impl<T> Sealed for Shl`
 
@@ -4380,7 +5682,7 @@ Usage:
  shift left assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4391,15 +5693,29 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for ShlEq`
 
+##### `impl Debug for ShlEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for ShlEq`
 
 - `fn default() -> Self`
+
+##### `impl Eq for ShlEq`
+
+##### `impl Hash for ShlEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
 
 ##### `impl Parse for ShlEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
 
-##### `impl<T> Sealed for ShlEq`
+##### `impl PartialEq for ShlEq`
+
+- `fn eq(self: &Self, _other: &ShlEq) -> bool` — [`ShlEq`](#shleq)
+
+##### `impl Sealed for ShlEq`
 
 ##### `impl<T> Spanned for ShlEq`
 
@@ -4425,7 +5741,7 @@ Usage:
  shift right, nested generics.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4436,13 +5752,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for Shr`
 
+##### `impl Debug for Shr`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Shr`
 
 - `fn default() -> Self`
 
+##### `impl Eq for Shr`
+
+##### `impl Hash for Shr`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Shr`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Shr`
+
+- `fn eq(self: &Self, _other: &Shr) -> bool` — [`Shr`](#shr)
 
 ##### `impl Sealed for Shr`
 
@@ -4470,7 +5800,7 @@ Usage:
  shift right assignment, nested generics.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4481,13 +5811,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for ShrEq`
 
+##### `impl Debug for ShrEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for ShrEq`
 
 - `fn default() -> Self`
 
+##### `impl Eq for ShrEq`
+
+##### `impl Hash for ShrEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for ShrEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for ShrEq`
+
+- `fn eq(self: &Self, _other: &ShrEq) -> bool` — [`ShrEq`](#shreq)
 
 ##### `impl Sealed for ShrEq`
 
@@ -4515,7 +5859,7 @@ Usage:
  division.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4525,6 +5869,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Slash`
+
+##### `impl Debug for Slash`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Slash`
 
@@ -4540,9 +5888,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Slash`
+
+##### `impl Hash for Slash`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Slash`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Slash`
+
+- `fn eq(self: &Self, _other: &Slash) -> bool` — [`Slash`](#slash)
 
 ##### `impl<P, T> Receiver for Slash`
 
@@ -4574,7 +5932,7 @@ Usage:
  division assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4585,13 +5943,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for SlashEq`
 
+##### `impl Debug for SlashEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for SlashEq`
 
 - `fn default() -> Self`
 
+##### `impl Eq for SlashEq`
+
+##### `impl Hash for SlashEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for SlashEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for SlashEq`
+
+- `fn eq(self: &Self, _other: &SlashEq) -> bool` — [`SlashEq`](#slasheq)
 
 ##### `impl<T> Sealed for SlashEq`
 
@@ -4619,7 +5991,7 @@ Usage:
  multiplication, dereference, raw pointers, macro Kleene matcher, use wildcards.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4629,6 +6001,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Star`
+
+##### `impl Debug for Star`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Star`
 
@@ -4644,9 +6020,19 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Star`
+
+##### `impl Hash for Star`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Star`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Star`
+
+- `fn eq(self: &Self, _other: &Star) -> bool` — [`Star`](#star)
 
 ##### `impl<P, T> Receiver for Star`
 
@@ -4678,7 +6064,7 @@ Usage:
  multiplication assignment.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4689,13 +6075,27 @@ Don't try to remember the name of this type &mdash; use the
 
 ##### `impl Copy for StarEq`
 
+##### `impl Debug for StarEq`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for StarEq`
 
 - `fn default() -> Self`
 
+##### `impl Eq for StarEq`
+
+##### `impl Hash for StarEq`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for StarEq`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for StarEq`
+
+- `fn eq(self: &Self, _other: &StarEq) -> bool` — [`StarEq`](#stareq)
 
 ##### `impl Sealed for StarEq`
 
@@ -4723,7 +6123,7 @@ Usage:
  unused since before Rust 1.0.
 
 Don't try to remember the name of this type &mdash; use the
-[`Token!`](#token) macro instead.
+`Token!` macro instead.
 
 
 #### Trait Implementations
@@ -4733,6 +6133,10 @@ Don't try to remember the name of this type &mdash; use the
 - `fn clone(self: &Self) -> Self`
 
 ##### `impl Copy for Tilde`
+
+##### `impl Debug for Tilde`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ##### `impl Default for Tilde`
 
@@ -4748,15 +6152,25 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn deref_mut(self: &mut Self) -> &mut <Self as >::Target`
 
+##### `impl Eq for Tilde`
+
+##### `impl Hash for Tilde`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Tilde`
 
 - `fn parse(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Tilde`
+
+- `fn eq(self: &Self, _other: &Tilde) -> bool` — [`Tilde`](#tilde)
 
 ##### `impl<P, T> Receiver for Tilde`
 
 - `type Target = T`
 
-##### `impl Sealed for Tilde`
+##### `impl<T> Sealed for Tilde`
 
 ##### `impl<T> Spanned for Tilde`
 
@@ -4790,9 +6204,23 @@ struct Brace {
 
 ##### `impl Copy for Brace`
 
+##### `impl Debug for Brace`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Brace`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Brace`
+
+##### `impl Hash for Brace`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
+##### `impl PartialEq for Brace`
+
+- `fn eq(self: &Self, _other: &Brace) -> bool` — [`Brace`](#brace)
 
 ##### `impl Sealed for Brace`
 
@@ -4806,7 +6234,7 @@ struct Bracket {
 }
 ```
 
-`[`&hellip;`](#hellip)`
+``&hellip;``
 
 #### Implementations
 
@@ -4820,9 +6248,23 @@ struct Bracket {
 
 ##### `impl Copy for Bracket`
 
+##### `impl Debug for Bracket`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Bracket`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Bracket`
+
+##### `impl Hash for Bracket`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
+##### `impl PartialEq for Bracket`
+
+- `fn eq(self: &Self, _other: &Bracket) -> bool` — [`Bracket`](#bracket)
 
 ##### `impl Sealed for Bracket`
 
@@ -4850,9 +6292,23 @@ struct Paren {
 
 ##### `impl Copy for Paren`
 
+##### `impl Debug for Paren`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl Default for Paren`
 
 - `fn default() -> Self`
+
+##### `impl Eq for Paren`
+
+##### `impl Hash for Paren`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
+##### `impl PartialEq for Paren`
+
+- `fn eq(self: &Self, _other: &Paren) -> bool` — [`Paren`](#paren)
 
 ##### `impl Sealed for Paren`
 

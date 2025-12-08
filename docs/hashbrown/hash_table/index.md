@@ -21,7 +21,7 @@ where
 Low-level hash table with explicit hashing.
 
 The primary use case for this type over [`HashMap`](../hash_map/index.md) or [`HashSet`](../hash_set/index.md) is to
-support types that do not implement the [`Hash`](#hash) and [`Eq`](#eq) traits, but
+support types that do not implement the `Hash` and `Eq` traits, but
 instead require additional data not contained in the key itself to compute a
 hash and compare two elements for equality.
 
@@ -166,7 +166,7 @@ where
 ```
 
 A view into an occupied entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -251,7 +251,7 @@ where
 ```
 
 A view into a vacant entry in a `HashTable`.
-It is part of the [`Entry`](../hash_set/index.md) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -313,7 +313,7 @@ where
 Type representing the absence of an entry, as returned by `HashTable::find_entry`
 and `HashTable::get_bucket_entry`.
 
-This type only exists due to [limitations](#limitations) in Rust's NLL borrow checker. In
+This type only exists due to [limitations] in Rust's NLL borrow checker. In
 the future, those methods will return an `Option<OccupiedEntry>` and this
 type will be removed.
 
@@ -428,7 +428,7 @@ struct IterMut<'a, T> {
 A mutable iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `&'a mut T`.
 
-This `struct` is created by the [`iter_mut`](#iter-mut) method on [`HashTable`](#hashtable). See its
+This `struct` is created by the `iter_mut` method on [`HashTable`](#hashtable). See its
 documentation for more.
 
 
@@ -533,7 +533,7 @@ struct IterHash<'a, T> {
 An iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a T`.
 
-This `struct` is created by the [`iter_hash`](#iter-hash) method on [`HashTable`](#hashtable). See its
+This `struct` is created by the `iter_hash` method on [`HashTable`](#hashtable). See its
 documentation for more.
 
 
@@ -582,7 +582,7 @@ struct IterHashMut<'a, T> {
 A mutable iterator over the entries of a `HashTable` that could match a given hash.
 The iterator element type is `&'a mut T`.
 
-This `struct` is created by the [`iter_hash_mut`](#iter-hash-mut) method on [`HashTable`](#hashtable). See its
+This `struct` is created by the `iter_hash_mut` method on [`HashTable`](#hashtable). See its
 documentation for more.
 
 
@@ -672,8 +672,8 @@ where
 An owning iterator over the entries of a `HashTable` in arbitrary order.
 The iterator element type is `T`.
 
-This `struct` is created by the [`into_iter`](#into-iter) method on [`HashTable`](#hashtable)
-(provided by the [`IntoIterator`](#intoiterator) trait). See its documentation for more.
+This `struct` is created by the `into_iter` method on [`HashTable`](#hashtable)
+(provided by the `IntoIterator` trait). See its documentation for more.
 The table cannot be used after calling that method.
 
 
@@ -723,7 +723,7 @@ struct Drain<'a, T, A: Allocator> {
 
 A draining iterator over the items of a `HashTable`.
 
-This `struct` is created by the [`drain`](#drain) method on [`HashTable`](#hashtable).
+This `struct` is created by the `drain` method on [`HashTable`](#hashtable).
 See its documentation for more.
 
 
@@ -807,7 +807,7 @@ where
 
 A view into a single entry in a table, which may either be vacant or occupied.
 
-This `enum` is constructed from the [`entry`](#entry) method on [`HashTable`](#hashtable).
+This `enum` is constructed from the `entry` method on [`HashTable`](#hashtable).
 
 
 # Examples

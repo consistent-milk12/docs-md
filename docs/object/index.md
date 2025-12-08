@@ -18,22 +18,22 @@ file format, as well as implementations for each file format.
 
 ## Low level read API
 
-The [`read#modules`](#readmodules) submodules define helpers that operate on the raw structs.
+The `read#modules` submodules define helpers that operate on the raw structs.
 These can be used instead of the unified API, or in conjunction with it to access
 details that are not available via the unified API.
 
 ## Unified write API
 
-The [`mod@write`](#modwrite) module provides a unified write API for relocatable object files
+The `mod@write` module provides a unified write API for relocatable object files
 using `write::Object`. This does not support writing executable files.
 
 ## Low level write API
 
-The [`mod@write#modules`](#modwritemodules) submodules define helpers for writing the raw structs.
+The `mod@write#modules` submodules define helpers for writing the raw structs.
 
 ## Build API
 
-The [`mod@build`](#modbuild) submodules define helpers for building object files, either from
+The `mod@build` submodules define helpers for building object files, either from
 scratch or by modifying existing files.
 
 ## Shared definitions

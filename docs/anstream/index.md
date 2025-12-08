@@ -61,7 +61,7 @@ to get a [`ColorChoice`](#colorchoice) and then calling `AutoStream::new(stream,
 
 #### Implementations
 
-- `fn lock(self: Self) -> AutoStream<std::io::StderrLock<'static>>` — [`AutoStream`](auto/index.md)
+- `fn lock(self: Self) -> AutoStream<std::io::StdoutLock<'static>>` — [`AutoStream`](auto/index.md)
 
 #### Trait Implementations
 
@@ -96,11 +96,7 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- `fn new(raw: S) -> Self`
-
-- `fn into_inner(self: Self) -> S`
-
-- `fn as_inner(self: &Self) -> &S`
+- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>` — [`StripStream`](strip/index.md)
 
 #### Trait Implementations
 
@@ -168,7 +164,7 @@ An adaptive wrapper around the global standard error stream of the current proce
 
 Prints to `stdout`.
 
-Equivalent to the [`println!`](#println) macro except that a newline is not printed at
+Equivalent to the `println!` macro except that a newline is not printed at
 the end of the message.
 
 Note that stdout is frequently line-buffered by default so it may be
@@ -188,7 +184,7 @@ write!(lock, "hello world").unwrap();
 ```
 
 Use `print!` only for the primary output of your program. Use
-[`eprint!`](#eprint) instead to print error and progress messages.
+`eprint!` instead to print error and progress messages.
 
 **NOTE:** Not all `print!` calls will be captured in tests like `std::print!`
 - Capturing will automatically be activated in test binaries
@@ -232,7 +228,7 @@ Prints to `stdout`, with a newline.
 On all platforms, the newline is the LINE FEED character (`\n`/`U+000A`) alone
 (no additional CARRIAGE RETURN (`\r`/`U+000D`)).
 
-This macro uses the same syntax as [`format!`](#format), but writes to the standard output instead.
+This macro uses the same syntax as `format!`, but writes to the standard output instead.
 See `std::fmt` for more information.
 
 **NOTE:** The `println!` macro will lock the standard output on each call. If you call
@@ -248,7 +244,7 @@ writeln!(lock, "hello world").unwrap();
 ```
 
 Use `println!` only for the primary output of your program. Use
-[`eprintln!`](#eprintln) instead to print error and progress messages.
+`eprintln!` instead to print error and progress messages.
 
 **NOTE:** Not all `println!` calls will be captured in tests like `std::println!`
 - Capturing will automatically be activated in test binaries
@@ -279,8 +275,8 @@ println!("format {local_variable} arguments");
 
 Prints to `stderr`.
 
-Equivalent to the [`print!`](#print) macro, except that output goes to
-`stderr` instead of `stdout`. See [`print!`](#print) for
+Equivalent to the `print!` macro, except that output goes to
+`stderr` instead of `stdout`. See `print!` for
 example usage.
 
 Use `eprint!` only for error and progress messages. Use `print!`
@@ -311,8 +307,8 @@ eprint!("Error: Could not complete task");
 
 Prints to `stderr`, with a newline.
 
-Equivalent to the [`println!`](#println) macro, except that output goes to
-`stderr` instead of `stdout`. See [`println!`](#println) for
+Equivalent to the `println!` macro, except that output goes to
+`stderr` instead of `stdout`. See `println!` for
 example usage.
 
 Use `eprintln!` only for error and progress messages. Use `println!`
@@ -348,11 +344,11 @@ to the caller of the program.
 
 This macro is the perfect way to assert conditions in example code and in
 tests. `panic!` is closely tied with the `unwrap` method of both
-[`Option`][ounwrap](#ounwrap) and [`Result`][runwrap](#runwrap) enums. Both implementations call
-`panic!` when they are set to [`None`](#none) or [`Err`](#err) variants.
+[`Option`][ounwrap] and [`Result`][runwrap] enums. Both implementations call
+`panic!` when they are set to [`None`](#none) or `Err` variants.
 
 When using `panic!()` you can specify a string payload, that is built using
-the [`format!`](#format) syntax. That payload is used when injecting the panic into
+the `format!` syntax. That payload is used when injecting the panic into
 the calling Rust thread, causing the thread to panic entirely.
 
 The behavior of the default `std` hook, i.e. the code that runs directly
@@ -361,9 +357,9 @@ after the panic is invoked, is to print the message payload to
 call. You can override the panic hook using `std::panic::set_hook()`.
 Inside the hook a panic can be accessed as a `&dyn Any + Send`,
 which contains either a `&str` or `String` for regular `panic!()` invocations.
-To panic with a value of another other type, [`panic_any`](#panic-any) can be used.
+To panic with a value of another other type, `panic_any` can be used.
 
-See also the macro [`compile_error!`](#compile-error), for raising errors during compilation.
+See also the macro `compile_error!`, for raising errors during compilation.
 
 # When to use `panic!` vs `Result`
 
@@ -389,7 +385,7 @@ encounter. `Result` must be propagated manually, often with the help of the
 `?` operator and `Try` trait, and they must be reported manually, often with
 the help of the `Error` trait.
 
-For more detailed information about error handling check out the [book](#book) or the
+For more detailed information about error handling check out the [book] or the
 `std::result` module docs.
 
 

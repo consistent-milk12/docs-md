@@ -1212,7 +1212,7 @@ new variant is not considered a breaking change.
 
 - **`ClassUnclosed`**
 
-  An opening `[` was found with no corresponding closing `](#was-found-with-no-corresponding-closing)`.
+  An opening `` was found with no corresponding closing ``.
 
 - **`DecimalEmpty`**
 

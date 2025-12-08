@@ -15,7 +15,7 @@ a safe interface for every `ioctl` call, as they all have wildly varying
 semantics.
 
 This module provides an unsafe interface to write your own `ioctl` API. To
-start, create a type that implements [`Ioctl`](#ioctl). Then, pass it to [`ioctl`](../backend/io/syscalls/index.md)
+start, create a type that implements [`Ioctl`](#ioctl). Then, pass it to [`ioctl`](../io/ioctl/index.md)
 to make the `ioctl` call.
 
 ## Modules
@@ -310,7 +310,7 @@ trait Ioctl { ... }
 
 A trait defining the properties of an `ioctl` command.
 
-Objects implementing this trait can be passed to [`ioctl`](../backend/io/syscalls/index.md) to make an
+Objects implementing this trait can be passed to [`ioctl`](../io/ioctl/index.md) to make an
 `ioctl` call. The contents of the object represent the inputs to the
 `ioctl` call. The inputs must be convertible to a pointer through the
 `as_ptr` method. In most cases, this involves either casting a number to a
@@ -399,7 +399,7 @@ are compatible with Rust language invariants.
  - [OpenBSD]
  - [Apple]
  - [Solaris]
- - [illumos](#illumos)
+ - [illumos]
 
 
 

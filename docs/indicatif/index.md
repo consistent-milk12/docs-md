@@ -32,7 +32,7 @@ Best paired with other libraries in the family:
 
 indicatif comes with a [`ProgressBar`](progress_bar/index.md) type that supports both bounded
 progress bar uses as well as unbounded "spinner" type progress reports.
-Progress bars are [`Sync`](#sync) and [`Send`](#send) objects which means that they are
+Progress bars are `Sync` and `Send` objects which means that they are
 internally locked and can be passed from thread to thread.
 
 Additionally a [`MultiProgress`](multi/index.md) utility is provided that can manage
@@ -655,7 +655,7 @@ struct ProgressBar {
 
 A progress bar or spinner
 
-The progress bar is an [`Arc`](#arc) around its internal state. When the progress bar is cloned it
+The progress bar is an `Arc` around its internal state. When the progress bar is cloned it
 just increments the refcount (so the original and its clone share the same state).
 
 #### Implementations

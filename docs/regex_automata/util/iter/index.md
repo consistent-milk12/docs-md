@@ -12,7 +12,7 @@ types that implement `Iterator`. The documentation for `Searcher` explains a
 bit more about why these different APIs exist.
 
 Currently, this module supports iteration over any regex engine that works
-with the [`HalfMatch`](../../index.md), [`Match`](../../index.md) or [`Captures`](../../index.md) types.
+with the [`HalfMatch`](../../index.md), [`Match`](../../index.md) or [`Captures`](../captures/index.md) types.
 
 ## Structs
 
@@ -119,7 +119,7 @@ for conveniently writing custom iterators on-the-fly.
 # Example: iterating with captures
 
 Several regex engines in this crate over convenient iterator APIs over
-[`Captures`](../../index.md) values. To do so, this requires allocating a new `Captures`
+[`Captures`](../captures/index.md) values. To do so, this requires allocating a new `Captures`
 value for each iteration step. This can perhaps be more costly than you
 might want. Instead of implementing your own iterator to avoid that
 cost (which can be a little subtle if you want to handle empty matches
@@ -471,7 +471,7 @@ struct CapturesIter<'h, F>(TryCapturesIter<'h, F>);
 
 An iterator over all non-overlapping captures for an infallible search.
 
-The iterator yields a [`Captures`](../../index.md) value until no more matches could be
+The iterator yields a [`Captures`](../captures/index.md) value until no more matches could be
 found.
 
 The type parameters are as follows:

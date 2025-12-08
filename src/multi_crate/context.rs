@@ -10,6 +10,7 @@ use std::sync::LazyLock;
 
 use regex::Regex;
 use rustdoc_types::{Crate, Id, Impl, Item, ItemEnum, Visibility};
+use tracing::{debug, instrument, trace};
 
 use crate::Args;
 use crate::generator::doc_links::{
@@ -17,7 +18,7 @@ use crate::generator::doc_links::{
     strip_reference_definitions, unhide_code_lines,
 };
 use crate::generator::{ItemAccess, ItemFilter, LinkResolver};
-use crate::linker::{LinkRegistry, slugify_anchor};
+use crate::linker::{item_has_anchor, LinkRegistry, slugify_anchor};
 use crate::multi_crate::{CrateCollection, UnifiedLinkRegistry};
 
 /// Regex for backtick code links: [`Name`] not followed by ( or [
@@ -56,12 +57,21 @@ impl<'a> MultiCrateContext<'a> {
     ///
     /// Builds the unified link registry and pre-computes cross-crate impls.
     #[must_use]
+    #[instrument(skip(crates, args), fields(crate_count = crates.names().len()))]
     pub fn new(crates: &'a CrateCollection, args: &'a Args) -> Self {
+        debug!("Creating multi-crate context");
+
         let primary = args.primary_crate.as_deref();
         let registry = UnifiedLinkRegistry::build(crates, primary);
 
         // Pre-compute cross-crate impls for all crates
+        debug!("Building cross-crate impl map");
         let cross_crate_impls = Self::build_cross_crate_impls(crates);
+
+        debug!(
+            cross_crate_impl_count = cross_crate_impls.values().map(HashMap::len).sum::<usize>(),
+            "Multi-crate context created"
+        );
 
         Self {
             crates,
@@ -496,14 +506,25 @@ impl<'a> SingleCrateView<'a> {
     /// A tuple of `(crate_name, item)` if found, or `None` if the item
     /// doesn't exist in any crate.
     #[must_use]
+    #[instrument(skip(self), fields(crate_name = %self.crate_name), level = "trace")]
     pub fn lookup_item_across_crates(&self, id: &Id) -> Option<(&str, &Item)> {
         // First check local crate (fast path)
         if let Some(item) = self.krate.index.get(id) {
+            trace!(found_in = "local", "Item found in local crate");
             return Some((self.crate_name, item));
         }
 
         // Fall back to searching all crates
-        self.ctx.find_item(id)
+        trace!("Item not in local crate, searching all crates");
+        let result = self.ctx.find_item(id);
+
+        if let Some((crate_name, _)) = &result {
+            debug!(found_in = %crate_name, "Item found in external crate");
+        } else {
+            trace!("Item not found in any crate");
+        }
+
+        result
     }
 
     /// Get a crate by name from the collection.
@@ -581,10 +602,14 @@ impl<'a> SingleCrateView<'a> {
 
     /// Process plain links like `[enter]` to markdown links.
     ///
+    /// Uses the registry to resolve links to proper paths. If the item exists
+    /// in the registry, creates a link to its location. If on the current page
+    /// and has a heading anchor, uses an anchor link.
+    ///
     /// Skips matches that are:
     /// - Inside inline code (backticks)
     /// - Already markdown links (followed by `(` or `[`)
-    fn process_plain_links(docs: &str) -> String {
+    fn process_plain_links(&self, docs: &str, current_file: &str) -> String {
         let mut result = String::with_capacity(docs.len());
         let mut last_end = 0;
 
@@ -612,13 +637,57 @@ impl<'a> SingleCrateView<'a> {
 
             let link_text = &caps[1];
 
-            // Plain links usually refer to items on the same page
-            let anchor = slugify_anchor(link_text);
-            _ = write!(result, "[{link_text}](#{anchor})");
+            // Try to resolve via registry
+            if let Some(link) = self.resolve_plain_link(link_text, current_file) {
+                result.push_str(&link);
+            } else {
+                // Unresolved - keep as plain text
+                _ = write!(result, "[{link_text}]");
+            }
         }
 
         result.push_str(&docs[last_end..]);
         result
+    }
+
+    /// Resolve a plain link `[name]` to a markdown link.
+    ///
+    /// Returns `Some(markdown_link)` if the item can be resolved,
+    /// `None` if it should remain as plain text.
+    fn resolve_plain_link(&self, link_text: &str, current_file: &str) -> Option<String> {
+        // Try to find the item in the registry
+        let (_, id) = self.registry.resolve_name(link_text, self.crate_name)?;
+
+        // Get the item's path info to check its kind
+        let path_info = self.krate.paths.get(&id)?;
+
+        // Get the file path for this item
+        let target_path = self.registry.get_path(self.crate_name, id)?;
+
+        // Strip crate prefix from current_file for comparison
+        let current_local = Self::strip_crate_prefix(current_file);
+
+        if target_path == current_local {
+            // Item is on the current page
+            if item_has_anchor(path_info.kind) {
+                // Has a heading - create anchor link
+                let anchor = slugify_anchor(link_text);
+                Some(format!("[{link_text}](#{anchor})"))
+            } else {
+                // No heading - link to page without anchor
+                Some(format!("[{link_text}]()"))
+            }
+        } else {
+            // Item is in a different file - create relative link
+            let relative = self.build_markdown_link(
+                current_file,
+                self.crate_name,
+                target_path,
+                link_text,
+                None,
+            );
+            Some(relative)
+        }
     }
 
     /// Resolve a link text to a markdown link using the registry.
@@ -650,6 +719,7 @@ impl<'a> SingleCrateView<'a> {
     ///         current_file = "ureq/index.md"
     /// Output: None  (rendered as `std::io::Error` inline code)
     /// ```
+    #[instrument(skip(self, item_links), fields(crate_name = %self.crate_name))]
     fn resolve_link(
         &self,
         link_text: &str,
@@ -669,12 +739,21 @@ impl<'a> SingleCrateView<'a> {
         //     "crate::config::ConfigBuilder" => Id(123),
         //     "Agent" => Id(456)
         //   }
+        tracing::trace!(
+            strategy = "item_links",
+            "Attempting resolution via item links map"
+        );
         if let Some(id) = item_links.get(link_text) {
             // We have an ID! Now convert it to a markdown path.
             // Example: Id(123) → "config/index.md" → "[`ConfigBuilder`](config/index.md)"
+            tracing::debug!(strategy = "item_links", ?id, "Found ID in item links");
             if let Some(link) = self.build_link_to_id(*id, current_file, link_text, None) {
+                tracing::debug!(strategy = "item_links", link = %link, "Successfully resolved");
+
                 return Some(link);
             }
+
+            tracing::trace!(strategy = "item_links", "ID Found but couldn't build link");
         }
 
         // ─────────────────────────────────────────────────────────────────────
@@ -687,6 +766,10 @@ impl<'a> SingleCrateView<'a> {
         // Example:
         //   link_text = "Agent"
         //   registry.resolve_name("Agent", "ureq") → Some(("ureq", Id(456)))
+        tracing::trace!(
+            strategy = "registry_name",
+            "Attempting resolution via registry name lookup"
+        );
         if let Some((resolved_crate, id)) = self.registry.resolve_name(link_text, self.crate_name)
             && let Some(target_path) = self.registry.get_path(&resolved_crate, id)
         {
@@ -733,11 +816,22 @@ impl<'a> SingleCrateView<'a> {
         }
 
         // ─────────────────────────────────────────────────────────────────────
-        // Fallback: anchor on current page
+        // Fallback: anchor on current page (only if item has a heading)
         // ─────────────────────────────────────────────────────────────────────
-        // For simple names without ::, assume it's something on the current page.
-        // Example: "new" → "[`new`](#new)"
-        Some(format!("[`{link_text}`](#{})", slugify_anchor(link_text)))
+        // For simple names without ::, check if the item exists and has a heading.
+        // Only structs, enums, traits, functions, etc. get headings.
+        // Methods, fields, and variants don't have headings (they're bullet points).
+        if let Some((_, id)) = self.registry.resolve_name(link_text, self.crate_name) {
+            if let Some(path_info) = self.krate.paths.get(&id) {
+                if item_has_anchor(path_info.kind) {
+                    return Some(format!("[`{link_text}`](#{})", slugify_anchor(link_text)));
+                }
+                // Item exists but no anchor - link to page without anchor
+                return Some(format!("[`{link_text}`]()"));
+            }
+        }
+        // Unknown item - return None (renders as inline code)
+        None
     }
 
     /// Build a link to an item by ID.
@@ -1255,7 +1349,7 @@ impl LinkResolver for SingleCrateView<'_> {
             self.process_backtick_links(&path_processed, &item.links, current_file);
 
         // Process plain links [name]
-        let plain_processed = Self::process_plain_links(&backtick_processed);
+        let plain_processed = self.process_plain_links(&backtick_processed, current_file);
 
         Some(plain_processed)
     }
@@ -1584,64 +1678,7 @@ mod tests {
         }
     }
 
-    // =========================================================================
-    // Tests for process_plain_links (static method)
-    // =========================================================================
-
-    mod process_plain_links {
-        use super::*;
-
-        #[test]
-        fn converts_snake_case_link() {
-            let input = "See [enter] for details.";
-            let result = SingleCrateView::process_plain_links(input);
-            assert_eq!(result, "See [enter](#enter) for details.");
-        }
-
-        #[test]
-        fn skips_existing_links() {
-            let input = "See [enter](somewhere.md) for details.";
-            let result = SingleCrateView::process_plain_links(input);
-            assert_eq!(result, input); // No change
-        }
-
-        #[test]
-        fn skips_reference_links() {
-            // Note: [enter] is skipped because it's followed by [
-            // but [ref] at the end matches because it looks like a plain link
-            // This is a known limitation - reference link targets get converted
-            let input = "See [enter][ref] for details.";
-            let result = SingleCrateView::process_plain_links(input);
-            assert_eq!(result, "See [enter][ref](#ref) for details.");
-        }
-
-        #[test]
-        fn skips_inside_backticks() {
-            let input = "Use `array[index]` syntax.";
-            let result = SingleCrateView::process_plain_links(input);
-            assert_eq!(result, input); // No change - inside backticks
-        }
-
-        #[test]
-        fn handles_multiple_links() {
-            let input = "See [foo] and [bar] methods.";
-            let result = SingleCrateView::process_plain_links(input);
-            assert_eq!(result, "See [foo](#foo) and [bar](#bar) methods.");
-        }
-
-        #[test]
-        fn ignores_uppercase_words() {
-            let input = "See [Error] for details.";
-            let result = SingleCrateView::process_plain_links(input);
-            assert_eq!(result, input); // Uppercase not matched by pattern
-        }
-
-        #[test]
-        fn handles_underscores() {
-            // Note: slugify_anchor converts underscores to hyphens
-            let input = "Call [my_function] here.";
-            let result = SingleCrateView::process_plain_links(input);
-            assert_eq!(result, "Call [my_function](#my-function) here.");
-        }
-    }
+    // Note: process_plain_links tests removed - function is now registry-aware
+    // and requires a full SingleCrateView context. Behavior is tested via
+    // integration tests.
 }

@@ -7,7 +7,7 @@
 Parsing interface for parsing a token stream into a syntax tree node.
 
 Parsing in Syn is built on parser functions that take in a [`ParseStream`](#parsestream)
-and produce a [`Result<T>`](#result) where `T` is some syntax tree node. Underlying
+and produce a `Result<T>` where `T` is some syntax tree node. Underlying
 these parser functions is a lower level mechanism built around the
 [`Cursor`](../buffer/index.md) type. `Cursor` is a cheaply copyable cursor over a range of
 tokens in a token stream.
@@ -21,7 +21,7 @@ enums (not shown) and structs, then provide implementations of the [`Parse`](#pa
 trait to parse these syntax tree data structures from a token stream.
 
 Once `Parse` impls have been defined, they can be called conveniently from a
-procedural macro through [`parse_macro_input!`](#parse-macro-input) as shown at the bottom of
+procedural macro through `parse_macro_input!` as shown at the bottom of
 the snippet. If the caller provides syntactically invalid input to the
 procedural macro, they will receive a helpful compiler error message
 pointing out the exact token that triggered the failure to parse.
@@ -110,13 +110,13 @@ let t: Type = syn::parse_str("std::collections::HashMap<String, Value>")?;
 run_parser().unwrap();
 ```
 
-The [`parse_quote!`](#parse-quote) macro also uses this approach.
+The `parse_quote!` macro also uses this approach.
 
 # The `Parser` trait
 
 Some types can be parsed in several ways depending on context. For example
 an [`Attribute`](../attr/index.md) can be either "outer" like `#[...]` or "inner" like
-`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../punctuated/index.md)
+`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
 
@@ -195,10 +195,10 @@ Error returned when a Syn parser cannot parse the input tokens.
 
 The correct way to report errors back to the compiler from a procedural
 macro is by emitting an appropriately spanned invocation of
-[`compile_error!`](#compile-error) in the generated code. This produces a better diagnostic
+`compile_error!` in the generated code. This produces a better diagnostic
 message than simply panicking the macro.
 
-When parsing macro input, the [`parse_macro_input!`](#parse-macro-input) macro handles the
+When parsing macro input, the `parse_macro_input!` macro handles the
 conversion to `compile_error!` automatically.
 
 ```rust
@@ -236,7 +236,7 @@ impl Parse for MyAttrArgs {
 ```
 
 For errors that arise later than the initial parsing stage, the
-[`.to_compile_error()`](#to-compile-error) or [`.into_compile_error()`](#into-compile-error) methods can be used to
+`.to_compile_error()` or `.into_compile_error()` methods can be used to
 perform an explicit conversion to `compile_error!`.
 
 
@@ -562,7 +562,7 @@ There is no public way to construct a `ParseBuffer`. Instead, if you are
 looking to invoke a parser function that requires `ParseStream` as input,
 you will need to go through one of the public parsing entry points.
 
-- The [`parse_macro_input!`](#parse-macro-input) macro if parsing input of a procedural macro;
+- The `parse_macro_input!` macro if parsing input of a procedural macro;
 - One of [the `syn::parse*` functions][syn-parse]; or
 - A method of the [`Parser`](#parser) trait.
 
@@ -748,9 +748,23 @@ error: unexpected token
 
 ##### `impl Copy for Nothing`
 
+##### `impl Debug for Nothing`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
+##### `impl Eq for Nothing`
+
+##### `impl Hash for Nothing`
+
+- `fn hash<H: Hasher>(self: &Self, _state: &mut H)`
+
 ##### `impl Parse for Nothing`
 
 - `fn parse(_input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](#parsestream), [`Result`](../error/index.md)
+
+##### `impl PartialEq for Nothing`
+
+- `fn eq(self: &Self, _other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Nothing`
 

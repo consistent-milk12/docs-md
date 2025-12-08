@@ -6,7 +6,7 @@
 
 An NFA backed Pike VM for executing regex searches with capturing groups.
 
-This module provides a [`PikeVM`](../../../meta/wrappers/index.md) that works by simulating an NFA and
+This module provides a [`PikeVM`](#pikevm) that works by simulating an NFA and
 resolving all spans of capturing groups that participate in a match.
 
 ## Structs
@@ -20,7 +20,7 @@ struct Config {
 }
 ```
 
-The configuration used for building a [`PikeVM`](../../../meta/wrappers/index.md).
+The configuration used for building a [`PikeVM`](#pikevm).
 
 A PikeVM configuration is a simple data object that is typically used with
 `Builder::configure`. It can be cheaply cloned.
@@ -297,7 +297,7 @@ struct CapturesMatches<'r, 'c, 'h> {
 An iterator over all non-overlapping leftmost matches, with their capturing
 groups, for a particular search.
 
-The iterator yields a [`Captures`](../../../index.md) value until no more matches could be
+The iterator yields a [`Captures`](../../../util/captures/index.md) value until no more matches could be
 found.
 
 The lifetime parameters are as follows:
@@ -338,14 +338,14 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a [`PikeVM`](../../../meta/wrappers/index.md) requires during a
+A cache represents mutable state that a [`PikeVM`](#pikevm) requires during a
 search.
 
-For a given [`PikeVM`](../../../meta/wrappers/index.md), its corresponding cache may be created either via
+For a given [`PikeVM`](#pikevm), its corresponding cache may be created either via
 `PikeVM::create_cache`, or via `Cache::new`. They are equivalent in
 every way, except the former does not require explicitly importing `Cache`.
 
-A particular `Cache` is coupled with the [`PikeVM`](../../../meta/wrappers/index.md) from which it
+A particular `Cache` is coupled with the [`PikeVM`](#pikevm) from which it
 was created. It may only be used with that `PikeVM`. A cache and its
 allocations may be re-purposed via `Cache::reset`, in which case, it can
 only be used with the new `PikeVM` (and not the old one).

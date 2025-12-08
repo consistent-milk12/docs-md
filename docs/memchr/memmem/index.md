@@ -58,7 +58,7 @@ assert_eq!(None, it.next());
 It may be possible for the overhead of constructing a substring searcher to be
 measurable in some workloads. In cases where the same needle is used to search
 many haystacks, it is possible to do construction once and thus to avoid it for
-subsequent searches. This can be done with a [`Finder`](../arch/all/rabinkarp/index.md) (or a [`FinderRev`](../arch/all/rabinkarp/index.md) for
+subsequent searches. This can be done with a [`Finder`](../arch/all/twoway/index.md) (or a [`FinderRev`](../arch/all/rabinkarp/index.md) for
 reverse searches).
 
 ```rust
@@ -456,7 +456,7 @@ fn find(haystack: &[u8], needle: &[u8]) -> Option<usize>
 Returns the index of the first occurrence of the given needle.
 
 Note that if you're are searching for the same needle in many different
-small haystacks, it may be faster to initialize a [`Finder`](../arch/all/rabinkarp/index.md) once,
+small haystacks, it may be faster to initialize a [`Finder`](../arch/all/twoway/index.md) once,
 and reuse it for each search.
 
 # Complexity

@@ -7,7 +7,7 @@
 Provides a regex matcher that composes several other regex matchers
 automatically.
 
-This module is home to a meta [`Regex`](../hybrid/regex/index.md), which provides a convenient high
+This module is home to a meta [`Regex`](../dfa/regex/index.md), which provides a convenient high
 level API for executing regular expressions in linear time.
 
 # Comparison with the `regex` crate
@@ -42,7 +42,7 @@ pattern, while the latter supports multiple patterns but cannot report the
 offsets of a match.
 * A meta `Regex` provides the explicit capability of bypassing its internal
 memory pool for automatically acquiring mutable scratch space required by its
-internal regex engines. Namely, a [`Cache`](../nfa/thompson/pikevm/index.md) can be explicitly provided to lower
+internal regex engines. Namely, a [`Cache`](regex/index.md) can be explicitly provided to lower
 level routines such as `Regex::search_with`.
 
 ## Structs
@@ -128,7 +128,7 @@ A builder for configuring and constructing a `Regex`.
 The builder permits configuring two different aspects of a `Regex`:
 
 * `Builder::configure` will set high-level configuration options as
-described by a [`Config`](../dfa/onepass/index.md).
+described by a [`Config`](../util/syntax/index.md).
 * `Builder::syntax` will set the syntax level configuration options
 as described by a [`util::syntax::Config`](crate::util::syntax::Config).
 This only applies when building a `Regex` from pattern strings.
@@ -327,7 +327,7 @@ struct CapturesMatches<'r, 'h> {
 An iterator over all non-overlapping leftmost matches with their capturing
 groups.
 
-The iterator yields a [`Captures`](../index.md) value until no more matches could be
+The iterator yields a [`Captures`](../util/captures/index.md) value until no more matches could be
 found.
 
 The lifetime parameters are as follows:
@@ -614,7 +614,7 @@ meta regex engine will never use a lazy DFA.
 Most of the regex engines in this crate require some kind of mutable
 "scratch" space to read and write from while performing a search. Since
 a meta regex composes these regex engines, a meta regex also requires
-mutable scratch space. This scratch space is called a [`Cache`](../nfa/thompson/pikevm/index.md).
+mutable scratch space. This scratch space is called a [`Cache`](regex/index.md).
 
 Most regex engines _also_ usually have a read-only component, typically
 a [Thompson `NFA`](crate::nfa::thompson::NFA).

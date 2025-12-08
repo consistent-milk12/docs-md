@@ -15,12 +15,14 @@ use clap::{Parser, Subcommand, ValueEnum};
 pub mod error;
 pub mod generator;
 pub mod linker;
+pub mod logger;
 pub mod multi_crate;
 pub mod parser;
 pub mod types;
 
 pub use crate::generator::{Generator, MarkdownCapture};
 pub use crate::linker::{LinkRegistry, slugify_anchor};
+use crate::logger::LogLevel;
 pub use crate::multi_crate::{
     CrateCollection, MultiCrateContext, MultiCrateGenerator, MultiCrateParser, SearchIndex,
     SearchIndexGenerator, UnifiedLinkRegistry,
@@ -62,6 +64,20 @@ pub struct Cli {
     #[command(flatten)]
     /// Generation options (used when no subcommand is specified)
     pub args: GenerateArgs,
+
+    /// Logging verbosity level
+    ///
+    /// Controls the amount of diagnostic output. Use for debugging link
+    /// resolution issues or understanding the generation process.
+    #[arg(long, value_enum, default_value = "off")]
+    pub log_level: LogLevel,
+
+    /// Enable logging to a file instead of stderr
+    ///
+    /// When set, logs are written to this file path instead of stderr.
+    /// Useful for capturing debug output without cluttering terminal.
+    #[arg(long)]
+    pub log_file: Option<PathBuf>,
 }
 
 /// Available subcommands

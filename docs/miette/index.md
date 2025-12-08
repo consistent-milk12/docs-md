@@ -63,7 +63,7 @@ diagnostic error code: ruget::api::bad_json
 - Custom links to get more details on error codes.
 - Super handy derive macro for defining diagnostic metadata.
 - Replacements for [`anyhow`](https://docs.rs/anyhow)/[`eyre`](https://docs.rs/eyre)
-  types [`Result`](#result), [`Report`](#report) and the [`miette!`](#miette) macro for the
+  types [`Result`](#result), [`Report`](#report) and the `miette!` macro for the
   `anyhow!`/`eyre!` macros.
 - Generic support for arbitrary [`SourceCode`](#sourcecode)s for snippet data, with
   default support for `String`s included.
@@ -266,7 +266,7 @@ pub fn some_tool() -> Result<Version> {
 }
 ```
 
-To construct your own simple adhoc error use the [`miette!`](#miette) macro:
+To construct your own simple adhoc error use the `miette!` macro:
 ```rust
 // my_app/lib/my_internal_file.rs
 use miette::{miette, Result};
@@ -645,7 +645,7 @@ customize!
 If you...
 - ...don't know all the possible errors upfront
 - ...need to serialize/deserialize errors
-  then you may want to use [`miette!`](#miette), [`diagnostic!`](#diagnostic) macros or
+  then you may want to use `miette!`, `diagnostic!` macros or
   [`MietteDiagnostic`](#miettediagnostic) directly to create diagnostic on the fly.
 
 ```rust,ignore
@@ -670,10 +670,10 @@ println!("{:?}", report)
 
 To use the built-in highlighting functionality, you must enable the
 `syntect-highlighter` crate feature. When this feature is enabled, `miette` will
-automatically use the [`syntect`](#syntect) crate to highlight the `#[source_code]`
+automatically use the `syntect` crate to highlight the `#[source_code]`
 field of your [`Diagnostic`](#diagnostic).
 
-Syntax detection with [`syntect`](#syntect) is handled by checking 2 methods on the [`SpanContents`](#spancontents) trait, in order:
+Syntax detection with `syntect` is handled by checking 2 methods on the [`SpanContents`](#spancontents) trait, in order:
 * [`language()`](SpanContents::language) - Provides the name of the language
   as a string. For example `"Rust"` will indicate Rust syntax highlighting.
   You can set the language of the [`SpanContents`](#spancontents) produced by a
@@ -870,7 +870,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- `fn as_ref(self: &Self) -> &dyn StdError`
+- `fn as_ref(self: &Self) -> &dyn Diagnostic + Send + Sync` — [`Diagnostic`](#diagnostic)
 
 ##### `impl Debug for super::Report`
 
@@ -920,7 +920,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 struct InstallError;
 ```
 
-Error indicating that [`set_hook()`](#set-hook) was unable to install the provided
+Error indicating that `set_hook()` was unable to install the provided
 [`ErrorHook`](#errorhook).
 
 #### Trait Implementations
@@ -1223,7 +1223,7 @@ struct NamedSource<S: SourceCode + 'static> {
 ```
 
 Utility struct for when you have a regular [`SourceCode`](#sourcecode) type that doesn't
-implement `name`. For example [`String`](#string). Or if you want to override the
+implement `name`. For example `String`. Or if you want to override the
 `name` returned by the `SourceCode`.
 
 #### Implementations
@@ -1948,7 +1948,7 @@ trait SourceCode: Send + Sync { ... }
 
 Represents readable source code of some sort.
 
-This trait is able to support simple `SourceCode` types like [`String`](#string)s, as
+This trait is able to support simple `SourceCode` types like `String`s, as
 well as more involved types like indexes into centralized `SourceMap`-like
 types, file handles, and even network streams.
 
@@ -2246,7 +2246,7 @@ let report = miette!("{x} + {y} = {z}");
 assert_eq!(report.to_string().as_str(), "1 + 2 = 3");
 ```
 
-With [`diagnostic!`](#diagnostic)-like arguments:
+With `diagnostic!`-like arguments:
 ```rust
 use miette::{miette, LabeledSpan, Severity};
 

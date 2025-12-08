@@ -29,14 +29,14 @@ some type in your program. See the [Implementing `Deserialize`] section of
 the manual for more about this.
 
 Third-party crates may provide [`Deserialize`](#deserialize) implementations for types
-that they expose. For example the [`linked-hash-map`](#linked-hash-map) crate provides a
-[`LinkedHashMap<K, V>`](#linkedhashmap) type that is deserializable by Serde because the
+that they expose. For example the `linked-hash-map` crate provides a
+`LinkedHashMap<K, V>` type that is deserializable by Serde because the
 crate provides an implementation of [`Deserialize`](#deserialize) for it.
 
 # The Deserializer trait
 
 [`Deserializer`](#deserializer) implementations are provided by third-party crates, for
-example [`serde_json`](#serde-json), [`serde_yaml`](#serde-yaml) and [`postcard`](#postcard).
+example `serde_json`, `serde_yaml` and `postcard`.
 
 A partial list of well-maintained formats is given on the [Serde
 website][data formats].
@@ -605,7 +605,7 @@ can be deserialized using Serde out of the box.
 
 Additionally, Serde provides a procedural macro called `serde_derive` to
 automatically generate `Deserialize` implementations for structs and enums
-in your program. See the [derive section of the manual][derive](#derive) for how to
+in your program. See the [derive section of the manual][derive] for how to
 use this.
 
 In rare cases it may be necessary to implement `Deserialize` manually for

@@ -45,7 +45,7 @@ language-aware hyphenation:
 }
 ```
 
-Please see the documentation for the [hyphenation](#hyphenation) crate for more
+Please see the documentation for the [hyphenation] crate for more
 details.
 
 
@@ -53,7 +53,7 @@ details.
 
 - **`NoHyphenation`**
 
-  Use this as a [`Options.word_splitter`](#optionsword-splitter) to avoid any kind of
+  Use this as a `Options.word_splitter` to avoid any kind of
   hyphenation:
   
   ```rust

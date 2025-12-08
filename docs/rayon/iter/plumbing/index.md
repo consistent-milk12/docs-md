@@ -6,7 +6,7 @@
 
 Traits and functions used to implement parallel iteration.  These are
 low-level details -- users of parallel iterators should not need to
-interact with them directly.  See [the `plumbing` README][r](#r) for a general overview.
+interact with them directly.  See [the `plumbing` README][r] for a general overview.
 
 
 ## Traits
@@ -19,7 +19,7 @@ trait ProducerCallback<T> { ... }
 
 The `ProducerCallback` trait is a kind of generic closure,
 [analogous to `FnOnce`][FnOnce]. See [the corresponding section in
-the plumbing README][r](#r) for more details.
+the plumbing README][r] for more details.
 
 
 
@@ -47,7 +47,7 @@ two producers, one producing the items before that point, and one
 producing the items after that point (these two producers can then
 independently be split further, or be converted into iterators).
 In Rayon, this splitting is used to divide between threads.
-See [the `plumbing` README][r](#r) for further details.
+See [the `plumbing` README][r] for further details.
 
 Note that each producer will always produce a fixed number of
 items N. However, this number N is not queryable through the API;
@@ -93,7 +93,7 @@ IntoIterator here until that issue is fixed.
 trait Consumer<Item>: Send + Sized { ... }
 ```
 
-A consumer is effectively a [generalized "fold" operation][fold](#fold),
+A consumer is effectively a [generalized "fold" operation][`fold`](../fold/index.md),
 and in fact each consumer will eventually be converted into a
 [`Folder`](#folder). What makes a consumer special is that, like a
 [`Producer`](#producer), it can be **split** into multiple consumers using
@@ -101,7 +101,7 @@ the `split_at` method. When a consumer is split, it produces two
 consumers, as well as a **reducer**. The two consumers can be fed
 items independently, and when they are done the reducer is used to
 combine their two results into one. See [the `plumbing`
-README][r](#r) for further details.
+README][r] for further details.
 
 
 
@@ -132,7 +132,7 @@ trait Folder<Item>: Sized { ... }
 ```
 
 The `Folder` trait encapsulates [the standard fold
-operation][fold](#fold).  It can be fed many items using the `consume`
+operation][`fold`](../fold/index.md).  It can be fed many items using the `consume`
 method. At the end, once all items have been consumed, it can then
 be converted (using `complete`) into a final value.
 
@@ -167,7 +167,7 @@ The reducer is the final step of a `Consumer` -- after a consumer
 has been split into two parts, and each of those parts has been
 fully processed, we are left with two results. The reducer is then
 used to combine those two results into one. See [the `plumbing`
-README][r](#r) for further details.
+README][r] for further details.
 
 
 #### Required Methods
@@ -243,7 +243,7 @@ creating parallel threads as needed.
 
 This is useful when you are implementing your own parallel
 iterators: it is often used as the definition of the
-[`drive_unindexed`](#drive-unindexed) or [`drive`](#drive) methods.
+`drive_unindexed` or `drive` methods.
 
 
 
@@ -257,14 +257,14 @@ where
 ```
 
 This helper function is used to "connect" a producer and a
-consumer. You may prefer to call [`bridge()`](#bridge), which wraps this
+consumer. You may prefer to call `bridge()`, which wraps this
 function. This function will draw items from `producer` and feed
 them to `consumer`, splitting and creating parallel tasks when
 needed.
 
 This is useful when you are implementing your own parallel
 iterators: it is often used as the definition of the
-[`drive_unindexed`](#drive-unindexed) or [`drive`](#drive) methods.
+`drive_unindexed` or `drive` methods.
 
 
 
@@ -277,5 +277,5 @@ where
     C: UnindexedConsumer<<P as >::Item>
 ```
 
-A variant of [`bridge_producer_consumer()`](#bridge-producer-consumer) where the producer is an unindexed producer.
+A variant of `bridge_producer_consumer()` where the producer is an unindexed producer.
 

@@ -15,7 +15,7 @@ Lots of things in Rust are punctuated sequences.
 - The arguments to a function call are `Punctuated<Expr, Token![,]>`.
 
 This module provides a common representation for these punctuated sequences
-in the form of the [`Punctuated<T, P>`](#punctuated) type. We store a vector of pairs of
+in the form of the `Punctuated<T, P>` type. We store a vector of pairs of
 syntax tree node + punctuation, where every node in the sequence is followed
 by punctuation except for possibly the final one.
 
@@ -105,9 +105,15 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 - `fn clone_from(self: &mut Self, other: &Self)`
 
+##### `impl<T: Debug, P: Debug> Debug for Punctuated<T, P>`
+
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
+
 ##### `impl<T, P> Default for Punctuated<T, P>`
 
 - `fn default() -> Self`
+
+##### `impl<T, P> Eq for Punctuated<T, P>`
 
 ##### `impl<T, P> Extend for Punctuated<T, P>`
 
@@ -116,6 +122,10 @@ Refer to the [module documentation] for details about punctuated sequences.
 ##### `impl<T, P> FromIterator for Punctuated<T, P>`
 
 - `fn from_iter<I: IntoIterator<Item = T>>(i: I) -> Self`
+
+##### `impl<T, P> Hash for Punctuated<T, P>`
+
+- `fn hash<H: Hasher>(self: &Self, state: &mut H)`
 
 ##### `impl<T, P> Index for Punctuated<T, P>`
 
@@ -134,6 +144,10 @@ Refer to the [module documentation] for details about punctuated sequences.
 - `type IntoIter = IntoIter<T>`
 
 - `fn into_iter(self: Self) -> <Self as >::IntoIter`
+
+##### `impl<T, P> PartialEq for Punctuated<T, P>`
+
+- `fn eq(self: &Self, other: &Self) -> bool`
 
 ##### `impl<T> Sealed for Punctuated<T, P>`
 
@@ -417,7 +431,19 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 #### Implementations
 
-- `fn cloned(self: Self) -> Pair<T, P>` — [`Pair`](#pair)
+- `fn into_value(self: Self) -> T`
+
+- `fn value(self: &Self) -> &T`
+
+- `fn value_mut(self: &mut Self) -> &mut T`
+
+- `fn punct(self: &Self) -> Option<&P>`
+
+- `fn punct_mut(self: &mut Self) -> Option<&mut P>`
+
+- `fn new(t: T, p: Option<P>) -> Self`
+
+- `fn into_tuple(self: Self) -> (T, Option<P>)`
 
 #### Trait Implementations
 

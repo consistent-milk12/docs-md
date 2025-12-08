@@ -8,7 +8,7 @@ A DFA that can return spans for matching capturing groups.
 
 This module is the home of a [one-pass DFA](DFA).
 
-This module also contains a [`Builder`](../../nfa/thompson/builder/index.md) and a [`Config`](#config) for building and
+This module also contains a [`Builder`](../../meta/regex/index.md) and a [`Config`](../../util/syntax/index.md) for building and
 configuring a one-pass DFA.
 
 ## Structs
@@ -416,9 +416,17 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
 
-- `fn find_match(self: &Self, cache: &mut Cache, input: &Input<'_>, at: usize, sid: StateID, slots: &mut [Option<NonMaxUsize>], matched_pid: &mut Option<PatternID>) -> bool` — [`Cache`](#cache), [`Input`](../../index.md), [`StateID`](../../util/primitives/index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md)
+- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../index.md)
+
+- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)` — [`Cache`](#cache), [`Captures`](../../util/captures/index.md)
+
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures) -> Result<(), MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`Captures`](../../util/captures/index.md), [`MatchError`](../../index.md)
+
+- `fn try_search_slots(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
+
+- `fn try_search_slots_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Result<Option<PatternID>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`NonMaxUsize`](../../util/primitives/index.md), [`PatternID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
 
 #### Trait Implementations
 
@@ -449,7 +457,7 @@ struct Cache {
 }
 ```
 
-A cache represents mutable state that a one-pass [`DFA`](../../meta/wrappers/index.md) requires during a
+A cache represents mutable state that a one-pass [`DFA`](../dense/index.md) requires during a
 search.
 
 For a given one-pass DFA, its corresponding cache may be created either via

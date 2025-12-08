@@ -162,7 +162,7 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`DFA`](../../meta/wrappers/index.md).
+a [`DFA`](../../dfa/dense/index.md).
 
 Caches can be created from their corresponding DFA via
 `DFA::create_cache`. A cache can only be used with either the DFA that
@@ -436,7 +436,7 @@ a DFA from different kinds of inputs. The most convenient is
 most flexible is `Builder::build_from_nfa`, which builds a DFA straight
 from an NFA.
 2. The builder permits configuring a number of things.
-`Builder::configure` is used with [`Config`](../../dfa/onepass/index.md) to configure aspects of
+`Builder::configure` is used with [`Config`](../../util/syntax/index.md) to configure aspects of
 the DFA and the construction process itself. `Builder::syntax` and
 `Builder::thompson` permit configuring the regex parser and Thompson NFA
 construction, respectively. The syntax and thompson configurations only

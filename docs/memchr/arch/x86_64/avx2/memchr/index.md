@@ -6,7 +6,7 @@
 
 This module defines 256-bit vector implementations of `memchr` and friends.
 
-The main types in this module are [`One`](#one), [`Two`](../../../generic/memchr/index.md) and [`Three`](../../../all/memchr/index.md). They are for
+The main types in this module are [`One`](../../../generic/memchr/index.md), [`Two`](../../sse2/memchr/index.md) and [`Three`](../../../all/memchr/index.md). They are for
 searching for one, two or three distinct bytes, respectively, in a haystack.
 Each type also has corresponding double ended iterators. These searchers are
 typically much faster than scalar routines accomplishing the same task.
@@ -111,7 +111,7 @@ This iterator is created by the `One::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`One`](#one) searcher.
+* `'a` refers to the lifetime of the underlying [`One`](../../../generic/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations
@@ -229,7 +229,7 @@ This iterator is created by the `Two::iter` method.
 
 The lifetime parameters are as follows:
 
-* `'a` refers to the lifetime of the underlying [`Two`](../../../generic/memchr/index.md) searcher.
+* `'a` refers to the lifetime of the underlying [`Two`](../../sse2/memchr/index.md) searcher.
 * `'h` refers to the lifetime of the haystack being searched.
 
 #### Trait Implementations

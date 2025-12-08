@@ -18,14 +18,14 @@ search, then please see the top-level [`hybrid` module](crate::hybrid).
 
 This section gives a brief overview of the primary types in this module:
 
-* A `regex::Regex` provides a way to search for matches of a regular
+* A [`regex::Regex`](regex/index.md) provides a way to search for matches of a regular
 expression using DFAs. This includes iterating over matches with both the start
 and end positions of each match.
 * A `dense::DFA` provides low level access to a DFA that uses a dense
 representation (uses lots of space, but fast searching).
 * A `sparse::DFA` provides the same API as a `dense::DFA`, but uses a sparse
 representation (uses less space, but slower searching).
-* An [`Automaton`](#automaton) trait that defines an interface that both dense and sparse
+* An [`Automaton`](automaton/index.md) trait that defines an interface that both dense and sparse
 DFAs implement. (A `regex::Regex` is generic over this trait.)
 * Both dense DFAs and sparse DFAs support serialization to raw bytes (e.g.,
 `dense::DFA::to_bytes_little_endian`) and cheap deserialization (e.g.,
@@ -324,5 +324,257 @@ dramatically.
 
 ## Modules
 
+- [`dense`](dense/index.md) - Types and routines specific to dense DFAs.
 - [`onepass`](onepass/index.md) - A DFA that can return spans for matching capturing groups.
+- [`regex`](regex/index.md) - A DFA-backed `Regex`.
+- [`sparse`](sparse/index.md) - Types and routines specific to sparse DFAs.
+
+## Structs
+
+### `OverlappingState`
+
+```rust
+struct OverlappingState {
+    mat: Option<crate::util::search::HalfMatch>,
+    id: Option<crate::util::primitives::StateID>,
+    at: usize,
+    next_match_index: Option<usize>,
+    rev_eoi: bool,
+}
+```
+
+Represents the current state of an overlapping search.
+
+This is used for overlapping searches since they need to know something
+about the previous search. For example, when multiple patterns match at the
+same position, this state tracks the last reported pattern so that the next
+search knows whether to report another matching pattern or continue with
+the search at the next position. Additionally, it also tracks which state
+the last search call terminated in.
+
+This type provides little introspection capabilities. The only thing a
+caller can do is construct it and pass it around to permit search routines
+to use it to track state, and also ask whether a match has been found.
+
+Callers should always provide a fresh state constructed via
+`OverlappingState::start` when starting a new search. Reusing state from
+a previous search may result in incorrect results.
+
+#### Fields
+
+- **`mat`**: `Option<crate::util::search::HalfMatch>`
+
+  The match reported by the most recent overlapping search to use this
+  state.
+  
+  If a search does not find any matches, then it is expected to clear
+  this value.
+
+- **`id`**: `Option<crate::util::primitives::StateID>`
+
+  The state ID of the state at which the search was in when the call
+  terminated. When this is a match state, `last_match` must be set to a
+  non-None value.
+  
+  A `None` value indicates the start state of the corresponding
+  automaton. We cannot use the actual ID, since any one automaton may
+  have many start states, and which one is in use depends on several
+  search-time factors.
+
+- **`at`**: `usize`
+
+  The position of the search.
+  
+  When `id` is None (i.e., we are starting a search), this is set to
+  the beginning of the search as given by the caller regardless of its
+  current value. Subsequent calls to an overlapping search pick up at
+  this offset.
+
+- **`next_match_index`**: `Option<usize>`
+
+  The index into the matching patterns of the next match to report if the
+  current state is a match state. Note that this may be 1 greater than
+  the total number of matches to report for the current match state. (In
+  which case, no more matches should be reported at the current position
+  and the search should advance to the next position.)
+
+- **`rev_eoi`**: `bool`
+
+  This is set to true when a reverse overlapping search has entered its
+  EOI transitions.
+  
+  This isn't used in a forward search because it knows to stop once the
+  position exceeds the end of the search range. In a reverse search,
+  since we use unsigned offsets, we don't "know" once we've gone past
+  `0`. So the only way to detect it is with this extra flag. The reverse
+  overlapping search knows to terminate specifically after it has
+  reported all matches after following the EOI transition.
+
+#### Implementations
+
+- `fn start() -> OverlappingState` — [`OverlappingState`](automaton/index.md)
+
+- `fn get_match(self: &Self) -> Option<HalfMatch>` — [`HalfMatch`](../index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for OverlappingState`
+
+- `fn clone(self: &Self) -> OverlappingState` — [`OverlappingState`](automaton/index.md)
+
+##### `impl Debug for OverlappingState`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for OverlappingState`
+
+##### `impl PartialEq for OverlappingState`
+
+- `fn eq(self: &Self, other: &OverlappingState) -> bool` — [`OverlappingState`](automaton/index.md)
+
+##### `impl StructuralPartialEq for OverlappingState`
+
+## Enums
+
+### `StartError`
+
+```rust
+enum StartError {
+    Quit {
+        byte: u8,
+    },
+    UnsupportedAnchored {
+        mode: crate::util::search::Anchored,
+    },
+}
+```
+
+An error that can occur when computing the start state for a search.
+
+Computing a start state can fail for a few reasons, either based on
+incorrect configuration or even based on whether the look-behind byte
+triggers a quit state. Typically one does not need to handle this error
+if you're using `Automaton::start_state_forward` (or its reverse
+counterpart), as that routine automatically converts `StartError` to a
+[`MatchError`](../index.md) for you.
+
+This error may be returned by the `Automaton::start_state` routine.
+
+This error implements the `std::error::Error` trait when the `std` feature
+is enabled.
+
+This error is marked as non-exhaustive. New variants may be added in a
+semver compatible release.
+
+#### Variants
+
+- **`Quit`**
+
+  An error that occurs when a starting configuration's look-behind byte
+  is in this DFA's quit set.
+
+- **`UnsupportedAnchored`**
+
+  An error that occurs when the caller requests an anchored mode that
+  isn't supported by the DFA.
+
+#### Implementations
+
+- `fn quit(byte: u8) -> StartError` — [`StartError`](automaton/index.md)
+
+- `fn unsupported_anchored(mode: Anchored) -> StartError` — [`Anchored`](../index.md), [`StartError`](automaton/index.md)
+
+#### Trait Implementations
+
+##### `impl Clone for StartError`
+
+- `fn clone(self: &Self) -> StartError` — [`StartError`](automaton/index.md)
+
+##### `impl Debug for StartError`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Display for StartError`
+
+- `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
+
+##### `impl Error for StartError`
+
+##### `impl<T> ToString for StartError`
+
+- `fn to_string(self: &Self) -> String`
+
+### `StartKind`
+
+```rust
+enum StartKind {
+    Both,
+    Unanchored,
+    Anchored,
+}
+```
+
+The kind of anchored starting configurations to support in a DFA.
+
+Fully compiled DFAs need to be explicitly configured as to which anchored
+starting configurations to support. The reason for not just supporting
+everything unconditionally is that it can use more resources (such as
+memory and build time). The downside of this is that if you try to execute
+a search using an [`Anchored`](crate::Anchored) mode that is not supported
+by the DFA, then the search will return an error.
+
+#### Variants
+
+- **`Both`**
+
+  Support both anchored and unanchored searches.
+
+- **`Unanchored`**
+
+  Support only unanchored searches. Requesting an anchored search will
+  panic.
+  
+  Note that even if an unanchored search is requested, the pattern itself
+  may still be anchored. For example, `^abc` will only match `abc` at the
+  start of a haystack. This will remain true, even if the regex engine
+  only supported unanchored searches.
+
+- **`Anchored`**
+
+  Support only anchored searches. Requesting an unanchored search will
+  panic.
+
+#### Implementations
+
+- `fn from_bytes(slice: &[u8]) -> Result<(StartKind, usize), DeserializeError>` — [`StartKind`](start/index.md), [`DeserializeError`](../util/wire/index.md)
+
+- `fn write_to<E: Endian>(self: &Self, dst: &mut [u8]) -> Result<usize, SerializeError>` — [`SerializeError`](../util/wire/index.md)
+
+- `fn write_to_len(self: &Self) -> usize`
+
+- `fn has_unanchored(self: &Self) -> bool`
+
+- `fn has_anchored(self: &Self) -> bool`
+
+#### Trait Implementations
+
+##### `impl Clone for StartKind`
+
+- `fn clone(self: &Self) -> StartKind` — [`StartKind`](start/index.md)
+
+##### `impl Copy for StartKind`
+
+##### `impl Debug for StartKind`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Eq for StartKind`
+
+##### `impl PartialEq for StartKind`
+
+- `fn eq(self: &Self, other: &StartKind) -> bool` — [`StartKind`](start/index.md)
+
+##### `impl StructuralPartialEq for StartKind`
+
+## Traits
 

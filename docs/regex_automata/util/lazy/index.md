@@ -41,7 +41,7 @@ guarantees or a more flexible API, then it is recommended to use either
 
 When this crate is compiled _without_ the `alloc` feature, then this type
 may used a spin lock internally. This can have subtle effects that may
-be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm) for a more
+be undesirable. See [Spinlocks Considered Harmful][spinharm] for a more
 thorough treatment of this topic.
 
 # Example
@@ -60,7 +60,7 @@ assert_eq!(expected, RE.find(b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn get(this: &Lazy<T, F>) -> &T` — [`Lazy`](#lazy)
+- `const fn new(create: F) -> Lazy<T, F>` — [`Lazy`](#lazy)
 
 #### Trait Implementations
 

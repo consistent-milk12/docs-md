@@ -172,8 +172,8 @@ Configures the properties of a new thread.
 
 The two configurable properties are:
 
-- [`name`](#name): Specifies an [associated name for the thread][naming-threads].
-- [`stack_size`](#stack-size): Specifies the [desired stack size for the thread][stack-size].
+- `name`: Specifies an [associated name for the thread][naming-threads].
+- `stack_size`: Specifies the [desired stack size for the thread][stack-size].
 
 The [`spawn`](#spawn) method will take ownership of the builder and return an `io::Result` of the
 thread handle with the given configuration.

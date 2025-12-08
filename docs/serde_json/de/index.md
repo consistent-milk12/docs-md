@@ -110,7 +110,7 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn from_reader(reader: R) -> Self`
+- `fn from_str(s: &'a str) -> Self`
 
 ### `StreamDeserializer<'de, R, T>`
 
@@ -191,7 +191,7 @@ The content of the I/O stream is deserialized directly from the stream
 without being buffered in memory by serde_json.
 
 When reading from a source against which short reads are not efficient, such
-as a [`File`](#file), you will want to apply your own buffering because serde_json
+as a `File`, you will want to apply your own buffering because serde_json
 will not buffer the input. See `std::io::BufReader`.
 
 It is expected that the input stream ends after the deserialized object.
@@ -308,7 +308,7 @@ struct User {
 }
 
 fn main() {
-    // The type of `j` is `&[u8](#u8)`
+    // The type of `j` is `&[u8]`
     let j = b"
         {
             \"fingerprint\": \"0xF9BA143B95FF6D82\",

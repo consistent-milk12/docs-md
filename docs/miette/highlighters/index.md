@@ -14,7 +14,7 @@ By default, there are no syntax highlighters exported by miette
 To enable support for specific highlighters, you should enable their associated feature flag.
 
 Currently supported syntax highlighters and their feature flags:
-* `syntect-highlighter` - Enables [`syntect`](https://docs.rs/syntect/latest/syntect/) syntax highlighting support via the [`SyntectHighlighter`](#syntecthighlighter)
+* `syntect-highlighter` - Enables [`syntect`](https://docs.rs/syntect/latest/syntect/) syntax highlighting support via the `SyntectHighlighter`
 
 
 ## Structs

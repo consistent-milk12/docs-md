@@ -21,6 +21,9 @@ yielded by the iterator. Finally, the [`Error`](error/index.md) type is a small 
 `std::io::Error` with additional information, such as if a loop was detected
 while following symbolic links (not enabled by default).
 
+
+
+
 # Example
 
 The following code recursively iterates over the directory given and prints
@@ -39,7 +42,7 @@ Ok(())
 ```
 
 Or, if you'd like to iterate over all entries and ignore any errors that
-may arise, use [`filter_map`](#filter-map). (e.g., This code below will silently skip
+may arise, use `filter_map`. (e.g., This code below will silently skip
 directories that the owner of the running process does not have permission to
 access.)
 
@@ -53,7 +56,7 @@ for entry in WalkDir::new("foo").into_iter().filter_map(|e| e.ok()) {
 
 # Example: follow symbolic links
 
-The same code as above, except [`follow_links`](#follow-links) is enabled:
+The same code as above, except `follow_links` is enabled:
 
 ```no_run
 use walkdir::WalkDir;
@@ -69,7 +72,7 @@ Ok(())
 
 # Example: skip hidden files and directories on unix
 
-This uses the [`filter_entry`](#filter-entry) iterator adapter to avoid yielding hidden files
+This uses the `filter_entry` iterator adapter to avoid yielding hidden files
 and directories efficiently (i.e. without recursing into hidden directories):
 
 ```no_run
@@ -91,6 +94,7 @@ for entry in walker.filter_entry(|e| !is_hidden(e)) {
 Ok(())
 }
 ```
+
 
 ## Structs
 
@@ -119,13 +123,18 @@ provides efficient access to the inode number of the directory entry.
 This type mostly mirrors the type by the same name in `std::fs`. There
 are some differences however:
 
-- All recursive directory iterators must inspect the entry's type.
-  Therefore, the value is stored and its access is guaranteed to be cheap and
-  successful.
-- [`path`](#path) and [`file_name`](#file-name) return borrowed variants.
-- If [`follow_links`](#follow-links) was enabled on the originating iterator, then all
-  operations except for [`path`](#path) operate on the link target. Otherwise, all
-  operations operate on the symbolic link.
+* All recursive directory iterators must inspect the entry's type.
+Therefore, the value is stored and its access is guaranteed to be cheap and
+successful.
+* [`path`](#path) and `file_name` return borrowed variants.
+* If `follow_links` was enabled on the originating iterator, then all
+operations except for [`path`](#path) operate on the link target. Otherwise, all
+operations operate on the symbolic link.
+
+
+
+
+
 
 #### Fields
 
@@ -133,6 +142,7 @@ are some differences however:
 
   The path as reported by the `fs::ReadDir` iterator (even if it's a
   symbolic link).
+  
 
 - **`ty`**: `std::fs::FileType`
 
@@ -203,16 +213,19 @@ An error produced by recursively walking a directory.
 This error type is a light wrapper around `std::io::Error`. In
 particular, it adds the following information:
 
-- The depth at which the error occurred in the file tree, relative to the
-  root.
-- The path, if any, associated with the IO error.
-- An indication that a loop occurred when following symbolic links. In this
-  case, there is no underlying IO error.
+* The depth at which the error occurred in the file tree, relative to the
+root.
+* The path, if any, associated with the IO error.
+* An indication that a loop occurred when following symbolic links. In this
+case, there is no underlying IO error.
 
 To maintain good ergonomics, this type has a
-[`impl From<Error> for std::io::Error`][impl](#impl) defined which preserves the original context.
+[`impl From<Error> for std::io::Error`][impl] defined which preserves the original context.
 This allows you to use an `io::Result` with methods in this crate if you don't care about
 accessing the underlying error data in a structured form.
+
+
+
 
 #### Implementations
 
@@ -268,8 +281,8 @@ struct WalkDir {
 A builder to create an iterator for recursively walking a directory.
 
 Results are returned in depth first fashion, with directories yielded
-before their contents. If [`contents_first`](#contents-first) is true, contents are yielded
-before their directories. The order is unspecified but if [`sort_by`](#sort-by) is
+before their contents. If `contents_first` is true, contents are yielded
+before their directories. The order is unspecified but if `sort_by` is
 given, directory entries are sorted according to this function. Directory
 entries `.` and `..` are always omitted.
 
@@ -280,11 +293,12 @@ is not descended into (but the error is still yielded by the iterator).
 Iteration may be stopped at any time. When the iterator is destroyed, all
 resources associated with it are freed.
 
+
 # Usage
 
-This type implements [`IntoIterator`](#intoiterator) so that it may be used as the subject
+This type implements `IntoIterator` so that it may be used as the subject
 of a `for` loop. You may need to call [`into_iter`](#into-iter) explicitly if you want
-to use iterator adapters such as [`filter_entry`](#filter-entry).
+to use iterator adapters such as `filter_entry`.
 
 Idiomatic use of this type should use method chaining to set desired
 options. For example, this only shows entries with a depth of `1`, `2` or
@@ -302,9 +316,11 @@ Ok(())
 }
 ```
 
+
+
 Note that the iterator by default includes the top-most directory. Since
 this is the only directory yielded with depth `0`, it is easy to ignore it
-with the [`min_depth`](#min-depth) setting:
+with the `min_depth` setting:
 
 ```no_run
 use walkdir::WalkDir;
@@ -324,7 +340,7 @@ itself.
 # Loops
 
 This iterator (like most/all recursive directory iterators) assumes that
-no loops can be made with _hard_ links on your file system. In particular,
+no loops can be made with *hard* links on your file system. In particular,
 this would require creating a hard link to a directory such that it creates
 a loop. On most platforms, this operation is illegal.
 
@@ -389,9 +405,11 @@ An iterator for recursively descending into a directory.
 A value with this type must be constructed with the [`WalkDir`](#walkdir) type, which
 uses a builder pattern to set options such as min/max depth, max open file
 descriptors and whether the iterator should follow symbolic links. After
-constructing a `WalkDir`, call [`.into_iter()`](#into-iter) at the end of the chain.
+constructing a `WalkDir`, call `.into_iter()` at the end of the chain.
 
 The order of elements yielded by this iterator is unspecified.
+
+
 
 #### Fields
 
@@ -402,7 +420,7 @@ The order of elements yielded by this iterator is unspecified.
 - **`start`**: `Option<std::path::PathBuf>`
 
   The start path.
-
+  
   This is only `Some(...)` at the beginning. After the first iteration,
   this is always `None`.
 
@@ -411,13 +429,15 @@ The order of elements yielded by this iterator is unspecified.
   A stack of open (up to max fd) or closed handles to directories.
   An open handle is a plain `fs::ReadDir` while a closed handle is
   a `Vec<fs::DirEntry>` corresponding to the as-of-yet consumed entries.
+  
 
 - **`stack_path`**: `Vec<Ancestor>`
 
   A stack of file paths.
-
-  This is _only_ used when [`follow_links`](#follow-links) is enabled. In all other
+  
+  This is *only* used when `follow_links` is enabled. In all other
   cases this stack is empty.
+  
 
 - **`oldest_opened`**: `usize`
 
@@ -441,7 +461,7 @@ The order of elements yielded by this iterator is unspecified.
 
   The device of the root file path when the first call to `next` was
   made.
-
+  
   If the `same_file_system` option isn't enabled, then this is always
   `None`. Conversely, if it is enabled, this is always `Some(...)` after
   handling the root path.
@@ -501,13 +521,13 @@ struct FilterEntry<I, P> {
 
 A recursive directory iterator that skips entries.
 
-Values of this type are created by calling [`.filter_entry()`](#filter-entry) on an
-`IntoIter`, which is formed by calling [`.into_iter()`](#into-iter) on a `WalkDir`.
+Values of this type are created by calling `.filter_entry()` on an
+`IntoIter`, which is formed by calling `.into_iter()` on a `WalkDir`.
 
 Directories that fail the predicate `P` are skipped. Namely, they are
 never yielded and never descended into.
 
-Entries that are skipped with the [`min_depth`](#min-depth) and [`max_depth`](#max-depth) options
+Entries that are skipped with the `min_depth` and `max_depth` options
 are not passed through this filter.
 
 If opening a handle to a directory resulted in an error, then it is yielded
@@ -515,6 +535,10 @@ and no corresponding call to the predicate is made.
 
 Type parameter `I` refers to the underlying iterator and `P` refers to the
 predicate, which is usually `FnMut(&DirEntry) -> bool`.
+
+
+
+
 
 #### Implementations
 
@@ -561,4 +585,7 @@ is only useful if you care about the additional information provided by
 the error (such as the path associated with the error or whether a loop
 was dectected). If you want things to Just Work, then you can use
 `io::Result` instead since the error type in this package will
-automatically convert to an `io::Result` when using the [`try!`](#try) macro.
+automatically convert to an `io::Result` when using the `try!` macro.
+
+
+

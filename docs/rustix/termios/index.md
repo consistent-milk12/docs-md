@@ -36,7 +36,7 @@ struct Termios {
 }
 ```
 
-`struct termios` for use with [`tcgetattr`](../backend/termios/syscalls/index.md) and [`tcsetattr`](#tcsetattr).
+`struct termios` for use with [`tcgetattr`](../backend/termios/syscalls/index.md) and [`tcsetattr`](../backend/termios/syscalls/index.md).
 
 
 
@@ -114,35 +114,9 @@ Flags controlling terminal input.
 
 #### Implementations
 
-- `const IGNBRK: Self`
+- `const fn iter(self: &Self) -> $crate::iter::Iter<InputModes>` — [`InputModes`](#inputmodes)
 
-- `const BRKINT: Self`
-
-- `const IGNPAR: Self`
-
-- `const PARMRK: Self`
-
-- `const INPCK: Self`
-
-- `const ISTRIP: Self`
-
-- `const INLCR: Self`
-
-- `const IGNCR: Self`
-
-- `const ICRNL: Self`
-
-- `const IUCLC: Self`
-
-- `const IXON: Self`
-
-- `const IXANY: Self`
-
-- `const IXOFF: Self`
-
-- `const IMAXBEL: Self`
-
-- `const IUTF8: Self`
+- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<InputModes>` — [`InputModes`](#inputmodes)
 
 #### Trait Implementations
 
@@ -272,9 +246,67 @@ Flags controlling terminal output.
 
 #### Implementations
 
-- `const fn iter(self: &Self) -> $crate::iter::Iter<OutputModes>` — [`OutputModes`](#outputmodes)
+- `const OPOST: Self`
 
-- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<OutputModes>` — [`OutputModes`](#outputmodes)
+- `const OLCUC: Self`
+
+- `const ONLCR: Self`
+
+- `const OCRNL: Self`
+
+- `const ONOCR: Self`
+
+- `const ONLRET: Self`
+
+- `const OFILL: Self`
+
+- `const OFDEL: Self`
+
+- `const NLDLY: Self`
+
+- `const NL0: Self`
+
+- `const NL1: Self`
+
+- `const CRDLY: Self`
+
+- `const CR0: Self`
+
+- `const CR1: Self`
+
+- `const CR2: Self`
+
+- `const CR3: Self`
+
+- `const TABDLY: Self`
+
+- `const TAB0: Self`
+
+- `const TAB1: Self`
+
+- `const TAB2: Self`
+
+- `const TAB3: Self`
+
+- `const XTABS: Self`
+
+- `const BSDLY: Self`
+
+- `const BS0: Self`
+
+- `const BS1: Self`
+
+- `const FFDLY: Self`
+
+- `const FF0: Self`
+
+- `const FF1: Self`
+
+- `const VTDLY: Self`
+
+- `const VT0: Self`
+
+- `const VT1: Self`
 
 #### Trait Implementations
 
@@ -564,45 +596,37 @@ Flags controlling “local” terminal modes.
 
 #### Implementations
 
-- `const fn empty() -> Self`
+- `const XCASE: Self`
 
-- `const fn all() -> Self`
+- `const ECHOCTL: Self`
 
-- `const fn bits(self: &Self) -> ffi::c_uint`
+- `const ECHOPRT: Self`
 
-- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>`
+- `const ECHOKE: Self`
 
-- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self`
+- `const FLUSHO: Self`
 
-- `const fn from_bits_retain(bits: ffi::c_uint) -> Self`
+- `const PENDIN: Self`
 
-- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
+- `const EXTPROC: Self`
 
-- `const fn is_empty(self: &Self) -> bool`
+- `const ISIG: Self`
 
-- `const fn is_all(self: &Self) -> bool`
+- `const ICANON: Self`
 
-- `const fn intersects(self: &Self, other: Self) -> bool`
+- `const ECHO: Self`
 
-- `const fn contains(self: &Self, other: Self) -> bool`
+- `const ECHOE: Self`
 
-- `fn insert(self: &mut Self, other: Self)`
+- `const ECHOK: Self`
 
-- `fn remove(self: &mut Self, other: Self)`
+- `const ECHONL: Self`
 
-- `fn toggle(self: &mut Self, other: Self)`
+- `const NOFLSH: Self`
 
-- `fn set(self: &mut Self, other: Self, value: bool)`
+- `const TOSTOP: Self`
 
-- `const fn intersection(self: Self, other: Self) -> Self`
-
-- `const fn union(self: Self, other: Self) -> Self`
-
-- `const fn difference(self: Self, other: Self) -> Self`
-
-- `const fn symmetric_difference(self: Self, other: Self) -> Self`
-
-- `const fn complement(self: Self) -> Self`
+- `const IEXTEN: Self`
 
 #### Trait Implementations
 
@@ -879,7 +903,7 @@ enum OptionalActions {
 }
 ```
 
-`TCSA*` values for use with [`tcsetattr`](#tcsetattr).
+`TCSA*` values for use with [`tcsetattr`](../backend/termios/syscalls/index.md).
 
 
 #### Variants
@@ -931,7 +955,7 @@ enum QueueSelector {
 }
 ```
 
-`TC*` values for use with [`tcflush`](#tcflush).
+`TC*` values for use with [`tcflush`](../backend/termios/syscalls/index.md).
 
 
 #### Variants
@@ -983,7 +1007,7 @@ enum Action {
 }
 ```
 
-`TC*` values for use with [`tcflow`](../backend/termios/syscalls/index.md).
+`TC*` values for use with [`tcflow`](#tcflow).
 
 
 #### Variants

@@ -61,6 +61,7 @@ use indicatif::{ProgressBar, ProgressStyle};
 pub use module::ModuleRenderer;
 use nested::NestedGenerator;
 use rustdoc_types::{Crate, Item, ItemEnum};
+use tracing::{debug, info, instrument};
 
 use crate::error::Error;
 use crate::{Args, CliOutputFormat};
@@ -130,27 +131,39 @@ impl<'a> Generator<'a> {
     /// # Errors
     ///
     /// Returns an error if any file operation fails.
+    #[instrument(skip(self), fields(
+        crate_name = %self.ctx.crate_name(),
+        format = ?self.args.format,
+        output = %self.args.output.display()
+    ))]
     pub fn generate(&self) -> Result<(), Error> {
+        info!("Starting single-crate documentation generation");
+
         // Ensure the output directory exists
         fs::create_dir_all(&self.args.output).map_err(Error::CreateDir)?;
+        debug!(path = %self.args.output.display(), "Created output directory");
 
         // Set up progress bar
         let total_modules = self.ctx.count_modules(self.root_item) + 1;
+        debug!(total_modules, "Counted modules for progress tracking");
         let progress = Self::create_progress_bar(total_modules)?;
 
         // Dispatch to format-specific generator
         match self.args.format {
             CliOutputFormat::Flat => {
+                debug!("Using flat output format");
                 let generator = FlatGenerator::new(&self.ctx, &self.args.output, &progress);
                 generator.generate(self.root_item)?;
             },
             CliOutputFormat::Nested => {
+                debug!("Using nested output format");
                 let generator = NestedGenerator::new(&self.ctx, &self.args.output, &progress);
                 generator.generate(self.root_item)?;
             },
         }
 
         progress.finish_with_message("done");
+        info!("Single-crate documentation generation complete");
         Ok(())
     }
 

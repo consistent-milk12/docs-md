@@ -11,6 +11,7 @@ generation capabilities programmatically.
 - [`error`](error/index.md) - Error types for docs-md.
 - [`generator`](generator/index.md) - Markdown documentation generator for rustdoc JSON.
 - [`linker`](linker/index.md) - Cross-reference linking for markdown documentation.
+- [`logger`](logger/index.md) - Logging related utils.
 - [`multi_crate`](multi_crate/index.md) - Multi-crate documentation generation.
 - [`parser`](parser/index.md) - Rustdoc JSON parsing module.
 - [`types`](types/index.md) - Type rendering utilities for converting rustdoc types to string representations.
@@ -74,6 +75,8 @@ generator.generate()?;
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for Generator<'a>`
+
 ##### `impl<T> IntoEither for Generator<'a>`
 
 ##### `impl<D> OwoColorize for Generator<'a>`
@@ -91,6 +94,8 @@ generator.generate()?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Generator<'a>`
 
 ### `MarkdownCapture`
 
@@ -141,6 +146,8 @@ side effects.
 
 - `fn default() -> MarkdownCapture` — [`MarkdownCapture`](generator/capture/index.md)
 
+##### `impl<T> Instrument for MarkdownCapture`
+
 ##### `impl<T> IntoEither for MarkdownCapture`
 
 ##### `impl<D> OwoColorize for MarkdownCapture`
@@ -158,6 +165,8 @@ side effects.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MarkdownCapture`
 
 ### `LinkRegistry`
 
@@ -216,6 +225,8 @@ create links between items.
 
 - `fn default() -> LinkRegistry` — [`LinkRegistry`](linker/index.md)
 
+##### `impl<T> Instrument for LinkRegistry`
+
 ##### `impl<T> IntoEither for LinkRegistry`
 
 ##### `impl<D> OwoColorize for LinkRegistry`
@@ -233,6 +244,8 @@ create links between items.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for LinkRegistry`
 
 ### `CrateCollection`
 
@@ -267,7 +280,7 @@ for (name, krate) in collection.iter() {
 - **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
 
   Map from crate name to parsed Crate data.
-  HashMap provides O(1) lookups; sorting done on-demand.
+  `HashMap` provides O(1) lookups; sorting done on-demand.
 
 #### Implementations
 
@@ -299,6 +312,8 @@ for (name, krate) in collection.iter() {
 
 - `fn default() -> CrateCollection` — [`CrateCollection`](multi_crate/collection/index.md)
 
+##### `impl<T> Instrument for CrateCollection`
+
 ##### `impl<T> IntoEither for CrateCollection`
 
 ##### `impl<D> OwoColorize for CrateCollection`
@@ -316,6 +331,8 @@ for (name, krate) in collection.iter() {
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for CrateCollection`
 
 ### `MultiCrateContext<'a>`
 
@@ -378,6 +395,8 @@ generation across crates.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for MultiCrateContext<'a>`
+
 ##### `impl<T> IntoEither for MultiCrateContext<'a>`
 
 ##### `impl<D> OwoColorize for MultiCrateContext<'a>`
@@ -395,6 +414,8 @@ generation across crates.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateContext<'a>`
 
 ### `MultiCrateGenerator<'a>`
 
@@ -449,11 +470,13 @@ output/
 
 - `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](multi_crate/context/index.md), [`Error`](error/index.md)
 
 - `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](error/index.md)
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for MultiCrateGenerator<'a>`
 
 ##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
 
@@ -472,6 +495,8 @@ output/
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateGenerator<'a>`
 
 ### `MultiCrateParser`
 
@@ -499,6 +524,8 @@ println!("Found {} crates", crates.len());
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for MultiCrateParser`
+
 ##### `impl<T> IntoEither for MultiCrateParser`
 
 ##### `impl<D> OwoColorize for MultiCrateParser`
@@ -516,6 +543,8 @@ println!("Found {} crates", crates.len());
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateParser`
 
 ### `SearchIndex`
 
@@ -541,6 +570,8 @@ Serialized to `search_index.json` for client-side consumption.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl<T> Instrument for SearchIndex`
+
 ##### `impl<T> IntoEither for SearchIndex`
 
 ##### `impl<D> OwoColorize for SearchIndex`
@@ -562,6 +593,8 @@ Serialized to `search_index.json` for client-side consumption.
 ##### `impl Serialize for SearchIndex`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl<T> WithSubscriber for SearchIndex`
 
 ### `SearchIndexGenerator<'a>`
 
@@ -609,7 +642,7 @@ generator.write(Path::new("docs/"))?;
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md)
+- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](multi_crate/collection/index.md)
 
 - `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](multi_crate/search/index.md)
 
@@ -622,6 +655,8 @@ generator.write(Path::new("docs/"))?;
 - `fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for SearchIndexGenerator<'a>`
 
 ##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
 
@@ -640,6 +675,8 @@ generator.write(Path::new("docs/"))?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
 
 ### `UnifiedLinkRegistry`
 
@@ -684,12 +721,12 @@ This avoids allocating a `String` for the crate name on every lookup.
 - **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the file path within output.
-  Uses hashbrown for raw_entry API (zero-alloc lookups).
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
 - **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the item's display name.
-  Uses hashbrown for raw_entry API (zero-alloc lookups).
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
 - **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
 
@@ -742,6 +779,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](multi_crate/registry/index.md)
 
+##### `impl<T> Instrument for UnifiedLinkRegistry`
+
 ##### `impl<T> IntoEither for UnifiedLinkRegistry`
 
 ##### `impl<D> OwoColorize for UnifiedLinkRegistry`
@@ -760,10 +799,219 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `unsafe fn drop(ptr: usize)`
 
-### `Args`
+##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
+
+### `Cli`
 
 ```rust
-struct Args {
+struct Cli {
+    pub command: Option<Command>,
+    pub args: GenerateArgs,
+    pub log_level: crate::logger::LogLevel,
+    pub log_file: Option<std::path::PathBuf>,
+}
+```
+
+Top-level CLI for docs-md.
+
+#### Fields
+
+- **`command`**: `Option<Command>`
+
+  Subcommand to run
+
+- **`args`**: `GenerateArgs`
+
+  Generation options (used when no subcommand is specified)
+
+- **`log_level`**: `crate::logger::LogLevel`
+
+  Logging verbosity level
+  
+  Controls the amount of diagnostic output. Use for debugging link
+  resolution issues or understanding the generation process.
+
+- **`log_file`**: `Option<std::path::PathBuf>`
+
+  Enable logging to a file instead of stderr
+  
+  When set, logs are written to this file path instead of stderr.
+  Useful for capturing debug output without cluttering terminal.
+
+#### Trait Implementations
+
+##### `impl Args for Cli`
+
+- `fn group_id() -> Option<clap::Id>`
+
+- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+##### `impl CommandFactory for Cli`
+
+- `fn command<'b>() -> clap::Command`
+
+- `fn command_for_update<'b>() -> clap::Command`
+
+##### `impl Debug for Cli`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl FromArgMatches for Cli`
+
+- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+- `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+##### `impl<T> Instrument for Cli`
+
+##### `impl<T> IntoEither for Cli`
+
+##### `impl<D> OwoColorize for Cli`
+
+##### `impl Parser for Cli`
+
+##### `impl<T> Pointable for Cli`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Cli`
+
+### `DocsArgs`
+
+```rust
+struct DocsArgs {
+    pub output: std::path::PathBuf,
+    pub format: CliOutputFormat,
+    pub primary_crate: Option<String>,
+    pub include_private: bool,
+    pub include_blanket_impls: bool,
+    pub no_mdbook: bool,
+    pub no_search_index: bool,
+    pub clean: bool,
+    pub cargo_args: Vec<String>,
+}
+```
+
+Arguments for the `docs` subcommand (build + generate).
+
+#### Fields
+
+- **`output`**: `std::path::PathBuf`
+
+  Output directory for generated markdown files.
+  
+  Defaults to `docs/` in the current directory.
+
+- **`format`**: `CliOutputFormat`
+
+  Output format (flat or nested).
+
+- **`primary_crate`**: `Option<String>`
+
+  Primary crate name for preferential link resolution.
+  
+  If not specified, attempts to detect from Cargo.toml.
+
+- **`include_private`**: `bool`
+
+  Include private (non-public) items in the output.
+
+- **`include_blanket_impls`**: `bool`
+
+  Include blanket trait implementations in the output.
+
+- **`no_mdbook`**: `bool`
+
+  Skip generating mdBook SUMMARY.md file.
+
+- **`no_search_index`**: `bool`
+
+  Skip generating `search_index.json` file.
+
+- **`clean`**: `bool`
+
+  Run cargo clean before building (full rebuild).
+
+- **`cargo_args`**: `Vec<String>`
+
+  Additional arguments to pass to cargo doc.
+  
+  Example: `docs-md docs -- --all-features`
+
+#### Trait Implementations
+
+##### `impl Args for DocsArgs`
+
+- `fn group_id() -> Option<clap::Id>`
+
+- `fn augment_args<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+##### `impl CommandFactory for DocsArgs`
+
+- `fn command<'b>() -> clap::Command`
+
+- `fn command_for_update<'b>() -> clap::Command`
+
+##### `impl Debug for DocsArgs`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl FromArgMatches for DocsArgs`
+
+- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+- `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+##### `impl<T> Instrument for DocsArgs`
+
+##### `impl<T> IntoEither for DocsArgs`
+
+##### `impl<D> OwoColorize for DocsArgs`
+
+##### `impl Parser for DocsArgs`
+
+##### `impl<T> Pointable for DocsArgs`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for DocsArgs`
+
+### `GenerateArgs`
+
+```rust
+struct GenerateArgs {
     pub path: Option<std::path::PathBuf>,
     pub dir: Option<std::path::PathBuf>,
     pub mdbook: bool,
@@ -776,12 +1024,11 @@ struct Args {
 }
 ```
 
-Command-line arguments for docs-md.
+Command-line arguments for direct generation (no subcommand).
 
 The tool accepts input from two mutually exclusive sources:
 1. A local rustdoc JSON file (`--path`)
-2. A crate name to fetch from docs.rs (`--crate-name`) - Note: currently non-functional
-   as docs.rs doesn't serve rustdoc JSON files publicly.
+2. A directory of rustdoc JSON files (`--dir`)
 
 #### Fields
 
@@ -864,7 +1111,7 @@ The tool accepts input from two mutually exclusive sources:
 
 #### Trait Implementations
 
-##### `impl Args for Args`
+##### `impl Args for GenerateArgs`
 
 - `fn group_id() -> Option<clap::Id>`
 
@@ -872,17 +1119,21 @@ The tool accepts input from two mutually exclusive sources:
 
 - `fn augment_args_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
 
-##### `impl CommandFactory for Args`
+##### `impl CommandFactory for GenerateArgs`
 
 - `fn command<'b>() -> clap::Command`
 
 - `fn command_for_update<'b>() -> clap::Command`
 
-##### `impl Debug for Args`
+##### `impl Debug for GenerateArgs`
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl FromArgMatches for Args`
+##### `impl Default for GenerateArgs`
+
+- `fn default() -> GenerateArgs` — [`GenerateArgs`](#generateargs)
+
+##### `impl FromArgMatches for GenerateArgs`
 
 - `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
 
@@ -892,13 +1143,15 @@ The tool accepts input from two mutually exclusive sources:
 
 - `fn update_from_arg_matches_mut(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
 
-##### `impl<T> IntoEither for Args`
+##### `impl<T> Instrument for GenerateArgs`
 
-##### `impl<D> OwoColorize for Args`
+##### `impl<T> IntoEither for GenerateArgs`
 
-##### `impl Parser for Args`
+##### `impl<D> OwoColorize for GenerateArgs`
 
-##### `impl<T> Pointable for Args`
+##### `impl Parser for GenerateArgs`
+
+##### `impl<T> Pointable for GenerateArgs`
 
 - `const ALIGN: usize`
 
@@ -911,6 +1164,8 @@ The tool accepts input from two mutually exclusive sources:
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for GenerateArgs`
 
 ## Enums
 
@@ -959,6 +1214,8 @@ Controls how module files are organized in the output directory.
 
 - `fn default() -> OutputFormat` — [`OutputFormat`](#outputformat)
 
+##### `impl<T> Instrument for OutputFormat`
+
 ##### `impl<T> IntoEither for OutputFormat`
 
 ##### `impl<D> OwoColorize for OutputFormat`
@@ -982,6 +1239,75 @@ Controls how module files are organized in the output directory.
 - `fn value_variants<'a>() -> &'a [Self]`
 
 - `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+
+##### `impl<T> WithSubscriber for OutputFormat`
+
+### `Command`
+
+```rust
+enum Command {
+    Docs(DocsArgs),
+}
+```
+
+Available subcommands
+
+#### Variants
+
+- **`Docs`**
+
+  Build rustdoc JSON and generate markdown in one step.
+  
+  This runs `cargo +nightly doc` with JSON output, then generates
+  markdown documentation from the result. Requires nightly toolchain.
+  
+  Example: `docs-md docs --primary-crate my_crate`
+
+#### Trait Implementations
+
+##### `impl Debug for Command`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl FromArgMatches for Command`
+
+- `fn from_arg_matches(__clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn from_arg_matches_mut(__clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<Self, clap::Error>`
+
+- `fn update_from_arg_matches(self: &mut Self, __clap_arg_matches: &clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+- `fn update_from_arg_matches_mut<'b>(self: &mut Self, __clap_arg_matches: &mut clap::ArgMatches) -> ::std::result::Result<(), clap::Error>`
+
+##### `impl<T> Instrument for Command`
+
+##### `impl<T> IntoEither for Command`
+
+##### `impl<D> OwoColorize for Command`
+
+##### `impl<T> Pointable for Command`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl Subcommand for Command`
+
+- `fn augment_subcommands<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn augment_subcommands_for_update<'b>(__clap_app: clap::Command) -> clap::Command`
+
+- `fn has_subcommand(__clap_name: &str) -> bool`
+
+##### `impl<T> WithSubscriber for Command`
 
 ### `CliOutputFormat`
 
@@ -1020,6 +1346,8 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 - `fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
 
+##### `impl<T> Instrument for CliOutputFormat`
+
 ##### `impl<T> IntoEither for CliOutputFormat`
 
 ##### `impl<D> OwoColorize for CliOutputFormat`
@@ -1044,5 +1372,17 @@ CLI-compatible output format enum (for clap `ValueEnum` derive).
 
 - `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
 
+##### `impl<T> WithSubscriber for CliOutputFormat`
+
 ## Functions
+
+## Type Aliases
+
+### `Args`
+
+```rust
+type Args = GenerateArgs;
+```
+
+Backwards-compatible type alias for existing code.
 

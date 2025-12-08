@@ -1,6 +1,6 @@
 # Crate `thiserror`
 
-[![github](#github)](https://github.com/dtolnay/thiserror)&ensp;[![crates-io]](https://crates.io/crates/thiserror)&ensp;[![docs-rs]](https://docs.rs/thiserror)
+[![github]](https://github.com/dtolnay/thiserror)&ensp;[![crates-io]](https://crates.io/crates/thiserror)&ensp;[![docs-rs]](https://docs.rs/thiserror)
 
 
 
@@ -128,7 +128,7 @@ pub enum DataStoreError {
   }
   ```
 
-- The Error trait's [`source()`](#source) method is implemented to return whichever
+- The Error trait's `source()` method is implemented to return whichever
   field has a `#[source]` attribute or is named `source`, if any. This is
   for identifying the underlying lower level error that caused your error.
 
@@ -156,7 +156,7 @@ pub enum DataStoreError {
   }
   ```
 
-- The Error trait's [`provide()`](#provide) method is implemented to provide whichever
+- The Error trait's `provide()` method is implemented to provide whichever
   field has a type named `Backtrace`, if any, as a
   `std::backtrace::Backtrace`. Using `Backtrace` in errors requires a
   nightly compiler with Rust version 1.73 or newer.
@@ -175,7 +175,7 @@ pub enum DataStoreError {
 
 - If a field is both a source (named `source`, or has `#[source]` or
   `#[from]` attribute) *and* is marked `#[backtrace]`, then the Error
-  trait's [`provide()`](#provide) method is forwarded to the source's `provide` so
+  trait's `provide()` method is forwarded to the source's `provide` so
   that both layers of the error share the same backtrace. The `#[backtrace]`
   attribute requires a nightly compiler with Rust version 1.73 or newer.
 
@@ -251,7 +251,7 @@ pub enum DataStoreError {
   }
   ```
 
-- See also the [`anyhow`](#anyhow) library for a convenient single error type to use
+- See also the `anyhow` library for a convenient single error type to use
   in application code.
 
 

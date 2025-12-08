@@ -52,11 +52,15 @@ into the `rustdoc_types::Crate` structure.
 
 #### Implementations
 
-- `fn parse_json(path: &Path) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+- `fn parse_json(json: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
+
+- `fn parse_file(path: impl AsRef<std::path::Path>) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
 - `fn parse_json_string(content: &str) -> Result<Crate, Error>` — [`Error`](../error/index.md)
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for Parser`
 
 ##### `impl<T> IntoEither for Parser`
 
@@ -75,4 +79,6 @@ into the `rustdoc_types::Crate` structure.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for Parser`
 

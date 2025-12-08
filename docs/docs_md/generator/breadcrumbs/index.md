@@ -43,6 +43,8 @@ the current module, with each segment being a clickable link.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for BreadcrumbGenerator<'a>`
+
 ##### `impl<T> IntoEither for BreadcrumbGenerator<'a>`
 
 ##### `impl<D> OwoColorize for BreadcrumbGenerator<'a>`
@@ -60,4 +62,6 @@ the current module, with each segment being a clickable link.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for BreadcrumbGenerator<'a>`
 

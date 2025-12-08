@@ -1,6 +1,6 @@
 # Crate `ryu`
 
-[![github](#github)](https://github.com/dtolnay/ryu)&ensp;[![crates-io]](https://crates.io/crates/ryu)&ensp;[![docs-rs]](https://docs.rs/ryu)
+[![github]](https://github.com/dtolnay/ryu)&ensp;[![crates-io]](https://crates.io/crates/ryu)&ensp;[![docs-rs]](https://docs.rs/ryu)
 
 
 
@@ -9,12 +9,12 @@
 Pure Rust implementation of Ryū, an algorithm to quickly convert floating
 point numbers to decimal strings.
 
-The PLDI'18 paper [*Ryū: fast float-to-string conversion*][paper](#paper) by Ulf
+The PLDI'18 paper [*Ryū: fast float-to-string conversion*][paper] by Ulf
 Adams includes a complete correctness proof of the algorithm. The paper is
 available under the creative commons CC-BY-SA license.
 
 This Rust implementation is a line-by-line port of Ulf Adams' implementation
-in C, [https://github.com/ulfjack/ryu][upstream](#upstream).
+in C, [https://github.com/ulfjack/ryu][upstream].
 
 
 # Example

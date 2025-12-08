@@ -16,7 +16,7 @@ impl<T> OnceCell<T> {
 }
 ```
 
-Note that, like with [`RefCell`](#refcell) and [`Mutex`](#mutex), the `set` method requires
+Note that, like with `RefCell` and `Mutex`, the `set` method requires
 only a shared reference. Because of the single assignment restriction `get`
 can return a `&T` instead of `Ref<T>` or `MutexGuard<T>`.
 

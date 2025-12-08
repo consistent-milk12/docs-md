@@ -44,7 +44,7 @@ Ok::<(), std::io::Error>(())
 fs-err uses `std::io::Error` for all errors. This helps fs-err
 compose well with traits from the standard library like
 `std::io::Read` and crates that use them like
-[`serde_json`][serde_json](#serde-json):
+[`serde_json`][serde_json]:
 
 ```no_run
 use fs_err::File;
@@ -227,21 +227,15 @@ information to all errors.
 
 #### Implementations
 
-- `fn from_parts<P>(file: fs::File, path: P) -> Self`
+- `fn lock(self: &Self) -> Result<(), io::Error>`
 
-- `fn into_parts(self: Self) -> (fs::File, PathBuf)`
+- `fn lock_shared(self: &Self) -> Result<(), io::Error>`
 
-- `fn into_file(self: Self) -> fs::File`
+- `fn try_lock(self: &Self) -> Result<(), fs::TryLockError>`
 
-- `fn into_path(self: Self) -> PathBuf`
+- `fn try_lock_shared(self: &Self) -> Result<(), fs::TryLockError>`
 
-- `fn file(self: &Self) -> &fs::File`
-
-- `fn file_mut(self: &mut Self) -> &mut fs::File`
-
-- `fn path(self: &Self) -> &Path`
-
-- `fn error(self: &Self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](errors/index.md)
+- `fn unlock(self: &Self) -> Result<(), io::Error>`
 
 #### Trait Implementations
 

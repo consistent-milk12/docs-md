@@ -21,13 +21,13 @@ struct AtomicCell<T> {
 
 A thread-safe mutable memory location.
 
-This type is equivalent to [`Cell`](#cell), except it can also be shared among multiple threads.
+This type is equivalent to `Cell`, except it can also be shared among multiple threads.
 
 Operations on `AtomicCell`s use atomic instructions whenever possible, and synchronize using
 global locks otherwise. You can call `AtomicCell::<T>::is_lock_free()` to check whether
 atomic instructions or locks will be used.
 
-Atomic loads use the [`Acquire`](#acquire) ordering and atomic stores use the [`Release`](#release) ordering.
+Atomic loads use the `Acquire` ordering and atomic stores use the `Release` ordering.
 
 
 
@@ -53,21 +53,21 @@ Atomic loads use the [`Acquire`](#acquire) ordering and atomic stores use the [`
 
 #### Implementations
 
-- `fn fetch_add(self: &Self, val: usize) -> usize`
+- `fn fetch_add(self: &Self, val: u16) -> u16`
 
-- `fn fetch_sub(self: &Self, val: usize) -> usize`
+- `fn fetch_sub(self: &Self, val: u16) -> u16`
 
-- `fn fetch_and(self: &Self, val: usize) -> usize`
+- `fn fetch_and(self: &Self, val: u16) -> u16`
 
-- `fn fetch_nand(self: &Self, val: usize) -> usize`
+- `fn fetch_nand(self: &Self, val: u16) -> u16`
 
-- `fn fetch_or(self: &Self, val: usize) -> usize`
+- `fn fetch_or(self: &Self, val: u16) -> u16`
 
-- `fn fetch_xor(self: &Self, val: usize) -> usize`
+- `fn fetch_xor(self: &Self, val: u16) -> u16`
 
-- `fn fetch_max(self: &Self, val: usize) -> usize`
+- `fn fetch_max(self: &Self, val: u16) -> u16`
 
-- `fn fetch_min(self: &Self, val: usize) -> usize`
+- `fn fetch_min(self: &Self, val: u16) -> u16`
 
 #### Trait Implementations
 

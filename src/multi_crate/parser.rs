@@ -73,7 +73,7 @@ impl MultiCrateParser {
             }
 
             // Try to parse as rustdoc JSON
-            let Ok(krate) = Parser::parse_json(path) else {
+            let Ok(krate) = Parser::parse_file(path) else {
                 continue;
             };
 

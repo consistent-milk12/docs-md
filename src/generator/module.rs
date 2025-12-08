@@ -160,6 +160,9 @@ impl<'a> ModuleRenderer<'a> {
             }
         }
 
+        // Sort all categories for deterministic output
+        items.sort();
+
         items
     }
 
@@ -367,4 +370,29 @@ struct CategorizedItems<'a> {
 
     /// Type alias definitions.
     type_aliases: Vec<&'a Item>,
+}
+
+impl<'a> CategorizedItems<'a> {
+    /// Sort all item categories alphabetically by name for deterministic output.
+    ///
+    /// This ensures consistent ordering regardless of HashMap iteration order
+    /// in the rustdoc JSON index.
+    fn sort(&mut self) {
+        // Helper to get item name for sorting
+        fn item_name(item: &Item) -> &str {
+            item.name.as_deref().unwrap_or("")
+        }
+
+        // Sort items with IDs by name
+        self.modules.sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+        self.structs.sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+        self.enums.sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+        self.traits.sort_by(|a, b| item_name(a.1).cmp(item_name(b.1)));
+
+        // Sort items without IDs by name
+        self.functions.sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.macros.sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.constants.sort_by(|a, b| item_name(a).cmp(item_name(b)));
+        self.type_aliases.sort_by(|a, b| item_name(a).cmp(item_name(b)));
+    }
 }

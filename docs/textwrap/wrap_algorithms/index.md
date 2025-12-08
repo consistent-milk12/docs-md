@@ -9,13 +9,13 @@ Word wrapping algorithms.
 After a text has been broken into words (or [`Fragment`](../core/index.md)s), one
 now has to decide how to break the fragments into lines. The
 simplest algorithm for this is implemented by
-[`wrap_first_fit()`](#wrap-first-fit): it uses no look-ahead and simply adds
+`wrap_first_fit()`: it uses no look-ahead and simply adds
 fragments to the line as long as they fit. However, this can lead
 to poor line breaks if a large fragment almost-but-not-quite fits
 on a line. When that happens, the fragment is moved to the next
 line and it will leave behind a large gap.
 
-A more advanced algorithm, implemented by [`wrap_optimal_fit()`](#wrap-optimal-fit),
+A more advanced algorithm, implemented by `wrap_optimal_fit()`,
 will take this into account. The optimal-fit algorithm considers
 all possible line breaks and will attempt to minimize the gaps
 left behind by overly short lines.
@@ -50,7 +50,7 @@ an entire paragraph at a time in order to find optimal line breaks
   Wrap words using a fast and simple algorithm.
   
   This algorithm uses no look-ahead when finding line breaks.
-  Implemented by [`wrap_first_fit()`](#wrap-first-fit), please see that function
+  Implemented by `wrap_first_fit()`, please see that function
   for details and examples.
 
 - **`Custom`**
@@ -174,10 +174,10 @@ assert_eq!(lines_to_strings(wrap_optimal_fit(&words, &[15.0], &Penalties::new())
                 "nicely."]);
 ```
 
-The [`wrap_optimal_fit()`](#wrap-optimal-fit) function was used above to get better
+The `wrap_optimal_fit()` function was used above to get better
 line breaks. It uses an advanced algorithm which tries to avoid
 short lines. This function is about 4 times faster than
-[`wrap_optimal_fit()`](#wrap-optimal-fit).
+`wrap_optimal_fit()`.
 
 # Examples
 

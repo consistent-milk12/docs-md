@@ -4,7 +4,7 @@
 
 # Module `builder`
 
-Define [`Command`](../index.md) line [arguments][`Arg`](arg/index.md)
+Define [`Command`](command/index.md) line [arguments][`Arg`](../index.md)
 
 ## Modules
 
@@ -81,7 +81,7 @@ feature
 
 ##### `impl PartialEq for Str`
 
-- `fn eq(self: &Self, other: &String) -> bool`
+- `fn eq(self: &Self, other: &std::ffi::OsStr) -> bool`
 
 ##### `impl PartialOrd for Str`
 
@@ -136,7 +136,7 @@ struct Arg {
 The abstract representation of a command line argument. Used to set all the options and
 relationships that define a valid argument for the program.
 
-There are two methods for constructing [`Arg`](arg/index.md)s, using the builder pattern and setting options
+There are two methods for constructing [`Arg`](../index.md)s, using the builder pattern and setting options
 manually, or using a usage string which is far less verbose but has fewer options. You can also
 use a combination of the two methods to achieve the best of both worlds.
 
@@ -164,91 +164,43 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn get_id(self: &Self) -> &Id` — [`Id`](../util/id/index.md)
+- `fn action(self: Self, action: impl IntoResettable<ArgAction>) -> Self` — [`IntoResettable`](resettable/index.md), [`ArgAction`](action/index.md)
 
-- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
+- `fn value_parser(self: Self, parser: impl IntoResettable<super::ValueParser>) -> Self` — [`IntoResettable`](resettable/index.md), [`ValueParser`](value_parser/index.md)
 
-- `fn get_long_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
+- `fn num_args(self: Self, qty: impl IntoResettable<ValueRange>) -> Self` — [`IntoResettable`](resettable/index.md), [`ValueRange`](range/index.md)
 
-- `fn get_display_order(self: &Self) -> usize`
+- `fn value_name(self: Self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
 
-- `fn get_help_heading(self: &Self) -> Option<&str>`
+- `fn value_names(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md)
 
-- `fn get_short(self: &Self) -> Option<char>`
+- `fn value_hint(self: Self, value_hint: impl IntoResettable<ValueHint>) -> Self` — [`IntoResettable`](resettable/index.md), [`ValueHint`](value_hint/index.md)
 
-- `fn get_visible_short_aliases(self: &Self) -> Option<Vec<char>>`
+- `fn ignore_case(self: Self, yes: bool) -> Self`
 
-- `fn get_all_short_aliases(self: &Self) -> Option<Vec<char>>`
+- `fn allow_hyphen_values(self: Self, yes: bool) -> Self`
 
-- `fn get_short_and_visible_aliases(self: &Self) -> Option<Vec<char>>`
+- `fn allow_negative_numbers(self: Self, yes: bool) -> Self`
 
-- `fn get_long(self: &Self) -> Option<&str>`
+- `fn require_equals(self: Self, yes: bool) -> Self`
 
-- `fn get_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+- `fn value_delimiter(self: Self, d: impl IntoResettable<char>) -> Self` — [`IntoResettable`](resettable/index.md)
 
-- `fn get_all_aliases(self: &Self) -> Option<Vec<&str>>`
+- `fn value_terminator(self: Self, term: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
 
-- `fn get_long_and_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+- `fn raw(self: Self, yes: bool) -> Self`
 
-- `fn get_aliases(self: &Self) -> Option<Vec<&str>>`
+- `fn default_value(self: Self, val: impl IntoResettable<OsStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`OsStr`](os_str/index.md)
 
-- `fn get_possible_values(self: &Self) -> Vec<PossibleValue>` — [`PossibleValue`](possible_value/index.md)
+- `fn default_values(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](os_str/index.md)
 
-- `fn get_value_names(self: &Self) -> Option<&[Str]>` — [`Str`](str/index.md)
+- `fn default_missing_value(self: Self, val: impl IntoResettable<OsStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`OsStr`](os_str/index.md)
 
-- `fn get_num_args(self: &Self) -> Option<ValueRange>` — [`ValueRange`](range/index.md)
+- `fn default_missing_value_os(self: Self, val: impl Into<OsStr>) -> Self` — [`OsStr`](os_str/index.md)
 
-- `fn get_min_vals(self: &Self) -> usize`
+- `fn default_missing_values(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](os_str/index.md)
 
-- `fn get_value_delimiter(self: &Self) -> Option<char>`
-
-- `fn get_value_terminator(self: &Self) -> Option<&Str>` — [`Str`](str/index.md)
-
-- `fn get_index(self: &Self) -> Option<usize>`
-
-- `fn get_value_hint(self: &Self) -> ValueHint` — [`ValueHint`](value_hint/index.md)
-
-- `fn get_default_values(self: &Self) -> &[OsStr]` — [`OsStr`](os_str/index.md)
-
-- `fn is_positional(self: &Self) -> bool`
-
-- `fn is_required_set(self: &Self) -> bool`
-
-- `fn is_multiple_values_set(self: &Self) -> bool`
-
-- `fn is_takes_value_set(self: &Self) -> bool`
-
-- `fn is_allow_hyphen_values_set(self: &Self) -> bool`
-
-- `fn is_allow_negative_numbers_set(self: &Self) -> bool`
-
-- `fn get_action(self: &Self) -> &ArgAction` — [`ArgAction`](action/index.md)
-
-- `fn get_value_parser(self: &Self) -> &super::ValueParser` — [`ValueParser`](value_parser/index.md)
-
-- `fn is_global_set(self: &Self) -> bool`
-
-- `fn is_next_line_help_set(self: &Self) -> bool`
-
-- `fn is_hide_set(self: &Self) -> bool`
-
-- `fn is_hide_default_value_set(self: &Self) -> bool`
-
-- `fn is_hide_possible_values_set(self: &Self) -> bool`
-
-- `fn is_hide_short_help_set(self: &Self) -> bool`
-
-- `fn is_hide_long_help_set(self: &Self) -> bool`
-
-- `fn is_require_equals_set(self: &Self) -> bool`
-
-- `fn is_exclusive_set(self: &Self) -> bool`
-
-- `fn is_trailing_var_arg_set(self: &Self) -> bool`
-
-- `fn is_last_set(self: &Self) -> bool`
-
-- `fn is_ignore_case_set(self: &Self) -> bool`
+- `fn default_missing_values_os(self: Self, vals: impl IntoIterator<Item = impl Into<OsStr>>) -> Self` — [`OsStr`](os_str/index.md)
 
 #### Trait Implementations
 
@@ -299,11 +251,11 @@ struct ArgGroup {
 }
 ```
 
-Specifies a logical group of [arguments](#arguments)
+Specifies a logical group of [arguments]
 
 You can use this for
 - applying validation to an entire group, like `ArgGroup::multiple`
-- validate relationships between an argument and a group, like [conflicts](#conflicts) or [requirements](#requirements)
+- validate relationships between an argument and a group, like [conflicts] or [requirements]
 - check which argument in a group was specified on the command-line
 
 For visually grouping arguments in help, see instead
@@ -472,53 +424,51 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn name(self: Self, name: impl Into<Str>) -> Self` — [`Str`](str/index.md)
+- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
 
-- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](resettable/index.md)
+- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
 
-- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](resettable/index.md)
+- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
 
-- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
+- `fn get_term_width(self: &Self) -> Option<usize>`
 
-- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn get_max_term_width(self: &Self) -> Option<usize>`
 
-- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](../mkeymap/index.md)
 
-- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](../parser/matches/arg_matches/index.md), [`Id`](../util/id/index.md)
 
-- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../parser/matches/arg_matches/index.md)
 
-- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn build(self: &mut Self)`
 
-- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
 
-- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
+- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
 
-- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
+- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
 
-- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn _build_bin_names_internal(self: &mut Self)`
 
-- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
 
-- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](arg/index.md)
 
-- `fn setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](app_settings/index.md)
+- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](arg_group/index.md)
 
-- `fn unset_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](app_settings/index.md)
+- `fn _propagate_global_args(self: &mut Self)`
 
-- `fn global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](app_settings/index.md)
+- `fn _propagate(self: &mut Self)`
 
-- `fn unset_global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](app_settings/index.md)
+- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
 
-- `fn flatten_help(self: Self, yes: bool) -> Self`
+- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
 
-- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
+- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](command/index.md)
 
-- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](resettable/index.md)
+- `fn _render_version(self: &Self, use_long: bool) -> String`
 
-- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
-
-- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
+- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](../util/id/index.md), [`StyledStr`](styled_str/index.md)
 
 #### Trait Implementations
 
@@ -577,7 +527,7 @@ feature
 
 ##### `impl AsRef for OsStr`
 
-- `fn as_ref(self: &Self) -> &std::path::Path`
+- `fn as_ref(self: &Self) -> &std::ffi::OsStr`
 
 ##### `impl Clone for OsStr`
 
@@ -645,7 +595,7 @@ See also `PossibleValuesParser`
 <div class="warning">
 
 **NOTE:** Most likely you can use strings, rather than `PossibleValue` as it is only required
-to [hide](#hide) single values from help messages and shell completions or to attach [help](#help) to
+to [hide] single values from help messages and shell completions or to attach [`help`](../output/help/index.md) to
 possible values.
 
 </div>
@@ -671,15 +621,19 @@ let cfg = Arg::new("config")
 
 #### Implementations
 
-- `fn new(name: impl Into<Str>) -> Self` — [`Str`](str/index.md)
+- `fn get_name(self: &Self) -> &str`
 
-- `fn help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](resettable/index.md), [`StyledStr`](styled_str/index.md)
+- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](styled_str/index.md)
 
-- `fn hide(self: Self, yes: bool) -> Self`
+- `fn is_hide_set(self: &Self) -> bool`
 
-- `fn alias(self: Self, name: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](resettable/index.md), [`Str`](str/index.md)
+- `fn should_show_help(self: &Self) -> bool`
 
-- `fn aliases(self: Self, names: impl IntoIterator<Item = impl Into<Str>>) -> Self` — [`Str`](str/index.md)
+- `fn get_visible_quoted_name(self: &Self) -> Option<std::borrow::Cow<'_, str>>`
+
+- `fn get_name_and_aliases(self: &Self) -> impl Iterator<Item = &str> + '_`
+
+- `fn matches(self: &Self, value: &str, ignore_case: bool) -> bool`
 
 #### Trait Implementations
 
@@ -932,23 +886,27 @@ let styles = Styles::styled()
 
 #### Implementations
 
-- `const fn get_header(self: &Self) -> &Style`
+- `const fn plain() -> Self`
 
-- `const fn get_error(self: &Self) -> &Style`
+- `const fn styled() -> Self`
 
-- `const fn get_usage(self: &Self) -> &Style`
+- `const fn header(self: Self, style: Style) -> Self`
 
-- `const fn get_literal(self: &Self) -> &Style`
+- `const fn error(self: Self, style: Style) -> Self`
 
-- `const fn get_placeholder(self: &Self) -> &Style`
+- `const fn usage(self: Self, style: Style) -> Self`
 
-- `const fn get_valid(self: &Self) -> &Style`
+- `const fn literal(self: Self, style: Style) -> Self`
 
-- `const fn get_invalid(self: &Self) -> &Style`
+- `const fn placeholder(self: Self, style: Style) -> Self`
 
-- `const fn get_context(self: &Self) -> &Style`
+- `const fn valid(self: Self, style: Style) -> Self`
 
-- `const fn get_context_value(self: &Self) -> &Style`
+- `const fn invalid(self: Self, style: Style) -> Self`
+
+- `const fn context(self: Self, style: Style) -> Self`
+
+- `const fn context_value(self: Self, style: Style) -> Self`
 
 #### Trait Implementations
 
@@ -2559,7 +2517,7 @@ Overview of which hints are supported by which shell:
   common when writing shell wrappers that execute anther command, for example `sudo` or `env`.
   
   This hint is special, the argument must be a positional argument and have
-  [`.num_args(1..)`](#num-args1) and Command must use `Command::trailing_var_arg(true)`. The result is that the
+  `.num_args(1..)` and Command must use `Command::trailing_var_arg(true)`. The result is that the
   command line `my_app ls -la /` will be parsed as `["ls", "-la", "/"]` and clap won't try to
   parse the `-la` argument itself.
   

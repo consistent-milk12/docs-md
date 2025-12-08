@@ -1,13 +1,13 @@
 # Crate `itoa`
 
-[![github](#github)](https://github.com/dtolnay/itoa)&ensp;[![crates-io]](https://crates.io/crates/itoa)&ensp;[![docs-rs]](https://docs.rs/itoa)
+[![github]](https://github.com/dtolnay/itoa)&ensp;[![crates-io]](https://crates.io/crates/itoa)&ensp;[![docs-rs]](https://docs.rs/itoa)
 
 
 
 <br>
 
 This crate provides a fast conversion of integer primitives to decimal
-strings. The implementation comes straight from [libcore](#libcore) but avoids the
+strings. The implementation comes straight from [libcore] but avoids the
 performance penalty of going through `core::fmt::Formatter`.
 
 See also [`ryu`](#ryu) for printing floating point primitives.

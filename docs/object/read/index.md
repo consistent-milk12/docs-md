@@ -1180,7 +1180,7 @@ where
 }
 ```
 
-An iterator for the symbols in a [`SymbolTable`](coff/index.md).
+An iterator for the symbols in a [`SymbolTable`](xcoff/index.md).
 
 #### Trait Implementations
 
@@ -1212,7 +1212,7 @@ where
 }
 ```
 
-An symbol in a [`SymbolTable`](coff/index.md).
+An symbol in a [`SymbolTable`](xcoff/index.md).
 
 Most functionality is provided by the [`ObjectSymbol`](#objectsymbol) trait implementation.
 

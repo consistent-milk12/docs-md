@@ -55,7 +55,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl Extend for TokenStream`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl FromIterator for TokenStream`
 

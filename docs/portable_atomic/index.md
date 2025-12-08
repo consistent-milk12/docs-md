@@ -84,7 +84,7 @@ See the [`atomic128` module's readme](https://github.com/taiki-e/portable-atomic
   Implement `serde::{Serialize,Deserialize}` for atomic types.
 
   Note:
-  - The MSRV when this feature is enabled depends on the MSRV of [serde](#serde).
+  - The MSRV when this feature is enabled depends on the MSRV of [serde].
 
 - <a name="optional-features-critical-section"></a>**`critical-section`**<br>
   When this feature is enabled, this crate uses [critical-section] to provide atomic CAS for targets where
@@ -208,7 +208,7 @@ struct AtomicBool {
 
 A boolean type which can be safely shared between threads.
 
-This type has the same in-memory representation as a [`bool`](#bool).
+This type has the same in-memory representation as a `bool`.
 
 If the compiler and the platform support atomic loads and stores of `u8`,
 this type is a wrapper for the standard library's
@@ -373,9 +373,9 @@ struct AtomicIsize {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`isize`](#isize).
+`isize`.
 
-If the compiler and the platform support atomic loads and stores of [`isize`](#isize), this type is a wrapper for the standard library's `AtomicIsize`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `isize`, this type is a wrapper for the standard library's `AtomicIsize`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicIsize::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -471,9 +471,9 @@ struct AtomicUsize {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`usize`](#usize).
+`usize`.
 
-If the compiler and the platform support atomic loads and stores of [`usize`](#usize), this type is a wrapper for the standard library's `AtomicUsize`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `usize`, this type is a wrapper for the standard library's `AtomicUsize`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicUsize::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -569,9 +569,9 @@ struct AtomicI8 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`i8`](#i8).
+`i8`.
 
-If the compiler and the platform support atomic loads and stores of [`i8`](#i8), this type is a wrapper for the standard library's `AtomicI8`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `i8`, this type is a wrapper for the standard library's `AtomicI8`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicI8::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -667,9 +667,9 @@ struct AtomicU8 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`u8`](#u8).
+`u8`.
 
-If the compiler and the platform support atomic loads and stores of [`u8`](#u8), this type is a wrapper for the standard library's `AtomicU8`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `u8`, this type is a wrapper for the standard library's `AtomicU8`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicU8::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -765,9 +765,9 @@ struct AtomicI16 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`i16`](#i16).
+`i16`.
 
-If the compiler and the platform support atomic loads and stores of [`i16`](#i16), this type is a wrapper for the standard library's `AtomicI16`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `i16`, this type is a wrapper for the standard library's `AtomicI16`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicI16::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -863,9 +863,9 @@ struct AtomicU16 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`u16`](#u16).
+`u16`.
 
-If the compiler and the platform support atomic loads and stores of [`u16`](#u16), this type is a wrapper for the standard library's `AtomicU16`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `u16`, this type is a wrapper for the standard library's `AtomicU16`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicU16::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -961,9 +961,9 @@ struct AtomicI32 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`i32`](#i32).
+`i32`.
 
-If the compiler and the platform support atomic loads and stores of [`i32`](#i32), this type is a wrapper for the standard library's `AtomicI32`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `i32`, this type is a wrapper for the standard library's `AtomicI32`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicI32::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -1059,9 +1059,9 @@ struct AtomicU32 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`u32`](#u32).
+`u32`.
 
-If the compiler and the platform support atomic loads and stores of [`u32`](#u32), this type is a wrapper for the standard library's `AtomicU32`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `u32`, this type is a wrapper for the standard library's `AtomicU32`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicU32::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -1157,9 +1157,9 @@ struct AtomicI64 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`i64`](#i64).
+`i64`.
 
-If the compiler and the platform support atomic loads and stores of [`i64`](#i64), this type is a wrapper for the standard library's `AtomicI64`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `i64`, this type is a wrapper for the standard library's `AtomicI64`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicI64::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -1255,9 +1255,9 @@ struct AtomicU64 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`u64`](#u64).
+`u64`.
 
-If the compiler and the platform support atomic loads and stores of [`u64`](#u64), this type is a wrapper for the standard library's `AtomicU64`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `u64`, this type is a wrapper for the standard library's `AtomicU64`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicU64::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -1353,9 +1353,9 @@ struct AtomicI128 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`i128`](#i128).
+`i128`.
 
-If the compiler and the platform support atomic loads and stores of [`i128`](#i128), this type is a wrapper for the standard library's `AtomicI128`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `i128`, this type is a wrapper for the standard library's `AtomicI128`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicI128::is_lock_free()` to check whether
 atomic instructions or locks will be used.
@@ -1451,9 +1451,9 @@ struct AtomicU128 {
 An integer type which can be safely shared between threads.
 
 This type has the same in-memory representation as the underlying integer type,
-[`u128`](#u128).
+`u128`.
 
-If the compiler and the platform support atomic loads and stores of [`u128`](#u128), this type is a wrapper for the standard library's `AtomicU128`. If the platform supports it but the compiler does not, atomic operations are implemented using
+If the compiler and the platform support atomic loads and stores of `u128`, this type is a wrapper for the standard library's `AtomicU128`. If the platform supports it but the compiler does not, atomic operations are implemented using
 inline assembly. Otherwise synchronizes using global locks.
 You can call `AtomicU128::is_lock_free()` to check whether
 atomic instructions or locks will be used.

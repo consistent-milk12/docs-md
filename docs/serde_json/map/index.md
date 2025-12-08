@@ -6,8 +6,8 @@
 
 A map of String to serde_json::Value.
 
-By default the map is backed by a [`BTreeMap`](#btreemap). Enable the `preserve_order`
-feature of serde_json to use [`IndexMap`](#indexmap) instead.
+By default the map is backed by a `BTreeMap`. Enable the `preserve_order`
+feature of serde_json to use `IndexMap` instead.
 
 
 
@@ -569,7 +569,7 @@ enum Entry<'a> {
 ```
 
 A view into a single entry in a map, which may either be vacant or occupied.
-This enum is constructed from the [`entry`](#entry) method on [`Map`](../index.md).
+This enum is constructed from the `entry` method on [`Map`](../index.md).
 
 
 #### Variants

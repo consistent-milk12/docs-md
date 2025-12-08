@@ -4,7 +4,7 @@
 
 # Module `array`
 
-Parallel iterator types for [arrays](#arrays) (`[T; N]`)
+Parallel iterator types for [arrays] (`[T; N]`)
 
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.

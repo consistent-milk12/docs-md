@@ -861,7 +861,7 @@ which means things like `Span::from(5..10)` work.
 
 ##### `impl PartialEq for Span`
 
-- `fn eq(self: &Self, other: &Span) -> bool` — [`Span`](#span)
+- `fn eq(self: &Self, range: &Range<usize>) -> bool`
 
 ##### `impl StructuralPartialEq for Span`
 

@@ -29,14 +29,14 @@ some type in your program. See the [Implementing `Serialize`] section of the
 manual for more about this.
 
 Third-party crates may provide [`Serialize`](#serialize) implementations for types that
-they expose. For example the [`linked-hash-map`](#linked-hash-map) crate provides a
-[`LinkedHashMap<K, V>`](#linkedhashmap) type that is serializable by Serde because the crate
+they expose. For example the `linked-hash-map` crate provides a
+`LinkedHashMap<K, V>` type that is serializable by Serde because the crate
 provides an implementation of [`Serialize`](#serialize) for it.
 
 # The Serializer trait
 
 [`Serializer`](#serializer) implementations are provided by third-party crates, for
-example [`serde_json`](#serde-json), [`serde_yaml`](#serde-yaml) and [`postcard`](#postcard).
+example `serde_json`, `serde_yaml` and `postcard`.
 
 A partial list of well-maintained formats is given on the [Serde
 website][data formats].
@@ -294,8 +294,8 @@ type in your program. See the [Implementing `Serialize`] section of the
 manual for more about this.
 
 Third-party crates may provide `Serialize` implementations for types that
-they expose. For example the [`linked-hash-map`](#linked-hash-map) crate provides a
-[`LinkedHashMap<K, V>`](#linkedhashmap) type that is serializable by Serde because the crate
+they expose. For example the `linked-hash-map` crate provides a
+`LinkedHashMap<K, V>` type that is serializable by Serde because the crate
 provides an implementation of `Serialize` for it.
 
 
@@ -476,11 +476,11 @@ a basic JSON `Serializer`.
 
 - `fn serialize_none(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
 
-  Serialize a [`None`](#none) value.
+  Serialize a `None` value.
 
 - `fn serialize_some<T>(self: Self, value: &T) -> Result<<Self as >::Ok, <Self as >::Error>`
 
-  Serialize a [`Some(T)`](#somet) value.
+  Serialize a `Some(T)` value.
 
 - `fn serialize_unit(self: Self) -> Result<<Self as >::Ok, <Self as >::Error>`
 

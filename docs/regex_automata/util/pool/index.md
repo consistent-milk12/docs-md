@@ -6,7 +6,7 @@
 
 A thread safe memory pool.
 
-The principal type in this module is a [`Pool`](#pool). It main use case is for
+The principal type in this module is a [`Pool`](inner/index.md). It main use case is for
 holding a thread safe collection of mutable scratch spaces (usually called
 `Cache` in this crate) that regex engines need to execute a search. This then
 permits sharing the same read-only regex object across multiple threads while
@@ -59,7 +59,7 @@ of taste and depends on your code architecture.
 
 When this crate is compiled _without_ the `std` feature, then this type
 may used a spin lock internally. This can have subtle effects that may
-be undesirable. See [Spinlocks Considered Harmful][spinharm](#spinharm) for a more
+be undesirable. See [Spinlocks Considered Harmful][spinharm] for a more
 thorough treatment of this topic.
 
 # Example
@@ -87,7 +87,7 @@ assert_eq!(expected, RE.find(&mut CACHE.get(), b"zzzfoo12345barzzz"));
 
 #### Implementations
 
-- `fn get(self: &Self) -> PoolGuard<'_, T, F>` — [`PoolGuard`](#poolguard)
+- `fn new(create: F) -> Pool<T, F>` — [`Pool`](#pool)
 
 #### Trait Implementations
 

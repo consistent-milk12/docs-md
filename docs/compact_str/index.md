@@ -399,7 +399,7 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl AsRef for CompactString`
 
-- `fn as_ref(self: &Self) -> &[u8]`
+- `fn as_ref(self: &Self) -> &OsStr`
 
 ##### `impl Clone for CompactString`
 
@@ -431,13 +431,13 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Eq for CompactString`
 
-##### `impl<'a> Extend for CompactString`
+##### `impl Extend for CompactString`
 
-- `fn extend<T: IntoIterator<Item = Cow<'a, str>>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = Box<str>>>(self: &mut Self, iter: T)`
 
 ##### `impl<'a> FromIterator for CompactString`
 
-- `fn from_iter<T: IntoIterator<Item = &'a str>>(iter: T) -> Self`
+- `fn from_iter<T: IntoIterator<Item = &'a char>>(iter: T) -> Self`
 
 ##### `impl FromStr for CompactString`
 
@@ -489,7 +489,7 @@ struct Utf16Error(());
 
 A possible error value when converting a [`CompactString`](#compactstring) from a UTF-16 byte slice.
 
-This type is the error type for the [`from_utf16`](#from-utf16) method on [`CompactString`](#compactstring).
+This type is the error type for the `from_utf16` method on [`CompactString`](#compactstring).
 
 # Examples
 
@@ -722,7 +722,7 @@ positional parameters are used; see `std::fmt` for more information.
 
 A common use for `format_compact!` is concatenation and interpolation
 of strings.
-The same convention is used with [`print!`](#print) and [`write!`](#write) macros,
+The same convention is used with `print!` and `write!` macros,
 depending on the intended destination of the string.
 
 To convert a single value to a string, use the

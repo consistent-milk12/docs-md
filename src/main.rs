@@ -31,6 +31,7 @@ use Internals::parser::Parser as InternalParser;
 use Internals::{Cli, Command as CliCommand, DocsArgs, GenerateArgs};
 use clap::Parser;
 use docs_md as Internals;
+use docs_md::logger::Logger;
 use miette::{IntoDiagnostic, Result, miette};
 
 /// Entry point for the docs-md CLI tool.
@@ -56,6 +57,8 @@ fn main() -> Result<()> {
 
     // Parse CLI arguments (clap handles validation and help text)
     let cli = Cli::parse();
+
+    Logger::init_logging(cli.log_level, cli.log_file.as_ref())?;
 
     // Handle subcommands
     if let Some(command) = cli.command {
@@ -175,7 +178,7 @@ fn run_generate(args: &GenerateArgs) -> Result<()> {
         .path
         .as_ref()
         .expect("clap ensures path or dir is provided");
-    let krate = InternalParser::parse_json(path)?;
+    let krate = InternalParser::parse_file(path)?;
 
     // Generate markdown files
     Generator::run(&krate, args)?;

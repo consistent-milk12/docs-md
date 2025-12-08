@@ -339,7 +339,7 @@ the actual item definition with all the relevant info.
   
   Note that items can appear in multiple paths, and the one chosen is implementation
   defined. Currently, this is the full path to where the item was defined. Eg
-  [`String`](#string) is currently `["alloc", "string", "String"]` and [`HashMap`]`std::collections::HashMap`
+  `String` is currently `["alloc", "string", "String"]` and [`HashMap`]`std::collections::HashMap`
   is `["std", "collections", "hash", "map", "HashMap"]`, but this is subject to change.
 
 - **`kind`**: `ItemKind`
@@ -1934,7 +1934,7 @@ An `impl` block.
   The list of the names of all the trait methods that weren't mentioned in this impl but
   were provided by the trait itself.
   
-  For example, for this impl of the [`PartialEq`](#partialeq) trait:
+  For example, for this impl of the `PartialEq` trait:
   ```rust
   struct Foo;
   

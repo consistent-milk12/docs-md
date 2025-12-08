@@ -29,9 +29,9 @@ These two types come with conversion routines:
 [`Hir`](hir::Hir).
 
 As a convenience, the above two conversion routines are combined into one via
-the top-level [`Parser`](ast/parse/index.md) type. This `Parser` will first convert your pattern to
+the top-level [`Parser`](parser/index.md) type. This `Parser` will first convert your pattern to
 an `Ast` and then convert the `Ast` to an `Hir`. It's also exposed as top-level
-[`parse`](parser/index.md) free function.
+[`parse`](ast/parse/index.md) free function.
 
 
 # Example
@@ -193,7 +193,7 @@ convenience for never having to deal with it at all.
 If callers have more fine grained use cases that need an AST, then please
 see the `ast::parse` module.
 
-A `Parser` can be configured in more detail via a [`ParserBuilder`](ast/parse/index.md).
+A `Parser` can be configured in more detail via a [`ParserBuilder`](parser/index.md).
 
 #### Implementations
 

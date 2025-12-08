@@ -6,7 +6,7 @@
 
 An implementation of the [Two-Way substring search algorithm][two-way].
 
-[`Finder`](../rabinkarp/index.md) can be built for forward searches, while [`FinderRev`](../rabinkarp/index.md) can be built
+[`Finder`](#finder) can be built for forward searches, while [`FinderRev`](../rabinkarp/index.md) can be built
 for reverse searches.
 
 Two-Way makes for a nice general purpose substring search algorithm because of
@@ -23,7 +23,7 @@ Moreover, not all targets support vector algorithms or implementations for them
 simply may not exist yet.
 
 Two-Way can be found in the `memmem` implementations in at least [GNU libc] and
-[musl](#musl).
+[musl].
 
 
 

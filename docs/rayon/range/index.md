@@ -4,7 +4,7 @@
 
 # Module `range`
 
-Parallel iterator types for [ranges](#ranges),
+Parallel iterator types for [ranges],
 the type for values created by `a..b` expressions
 
 You will rarely need to interact with this module directly unless you have
@@ -63,7 +63,7 @@ assert_eq!(p, s);
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl IndexedParallelIterator for Iter<char>`
+##### `impl<T: IndexedRangeInteger> IndexedParallelIterator for Iter<T>`
 
 - `fn drive<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 
@@ -81,9 +81,9 @@ assert_eq!(p, s);
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl ParallelIterator for Iter<char>`
+##### `impl<T: RangeInteger> ParallelIterator for Iter<T>`
 
-- `type Item = char`
+- `type Item = T`
 
 - `fn drive_unindexed<C>(self: Self, consumer: C) -> <C as >::Result` — [`Consumer`](../iter/plumbing/index.md)
 

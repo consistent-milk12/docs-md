@@ -18,8 +18,8 @@ There are two ways to use Rayon:
     - The [`ParallelIterator`](iter/index.md) trait defines general methods for all parallel iterators.
     - The [`IndexedParallelIterator`](iter/index.md) trait adds methods for iterators that support random
       access.
-  - The [`par_sort`](#par-sort) method sorts `&mut [T]` slices (or vectors) in parallel.
-  - [`par_extend`](#par-extend) can be used to efficiently grow collections with items produced
+  - The `par_sort` method sorts `&mut [T]` slices (or vectors) in parallel.
+  - `par_extend` can be used to efficiently grow collections with items produced
     by a parallel iterator.
 - **Custom tasks** let you divide your work into parallel tasks yourself.
   - [`join`](#join) is used to subdivide a task into two pieces.
@@ -43,7 +43,7 @@ the top of each module that uses Rayon methods.
 
 These traits give you access to the `par_iter` method which provides
 parallel implementations of many iterative functions such as [`map`](iter/map/index.md),
-[`for_each`](iter/for_each/index.md), [`filter`](iter/filter/index.md), [`fold`](iter/fold/index.md), and [more](#more).
+[`for_each`](iter/for_each/index.md), [`filter`](iter/filter/index.md), [`fold`](iter/fold/index.md), and [more].
 
 
 
@@ -54,7 +54,7 @@ parallel implementations of many iterative functions such as [`map`](iter/map/in
 
 Rayon extends many of the types found in the standard library with
 parallel iterator implementations. The modules in the `rayon`
-crate mirror [`std`](#std) itself: so, e.g., the `option` module in
+crate mirror `std` itself: so, e.g., the `option` module in
 Rayon contains parallel iterators for the `Option` type, which is
 found in [the `option` module of `std`]. Similarly, the
 `collections` module in Rayon offers parallel iterator types for
@@ -66,11 +66,11 @@ explicitly.
 # Targets without threading
 
 Rayon has limited support for targets without `std` threading implementations.
-See the [`rayon_core`](#rayon-core) documentation for more information about its global fallback.
+See the `rayon_core` documentation for more information about its global fallback.
 
 # Other questions?
 
-See [the Rayon FAQ][faq](#faq).
+See [the Rayon FAQ][faq].
 
 
 ## Modules

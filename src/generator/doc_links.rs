@@ -23,7 +23,7 @@ use std::sync::LazyLock;
 use regex::Regex;
 use rustdoc_types::{Crate, Id, ItemKind};
 
-use crate::linker::LinkRegistry;
+use crate::linker::{item_has_anchor, LinkRegistry};
 
 // =============================================================================
 // Static Regex Patterns (compiled once, reused everywhere)
@@ -440,6 +440,15 @@ impl<'a> DocLinkProcessor<'a> {
             }
         }
 
+        // Sort each Vec by full path for deterministic resolution order
+        for ids in path_name_index.values_mut() {
+            ids.sort_by(|a, b| {
+                let path_a = krate.paths.get(a).map(|p| p.path.join("::"));
+                let path_b = krate.paths.get(b).map(|p| p.path.join("::"));
+                path_a.cmp(&path_b)
+            });
+        }
+
         Self {
             krate,
             link_registry,
@@ -668,8 +677,14 @@ impl<'a> DocLinkProcessor<'a> {
             // Check if it's on the current page
             if let Some(path) = self.link_registry.get_path(*id) {
                 if path == self.current_file {
-                    // Item is on this page - use anchor
-                    return Some(format!("#{}", item_name.to_lowercase()));
+                    // Only create anchor if item has a heading
+                    if let Some(path_info) = self.krate.paths.get(id)
+                        && item_has_anchor(path_info.kind)
+                    {
+                        return Some(format!("#{}", item_name.to_lowercase()));
+                    }
+                    // Item on page but no anchor - link to page without anchor
+                    return Some(String::new());
                 }
                 // Item is in another file
                 let relative = LinkRegistry::compute_relative_path(self.current_file, path);
@@ -689,7 +704,14 @@ impl<'a> DocLinkProcessor<'a> {
             for id in ids {
                 if let Some(path) = self.link_registry.get_path(*id) {
                     if path == self.current_file {
-                        return Some(format!("#{}", item_name.to_lowercase()));
+                        // Only create anchor if item has a heading
+                        if let Some(path_info) = self.krate.paths.get(id)
+                            && item_has_anchor(path_info.kind)
+                        {
+                            return Some(format!("#{}", item_name.to_lowercase()));
+                        }
+                        // Item on page but no anchor - link to page without anchor
+                        return Some(String::new());
                     }
                     let relative = LinkRegistry::compute_relative_path(self.current_file, path);
                     return Some(relative);
@@ -705,19 +727,22 @@ impl<'a> DocLinkProcessor<'a> {
         }
 
         // Strategy 3: Search krate.paths for external items by name
-        for path_info in self.krate.paths.values() {
-            if path_info.crate_id != 0 {
-                // External crate
-                if let Some(name) = path_info.path.last()
-                    && name == item_name
+        // Collect all matches and pick the shortest path (most specific) for determinism
+        let mut matches: Vec<_> = self
+            .krate
+            .paths
+            .values()
+            .filter(|path_info| {
+                path_info.crate_id != 0
+                    && path_info.path.last().is_some_and(|name| name == item_name)
                     && Self::kind_matches(item_kind, path_info.kind)
-                {
-                    return Self::get_docs_rs_url(path_info);
-                }
-            }
-        }
+            })
+            .collect();
 
-        None
+        // Sort by full path for deterministic selection
+        matches.sort_by(|a, b| a.path.join("::").cmp(&b.path.join("::")));
+
+        matches.first().and_then(|path_info| Self::get_docs_rs_url(path_info))
     }
 
     /// Check if the HTML link kind matches the rustdoc item kind.

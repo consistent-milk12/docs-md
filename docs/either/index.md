@@ -138,9 +138,9 @@ preference.
 
 - `fn as_mut(self: &mut Self) -> &mut Target`
 
-##### `impl<L, R> AsRef for Either<L, R>`
+##### `impl<L, R, Target> AsRef for Either<L, R>`
 
-- `fn as_ref(self: &Self) -> &str`
+- `fn as_ref(self: &Self) -> &[Target]`
 
 ##### `impl<L: Clone, R: Clone> Clone for Either<L, R>`
 
@@ -313,7 +313,7 @@ Macro for unwrapping the left side of an [`Either`](#either), which fails early
 with the opposite side. Can only be used in functions that return
 `Either` because of the early return of `Right` that it provides.
 
-See also [`try_right!`](#try-right) for its dual, which applies the same just to the
+See also `try_right!` for its dual, which applies the same just to the
 right side.
 
 # Example
@@ -334,5 +334,5 @@ fn main() {
 
 ### `try_right!`
 
-Dual to [`try_left!`](#try-left), see its documentation for more information.
+Dual to `try_left!`, see its documentation for more information.
 

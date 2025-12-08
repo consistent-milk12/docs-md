@@ -75,7 +75,7 @@ use std::mem::MaybeUninit;
 fn example(fd: rustix::fd::BorrowedFd) -> rustix::io::Result<()> {
 let mut buf = [MaybeUninit::<u8>::uninit(); 64];
 let (init, uninit) = read(fd, &mut buf)?;
-// `init` is a `&mut [u8](#u8)` with the initialized bytes.
+// `init` is a `&mut [u8]` with the initialized bytes.
 // `uninit` is a `&mut [MaybeUninit<u8>]` with the remaining bytes.
 Ok(())
 }

@@ -233,7 +233,7 @@ Note: We don't show macro rules since rustdoc JSON doesn't provide them.
 ### `render_impl_items`
 
 ```rust
-fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: Option<F>, create_type_link: Option<L>)
+fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: &Option<F>, create_type_link: &Option<L>)
 where
     F: Fn(&rustdoc_types::Item) -> Option<String>,
     L: Fn(rustdoc_types::Id) -> Option<String>
@@ -251,7 +251,7 @@ within an impl block as bullet points.
 * `krate` - The crate containing item definitions
 * `type_renderer` - Type renderer for types
 * `process_docs` - Optional closure to process documentation
-* `create_type_link` - Optional closure to create links for types (id -> Option<markdown_link>)
+* `create_type_link` - Optional closure to create links for types `(id -> Option<markdown_link>)`
 
 ### `append_docs`
 

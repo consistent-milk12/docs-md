@@ -50,9 +50,9 @@ ways to create (or consume) parallel iterators:
   operations. See [the `ParallelSlice` trait] for the full list.
 - Strings (`&str`) offer methods like `par_split` and `par_lines`.
   See [the `ParallelString` trait] for the full list.
-- Various collections offer [`par_extend`](#par-extend), which grows a
+- Various collections offer `par_extend`, which grows a
   collection given a parallel iterator. (If you don't have a
-  collection to extend, you can use [`collect()`](#collect) to create a new
+  collection to extend, you can use `collect()` to create a new
   one from scratch.)
 
 
@@ -63,7 +63,7 @@ check out the [`ParallelIterator`](#paralleliterator) and [`IndexedParallelItera
 traits.
 
 If you'd like to build a custom parallel iterator, or to write your own
-combinator, then check out the [split](#split) function and the [plumbing](#plumbing) module.
+combinator, then check out the [`split`](../str/index.md) function and the [`plumbing`](plumbing/index.md) module.
 
 
 
@@ -96,7 +96,7 @@ struct ExponentialBlocks<I> {
 `ExponentialBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of increasing sizes (exponentially).
 
-This struct is created by the [`by_exponential_blocks()`](#by-exponential-blocks) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `by_exponential_blocks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -155,7 +155,7 @@ struct UniformBlocks<I> {
 `UniformBlocks` is a parallel iterator that consumes itself as a sequence
 of parallel blocks of constant sizes.
 
-This struct is created by the [`by_uniform_blocks()`](#by-uniform-blocks) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `by_uniform_blocks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -212,7 +212,7 @@ struct Chain<A, B> {
 ```
 
 `Chain` is an iterator that joins `b` after `a` in one continuous iterator.
-This struct is created by the [`chain()`](#chain) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `chain()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -280,7 +280,7 @@ struct Chunks<I> {
 
 `Chunks` is an iterator that groups elements of an underlying iterator.
 
-This struct is created by the [`chunks()`](#chunks) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `chunks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -347,7 +347,7 @@ struct Cloned<I> {
 
 `Cloned` is an iterator that clones the elements of an underlying iterator.
 
-This struct is created by the [`cloned()`](#cloned) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `cloned()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -414,7 +414,7 @@ struct Copied<I> {
 
 `Copied` is an iterator that copies the elements of an underlying iterator.
 
-This struct is created by the [`copied()`](#copied) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `copied()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -541,7 +541,7 @@ struct Enumerate<I> {
 ```
 
 `Enumerate` is an iterator that returns the current count along with the element.
-This struct is created by the [`enumerate()`](#enumerate) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `enumerate()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -608,7 +608,7 @@ struct Filter<I, P> {
 ```
 
 `Filter` takes a predicate `filter_op` and filters out elements that match.
-This struct is created by the [`filter()`](#filter) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `filter()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -665,7 +665,7 @@ struct FilterMap<I, P> {
 ```
 
 `FilterMap` creates an iterator that uses `filter_op` to both filter and map elements.
-This struct is created by the [`filter_map()`](#filter-map) method on [`ParallelIterator`](#paralleliterator).
+This struct is created by the `filter_map()` method on [`ParallelIterator`](#paralleliterator).
 
 
 #### Implementations
@@ -722,7 +722,7 @@ struct FlatMap<I, F> {
 ```
 
 `FlatMap` maps each element to a parallel iterator, then flattens these iterators together.
-This struct is created by the [`flat_map()`](#flat-map) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `flat_map()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -779,7 +779,7 @@ struct FlatMapIter<I, F> {
 ```
 
 `FlatMapIter` maps each element to a serial iterator, then flattens these iterators together.
-This struct is created by the [`flat_map_iter()`](#flat-map-iter) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `flat_map_iter()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -835,7 +835,7 @@ struct Flatten<I> {
 ```
 
 `Flatten` turns each element to a parallel iterator, then flattens these iterators
-together. This struct is created by the [`flatten()`](#flatten) method on [`ParallelIterator`](#paralleliterator).
+together. This struct is created by the `flatten()` method on [`ParallelIterator`](#paralleliterator).
 
 
 #### Implementations
@@ -891,7 +891,7 @@ struct FlattenIter<I> {
 ```
 
 `FlattenIter` turns each element to a serial iterator, then flattens these iterators
-together. This struct is created by the [`flatten_iter()`](#flatten-iter) method on [`ParallelIterator`](#paralleliterator).
+together. This struct is created by the `flatten_iter()` method on [`ParallelIterator`](#paralleliterator).
 
 
 #### Implementations
@@ -949,7 +949,7 @@ struct Fold<I, ID, F> {
 ```
 
 `Fold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the [`fold()`](#fold) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `fold()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1007,7 +1007,7 @@ struct FoldWith<I, U, F> {
 ```
 
 `FoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the [`fold_with()`](#fold-with) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `fold_with()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1068,7 +1068,7 @@ struct FoldChunks<I, ID, F> {
 `FoldChunks` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the [`fold_chunks()`](#fold-chunks) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `fold_chunks()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1139,7 +1139,7 @@ struct FoldChunksWith<I, U, F> {
 `FoldChunksWith` is an iterator that groups elements of an underlying iterator and applies a
 function over them, producing a single value for each group.
 
-This struct is created by the [`fold_chunks_with()`](#fold-chunks-with) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `fold_chunks_with()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1208,7 +1208,7 @@ struct Inspect<I, F> {
 `Inspect` is an iterator that calls a function with a reference to each
 element before yielding it.
 
-This struct is created by the [`inspect()`](#inspect) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `inspect()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1276,7 +1276,7 @@ struct Interleave<I, J> {
 
 `Interleave` is an iterator that interleaves elements of iterators
 `i` and `j` in one continuous iterator. This struct is created by
-the [`interleave()`](#interleave) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+the `interleave()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1345,7 +1345,7 @@ struct InterleaveShortest<I, J> {
 `Interleave`, but this version stops returning elements once one
 of the iterators run out.
 
-This struct is created by the [`interleave_shortest()`](#interleave-shortest) method on
+This struct is created by the `interleave_shortest()` method on
 [`IndexedParallelIterator`](#indexedparalleliterator).
 
 
@@ -1416,7 +1416,7 @@ where
 
 `Intersperse` is an iterator that inserts a particular item between each
 item of the adapted iterator.  This struct is created by the
-[`intersperse()`](#intersperse) method on [`ParallelIterator`](#paralleliterator)
+`intersperse()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1483,7 +1483,7 @@ struct MaxLen<I> {
 ```
 
 `MaxLen` is an iterator that imposes a maximum length on iterator splits.
-This struct is created by the [`with_max_len()`](#with-max-len) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `with_max_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1550,7 +1550,7 @@ struct MinLen<I> {
 ```
 
 `MinLen` is an iterator that imposes a minimum length on iterator splits.
-This struct is created by the [`with_min_len()`](#with-min-len) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `with_min_len()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -1618,7 +1618,7 @@ struct Map<I, F> {
 
 `Map` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the [`map()`](#map) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `map()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1687,7 +1687,7 @@ struct MapInit<I, INIT, F> {
 
 `MapInit` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the [`map_init()`](#map-init) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `map_init()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1756,7 +1756,7 @@ struct MapWith<I, T, F> {
 
 `MapWith` is an iterator that transforms the elements of an underlying iterator.
 
-This struct is created by the [`map_with()`](#map-with) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `map_with()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -1906,7 +1906,7 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl<A> IndexedParallelIterator for MultiZip<(A)>`
+##### `impl<A, B, C, D, E, F, G, H, I, J> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J)>`
 
 - `fn drive<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1924,9 +1924,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl<A, B, C> ParallelIterator for MultiZip<(A, B, C)>`
+##### `impl<A, B, C, D, E, F, G> ParallelIterator for MultiZip<(A, B, C, D, E, F, G)>`
 
-- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item)`
+- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item, <F as ParallelIterator>::Item, <G as ParallelIterator>::Item)`
 
 - `fn drive_unindexed<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -2018,7 +2018,7 @@ struct PanicFuse<I> {
 `PanicFuse` is an adaptor that wraps an iterator with a fuse in case
 of panics, to halt all threads as soon as possible.
 
-This struct is created by the [`panic_fuse()`](#panic-fuse) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `panic_fuse()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2140,7 +2140,7 @@ struct Positions<I, P> {
 `Positions` takes a predicate `predicate` and filters out elements that match,
 yielding their indices.
 
-This struct is created by the [`positions()`](#positions) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `positions()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2314,7 +2314,7 @@ struct Rev<I> {
 ```
 
 `Rev` is an iterator that produces elements in reverse order. This struct
-is created by the [`rev()`](#rev) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+is created by the `rev()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2381,7 +2381,7 @@ struct Skip<I> {
 ```
 
 `Skip` is an iterator that skips over the first `n` elements.
-This struct is created by the [`skip()`](#skip) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `skip()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2448,7 +2448,7 @@ struct SkipAny<I> {
 ```
 
 `SkipAny` is an iterator that skips over `n` elements from anywhere in `I`.
-This struct is created by the [`skip_any()`](#skip-any) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `skip_any()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2506,7 +2506,7 @@ struct SkipAnyWhile<I, P> {
 
 `SkipAnyWhile` is an iterator that skips over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the [`skip_any_while()`](#skip-any-while) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `skip_any_while()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2563,7 +2563,7 @@ struct Split<D, S> {
 ```
 
 `Split` is a parallel iterator using arbitrary data and a splitting function.
-This struct is created by the [`split()`](#split) function.
+This struct is created by the `split()` function.
 
 #### Trait Implementations
 
@@ -2615,7 +2615,7 @@ struct StepBy<I> {
 ```
 
 `StepBy` is an iterator that skips `n` elements between each yield, where `n` is the given step.
-This struct is created by the [`step_by()`](#step-by) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `step_by()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2682,7 +2682,7 @@ struct Take<I> {
 ```
 
 `Take` is an iterator that iterates over the first `n` elements.
-This struct is created by the [`take()`](#take) method on [`IndexedParallelIterator`](#indexedparalleliterator)
+This struct is created by the `take()` method on [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
 #### Implementations
@@ -2749,7 +2749,7 @@ struct TakeAny<I> {
 ```
 
 `TakeAny` is an iterator that iterates over `n` elements from anywhere in `I`.
-This struct is created by the [`take_any()`](#take-any) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `take_any()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2807,7 +2807,7 @@ struct TakeAnyWhile<I, P> {
 
 `TakeAnyWhile` is an iterator that iterates over elements from anywhere in `I`
 until the callback returns `false`.
-This struct is created by the [`take_any_while()`](#take-any-while) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `take_any_while()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2866,7 +2866,7 @@ struct TryFold<I, U, ID, F> {
 ```
 
 `TryFold` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the [`try_fold()`](#try-fold) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `try_fold()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2924,7 +2924,7 @@ struct TryFoldWith<I, U: Try, F> {
 ```
 
 `TryFoldWith` is an iterator that applies a function over an iterator producing a single value.
-This struct is created by the [`try_fold_with()`](#try-fold-with) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `try_fold_with()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -2983,7 +2983,7 @@ struct Update<I, F> {
 `Update` is an iterator that mutates the elements of an
 underlying iterator before they are yielded.
 
-This struct is created by the [`update()`](#update) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `update()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -3047,7 +3047,7 @@ struct WalkTree<S, B>(WalkTreePostfix<S, B>);
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree()`](#walk-tree) function.
+Returned by the `walk_tree()` function.
 
 #### Trait Implementations
 
@@ -3095,7 +3095,7 @@ struct WalkTreePostfix<S, B> {
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree_postfix()`](#walk-tree-postfix) function.
+Returned by the `walk_tree_postfix()` function.
 
 #### Trait Implementations
 
@@ -3143,7 +3143,7 @@ struct WalkTreePrefix<S, B> {
 ```
 
 ParallelIterator for arbitrary tree-shaped patterns.
-Returned by the [`walk_tree_prefix()`](#walk-tree-prefix) function.
+Returned by the `walk_tree_prefix()` function.
 
 #### Trait Implementations
 
@@ -3192,7 +3192,7 @@ struct WhileSome<I> {
 `WhileSome` is an iterator that yields the `Some` elements of an iterator,
 halting as soon as any `None` is produced.
 
-This struct is created by the [`while_some()`](#while-some) method on [`ParallelIterator`](#paralleliterator)
+This struct is created by the `while_some()` method on [`ParallelIterator`](#paralleliterator)
 
 
 #### Implementations
@@ -3249,7 +3249,7 @@ struct Zip<A, B> {
 ```
 
 `Zip` is an iterator that zips up `a` and `b` into a single iterator
-of pairs. This struct is created by the [`zip()`](#zip) method on
+of pairs. This struct is created by the `zip()` method on
 [`IndexedParallelIterator`](#indexedparalleliterator)
 
 
@@ -3765,11 +3765,11 @@ those points.
 
 - `fn fold_chunks<T, ID, F>(self: Self, chunk_size: usize, identity: ID, fold_op: F) -> FoldChunks<Self, ID, F>`
 
-  Splits an iterator into fixed-size chunks, performing a sequential [`fold()`](#fold) on
+  Splits an iterator into fixed-size chunks, performing a sequential `fold()` on
 
 - `fn fold_chunks_with<T, F>(self: Self, chunk_size: usize, init: T, fold_op: F) -> FoldChunksWith<Self, T, F>`
 
-  Splits an iterator into fixed-size chunks, performing a sequential [`fold()`](#fold) on
+  Splits an iterator into fixed-size chunks, performing a sequential `fold()` on
 
 - `fn cmp<I>(self: Self, other: I) -> Ordering`
 
@@ -3872,7 +3872,7 @@ from a [`ParallelIterator`](#paralleliterator). By implementing
 `FromParallelIterator` for a given type, you define how it will be
 created from an iterator.
 
-`FromParallelIterator` is used through [`ParallelIterator`](#paralleliterator)'s [`collect()`](#collect) method.
+`FromParallelIterator` is used through [`ParallelIterator`](#paralleliterator)'s `collect()` method.
 
 # Examples
 

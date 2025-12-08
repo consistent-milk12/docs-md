@@ -21,7 +21,7 @@ The primary types in this sub-module are:
 
 * [`Searcher`](api/index.md) executes the actual search algorithm to report matches in a
 haystack.
-* [`Builder`](api/index.md) accumulates patterns incrementally and can construct a
+* [`Builder`](../util/prefilter/index.md) accumulates patterns incrementally and can construct a
 `Searcher`.
 * [`Config`](api/index.md) permits tuning the searcher, and itself will produce a `Builder`
 (which can then be used to build a `Searcher`). Currently, the only tuneable
@@ -326,7 +326,7 @@ A packed searcher for quickly finding occurrences of multiple patterns.
 
 If callers need more flexible construction, or if one wants to change the
 match semantics (either leftmost-first or leftmost-longest), then one can
-use the [`Config`](api/index.md) and/or [`Builder`](api/index.md) types for more fine grained control.
+use the [`Config`](api/index.md) and/or [`Builder`](../util/prefilter/index.md) types for more fine grained control.
 
 # Example
 

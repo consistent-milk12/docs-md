@@ -1,19 +1,19 @@
 # Crate `proc_macro2`
 
-[![github](#github)](https://github.com/dtolnay/proc-macro2)&ensp;[![crates-io]](https://crates.io/crates/proc-macro2)&ensp;[![docs-rs]](crate)
+[![github]](https://github.com/dtolnay/proc-macro2)&ensp;[![crates-io]](https://crates.io/crates/proc-macro2)&ensp;[![docs-rs]](crate)
 
 
 
 <br>
 
-A wrapper around the procedural macro API of the compiler's [`proc_macro`](#proc-macro)
+A wrapper around the procedural macro API of the compiler's `proc_macro`
 crate. This library serves two purposes:
 
 - **Bring proc-macro-like functionality to other contexts like build.rs and
   main.rs.** Types from `proc_macro` are entirely specific to procedural
   macros and cannot ever exist in code outside of a procedural macro.
   Meanwhile `proc_macro2` types may exist anywhere including non-macro code.
-  By developing foundational libraries like [syn](#syn) and [quote](#quote) against
+  By developing foundational libraries like [syn] and [quote] against
   `proc_macro2` rather than `proc_macro`, the procedural macro ecosystem
   becomes easily applicable to many other use cases and we avoid
   reimplementing non-macro equivalents of those libraries.
@@ -48,7 +48,7 @@ pub fn my_derive(input: proc_macro::TokenStream) -> proc_macro::TokenStream {
 }
 ```
 
-If parsing with [Syn], you'll use [`parse_macro_input!`](#parse-macro-input) instead to
+If parsing with [Syn], you'll use `parse_macro_input!` instead to
 propagate parse errors correctly back to the compiler when parsing fails.
 
 # Unstable features
@@ -133,7 +133,7 @@ Token stream is both the input and output of `#[proc_macro]`,
 
 ##### `impl Extend for TokenStream`
 
-- `fn extend<I: IntoIterator<Item = TokenStream>>(self: &mut Self, streams: I)`
+- `fn extend<I: IntoIterator<Item = TokenTree>>(self: &mut Self, streams: I)`
 
 ##### `impl FromIterator for TokenStream`
 
@@ -485,9 +485,9 @@ if ident_string.len() > 60 {
 
 ##### `impl Parse for proc_macro2::Ident`
 
-##### `impl PartialEq for Ident`
+##### `impl<T> PartialEq for Ident`
 
-- `fn eq(self: &Self, other: &Ident) -> bool` — [`Ident`](#ident)
+- `fn eq(self: &Self, other: &T) -> bool`
 
 ##### `impl PartialOrd for Ident`
 

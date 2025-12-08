@@ -6,7 +6,7 @@
 
 A lazy DFA backed `Regex`.
 
-This module provides a [`Regex`](#regex) backed by a lazy DFA. A `Regex` implements
+This module provides a [`Regex`](../../dfa/regex/index.md) backed by a lazy DFA. A `Regex` implements
 convenience routines you might have come to expect, such as finding a match
 and iterating over all non-overlapping matches. This `Regex` type is limited
 in its capabilities to what a lazy DFA can provide. Therefore, APIs involving
@@ -103,15 +103,9 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
+- `fn try_search(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Result<Option<Match>, MatchError>` — [`Cache`](#cache), [`Input`](../../index.md), [`Match`](../../index.md), [`MatchError`](../../index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../error/index.md)
-
-- `fn builder() -> Builder` — [`Builder`](#builder)
-
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
-
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
+- `fn is_anchored(self: &Self, input: &Input<'_>) -> bool` — [`Input`](../../index.md)
 
 #### Trait Implementations
 
@@ -179,7 +173,7 @@ complete transition table that can handle all possible inputs, a hybrid
 NFA/DFA starts with an empty transition table and builds only the parts
 required during search. The parts that are built are stored in a cache. For
 this reason, a cache is a required parameter for nearly every operation on
-a [`Regex`](#regex).
+a [`Regex`](../../dfa/regex/index.md).
 
 Caches can be created from their corresponding `Regex` via
 `Regex::create_cache`. A cache can only be used with either the `Regex`

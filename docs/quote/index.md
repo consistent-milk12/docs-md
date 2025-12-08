@@ -1,12 +1,12 @@
 # Crate `quote`
 
-[![github](#github)](https://github.com/dtolnay/quote)&ensp;[![crates-io]](https://crates.io/crates/quote)&ensp;[![docs-rs]](https://docs.rs/quote)
+[![github]](https://github.com/dtolnay/quote)&ensp;[![crates-io]](https://crates.io/crates/quote)&ensp;[![docs-rs]](https://docs.rs/quote)
 
 
 
 <br>
 
-This crate provides the [`quote!`](#quote) macro for turning Rust syntax tree data
+This crate provides the `quote!` macro for turning Rust syntax tree data
 structures into tokens of source code.
 
 Procedural macros in Rust receive a stream of tokens as input, execute
@@ -36,11 +36,11 @@ quote = "1.0"
 
 # Example
 
-The following quasi-quoted block of code is something you might find in [a](#a)
+The following quasi-quoted block of code is something you might find in [a]
 procedural macro having to do with data structure serialization. The `#var`
 syntax performs interpolation of runtime variables into the quoted tokens.
-Check out the documentation of the [`quote!`](#quote) macro for more detail about
-the syntax. See also the [`quote_spanned!`](#quote-spanned) macro which is important for
+Check out the documentation of the `quote!` macro for more detail about
+the syntax. See also the `quote_spanned!` macro which is important for
 implementing hygienic procedural macros.
 
 ```rust
@@ -81,7 +81,7 @@ let tokens = quote! {
 
 When using `quote` in a build.rs or main.rs and writing the output out to a
 file, consider having the code generator pass the tokens through
-[prettyplease](#prettyplease) before writing. This way if an error occurs in the generated
+[prettyplease] before writing. This way if an error occurs in the generated
 code it is convenient for a human to read and debug.
 
 
@@ -97,7 +97,7 @@ Formatting macro for constructing `Ident`s.
 
 # Syntax
 
-Syntax is copied from the [`format!`](#format) macro, supporting both positional and
+Syntax is copied from the `format!` macro, supporting both positional and
 named arguments.
 
 Only a limited set of formatting traits are supported. The current mapping
@@ -120,14 +120,14 @@ default. This trait is like `Display`, with a few differences:
 
 * `IdentFragment` is only implemented for a limited set of types, such as
   unsigned integers and strings.
-* [`Ident`](#ident) arguments will have their `r#` prefixes stripped, if present.
+* `Ident` arguments will have their `r#` prefixes stripped, if present.
 
 
 <br>
 
 # Hygiene
 
-The [`Span`](#span) of the first `Ident` argument is used as the span of the final
+The `Span` of the first `Ident` argument is used as the span of the final
 identifier, falling back to `Span::call_site` when no identifiers are
 provided.
 
@@ -237,7 +237,7 @@ Any interpolated tokens preserve the `Span` information provided by their
 `ToTokens` implementation. Tokens that originate within the `quote!`
 invocation are spanned with `Span::call_site()`.
 
-A different span can be provided through the [`quote_spanned!`](#quote-spanned) macro.
+A different span can be provided through the `quote_spanned!` macro.
 
 <br>
 
@@ -353,7 +353,7 @@ quote! {
 ```
 
 The solution is to build a new identifier token with the correct value. As
-this is such a common case, the [`format_ident!`](#format-ident) macro provides a
+this is such a common case, the `format_ident!` macro provides a
 convenient utility for doing so correctly.
 
 ```rust
@@ -547,7 +547,7 @@ the macro invocation.
 
 # Syntax
 
-A span expression of type [`Span`](#span), followed by `=>`, followed by the tokens
+A span expression of type `Span`, followed by `=>`, followed by the tokens
 to quote. The span expression should be brief &mdash; use a variable for
 anything more than a few characters. There should be no space before the
 `=>` token.

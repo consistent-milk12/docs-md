@@ -4,7 +4,7 @@
 
 # Module `vec`
 
-Parallel iterator types for [vectors](#vectors) (`Vec<T>`)
+Parallel iterator types for [vectors] (`Vec<T>`)
 
 You will rarely need to interact with this module directly unless you need
 to name one of the iterator types.

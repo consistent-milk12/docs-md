@@ -4,18 +4,18 @@ Rayon-core houses the core stable APIs of Rayon.
 
 These APIs have been mirrored in the Rayon crate and it is recommended to use these from there.
 
-[`join()`](#join) is used to take two closures and potentially run them in parallel.
+`join()` is used to take two closures and potentially run them in parallel.
   - It will run in parallel if task B gets stolen before task A can finish.
   - It will run sequentially if task A finishes before task B is stolen and can continue on task B.
 
-[`scope()`](#scope) creates a scope in which you can run any number of parallel tasks.
+`scope()` creates a scope in which you can run any number of parallel tasks.
 These tasks can spawn nested tasks and scopes, but given the nature of work stealing, the order of execution can not be guaranteed.
 The scope will exist until all tasks spawned within the scope have been completed.
 
-[`spawn()`](#spawn) add a task into the 'static' or 'global' scope, or a local scope created by the [`scope()`](#scope) function.
+`spawn()` add a task into the 'static' or 'global' scope, or a local scope created by the `scope()` function.
 
 [`ThreadPool`](thread_pool/index.md) can be used to create your own thread pools (using [`ThreadPoolBuilder`](#threadpoolbuilder)) or to customize the global one.
-Tasks spawned within the pool (using [`install()`][tpinstall](#tpinstall), [`join()`][tpjoin](#tpjoin), etc.) will be added to a deque,
+Tasks spawned within the pool (using [`install()`][tpinstall], [`join()`][tpjoin], etc.) will be added to a deque,
 where it becomes available for work stealing from other threads in the local thread pool.
 
 
@@ -155,7 +155,7 @@ struct Scope<'scope> {
 ```
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
-See [`scope()`](#scope) for more information.
+See `scope()` for more information.
 
 #### Implementations
 
@@ -196,7 +196,7 @@ struct ScopeFifo<'scope> {
 
 Represents a fork-join scope which can be used to spawn any number of tasks.
 Those spawned from the same thread are prioritized in relative FIFO order.
-See [`scope_fifo()`](#scope-fifo) for more information.
+See `scope_fifo()` for more information.
 
 #### Implementations
 
@@ -396,7 +396,7 @@ use rayon_core as rayon;
 let pool = rayon::ThreadPoolBuilder::new().num_threads(22).build().unwrap();
 ```
 
-To instead configure the global thread pool, use [`build_global()`](#build-global):
+To instead configure the global thread pool, use `build_global()`:
 
 ```ignore-wasm
 use rayon_core as rayon;
@@ -585,7 +585,7 @@ enum Yield {
 }
 ```
 
-Result of [`yield_now()`](#yield-now) or [`yield_local()`](#yield-local).
+Result of `yield_now()` or `yield_local()`.
 
 #### Variants
 
@@ -667,7 +667,7 @@ internally for this purpose).
 Note that unless this thread pool was created with a
 builder that specifies the number of threads, then this
 number may vary over time in future versions (see [the
-`num_threads()` method for details][snt](#snt)).
+`num_threads()` method for details][snt]).
 
 
 ### `initialize`

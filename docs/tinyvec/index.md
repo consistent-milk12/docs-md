@@ -570,7 +570,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> PartialEq for SliceVec<'s, T>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- `fn eq(self: &Self, other: &&[T]) -> bool`
 
 ##### `impl<'s, T> PartialOrd for SliceVec<'s, T>`
 
@@ -714,25 +714,55 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 #### Implementations
 
-- `fn is_heap(self: &Self) -> bool`
+- `fn append(self: &mut Self, other: &mut Self)`
 
-- `fn is_inline(self: &Self) -> bool`
+- `fn swap_remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](#array)
 
-- `fn shrink_to_fit(self: &mut Self)`
+- `fn pop(self: &mut Self) -> Option<<A as >::Item>` — [`Array`](#array)
 
-- `fn move_to_the_heap(self: &mut Self)`
+- `fn remove(self: &mut Self, index: usize) -> <A as >::Item` — [`Array`](#array)
 
-- `fn move_to_the_heap_and_reserve(self: &mut Self, n: usize)`
+- `fn len(self: &Self) -> usize`
 
-- `fn reserve(self: &mut Self, n: usize)`
+- `fn capacity(self: &Self) -> usize`
 
-- `fn reserve_exact(self: &mut Self, n: usize)`
+- `fn truncate(self: &mut Self, new_len: usize)`
 
-- `fn with_capacity(cap: usize) -> Self`
+- `fn as_mut_ptr(self: &mut Self) -> *mut <A as >::Item` — [`Array`](#array)
 
-- `fn into_boxed_slice(self: Self) -> alloc::boxed::Box<[<A as >::Item]>` — [`Array`](#array)
+- `fn as_ptr(self: &Self) -> *const <A as >::Item` — [`Array`](#array)
 
-- `fn into_vec(self: Self) -> Vec<<A as >::Item>` — [`Array`](#array)
+- `fn retain<F: FnMut(&<A as >::Item) -> bool>(self: &mut Self, acceptable: F)`
+
+- `fn as_mut_slice(self: &mut Self) -> &mut [<A as >::Item]` — [`Array`](#array)
+
+- `fn as_slice(self: &Self) -> &[<A as >::Item]` — [`Array`](#array)
+
+- `fn clear(self: &mut Self)`
+
+- `fn drain<R: RangeBounds<usize>>(self: &mut Self, range: R) -> TinyVecDrain<'_, A>` — [`TinyVecDrain`](#tinyvecdrain)
+
+- `fn extend_from_slice(self: &mut Self, sli: &[<A as >::Item])` — [`Array`](#array)
+
+- `fn from_array_len(data: A, len: usize) -> Self`
+
+- `fn insert(self: &mut Self, index: usize, item: <A as >::Item)` — [`Array`](#array)
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn new() -> Self`
+
+- `fn push(self: &mut Self, val: <A as >::Item)` — [`Array`](#array)
+
+- `fn resize(self: &mut Self, new_len: usize, new_val: <A as >::Item)` — [`Array`](#array)
+
+- `fn resize_with<F: FnMut() -> <A as >::Item>(self: &mut Self, new_len: usize, f: F)`
+
+- `fn split_off(self: &mut Self, at: usize) -> Self`
+
+- `fn splice<R, I>(self: &mut Self, range: R, replacement: I) -> TinyVecSplice<'_, A, core::iter::Fuse<<I as >::IntoIter>>` — [`TinyVecSplice`](#tinyvecsplice)
+
+- `fn try_from_array_len(data: A, len: usize) -> Result<Self, A>`
 
 #### Trait Implementations
 
@@ -826,7 +856,7 @@ let some_ints = tiny_vec!([i32; 4] => 1, 2, 3);
 
 ##### `impl<A: Array> PartialEq for TinyVec<A>`
 
-- `fn eq(self: &Self, other: &&[<A as >::Item]) -> bool` — [`Array`](#array)
+- `fn eq(self: &Self, other: &&A) -> bool`
 
 ##### `impl<A: Array> PartialOrd for TinyVec<A>`
 

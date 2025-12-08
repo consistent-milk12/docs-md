@@ -8,7 +8,8 @@ use std::collections::HashMap;
 use std::hash::{Hash, Hasher};
 
 use compact_str::CompactString;
-use rustdoc_types::{Crate, Id, ItemEnum, Visibility};
+use rustdoc_types::{Crate, Id, ItemEnum, ItemKind, Visibility};
+use tracing::{debug, instrument, trace};
 
 use super::{CrateCollection, RUST_PATH_SEP};
 use crate::linker::{LinkRegistry, slugify_anchor};
@@ -80,9 +81,10 @@ pub struct UnifiedLinkRegistry {
     /// Uses hashbrown for `raw_entry` API (zero-alloc lookups).
     item_names: hashbrown::HashMap<RegistryKey, Str>,
 
-    /// Maps short names to all `(crate_name, item_id)` pairs.
+    /// Maps short names to all `(crate_name, item_id, item_kind)` tuples.
     /// Used for disambiguating links like `Span` that exist in multiple crates.
-    name_index: HashMap<Str, Vec<(Str, Id)>>,
+    /// The `ItemKind` enables preferring modules over macros with the same name.
+    name_index: HashMap<Str, Vec<(Str, Id, ItemKind)>>,
 
     /// The primary crate name for preferential resolution.
     primary_crate: Option<Str>,
@@ -100,7 +102,10 @@ impl UnifiedLinkRegistry {
     ///
     /// A populated registry ready for link resolution.
     #[must_use]
+    #[instrument(skip(crates), fields(crate_count = crates.names().len()))]
     pub fn build(crates: &CrateCollection, primary_crate: Option<&str>) -> Self {
+        debug!(?primary_crate, "Building unified link registry");
+
         let mut registry = Self {
             primary_crate: primary_crate.map(Str::from),
             ..Default::default()
@@ -108,8 +113,15 @@ impl UnifiedLinkRegistry {
 
         // Register all items from each crate
         for (crate_name, krate) in crates.iter() {
+            trace!(crate_name, "Registering crate items");
             registry.register_crate(crate_name, krate);
         }
+
+        debug!(
+            item_count = registry.item_paths.len(),
+            name_count = registry.name_index.len(),
+            "Registry build complete"
+        );
 
         registry
     }
@@ -122,7 +134,7 @@ impl UnifiedLinkRegistry {
         };
 
         // Register root module at index.md (no crate prefix in path)
-        self.register_item(crate_name, krate.root, crate_name, "index.md");
+        self.register_item(crate_name, krate.root, crate_name, "index.md", ItemKind::Module);
 
         // Strategy 1: Use the `paths` field to register all items by their canonical path
         // This catches items that are re-exported or in private modules
@@ -167,7 +179,23 @@ impl UnifiedLinkRegistry {
             // public re-exports are documented.
             // The recursive traversal will overwrite with correct paths for items
             // that ARE in public modules.
-            self.register_item(crate_name, *id, name, "index.md");
+            self.register_item(crate_name, *id, name, "index.md", path_info.kind);
+        }
+    }
+
+    /// Convert `ItemEnum` to `ItemKind` for the name index.
+    fn item_enum_to_kind(inner: &ItemEnum) -> ItemKind {
+        match inner {
+            ItemEnum::Module(_) => ItemKind::Module,
+            ItemEnum::Struct(_) => ItemKind::Struct,
+            ItemEnum::Enum(_) => ItemKind::Enum,
+            ItemEnum::Trait(_) => ItemKind::Trait,
+            ItemEnum::Function(_) => ItemKind::Function,
+            ItemEnum::Constant { .. } => ItemKind::Constant,
+            ItemEnum::TypeAlias(_) => ItemKind::TypeAlias,
+            ItemEnum::Macro(_) => ItemKind::Macro,
+            ItemEnum::Use(_) => ItemKind::Use,
+            _ => ItemKind::Use, // Fallback for other types
         }
     }
 
@@ -193,7 +221,7 @@ impl UnifiedLinkRegistry {
                 };
                 let file_path = format!("{module_path}/index.md");
 
-                self.register_item(crate_name, item_id, name, &file_path);
+                self.register_item(crate_name, item_id, name, &file_path, ItemKind::Module);
 
                 // Recurse into child items
                 for child_id in &module.items {
@@ -223,7 +251,8 @@ impl UnifiedLinkRegistry {
                 } else {
                     format!("{parent_path}/index.md")
                 };
-                self.register_item(crate_name, item_id, name, &file_path);
+                let kind = Self::item_enum_to_kind(&item.inner);
+                self.register_item(crate_name, item_id, name, &file_path, kind);
             },
 
             // Re-exports (pub use) should be registered under this crate's namespace
@@ -248,14 +277,19 @@ impl UnifiedLinkRegistry {
                                     continue;
                                 }
                                 let child_name = child.name.as_deref().unwrap_or("unnamed");
-                                self.register_item(crate_name, *child_id, child_name, &file_path);
+                                let child_kind = Self::item_enum_to_kind(&child.inner);
+                                self.register_item(crate_name, *child_id, child_name, &file_path, child_kind);
                             }
                         }
                     }
                 } else {
-                    // Specific re-export
+                    // Specific re-export - try to get kind from target, fallback to Use
                     let export_name = &use_item.name;
-                    self.register_item(crate_name, item_id, export_name, &file_path);
+                    let kind = use_item
+                        .id
+                        .and_then(|id| krate.index.get(&id))
+                        .map_or(ItemKind::Use, |target| Self::item_enum_to_kind(&target.inner));
+                    self.register_item(crate_name, item_id, export_name, &file_path, kind);
                 }
             },
 
@@ -264,31 +298,36 @@ impl UnifiedLinkRegistry {
     }
 
     /// Register a single item in the registry.
-    fn register_item(&mut self, crate_name: &str, id: Id, name: &str, path: &str) {
+    fn register_item(&mut self, crate_name: &str, id: Id, name: &str, path: &str, kind: ItemKind) {
         let key = (Str::from(crate_name), id);
 
         self.item_paths.insert(key.clone(), Str::from(path));
         self.item_names.insert(key, Str::from(name));
 
-        // Add to name index for disambiguation
+        // Add to name index for disambiguation (includes kind for preference logic)
         self.name_index
             .entry(Str::from(name))
             .or_default()
-            .push((Str::from(crate_name), id));
+            .push((Str::from(crate_name), id, kind));
     }
 
     /// Get the file path for an item in a specific crate.
     ///
     /// Uses raw entry API for zero-allocation lookup.
     #[must_use]
+    #[instrument(skip(self), level = "trace")]
     pub fn get_path(&self, crate_name: &str, id: Id) -> Option<&Str> {
         use std::hash::BuildHasher;
         let borrowed = BorrowedKey(crate_name, id);
         let hash = self.item_paths.hasher().hash_one(&borrowed);
-        self.item_paths
+        let result = self
+            .item_paths
             .raw_entry()
             .from_hash(hash, |k| keys_match(k, &borrowed))
-            .map(|(_, v)| v)
+            .map(|(_, v)| v);
+
+        trace!(found = result.is_some(), "Path lookup");
+        result
     }
 
     /// Get the display name for an item.
@@ -308,35 +347,78 @@ impl UnifiedLinkRegistry {
     /// Resolve an item name to its crate and ID.
     ///
     /// Uses disambiguation priority:
-    /// 1. Current crate
-    /// 2. Primary crate (if set)
-    /// 3. First match alphabetically
+    /// 1. Current crate (modules preferred over macros)
+    /// 2. Primary crate (if set, modules preferred)
+    /// 3. First module match, then first non-module match
     #[must_use]
+    #[instrument(skip(self), level = "trace")]
     pub fn resolve_name(&self, name: &str, current_crate: &str) -> Option<(Str, Id)> {
         let candidates = self.name_index.get(name)?;
 
         if candidates.is_empty() {
+            trace!("No candidates found");
             return None;
         }
 
-        // Priority 1: Current crate
-        for (crate_name, id) in candidates {
-            if crate_name == current_crate {
+        // Priority 1: Current crate - prefer modules over macros
+        let current_crate_candidates: Vec<_> = candidates
+            .iter()
+            .filter(|(crate_name, _, _)| crate_name == current_crate)
+            .collect();
+
+        if !current_crate_candidates.is_empty() {
+            // Prefer module if available
+            if let Some((crate_name, id, _)) = current_crate_candidates
+                .iter()
+                .find(|(_, _, kind)| *kind == ItemKind::Module)
+            {
+                trace!(resolved_crate = %crate_name, "Resolved to current crate (module)");
+                return Some(((*crate_name).clone(), *id));
+            }
+            // Otherwise take first match from current crate
+            let (crate_name, id, _) = current_crate_candidates[0];
+            trace!(resolved_crate = %crate_name, "Resolved to current crate");
+            return Some((crate_name.clone(), *id));
+        }
+
+        // Priority 2: Primary crate - prefer modules
+        if let Some(primary) = &self.primary_crate {
+            let primary_candidates: Vec<_> = candidates
+                .iter()
+                .filter(|(crate_name, _, _)| crate_name == primary)
+                .collect();
+
+            if !primary_candidates.is_empty() {
+                // Prefer module if available
+                if let Some((crate_name, id, _)) = primary_candidates
+                    .iter()
+                    .find(|(_, _, kind)| *kind == ItemKind::Module)
+                {
+                    trace!(resolved_crate = %crate_name, "Resolved to primary crate (module)");
+                    return Some(((*crate_name).clone(), *id));
+                }
+                // Otherwise take first match from primary crate
+                let (crate_name, id, _) = primary_candidates[0];
+                trace!(resolved_crate = %crate_name, "Resolved to primary crate");
                 return Some((crate_name.clone(), *id));
             }
         }
 
-        // Priority 2: Primary crate
-        if let Some(primary) = &self.primary_crate {
-            for (crate_name, id) in candidates {
-                if crate_name == primary {
-                    return Some((crate_name.clone(), *id));
-                }
-            }
+        // Priority 3: Prefer any module, then first match
+        if let Some((crate_name, id, _)) = candidates
+            .iter()
+            .find(|(_, _, kind)| *kind == ItemKind::Module)
+        {
+            trace!(resolved_crate = %crate_name, "Resolved to module");
+            return Some((crate_name.clone(), *id));
         }
 
-        // Priority 3: First match (alphabetically due to HashMap iteration)
-        candidates.first().map(|(c, id)| (c.clone(), *id))
+        let result = candidates.first().map(|(c, id, _)| (c.clone(), *id));
+        trace!(
+            resolved_crate = ?result.as_ref().map(|(c, _)| c),
+            "Resolved to first match"
+        );
+        result
     }
 
     /// Resolve a full path like `regex_automata::Regex` to its crate and ID.
@@ -368,7 +450,7 @@ impl UnifiedLinkRegistry {
         // Look up in name_index and filter by crate
         let candidates = self.name_index.get(*item_name)?;
 
-        for (crate_name, id) in candidates {
+        for (crate_name, id, _kind) in candidates {
             if crate_name == target_crate {
                 return Some((crate_name.clone(), *id));
             }
@@ -547,7 +629,7 @@ mod tests {
         let id = Id(123);
 
         // Insert using owned key
-        registry.register_item("my_crate", id, "MyType", "module/index.md");
+        registry.register_item("my_crate", id, "MyType", "module/index.md", ItemKind::Struct);
 
         // Lookup using borrowed key (zero-allocation)
         assert!(registry.contains("my_crate", id));

@@ -66,7 +66,7 @@ for (name, krate) in collection.iter() {
 - **`crates`**: `std::collections::HashMap<String, rustdoc_types::Crate>`
 
   Map from crate name to parsed Crate data.
-  HashMap provides O(1) lookups; sorting done on-demand.
+  `HashMap` provides O(1) lookups; sorting done on-demand.
 
 #### Implementations
 
@@ -98,6 +98,8 @@ for (name, krate) in collection.iter() {
 
 - `fn default() -> CrateCollection` — [`CrateCollection`](collection/index.md)
 
+##### `impl<T> Instrument for CrateCollection`
+
 ##### `impl<T> IntoEither for CrateCollection`
 
 ##### `impl<D> OwoColorize for CrateCollection`
@@ -115,6 +117,8 @@ for (name, krate) in collection.iter() {
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for CrateCollection`
 
 ### `MultiCrateContext<'a>`
 
@@ -177,6 +181,8 @@ generation across crates.
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for MultiCrateContext<'a>`
+
 ##### `impl<T> IntoEither for MultiCrateContext<'a>`
 
 ##### `impl<D> OwoColorize for MultiCrateContext<'a>`
@@ -194,6 +200,8 @@ generation across crates.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateContext<'a>`
 
 ### `SingleCrateView<'a>`
 
@@ -296,7 +304,9 @@ allows existing rendering code to work with minimal changes.
 
 - `fn process_backtick_links(self: &Self, docs: &str, item_links: &HashMap<String, Id>, current_file: &str) -> String`
 
-- `fn process_plain_links(docs: &str) -> String`
+- `fn process_plain_links(self: &Self, docs: &str, current_file: &str) -> String`
+
+- `fn resolve_plain_link(self: &Self, link_text: &str, current_file: &str) -> Option<String>`
 
 - `fn resolve_link(self: &Self, link_text: &str, item_links: &HashMap<String, Id>, current_file: &str) -> Option<String>`
 
@@ -315,6 +325,8 @@ allows existing rendering code to work with minimal changes.
 - `fn looks_like_external_reference(link_text: &str) -> bool`
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for SingleCrateView<'a>`
 
 ##### `impl<T> IntoEither for SingleCrateView<'a>`
 
@@ -363,6 +375,8 @@ allows existing rendering code to work with minimal changes.
 - `unsafe fn drop(ptr: usize)`
 
 ##### `impl<T> RenderContext for SingleCrateView<'a>`
+
+##### `impl<T> WithSubscriber for SingleCrateView<'a>`
 
 ### `MultiCrateGenerator<'a>`
 
@@ -417,11 +431,13 @@ output/
 
 - `fn generate_crate(self: &Self, view: &SingleCrateView<'_>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](context/index.md), [`Error`](../error/index.md)
 
-- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](context/index.md), [`Error`](../error/index.md)
+- `fn generate_module(view: &SingleCrateView<'_>, item: &Item, parent_dir: &Path, module_path: Vec<String>, progress: &Arc<ProgressBar>) -> Result<(), Error>` — [`SingleCrateView`](context/index.md), [`Error`](../error/index.md)
 
 - `fn create_progress_bar(total: usize) -> Result<ProgressBar, Error>` — [`Error`](../error/index.md)
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for MultiCrateGenerator<'a>`
 
 ##### `impl<T> IntoEither for MultiCrateGenerator<'a>`
 
@@ -440,6 +456,8 @@ output/
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateGenerator<'a>`
 
 ### `MultiCrateParser`
 
@@ -467,6 +485,8 @@ println!("Found {} crates", crates.len());
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for MultiCrateParser`
+
 ##### `impl<T> IntoEither for MultiCrateParser`
 
 ##### `impl<D> OwoColorize for MultiCrateParser`
@@ -484,6 +504,8 @@ println!("Found {} crates", crates.len());
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for MultiCrateParser`
 
 ### `UnifiedLinkRegistry`
 
@@ -528,12 +550,12 @@ This avoids allocating a `String` for the crate name on every lookup.
 - **`item_paths`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the file path within output.
-  Uses hashbrown for raw_entry API (zero-alloc lookups).
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
 - **`item_names`**: `hashbrown::HashMap<(compact_str::CompactString, rustdoc_types::Id), compact_str::CompactString>`
 
   Maps `(crate_name, item_id)` to the item's display name.
-  Uses hashbrown for raw_entry API (zero-alloc lookups).
+  Uses hashbrown for `raw_entry` API (zero-alloc lookups).
 
 - **`name_index`**: `std::collections::HashMap<compact_str::CompactString, Vec<(compact_str::CompactString, rustdoc_types::Id)>>`
 
@@ -586,6 +608,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 
 - `fn default() -> UnifiedLinkRegistry` — [`UnifiedLinkRegistry`](registry/index.md)
 
+##### `impl<T> Instrument for UnifiedLinkRegistry`
+
 ##### `impl<T> IntoEither for UnifiedLinkRegistry`
 
 ##### `impl<D> OwoColorize for UnifiedLinkRegistry`
@@ -603,6 +627,8 @@ This avoids allocating a `String` for the crate name on every lookup.
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for UnifiedLinkRegistry`
 
 ### `SearchIndex`
 
@@ -628,6 +654,8 @@ Serialized to `search_index.json` for client-side consumption.
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
+##### `impl<T> Instrument for SearchIndex`
+
 ##### `impl<T> IntoEither for SearchIndex`
 
 ##### `impl<D> OwoColorize for SearchIndex`
@@ -649,6 +677,8 @@ Serialized to `search_index.json` for client-side consumption.
 ##### `impl Serialize for SearchIndex`
 
 - `fn serialize<__S>(self: &Self, __serializer: __S) -> _serde::__private228::Result<<__S as >::Ok, <__S as >::Error>`
+
+##### `impl<T> WithSubscriber for SearchIndex`
 
 ### `SearchIndexGenerator<'a>`
 
@@ -696,7 +726,7 @@ generator.write(Path::new("docs/"))?;
 
 #### Implementations
 
-- `fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](collection/index.md)
+- `const fn new(crates: &'a CrateCollection, include_private: bool, rendered_items: HashMap<String, HashSet<Id>>) -> Self` — [`CrateCollection`](collection/index.md)
 
 - `fn generate(self: &Self) -> SearchIndex` — [`SearchIndex`](search/index.md)
 
@@ -709,6 +739,8 @@ generator.write(Path::new("docs/"))?;
 - `fn compute_file_path(crate_name: &str, module_path: &str, kind: &str) -> String`
 
 #### Trait Implementations
+
+##### `impl<T> Instrument for SearchIndexGenerator<'a>`
 
 ##### `impl<T> IntoEither for SearchIndexGenerator<'a>`
 
@@ -727,6 +759,8 @@ generator.write(Path::new("docs/"))?;
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for SearchIndexGenerator<'a>`
 
 ### `SummaryGenerator<'a>`
 
@@ -779,6 +813,8 @@ Summary
 
 #### Trait Implementations
 
+##### `impl<T> Instrument for SummaryGenerator<'a>`
+
 ##### `impl<T> IntoEither for SummaryGenerator<'a>`
 
 ##### `impl<D> OwoColorize for SummaryGenerator<'a>`
@@ -796,6 +832,8 @@ Summary
 - `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
 
 - `unsafe fn drop(ptr: usize)`
+
+##### `impl<T> WithSubscriber for SummaryGenerator<'a>`
 
 ## Constants
 

@@ -11,8 +11,8 @@ Rust, however rustix itself is focused on syscall-like functions. This
 module contains an incomplete list of such functions.
 
 There are several allocator implementations for Rust; one of them is
-[dlmalloc](#dlmalloc). For a rustix-based implementation, see [rustix-dlmalloc].
-Another allocator implementation is [talc](#talc).
+[dlmalloc]. For a rustix-based implementation, see [rustix-dlmalloc].
+Another allocator implementation is [talc].
 
 
 

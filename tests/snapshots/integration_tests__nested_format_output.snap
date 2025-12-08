@@ -290,7 +290,7 @@ link text to item IDs. This processor uses that map along with the
 # Supported Patterns
 
 - `` [`Name`] `` - Backtick code links (most common)
-- `` [`Item`](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html) `` - Qualified path links
+- `` [`Item`](https://docs.rs/core/latest/core/option/struct.Item.html) `` - Qualified path links
 - `` [`Type::method`] `` - Method/associated item links
 - `[name]` - Plain identifier links
 - `[text][`ref`]` - Reference-style links
@@ -343,11 +343,11 @@ Links inside fenced code blocks are not processed.
 
 - `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process reference-style links `[display text](https://docs.rs/core/latest/core/net/ip_addr/fmt/struct.Span.html)`.
+  Process reference-style links `[display text](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)`.
 
 - `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process path reference links `[text](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html)`.
+  Process path reference links `[text](https://docs.rs/core/latest/core/option/struct.Item.html)`.
 
 - `fn process_method_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -442,6 +442,20 @@ Transforms links like:
 This is useful for multi-crate documentation where the full processor
 context may not be available.
 
+### `convert_path_reference_links`
+
+```rust
+fn convert_path_reference_links(docs: &str) -> String
+```
+
+Convert path-style reference links to inline code.
+
+Transforms: `[``ProgressTracker``](https://docs.rs/indicatif/latest/indicatif/style/trait.ProgressTracker.html)`
+Into: `` `ProgressTracker` ``
+
+Without full link resolution context, we can't create valid anchors,
+so we preserve the display text as inline code.
+
 ### `strip_duplicate_title`
 
 ```rust
@@ -487,20 +501,6 @@ This function performs two transformations on code blocks:
    but compiled. We remove the prefix to show the full example.
 2. Bare code fences (` ``` `) are converted to ` ```rust ` since doc
    examples are Rust code.
-
-### `convert_path_reference_links`
-
-```rust
-fn convert_path_reference_links(docs: &str) -> String
-```
-
-Convert path-style reference links to inline code.
-
-Transforms: `[``ProgressTracker``](https://docs.rs/indicatif/latest/indicatif/style/trait.ProgressTracker.html)`
-Into: `` `ProgressTracker` ``
-
-Without full link resolution context, we can't create valid anchors,
-so we preserve the display text as inline code.
 
 
 === generator/impls/index.md ===
@@ -933,7 +933,7 @@ link text to item IDs. This processor uses that map along with the
 # Supported Patterns
 
 - `` [`Name`] `` - Backtick code links (most common)
-- `` [`Item`](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html) `` - Qualified path links
+- `` [`Item`](https://docs.rs/core/latest/core/option/struct.Item.html) `` - Qualified path links
 - `` [`Type::method`] `` - Method/associated item links
 - `[name]` - Plain identifier links
 - `[text][`ref`]` - Reference-style links
@@ -986,11 +986,11 @@ Links inside fenced code blocks are not processed.
 
 - `fn process_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process reference-style links `[display text](https://docs.rs/core/latest/core/net/ip_addr/fmt/struct.Span.html)`.
+  Process reference-style links `[display text](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)`.
 
 - `fn process_path_reference_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
-  Process path reference links `[text](https://docs.rs/rustdoc_types/latest/rustdoc_types/struct.Item.html)`.
+  Process path reference links `[text](https://docs.rs/core/latest/core/option/struct.Item.html)`.
 
 - `fn process_method_links(self: &Self, text: &str, item_links: &HashMap<String, Id>) -> String`
 
@@ -1589,49 +1589,48 @@ This trait provides a unified way to process docs from different contexts.
 
 ## Functions
 
-### `render_struct_definition`
+### `append_docs`
 
 ```rust
-fn render_struct_definition(md: &mut String, name: &str, s: &rustdoc_types::Struct, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>)
+fn append_docs(md: &mut String, docs: Option<String>)
+```
+
+Append processed documentation to markdown.
+
+Helper function to add documentation with consistent formatting.
+
+### `impl_sort_key`
+
+```rust
+fn impl_sort_key(impl_block: &rustdoc_types::Impl, type_renderer: &crate::types::TypeRenderer<'_>) -> String
 ```
 
 **Types:** [`TypeRenderer`](../../types/index.md)
 
-Render a struct definition code block to markdown.
+Generate a sort key for an impl block for deterministic ordering.
 
-Produces a heading with the struct name and generics, followed by a Rust
-code block showing the struct definition.
+Combines trait name, generic params, and for-type to create a unique key.
 
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The struct name (may differ from item.name for re-exports)
-* `s` - The struct data from rustdoc
-* `krate` - The crate containing field definitions
-* `type_renderer` - Type renderer for generics and field types
-
-### `render_struct_fields`
+### `render_constant_definition`
 
 ```rust
-fn render_struct_fields<F>(md: &mut String, fields: &[rustdoc_types::Id], krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: F)
-where
-    F: Fn(&rustdoc_types::Item) -> Option<String>
+fn render_constant_definition(md: &mut String, name: &str, type_: &rustdoc_types::Type, const_: &rustdoc_types::Constant, type_renderer: &crate::types::TypeRenderer<'_>)
 ```
 
 **Types:** [`TypeRenderer`](../../types/index.md)
 
-Render documented struct fields to markdown.
+Render a constant definition to markdown.
 
-Produces a "Fields" section with each documented field as a bullet point
-showing the field name, type, and documentation.
+Produces a heading with the constant name, followed by a Rust code block
+showing `const NAME: Type = value;`.
 
 # Arguments
 
 * `md` - Output markdown string
-* `fields` - Field IDs from the struct
-* `krate` - Crate containing field definitions
-* `type_renderer` - Type renderer for field types
-* `process_docs` - Closure to process documentation with intra-doc link resolution
+* `name` - The constant name
+* `type_` - The constant's type
+* `const_` - The constant data including value
+* `type_renderer` - Type renderer for the type
 
 ### `render_enum_definition`
 
@@ -1685,6 +1684,111 @@ Produces a "Variants" section with each documented variant as a bullet point.
 * `krate` - Crate containing variant definitions
 * `process_docs` - Closure to process documentation with intra-doc link resolution
 
+### `render_function_definition`
+
+```rust
+fn render_function_definition(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: &crate::types::TypeRenderer<'_>)
+```
+
+**Types:** [`TypeRenderer`](../../types/index.md)
+
+Render a function definition to markdown.
+
+Produces a heading with the function name, followed by a Rust code block
+showing the full signature with modifiers (const, async, unsafe).
+
+# Arguments
+
+* `md` - Output markdown string
+* `name` - The function name
+* `f` - The function data from rustdoc
+* `type_renderer` - Type renderer for parameter and return types
+
+### `render_impl_items`
+
+```rust
+fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: Option<F>, create_type_link: Option<L>)
+where
+    F: Fn(&rustdoc_types::Item) -> Option<String>,
+    L: Fn(rustdoc_types::Id) -> Option<String>
+```
+
+**Types:** [`TypeRenderer`](../../types/index.md)
+
+Render the items within an impl block.
+
+This renders all methods, associated constants, and associated types
+within an impl block as bullet points.
+
+# Arguments
+
+* `md` - Output markdown string
+* `impl_block` - The impl block to render items from
+* `krate` - The crate containing item definitions
+* `type_renderer` - Type renderer for types
+* `process_docs` - Optional closure to process documentation
+* `create_type_link` - Optional closure to create links for types (id -> Option<markdown_link>)
+
+### `render_macro_heading`
+
+```rust
+fn render_macro_heading(md: &mut String, name: &str)
+```
+
+Render a macro definition to markdown.
+
+Produces a heading with the macro name and `!` suffix.
+Note: We don't show macro rules since rustdoc JSON doesn't provide them.
+
+# Arguments
+
+* `md` - Output markdown string
+* `name` - The macro name
+
+### `render_struct_definition`
+
+```rust
+fn render_struct_definition(md: &mut String, name: &str, s: &rustdoc_types::Struct, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>)
+```
+
+**Types:** [`TypeRenderer`](../../types/index.md)
+
+Render a struct definition code block to markdown.
+
+Produces a heading with the struct name and generics, followed by a Rust
+code block showing the struct definition.
+
+# Arguments
+
+* `md` - Output markdown string
+* `name` - The struct name (may differ from item.name for re-exports)
+* `s` - The struct data from rustdoc
+* `krate` - The crate containing field definitions
+* `type_renderer` - Type renderer for generics and field types
+
+### `render_struct_fields`
+
+```rust
+fn render_struct_fields<F>(md: &mut String, fields: &[rustdoc_types::Id], krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: F)
+where
+    F: Fn(&rustdoc_types::Item) -> Option<String>
+```
+
+**Types:** [`TypeRenderer`](../../types/index.md)
+
+Render documented struct fields to markdown.
+
+Produces a "Fields" section with each documented field as a bullet point
+showing the field name, type, and documentation.
+
+# Arguments
+
+* `md` - Output markdown string
+* `fields` - Field IDs from the struct
+* `krate` - Crate containing field definitions
+* `type_renderer` - Type renderer for field types
+* `process_docs` - Closure to process documentation with intra-doc link resolution
+
 ### `render_trait_definition`
 
 ```rust
@@ -1727,47 +1831,6 @@ For methods, the first line of documentation is included.
 * `type_renderer` - Type renderer for types
 * `process_docs` - Closure to process documentation with intra-doc link resolution
 
-### `render_function_definition`
-
-```rust
-fn render_function_definition(md: &mut String, name: &str, f: &rustdoc_types::Function, type_renderer: &crate::types::TypeRenderer<'_>)
-```
-
-**Types:** [`TypeRenderer`](../../types/index.md)
-
-Render a function definition to markdown.
-
-Produces a heading with the function name, followed by a Rust code block
-showing the full signature with modifiers (const, async, unsafe).
-
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The function name
-* `f` - The function data from rustdoc
-* `type_renderer` - Type renderer for parameter and return types
-
-### `render_constant_definition`
-
-```rust
-fn render_constant_definition(md: &mut String, name: &str, type_: &rustdoc_types::Type, const_: &rustdoc_types::Constant, type_renderer: &crate::types::TypeRenderer<'_>)
-```
-
-**Types:** [`TypeRenderer`](../../types/index.md)
-
-Render a constant definition to markdown.
-
-Produces a heading with the constant name, followed by a Rust code block
-showing `const NAME: Type = value;`.
-
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The constant name
-* `type_` - The constant's type
-* `const_` - The constant data including value
-* `type_renderer` - Type renderer for the type
-
 ### `render_type_alias_definition`
 
 ```rust
@@ -1787,69 +1850,6 @@ code block showing `type Name<T> = TargetType;`.
 * `name` - The type alias name
 * `ta` - The type alias data from rustdoc
 * `type_renderer` - Type renderer for generics and the aliased type
-
-### `render_macro_heading`
-
-```rust
-fn render_macro_heading(md: &mut String, name: &str)
-```
-
-Render a macro definition to markdown.
-
-Produces a heading with the macro name and `!` suffix.
-Note: We don't show macro rules since rustdoc JSON doesn't provide them.
-
-# Arguments
-
-* `md` - Output markdown string
-* `name` - The macro name
-
-### `render_impl_items`
-
-```rust
-fn render_impl_items<F, L>(md: &mut String, impl_block: &rustdoc_types::Impl, krate: &rustdoc_types::Crate, type_renderer: &crate::types::TypeRenderer<'_>, process_docs: Option<F>, create_type_link: Option<L>)
-where
-    F: Fn(&rustdoc_types::Item) -> Option<String>,
-    L: Fn(rustdoc_types::Id) -> Option<String>
-```
-
-**Types:** [`TypeRenderer`](../../types/index.md)
-
-Render the items within an impl block.
-
-This renders all methods, associated constants, and associated types
-within an impl block as bullet points.
-
-# Arguments
-
-* `md` - Output markdown string
-* `impl_block` - The impl block to render items from
-* `krate` - The crate containing item definitions
-* `type_renderer` - Type renderer for types
-* `process_docs` - Optional closure to process documentation
-* `create_type_link` - Optional closure to create links for types (id -> Option<markdown_link>)
-
-### `append_docs`
-
-```rust
-fn append_docs(md: &mut String, docs: Option<String>)
-```
-
-Append processed documentation to markdown.
-
-Helper function to add documentation with consistent formatting.
-
-### `impl_sort_key`
-
-```rust
-fn impl_sort_key(impl_block: &rustdoc_types::Impl, type_renderer: &crate::types::TypeRenderer<'_>) -> String
-```
-
-**Types:** [`TypeRenderer`](../../types/index.md)
-
-Generate a sort key for an impl block for deterministic ordering.
-
-Combines trait name, generic params, and for-type to create a unique key.
 
 
 === index.md ===
@@ -2914,6 +2914,67 @@ The tool accepts input from two mutually exclusive sources:
 
 ## Enums
 
+### `CliOutputFormat`
+
+```rust
+enum CliOutputFormat {
+    Flat,
+    Nested,
+}
+```
+
+CLI-compatible output format enum (for clap `ValueEnum` derive).
+
+#### Variants
+
+- **`Flat`**
+
+  Flat structure with double-underscore separators in filenames.
+
+- **`Nested`**
+
+  Nested directory structure mirroring the module hierarchy.
+
+#### Trait Implementations
+
+##### `impl Clone for CliOutputFormat`
+
+- `fn clone(self: &Self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
+
+##### `impl Copy for CliOutputFormat`
+
+##### `impl Debug for CliOutputFormat`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+##### `impl Default for CliOutputFormat`
+
+- `fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
+
+##### `impl<T> IntoEither for CliOutputFormat`
+
+##### `impl<D> OwoColorize for CliOutputFormat`
+
+##### `impl<T> Pointable for CliOutputFormat`
+
+- `const ALIGN: usize`
+
+- `type Init = T`
+
+- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
+
+- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
+
+- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
+
+- `unsafe fn drop(ptr: usize)`
+
+##### `impl ValueEnum for CliOutputFormat`
+
+- `fn value_variants<'a>() -> &'a [Self]`
+
+- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
+
 ### `OutputFormat`
 
 ```rust
@@ -2978,67 +3039,6 @@ Controls how module files are organized in the output directory.
 - `unsafe fn drop(ptr: usize)`
 
 ##### `impl ValueEnum for OutputFormat`
-
-- `fn value_variants<'a>() -> &'a [Self]`
-
-- `fn to_possible_value<'a>(self: &Self) -> ::std::option::Option<clap::builder::PossibleValue>`
-
-### `CliOutputFormat`
-
-```rust
-enum CliOutputFormat {
-    Flat,
-    Nested,
-}
-```
-
-CLI-compatible output format enum (for clap `ValueEnum` derive).
-
-#### Variants
-
-- **`Flat`**
-
-  Flat structure with double-underscore separators in filenames.
-
-- **`Nested`**
-
-  Nested directory structure mirroring the module hierarchy.
-
-#### Trait Implementations
-
-##### `impl Clone for CliOutputFormat`
-
-- `fn clone(self: &Self) -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
-
-##### `impl Copy for CliOutputFormat`
-
-##### `impl Debug for CliOutputFormat`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-##### `impl Default for CliOutputFormat`
-
-- `fn default() -> CliOutputFormat` — [`CliOutputFormat`](#clioutputformat)
-
-##### `impl<T> IntoEither for CliOutputFormat`
-
-##### `impl<D> OwoColorize for CliOutputFormat`
-
-##### `impl<T> Pointable for CliOutputFormat`
-
-- `const ALIGN: usize`
-
-- `type Init = T`
-
-- `unsafe fn init(init: <T as Pointable>::Init) -> usize`
-
-- `unsafe fn deref<'a>(ptr: usize) -> &'a T`
-
-- `unsafe fn deref_mut<'a>(ptr: usize) -> &'a mut T`
-
-- `unsafe fn drop(ptr: usize)`
-
-##### `impl ValueEnum for CliOutputFormat`
 
 - `fn value_variants<'a>() -> &'a [Self]`
 
@@ -3606,7 +3606,7 @@ allows existing rendering code to work with minimal changes.
 
 - `fn process_backtick_links(self: &Self, docs: &str, item_links: &HashMap<String, Id>, current_file: &str) -> String`
 
-  Process backtick links like `[`Span`](https://docs.rs/core/latest/core/net/ip_addr/fmt/struct.Span.html)` to markdown links.
+  Process backtick links like `[`Span`](https://docs.rs/aho_corasick/latest/aho_corasick/util/search/struct.Span.html)` to markdown links.
 
 - `fn process_plain_links(docs: &str) -> String`
 
@@ -4197,14 +4197,6 @@ Summary
 
 ## Constants
 
-### `RUST_PATH_SEP`
-
-```rust
-const RUST_PATH_SEP: &str;
-```
-
-Rust module path separator (e.g., `serde_json::de::from_str`).
-
 ### `FILE_PATH_SEP`
 
 ```rust
@@ -4212,6 +4204,14 @@ const FILE_PATH_SEP: char = '/';
 ```
 
 File system path separator for generated documentation.
+
+### `RUST_PATH_SEP`
+
+```rust
+const RUST_PATH_SEP: &str;
+```
+
+Rust module path separator (e.g., `serde_json::de::from_str`).
 
 
 === parser/index.md ===

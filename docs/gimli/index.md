@@ -1370,6 +1370,34 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 
 #### Implementations
 
+- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
+
+- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
+
+#### Trait Implementations
+
+##### `impl Clone for LoongArch`
+
+- `fn clone(self: &Self) -> LoongArch` — [`LoongArch`](#loongarch)
+
+##### `impl Copy for LoongArch`
+
+##### `impl Debug for LoongArch`
+
+- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
+
+### `MIPS`
+
+```rust
+struct MIPS;
+```
+
+MIPS architecture specific definitions.
+
+See [MIPS Details](https://en.wikibooks.org/wiki/MIPS_Assembly/MIPS_Details).
+
+#### Implementations
+
 - `const R0: Register`
 
 - `const R1: Register`
@@ -1498,29 +1526,17 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 
 - `const F31: Register`
 
-- `const FCC0: Register`
+- `const HI: Register`
 
-- `const FCC1: Register`
-
-- `const FCC2: Register`
-
-- `const FCC3: Register`
-
-- `const FCC4: Register`
-
-- `const FCC5: Register`
-
-- `const FCC6: Register`
-
-- `const FCC7: Register`
+- `const LO: Register`
 
 - `const ZERO: Register`
 
-- `const RA: Register`
+- `const AT: Register`
 
-- `const TP: Register`
+- `const V0: Register`
 
-- `const SP: Register`
+- `const V1: Register`
 
 - `const A0: Register`
 
@@ -1529,14 +1545,6 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 - `const A2: Register`
 
 - `const A3: Register`
-
-- `const A4: Register`
-
-- `const A5: Register`
-
-- `const A6: Register`
-
-- `const A7: Register`
 
 - `const T0: Register`
 
@@ -1554,10 +1562,6 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 
 - `const T7: Register`
 
-- `const T8: Register`
-
-- `const FP: Register`
-
 - `const S0: Register`
 
 - `const S1: Register`
@@ -1574,99 +1578,23 @@ See [LoongArch ELF psABI specification](https://loongson.github.io/LoongArch-Doc
 
 - `const S7: Register`
 
+- `const T8: Register`
+
+- `const T9: Register`
+
+- `const K0: Register`
+
+- `const K1: Register`
+
+- `const GP: Register`
+
+- `const SP: Register`
+
+- `const FP: Register`
+
+- `const RA: Register`
+
 - `const S8: Register`
-
-- `const FA0: Register`
-
-- `const FA1: Register`
-
-- `const FA2: Register`
-
-- `const FA3: Register`
-
-- `const FA4: Register`
-
-- `const FA5: Register`
-
-- `const FA6: Register`
-
-- `const FA7: Register`
-
-- `const FT0: Register`
-
-- `const FT1: Register`
-
-- `const FT2: Register`
-
-- `const FT3: Register`
-
-- `const FT4: Register`
-
-- `const FT5: Register`
-
-- `const FT6: Register`
-
-- `const FT7: Register`
-
-- `const FT8: Register`
-
-- `const FT9: Register`
-
-- `const FT10: Register`
-
-- `const FT11: Register`
-
-- `const FT12: Register`
-
-- `const FT13: Register`
-
-- `const FT14: Register`
-
-- `const FT15: Register`
-
-- `const FS0: Register`
-
-- `const FS1: Register`
-
-- `const FS2: Register`
-
-- `const FS3: Register`
-
-- `const FS4: Register`
-
-- `const FS5: Register`
-
-- `const FS6: Register`
-
-- `const FS7: Register`
-
-#### Trait Implementations
-
-##### `impl Clone for LoongArch`
-
-- `fn clone(self: &Self) -> LoongArch` — [`LoongArch`](#loongarch)
-
-##### `impl Copy for LoongArch`
-
-##### `impl Debug for LoongArch`
-
-- `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
-
-### `MIPS`
-
-```rust
-struct MIPS;
-```
-
-MIPS architecture specific definitions.
-
-See [MIPS Details](https://en.wikibooks.org/wiki/MIPS_Assembly/MIPS_Details).
-
-#### Implementations
-
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
-
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
@@ -1692,9 +1620,261 @@ See [RISC-V ELF psABI specification](https://github.com/riscv/riscv-elf-psabi-do
 
 #### Implementations
 
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
+- `const X0: Register`
 
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
+- `const X1: Register`
+
+- `const X2: Register`
+
+- `const X3: Register`
+
+- `const X4: Register`
+
+- `const X5: Register`
+
+- `const X6: Register`
+
+- `const X7: Register`
+
+- `const X8: Register`
+
+- `const X9: Register`
+
+- `const X10: Register`
+
+- `const X11: Register`
+
+- `const X12: Register`
+
+- `const X13: Register`
+
+- `const X14: Register`
+
+- `const X15: Register`
+
+- `const X16: Register`
+
+- `const X17: Register`
+
+- `const X18: Register`
+
+- `const X19: Register`
+
+- `const X20: Register`
+
+- `const X21: Register`
+
+- `const X22: Register`
+
+- `const X23: Register`
+
+- `const X24: Register`
+
+- `const X25: Register`
+
+- `const X26: Register`
+
+- `const X27: Register`
+
+- `const X28: Register`
+
+- `const X29: Register`
+
+- `const X30: Register`
+
+- `const X31: Register`
+
+- `const F0: Register`
+
+- `const F1: Register`
+
+- `const F2: Register`
+
+- `const F3: Register`
+
+- `const F4: Register`
+
+- `const F5: Register`
+
+- `const F6: Register`
+
+- `const F7: Register`
+
+- `const F8: Register`
+
+- `const F9: Register`
+
+- `const F10: Register`
+
+- `const F11: Register`
+
+- `const F12: Register`
+
+- `const F13: Register`
+
+- `const F14: Register`
+
+- `const F15: Register`
+
+- `const F16: Register`
+
+- `const F17: Register`
+
+- `const F18: Register`
+
+- `const F19: Register`
+
+- `const F20: Register`
+
+- `const F21: Register`
+
+- `const F22: Register`
+
+- `const F23: Register`
+
+- `const F24: Register`
+
+- `const F25: Register`
+
+- `const F26: Register`
+
+- `const F27: Register`
+
+- `const F28: Register`
+
+- `const F29: Register`
+
+- `const F30: Register`
+
+- `const F31: Register`
+
+- `const ZERO: Register`
+
+- `const RA: Register`
+
+- `const SP: Register`
+
+- `const GP: Register`
+
+- `const TP: Register`
+
+- `const T0: Register`
+
+- `const T1: Register`
+
+- `const T2: Register`
+
+- `const S0: Register`
+
+- `const S1: Register`
+
+- `const A0: Register`
+
+- `const A1: Register`
+
+- `const A2: Register`
+
+- `const A3: Register`
+
+- `const A4: Register`
+
+- `const A5: Register`
+
+- `const A6: Register`
+
+- `const A7: Register`
+
+- `const S2: Register`
+
+- `const S3: Register`
+
+- `const S4: Register`
+
+- `const S5: Register`
+
+- `const S6: Register`
+
+- `const S7: Register`
+
+- `const S8: Register`
+
+- `const S9: Register`
+
+- `const S10: Register`
+
+- `const S11: Register`
+
+- `const T3: Register`
+
+- `const T4: Register`
+
+- `const T5: Register`
+
+- `const T6: Register`
+
+- `const FT0: Register`
+
+- `const FT1: Register`
+
+- `const FT2: Register`
+
+- `const FT3: Register`
+
+- `const FT4: Register`
+
+- `const FT5: Register`
+
+- `const FT6: Register`
+
+- `const FT7: Register`
+
+- `const FS0: Register`
+
+- `const FS1: Register`
+
+- `const FA0: Register`
+
+- `const FA1: Register`
+
+- `const FA2: Register`
+
+- `const FA3: Register`
+
+- `const FA4: Register`
+
+- `const FA5: Register`
+
+- `const FA6: Register`
+
+- `const FA7: Register`
+
+- `const FS2: Register`
+
+- `const FS3: Register`
+
+- `const FS4: Register`
+
+- `const FS5: Register`
+
+- `const FS6: Register`
+
+- `const FS7: Register`
+
+- `const FS8: Register`
+
+- `const FS9: Register`
+
+- `const FS10: Register`
+
+- `const FS11: Register`
+
+- `const FT8: Register`
+
+- `const FT9: Register`
+
+- `const FT10: Register`
+
+- `const FT11: Register`
 
 #### Trait Implementations
 
@@ -1720,93 +1900,9 @@ See section 2.4.2 of the [i386 psABI](https://gitlab.com/x86-psABIs/i386-ABI).
 
 #### Implementations
 
-- `const EAX: Register`
+- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
 
-- `const ECX: Register`
-
-- `const EDX: Register`
-
-- `const EBX: Register`
-
-- `const ESP: Register`
-
-- `const EBP: Register`
-
-- `const ESI: Register`
-
-- `const EDI: Register`
-
-- `const RA: Register`
-
-- `const ST0: Register`
-
-- `const ST1: Register`
-
-- `const ST2: Register`
-
-- `const ST3: Register`
-
-- `const ST4: Register`
-
-- `const ST5: Register`
-
-- `const ST6: Register`
-
-- `const ST7: Register`
-
-- `const XMM0: Register`
-
-- `const XMM1: Register`
-
-- `const XMM2: Register`
-
-- `const XMM3: Register`
-
-- `const XMM4: Register`
-
-- `const XMM5: Register`
-
-- `const XMM6: Register`
-
-- `const XMM7: Register`
-
-- `const MM0: Register`
-
-- `const MM1: Register`
-
-- `const MM2: Register`
-
-- `const MM3: Register`
-
-- `const MM4: Register`
-
-- `const MM5: Register`
-
-- `const MM6: Register`
-
-- `const MM7: Register`
-
-- `const MXCSR: Register`
-
-- `const ES: Register`
-
-- `const CS: Register`
-
-- `const SS: Register`
-
-- `const DS: Register`
-
-- `const FS: Register`
-
-- `const GS: Register`
-
-- `const TR: Register`
-
-- `const LDTR: Register`
-
-- `const FS_BASE: Register`
-
-- `const GS_BASE: Register`
+- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
 
 #### Trait Implementations
 
@@ -1832,9 +1928,229 @@ See section 3.6.2 of the [x86-64 psABI](https://gitlab.com/x86-psABIs/x86-64-ABI
 
 #### Implementations
 
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
+- `const RAX: Register`
 
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
+- `const RDX: Register`
+
+- `const RCX: Register`
+
+- `const RBX: Register`
+
+- `const RSI: Register`
+
+- `const RDI: Register`
+
+- `const RBP: Register`
+
+- `const RSP: Register`
+
+- `const R8: Register`
+
+- `const R9: Register`
+
+- `const R10: Register`
+
+- `const R11: Register`
+
+- `const R12: Register`
+
+- `const R13: Register`
+
+- `const R14: Register`
+
+- `const R15: Register`
+
+- `const RA: Register`
+
+- `const XMM0: Register`
+
+- `const XMM1: Register`
+
+- `const XMM2: Register`
+
+- `const XMM3: Register`
+
+- `const XMM4: Register`
+
+- `const XMM5: Register`
+
+- `const XMM6: Register`
+
+- `const XMM7: Register`
+
+- `const XMM8: Register`
+
+- `const XMM9: Register`
+
+- `const XMM10: Register`
+
+- `const XMM11: Register`
+
+- `const XMM12: Register`
+
+- `const XMM13: Register`
+
+- `const XMM14: Register`
+
+- `const XMM15: Register`
+
+- `const ST0: Register`
+
+- `const ST1: Register`
+
+- `const ST2: Register`
+
+- `const ST3: Register`
+
+- `const ST4: Register`
+
+- `const ST5: Register`
+
+- `const ST6: Register`
+
+- `const ST7: Register`
+
+- `const MM0: Register`
+
+- `const MM1: Register`
+
+- `const MM2: Register`
+
+- `const MM3: Register`
+
+- `const MM4: Register`
+
+- `const MM5: Register`
+
+- `const MM6: Register`
+
+- `const MM7: Register`
+
+- `const RFLAGS: Register`
+
+- `const ES: Register`
+
+- `const CS: Register`
+
+- `const SS: Register`
+
+- `const DS: Register`
+
+- `const FS: Register`
+
+- `const GS: Register`
+
+- `const FS_BASE: Register`
+
+- `const GS_BASE: Register`
+
+- `const TR: Register`
+
+- `const LDTR: Register`
+
+- `const MXCSR: Register`
+
+- `const FCW: Register`
+
+- `const FSW: Register`
+
+- `const XMM16: Register`
+
+- `const XMM17: Register`
+
+- `const XMM18: Register`
+
+- `const XMM19: Register`
+
+- `const XMM20: Register`
+
+- `const XMM21: Register`
+
+- `const XMM22: Register`
+
+- `const XMM23: Register`
+
+- `const XMM24: Register`
+
+- `const XMM25: Register`
+
+- `const XMM26: Register`
+
+- `const XMM27: Register`
+
+- `const XMM28: Register`
+
+- `const XMM29: Register`
+
+- `const XMM30: Register`
+
+- `const XMM31: Register`
+
+- `const K0: Register`
+
+- `const K1: Register`
+
+- `const K2: Register`
+
+- `const K3: Register`
+
+- `const K4: Register`
+
+- `const K5: Register`
+
+- `const K6: Register`
+
+- `const K7: Register`
+
+- `const R16: Register`
+
+- `const R17: Register`
+
+- `const R18: Register`
+
+- `const R19: Register`
+
+- `const R20: Register`
+
+- `const R21: Register`
+
+- `const R22: Register`
+
+- `const R23: Register`
+
+- `const R24: Register`
+
+- `const R25: Register`
+
+- `const R26: Register`
+
+- `const R27: Register`
+
+- `const R28: Register`
+
+- `const R29: Register`
+
+- `const R30: Register`
+
+- `const R31: Register`
+
+- `const TMM0: Register`
+
+- `const TMM1: Register`
+
+- `const TMM2: Register`
+
+- `const TMM3: Register`
+
+- `const TMM4: Register`
+
+- `const TMM5: Register`
+
+- `const TMM6: Register`
+
+- `const TMM7: Register`
+
+- `const TILECFG: Register`
 
 #### Trait Implementations
 
@@ -1860,9 +2176,227 @@ See [64-bit ELF ABI Specification for OpenPOWER Architecture](https://openpowerf
 
 #### Implementations
 
-- `fn register_name(register: Register) -> Option<&'static str>` — [`Register`](#register)
+- `const R0: Register`
 
-- `fn name_to_register(value: &str) -> Option<Register>` — [`Register`](#register)
+- `const R1: Register`
+
+- `const R2: Register`
+
+- `const R3: Register`
+
+- `const R4: Register`
+
+- `const R5: Register`
+
+- `const R6: Register`
+
+- `const R7: Register`
+
+- `const R8: Register`
+
+- `const R9: Register`
+
+- `const R10: Register`
+
+- `const R11: Register`
+
+- `const R12: Register`
+
+- `const R13: Register`
+
+- `const R14: Register`
+
+- `const R15: Register`
+
+- `const R16: Register`
+
+- `const R17: Register`
+
+- `const R18: Register`
+
+- `const R19: Register`
+
+- `const R20: Register`
+
+- `const R21: Register`
+
+- `const R22: Register`
+
+- `const R23: Register`
+
+- `const R24: Register`
+
+- `const R25: Register`
+
+- `const R26: Register`
+
+- `const R27: Register`
+
+- `const R28: Register`
+
+- `const R29: Register`
+
+- `const R30: Register`
+
+- `const R31: Register`
+
+- `const F0: Register`
+
+- `const F1: Register`
+
+- `const F2: Register`
+
+- `const F3: Register`
+
+- `const F4: Register`
+
+- `const F5: Register`
+
+- `const F6: Register`
+
+- `const F7: Register`
+
+- `const F8: Register`
+
+- `const F9: Register`
+
+- `const F10: Register`
+
+- `const F11: Register`
+
+- `const F12: Register`
+
+- `const F13: Register`
+
+- `const F14: Register`
+
+- `const F15: Register`
+
+- `const F16: Register`
+
+- `const F17: Register`
+
+- `const F18: Register`
+
+- `const F19: Register`
+
+- `const F20: Register`
+
+- `const F21: Register`
+
+- `const F22: Register`
+
+- `const F23: Register`
+
+- `const F24: Register`
+
+- `const F25: Register`
+
+- `const F26: Register`
+
+- `const F27: Register`
+
+- `const F28: Register`
+
+- `const F29: Register`
+
+- `const F30: Register`
+
+- `const F31: Register`
+
+- `const LR: Register`
+
+- `const CTR: Register`
+
+- `const CR0: Register`
+
+- `const CR1: Register`
+
+- `const CR2: Register`
+
+- `const CR3: Register`
+
+- `const CR4: Register`
+
+- `const CR5: Register`
+
+- `const CR6: Register`
+
+- `const CR7: Register`
+
+- `const XER: Register`
+
+- `const VR0: Register`
+
+- `const VR1: Register`
+
+- `const VR2: Register`
+
+- `const VR3: Register`
+
+- `const VR4: Register`
+
+- `const VR5: Register`
+
+- `const VR6: Register`
+
+- `const VR7: Register`
+
+- `const VR8: Register`
+
+- `const VR9: Register`
+
+- `const VR10: Register`
+
+- `const VR11: Register`
+
+- `const VR12: Register`
+
+- `const VR13: Register`
+
+- `const VR14: Register`
+
+- `const VR15: Register`
+
+- `const VR16: Register`
+
+- `const VR17: Register`
+
+- `const VR18: Register`
+
+- `const VR19: Register`
+
+- `const VR20: Register`
+
+- `const VR21: Register`
+
+- `const VR22: Register`
+
+- `const VR23: Register`
+
+- `const VR24: Register`
+
+- `const VR25: Register`
+
+- `const VR26: Register`
+
+- `const VR27: Register`
+
+- `const VR28: Register`
+
+- `const VR29: Register`
+
+- `const VR30: Register`
+
+- `const VR31: Register`
+
+- `const VSCR: Register`
+
+- `const TFHAR: Register`
+
+- `const TFIAR: Register`
+
+- `const TEXASR: Register`
 
 #### Trait Implementations
 
@@ -2702,7 +3236,7 @@ See Section 7.12, Table 7.17.
 
 #### Implementations
 
-- `fn default_lower_bound(self: Self) -> Option<usize>`
+- `fn static_string(self: &Self) -> Option<&'static str>`
 
 #### Trait Implementations
 
@@ -3571,7 +4105,15 @@ Defined in `<https://refspecs.linuxfoundation.org/LSB_4.0.0/LSB-Core-generic/LSB
 
 #### Implementations
 
-- `fn static_string(self: &Self) -> Option<&'static str>`
+- `fn format(self: Self) -> DwEhPe` — [`DwEhPe`](#dwehpe)
+
+- `fn application(self: Self) -> DwEhPe` — [`DwEhPe`](#dwehpe)
+
+- `fn is_absent(self: Self) -> bool`
+
+- `fn is_indirect(self: Self) -> bool`
+
+- `fn is_valid_encoding(self: Self) -> bool`
 
 #### Trait Implementations
 

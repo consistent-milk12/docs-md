@@ -548,7 +548,7 @@ Command line argument parser kind of error
 
 - **`Format`**
 
-  Represents a [Format error] (which is a part of [`Display`](#display)).
+  Represents a [Format error] (which is a part of `Display`).
   Typically caused by writing to `stderr` or `stdout`.
   
   

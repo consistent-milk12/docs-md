@@ -19,7 +19,7 @@ struct HashSet<T, S, A: Allocator> {
 A hash set implemented as a `HashMap` where the value is `()`.
 
 As with the [`HashMap`](../hash_map/index.md) type, a `HashSet` requires that the elements
-implement the [`Eq`](#eq) and [`Hash`](#hash) traits. This can frequently be achieved by
+implement the `Eq` and `Hash` traits. This can frequently be achieved by
 using `#[derive(PartialEq, Eq, Hash)]`. If you implement these yourself,
 it is important that the following property holds:
 
@@ -31,12 +31,12 @@ In other words, if two keys are equal, their hashes must be equal.
 
 
 It is a logic error for an item to be modified in such a way that the
-item's hash, as determined by the [`Hash`](#hash) trait, or its equality, as
-determined by the [`Eq`](#eq) trait, changes while it is in the set. This is
+item's hash, as determined by the `Hash` trait, or its equality, as
+determined by the `Eq` trait, changes while it is in the set. This is
 normally only possible through [`Cell`](#cell), [`RefCell`](#refcell), global state, I/O, or
 unsafe code.
 
-It is also a logic error for the [`Hash`](#hash) implementation of a key to panic.
+It is also a logic error for the `Hash` implementation of a key to panic.
 This is generally only possible if the trait is implemented manually. If a
 panic does occur then the contents of the `HashSet` may become corrupted and
 some items may be dropped from the table.
@@ -71,8 +71,8 @@ for book in &books {
 ```
 
 The easiest way to use `HashSet` with a custom type is to derive
-[`Eq`](#eq) and [`Hash`](#hash). We must also derive [`PartialEq`](#partialeq). This will in the
-future be implied by [`Eq`](#eq).
+`Eq` and `Hash`. We must also derive `PartialEq`. This will in the
+future be implied by `Eq`.
 
 ```rust
 use hashbrown::HashSet;
@@ -113,9 +113,21 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- `fn new() -> Self`
+- `fn capacity(self: &Self) -> usize`
 
-- `fn with_capacity(capacity: usize) -> Self`
+- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](#iter)
+
+- `fn len(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](#drain)
+
+- `fn retain<F>(self: &mut Self, f: F)`
+
+- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](#extractif)
+
+- `fn clear(self: &mut Self)`
 
 #### Trait Implementations
 
@@ -151,9 +163,9 @@ let viking_names: HashSet<&'static str> =
 
 - `fn equivalent(self: &Self, key: &K) -> bool`
 
-##### `impl<'a, T, S, A> Extend for HashSet<T, S, A>`
+##### `impl<T, S, A> Extend for HashSet<T, S, A>`
 
-- `fn extend<I: IntoIterator<Item = &'a T>>(self: &mut Self, iter: I)`
+- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, iter: I)`
 
 ##### `impl<T, S, A> FromIterator for HashSet<T, S, A>`
 
@@ -238,7 +250,7 @@ struct IntoIter<K, A: Allocator> {
 
 An owning iterator over the items of a `HashSet`.
 
-This `struct` is created by the [`into_iter`](#into-iter) method on [`HashSet`](#hashset)
+This `struct` is created by the `into_iter` method on [`HashSet`](#hashset)
 (provided by the `IntoIterator` trait). See its documentation for more.
 
 
@@ -287,7 +299,7 @@ struct Drain<'a, K, A: Allocator> {
 
 A draining iterator over the items of a `HashSet`.
 
-This `struct` is created by the [`drain`](#drain) method on [`HashSet`](#hashset).
+This `struct` is created by the `drain` method on [`HashSet`](#hashset).
 See its documentation for more.
 
 
@@ -333,7 +345,7 @@ struct ExtractIf<'a, K, F, A: Allocator> {
 
 A draining iterator over entries of a `HashSet` which don't satisfy the predicate `f`.
 
-This `struct` is created by the [`extract_if`](#extract-if) method on [`HashSet`](#hashset). See its
+This `struct` is created by the `extract_if` method on [`HashSet`](#hashset). See its
 documentation for more.
 
 
@@ -369,7 +381,7 @@ struct Intersection<'a, T, S, A: Allocator> {
 
 A lazy iterator producing elements in the intersection of `HashSet`s.
 
-This `struct` is created by the [`intersection`](#intersection) method on [`HashSet`](#hashset).
+This `struct` is created by the `intersection` method on [`HashSet`](#hashset).
 See its documentation for more.
 
 
@@ -415,7 +427,7 @@ struct Difference<'a, T, S, A: Allocator> {
 
 A lazy iterator producing elements in the difference of `HashSet`s.
 
-This `struct` is created by the [`difference`](#difference) method on [`HashSet`](#hashset).
+This `struct` is created by the `difference` method on [`HashSet`](#hashset).
 See its documentation for more.
 
 
@@ -460,7 +472,7 @@ struct SymmetricDifference<'a, T, S, A: Allocator> {
 
 A lazy iterator producing elements in the symmetric difference of `HashSet`s.
 
-This `struct` is created by the [`symmetric_difference`](#symmetric-difference) method on
+This `struct` is created by the `symmetric_difference` method on
 [`HashSet`](#hashset). See its documentation for more.
 
 
@@ -505,7 +517,7 @@ struct Union<'a, T, S, A: Allocator> {
 
 A lazy iterator producing elements in the union of `HashSet`s.
 
-This `struct` is created by the [`union`](#union) method on [`HashSet`](#hashset).
+This `struct` is created by the `union` method on [`HashSet`](#hashset).
 See its documentation for more.
 
 
@@ -549,7 +561,7 @@ struct OccupiedEntry<'a, T, S, A: Allocator> {
 ```
 
 A view into an occupied entry in a `HashSet`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -604,7 +616,7 @@ struct VacantEntry<'a, T, S, A: Allocator> {
 ```
 
 A view into a vacant entry in a `HashSet`.
-It is part of the [`Entry`](#entry) enum.
+It is part of the [`Entry`](../hash_map/index.md) enum.
 
 # Examples
 
@@ -657,7 +669,7 @@ where
 
 A view into a single entry in a set, which may either be vacant or occupied.
 
-This `enum` is constructed from the [`entry`](#entry) method on [`HashSet`](#hashset).
+This `enum` is constructed from the `entry` method on [`HashSet`](#hashset).
 
 
 # Examples

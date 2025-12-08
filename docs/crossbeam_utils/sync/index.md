@@ -25,18 +25,18 @@ A thread parking primitive.
 
 Conceptually, each `Parker` has an associated token which is initially not present:
 
-* The [`park`](#park) method blocks the current thread unless or until the token is available, at
+* The `park` method blocks the current thread unless or until the token is available, at
   which point it automatically consumes the token.
 
-* The [`park_timeout`](#park-timeout) and [`park_deadline`](#park-deadline) methods work the same as [`park`](#park), but block for
+* The `park_timeout` and `park_deadline` methods work the same as `park`, but block for
   a specified maximum time.
 
-* The [`unpark`](#unpark) method atomically makes the token available if it wasn't already. Because the
-  token is initially absent, [`unpark`](#unpark) followed by [`park`](#park) will result in the second call
+* The `unpark` method atomically makes the token available if it wasn't already. Because the
+  token is initially absent, `unpark` followed by `park` will result in the second call
   returning immediately.
 
 In other words, each `Parker` acts a bit like a spinlock that can be locked and unlocked using
-[`park`](#park) and [`unpark`](#unpark).
+`park` and `unpark`.
 
 # Examples
 
@@ -138,10 +138,10 @@ struct ShardedLock<T: ?Sized> {
 
 A sharded reader-writer lock.
 
-This lock is equivalent to [`RwLock`](#rwlock), except read operations are faster and write operations
+This lock is equivalent to `RwLock`, except read operations are faster and write operations
 are slower.
 
-A `ShardedLock` is internally made of a list of *shards*, each being a [`RwLock`](#rwlock) occupying a
+A `ShardedLock` is internally made of a list of *shards*, each being a `RwLock` occupying a
 single cache line. Read operations will pick one of the shards depending on the current thread
 and lock it. Write operations need to lock all shards in succession.
 
@@ -154,7 +154,7 @@ implementation, and this type does not guarantee that any particular policy will
 
 # Poisoning
 
-A `ShardedLock`, like [`RwLock`](#rwlock), will become poisoned on a panic. Note that it may only be
+A `ShardedLock`, like `RwLock`, will become poisoned on a panic. Note that it may only be
 poisoned if a panic occurs while a write operation is in progress. If a panic occurs in any
 read operation, the lock will not be poisoned.
 
@@ -319,15 +319,15 @@ Enables threads to synchronize the beginning or end of some computation.
 
 # Wait groups vs barriers
 
-`WaitGroup` is very similar to [`Barrier`](#barrier), but there are a few differences:
+`WaitGroup` is very similar to `Barrier`, but there are a few differences:
 
-* [`Barrier`](#barrier) needs to know the number of threads at construction, while `WaitGroup` is cloned to
+* `Barrier` needs to know the number of threads at construction, while `WaitGroup` is cloned to
   register more threads.
 
-* A [`Barrier`](#barrier) can be reused even after all threads have synchronized, while a `WaitGroup`
+* A `Barrier` can be reused even after all threads have synchronized, while a `WaitGroup`
   synchronizes threads only once.
 
-* All threads wait for others to reach the [`Barrier`](#barrier). With `WaitGroup`, each thread can choose
+* All threads wait for others to reach the `Barrier`. With `WaitGroup`, each thread can choose
   to either wait for other threads or to continue without blocking.
 
 # Examples
