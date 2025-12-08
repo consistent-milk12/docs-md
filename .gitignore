@@ -9,3 +9,4 @@
 SourceCode/
 !source_docs/**
 .cargo
+!SourceParsingDesign.md
