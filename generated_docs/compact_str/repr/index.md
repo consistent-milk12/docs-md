@@ -97,13 +97,13 @@ struct Repr(*const (), usize, u32, u16, u8, last_utf8_char::LastByte);
 
 - `fn drop(self: &mut Self)`
 
-##### `impl<'a> Extend for Repr`
+##### `impl Extend for Repr`
 
-- `fn extend<T: IntoIterator<Item = Cow<'a, str>>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = String>>(self: &mut Self, iter: T)`
 
-##### `impl FromIterator for super::Repr`
+##### `impl<'a> FromIterator for super::Repr`
 
-- `fn from_iter<T: IntoIterator<Item = CompactString>>(iter: T) -> Self`
+- `fn from_iter<T: IntoIterator<Item = Cow<'a, str>>>(iter: T) -> Self`
 
 ##### `impl LifetimeFree for super::repr::Repr`
 

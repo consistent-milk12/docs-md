@@ -18,9 +18,7 @@ The raw contents of the `.debug_addr` section.
 
 #### Implementations
 
-- `fn get_address(self: &Self, address_size: u8, base: DebugAddrBase<<R as >::Offset>, index: DebugAddrIndex<<R as >::Offset>) -> Result<u64>` — [`DebugAddrBase`](../../index.md), [`Reader`](../index.md), [`DebugAddrIndex`](../../index.md), [`Result`](../../index.md)
-
-- `fn headers(self: &Self) -> AddrHeaderIter<R>` — [`AddrHeaderIter`](../index.md)
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugAddr<R>` — [`DebugAddr`](../index.md)
 
 #### Trait Implementations
 

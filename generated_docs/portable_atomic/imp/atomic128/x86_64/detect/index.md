@@ -14,9 +14,9 @@ struct CpuInfo(u32);
 
 #### Implementations
 
-- `fn set(self: &mut Self, bit: CpuInfoFlag)` — [`CpuInfoFlag`](#cpuinfoflag)
+- `fn cmpxchg16b(self: Self) -> bool`
 
-- `fn test(self: Self, bit: CpuInfoFlag) -> bool` — [`CpuInfoFlag`](#cpuinfoflag)
+- `fn vmovdqa_atomic(self: Self) -> bool`
 
 #### Trait Implementations
 

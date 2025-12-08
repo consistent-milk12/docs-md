@@ -21,15 +21,47 @@ struct AtomicI128 {
 
 #### Implementations
 
-- `const LEN: usize`
+- `const fn new(v: i128) -> Self`
 
-- `unsafe fn chunks(self: &Self) -> &[core::sync::atomic::AtomicUsize; 2]`
+- `fn is_lock_free() -> bool`
 
-- `fn optimistic_read(self: &Self) -> i128`
+- `const IS_ALWAYS_LOCK_FREE: bool`
 
-- `fn read(self: &Self, _guard: &SeqLockWriteGuard<'static>) -> i128` — [`SeqLockWriteGuard`](seq_lock/index.md)
+- `fn load(self: &Self, order: Ordering) -> i128` — [`Ordering`](../../index.md)
 
-- `fn write(self: &Self, val: i128, _guard: &SeqLockWriteGuard<'static>)` — [`SeqLockWriteGuard`](seq_lock/index.md)
+- `fn store(self: &Self, val: i128, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `fn swap(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn compare_exchange(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](../../index.md)
+
+- `fn compare_exchange_weak(self: &Self, current: i128, new: i128, success: Ordering, failure: Ordering) -> Result<i128, i128>` — [`Ordering`](../../index.md)
+
+- `fn fetch_add(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn fetch_sub(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn fetch_and(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn fetch_nand(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn fetch_or(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn fetch_xor(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn fetch_max(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn fetch_min(self: &Self, val: i128, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn fetch_not(self: &Self, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn not(self: &Self, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `fn fetch_neg(self: &Self, _order: Ordering) -> i128` — [`Ordering`](../../index.md)
+
+- `fn neg(self: &Self, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `const fn as_ptr(self: &Self) -> *mut i128`
 
 #### Trait Implementations
 

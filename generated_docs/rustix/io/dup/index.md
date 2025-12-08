@@ -14,7 +14,7 @@ Functions which duplicate file descriptors.
 struct DupFlags(<DupFlags as $crate::__private::PublicFlags>::Internal);
 ```
 
-`O_*` constants for use with [`dup2`](../../backend/io/syscalls/index.md).
+`O_*` constants for use with [`dup2`](../index.md).
 
 
 #### Implementations
@@ -151,7 +151,7 @@ fn dup<Fd: AsFd>(fd: Fd) -> io::Result<crate::fd::OwnedFd>
 underlying [file description] as `fd`.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup` that does
-set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
+set `O_CLOEXEC`, use [`fcntl_dupfd_cloexec`](../index.md).
 
 POSIX guarantees that `dup` will use the lowest unused file descriptor,
 however it is not safe in general to rely on this, as file descriptors may
@@ -194,7 +194,7 @@ be subsequently used.
 
 This function does not set the `O_CLOEXEC` flag. To do a `dup2` that does
 set `O_CLOEXEC`, use [`dup3`](../index.md) with `DupFlags::CLOEXEC` on platforms which
-support it, or [`fcntl_dupfd_cloexec`](../../backend/io/syscalls/index.md).
+support it, or [`fcntl_dupfd_cloexec`](../index.md).
 
 For `dup2` to stdin, stdout, and stderr, see `stdio::dup2_stdin`,
 `stdio::dup2_stdout`, and `stdio::dup2_stderr`.

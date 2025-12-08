@@ -96,13 +96,7 @@ A raw pointer that represents a unique borrow of its pointee
 
 #### Implementations
 
-- `fn cast<U: CastTo>(self: Self) -> Mut<'a, <U as >::Target>` — [`Mut`](#mut), [`CastTo`](#castto)
-
-- `const fn by_ref(self: Self) -> Ref<'a, T>` — [`Ref`](#ref)
-
-- `fn extend<'b>(self: Self) -> Mut<'b, T>` — [`Mut`](#mut)
-
-- `unsafe fn deref_mut(self: Self) -> &'a mut T`
+- `unsafe fn read(self: Self) -> T`
 
 #### Trait Implementations
 

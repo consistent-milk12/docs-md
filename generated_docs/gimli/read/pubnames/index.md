@@ -51,7 +51,7 @@ found in the `.debug_pubnames` section.
 
 #### Implementations
 
-- `fn items(self: &Self) -> PubNamesEntryIter<R>` — [`PubNamesEntryIter`](../index.md)
+- `fn new(debug_pubnames_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

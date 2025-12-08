@@ -785,15 +785,15 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn search(self: &Self, input: &Input<'_>) -> Option<Match>` — [`Input`](../index.md), [`Match`](../index.md)
+- `fn search_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<Match>` — [`Cache`](#cache), [`Input`](../index.md), [`Match`](../index.md)
 
-- `fn search_half(self: &Self, input: &Input<'_>) -> Option<HalfMatch>` — [`Input`](../index.md), [`HalfMatch`](../index.md)
+- `fn search_half_with(self: &Self, cache: &mut Cache, input: &Input<'_>) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../index.md), [`HalfMatch`](../index.md)
 
-- `fn search_captures(self: &Self, input: &Input<'_>, caps: &mut Captures)` — [`Input`](../index.md), [`Captures`](../util/captures/index.md)
+- `fn search_captures_with(self: &Self, cache: &mut Cache, input: &Input<'_>, caps: &mut Captures)` — [`Cache`](#cache), [`Input`](../index.md), [`Captures`](../util/captures/index.md)
 
-- `fn search_slots(self: &Self, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Input`](../index.md), [`NonMaxUsize`](../util/primitives/index.md), [`PatternID`](../index.md)
+- `fn search_slots_with(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`Cache`](#cache), [`Input`](../index.md), [`NonMaxUsize`](../util/primitives/index.md), [`PatternID`](../index.md)
 
-- `fn which_overlapping_matches(self: &Self, input: &Input<'_>, patset: &mut PatternSet)` — [`Input`](../index.md), [`PatternSet`](../index.md)
+- `fn which_overlapping_matches_with(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](#cache), [`Input`](../index.md), [`PatternSet`](../index.md)
 
 #### Trait Implementations
 

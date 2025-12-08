@@ -584,25 +584,15 @@ println!("{style}{value}{style:#}");
 
 #### Implementations
 
-- `const fn new() -> Self`
+- `const fn get_fg_color(self: Self) -> Option<crate::Color>` — [`Color`](#color)
 
-- `const fn fg_color(self: Self, fg: Option<crate::Color>) -> Self` — [`Color`](#color)
+- `const fn get_bg_color(self: Self) -> Option<crate::Color>` — [`Color`](#color)
 
-- `const fn bg_color(self: Self, bg: Option<crate::Color>) -> Self` — [`Color`](#color)
+- `const fn get_underline_color(self: Self) -> Option<crate::Color>` — [`Color`](#color)
 
-- `const fn underline_color(self: Self, underline: Option<crate::Color>) -> Self` — [`Color`](#color)
+- `const fn get_effects(self: Self) -> crate::Effects` — [`Effects`](#effects)
 
-- `const fn effects(self: Self, effects: crate::Effects) -> Self` — [`Effects`](#effects)
-
-- `fn render(self: Self) -> impl core::fmt::Display + Copy`
-
-- `fn fmt_to(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
-
-- `fn write_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
-
-- `fn render_reset(self: Self) -> impl core::fmt::Display + Copy`
-
-- `fn write_reset_to(self: Self, write: &mut dyn std::io::Write) -> std::io::Result<()>`
+- `const fn is_plain(self: Self) -> bool`
 
 #### Trait Implementations
 
@@ -646,7 +636,7 @@ println!("{style}{value}{style:#}");
 
 ##### `impl PartialEq for Style`
 
-- `fn eq(self: &Self, other: &Style) -> bool` — [`Style`](#style)
+- `fn eq(self: &Self, other: &crate::Effects) -> bool` — [`Effects`](#effects)
 
 ##### `impl PartialOrd for Style`
 

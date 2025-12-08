@@ -30,7 +30,7 @@ Common producer for splitting on a predicate.
 
 #### Implementations
 
-- `fn new(data: V, separator: &'p P) -> Self`
+- `fn fold_with<F>(self: Self, folder: F, skip_last: bool) -> F`
 
 #### Trait Implementations
 

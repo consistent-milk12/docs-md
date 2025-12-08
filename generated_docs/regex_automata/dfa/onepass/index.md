@@ -541,41 +541,27 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+- `fn start(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+- `fn start_pattern(self: &Self, pid: PatternID) -> Result<StateID, MatchError>` — [`PatternID`](../../index.md), [`StateID`](../../util/primitives/index.md), [`MatchError`](../../index.md)
 
-- `fn new_from_nfa(nfa: NFA) -> Result<DFA, BuildError>` — [`NFA`](../../nfa/thompson/index.md), [`DFA`](#dfa), [`BuildError`](#builderror)
+- `fn transition(self: &Self, sid: StateID, byte: u8) -> Transition` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
 
-- `fn always_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+- `fn set_transition(self: &mut Self, sid: StateID, byte: u8, to: Transition)` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
 
-- `fn never_match() -> Result<DFA, BuildError>` — [`DFA`](#dfa), [`BuildError`](#builderror)
+- `fn sparse_transitions(self: &Self, sid: StateID) -> SparseTransitionIter<'_>` — [`StateID`](../../util/primitives/index.md), [`SparseTransitionIter`](#sparsetransitioniter)
 
-- `fn config() -> Config` — [`Config`](#config)
+- `fn pattern_epsilons(self: &Self, sid: StateID) -> PatternEpsilons` — [`StateID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
 
-- `fn builder() -> Builder` — [`Builder`](#builder)
+- `fn set_pattern_epsilons(self: &mut Self, sid: StateID, pateps: PatternEpsilons)` — [`StateID`](../../util/primitives/index.md), [`PatternEpsilons`](#patternepsilons)
 
-- `fn create_captures(self: &Self) -> Captures` — [`Captures`](../../util/captures/index.md)
+- `fn prev_state_id(self: &Self, id: StateID) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
 
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
+- `fn last_state_id(self: &Self) -> StateID` — [`StateID`](../../util/primitives/index.md)
 
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
+- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
 
-- `fn get_config(self: &Self) -> &Config` — [`Config`](#config)
-
-- `fn get_nfa(self: &Self) -> &NFA` — [`NFA`](../../nfa/thompson/index.md)
-
-- `fn pattern_len(self: &Self) -> usize`
-
-- `fn state_len(self: &Self) -> usize`
-
-- `fn alphabet_len(self: &Self) -> usize`
-
-- `fn stride2(self: &Self) -> usize`
-
-- `fn stride(self: &Self) -> usize`
-
-- `fn memory_usage(self: &Self) -> usize`
+- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
 
 #### Trait Implementations
 

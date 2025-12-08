@@ -180,7 +180,9 @@ a lifetime.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+
+- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
 
 #### Trait Implementations
 
@@ -373,7 +375,7 @@ A parenthesized type equivalent to the inner type.
 
 #### Implementations
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -624,11 +626,7 @@ trait or a lifetime.
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
-
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
-
-- `fn parse_bounds(dyn_span: Span, input: ParseStream<'_>, allow_plus: bool) -> Result<Punctuated<TypeParamBound, $crate::token::Plus>>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md), [`Punctuated`](../punctuated/index.md), [`TypeParamBound`](../index.md), [`Plus`](../token/index.md)
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 

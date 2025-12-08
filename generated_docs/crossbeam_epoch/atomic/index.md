@@ -212,11 +212,13 @@ least significant bits of the address.
 
 #### Implementations
 
-- `unsafe fn from_raw(raw: *mut T) -> Owned<T>` — [`Owned`](../index.md)
+- `fn init(init: <T as >::Init) -> Owned<T>` — [`Pointable`](../index.md), [`Owned`](../index.md)
 
-- `fn into_box(self: Self) -> Box<T>`
+- `fn into_shared<'g>(self: Self, _: &'g Guard) -> Shared<'g, T>` — [`Guard`](../index.md), [`Shared`](../index.md)
 
-- `fn new(init: T) -> Owned<T>` — [`Owned`](../index.md)
+- `fn tag(self: &Self) -> usize`
+
+- `fn with_tag(self: Self, tag: usize) -> Owned<T>` — [`Owned`](../index.md)
 
 #### Trait Implementations
 
@@ -292,23 +294,7 @@ least significant bits of the address.
 
 #### Implementations
 
-- `fn null() -> Shared<'g, T>` — [`Shared`](../index.md)
-
-- `fn is_null(self: &Self) -> bool`
-
-- `unsafe fn deref(self: &Self) -> &'g T`
-
-- `unsafe fn deref_mut(self: &mut Self) -> &'g mut T`
-
-- `unsafe fn as_ref(self: &Self) -> Option<&'g T>`
-
-- `unsafe fn into_owned(self: Self) -> Owned<T>` — [`Owned`](../index.md)
-
-- `unsafe fn try_into_owned(self: Self) -> Option<Owned<T>>` — [`Owned`](../index.md)
-
-- `fn tag(self: &Self) -> usize`
-
-- `fn with_tag(self: &Self, tag: usize) -> Shared<'g, T>` — [`Shared`](../index.md)
+- `fn as_raw(self: &Self) -> *const T`
 
 #### Trait Implementations
 
@@ -356,9 +342,7 @@ least significant bits of the address.
 
 ##### `impl<T: ?Sized + Pointable> Pointer for Shared<'_, T>`
 
-- `fn into_usize(self: Self) -> usize`
-
-- `unsafe fn from_usize(data: usize) -> Self`
+- `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
 ## Traits
 

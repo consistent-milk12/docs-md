@@ -97,17 +97,9 @@ let lock = ShardedLock::new(5);
 
 #### Implementations
 
-- `fn is_poisoned(self: &Self) -> bool`
+- `fn new(value: T) -> ShardedLock<T>` — [`ShardedLock`](../index.md)
 
-- `fn get_mut(self: &mut Self) -> LockResult<&mut T>`
-
-- `fn try_read(self: &Self) -> TryLockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](../index.md)
-
-- `fn read(self: &Self) -> LockResult<ShardedLockReadGuard<'_, T>>` — [`ShardedLockReadGuard`](../index.md)
-
-- `fn try_write(self: &Self) -> TryLockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](../index.md)
-
-- `fn write(self: &Self) -> LockResult<ShardedLockWriteGuard<'_, T>>` — [`ShardedLockWriteGuard`](../index.md)
+- `fn into_inner(self: Self) -> LockResult<T>`
 
 #### Trait Implementations
 

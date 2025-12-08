@@ -464,9 +464,39 @@ rayon::ThreadPoolBuilder::new().num_threads(22).build_global().unwrap();
 
 #### Implementations
 
-- `fn build(self: Self) -> Result<ThreadPool, ThreadPoolBuildError>` — [`ThreadPool`](#threadpool), [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- `fn spawn_handler<F>(self: Self, spawn: F) -> ThreadPoolBuilder<CustomSpawn<F>>` — [`ThreadPoolBuilder`](#threadpoolbuilder), [`CustomSpawn`](registry/index.md)
 
-- `fn build_global(self: Self) -> Result<(), ThreadPoolBuildError>` — [`ThreadPoolBuildError`](#threadpoolbuilderror)
+- `fn get_spawn_handler(self: &mut Self) -> &mut S`
+
+- `fn get_num_threads(self: &Self) -> usize`
+
+- `fn get_thread_name(self: &mut Self, index: usize) -> Option<String>`
+
+- `fn thread_name<F>(self: Self, closure: F) -> Self`
+
+- `fn num_threads(self: Self, num_threads: usize) -> Self`
+
+- `fn use_current_thread(self: Self) -> Self`
+
+- `fn take_panic_handler(self: &mut Self) -> Option<Box<dyn Fn(Box<dyn Any + Send>) + Send + Sync>>`
+
+- `fn panic_handler<H>(self: Self, panic_handler: H) -> Self`
+
+- `fn get_stack_size(self: &Self) -> Option<usize>`
+
+- `fn stack_size(self: Self, stack_size: usize) -> Self`
+
+- `fn breadth_first(self: Self) -> Self`
+
+- `fn get_breadth_first(self: &Self) -> bool`
+
+- `fn take_start_handler(self: &mut Self) -> Option<Box<dyn Fn(usize) + Send + Sync>>`
+
+- `fn start_handler<H>(self: Self, start_handler: H) -> Self`
+
+- `fn take_exit_handler(self: &mut Self) -> Option<Box<dyn Fn(usize) + Send + Sync>>`
+
+- `fn exit_handler<H>(self: Self, exit_handler: H) -> Self`
 
 #### Trait Implementations
 

@@ -103,15 +103,11 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new(pattern: &str) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
+- `fn forward(self: &Self) -> &DFA` — [`DFA`](../dfa/index.md)
 
-- `fn new_many<P: AsRef<str>>(patterns: &[P]) -> Result<Regex, BuildError>` — [`Regex`](#regex), [`BuildError`](../index.md)
+- `fn reverse(self: &Self) -> &DFA` — [`DFA`](../dfa/index.md)
 
-- `fn builder() -> Builder` — [`Builder`](#builder)
-
-- `fn create_cache(self: &Self) -> Cache` — [`Cache`](#cache)
-
-- `fn reset_cache(self: &Self, cache: &mut Cache)` — [`Cache`](#cache)
+- `fn pattern_len(self: &Self) -> usize`
 
 #### Trait Implementations
 

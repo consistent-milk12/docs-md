@@ -96,9 +96,7 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn parse_pub(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](../parse/index.md), [`Result`](../index.md)
-
-- `fn is_some(self: &Self) -> bool`
+- `fn is_inherited(self: &Self) -> bool`
 
 #### Trait Implementations
 

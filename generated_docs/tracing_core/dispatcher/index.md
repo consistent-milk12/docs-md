@@ -362,7 +362,7 @@ enum Kind<T> {
 
 #### Implementations
 
-- `fn upgrade(self: &Self) -> Option<Kind<Arc<dyn Subscriber + Send + Sync>>>` — [`Kind`](#kind), [`Subscriber`](../index.md)
+- `fn downgrade(self: &Self) -> Kind<Weak<dyn Subscriber + Send + Sync>>` — [`Kind`](#kind), [`Subscriber`](../index.md)
 
 #### Trait Implementations
 

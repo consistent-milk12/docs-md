@@ -81,15 +81,39 @@ Note that the excess of a zero-sized types is always infinite, so `capacity()` a
 
 #### Implementations
 
-- `fn needs_to_grow(self: &Self, len: usize, additional: usize) -> bool`
+- `const MIN_NON_ZERO_CAP: usize`
 
-- `fn set_ptr_and_cap(self: &mut Self, ptr: NonNull<[u8]>, cap: usize)`
+- `const fn new_in(alloc: A) -> Self`
 
-- `fn grow_amortized(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
+- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
 
-- `fn grow_exact(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
+- `fn with_capacity_zeroed_in(capacity: usize, alloc: A) -> Self`
 
-- `fn shrink(self: &mut Self, cap: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
+- `unsafe fn into_box(self: Self, len: usize) -> Box<[MaybeUninit<T>], A>` — [`Box`](../boxed/index.md)
+
+- `fn allocate_in(capacity: usize, init: AllocInit, alloc: A) -> Self` — [`AllocInit`](#allocinit)
+
+- `unsafe fn from_raw_parts_in(ptr: *mut T, capacity: usize, alloc: A) -> Self`
+
+- `fn ptr(self: &Self) -> *mut T`
+
+- `fn capacity(self: &Self) -> usize`
+
+- `fn allocator(self: &Self) -> &A`
+
+- `fn current_memory(self: &Self) -> Option<(NonNull<u8>, Layout)>` — [`Layout`](../alloc/index.md)
+
+- `fn reserve(self: &mut Self, len: usize, additional: usize)`
+
+- `fn reserve_for_push(self: &mut Self, len: usize)`
+
+- `fn try_reserve(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
+
+- `fn reserve_exact(self: &mut Self, len: usize, additional: usize)`
+
+- `fn try_reserve_exact(self: &mut Self, len: usize, additional: usize) -> Result<(), TryReserveError>` — [`TryReserveError`](../collections/index.md)
+
+- `fn shrink_to_fit(self: &mut Self, cap: usize)`
 
 #### Trait Implementations
 

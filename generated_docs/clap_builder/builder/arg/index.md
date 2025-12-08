@@ -73,17 +73,91 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn _build(self: &mut Self)`
+- `fn get_id(self: &Self) -> &Id` — [`Id`](../../index.md)
 
-- `fn name_no_brackets(self: &Self) -> String`
+- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn stylized(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](../index.md), [`StyledStr`](../index.md)
+- `fn get_long_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn stylize_arg_suffix(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](../index.md), [`StyledStr`](../index.md)
+- `fn get_display_order(self: &Self) -> usize`
 
-- `fn render_arg_val(self: &Self, required: bool) -> String`
+- `fn get_help_heading(self: &Self) -> Option<&str>`
 
-- `fn is_multiple(self: &Self) -> bool`
+- `fn get_short(self: &Self) -> Option<char>`
+
+- `fn get_visible_short_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_all_short_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_short_and_visible_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_long(self: &Self) -> Option<&str>`
+
+- `fn get_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_all_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_long_and_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_possible_values(self: &Self) -> Vec<PossibleValue>` — [`PossibleValue`](../index.md)
+
+- `fn get_value_names(self: &Self) -> Option<&[Str]>` — [`Str`](../index.md)
+
+- `fn get_num_args(self: &Self) -> Option<ValueRange>` — [`ValueRange`](../index.md)
+
+- `fn get_min_vals(self: &Self) -> usize`
+
+- `fn get_value_delimiter(self: &Self) -> Option<char>`
+
+- `fn get_value_terminator(self: &Self) -> Option<&Str>` — [`Str`](../index.md)
+
+- `fn get_index(self: &Self) -> Option<usize>`
+
+- `fn get_value_hint(self: &Self) -> ValueHint` — [`ValueHint`](../../index.md)
+
+- `fn get_default_values(self: &Self) -> &[OsStr]` — [`OsStr`](../index.md)
+
+- `fn is_positional(self: &Self) -> bool`
+
+- `fn is_required_set(self: &Self) -> bool`
+
+- `fn is_multiple_values_set(self: &Self) -> bool`
+
+- `fn is_takes_value_set(self: &Self) -> bool`
+
+- `fn is_allow_hyphen_values_set(self: &Self) -> bool`
+
+- `fn is_allow_negative_numbers_set(self: &Self) -> bool`
+
+- `fn get_action(self: &Self) -> &ArgAction` — [`ArgAction`](../../index.md)
+
+- `fn get_value_parser(self: &Self) -> &super::ValueParser` — [`ValueParser`](../index.md)
+
+- `fn is_global_set(self: &Self) -> bool`
+
+- `fn is_next_line_help_set(self: &Self) -> bool`
+
+- `fn is_hide_set(self: &Self) -> bool`
+
+- `fn is_hide_default_value_set(self: &Self) -> bool`
+
+- `fn is_hide_possible_values_set(self: &Self) -> bool`
+
+- `fn is_hide_short_help_set(self: &Self) -> bool`
+
+- `fn is_hide_long_help_set(self: &Self) -> bool`
+
+- `fn is_require_equals_set(self: &Self) -> bool`
+
+- `fn is_exclusive_set(self: &Self) -> bool`
+
+- `fn is_trailing_var_arg_set(self: &Self) -> bool`
+
+- `fn is_last_set(self: &Self) -> bool`
+
+- `fn is_ignore_case_set(self: &Self) -> bool`
 
 #### Trait Implementations
 

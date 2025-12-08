@@ -545,7 +545,7 @@ found in the `.debug_types` section.
 
 #### Implementations
 
-- `fn units(self: &Self) -> DebugTypesUnitHeadersIter<R>` — [`DebugTypesUnitHeadersIter`](../index.md)
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugTypes<R>` — [`DebugTypes`](../index.md)
 
 #### Trait Implementations
 

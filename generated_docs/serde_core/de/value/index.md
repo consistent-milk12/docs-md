@@ -2415,7 +2415,7 @@ A deserializer that iterates over a sequence.
 
 #### Implementations
 
-- `fn end(self: Self) -> Result<(), E>`
+- `fn new(iter: I) -> Self`
 
 #### Trait Implementations
 
@@ -2634,7 +2634,7 @@ A deserializer that iterates over a map.
 
 #### Implementations
 
-- `fn next_pair(self: &mut Self) -> Option<(<<I as >::Item as Pair>::First, <<I as >::Item as Pair>::Second)>` — [`Pair`](private/index.md)
+- `fn end(self: Self) -> Result<(), E>`
 
 #### Trait Implementations
 

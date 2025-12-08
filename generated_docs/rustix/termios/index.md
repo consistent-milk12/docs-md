@@ -40,7 +40,7 @@ struct Termios {
 }
 ```
 
-`struct termios` for use with [`tcgetattr`](#tcgetattr) and [`tcsetattr`](../backend/termios/syscalls/index.md).
+`struct termios` for use with [`tcgetattr`](#tcgetattr) and [`tcsetattr`](#tcsetattr).
 
 
 
@@ -276,45 +276,9 @@ Flags controlling terminal output.
 
 #### Implementations
 
-- `const fn empty() -> Self`
+- `const fn iter(self: &Self) -> $crate::iter::Iter<OutputModes>` — [`OutputModes`](#outputmodes)
 
-- `const fn all() -> Self`
-
-- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
-
-- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../ffi/index.md)
-
-- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
-
-- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
-
-- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
-
-- `const fn is_empty(self: &Self) -> bool`
-
-- `const fn is_all(self: &Self) -> bool`
-
-- `const fn intersects(self: &Self, other: Self) -> bool`
-
-- `const fn contains(self: &Self, other: Self) -> bool`
-
-- `fn insert(self: &mut Self, other: Self)`
-
-- `fn remove(self: &mut Self, other: Self)`
-
-- `fn toggle(self: &mut Self, other: Self)`
-
-- `fn set(self: &mut Self, other: Self, value: bool)`
-
-- `const fn intersection(self: Self, other: Self) -> Self`
-
-- `const fn union(self: Self, other: Self) -> Self`
-
-- `const fn difference(self: Self, other: Self) -> Self`
-
-- `const fn symmetric_difference(self: Self, other: Self) -> Self`
-
-- `const fn complement(self: Self) -> Self`
+- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<OutputModes>` — [`OutputModes`](#outputmodes)
 
 #### Trait Implementations
 
@@ -450,45 +414,31 @@ probably these flags.
 
 #### Implementations
 
-- `const fn empty() -> Self`
+- `const CSIZE: Self`
 
-- `const fn all() -> Self`
+- `const CS5: Self`
 
-- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
+- `const CS6: Self`
 
-- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../ffi/index.md)
+- `const CS7: Self`
 
-- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+- `const CS8: Self`
 
-- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
+- `const CSTOPB: Self`
 
-- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
+- `const CREAD: Self`
 
-- `const fn is_empty(self: &Self) -> bool`
+- `const PARENB: Self`
 
-- `const fn is_all(self: &Self) -> bool`
+- `const PARODD: Self`
 
-- `const fn intersects(self: &Self, other: Self) -> bool`
+- `const HUPCL: Self`
 
-- `const fn contains(self: &Self, other: Self) -> bool`
+- `const CLOCAL: Self`
 
-- `fn insert(self: &mut Self, other: Self)`
+- `const CRTSCTS: Self`
 
-- `fn remove(self: &mut Self, other: Self)`
-
-- `fn toggle(self: &mut Self, other: Self)`
-
-- `fn set(self: &mut Self, other: Self, value: bool)`
-
-- `const fn intersection(self: Self, other: Self) -> Self`
-
-- `const fn union(self: Self, other: Self) -> Self`
-
-- `const fn difference(self: Self, other: Self) -> Self`
-
-- `const fn symmetric_difference(self: Self, other: Self) -> Self`
-
-- `const fn complement(self: Self) -> Self`
+- `const CMSPAR: Self`
 
 #### Trait Implementations
 
@@ -618,45 +568,9 @@ Flags controlling “local” terminal modes.
 
 #### Implementations
 
-- `const fn empty() -> Self`
+- `const fn iter(self: &Self) -> $crate::iter::Iter<LocalModes>` — [`LocalModes`](#localmodes)
 
-- `const fn all() -> Self`
-
-- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../ffi/index.md)
-
-- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../ffi/index.md)
-
-- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
-
-- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../ffi/index.md)
-
-- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
-
-- `const fn is_empty(self: &Self) -> bool`
-
-- `const fn is_all(self: &Self) -> bool`
-
-- `const fn intersects(self: &Self, other: Self) -> bool`
-
-- `const fn contains(self: &Self, other: Self) -> bool`
-
-- `fn insert(self: &mut Self, other: Self)`
-
-- `fn remove(self: &mut Self, other: Self)`
-
-- `fn toggle(self: &mut Self, other: Self)`
-
-- `fn set(self: &mut Self, other: Self, value: bool)`
-
-- `const fn intersection(self: Self, other: Self) -> Self`
-
-- `const fn union(self: Self, other: Self) -> Self`
-
-- `const fn difference(self: Self, other: Self) -> Self`
-
-- `const fn symmetric_difference(self: Self, other: Self) -> Self`
-
-- `const fn complement(self: Self) -> Self`
+- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<LocalModes>` — [`LocalModes`](#localmodes)
 
 #### Trait Implementations
 
@@ -898,7 +812,7 @@ struct Winsize {
 }
 ```
 
-`struct winsize` for use with [`tcgetwinsize`](../backend/termios/syscalls/index.md).
+`struct winsize` for use with [`tcgetwinsize`](#tcgetwinsize).
 
 
 #### Fields
@@ -947,7 +861,7 @@ enum OptionalActions {
 }
 ```
 
-`TCSA*` values for use with [`tcsetattr`](../backend/termios/syscalls/index.md).
+`TCSA*` values for use with [`tcsetattr`](#tcsetattr).
 
 
 #### Variants
@@ -999,7 +913,7 @@ enum QueueSelector {
 }
 ```
 
-`TC*` values for use with [`tcflush`](#tcflush).
+`TC*` values for use with [`tcflush`](../backend/termios/syscalls/index.md).
 
 
 #### Variants
@@ -1051,7 +965,7 @@ enum Action {
 }
 ```
 
-`TC*` values for use with [`tcflow`](../backend/termios/syscalls/index.md).
+`TC*` values for use with [`tcflow`](#tcflow).
 
 
 #### Variants

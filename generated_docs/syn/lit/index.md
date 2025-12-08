@@ -65,7 +65,7 @@ A UTF-8 string literal: `"foo"`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitStr`
+##### `impl<T> Sealed for LitStr`
 
 ##### `impl<T> Spanned for LitStr`
 
@@ -199,17 +199,7 @@ A byte literal: `b'f'`.
 
 #### Implementations
 
-- `fn new(value: u8, span: Span) -> Self`
-
-- `fn value(self: &Self) -> u8`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -259,7 +249,17 @@ A character literal: `'a'`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(value: char, span: Span) -> Self`
+
+- `fn value(self: &Self) -> char`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
+
+- `fn suffix(self: &Self) -> &str`
+
+- `fn token(self: &Self) -> Literal`
 
 #### Trait Implementations
 
@@ -285,7 +285,7 @@ A character literal: `'a'`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitChar`
+##### `impl<T> Sealed for LitChar`
 
 ##### `impl<T> Spanned for LitChar`
 
@@ -324,19 +324,7 @@ An integer literal: `1` or `1u16`.
 
 #### Implementations
 
-- `fn new(repr: &str, span: Span) -> Self`
-
-- `fn base10_digits(self: &Self) -> &str`
-
-- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](../index.md)
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn token(self: &Self) -> Literal`
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -487,7 +475,15 @@ A boolean literal: `true` or `false`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(value: bool, span: Span) -> Self`
+
+- `fn value(self: &Self) -> bool`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
+
+- `fn token(self: &Self) -> Ident` — [`Ident`](../index.md)
 
 #### Trait Implementations
 
@@ -513,7 +509,7 @@ A boolean literal: `true` or `false`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitBool`
+##### `impl<T> Sealed for LitBool`
 
 ##### `impl<T> Spanned for LitBool`
 

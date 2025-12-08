@@ -116,7 +116,7 @@ The `parse_quote!` macro also uses this approach.
 
 Some types can be parsed in several ways depending on context. For example
 an [`Attribute`](../index.md) can be either "outer" like `#[...]` or "inner" like
-`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../index.md)
+`#![...]` and parsing the wrong one would be a bug. Similarly [`Punctuated`](../punctuated/index.md)
 may or may not allow trailing punctuation, and parsing it the wrong way
 would either reject valid input or accept invalid input.
 
@@ -461,7 +461,7 @@ Ok(())
 
 ##### `impl Peek for End`
 
-##### `impl<T> Sealed for End`
+##### `impl Sealed for End`
 
 ##### `impl<T> Token for End`
 

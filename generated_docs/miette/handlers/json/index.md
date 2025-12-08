@@ -16,7 +16,11 @@ struct JSONReportHandler;
 
 #### Implementations
 
-- `const fn new() -> Self`
+- `fn render_report(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic) -> fmt::Result` — [`Diagnostic`](../../index.md)
+
+- `fn _render_report(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, parent_src: Option<&dyn SourceCode>) -> fmt::Result` — [`Diagnostic`](../../index.md), [`SourceCode`](../../index.md)
+
+- `fn render_snippets(self: &Self, f: &mut impl fmt::Write, diagnostic: &dyn Diagnostic, source: &dyn SourceCode) -> fmt::Result` — [`Diagnostic`](../../index.md), [`SourceCode`](../../index.md)
 
 #### Trait Implementations
 

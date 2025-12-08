@@ -237,7 +237,7 @@ Ok(())
 
 ##### `impl Peek for End`
 
-##### `impl<T> Sealed for End`
+##### `impl Sealed for End`
 
 ##### `impl<T> Token for End`
 

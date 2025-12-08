@@ -220,15 +220,21 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn is_match<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> bool` — [`Cache`](#cache)
+- `fn search_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, slots: &mut [Option<NonMaxUsize>]) -> Option<HalfMatch>` — [`Cache`](#cache), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`HalfMatch`](../../../index.md)
 
-- `fn find<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I) -> Option<Match>` — [`Cache`](#cache), [`Match`](../../../index.md)
+- `fn which_overlapping_imp(self: &Self, cache: &mut Cache, input: &Input<'_>, patset: &mut PatternSet)` — [`Cache`](#cache), [`Input`](../../../index.md), [`PatternSet`](../../../index.md)
 
-- `fn captures<'h, I: Into<Input<'h>>>(self: &Self, cache: &mut Cache, input: I, caps: &mut Captures)` — [`Cache`](#cache), [`Captures`](../../../util/captures/index.md)
+- `fn nexts(self: &Self, stack: &mut Vec<FollowEpsilon>, curr: &mut ActiveStates, next: &mut ActiveStates, input: &Input<'_>, at: usize, slots: &mut [Option<NonMaxUsize>]) -> Option<PatternID>` — [`FollowEpsilon`](#followepsilon), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`NonMaxUsize`](../../../util/primitives/index.md), [`PatternID`](../../../index.md)
 
-- `fn find_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> FindMatches<'r, 'c, 'h>` — [`Cache`](#cache), [`FindMatches`](#findmatches)
+- `fn nexts_overlapping(self: &Self, stack: &mut Vec<FollowEpsilon>, curr: &mut ActiveStates, next: &mut ActiveStates, input: &Input<'_>, at: usize, patset: &mut PatternSet)` — [`FollowEpsilon`](#followepsilon), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`PatternSet`](../../../index.md)
 
-- `fn captures_iter<'r, 'c, 'h, I: Into<Input<'h>>>(self: &'r Self, cache: &'c mut Cache, input: I) -> CapturesMatches<'r, 'c, 'h>` — [`Cache`](#cache), [`CapturesMatches`](#capturesmatches)
+- `fn next(self: &Self, stack: &mut Vec<FollowEpsilon>, curr_slot_table: &mut SlotTable, next: &mut ActiveStates, input: &Input<'_>, at: usize, sid: StateID) -> Option<PatternID>` — [`FollowEpsilon`](#followepsilon), [`SlotTable`](#slottable), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md), [`PatternID`](../../../index.md)
+
+- `fn epsilon_closure(self: &Self, stack: &mut Vec<FollowEpsilon>, curr_slots: &mut [Option<NonMaxUsize>], next: &mut ActiveStates, input: &Input<'_>, at: usize, sid: StateID)` — [`FollowEpsilon`](#followepsilon), [`NonMaxUsize`](../../../util/primitives/index.md), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md)
+
+- `fn epsilon_closure_explore(self: &Self, stack: &mut Vec<FollowEpsilon>, curr_slots: &mut [Option<NonMaxUsize>], next: &mut ActiveStates, input: &Input<'_>, at: usize, sid: StateID)` — [`FollowEpsilon`](#followepsilon), [`NonMaxUsize`](../../../util/primitives/index.md), [`ActiveStates`](#activestates), [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md)
+
+- `fn start_config(self: &Self, input: &Input<'_>) -> Option<(bool, StateID)>` — [`Input`](../../../index.md), [`StateID`](../../../util/primitives/index.md)
 
 #### Trait Implementations
 

@@ -503,11 +503,7 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 
 #### Implementations
 
-- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](#result)
-
-- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](#result), [`Parser`](parse/index.md)
-
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](meta/index.md), [`Result`](#result)
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -5953,7 +5949,11 @@ Lifetime names must conform to the following rules:
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(symbol: &str, span: Span) -> Self`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
 
 #### Trait Implementations
 
@@ -6020,7 +6020,15 @@ A boolean literal: `true` or `false`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(value: bool, span: Span) -> Self`
+
+- `fn value(self: &Self) -> bool`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
+
+- `fn token(self: &Self) -> Ident` — [`Ident`](#ident)
 
 #### Trait Implementations
 
@@ -6046,7 +6054,7 @@ A boolean literal: `true` or `false`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitBool`
+##### `impl<T> Sealed for LitBool`
 
 ##### `impl<T> Spanned for LitBool`
 
@@ -6070,17 +6078,7 @@ A byte literal: `b'f'`.
 
 #### Implementations
 
-- `fn new(value: u8, span: Span) -> Self`
-
-- `fn value(self: &Self) -> u8`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn token(self: &Self) -> Literal`
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -6240,7 +6238,17 @@ A character literal: `'a'`.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(value: char, span: Span) -> Self`
+
+- `fn value(self: &Self) -> char`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
+
+- `fn suffix(self: &Self) -> &str`
+
+- `fn token(self: &Self) -> Literal`
 
 #### Trait Implementations
 
@@ -6266,7 +6274,7 @@ A character literal: `'a'`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitChar`
+##### `impl<T> Sealed for LitChar`
 
 ##### `impl<T> Spanned for LitChar`
 
@@ -6350,19 +6358,7 @@ An integer literal: `1` or `1u16`.
 
 #### Implementations
 
-- `fn new(repr: &str, span: Span) -> Self`
-
-- `fn base10_digits(self: &Self) -> &str`
-
-- `fn base10_parse<N>(self: &Self) -> Result<N>` — [`Result`](#result)
-
-- `fn suffix(self: &Self) -> &str`
-
-- `fn span(self: &Self) -> Span`
-
-- `fn set_span(self: &mut Self, span: Span)`
-
-- `fn token(self: &Self) -> Literal`
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -6460,7 +6456,7 @@ A UTF-8 string literal: `"foo"`.
 
 - `fn eq(self: &Self, other: &Self) -> bool`
 
-##### `impl Sealed for crate::lit::LitStr`
+##### `impl<T> Sealed for LitStr`
 
 ##### `impl<T> Spanned for LitStr`
 
@@ -7602,7 +7598,13 @@ A path at which a named item is exported (e.g. `std::collections::HashMap`).
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn parse_mod_style(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+
+- `fn parse_helper(input: ParseStream<'_>, expr_style: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+
+- `fn parse_rest(input: ParseStream<'_>, path: &mut Self, expr_style: bool) -> Result<()>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+
+- `fn is_mod_style(self: &Self) -> bool`
 
 #### Trait Implementations
 
@@ -8284,7 +8286,9 @@ a lifetime.
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+
+- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
 
 #### Trait Implementations
 
@@ -8477,7 +8481,7 @@ A parenthesized type equivalent to the inner type.
 
 #### Implementations
 
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -8728,11 +8732,7 @@ trait or a lifetime.
 
 #### Implementations
 
-- `fn without_plus(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
-
-- `fn parse(input: ParseStream<'_>, allow_plus: bool) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
-
-- `fn parse_bounds(dyn_span: Span, input: ParseStream<'_>, allow_plus: bool) -> Result<Punctuated<TypeParamBound, $crate::token::Plus>>` — [`ParseStream`](parse/index.md), [`Result`](#result), [`Punctuated`](punctuated/index.md), [`TypeParamBound`](#typeparambound), [`Plus`](token/index.md)
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 
@@ -11194,9 +11194,7 @@ This type is a [syntax tree enum].
 
 #### Implementations
 
-- `fn parse_pub(input: ParseStream<'_>) -> Result<Self>` — [`ParseStream`](parse/index.md), [`Result`](#result)
-
-- `fn is_some(self: &Self) -> bool`
+- `fn is_inherited(self: &Self) -> bool`
 
 #### Trait Implementations
 

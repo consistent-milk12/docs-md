@@ -185,39 +185,13 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn all(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
+- `fn clear(self: &mut Self)`
 
-- `fn matches(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
+- `fn set_pattern(self: &mut Self, pid: Option<PatternID>)` — [`PatternID`](../../index.md)
 
-- `fn empty(group_info: GroupInfo) -> Captures` — [`GroupInfo`](#groupinfo), [`Captures`](#captures)
+- `fn slots(self: &Self) -> &[Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
 
-- `fn is_match(self: &Self) -> bool`
-
-- `fn pattern(self: &Self) -> Option<PatternID>` — [`PatternID`](../../index.md)
-
-- `fn get_match(self: &Self) -> Option<Match>` — [`Match`](../../index.md)
-
-- `fn get_group(self: &Self, index: usize) -> Option<Span>` — [`Span`](../../index.md)
-
-- `fn get_group_by_name(self: &Self, name: &str) -> Option<Span>` — [`Span`](../../index.md)
-
-- `fn iter(self: &Self) -> CapturesPatternIter<'_>` — [`CapturesPatternIter`](#capturespatterniter)
-
-- `fn group_len(self: &Self) -> usize`
-
-- `fn group_info(self: &Self) -> &GroupInfo` — [`GroupInfo`](#groupinfo)
-
-- `fn interpolate_string(self: &Self, haystack: &str, replacement: &str) -> String`
-
-- `fn interpolate_string_into(self: &Self, haystack: &str, replacement: &str, dst: &mut String)`
-
-- `fn interpolate_bytes(self: &Self, haystack: &[u8], replacement: &[u8]) -> Vec<u8>`
-
-- `fn interpolate_bytes_into(self: &Self, haystack: &[u8], replacement: &[u8], dst: &mut Vec<u8>)`
-
-- `fn extract<'h, const N: usize>(self: &Self, haystack: &'h str) -> (&'h str, [&'h str; N])`
-
-- `fn extract_bytes<'h, const N: usize>(self: &Self, haystack: &'h [u8]) -> (&'h [u8], [&'h [u8]; N])`
+- `fn slots_mut(self: &mut Self) -> &mut [Option<NonMaxUsize>]` — [`NonMaxUsize`](../primitives/index.md)
 
 #### Trait Implementations
 

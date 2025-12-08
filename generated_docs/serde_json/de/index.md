@@ -110,7 +110,73 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn from_slice(bytes: &'a [u8]) -> Self`
+- `fn end(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>` — [`StreamDeserializer`](../index.md)
+
+- `fn peek(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../index.md)
+
+- `fn peek_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../index.md)
+
+- `fn eat_char(self: &mut Self)`
+
+- `fn next_char(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../index.md)
+
+- `fn next_char_or_null(self: &mut Self) -> Result<u8>` — [`Result`](../index.md)
+
+- `fn error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../error/index.md), [`Error`](../index.md)
+
+- `fn peek_error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](../error/index.md), [`Error`](../index.md)
+
+- `fn parse_whitespace(self: &mut Self) -> Result<Option<u8>>` — [`Result`](../index.md)
+
+- `fn peek_invalid_type(self: &mut Self, exp: &dyn Expected) -> Error` — [`Error`](../index.md)
+
+- `fn deserialize_number<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+
+- `fn do_deserialize_i128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+
+- `fn do_deserialize_u128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](../index.md)
+
+- `fn scan_integer128(self: &mut Self, buf: &mut String) -> Result<()>` — [`Result`](../index.md)
+
+- `fn fix_position(self: &Self, err: Error) -> Error` — [`Error`](../index.md)
+
+- `fn parse_ident(self: &mut Self, ident: &[u8]) -> Result<()>` — [`Result`](../index.md)
+
+- `fn parse_integer(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../index.md), [`ParserNumber`](#parsernumber)
+
+- `fn parse_number(self: &mut Self, positive: bool, significand: u64) -> Result<ParserNumber>` — [`Result`](../index.md), [`ParserNumber`](#parsernumber)
+
+- `fn parse_decimal(self: &mut Self, positive: bool, significand: u64, exponent_before_decimal_point: i32) -> Result<f64>` — [`Result`](../index.md)
+
+- `fn parse_exponent(self: &mut Self, positive: bool, significand: u64, starting_exp: i32) -> Result<f64>` — [`Result`](../index.md)
+
+- `fn f64_from_parts(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../index.md)
+
+- `fn parse_long_integer(self: &mut Self, positive: bool, significand: u64) -> Result<f64>` — [`Result`](../index.md)
+
+- `fn parse_decimal_overflow(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](../index.md)
+
+- `fn parse_exponent_overflow(self: &mut Self, positive: bool, zero_significand: bool, positive_exp: bool) -> Result<f64>` — [`Result`](../index.md)
+
+- `fn parse_any_signed_number(self: &mut Self) -> Result<ParserNumber>` — [`Result`](../index.md), [`ParserNumber`](#parsernumber)
+
+- `fn parse_any_number(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](../index.md), [`ParserNumber`](#parsernumber)
+
+- `fn parse_object_colon(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn end_seq(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn end_map(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn ignore_value(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn ignore_integer(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn ignore_decimal(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
+
+- `fn ignore_exponent(self: &mut Self) -> Result<()>` — [`Result`](../index.md)
 
 ### `SeqAccess<'a, R: 'a>`
 

@@ -200,47 +200,9 @@ It is also possible to implement your own version of `try_find`. See the
 
 #### Implementations
 
-- `const DEAD: StateID`
+- `fn new<I, P>(patterns: I) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](../../index.md)
 
-- `const FAIL: StateID`
-
-- `fn byte_classes(self: &Self) -> &ByteClasses` — [`ByteClasses`](../../util/alphabet/index.md)
-
-- `fn pattern_lens_raw(self: &Self) -> &[SmallIndex]` — [`SmallIndex`](../../util/primitives/index.md)
-
-- `fn states(self: &Self) -> &[State]` — [`State`](#state)
-
-- `fn special(self: &Self) -> &Special` — [`Special`](../../util/special/index.md)
-
-- `fn swap_states(self: &mut Self, id1: StateID, id2: StateID)` — [`StateID`](../../util/primitives/index.md)
-
-- `fn remap(self: &mut Self, map: impl Fn(StateID) -> StateID)` — [`StateID`](../../util/primitives/index.md)
-
-- `fn iter_trans(self: &Self, sid: StateID) -> impl Iterator<Item = Transition> + '_` — [`StateID`](../../util/primitives/index.md), [`Transition`](#transition)
-
-- `fn iter_matches(self: &Self, sid: StateID) -> impl Iterator<Item = PatternID> + '_` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md)
-
-- `fn next_link(self: &Self, sid: StateID, prev: Option<StateID>) -> Option<StateID>` — [`StateID`](../../util/primitives/index.md)
-
-- `fn follow_transition(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../util/primitives/index.md)
-
-- `fn follow_transition_sparse(self: &Self, sid: StateID, byte: u8) -> StateID` — [`StateID`](../../util/primitives/index.md)
-
-- `fn add_transition(self: &mut Self, prev: StateID, byte: u8, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn init_full_state(self: &mut Self, prev: StateID, next: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn add_match(self: &mut Self, sid: StateID, pid: PatternID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`BuildError`](../../index.md)
-
-- `fn copy_matches(self: &mut Self, src: StateID, dst: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn alloc_transition(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn alloc_match(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn alloc_dense_state(self: &mut Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
-
-- `fn alloc_state(self: &mut Self, depth: usize) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](../../index.md)
+- `fn builder() -> Builder` — [`Builder`](#builder)
 
 #### Trait Implementations
 

@@ -48,7 +48,21 @@ Atomic loads use the `Acquire` ordering and atomic stores use the `Release` orde
 
 #### Implementations
 
-- `fn load(self: &Self) -> T`
+- `fn fetch_add(self: &Self, val: u128) -> u128`
+
+- `fn fetch_sub(self: &Self, val: u128) -> u128`
+
+- `fn fetch_and(self: &Self, val: u128) -> u128`
+
+- `fn fetch_nand(self: &Self, val: u128) -> u128`
+
+- `fn fetch_or(self: &Self, val: u128) -> u128`
+
+- `fn fetch_xor(self: &Self, val: u128) -> u128`
+
+- `fn fetch_max(self: &Self, val: u128) -> u128`
+
+- `fn fetch_min(self: &Self, val: u128) -> u128`
 
 #### Trait Implementations
 

@@ -229,11 +229,7 @@ A structured list within an attribute, like `derive(Copy, Clone)`.
 
 #### Implementations
 
-- `fn parse_args<T: Parse>(self: &Self) -> Result<T>` — [`Result`](../index.md)
-
-- `fn parse_args_with<F: Parser>(self: &Self, parser: F) -> Result<<F as >::Output>` — [`Result`](../index.md), [`Parser`](../parse/index.md)
-
-- `fn parse_nested_meta(self: &Self, logic: impl FnMut(ParseNestedMeta<'_>) -> Result<()>) -> Result<()>` — [`ParseNestedMeta`](../meta/index.md), [`Result`](../index.md)
+- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
 
 #### Trait Implementations
 

@@ -18,9 +18,7 @@ struct Colorizer {
 
 #### Implementations
 
-- `fn new(stream: Stream, color_when: ColorChoice) -> Self` — [`Stream`](#stream), [`ColorChoice`](../../index.md)
-
-- `fn with_content(self: Self, content: StyledStr) -> Self` — [`StyledStr`](../../builder/index.md)
+- `fn print(self: &Self) -> std::io::Result<()>`
 
 #### Trait Implementations
 

@@ -21,7 +21,7 @@ the [`io`](../../maybe_polyfill/io/index.md) module instead.
 struct FdFlags(<FdFlags as $crate::__private::PublicFlags>::Internal);
 ```
 
-`FD_*` constants for use with [`fcntl_getfd`](../../backend/io/syscalls/index.md) and [`fcntl_setfd`](../index.md).
+`FD_*` constants for use with [`fcntl_getfd`](../index.md) and [`fcntl_setfd`](../index.md).
 
 
 

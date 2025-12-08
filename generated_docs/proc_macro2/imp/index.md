@@ -300,9 +300,9 @@ enum Ident {
 
 ##### `impl Parse for proc_macro2::Ident`
 
-##### `impl PartialEq for Ident`
+##### `impl<T> PartialEq for Ident`
 
-- `fn eq(self: &Self, other: &Ident) -> bool` — [`Ident`](#ident)
+- `fn eq(self: &Self, other: &T) -> bool`
 
 ##### `impl Sealed for proc_macro2::Ident`
 

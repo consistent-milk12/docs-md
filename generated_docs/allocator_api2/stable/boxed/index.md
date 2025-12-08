@@ -162,9 +162,23 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 #### Implementations
 
-- `fn downcast<T: Any>(self: Self) -> Result<Box<T, A>, Self>` — [`Box`](#box)
+- `fn new_in(x: T, alloc: A) -> Self`
 
-- `unsafe fn downcast_unchecked<T: Any>(self: Self) -> Box<T, A>` — [`Box`](#box)
+- `fn try_new_in(x: T, alloc: A) -> Result<Self, AllocError>` — [`AllocError`](../alloc/index.md)
+
+- `fn new_uninit_in(alloc: A) -> Box<mem::MaybeUninit<T>, A>` — [`Box`](#box)
+
+- `fn try_new_uninit_in(alloc: A) -> Result<Box<mem::MaybeUninit<T>, A>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md)
+
+- `fn new_zeroed_in(alloc: A) -> Box<mem::MaybeUninit<T>, A>` — [`Box`](#box)
+
+- `fn try_new_zeroed_in(alloc: A) -> Result<Box<mem::MaybeUninit<T>, A>, AllocError>` — [`Box`](#box), [`AllocError`](../alloc/index.md)
+
+- `fn pin_in(x: T, alloc: A) -> Pin<Self>`
+
+- `fn into_boxed_slice(boxed: Self) -> Box<[T], A>` — [`Box`](#box)
+
+- `fn into_inner(boxed: Self) -> T`
 
 #### Trait Implementations
 
@@ -182,17 +196,17 @@ See the [module-level documentation](../../std/boxed/index.html) for more.
 
 - `fn last(self: Self) -> Option<<I as >::Item>`
 
-##### `impl<T: Clone, A: Allocator + Clone> Clone for Box<[T], A>`
+##### `impl<T: Clone, A: Allocator + Clone> Clone for Box<T, A>`
 
 - `fn clone(self: &Self) -> Self`
 
-- `fn clone_from(self: &mut Self, other: &Self)`
+- `fn clone_from(self: &mut Self, source: &Self)`
 
 ##### `impl<T: fmt::Debug + ?Sized, A: Allocator> Debug for Box<T, A>`
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<A: Allocator + Default> Default for Box<str, A>`
+##### `impl<T: Default> Default for Box<T>`
 
 - `fn default() -> Self`
 

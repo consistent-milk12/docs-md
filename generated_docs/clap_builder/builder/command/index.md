@@ -88,53 +88,51 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn name(self: Self, name: impl Into<Str>) -> Self` — [`Str`](../index.md)
+- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](../index.md)
+- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](../index.md)
+- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](../index.md)
 
-- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- `fn get_term_width(self: &Self) -> Option<usize>`
 
-- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn get_max_term_width(self: &Self) -> Option<usize>`
 
-- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](../../mkeymap/index.md)
 
-- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](../../index.md), [`Id`](../../index.md)
 
-- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](../../error/index.md), [`ArgMatches`](../../index.md)
 
-- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn build(self: &mut Self)`
 
-- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
 
-- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
 
-- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
 
-- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn _build_bin_names_internal(self: &mut Self)`
 
-- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
 
-- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](../index.md), [`StyledStr`](../index.md)
+- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](../../index.md)
 
-- `fn setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](../app_settings/index.md)
+- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](../../index.md)
 
-- `fn unset_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](../app_settings/index.md)
+- `fn _propagate_global_args(self: &mut Self)`
 
-- `fn global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](../app_settings/index.md)
+- `fn _propagate(self: &mut Self)`
 
-- `fn unset_global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](../app_settings/index.md)
+- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
 
-- `fn flatten_help(self: Self, yes: bool) -> Self`
+- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
 
-- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](../index.md), [`Str`](../index.md)
+- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](../../index.md)
 
-- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](../index.md)
+- `fn _render_version(self: &Self, use_long: bool) -> String`
 
-- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
-
-- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
+- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](../../index.md), [`StyledStr`](../index.md)
 
 #### Trait Implementations
 

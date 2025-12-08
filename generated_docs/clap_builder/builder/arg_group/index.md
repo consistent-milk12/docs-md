@@ -84,29 +84,9 @@ assert_eq!(matches
 
 #### Implementations
 
-- `fn new(id: impl Into<Id>) -> Self` — [`Id`](../../index.md)
+- `fn get_id(self: &Self) -> &Id` — [`Id`](../../index.md)
 
-- `fn id(self: Self, id: impl Into<Id>) -> Self` — [`Id`](../../index.md)
-
-- `fn arg(self: Self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
-
-- `fn args(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
-
-- `fn get_args(self: &Self) -> impl Iterator<Item = &Id>` — [`Id`](../../index.md)
-
-- `fn multiple(self: Self, yes: bool) -> Self`
-
-- `fn is_multiple(self: &mut Self) -> bool`
-
-- `fn required(self: Self, yes: bool) -> Self`
-
-- `fn requires(self: Self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
-
-- `fn requires_all(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
-
-- `fn conflicts_with(self: Self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](../index.md), [`Id`](../../index.md)
-
-- `fn conflicts_with_all(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../../index.md)
+- `fn is_required_set(self: &Self) -> bool`
 
 #### Trait Implementations
 

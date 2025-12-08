@@ -254,7 +254,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Abstract) -> bool` — [`Abstract`](#abstract)
 
-##### `impl<T> Sealed for Abstract`
+##### `impl Sealed for Abstract`
 
 ##### `impl<T> Spanned for Abstract`
 
@@ -310,7 +310,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &As) -> bool` — [`As`](#as)
 
-##### `impl Sealed for As`
+##### `impl<T> Sealed for As`
 
 ##### `impl<T> Spanned for As`
 
@@ -422,7 +422,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Auto) -> bool` — [`Auto`](#auto)
 
-##### `impl Sealed for Auto`
+##### `impl<T> Sealed for Auto`
 
 ##### `impl<T> Spanned for Auto`
 
@@ -478,7 +478,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Await) -> bool` — [`Await`](#await)
 
-##### `impl Sealed for Await`
+##### `impl<T> Sealed for Await`
 
 ##### `impl<T> Spanned for Await`
 
@@ -814,7 +814,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Crate) -> bool` — [`Crate`](#crate)
 
-##### `impl<T> Sealed for Crate`
+##### `impl Sealed for Crate`
 
 ##### `impl<T> Spanned for Crate`
 
@@ -870,7 +870,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Default) -> bool` — [`Default`](#default)
 
-##### `impl<T> Sealed for Default`
+##### `impl Sealed for Default`
 
 ##### `impl<T> Spanned for Default`
 
@@ -982,7 +982,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Dyn) -> bool` — [`Dyn`](#dyn)
 
-##### `impl Sealed for Dyn`
+##### `impl<T> Sealed for Dyn`
 
 ##### `impl<T> Spanned for Dyn`
 
@@ -1150,7 +1150,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Extern) -> bool` — [`Extern`](#extern)
 
-##### `impl<T> Sealed for Extern`
+##### `impl Sealed for Extern`
 
 ##### `impl<T> Spanned for Extern`
 
@@ -1206,7 +1206,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Final) -> bool` — [`Final`](#final)
 
-##### `impl Sealed for Final`
+##### `impl<T> Sealed for Final`
 
 ##### `impl<T> Spanned for Final`
 
@@ -1262,7 +1262,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Fn) -> bool` — [`Fn`](#fn)
 
-##### `impl<T> Sealed for Fn`
+##### `impl Sealed for Fn`
 
 ##### `impl<T> Spanned for Fn`
 
@@ -1374,7 +1374,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &If) -> bool` — [`If`](#if)
 
-##### `impl<T> Sealed for If`
+##### `impl Sealed for If`
 
 ##### `impl<T> Spanned for If`
 
@@ -1542,7 +1542,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Let) -> bool` — [`Let`](#let)
 
-##### `impl Sealed for Let`
+##### `impl<T> Sealed for Let`
 
 ##### `impl<T> Spanned for Let`
 
@@ -1710,7 +1710,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Match) -> bool` — [`Match`](#match)
 
-##### `impl<T> Sealed for Match`
+##### `impl Sealed for Match`
 
 ##### `impl<T> Spanned for Match`
 
@@ -1766,7 +1766,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Mod) -> bool` — [`Mod`](#mod)
 
-##### `impl<T> Sealed for Mod`
+##### `impl Sealed for Mod`
 
 ##### `impl<T> Spanned for Mod`
 
@@ -1878,7 +1878,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Mut) -> bool` — [`Mut`](#mut)
 
-##### `impl Sealed for Mut`
+##### `impl<T> Sealed for Mut`
 
 ##### `impl<T> Spanned for Mut`
 
@@ -1934,7 +1934,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Override) -> bool` — [`Override`](#override)
 
-##### `impl Sealed for Override`
+##### `impl<T> Sealed for Override`
 
 ##### `impl<T> Spanned for Override`
 
@@ -2102,7 +2102,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Raw) -> bool` — [`Raw`](#raw)
 
-##### `impl<T> Sealed for Raw`
+##### `impl Sealed for Raw`
 
 ##### `impl<T> Spanned for Raw`
 
@@ -2158,7 +2158,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Ref) -> bool` — [`Ref`](#ref)
 
-##### `impl Sealed for Ref`
+##### `impl<T> Sealed for Ref`
 
 ##### `impl<T> Spanned for Ref`
 
@@ -2382,7 +2382,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Static) -> bool` — [`Static`](#static)
 
-##### `impl<T> Sealed for Static`
+##### `impl Sealed for Static`
 
 ##### `impl<T> Spanned for Static`
 
@@ -2438,7 +2438,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Struct) -> bool` — [`Struct`](#struct)
 
-##### `impl Sealed for Struct`
+##### `impl<T> Sealed for Struct`
 
 ##### `impl<T> Spanned for Struct`
 
@@ -2606,7 +2606,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Try) -> bool` — [`Try`](#try)
 
-##### `impl Sealed for Try`
+##### `impl<T> Sealed for Try`
 
 ##### `impl<T> Spanned for Try`
 
@@ -2718,7 +2718,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Typeof) -> bool` — [`Typeof`](#typeof)
 
-##### `impl Sealed for Typeof`
+##### `impl<T> Sealed for Typeof`
 
 ##### `impl<T> Spanned for Typeof`
 
@@ -2830,7 +2830,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Unsafe) -> bool` — [`Unsafe`](#unsafe)
 
-##### `impl<T> Sealed for Unsafe`
+##### `impl Sealed for Unsafe`
 
 ##### `impl<T> Spanned for Unsafe`
 
@@ -3166,7 +3166,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Yield) -> bool` — [`Yield`](#yield)
 
-##### `impl Sealed for Yield`
+##### `impl<T> Sealed for Yield`
 
 ##### `impl<T> Spanned for Yield`
 
@@ -3298,7 +3298,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &AndAnd) -> bool` — [`AndAnd`](#andand)
 
-##### `impl<T> Sealed for AndAnd`
+##### `impl Sealed for AndAnd`
 
 ##### `impl<T> Spanned for AndAnd`
 
@@ -3357,7 +3357,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &AndEq) -> bool` — [`AndEq`](#andeq)
 
-##### `impl<T> Sealed for AndEq`
+##### `impl Sealed for AndEq`
 
 ##### `impl<T> Spanned for AndEq`
 
@@ -3430,7 +3430,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for At`
+##### `impl Sealed for At`
 
 ##### `impl<T> Spanned for At`
 
@@ -3503,7 +3503,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Caret`
+##### `impl<T> Sealed for Caret`
 
 ##### `impl<T> Spanned for Caret`
 
@@ -3635,7 +3635,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Colon`
+##### `impl<T> Sealed for Colon`
 
 ##### `impl<T> Spanned for Colon`
 
@@ -3708,7 +3708,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Comma`
+##### `impl Sealed for Comma`
 
 ##### `impl<T> Spanned for Comma`
 
@@ -3781,7 +3781,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Dollar`
+##### `impl Sealed for Dollar`
 
 ##### `impl<T> Spanned for Dollar`
 
@@ -3972,7 +3972,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &DotDotDot) -> bool` — [`DotDotDot`](#dotdotdot)
 
-##### `impl<T> Sealed for DotDotDot`
+##### `impl Sealed for DotDotDot`
 
 ##### `impl<T> Spanned for DotDotDot`
 
@@ -4031,7 +4031,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &DotDotEq) -> bool` — [`DotDotEq`](#dotdoteq)
 
-##### `impl<T> Sealed for DotDotEq`
+##### `impl Sealed for DotDotEq`
 
 ##### `impl<T> Spanned for DotDotEq`
 
@@ -4104,7 +4104,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Eq`
+##### `impl Sealed for Eq`
 
 ##### `impl<T> Spanned for Eq`
 
@@ -4163,7 +4163,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &EqEq) -> bool` — [`EqEq`](#eqeq)
 
-##### `impl Sealed for EqEq`
+##### `impl<T> Sealed for EqEq`
 
 ##### `impl<T> Spanned for EqEq`
 
@@ -4222,7 +4222,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &FatArrow) -> bool` — [`FatArrow`](#fatarrow)
 
-##### `impl Sealed for FatArrow`
+##### `impl<T> Sealed for FatArrow`
 
 ##### `impl<T> Spanned for FatArrow`
 
@@ -4413,7 +4413,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &LArrow) -> bool` — [`LArrow`](#larrow)
 
-##### `impl<T> Sealed for LArrow`
+##### `impl Sealed for LArrow`
 
 ##### `impl<T> Spanned for LArrow`
 
@@ -4545,7 +4545,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Lt`
+##### `impl<T> Sealed for Lt`
 
 ##### `impl<T> Spanned for Lt`
 
@@ -4618,7 +4618,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Minus`
+##### `impl Sealed for Minus`
 
 ##### `impl<T> Spanned for Minus`
 
@@ -5000,7 +5000,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &OrOr) -> bool` — [`OrOr`](#oror)
 
-##### `impl<T> Sealed for OrOr`
+##### `impl Sealed for OrOr`
 
 ##### `impl<T> Spanned for OrOr`
 
@@ -5191,7 +5191,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &PercentEq) -> bool` — [`PercentEq`](#percenteq)
 
-##### `impl<T> Sealed for PercentEq`
+##### `impl Sealed for PercentEq`
 
 ##### `impl<T> Spanned for PercentEq`
 
@@ -5264,7 +5264,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl Sealed for Plus`
+##### `impl<T> Sealed for Plus`
 
 ##### `impl<T> Spanned for Plus`
 
@@ -5323,7 +5323,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &PlusEq) -> bool` — [`PlusEq`](#pluseq)
 
-##### `impl Sealed for PlusEq`
+##### `impl<T> Sealed for PlusEq`
 
 ##### `impl<T> Spanned for PlusEq`
 
@@ -5396,7 +5396,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Pound`
+##### `impl Sealed for Pound`
 
 ##### `impl<T> Spanned for Pound`
 
@@ -5528,7 +5528,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &RArrow) -> bool` — [`RArrow`](#rarrow)
 
-##### `impl<T> Sealed for RArrow`
+##### `impl Sealed for RArrow`
 
 ##### `impl<T> Spanned for RArrow`
 
@@ -5660,7 +5660,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &Shl) -> bool` — [`Shl`](#shl)
 
-##### `impl Sealed for Shl`
+##### `impl<T> Sealed for Shl`
 
 ##### `impl<T> Spanned for Shl`
 
@@ -5719,7 +5719,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &ShlEq) -> bool` — [`ShlEq`](#shleq)
 
-##### `impl Sealed for ShlEq`
+##### `impl<T> Sealed for ShlEq`
 
 ##### `impl<T> Spanned for ShlEq`
 
@@ -6101,7 +6101,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `fn eq(self: &Self, _other: &StarEq) -> bool` — [`StarEq`](#stareq)
 
-##### `impl<T> Sealed for StarEq`
+##### `impl Sealed for StarEq`
 
 ##### `impl<T> Spanned for StarEq`
 
@@ -6174,7 +6174,7 @@ Don't try to remember the name of this type &mdash; use the
 
 - `type Target = T`
 
-##### `impl<T> Sealed for Tilde`
+##### `impl Sealed for Tilde`
 
 ##### `impl<T> Spanned for Tilde`
 

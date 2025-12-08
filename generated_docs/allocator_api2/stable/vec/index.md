@@ -159,11 +159,9 @@ let iter: std::vec::Drain<_> = v.drain(..);
 
 #### Implementations
 
-- `fn as_slice(self: &Self) -> &[T]`
+- `unsafe fn fill<I: Iterator<Item = T>>(self: &mut Self, replace_with: &mut I) -> bool`
 
-- `fn allocator(self: &Self) -> &A`
-
-- `fn keep_rest(self: Self)`
+- `unsafe fn move_tail(self: &mut Self, additional: usize)`
 
 #### Trait Implementations
 
@@ -547,7 +545,7 @@ The order has changed in the past and may change again.
 
 #### Implementations
 
-- `fn dedup(self: &mut Self)`
+- `fn extend_with<E: ExtendWith<T>>(self: &mut Self, n: usize, value: E)`
 
 #### Trait Implementations
 
@@ -557,7 +555,7 @@ The order has changed in the past and may change again.
 
 ##### `impl<T, A: Allocator> AsRef for Vec<T, A>`
 
-- `fn as_ref(self: &Self) -> &[T]`
+- `fn as_ref(self: &Self) -> &Vec<T, A>` — [`Vec`](#vec)
 
 ##### `impl<T: Clone, A: Allocator + Clone> Clone for Vec<T, A>`
 

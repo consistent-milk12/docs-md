@@ -21,7 +21,7 @@ Only pass printable data to the inner `Write`
 
 #### Implementations
 
-- `fn is_terminal(self: &Self) -> bool`
+- `fn lock(self: Self) -> StripStream<std::io::StderrLock<'static>>` — [`StripStream`](../index.md)
 
 #### Trait Implementations
 

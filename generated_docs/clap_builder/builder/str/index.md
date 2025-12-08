@@ -39,7 +39,7 @@ feature
 
 ##### `impl AsRef for Str`
 
-- `fn as_ref(self: &Self) -> &std::path::Path`
+- `fn as_ref(self: &Self) -> &[u8]`
 
 ##### `impl Clone for Str`
 
@@ -79,7 +79,7 @@ feature
 
 ##### `impl PartialEq for Str`
 
-- `fn eq(self: &Self, other: &&std::ffi::OsStr) -> bool`
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Str`
 

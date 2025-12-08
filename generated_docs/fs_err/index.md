@@ -245,25 +245,21 @@ information to all errors.
 
 #### Implementations
 
-- `fn open<P>(path: P) -> Result<Self, io::Error>`
+- `fn from_parts<P>(file: fs::File, path: P) -> Self`
 
-- `fn create<P>(path: P) -> Result<Self, io::Error>`
+- `fn into_parts(self: Self) -> (fs::File, PathBuf)`
 
-- `fn create_new<P>(path: P) -> Result<Self, io::Error>`
+- `fn into_file(self: Self) -> fs::File`
 
-- `fn options() -> OpenOptions` — [`OpenOptions`](#openoptions)
+- `fn into_path(self: Self) -> PathBuf`
 
-- `fn sync_all(self: &Self) -> Result<(), io::Error>`
+- `fn file(self: &Self) -> &fs::File`
 
-- `fn sync_data(self: &Self) -> Result<(), io::Error>`
+- `fn file_mut(self: &mut Self) -> &mut fs::File`
 
-- `fn set_len(self: &Self, size: u64) -> Result<(), io::Error>`
+- `fn path(self: &Self) -> &Path`
 
-- `fn metadata(self: &Self) -> Result<fs::Metadata, io::Error>`
-
-- `fn try_clone(self: &Self) -> Result<Self, io::Error>`
-
-- `fn set_permissions(self: &Self, perm: fs::Permissions) -> Result<(), io::Error>`
+- `fn error(self: &Self, source: io::Error, kind: ErrorKind) -> io::Error` — [`ErrorKind`](errors/index.md)
 
 #### Trait Implementations
 

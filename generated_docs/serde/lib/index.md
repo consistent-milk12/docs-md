@@ -73,7 +73,7 @@ this type directly. Using a `DFA` directly is typically only necessary when
 one needs access to the `Automaton` trait implementation.
 
 This DFA can only be built by first constructing a [`noncontiguous::NFA`](#noncontiguousnfa).
-Both [`DFA::new`](../../docs_md/error/index.md) and `Builder::build` do this for you automatically, but
+Both [`DFA::new`](../../addr2line/index.md) and `Builder::build` do this for you automatically, but
 [`Builder::build_from_noncontiguous`](../../clap_builder/index.md) permits doing it explicitly.
 
 A DFA provides the best possible search performance (in this crate) via two

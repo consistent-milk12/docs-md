@@ -70,7 +70,7 @@ assert_eq!(no_ints.len(), 0);
 
 #### Implementations
 
-- `const fn from_array_empty(data: A) -> Self`
+- `const fn as_inner(self: &Self) -> &A`
 
 #### Trait Implementations
 
@@ -166,7 +166,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> PartialEq for ArrayVec<A>`
 
-- `fn eq(self: &Self, other: &&[<A as >::Item]) -> bool` — [`Array`](../index.md)
+- `fn eq(self: &Self, other: &&A) -> bool`
 
 ##### `impl<A: Array> PartialOrd for ArrayVec<A>`
 

@@ -21,9 +21,7 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- `fn with_formatter(writer: W, formatter: F) -> Self`
-
-- `fn into_inner(self: Self) -> W`
+- `fn new(writer: W) -> Self`
 
 ### `MapKeySerializer<'a, W: 'a, F: 'a>`
 

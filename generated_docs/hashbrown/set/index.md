@@ -111,13 +111,21 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- `fn allocator(self: &Self) -> &A`
+- `fn capacity(self: &Self) -> usize`
 
-- `const fn with_hasher_in(hasher: S, alloc: A) -> Self`
+- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](../hash_set/index.md)
 
-- `fn with_capacity_and_hasher_in(capacity: usize, hasher: S, alloc: A) -> Self`
+- `fn len(self: &Self) -> usize`
 
-- `fn hasher(self: &Self) -> &S`
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](../hash_set/index.md)
+
+- `fn retain<F>(self: &mut Self, f: F)`
+
+- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](../hash_set/index.md)
+
+- `fn clear(self: &mut Self)`
 
 #### Trait Implementations
 

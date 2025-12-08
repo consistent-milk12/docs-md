@@ -1,4 +1,4 @@
-*[memchr](../index.md) / [memchr](index.md)*
+_[memchr](../index.md) / [memchr](index.md)_
 
 ---
 
@@ -496,4 +496,3 @@ Count all matching bytes, but using raw pointers to represent the haystack.
 # Safety
 
 Pointers must be valid. See `One::count_raw`.
-

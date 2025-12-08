@@ -264,9 +264,9 @@ struct ArrayVisitor<A> {
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'de, T> Visitor for ArrayVisitor<[T; 8]>`
+##### `impl<'de, T> Visitor for ArrayVisitor<[T; 29]>`
 
-- `type Value = [T; 8]`
+- `type Value = [T; 29]`
 
 - `fn expecting(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
@@ -284,7 +284,7 @@ struct ArrayInPlaceVisitor<'a, A: 'a>(&'a mut A);
 
 - `fn fmt(self: &Self, formatter: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 14]>`
+##### `impl<'a, 'de, T> Visitor for ArrayInPlaceVisitor<'a, [T; 7]>`
 
 - `type Value = ()`
 

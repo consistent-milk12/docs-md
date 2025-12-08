@@ -30,45 +30,11 @@ struct Parser<'cmd> {
 
 #### Implementations
 
-- `fn get_matches_with(self: &mut Self, matcher: &mut ArgMatcher, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
+- `fn did_you_mean_error(self: &mut Self, arg: &str, matcher: &mut ArgMatcher, remaining_args: &[&OsStr], trailing_values: bool) -> ClapError` — [`ArgMatcher`](../arg_matcher/index.md), [`Error`](../../error/index.md)
 
-- `fn parse(self: &mut Self, matcher: &mut ArgMatcher, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
+- `fn help_err(self: &Self, use_long: bool) -> ClapError` — [`Error`](../../error/index.md)
 
-- `fn match_arg_error(self: &Self, arg_os: &clap_lex::ParsedArg<'_>, valid_arg_found: bool, trailing_values: bool, matcher: &ArgMatcher) -> ClapError` — [`ArgMatcher`](../arg_matcher/index.md), [`Error`](../../error/index.md)
-
-- `fn possible_subcommand(self: &Self, arg: Result<&str, &OsStr>, valid_arg_found: bool) -> Option<&str>`
-
-- `fn possible_long_flag_subcommand(self: &Self, arg: &str) -> Option<&str>`
-
-- `fn parse_help_subcommand(self: &Self, cmds: impl Iterator<Item = &'cmd OsStr>) -> ClapResult<std::convert::Infallible>` — [`Result`](../../error/index.md)
-
-- `fn is_new_arg(self: &Self, next: &clap_lex::ParsedArg<'_>, current_positional: &Arg) -> bool` — [`Arg`](../../index.md)
-
-- `fn parse_subcommand(self: &mut Self, sc_name: &str, matcher: &mut ArgMatcher, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor, keep_state: bool) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn parse_long_arg(self: &mut Self, matcher: &mut ArgMatcher, long_arg: Result<&str, &OsStr>, long_value: Option<&OsStr>, parse_state: &ParseState, pos_counter: usize, valid_arg_found: &mut bool) -> ClapResult<ParseResult>` — [`ArgMatcher`](../arg_matcher/index.md), [`ParseState`](#parsestate), [`Result`](../../error/index.md), [`ParseResult`](#parseresult)
-
-- `fn parse_short_arg(self: &mut Self, matcher: &mut ArgMatcher, short_arg: clap_lex::ShortFlags<'_>, parse_state: &ParseState, pos_counter: usize, valid_arg_found: &mut bool) -> ClapResult<ParseResult>` — [`ArgMatcher`](../arg_matcher/index.md), [`ParseState`](#parsestate), [`Result`](../../error/index.md), [`ParseResult`](#parseresult)
-
-- `fn parse_opt_value(self: &Self, ident: Identifier, attached_value: Option<&OsStr>, arg: &Arg, matcher: &mut ArgMatcher, has_eq: bool) -> ClapResult<ParseResult>` — [`Identifier`](#identifier), [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md), [`ParseResult`](#parseresult)
-
-- `fn check_terminator(self: &Self, arg: &Arg, val: &OsStr) -> Option<ParseResult>` — [`Arg`](../../index.md), [`ParseResult`](#parseresult)
-
-- `fn push_arg_values(self: &Self, arg: &Arg, raw_vals: Vec<OsString>, source: ValueSource, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`Arg`](../../index.md), [`ValueSource`](../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn resolve_pending(self: &Self, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn react(self: &Self, ident: Option<Identifier>, source: ValueSource, arg: &Arg, raw_vals: Vec<OsString>, trailing_idx: Option<usize>, matcher: &mut ArgMatcher) -> ClapResult<ParseResult>` — [`Identifier`](#identifier), [`ValueSource`](../index.md), [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md), [`ParseResult`](#parseresult)
-
-- `fn verify_num_args(self: &Self, arg: &Arg, raw_vals: &[OsString]) -> ClapResult<()>` — [`Arg`](../../index.md), [`Result`](../../error/index.md)
-
-- `fn remove_overrides(self: &Self, arg: &Arg, matcher: &mut ArgMatcher)` — [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md)
-
-- `fn add_defaults(self: &Self, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn add_default_value(self: &Self, arg: &Arg, matcher: &mut ArgMatcher) -> ClapResult<()>` — [`Arg`](../../index.md), [`ArgMatcher`](../arg_matcher/index.md), [`Result`](../../error/index.md)
-
-- `fn start_custom_arg(self: &Self, matcher: &mut ArgMatcher, arg: &Arg, source: ValueSource)` — [`ArgMatcher`](../arg_matcher/index.md), [`Arg`](../../index.md), [`ValueSource`](../index.md)
+- `fn version_err(self: &Self, use_long: bool) -> ClapError` — [`Error`](../../error/index.md)
 
 ### `PendingArg`
 

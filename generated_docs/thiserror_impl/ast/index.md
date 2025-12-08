@@ -34,7 +34,11 @@ struct Enum<'a> {
 
 #### Implementations
 
-- `fn validate(self: &Self) -> Result<()>`
+- `fn has_source(self: &Self) -> bool`
+
+- `fn has_backtrace(self: &Self) -> bool`
+
+- `fn has_display(self: &Self) -> bool`
 
 ### `Variant<'a>`
 
@@ -71,7 +75,9 @@ struct Field<'a> {
 
 #### Implementations
 
-- `fn validate(self: &Self) -> Result<()>`
+- `fn multiple_from_syn(fields: &'a Fields, scope: &ParamsInScope<'a>) -> Result<Vec<Self>>` — [`ParamsInScope`](../generics/index.md)
+
+- `fn from_syn(i: usize, node: &'a syn::Field, scope: &ParamsInScope<'a>) -> Result<Self>` — [`ParamsInScope`](../generics/index.md)
 
 ## Enums
 

@@ -19,7 +19,9 @@ found in the `.debug_aranges` section.
 
 #### Implementations
 
-- `fn new(section: &'input [u8], endian: Endian) -> Self`
+- `fn headers(self: &Self) -> ArangeHeaderIter<R>` — [`ArangeHeaderIter`](../index.md)
+
+- `fn header(self: &Self, offset: DebugArangesOffset<<R as >::Offset>) -> Result<ArangeHeader<R>>` — [`DebugArangesOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md), [`ArangeHeader`](../index.md)
 
 #### Trait Implementations
 

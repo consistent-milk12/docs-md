@@ -325,7 +325,73 @@ A structure that deserializes JSON into Rust values.
 
 #### Implementations
 
-- `fn from_slice(bytes: &'a [u8]) -> Self`
+- `fn end(self: &mut Self) -> Result<()>` — [`Result`](#result)
+
+- `fn into_iter<T>(self: Self) -> StreamDeserializer<'de, R, T>` — [`StreamDeserializer`](#streamdeserializer)
+
+- `fn peek(self: &mut Self) -> Result<Option<u8>>` — [`Result`](#result)
+
+- `fn peek_or_null(self: &mut Self) -> Result<u8>` — [`Result`](#result)
+
+- `fn eat_char(self: &mut Self)`
+
+- `fn next_char(self: &mut Self) -> Result<Option<u8>>` — [`Result`](#result)
+
+- `fn next_char_or_null(self: &mut Self) -> Result<u8>` — [`Result`](#result)
+
+- `fn error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](error/index.md), [`Error`](#error)
+
+- `fn peek_error(self: &Self, reason: ErrorCode) -> Error` — [`ErrorCode`](error/index.md), [`Error`](#error)
+
+- `fn parse_whitespace(self: &mut Self) -> Result<Option<u8>>` — [`Result`](#result)
+
+- `fn peek_invalid_type(self: &mut Self, exp: &dyn Expected) -> Error` — [`Error`](#error)
+
+- `fn deserialize_number<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](#result)
+
+- `fn do_deserialize_i128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](#result)
+
+- `fn do_deserialize_u128<'any, V>(self: &mut Self, visitor: V) -> Result<<V as >::Value>` — [`Result`](#result)
+
+- `fn scan_integer128(self: &mut Self, buf: &mut String) -> Result<()>` — [`Result`](#result)
+
+- `fn fix_position(self: &Self, err: Error) -> Error` — [`Error`](#error)
+
+- `fn parse_ident(self: &mut Self, ident: &[u8]) -> Result<()>` — [`Result`](#result)
+
+- `fn parse_integer(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](#result), [`ParserNumber`](de/index.md)
+
+- `fn parse_number(self: &mut Self, positive: bool, significand: u64) -> Result<ParserNumber>` — [`Result`](#result), [`ParserNumber`](de/index.md)
+
+- `fn parse_decimal(self: &mut Self, positive: bool, significand: u64, exponent_before_decimal_point: i32) -> Result<f64>` — [`Result`](#result)
+
+- `fn parse_exponent(self: &mut Self, positive: bool, significand: u64, starting_exp: i32) -> Result<f64>` — [`Result`](#result)
+
+- `fn f64_from_parts(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](#result)
+
+- `fn parse_long_integer(self: &mut Self, positive: bool, significand: u64) -> Result<f64>` — [`Result`](#result)
+
+- `fn parse_decimal_overflow(self: &mut Self, positive: bool, significand: u64, exponent: i32) -> Result<f64>` — [`Result`](#result)
+
+- `fn parse_exponent_overflow(self: &mut Self, positive: bool, zero_significand: bool, positive_exp: bool) -> Result<f64>` — [`Result`](#result)
+
+- `fn parse_any_signed_number(self: &mut Self) -> Result<ParserNumber>` — [`Result`](#result), [`ParserNumber`](de/index.md)
+
+- `fn parse_any_number(self: &mut Self, positive: bool) -> Result<ParserNumber>` — [`Result`](#result), [`ParserNumber`](de/index.md)
+
+- `fn parse_object_colon(self: &mut Self) -> Result<()>` — [`Result`](#result)
+
+- `fn end_seq(self: &mut Self) -> Result<()>` — [`Result`](#result)
+
+- `fn end_map(self: &mut Self) -> Result<()>` — [`Result`](#result)
+
+- `fn ignore_value(self: &mut Self) -> Result<()>` — [`Result`](#result)
+
+- `fn ignore_integer(self: &mut Self) -> Result<()>` — [`Result`](#result)
+
+- `fn ignore_decimal(self: &mut Self) -> Result<()>` — [`Result`](#result)
+
+- `fn ignore_exponent(self: &mut Self) -> Result<()>` — [`Result`](#result)
 
 ### `StreamDeserializer<'de, R, T>`
 
@@ -408,21 +474,9 @@ deserializing JSON data.
 
 #### Implementations
 
-- `fn line(self: &Self) -> usize`
+- `fn syntax(code: ErrorCode, line: usize, column: usize) -> Self` — [`ErrorCode`](error/index.md)
 
-- `fn column(self: &Self) -> usize`
-
-- `fn classify(self: &Self) -> Category` — [`Category`](error/index.md)
-
-- `fn is_io(self: &Self) -> bool`
-
-- `fn is_syntax(self: &Self) -> bool`
-
-- `fn is_data(self: &Self) -> bool`
-
-- `fn is_eof(self: &Self) -> bool`
-
-- `fn io_error_kind(self: &Self) -> Option<ErrorKind>` — [`ErrorKind`](io/index.md)
+- `fn fix_position<F>(self: Self, f: F) -> Self`
 
 #### Trait Implementations
 
@@ -436,7 +490,11 @@ deserializing JSON data.
 
 ##### `impl Error for Error`
 
-- `fn source(self: &Self) -> Option<&dyn error::Error>`
+- `fn custom<T: Display>(msg: T) -> Error` — [`Error`](#error)
+
+- `fn invalid_type(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
+
+- `fn invalid_value(unexp: de::Unexpected<'_>, exp: &dyn de::Expected) -> Self`
 
 ##### `impl<T> ToString for Error`
 
@@ -455,9 +513,7 @@ A structure for serializing Rust values into JSON.
 
 #### Implementations
 
-- `fn with_formatter(writer: W, formatter: F) -> Self`
-
-- `fn into_inner(self: Self) -> W`
+- `fn new(writer: W) -> Self`
 
 ### `Map<K, V>`
 
@@ -667,7 +723,31 @@ Represents a JSON number, whether integer or floating point.
 
 #### Implementations
 
-- `fn unexpected(self: &Self) -> Unexpected<'_>`
+- `fn is_i64(self: &Self) -> bool`
+
+- `fn is_u64(self: &Self) -> bool`
+
+- `fn is_f64(self: &Self) -> bool`
+
+- `fn as_i64(self: &Self) -> Option<i64>`
+
+- `fn as_u64(self: &Self) -> Option<u64>`
+
+- `fn as_f64(self: &Self) -> Option<f64>`
+
+- `fn from_f64(f: f64) -> Option<Number>` — [`Number`](#number)
+
+- `fn as_i128(self: &Self) -> Option<i128>`
+
+- `fn as_u128(self: &Self) -> Option<u128>`
+
+- `fn from_i128(i: i128) -> Option<Number>` — [`Number`](#number)
+
+- `fn from_u128(i: u128) -> Option<Number>` — [`Number`](#number)
+
+- `fn as_f32(self: &Self) -> Option<f32>`
+
+- `fn from_f32(f: f32) -> Option<Number>` — [`Number`](#number)
 
 #### Trait Implementations
 
@@ -1046,7 +1126,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq for Value`
 
-- `fn eq(self: &Self, other: &f32) -> bool`
+- `fn eq(self: &Self, other: &u64) -> bool`
 
 ##### `impl Serialize for crate::value::Value`
 

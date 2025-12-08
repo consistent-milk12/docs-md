@@ -111,27 +111,15 @@ assert_eq!(hay.split(&re).collect::<Vec<_>>(), vec!["a", "b", "c"]);
 
 #### Implementations
 
-- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](../../index.md), [`Error`](../../index.md)
+- `fn as_str(self: &Self) -> &str`
 
-- `fn is_match(self: &Self, haystack: &str) -> bool`
+- `fn capture_names(self: &Self) -> CaptureNames<'_>` — [`CaptureNames`](../../index.md)
 
-- `fn find<'h>(self: &Self, haystack: &'h str) -> Option<Match<'h>>` — [`Match`](../../index.md)
+- `fn captures_len(self: &Self) -> usize`
 
-- `fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> Matches<'r, 'h>` — [`Matches`](../../index.md)
+- `fn static_captures_len(self: &Self) -> Option<usize>`
 
-- `fn captures<'h>(self: &Self, haystack: &'h str) -> Option<Captures<'h>>` — [`Captures`](../../index.md)
-
-- `fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h str) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](../../index.md)
-
-- `fn split<'r, 'h>(self: &'r Self, haystack: &'h str) -> Split<'r, 'h>` — [`Split`](../../index.md)
-
-- `fn splitn<'r, 'h>(self: &'r Self, haystack: &'h str, limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](../../index.md)
-
-- `fn replace<'h, R: Replacer>(self: &Self, haystack: &'h str, rep: R) -> Cow<'h, str>`
-
-- `fn replace_all<'h, R: Replacer>(self: &Self, haystack: &'h str, rep: R) -> Cow<'h, str>`
-
-- `fn replacen<'h, R: Replacer>(self: &Self, haystack: &'h str, limit: usize, rep: R) -> Cow<'h, str>`
+- `fn capture_locations(self: &Self) -> CaptureLocations` — [`CaptureLocations`](../../index.md)
 
 #### Trait Implementations
 

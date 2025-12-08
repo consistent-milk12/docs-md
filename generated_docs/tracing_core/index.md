@@ -488,19 +488,19 @@ recorded in.
 
 ##### `impl PartialEq for Level`
 
-- `fn eq(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn eq(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl PartialOrd for Level`
 
-- `fn partial_cmp(self: &Self, other: &Level) -> Option<cmp::Ordering>` — [`Level`](#level)
+- `fn partial_cmp(self: &Self, other: &LevelFilter) -> Option<cmp::Ordering>` — [`LevelFilter`](#levelfilter)
 
-- `fn lt(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn lt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn le(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn le(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn gt(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn gt(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
-- `fn ge(self: &Self, other: &Level) -> bool` — [`Level`](#level)
+- `fn ge(self: &Self, other: &LevelFilter) -> bool` — [`LevelFilter`](#levelfilter)
 
 ##### `impl StructuralPartialEq for Level`
 

@@ -16,25 +16,7 @@ struct __BindgenBitfieldUnit<Storage> {
 
 #### Implementations
 
-- `fn extract_bit(byte: u8, index: usize) -> bool`
-
-- `fn get_bit(self: &Self, index: usize) -> bool`
-
-- `unsafe fn raw_get_bit(this: *const Self, index: usize) -> bool`
-
-- `fn change_bit(byte: u8, index: usize, val: bool) -> u8`
-
-- `fn set_bit(self: &mut Self, index: usize, val: bool)`
-
-- `unsafe fn raw_set_bit(this: *mut Self, index: usize, val: bool)`
-
-- `fn get(self: &Self, bit_offset: usize, bit_width: u8) -> u64`
-
-- `unsafe fn raw_get(this: *const Self, bit_offset: usize, bit_width: u8) -> u64`
-
-- `fn set(self: &mut Self, bit_offset: usize, bit_width: u8, val: u64)`
-
-- `unsafe fn raw_set(this: *mut Self, bit_offset: usize, bit_width: u8, val: u64)`
+- `const fn new(storage: Storage) -> Self`
 
 #### Trait Implementations
 

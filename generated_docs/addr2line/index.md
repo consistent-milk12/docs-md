@@ -225,15 +225,7 @@ when performing lookups for many addresses in the same executable.
 
 #### Implementations
 
-- `fn find_dwarf_and_unit(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Option<gimli::UnitRef<'_, R>>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation)
-
-- `fn find_location(self: &Self, probe: u64) -> Result<Option<Location<'_>>, gimli::Error>` — [`Location`](#location)
-
-- `fn find_location_range(self: &Self, probe_low: u64, probe_high: u64) -> Result<LocationRangeIter<'_, R>, gimli::Error>` — [`LocationRangeIter`](#locationrangeiter)
-
-- `fn find_frames(self: &Self, probe: u64) -> LookupResult<impl LookupContinuation<Output = Result<FrameIter<'_, R>, gimli::Error>, Buf = R>>` — [`LookupResult`](#lookupresult), [`LookupContinuation`](#lookupcontinuation), [`FrameIter`](#frameiter)
-
-- `fn preload_units(self: &Self, probe: u64) -> impl Iterator<Item = (SplitDwarfLoad<R>, impl FnOnce(Option<Arc<gimli::Dwarf<R>>>) -> Result<(), gimli::Error> + '_)>` — [`SplitDwarfLoad`](#splitdwarfload)
+- `fn find_unit(self: &Self, offset: gimli::DebugInfoOffset<<R as >::Offset>, file: DebugFile) -> Result<(&gimli::Unit<R>, gimli::UnitOffset<<R as >::Offset>), gimli::Error>` — [`DebugFile`](#debugfile)
 
 ### `RangeAttributes<R: gimli::Reader>`
 

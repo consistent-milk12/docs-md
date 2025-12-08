@@ -30,15 +30,51 @@ where
 struct ReadWriteFlags(<ReadWriteFlags as $crate::__private::PublicFlags>::Internal);
 ```
 
-`RWF_*` constants for use with [`preadv2`](../index.md) and [`pwritev2`](../index.md).
+`RWF_*` constants for use with [`preadv2`](../index.md) and [`pwritev2`](../../backend/io/syscalls/index.md).
 
 
 
 #### Implementations
 
-- `const fn iter(self: &Self) -> $crate::iter::Iter<ReadWriteFlags>` — [`ReadWriteFlags`](#readwriteflags)
+- `const fn empty() -> Self`
 
-- `const fn iter_names(self: &Self) -> $crate::iter::IterNames<ReadWriteFlags>` — [`ReadWriteFlags`](#readwriteflags)
+- `const fn all() -> Self`
+
+- `const fn bits(self: &Self) -> ffi::c_uint` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits(bits: ffi::c_uint) -> $crate::__private::core::option::Option<Self>` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits_truncate(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
+
+- `const fn from_bits_retain(bits: ffi::c_uint) -> Self` — [`c_uint`](../../ffi/index.md)
+
+- `fn from_name(name: &str) -> $crate::__private::core::option::Option<Self>`
+
+- `const fn is_empty(self: &Self) -> bool`
+
+- `const fn is_all(self: &Self) -> bool`
+
+- `const fn intersects(self: &Self, other: Self) -> bool`
+
+- `const fn contains(self: &Self, other: Self) -> bool`
+
+- `fn insert(self: &mut Self, other: Self)`
+
+- `fn remove(self: &mut Self, other: Self)`
+
+- `fn toggle(self: &mut Self, other: Self)`
+
+- `fn set(self: &mut Self, other: Self, value: bool)`
+
+- `const fn intersection(self: Self, other: Self) -> Self`
+
+- `const fn union(self: Self, other: Self) -> Self`
+
+- `const fn difference(self: Self, other: Self) -> Self`
+
+- `const fn symmetric_difference(self: Self, other: Self) -> Self`
+
+- `const fn complement(self: Self) -> Self`
 
 #### Trait Implementations
 

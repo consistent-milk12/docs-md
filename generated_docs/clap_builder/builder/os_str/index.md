@@ -39,7 +39,7 @@ feature
 
 ##### `impl AsRef for OsStr`
 
-- `fn as_ref(self: &Self) -> &std::ffi::OsStr`
+- `fn as_ref(self: &Self) -> &std::path::Path`
 
 ##### `impl Clone for OsStr`
 

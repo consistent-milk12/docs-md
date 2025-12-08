@@ -21,15 +21,11 @@ struct AtomicI128 {
 
 #### Implementations
 
-- `fn add(self: &Self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
+- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
 
-- `fn sub(self: &Self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
+- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
 
-- `fn and(self: &Self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
-
-- `fn or(self: &Self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
-
-- `fn xor(self: &Self, val: i128, order: Ordering)` — [`Ordering`](../../../index.md)
+- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../../index.md)
 
 #### Trait Implementations
 

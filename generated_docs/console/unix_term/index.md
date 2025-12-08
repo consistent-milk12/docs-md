@@ -17,7 +17,7 @@ enum Input<T> {
 
 #### Implementations
 
-- `fn unbuffered() -> io::Result<Self>`
+- `fn read_line(self: &mut Self, buf: &mut String) -> io::Result<usize>`
 
 #### Trait Implementations
 

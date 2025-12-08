@@ -380,7 +380,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../regex_syntax/unicode/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 
@@ -994,19 +994,71 @@ Ok::<(), Box<dyn std::error::Error>>(())
 
 #### Implementations
 
-- `fn new() -> Compiler` — [`Compiler`](#compiler)
+- `fn compile<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](#builderror)
 
-- `fn build(self: &Self, pattern: &str) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](#builderror)
+- `fn c(self: &Self, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
 
-- `fn build_many<P: AsRef<str>>(self: &Self, patterns: &[P]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](#builderror)
+- `fn c_concat<I>(self: &Self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
 
-- `fn build_from_hir(self: &Self, expr: &Hir) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](#builderror)
+- `fn c_alt_slice(self: &Self, exprs: &[Hir]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
 
-- `fn build_many_from_hir<H: Borrow<Hir>>(self: &Self, exprs: &[H]) -> Result<NFA, BuildError>` — [`NFA`](#nfa), [`BuildError`](#builderror)
+- `fn c_alt_iter<I>(self: &Self, it: I) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
 
-- `fn configure(self: &mut Self, config: Config) -> &mut Compiler` — [`Config`](#config), [`Compiler`](#compiler)
+- `fn c_cap(self: &Self, index: u32, name: Option<&str>, expr: &Hir) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
 
-- `fn syntax(self: &mut Self, config: crate::util::syntax::Config) -> &mut Compiler` — [`Config`](../../util/syntax/index.md), [`Compiler`](#compiler)
+- `fn c_repetition(self: &Self, rep: &hir::Repetition) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_bounded(self: &Self, expr: &Hir, greedy: bool, min: u32, max: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_at_least(self: &Self, expr: &Hir, greedy: bool, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_zero_or_one(self: &Self, expr: &Hir, greedy: bool) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_exactly(self: &Self, expr: &Hir, n: u32) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_byte_class(self: &Self, cls: &hir::ClassBytes) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_unicode_class(self: &Self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_unicode_class_reverse_with_suffix(self: &Self, cls: &hir::ClassUnicode) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_look(self: &Self, anchor: &hir::Look) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_literal(self: &Self, bytes: &[u8]) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_range(self: &Self, start: u8, end: u8) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_empty(self: &Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn c_fail(self: &Self) -> Result<ThompsonRef, BuildError>` — [`ThompsonRef`](compiler/index.md), [`BuildError`](#builderror)
+
+- `fn patch(self: &Self, from: StateID, to: StateID) -> Result<(), BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn start_pattern(self: &Self) -> Result<PatternID, BuildError>` — [`PatternID`](../../index.md), [`BuildError`](#builderror)
+
+- `fn finish_pattern(self: &Self, start_id: StateID) -> Result<PatternID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`PatternID`](../../index.md), [`BuildError`](#builderror)
+
+- `fn add_empty(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_range(self: &Self, start: u8, end: u8) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_sparse(self: &Self, ranges: Vec<Transition>) -> Result<StateID, BuildError>` — [`Transition`](#transition), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_look(self: &Self, look: Look) -> Result<StateID, BuildError>` — [`Look`](../../util/look/index.md), [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_union(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_union_reverse(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_capture_start(self: &Self, capture_index: u32, name: Option<&str>) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_capture_end(self: &Self, capture_index: u32) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_fail(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn add_match(self: &Self) -> Result<StateID, BuildError>` — [`StateID`](../../util/primitives/index.md), [`BuildError`](#builderror)
+
+- `fn is_reverse(self: &Self) -> bool`
 
 #### Trait Implementations
 

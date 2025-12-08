@@ -123,9 +123,103 @@ A raw hash table with an unsafe API.
 
 #### Implementations
 
-- `const fn new() -> Self`
+- `const TABLE_LAYOUT: TableLayout`
 
-- `fn with_capacity(capacity: usize) -> Self`
+- `const fn new_in(alloc: A) -> Self`
+
+- `unsafe fn new_uninitialized(alloc: A, buckets: usize, fallibility: Fallibility) -> Result<Self, TryReserveError>` — [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
+
+- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
+
+- `fn allocator(self: &Self) -> &A`
+
+- `fn data_end(self: &Self) -> NonNull<T>`
+
+- `fn allocation_size(self: &Self) -> usize`
+
+- `unsafe fn bucket_index(self: &Self, bucket: &Bucket<T>) -> usize` — [`Bucket`](#bucket)
+
+- `unsafe fn bucket(self: &Self, index: usize) -> Bucket<T>` — [`Bucket`](#bucket)
+
+- `unsafe fn erase_no_drop(self: &mut Self, item: &Bucket<T>)` — [`Bucket`](#bucket)
+
+- `unsafe fn erase(self: &mut Self, item: Bucket<T>)` — [`Bucket`](#bucket)
+
+- `unsafe fn remove(self: &mut Self, item: Bucket<T>) -> (T, usize)` — [`Bucket`](#bucket)
+
+- `unsafe fn remove_tagged(self: &mut Self, item: Bucket<T>) -> (T, usize, Tag)` — [`Bucket`](#bucket), [`Tag`](../control/tag/index.md)
+
+- `fn remove_entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<T>`
+
+- `fn clear_no_drop(self: &mut Self)`
+
+- `fn clear(self: &mut Self)`
+
+- `fn shrink_to(self: &mut Self, min_size: usize, hasher: impl Fn(&T) -> u64)`
+
+- `fn reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64)`
+
+- `fn try_reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64) -> Result<(), TryReserveError>` — [`TryReserveError`](../index.md)
+
+- `unsafe fn reserve_rehash(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64, fallibility: Fallibility) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
+
+- `unsafe fn resize(self: &mut Self, capacity: usize, hasher: impl Fn(&T) -> u64, fallibility: Fallibility) -> Result<(), TryReserveError>` — [`Fallibility`](#fallibility), [`TryReserveError`](../index.md)
+
+- `fn insert(self: &mut Self, hash: u64, value: T, hasher: impl Fn(&T) -> u64) -> Bucket<T>` — [`Bucket`](#bucket)
+
+- `fn insert_entry(self: &mut Self, hash: u64, value: T, hasher: impl Fn(&T) -> u64) -> &mut T`
+
+- `unsafe fn replace_bucket_with<F>(self: &mut Self, bucket: Bucket<T>, f: F) -> bool` — [`Bucket`](#bucket)
+
+- `fn find_or_find_insert_index(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool, hasher: impl Fn(&T) -> u64) -> Result<Bucket<T>, usize>` — [`Bucket`](#bucket)
+
+- `unsafe fn insert_at_index(self: &mut Self, hash: u64, index: usize, value: T) -> Bucket<T>` — [`Bucket`](#bucket)
+
+- `unsafe fn insert_tagged_at_index(self: &mut Self, tag: Tag, index: usize, value: T) -> Bucket<T>` — [`Tag`](../control/tag/index.md), [`Bucket`](#bucket)
+
+- `fn find(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
+
+- `fn get(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&T>`
+
+- `fn get_mut(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&mut T>`
+
+- `fn get_bucket(self: &Self, index: usize) -> Option<&T>`
+
+- `fn get_bucket_mut(self: &mut Self, index: usize) -> Option<&mut T>`
+
+- `fn checked_bucket(self: &Self, index: usize) -> Option<Bucket<T>>` — [`Bucket`](#bucket)
+
+- `fn get_disjoint_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
+
+- `unsafe fn get_disjoint_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
+
+- `unsafe fn get_disjoint_mut_pointers<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<NonNull<T>>; N]`
+
+- `fn capacity(self: &Self) -> usize`
+
+- `fn len(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn buckets(self: &Self) -> usize`
+
+- `unsafe fn is_bucket_full(self: &Self, index: usize) -> bool`
+
+- `unsafe fn iter(self: &Self) -> RawIter<T>` — [`RawIter`](#rawiter)
+
+- `unsafe fn iter_hash(self: &Self, hash: u64) -> RawIterHash<T>` — [`RawIterHash`](#rawiterhash)
+
+- `unsafe fn iter_hash_buckets(self: &Self, hash: u64) -> RawIterHashIndices` — [`RawIterHashIndices`](#rawiterhashindices)
+
+- `unsafe fn full_buckets_indices(self: &Self) -> FullBucketsIndices` — [`FullBucketsIndices`](#fullbucketsindices)
+
+- `fn drain(self: &mut Self) -> RawDrain<'_, T, A>` — [`RawDrain`](#rawdrain)
+
+- `unsafe fn drain_iter_from(self: &mut Self, iter: RawIter<T>) -> RawDrain<'_, T, A>` — [`RawIter`](#rawiter), [`RawDrain`](#rawdrain)
+
+- `unsafe fn into_iter_from(self: Self, iter: RawIter<T>) -> RawIntoIter<T, A>` — [`RawIter`](#rawiter), [`RawIntoIter`](#rawintoiter)
+
+- `fn into_allocation(self: Self) -> Option<(NonNull<u8>, Layout, A)>`
 
 #### Trait Implementations
 

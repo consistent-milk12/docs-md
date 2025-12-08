@@ -20,7 +20,7 @@ This error does not provide many introspection capabilities. There are
 generally only two things you can do with it:
 
 * Obtain a human readable message via its `std::fmt::Display` impl.
-* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/index.md) type from its `source`
+* Access an underlying [`regex_syntax::Error`](../../../../regex_syntax/unicode/index.md) type from its `source`
 method via the `std::error::Error` trait. This error only occurs when using
 convenience routines for building an NFA directly from a pattern string.
 

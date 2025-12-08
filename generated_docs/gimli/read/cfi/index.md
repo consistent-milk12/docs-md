@@ -33,9 +33,7 @@ one of `.eh_frame` or `.debug_frame` will be present in an object file.
 
 #### Implementations
 
-- `fn set_address_size(self: &mut Self, address_size: u8)`
-
-- `fn set_vendor(self: &mut Self, vendor: Vendor)` — [`Vendor`](../../index.md)
+- `fn new(section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 
@@ -652,37 +650,9 @@ where
 
 #### Implementations
 
-- `fn offset(self: &Self) -> <R as >::Offset` — [`Reader`](../index.md)
+- `fn parse<Section: UnwindSection<R>>(bases: &BaseAddresses, section: &Section, input: &mut R) -> Result<CommonInformationEntry<R>>` — [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`CommonInformationEntry`](../index.md)
 
-- `fn encoding(self: &Self) -> Encoding` — [`Encoding`](../../index.md)
-
-- `fn address_size(self: &Self) -> u8`
-
-- `fn instructions<'a, Section>(self: &Self, section: &'a Section, bases: &'a BaseAddresses) -> CallFrameInstructionIter<'a, R>` — [`BaseAddresses`](../index.md), [`CallFrameInstructionIter`](../index.md)
-
-- `fn entry_len(self: &Self) -> <R as >::Offset` — [`Reader`](../index.md)
-
-- `fn version(self: &Self) -> u8`
-
-- `fn augmentation(self: &Self) -> Option<&Augmentation>` — [`Augmentation`](../index.md)
-
-- `fn has_lsda(self: &Self) -> bool`
-
-- `fn lsda_encoding(self: &Self) -> Option<constants::DwEhPe>` — [`DwEhPe`](../../index.md)
-
-- `fn personality_with_encoding(self: &Self) -> Option<(constants::DwEhPe, Pointer)>` — [`DwEhPe`](../../index.md), [`Pointer`](../index.md)
-
-- `fn personality(self: &Self) -> Option<Pointer>` — [`Pointer`](../index.md)
-
-- `fn fde_address_encoding(self: &Self) -> Option<constants::DwEhPe>` — [`DwEhPe`](../../index.md)
-
-- `fn is_signal_trampoline(self: &Self) -> bool`
-
-- `fn code_alignment_factor(self: &Self) -> u64`
-
-- `fn data_alignment_factor(self: &Self) -> i64`
-
-- `fn return_address_register(self: &Self) -> Register` — [`Register`](../../index.md)
+- `fn parse_rest<Section: UnwindSection<R>>(offset: <R as >::Offset, length: <R as >::Offset, format: Format, bases: &BaseAddresses, section: &Section, rest: R) -> Result<CommonInformationEntry<R>>` — [`Reader`](../index.md), [`Format`](../../index.md), [`BaseAddresses`](../index.md), [`Result`](../../index.md), [`CommonInformationEntry`](../index.md)
 
 #### Trait Implementations
 
@@ -891,33 +861,7 @@ unreachable!()
 
 #### Implementations
 
-- `fn new_in() -> Self`
-
-- `fn initialize<Section, R>(self: &mut Self, section: &Section, bases: &BaseAddresses, cie: &CommonInformationEntry<R>) -> Result<()>` — [`BaseAddresses`](../index.md), [`CommonInformationEntry`](../index.md), [`Result`](../../index.md)
-
-- `fn reset(self: &mut Self)`
-
-- `fn row(self: &Self) -> &UnwindTableRow<T, S>` — [`UnwindTableRow`](../index.md)
-
-- `fn row_mut(self: &mut Self) -> &mut UnwindTableRow<T, S>` — [`UnwindTableRow`](../index.md)
-
-- `fn save_initial_rules(self: &mut Self) -> Result<()>` — [`Result`](../../index.md)
-
-- `fn start_address(self: &Self) -> u64`
-
-- `fn set_start_address(self: &mut Self, start_address: u64)`
-
-- `fn set_register_rule(self: &mut Self, register: Register, rule: RegisterRule<T>) -> Result<()>` — [`Register`](../../index.md), [`RegisterRule`](../index.md), [`Result`](../../index.md)
-
-- `fn get_initial_rule(self: &Self, register: Register) -> Option<RegisterRule<T>>` — [`Register`](../../index.md), [`RegisterRule`](../index.md)
-
-- `fn set_cfa(self: &mut Self, cfa: CfaRule<T>)` — [`CfaRule`](../index.md)
-
-- `fn cfa_mut(self: &mut Self) -> &mut CfaRule<T>` — [`CfaRule`](../index.md)
-
-- `fn push_row(self: &mut Self) -> Result<()>` — [`Result`](../../index.md)
-
-- `fn pop_row(self: &mut Self) -> Result<()>` — [`Result`](../../index.md)
+- `fn new() -> Self`
 
 #### Trait Implementations
 

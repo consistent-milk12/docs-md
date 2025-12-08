@@ -92,7 +92,7 @@ found in the `.debug_line_str` section.
 
 #### Implementations
 
-- `fn get_str(self: &Self, offset: DebugLineStrOffset<<R as >::Offset>) -> Result<R>` — [`DebugLineStrOffset`](../../index.md), [`Reader`](../index.md), [`Result`](../../index.md)
+- `fn new(debug_line_str_section: &'input [u8], endian: Endian) -> Self`
 
 #### Trait Implementations
 

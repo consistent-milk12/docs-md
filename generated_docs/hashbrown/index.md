@@ -289,9 +289,41 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- `fn raw_entry_mut(self: &mut Self) -> RawEntryBuilderMut<'_, K, V, S, A>` — [`RawEntryBuilderMut`](raw_entry/index.md)
+- `fn allocator(self: &Self) -> &A`
 
-- `fn raw_entry(self: &Self) -> RawEntryBuilder<'_, K, V, S, A>` — [`RawEntryBuilder`](raw_entry/index.md)
+- `const fn with_hasher_in(hash_builder: S, alloc: A) -> Self`
+
+- `fn with_capacity_and_hasher_in(capacity: usize, hash_builder: S, alloc: A) -> Self`
+
+- `fn hasher(self: &Self) -> &S`
+
+- `fn capacity(self: &Self) -> usize`
+
+- `fn keys(self: &Self) -> Keys<'_, K, V>` — [`Keys`](hash_map/index.md)
+
+- `fn values(self: &Self) -> Values<'_, K, V>` — [`Values`](hash_map/index.md)
+
+- `fn values_mut(self: &mut Self) -> ValuesMut<'_, K, V>` — [`ValuesMut`](hash_map/index.md)
+
+- `fn iter(self: &Self) -> Iter<'_, K, V>` — [`Iter`](hash_map/index.md)
+
+- `fn iter_mut(self: &mut Self) -> IterMut<'_, K, V>` — [`IterMut`](hash_map/index.md)
+
+- `fn len(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn drain(self: &mut Self) -> Drain<'_, K, V, A>` — [`Drain`](hash_map/index.md)
+
+- `fn retain<F>(self: &mut Self, f: F)`
+
+- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, K, V, F, A>` — [`ExtractIf`](hash_map/index.md)
+
+- `fn clear(self: &mut Self)`
+
+- `fn into_keys(self: Self) -> IntoKeys<K, V, A>` — [`IntoKeys`](hash_map/index.md)
+
+- `fn into_values(self: Self) -> IntoValues<K, V, A>` — [`IntoValues`](hash_map/index.md)
 
 #### Trait Implementations
 
@@ -446,13 +478,21 @@ let viking_names: HashSet<&'static str> =
 
 #### Implementations
 
-- `fn allocator(self: &Self) -> &A`
+- `fn capacity(self: &Self) -> usize`
 
-- `const fn with_hasher_in(hasher: S, alloc: A) -> Self`
+- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](hash_set/index.md)
 
-- `fn with_capacity_and_hasher_in(capacity: usize, hasher: S, alloc: A) -> Self`
+- `fn len(self: &Self) -> usize`
 
-- `fn hasher(self: &Self) -> &S`
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](hash_set/index.md)
+
+- `fn retain<F>(self: &mut Self, f: F)`
+
+- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](hash_set/index.md)
+
+- `fn clear(self: &mut Self)`
 
 #### Trait Implementations
 
@@ -560,81 +600,9 @@ doing this because it changes the runtime of hash table operations from
 
 #### Implementations
 
-- `const fn new_in(alloc: A) -> Self`
+- `const fn new() -> Self`
 
-- `fn with_capacity_in(capacity: usize, alloc: A) -> Self`
-
-- `fn allocator(self: &Self) -> &A`
-
-- `fn find(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&T>`
-
-- `fn find_mut(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<&mut T>`
-
-- `fn find_entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Result<OccupiedEntry<'_, T, A>, AbsentEntry<'_, T, A>>` — [`OccupiedEntry`](hash_table/index.md), [`AbsentEntry`](hash_table/index.md)
-
-- `fn find_bucket_index(self: &Self, hash: u64, eq: impl FnMut(&T) -> bool) -> Option<usize>`
-
-- `fn entry(self: &mut Self, hash: u64, eq: impl FnMut(&T) -> bool, hasher: impl Fn(&T) -> u64) -> Entry<'_, T, A>` — [`Entry`](hash_table/index.md)
-
-- `fn get_bucket_entry(self: &mut Self, index: usize) -> Result<OccupiedEntry<'_, T, A>, AbsentEntry<'_, T, A>>` — [`OccupiedEntry`](hash_table/index.md), [`AbsentEntry`](hash_table/index.md)
-
-- `unsafe fn get_bucket_entry_unchecked(self: &mut Self, index: usize) -> OccupiedEntry<'_, T, A>` — [`OccupiedEntry`](hash_table/index.md)
-
-- `fn get_bucket(self: &Self, index: usize) -> Option<&T>`
-
-- `unsafe fn get_bucket_unchecked(self: &Self, index: usize) -> &T`
-
-- `fn get_bucket_mut(self: &mut Self, index: usize) -> Option<&mut T>`
-
-- `unsafe fn get_bucket_unchecked_mut(self: &mut Self, index: usize) -> &mut T`
-
-- `fn insert_unique(self: &mut Self, hash: u64, value: T, hasher: impl Fn(&T) -> u64) -> OccupiedEntry<'_, T, A>` — [`OccupiedEntry`](hash_table/index.md)
-
-- `fn clear(self: &mut Self)`
-
-- `fn shrink_to_fit(self: &mut Self, hasher: impl Fn(&T) -> u64)`
-
-- `fn shrink_to(self: &mut Self, min_capacity: usize, hasher: impl Fn(&T) -> u64)`
-
-- `fn reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64)`
-
-- `fn try_reserve(self: &mut Self, additional: usize, hasher: impl Fn(&T) -> u64) -> Result<(), TryReserveError>` — [`TryReserveError`](#tryreserveerror)
-
-- `fn num_buckets(self: &Self) -> usize`
-
-- `fn capacity(self: &Self) -> usize`
-
-- `fn len(self: &Self) -> usize`
-
-- `fn is_empty(self: &Self) -> bool`
-
-- `fn iter(self: &Self) -> Iter<'_, T>` — [`Iter`](hash_table/index.md)
-
-- `fn iter_mut(self: &mut Self) -> IterMut<'_, T>` — [`IterMut`](hash_table/index.md)
-
-- `fn iter_buckets(self: &Self) -> IterBuckets<'_, T>` — [`IterBuckets`](hash_table/index.md)
-
-- `fn iter_hash(self: &Self, hash: u64) -> IterHash<'_, T>` — [`IterHash`](hash_table/index.md)
-
-- `fn iter_hash_mut(self: &mut Self, hash: u64) -> IterHashMut<'_, T>` — [`IterHashMut`](hash_table/index.md)
-
-- `fn iter_hash_buckets(self: &Self, hash: u64) -> IterHashBuckets<'_, T>` — [`IterHashBuckets`](hash_table/index.md)
-
-- `fn retain(self: &mut Self, f: impl FnMut(&mut T) -> bool)`
-
-- `fn drain(self: &mut Self) -> Drain<'_, T, A>` — [`Drain`](hash_table/index.md)
-
-- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, T, F, A>` — [`ExtractIf`](hash_table/index.md)
-
-- `fn get_disjoint_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `fn get_many_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `unsafe fn get_disjoint_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `unsafe fn get_many_unchecked_mut<const N: usize>(self: &mut Self, hashes: [u64; N], eq: impl FnMut(usize, &T) -> bool) -> [Option<&mut T>; N]`
-
-- `fn allocation_size(self: &Self) -> usize`
+- `fn with_capacity(capacity: usize) -> Self`
 
 #### Trait Implementations
 

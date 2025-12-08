@@ -63,7 +63,7 @@ check out the [`ParallelIterator`](../prelude/index.md) and [`IndexedParallelIte
 traits.
 
 If you'd like to build a custom parallel iterator, or to write your own
-combinator, then check out the [split](#split) function and the [`plumbing`](plumbing/index.md) module.
+combinator, then check out the [`split`](../str/index.md) function and the [`plumbing`](plumbing/index.md) module.
 
 
 
@@ -1964,7 +1964,7 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn fmt(self: &Self, f: &mut $crate::fmt::Formatter<'_>) -> $crate::fmt::Result`
 
-##### `impl<A, B, C, D, E, F, G> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F, G)>`
+##### `impl<A, B, C, D, E, F, G, H, I, J, K> IndexedParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J, K)>`
 
 - `fn drive<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 
@@ -1982,9 +1982,9 @@ assert_eq!(tuple, (vec![1, 2, 3], vec![-4, -3, -2], vec![-6, -2, 2]));
 
 - `fn into_par_iter(self: Self) -> T`
 
-##### `impl<A, B, C, D, E> ParallelIterator for MultiZip<(A, B, C, D, E)>`
+##### `impl<A, B, C, D, E, F, G, H, I, J, K> ParallelIterator for MultiZip<(A, B, C, D, E, F, G, H, I, J, K)>`
 
-- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item)`
+- `type Item = (<A as ParallelIterator>::Item, <B as ParallelIterator>::Item, <C as ParallelIterator>::Item, <D as ParallelIterator>::Item, <E as ParallelIterator>::Item, <F as ParallelIterator>::Item, <G as ParallelIterator>::Item, <H as ParallelIterator>::Item, <I as ParallelIterator>::Item, <J as ParallelIterator>::Item, <K as ParallelIterator>::Item)`
 
 - `fn drive_unindexed<CONSUMER>(self: Self, consumer: CONSUMER) -> <CONSUMER as >::Result` — [`Consumer`](plumbing/index.md)
 

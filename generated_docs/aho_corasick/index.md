@@ -491,9 +491,19 @@ assert_eq!(result, "The slow grey sloth.");
 
 #### Implementations
 
-- `fn new<I, P>(patterns: I) -> Result<AhoCorasick, BuildError>` — [`AhoCorasick`](#ahocorasick), [`BuildError`](#builderror)
+- `fn kind(self: &Self) -> AhoCorasickKind` — [`AhoCorasickKind`](#ahocorasickkind)
 
-- `fn builder() -> AhoCorasickBuilder` — [`AhoCorasickBuilder`](#ahocorasickbuilder)
+- `fn start_kind(self: &Self) -> StartKind` — [`StartKind`](#startkind)
+
+- `fn match_kind(self: &Self) -> MatchKind` — [`MatchKind`](#matchkind)
+
+- `fn min_pattern_len(self: &Self) -> usize`
+
+- `fn max_pattern_len(self: &Self) -> usize`
+
+- `fn patterns_len(self: &Self) -> usize`
+
+- `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 

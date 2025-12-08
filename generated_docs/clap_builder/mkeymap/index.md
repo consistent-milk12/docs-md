@@ -134,7 +134,7 @@ enum KeyType {
 
 ##### `impl PartialEq for KeyType`
 
-- `fn eq(self: &Self, rhs: &&str) -> bool`
+- `fn eq(self: &Self, rhs: &str) -> bool`
 
 ##### `impl StructuralPartialEq for KeyType`
 

@@ -33,7 +33,11 @@ Lifetime names must conform to the following rules:
 
 #### Implementations
 
-- `fn debug(self: &Self, formatter: &mut fmt::Formatter<'_>, name: &str) -> fmt::Result`
+- `fn new(symbol: &str, span: Span) -> Self`
+
+- `fn span(self: &Self) -> Span`
+
+- `fn set_span(self: &mut Self, span: Span)`
 
 #### Trait Implementations
 

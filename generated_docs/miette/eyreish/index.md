@@ -77,7 +77,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- `fn as_ref(self: &Self) -> &dyn StdError + Send + Sync`
+- `fn as_ref(self: &Self) -> &dyn StdError`
 
 ##### `impl Debug for super::Report`
 
@@ -181,7 +181,7 @@ You can just replace `use`s of `eyre::Report` with `miette::Report`.
 
 ##### `impl AsRef for super::Report`
 
-- `fn as_ref(self: &Self) -> &dyn StdError + Send + Sync`
+- `fn as_ref(self: &Self) -> &dyn StdError`
 
 ##### `impl Debug for super::Report`
 
@@ -527,12 +527,12 @@ trait IntoDiagnostic<T, E> { ... }
 ```
 
 Convenience trait that adds a [`.into_diagnostic()`](IntoDiagnostic::into_diagnostic) method that converts a type implementing
-[`std::error::Error`](../../docs_md/error/index.md) to a [`Result<T, Report>`](../../clap_builder/error/index.md).
+[`std::error::Error`](../../addr2line/index.md) to a [`Result<T, Report>`](../../clap_builder/error/index.md).
 
 ## Warning
 
 Calling this on a type implementing [`Diagnostic`](../index.md) will reduce it to the common denominator of
-[`std::error::Error`](../../docs_md/error/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
+[`std::error::Error`](../../addr2line/index.md). Meaning all extra information provided by [`Diagnostic`](../index.md) will be
 inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consider simply returning it or using
 `Into` or the [`Try`](std::ops::Try) operator (`?`).
 
@@ -540,7 +540,7 @@ inaccessible. If you have a type implementing [`Diagnostic`](../index.md) consid
 
 - `fn into_diagnostic(self: Self) -> Result<T, Report>`
 
-  Converts [`Result`](../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../docs_md/error/index.md)s
+  Converts [`Result`](../../clap_builder/error/index.md) types that return regular [`std::error::Error`](../../addr2line/index.md)s
 
 ## Functions
 

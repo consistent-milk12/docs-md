@@ -143,7 +143,7 @@ struct WithSourceCode<E, C> {
 
 - `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
 
-##### `impl<E: Diagnostic, C: SourceCode> Diagnostic for WithSourceCode<E, C>`
+##### `impl<C: SourceCode> Diagnostic for WithSourceCode<crate::Report, C>`
 
 - `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 

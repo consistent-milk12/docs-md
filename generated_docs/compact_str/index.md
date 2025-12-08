@@ -439,13 +439,13 @@ code is very sensitive to allocations, consider the `CompactString::from_string_
 
 ##### `impl Eq for CompactString`
 
-##### `impl Extend for CompactString`
+##### `impl<'a> Extend for CompactString`
 
-- `fn extend<T: IntoIterator<Item = CompactString>>(self: &mut Self, iter: T)`
+- `fn extend<T: IntoIterator<Item = Cow<'a, str>>>(self: &mut Self, iter: T)`
 
 ##### `impl<'a> FromIterator for CompactString`
 
-- `fn from_iter<T: IntoIterator<Item = &'a str>>(iter: T) -> Self`
+- `fn from_iter<T: IntoIterator<Item = Cow<'a, str>>>(iter: T) -> Self`
 
 ##### `impl FromStr for CompactString`
 

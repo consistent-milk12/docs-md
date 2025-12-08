@@ -121,7 +121,7 @@ Refer to the [module documentation] for details about punctuated sequences.
 
 ##### `impl<T, P> Extend for Punctuated<T, P>`
 
-- `fn extend<I: IntoIterator<Item = T>>(self: &mut Self, i: I)`
+- `fn extend<I: IntoIterator<Item = Pair<T, P>>>(self: &mut Self, i: I)`
 
 ##### `impl<T, P> FromIterator for Punctuated<T, P>`
 

@@ -109,19 +109,27 @@ assert_eq!(&caps["f2"], "💩".as_bytes());
 
 #### Implementations
 
-- `fn shortest_match(self: &Self, haystack: &[u8]) -> Option<usize>`
+- `fn new(re: &str) -> Result<Regex, Error>` — [`Regex`](#regex), [`Error`](../../index.md)
 
-- `fn shortest_match_at(self: &Self, haystack: &[u8], start: usize) -> Option<usize>`
+- `fn is_match(self: &Self, haystack: &[u8]) -> bool`
 
-- `fn is_match_at(self: &Self, haystack: &[u8], start: usize) -> bool`
+- `fn find<'h>(self: &Self, haystack: &'h [u8]) -> Option<Match<'h>>` — [`Match`](#match)
 
-- `fn find_at<'h>(self: &Self, haystack: &'h [u8], start: usize) -> Option<Match<'h>>` — [`Match`](#match)
+- `fn find_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Matches<'r, 'h>` — [`Matches`](#matches)
 
-- `fn captures_at<'h>(self: &Self, haystack: &'h [u8], start: usize) -> Option<Captures<'h>>` — [`Captures`](#captures)
+- `fn captures<'h>(self: &Self, haystack: &'h [u8]) -> Option<Captures<'h>>` — [`Captures`](#captures)
 
-- `fn captures_read<'h>(self: &Self, locs: &mut CaptureLocations, haystack: &'h [u8]) -> Option<Match<'h>>` — [`CaptureLocations`](#capturelocations), [`Match`](#match)
+- `fn captures_iter<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> CaptureMatches<'r, 'h>` — [`CaptureMatches`](#capturematches)
 
-- `fn captures_read_at<'h>(self: &Self, locs: &mut CaptureLocations, haystack: &'h [u8], start: usize) -> Option<Match<'h>>` — [`CaptureLocations`](#capturelocations), [`Match`](#match)
+- `fn split<'r, 'h>(self: &'r Self, haystack: &'h [u8]) -> Split<'r, 'h>` — [`Split`](#split)
+
+- `fn splitn<'r, 'h>(self: &'r Self, haystack: &'h [u8], limit: usize) -> SplitN<'r, 'h>` — [`SplitN`](#splitn)
+
+- `fn replace<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
+
+- `fn replace_all<'h, R: Replacer>(self: &Self, haystack: &'h [u8], rep: R) -> Cow<'h, [u8]>`
+
+- `fn replacen<'h, R: Replacer>(self: &Self, haystack: &'h [u8], limit: usize, rep: R) -> Cow<'h, [u8]>`
 
 #### Trait Implementations
 
@@ -324,11 +332,11 @@ assert_eq!(b"y", &caps["last"]);
 
 - `fn fmt(self: &Self, f: &mut core::fmt::Formatter<'_>) -> core::fmt::Result`
 
-##### `impl<'h> Index for Captures<'h>`
+##### `impl<'h, 'n> Index for Captures<'h>`
 
 - `type Output = [u8]`
 
-- `fn index<'a>(self: &'a Self, i: usize) -> &'a [u8]`
+- `fn index<'a>(self: &'a Self, name: &'n str) -> &'a [u8]`
 
 ### `CaptureLocations`
 

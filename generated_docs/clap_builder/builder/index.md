@@ -58,7 +58,7 @@ feature
 
 ##### `impl AsRef for Str`
 
-- `fn as_ref(self: &Self) -> &std::path::Path`
+- `fn as_ref(self: &Self) -> &[u8]`
 
 ##### `impl Clone for Str`
 
@@ -98,7 +98,7 @@ feature
 
 ##### `impl PartialEq for Str`
 
-- `fn eq(self: &Self, other: &&std::ffi::OsStr) -> bool`
+- `fn eq(self: &Self, other: &str) -> bool`
 
 ##### `impl PartialOrd for Str`
 
@@ -181,17 +181,91 @@ let input = arg!(-i --input <FILE> "Provides an input file to the program");
 
 #### Implementations
 
-- `fn _build(self: &mut Self)`
+- `fn get_id(self: &Self) -> &Id` — [`Id`](../index.md)
 
-- `fn name_no_brackets(self: &Self) -> String`
+- `fn get_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
 
-- `fn stylized(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](#styles), [`StyledStr`](#styledstr)
+- `fn get_long_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
 
-- `fn stylize_arg_suffix(self: &Self, styles: &Styles, required: Option<bool>) -> StyledStr` — [`Styles`](#styles), [`StyledStr`](#styledstr)
+- `fn get_display_order(self: &Self) -> usize`
 
-- `fn render_arg_val(self: &Self, required: bool) -> String`
+- `fn get_help_heading(self: &Self) -> Option<&str>`
 
-- `fn is_multiple(self: &Self) -> bool`
+- `fn get_short(self: &Self) -> Option<char>`
+
+- `fn get_visible_short_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_all_short_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_short_and_visible_aliases(self: &Self) -> Option<Vec<char>>`
+
+- `fn get_long(self: &Self) -> Option<&str>`
+
+- `fn get_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_all_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_long_and_visible_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_aliases(self: &Self) -> Option<Vec<&str>>`
+
+- `fn get_possible_values(self: &Self) -> Vec<PossibleValue>` — [`PossibleValue`](#possiblevalue)
+
+- `fn get_value_names(self: &Self) -> Option<&[Str]>` — [`Str`](#str)
+
+- `fn get_num_args(self: &Self) -> Option<ValueRange>` — [`ValueRange`](#valuerange)
+
+- `fn get_min_vals(self: &Self) -> usize`
+
+- `fn get_value_delimiter(self: &Self) -> Option<char>`
+
+- `fn get_value_terminator(self: &Self) -> Option<&Str>` — [`Str`](#str)
+
+- `fn get_index(self: &Self) -> Option<usize>`
+
+- `fn get_value_hint(self: &Self) -> ValueHint` — [`ValueHint`](../index.md)
+
+- `fn get_default_values(self: &Self) -> &[OsStr]` — [`OsStr`](#osstr)
+
+- `fn is_positional(self: &Self) -> bool`
+
+- `fn is_required_set(self: &Self) -> bool`
+
+- `fn is_multiple_values_set(self: &Self) -> bool`
+
+- `fn is_takes_value_set(self: &Self) -> bool`
+
+- `fn is_allow_hyphen_values_set(self: &Self) -> bool`
+
+- `fn is_allow_negative_numbers_set(self: &Self) -> bool`
+
+- `fn get_action(self: &Self) -> &ArgAction` — [`ArgAction`](../index.md)
+
+- `fn get_value_parser(self: &Self) -> &super::ValueParser` — [`ValueParser`](#valueparser)
+
+- `fn is_global_set(self: &Self) -> bool`
+
+- `fn is_next_line_help_set(self: &Self) -> bool`
+
+- `fn is_hide_set(self: &Self) -> bool`
+
+- `fn is_hide_default_value_set(self: &Self) -> bool`
+
+- `fn is_hide_possible_values_set(self: &Self) -> bool`
+
+- `fn is_hide_short_help_set(self: &Self) -> bool`
+
+- `fn is_hide_long_help_set(self: &Self) -> bool`
+
+- `fn is_require_equals_set(self: &Self) -> bool`
+
+- `fn is_exclusive_set(self: &Self) -> bool`
+
+- `fn is_trailing_var_arg_set(self: &Self) -> bool`
+
+- `fn is_last_set(self: &Self) -> bool`
+
+- `fn is_ignore_case_set(self: &Self) -> bool`
 
 #### Trait Implementations
 
@@ -307,29 +381,9 @@ assert_eq!(matches
 
 #### Implementations
 
-- `fn new(id: impl Into<Id>) -> Self` — [`Id`](../index.md)
+- `fn get_id(self: &Self) -> &Id` — [`Id`](../index.md)
 
-- `fn id(self: Self, id: impl Into<Id>) -> Self` — [`Id`](../index.md)
-
-- `fn arg(self: Self, arg_id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
-
-- `fn args(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
-
-- `fn get_args(self: &Self) -> impl Iterator<Item = &Id>` — [`Id`](../index.md)
-
-- `fn multiple(self: Self, yes: bool) -> Self`
-
-- `fn is_multiple(self: &mut Self) -> bool`
-
-- `fn required(self: Self, yes: bool) -> Self`
-
-- `fn requires(self: Self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
-
-- `fn requires_all(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
-
-- `fn conflicts_with(self: Self, id: impl IntoResettable<Id>) -> Self` — [`IntoResettable`](#intoresettable), [`Id`](../index.md)
-
-- `fn conflicts_with_all(self: Self, ns: impl IntoIterator<Item = impl Into<Id>>) -> Self` — [`Id`](../index.md)
+- `fn is_required_set(self: &Self) -> bool`
 
 #### Trait Implementations
 
@@ -435,53 +489,51 @@ let m = Command::new("My Program")
 
 #### Implementations
 
-- `fn name(self: Self, name: impl Into<Str>) -> Self` — [`Str`](#str)
+- `fn get_override_usage(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
 
-- `fn bin_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](#intoresettable)
+- `fn get_override_help(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
 
-- `fn display_name(self: Self, name: impl IntoResettable<String>) -> Self` — [`IntoResettable`](#intoresettable)
+- `fn get_help_template(self: &Self) -> Option<&StyledStr>` — [`StyledStr`](#styledstr)
 
-- `fn author(self: Self, author: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](#intoresettable), [`Str`](#str)
+- `fn get_term_width(self: &Self) -> Option<usize>`
 
-- `fn about(self: Self, about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn get_max_term_width(self: &Self) -> Option<usize>`
 
-- `fn long_about(self: Self, long_about: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn get_keymap(self: &Self) -> &MKeyMap` — [`MKeyMap`](../mkeymap/index.md)
 
-- `fn after_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn get_used_global_args(self: &Self, matches: &ArgMatches, global_arg_vec: &mut Vec<Id>)` — [`ArgMatches`](../index.md), [`Id`](../index.md)
 
-- `fn after_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn _do_parse(self: &mut Self, raw_args: &mut clap_lex::RawArgs, args_cursor: clap_lex::ArgCursor) -> ClapResult<ArgMatches>` — [`Result`](../error/index.md), [`ArgMatches`](../index.md)
 
-- `fn before_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn build(self: &mut Self)`
 
-- `fn before_long_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn _build_recursive(self: &mut Self, expand_help_tree: bool)`
 
-- `fn version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](#intoresettable), [`Str`](#str)
+- `fn _build_self(self: &mut Self, expand_help_tree: bool)`
 
-- `fn long_version(self: Self, ver: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](#intoresettable), [`Str`](#str)
+- `fn _build_subcommand(self: &mut Self, name: &str) -> Option<&mut Self>`
 
-- `fn override_usage(self: Self, usage: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn _build_bin_names_internal(self: &mut Self)`
 
-- `fn override_help(self: Self, help: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn _panic_on_missing_help(self: &Self, help_required_globally: bool)`
 
-- `fn help_template(self: Self, s: impl IntoResettable<StyledStr>) -> Self` — [`IntoResettable`](#intoresettable), [`StyledStr`](#styledstr)
+- `fn two_args_of<F>(self: &Self, condition: F) -> Option<(&Arg, &Arg)>` — [`Arg`](../index.md)
 
-- `fn setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](app_settings/index.md)
+- `fn two_groups_of<F>(self: &Self, condition: F) -> Option<(&ArgGroup, &ArgGroup)>` — [`ArgGroup`](../index.md)
 
-- `fn unset_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](app_settings/index.md)
+- `fn _propagate_global_args(self: &mut Self)`
 
-- `fn global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](app_settings/index.md)
+- `fn _propagate(self: &mut Self)`
 
-- `fn unset_global_setting(self: Self, setting: AppSettings) -> Self` — [`AppSettings`](app_settings/index.md)
+- `fn _propagate_subcommand(self: &Self, sc: &mut Self)`
 
-- `fn flatten_help(self: Self, yes: bool) -> Self`
+- `fn _check_help_and_version(self: &mut Self, expand_help_tree: bool)`
 
-- `fn next_help_heading(self: Self, heading: impl IntoResettable<Str>) -> Self` — [`IntoResettable`](#intoresettable), [`Str`](#str)
+- `fn _copy_subtree_for_help(self: &Self) -> Command` — [`Command`](../index.md)
 
-- `fn next_display_order(self: Self, disp_ord: impl IntoResettable<usize>) -> Self` — [`IntoResettable`](#intoresettable)
+- `fn _render_version(self: &Self, use_long: bool) -> String`
 
-- `fn arg_required_else_help(self: Self, yes: bool) -> Self`
-
-- `fn allow_missing_positional(self: Self, yes: bool) -> Self`
+- `fn format_group(self: &Self, g: &Id) -> StyledStr` — [`Id`](../index.md), [`StyledStr`](#styledstr)
 
 #### Trait Implementations
 
@@ -540,7 +592,7 @@ feature
 
 ##### `impl AsRef for OsStr`
 
-- `fn as_ref(self: &Self) -> &std::ffi::OsStr`
+- `fn as_ref(self: &Self) -> &std::path::Path`
 
 ##### `impl Clone for OsStr`
 

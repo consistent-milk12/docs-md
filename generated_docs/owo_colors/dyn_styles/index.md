@@ -144,39 +144,7 @@ struct StyleFlags(u8);
 
 #### Implementations
 
-- `const fn new() -> Self`
-
-- `const fn dimmed(self: &Self) -> bool`
-
-- `const fn set_dimmed(self: Self, dimmed: bool) -> Self`
-
-- `const fn italic(self: &Self) -> bool`
-
-- `const fn set_italic(self: Self, italic: bool) -> Self`
-
-- `const fn underline(self: &Self) -> bool`
-
-- `const fn set_underline(self: Self, underline: bool) -> Self`
-
-- `const fn blink(self: &Self) -> bool`
-
-- `const fn set_blink(self: Self, blink: bool) -> Self`
-
-- `const fn blink_fast(self: &Self) -> bool`
-
-- `const fn set_blink_fast(self: Self, blink_fast: bool) -> Self`
-
-- `const fn reversed(self: &Self) -> bool`
-
-- `const fn set_reversed(self: Self, reversed: bool) -> Self`
-
-- `const fn hidden(self: &Self) -> bool`
-
-- `const fn set_hidden(self: Self, hidden: bool) -> Self`
-
-- `const fn strikethrough(self: &Self) -> bool`
-
-- `const fn set_strikethrough(self: Self, strikethrough: bool) -> Self`
+- `const fn is_plain(self: &Self) -> bool`
 
 #### Trait Implementations
 

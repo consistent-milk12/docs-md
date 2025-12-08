@@ -424,7 +424,31 @@ Represents a JSON number, whether integer or floating point.
 
 #### Implementations
 
-- `fn unexpected(self: &Self) -> Unexpected<'_>`
+- `fn is_i64(self: &Self) -> bool`
+
+- `fn is_u64(self: &Self) -> bool`
+
+- `fn is_f64(self: &Self) -> bool`
+
+- `fn as_i64(self: &Self) -> Option<i64>`
+
+- `fn as_u64(self: &Self) -> Option<u64>`
+
+- `fn as_f64(self: &Self) -> Option<f64>`
+
+- `fn from_f64(f: f64) -> Option<Number>` — [`Number`](../index.md)
+
+- `fn as_i128(self: &Self) -> Option<i128>`
+
+- `fn as_u128(self: &Self) -> Option<u128>`
+
+- `fn from_i128(i: i128) -> Option<Number>` — [`Number`](../index.md)
+
+- `fn from_u128(i: u128) -> Option<Number>` — [`Number`](../index.md)
+
+- `fn as_f32(self: &Self) -> Option<f32>`
+
+- `fn from_f32(f: f32) -> Option<Number>` — [`Number`](../index.md)
 
 #### Trait Implementations
 
@@ -803,7 +827,7 @@ See the [`serde_json::value` module documentation](self) for usage examples.
 
 ##### `impl PartialEq for Value`
 
-- `fn eq(self: &Self, other: &f32) -> bool`
+- `fn eq(self: &Self, other: &u64) -> bool`
 
 ##### `impl Serialize for crate::value::Value`
 

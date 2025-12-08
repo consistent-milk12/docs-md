@@ -73,7 +73,7 @@ struct ContextError<D, E> {
 
 - `fn ext_report<D>(self: Self, msg: D) -> Report` — [`Report`](../../index.md)
 
-##### `impl<D, E> Diagnostic for super::error::ContextError<D, E>`
+##### `impl<D> Diagnostic for super::error::ContextError<D, super::Report>`
 
 - `fn code<'a>(self: &'a Self) -> Option<Box<dyn Display>>`
 
@@ -93,7 +93,7 @@ struct ContextError<D, E> {
 
 - `fn fmt(self: &Self, f: &mut fmt::Formatter<'_>) -> fmt::Result`
 
-##### `impl<D> Error for super::error::ContextError<D, super::Report>`
+##### `impl<D, E> Error for super::error::ContextError<D, E>`
 
 - `fn source(self: &Self) -> Option<&dyn StdError>`
 

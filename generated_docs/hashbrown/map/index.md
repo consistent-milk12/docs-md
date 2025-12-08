@@ -185,9 +185,41 @@ let timber_resources: HashMap<&str, i32> = [("Norway", 100), ("Denmark", 50), ("
 
 #### Implementations
 
-- `fn raw_entry_mut(self: &mut Self) -> RawEntryBuilderMut<'_, K, V, S, A>` — [`RawEntryBuilderMut`](../raw_entry/index.md)
+- `fn allocator(self: &Self) -> &A`
 
-- `fn raw_entry(self: &Self) -> RawEntryBuilder<'_, K, V, S, A>` — [`RawEntryBuilder`](../raw_entry/index.md)
+- `const fn with_hasher_in(hash_builder: S, alloc: A) -> Self`
+
+- `fn with_capacity_and_hasher_in(capacity: usize, hash_builder: S, alloc: A) -> Self`
+
+- `fn hasher(self: &Self) -> &S`
+
+- `fn capacity(self: &Self) -> usize`
+
+- `fn keys(self: &Self) -> Keys<'_, K, V>` — [`Keys`](../hash_map/index.md)
+
+- `fn values(self: &Self) -> Values<'_, K, V>` — [`Values`](../hash_map/index.md)
+
+- `fn values_mut(self: &mut Self) -> ValuesMut<'_, K, V>` — [`ValuesMut`](../hash_map/index.md)
+
+- `fn iter(self: &Self) -> Iter<'_, K, V>` — [`Iter`](../hash_map/index.md)
+
+- `fn iter_mut(self: &mut Self) -> IterMut<'_, K, V>` — [`IterMut`](../hash_map/index.md)
+
+- `fn len(self: &Self) -> usize`
+
+- `fn is_empty(self: &Self) -> bool`
+
+- `fn drain(self: &mut Self) -> Drain<'_, K, V, A>` — [`Drain`](../hash_map/index.md)
+
+- `fn retain<F>(self: &mut Self, f: F)`
+
+- `fn extract_if<F>(self: &mut Self, f: F) -> ExtractIf<'_, K, V, F, A>` — [`ExtractIf`](../hash_map/index.md)
+
+- `fn clear(self: &mut Self)`
+
+- `fn into_keys(self: Self) -> IntoKeys<K, V, A>` — [`IntoKeys`](../hash_map/index.md)
+
+- `fn into_values(self: Self) -> IntoValues<K, V, A>` — [`IntoValues`](../hash_map/index.md)
 
 #### Trait Implementations
 
@@ -1590,21 +1622,7 @@ assert_eq!(vec, [("a", 1), ("b", 2), ("c", 3), ("d", 4), ("e", 5), ("f", 6)]);
 
 #### Implementations
 
-- `fn insert(self: Self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
-
-- `fn or_insert(self: Self, default: V) -> &'a mut V`
-
-- `fn or_insert_entry(self: Self, default: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
-
-- `fn or_insert_with<F: FnOnce() -> V>(self: Self, default: F) -> &'a mut V`
-
-- `fn or_insert_with_key<F: FnOnce(&K) -> V>(self: Self, default: F) -> &'a mut V`
-
-- `fn key(self: &Self) -> &K`
-
-- `fn and_modify<F>(self: Self, f: F) -> Self`
-
-- `fn and_replace_entry_with<F>(self: Self, f: F) -> Self`
+- `fn or_default(self: Self) -> &'a mut V`
 
 #### Trait Implementations
 
@@ -1710,9 +1728,17 @@ assert_eq!(map.len(), 6);
 
 #### Implementations
 
-- `fn or_default(self: Self) -> &'a mut V`
+- `fn insert(self: Self, value: V) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
 
-- `fn or_default_entry(self: Self) -> OccupiedEntry<'a, K, V, S, A>` — [`OccupiedEntry`](../hash_map/index.md)
+- `fn or_insert(self: Self, default: V) -> &'a mut V`
+
+- `fn or_insert_with<F: FnOnce() -> V>(self: Self, default: F) -> &'a mut V`
+
+- `fn or_insert_with_key<F: FnOnce(&Q) -> V>(self: Self, default: F) -> &'a mut V`
+
+- `fn key(self: &Self) -> &Q`
+
+- `fn and_modify<F>(self: Self, f: F) -> Self`
 
 #### Trait Implementations
 

@@ -206,13 +206,25 @@ the `Properties` inlined into every `Hir` value to make it less noisy).
 
 #### Implementations
 
-- `fn kind(self: &Self) -> &HirKind` — [`HirKind`](#hirkind)
+- `fn empty() -> Hir` — [`Hir`](#hir)
 
-- `fn into_kind(self: Self) -> HirKind` — [`HirKind`](#hirkind)
+- `fn fail() -> Hir` — [`Hir`](#hir)
 
-- `fn properties(self: &Self) -> &Properties` — [`Properties`](#properties)
+- `fn literal<B: Into<Box<[u8]>>>(lit: B) -> Hir` — [`Hir`](#hir)
 
-- `fn into_parts(self: Self) -> (HirKind, Properties)` — [`HirKind`](#hirkind), [`Properties`](#properties)
+- `fn class(class: Class) -> Hir` — [`Class`](#class), [`Hir`](#hir)
+
+- `fn look(look: Look) -> Hir` — [`Look`](#look), [`Hir`](#hir)
+
+- `fn repetition(rep: Repetition) -> Hir` — [`Repetition`](#repetition), [`Hir`](#hir)
+
+- `fn capture(capture: Capture) -> Hir` — [`Capture`](#capture), [`Hir`](#hir)
+
+- `fn concat(subs: Vec<Hir>) -> Hir` — [`Hir`](#hir)
+
+- `fn alternation(subs: Vec<Hir>) -> Hir` — [`Hir`](#hir)
+
+- `fn dot(dot: Dot) -> Hir` — [`Dot`](#dot), [`Hir`](#hir)
 
 #### Trait Implementations
 

@@ -27,9 +27,17 @@ struct AtomicPtr<T> {
 
 #### Implementations
 
-- `fn compare_exchange(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](../../index.md)
+- `const fn new(v: *mut T) -> Self`
 
-- `fn compare_exchange_weak(self: &Self, current: *mut T, new: *mut T, success: Ordering, failure: Ordering) -> Result<*mut T, *mut T>` — [`Ordering`](../../index.md)
+- `fn is_lock_free() -> bool`
+
+- `const IS_ALWAYS_LOCK_FREE: bool`
+
+- `fn load(self: &Self, order: Ordering) -> *mut T` — [`Ordering`](../../index.md)
+
+- `fn store(self: &Self, ptr: *mut T, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `const fn as_ptr(self: &Self) -> *mut *mut T`
 
 #### Trait Implementations
 
@@ -54,15 +62,17 @@ struct AtomicIsize {
 
 #### Implementations
 
-- `fn add(self: &Self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
+- `const fn new(v: isize) -> Self`
 
-- `fn sub(self: &Self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn is_lock_free() -> bool`
 
-- `fn and(self: &Self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
+- `const IS_ALWAYS_LOCK_FREE: bool`
 
-- `fn or(self: &Self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn load(self: &Self, order: Ordering) -> isize` — [`Ordering`](../../index.md)
 
-- `fn xor(self: &Self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn store(self: &Self, val: isize, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `const fn as_ptr(self: &Self) -> *mut isize`
 
 #### Trait Implementations
 
@@ -87,15 +97,9 @@ struct AtomicUsize {
 
 #### Implementations
 
-- `fn add(self: &Self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn not(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- `fn sub(self: &Self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn and(self: &Self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn or(self: &Self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn xor(self: &Self, val: usize, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn neg(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -120,11 +124,9 @@ struct AtomicI8 {
 
 #### Implementations
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- `fn not(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
-
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- `fn neg(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -149,9 +151,19 @@ struct AtomicU8 {
 
 #### Implementations
 
-- `fn not(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
+- `fn compare_exchange(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](../../index.md)
 
-- `fn neg(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
+- `fn compare_exchange_weak(self: &Self, current: u8, new: u8, success: Ordering, failure: Ordering) -> Result<u8, u8>` — [`Ordering`](../../index.md)
+
+- `fn fetch_update_<F>(self: &Self, order: Ordering, f: F) -> u8` — [`Ordering`](../../index.md)
+
+- `fn fetch_max(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](../../index.md)
+
+- `fn fetch_min(self: &Self, val: u8, order: Ordering) -> u8` — [`Ordering`](../../index.md)
+
+- `fn fetch_not(self: &Self, order: Ordering) -> u8` — [`Ordering`](../../index.md)
+
+- `fn fetch_neg(self: &Self, order: Ordering) -> u8` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -176,15 +188,9 @@ struct AtomicI16 {
 
 #### Implementations
 
-- `fn add(self: &Self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn not(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- `fn sub(self: &Self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn and(self: &Self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn or(self: &Self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn xor(self: &Self, val: i16, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn neg(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -238,11 +244,9 @@ struct AtomicI32 {
 
 #### Implementations
 
-- `fn bit_set(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- `fn not(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- `fn bit_clear(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
-
-- `fn bit_toggle(self: &Self, bit: u32, order: Ordering) -> bool` — [`Ordering`](../../index.md)
+- `fn neg(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -267,19 +271,9 @@ struct AtomicU32 {
 
 #### Implementations
 
-- `fn compare_exchange(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](../../index.md)
+- `fn not(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- `fn compare_exchange_weak(self: &Self, current: u32, new: u32, success: Ordering, failure: Ordering) -> Result<u32, u32>` — [`Ordering`](../../index.md)
-
-- `fn fetch_update_<F>(self: &Self, order: Ordering, f: F) -> u32` — [`Ordering`](../../index.md)
-
-- `fn fetch_max(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](../../index.md)
-
-- `fn fetch_min(self: &Self, val: u32, order: Ordering) -> u32` — [`Ordering`](../../index.md)
-
-- `fn fetch_not(self: &Self, order: Ordering) -> u32` — [`Ordering`](../../index.md)
-
-- `fn fetch_neg(self: &Self, order: Ordering) -> u32` — [`Ordering`](../../index.md)
+- `fn neg(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -304,15 +298,9 @@ struct AtomicI64 {
 
 #### Implementations
 
-- `fn add(self: &Self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn not(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
-- `fn sub(self: &Self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn and(self: &Self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn or(self: &Self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
-
-- `fn xor(self: &Self, val: i64, order: Ordering)` — [`Ordering`](../../index.md)
+- `fn neg(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
 
 #### Trait Implementations
 
@@ -337,9 +325,17 @@ struct AtomicU64 {
 
 #### Implementations
 
-- `fn not(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
+- `const fn new(v: u64) -> Self`
 
-- `fn neg(self: &Self, _order: Ordering)` — [`Ordering`](../../index.md)
+- `fn is_lock_free() -> bool`
+
+- `const IS_ALWAYS_LOCK_FREE: bool`
+
+- `fn load(self: &Self, order: Ordering) -> u64` — [`Ordering`](../../index.md)
+
+- `fn store(self: &Self, val: u64, order: Ordering)` — [`Ordering`](../../index.md)
+
+- `const fn as_ptr(self: &Self) -> *mut u64`
 
 #### Trait Implementations
 

@@ -72,11 +72,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- `unsafe fn find(self: &Self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- `unsafe fn new(patterns: Arc<Patterns>) -> Slim<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Slim`](#slim)
 
-- `unsafe fn find_one(self: &Self, cur: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- `fn memory_usage(self: &Self) -> usize`
 
-- `unsafe fn candidate(self: &Self, cur: *const u8) -> V`
+- `fn minimum_len(self: &Self) -> usize`
 
 #### Trait Implementations
 
@@ -115,11 +115,11 @@ Only 1, 2, 3 and 4 bytes are supported as minimum lengths.
 
 #### Implementations
 
-- `unsafe fn find(self: &Self, start: *const u8, end: *const u8) -> Option<Match>` — [`Match`](#match)
+- `unsafe fn new(patterns: Arc<Patterns>) -> Fat<V, BYTES>` — [`Patterns`](../../pattern/index.md), [`Fat`](#fat)
 
-- `unsafe fn find_one(self: &Self, cur: *const u8, end: *const u8, prev0: &mut V, prev1: &mut V) -> Option<Match>` — [`Match`](#match)
+- `fn memory_usage(self: &Self) -> usize`
 
-- `unsafe fn candidate(self: &Self, cur: *const u8, prev0: &mut V, prev1: &mut V) -> V`
+- `fn minimum_len(self: &Self) -> usize`
 
 #### Trait Implementations
 
@@ -169,7 +169,15 @@ be quite expensive if `N` is not a multiple of 2.
 
 #### Implementations
 
-- `unsafe fn verify<V: Vector>(self: &Self, cur: *const u8, end: *const u8, candidate: V) -> Option<Match>` — [`Match`](#match)
+- `fn new(patterns: Arc<Patterns>) -> Teddy<BUCKETS>` — [`Patterns`](../../pattern/index.md), [`Teddy`](#teddy)
+
+- `unsafe fn verify64(self: &Self, cur: *const u8, end: *const u8, candidate_chunk: u64) -> Option<Match>` — [`Match`](#match)
+
+- `unsafe fn verify_bucket(self: &Self, cur: *const u8, end: *const u8, bucket: usize) -> Option<Match>` — [`Match`](#match)
+
+- `fn mask_len(self: &Self) -> usize`
+
+- `fn memory_usage(self: &Self) -> usize`
 
 #### Trait Implementations
 

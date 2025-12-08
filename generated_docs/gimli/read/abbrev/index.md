@@ -22,7 +22,7 @@ The `DebugAbbrev` struct represents the abbreviations describing
 
 #### Implementations
 
-- `fn new(debug_abbrev_section: &'input [u8], endian: Endian) -> Self`
+- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugAbbrev<R>` — [`DebugAbbrev`](../index.md)
 
 #### Trait Implementations
 

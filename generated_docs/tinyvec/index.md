@@ -120,7 +120,7 @@ assert_eq!(no_ints.len(), 0);
 
 #### Implementations
 
-- `const fn from_array_empty(data: A) -> Self`
+- `const fn as_inner(self: &Self) -> &A`
 
 #### Trait Implementations
 
@@ -216,7 +216,7 @@ assert_eq!(no_ints.len(), 0);
 
 ##### `impl<A: Array> PartialEq for ArrayVec<A>`
 
-- `fn eq(self: &Self, other: &&[<A as >::Item]) -> bool` — [`Array`](#array)
+- `fn eq(self: &Self, other: &&A) -> bool`
 
 ##### `impl<A: Array> PartialOrd for ArrayVec<A>`
 
@@ -577,7 +577,7 @@ working with to make it easier to manipulate.
 
 ##### `impl<'s, T> PartialEq for SliceVec<'s, T>`
 
-- `fn eq(self: &Self, other: &Self) -> bool`
+- `fn eq(self: &Self, other: &&[T]) -> bool`
 
 ##### `impl<'s, T> PartialOrd for SliceVec<'s, T>`
 

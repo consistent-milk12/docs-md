@@ -58,7 +58,7 @@ This section contains the type unit index.
 
 #### Implementations
 
-- `fn borrow<'a, F, R>(self: &'a Self, borrow: F) -> DebugTuIndex<R>` — [`DebugTuIndex`](../index.md)
+- `fn index(self: Self) -> Result<UnitIndex<R>>` — [`Result`](../../index.md), [`UnitIndex`](../index.md)
 
 #### Trait Implementations
 

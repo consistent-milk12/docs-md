@@ -135,19 +135,17 @@ preference.
 
 #### Implementations
 
-- `fn into_inner(self: Self) -> T`
-
-- `fn map<F, M>(self: Self, f: F) -> Either<M, M>` — [`Either`](#either)
+- `fn factor_err(self: Self) -> Result<Either<L, R>, E>` — [`Either`](#either)
 
 #### Trait Implementations
 
-##### `impl<L, R, Target> AsMut for Either<L, R>`
+##### `impl<L, R> AsMut for Either<L, R>`
 
-- `fn as_mut(self: &mut Self) -> &mut [Target]`
+- `fn as_mut(self: &mut Self) -> &mut str`
 
-##### `impl<L, R> AsRef for Either<L, R>`
+##### `impl<L, R, Target> AsRef for Either<L, R>`
 
-- `fn as_ref(self: &Self) -> &str`
+- `fn as_ref(self: &Self) -> &[Target]`
 
 ##### `impl<L: Clone, R: Clone> Clone for Either<L, R>`
 
